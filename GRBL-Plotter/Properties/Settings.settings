@@ -1,0 +1,207 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRBL_Plotter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+    <Setting Name="baud" Type="System.String" Scope="User">
+      <Value Profile="(Default)">115200</Value>
+    </Setting>
+    <Setting Name="file" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\</Value>
+    </Setting>
+    <Setting Name="custom1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Custom Button 1||Nothing to do</Value>
+    </Setting>
+    <Setting Name="custom2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Custom Button 2||Nothing to do</Value>
+    </Setting>
+    <Setting Name="custom3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Custom Button 3||Nothing to do</Value>
+    </Setting>
+    <Setting Name="custom4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Custom Button 4||Nothing to do</Value>
+    </Setting>
+    <Setting Name="custom5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Custom Button 5||Nothing to do</Value>
+    </Setting>
+    <Setting Name="custom6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Custom Button 6||Nothing to do</Value>
+    </Setting>
+    <Setting Name="custom7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Custom Button 7||Nothing to do</Value>
+    </Setting>
+    <Setting Name="custom8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Custom Button 8||Nothing to do</Value>
+    </Setting>
+    <Setting Name="camerindex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camerarotation" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
+    <Setting Name="camerascalingTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="camerascalingBot" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="cameraTeachRadiusTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="cameraTeachRadiusBot" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="cameraPosTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraPosBot" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-50</Value>
+    </Setting>
+    <Setting Name="cameraToolOffsetX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraToolOffsetY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="lastOffsetX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="lastOffsetY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="lastOffsetZ" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="colorBackground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">224, 224, 224</Value>
+    </Setting>
+    <Setting Name="colorRuler" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 0, 192</Value>
+    </Setting>
+    <Setting Name="colorPenUp" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Green</Value>
+    </Setting>
+    <Setting Name="colorPenDown" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="colorTool" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="widthRuler" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="widthPenUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="widthPenDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.4</Value>
+    </Setting>
+    <Setting Name="widthTool" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="colorMarker" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="widthMarker" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="textFontIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="textFontSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="importGCZUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGCZDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-2</Value>
+    </Setting>
+    <Setting Name="importGCZFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="importGCSSpeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20000</Value>
+    </Setting>
+    <Setting Name="textFontText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test</Value>
+    </Setting>
+    <Setting Name="importGCZEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCSpindleToggle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCAddComments" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCXYFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="importGCHeader" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G21 G90</Value>
+    </Setting>
+    <Setting Name="importGCFooter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G0 X0 Y0; M30</Value>
+    </Setting>
+    <Setting Name="importGCPWMEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCPWMUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="importGCPWMDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="importGCPWMDlyUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGCPWMDlyDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importSVGBezier" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="importSVGRezise" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importSVGMaxSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="importSVGAddComments" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importSVGReduce" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importSVGReduceLimit" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="importSVGPauseElement" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importSVGPausePenDown" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importSVGPathExtend" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="locationSerForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="locationMForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="locationSetForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="locationCamForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="serialMinimize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
