@@ -26,6 +26,11 @@ Just unzip in new folder and run the GRBL-Plotter.exe
 * Transformation of GCodes (scale, rotation, mirror, zero-Offset)
 * Optional usage of a WebCam with graphics overlay of the current GCode, set zero point, measure angle, zoom
 
+### ToDo
+* Import of pictures
+* Wizzard to generate simple forms in GCode
+* Setup of the Joystick parameters (speed depending on step-size)
+
 ### Screenshots
 Main GUI
 ![GRBL-Plotter GUI](GRBLPlotter_GUI.png?raw=true "Main GUI")
