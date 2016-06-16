@@ -36,7 +36,8 @@ Just unzip in new folder and run the GRBL-Plotter.exe
 * Setup of the Joystick parameters (speed depending on step-size)
 
 ### My test bed
-[My XYZ platform](http://hasi.hol.es/cms/?CNC___Plotter)
+On my german homepage:
+[my XYZ platform](http://hasi.hol.es/cms/?CNC___Plotter)
 
 ### Screenshots
 Main GUI
