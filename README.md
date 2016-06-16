@@ -27,6 +27,7 @@ Main GUI
 ![GRBL-Plotter GUI](GRBLPlotter_GUI.png?raw=true "Main GUI")
 
 Seperate serial COM window
+
 ![GRBL-Plotter COM interface](GRBLPlotter_COM.png?raw=true "Serial connection")
 
 Setup import / GCode conversion
@@ -36,10 +37,13 @@ Setup user defined buttons
 ![GRBL-Plotter Setup2](GRBLPlotter_Setup2.png?raw=true "Setup2")
 
 Setup colors
+
 ![GRBL-Plotter Setup3](GRBLPlotter_Setup3.png?raw=true "Setup3")
 
 Text import
+
 ![GRBL-Plotter Text](GRBLPlotter_Text.png?raw=true "Text conversion")
 
 Different scaling options
+
 ![GRBL-Plotter Scaling](GRBLPlotter_scaling.png?raw=true "GCode scaling")
