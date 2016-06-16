@@ -28,6 +28,7 @@ Just unzip in new folder and run the GRBL-Plotter.exe
 * Internal variable to support probing, e.g.:
   - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.)
   - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
+  - examine SerialForm.cs for implementation
 
 
 ### ToDo
