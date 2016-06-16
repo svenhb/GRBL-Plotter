@@ -1,5 +1,5 @@
 # GRBL-Plotter
-A GCode sender for GRBL under windows using DotNET 4.5 (should also work with XP)
+A GCode sender for GRBL under windows, using DotNET 4.5 (should also work with Windows XP)
 Written in C# VisualStudio 2015 
 
 Just unzip in new folder and run the GRBL-Plotter.exe
