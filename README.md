@@ -25,6 +25,10 @@ Just unzip in new folder and run the GRBL-Plotter.exe
 * Drag & Drop (or Copy & Paste) of Browserlinks to SVG-files (works only with Chrome) for example from https://openclipart.org/
 * Transformation of GCodes (scale, rotation, mirror, zero-Offset)
 * Optional usage of a WebCam with graphics overlay of the current GCode, set zero point, measure angle, zoom
+* Internal variable to support probing, e.g.:
+  - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.)
+  - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
+
 
 ### ToDo
 * Import of pictures
