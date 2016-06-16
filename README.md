@@ -30,11 +30,13 @@ Just unzip in new folder and run the GRBL-Plotter.exe
   - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
   - examine SerialForm.cs for implementation
 
-
 ### ToDo
 * Import of pictures
 * Wizzard to generate simple forms in GCode
 * Setup of the Joystick parameters (speed depending on step-size)
+
+### My test bed
+[My XYZ platform](http://hasi.hol.es/cms/?CNC___Plotter)
 
 ### Screenshots
 Main GUI
