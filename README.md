@@ -37,7 +37,7 @@ Just unzip in new folder and run the GRBL-Plotter.exe
 
 ### My test bed
 On my german homepage:
-[my XYZ platform](http://hasi.hol.es/cms/?CNC___Plotter)
+[my XYZ platform](http://www.hasi.890m.com/)
 
 ### Screenshots
 Main GUI
