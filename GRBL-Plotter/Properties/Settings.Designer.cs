@@ -61,7 +61,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Custom Button 1||Nothing to do")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Set new coord|G43.1 Z-31.628 ; G92 X140 Y0 Z32")]
         public string custom1 {
             get {
                 return ((string)(this["custom1"]));
@@ -73,7 +73,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Custom Button 2||Nothing to do")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Move to 0;0;0|G90 G0 X0 Y0 Z0")]
         public string custom2 {
             get {
                 return ((string)(this["custom2"]));
@@ -85,7 +85,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Custom Button 3||Nothing to do")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Tray Out|G91 G53 G0 Z-1;G90 G53 G0 Y-5")]
         public string custom3 {
             get {
                 return ((string)(this["custom3"]));
@@ -97,7 +97,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Custom Button 4||Nothing to do")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Tray In|G90 G53 G0 Y-160")]
         public string custom4 {
             get {
                 return ((string)(this["custom4"]));
@@ -109,7 +109,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Custom Button 5||Nothing to do")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pen remove|_misc\\script_pen_remove.nc")]
         public string custom5 {
             get {
                 return ((string)(this["custom5"]));
@@ -121,7 +121,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Custom Button 6||Nothing to do")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pen pickup|_misc\\script_pen_pickup.nc")]
         public string custom6 {
             get {
                 return ((string)(this["custom6"]));
@@ -133,7 +133,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Custom Button 7||Nothing to do")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pen probing|_misc\\script_probing_tool.nc")]
         public string custom7 {
             get {
                 return ((string)(this["custom7"]));
@@ -145,7 +145,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Custom Button 8||Nothing to do")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Set Pen 0|G92 Z25")]
         public string custom8 {
             get {
                 return ((string)(this["custom8"]));
@@ -505,7 +505,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
         public decimal importGCSSpeed {
             get {
                 return ((decimal)(this["importGCSSpeed"]));
@@ -577,7 +577,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G21 G90")]
+        [global::System.Configuration.DefaultSettingValueAttribute("G90 G1")]
         public string importGCHeader {
             get {
                 return ((string)(this["importGCHeader"]));
@@ -697,7 +697,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGAddComments {
             get {
                 return ((bool)(this["importSVGAddComments"]));
@@ -733,7 +733,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGPauseElement {
             get {
                 return ((bool)(this["importSVGPauseElement"]));
@@ -745,7 +745,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGPausePenDown {
             get {
                 return ((bool)(this["importSVGPausePenDown"]));
@@ -757,7 +757,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGPathExtend {
             get {
                 return ((bool)(this["importSVGPathExtend"]));
@@ -824,6 +824,174 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["serialMinimize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM2")]
+        public string port2 {
+            get {
+                return ((string)(this["port2"]));
+            }
+            set {
+                this["port2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
+        public string baud2 {
+            get {
+                return ((string)(this["baud2"]));
+            }
+            set {
+                this["baud2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point locationSerForm2 {
+            get {
+                return ((global::System.Drawing.Point)(this["locationSerForm2"]));
+            }
+            set {
+                this["locationSerForm2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UpgradeRequired {
+            get {
+                return ((bool)(this["UpgradeRequired"]));
+            }
+            set {
+                this["UpgradeRequired"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importSVGToolColor {
+            get {
+                return ((bool)(this["importSVGToolColor"]));
+            }
+            set {
+                this["importSVGToolColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCTool {
+            get {
+                return ((bool)(this["importGCTool"]));
+            }
+            set {
+                this["importGCTool"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ctrlToolChange {
+            get {
+                return ((bool)(this["ctrlToolChange"]));
+            }
+            set {
+                this["ctrlToolChange"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("_misc\\script_pen_pickup.nc")]
+        public string ctrlToolScriptGet {
+            get {
+                return ((string)(this["ctrlToolScriptGet"]));
+            }
+            set {
+                this["ctrlToolScriptGet"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useSerial2 {
+            get {
+                return ((bool)(this["useSerial2"]));
+            }
+            set {
+                this["useSerial2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("_misc\\script_pen_remove.nc")]
+        public string ctrlToolScriptPut {
+            get {
+                return ((string)(this["ctrlToolScriptPut"]));
+            }
+            set {
+                this["ctrlToolScriptPut"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("_misc\\script_pen_select.nc")]
+        public string ctrlToolScriptSelect {
+            get {
+                return ((string)(this["ctrlToolScriptSelect"]));
+            }
+            set {
+                this["ctrlToolScriptSelect"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importSVGToolSort {
+            get {
+                return ((bool)(this["importSVGToolSort"]));
+            }
+            set {
+                this["importSVGToolSort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("_misc\\script_probing_tool.nc")]
+        public string ctrlToolScriptProbe {
+            get {
+                return ((string)(this["ctrlToolScriptProbe"]));
+            }
+            set {
+                this["ctrlToolScriptProbe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("_misc\\Stabilo_by_PN.gpl")]
+        public string importPalette {
+            get {
+                return ((string)(this["importPalette"]));
+            }
+            set {
+                this["importPalette"] = value;
             }
         }
     }
