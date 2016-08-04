@@ -48,12 +48,14 @@ Main GUI
 
 Seperate serial COM window(s) - one for the CNC, one for the tool changer (or 4th axis)
 
-![GRBL-Plotter COM interface](GRBLPlotter_COM.png?raw=true "Serial connection")
+![GRBL-Plotter COM interface](GRBLPlotter_COM2.png?raw=true "Serial connection")
 
 Setup import / GCode conversion
+
 ![GRBL-Plotter Setup1](GRBLPlotter_Setup1.png?raw=true "Setup1")
 
 Setup user defined buttons
+
 ![GRBL-Plotter Setup2](GRBLPlotter_Setup2.png?raw=true "Setup2")
 
 Setup tool change and colors
@@ -61,10 +63,13 @@ Setup tool change and colors
 ![GRBL-Plotter Setup3](GRBLPlotter_Setup3.png?raw=true "Setup3")
 
 Text import
+
 ![GRBL-Plotter Text](GRBLPlotter_Text.png?raw=true "Text conversion")
 
 Picture import
+
 ![GRBL-Plotter Image](GRBLPlotter_Image.png?raw=true "Image import")
 
 Different scaling options
+
 ![GRBL-Plotter Scaling](GRBLPlotter_scaling.png?raw=true "GCode scaling")
