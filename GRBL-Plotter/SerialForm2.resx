@@ -118,16 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="toolTipSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>126, 17</value>
+    <value>24, 7</value>
   </metadata>
-  <metadata name="serialPort1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
-    <value>View Grbl settings
-Grbl should respond with a list of the current system settings. 
-All of these settings are persistent and kept in EEPROM, so if you power down, 
-these will be loaded back up the next time you power up your Arduino.</value>
+  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
+    <value>Kill alarm lock
+Grbl's alarm mode is a state when something has gone critically wrong, 
+such as a hard limit or an abort during a cycle, or if Grbl doesn't know its position. 
+By default, if you have homing enabled and power-up the Arduino, Grbl enters the alarm state, 
+because it does not know its position. The alarm mode will lock all G-code commands 
+until the '$H' homing cycle has been performed. Or if a user needs to override the alarm lock to 
+move their axes off their limit switches, for example, '$X' kill alarm lock will override the locks and allow G-code functions to work again. 
+</value>
+  </data>
+  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
+    <value>View startup blocks
+$Nx are the startup blocks that Grbl runs every time you power on Grbl or reset Grbl. 
+In other words, a startup block is a line of G-code that you can have Grbl auto-magically
+run to set your G-code modal defaults, or anything else you need Grbl to do everytime you
+start up your machine. Grbl can store two blocks of G-code as a system default.
+</value>
   </data>
   <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
     <value>View gcode parameters
@@ -140,26 +149,17 @@ The non-persistent parameters, which will are not retained when reset or power-c
 tool length offsets, and the G38.2 probing data.
 </value>
   </data>
-  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
-    <value>View startup blocks
-$Nx are the startup blocks that Grbl runs every time you power on Grbl or reset Grbl. 
-In other words, a startup block is a line of G-code that you can have Grbl auto-magically
-run to set your G-code modal defaults, or anything else you need Grbl to do everytime you
-start up your machine. Grbl can store two blocks of G-code as a system default.
-</value>
-  </data>
-  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
-    <value>Kill alarm lock
-Grbl's alarm mode is a state when something has gone critically wrong, 
-such as a hard limit or an abort during a cycle, or if Grbl doesn't know its position. 
-By default, if you have homing enabled and power-up the Arduino, Grbl enters the alarm state, 
-because it does not know its position. The alarm mode will lock all G-code commands 
-until the '$H' homing cycle has been performed. Or if a user needs to override the alarm lock to 
-move their axes off their limit switches, for example, '$X' kill alarm lock will override the locks and allow G-code functions to work again. 
-</value>
+  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
+    <value>View Grbl settings
+Grbl should respond with a list of the current system settings. 
+All of these settings are persistent and kept in EEPROM, so if you power down, 
+these will be loaded back up the next time you power up your Arduino.</value>
   </data>
   <metadata name="timerSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>246, 17</value>
+    <value>133, 8</value>
+  </metadata>
+  <metadata name="serialPort2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>225, 8</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>39</value>

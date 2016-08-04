@@ -55,7 +55,6 @@ namespace GRBL_Plotter
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.btnClear = new System.Windows.Forms.Button();
-            this.tbCommand = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnGRBLCommand0 = new System.Windows.Forms.Button();
             this.btnGRBLCommand1 = new System.Windows.Forms.Button();
@@ -65,6 +64,9 @@ namespace GRBL_Plotter
             this.btnGRBLCommand4 = new System.Windows.Forms.Button();
             this.timerSerial = new System.Windows.Forms.Timer(this.components);
             this.btnGRBLReset = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblPos = new System.Windows.Forms.Label();
+            this.cBCommand = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cbPort
@@ -75,6 +77,7 @@ namespace GRBL_Plotter
             this.cbPort.Size = new System.Drawing.Size(67, 21);
             this.cbPort.TabIndex = 0;
             this.cbPort.Text = "COM123";
+            this.toolTipSerial.SetToolTip(this.cbPort, "Select free serial port");
             // 
             // cbBaud
             // 
@@ -90,24 +93,27 @@ namespace GRBL_Plotter
             this.cbBaud.Size = new System.Drawing.Size(65, 21);
             this.cbBaud.TabIndex = 1;
             this.cbBaud.Text = "115200";
+            this.toolTipSerial.SetToolTip(this.cbBaud, "Select speed");
             // 
             // btnOpenPort
             // 
             this.btnOpenPort.Location = new System.Drawing.Point(146, 0);
             this.btnOpenPort.Name = "btnOpenPort";
-            this.btnOpenPort.Size = new System.Drawing.Size(55, 23);
+            this.btnOpenPort.Size = new System.Drawing.Size(73, 23);
             this.btnOpenPort.TabIndex = 2;
             this.btnOpenPort.Text = "Open";
+            this.toolTipSerial.SetToolTip(this.btnOpenPort, "Open selected COM port with selected speed");
             this.btnOpenPort.UseVisualStyleBackColor = true;
             this.btnOpenPort.Click += new System.EventHandler(this.btnOpenPort_Click);
             // 
             // btnScanPort
             // 
-            this.btnScanPort.Location = new System.Drawing.Point(207, 0);
+            this.btnScanPort.Location = new System.Drawing.Point(225, 0);
             this.btnScanPort.Name = "btnScanPort";
             this.btnScanPort.Size = new System.Drawing.Size(55, 23);
             this.btnScanPort.TabIndex = 3;
             this.btnScanPort.Text = "Scan";
+            this.toolTipSerial.SetToolTip(this.btnScanPort, "Scan for free ports");
             this.btnScanPort.UseVisualStyleBackColor = true;
             this.btnScanPort.Click += new System.EventHandler(this.btnScanPort_Click);
             // 
@@ -122,9 +128,9 @@ namespace GRBL_Plotter
             // rtbLog
             // 
             this.rtbLog.Font = new System.Drawing.Font("Lucida Console", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbLog.Location = new System.Drawing.Point(2, 26);
+            this.rtbLog.Location = new System.Drawing.Point(2, 50);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(280, 361);
+            this.rtbLog.Size = new System.Drawing.Size(280, 337);
             this.rtbLog.TabIndex = 4;
             this.rtbLog.Text = "";
             this.rtbLog.WordWrap = false;
@@ -139,15 +145,6 @@ namespace GRBL_Plotter
             this.toolTipSerial.SetToolTip(this.btnClear, "Clear list above");
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // tbCommand
-            // 
-            this.tbCommand.Location = new System.Drawing.Point(77, 395);
-            this.tbCommand.Name = "tbCommand";
-            this.tbCommand.Size = new System.Drawing.Size(154, 20);
-            this.tbCommand.TabIndex = 6;
-            this.toolTipSerial.SetToolTip(this.tbCommand, "Send own command");
-            this.tbCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCommand_KeyPress);
             // 
             // btnSend
             // 
@@ -231,11 +228,46 @@ namespace GRBL_Plotter
             this.btnGRBLReset.UseVisualStyleBackColor = true;
             this.btnGRBLReset.Click += new System.EventHandler(this.btnGRBLReset_Click);
             // 
+            // lblStatus
+            // 
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(4, 26);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(65, 21);
+            this.lblStatus.TabIndex = 14;
+            this.lblStatus.Text = "Status";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPos
+            // 
+            this.lblPos.AutoSize = true;
+            this.lblPos.Location = new System.Drawing.Point(72, 30);
+            this.lblPos.Name = "lblPos";
+            this.lblPos.Size = new System.Drawing.Size(35, 13);
+            this.lblPos.TabIndex = 15;
+            this.lblPos.Text = "label1";
+            // 
+            // cBCommand
+            // 
+            this.cBCommand.FormattingEnabled = true;
+            this.cBCommand.Items.AddRange(new object[] {
+            "$H (Homing)",
+            "G90 G1 X1 F500 (absolute)",
+            "G91 G1 X1 F500 (relarive)"});
+            this.cBCommand.Location = new System.Drawing.Point(75, 395);
+            this.cBCommand.Name = "cBCommand";
+            this.cBCommand.Size = new System.Drawing.Size(156, 21);
+            this.cBCommand.TabIndex = 16;
+            this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCommand_KeyPress);
+            // 
             // SerialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 562);
+            this.ClientSize = new System.Drawing.Size(284, 441);
+            this.Controls.Add(this.cBCommand);
+            this.Controls.Add(this.lblPos);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnGRBLReset);
             this.Controls.Add(this.btnGRBLCommand4);
             this.Controls.Add(this.btnGRBLCommand3);
@@ -243,7 +275,6 @@ namespace GRBL_Plotter
             this.Controls.Add(this.btnGRBLCommand1);
             this.Controls.Add(this.btnGRBLCommand0);
             this.Controls.Add(this.btnSend);
-            this.Controls.Add(this.tbCommand);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.btnScanPort);
@@ -257,7 +288,7 @@ namespace GRBL_Plotter
             this.MinimumSize = new System.Drawing.Size(300, 480);
             this.Name = "SerialForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Serial Connection";
+            this.Text = "COM CNC";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SerialForm_FormClosing);
             this.Load += new System.EventHandler(this.SerialForm_Load);
             this.Resize += new System.EventHandler(this.SerialForm_Resize);
@@ -275,7 +306,6 @@ namespace GRBL_Plotter
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.RichTextBox rtbLog;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.TextBox tbCommand;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnGRBLCommand0;
         private System.Windows.Forms.Button btnGRBLCommand1;
@@ -285,5 +315,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Timer timerSerial;
         private System.Windows.Forms.Button btnGRBLCommand4;
         private System.Windows.Forms.Button btnGRBLReset;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblPos;
+        private System.Windows.Forms.ComboBox cBCommand;
     }
 }
