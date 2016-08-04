@@ -72,8 +72,8 @@ namespace GRBL_Plotter
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_mx = new System.Windows.Forms.Label();
             this.label_my = new System.Windows.Forms.Label();
             this.label_mz = new System.Windows.Forms.Label();
@@ -160,6 +160,7 @@ namespace GRBL_Plotter
             this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cBTool = new System.Windows.Forms.CheckBox();
             this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
             this.virtualJoystickXY = new virtualJoystick.virtualJoystick();
             this.label9 = new System.Windows.Forms.Label();
@@ -196,8 +197,8 @@ namespace GRBL_Plotter
             this.setupToolStripMenuItem,
             this.toolStripMenuItem1,
             this.textWizzardToolStripMenuItem,
-            this.aboutToolStripMenuItem,
-            this.imageToolStripMenuItem});
+            this.imageToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(884, 24);
@@ -254,20 +255,19 @@ namespace GRBL_Plotter
             this.textWizzardToolStripMenuItem.Text = "Create Text";
             this.textWizzardToolStripMenuItem.Click += new System.EventHandler(this.textWizzardToolStripMenuItem_Click);
             // 
+            // imageToolStripMenuItem
+            // 
+            this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
+            this.imageToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.imageToolStripMenuItem.Text = "Convert Image";
+            this.imageToolStripMenuItem.Click += new System.EventHandler(this.imageToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // imageToolStripMenuItem
-            // 
-            this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
-            this.imageToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.imageToolStripMenuItem.Text = "Image";
-            this.imageToolStripMenuItem.Visible = false;
-            this.imageToolStripMenuItem.Click += new System.EventHandler(this.imageToolStripMenuItem_Click);
             // 
             // label_mx
             // 
@@ -1200,6 +1200,7 @@ namespace GRBL_Plotter
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.cBTool);
             this.groupBox6.Controls.Add(this.virtualJoystickZ);
             this.groupBox6.Controls.Add(this.virtualJoystickXY);
             this.groupBox6.Controls.Add(this.label9);
@@ -1220,6 +1221,17 @@ namespace GRBL_Plotter
             this.groupBox6.TabIndex = 20;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Control";
+            // 
+            // cBTool
+            // 
+            this.cBTool.AutoSize = true;
+            this.cBTool.Location = new System.Drawing.Point(3, 38);
+            this.cBTool.Name = "cBTool";
+            this.cBTool.Size = new System.Drawing.Size(106, 17);
+            this.cBTool.TabIndex = 25;
+            this.cBTool.Text = "Tool is in Spindle";
+            this.cBTool.UseVisualStyleBackColor = true;
+            this.cBTool.CheckedChanged += new System.EventHandler(this.cBTool_CheckedChanged);
             // 
             // virtualJoystickZ
             // 
@@ -1258,7 +1270,7 @@ namespace GRBL_Plotter
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(94, 25);
+            this.label9.Location = new System.Drawing.Point(103, 16);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(38, 13);
             this.label9.TabIndex = 22;
@@ -1266,16 +1278,16 @@ namespace GRBL_Plotter
             // 
             // tBSpeed
             // 
-            this.tBSpeed.Location = new System.Drawing.Point(58, 22);
+            this.tBSpeed.Location = new System.Drawing.Point(64, 12);
             this.tBSpeed.Name = "tBSpeed";
             this.tBSpeed.Size = new System.Drawing.Size(39, 20);
             this.tBSpeed.TabIndex = 21;
-            this.tBSpeed.Text = "10000";
+            this.tBSpeed.Text = "1000";
             // 
             // cBCoolant
             // 
             this.cBCoolant.AutoSize = true;
-            this.cBCoolant.Location = new System.Drawing.Point(164, 24);
+            this.cBCoolant.Location = new System.Drawing.Point(165, 14);
             this.cBCoolant.Name = "cBCoolant";
             this.cBCoolant.Size = new System.Drawing.Size(62, 17);
             this.cBCoolant.TabIndex = 20;
@@ -1286,7 +1298,7 @@ namespace GRBL_Plotter
             // cBSpindle
             // 
             this.cBSpindle.AutoSize = true;
-            this.cBSpindle.Location = new System.Drawing.Point(3, 24);
+            this.cBSpindle.Location = new System.Drawing.Point(3, 15);
             this.cBSpindle.Name = "cBSpindle";
             this.cBSpindle.Size = new System.Drawing.Size(61, 17);
             this.cBSpindle.TabIndex = 19;
@@ -1481,6 +1493,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem deleteThisCodeLineToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem deletenotMarkToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cBTool;
     }
 }
 

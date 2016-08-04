@@ -52,7 +52,7 @@ namespace GRBL_Plotter
             for (int i = 1; i <= 8; i++)
             {
                 ListViewItem item = lvCustomButtons.Items[i - 1];
-                Properties.Settings.Default["custom" + i.ToString()] = item.SubItems[1].Text + "|" + item.SubItems[2].Text + "|" + item.SubItems[3].Text;
+                Properties.Settings.Default["custom" + i.ToString()] = item.SubItems[1].Text + "|" + item.SubItems[2].Text;// + "|" + item.SubItems[3].Text;
             }
             Properties.Settings.Default.Save();
          }
@@ -136,7 +136,7 @@ namespace GRBL_Plotter
             if (!isExpand)
             {
                 this.Width = 730;
-                this.Height = 330;
+                this.Height = 350;
                 btnResizeForm.Text = "reduce <";
                 isExpand = true;
             } 
@@ -147,17 +147,20 @@ namespace GRBL_Plotter
             if (!isExpand)
             {
                 this.Width = 730;
-                this.Height = 330;
+                this.Height = 350;
                 btnResizeForm.Text = "reduce <";
                 isExpand = true;
             }
             else
             {
                 this.Width = 230;
-                this.Height = 285;
+                this.Height = 325;
                 btnResizeForm.Text = "expand >";
                 isExpand = false;
             }
         }
+
+        private void SetupForm_FormClosing(object sender, FormClosingEventArgs e)
+        {   saveSettings();  }
     }
 }

@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,10 +24,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
+    <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -121,6 +122,14 @@
     <Compile Include="CameraForm.Designer.cs">
       <DependentUpon>CameraForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="gcodeRelated.cs" />
+    <Compile Include="grblRelated.cs" />
+    <Compile Include="SerialForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SerialForm2.Designer.cs">
+      <DependentUpon>SerialForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="GCodeVisuAndTransform.cs" />
     <Compile Include="ImageToGCode.cs">
       <SubType>Form</SubType>
@@ -149,12 +158,13 @@
     <Compile Include="SetupForm.Designer.cs">
       <DependentUpon>SetupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="svgPalette.cs" />
     <Compile Include="SVGToGCode.cs" />
-    <Compile Include="TextForm.cs">
+    <Compile Include="TextToGCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TextForm.Designer.cs">
-      <DependentUpon>TextForm.cs</DependentUpon>
+    <Compile Include="TextToGCode.Designer.cs">
+      <DependentUpon>TextToGCode.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
@@ -181,11 +191,14 @@
     <EmbeddedResource Include="SerialForm.resx">
       <DependentUpon>SerialForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SerialForm2.resx">
+      <DependentUpon>SerialForm2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SetupForm.resx">
       <DependentUpon>SetupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextForm.resx">
-      <DependentUpon>TextForm.cs</DependentUpon>
+    <EmbeddedResource Include="TextToGCode.resx">
+      <DependentUpon>TextToGCode.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="GRBL-Plotter_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />

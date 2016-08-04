@@ -38,11 +38,11 @@ namespace GRBL_Plotter
 
     public partial class MainForm : Form
     {
-        SerialForm _serial_form;
-        CameraForm _camera_form;
-        SetupForm _setup_form;
-        TextForm _text_form;
-        ImageToGCode _image_form;
+        SerialForm _serial_form = null;
+        CameraForm _camera_form = null;
+        SetupForm _setup_form = null;
+        TextToGCode _text_form = null;
+        ImageToGCode _image_form = null;
 
         private const string appName = "GRBL Plotter";
         private xyzPoint posMachine = new xyzPoint(0, 0, 0);
@@ -77,42 +77,78 @@ namespace GRBL_Plotter
         private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((Application.OpenForms["CameraForm"] as CameraForm) == null)
-            {
+            {//            if (_camera_form == null)
+            
                 _camera_form = new CameraForm();
-                _camera_form.Show(this);
+                _camera_form.FormClosed += formClosed_CameraForm;
                 _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
             }
+            else
+            {
+                _camera_form.Visible = false;
+            }
+            _camera_form.Show(this);
         }
+        private void formClosed_CameraForm(object sender, FormClosedEventArgs e)
+        { _camera_form = null; }
+
         // open Setup form
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((Application.OpenForms["SetupForm"] as SetupForm) == null)
-            {
+            {//            if (_setup_form == null)
+            
                 _setup_form = new SetupForm();
-                _setup_form.Show(this);
+                _setup_form.FormClosed += formClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += loadSettings;
                 _setup_form.btnReloadFile.Click += reStartConvertSVG;
             }
+            else
+            {
+                _setup_form.Visible = false;
+            }
+            _setup_form.Show(this);
         }
+        private void formClosed_SetupForm(object sender, FormClosedEventArgs e)
+        { _setup_form = null; }
+
         // open text creation form
         private void textWizzardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Application.OpenForms["TextForm"] as TextForm) == null)
-            {
-                _text_form = new TextForm();
-                _text_form.Show(this);
+//            if ((Application.OpenForms["TextForm"] as TextToGCode) == null)
+            if (_text_form == null)
+            { 
+                _text_form = new TextToGCode();
+                _text_form.FormClosed += formClosed_TextToGCode;
                 _text_form.btnApply.Click += getGCodeFromText;      // assign btn-click event
             }
+            else
+            {
+                _text_form.Visible = false;
+            }
+            _text_form.Show(this);
         }
+        private void formClosed_TextToGCode(object sender, FormClosedEventArgs e)
+        { _text_form = null; }
+
         private void imageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((Application.OpenForms["Image2GCode"] as ImageToGCode) == null)
-            {
+            {//            if (_image_form == null)
+            
                 _image_form = new ImageToGCode();
-                _image_form.Show(this);
-                //               _image_form.btnApply.Click += getGCodeFromText;      // assign btn-click event
+                _image_form.FormClosed += formClosed_ImageToGCode;
+                _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
             }
+            else
+            {
+                _image_form.Visible = false;
+            }
+            _image_form.Show(this);
         }
+        private void formClosed_ImageToGCode(object sender, FormClosedEventArgs e)
+        {  _image_form = null;  }
+
         // open About form
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -122,7 +158,10 @@ namespace GRBL_Plotter
         // initialize Main form
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.Text = appName + " Ver " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();    //Application.ProductVersion;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < 0) || (Location.X > desktopSize.Width) || (Location.Y < 0) || (Location.Y > desktopSize.Height)) { Location = new Point(0, 0); }
+            //            this.Text = appName + " Ver " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();    //Application.ProductVersion;
+            this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
             loadSettings(sender, e);
             if ((Application.OpenForms["SerialForm"] as SetupForm) == null)
             {
@@ -155,6 +194,12 @@ namespace GRBL_Plotter
         {
             try
             {
+                if (Properties.Settings.Default.UpgradeRequired)
+                {
+                    Properties.Settings.Default.Upgrade();
+                    Properties.Settings.Default.UpgradeRequired = false;
+                    Properties.Settings.Default.Save();
+                }
                 tbFile.Text = Properties.Settings.Default.file;
                 setCustomButton(btnCustom1, Properties.Settings.Default.custom1);
                 setCustomButton(btnCustom2, Properties.Settings.Default.custom2);
@@ -264,6 +309,7 @@ namespace GRBL_Plotter
                 flagResetOffset = false;
             }
             processStatus();
+            processLastCommand(e.lastCommand);
             visuGCode.createMarkerPath();
             pictureBox1.Invalidate();
         }
@@ -274,25 +320,21 @@ namespace GRBL_Plotter
         {
             if (machineStatus != lastMachineStatus)
             {
+                label_status.Text = grbl.statusToText(machineStatus);
+                label_status.BackColor = grbl.grblStateColor(machineStatus);
                 switch (machineStatus)
                 {
                     case grblState.idle:
-                        label_status.Text = "Idle";
-                        label_status.BackColor = SystemColors.Control;
-                        if (lastMachineStatus == grblState.hold)
+                        if ((lastMachineStatus == grblState.hold) || (lastMachineStatus == grblState.alarm))
                         {
                             lbInfo.Text = lastInfoText;
                             lbInfo.BackColor = SystemColors.Control;
                         }
                         signalResume = 0;
                         btnResume.BackColor = SystemColors.Control;
+                        cBTool.Checked = _serial_form.TooInSpindle;
                         break;
                     case grblState.run:
-                        if (!isStreamingCheck)
-                        {
-                            label_status.Text = "Run";
-                            label_status.BackColor = SystemColors.Control;
-                        }
                         if (lastMachineStatus == grblState.hold)
                         {
                             lbInfo.Text = lastInfoText;
@@ -302,9 +344,6 @@ namespace GRBL_Plotter
                         btnResume.BackColor = SystemColors.Control;
                         break;
                     case grblState.hold:
-                        label_status.Text = "Hold";
-                        //                       statusCheckCode = true;
-                        label_status.BackColor = Color.Yellow;
                         btnResume.BackColor = Color.Yellow;
                         lastInfoText = lbInfo.Text;
                         lbInfo.Text = "Press 'Resume' to proceed";
@@ -312,43 +351,40 @@ namespace GRBL_Plotter
                         if (signalResume == 0) { signalResume = 1; }
                         break;
                     case grblState.home:
-                        label_status.Text = "Homing";
-                        label_status.BackColor = Color.Yellow;
                         break;
                     case grblState.alarm:
-                        label_status.Text = "Alarm";
-                        label_status.BackColor = Color.Fuchsia;
                         signalLock = 1;
                         btnKillAlarm.BackColor = Color.Yellow;
                         lbInfo.Text = "Press 'Kill Alarm' to proceed";
                         lbInfo.BackColor = Color.Yellow;
                         break;
                     case grblState.check:
-                        label_status.Text = "Check Code";
-                        //                       statusCheckCode = true;
-                        label_status.BackColor = Color.Lime;
                         break;
                     case grblState.door:
-                        label_status.Text = "Door is open";
-                        //                       statusCheckCode = true;
-                        label_status.BackColor = Color.Fuchsia;
                         break;
                     case grblState.probe:
-                        label_status.Text = "Probing";
-                        label_status.BackColor = Color.Lime;
                         lastInfoText = lbInfo.Text;
                         lbInfo.Text = string.Format("Probing: Z={0:0.000}", posProbe.Z);
                         lbInfo.BackColor = Color.Yellow;
                         break;
                     default:
-                        //                       statusCheckCode = false;
-                        label_status.Text = "unknown";
-                        label_status.BackColor = SystemColors.Control;
                         break;
                 }
             }
             lastMachineStatus = machineStatus;
         }
+        private void processLastCommand(string cmd)
+        {   if (cmd.Length < 2) return;
+            if ((cmd.IndexOf("M3") >= 0) || (cmd.IndexOf("M03") >= 0) || (cmd.IndexOf("M4") >= 0) || (cmd.IndexOf("M04") >= 0))
+                cBSpindle.Checked = true;
+            if ((cmd.IndexOf("M5") >= 0) || (cmd.IndexOf("M05") >= 0))
+                cBSpindle.Checked = false;
+            if ((cmd.IndexOf("M7") >= 0) || (cmd.IndexOf("M07") >= 0) || (cmd.IndexOf("M8") >= 0) || (cmd.IndexOf("M08") >= 0))
+                cBCoolant.Checked = true;
+            if ((cmd.IndexOf("M9") >= 0) || (cmd.IndexOf("M09") >= 0))
+                cBCoolant.Checked = false;
+        }
+
         // update drawing on Main form
         private void updateDrawing()
         {
@@ -369,12 +405,28 @@ namespace GRBL_Plotter
         private void loadFile(string fileName)
         {
             visuGCode.setMarkerOnDrawing("G0 X0 Y0");
-            if (Path.GetExtension(fileName).ToLower() == ".svg")
+            String ext = Path.GetExtension(fileName).ToLower();
+            if (ext == ".svg")
             { startConvertSVG(fileName); }
-            if (Path.GetExtension(fileName).ToLower() == ".nc")
+            if (ext == ".nc")
             {
                 tbFile.Text = fileName;
                 loadGcode();
+            }
+            if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png"))
+            {
+                if (_image_form == null)
+                {
+                    _image_form = new ImageToGCode(true);
+                    _image_form.FormClosed += formClosed_ImageToGCode;
+                    _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
+                }
+                else
+                {
+                    _image_form.Visible = false;
+                }
+                _image_form.Show(this);
+                _image_form.loadExtern(fileName);
             }
             SaveRecentFile(fileName);
             isFileLoaded = true;
@@ -497,6 +549,14 @@ namespace GRBL_Plotter
                 signalPlay = 1;
                 lbInfo.BackColor = Color.Yellow;
             }
+            if (e.Status == grblStreaming.toolchange)
+            {
+                updateControls(true);
+                btnStreamStart.Image = Properties.Resources.btn_play;
+                lbInfo.Text = "Tool change...";
+                lbInfo.BackColor = Color.Yellow;
+                cBTool.Checked = _serial_form.TooInSpindle;
+            }
         }
         private void btnStreamStart_Click(object sender, EventArgs e)
         {
@@ -565,6 +625,7 @@ namespace GRBL_Plotter
             pbFile.Value = 0;
             pbBuffer.Value = 0;
             signalPlay = 0;
+            updateControls();
         }
         private void btnStreamPause_Click(object sender, EventArgs e)
         { _serial_form.pauseStreaming(); }
@@ -573,6 +634,14 @@ namespace GRBL_Plotter
         private void getGCodeFromText(object sender, EventArgs e)
         {
             fCTBCode.Text = _text_form.textGCode;
+            redrawGCodePath();
+            isFileLoaded = true;
+            updateControls();
+        }
+        // handle event from create Image form
+        private void getGCodeFromImage(object sender, EventArgs e)
+        {
+            fCTBCode.Text = _image_form.imageGCode;
             redrawGCodePath();
             isFileLoaded = true;
             updateControls();
@@ -608,7 +677,7 @@ namespace GRBL_Plotter
         {
             int index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length));
             string[] parts = text.Split('|');
-            if (parts.Length > 2)
+            if (parts.Length > 1)
             {
                 btn.Text = parts[0];
                 if (File.Exists(parts[1]))
@@ -1024,8 +1093,8 @@ namespace GRBL_Plotter
         {
             lastSource = source;
             this.Cursor = Cursors.WaitCursor;
-            string gcodeh = "; Imported with GRBL-Plotter\r\n";
-            gcodeh += string.Format("; Source: {0}\r\n", source);
+            string gcodeh = "( Imported with GRBL-Plotter )\r\n";
+            gcodeh += string.Format("( Source: {0} )\r\n", source);
             string gcode = SVGToGCode.ConvertFile(source);
             if (gcode.Length > 2)
             {
@@ -1328,6 +1397,11 @@ namespace GRBL_Plotter
                 deleteMarkedCode = true;
                 deletenotMarkToolStripMenuItem.Text = "Delete (not mark)";
             }
+        }
+
+        private void cBTool_CheckedChanged(object sender, EventArgs e)
+        {
+            _serial_form.TooInSpindle = cBTool.Checked;
         }
     }
 }
