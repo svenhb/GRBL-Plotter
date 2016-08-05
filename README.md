@@ -6,7 +6,7 @@ Written in C# VisualStudio 2015.
 Controlling a 2nd Arduino with GRBL for tool change or 4th (5th, 6th) axis control (GRBL-Plotter is waiting for 'IDLE' on one GRBL before controlling the other). Commands for 2nd GRBL will be introduced via special formatted remarks in GCode e.g.: (^2 G90 X2) to move 2nd GRBL to position X2.
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
-Zip folder contains ClickOnce application setup. Exe can be found in sub-folder /bin/release.
+Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
 [GRBL-Plotter](GRBL-Plotter_0201.zip)
 
 ### Requirements for compiling
@@ -45,30 +45,23 @@ On my german homepage:
 Main GUI
 ![GRBL-Plotter GUI](GRBLPlotter_GUI.png?raw=true "Main GUI")
 
-Seperate serial COM window(s) - one for the CNC, one for the tool changer (or 4th axis)
-
+Seperate serial COM window(s) - one for the CNC, one for the tool changer (or 4th axis)  
 ![GRBL-Plotter COM interface](GRBLPlotter_COM2.png?raw=true "Serial connection")
 
-Setup import / GCode conversion
-
+Setup import / GCode conversion  
 ![GRBL-Plotter Setup1](GRBLPlotter_Setup1.png?raw=true "Setup1")
 
-Setup user defined buttons
-
+Setup user defined buttons  
 ![GRBL-Plotter Setup2](GRBLPlotter_Setup2.png?raw=true "Setup2")
 
-Setup tool change and colors
-
+Setup tool change and colors  
 ![GRBL-Plotter Setup3](GRBLPlotter_Setup3.png?raw=true "Setup3")
 
-Text import
-
+Text import  
 ![GRBL-Plotter Text](GRBLPlotter_Text.png?raw=true "Text conversion")
 
-Picture import
-
+Picture import  
 ![GRBL-Plotter Image](GRBLPlotter_Image.png?raw=true "Image import")
 
-Different scaling options
-
+Different scaling options  
 ![GRBL-Plotter Scaling](GRBLPlotter_scaling.png?raw=true "GCode scaling")
