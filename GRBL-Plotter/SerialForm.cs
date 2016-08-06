@@ -588,7 +588,7 @@ namespace GRBL_Plotter
             {   serialPort1.Write(data + "\r");
 
 //                rtbLog.AppendText(string.Format("> {0} {1} {2} \r\n", data, data.Length + 1, grblBufferFree));//if not in transfer log the txLine
-                rtbLog.AppendText(string.Format("> {0} {1} {2} \r\n", data, gCodeLinesConfirmed,gCodeLinesCount));//if not in transfer log the txLine
+//                rtbLog.AppendText(string.Format("> {0} {1} {2} \r\n", data, gCodeLinesConfirmed,gCodeLinesCount));//if not in transfer log the txLine
                 if (!(isStreaming && !isStreamingPause))
                 {   rtbLog.AppendText(string.Format("> {0} \r\n", data));//if not in transfer log the txLine
                     rtbLog.ScrollToCaret();
@@ -812,7 +812,7 @@ namespace GRBL_Plotter
                     }
                 }
             }
- //           if (!(isStreaming && !isStreamingPause))
+            if (!(isStreaming && !isStreamingPause))
                 addToLog(string.Format("< {0}", rxString));
             if (sendLinesConfirmed < sendLinesCount)
             {   grblBufferFree += (sendLines[sendLinesConfirmed].Length + 1);   //update bytes supose to be free on grbl rx bufer
