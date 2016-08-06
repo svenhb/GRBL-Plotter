@@ -7,7 +7,7 @@ Controlling a 2nd Arduino with GRBL for tool change or 4th (5th, 6th) axis contr
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-####[GRBL-Plotter](GRBL-Plotter_0201.zip)  
+####[GRBL-Plotter Vers. 0202](GRBL-Plotter_0202.zip)  
 Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'. Therefore the example files for color palettes and GCode-scripts will not be found by GRBL-Plotter (with default setup). You need to set the according paths new in the setup dialog - check screenshots below.
 
 ### Requirements for compiling
