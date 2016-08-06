@@ -15,7 +15,7 @@ G90 G53 G1 X-168 F2000
 (^2 G91 G0 X0.15)
 (Close gripper - RC-Servo via Spinde PWM)
 (^2 M5)
-(^2 G4 P1)
+(^2 G4 P0.5)
 (#TOOL-IN)
 
 (pull pen )
