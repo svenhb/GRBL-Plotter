@@ -13,7 +13,7 @@ Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'.
 ### Requirements for compiling
 * VisualStudio 2015 
 * DotNET 4.0
-
+ 
 ### Features:
 * User defined Buttons - GCode from text-field or file
 * Joystick like control
