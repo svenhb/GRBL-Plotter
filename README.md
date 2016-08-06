@@ -42,6 +42,9 @@ Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'.
 On my german homepage:
 [my XYZ platform](http://svenhb.bplaced.net/?CNC___Plotter)
 
+### GRBL-Plotter in tool change action
+[![Import an image](https://img.youtube.com/vi/fvYWyE2GBsg/0.jpg)](https://www.youtube.com/watch?v=fvYWyE2GBsg)
+
 ### Screenshots
 Main GUI
 ![GRBL-Plotter GUI](GRBLPlotter_GUI.png?raw=true "Main GUI")
