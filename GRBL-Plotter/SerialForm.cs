@@ -474,9 +474,10 @@ namespace GRBL_Plotter
          * */
         public void requestSend(string data)
         {
-            if ((!string.IsNullOrEmpty(data)) && (data[0] != ';'))//trim lines and remove all empty lines and comment lines
+            var tmp = cleanUpCodeLine(data);
+            if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
             {
-                sendLines.Add(cleanUpCodeLine(data));
+                sendLines.Add(tmp); // cleanUpCodeLine(data));
                 sendLinesCount++;
                 processSend();
             }
@@ -497,7 +498,7 @@ namespace GRBL_Plotter
             // extract GCode for 2nd COM Port
             if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
             {   var cmt = orig.Substring(start, end - start + 1);
-                if ((cmt.IndexOf("(^2") == 0) || (cmt.IndexOf("(#") == 0))
+                if ((cmt.IndexOf("(^2") >= 0) || (cmt.IndexOf("(#") == 0))
                 {   line += cmt;                // keep 2nd COM port data for further use
                 }
             }
@@ -530,9 +531,11 @@ namespace GRBL_Plotter
                 if (!waitForIdle)
                 {   if (replaced)
                         sendLines[sendLinesSent] = line;    // needed to get correct length when receiving 'ok'
+//                    rtbLog.AppendText(string.Format("!!!> {0} {1}\r\n", line, sendLinesSent));
                     sendLine(line);                         // now really send data to Arduino
                     grblBufferFree -= (line.Length + 1);
                     sendLinesSent++;
+
 
                     if (line.IndexOf("(^2") >= 0)
                     {   int start = line.IndexOf('(');
@@ -583,12 +586,14 @@ namespace GRBL_Plotter
         private void sendLine(string data)
         {   try
             {   serialPort1.Write(data + "\r");
+
 //                rtbLog.AppendText(string.Format("> {0} {1} {2} \r\n", data, data.Length + 1, grblBufferFree));//if not in transfer log the txLine
+                rtbLog.AppendText(string.Format("> {0} {1} {2} \r\n", data, gCodeLinesConfirmed,gCodeLinesCount));//if not in transfer log the txLine
                 if (!(isStreaming && !isStreamingPause))
                 {   rtbLog.AppendText(string.Format("> {0} \r\n", data));//if not in transfer log the txLine
                     rtbLog.ScrollToCaret();
                 }
-                if (data.IndexOf("M") >= 0)
+                if ((data.IndexOf("(^2") <0) && (data.IndexOf("M") >= 0))
                     lastCmd += data;
                 if (data == "$H")
                 {   OnRaisePosEvent(new PosEventArgs(posWorld, posMachine, grblState.home, lastCmd)); }
@@ -674,6 +679,8 @@ namespace GRBL_Plotter
             grblBufferFree = grblBufferSize;
             gCodeLines = new List<string>();
             gCodeLineNr = new List<int>();
+            gCodeLines.Clear();
+            gCodeLineNr.Clear();
             sendLinesSent = 0;
             sendLinesCount = 0;
             sendLinesConfirmed = 0;
@@ -729,8 +736,9 @@ namespace GRBL_Plotter
                         grblStatus = grblStreaming.toolchange;
                         sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
                     }
-                    gCodeLines[gCodeLinesSent] = "(" + line + ")"; //sendLinesSent++;
+                    gCodeLines[gCodeLinesSent] = "(" + line + ")";  // don't pass M6 to GRBL because is unknown
                     line = gCodeLines[gCodeLinesSent];
+                    gCodeLinesConfirmed++;      // M6 is count as sent (but wasn't send) also count as received
                 }
                 if (line == "(#END)")
                 {
@@ -747,9 +755,7 @@ namespace GRBL_Plotter
                     sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
                     return;                 // abort while - don't fill up buffer
                 }
-                else
-                    requestSend(line);
-//                addToLog("GCODE "+ gCodeLineNr[gCodeLinesSent].ToString()+"  "+line);
+                requestSend(line);
                 gCodeLinesSent++;
             }
         }
@@ -806,7 +812,7 @@ namespace GRBL_Plotter
                     }
                 }
             }
-            if (!(isStreaming && !isStreamingPause))
+ //           if (!(isStreaming && !isStreamingPause))
                 addToLog(string.Format("< {0}", rxString));
             if (sendLinesConfirmed < sendLinesCount)
             {   grblBufferFree += (sendLines[sendLinesConfirmed].Length + 1);   //update bytes supose to be free on grbl rx bufer

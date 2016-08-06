@@ -34,6 +34,7 @@ namespace GRBL_Plotter
         private static float gcodeTime = 0;             // counter for GCode work time
         private static int gcodePauseCounter = 0;       // counter for GCode pause M0 commands
         private static int gcodeToolCounter = 0;       // counter for GCode Tools
+        private static string gcodeToolText = "";       // counter for GCode Tools
 
         private static float gcodeXYFeed = 1999;        // XY feed to apply for G1
         private static bool gcodeComments = true;       // if true insert additional comments into GCode
@@ -83,6 +84,7 @@ namespace GRBL_Plotter
             gcodeTime = 0;             // counter for GCode work time
             gcodePauseCounter = 0;       // counter for GCode pause M0 commands
             gcodeToolCounter = 0;
+            gcodeToolText = "";
             lastx = 0; lasty=0;
         }
 
@@ -185,6 +187,7 @@ namespace GRBL_Plotter
                 gcodeString.AppendFormat("M{0} T{1:D2} {2}\r\n", frmtCode(6), toolnr, cmt);
                 gcodeToolCounter++;
                 gcodeLines++;
+                gcodeToolText += string.Format("( {0}) ToolNr: {1:D2}, Name: {2})\r\n", gcodeToolCounter,toolnr, cmt);
             }
         }
 
@@ -196,6 +199,7 @@ namespace GRBL_Plotter
             header += string.Format("( Path length : {0:0.0} units )\r\n", gcodeDistance);
             header += string.Format("( Duration    : {0:0.0} min. )\r\n", gcodeTime);
             header += string.Format("( Tool changes: {0})\r\n", gcodeToolCounter);
+            header += gcodeToolText;
             header += string.Format("( M0 count    : {0})\r\n", gcodePauseCounter);
             string[] commands = Properties.Settings.Default.importGCHeader.Split(';');
             foreach (string cmd in commands)

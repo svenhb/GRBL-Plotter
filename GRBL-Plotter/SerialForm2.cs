@@ -392,9 +392,10 @@ namespace GRBL_Plotter
         private int sendLinesConfirmed;         // already received line
         public void requestSend(string data)
         {
-            if ((!string.IsNullOrEmpty(data)) && (data[0] != ';'))//trim lines and remove all empty lines and comment lines
+            var tmp = cleanUpCodeLine(data);
+            if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
             {
-                sendLines.Add(cleanUpCodeLine(data));
+                sendLines.Add(tmp);
                 sendLinesCount++;
                 processSend();
             }

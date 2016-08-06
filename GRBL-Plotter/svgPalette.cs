@@ -50,14 +50,14 @@ namespace GRBL_Plotter
         public static string getToolName(int index)
         {   Array.Sort<palette>(svgToolTable, (x, y) => x.toolnr.CompareTo(y.toolnr));
             if (index < 0) index = 0;
-            if (index > svgToolIndex - 1) index = svgToolIndex - 1;
+            if (index >= svgToolIndex - 2) index = svgToolIndex - 2;
             return svgToolTable[index+1].name;
         }
         public static void setToolCodeSize(int index, int size)
         {
             Array.Sort<palette>(svgToolTable, (x, y) => x.toolnr.CompareTo(y.toolnr));
             if (index < 0) index = 0;
-            if (index > svgToolIndex - 1) index = svgToolIndex - 1;
+            if (index >= svgToolIndex - 2) index = svgToolIndex - 2;
             svgToolTable[index + 1].size = size;
         }
         public static void setIndex(int index)
@@ -139,17 +139,19 @@ namespace GRBL_Plotter
                 svgToolIndex = 2;
                 Array.Resize(ref svgToolTable, svgToolIndex);
             }
-            return svgToolIndex-1;
+            return svgToolIndex;
         }
 
         // set exception color
-        public static void setExceptionColor(Color mycolor)
+        public static string setExceptionColor(Color mycolor)
         {   useException=true;
+            Array.Sort<palette>(svgToolTable, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
             svgToolTable[0].toolnr = -1; 
             svgToolTable[0].clr = mycolor; 
             svgToolTable[0].use = false; 
             svgToolTable[0].diff = int.MaxValue; 
             svgToolTable[0].name = "except";
+            return svgToolTable[0].clr.ToString();
         }
         // Clear exception color
         public static void clrExceptionColor()
@@ -172,7 +174,12 @@ namespace GRBL_Plotter
             if (useException) start=0;  // first element is exception
             for (i = start; i < svgToolIndex; i++)
             {
-                if (mode == 0)
+                if (mycolor == svgToolTable[i].clr)
+                {
+                    tmpIndex = i;
+                    return svgToolTable[i].toolnr;
+                }
+                else if (mode == 0)
                     svgToolTable[i].diff = ColorDiff(mycolor, svgToolTable[i].clr);
                 else if (mode == 1)
                     svgToolTable[i].diff = getHueDistance(mycolor.GetHue(), svgToolTable[i].clr.GetHue());
@@ -181,14 +188,16 @@ namespace GRBL_Plotter
                                               getHueDistance(svgToolTable[i].clr.GetHue(), mycolor.GetHue());
             }
             Array.Sort<palette>(svgToolTable, (x, y) => x.diff.CompareTo(y.diff));    // sort by color difference
-                                                                                      //            svgToolTable[0].use = use;
             tmpIndex = 0;
             return svgToolTable[0].toolnr; ;   // return tool nr of nearest color
         }
+
         public static Color getColor()
         { return svgToolTable[tmpIndex].clr; }
+
         public static void setUse(bool use)
         { svgToolTable[tmpIndex].use = use; }
+
         public static String getName()
         { return svgToolTable[tmpIndex].name; }
 
@@ -206,7 +215,7 @@ namespace GRBL_Plotter
         private static int ColorDiff(Color c1, Color c2) 
               { return  (int ) Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R) 
                                        + (c1.G - c2.G) * (c1.G - c2.G)
-                                       + (c1.B - c2.B)*(c1.B - c2.B)); }
+                                       + (c1.B - c2.B) * (c1.B - c2.B)); }
     }
 
 }

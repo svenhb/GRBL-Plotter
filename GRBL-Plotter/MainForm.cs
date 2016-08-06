@@ -269,14 +269,16 @@ namespace GRBL_Plotter
             btnJogZeroZ.Enabled = isConnected & !isStreaming | allowControl;
             btnJogZeroXY.Enabled = isConnected & !isStreaming | allowControl;
             cBSpindle.Enabled = isConnected & !isStreaming | allowControl;
+            tBSpeed.Enabled = isConnected & !isStreaming | allowControl;
             cBCoolant.Enabled = isConnected & !isStreaming | allowControl;
+            cBTool.Enabled = isConnected & !isStreaming | allowControl;
             btnReset.Enabled = isConnected;
             btnFeedHold.Enabled = isConnected;
             btnResume.Enabled = isConnected;
             btnKillAlarm.Enabled = isConnected;
-            btnStreamStart.Enabled = isConnected & isFileLoaded;
-            btnStreamStop.Enabled = isConnected & isFileLoaded;
-            btnStreamCheck.Enabled = isConnected & isFileLoaded;
+            btnStreamStart.Enabled = isConnected;// & isFileLoaded;
+            btnStreamStop.Enabled = isConnected; // & isFileLoaded;
+            btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
         }
         // handle position events from serial form
         private void OnRaisePosEvent(object sender, PosEventArgs e)
@@ -551,7 +553,7 @@ namespace GRBL_Plotter
             }
             if (e.Status == grblStreaming.toolchange)
             {
-                updateControls(true);
+                updateControls();
                 btnStreamStart.Image = Properties.Resources.btn_play;
                 lbInfo.Text = "Tool change...";
                 lbInfo.BackColor = Color.Yellow;
