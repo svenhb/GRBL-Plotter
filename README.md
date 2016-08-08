@@ -3,7 +3,8 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.
 
 ### New:
-Controlling a 2nd Arduino with GRBL for tool change or 4th (5th, 6th) axis control (GRBL-Plotter is waiting for 'IDLE' on one GRBL before controlling the other). Commands for 2nd GRBL will be introduced via special formatted remarks in GCode e.g.: (^2 G90 X2) to move 2nd GRBL to position X2.
+Controlling a 2nd Arduino with GRBL for tool change or 4th (5th, 6th) axis control (GRBL-Plotter is waiting for 'IDLE' on one GRBL before controlling the other). Commands for 2nd GRBL will be introduced via special formatted remarks in GCode e.g.: (^2 G90 X2) to move 2nd GRBL to position X2.  
+[Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
