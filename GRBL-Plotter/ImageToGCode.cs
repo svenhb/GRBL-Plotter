@@ -79,8 +79,8 @@ namespace GRBL_Plotter
             processLoading();
         }
 
-        bool fileLoaded = false;
-        string lastFile = "";
+        private static bool fileLoaded = false;
+        private static string lastFile = "";
         //OpenFile, save picture grayscaled to originalImage and save the original aspect ratio to ratio
         private void btnLoad_Click(object sender, EventArgs e)
         {
@@ -89,6 +89,7 @@ namespace GRBL_Plotter
                 if (openFileDialog1.ShowDialog() == DialogResult.Cancel) return;//if no image, do nothing
                 if (!File.Exists(openFileDialog1.FileName)) return;
                 fileLoaded = true;
+                lastFile = openFileDialog1.FileName;
                 originalImage = new Bitmap(Image.FromFile(openFileDialog1.FileName));
                 processLoading();
             }
@@ -373,6 +374,11 @@ namespace GRBL_Plotter
         private void btnCheckOrig_MouseDown(object sender, MouseEventArgs e)
         {
             if (adjustedImage == null) return;//if no image, do nothing
+            getSettings();
+            usedColors = new string[svgToolIndex+1];
+            countColors = new int[svgToolIndex + 1];
+            for (int i = 0; i < svgToolIndex; i++)
+            { usedColors[i] = ""; countColors[i] = 0; }
             generateResultImage();
             pictureBox1.Image = resultImage;
         }
@@ -407,6 +413,144 @@ namespace GRBL_Plotter
         float lastX;//Last x/y  coords for compare
         float lastY;
 
+
+        // colorMap will store x-start; x-stop values for each color and line(y)
+        private static Dictionary<int, List<int>[]> colorMap = new Dictionary<int, List<int>[]>();
+        private static int colorStart = -2, colorEnd = -2, lastTool = -2,lastLine=-2;
+        int myToolNumber;
+        private void setColorMap(int col, int line, int direction)
+        {
+            Color myColor = adjustedImage.GetPixel(col, (adjustedImage.Height - 1) - line);  //Get pixel color
+            myToolNumber = svgPalette.getToolNr(myColor, (int)nUDMode.Value);     // find nearest color in palette
+            svgPalette.countPixel();
+            if (((cbExceptAlpha.Checked) && (myColor.A == 0)) || (myToolNumber < 0))
+                myToolNumber = -1;
+
+            if ((myToolNumber >= 0) && (!colorMap.ContainsKey(myToolNumber)))
+            {   colorMap.Add(myToolNumber, new List<int>[adjustedImage.Height]);
+                for (int i=0; i< adjustedImage.Height;i++)
+                {   colorMap[myToolNumber][i] = new List<int>(); }
+            }
+
+            if (lastTool != myToolNumber)
+            {   if (lastTool >= 0)
+                    colorMap[lastTool][line].Add(colorEnd);// -direction);     // finish old color
+                colorStart = col;
+                colorEnd = col;
+                if (myToolNumber >= 0)
+                    colorMap[myToolNumber][line].Add(colorStart);   // start new color
+            }
+            else
+            {
+                if ((lastLine != line) && (lastLine >= 0) && (myToolNumber >= 0))
+                { colorMap[myToolNumber][lastLine].Add(colorEnd);// -direction); // finish old line
+                    colorStart = col;
+                    colorMap[myToolNumber][line].Add(colorStart);   // start new line
+                }
+                colorEnd = col;
+            }
+            lastTool = myToolNumber;
+            lastLine = line;
+        }
+
+        private void convertColorMap(float resol)
+        {
+            int tool, skipTooNr=0;
+            int key;
+            gcode.PenUp(finalString);
+            gcode.Move(finalString, 0, 0, 0, false);          // move to start pos
+            for (int index = 0; index < svgToolIndex; index++)  // go through sorted by pixel-amount list
+            {
+                svgPalette.setIndex(index);                     // set index in class
+                key = svgPalette.indexToolNr();                 // if tool-nr == known key go on
+                if (colorMap.ContainsKey(key))
+                {
+                    tool = svgPalette.indexToolNr();            // use tool in palette order
+                    if (cbSkipToolOrder.Checked)
+                        tool = skipTooNr++;                     // or start tool-nr at 0
+
+                    finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
+                    gcode.Tool(finalString, tool, svgPalette.indexName());  // + svgPalette.pixelCount());
+                    for (int y = 0; y < adjustedImage.Height; y++)
+                    {
+                        while (colorMap[key][y].Count > 1)          // stat at line 0 and check line by line
+                            drawColorMap(resol, key, y, 0, true);   
+                    }
+                }
+            }
+        }
+
+        // check recursive line by line for same color near by given x-value
+        private void drawColorMap(float resol, int color, int line, int startIndex, bool first)
+        {   int start, stop, newIndex;
+            float coordy = resol * (float)line;
+            if (colorMap[color][line].Count > 1)
+            {   if (startIndex % 2 == 0)
+                {
+                    start = colorMap[color][line][startIndex];
+                    stop = colorMap[color][line][startIndex+1];
+                    colorMap[color][line].RemoveRange(startIndex, 2);
+                }
+                else
+                {
+                    start = colorMap[color][line][startIndex];
+                    stop = colorMap[color][line][startIndex-1];
+                    colorMap[color][line].RemoveRange(startIndex-1, 2);
+                }
+                float coordX = resol * (float)start;
+                if (first)
+                {
+                    gcode.Move(finalString, 0, coordX, coordy, false);          // move to start pos
+                    gcode.PenDown(finalString);
+                }
+                else
+                    gcode.Move(finalString, 1, coordX, coordy, false);          // move to start pos
+                coordX = resol * (float)stop;
+                gcode.Move(finalString, 1, coordX, coordy, false);          // move to end pos
+
+                if (line < (adjustedImage.Height - 1))
+                {
+                    var nextLine = colorMap[color][line + 1];   // check for pixel nearby
+                    bool end = true;
+                    for (int k = -1; k <= 1; k++)
+                    {   // check recursive line by line for same color near by given x-value
+                        newIndex = nextLine.IndexOf(stop + k);
+                        if (newIndex >= 0)
+                        {
+                            drawColorMap(resol, color, line + 1, newIndex, false);
+                            end = false;
+                            break;
+                        }
+                    }
+                    if (end)
+                        gcode.PenUp(finalString);
+                }
+                else
+                    gcode.PenUp(finalString);
+            }
+        }
+
+        private static string debugColorMap()
+        {
+            string temp = "";
+            int i = 0;
+            foreach (var pair in colorMap)
+            {
+                i = 0;
+                temp += "\r\n\r\n NEW COLOR\r\n";
+                foreach (var y in pair.Value)
+                {
+                    temp += pair.Key+" "+ i.ToString() + "  ";
+                    foreach (int pixel in y)
+                    {
+                        temp += pixel.ToString() + "|";
+                    }
+                    temp += "\r\n"; i++;
+                }
+            }
+            return temp;
+        }
+
         private int lastToolNumber=-1;
         private float lastDrawX, lastDrawY;
         bool lastIfBackground = false;
@@ -414,6 +558,7 @@ namespace GRBL_Plotter
         {
             Color myColor = adjustedImage.GetPixel(col, (adjustedImage.Height - 1) - lin);  //Get pixel color
             int myToolNumber = svgPalette.getToolNr(myColor,(int)nUDMode.Value);     // find nearest color in palette
+            svgPalette.countPixel();
             bool ifBackground = false;
             float myX = coordX;
             float myY = coordY;
@@ -464,6 +609,7 @@ namespace GRBL_Plotter
         public void btnGenerate_Click(object sender, EventArgs e)
         {
             getSettings();
+            colorMap.Clear();
             if (cbExceptColor.Checked)
                 svgPalette.setExceptionColor(cbExceptColor.BackColor);
             else
@@ -497,10 +643,10 @@ namespace GRBL_Plotter
             Int32 pixTot = adjustedImage.Width * adjustedImage.Height;
             Int32 pixBurned = 0;
             int edge = 0;
-            int dir = 0;
+            int direction = 0;
             if (!gcodeSpindleToggle) gcode.SpindleOn(finalString, "Start spindle");
             gcode.PenUp(finalString);                             // pen up
-
+//            colorMap= new Dictionary<int, new List<int>[adjustedImage.Width]>();
             //////////////////////////////////////////////
             // Generate Gcode lines by Horozontal scanning
             //////////////////////////////////////////////
@@ -517,12 +663,13 @@ namespace GRBL_Plotter
                     //Y coordinate
                     coordY = resol * (float)lin;
                     edge = 1;   // line starts
-                    dir = 1;    // left to right
+                    direction = 1;    // left to right
                     while (col < adjustedImage.Width)//From left to right
                     {
                         //X coordinate
                         coordX = resol * (float)col;
-                        drawPixel(col,lin,coordX, coordY,edge,dir);
+                        setColorMap(col, lin, direction);
+                 //       drawPixel(col,lin,coordX, coordY,edge,dir);
                         edge = 0;
                         pixBurned++;
                         col++;
@@ -532,12 +679,13 @@ namespace GRBL_Plotter
                     lin--;
                     coordY = resol * (float)lin;
                     edge = 1;   // line starts
-                    dir = -1;   // right to left
+                    direction = -1;   // right to left
                     while ((col >= 0) & (lin >= 0))//From right to left
                     {
                         //X coordinate
                         coordX = resol * (float)col;
-                        drawPixel(col, lin, coordX, coordY,edge,dir);
+                        setColorMap(col, lin, direction);
+                  //      drawPixel(col, lin, coordX, coordY,edge,dir);
                         edge = 0;
                         pixBurned++;
                         col--;
@@ -548,6 +696,8 @@ namespace GRBL_Plotter
                     lblStatus.Text = "Generating GCode... " + Convert.ToString((pixBurned * 100) / pixTot) + "%";
                     Refresh();
                 }
+                if (myToolNumber >=0)
+                    colorMap[myToolNumber][0].Add(colorEnd);
             }
             //////////////////////////////////////////////
             // Generate Gcode lines by Diagonal scanning
@@ -562,7 +712,7 @@ namespace GRBL_Plotter
                 while ((col < adjustedImage.Width) | (lin < adjustedImage.Height))
                 {
                     edge = 1;
-                    dir = 2;    // up-left to low-right
+                    direction = 2;    // up-left to low-right
 
                     while ((col < adjustedImage.Width) & (lin >= 0))
                     {
@@ -571,7 +721,7 @@ namespace GRBL_Plotter
                         //X coordinate
                         coordX = resol * (float)col;
 
-                        drawPixel(col, lin, coordX, coordY,edge,dir);
+                        drawPixel(col, lin, coordX, coordY,edge,direction);
                         edge = 0;
                         pixBurned++;
                         col++;
@@ -584,7 +734,7 @@ namespace GRBL_Plotter
                     if (col >= adjustedImage.Width - 1) lin++;
                     else col++;
                     edge = 1;
-                    dir = -2;    // low-right to up-left 
+                    direction = -2;    // low-right to up-left 
                     while ((col >= 0) & (lin < adjustedImage.Height))
                     {
                         //Y coordinate
@@ -592,7 +742,7 @@ namespace GRBL_Plotter
                         //X coordinate
                         coordX = resol * (float)col;
 
-                        drawPixel(col, lin, coordX, coordY,edge,dir);
+                        drawPixel(col, lin, coordX, coordY,edge,direction);
                         edge = 0;
                         pixBurned++;
                         col--;
@@ -613,49 +763,114 @@ namespace GRBL_Plotter
             lblStatus.Text = "Done (" + Convert.ToString(pixBurned) + "/" + Convert.ToString(pixTot) + ")";
             imagegcode = "( Generated by GRBL-Plotter )\r\n";
 
-            int toolnr;
+            int arrayIndex;
+            int skipTooNr = 0;
+            int tool = 0;
             // set GCode length information
-            for (int i = 0; i < svgToolIndex; i++)
-            {   svgPalette.setToolCodeSize(i, gcodeString[i].Length);  }
+            // for (int i = 0; i < svgToolIndex; i++)
+            // {   svgPalette.setToolCodeSize(i, gcodeString[i].Length);  }
+            // imagegcode += "( Tools sort by path length )\r\n";
+            // svgPalette.sortByCodeSize();    // sort by GCode length (max. first)
 
-            imagegcode += "( Tools sort by path length )\r\n";
+            svgPalette.sortByPixelCount();    // sort by color area (max. first)
 
-            svgPalette.sortBySize();    // sort by GCode length
-            for (int i = 0; i < svgToolIndex; i++)
-            {   svgPalette.setIndex(i);
-                toolnr = svgPalette.indexToolNr();
-                if ((toolnr >=0) && (gcodeString[toolnr].Length > 1))
+            if (!rbEngravingPattern1.Checked)
+            {
+                for (int i = 0; i < svgToolIndex; i++)
                 {
-                    if ((gcodeToolChange) && svgPalette.indexUse())
+                    svgPalette.setIndex(i);
+                    arrayIndex = svgPalette.indexToolNr();
+                    if ((arrayIndex >= 0) && (gcodeString[arrayIndex].Length > 1))
                     {
-                        finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
-                        gcode.Tool(finalString, svgPalette.indexToolNr(), svgPalette.indexName());
+                        if ((gcodeToolChange) && svgPalette.indexUse())
+                        {
+                            tool = svgPalette.indexToolNr();
+                            if (cbSkipToolOrder.Checked)
+                                tool = skipTooNr++;
+                            finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
+                            gcode.Tool(finalString, tool, svgPalette.indexName());  // + svgPalette.pixelCount());
+                        }
+                        finalString.Append(gcodeString[svgPalette.indexToolNr()]);
                     }
-                    finalString.Append(gcodeString[svgPalette.indexToolNr()]);
+                }
+
+                if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
+                imagegcode += gcode.GetHeader() + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
+            }
+            else
+            {
+                gcode.reduceGCode = true;
+                convertColorMap(resol);
+                if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
+                imagegcode += gcode.GetHeader() + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
+           //     imagegcode += debugColorMap();
+            }
+        }
+
+
+        private static string debug_string;
+        private static string[] usedColors = new string[svgToolIndex+1];
+        private static int[] countColors = new int[svgToolIndex + 1];
+        private void btnList_Click(object sender, EventArgs e)
+        {
+            getSettings();
+            usedColors = new string[svgToolIndex + 1];
+            countColors = new int[svgToolIndex + 1];
+
+            for (int i = 0; i <= svgToolIndex; i++)
+            { usedColors[i] = ""; countColors[i] = 0; }
+            generateResultImage();
+
+            string tool_string = "";
+            Dictionary<int, string> values =  new Dictionary<int, string>();
+
+            debug_string = "Palette has " + (svgToolIndex - 1).ToString() + " colors\r\n";
+            if (cbSkipToolOrder.Checked)
+                debug_string += "Colors / Tools used in image (sort by pixel count):\r\nTool nr not from palette\r\n ";
+            else
+                debug_string += "Colors / Tools used in image:\r\n ";
+            for (int i = 0; i < svgToolIndex; i++)
+                if (usedColors[i].Length > 1)
+                    if (i < 2)
+                        debug_string += "Exception color " + usedColors[i] + "\r\n";
+                    else
+                    {   tool_string += (i - 2).ToString() + ") " + usedColors[i] + "\r\n";
+                        values.Add(countColors[i], usedColors[i]);
+                    }
+
+            if (cbSkipToolOrder.Checked)
+            {   if (values.Count() > 0)
+                {
+                    tool_string = "";
+                    var list = values.Keys.ToList();
+                    list.Sort();
+                    list.Reverse();
+                    int i = 0;
+                    foreach (var key in list)
+                    {
+                        tool_string += (i++).ToString() + ") " + " "+key+"  "+values[key] + "\r\n";
+                    }
                 }
             }
 
-            if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
-            imagegcode += gcode.GetHeader() + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
+            MessageBox.Show(debug_string + tool_string);
         }
 
         private void generateResultImage()
         {   int x, y;
             Color myColor,newColor;
-            getSettings();
             if (cbExceptColor.Checked)
                 svgPalette.setExceptionColor(cbExceptColor.BackColor);
             else
                 svgPalette.clrExceptionColor();
-            int myToolNr;
-            string debug_string = " cnt= "+svgToolIndex.ToString()+"\r\n";
+            int myToolNr, myIndex;
             for (y = 0; y < adjustedImage.Height; y++)
             {
                 for (x = 0; x < adjustedImage.Width; x++)
                 {
                     myColor = adjustedImage.GetPixel(x, y);  //Get pixel color}
                     if (((cbExceptAlpha.Checked) && (myColor.A == 0)))
-                    {  newColor = Color.White; myToolNr = -2; }
+                    {  newColor = Color.White; myToolNr = -2; usedColors[0] = "Alpha = 0      " + myColor.ToString(); }
                     else
                     {   myToolNr = svgPalette.getToolNr(myColor, (int)nUDMode.Value);     // find nearest color in palette
                         if (myToolNr < 0)
@@ -663,12 +878,13 @@ namespace GRBL_Plotter
                         else
                             newColor = svgPalette.getColor();   // Color.FromArgb(255, r, g, b);
                     }
-//                    if (debug_string.IndexOf(">"+myToolNr.ToString()+"<") < 0)
-//                        debug_string += ">"+myToolNr.ToString() + "<   " + svgPalette.getName() + "   " + svgPalette.getColor().ToString() +  "\r\n";
+                    myIndex = myToolNr + 2;
+                    countColors[myIndex]++;
+                    if (usedColors[myIndex].Length < 1)
+                        usedColors[myIndex] = svgPalette.getName() + "      " + svgPalette.getColor().ToString();
                     resultImage.SetPixel(x, y, newColor);
                 }
             }
-//            MessageBox.Show(debug_string);
         }
 
         //Horizontal mirroing
@@ -789,7 +1005,7 @@ namespace GRBL_Plotter
                 originalImage = imgGrayscale(originalImage);
             else
             {   if (fileLoaded)
-                    originalImage = new Bitmap(Image.FromFile(openFileDialog1.FileName));
+                    originalImage = new Bitmap(Image.FromFile(lastFile));
                 else
                     originalImage = new Bitmap(Properties.Resources.modell);
             }
