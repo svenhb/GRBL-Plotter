@@ -377,7 +377,7 @@ namespace GRBL_Plotter
         }
         private void processLastCommand(string cmd)
         {   if (cmd.Length < 2) return;
-            if ((cmd.IndexOf("M3") >= 0) || (cmd.IndexOf("M03") >= 0) || (cmd.IndexOf("M4") >= 0) || (cmd.IndexOf("M04") >= 0))
+            if ((cmd.IndexOf("M3 ") >= 0) || (cmd.IndexOf("M03") >= 0) || (cmd.IndexOf("M4") >= 0) || (cmd.IndexOf("M04") >= 0))
                 cBSpindle.Checked = true;
             if ((cmd.IndexOf("M5") >= 0) || (cmd.IndexOf("M05") >= 0))
                 cBSpindle.Checked = false;
@@ -415,7 +415,7 @@ namespace GRBL_Plotter
                 tbFile.Text = fileName;
                 loadGcode();
             }
-            if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png"))
+            if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
             {
                 if (_image_form == null)
                 {
@@ -527,6 +527,8 @@ namespace GRBL_Plotter
                     else
                     { lbInfo.Text = "Finish sending G-Code"; }
                     lbInfo.BackColor = Color.Lime;
+                    pbFile.Value = 0;
+                    pbBuffer.Value = 0;
                 }
                 isStreaming = false; isStreamingCheck = false;
                 btnStreamStart.Image = Properties.Resources.btn_play;
