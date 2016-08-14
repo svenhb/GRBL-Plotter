@@ -27,7 +27,7 @@ namespace GRBL_Plotter
 {
     public static class gcode
     {   private static string formatCode = "00";
-        private static string formatNumber = "0.000";
+        private static string formatNumber = "0.00";
 
         private static int gcodeLines = 0;              // counter for GCode lines
         private static float gcodeDistance = 0;         // counter for GCode move distance
@@ -58,6 +58,8 @@ namespace GRBL_Plotter
         private static float gcodePWMDown = 799;        // Spindle speed for Pen-down
         private static float gcodePWMDlyDown = 0;       // Delay to apply after Pen-down (because servo is slow)
 
+        private static bool reduceCode = false;         // reduce code by avoiding sending again same G-Nr and unchanged coordinates
+
         public static void setup()
         {
             gcodeXYFeed = (float)Properties.Settings.Default.importGCXYFeed;
@@ -79,6 +81,7 @@ namespace GRBL_Plotter
 
             gcodeToolChange = Properties.Settings.Default.importGCTool;
 
+            reduceCode = false;         // reduce code by 
             gcodeLines = 0;              // counter for GCode lines
             gcodeDistance = 0;         // counter for GCode move distance
             gcodeTime = 0;             // counter for GCode work time
@@ -88,9 +91,14 @@ namespace GRBL_Plotter
             lastx = 0; lasty=0;
         }
 
-        private static string frmtCode(int number)
+        public static bool reduceGCode
+        {
+            get { return reduceCode; }
+            set { reduceCode = value; }
+        }
+        private static string frmtCode(int number)      // convert int to string using format pattern
         {   return number.ToString(formatCode); }
-        private static string frmtNum(float number)
+        private static string frmtNum(float number)     // convert float to string using format pattern
         {   return number.ToString(formatNumber); }
 
         public static void Pause(StringBuilder gcodeString, string cmt="")
@@ -126,7 +134,7 @@ namespace GRBL_Plotter
             {
                 gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZDown), gcodeZFeed, cmt);
                 gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
-                gcodeLines++;
+                gcodeLines++; lastg = 1; lastf = gcodeZFeed;
             }
             if (gcodePWMEnable)
             {   gcodeString.AppendFormat("M{0} S{1} {2}\r\n", frmtCode(3), gcodePWMDown, cmt);
@@ -152,20 +160,33 @@ namespace GRBL_Plotter
             {
                 gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZUp), gcodeZFeed, cmt);
                 gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
-                gcodeLines++;
+                gcodeLines++; lastg = 1; lastf = gcodeZFeed;
             }
             if (gcodeSpindleToggle) SpindleOff(gcodeString, cmt);
         }
 
-        private static float lastx, lasty;
+        private static float lastx, lasty, lastg, lastf;
         public static void Move(StringBuilder gcodeString, int gnr, float x, float y, bool applyFeed, string cmt="")
         {
             string feed = "";
             if (applyFeed && (gnr > 0)) { feed = string.Format("F{0}", gcodeXYFeed); }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-            gcodeString.AppendFormat("G{0} X{1} Y{2} {3} {4}\r\n", frmtCode(gnr), frmtNum(x), frmtNum(y), feed, cmt);
+            if (reduceCode)
+            {
+                if (lastg != gnr) gcodeString.AppendFormat("G{0} ", frmtCode(gnr));
+                if (lastx != x) gcodeString.AppendFormat("X{0} ", frmtNum(x));
+                if (lasty != y) gcodeString.AppendFormat("Y{0} ", frmtNum(y));
+                if ((gnr == 1) && (lastf != gcodeXYFeed) || applyFeed)
+                {
+                    gcodeString.AppendFormat("F{0} ", gcodeXYFeed);
+                    lastf = gcodeXYFeed;
+                }
+                gcodeString.AppendFormat("{0}\r\n", cmt);
+            }
+            else
+                gcodeString.AppendFormat("G{0} X{1} Y{2} {3} {4}\r\n", frmtCode(gnr), frmtNum(x), frmtNum(y), feed, cmt);
             gcodeDistance += fdistance(lastx, lasty, x, y);
-            lastx = x; lasty = y;
+            lastx = x; lasty = y; lastg = gnr; 
             gcodeLines++;
         }
         public static void Move(StringBuilder gcodeString, int gnr, float x, float y, float i, float j, bool applyFeed, string cmt="")
@@ -175,7 +196,7 @@ namespace GRBL_Plotter
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
             gcodeString.AppendFormat("G{0} X{1} Y{2}  I{3} J{4} {5} ({6})\r\n", frmtCode(gnr), frmtNum(x), frmtNum(y), frmtNum(i), frmtNum(j), feed, cmt);
             gcodeDistance += fdistance(lastx, lasty, x, y);
-            lastx = x; lasty = y;
+            lastx = x; lasty = y; lastg = gnr; lastf = gcodeXYFeed;
             gcodeLines++;
         }
 

@@ -31,7 +31,8 @@ namespace GRBL_Plotter
         public int toolnr;
         public System.Drawing.Color clr;
         public bool use;
-        public int size;
+        public int codeSize;
+        public int pixelCount;
         public double diff;
         public String name;
     }
@@ -58,7 +59,7 @@ namespace GRBL_Plotter
             Array.Sort<palette>(svgToolTable, (x, y) => x.toolnr.CompareTo(y.toolnr));
             if (index < 0) index = 0;
             if (index >= svgToolIndex - 2) index = svgToolIndex - 2;
-            svgToolTable[index + 1].size = size;
+            svgToolTable[index + 1].codeSize = size;
         }
         public static void setIndex(int index)
         {   if ((index >= 0) && (index < svgToolIndex))
@@ -74,8 +75,11 @@ namespace GRBL_Plotter
         public static void sortByToolNr()
         {   Array.Sort<palette>(svgToolTable, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
         }
-        public static void sortBySize()
-        {   Array.Sort<palette>(svgToolTable, (x, y) => y.size.CompareTo(x.size));    // sort by size
+        public static void sortByCodeSize()
+        {   Array.Sort<palette>(svgToolTable, (x, y) => y.codeSize.CompareTo(x.codeSize));    // sort by size
+        }
+        public static void sortByPixelCount()
+        {   Array.Sort<palette>(svgToolTable, (x, y) => y.pixelCount.CompareTo(x.pixelCount));    // sort by size
         }
 
         // set tool / color table
@@ -93,6 +97,7 @@ namespace GRBL_Plotter
             svgToolTable[0].use = false; 
             svgToolTable[0].diff = int.MaxValue; 
             svgToolTable[0].name = "except";
+            svgToolTable[0].pixelCount=0;
             if (svgToolColor)
             {
                 if (File.Exists(svgPaletteFile))
@@ -115,6 +120,7 @@ namespace GRBL_Plotter
                                 svgToolTable[svgToolIndex].use = false;
                                 svgToolTable[svgToolIndex].diff = int.MaxValue;
                                 svgToolTable[svgToolIndex].name = cmt;
+                                svgToolTable[svgToolIndex].pixelCount = 0;
                                 if (svgToolIndex < svgToolMax-1) svgToolIndex++;
                             }
                         }
@@ -125,17 +131,17 @@ namespace GRBL_Plotter
                 else
                 {
                     //                   gcodeString[gcodeStringIndex].Append("(!!! SVG-Palette file not found - use black,r,g,b !!!)\r\n");
-                    svgToolTable[1].toolnr = 0; svgToolTable[svgToolIndex].use = false; svgToolTable[1].clr = Color.Black;svgToolTable[1].diff = int.MaxValue; svgToolTable[1].name = "black";
-                    svgToolTable[2].toolnr = 1; svgToolTable[svgToolIndex].use = false; svgToolTable[2].clr = Color.Red;  svgToolTable[2].diff = int.MaxValue; svgToolTable[2].name = "red";
-                    svgToolTable[3].toolnr = 2; svgToolTable[svgToolIndex].use = false; svgToolTable[3].clr = Color.Green;svgToolTable[3].diff = int.MaxValue; svgToolTable[3].name = "green";
-                    svgToolTable[4].toolnr = 3; svgToolTable[svgToolIndex].use = false; svgToolTable[4].clr = Color.Blue; svgToolTable[4].diff = int.MaxValue; svgToolTable[4].name = "blue";
+                    svgToolTable[1].toolnr = 0; svgToolTable[1].pixelCount = 0; svgToolTable[svgToolIndex].use = false; svgToolTable[1].clr = Color.Black;svgToolTable[1].diff = int.MaxValue; svgToolTable[1].name = "black";
+                    svgToolTable[2].toolnr = 1; svgToolTable[2].pixelCount = 0; svgToolTable[svgToolIndex].use = false; svgToolTable[2].clr = Color.Red;  svgToolTable[2].diff = int.MaxValue; svgToolTable[2].name = "red";
+                    svgToolTable[3].toolnr = 2; svgToolTable[3].pixelCount = 0; svgToolTable[svgToolIndex].use = false; svgToolTable[3].clr = Color.Green;svgToolTable[3].diff = int.MaxValue; svgToolTable[3].name = "green";
+                    svgToolTable[4].toolnr = 3; svgToolTable[4].pixelCount = 0; svgToolTable[svgToolIndex].use = false; svgToolTable[4].clr = Color.Blue; svgToolTable[4].diff = int.MaxValue; svgToolTable[4].name = "blue";
                     svgToolIndex = 5;
                     Array.Resize(ref svgToolTable, svgToolIndex);
                 }
             }
             else
             {
-                svgToolTable[1].toolnr = 0; svgToolTable[1].use = false; svgToolTable[1].clr = Color.Black; svgToolTable[1].diff = int.MaxValue; svgToolTable[1].name = "black";
+                svgToolTable[1].toolnr = 0; svgToolTable[1].pixelCount = 0; svgToolTable[1].use = false; svgToolTable[1].clr = Color.Black; svgToolTable[1].diff = int.MaxValue; svgToolTable[1].name = "black";
                 svgToolIndex = 2;
                 Array.Resize(ref svgToolTable, svgToolIndex);
             }
@@ -150,7 +156,7 @@ namespace GRBL_Plotter
             svgToolTable[0].clr = mycolor; 
             svgToolTable[0].use = false; 
             svgToolTable[0].diff = int.MaxValue; 
-            svgToolTable[0].name = "except";
+            svgToolTable[0].name = "not used";
             return svgToolTable[0].clr.ToString();
         }
         // Clear exception color
@@ -191,6 +197,12 @@ namespace GRBL_Plotter
             tmpIndex = 0;
             return svgToolTable[0].toolnr; ;   // return tool nr of nearest color
         }
+
+        public static void countPixel()
+        { svgToolTable[tmpIndex].pixelCount++; }
+
+        public static int pixelCount()
+        { return svgToolTable[tmpIndex].pixelCount; }
 
         public static Color getColor()
         { return svgToolTable[tmpIndex].clr; }

@@ -474,12 +474,17 @@ namespace GRBL_Plotter
          * */
         public void requestSend(string data)
         {
-            var tmp = cleanUpCodeLine(data);
-            if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
+            if (isStreamingRequestPause)
+            {   addToLog("!!! Command blocked - wait for IDLE " + data); }
+            else
             {
-                sendLines.Add(tmp); // cleanUpCodeLine(data));
-                sendLinesCount++;
-                processSend();
+                var tmp = cleanUpCodeLine(data);
+                if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
+                {
+                    sendLines.Add(tmp); // cleanUpCodeLine(data));
+                    sendLinesCount++;
+                    processSend();
+                }
             }
         }
 
@@ -647,13 +652,16 @@ namespace GRBL_Plotter
                     requestSend(string.Format("G1 Z{0:0.0}", posPause.Z).Replace(',', '.'));                      // restore last position
                 }
                 addToLog("[Restore Settings]");
-                var cmds = parserState.Split(' ');
-                foreach (var cmd in cmds)
-                { requestSend(cmd); }           // restore actual GCode settings one by one
-                addToLog("[Start streaming - no echo]");
                 isStreamingPause = false;
                 isStreamingRequestPause = false;
                 grblStatus = grblStreaming.ok;
+                var cmds = parserState.Split(' ');
+                foreach (var cmd in cmds)
+                {
+                    requestSend(cmd);            // restore actual GCode settings one by one
+                    gCodeLinesConfirmed-- ;           // each restored setting will cause 'ok' and gCodeLinesConfirmed++
+                }
+                addToLog("[Start streaming - no echo]");
                 preProcessStreaming();
             }
         }

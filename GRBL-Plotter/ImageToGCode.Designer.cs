@@ -32,6 +32,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageToGCode));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -71,10 +72,14 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cbExceptColor = new System.Windows.Forms.CheckBox();
             this.nUDMode = new System.Windows.Forms.NumericUpDown();
+            this.cbSkipToolOrder = new System.Windows.Forms.CheckBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbExceptAlpha = new System.Windows.Forms.CheckBox();
             this.btnTest = new System.Windows.Forms.Button();
+            this.btnList = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDReso)).BeginInit();
@@ -90,6 +95,7 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMode)).BeginInit();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -100,9 +106,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 373);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 384);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(376, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(373, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -152,7 +158,7 @@
             this.nUDReso.TabIndex = 24;
             this.toolTip1.SetToolTip(this.nUDReso, "Distance between lines");
             this.nUDReso.Value = new decimal(new int[] {
-            5,
+            4,
             0,
             0,
             65536});
@@ -316,7 +322,7 @@
             this.groupBox1.Controls.Add(this.rbModeGray);
             this.groupBox1.Location = new System.Drawing.Point(208, 210);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(162, 58);
+            this.groupBox1.Size = new System.Drawing.Size(162, 71);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Conversion mode";
@@ -324,7 +330,7 @@
             // cbGrayscale
             // 
             this.cbGrayscale.AutoSize = true;
-            this.cbGrayscale.Location = new System.Drawing.Point(8, 15);
+            this.cbGrayscale.Location = new System.Drawing.Point(8, 18);
             this.cbGrayscale.Name = "cbGrayscale";
             this.cbGrayscale.Size = new System.Drawing.Size(73, 17);
             this.cbGrayscale.TabIndex = 2;
@@ -335,7 +341,7 @@
             // rbModeDither
             // 
             this.rbModeDither.AutoSize = true;
-            this.rbModeDither.Location = new System.Drawing.Point(90, 35);
+            this.rbModeDither.Location = new System.Drawing.Point(89, 41);
             this.rbModeDither.Name = "rbModeDither";
             this.rbModeDither.Size = new System.Drawing.Size(67, 17);
             this.rbModeDither.TabIndex = 1;
@@ -347,7 +353,7 @@
             // 
             this.rbModeGray.AutoSize = true;
             this.rbModeGray.Checked = true;
-            this.rbModeGray.Location = new System.Drawing.Point(8, 35);
+            this.rbModeGray.Location = new System.Drawing.Point(8, 41);
             this.rbModeGray.Name = "rbModeGray";
             this.rbModeGray.Size = new System.Drawing.Size(72, 17);
             this.rbModeGray.TabIndex = 0;
@@ -457,7 +463,7 @@
             this.groupBox2.Controls.Add(this.rbEngravingPattern1);
             this.groupBox2.Location = new System.Drawing.Point(2, 287);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(85, 54);
+            this.groupBox2.Size = new System.Drawing.Size(85, 65);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Plot direction";
@@ -465,7 +471,7 @@
             // rbEngravingPattern2
             // 
             this.rbEngravingPattern2.AutoSize = true;
-            this.rbEngravingPattern2.Location = new System.Drawing.Point(6, 37);
+            this.rbEngravingPattern2.Location = new System.Drawing.Point(6, 41);
             this.rbEngravingPattern2.Name = "rbEngravingPattern2";
             this.rbEngravingPattern2.Size = new System.Drawing.Size(65, 17);
             this.rbEngravingPattern2.TabIndex = 1;
@@ -486,9 +492,9 @@
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(236, 329);
+            this.btnGenerate.Location = new System.Drawing.Point(270, 358);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(107, 41);
+            this.btnGenerate.Size = new System.Drawing.Size(100, 24);
             this.btnGenerate.TabIndex = 3;
             this.btnGenerate.Text = "Generate GCode";
             this.btnGenerate.UseVisualStyleBackColor = true;
@@ -542,7 +548,7 @@
             // 
             this.cbExceptColor.AutoSize = true;
             this.cbExceptColor.BackColor = System.Drawing.Color.White;
-            this.cbExceptColor.Location = new System.Drawing.Point(6, 37);
+            this.cbExceptColor.Location = new System.Drawing.Point(6, 42);
             this.cbExceptColor.Name = "cbExceptColor";
             this.cbExceptColor.Size = new System.Drawing.Size(50, 17);
             this.cbExceptColor.TabIndex = 1;
@@ -553,27 +559,39 @@
             // 
             // nUDMode
             // 
-            this.nUDMode.Location = new System.Drawing.Point(136, 349);
+            this.nUDMode.Location = new System.Drawing.Point(45, 18);
             this.nUDMode.Maximum = new decimal(new int[] {
             2,
             0,
             0,
             0});
             this.nUDMode.Name = "nUDMode";
-            this.nUDMode.Size = new System.Drawing.Size(38, 20);
+            this.nUDMode.Size = new System.Drawing.Size(33, 20);
             this.nUDMode.TabIndex = 27;
-            this.toolTip1.SetToolTip(this.nUDMode, "Mode to calculate nearest color");
+            this.toolTip1.SetToolTip(this.nUDMode, resources.GetString("nUDMode.ToolTip"));
             this.nUDMode.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
             // 
+            // cbSkipToolOrder
+            // 
+            this.cbSkipToolOrder.AutoSize = true;
+            this.cbSkipToolOrder.Location = new System.Drawing.Point(9, 42);
+            this.cbSkipToolOrder.Name = "cbSkipToolOrder";
+            this.cbSkipToolOrder.Size = new System.Drawing.Size(137, 17);
+            this.cbSkipToolOrder.TabIndex = 29;
+            this.cbSkipToolOrder.Text = "Skip tool nr from palette";
+            this.toolTip1.SetToolTip(this.cbSkipToolOrder, "Instead of using tool number from palette (e.g. 3,7,9) tools will be counted from" +
+        " zero (0,1,2)");
+            this.cbSkipToolOrder.UseVisualStyleBackColor = true;
+            // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(236, 287);
+            this.btnLoad.Location = new System.Drawing.Point(2, 358);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(107, 36);
+            this.btnLoad.Size = new System.Drawing.Size(85, 24);
             this.btnLoad.TabIndex = 24;
             this.btnLoad.Text = "Load picture";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -585,7 +603,7 @@
             this.groupBox5.Controls.Add(this.cbExceptAlpha);
             this.groupBox5.Location = new System.Drawing.Point(93, 287);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(109, 54);
+            this.groupBox5.Size = new System.Drawing.Size(75, 65);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Exceptions";
@@ -604,21 +622,53 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(8, 347);
+            this.btnTest.Location = new System.Drawing.Point(106, 358);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(123, 24);
+            this.btnTest.Size = new System.Drawing.Size(71, 24);
             this.btnTest.TabIndex = 26;
-            this.btnTest.Text = "Try colors from palette";
+            this.btnTest.Text = "Show result";
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCheckOrig_MouseDown);
             this.btnTest.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnCheckOrig_MouseUp);
+            // 
+            // btnList
+            // 
+            this.btnList.Location = new System.Drawing.Point(183, 358);
+            this.btnList.Name = "btnList";
+            this.btnList.Size = new System.Drawing.Size(64, 24);
+            this.btnList.TabIndex = 28;
+            this.btnList.Text = "List colors";
+            this.btnList.UseVisualStyleBackColor = true;
+            this.btnList.Click += new System.EventHandler(this.btnList_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cbSkipToolOrder);
+            this.groupBox6.Controls.Add(this.label7);
+            this.groupBox6.Controls.Add(this.nUDMode);
+            this.groupBox6.Location = new System.Drawing.Point(174, 287);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(196, 65);
+            this.groupBox6.TabIndex = 29;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Color replacing";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Mode";
             // 
             // ImageToGCode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 395);
-            this.Controls.Add(this.nUDMode);
+            this.ClientSize = new System.Drawing.Size(373, 406);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.btnList);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnLoad);
@@ -653,6 +703,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDMode)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -703,5 +755,9 @@
         private System.Windows.Forms.CheckBox cbExceptColor;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.NumericUpDown nUDMode;
+        private System.Windows.Forms.Button btnList;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.CheckBox cbSkipToolOrder;
+        private System.Windows.Forms.Label label7;
     }
 }
