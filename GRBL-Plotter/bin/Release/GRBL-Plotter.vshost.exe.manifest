@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="GRBL-Plotter" version="0.2.0.2" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="GRBL-Plotter" version="0.2.0.3" language="neutral" processorArchitecture="msil" />
     <commandLine file="GRBL-Plotter.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GRBL-Plotter.exe" size="2474496">
-      <assemblyIdentity name="GRBL-Plotter" version="0.2.0.2" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GRBL-Plotter.exe" size="2480128">
+      <assemblyIdentity name="GRBL-Plotter" version="0.2.0.3" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>9BlQpLJo02izIUs5IXwcc+ULwmQ=</dsig:DigestValue>
+        <dsig:DigestValue>cbdmapF8F++5P5rEY7alWwhA7F0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
