@@ -68,7 +68,7 @@ Text import
 ![GRBL-Plotter Text](GRBLPlotter_Text.png?raw=true "Text conversion")
 
 Picture import  
-![GRBL-Plotter Image](GRBLPlotter_Image.png?raw=true "Image import")
+![GRBL-Plotter Image](GRBLPlotter_Image2.png?raw=true "Image import")
 
 Different scaling options  
 ![GRBL-Plotter Scaling](GRBLPlotter_scaling.png?raw=true "GCode scaling")
