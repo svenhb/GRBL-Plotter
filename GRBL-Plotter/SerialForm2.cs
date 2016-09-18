@@ -514,13 +514,7 @@ namespace GRBL_Plotter
             }
             else
             {
-/*                if ((posPause.X != posWorld.X) || (posPause.Y != posWorld.Y) || (posPause.Z != posWorld.Z))
-                {
-                    addToLog("[Restore Position]");
-                    requestSend(string.Format("G90 G0 X{0:0.0} Y{1:0.0}", posPause.X, posPause.Y).Replace(',', '.'));  // restore last position
-                    requestSend(string.Format("G1 Z{0:0.0}", posPause.Z).Replace(',', '.'));                      // restore last position
-                }
-  */              addToLog("[Restore Settings]");
+                addToLog("[Restore Settings]");
                 var cmds = parserState.Split(' ');
                 foreach (var cmd in cmds)
                 { requestSend(cmd); }           // restore actual GCode settings one by one
@@ -570,7 +564,8 @@ namespace GRBL_Plotter
             while ((gCodeLinesSent < gCodeLinesCount) && (grblBufferFree >= gCodeLines[gCodeLinesSent].Length + 1))
             {
                 string line = gCodeLines[gCodeLinesSent];
-                if (((line == "M0") || (line.IndexOf("M00") >= 0) || (line.IndexOf("M0 ") >= 0)) && !isStreamingCheck)
+                int cmdMNr = gcode.getIntGCode('M',line);
+                if ((cmdMNr == 0) && !isStreamingCheck)
                 {
                     isStreamingRequestPause = true;
                     addToLog("[Pause streaming]");
@@ -578,8 +573,6 @@ namespace GRBL_Plotter
                     grblStatus = grblStreaming.waitidle;
                     getParserState = true;
                     sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
-                    //                    requestSend("N0 ");     // send nothing, but expect ok
-                    //                    gCodeLinesSent++;
                     return;                 // abort while - don't fill up buffer
                 }
                 else
@@ -605,7 +598,6 @@ namespace GRBL_Plotter
                     {
                         parserState = rxString.Substring(1, rxString.Length - 2);
                         parserState = parserState.Replace("M0", "");
- //                       posPause = posWorld;
                         getParserState = false;
                     }
                 }
@@ -616,6 +608,14 @@ namespace GRBL_Plotter
             {
                 grblBufferFree += (sendLines[sendLinesConfirmed].Length + 1);   //update bytes supose to be free on grbl rx bufer
                 sendLinesConfirmed++;                   // line processed
+                if (sendLines.Count > 1)
+                {
+                    sendLines.RemoveAt(0);
+                    sendLinesConfirmed--;
+                    sendLinesSent--;
+                    sendLinesCount--;
+                }
+
             }
             if ((sendLinesConfirmed == sendLinesCount) && (grblStateNow == grblState.idle))   // addToLog(">> Buffer empty\r");
             {
@@ -624,9 +624,6 @@ namespace GRBL_Plotter
                     isStreamingPause = true;
                     isStreamingRequestPause = false;
                     grblStatus = grblStreaming.pause;
-//                    gcodeVariable["MLAX"] = posMachine.X; gcodeVariable["MLAY"] = posMachine.Y; gcodeVariable["MLAZ"] = posMachine.Z;
- //                   gcodeVariable["WLAX"] = posWorld.X; gcodeVariable["WLAY"] = posWorld.Y; gcodeVariable["WLAZ"] = posWorld.Z;
-
                     if (getParserState)
                     { requestSend("$G"); }
                 }
@@ -692,19 +689,25 @@ namespace GRBL_Plotter
         private void tbCommand_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)13) return;
-            string cmd = cBCommand.Text;
-            cBCommand.Items.Remove(cBCommand.SelectedItem);
-            cBCommand.Items.Insert(0, cmd);
-            requestSend(cmd);
-            cBCommand.Text = cmd;
+            if (!isStreaming)
+            {
+                string cmd = cBCommand.Text;
+                cBCommand.Items.Remove(cBCommand.SelectedItem);
+                cBCommand.Items.Insert(0, cmd);
+                requestSend(cmd);
+                cBCommand.Text = cmd;
+            }
         }
         private void btnSend_Click(object sender, EventArgs e)
         {
-            string cmd = cBCommand.Text;
-            cBCommand.Items.Remove(cBCommand.SelectedItem);
-            cBCommand.Items.Insert(0, cmd);
-            requestSend(cmd);
-            cBCommand.Text = cmd;
+            if (!isStreaming)
+            {
+                string cmd = cBCommand.Text;
+                cBCommand.Items.Remove(cBCommand.SelectedItem);
+                cBCommand.Items.Insert(0, cmd);
+                requestSend(cmd);
+                cBCommand.Text = cmd;
+            }
         }
         private void btnGRBLCommand0_Click(object sender, EventArgs e)
         { requestSend("$"); }

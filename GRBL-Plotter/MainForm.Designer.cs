@@ -34,6 +34,7 @@ namespace GRBL_Plotter
             if (disposing && (components != null))
             {
                 components.Dispose();
+                picBoxBackround.Dispose();
      //           gcodeImage.Dispose();
                 StyleComment.Dispose();
                 StyleFWord.Dispose();
@@ -73,6 +74,7 @@ namespace GRBL_Plotter
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gCodeWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_mx = new System.Windows.Forms.Label();
             this.label_my = new System.Windows.Forms.Label();
@@ -160,6 +162,7 @@ namespace GRBL_Plotter
             this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lblTool = new System.Windows.Forms.Label();
             this.cBTool = new System.Windows.Forms.CheckBox();
             this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
             this.virtualJoystickXY = new virtualJoystick.virtualJoystick();
@@ -198,6 +201,7 @@ namespace GRBL_Plotter
             this.toolStripMenuItem1,
             this.textWizzardToolStripMenuItem,
             this.imageToolStripMenuItem,
+            this.gCodeWizzardToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -261,6 +265,13 @@ namespace GRBL_Plotter
             this.imageToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
             this.imageToolStripMenuItem.Text = "Convert Image";
             this.imageToolStripMenuItem.Click += new System.EventHandler(this.imageToolStripMenuItem_Click);
+            // 
+            // gCodeWizzardToolStripMenuItem
+            // 
+            this.gCodeWizzardToolStripMenuItem.Name = "gCodeWizzardToolStripMenuItem";
+            this.gCodeWizzardToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.gCodeWizzardToolStripMenuItem.Text = "GCode Wizard";
+            this.gCodeWizzardToolStripMenuItem.Visible = false;
             // 
             // aboutToolStripMenuItem
             // 
@@ -1022,6 +1033,8 @@ namespace GRBL_Plotter
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox1.BackgroundImage = global::GRBL_Plotter.Properties.Resources.modell;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.ContextMenuStrip = this.cmsPictureBox;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
@@ -1200,6 +1213,7 @@ namespace GRBL_Plotter
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.lblTool);
             this.groupBox6.Controls.Add(this.cBTool);
             this.groupBox6.Controls.Add(this.virtualJoystickZ);
             this.groupBox6.Controls.Add(this.virtualJoystickXY);
@@ -1222,6 +1236,13 @@ namespace GRBL_Plotter
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Control";
             // 
+            // lblTool
+            // 
+            this.lblTool.Location = new System.Drawing.Point(115, 39);
+            this.lblTool.Name = "lblTool";
+            this.lblTool.Size = new System.Drawing.Size(110, 13);
+            this.lblTool.TabIndex = 26;
+            // 
             // cBTool
             // 
             this.cBTool.AutoSize = true;
@@ -1238,6 +1259,13 @@ namespace GRBL_Plotter
             this.virtualJoystickZ.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("virtualJoystickZ.BackgroundImage")));
             this.virtualJoystickZ.Joystick2Dimension = false;
             this.virtualJoystickZ.JoystickActive = System.Drawing.Color.Red;
+            this.virtualJoystickZ.JoystickLabel = new double[] {
+        0.1D,
+        0.5D,
+        1D,
+        5D,
+        10D,
+        50D};
             this.virtualJoystickZ.JoystickRaster = 5;
             this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickZ.Location = new System.Drawing.Point(186, 119);
@@ -1255,6 +1283,13 @@ namespace GRBL_Plotter
             this.virtualJoystickXY.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("virtualJoystickXY.BackgroundImage")));
             this.virtualJoystickXY.Joystick2Dimension = true;
             this.virtualJoystickXY.JoystickActive = System.Drawing.Color.Red;
+            this.virtualJoystickXY.JoystickLabel = new double[] {
+        0.1D,
+        0.5D,
+        1D,
+        5D,
+        10D,
+        50D};
             this.virtualJoystickXY.JoystickRaster = 5;
             this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickXY.Location = new System.Drawing.Point(4, 119);
@@ -1494,6 +1529,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem deletenotMarkToolStripMenuItem;
         private System.Windows.Forms.CheckBox cBTool;
+        private System.Windows.Forms.Label lblTool;
+        private System.Windows.Forms.ToolStripMenuItem gCodeWizzardToolStripMenuItem;
     }
 }
 

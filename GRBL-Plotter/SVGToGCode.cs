@@ -171,7 +171,7 @@ namespace GRBL_Plotter
         // Set defaults and parse main element of SVG-XML
         private static void startConvert(XElement svgCode)
         {
-            svgBezierAccuracy = Properties.Settings.Default.importSVGBezier;
+            svgBezierAccuracy = (int)Properties.Settings.Default.importSVGBezier;
             svgScaleApply = Properties.Settings.Default.importSVGRezise;
             svgMaxSize = (float)Properties.Settings.Default.importSVGMaxSize;
             svgClosePathExtend = Properties.Settings.Default.importSVGPathExtend;

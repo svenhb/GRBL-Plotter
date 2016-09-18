@@ -17,8 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /*  Thanks to https://github.com/PavelTorgashov/FastColoredTextBox
-
 */
+/*  2016-09-18  improve performance for low-performance PC: during streaming show background-image with toolpath
+ *              instead of redrawing toolpath with each onPaint.
+ *              Joystick-control: adjustable step-width and speed.
+ */
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -26,7 +29,6 @@ using System.IO;
 using System.Windows.Forms;
 using virtualJoystick;
 using FastColoredTextBoxNS;
-using System.Deployment.Application;
 
 namespace GRBL_Plotter
 {
@@ -50,6 +52,10 @@ namespace GRBL_Plotter
         private xyzPoint posProbe = new xyzPoint(0, 0, 0);
         private grblState machineStatus;
         public bool flagResetOffset = false;
+        private double[] joystickXYStep = { 0, 1, 2, 3, 4, 5 };
+        private double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
+        private double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
+        private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
 
         public MainForm()
         {
@@ -78,7 +84,7 @@ namespace GRBL_Plotter
         {
             if ((Application.OpenForms["CameraForm"] as CameraForm) == null)
             {//            if (_camera_form == null)
-            
+
                 _camera_form = new CameraForm();
                 _camera_form.FormClosed += formClosed_CameraForm;
                 _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
@@ -97,7 +103,7 @@ namespace GRBL_Plotter
         {
             if ((Application.OpenForms["SetupForm"] as SetupForm) == null)
             {//            if (_setup_form == null)
-            
+
                 _setup_form = new SetupForm();
                 _setup_form.FormClosed += formClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += loadSettings;
@@ -115,9 +121,9 @@ namespace GRBL_Plotter
         // open text creation form
         private void textWizzardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-//            if ((Application.OpenForms["TextForm"] as TextToGCode) == null)
+            //            if ((Application.OpenForms["TextForm"] as TextToGCode) == null)
             if (_text_form == null)
-            { 
+            {
                 _text_form = new TextToGCode();
                 _text_form.FormClosed += formClosed_TextToGCode;
                 _text_form.btnApply.Click += getGCodeFromText;      // assign btn-click event
@@ -134,8 +140,7 @@ namespace GRBL_Plotter
         private void imageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((Application.OpenForms["Image2GCode"] as ImageToGCode) == null)
-            {//            if (_image_form == null)
-            
+            {
                 _image_form = new ImageToGCode();
                 _image_form.FormClosed += formClosed_ImageToGCode;
                 _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
@@ -147,7 +152,7 @@ namespace GRBL_Plotter
             _image_form.Show(this);
         }
         private void formClosed_ImageToGCode(object sender, FormClosedEventArgs e)
-        {  _image_form = null;  }
+        { _image_form = null; }
 
         // open About form
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,7 +227,31 @@ namespace GRBL_Plotter
                 penDown.Width = (float)Properties.Settings.Default.widthPenDown;
                 penTool.Width = (float)Properties.Settings.Default.widthTool;
                 penMarker.Width = (float)Properties.Settings.Default.widthMarker;
+                picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 updateDrawing();
+
+                joystickXYStep[1] = (double)Properties.Settings.Default.joyXYStep1;
+                joystickXYStep[2] = (double)Properties.Settings.Default.joyXYStep2;
+                joystickXYStep[3] = (double)Properties.Settings.Default.joyXYStep3;
+                joystickXYStep[4] = (double)Properties.Settings.Default.joyXYStep4;
+                joystickXYStep[5] = (double)Properties.Settings.Default.joyXYStep5;
+                joystickZStep[1] = (double)Properties.Settings.Default.joyZStep1;
+                joystickZStep[2] = (double)Properties.Settings.Default.joyZStep2;
+                joystickZStep[3] = (double)Properties.Settings.Default.joyZStep3;
+                joystickZStep[4] = (double)Properties.Settings.Default.joyZStep4;
+                joystickZStep[5] = (double)Properties.Settings.Default.joyZStep5;
+                joystickXYSpeed[1] = (double)Properties.Settings.Default.joyXYSpeed1;
+                joystickXYSpeed[2] = (double)Properties.Settings.Default.joyXYSpeed2;
+                joystickXYSpeed[3] = (double)Properties.Settings.Default.joyXYSpeed3;
+                joystickXYSpeed[4] = (double)Properties.Settings.Default.joyXYSpeed4;
+                joystickXYSpeed[5] = (double)Properties.Settings.Default.joyXYSpeed5;
+                joystickZSpeed[1] = (double)Properties.Settings.Default.joyZSpeed1;
+                joystickZSpeed[2] = (double)Properties.Settings.Default.joyZSpeed2;
+                joystickZSpeed[3] = (double)Properties.Settings.Default.joyZSpeed3;
+                joystickZSpeed[4] = (double)Properties.Settings.Default.joyZSpeed4;
+                joystickZSpeed[5] = (double)Properties.Settings.Default.joyZSpeed5;
+                virtualJoystickXY.JoystickLabel = joystickXYStep;
+                virtualJoystickZ.JoystickLabel = joystickZStep;
             }
             catch (Exception a)
             {
@@ -279,7 +308,13 @@ namespace GRBL_Plotter
             btnStreamStart.Enabled = isConnected;// & isFileLoaded;
             btnStreamStop.Enabled = isConnected; // & isFileLoaded;
             btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
+
+            btnMirrorX.Enabled = isConnected & !isStreaming;
+            btnMirrorY.Enabled = isConnected & !isStreaming;
+            btnTransformCode.Enabled = isConnected & !isStreaming;
+            btnShiftToZero.Enabled = isConnected & !isStreaming;
         }
+
         // handle position events from serial form
         private void OnRaisePosEvent(object sender, PosEventArgs e)
         {
@@ -376,15 +411,17 @@ namespace GRBL_Plotter
             lastMachineStatus = machineStatus;
         }
         private void processLastCommand(string cmd)
-        {   if (cmd.Length < 2) return;
-            if ((cmd.IndexOf("M3 ") >= 0) || (cmd.IndexOf("M03") >= 0) || (cmd.IndexOf("M4") >= 0) || (cmd.IndexOf("M04") >= 0))
-                cBSpindle.Checked = true;
-            if ((cmd.IndexOf("M5") >= 0) || (cmd.IndexOf("M05") >= 0))
-                cBSpindle.Checked = false;
-            if ((cmd.IndexOf("M7") >= 0) || (cmd.IndexOf("M07") >= 0) || (cmd.IndexOf("M8") >= 0) || (cmd.IndexOf("M08") >= 0))
-                cBCoolant.Checked = true;
-            if ((cmd.IndexOf("M9") >= 0) || (cmd.IndexOf("M09") >= 0))
-                cBCoolant.Checked = false;
+        { if (cmd.Length < 2) return;
+            foreach (string singleCmd in cmd.Split('M'))
+            {
+                int cmdNr = gcode.getIntGCode('M',"M" + singleCmd);
+                if ((cmdNr == 3) || (cmdNr == 3)) cBSpindle.Checked = true;
+                if (cmdNr == 5) cBSpindle.Checked = false;
+                if ((cmdNr == 7) || (cmdNr == 8)) cBCoolant.Checked = true;
+                if (cmdNr == 9) cBCoolant.Checked = false;
+                if (cmdNr == 6)
+                { lblTool.Text = cmd.Substring(cmd.IndexOf("T")); }
+            }
         }
 
         // update drawing on Main form
@@ -395,7 +432,7 @@ namespace GRBL_Plotter
         }
         // send command via serial form
         private void sendCommand(string txt)
-        { _serial_form.requestSend(txt); }
+        {   _serial_form.requestSend(txt);  }
         // open a file via dialog
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
@@ -406,6 +443,7 @@ namespace GRBL_Plotter
         }
         private void loadFile(string fileName)
         {
+            pictureBox1.BackgroundImage = null;
             visuGCode.setMarkerOnDrawing("G0 X0 Y0");
             String ext = Path.GetExtension(fileName).ToLower();
             if (ext == ".svg")
@@ -534,6 +572,8 @@ namespace GRBL_Plotter
                 btnStreamStart.Image = Properties.Resources.btn_play;
                 btnStreamStart.Enabled = true;
                 btnStreamCheck.Enabled = true;
+                picBoxCopy = 0;
+                pictureBox1.BackgroundImage = null;
                 updateControls();
             }
             if (e.Status == grblStreaming.waitidle)
@@ -581,6 +621,7 @@ namespace GRBL_Plotter
                 _serial_form.startStreaming(fCTBCode.Lines);
                 btnStreamStart.Image = Properties.Resources.btn_pause;
                 btnStreamCheck.Enabled = false;
+                onPaint_setBackground();
             }
             else
             {
@@ -612,9 +653,12 @@ namespace GRBL_Plotter
                 fCTBCode.UnbookmarkLine(i);
             _serial_form.startStreaming(fCTBCode.Lines, true);
             btnStreamStart.Enabled = false;
+            onPaint_setBackground();
         }
         private void btnStreamStop_Click(object sender, EventArgs e)
         {
+            picBoxCopy = 0;
+            pictureBox1.BackgroundImage = null;
             btnStreamStart.Image = Properties.Resources.btn_play;
             btnStreamStart.Enabled = true;
             btnStreamCheck.Enabled = true;
@@ -636,19 +680,27 @@ namespace GRBL_Plotter
 
         // handle event from create Text form
         private void getGCodeFromText(object sender, EventArgs e)
-        {
-            fCTBCode.Text = _text_form.textGCode;
-            redrawGCodePath();
-            isFileLoaded = true;
-            updateControls();
+        { if (!isStreaming)
+            {
+                picBoxCopy = 0;
+                pictureBox1.BackgroundImage = null;
+                fCTBCode.Text = _text_form.textGCode;
+                redrawGCodePath();
+                isFileLoaded = true;
+                updateControls();
+            }
         }
         // handle event from create Image form
         private void getGCodeFromImage(object sender, EventArgs e)
-        {
-            fCTBCode.Text = _image_form.imageGCode;
-            redrawGCodePath();
-            isFileLoaded = true;
-            updateControls();
+        { if (!isStreaming)
+            {
+                picBoxCopy = 0;
+                pictureBox1.BackgroundImage = null;
+                fCTBCode.Text = _image_form.imageGCode;
+                redrawGCodePath();
+                isFileLoaded = true;
+                updateControls();
+            }
         }
 
         private void MainTimer_Tick(object sender, EventArgs e)
@@ -733,17 +785,22 @@ namespace GRBL_Plotter
         // speed (units/min) = 2 * stepsize * 60 * factor (to compensate speed-ramps)
         private void virtualJoystickXY_JoyStickEvent(object sender, JogEventArgs e)
         {
-            double maxStep = Math.Max(Math.Abs(e.JogPosX), Math.Abs(e.JogPosY));
-            int speed = Convert.ToInt32(2 * maxStep * 60 * 0.95);
+            int indexX = Math.Abs(e.JogPosX);
+            int indexY = Math.Abs(e.JogPosY);
+            int dirX = Math.Sign(e.JogPosX);
+            int dirY = Math.Sign(e.JogPosY);
+            int speed = (int)Math.Max(joystickXYSpeed[indexX], joystickXYSpeed[indexY]);
+            String strX = gcode.frmtNum(joystickXYStep[indexX] * dirX);
+            String strY = gcode.frmtNum(joystickXYStep[indexY] * dirY);
             String s = "";
-            if (maxStep > 0)
+            if (speed > 0)
             {
                 if (e.JogPosX == 0)
-                    s = String.Format("F{0} G1 Y{1}", speed, e.JogPosY).Replace(',', '.');
+                    s = String.Format("G1 Y{0} F{1}", strY, speed).Replace(',', '.');
                 else if (e.JogPosY == 0)
-                    s = String.Format("F{0} G1 X{1}", speed, e.JogPosX).Replace(',', '.');
+                    s = String.Format("G1 X{0} F{1}", strX, speed).Replace(',', '.');
                 else
-                    s = String.Format("F{0} G1 X{1} Y{2}", speed, e.JogPosX, e.JogPosY).Replace(',', '.');
+                    s = String.Format("G1 X{0} Y{1} F{2}", strX, strY, speed).Replace(',', '.');
                 sendCommand(s);
             }
         }
@@ -753,10 +810,13 @@ namespace GRBL_Plotter
         { sendCommand("G90"); }
         private void virtualJoystickZ_JoyStickEvent(object sender, JogEventArgs e)
         {
-            int speed = Convert.ToInt32(Math.Abs(e.JogPosY) * 120 * 0.99);
+            int indexZ = Math.Abs(e.JogPosY);
+            int dirZ = Math.Sign(e.JogPosY);
+            int speed = (int)joystickZSpeed[indexZ];
+            String strZ = gcode.frmtNum(joystickZStep[indexZ] * dirZ);
             if (speed > 0)
             {
-                String s = String.Format("F{0} G1 Z{1}", speed, e.JogPosY).Replace(',', '.');
+                String s = String.Format("G1 Z{0} F{1}", strZ, speed).Replace(',', '.');
                 sendCommand(s);
             }
         }
@@ -893,6 +953,8 @@ namespace GRBL_Plotter
             fCTBCode.Cursor = Cursors.WaitCursor;
             transformGCode(Convert.ToDouble(tbChangeSize.Text), Convert.ToDouble(tbChangeAngle.Text), GCodeVisuAndTransform.translate.None);
             visuGCode.createImagePath();
+            picBoxCopy = 0;
+            pictureBox1.BackgroundImage = null;
             pictureBox1.Invalidate();
             fCTBCode.Cursor = Cursors.IBeam;
             showChangedMessage = true;
@@ -999,7 +1061,7 @@ namespace GRBL_Plotter
                     fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
                     // Set marker in drawing
                     visuGCode.setMarkerOnDrawing(fCTBCode.SelectedText);
-                    pictureBox1.Invalidate();
+                    //                    pictureBox1.Invalidate(); // avoid too much events
                     if (_camera_form != null)
                         _camera_form.setPosMarker(visuGCode.GetPosMarkerX(), visuGCode.GetPosMarkerY());
                 }
@@ -1091,7 +1153,7 @@ namespace GRBL_Plotter
             }
         }
         public void reStartConvertSVG(object sender, EventArgs e)   // event from setup form
-        { startConvertSVG(lastSource); }
+        { if (!isStreaming) startConvertSVG(lastSource); }
         private string lastSource = "";
         private void startConvertSVG(string source)
         {
@@ -1166,6 +1228,8 @@ namespace GRBL_Plotter
         private Pen penMarker = new Pen(Color.DeepPink, 1F);
         private double picAbsPosX = 0;
         private double picAbsPosY = 0;
+        private Bitmap picBoxBackround;
+        private int picBoxCopy = 0;
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             double minx = GCodeVisuAndTransform.drawingSize.minX;                  // extend dimensions
@@ -1188,23 +1252,56 @@ namespace GRBL_Plotter
                 picAbsPosX = relposX * xRange + minx;
                 picAbsPosY = yRange - relposY * yRange + miny;
                 int offX = +5;
+
                 if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width - 100))
                 { offX = -75; }
+
                 Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y - 10);
                 e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
                 //                e.Graphics.DrawString(String.Format("Ratio:\r\nVisu:{0,7:0.00}\r\nPic:{1,7:0.00}", ratioVisu, ratioPic), new Font("Lucida Console", 8), Brushes.Black, 10,10);
 
                 e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);        // apply scaling (flip Y)
                 e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
-                e.Graphics.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
-                e.Graphics.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
-                e.Graphics.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
+                if (picBoxCopy == 0)
+                    onPaint_drawToolPath(e.Graphics);
                 e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
                 e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
             }
         }
+        private void onPaint_scaling(Graphics e)
+        {
+            double minx = GCodeVisuAndTransform.drawingSize.minX;                  // extend dimensions
+            double maxx = GCodeVisuAndTransform.drawingSize.maxX;
+            double miny = GCodeVisuAndTransform.drawingSize.minY;
+            double maxy = GCodeVisuAndTransform.drawingSize.maxY;
+            double xRange = (maxx - minx);                                              // calculate new size
+            double yRange = (maxy - miny);
+            double picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
+            e.ScaleTransform((float)picScaling, (float)-picScaling);        // apply scaling (flip Y)
+            e.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
+        }
+        private void onPaint_drawToolPath(Graphics e)
+        {
+            e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
+            e.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
+            e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
+        }
+        private void onPaint_setBackground()
+        { 
+            picBoxCopy = 1;
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Graphics graphics = Graphics.FromImage(picBoxBackround);
+            graphics.DrawString("Streaming", new Font("Lucida Console", 8), Brushes.Black, 1, 1);
+            onPaint_scaling(graphics);
+            onPaint_drawToolPath(graphics);
+            pictureBox1.BackgroundImage = new Bitmap(picBoxBackround);//Properties.Resources.modell;
+        }
+
         private void pictureBox1_SizeChanged(object sender, EventArgs e)
         {
+            if (picBoxCopy > 0)
+                onPaint_setBackground();
             pictureBox1.Invalidate();
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)

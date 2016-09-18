@@ -26,12 +26,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -375,8 +372,8 @@ namespace GRBL_Plotter
         {
             if (adjustedImage == null) return;//if no image, do nothing
             getSettings();
-            usedColors = new string[svgToolIndex+1];
-            countColors = new int[svgToolIndex + 1];
+            Array.Resize<string>(ref usedColors, svgToolIndex + 1);     //usedColors = string[svgToolIndex + 1];
+            Array.Resize<int>(ref countColors, svgToolIndex + 1);     //countColors = new int[svgToolIndex + 1];
             for (int i = 0; i < svgToolIndex; i++)
             { usedColors[i] = ""; countColors[i] = 0; }
             generateResultImage();
@@ -457,7 +454,6 @@ namespace GRBL_Plotter
         {
             int tool, skipTooNr=0;
             int key;
-            gcode.PenUp(finalString);
             gcode.Move(finalString, 0, 0, 0, false);          // move to start pos
             for (int index = 0; index < svgToolIndex; index++)  // go through sorted by pixel-amount list
             {
@@ -506,7 +502,7 @@ namespace GRBL_Plotter
                 else
                     gcode.Move(finalString, 1, coordX, coordy, false);          // move to start pos
                 coordX = resol * (float)stop;
-                gcode.Move(finalString, 1, coordX, coordy, false);          // move to end pos
+                gcode.Move(finalString, 1, coordX, coordy, false);              // move to end pos
 
                 if (line < (adjustedImage.Height - 1))
                 {
@@ -814,8 +810,8 @@ namespace GRBL_Plotter
         private void btnList_Click(object sender, EventArgs e)
         {
             getSettings();
-            usedColors = new string[svgToolIndex + 1];
-            countColors = new int[svgToolIndex + 1];
+            Array.Resize<string>(ref usedColors, svgToolIndex + 1);     //usedColors = string[svgToolIndex + 1];
+            Array.Resize<int>(ref countColors, svgToolIndex + 1);     //countColors = new int[svgToolIndex + 1];
 
             for (int i = 0; i <= svgToolIndex; i++)
             { usedColors[i] = ""; countColors[i] = 0; }
@@ -830,21 +826,27 @@ namespace GRBL_Plotter
             else
                 debug_string += "Colors / Tools used in image:\r\n ";
             for (int i = 0; i < svgToolIndex; i++)
+            {
                 if (usedColors[i].Length > 1)
+                {
                     if (i < 2)
                         debug_string += "Exception color " + usedColors[i] + "\r\n";
                     else
-                    {   tool_string += (i - 2).ToString() + ") " + usedColors[i] + "\r\n";
+                    {
+                        tool_string += (i - 2).ToString() + ") " + usedColors[i] + "\r\n";
+                        while (values.ContainsKey(countColors[i]))
+                            countColors[i]++;
                         values.Add(countColors[i], usedColors[i]);
                     }
-
+                }
+            }
             if (cbSkipToolOrder.Checked)
             {   if (values.Count() > 0)
                 {
                     tool_string = "";
                     var list = values.Keys.ToList();
-                    list.Sort();
-                    list.Reverse();
+                    list.Sort();            // sort by pixelamount
+                    list.Reverse();         // but descending order
                     int i = 0;
                     foreach (var key in list)
                     {
@@ -852,7 +854,6 @@ namespace GRBL_Plotter
                     }
                 }
             }
-
             MessageBox.Show(debug_string + tool_string);
         }
 

@@ -21,6 +21,9 @@
     During transformation the drawing path will be generated, because cooridantes are already parsed.
     Return transformed GCode 
 */
+/* 2016-09-18 use gcode.frmtNum to control amount of decimal places
+ * 
+*/
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,16 +89,11 @@ namespace GRBL_Plotter
         {
             bool validx = false, validy = false, validz = false;
             int indexG = cmdstr.IndexOf('G');
-            if (indexG >= 0)
-            {   string gnr = cmdstr.Substring(indexG + 1);
-                if (gnr.IndexOf(' ')>=0)
-                    gnr = gnr.Substring(0, gnr.IndexOf(' '));
-                try { cmdnr = Convert.ToInt16(gnr); }
-                catch { }
-            } else { cmdnr = 1; }
+            cmdnr = gcode.getIntGCode('G',cmdstr);
+            if (cmdnr < 0) cmdnr = 1;
 
             xyzSize.SetXYZ(nx, ny, nz);            // calculate max dimensions
-//            MessageBox.Show(nx.ToString() + "<  >" + ny.ToString() + "<  >" + nz.ToString());
+
             double x=0, y=0, z=0;
             if (nx != null)
             {   x = (double)nx; validx = true;
@@ -345,15 +343,14 @@ namespace GRBL_Plotter
                     if ((shiftToZero == translate.MirrorX)|| (shiftToZero == translate.MirrorY))           // mirror xy 
                     {
                         string tmp = tmpLine;
-                        if (tmpLine.IndexOf("G02") >= 0)
-                            tmp = tmpLine.Replace("G02", "G03");
-                        else if (tmpLine.IndexOf("G2") >= 0)
-                            tmp = tmpLine.Replace("G2", "G3");
-                        else if (tmpLine.IndexOf("G03") >= 0)
-                            tmp = tmpLine.Replace("G03", "G02");
-                        else if (tmpLine.IndexOf("G3") >= 0)
-                            tmp = tmpLine.Replace("G3", "G2");
-                        tmpLine = tmp;
+                        string Gnr = gcode.getStrGCode('G',tmpLine);
+                        if (Gnr.Length > 1)
+                        {
+                            int cmdnr = Convert.ToInt16(Gnr.Substring(1));
+                            if (cmdnr == 2) tmp = tmpLine.Replace(Gnr, "G03");
+                            if (cmdnr == 3) tmp = tmpLine.Replace(Gnr, "G02");
+                            tmpLine = tmp;
+                        }
                     }
                     if (shiftToZero == translate.MirrorX)           // mirror x
                     {
@@ -372,15 +369,15 @@ namespace GRBL_Plotter
                         newtext.Clear();
                         newtext.Append(tmpLine);// + string.Format(" X{0:0.0000} Y{1:0.0000}", newvalx, newvaly).Replace(',', '.');
                         if (receivedX)
-                        { newtext.AppendFormat(" X{0:0.0000}", newvalx); }
+                        { newtext.AppendFormat(" X{0}", gcode.frmtNum((double)newvalx)); }
                         if (receivedY)
-                        { newtext.AppendFormat(" Y{0:0.0000}", newvaly); }
+                        { newtext.AppendFormat(" Y{0}", gcode.frmtNum((double)newvaly)); }
                         if (receivedZ)
-                        { newtext.AppendFormat(" Z{0:0.0000}", newvalz); }
+                        { newtext.AppendFormat(" Z{0}", gcode.frmtNum((double)newvalz)); }
                         if (receivedI)
-                        { newtext.AppendFormat(" I{0:0.0000}", newvali); }
+                        { newtext.AppendFormat(" I{0}", gcode.frmtNum(newvali)); }
                         if (receivedJ)
-                        { newtext.AppendFormat(" J{0:0.0000}", newvalj); }
+                        { newtext.AppendFormat(" J{0}", gcode.frmtNum(newvalj)); }
                         newtext.Append(origLine.Substring(lastIndex));
                         newtext.Replace(',', '.');
                         codeWasChanged = true;

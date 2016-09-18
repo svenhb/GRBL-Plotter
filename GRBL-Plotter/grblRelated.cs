@@ -28,7 +28,8 @@ namespace GRBL_Plotter
     public enum grblState { idle, run, hold, home, alarm, check, door, probe, unknown };
     public enum grblStreaming { ok, error, reset, finish, pause, waitidle, toolchange };
     public static class grbl
-    {
+    {   // http://www.shapeoko.com/wiki/index.php/G-Code#G-code_Not_supported_by_Grbl
+        public static int[] unknownG = {41,64,81,83};
         public static grblState parseStatus(string status)    // {idle, run, hold, home, alarm, check, door}
         {
             if (status.IndexOf("Idle") >= 0) { return grblState.idle; }

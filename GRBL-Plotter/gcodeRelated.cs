@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace GRBL_Plotter
 {
@@ -62,6 +63,7 @@ namespace GRBL_Plotter
 
         public static void setup()
         {
+            setDecimalPlaces((int)Properties.Settings.Default.importGCDecPlaces);
             gcodeXYFeed = (float)Properties.Settings.Default.importGCXYFeed;
 
             gcodeComments = Properties.Settings.Default.importGCAddComments;
@@ -96,9 +98,49 @@ namespace GRBL_Plotter
             get { return reduceCode; }
             set { reduceCode = value; }
         }
-        private static string frmtCode(int number)      // convert int to string using format pattern
+
+        public static void setDecimalPlaces(int num)
+        {   formatNumber = "0.";
+            formatNumber = formatNumber.PadRight(num + 2, '0');
+        }
+
+        // get GCode one or two digits
+        public static int getIntGCode(char code, string tmp)
+        {   string cmdG = getStrGCode(code, tmp);
+            if (cmdG.Length > 0)
+            {  return Convert.ToInt16(cmdG.Substring(1));  }
+            return -1;
+        }
+        public static string getStrGCode(char code,string tmp)
+        {
+            var cmdG = Regex.Matches(tmp, code+"\\d{1,2}");
+            if (cmdG.Count > 0)
+            {  return cmdG[0].ToString();  }
+            return "";
+        }
+
+        // get value from X,Y,Z F, S etc.
+        public static int getDoubleValue(char code, string tmp)
+        {
+            string cmdG = getStringValue(code, tmp);
+            if (cmdG.Length > 0)
+            {  return Convert.ToInt16(cmdG.Substring(1));  }
+            return -1;
+        }
+        public static string getStringValue(char code, string tmp)
+        {
+            var cmdG = Regex.Matches(tmp, code+ "-?\\d+(.\\d+)?");
+            if (cmdG.Count > 0)
+            {  return cmdG[0].ToString(); }
+            return "";
+        }
+
+
+        public static string frmtCode(int number)      // convert int to string using format pattern
         {   return number.ToString(formatCode); }
-        private static string frmtNum(float number)     // convert float to string using format pattern
+        public static string frmtNum(float number)     // convert float to string using format pattern
+        {   return number.ToString(formatNumber); }
+        public static string frmtNum(double number)     // convert float to string using format pattern
         {   return number.ToString(formatNumber); }
 
         public static void Pause(StringBuilder gcodeString, string cmt="")
@@ -169,19 +211,24 @@ namespace GRBL_Plotter
         public static void Move(StringBuilder gcodeString, int gnr, float x, float y, bool applyFeed, string cmt="")
         {
             string feed = "";
+            StringBuilder gcodeTmp = new StringBuilder();
+            bool isneeded = false;
             if (applyFeed && (gnr > 0)) { feed = string.Format("F{0}", gcodeXYFeed); }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
             if (reduceCode)
             {
-                if (lastg != gnr) gcodeString.AppendFormat("G{0} ", frmtCode(gnr));
-                if (lastx != x) gcodeString.AppendFormat("X{0} ", frmtNum(x));
-                if (lasty != y) gcodeString.AppendFormat("Y{0} ", frmtNum(y));
+                if (lastg != gnr) { gcodeTmp.AppendFormat("G{0} ", frmtCode(gnr)); isneeded = true; }
+                if (lastx != x) { gcodeTmp.AppendFormat("X{0} ", frmtNum(x)); isneeded = true; }
+                if (lasty != y) { gcodeTmp.AppendFormat("Y{0} ", frmtNum(y)); isneeded = true; }
                 if ((gnr == 1) && (lastf != gcodeXYFeed) || applyFeed)
                 {
-                    gcodeString.AppendFormat("F{0} ", gcodeXYFeed);
+                    gcodeTmp.AppendFormat("F{0} ", gcodeXYFeed);
                     lastf = gcodeXYFeed;
+                    isneeded = true;              
                 }
-                gcodeString.AppendFormat("{0}\r\n", cmt);
+                gcodeTmp.AppendFormat("{0}\r\n", cmt);
+                if (isneeded)
+                    gcodeString.Append(gcodeTmp);
             }
             else
                 gcodeString.AppendFormat("G{0} X{1} Y{2} {3} {4}\r\n", frmtCode(gnr), frmtNum(x), frmtNum(y), feed, cmt);

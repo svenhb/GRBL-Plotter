@@ -23,8 +23,12 @@
 
     This project was my starting point
 */
-/*  2016-07 add 2nd serial port for tool changer
+/*  2016-07-xx add 2nd serial port for tool changer
+ *  2016-09-17  improve performance by removing already sent lines from sendLines[] and gCodeLines[]
+ *              Remove unknown G-Codes in preProcessStreaming() (list in grblRelated)
 */
+
+//#define debuginfo 
 
 using System;
 using System.Collections.Generic;
@@ -35,12 +39,12 @@ using System.IO;
 
 namespace GRBL_Plotter
 {
-
     public partial class SerialForm : Form
     {
         public xyzPoint posWorld, posMachine, posPause, posProbe, posProbeOld;
         SerialForm2 _serial_form2;
 
+        private int timerReload=200;
         private string rxString;
         private string parserState = "";
         private bool serialPortOpen = false;
@@ -295,7 +299,7 @@ namespace GRBL_Plotter
                 updateControls();
                 if (Properties.Settings.Default.serialMinimize)
                     minimizeCount = 10;     // minimize window after 10 timer ticks
-                timerSerial.Interval = 200;
+                timerSerial.Interval = timerReload;
                 //                this.WindowState = FormWindowState.Minimized;
                 return (true);
             }
@@ -353,16 +357,17 @@ namespace GRBL_Plotter
             while ((serialPort1.IsOpen) && (serialPort1.BytesToRead > 0))
             { rxString = string.Empty;
                 try
-                { rxString = serialPort1.ReadTo("\r\n");              //read line from grbl, discard CR LF
+                {   rxString = serialPort1.ReadTo("\r\n");              //read line from grbl, discard CR LF
                     isDataProcessing = true;
                     this.Invoke(new EventHandler(handleRxData));        //tigger rx process 
                     while ((serialPort1.IsOpen) && (isDataProcessing)) ;  //wait previous data line processed done
                 }
                 catch (Exception errort)
-                { serialPort1.Close();
+                {   serialPort1.Close();
                     mens = "Error reading line from serial port";
                     err = errort;
                     this.Invoke(new EventHandler(logErrorThr));
+                    updateControls();
                 }
             }
         }
@@ -402,6 +407,8 @@ namespace GRBL_Plotter
         private grblState grblStateLast = grblState.unknown;
         private string lastCmd = "";
 
+        // should occur with same frequent as timer interrupt -> each 200ms
+        private bool allowStreamingEvent = true;
         private void handleStatusMessage(string text, bool probe = false)
         {
             string[] sections = text.Split(',');
@@ -445,6 +452,7 @@ namespace GRBL_Plotter
             }
             grblStateLast = grblStateNow;
             OnRaisePosEvent(new PosEventArgs(posWorld, posMachine, grblStateNow, lastCmd));
+            allowStreamingEvent = true;
         }
         public event EventHandler<PosEventArgs> RaisePosEvent;
         protected virtual void OnRaisePosEvent(PosEventArgs e)
@@ -591,9 +599,9 @@ namespace GRBL_Plotter
         private void sendLine(string data)
         {   try
             {   serialPort1.Write(data + "\r");
-
-//                rtbLog.AppendText(string.Format("> {0} {1} {2} \r\n", data, data.Length + 1, grblBufferFree));//if not in transfer log the txLine
-//                rtbLog.AppendText(string.Format("> {0} {1} {2} \r\n", data, gCodeLinesConfirmed,gCodeLinesCount));//if not in transfer log the txLine
+#if (debuginfo)
+                rtbLog.AppendText(string.Format("< {0} {1} {2} {3} \r\n", data, gCodeLinesSent, gCodeLinesConfirmed, gCodeLinesCount));//if not in transfer log the txLine
+#endif
                 if (!(isStreaming && !isStreamingPause))
                 {   rtbLog.AppendText(string.Format("> {0} \r\n", data));//if not in transfer log the txLine
                     rtbLog.ScrollToCaret();
@@ -618,6 +626,7 @@ namespace GRBL_Plotter
         private int gCodeLinesCount;             // amount of lines to sent
         private int gCodeLinesSent;              // actual sent line
         private int gCodeLinesConfirmed;         // received line
+        private int gCodeLinesTotal;
         private bool isStreaming = false;        // true when steaming is in progress
         private bool isStreamingRequestPause = false; // true when request pause (wait for idle to switch to pause)
         private bool isStreamingPause = false;    // true when steaming-pause 
@@ -658,8 +667,11 @@ namespace GRBL_Plotter
                 var cmds = parserState.Split(' ');
                 foreach (var cmd in cmds)
                 {
-                    requestSend(cmd);            // restore actual GCode settings one by one
-                    gCodeLinesConfirmed-- ;           // each restored setting will cause 'ok' and gCodeLinesConfirmed++
+                    if (cmd != "M0")
+                    {
+                        requestSend(cmd);            // restore actual GCode settings one by one
+                        gCodeLinesConfirmed--;           // each restored setting will cause 'ok' and gCodeLinesConfirmed++
+                    }
                 }
                 addToLog("[Start streaming - no echo]");
                 preProcessStreaming();
@@ -684,6 +696,7 @@ namespace GRBL_Plotter
             gCodeLinesSent = 0;
             gCodeLinesCount = 0;
             gCodeLinesConfirmed = 0;
+            gCodeLinesTotal = 0;
             grblBufferFree = grblBufferSize;
             gCodeLines = new List<string>();
             gCodeLineNr = new List<int>();
@@ -704,6 +717,9 @@ namespace GRBL_Plotter
                     gCodeLinesCount++;          // Count total lines
                 }
             }
+            gCodeLines.Add("()");        // add gcode line to list to send
+            gCodeLineNr.Add(gCode.Length-1);         // add line nr
+            gCodeLinesTotal = gCode.Length - 1;  // gCodeLinesCount will reduced after each 'confirmed' line
             isStreaming = true;
             preProcessStreaming();
         }
@@ -716,14 +732,25 @@ namespace GRBL_Plotter
         { while ((gCodeLinesSent < gCodeLinesCount) && (grblBufferFree >= gCodeLines[gCodeLinesSent].Length + 1) && !waitForIdle)
             {
                 string line = gCodeLines[gCodeLinesSent];
+                int cmdMNr = gcode.getIntGCode('M',line);
+                int cmdGNr = gcode.getIntGCode('G',line);
+                if (grbl.unknownG.Contains(cmdGNr))
+                {
+                    gCodeLines[gCodeLinesSent] = "(" + line + " - unknown)";  // don't pass unkown GCode to GRBL because is unknown
+                    line = gCodeLines[gCodeLinesSent];
+                    gCodeLinesConfirmed++;      // GCode is count as sent (but wasn't send) also count as received
+                    addToLog(line);
+                }
                 if (line.IndexOf("T") >= 0)
                 {
                     int start = line.IndexOf("T");
                     int num;
-                    int.TryParse(line.Substring(start + 1, 2), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out num);
+                    string snum = line.Substring(start + 1);
+                    if (snum.Length > 2) { snum = snum.Substring(0, 2); }
+                    int.TryParse(snum, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out num);
                     gcodeVariable["TOOL"] = num;
                 }
-                if (((line.IndexOf("M6 ") >= 0) || (line.IndexOf("M6T") >= 0) || (line.IndexOf("M06") >= 0)))
+                if (cmdMNr == 6)
                 {
                     if (Properties.Settings.Default.ctrlToolChange)
                     {   // insert script code into GCODE
@@ -744,7 +771,7 @@ namespace GRBL_Plotter
                         grblStatus = grblStreaming.toolchange;
                         sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
                     }
-                    gCodeLines[gCodeLinesSent] = "(" + line + ")";  // don't pass M6 to GRBL because is unknown
+                    gCodeLines[gCodeLinesSent] = "(#" + line + ")";  // don't pass M6 to GRBL because is unknown
                     line = gCodeLines[gCodeLinesSent];
                     gCodeLinesConfirmed++;      // M6 is count as sent (but wasn't send) also count as received
                 }
@@ -753,7 +780,8 @@ namespace GRBL_Plotter
                     grblStatus = grblStreaming.ok;
                     sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
                 }
-                if (((line == "M0") || (line.IndexOf("M00") >= 0) || (line.IndexOf("M0 ") >= 0)) && !isStreamingCheck)
+
+                if ((cmdMNr == 0) && !isStreamingCheck)
                 {
                     isStreamingRequestPause = true;
                     addToLog("[Pause streaming]");
@@ -761,6 +789,7 @@ namespace GRBL_Plotter
                     grblStatus = grblStreaming.waitidle;
                     getParserState = true;
                     sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
+                    gCodeLinesSent++;
                     return;                 // abort while - don't fill up buffer
                 }
                 requestSend(line);
@@ -822,9 +851,16 @@ namespace GRBL_Plotter
             }
             if (!(isStreaming && !isStreamingPause))
                 addToLog(string.Format("< {0}", rxString));
+
             if (sendLinesConfirmed < sendLinesCount)
             {   grblBufferFree += (sendLines[sendLinesConfirmed].Length + 1);   //update bytes supose to be free on grbl rx bufer
                 sendLinesConfirmed++;                   // line processed
+                if ((sendLines.Count > 1) && (sendLinesConfirmed > 1))
+                {   sendLines.RemoveAt(0);
+                    sendLinesConfirmed--;
+                    sendLinesSent--;
+                    sendLinesCount--;
+                }
             }
             if ((sendLinesConfirmed == sendLinesCount) && (grblStateNow == grblState.idle))   // addToLog(">> Buffer empty\r");
             {   if (isStreamingRequestPause)
@@ -840,21 +876,40 @@ namespace GRBL_Plotter
             }
             if (isStreaming)
             {   if (!isStreamingPause)
-                    gCodeLinesConfirmed++;  //line processed
-                if (gCodeLinesConfirmed >= gCodeLinesCount)//Transfer finished and processed? Update status and controls
+                {   gCodeLinesConfirmed++;  //line processed
+#if (debuginfo)
+                    rtbLog.AppendText(string.Format("> ok {0} {1} {2}\r\n", gCodeLinesSent, gCodeLinesConfirmed, gCodeLinesCount));//if not in transfer log the txLine
+#endif
+                    if ((gCodeLines.Count > 1) && (gCodeLinesSent>1))
+                    {
+                        gCodeLines.RemoveAt(0);
+                        gCodeLineNr.RemoveAt(0);
+                        gCodeLinesConfirmed--;
+                        gCodeLinesSent--;
+                        gCodeLinesCount--;
+                        tmpIndex = gCodeLinesSent;
+                    }
+                        
+                }
+                if ((gCodeLinesConfirmed >= gCodeLinesCount) && (sendLinesConfirmed == sendLinesCount))//Transfer finished and processed? Update status and controls
                 {   isStreaming = false;
                     addToLog("[Streaming finish]");
                     grblStatus = grblStreaming.finish;
                     if (isStreamingCheck)
                     { requestSend("$C"); isStreamingCheck = false; }
                     updateControls();
+                    allowStreamingEvent = true;
                 }
                 else//not finished
                 { if (!(isStreamingPause || isStreamingRequestPause))
                         preProcessStreaming();//If more lines on file, send it  
                 }
-                if (tmpIndex >= gCodeLinesCount) { tmpIndex = gCodeLinesCount - 1; }
-                sendStreamEvent(gCodeLineNr[tmpIndex], grblStatus);
+#if (debuginfo)
+                addToLog("Line " + gCodeLineNr[gCodeLinesSent].ToString());
+#endif
+                if (allowStreamingEvent)    // allowed each 200ms to prevent too much events
+                    sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
+                allowStreamingEvent = false;
             }
         }
 
@@ -862,7 +917,7 @@ namespace GRBL_Plotter
          * */
         private void sendStreamEvent(int lineNr, grblStreaming status)
         {
-            float codeFinish = (float)gCodeLinesConfirmed * 100 / (float)gCodeLinesCount;
+            float codeFinish = (float)lineNr * 100 / (float)gCodeLinesTotal;
             float buffFinish = (float)(grblBufferSize - grblBufferFree) * 100 / (float)grblBufferSize;
             if (codeFinish > 100) { codeFinish = 100; }
             if (buffFinish > 100) { buffFinish = 100; }
@@ -898,19 +953,24 @@ namespace GRBL_Plotter
         private void tbCommand_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)13) return;
-            string cmd = cBCommand.Text;
-            cBCommand.Items.Remove(cBCommand.SelectedItem);
-            cBCommand.Items.Insert(0, cmd);
-            requestSend(cmd);
-            cBCommand.Text = cmd;
+            if (!isStreaming)
+            {
+                string cmd = cBCommand.Text;
+                cBCommand.Items.Remove(cBCommand.SelectedItem);
+                cBCommand.Items.Insert(0, cmd);
+                requestSend(cmd);
+                cBCommand.Text = cmd;
+            }
         }
         private void btnSend_Click(object sender, EventArgs e)
-        {
-            string cmd = cBCommand.Text;
-            cBCommand.Items.Remove(cBCommand.SelectedItem);
-            cBCommand.Items.Insert(0, cmd);
-            requestSend(cmd);
-            cBCommand.Text = cmd;
+        {   if (!isStreaming)
+            {
+                string cmd = cBCommand.Text;
+                cBCommand.Items.Remove(cBCommand.SelectedItem);
+                cBCommand.Items.Insert(0, cmd);
+                requestSend(cmd);
+                cBCommand.Text = cmd;
+            }
         }
         private void btnGRBLCommand0_Click(object sender, EventArgs e)
         { requestSend("$"); }

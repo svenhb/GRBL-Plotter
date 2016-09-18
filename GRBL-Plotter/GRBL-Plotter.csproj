@@ -105,8 +105,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="virtualJoystick">
-      <HintPath>..\..\virtualJoystick\virtualJoystick\obj\Debug\virtualJoystick.dll</HintPath>
+    <Reference Include="virtualJoystick, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\virtualJoystick\virtualJoystick\obj\Release\virtualJoystick.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -167,6 +168,12 @@
     <Compile Include="TextToGCode.Designer.cs">
       <DependentUpon>TextToGCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="WizardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WizardForm.Designer.cs">
+      <DependentUpon>WizardForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TextToGCode.resx">
       <DependentUpon>TextToGCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardForm.resx">
+      <DependentUpon>WizardForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="GRBL-Plotter_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />

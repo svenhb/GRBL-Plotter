@@ -45,6 +45,7 @@ namespace GRBL_Plotter
             setButtonColors(btnColorPenDown,Properties.Settings.Default.colorPenDown);
             setButtonColors(btnColorTool,Properties.Settings.Default.colorTool);
             setButtonColors(btnColorMarker, Properties.Settings.Default.colorMarker);
+            nUDImportDecPlaces.Value = Properties.Settings.Default.importGCDecPlaces;
         }
 
         private void saveSettings()
@@ -54,6 +55,7 @@ namespace GRBL_Plotter
                 ListViewItem item = lvCustomButtons.Items[i - 1];
                 Properties.Settings.Default["custom" + i.ToString()] = item.SubItems[1].Text + "|" + item.SubItems[2].Text;// + "|" + item.SubItems[3].Text;
             }
+            Properties.Settings.Default.importGCDecPlaces = nUDImportDecPlaces.Value;
             Properties.Settings.Default.Save();
          }
 
@@ -162,5 +164,33 @@ namespace GRBL_Plotter
 
         private void SetupForm_FormClosing(object sender, FormClosingEventArgs e)
         {   saveSettings();  }
+
+        private void nUDImportDecPlaces_ValueChanged(object sender, EventArgs e)
+        {
+            saveSettings();
+            gcode.setDecimalPlaces((int)nUDImportDecPlaces.Value);
+        }
+
+        private void btnJoyXYCalc_Click(object sender, EventArgs e)
+        {
+            double time = 0.5;
+            double correct = 1;
+            nUDJoyXYSpeed1.Value = (decimal)((double)nUDJoyXYStep1.Value / time * 60 * correct);
+            nUDJoyXYSpeed2.Value = (decimal)((double)nUDJoyXYStep2.Value / time * 60 * correct);
+            nUDJoyXYSpeed3.Value = (decimal)((double)nUDJoyXYStep3.Value / time * 60 * correct);
+            nUDJoyXYSpeed4.Value = (decimal)((double)nUDJoyXYStep4.Value / time * 60 * correct);
+            nUDJoyXYSpeed5.Value = (decimal)((double)nUDJoyXYStep5.Value / time * 60 * correct);
+        }
+
+        private void btnJoyZCalc_Click(object sender, EventArgs e)
+        {
+            double time = 0.5;
+            double correct = 1;
+            nUDJoyZSpeed1.Value = (decimal)((double)nUDJoyZStep1.Value / time * 60 * correct);
+            nUDJoyZSpeed2.Value = (decimal)((double)nUDJoyZStep2.Value / time * 60 * correct);
+            nUDJoyZSpeed3.Value = (decimal)((double)nUDJoyZStep3.Value / time * 60 * correct);
+            nUDJoyZSpeed4.Value = (decimal)((double)nUDJoyZStep4.Value / time * 60 * correct);
+            nUDJoyZSpeed5.Value = (decimal)((double)nUDJoyZStep5.Value / time * 60 * correct);
+        }
     }
 }
