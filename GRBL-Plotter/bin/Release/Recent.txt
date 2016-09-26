@@ -1,6 +1,7 @@
+_misc\Testbild.svg
 D:\Daten\CNC_Vorlagen\Fräse\Lithophan\maya_50_60_1.nc
 D:\Daten\CNC_Vorlagen\Fräse\kreis_50.nc
-_misc\Testbild.svg
+D:\Projekte\_Mechatronik\CNC_Fraese\Stiftwechsler\Testbild.svg
 D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\_misc\move_back_forth.nc
 D:\Daten\CNC_Vorlagen\Fräse\Lithophan\maya_50mm_pos.nc
 D:\Daten\CNC_Vorlagen\Fräse\Lithophan\maya_40mm.nc
@@ -17,4 +18,3 @@ D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\_misc\Simp
 D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\_misc\KHaring2.png
 D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\_misc\KHaring1.png
 D:\temp\fry.png
-D:\Medien\Bilder\2015\162___12\IMG_5588.JPG
