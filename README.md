@@ -2,15 +2,14 @@
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)
 Written in C# VisualStudio 2015.
 
-### New:
-Improved image to gcode: avoid unnecessary pen up and downs, sort tools by usage.
+### New in version 0205:
+Feed rate and spindle speed override during streaming gcode.
 
-Controlling a 2nd Arduino with GRBL for tool change or 4th (5th, 6th) axis control (GRBL-Plotter is waiting for 'IDLE' on one GRBL before controlling the other). Commands for 2nd GRBL will be introduced via special formatted remarks in GCode e.g.: (^2 G90 X2) to move 2nd GRBL to position X2.  
 [Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-####[GRBL-Plotter Vers. 0204](GRBL-Plotter_0204.zip)  2016-09-18  
+####[GRBL-Plotter Vers. 0205](GRBL-Plotter_0205.zip)  2016-09-26  
 Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'. Therefore the example files for color palettes and GCode-scripts will not be found by GRBL-Plotter (with default setup). You need to set the according paths new in the setup dialog - check screenshots below.
 
 ### Requirements for compiling
@@ -71,3 +70,6 @@ Picture import
 
 Different scaling options  
 ![GRBL-Plotter Scaling](GRBLPlotter_scaling.png?raw=true "GCode scaling")
+
+Feed rate override  
+![GRBL-Plotter Override](GRBLPlotter_overide.png?raw=true "GCode override")
