@@ -72,4 +72,4 @@ Different scaling options
 ![GRBL-Plotter Scaling](GRBLPlotter_scaling.png?raw=true "GCode scaling")
 
 Feed rate override  
-![GRBL-Plotter Override](GRBLPlotter_overide.png?raw=true "GCode override")
+![GRBL-Plotter Override](GRBLPlotter_override.png?raw=true "GCode override")
