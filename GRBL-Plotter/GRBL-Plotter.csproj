@@ -27,7 +27,7 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -160,6 +160,12 @@
     <Compile Include="SetupForm.Designer.cs">
       <DependentUpon>SetupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StreamingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StreamingForm.Designer.cs">
+      <DependentUpon>StreamingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="svgPalette.cs" />
     <Compile Include="SVGToGCode.cs" />
     <Compile Include="TextToGCode.cs">
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SetupForm.resx">
       <DependentUpon>SetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StreamingForm.resx">
+      <DependentUpon>StreamingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TextToGCode.resx">
       <DependentUpon>TextToGCode.cs</DependentUpon>

@@ -65,6 +65,7 @@ namespace GRBL_Plotter
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            GRBL_Plotter.Properties.Settings settings1 = new GRBL_Plotter.Properties.Settings();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +76,7 @@ namespace GRBL_Plotter
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gCodeWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_mx = new System.Windows.Forms.Label();
             this.label_my = new System.Windows.Forms.Label();
@@ -202,6 +204,7 @@ namespace GRBL_Plotter
             this.textWizzardToolStripMenuItem,
             this.imageToolStripMenuItem,
             this.gCodeWizzardToolStripMenuItem,
+            this.controlStreamingToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -272,6 +275,13 @@ namespace GRBL_Plotter
             this.gCodeWizzardToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.gCodeWizzardToolStripMenuItem.Text = "GCode Wizard";
             this.gCodeWizzardToolStripMenuItem.Visible = false;
+            // 
+            // controlStreamingToolStripMenuItem
+            // 
+            this.controlStreamingToolStripMenuItem.Name = "controlStreamingToolStripMenuItem";
+            this.controlStreamingToolStripMenuItem.Size = new System.Drawing.Size(116, 20);
+            this.controlStreamingToolStripMenuItem.Text = "Control Streaming";
+            this.controlStreamingToolStripMenuItem.Click += new System.EventHandler(this.controlStreamingToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1381,9 +1391,290 @@ namespace GRBL_Plotter
             this.ClientSize = new System.Drawing.Size(884, 562);
             this.Controls.Add(this.tLPAussen);
             this.Controls.Add(this.menuStrip1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::GRBL_Plotter.Properties.Settings.Default, "locationMForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            settings1.baud = "115200";
+            settings1.baud2 = "115200";
+            settings1.cameraPosBot = -50D;
+            settings1.cameraPosTop = 0D;
+            settings1.camerarotation = 180F;
+            settings1.camerascalingBot = 15D;
+            settings1.camerascalingTop = 20D;
+            settings1.cameraTeachRadiusBot = 20D;
+            settings1.cameraTeachRadiusTop = 30D;
+            settings1.cameraToolOffsetX = 0D;
+            settings1.cameraToolOffsetY = 0D;
+            settings1.camerindex = 0;
+            settings1.colorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            settings1.colorMarker = System.Drawing.Color.DeepPink;
+            settings1.colorPenDown = System.Drawing.Color.Red;
+            settings1.colorPenUp = System.Drawing.Color.Green;
+            settings1.colorRuler = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            settings1.colorTool = System.Drawing.Color.Black;
+            settings1.ctrlToolChange = true;
+            settings1.ctrlToolScriptGet = "_misc\\script_pen_pickup.nc";
+            settings1.ctrlToolScriptProbe = "_misc\\script_probing_tool.nc";
+            settings1.ctrlToolScriptPut = "_misc\\script_pen_remove.nc";
+            settings1.ctrlToolScriptSelect = "_misc\\script_pen_select.nc";
+            settings1.custom1 = "Set new coord|G43.1 Z-31.628 ; G92 X140 Y0 Z32";
+            settings1.custom2 = "Move to 0;0;0|G90 G0 X0 Y0 Z0";
+            settings1.custom3 = "Tray Out|G91 G53 G0 Z-1;G90 G53 G0 Y-5";
+            settings1.custom4 = "Tray In|G90 G53 G0 Y-160";
+            settings1.custom5 = "Pen remove|_misc\\script_pen_remove.nc";
+            settings1.custom6 = "Pen pickup|_misc\\script_pen_pickup.nc";
+            settings1.custom7 = "Pen probing|_misc\\script_probing_tool.nc";
+            settings1.custom8 = "Set Pen 0|G92 Z25";
+            settings1.file = "D:\\";
+            settings1.importGCAddComments = true;
+            settings1.importGCDecPlaces = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            settings1.importGCFooter = "G0 X0 Y0; M30";
+            settings1.importGCHeader = "G90 G1";
+            settings1.importGCPWMDlyDown = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGCPWMDlyUp = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            settings1.importGCPWMDown = new decimal(new int[] {
+            800,
+            0,
+            0,
+            0});
+            settings1.importGCPWMEnable = false;
+            settings1.importGCPWMUp = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            settings1.importGCSpindleToggle = false;
+            settings1.importGCSSpeed = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.importGCTool = true;
+            settings1.importGCXYFeed = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            settings1.importGCZDown = new decimal(new int[] {
+            2,
+            0,
+            0,
+            -2147483648});
+            settings1.importGCZEnable = true;
+            settings1.importGCZFeed = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.importGCZUp = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            settings1.importPalette = "_misc\\Stabilo_by_PN.gpl";
+            settings1.importSVGAddComments = false;
+            settings1.importSVGBezier = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            settings1.importSVGMaxSize = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.importSVGPathExtend = false;
+            settings1.importSVGPauseElement = false;
+            settings1.importSVGPausePenDown = false;
+            settings1.importSVGReduce = true;
+            settings1.importSVGReduceLimit = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.importSVGRezise = true;
+            settings1.importSVGToolColor = true;
+            settings1.importSVGToolSort = true;
+            settings1.joyXYSpeed1 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.joyXYSpeed2 = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.joyXYSpeed3 = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.joyXYSpeed4 = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            settings1.joyXYSpeed5 = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.joyXYStep1 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.joyXYStep2 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.joyXYStep3 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.joyXYStep4 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.joyXYStep5 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.joyZSpeed1 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.joyZSpeed2 = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            settings1.joyZSpeed3 = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.joyZSpeed4 = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            settings1.joyZSpeed5 = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            settings1.joyZStep1 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.joyZStep2 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            settings1.joyZStep3 = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.joyZStep4 = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            settings1.joyZStep5 = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.lastOffsetX = 0D;
+            settings1.lastOffsetY = 0D;
+            settings1.lastOffsetZ = 0D;
+            settings1.locationCamForm = new System.Drawing.Point(0, 0);
+            settings1.locationMForm = new System.Drawing.Point(0, 0);
+            settings1.locationSerForm = new System.Drawing.Point(0, 0);
+            settings1.locationSerForm2 = new System.Drawing.Point(0, 0);
+            settings1.locationSetForm = new System.Drawing.Point(0, 0);
+            settings1.overrideFRBtm = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.overrideFRTop = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            settings1.overrideFRValue = 1000;
+            settings1.overrideSSBtm = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            settings1.overrideSSTop = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            settings1.overrideSSValue = 5000;
+            settings1.port = "COM1";
+            settings1.port2 = "COM2";
+            settings1.serialMinimize = false;
+            settings1.SettingsKey = "";
+            settings1.textFontIndex = 0;
+            settings1.textFontSize = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            settings1.textFontText = "Test";
+            settings1.UpgradeRequired = true;
+            settings1.useSerial2 = true;
+            settings1.widthMarker = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            settings1.widthPenDown = new decimal(new int[] {
+            4,
+            0,
+            0,
+            65536});
+            settings1.widthPenUp = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            settings1.widthRuler = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            settings1.widthTool = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", settings1, "locationMForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = global::GRBL_Plotter.Properties.Settings.Default.locationMForm;
+            this.Location = settings1.locationMForm;
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
@@ -1531,6 +1822,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBTool;
         private System.Windows.Forms.Label lblTool;
         private System.Windows.Forms.ToolStripMenuItem gCodeWizzardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlStreamingToolStripMenuItem;
     }
 }
 

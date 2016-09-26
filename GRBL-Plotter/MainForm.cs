@@ -45,6 +45,7 @@ namespace GRBL_Plotter
         SetupForm _setup_form = null;
         TextToGCode _text_form = null;
         ImageToGCode _image_form = null;
+        StreamingForm _streaming_form = null;
 
         private const string appName = "GRBL Plotter";
         private xyzPoint posMachine = new xyzPoint(0, 0, 0);
@@ -60,6 +61,7 @@ namespace GRBL_Plotter
         public MainForm()
         {
             InitializeComponent();
+            gcode.setup();
             updateDrawing();
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain currentDomain = AppDomain.CurrentDomain;
@@ -153,6 +155,23 @@ namespace GRBL_Plotter
         }
         private void formClosed_ImageToGCode(object sender, FormClosedEventArgs e)
         { _image_form = null; }
+
+        private void controlStreamingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Application.OpenForms["StreamingForm"] as StreamingForm) == null)
+            {
+                _streaming_form = new StreamingForm();
+                _streaming_form.RaiseOverrideEvent += OnRaiseOverrideEvent;      // assign  event
+                _streaming_form.show_value_FR(actualFR);
+                _streaming_form.show_value_SS(actualSS);
+            }
+            else
+            {
+                _streaming_form.Visible = false;
+            }
+            _streaming_form.Show(this);
+
+        }
 
         // open About form
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -353,6 +372,7 @@ namespace GRBL_Plotter
         // handle status events from serial form
         private grblState lastMachineStatus = grblState.unknown;
         private string lastInfoText = "";
+        private string lastLabelInfoText = "";
         private void processStatus() // {idle, run, hold, home, alarm, check, door}
         {
             if (machineStatus != lastMachineStatus)
@@ -410,8 +430,23 @@ namespace GRBL_Plotter
             }
             lastMachineStatus = machineStatus;
         }
+
+        private string actualFR = "";
+        private string actualSS = "";
         private void processLastCommand(string cmd)
-        { if (cmd.Length < 2) return;
+        {   if (cmd.Length < 2) return;
+            if (cmd.LastIndexOf("F") >= 0)
+            {
+                actualFR = gcode.getStringValue('F', cmd).Substring(1);
+                if (_streaming_form != null)
+                    _streaming_form.show_value_FR(actualFR);
+            }
+            if (cmd.LastIndexOf("S") >= 0)
+            {
+                actualSS = gcode.getStringValue('S', cmd).Substring(1);
+                if (_streaming_form != null)
+                    _streaming_form.show_value_SS(actualSS);
+            }
             foreach (string singleCmd in cmd.Split('M'))
             {
                 int cmdNr = gcode.getIntGCode('M',"M" + singleCmd);
@@ -433,6 +468,20 @@ namespace GRBL_Plotter
         // send command via serial form
         private void sendCommand(string txt)
         {   _serial_form.requestSend(txt);  }
+
+        private string overrideMessage = "";
+        private void OnRaiseOverrideEvent(object sender, OverrideEventArgs e)
+        {   if (e.Source == overrideSource.feedRate)
+                _serial_form.injectCode("F",(int)e.Value,e.Enable);
+            if (e.Source == overrideSource.spindleSpeed)
+                _serial_form.injectCode("S", (int)e.Value, e.Enable);
+
+            overrideMessage = "";
+            if (e.Enable)
+                overrideMessage = " !!! Override !!!";
+            lbInfo.Text = lastLabelInfoText + overrideMessage;
+        }
+
         // open a file via dialog
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
@@ -526,7 +575,7 @@ namespace GRBL_Plotter
             pbBuffer.Value = bPrgs;
             lblFileProgress.Text = string.Format("Progress {0:0.0}%", e.CodeProgress);
             fCTBCode.Selection = fCTBCode.GetLine(e.CodeLine);
-            fCTBCodeClickedLineNow = e.CodeLine;
+            fCTBCodeClickedLineNow = e.CodeLine-1;
             fCTBCodeMarkLine();
             fCTBCode.DoCaretVisible();
 
@@ -550,7 +599,7 @@ namespace GRBL_Plotter
             if ((e.Status == grblStreaming.ok) && !isStreamingCheck)
             {
                 updateControls();
-                lbInfo.Text = "Send G-Code";
+                lbInfo.Text = "Send G-Code ("+ e.CodeLine.ToString()+")";
                 lbInfo.BackColor = Color.Lime;
                 signalPlay = 0;
                 btnStreamStart.BackColor = SystemColors.Control;
@@ -581,7 +630,7 @@ namespace GRBL_Plotter
                 updateControls(true);
                 btnStreamStart.Image = Properties.Resources.btn_play;
                 isStreamingPause = true;
-                lbInfo.Text = "Wait for IDLE, then pause";
+                lbInfo.Text = "Wait for IDLE, then pause (" + e.CodeLine.ToString() + ")";
                 lbInfo.BackColor = Color.Yellow;
             }
             if (e.Status == grblStreaming.pause)
@@ -589,7 +638,7 @@ namespace GRBL_Plotter
                 updateControls(true);
                 btnStreamStart.Image = Properties.Resources.btn_play;
                 isStreamingPause = true;
-                lbInfo.Text = "Pause streaming - press play";
+                lbInfo.Text = "Pause streaming - press play (" + e.CodeLine.ToString() + ")";
                 signalPlay = 1;
                 lbInfo.BackColor = Color.Yellow;
             }
@@ -601,59 +650,77 @@ namespace GRBL_Plotter
                 lbInfo.BackColor = Color.Yellow;
                 cBTool.Checked = _serial_form.TooInSpindle;
             }
+
+            if (e.Status == grblStreaming.stop)
+            {
+                lbInfo.Text = " STOP streaming (" + e.CodeLine.ToString() + ")";
+                lbInfo.BackColor = Color.Fuchsia;
+            }
+            lastLabelInfoText = lbInfo.Text;
+            lbInfo.Text += overrideMessage;
         }
         private void btnStreamStart_Click(object sender, EventArgs e)
         {
-            if (!isStreaming)
+            if (fCTBCode.LinesCount > 1)
             {
-                isStreaming = true;
-                isStreamingPause = false;
-                isStreamingCheck = false;
-                isStreamingOk = true;
-                updateControls();
-                timeInit = DateTime.UtcNow;
-                elapsed = TimeSpan.Zero;
-                lbInfo.Text = "Send G-Code";
-                lbInfo.BackColor = Color.Lime;
-                for (int i = 0; i < fCTBCode.LinesCount; i++)
-                    fCTBCode.UnbookmarkLine(i);
-                lblElapsed.Text = "Time " + elapsed.ToString(@"hh\:mm\:ss");
-                _serial_form.startStreaming(fCTBCode.Lines);
-                btnStreamStart.Image = Properties.Resources.btn_pause;
-                btnStreamCheck.Enabled = false;
-                onPaint_setBackground();
-            }
-            else
-            {
-                if (!isStreamingPause)
+                if (!isStreaming)
                 {
-                    btnStreamStart.Image = Properties.Resources.btn_play;
-                    _serial_form.pauseStreaming();
-                    isStreamingPause = true;
+                    if (_streaming_form != null)
+                    {
+//                        _streaming_form.cBOverrideFREnable.Checked = false;
+//                        _streaming_form.cBOverrideSSEnable.Checked = false;
+                    }
+                    isStreaming = true;
+                    isStreamingPause = false;
+                    isStreamingCheck = false;
+                    isStreamingOk = true;
+                    updateControls();
+                    timeInit = DateTime.UtcNow;
+                    elapsed = TimeSpan.Zero;
+                    lbInfo.Text = "Send G-Code";
+                    lbInfo.BackColor = Color.Lime;
+                    for (int i = 0; i < fCTBCode.LinesCount; i++)
+                        fCTBCode.UnbookmarkLine(i);
+                    lblElapsed.Text = "Time " + elapsed.ToString(@"hh\:mm\:ss");
+                    _serial_form.startStreaming(fCTBCode.Lines);
+                    btnStreamStart.Image = Properties.Resources.btn_pause;
+                    btnStreamCheck.Enabled = false;
+                    onPaint_setBackground();
                 }
                 else
                 {
-                    btnStreamStart.Image = Properties.Resources.btn_pause;
-                    _serial_form.pauseStreaming();
-                    isStreamingPause = false;
+                    if (!isStreamingPause)
+                    {
+                        btnStreamStart.Image = Properties.Resources.btn_play;
+                        _serial_form.pauseStreaming();
+                        isStreamingPause = true;
+                    }
+                    else
+                    {
+                        btnStreamStart.Image = Properties.Resources.btn_pause;
+                        _serial_form.pauseStreaming();
+                        isStreamingPause = false;
+                    }
                 }
             }
         }
         private void btnStreamCheck_Click(object sender, EventArgs e)
-        {
-            isStreaming = true;
-            isStreamingCheck = true;
-            isStreamingOk = true;
-            updateControls();
-            timeInit = DateTime.UtcNow;
-            elapsed = TimeSpan.Zero;
-            lbInfo.Text = "Check G-Code";
-            lbInfo.BackColor = SystemColors.Control;
-            for (int i = 0; i < fCTBCode.LinesCount; i++)
-                fCTBCode.UnbookmarkLine(i);
-            _serial_form.startStreaming(fCTBCode.Lines, true);
-            btnStreamStart.Enabled = false;
-            onPaint_setBackground();
+        {   if ((fCTBCode.LinesCount > 1) && (!isStreaming))
+            {
+                isStreaming = true;
+                isStreamingCheck = true;
+                isStreamingOk = true;
+                updateControls();
+                timeInit = DateTime.UtcNow;
+                elapsed = TimeSpan.Zero;
+                lbInfo.Text = "Check G-Code";
+                lbInfo.BackColor = SystemColors.Control;
+                for (int i = 0; i < fCTBCode.LinesCount; i++)
+                    fCTBCode.UnbookmarkLine(i);
+                _serial_form.startStreaming(fCTBCode.Lines, true);
+                btnStreamStart.Enabled = false;
+                onPaint_setBackground();
+            }
         }
         private void btnStreamStop_Click(object sender, EventArgs e)
         {
@@ -665,7 +732,7 @@ namespace GRBL_Plotter
             _serial_form.stopStreaming();
             if (isStreaming || isStreamingCheck)
             {
-                lbInfo.Text = " STOP streaming";
+                lbInfo.Text = " STOP streaming ("+ (fCTBCodeClickedLineNow+1).ToString()+")";
                 lbInfo.BackColor = Color.Fuchsia;
             }
             isStreaming = false;
@@ -1049,7 +1116,7 @@ namespace GRBL_Plotter
         }
         private void fCTBCodeMarkLine()
         {
-            if (fCTBCodeClickedLineNow <= fCTBCode.LinesCount)
+            if ((fCTBCodeClickedLineNow <= fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
             {
                 if (fCTBCodeClickedLineNow != fCTBCodeClickedLineLast)
                 {

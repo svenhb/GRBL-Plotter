@@ -28,7 +28,7 @@ namespace GRBL_Plotter
 {
     public static class gcode
     {   private static string formatCode = "00";
-        private static string formatNumber = "0.00";
+        private static string formatNumber = "0.000";
 
         private static int gcodeLines = 0;              // counter for GCode lines
         private static float gcodeDistance = 0;         // counter for GCode move distance
@@ -131,7 +131,7 @@ namespace GRBL_Plotter
         {
             var cmdG = Regex.Matches(tmp, code+ "-?\\d+(.\\d+)?");
             if (cmdG.Count > 0)
-            {  return cmdG[0].ToString(); }
+            {  return cmdG[cmdG.Count-1].ToString(); }
             return "";
         }
 

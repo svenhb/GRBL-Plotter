@@ -201,6 +201,8 @@ namespace GRBL_Plotter
             {
                 logError("Loading settings", e);
             }
+            gCodeLines = new List<string>();
+            gCodeLineNr = new List<int>();
         }
         private void saveSettings()
         {
@@ -456,7 +458,7 @@ namespace GRBL_Plotter
         }
         public event EventHandler<PosEventArgs> RaisePosEvent;
         protected virtual void OnRaisePosEvent(PosEventArgs e)
-        { EventHandler<PosEventArgs> handler = RaisePosEvent;
+        {   EventHandler<PosEventArgs> handler = RaisePosEvent;
             if (handler != null)
             {
                 handler(this, e);
@@ -494,6 +496,55 @@ namespace GRBL_Plotter
                     processSend();
                 }
             }
+        }
+
+        private bool replaceFeedRate = false;
+        private bool replaceSpindleSpeed = false;
+        private string replaceFeedRateCmd = "";
+        private string replaceSpindleSpeedCmd = "";
+        private string replaceFeedRateCmdOld = "";
+        private string replaceSpindleSpeedCmdOld = "";
+        public void injectCode(string cmd, int value, bool enable)
+        {
+            if (cmd == "F")
+            {   replaceFeedRate = enable;
+                replaceFeedRateCmd = cmd + value.ToString();
+                if (isStreaming)
+                {
+                    if (enable)
+                        injectCodeLine(replaceFeedRateCmd);
+                    else
+                    {
+                        if (replaceFeedRateCmdOld != "")
+                            injectCodeLine(replaceFeedRateCmdOld);
+                    }
+                }
+            }
+            if (cmd == "S")
+            {
+                replaceSpindleSpeed = enable;
+                replaceSpindleSpeedCmd = cmd + value.ToString();
+                if (isStreaming)
+                {
+                    if (enable)
+                        injectCodeLine(replaceSpindleSpeedCmd);
+                    else
+                    {
+                        if (replaceSpindleSpeedCmdOld != "")
+                            injectCodeLine(replaceSpindleSpeedCmdOld);
+                    }
+                }
+            }
+        }
+        private void injectCodeLine(string data)
+        {
+            int index = gCodeLinesSent + 1;
+            int linenr = gCodeLineNr[gCodeLinesSent];
+            addToLog("!!! Override: " + data + " in line "+linenr);
+            gCodeLineNr.Insert(index, linenr);
+            gCodeLines.Insert(index, data);
+            index++;
+            gCodeLinesCount++;
         }
 
         /*  cleanUpCodeLine remove unneccessary char but keep keywords
@@ -544,10 +595,29 @@ namespace GRBL_Plotter
                 if (!waitForIdle)
                 {   if (replaced)
                         sendLines[sendLinesSent] = line;    // needed to get correct length when receiving 'ok'
-//                    rtbLog.AppendText(string.Format("!!!> {0} {1}\r\n", line, sendLinesSent));
-                    sendLine(line);                         // now really send data to Arduino
-                    grblBufferFree -= (line.Length + 1);
-                    sendLinesSent++;
+                                                            //                    rtbLog.AppendText(string.Format("!!!> {0} {1}\r\n", line, sendLinesSent));
+                    if (serialPort1.IsOpen)
+                    {
+                        sendLine(line);                         // now really send data to Arduino
+                        grblBufferFree -= (line.Length + 1);
+                        sendLinesSent++;
+                    }
+                    else
+                    {
+                        addToLog("!!! Port is closed !!!");
+                        isStreaming = false;
+                        isStreamingRequestPause = false;
+                        isStreamingPause = false;
+                        gCodeLinesSent = 0;
+                        gCodeLinesCount = 0;
+                        gCodeLinesConfirmed = 0;
+                        gCodeLinesTotal = 0;
+                        sendLinesSent = 0;
+                        sendLinesCount = 0;
+                        sendLinesConfirmed = 0;
+                        gCodeLines.Clear();
+                        gCodeLineNr.Clear();
+                    }
 
 
                     if (line.IndexOf("(^2") >= 0)
@@ -606,8 +676,10 @@ namespace GRBL_Plotter
                 {   rtbLog.AppendText(string.Format("> {0} \r\n", data));//if not in transfer log the txLine
                     rtbLog.ScrollToCaret();
                 }
-                if ((data.IndexOf("(^2") <0) && (data.IndexOf("M") >= 0))
-                    lastCmd += data;
+                if ((!isStreamingCheck)&&(data.IndexOf("(^2") < 0) && ((data.IndexOf("M") >= 0) || (data.IndexOf("F") >= 0) || (data.IndexOf("S") >= 0)))
+                {   lastCmd += data + " ";
+//                    addToLog(lastCmd);
+                }
                 if (data == "$H")
                 {   OnRaisePosEvent(new PosEventArgs(posWorld, posMachine, grblState.home, lastCmd)); }
             }
@@ -635,15 +707,28 @@ namespace GRBL_Plotter
         private bool isDataProcessing;      // false when no data processing pending
         private grblStreaming grblStatus = grblStreaming.ok;
         public void stopStreaming()
-        {   isStreaming = false;
+        {
+            int line = 0;
+            if ((gCodeLineNr != null) && (gCodeLinesSent < gCodeLineNr.Count))
+            {
+                line = gCodeLineNr[gCodeLinesSent];
+                sendStreamEvent(line, grblStreaming.stop);
+            }
+            isStreaming = false;
             isStreamingRequestPause = false;
             isStreamingPause = false;
-            if (isStreamingCheck)
-            { requestSend("$C"); isStreamingCheck = false; }
-            addToLog("[STOP Streaming]");
-            gCodeLinesCount = 0;
+            addToLog("[STOP Streaming ("+line.ToString()+")]");
             gCodeLinesSent = 0;
+            gCodeLinesCount = 0;
             gCodeLinesConfirmed = 0;
+            gCodeLinesTotal = 0;
+            sendLinesSent = 0;
+            sendLinesCount = 0;
+            sendLinesConfirmed = 0;
+            gCodeLines.Clear();
+            gCodeLineNr.Clear();
+            if (isStreamingCheck)
+            { sendLine("$C"); isStreamingCheck = false; }
         }
         public void pauseStreaming()
         {   if (!isStreamingPause)
@@ -685,13 +770,18 @@ namespace GRBL_Plotter
         public void startStreaming(IList<string> gCodeList, bool check = false)
         {
             rtbLog.Clear();
-            addToLog("[Start streaming - no echo]");
+            if (check)
+                addToLog("[Start streaming - no echo]");
+            else
+                addToLog("[Start code check]");
             saveLastPos();
+            if (replaceFeedRate)
+                addToLog("!!! Override Feed Rate");
+            if (replaceSpindleSpeed)
+                addToLog("!!! Override Spindle Speed");
             isStreamingPause = false;
             isStreamingCheck = check;
             grblStatus = grblStreaming.ok;
-            if (isStreamingCheck)
-                requestSend("$C");
             string[] gCode = gCodeList.ToArray<string>();
             gCodeLinesSent = 0;
             gCodeLinesCount = 0;
@@ -706,6 +796,9 @@ namespace GRBL_Plotter
             sendLinesCount = 0;
             sendLinesConfirmed = 0;
             sendLines.Clear();
+            if (isStreamingCheck)
+                sendLine("$C");
+
             string tmp;
             for (int i = 0; i < gCode.Length; i++)
             {
@@ -741,6 +834,22 @@ namespace GRBL_Plotter
                     gCodeLinesConfirmed++;      // GCode is count as sent (but wasn't send) also count as received
                     addToLog(line);
                 }
+                if ((replaceFeedRate) && (gcode.getStringValue('F', line) !=""))
+                {   string old_value = gcode.getStringValue('F', line);
+                    replaceFeedRateCmdOld = old_value;
+                    line = line.Replace(old_value, replaceFeedRateCmd);
+                    gCodeLines[gCodeLinesSent] = line;
+//                    addToLog("Replace feed in [" + line + "] old : " + old_value);
+                }
+                if ((replaceSpindleSpeed) && (gcode.getStringValue('S', line) != ""))
+                {
+                    string old_value = gcode.getStringValue('S', line);
+                    line = line.Replace(old_value, replaceSpindleSpeedCmd);
+                    replaceSpindleSpeedCmdOld = old_value;
+                    gCodeLines[gCodeLinesSent] = line;
+//                    addToLog("Replace spindle speed in [" + line + "] old : " + old_value);
+                }
+
                 if (line.IndexOf("T") >= 0)
                 {
                     int start = line.IndexOf("T");
@@ -838,7 +947,8 @@ namespace GRBL_Plotter
             {   if (rxString.IndexOf("error") >= 0)
                 {   grblStatus = grblStreaming.error;
                     tmpIndex = gCodeLinesConfirmed;
-                    addToLog(">> " + rxString);
+                    addToLog(">> " + rxString + "  (" + gCodeLineNr[gCodeLinesSent] + " : " + sendLines[sendLinesConfirmed] + ")");
+//                    addToLog(">> " + rxString + "  ("+ gCodeLineNr[gCodeLinesSent] + ")");
                 }
                 if (getParserState)
                 {   if (rxString.IndexOf("[G") >= 0)
