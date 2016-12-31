@@ -27,7 +27,7 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -124,14 +124,15 @@
     <Compile Include="CameraForm.Designer.cs">
       <DependentUpon>CameraForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="gcodeRelated.cs" />
-    <Compile Include="grblRelated.cs" />
-    <Compile Include="SerialForm2.cs">
+    <Compile Include="Control2ndGRBL.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SerialForm2.Designer.cs">
-      <DependentUpon>SerialForm2.cs</DependentUpon>
+    <Compile Include="Control2ndGRBL.Designer.cs">
+      <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </Compile>
+    <Compile Include="gcodeRelated.cs" />
+    <Compile Include="grblRelated.cs" />
+    <Compile Include="IniFile.cs" />
     <Compile Include="GCodeVisuAndTransform.cs" />
     <Compile Include="ImageToGCode.cs">
       <SubType>Form</SubType>
@@ -166,6 +167,12 @@
     <Compile Include="StreamingForm.Designer.cs">
       <DependentUpon>StreamingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StreamingForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StreamingForm2.Designer.cs">
+      <DependentUpon>StreamingForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="svgPalette.cs" />
     <Compile Include="SVGToGCode.cs" />
     <Compile Include="TextToGCode.cs">
@@ -186,6 +193,9 @@
     <EmbeddedResource Include="CameraForm.resx">
       <DependentUpon>CameraForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control2ndGRBL.resx">
+      <DependentUpon>Control2ndGRBL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageToGCode.resx">
       <DependentUpon>ImageToGCode.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,14 +215,14 @@
     <EmbeddedResource Include="SerialForm.resx">
       <DependentUpon>SerialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SerialForm2.resx">
-      <DependentUpon>SerialForm2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SetupForm.resx">
       <DependentUpon>SetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StreamingForm.resx">
       <DependentUpon>StreamingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StreamingForm2.resx">
+      <DependentUpon>StreamingForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TextToGCode.resx">
       <DependentUpon>TextToGCode.cs</DependentUpon>
@@ -256,6 +266,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\inv2.png" />
+    <None Include="Resources\turn_r.png" />
+    <None Include="Resources\turn_l.png" />
+    <None Include="Resources\flip_vertical.png" />
+    <None Include="Resources\flip_horizontal.png" />
+    <None Include="Resources\flip_horizontal.bmp" />
     <None Include="Resources\Image1.bmp" />
   </ItemGroup>
   <ItemGroup>

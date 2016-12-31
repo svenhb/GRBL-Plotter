@@ -65,18 +65,24 @@ namespace GRBL_Plotter
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            GRBL_Plotter.Properties.Settings settings1 = new GRBL_Plotter.Properties.Settings();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveMachineParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadMachineParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createGCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gCodeWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createSimpleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_mx = new System.Windows.Forms.Label();
             this.label_my = new System.Windows.Forms.Label();
@@ -150,6 +156,7 @@ namespace GRBL_Plotter
             this.btnResume = new System.Windows.Forms.Button();
             this.btnKillAlarm = new System.Windows.Forms.Button();
             this.tBURL = new System.Windows.Forms.TextBox();
+            this.btnJogStop = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -164,6 +171,7 @@ namespace GRBL_Plotter
             this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblTool = new System.Windows.Forms.Label();
             this.cBTool = new System.Windows.Forms.CheckBox();
             this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
@@ -190,6 +198,7 @@ namespace GRBL_Plotter
             this.tLPRechtsUnten.SuspendLayout();
             this.tLPRechtsUntenRechts.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.tLPMitteUnten.SuspendLayout();
             this.tLPRechtsOben.SuspendLayout();
             this.SuspendLayout();
@@ -198,13 +207,8 @@ namespace GRBL_Plotter
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.recentToolStripMenuItem,
-            this.setupToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.textWizzardToolStripMenuItem,
-            this.imageToolStripMenuItem,
-            this.gCodeWizzardToolStripMenuItem,
-            this.controlStreamingToolStripMenuItem,
+            this.machineToolStripMenuItem,
+            this.createGCodeToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -216,7 +220,12 @@ namespace GRBL_Plotter
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.toolStripMenuItem2,
+            this.toolStripSeparator2,
+            this.saveToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.saveMachineParametersToolStripMenuItem,
+            this.loadMachineParametersToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -224,64 +233,122 @@ namespace GRBL_Plotter
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.loadToolStripMenuItem.Text = "Load GCode / SVG";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.loadToolStripMenuItem.Text = "Open File";
+            this.loadToolStripMenuItem.ToolTipText = "Open GCode or SVG file";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.btnOpenFile_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 22);
+            this.toolStripMenuItem2.Text = "Open Recent File";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(201, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.saveToolStripMenuItem.Text = "Save GCode";
+            this.saveToolStripMenuItem.ToolTipText = "Save displayed GCode to a file";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.btnSaveFile_Click);
             // 
-            // recentToolStripMenuItem
+            // toolStripSeparator3
             // 
-            this.recentToolStripMenuItem.Name = "recentToolStripMenuItem";
-            this.recentToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
-            this.recentToolStripMenuItem.Text = "Recent Files";
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(201, 6);
             // 
-            // setupToolStripMenuItem
+            // saveMachineParametersToolStripMenuItem
             // 
-            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
-            this.setupToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.setupToolStripMenuItem.Text = "Setup";
-            this.setupToolStripMenuItem.Click += new System.EventHandler(this.setupToolStripMenuItem_Click);
+            this.saveMachineParametersToolStripMenuItem.Name = "saveMachineParametersToolStripMenuItem";
+            this.saveMachineParametersToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.saveMachineParametersToolStripMenuItem.Text = "Export Machine Settings";
+            this.saveMachineParametersToolStripMenuItem.ToolTipText = "Export GUI-Settings (Button definitions, Joystick parameters) to an INI-file";
+            this.saveMachineParametersToolStripMenuItem.Click += new System.EventHandler(this.saveMachineParametersToolStripMenuItem_Click);
+            // 
+            // loadMachineParametersToolStripMenuItem
+            // 
+            this.loadMachineParametersToolStripMenuItem.Name = "loadMachineParametersToolStripMenuItem";
+            this.loadMachineParametersToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.loadMachineParametersToolStripMenuItem.Text = "Import Machine Settings";
+            this.loadMachineParametersToolStripMenuItem.ToolTipText = "Import GUI-Settings (Button definitions, Joystick parameters) from an INI-file";
+            this.loadMachineParametersToolStripMenuItem.Click += new System.EventHandler(this.loadMachineParametersToolStripMenuItem_Click);
+            // 
+            // machineToolStripMenuItem
+            // 
+            this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.controlStreamingToolStripMenuItem,
+            this.control2ndGRBLToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.setupToolStripMenuItem});
+            this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
+            this.machineToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.machineToolStripMenuItem.Text = "Machine";
+            // 
+            // controlStreamingToolStripMenuItem
+            // 
+            this.controlStreamingToolStripMenuItem.Name = "controlStreamingToolStripMenuItem";
+            this.controlStreamingToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.controlStreamingToolStripMenuItem.Text = "Control Streaming";
+            this.controlStreamingToolStripMenuItem.ToolTipText = "Override Feed rate and Spindle speed";
+            this.controlStreamingToolStripMenuItem.Click += new System.EventHandler(this.controlStreamingToolStripMenuItem_Click);
+            // 
+            // control2ndGRBLToolStripMenuItem
+            // 
+            this.control2ndGRBLToolStripMenuItem.Name = "control2ndGRBLToolStripMenuItem";
+            this.control2ndGRBLToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.control2ndGRBLToolStripMenuItem.Text = "Control 2nd GRBL";
+            this.control2ndGRBLToolStripMenuItem.Click += new System.EventHandler(this.control2ndGRBLToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(92, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
             this.toolStripMenuItem1.Text = "Show Camera";
+            this.toolStripMenuItem1.ToolTipText = "Show camera picture";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
+            // 
+            // setupToolStripMenuItem
+            // 
+            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
+            this.setupToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.setupToolStripMenuItem.Text = "Setup";
+            this.setupToolStripMenuItem.ToolTipText = "Setup GUI and import parameters";
+            this.setupToolStripMenuItem.Click += new System.EventHandler(this.setupToolStripMenuItem_Click);
+            // 
+            // createGCodeToolStripMenuItem
+            // 
+            this.createGCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textWizzardToolStripMenuItem,
+            this.imageToolStripMenuItem,
+            this.createSimpleShapesToolStripMenuItem});
+            this.createGCodeToolStripMenuItem.Name = "createGCodeToolStripMenuItem";
+            this.createGCodeToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.createGCodeToolStripMenuItem.Text = "Create GCode";
             // 
             // textWizzardToolStripMenuItem
             // 
             this.textWizzardToolStripMenuItem.Name = "textWizzardToolStripMenuItem";
-            this.textWizzardToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.textWizzardToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.textWizzardToolStripMenuItem.Text = "Create Text";
             this.textWizzardToolStripMenuItem.Click += new System.EventHandler(this.textWizzardToolStripMenuItem_Click);
             // 
             // imageToolStripMenuItem
             // 
             this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
-            this.imageToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.imageToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.imageToolStripMenuItem.Text = "Convert Image";
             this.imageToolStripMenuItem.Click += new System.EventHandler(this.imageToolStripMenuItem_Click);
             // 
-            // gCodeWizzardToolStripMenuItem
+            // createSimpleShapesToolStripMenuItem
             // 
-            this.gCodeWizzardToolStripMenuItem.Name = "gCodeWizzardToolStripMenuItem";
-            this.gCodeWizzardToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-            this.gCodeWizzardToolStripMenuItem.Text = "GCode Wizard";
-            this.gCodeWizzardToolStripMenuItem.Visible = false;
-            // 
-            // controlStreamingToolStripMenuItem
-            // 
-            this.controlStreamingToolStripMenuItem.Name = "controlStreamingToolStripMenuItem";
-            this.controlStreamingToolStripMenuItem.Size = new System.Drawing.Size(116, 20);
-            this.controlStreamingToolStripMenuItem.Text = "Control Streaming";
-            this.controlStreamingToolStripMenuItem.Click += new System.EventHandler(this.controlStreamingToolStripMenuItem_Click);
+            this.createSimpleShapesToolStripMenuItem.Name = "createSimpleShapesToolStripMenuItem";
+            this.createSimpleShapesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.createSimpleShapesToolStripMenuItem.Text = "Create Simple Shapes";
             // 
             // aboutToolStripMenuItem
             // 
@@ -811,9 +878,9 @@ namespace GRBL_Plotter
             // 
             // btnJogZeroXY
             // 
-            this.btnJogZeroXY.Location = new System.Drawing.Point(3, 90);
+            this.btnJogZeroXY.Location = new System.Drawing.Point(4, 35);
             this.btnJogZeroXY.Name = "btnJogZeroXY";
-            this.btnJogZeroXY.Size = new System.Drawing.Size(149, 23);
+            this.btnJogZeroXY.Size = new System.Drawing.Size(81, 20);
             this.btnJogZeroXY.TabIndex = 5;
             this.btnJogZeroXY.Text = "Move XY=0";
             this.toolTip1.SetToolTip(this.btnJogZeroXY, "Send G90 G0 X0 Y0");
@@ -822,33 +889,33 @@ namespace GRBL_Plotter
             // 
             // btnJogZeroZ
             // 
-            this.btnJogZeroZ.Location = new System.Drawing.Point(151, 65);
+            this.btnJogZeroZ.Location = new System.Drawing.Point(86, 14);
             this.btnJogZeroZ.Name = "btnJogZeroZ";
-            this.btnJogZeroZ.Size = new System.Drawing.Size(75, 23);
+            this.btnJogZeroZ.Size = new System.Drawing.Size(40, 20);
             this.btnJogZeroZ.TabIndex = 4;
-            this.btnJogZeroZ.Text = "Move Z=0";
+            this.btnJogZeroZ.Text = "Z=0";
             this.toolTip1.SetToolTip(this.btnJogZeroZ, "Send G90 G0 Z0");
             this.btnJogZeroZ.UseVisualStyleBackColor = true;
             this.btnJogZeroZ.Click += new System.EventHandler(this.btnJogZ_Click);
             // 
             // btnJogZeroY
             // 
-            this.btnJogZeroY.Location = new System.Drawing.Point(77, 65);
+            this.btnJogZeroY.Location = new System.Drawing.Point(45, 14);
             this.btnJogZeroY.Name = "btnJogZeroY";
-            this.btnJogZeroY.Size = new System.Drawing.Size(75, 23);
+            this.btnJogZeroY.Size = new System.Drawing.Size(40, 20);
             this.btnJogZeroY.TabIndex = 3;
-            this.btnJogZeroY.Text = "Move Y=0";
+            this.btnJogZeroY.Text = "Y=0";
             this.toolTip1.SetToolTip(this.btnJogZeroY, "Send G90 G0 Y0");
             this.btnJogZeroY.UseVisualStyleBackColor = true;
             this.btnJogZeroY.Click += new System.EventHandler(this.btnJogY_Click);
             // 
             // btnJogZeroX
             // 
-            this.btnJogZeroX.Location = new System.Drawing.Point(3, 65);
+            this.btnJogZeroX.Location = new System.Drawing.Point(4, 14);
             this.btnJogZeroX.Name = "btnJogZeroX";
-            this.btnJogZeroX.Size = new System.Drawing.Size(75, 23);
+            this.btnJogZeroX.Size = new System.Drawing.Size(40, 20);
             this.btnJogZeroX.TabIndex = 2;
-            this.btnJogZeroX.Text = "Move X=0";
+            this.btnJogZeroX.Text = "X=0";
             this.toolTip1.SetToolTip(this.btnJogZeroX, "Send G90 G0 X0");
             this.btnJogZeroX.UseVisualStyleBackColor = true;
             this.btnJogZeroX.Click += new System.EventHandler(this.btnJogX_Click);
@@ -1040,6 +1107,18 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.tBURL, "Check\r\nhttps://openclipart.org/\r\nfor SVG files");
             this.tBURL.TextChanged += new System.EventHandler(this.tBURL_TextChanged);
             // 
+            // btnJogStop
+            // 
+            this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnJogStop.Location = new System.Drawing.Point(136, 69);
+            this.btnJogStop.Name = "btnJogStop";
+            this.btnJogStop.Size = new System.Drawing.Size(91, 41);
+            this.btnJogStop.TabIndex = 28;
+            this.btnJogStop.Text = "STOP Jogging";
+            this.toolTip1.SetToolTip(this.btnJogStop, "Stop current jogging motion");
+            this.btnJogStop.UseVisualStyleBackColor = false;
+            this.btnJogStop.Click += new System.EventHandler(this.btnJogStop_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
@@ -1223,6 +1302,8 @@ namespace GRBL_Plotter
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnJogStop);
+            this.groupBox6.Controls.Add(this.groupBox3);
             this.groupBox6.Controls.Add(this.lblTool);
             this.groupBox6.Controls.Add(this.cBTool);
             this.groupBox6.Controls.Add(this.virtualJoystickZ);
@@ -1231,10 +1312,6 @@ namespace GRBL_Plotter
             this.groupBox6.Controls.Add(this.tBSpeed);
             this.groupBox6.Controls.Add(this.cBCoolant);
             this.groupBox6.Controls.Add(this.cBSpindle);
-            this.groupBox6.Controls.Add(this.btnJogZeroZ);
-            this.groupBox6.Controls.Add(this.btnJogZeroY);
-            this.groupBox6.Controls.Add(this.btnJogZeroX);
-            this.groupBox6.Controls.Add(this.btnJogZeroXY);
             this.groupBox6.Controls.Add(this.btnKillAlarm);
             this.groupBox6.Controls.Add(this.btnFeedHold);
             this.groupBox6.Controls.Add(this.btnResume);
@@ -1244,7 +1321,20 @@ namespace GRBL_Plotter
             this.groupBox6.Size = new System.Drawing.Size(230, 373);
             this.groupBox6.TabIndex = 20;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Control";
+            this.groupBox6.Text = "Control / Jogging";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnJogZeroX);
+            this.groupBox3.Controls.Add(this.btnJogZeroXY);
+            this.groupBox3.Controls.Add(this.btnJogZeroY);
+            this.groupBox3.Controls.Add(this.btnJogZeroZ);
+            this.groupBox3.Location = new System.Drawing.Point(0, 55);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(130, 58);
+            this.groupBox3.TabIndex = 27;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Move to";
             // 
             // lblTool
             // 
@@ -1391,290 +1481,7 @@ namespace GRBL_Plotter
             this.ClientSize = new System.Drawing.Size(884, 562);
             this.Controls.Add(this.tLPAussen);
             this.Controls.Add(this.menuStrip1);
-            settings1.baud = "115200";
-            settings1.baud2 = "115200";
-            settings1.cameraPosBot = -50D;
-            settings1.cameraPosTop = 0D;
-            settings1.camerarotation = 180F;
-            settings1.camerascalingBot = 15D;
-            settings1.camerascalingTop = 20D;
-            settings1.cameraTeachRadiusBot = 20D;
-            settings1.cameraTeachRadiusTop = 30D;
-            settings1.cameraToolOffsetX = 0D;
-            settings1.cameraToolOffsetY = 0D;
-            settings1.camerindex = 0;
-            settings1.colorBackground = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            settings1.colorMarker = System.Drawing.Color.DeepPink;
-            settings1.colorPenDown = System.Drawing.Color.Red;
-            settings1.colorPenUp = System.Drawing.Color.Green;
-            settings1.colorRuler = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            settings1.colorTool = System.Drawing.Color.Black;
-            settings1.ctrlToolChange = true;
-            settings1.ctrlToolScriptGet = "_misc\\script_pen_pickup.nc";
-            settings1.ctrlToolScriptProbe = "_misc\\script_probing_tool.nc";
-            settings1.ctrlToolScriptPut = "_misc\\script_pen_remove.nc";
-            settings1.ctrlToolScriptSelect = "_misc\\script_pen_select.nc";
-            settings1.custom1 = "Set new coord|G43.1 Z-31.628 ; G92 X140 Y0 Z32";
-            settings1.custom2 = "Move to 0;0;0|G90 G0 X0 Y0 Z0";
-            settings1.custom3 = "Tray Out|G91 G53 G0 Z-1;G90 G53 G0 Y-5";
-            settings1.custom4 = "Tray In|G90 G53 G0 Y-160";
-            settings1.custom5 = "Pen remove|_misc\\script_pen_remove.nc";
-            settings1.custom6 = "Pen pickup|_misc\\script_pen_pickup.nc";
-            settings1.custom7 = "Pen probing|_misc\\script_probing_tool.nc";
-            settings1.custom8 = "Set Pen 0|G92 Z25";
-            settings1.file = "D:\\";
-            settings1.importGCAddComments = true;
-            settings1.importGCDecPlaces = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            settings1.importGCFooter = "G0 X0 Y0; M30";
-            settings1.importGCHeader = "G90 G1";
-            settings1.importGCPWMDlyDown = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            settings1.importGCPWMDlyUp = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            settings1.importGCPWMDown = new decimal(new int[] {
-            800,
-            0,
-            0,
-            0});
-            settings1.importGCPWMEnable = false;
-            settings1.importGCPWMUp = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            settings1.importGCSpindleToggle = false;
-            settings1.importGCSSpeed = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            settings1.importGCTool = true;
-            settings1.importGCXYFeed = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            settings1.importGCZDown = new decimal(new int[] {
-            2,
-            0,
-            0,
-            -2147483648});
-            settings1.importGCZEnable = true;
-            settings1.importGCZFeed = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            settings1.importGCZUp = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            settings1.importPalette = "_misc\\Stabilo_by_PN.gpl";
-            settings1.importSVGAddComments = false;
-            settings1.importSVGBezier = new decimal(new int[] {
-            6,
-            0,
-            0,
-            0});
-            settings1.importSVGMaxSize = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            settings1.importSVGPathExtend = false;
-            settings1.importSVGPauseElement = false;
-            settings1.importSVGPausePenDown = false;
-            settings1.importSVGReduce = true;
-            settings1.importSVGReduceLimit = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            settings1.importSVGRezise = true;
-            settings1.importSVGToolColor = true;
-            settings1.importSVGToolSort = true;
-            settings1.joyXYSpeed1 = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            settings1.joyXYSpeed2 = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            settings1.joyXYSpeed3 = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            settings1.joyXYSpeed4 = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            settings1.joyXYSpeed5 = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            settings1.joyXYStep1 = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            settings1.joyXYStep2 = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            settings1.joyXYStep3 = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            settings1.joyXYStep4 = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            settings1.joyXYStep5 = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            settings1.joyZSpeed1 = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            settings1.joyZSpeed2 = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            settings1.joyZSpeed3 = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            settings1.joyZSpeed4 = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            settings1.joyZSpeed5 = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            settings1.joyZStep1 = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            settings1.joyZStep2 = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            settings1.joyZStep3 = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            settings1.joyZStep4 = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            settings1.joyZStep5 = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            settings1.lastOffsetX = 0D;
-            settings1.lastOffsetY = 0D;
-            settings1.lastOffsetZ = 0D;
-            settings1.locationCamForm = new System.Drawing.Point(0, 0);
-            settings1.locationMForm = new System.Drawing.Point(0, 0);
-            settings1.locationSerForm = new System.Drawing.Point(0, 0);
-            settings1.locationSerForm2 = new System.Drawing.Point(0, 0);
-            settings1.locationSetForm = new System.Drawing.Point(0, 0);
-            settings1.overrideFRBtm = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            settings1.overrideFRTop = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            settings1.overrideFRValue = 1000;
-            settings1.overrideSSBtm = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            settings1.overrideSSTop = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            settings1.overrideSSValue = 5000;
-            settings1.port = "COM1";
-            settings1.port2 = "COM2";
-            settings1.serialMinimize = false;
-            settings1.SettingsKey = "";
-            settings1.textFontIndex = 0;
-            settings1.textFontSize = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            settings1.textFontText = "Test";
-            settings1.UpgradeRequired = true;
-            settings1.useSerial2 = true;
-            settings1.widthMarker = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            settings1.widthPenDown = new decimal(new int[] {
-            4,
-            0,
-            0,
-            65536});
-            settings1.widthPenUp = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            settings1.widthRuler = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            settings1.widthTool = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", settings1, "locationMForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = settings1.locationMForm;
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
@@ -1705,6 +1512,7 @@ namespace GRBL_Plotter
             this.tLPRechtsUntenRechts.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.tLPMitteUnten.ResumeLayout(false);
             this.tLPMitteUnten.PerformLayout();
             this.tLPRechtsOben.ResumeLayout(false);
@@ -1716,7 +1524,6 @@ namespace GRBL_Plotter
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label label_mx;
         private System.Windows.Forms.Label label_my;
         private System.Windows.Forms.Label label_mz;
@@ -1725,7 +1532,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label_wz;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Timer MainTimer;
-        private System.Windows.Forms.ToolStripMenuItem setupToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ProgressBar pbFile;
         private System.Windows.Forms.Label lblElapsed;
@@ -1799,12 +1605,10 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem scaleToHeightOfToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripScaleTextBoxHeight;
         private System.Windows.Forms.Button btnShiftToZero;
-        private System.Windows.Forms.ToolStripMenuItem textWizzardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tLPMitteUnten;
         private System.Windows.Forms.TextBox tBURL;
-        private System.Windows.Forms.ToolStripMenuItem recentToolStripMenuItem;
         private System.Windows.Forms.Button btnMirrorY;
         private System.Windows.Forms.Button btnMirrorX;
         private virtualJoystick.virtualJoystick virtualJoystickZ;
@@ -1812,7 +1616,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btnStreamCheck;
         private System.Windows.Forms.Button btnStreamStop;
-        private System.Windows.Forms.ToolStripMenuItem imageToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip cmsPictureBox;
         private System.Windows.Forms.ToolStripMenuItem moveToFirstPosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletePathToolStripMenuItem;
@@ -1821,8 +1624,22 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem deletenotMarkToolStripMenuItem;
         private System.Windows.Forms.CheckBox cBTool;
         private System.Windows.Forms.Label lblTool;
-        private System.Windows.Forms.ToolStripMenuItem gCodeWizzardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem machineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controlStreamingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem setupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem createGCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textWizzardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createSimpleShapesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveMachineParametersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadMachineParametersToolStripMenuItem;
+        private System.Windows.Forms.Button btnJogStop;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ToolStripMenuItem control2ndGRBLToolStripMenuItem;
     }
 }
 

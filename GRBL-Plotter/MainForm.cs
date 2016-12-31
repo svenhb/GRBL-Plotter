@@ -41,11 +41,14 @@ namespace GRBL_Plotter
     public partial class MainForm : Form
     {
         SerialForm _serial_form = null;
+        SerialForm _serial_form2 = null;
+        Control2ndGRBL _2ndGRBL_form = null;
         CameraForm _camera_form = null;
         SetupForm _setup_form = null;
         TextToGCode _text_form = null;
         ImageToGCode _image_form = null;
         StreamingForm _streaming_form = null;
+        StreamingForm2 _streaming_form2 = null;
 
         private const string appName = "GRBL Plotter";
         private xyzPoint posMachine = new xyzPoint(0, 0, 0);
@@ -85,9 +88,7 @@ namespace GRBL_Plotter
         private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((Application.OpenForms["CameraForm"] as CameraForm) == null)
-            {//            if (_camera_form == null)
-
-                _camera_form = new CameraForm();
+            {   _camera_form = new CameraForm();
                 _camera_form.FormClosed += formClosed_CameraForm;
                 _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
             }
@@ -104,9 +105,7 @@ namespace GRBL_Plotter
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ((Application.OpenForms["SetupForm"] as SetupForm) == null)
-            {//            if (_setup_form == null)
-
-                _setup_form = new SetupForm();
+            {   _setup_form = new SetupForm();
                 _setup_form.FormClosed += formClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += loadSettings;
                 _setup_form.btnReloadFile.Click += reStartConvertSVG;
@@ -122,9 +121,7 @@ namespace GRBL_Plotter
 
         // open text creation form
         private void textWizzardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //            if ((Application.OpenForms["TextForm"] as TextToGCode) == null)
-            if (_text_form == null)
+        {   if (_text_form == null)
             {
                 _text_form = new TextToGCode();
                 _text_form.FormClosed += formClosed_TextToGCode;
@@ -157,20 +154,38 @@ namespace GRBL_Plotter
         { _image_form = null; }
 
         private void controlStreamingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if ((Application.OpenForms["StreamingForm"] as StreamingForm) == null)
+        {   if (_serial_form.isGrblVers0)
             {
-                _streaming_form = new StreamingForm();
-                _streaming_form.RaiseOverrideEvent += OnRaiseOverrideEvent;      // assign  event
-                _streaming_form.show_value_FR(actualFR);
-                _streaming_form.show_value_SS(actualSS);
+                if (_streaming_form2 != null)
+                    _streaming_form2.Visible = false;
+                if ((Application.OpenForms["StreamingForm"] as StreamingForm) == null)
+                {
+                    _streaming_form = new StreamingForm();
+                    _streaming_form.RaiseOverrideEvent += OnRaiseOverrideEvent;      // assign  event
+                    _streaming_form.show_value_FR(actualFR);
+                    _streaming_form.show_value_SS(actualSS);
+                }
+                else
+                {
+                    _streaming_form.Visible = false;
+                }
+                _streaming_form.Show(this);
             }
-            else
+        else
             {
-                _streaming_form.Visible = false;
+                if (_streaming_form != null)
+                    _streaming_form.Visible = false;
+                if ((Application.OpenForms["StreamingForm2"] as StreamingForm2) == null)
+                {
+                    _streaming_form2 = new StreamingForm2();
+                    _streaming_form2.RaiseOverrideEvent += OnRaiseOverrideMessage;      // assign  event
+                }
+                else
+                {
+                    _streaming_form2.Visible = false;
+                }
+                _streaming_form2.Show(this);
             }
-            _streaming_form.Show(this);
-
         }
 
         // open About form
@@ -179,18 +194,45 @@ namespace GRBL_Plotter
             Form frmAbout = new AboutForm();
             frmAbout.ShowDialog();
         }
+
+        private void control2ndGRBLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((Application.OpenForms["Control2ndGRBL"] as Control2ndGRBL) == null)
+            {
+                _2ndGRBL_form = new Control2ndGRBL(_serial_form2);
+                if (_serial_form2 == null)
+                {
+                    _serial_form2 = new SerialForm("COM Tool changer", 2);
+                    _serial_form2.Show(this);
+                    _2ndGRBL_form.set2ndSerial(_serial_form2);
+                    _serial_form.set2ndSerial(_serial_form2);
+                }
+
+            }
+            else
+            {
+                _2ndGRBL_form.Visible = false;
+            }
+            _2ndGRBL_form.Show(this);
+        }
+
         // initialize Main form
         private void MainForm_Load(object sender, EventArgs e)
         {
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            if ((Location.X < 0) || (Location.X > desktopSize.Width) || (Location.Y < 0) || (Location.Y > desktopSize.Height)) { Location = new Point(0, 0); }
-            //            this.Text = appName + " Ver " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();    //Application.ProductVersion;
+            Location = Properties.Settings.Default.locationMForm;
+            if ((Location.X < -20) || (Location.X > desktopSize.Width) || (Location.Y < -20) || (Location.Y > desktopSize.Height)) { Location = new Point(0, 0); }
             this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
             loadSettings(sender, e);
-            if ((Application.OpenForms["SerialForm"] as SetupForm) == null)
+            if ((Application.OpenForms["SerialForm"] as SerialForm) == null)
             {
-                this._serial_form = new SerialForm();
-                this._serial_form.Show(this);
+                if (Properties.Settings.Default.useSerial2)
+                {
+                    _serial_form2 = new SerialForm("COM Tool changer", 2);
+                    _serial_form2.Show(this);
+                }
+                _serial_form = new SerialForm("COM CNC", 1, _serial_form2);
+                _serial_form.Show(this);
                 _serial_form.RaisePosEvent += OnRaisePosEvent;
                 _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
             }
@@ -199,7 +241,7 @@ namespace GRBL_Plotter
             foreach (string item in MRUlist)
             {
                 ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);  //create new menu for each item in list
-                recentToolStripMenuItem.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
+                toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
             }
 
             string[] args = Environment.GetCommandLineArgs();
@@ -209,6 +251,7 @@ namespace GRBL_Plotter
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Properties.Settings.Default.locationMForm = Location;
             saveSettings();
             _serial_form.Close();
             if ((Application.OpenForms["CameraForm"] as CameraForm) != null) _camera_form.Close();
@@ -332,6 +375,9 @@ namespace GRBL_Plotter
             btnMirrorY.Enabled = isConnected & !isStreaming;
             btnTransformCode.Enabled = isConnected & !isStreaming;
             btnShiftToZero.Enabled = isConnected & !isStreaming;
+
+            btnJogStop.Enabled = isConnected & !isStreaming | allowControl; ;
+            btnJogStop.Visible = !_serial_form.isGrblVers0;
         }
 
         // handle position events from serial form
@@ -340,6 +386,15 @@ namespace GRBL_Plotter
             posWorld = e.PosWorld;
             posMachine = e.PosMachine;
             machineStatus = e.Status;
+            if (e.StatMsg.Ov.Length > 1)    // check and submit override values
+            { if (_streaming_form2 != null)
+                    _streaming_form2.showOverrideValues(e.StatMsg.Ov);
+            }
+            if (e.StatMsg.FS.Length > 1)    // check and submit override values
+            {
+                if (_streaming_form2 != null)
+                    _streaming_form2.showActualValues(e.StatMsg.FS);
+            }
             if (e.Status == grblState.probe)
             { posProbe = _serial_form.posProbe; }
 
@@ -363,6 +418,7 @@ namespace GRBL_Plotter
                 _serial_form.addToLog("Restore saved position after reset:");
                 sendCommand(String.Format("G92 X{0} Y{1} Z{2}", x, y, z).Replace(',', '.'));
                 flagResetOffset = false;
+                updateControls();
             }
             processStatus();
             processLastCommand(e.lastCommand);
@@ -465,10 +521,22 @@ namespace GRBL_Plotter
             visuGCode.createImagePath();  // show initial empty picture
             pictureBox1.Invalidate();
         }
-        // send command via serial form
-        private void sendCommand(string txt)
-        {   _serial_form.requestSend(txt);  }
 
+        // send command via serial form
+        private void sendRealtimeCommand(int cmd)
+        {    _serial_form.realtimeCommand(cmd);        }
+
+        // send command via serial form
+        private void sendCommand(string txt, bool jogging=false)
+        {   if ((jogging) && (_serial_form.isGrblVers0 == false))
+                txt = "$J="+txt;
+            _serial_form.requestSend(txt);
+        }
+
+        private void OnRaiseOverrideMessage(object sender, OverrideMsgArgs e)
+        { sendRealtimeCommand(e.MSG); }
+
+        // get override events from form "StreamingForm" for GRBL 0.9
         private string overrideMessage = "";
         private void OnRaiseOverrideEvent(object sender, OverrideEventArgs e)
         {   if (e.Source == overrideSource.feedRate)
@@ -518,7 +586,7 @@ namespace GRBL_Plotter
                 _image_form.loadExtern(fileName);
             }
             SaveRecentFile(fileName);
-            isFileLoaded = true;
+//            isFileLoaded = true;
         }
         // save content from TextEditor (GCode) to file
         private void btnSaveFile_Click(object sender, EventArgs e)
@@ -532,7 +600,7 @@ namespace GRBL_Plotter
             }
         }
         // load selected file
-        bool isFileLoaded = false;
+//        bool isFileLoaded = false;
         bool blockRTBEvents = false;
         private void btnLoad_Click(object sender, EventArgs e)
         { }
@@ -547,7 +615,7 @@ namespace GRBL_Plotter
                 blockRTBEvents = true;
                 fCTBCode.OpenFile(tbFile.Text);
                 redrawGCodePath();
-                isFileLoaded = true;
+ //               isFileLoaded = true;
                 blockRTBEvents = false;
                 lbInfo.Text = "G-Code loaded";
                 lbInfo.BackColor = SystemColors.Control;
@@ -753,7 +821,7 @@ namespace GRBL_Plotter
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _text_form.textGCode;
                 redrawGCodePath();
-                isFileLoaded = true;
+ //               isFileLoaded = true;
                 updateControls();
             }
         }
@@ -765,7 +833,7 @@ namespace GRBL_Plotter
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _image_form.imageGCode;
                 redrawGCodePath();
-                isFileLoaded = true;
+//                isFileLoaded = true;
                 updateControls();
             }
         }
@@ -844,7 +912,7 @@ namespace GRBL_Plotter
                 int speed = 1000;
                 //               String s = String.Format("F{0}"+ G91G1 X{1} Y{2}", speed, realStepX, realStepY);
                 String s = String.Format("F{0} " + e.Command + " X{1} Y{2}", speed, realStepX, realStepY).Replace(',', '.');
-                sendCommand(s);
+                sendCommand(s,true);
             }
         }
 
@@ -863,18 +931,18 @@ namespace GRBL_Plotter
             if (speed > 0)
             {
                 if (e.JogPosX == 0)
-                    s = String.Format("G1 Y{0} F{1}", strY, speed).Replace(',', '.');
+                    s = String.Format("G91 Y{0} F{1}", strY, speed).Replace(',', '.');
                 else if (e.JogPosY == 0)
-                    s = String.Format("G1 X{0} F{1}", strX, speed).Replace(',', '.');
+                    s = String.Format("G91 X{0} F{1}", strX, speed).Replace(',', '.');
                 else
-                    s = String.Format("G1 X{0} Y{1} F{2}", strX, strY, speed).Replace(',', '.');
-                sendCommand(s);
+                    s = String.Format("G91 X{0} Y{1} F{2}", strX, strY, speed).Replace(',', '.');
+                sendCommand(s, true);
             }
         }
         private void virtualJoystickXY_Enter(object sender, EventArgs e)
-        { sendCommand("G91"); }
+        { if (_serial_form.isGrblVers0) sendCommand("G91G1F100"); }
         private void virtualJoystickXY_Leave(object sender, EventArgs e)
-        { sendCommand("G90"); }
+        { if (_serial_form.isGrblVers0) sendCommand("G90"); }
         private void virtualJoystickZ_JoyStickEvent(object sender, JogEventArgs e)
         {
             int indexZ = Math.Abs(e.JogPosY);
@@ -883,8 +951,8 @@ namespace GRBL_Plotter
             String strZ = gcode.frmtNum(joystickZStep[indexZ] * dirZ);
             if (speed > 0)
             {
-                String s = String.Format("G1 Z{0} F{1}", strZ, speed).Replace(',', '.');
-                sendCommand(s);
+                String s = String.Format("G91 Z{0} F{1}", strZ, speed).Replace(',', '.');
+                sendCommand(s, true);
             }
         }
         // Spindle and coolant
@@ -916,13 +984,15 @@ namespace GRBL_Plotter
         { sendCommand("G92 X0 Y0 Z0"); }
 
         private void btnJogX_Click(object sender, EventArgs e)
-        { sendCommand("G90 G0 X0"); }
+        { sendCommand("G90 X0 F" + joystickXYSpeed[5].ToString(), true); }
         private void btnJogY_Click(object sender, EventArgs e)
-        { sendCommand("G90 G0 Y0"); }
+        { sendCommand("G90 Y0 F" + joystickXYSpeed[5].ToString(), true); }
         private void btnJogZ_Click(object sender, EventArgs e)
-        { sendCommand("G90 G0 Z0"); }
+        { sendCommand("G90 Z0 F"+ joystickZSpeed[5].ToString(), true); }
         private void btnJogXY_Click(object sender, EventArgs e)
-        { sendCommand("G90 G0 X0 Y0"); }
+        { sendCommand("G90 X0 Y0 F" + joystickXYSpeed[5].ToString(),true); }
+        private void btnJogStop_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(133); }    //0x85
 
         private void btnReset_Click(object sender, EventArgs e)
         {
@@ -940,13 +1010,13 @@ namespace GRBL_Plotter
         }
         private void btnFeedHold_Click(object sender, EventArgs e)
         {
-            sendCommand("!");
+            sendRealtimeCommand('!');
             signalResume = 1;
             updateControls(true);
         }
         private void btnResume_Click(object sender, EventArgs e)
         {
-            sendCommand("~");
+            sendRealtimeCommand('~');
             btnResume.BackColor = SystemColors.Control;
             signalResume = 0;
             lbInfo.Text = "";
@@ -1149,13 +1219,12 @@ namespace GRBL_Plotter
             }
             if (e.ClickedItem.Name == "cmsCodePaste")
             {
-                // groupBox1.Focus();
                 fCTBCode.Paste();
             }
             if (e.ClickedItem.Name == "cmsCodeSendLine")
             {
                 int clickedLine = fCTBCode.Selection.ToLine;
-                sendCommand("G90 " + fCTBCode.Lines[clickedLine]);
+                sendCommand("G90 " + fCTBCode.Lines[clickedLine] + " F" + joystickXYSpeed[5].ToString(),true);
                 MessageBox.Show("G90 " + fCTBCode.Lines[clickedLine]);
             }
         }
@@ -1235,7 +1304,7 @@ namespace GRBL_Plotter
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 redrawGCodePath();
                 SaveRecentFile(source);
-                isFileLoaded = true;
+ //               isFileLoaded = true;
                 this.Text = appName + " | Source: " + source;
             }
             this.Cursor = Cursors.Default;
@@ -1247,7 +1316,8 @@ namespace GRBL_Plotter
         private List<string> MRUlist = new List<string>();
         private void SaveRecentFile(string path)
         {
-            recentToolStripMenuItem.DropDownItems.Clear();
+         //   recentToolStripMenuItem.DropDownItems.Clear();
+            toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
             if (MRUlist.Contains(path)) //prevent duplication on recent list
                 MRUlist.Remove(path);
@@ -1258,7 +1328,8 @@ namespace GRBL_Plotter
             foreach (string item in MRUlist)
             {
                 ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
-                recentToolStripMenuItem.DropDownItems.Add(fileRecent);
+                //           recentToolStripMenuItem.DropDownItems.Add(fileRecent);
+                toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
             }
             StreamWriter stringToWrite =
             new StreamWriter(System.Environment.CurrentDirectory + "\\Recent.txt");
@@ -1570,6 +1641,30 @@ namespace GRBL_Plotter
         private void cBTool_CheckedChanged(object sender, EventArgs e)
         {
             _serial_form.TooInSpindle = cBTool.Checked;
+        }
+
+        private void saveMachineParametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Machine Ini files (*.ini)|*.ini";
+            sfd.FileName = "GRBL-Plotter.ini";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                var MyIni = new IniFile(sfd.FileName);
+                MyIni.WriteAll();
+            }
+        }
+
+        private void loadMachineParametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.FileName = "GRBL-Plotter.ini";
+            openFileDialog1.Filter = "Machine Ini files (*.ini)|*.ini";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var MyIni = new IniFile(openFileDialog1.FileName);
+                MyIni.ReadAll();
+                loadSettings(sender, e);
+            }
         }
     }
 }

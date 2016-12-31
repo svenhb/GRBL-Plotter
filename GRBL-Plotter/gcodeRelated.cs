@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace GRBL_Plotter
 {
@@ -120,9 +121,10 @@ namespace GRBL_Plotter
         }
 
         // get value from X,Y,Z F, S etc.
-        public static int getDoubleValue(char code, string tmp)
+        public static int getIntValue(char code, string tmp)
         {
             string cmdG = getStringValue(code, tmp);
+//            MessageBox.Show(cmdG);
             if (cmdG.Length > 0)
             {  return Convert.ToInt16(cmdG.Substring(1));  }
             return -1;
@@ -140,7 +142,7 @@ namespace GRBL_Plotter
         {   return number.ToString(formatCode); }
         public static string frmtNum(float number)     // convert float to string using format pattern
         {   return number.ToString(formatNumber); }
-        public static string frmtNum(double number)     // convert float to string using format pattern
+        public static string frmtNum(double number)     // convert double to string using format pattern
         {   return number.ToString(formatNumber); }
 
         public static void Pause(StringBuilder gcodeString, string cmt="")

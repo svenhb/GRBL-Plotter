@@ -73,10 +73,11 @@
             // 
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(209, 60);
+            this.label1.Size = new System.Drawing.Size(223, 67);
             this.label1.TabIndex = 2;
-            this.label1.Text = "\'Override\' will inject feed rate (F) or spindle speed (S) command immediately.\r\nA" +
-    "lso later upcoming F or S commands will be replaced by override-value.";
+            this.label1.Text = "GRBL Vers. 0.9:\r\n\'Override\' will inject feed rate (F) or spindle speed (S) comman" +
+    "d immediately.\r\nAlso later upcoming F or S commands will be replaced by override" +
+    "-value.";
             // 
             // groupBox1
             // 
@@ -86,9 +87,9 @@
             this.groupBox1.Controls.Add(this.nUDOverrideFRBtm);
             this.groupBox1.Controls.Add(this.nUDOverrideFRTop);
             this.groupBox1.Controls.Add(this.tBOverrideFR);
-            this.groupBox1.Location = new System.Drawing.Point(12, 63);
+            this.groupBox1.Location = new System.Drawing.Point(3, 70);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(77, 267);
+            this.groupBox1.Size = new System.Drawing.Size(100, 267);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Feed Rate";
@@ -198,9 +199,9 @@
             this.groupBox2.Controls.Add(this.nUDOverrideSSBtm);
             this.groupBox2.Controls.Add(this.nUDOverrideSSTop);
             this.groupBox2.Controls.Add(this.tBOverrideSS);
-            this.groupBox2.Location = new System.Drawing.Point(106, 63);
+            this.groupBox2.Location = new System.Drawing.Point(122, 70);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(92, 267);
+            this.groupBox2.Size = new System.Drawing.Size(100, 267);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Spindle Speed";
@@ -318,13 +319,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(210, 333);
+            this.ClientSize = new System.Drawing.Size(224, 341);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StreamingForm";
-            this.Text = "StreamingForm";
+            this.Text = "Overrides";
             this.Load += new System.EventHandler(this.StreamingForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

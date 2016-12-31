@@ -19,19 +19,15 @@ namespace GRBL_Plotter
         private void StreamingForm_Load(object sender, EventArgs e)
         {
             //      SetRange_ValueChanged(sender, e);
-                      tBOverrideFR.Minimum = (int)nUDOverrideFRBtm.Value;
-                        tBOverrideFR.Maximum = (int)nUDOverrideFRTop.Value;
-                        tBOverrideSS.Minimum = (int)nUDOverrideSSBtm.Value;
-                       tBOverrideSS.Maximum = (int)nUDOverrideSSTop.Value;
+            tBOverrideFR.Minimum = (int)nUDOverrideFRBtm.Value;
+            tBOverrideFR.Maximum = (int)nUDOverrideFRTop.Value;
+            tBOverrideSS.Minimum = (int)nUDOverrideSSBtm.Value;
+            tBOverrideSS.Maximum = (int)nUDOverrideSSTop.Value;
             lblOverrideFRValue.Text = tBOverrideFR.Value.ToString();
             lblOverrideSSValue.Text = tBOverrideSS.Value.ToString();
         }
         private void SetRange_ValueChanged(object sender, EventArgs e)
         {
-  //          tBOverrideFR.Minimum = (int)nUDOverrideFRBtm.Value;
-//            tBOverrideFR.Maximum = (int)nUDOverrideFRTop.Value;
-//            tBOverrideSS.Minimum = (int)nUDOverrideSSBtm.Value;
- //           tBOverrideSS.Maximum = (int)nUDOverrideSSTop.Value;
             lblOverrideFRValue.Text = tBOverrideFR.Value.ToString();
             lblOverrideSSValue.Text = tBOverrideSS.Value.ToString();
         }

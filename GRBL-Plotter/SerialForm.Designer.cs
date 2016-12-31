@@ -62,11 +62,26 @@ namespace GRBL_Plotter
             this.btnGRBLCommand3 = new System.Windows.Forms.Button();
             this.toolTipSerial = new System.Windows.Forms.ToolTip(this.components);
             this.btnGRBLCommand4 = new System.Windows.Forms.Button();
+            this.lblSrPos = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblSrBf = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblSrFS = new System.Windows.Forms.Label();
+            this.lblSrPn = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblSrOv = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblSrA = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblSrLn = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.timerSerial = new System.Windows.Forms.Timer(this.components);
             this.btnGRBLReset = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.lblPos = new System.Windows.Forms.Label();
+            this.lblSrState = new System.Windows.Forms.Label();
             this.cBCommand = new System.Windows.Forms.ComboBox();
+            this.cbStatus = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbPort
@@ -88,7 +103,7 @@ namespace GRBL_Plotter
             "38400",
             "57600",
             "115200"});
-            this.cbBaud.Location = new System.Drawing.Point(75, 2);
+            this.cbBaud.Location = new System.Drawing.Point(70, 2);
             this.cbBaud.Name = "cbBaud";
             this.cbBaud.Size = new System.Drawing.Size(65, 21);
             this.cbBaud.TabIndex = 1;
@@ -97,7 +112,7 @@ namespace GRBL_Plotter
             // 
             // btnOpenPort
             // 
-            this.btnOpenPort.Location = new System.Drawing.Point(146, 0);
+            this.btnOpenPort.Location = new System.Drawing.Point(135, 1);
             this.btnOpenPort.Name = "btnOpenPort";
             this.btnOpenPort.Size = new System.Drawing.Size(73, 23);
             this.btnOpenPort.TabIndex = 2;
@@ -108,11 +123,11 @@ namespace GRBL_Plotter
             // 
             // btnScanPort
             // 
-            this.btnScanPort.Location = new System.Drawing.Point(225, 0);
+            this.btnScanPort.Location = new System.Drawing.Point(207, 1);
             this.btnScanPort.Name = "btnScanPort";
-            this.btnScanPort.Size = new System.Drawing.Size(55, 23);
+            this.btnScanPort.Size = new System.Drawing.Size(73, 23);
             this.btnScanPort.TabIndex = 3;
-            this.btnScanPort.Text = "Scan";
+            this.btnScanPort.Text = "Scan Ports";
             this.toolTipSerial.SetToolTip(this.btnScanPort, "Scan for free ports");
             this.btnScanPort.UseVisualStyleBackColor = true;
             this.btnScanPort.Click += new System.EventHandler(this.btnScanPort_Click);
@@ -128,9 +143,9 @@ namespace GRBL_Plotter
             // rtbLog
             // 
             this.rtbLog.Font = new System.Drawing.Font("Lucida Console", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbLog.Location = new System.Drawing.Point(2, 50);
+            this.rtbLog.Location = new System.Drawing.Point(2, 117);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(280, 337);
+            this.rtbLog.Size = new System.Drawing.Size(280, 270);
             this.rtbLog.TabIndex = 4;
             this.rtbLog.Text = "";
             this.rtbLog.WordWrap = false;
@@ -212,6 +227,136 @@ namespace GRBL_Plotter
             this.btnGRBLCommand4.UseVisualStyleBackColor = true;
             this.btnGRBLCommand4.Click += new System.EventHandler(this.btnGRBLCommand4_Click);
             // 
+            // lblSrPos
+            // 
+            this.lblSrPos.AutoSize = true;
+            this.lblSrPos.Location = new System.Drawing.Point(65, 20);
+            this.lblSrPos.Name = "lblSrPos";
+            this.lblSrPos.Size = new System.Drawing.Size(103, 13);
+            this.lblSrPos.TabIndex = 15;
+            this.lblSrPos.Text = "0.000,-10.000,5.000";
+            this.toolTipSerial.SetToolTip(this.lblSrPos, "Work Position");
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(2, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Bf:";
+            this.toolTipSerial.SetToolTip(this.label2, "Buffer State");
+            // 
+            // lblSrBf
+            // 
+            this.lblSrBf.AutoSize = true;
+            this.lblSrBf.Location = new System.Drawing.Point(23, 37);
+            this.lblSrBf.Name = "lblSrBf";
+            this.lblSrBf.Size = new System.Drawing.Size(40, 13);
+            this.lblSrBf.TabIndex = 20;
+            this.lblSrBf.Text = "15,128";
+            this.toolTipSerial.SetToolTip(this.lblSrBf, "Buffer State");
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(70, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "FS:";
+            this.toolTipSerial.SetToolTip(this.label4, "Current Feed and Speed");
+            // 
+            // lblSrFS
+            // 
+            this.lblSrFS.AutoSize = true;
+            this.lblSrFS.Location = new System.Drawing.Point(94, 37);
+            this.lblSrFS.Name = "lblSrFS";
+            this.lblSrFS.Size = new System.Drawing.Size(52, 13);
+            this.lblSrFS.TabIndex = 22;
+            this.lblSrFS.Text = "500,8000";
+            this.toolTipSerial.SetToolTip(this.lblSrFS, "Current Feed and Speed");
+            // 
+            // lblSrPn
+            // 
+            this.lblSrPn.AutoSize = true;
+            this.lblSrPn.Location = new System.Drawing.Point(200, 37);
+            this.lblSrPn.Name = "lblSrPn";
+            this.lblSrPn.Size = new System.Drawing.Size(66, 13);
+            this.lblSrPn.TabIndex = 24;
+            this.lblSrPn.Text = "XYZPDHRS";
+            this.toolTipSerial.SetToolTip(this.lblSrPn, "Input Pin State");
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(174, 37);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(23, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Pn:";
+            this.toolTipSerial.SetToolTip(this.label7, "Input Pin State");
+            // 
+            // lblSrOv
+            // 
+            this.lblSrOv.AutoSize = true;
+            this.lblSrOv.Location = new System.Drawing.Point(94, 50);
+            this.lblSrOv.Name = "lblSrOv";
+            this.lblSrOv.Size = new System.Drawing.Size(67, 13);
+            this.lblSrOv.TabIndex = 26;
+            this.lblSrOv.Text = "100,100,100";
+            this.toolTipSerial.SetToolTip(this.lblSrOv, "Override Values");
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(70, 50);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(24, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Ov:";
+            this.toolTipSerial.SetToolTip(this.label9, "Override Values");
+            // 
+            // lblSrA
+            // 
+            this.lblSrA.AutoSize = true;
+            this.lblSrA.Location = new System.Drawing.Point(200, 50);
+            this.lblSrA.Name = "lblSrA";
+            this.lblSrA.Size = new System.Drawing.Size(29, 13);
+            this.lblSrA.TabIndex = 28;
+            this.lblSrA.Text = "SFM";
+            this.toolTipSerial.SetToolTip(this.lblSrA, "Accessory State");
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(174, 50);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(17, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "A:";
+            this.toolTipSerial.SetToolTip(this.label11, "Accessory State");
+            // 
+            // lblSrLn
+            // 
+            this.lblSrLn.AutoSize = true;
+            this.lblSrLn.Location = new System.Drawing.Point(23, 50);
+            this.lblSrLn.Name = "lblSrLn";
+            this.lblSrLn.Size = new System.Drawing.Size(37, 13);
+            this.lblSrLn.TabIndex = 30;
+            this.lblSrLn.Text = "99999";
+            this.toolTipSerial.SetToolTip(this.lblSrLn, "Line Number");
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(2, 50);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(22, 13);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "Ln:";
+            this.toolTipSerial.SetToolTip(this.label13, "Line Number");
+            // 
             // timerSerial
             // 
             this.timerSerial.Enabled = true;
@@ -228,24 +373,15 @@ namespace GRBL_Plotter
             this.btnGRBLReset.UseVisualStyleBackColor = true;
             this.btnGRBLReset.Click += new System.EventHandler(this.btnGRBLReset_Click);
             // 
-            // lblStatus
+            // lblSrState
             // 
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(4, 26);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(65, 21);
-            this.lblStatus.TabIndex = 14;
-            this.lblStatus.Text = "Status";
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPos
-            // 
-            this.lblPos.AutoSize = true;
-            this.lblPos.Location = new System.Drawing.Point(72, 30);
-            this.lblPos.Name = "lblPos";
-            this.lblPos.Size = new System.Drawing.Size(35, 13);
-            this.lblPos.TabIndex = 15;
-            this.lblPos.Text = "label1";
+            this.lblSrState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSrState.Location = new System.Drawing.Point(2, 16);
+            this.lblSrState.Name = "lblSrState";
+            this.lblSrState.Size = new System.Drawing.Size(65, 21);
+            this.lblSrState.TabIndex = 14;
+            this.lblSrState.Text = "Status";
+            this.lblSrState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cBCommand
             // 
@@ -260,14 +396,47 @@ namespace GRBL_Plotter
             this.cBCommand.TabIndex = 16;
             this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCommand_KeyPress);
             // 
+            // cbStatus
+            // 
+            this.cbStatus.AutoSize = true;
+            this.cbStatus.Location = new System.Drawing.Point(5, 66);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(168, 17);
+            this.cbStatus.TabIndex = 17;
+            this.cbStatus.Text = "Show Real-time Status Report";
+            this.cbStatus.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbStatus);
+            this.groupBox1.Controls.Add(this.lblSrA);
+            this.groupBox1.Controls.Add(this.lblSrLn);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.lblSrState);
+            this.groupBox1.Controls.Add(this.lblSrOv);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.lblSrPn);
+            this.groupBox1.Controls.Add(this.lblSrPos);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblSrFS);
+            this.groupBox1.Controls.Add(this.lblSrBf);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(4, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(276, 84);
+            this.groupBox1.TabIndex = 31;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Real-time Status Report";
+            // 
             // SerialForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 441);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cBCommand);
-            this.Controls.Add(this.lblPos);
-            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnGRBLReset);
             this.Controls.Add(this.btnGRBLCommand4);
             this.Controls.Add(this.btnGRBLCommand3);
@@ -281,19 +450,18 @@ namespace GRBL_Plotter
             this.Controls.Add(this.btnOpenPort);
             this.Controls.Add(this.cbBaud);
             this.Controls.Add(this.cbPort);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::GRBL_Plotter.Properties.Settings.Default, "locationSerForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = global::GRBL_Plotter.Properties.Settings.Default.locationSerForm;
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(300, 480);
             this.Name = "SerialForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "COM CNC";
+            this.Text = "COM C";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SerialForm_FormClosing);
             this.Load += new System.EventHandler(this.SerialForm_Load);
             this.Resize += new System.EventHandler(this.SerialForm_Resize);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -315,8 +483,22 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Timer timerSerial;
         private System.Windows.Forms.Button btnGRBLCommand4;
         private System.Windows.Forms.Button btnGRBLReset;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label lblPos;
+        private System.Windows.Forms.Label lblSrState;
+        private System.Windows.Forms.Label lblSrPos;
         private System.Windows.Forms.ComboBox cBCommand;
+        private System.Windows.Forms.CheckBox cbStatus;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSrBf;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblSrFS;
+        private System.Windows.Forms.Label lblSrPn;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblSrOv;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblSrA;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblSrLn;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

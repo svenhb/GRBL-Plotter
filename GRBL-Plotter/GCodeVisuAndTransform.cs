@@ -85,9 +85,10 @@ namespace GRBL_Plotter
         private double? old_y = null;
         private double? old_z = null;
         private int cmdnr = 0;
+        private int onlyZ = 0;
         public void addGCode(string cmdstr, double? nx, double? ny, double? nz, double i, double j)
         {
-            bool validx = false, validy = false, validz = false;
+            bool validx = false, validy = false, validz = false, passLimit = false;
             int indexG = cmdstr.IndexOf('G');
             cmdnr = gcode.getIntGCode('G',cmdstr);
             if (cmdnr < 0) cmdnr = 1;
@@ -114,16 +115,39 @@ namespace GRBL_Plotter
                 if (old_z == null) { old_z = z; }
             }
 
+            passLimit = false;
             if (validz)
-            {   if (z <= zLimit)                    // select path to draw depending on Z-Value
+            {
+                var pathOld = path;
+                if (z <= zLimit)                    // select path to draw depending on Z-Value
                 { path = pathPenDown; }
                 else
-                { path = pathPenUp; }
+                { path = pathPenUp;  }
+                if (path != pathOld)
+                    passLimit = true;
             }
             path.StartFigure();                 // Start Figure but never close to avoid connecting first and last point
             if (cmdnr == 0 || cmdnr == 1)
-            {
-                path.AddLine((float)old_x, (float)old_y, (float)x, (float)y);
+            {   if ((x != old_x) || (y != old_y))
+                {
+                    path.AddLine((float)old_x, (float)old_y, (float)x, (float)y);
+                    onlyZ = 0;  // x or y has changed
+                }
+                else
+                { onlyZ++; }
+                if ((onlyZ > 1) && (passLimit) && (path == pathPenUp))
+                {
+                    float size = 0.5f;
+                    path = pathPenDown;
+                    path.AddLine((float)x, (float)y, (float)x, (float)y - size);
+                    path.AddLine((float)x, (float)y - size, (float)x + size, (float)y);
+                    path.AddLine((float)x + size, (float)y, (float)x, (float)y + size);
+                    path.AddLine((float)x, (float)y + size, (float)x - size, (float)y);
+                    path.AddLine((float)x - size, (float)y, (float)x, (float)y - size);
+                    path.AddLine((float)x, (float)y - size, (float)x, (float)y);
+                    path = pathPenUp;
+                    onlyZ = 0;
+                }
             }
             if (cmdnr == 2 || cmdnr == 3)
             {
