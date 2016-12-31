@@ -2,8 +2,8 @@
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)
 Written in C# VisualStudio 2015.
 
-### New in version 0205:
-Feed rate and spindle speed override during streaming gcode.
+### New in version 1010:
+Supporting GRBL 1.1 (and 0.9 also)
 
 [Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
@@ -50,8 +50,8 @@ On my german homepage:
 Main GUI
 ![GRBL-Plotter GUI](GRBLPlotter_GUI.png?raw=true "Main GUI")
 
-Seperate serial COM window(s) - one for the CNC, one for the tool changer (or 4th axis)  
-![GRBL-Plotter COM interface](GRBLPlotter_COM2.png?raw=true "Serial connection")
+Separate serial COM window(s) - one for the CNC, one for the tool changer (or 4th axis)  
+![GRBL-Plotter COM interface](GRBLPlotter_COM2.png?raw=true "Serial connection") ![2nd GRBL control](GRBLPlotter_Control_COM2.png?raw=true "Serial connection")
 
 Setup import / GCode conversion  
 ![GRBL-Plotter Setup1](GRBLPlotter_Setup1.png?raw=true "Setup1")
@@ -71,5 +71,5 @@ Picture import
 Different scaling options  
 ![GRBL-Plotter Scaling](GRBLPlotter_scaling.png?raw=true "GCode scaling")
 
-Feed rate override  
-![GRBL-Plotter Override](GRBLPlotter_override.png?raw=true "GCode override")
+Feed rate overrid for Version 0.9 and 1.1
+![GRBL-Plotter Override](GRBLPlotter_override.png?raw=true "GCode override") ![GRBL-Plotter Override](GRBLPlotter_override2.png?raw=true "GCode override")
