@@ -2,10 +2,10 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRBL_Plotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="port" Type="System.String" Scope="User">
+    <Setting Name="port1" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM1</Value>
     </Setting>
-    <Setting Name="baud" Type="System.String" Scope="User">
+    <Setting Name="baud1" Type="System.String" Scope="User">
       <Value Profile="(Default)">115200</Value>
     </Setting>
     <Setting Name="file" Type="System.String" Scope="User">
@@ -161,7 +161,7 @@
     <Setting Name="importGCPWMDlyDown" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="importSVGBezier" Type="System.Int32" Scope="User">
+    <Setting Name="importSVGBezier" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="importSVGRezise" Type="System.Boolean" Scope="User">
@@ -188,7 +188,7 @@
     <Setting Name="importSVGPathExtend" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="locationSerForm" Type="System.Drawing.Point" Scope="User">
+    <Setting Name="locationSerForm1" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="locationMForm" Type="System.Drawing.Point" Scope="User">
@@ -244,6 +244,87 @@
     </Setting>
     <Setting Name="importPalette" Type="System.String" Scope="User">
       <Value Profile="(Default)">_misc\Stabilo_by_PN.gpl</Value>
+    </Setting>
+    <Setting Name="importGCDecPlaces" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="joyXYStep1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="joyXYStep2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="joyXYStep3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="joyXYStep4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="joyXYStep5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="joyXYSpeed1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="joyXYSpeed2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="joyXYSpeed3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="joyXYSpeed4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="joyXYSpeed5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="joyZStep1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="joyZStep2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="joyZStep3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="joyZStep4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="joyZStep5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="joyZSpeed1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="joyZSpeed2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="joyZSpeed3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="joyZSpeed4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="joyZSpeed5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="overrideFRTop" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="overrideFRBtm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="overrideFRValue" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="overrideSSTop" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="overrideSSBtm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="overrideSSValue" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5000</Value>
     </Setting>
   </Settings>
 </SettingsFile>
