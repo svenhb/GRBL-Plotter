@@ -72,5 +72,5 @@ Picture import
 Different scaling options  
 ![GRBL-Plotter Scaling](GRBLPlotter_scaling.png?raw=true "GCode scaling")
 
-Feed rate overrid for Version 0.9 and 1.1
+Feed rate overrid for Version 0.9 and 1.1  
 ![GRBL-Plotter Override](GRBLPlotter_override.png?raw=true "GCode override") ![GRBL-Plotter Override](GRBLPlotter_override2.png?raw=true "GCode override")
