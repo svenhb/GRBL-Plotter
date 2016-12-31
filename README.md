@@ -4,12 +4,13 @@ Written in C# VisualStudio 2015.
 
 ### New in version 1010:
 Supporting GRBL 1.1 (and 0.9 also)
+Export / import machine specific settings (Joystick, Buttons)
 
 [Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-####[GRBL-Plotter Vers. 0205](GRBL-Plotter_0205.zip)  2016-09-26  
+####[GRBL-Plotter Vers. 1010](GRBL-Plotter_1010_Publish.zip)  2016-12-31 
 Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'. Therefore the example files for color palettes and GCode-scripts will not be found by GRBL-Plotter (with default setup). You need to set the according paths new in the setup dialog - check screenshots below.
 
 ### Requirements for compiling
