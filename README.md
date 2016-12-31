@@ -3,7 +3,7 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.
 
 ### New in version 1010:
-Supporting GRBL 1.1 (and 0.9 also)
+Supporting GRBL 1.1 (and 0.9 also)  
 Export / import machine specific settings (Joystick, Buttons)
 
 [Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
