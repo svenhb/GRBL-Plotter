@@ -2,7 +2,7 @@
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)
 Written in C# VisualStudio 2015.
 
-### New in version 1010:
+### New in version 1.0.1.1:
 Supporting GRBL 1.1 (and 0.9 also)  
 Export / import machine specific settings (Joystick, Buttons)
 
@@ -10,7 +10,7 @@ Export / import machine specific settings (Joystick, Buttons)
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-####[GRBL-Plotter Vers. 1010](GRBL-Plotter_1010_Publish.zip)  2016-12-31 
+####[GRBL-Plotter Vers. 1011](GRBL-Plotter_1011_Publish.zip)  2017-01-01 
 Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'. Therefore the example files for color palettes and GCode-scripts will not be found by GRBL-Plotter (with default setup). You need to set the according paths new in the setup dialog - check screenshots below.
 
 ### Requirements for compiling
