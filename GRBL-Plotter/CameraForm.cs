@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2016 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,9 @@
 */
 /*
     Thanks to http://code-bude.net/2011/06/02/webcam-benutzen-in-csharp/
+*/
+/*
+ *  2017-01-01  check form-location and fix strange location
 */
 
 using System;
@@ -123,6 +126,8 @@ namespace GRBL_Plotter
             xmid = pictureBoxVideo.Size.Width / 2;
             ymid = pictureBoxVideo.Size.Height / 2;
             ratio = (double)pictureBoxVideo.Size.Height / pictureBoxVideo.Size.Width;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
         }
         // save settings
         private void camera_form_FormClosing(object sender, FormClosingEventArgs e)

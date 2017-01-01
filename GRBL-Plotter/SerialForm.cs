@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2016 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,8 @@
  *              Remove unknown G-Codes in preProcessStreaming() (list in grblRelated)
  *  2016-09-25  Implement override function
  *  2016-09-26  reduce  grblBufferSize to 100 during $C check gcode to reduce fake errors
+ *  2016-12-31  add GRBL 1.1 compatiblity, clean-up
+ *  2017-01-01  check form-location and fix strange location
 */
 
 //#define debuginfo 
@@ -103,7 +105,6 @@ namespace GRBL_Plotter
         private void SerialForm_Load(object sender, EventArgs e)
         {
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            if ((Location.X < 0) || (Location.X > desktopSize.Width) || (Location.Y < 0) || (Location.Y > desktopSize.Height)) { Location = new Point(0, 0); }
             SerialForm_Resize(sender, e);
             refreshPorts();
             updateControls();
@@ -115,6 +116,7 @@ namespace GRBL_Plotter
             else
             {   Location = Properties.Settings.Default.locationSerForm2;}
             Text = title;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width-100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height-100))) { Location = new Point(0, 0); }
         }
         private bool mainformAskClosing = false;
         private void SerialForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -349,6 +349,7 @@ namespace GRBL_Plotter
             this.createSimpleShapesToolStripMenuItem.Name = "createSimpleShapesToolStripMenuItem";
             this.createSimpleShapesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.createSimpleShapesToolStripMenuItem.Text = "Create Simple Shapes";
+            this.createSimpleShapesToolStripMenuItem.Visible = false;
             // 
             // aboutToolStripMenuItem
             // 

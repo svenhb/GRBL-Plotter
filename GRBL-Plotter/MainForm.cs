@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2016 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@
 /*  2016-09-18  improve performance for low-performance PC: during streaming show background-image with toolpath
  *              instead of redrawing toolpath with each onPaint.
  *              Joystick-control: adjustable step-width and speed.
+ *  2016-12-31  Add GRBL 1.1 function
+ *  2017-01-01  check form-location and fix strange location
  */
 using System;
 using System.Collections.Generic;
@@ -221,7 +223,7 @@ namespace GRBL_Plotter
         {
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             Location = Properties.Settings.Default.locationMForm;
-            if ((Location.X < -20) || (Location.X > desktopSize.Width) || (Location.Y < -20) || (Location.Y > desktopSize.Height)) { Location = new Point(0, 0); }
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
             loadSettings(sender, e);
             if ((Application.OpenForms["SerialForm"] as SerialForm) == null)

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2016 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,6 +15,9 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+ *  *  2017-01-01  check form-location and fix strange location
 */
 using System;
 using System.Drawing;
@@ -46,6 +49,8 @@ namespace GRBL_Plotter
             setButtonColors(btnColorTool,Properties.Settings.Default.colorTool);
             setButtonColors(btnColorMarker, Properties.Settings.Default.colorMarker);
             nUDImportDecPlaces.Value = Properties.Settings.Default.importGCDecPlaces;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
         }
 
         private void saveSettings()
