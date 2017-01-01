@@ -18,6 +18,10 @@ Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'.
 * DotNET 4.0
  
 ### Features:
+* Supporting GRBL 1.1 (and 0.9 also)  
+* Export / import machine specific settings (Joystick, Buttons)
+* Controlling a 2nd GRBL-Hardware
+* Tool exchange
 * User defined Buttons - GCode from text-field or file
 * Joystick like control
 * Automatic reconnect on program start
