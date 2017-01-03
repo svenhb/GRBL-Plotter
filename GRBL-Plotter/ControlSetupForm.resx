@@ -117,158 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="MainTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>126, 21</value>
-  </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>484, 17</value>
-  </metadata>
-  <metadata name="cmsScale.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>683, 17</value>
-  </metadata>
-  <metadata name="cmsCode.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>581, 17</value>
-  </metadata>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>344, 17</value>
-  </metadata>
-  <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>The feed hold command '!' will bring the active cycle to a stop via a controlled deceleration, so as not to lose position. 
-It is also real-time and may be activated at any time. Once finished or paused, Grbl will wait until a cycle start command 
-is issued to resume the program. Feed hold can only pause a cycle and will not affect homing or any other process.
-If you need to stop a cycle mid-program and can't afford losing position, perform a feed hold to have Grbl bring 
-everything to a controlled stop. Once finished, you can then issue a reset. Always try to execute a feed hold whenever 
-the machine is running before hitting reset, except of course if there is some emergency situation.
+  <data name="tBImportSVGPalette.ToolTip" xml:space="preserve">
+    <value>Path to GIMP palette (Inkscape), order of colors = tool number.
+Default, if no valid file given:
+  0   0   0  black (Tool 1)
+255   0   0  red  (Tool 2)
+  0 255   0  green  (Tool 3)
+  0   0 255  blue (Tool 4)
 </value>
   </data>
-  <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>This is Grbl's soft reset command 'Ctrl-x'. It's real-time and can be sent at any time. 
-As the name implies, it resets Grbl, but in a controlled way, retains your machine position, 
-and all is done without powering down your Arduino. The only times a soft-reset could 
-lose position is when problems arise and the steppers were killed while they were moving. 
-If so, it will report if Grbl's tracking of the machine position has been lost. 
-This is because an uncontrolled deceleration can lead to lost steps, and Grbl has no feedback 
-to how much it lost (this is the problem with steppers in general). Otherwise, Grbl will just re-initialize,
- run the startup lines, and continue on its merry way. 
-</value>
-  </data>
-  <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>The cycle start or resume command '~' can be issued at any time, as it is a real-time command. 
-When Grbl has motions queued in its buffer and is ready to go, the  ~  cycle start command will 
-start executing the buffer and Grbl will begin moving the axes.</value>
-  </data>
-  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
-    <value>Grbl's alarm mode is a state when something has gone critically wrong, 
-such as a hard limit or an abort during a cycle, or if Grbl doesn't know its position. 
-By default, if you have homing enabled and power-up the Arduino, Grbl enters
-the alarm state, because it does not know its position. The alarm mode will lock all 
-G-code commands until the '$H' homing cycle has been performed. Or if a user needs 
-to override the alarm lock to move their axes off their limit switches, for example, '$X' kill alarm lock 
-will override the locks and allow G-code functions to work again. 
-</value>
-  </data>
+  <metadata name="lvCustomButtons.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>114, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACgAAAC0CAYAAADmWm5VAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALMSURBVHhe7Zw9btwwFIT3Bi5TBXDlJoBTpHLldgufIEDa
-        HCBQ64MY0DHc6wI5BG+ijFZ/pJ6wcTBZaQQM4O8tNSLgb58pm6ANn9oWH8KgxlAJ1BgqgRpDJVBjqATq
-        cJFO7fmEYKBq+rw+Dxle0zh3Q1CHCwhW9XzjAiTPQ5bwOkpvCepwgU8+dm/sViGVyW4Jagw7sU6mqfAl
-        RmcvebcEcL2ce2tQYzjKSHWw69YoM3ZQaw2CarEGu0znKRYFNYZKoMZQCdQYKoEaQyVQY6gE6jcMdLEg
-        iwVZgmCq77ApGK8fs5/F9/hZXM7dgkzwYdosTILNJ+xmHi/jUnw7rnawkMpkt+SqYFPdYUc93Ev32MQ+
-        FHO34NgdlF+DYk+xJhZksSDLEQR/YqCLBVksyDILpufFGXU5cS8Kwar+HibszSzYfJ26dzo/Y+dSTtyL
-        1TWY6s/YB2p0c/0h6dZj9RLzHZgE+zPqfizawZfsjFp8DSphQRYLshxB8A0DXSzIYkGWIJjqL9g0lNme
-        ZIK/sjPqctKeHKmDPRb8RyzIEgTVsCCLBVmOIPgbA10syGJBlkzwPfvd8GubskkX0uviDHtx/0bMgs2P
-        9ly/X8apfooCEKyG+1syCRZSmewEsrF7qx2+EZNgUz21dRpudF/OqvtGOU/M6d5MeAM34uMdzPnLG/if
-        fHgN9mfY/XiXDq4+xUWn3rIz7B3W4Co7Pbk51wUFsCCLBVksyGJBFguyWJDFgiwWZLEgiwVZLMgCwfnA
-        WhELsliQxYIsFmSxIIsFWSzIYkGWIwiu/4G1ChZksSCLBVksyGJBFguyWJDFgixHEFz/JyAqWJDFgiwW
-        ZLEgiwVZLMhiQRYLshxBEB/CoMZQCdQYKoEaQyVQY6gEagyVQI2hEqgxVAI1hkqgxlAJ1BgqgRpDJVBj
-        qARqDJVAjaESqDFUAjWGSqDGUIdT+wcstXjDBF9sBwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        nMCqsjIRZgAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdGYXN0Q29sb3JlZFRleHRCb3gsIFZlcnNpb249Mi4xNi4xMS4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWZiOGFhMTJiOTk0ZWY2MWIMAwAAAFFTeXN0
-        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
-        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACJGYXN0Q29sb3JlZFRleHRCb3hOUy5TZXJ2aWNlQ29sb3JzBgAA
-        ACg8Q29sbGFwc2VNYXJrZXJGb3JlQ29sb3I+a19fQmFja2luZ0ZpZWxkKDxDb2xsYXBzZU1hcmtlckJh
-        Y2tDb2xvcj5rX19CYWNraW5nRmllbGQqPENvbGxhcHNlTWFya2VyQm9yZGVyQ29sb3I+a19fQmFja2lu
-        Z0ZpZWxkJjxFeHBhbmRNYXJrZXJGb3JlQ29sb3I+a19fQmFja2luZ0ZpZWxkJjxFeHBhbmRNYXJrZXJC
-        YWNrQ29sb3I+a19fQmFja2luZ0ZpZWxkKDxFeHBhbmRNYXJrZXJCb3JkZXJDb2xvcj5rX19CYWNraW5n
-        RmllbGQEBAQEBAQUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAA
-        ABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5E
-        cmF3aW5nLkNvbG9yAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAACAAAABfz///8UU3lzdGVtLkRy
-        YXdpbmcuQ29sb3IEAAAABG5hbWUFdmFsdWUKa25vd25Db2xvcgVzdGF0ZQEAAAAJBwcDAAAACgAAAAAA
-        AAAAlgABAAH7/////P///woAAAAAAAAAAKQAAQAB+v////z///8KAAAAAAAAAACWAAEAAfn////8////
-        CgAAAAAAAAAAjQABAAH4/////P///woAAAAAAAAAAKQAAQAB9/////z///8KAAAAAAAAAACWAAEACw==
-</value>
-  </data>
-  <metadata name="cmsPictureBox.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>784, 17</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAOEAAAEAGABIvwIAFgAAACgAAAAAAQAAwgEAAAEAGAAAAAAAAAAAALQAAAC0AAAAAAAAAAAA

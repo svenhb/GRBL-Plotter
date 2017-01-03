@@ -23,6 +23,7 @@
  *              Joystick-control: adjustable step-width and speed.
  *  2016-12-31  Add GRBL 1.1 function
  *  2017-01-01  check form-location and fix strange location
+ *  2017-01-03  Add 'Replace M3 by M4' during GCode file open
  */
 using System;
 using System.Collections.Generic;
@@ -42,15 +43,16 @@ namespace GRBL_Plotter
 
     public partial class MainForm : Form
     {
-        SerialForm _serial_form = null;
-        SerialForm _serial_form2 = null;
+        ControlSerialForm _serial_form = null;
+        ControlSerialForm _serial_form2 = null;
         Control2ndGRBL _2ndGRBL_form = null;
-        CameraForm _camera_form = null;
-        SetupForm _setup_form = null;
-        TextToGCode _text_form = null;
-        ImageToGCode _image_form = null;
-        StreamingForm _streaming_form = null;
-        StreamingForm2 _streaming_form2 = null;
+        ControlStreamingForm _streaming_form = null;
+        ControlStreamingForm2 _streaming_form2 = null;
+        ControlCameraForm _camera_form = null;
+        ControlSetupForm _setup_form = null;
+        GCodeFromText _text_form = null;
+        GCodeFromImage _image_form = null;
+        GCodeFromShape _shape_form = null;
 
         private const string appName = "GRBL Plotter";
         private xyzPoint posMachine = new xyzPoint(0, 0, 0);
@@ -89,8 +91,8 @@ namespace GRBL_Plotter
         // open Camera form
         private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Application.OpenForms["CameraForm"] as CameraForm) == null)
-            {   _camera_form = new CameraForm();
+            if ((Application.OpenForms["CameraForm"] as ControlCameraForm) == null)
+            {   _camera_form = new ControlCameraForm();
                 _camera_form.FormClosed += formClosed_CameraForm;
                 _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
             }
@@ -106,8 +108,8 @@ namespace GRBL_Plotter
         // open Setup form
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Application.OpenForms["SetupForm"] as SetupForm) == null)
-            {   _setup_form = new SetupForm();
+            if ((Application.OpenForms["SetupForm"] as ControlSetupForm) == null)
+            {   _setup_form = new ControlSetupForm();
                 _setup_form.FormClosed += formClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += loadSettings;
                 _setup_form.btnReloadFile.Click += reStartConvertSVG;
@@ -125,7 +127,7 @@ namespace GRBL_Plotter
         private void textWizzardToolStripMenuItem_Click(object sender, EventArgs e)
         {   if (_text_form == null)
             {
-                _text_form = new TextToGCode();
+                _text_form = new GCodeFromText();
                 _text_form.FormClosed += formClosed_TextToGCode;
                 _text_form.btnApply.Click += getGCodeFromText;      // assign btn-click event
             }
@@ -138,11 +140,28 @@ namespace GRBL_Plotter
         private void formClosed_TextToGCode(object sender, FormClosedEventArgs e)
         { _text_form = null; }
 
+        private void createSimpleShapesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_shape_form == null)
+            {
+                _shape_form = new GCodeFromShape();
+                _shape_form.FormClosed += formClosed_ShapeToGCode;
+                _shape_form.btnApply.Click += getGCodeFromShape;      // assign btn-click event
+            }
+            else
+            {
+                _shape_form.Visible = false;
+            }
+            _shape_form.Show(this);
+        }
+        private void formClosed_ShapeToGCode(object sender, FormClosedEventArgs e)
+        { _shape_form = null; }
+
         private void imageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Application.OpenForms["Image2GCode"] as ImageToGCode) == null)
+            if ((Application.OpenForms["Image2GCode"] as GCodeFromImage) == null)
             {
-                _image_form = new ImageToGCode();
+                _image_form = new GCodeFromImage();
                 _image_form.FormClosed += formClosed_ImageToGCode;
                 _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
             }
@@ -160,9 +179,9 @@ namespace GRBL_Plotter
             {
                 if (_streaming_form2 != null)
                     _streaming_form2.Visible = false;
-                if ((Application.OpenForms["StreamingForm"] as StreamingForm) == null)
+                if ((Application.OpenForms["StreamingForm"] as ControlStreamingForm) == null)
                 {
-                    _streaming_form = new StreamingForm();
+                    _streaming_form = new ControlStreamingForm();
                     _streaming_form.RaiseOverrideEvent += OnRaiseOverrideEvent;      // assign  event
                     _streaming_form.show_value_FR(actualFR);
                     _streaming_form.show_value_SS(actualSS);
@@ -177,9 +196,9 @@ namespace GRBL_Plotter
             {
                 if (_streaming_form != null)
                     _streaming_form.Visible = false;
-                if ((Application.OpenForms["StreamingForm2"] as StreamingForm2) == null)
+                if ((Application.OpenForms["StreamingForm2"] as ControlStreamingForm2) == null)
                 {
-                    _streaming_form2 = new StreamingForm2();
+                    _streaming_form2 = new ControlStreamingForm2();
                     _streaming_form2.RaiseOverrideEvent += OnRaiseOverrideMessage;      // assign  event
                 }
                 else
@@ -204,7 +223,7 @@ namespace GRBL_Plotter
                 _2ndGRBL_form = new Control2ndGRBL(_serial_form2);
                 if (_serial_form2 == null)
                 {
-                    _serial_form2 = new SerialForm("COM Tool changer", 2);
+                    _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
                     _serial_form2.Show(this);
                     _2ndGRBL_form.set2ndSerial(_serial_form2);
                     _serial_form.set2ndSerial(_serial_form2);
@@ -226,14 +245,14 @@ namespace GRBL_Plotter
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
             loadSettings(sender, e);
-            if ((Application.OpenForms["SerialForm"] as SerialForm) == null)
+            if ((Application.OpenForms["SerialForm"] as ControlSerialForm) == null)
             {
                 if (Properties.Settings.Default.useSerial2)
                 {
-                    _serial_form2 = new SerialForm("COM Tool changer", 2);
+                    _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
                     _serial_form2.Show(this);
                 }
-                _serial_form = new SerialForm("COM CNC", 1, _serial_form2);
+                _serial_form = new ControlSerialForm("COM CNC", 1, _serial_form2);
                 _serial_form.Show(this);
                 _serial_form.RaisePosEvent += OnRaisePosEvent;
                 _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
@@ -256,7 +275,7 @@ namespace GRBL_Plotter
             Properties.Settings.Default.locationMForm = Location;
             saveSettings();
             _serial_form.Close();
-            if ((Application.OpenForms["CameraForm"] as CameraForm) != null) _camera_form.Close();
+            if ((Application.OpenForms["CameraForm"] as ControlCameraForm) != null) _camera_form.Close();
         }
         // load settings
         private void loadSettings(object sender, EventArgs e)
@@ -576,7 +595,7 @@ namespace GRBL_Plotter
             {
                 if (_image_form == null)
                 {
-                    _image_form = new ImageToGCode(true);
+                    _image_form = new GCodeFromImage(true);
                     _image_form.FormClosed += formClosed_ImageToGCode;
                     _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
                 }
@@ -601,8 +620,7 @@ namespace GRBL_Plotter
                 File.WriteAllText(sfd.FileName, txt);
             }
         }
-        // load selected file
-//        bool isFileLoaded = false;
+
         bool blockRTBEvents = false;
         private void btnLoad_Click(object sender, EventArgs e)
         { }
@@ -616,6 +634,19 @@ namespace GRBL_Plotter
                 visuGCode.setPosMarker(0, 0);
                 blockRTBEvents = true;
                 fCTBCode.OpenFile(tbFile.Text);
+                if (_serial_form.isLaserMode && Properties.Settings.Default.ctrlReplaceEnable)
+                {   if (Properties.Settings.Default.ctrlReplaceM3)
+                    {   fCTBCode.Text = fCTBCode.Text.Replace("M3", "M4");
+                        fCTBCode.Text = "(!!! Replaced M3 by M4 !!!)\r\n" + fCTBCode.Text.Replace("M03", "M04");
+//                        MessageBox.Show("Replaced M3 by M4");
+                    }
+                    else
+                    {   fCTBCode.Text = fCTBCode.Text.Replace("M4", "M3");
+                        fCTBCode.Text = "(!!! Replaced M4 by M3 !!!)\r\n" + fCTBCode.Text.Replace("M04", "M03");
+//                        MessageBox.Show("Replaced M4 by M3");
+                    }
+                }
+
                 redrawGCodePath();
  //               isFileLoaded = true;
                 blockRTBEvents = false;
@@ -627,6 +658,19 @@ namespace GRBL_Plotter
             }
         }
 
+        private void showLaserMode()
+        {
+            if (!_serial_form.isGrblVers0 && _serial_form.isLaserMode)
+            {
+                lbInfo.Text = "Laser Mode active $32=1";
+                lbInfo.BackColor = Color.Fuchsia;
+            }
+            else
+            {
+                lbInfo.Text = "Laser Mode not active $32=0";
+                lbInfo.BackColor = Color.Lime;
+            }
+        }
         // handle file streaming
         TimeSpan elapsed;               //elapsed time from file burnin
         DateTime timeInit;              //time start to burning file
@@ -649,11 +693,16 @@ namespace GRBL_Plotter
             fCTBCodeMarkLine();
             fCTBCode.DoCaretVisible();
 
+            if (e.Status == grblStreaming.lasermode)
+            {
+                showLaserMode();
+            }
             if (e.Status == grblStreaming.reset)
             {
                 flagResetOffset = true;
                 isStreaming = false;
                 isStreamingCheck = false;
+                showLaserMode();
                 updateControls();
             }
             if (e.Status == grblStreaming.error)
@@ -823,7 +872,18 @@ namespace GRBL_Plotter
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _text_form.textGCode;
                 redrawGCodePath();
- //               isFileLoaded = true;
+                updateControls();
+            }
+        }
+        // handle event from create Text form
+        private void getGCodeFromShape(object sender, EventArgs e)
+        {
+            if (!isStreaming)
+            {
+                picBoxCopy = 0;
+                pictureBox1.BackgroundImage = null;
+                fCTBCode.Text = _shape_form.shapeGCode;
+                redrawGCodePath();
                 updateControls();
             }
         }
@@ -835,7 +895,6 @@ namespace GRBL_Plotter
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _image_form.imageGCode;
                 redrawGCodePath();
-//                isFileLoaded = true;
                 updateControls();
             }
         }
@@ -1200,7 +1259,7 @@ namespace GRBL_Plotter
                     fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
                     // Set marker in drawing
                     visuGCode.setMarkerOnDrawing(fCTBCode.SelectedText);
-                    //                    pictureBox1.Invalidate(); // avoid too much events
+                    pictureBox1.Invalidate(); // avoid too much events
                     if (_camera_form != null)
                         _camera_form.setPosMarker(visuGCode.GetPosMarkerX(), visuGCode.GetPosMarkerY());
                 }
@@ -1299,7 +1358,7 @@ namespace GRBL_Plotter
             this.Cursor = Cursors.WaitCursor;
             string gcodeh = "( Imported with GRBL-Plotter )\r\n";
             gcodeh += string.Format("( Source: {0} )\r\n", source);
-            string gcode = SVGToGCode.ConvertFile(source);
+            string gcode = GCodeFromSVG.ConvertFile(source);
             if (gcode.Length > 2)
             {
                 fCTBCode.Text = gcodeh + gcode;
@@ -1406,6 +1465,7 @@ namespace GRBL_Plotter
                     onPaint_drawToolPath(e.Graphics);
                 e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
                 e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
+       //         e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
             }
         }
         private void onPaint_scaling(Graphics e)
@@ -1668,5 +1728,6 @@ namespace GRBL_Plotter
                 loadSettings(sender, e);
             }
         }
+
     }
 }

@@ -33,7 +33,7 @@ namespace GRBL_Plotter
     };
 
     public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, unknown };
-    public enum grblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop };
+    public enum grblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode };
     public static class grbl
     {   // http://www.shapeoko.com/wiki/index.php/G-Code#G-code_Not_supported_by_Grbl
         public static int[] unknownG = { 41, 64, 81, 83 };

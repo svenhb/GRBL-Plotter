@@ -25,7 +25,7 @@ namespace GRBL_Plotter
 {
     public partial class Control2ndGRBL : Form
     {
-        SerialForm _serial_form2;
+        ControlSerialForm _serial_form2;
         private xyzPoint posMachine = new xyzPoint(0, 0, 0);
         private xyzPoint posWorld = new xyzPoint(0, 0, 0);
         private xyzPoint posProbe = new xyzPoint(0, 0, 0);
@@ -35,12 +35,12 @@ namespace GRBL_Plotter
         private double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
 
-        public Control2ndGRBL(SerialForm handle = null)
+        public Control2ndGRBL(ControlSerialForm handle = null)
         {   InitializeComponent();
             set2ndSerial(handle);
         }
 
-        public void set2ndSerial(SerialForm handle = null)
+        public void set2ndSerial(ControlSerialForm handle = null)
         {   _serial_form2 = handle;
             if (handle != null)
                 _serial_form2.RaisePosEvent += OnRaisePosEvent;

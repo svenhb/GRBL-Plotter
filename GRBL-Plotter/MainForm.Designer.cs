@@ -157,19 +157,6 @@ namespace GRBL_Plotter
             this.btnKillAlarm = new System.Windows.Forms.Button();
             this.tBURL = new System.Windows.Forms.TextBox();
             this.btnJogStop = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteThisCodeLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveToFirstPosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletePathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tLPAussen = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
-            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblTool = new System.Windows.Forms.Label();
@@ -180,6 +167,19 @@ namespace GRBL_Plotter
             this.tBSpeed = new System.Windows.Forms.TextBox();
             this.cBCoolant = new System.Windows.Forms.CheckBox();
             this.cBSpindle = new System.Windows.Forms.CheckBox();
+            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteThisCodeLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveToFirstPosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tLPAussen = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
             this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1.SuspendLayout();
@@ -189,16 +189,16 @@ namespace GRBL_Plotter
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmsPictureBox.SuspendLayout();
             this.tLPAussen.SuspendLayout();
             this.tLPLinks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             this.tLPRechts.SuspendLayout();
             this.tLPRechtsUnten.SuspendLayout();
             this.tLPRechtsUntenRechts.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.tLPMitteUnten.SuspendLayout();
             this.tLPRechtsOben.SuspendLayout();
             this.SuspendLayout();
@@ -349,7 +349,7 @@ namespace GRBL_Plotter
             this.createSimpleShapesToolStripMenuItem.Name = "createSimpleShapesToolStripMenuItem";
             this.createSimpleShapesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.createSimpleShapesToolStripMenuItem.Text = "Create Simple Shapes";
-            this.createSimpleShapesToolStripMenuItem.Visible = false;
+            this.createSimpleShapesToolStripMenuItem.Click += new System.EventHandler(this.createSimpleShapesToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1120,187 +1120,6 @@ namespace GRBL_Plotter
             this.btnJogStop.UseVisualStyleBackColor = false;
             this.btnJogStop.Click += new System.EventHandler(this.btnJogStop_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.BackgroundImage = global::GRBL_Plotter.Properties.Resources.modell;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.ContextMenuStrip = this.cmsPictureBox;
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(330, 348);
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            // 
-            // cmsPictureBox
-            // 
-            this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deletenotMarkToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.deleteThisCodeLineToolStripMenuItem,
-            this.moveToFirstPosToolStripMenuItem,
-            this.deletePathToolStripMenuItem});
-            this.cmsPictureBox.Name = "cmsPictureBox";
-            this.cmsPictureBox.Size = new System.Drawing.Size(215, 98);
-            // 
-            // deletenotMarkToolStripMenuItem
-            // 
-            this.deletenotMarkToolStripMenuItem.Name = "deletenotMarkToolStripMenuItem";
-            this.deletenotMarkToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.deletenotMarkToolStripMenuItem.Text = "Mark code (no delete)";
-            this.deletenotMarkToolStripMenuItem.ToolTipText = "Click to toggle";
-            this.deletenotMarkToolStripMenuItem.Click += new System.EventHandler(this.deletenotMarkToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
-            // 
-            // deleteThisCodeLineToolStripMenuItem
-            // 
-            this.deleteThisCodeLineToolStripMenuItem.Name = "deleteThisCodeLineToolStripMenuItem";
-            this.deleteThisCodeLineToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.deleteThisCodeLineToolStripMenuItem.Text = "Delete this code line";
-            this.deleteThisCodeLineToolStripMenuItem.ToolTipText = "Delete/Mark code line";
-            this.deleteThisCodeLineToolStripMenuItem.Click += new System.EventHandler(this.deleteThisCodeLineToolStripMenuItem_Click);
-            // 
-            // moveToFirstPosToolStripMenuItem
-            // 
-            this.moveToFirstPosToolStripMenuItem.Name = "moveToFirstPosToolStripMenuItem";
-            this.moveToFirstPosToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.moveToFirstPosToolStripMenuItem.Text = "Move to first pos.";
-            this.moveToFirstPosToolStripMenuItem.ToolTipText = "Mark path from marked pos. to end (and move to beginning of path)";
-            this.moveToFirstPosToolStripMenuItem.Click += new System.EventHandler(this.moveToFirstPosToolStripMenuItem_Click);
-            // 
-            // deletePathToolStripMenuItem
-            // 
-            this.deletePathToolStripMenuItem.Name = "deletePathToolStripMenuItem";
-            this.deletePathToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.deletePathToolStripMenuItem.Text = "Delete corresponding path";
-            this.deletePathToolStripMenuItem.ToolTipText = "Delete/Mark complete path of marked pos.";
-            this.deletePathToolStripMenuItem.Click += new System.EventHandler(this.deletePathToolStripMenuItem_Click);
-            // 
-            // tLPAussen
-            // 
-            this.tLPAussen.AutoSize = true;
-            this.tLPAussen.ColumnCount = 2;
-            this.tLPAussen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tLPAussen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPAussen.Controls.Add(this.tLPLinks, 0, 0);
-            this.tLPAussen.Controls.Add(this.tLPRechts, 1, 0);
-            this.tLPAussen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tLPAussen.Location = new System.Drawing.Point(0, 24);
-            this.tLPAussen.Name = "tLPAussen";
-            this.tLPAussen.RowCount = 1;
-            this.tLPAussen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPAussen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tLPAussen.Size = new System.Drawing.Size(884, 538);
-            this.tLPAussen.TabIndex = 19;
-            // 
-            // tLPLinks
-            // 
-            this.tLPLinks.ColumnCount = 1;
-            this.tLPLinks.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tLPLinks.Controls.Add(this.fCTBCode, 0, 1);
-            this.tLPLinks.Controls.Add(this.groupBox1, 0, 0);
-            this.tLPLinks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tLPLinks.Location = new System.Drawing.Point(3, 3);
-            this.tLPLinks.Name = "tLPLinks";
-            this.tLPLinks.RowCount = 2;
-            this.tLPLinks.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tLPLinks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPLinks.Size = new System.Drawing.Size(294, 532);
-            this.tLPLinks.TabIndex = 19;
-            // 
-            // fCTBCode
-            // 
-            this.fCTBCode.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
-            this.fCTBCode.AutoScrollMinSize = new System.Drawing.Size(193, 12);
-            this.fCTBCode.BackBrush = null;
-            this.fCTBCode.CharHeight = 12;
-            this.fCTBCode.CharWidth = 7;
-            this.fCTBCode.ContextMenuStrip = this.cmsCode;
-            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fCTBCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fCTBCode.Font = new System.Drawing.Font("Courier New", 8F);
-            this.fCTBCode.IsReplaceMode = false;
-            this.fCTBCode.Location = new System.Drawing.Point(3, 157);
-            this.fCTBCode.Name = "fCTBCode";
-            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
-            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
-            this.fCTBCode.Size = new System.Drawing.Size(288, 372);
-            this.fCTBCode.TabIndex = 24;
-            this.fCTBCode.Text = "Paste GCode or load file";
-            this.fCTBCode.Zoom = 100;
-            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
-            this.fCTBCode.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChangedDelayed);
-            this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
-            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
-            // 
-            // tLPRechts
-            // 
-            this.tLPRechts.ColumnCount = 1;
-            this.tLPRechts.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPRechts.Controls.Add(this.tLPRechtsUnten, 0, 1);
-            this.tLPRechts.Controls.Add(this.tLPRechtsOben, 0, 0);
-            this.tLPRechts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tLPRechts.Location = new System.Drawing.Point(303, 3);
-            this.tLPRechts.Name = "tLPRechts";
-            this.tLPRechts.RowCount = 2;
-            this.tLPRechts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 152F));
-            this.tLPRechts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 248F));
-            this.tLPRechts.Size = new System.Drawing.Size(578, 532);
-            this.tLPRechts.TabIndex = 21;
-            // 
-            // tLPRechtsUnten
-            // 
-            this.tLPRechtsUnten.ColumnCount = 2;
-            this.tLPRechtsUnten.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tLPRechtsUnten.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
-            this.tLPRechtsUnten.Controls.Add(this.tLPRechtsUntenRechts, 1, 0);
-            this.tLPRechtsUnten.Controls.Add(this.tLPMitteUnten, 0, 0);
-            this.tLPRechtsUnten.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tLPRechtsUnten.Location = new System.Drawing.Point(0, 152);
-            this.tLPRechtsUnten.Margin = new System.Windows.Forms.Padding(0);
-            this.tLPRechtsUnten.Name = "tLPRechtsUnten";
-            this.tLPRechtsUnten.RowCount = 1;
-            this.tLPRechtsUnten.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tLPRechtsUnten.Size = new System.Drawing.Size(578, 380);
-            this.tLPRechtsUnten.TabIndex = 12;
-            // 
-            // tLPRechtsUntenRechts
-            // 
-            this.tLPRechtsUntenRechts.ColumnCount = 1;
-            this.tLPRechtsUntenRechts.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tLPRechtsUntenRechts.Controls.Add(this.groupBox6, 0, 0);
-            this.tLPRechtsUntenRechts.Location = new System.Drawing.Point(342, 0);
-            this.tLPRechtsUntenRechts.Margin = new System.Windows.Forms.Padding(0);
-            this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
-            this.tLPRechtsUntenRechts.RowCount = 1;
-            this.tLPRechtsUntenRechts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 379F));
-            this.tLPRechtsUntenRechts.Size = new System.Drawing.Size(236, 379);
-            this.tLPRechtsUntenRechts.TabIndex = 19;
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.btnJogStop);
@@ -1442,6 +1261,188 @@ namespace GRBL_Plotter
             this.cBSpindle.UseVisualStyleBackColor = true;
             this.cBSpindle.CheckedChanged += new System.EventHandler(this.cBSpindle_CheckedChanged);
             // 
+            // fCTBCode
+            // 
+            this.fCTBCode.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
+            this.fCTBCode.AutoScrollMinSize = new System.Drawing.Size(193, 24);
+            this.fCTBCode.BackBrush = null;
+            this.fCTBCode.CharHeight = 12;
+            this.fCTBCode.CharWidth = 7;
+            this.fCTBCode.ContextMenuStrip = this.cmsCode;
+            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fCTBCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fCTBCode.Font = new System.Drawing.Font("Courier New", 8F);
+            this.fCTBCode.IsReplaceMode = false;
+            this.fCTBCode.Location = new System.Drawing.Point(3, 157);
+            this.fCTBCode.Name = "fCTBCode";
+            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
+            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
+            this.fCTBCode.Size = new System.Drawing.Size(288, 372);
+            this.fCTBCode.TabIndex = 24;
+            this.fCTBCode.Text = "Paste GCode or load file\r\n";
+            this.fCTBCode.ToolTip = null;
+            this.fCTBCode.Zoom = 100;
+            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
+            this.fCTBCode.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChangedDelayed);
+            this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
+            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox1.BackgroundImage = global::GRBL_Plotter.Properties.Resources.modell;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.ContextMenuStrip = this.cmsPictureBox;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(330, 348);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            // 
+            // cmsPictureBox
+            // 
+            this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deletenotMarkToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.deleteThisCodeLineToolStripMenuItem,
+            this.moveToFirstPosToolStripMenuItem,
+            this.deletePathToolStripMenuItem});
+            this.cmsPictureBox.Name = "cmsPictureBox";
+            this.cmsPictureBox.Size = new System.Drawing.Size(215, 98);
+            // 
+            // deletenotMarkToolStripMenuItem
+            // 
+            this.deletenotMarkToolStripMenuItem.Name = "deletenotMarkToolStripMenuItem";
+            this.deletenotMarkToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.deletenotMarkToolStripMenuItem.Text = "Mark code (no delete)";
+            this.deletenotMarkToolStripMenuItem.ToolTipText = "Click to toggle";
+            this.deletenotMarkToolStripMenuItem.Click += new System.EventHandler(this.deletenotMarkToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
+            // 
+            // deleteThisCodeLineToolStripMenuItem
+            // 
+            this.deleteThisCodeLineToolStripMenuItem.Name = "deleteThisCodeLineToolStripMenuItem";
+            this.deleteThisCodeLineToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.deleteThisCodeLineToolStripMenuItem.Text = "Delete this code line";
+            this.deleteThisCodeLineToolStripMenuItem.ToolTipText = "Delete/Mark code line";
+            this.deleteThisCodeLineToolStripMenuItem.Click += new System.EventHandler(this.deleteThisCodeLineToolStripMenuItem_Click);
+            // 
+            // moveToFirstPosToolStripMenuItem
+            // 
+            this.moveToFirstPosToolStripMenuItem.Name = "moveToFirstPosToolStripMenuItem";
+            this.moveToFirstPosToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.moveToFirstPosToolStripMenuItem.Text = "Move to first pos.";
+            this.moveToFirstPosToolStripMenuItem.ToolTipText = "Mark path from marked pos. to end (and move to beginning of path)";
+            this.moveToFirstPosToolStripMenuItem.Click += new System.EventHandler(this.moveToFirstPosToolStripMenuItem_Click);
+            // 
+            // deletePathToolStripMenuItem
+            // 
+            this.deletePathToolStripMenuItem.Name = "deletePathToolStripMenuItem";
+            this.deletePathToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.deletePathToolStripMenuItem.Text = "Delete corresponding path";
+            this.deletePathToolStripMenuItem.ToolTipText = "Delete/Mark complete path of marked pos.";
+            this.deletePathToolStripMenuItem.Click += new System.EventHandler(this.deletePathToolStripMenuItem_Click);
+            // 
+            // tLPAussen
+            // 
+            this.tLPAussen.AutoSize = true;
+            this.tLPAussen.ColumnCount = 2;
+            this.tLPAussen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tLPAussen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tLPAussen.Controls.Add(this.tLPLinks, 0, 0);
+            this.tLPAussen.Controls.Add(this.tLPRechts, 1, 0);
+            this.tLPAussen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tLPAussen.Location = new System.Drawing.Point(0, 24);
+            this.tLPAussen.Name = "tLPAussen";
+            this.tLPAussen.RowCount = 1;
+            this.tLPAussen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tLPAussen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tLPAussen.Size = new System.Drawing.Size(884, 538);
+            this.tLPAussen.TabIndex = 19;
+            // 
+            // tLPLinks
+            // 
+            this.tLPLinks.ColumnCount = 1;
+            this.tLPLinks.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tLPLinks.Controls.Add(this.fCTBCode, 0, 1);
+            this.tLPLinks.Controls.Add(this.groupBox1, 0, 0);
+            this.tLPLinks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tLPLinks.Location = new System.Drawing.Point(3, 3);
+            this.tLPLinks.Name = "tLPLinks";
+            this.tLPLinks.RowCount = 2;
+            this.tLPLinks.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tLPLinks.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tLPLinks.Size = new System.Drawing.Size(294, 532);
+            this.tLPLinks.TabIndex = 19;
+            // 
+            // tLPRechts
+            // 
+            this.tLPRechts.ColumnCount = 1;
+            this.tLPRechts.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tLPRechts.Controls.Add(this.tLPRechtsUnten, 0, 1);
+            this.tLPRechts.Controls.Add(this.tLPRechtsOben, 0, 0);
+            this.tLPRechts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tLPRechts.Location = new System.Drawing.Point(303, 3);
+            this.tLPRechts.Name = "tLPRechts";
+            this.tLPRechts.RowCount = 2;
+            this.tLPRechts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 152F));
+            this.tLPRechts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 248F));
+            this.tLPRechts.Size = new System.Drawing.Size(578, 532);
+            this.tLPRechts.TabIndex = 21;
+            // 
+            // tLPRechtsUnten
+            // 
+            this.tLPRechtsUnten.ColumnCount = 2;
+            this.tLPRechtsUnten.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tLPRechtsUnten.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 236F));
+            this.tLPRechtsUnten.Controls.Add(this.tLPRechtsUntenRechts, 1, 0);
+            this.tLPRechtsUnten.Controls.Add(this.tLPMitteUnten, 0, 0);
+            this.tLPRechtsUnten.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tLPRechtsUnten.Location = new System.Drawing.Point(0, 152);
+            this.tLPRechtsUnten.Margin = new System.Windows.Forms.Padding(0);
+            this.tLPRechtsUnten.Name = "tLPRechtsUnten";
+            this.tLPRechtsUnten.RowCount = 1;
+            this.tLPRechtsUnten.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tLPRechtsUnten.Size = new System.Drawing.Size(578, 380);
+            this.tLPRechtsUnten.TabIndex = 12;
+            // 
+            // tLPRechtsUntenRechts
+            // 
+            this.tLPRechtsUntenRechts.ColumnCount = 1;
+            this.tLPRechtsUntenRechts.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tLPRechtsUntenRechts.Controls.Add(this.groupBox6, 0, 0);
+            this.tLPRechtsUntenRechts.Location = new System.Drawing.Point(342, 0);
+            this.tLPRechtsUntenRechts.Margin = new System.Windows.Forms.Padding(0);
+            this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
+            this.tLPRechtsUntenRechts.RowCount = 1;
+            this.tLPRechtsUntenRechts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 379F));
+            this.tLPRechtsUntenRechts.Size = new System.Drawing.Size(236, 379);
+            this.tLPRechtsUntenRechts.TabIndex = 19;
+            // 
             // tLPMitteUnten
             // 
             this.tLPMitteUnten.AutoSize = true;
@@ -1502,18 +1503,18 @@ namespace GRBL_Plotter
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmsPictureBox.ResumeLayout(false);
             this.tLPAussen.ResumeLayout(false);
             this.tLPLinks.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             this.tLPRechts.ResumeLayout(false);
             this.tLPRechtsUnten.ResumeLayout(false);
             this.tLPRechtsUnten.PerformLayout();
             this.tLPRechtsUntenRechts.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
             this.tLPMitteUnten.ResumeLayout(false);
             this.tLPMitteUnten.PerformLayout();
             this.tLPRechtsOben.ResumeLayout(false);

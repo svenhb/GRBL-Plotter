@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -118,11 +118,11 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CameraForm.cs">
+    <Compile Include="ControlCameraForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CameraForm.Designer.cs">
-      <DependentUpon>CameraForm.cs</DependentUpon>
+    <Compile Include="ControlCameraForm.Designer.cs">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Control2ndGRBL.cs">
       <SubType>Form</SubType>
@@ -134,11 +134,11 @@
     <Compile Include="grblRelated.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="GCodeVisuAndTransform.cs" />
-    <Compile Include="ImageToGCode.cs">
+    <Compile Include="GCodeFromImage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImageToGCode.Designer.cs">
-      <DependentUpon>ImageToGCode.cs</DependentUpon>
+    <Compile Include="GCodeFromImage.Designer.cs">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -148,56 +148,56 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerialForm.cs">
+    <Compile Include="ControlSerialForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SerialForm.Designer.cs">
-      <DependentUpon>SerialForm.cs</DependentUpon>
+    <Compile Include="ControlSerialForm.Designer.cs">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="SetupForm.cs">
+    <Compile Include="ControlSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetupForm.Designer.cs">
-      <DependentUpon>SetupForm.cs</DependentUpon>
+    <Compile Include="ControlSetupForm.Designer.cs">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StreamingForm.cs">
+    <Compile Include="ControlStreamingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StreamingForm.Designer.cs">
-      <DependentUpon>StreamingForm.cs</DependentUpon>
+    <Compile Include="ControlStreamingForm.Designer.cs">
+      <DependentUpon>ControlStreamingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StreamingForm2.cs">
+    <Compile Include="ControlStreamingForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StreamingForm2.Designer.cs">
-      <DependentUpon>StreamingForm2.cs</DependentUpon>
+    <Compile Include="ControlStreamingForm2.Designer.cs">
+      <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="svgPalette.cs" />
-    <Compile Include="SVGToGCode.cs" />
-    <Compile Include="TextToGCode.cs">
+    <Compile Include="GCodeFromSVG.cs" />
+    <Compile Include="GCodeFromText.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TextToGCode.Designer.cs">
-      <DependentUpon>TextToGCode.cs</DependentUpon>
+    <Compile Include="GCodeFromText.Designer.cs">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
     </Compile>
-    <Compile Include="WizardForm.cs">
+    <Compile Include="GCodeFromShape.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WizardForm.Designer.cs">
-      <DependentUpon>WizardForm.cs</DependentUpon>
+    <Compile Include="GCodeFromShape.Designer.cs">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CameraForm.resx">
-      <DependentUpon>CameraForm.cs</DependentUpon>
+    <EmbeddedResource Include="ControlCameraForm.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control2ndGRBL.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageToGCode.resx">
-      <DependentUpon>ImageToGCode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeFromImage.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -212,23 +212,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SerialForm.resx">
-      <DependentUpon>SerialForm.cs</DependentUpon>
+    <EmbeddedResource Include="ControlSerialForm.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetupForm.resx">
-      <DependentUpon>SetupForm.cs</DependentUpon>
+    <EmbeddedResource Include="ControlSetupForm.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StreamingForm.resx">
-      <DependentUpon>StreamingForm.cs</DependentUpon>
+    <EmbeddedResource Include="ControlStreamingForm.resx">
+      <DependentUpon>ControlStreamingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StreamingForm2.resx">
-      <DependentUpon>StreamingForm2.cs</DependentUpon>
+    <EmbeddedResource Include="ControlStreamingForm2.resx">
+      <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextToGCode.resx">
-      <DependentUpon>TextToGCode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeFromText.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WizardForm.resx">
-      <DependentUpon>WizardForm.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeFromShape.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="GRBL-Plotter_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
