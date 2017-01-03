@@ -141,10 +141,10 @@
       <Value Profile="(Default)">2000</Value>
     </Setting>
     <Setting Name="importGCHeader" Type="System.String" Scope="User">
-      <Value Profile="(Default)">G90 G1</Value>
+      <Value Profile="(Default)">G90 G1 M3</Value>
     </Setting>
     <Setting Name="importGCFooter" Type="System.String" Scope="User">
-      <Value Profile="(Default)">G0 X0 Y0; M30</Value>
+      <Value Profile="(Default)">M5; G0 X0 Y0; M30</Value>
     </Setting>
     <Setting Name="importGCPWMEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -325,6 +325,54 @@
     </Setting>
     <Setting Name="overrideSSValue" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="toolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="toolZStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="toolFeedXY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="toolFeedZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="toolOverlap" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="toolSpindleSpeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20000</Value>
+    </Setting>
+    <Setting Name="shapeX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="shapeY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="shapeR" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="shapeType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="toolPath" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="shapeOrigin" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGCSpindleCmd" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ctrlLaserMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlReplaceEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlReplaceM3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

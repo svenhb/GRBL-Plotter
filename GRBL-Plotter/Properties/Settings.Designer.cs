@@ -577,7 +577,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G90 G1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("G90 G1 M3")]
         public string importGCHeader {
             get {
                 return ((string)(this["importGCHeader"]));
@@ -589,7 +589,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G0 X0 Y0; M30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("M5; G0 X0 Y0; M30")]
         public string importGCFooter {
             get {
                 return ((string)(this["importGCFooter"]));
@@ -1316,6 +1316,198 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["overrideSSValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal toolDiameter {
+            get {
+                return ((decimal)(this["toolDiameter"]));
+            }
+            set {
+                this["toolDiameter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal toolZStep {
+            get {
+                return ((decimal)(this["toolZStep"]));
+            }
+            set {
+                this["toolZStep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public decimal toolFeedXY {
+            get {
+                return ((decimal)(this["toolFeedXY"]));
+            }
+            set {
+                this["toolFeedXY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400")]
+        public decimal toolFeedZ {
+            get {
+                return ((decimal)(this["toolFeedZ"]));
+            }
+            set {
+                this["toolFeedZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("90")]
+        public decimal toolOverlap {
+            get {
+                return ((decimal)(this["toolOverlap"]));
+            }
+            set {
+                this["toolOverlap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20000")]
+        public decimal toolSpindleSpeed {
+            get {
+                return ((decimal)(this["toolSpindleSpeed"]));
+            }
+            set {
+                this["toolSpindleSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public decimal shapeX {
+            get {
+                return ((decimal)(this["shapeX"]));
+            }
+            set {
+                this["shapeX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public decimal shapeY {
+            get {
+                return ((decimal)(this["shapeY"]));
+            }
+            set {
+                this["shapeY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal shapeR {
+            get {
+                return ((decimal)(this["shapeR"]));
+            }
+            set {
+                this["shapeR"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int shapeType {
+            get {
+                return ((int)(this["shapeType"]));
+            }
+            set {
+                this["shapeType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int toolPath {
+            get {
+                return ((int)(this["toolPath"]));
+            }
+            set {
+                this["toolPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int shapeOrigin {
+            get {
+                return ((int)(this["shapeOrigin"]));
+            }
+            set {
+                this["shapeOrigin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCSpindleCmd {
+            get {
+                return ((bool)(this["importGCSpindleCmd"]));
+            }
+            set {
+                this["importGCSpindleCmd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlLaserMode {
+            get {
+                return ((bool)(this["ctrlLaserMode"]));
+            }
+            set {
+                this["ctrlLaserMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlReplaceEnable {
+            get {
+                return ((bool)(this["ctrlReplaceEnable"]));
+            }
+            set {
+                this["ctrlReplaceEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ctrlReplaceM3 {
+            get {
+                return ((bool)(this["ctrlReplaceM3"]));
+            }
+            set {
+                this["ctrlReplaceM3"] = value;
             }
         }
     }
