@@ -4,9 +4,9 @@ Written in C# VisualStudio 2015.
 
 ### New in version 1.0.2.0:
 Supporting GRBL 1.1 (and 0.9 also)  
-Export / import machine specific settings (Joystick, Buttons)
-Simple shapes
-Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1)
+Export / import machine specific settings (Joystick, Buttons)  
+Simple shapes  
+Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1)  
 
 [Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
