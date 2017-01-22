@@ -1,20 +1,20 @@
 # GRBL-Plotter
 [README english](README.md)  
-Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)
+Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)  
 Geschrieben in C# VisualStudio 2015.
 
 ### Neu in Version 1.0.2.0:
 Unterstützung der neuen GRBL Version 1.1 (und auch der Version 0.9)  
 Export / Import maschinen-spezifischer Einstellungen (Joystick, Buttons)  
-Erzeugung einfacher Formen (Kreis, Rechteck auch als Tasche)
+Erzeugung einfacher Formen (Kreis, Rechteck auch als Tasche)  
 Einlesen von GCode mit optionaler Ersetzung von M3 / M4 Befehlen (hilfreich für den neuen 'Laser Mode' $32=1)  
 
 [Im Wiki gibt es weitere Informationen](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
-### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
-Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
+### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
+Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
 ####[GRBL-Plotter Vers. 1020](GRBL-Plotter_1020_Publish.zip)  2017-01-03 
-Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'. Therefore the example files for color palettes and GCode-scripts will not be found by GRBL-Plotter (with default setup). You need to set the according paths new in the setup dialog - check screenshots below.
+Leider wird der '_misc' Ordner nicht mit installiert beim 'ClickOnce'. Deswegen werden die Beispieldateien für Farbpalette GCode Skripte nicht gefunden. Die nötigen Pfade müssen dann manuell neu gesetzt werden - siehe Screenshots unten.
 
 ### Requirements for compiling
 * VisualStudio 2015 
@@ -44,14 +44,10 @@ Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'.
   - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
   - examine SerialForm.cs for implementation
 
-### ToDo
-* Wizzard to generate simple forms in GCode
+### Meine Testumgebung
+[Meine XYZ platform](http://svenhb.bplaced.net/?CNC___Plotter)
 
-### My test bed
-On my german homepage:
-[my XYZ platform](http://svenhb.bplaced.net/?CNC___Plotter)
-
-### GRBL-Plotter in tool change action
+### Video: GRBL-Plotter beim 'Werkzeugwechsel'
 [![Import an image](https://img.youtube.com/vi/x5UTHpgsfII/0.jpg)](https://www.youtube.com/watch?v=x5UTHpgsfII)
 
 ### Screenshots
