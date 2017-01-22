@@ -16,30 +16,30 @@ Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewün
 ####[GRBL-Plotter Vers. 1020](GRBL-Plotter_1020_Publish.zip)  2017-01-03 
 Leider wird der '_misc' Ordner nicht mit installiert beim 'ClickOnce'. Deswegen werden die Beispieldateien für Farbpalette GCode Skripte nicht gefunden. Die nötigen Pfade müssen dann manuell neu gesetzt werden - siehe Screenshots unten.
 
-### Requirements for compiling
+### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
 * DotNET 4.0
  
-### Features:
-* Supporting GRBL 1.1 (and 0.9 also)  
-* Export / import machine specific settings (Joystick, Buttons)
-* Controlling a 2nd GRBL-Hardware
-* Tool exchange
-* User defined Buttons - GCode from text-field or file
-* Joystick like control
-* Automatic reconnect on program start
+### Funktionen:
+* Unterstützung der GRBL Versionen 1.1 (und auch 0.9)  
+* Export / import machine specific settings (Joystick, Buttons)  
+* Ansteuerung einer zweiten GRBL-Hardware 
+* automatischer Werkzeugwechsel (mit zweiter GRBL-Hardware)
+* Benutzerdefinierte Buttons - GCode aus Textfeld oder Datei ausführen
+* Joystick-ähnliche Steuerung
+* Automatische Verbindung zur GRBL-Hardware beim Programmstart
 * Recent File List (Files and URLs)
-* 2-dimensional preview
-* Import/creation and conversion into GCode 
-  - from SVG Graphics
-  - from Text (into Hershey Font)
-  - conversion of the Z-Dimension into Z-axis (router) or Spindle on/off (laser) or Spindle-Speed (RC-Servo PWM) 
-* GCode can be edited and saved
-* Drag & Drop of GCode (*.nc) and SVG (*.svg) files
-* Drag & Drop (or Copy & Paste) of Browserlinks to SVG-files (works only with Chrome) for example from https://openclipart.org/
-* Transformation of GCodes (scale, rotation, mirror, zero-Offset)
-* Optional usage of a WebCam with graphics overlay of the current GCode, set zero point, measure angle, zoom
-* Internal variable to support probing, e.g.:
+* 2D Vorschau
+* Import/Erzeugung und Umwandlung in GCode 
+  - aus SVG Grafik
+  - aus Text (in Hershey Font)
+  - Umwandlung der Höheninformation in Bewegung der Z-Achse (Fräse) oder Fräsmotor ein/aus (Laser) oder Fräser-Drehzahl (RC-Servo PWM) 
+* GCode kann geändert und gespeichert werden
+* Drag & Drop von GCode (*.nc) und SVG (*.svg) Dateien
+* Drag & Drop (oder Copy & Paste) von Browserlinks auf SVG-Dateien (funktioniert nur unter Chrome) z.B. von https://openclipart.org/
+* Transformation von GCodes (Skalierung, Drehung, Spiegeln, Nullpunkt)
+* Optionale Nutzung einer WebCam mit Grafikeinblendung des GCodes, Nullpunktsetzung, Winkelmessung, Zoom
+* Interne Variablen um Probing zu unterstützen:
   - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.)
   - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
   - examine SerialForm.cs for implementation
