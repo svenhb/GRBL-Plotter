@@ -4,7 +4,7 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.
 
 ### Neu in Version 1.0.3.0:  
-Zweisprachig - deutsch, englisch
+Zweisprachig - deutsch, englisch  
 Überarbeitung der Kameraunterstützung
     
 ### Neu in Version 1.0.2.0:
