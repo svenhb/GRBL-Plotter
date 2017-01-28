@@ -3,6 +3,10 @@
 Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)  
 Geschrieben in C# VisualStudio 2015.
 
+### Neu in Version 1.0.3.0:  
+Zweisprachig - deutsch, englisch
+Überarbeitung der Kameraunterstützung
+    
 ### Neu in Version 1.0.2.0:
 Unterstützung der neuen GRBL Version 1.1 (und auch der Version 0.9)  
 Export / Import maschinen-spezifischer Einstellungen (Joystick, Buttons)  
