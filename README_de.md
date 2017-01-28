@@ -56,28 +56,28 @@ Leider wird der '_misc' Ordner nicht mit installiert beim 'ClickOnce'. Deswegen 
 
 ### Screenshots
 Main GUI
-![GRBL-Plotter GUI](doc/GRBLPlotter_GUI.png?raw=true "Main GUI")
+![GRBL-Plotter GUI](doc/GRBLPlotter_GUI.png?raw=true "Main GUI") 
 
 Separate serial COM window(s) - one for the CNC, one for the tool changer (or 4th axis)  
-![GRBL-Plotter COM interface](doc/GRBLPlotter_COM2.png?raw=true "Serial connection") ![2nd GRBL control](doc/GRBLPlotter_Control_COM2.png?raw=true "Serial connection")
+![GRBL-Plotter COM interface](doc/GRBLPlotter_COM2.png?raw=true "Serial connection") ![2nd GRBL control](doc/GRBLPlotter_Control_COM2.png?raw=true "Serial connection") 
 
 Setup import / GCode conversion  
-![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1.png?raw=true "Setup1")
+![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1.png?raw=true "Setup1") 
 
 Setup user defined buttons  
-![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2.png?raw=true "Setup2")
+![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2.png?raw=true "Setup2") 
 
 Setup tool change and colors  
-![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3.png?raw=true "Setup3")
+![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3.png?raw=true "Setup3") 
 
 Text import  
-![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion")
+![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
 
 Picture import  
-![GRBL-Plotter Image](doc/GRBLPlotter_Image2.png?raw=true "Image import")
+![GRBL-Plotter Image](doc/GRBLPlotter_Image.png?raw=true "Image import") 
 
 Different scaling options  
-![GRBL-Plotter Scaling](doc/GRBLPlotter_scaling.png?raw=true "GCode scaling")
+![GRBL-Plotter Scaling](doc/GRBLPlotter_scaling.png?raw=true "GCode scaling") 
 
 Feed rate overrid for Version 0.9 and 1.1  
 ![GRBL-Plotter Override](doc/GRBLPlotter_override.png?raw=true "GCode override") ![GRBL-Plotter Override](doc/GRBLPlotter_override2.png?raw=true "GCode override")
