@@ -4,7 +4,7 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.
 
 ### New in version 1.0.3.0:  
-Two languages - german, english
+Two languages - german, english  
 Rework the camera form 
   
 ### New in version 1.0.2.0:
