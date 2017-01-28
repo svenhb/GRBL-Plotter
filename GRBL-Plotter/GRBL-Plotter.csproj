@@ -28,7 +28,7 @@
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
+    <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -190,14 +190,41 @@
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Control2ndGRBL.de-DE.resx">
+      <DependentUpon>Control2ndGRBL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlCameraForm.de-DE.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlCameraForm.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control2ndGRBL.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ControlSerialForm.de-DE.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlSetupForm.de-DE.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlStreamingForm.de-DE.resx">
+      <DependentUpon>ControlStreamingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeFromImage.de-DE.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCodeFromImage.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeFromShape.de-DE.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeFromText.de-DE.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.de-DE.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

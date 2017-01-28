@@ -72,44 +72,30 @@ namespace GRBL_Plotter
             // 
             // tBText
             // 
-            this.tBText.Location = new System.Drawing.Point(6, 126);
-            this.tBText.Multiline = true;
+            resources.ApplyResources(this.tBText, "tBText");
             this.tBText.Name = "tBText";
-            this.tBText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tBText.Size = new System.Drawing.Size(306, 95);
-            this.tBText.TabIndex = 0;
-            this.tBText.Text = "Max Mustermann\r\nEinbahnstr. 5\r\n12345 Berlin";
-            this.tBText.WordWrap = false;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 40);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Char height";
             // 
             // cBFont
             // 
+            resources.ApplyResources(this.cBFont, "cBFont");
             this.cBFont.FormattingEnabled = true;
-            this.cBFont.Location = new System.Drawing.Point(6, 15);
             this.cBFont.Name = "cBFont";
-            this.cBFont.Size = new System.Drawing.Size(129, 21);
-            this.cBFont.TabIndex = 6;
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(112, 227);
+            resources.ApplyResources(this.btnApply, "btnApply");
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(91, 23);
-            this.btnApply.TabIndex = 9;
-            this.btnApply.Text = "Create GCode";
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.nUDFontLine);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.nUDFontDistance);
@@ -117,26 +103,19 @@ namespace GRBL_Plotter
             this.groupBox3.Controls.Add(this.nUDFontSize);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.cBFont);
-            this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(140, 114);
-            this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Font";
             // 
             // nUDFontLine
             // 
+            resources.ApplyResources(this.nUDFontLine, "nUDFontLine");
             this.nUDFontLine.DecimalPlaces = 1;
-            this.nUDFontLine.Location = new System.Drawing.Point(84, 80);
             this.nUDFontLine.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDFontLine.Name = "nUDFontLine";
-            this.nUDFontLine.Size = new System.Drawing.Size(51, 20);
-            this.nUDFontLine.TabIndex = 11;
-            this.nUDFontLine.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nUDFontLine.Value = new decimal(new int[] {
             15,
             0,
@@ -145,55 +124,40 @@ namespace GRBL_Plotter
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 82);
+            resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 13);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Line distance";
             // 
             // nUDFontDistance
             // 
+            resources.ApplyResources(this.nUDFontDistance, "nUDFontDistance");
             this.nUDFontDistance.DecimalPlaces = 1;
             this.nUDFontDistance.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nUDFontDistance.Location = new System.Drawing.Point(84, 59);
             this.nUDFontDistance.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             -2147483648});
             this.nUDFontDistance.Name = "nUDFontDistance";
-            this.nUDFontDistance.Size = new System.Drawing.Size(51, 20);
-            this.nUDFontDistance.TabIndex = 9;
-            this.nUDFontDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 61);
+            resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 13);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "Char distance";
             // 
             // nUDFontSize
             // 
+            resources.ApplyResources(this.nUDFontSize, "nUDFontSize");
             this.nUDFontSize.DecimalPlaces = 1;
-            this.nUDFontSize.Location = new System.Drawing.Point(84, 38);
             this.nUDFontSize.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDFontSize.Name = "nUDFontSize";
-            this.nUDFontSize.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nUDFontSize.Size = new System.Drawing.Size(51, 20);
-            this.nUDFontSize.TabIndex = 7;
-            this.nUDFontSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nUDFontSize.Value = new decimal(new int[] {
             10,
             0,
@@ -203,85 +167,58 @@ namespace GRBL_Plotter
             // 
             // btnCancel
             // 
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(237, 227);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.cBPauseLine);
             this.groupBox1.Controls.Add(this.cBPauseWord);
             this.groupBox1.Controls.Add(this.cBPauseChar);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(152, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(157, 114);
-            this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "G-Code";
             // 
             // cBPauseLine
             // 
-            this.cBPauseLine.AutoSize = true;
-            this.cBPauseLine.Location = new System.Drawing.Point(9, 59);
+            resources.ApplyResources(this.cBPauseLine, "cBPauseLine");
             this.cBPauseLine.Name = "cBPauseLine";
-            this.cBPauseLine.Size = new System.Drawing.Size(121, 17);
-            this.cBPauseLine.TabIndex = 3;
-            this.cBPauseLine.Text = "Add Pause after line";
             this.cBPauseLine.UseVisualStyleBackColor = true;
             // 
             // cBPauseWord
             // 
-            this.cBPauseWord.AutoSize = true;
-            this.cBPauseWord.Location = new System.Drawing.Point(9, 36);
+            resources.ApplyResources(this.cBPauseWord, "cBPauseWord");
             this.cBPauseWord.Name = "cBPauseWord";
-            this.cBPauseWord.Size = new System.Drawing.Size(128, 17);
-            this.cBPauseWord.TabIndex = 2;
-            this.cBPauseWord.Text = "Add Pause after word";
             this.cBPauseWord.UseVisualStyleBackColor = true;
             // 
             // cBPauseChar
             // 
-            this.cBPauseChar.AutoSize = true;
-            this.cBPauseChar.Location = new System.Drawing.Point(9, 15);
+            resources.ApplyResources(this.cBPauseChar, "cBPauseChar");
             this.cBPauseChar.Name = "cBPauseChar";
-            this.cBPauseChar.Size = new System.Drawing.Size(126, 17);
-            this.cBPauseChar.TabIndex = 1;
-            this.cBPauseChar.Text = "Add Pause after char";
             this.cBPauseChar.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 82);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 26);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Other G-Code settings in\r\nSetup SVG-Import ";
             // 
             // GCodeFromText
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(324, 261);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.tBText);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(340, 300);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(340, 300);
             this.Name = "GCodeFromText";
-            this.Text = "Create GCode from Text";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TextForm_FormClosing);
             this.Load += new System.EventHandler(this.TextForm_Load);
             this.groupBox3.ResumeLayout(false);

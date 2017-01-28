@@ -40,6 +40,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
+using System.Threading;
 
 namespace GRBL_Plotter
 {
@@ -69,10 +71,15 @@ namespace GRBL_Plotter
         { get { return toolInSpindle; }
           set { toolInSpindle = value; } }
 
+        public List<string> GRBLSettings = new List<string>();
+
         private Dictionary<string, double> gcodeVariable = new Dictionary<string, double>();
 
         public ControlSerialForm(string txt, int nr, ControlSerialForm handle = null)
         {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             title = txt;
             this.Invalidate();
             iamSerial = nr;
@@ -119,7 +126,7 @@ namespace GRBL_Plotter
             else
             {   Location = Properties.Settings.Default.locationSerForm2;}
             Text = title;
-            if ((Location.X < -20) || (Location.X > (desktopSize.Width-100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height-100))) { Location = new Point(0, 0); }
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width-100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height-100))) { Location = new Point(100, 100); }
             isLasermode = Properties.Settings.Default.ctrlLaserMode;
         }
         private bool mainformAskClosing = false;
@@ -226,12 +233,12 @@ namespace GRBL_Plotter
         {
             try
             {
-                cbPort.Text = Properties.Settings.Default.port1;
-                cbBaud.Text = Properties.Settings.Default.baud1;
+                cbPort.Text = Properties.Settings.Default.serialPort1;
+                cbBaud.Text = Properties.Settings.Default.serialBaud1;
                 if (iamSerial == 2)
                 {
-                    cbPort.Text = Properties.Settings.Default.port2;
-                    cbBaud.Text = Properties.Settings.Default.baud2;
+                    cbPort.Text = Properties.Settings.Default.serialPort2;
+                    cbBaud.Text = Properties.Settings.Default.serialBaud2;
                 }
             }
             catch (Exception e)
@@ -245,14 +252,14 @@ namespace GRBL_Plotter
             {
                 if (iamSerial == 1)
                 {
-                    Properties.Settings.Default.port1 = cbPort.Text;
-                    Properties.Settings.Default.baud1 = cbBaud.Text;
+                    Properties.Settings.Default.serialPort1 = cbPort.Text;
+                    Properties.Settings.Default.serialBaud1 = cbBaud.Text;
                     Properties.Settings.Default.ctrlLaserMode = isLasermode;
                 }
                 else
                 {
-                    Properties.Settings.Default.port2 = cbPort.Text;
-                    Properties.Settings.Default.baud2 = cbBaud.Text;
+                    Properties.Settings.Default.serialPort2 = cbPort.Text;
+                    Properties.Settings.Default.serialBaud2 = cbBaud.Text;
                 }
 
                 Properties.Settings.Default.Save();
@@ -497,16 +504,22 @@ namespace GRBL_Plotter
             {
                 string[] splt = rxString.Split('=');
                 int id;
-                if (!isGrblV0 && int.TryParse(splt[0].Substring(1), out id))
-                {
-                    addToLog(string.Format("< {0} \t({1})", rxString, grbl.getSetting(id)));
-                    if (id == 32)
-                    {   if (splt[1].IndexOf("1")>=0)
-                            isLasermode = true;
-                        else
-                            isLasermode = false;
-                        OnRaiseStreamEvent(new StreamEventArgs(0, 0, 0, grblStreaming.lasermode));
+                if ( int.TryParse(splt[0].Substring(1), out id))
+                {   if (!isGrblV0)
+                    {
+                        addToLog(string.Format("< {0} \t({1})", rxString, grbl.getSetting(id)));
+                        if (id == 32)
+                        {
+                            if (splt[1].IndexOf("1") >= 0)
+                                isLasermode = true;
+                            else
+                                isLasermode = false;
+                            OnRaiseStreamEvent(new StreamEventArgs(0, 0, 0, grblStreaming.lasermode));
+                        }
                     }
+                    else
+                        addToLog(string.Format("< {0}", rxString));
+                    GRBLSettings.Add(rxString);
                 }
                 else
                     addToLog(string.Format("< {0}", rxString));
@@ -1239,7 +1252,7 @@ namespace GRBL_Plotter
         private void btnGRBLCommand0_Click(object sender, EventArgs e)
         { requestSend("$"); }
         private void btnGRBLCommand1_Click(object sender, EventArgs e)
-        { requestSend("$$"); }
+        { requestSend("$$"); GRBLSettings.Clear(); }
         private void btnGRBLCommand2_Click(object sender, EventArgs e)
         { requestSend("$#"); }
         private void btnGRBLCommand3_Click(object sender, EventArgs e)

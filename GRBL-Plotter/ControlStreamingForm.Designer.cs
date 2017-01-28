@@ -58,72 +58,52 @@
             // 
             // cBOverrideFREnable
             // 
-            this.cBOverrideFREnable.AutoSize = true;
-            this.cBOverrideFREnable.Location = new System.Drawing.Point(6, 42);
+            resources.ApplyResources(this.cBOverrideFREnable, "cBOverrideFREnable");
             this.cBOverrideFREnable.Name = "cBOverrideFREnable";
-            this.cBOverrideFREnable.Size = new System.Drawing.Size(66, 17);
-            this.cBOverrideFREnable.TabIndex = 0;
-            this.cBOverrideFREnable.Text = "Override";
-            this.toolTip1.SetToolTip(this.cBOverrideFREnable, "Apply new feed rate value and replace all upcomming feed rates in gcode.\r\nNote: o" +
-        "verride takes effect after the current GRBL buffer is processed.");
+            this.toolTip1.SetToolTip(this.cBOverrideFREnable, resources.GetString("cBOverrideFREnable.ToolTip"));
             this.cBOverrideFREnable.UseVisualStyleBackColor = true;
             this.cBOverrideFREnable.CheckedChanged += new System.EventHandler(this.cBOverrideFREnable_CheckedChanged);
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(223, 67);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "GRBL Vers. 0.9:\r\n\'Override\' will inject feed rate (F) or spindle speed (S) comman" +
-    "d immediately.\r\nAlso later upcoming F or S commands will be replaced by override" +
-    "-value.";
+            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.lblOverrideFRValue);
             this.groupBox1.Controls.Add(this.lblFRValue);
             this.groupBox1.Controls.Add(this.cBOverrideFREnable);
             this.groupBox1.Controls.Add(this.nUDOverrideFRBtm);
             this.groupBox1.Controls.Add(this.nUDOverrideFRTop);
             this.groupBox1.Controls.Add(this.tBOverrideFR);
-            this.groupBox1.Location = new System.Drawing.Point(3, 70);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(100, 267);
-            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Feed Rate";
+            this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
             // 
             // lblOverrideFRValue
             // 
-            this.lblOverrideFRValue.AutoSize = true;
-            this.lblOverrideFRValue.Location = new System.Drawing.Point(36, 62);
+            resources.ApplyResources(this.lblOverrideFRValue, "lblOverrideFRValue");
             this.lblOverrideFRValue.Name = "lblOverrideFRValue";
-            this.lblOverrideFRValue.Size = new System.Drawing.Size(25, 13);
-            this.lblOverrideFRValue.TabIndex = 6;
-            this.lblOverrideFRValue.Text = "000";
-            this.toolTip1.SetToolTip(this.lblOverrideFRValue, "New feed rate value");
+            this.toolTip1.SetToolTip(this.lblOverrideFRValue, resources.GetString("lblOverrideFRValue.ToolTip"));
             // 
             // lblFRValue
             // 
-            this.lblFRValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFRValue.Location = new System.Drawing.Point(6, 16);
+            resources.ApplyResources(this.lblFRValue, "lblFRValue");
             this.lblFRValue.Name = "lblFRValue";
-            this.lblFRValue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblFRValue.Size = new System.Drawing.Size(65, 23);
-            this.lblFRValue.TabIndex = 5;
-            this.lblFRValue.Text = "00000";
-            this.toolTip1.SetToolTip(this.lblFRValue, "Last feed rate sent to GRBL");
+            this.toolTip1.SetToolTip(this.lblFRValue, resources.GetString("lblFRValue.ToolTip"));
             // 
             // nUDOverrideFRBtm
             // 
+            resources.ApplyResources(this.nUDOverrideFRBtm, "nUDOverrideFRBtm");
             this.nUDOverrideFRBtm.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "overrideFRBtm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDOverrideFRBtm.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.nUDOverrideFRBtm.Location = new System.Drawing.Point(6, 241);
             this.nUDOverrideFRBtm.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -135,22 +115,19 @@
             0,
             0});
             this.nUDOverrideFRBtm.Name = "nUDOverrideFRBtm";
-            this.nUDOverrideFRBtm.Size = new System.Drawing.Size(65, 20);
-            this.nUDOverrideFRBtm.TabIndex = 3;
-            this.nUDOverrideFRBtm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDOverrideFRBtm, "Set lower limit for track bar");
+            this.toolTip1.SetToolTip(this.nUDOverrideFRBtm, resources.GetString("nUDOverrideFRBtm.ToolTip"));
             this.nUDOverrideFRBtm.Value = global::GRBL_Plotter.Properties.Settings.Default.overrideFRBtm;
             this.nUDOverrideFRBtm.ValueChanged += new System.EventHandler(this.nUDOverrideFRBtm_ValueChanged);
             // 
             // nUDOverrideFRTop
             // 
+            resources.ApplyResources(this.nUDOverrideFRTop, "nUDOverrideFRTop");
             this.nUDOverrideFRTop.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "overrideFRTop", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDOverrideFRTop.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.nUDOverrideFRTop.Location = new System.Drawing.Point(6, 85);
             this.nUDOverrideFRTop.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -162,30 +139,22 @@
             0,
             0});
             this.nUDOverrideFRTop.Name = "nUDOverrideFRTop";
-            this.nUDOverrideFRTop.Size = new System.Drawing.Size(65, 20);
-            this.nUDOverrideFRTop.TabIndex = 4;
-            this.nUDOverrideFRTop.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDOverrideFRTop, "Set upper limit for track bar");
+            this.toolTip1.SetToolTip(this.nUDOverrideFRTop, resources.GetString("nUDOverrideFRTop.ToolTip"));
             this.nUDOverrideFRTop.Value = global::GRBL_Plotter.Properties.Settings.Default.overrideFRTop;
             this.nUDOverrideFRTop.ValueChanged += new System.EventHandler(this.nUDOverrideFRTop_ValueChanged);
             // 
             // tBOverrideFR
             // 
-            this.tBOverrideFR.AutoSize = false;
+            resources.ApplyResources(this.tBOverrideFR, "tBOverrideFR");
             this.tBOverrideFR.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "overrideFRValue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tBOverrideFR.LargeChange = 100;
-            this.tBOverrideFR.Location = new System.Drawing.Point(6, 111);
             this.tBOverrideFR.Maximum = 10000;
             this.tBOverrideFR.Minimum = 100;
             this.tBOverrideFR.Name = "tBOverrideFR";
-            this.tBOverrideFR.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.tBOverrideFR.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tBOverrideFR.Size = new System.Drawing.Size(65, 124);
             this.tBOverrideFR.SmallChange = 10;
-            this.tBOverrideFR.TabIndex = 1;
             this.tBOverrideFR.TickFrequency = 100;
             this.tBOverrideFR.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.toolTip1.SetToolTip(this.tBOverrideFR, "Set feed rate override value");
+            this.toolTip1.SetToolTip(this.tBOverrideFR, resources.GetString("tBOverrideFR.ToolTip"));
             this.tBOverrideFR.Value = global::GRBL_Plotter.Properties.Settings.Default.overrideFRValue;
             this.tBOverrideFR.Scroll += new System.EventHandler(this.tBOverrideFR_Scroll);
             this.tBOverrideFR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tBOverrideFR_KeyUp);
@@ -193,62 +162,46 @@
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.lblOverrideSSValue);
             this.groupBox2.Controls.Add(this.lblSSValue);
             this.groupBox2.Controls.Add(this.cBOverrideSSEnable);
             this.groupBox2.Controls.Add(this.nUDOverrideSSBtm);
             this.groupBox2.Controls.Add(this.nUDOverrideSSTop);
             this.groupBox2.Controls.Add(this.tBOverrideSS);
-            this.groupBox2.Location = new System.Drawing.Point(122, 70);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(100, 267);
-            this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Spindle Speed";
+            this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
             // 
             // lblOverrideSSValue
             // 
-            this.lblOverrideSSValue.AutoSize = true;
-            this.lblOverrideSSValue.Location = new System.Drawing.Point(36, 62);
+            resources.ApplyResources(this.lblOverrideSSValue, "lblOverrideSSValue");
             this.lblOverrideSSValue.Name = "lblOverrideSSValue";
-            this.lblOverrideSSValue.Size = new System.Drawing.Size(25, 13);
-            this.lblOverrideSSValue.TabIndex = 7;
-            this.lblOverrideSSValue.Text = "000";
-            this.toolTip1.SetToolTip(this.lblOverrideSSValue, "New spindle speed value");
+            this.toolTip1.SetToolTip(this.lblOverrideSSValue, resources.GetString("lblOverrideSSValue.ToolTip"));
             // 
             // lblSSValue
             // 
-            this.lblSSValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSSValue.Location = new System.Drawing.Point(11, 16);
+            resources.ApplyResources(this.lblSSValue, "lblSSValue");
             this.lblSSValue.Name = "lblSSValue";
-            this.lblSSValue.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblSSValue.Size = new System.Drawing.Size(65, 23);
-            this.lblSSValue.TabIndex = 7;
-            this.lblSSValue.Text = "00000";
-            this.toolTip1.SetToolTip(this.lblSSValue, "Last spindle speed sent to GRBL");
+            this.toolTip1.SetToolTip(this.lblSSValue, resources.GetString("lblSSValue.ToolTip"));
             // 
             // cBOverrideSSEnable
             // 
-            this.cBOverrideSSEnable.AutoSize = true;
-            this.cBOverrideSSEnable.Location = new System.Drawing.Point(6, 42);
+            resources.ApplyResources(this.cBOverrideSSEnable, "cBOverrideSSEnable");
             this.cBOverrideSSEnable.Name = "cBOverrideSSEnable";
-            this.cBOverrideSSEnable.Size = new System.Drawing.Size(66, 17);
-            this.cBOverrideSSEnable.TabIndex = 0;
-            this.cBOverrideSSEnable.Text = "Override";
-            this.toolTip1.SetToolTip(this.cBOverrideSSEnable, "Apply new spindle speed value and replace all upcomming spindle speeds in gcode\r\n" +
-        "Note: override takes effect after the current GRBL buffer is processed.");
+            this.toolTip1.SetToolTip(this.cBOverrideSSEnable, resources.GetString("cBOverrideSSEnable.ToolTip"));
             this.cBOverrideSSEnable.UseVisualStyleBackColor = true;
             this.cBOverrideSSEnable.CheckedChanged += new System.EventHandler(this.cBOverrideSSEnable_CheckedChanged);
             // 
             // nUDOverrideSSBtm
             // 
+            resources.ApplyResources(this.nUDOverrideSSBtm, "nUDOverrideSSBtm");
             this.nUDOverrideSSBtm.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "overrideSSBtm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDOverrideSSBtm.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.nUDOverrideSSBtm.Location = new System.Drawing.Point(6, 241);
             this.nUDOverrideSSBtm.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -260,22 +213,19 @@
             0,
             0});
             this.nUDOverrideSSBtm.Name = "nUDOverrideSSBtm";
-            this.nUDOverrideSSBtm.Size = new System.Drawing.Size(65, 20);
-            this.nUDOverrideSSBtm.TabIndex = 3;
-            this.nUDOverrideSSBtm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDOverrideSSBtm, "Set lower limit for track bar");
+            this.toolTip1.SetToolTip(this.nUDOverrideSSBtm, resources.GetString("nUDOverrideSSBtm.ToolTip"));
             this.nUDOverrideSSBtm.Value = global::GRBL_Plotter.Properties.Settings.Default.overrideSSBtm;
             this.nUDOverrideSSBtm.ValueChanged += new System.EventHandler(this.nUDOverrideSSBtm_ValueChanged);
             // 
             // nUDOverrideSSTop
             // 
+            resources.ApplyResources(this.nUDOverrideSSTop, "nUDOverrideSSTop");
             this.nUDOverrideSSTop.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "overrideSSTop", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDOverrideSSTop.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.nUDOverrideSSTop.Location = new System.Drawing.Point(6, 85);
             this.nUDOverrideSSTop.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -287,29 +237,22 @@
             0,
             0});
             this.nUDOverrideSSTop.Name = "nUDOverrideSSTop";
-            this.nUDOverrideSSTop.Size = new System.Drawing.Size(65, 20);
-            this.nUDOverrideSSTop.TabIndex = 4;
-            this.nUDOverrideSSTop.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDOverrideSSTop, "Set upper limit for track bar");
+            this.toolTip1.SetToolTip(this.nUDOverrideSSTop, resources.GetString("nUDOverrideSSTop.ToolTip"));
             this.nUDOverrideSSTop.Value = global::GRBL_Plotter.Properties.Settings.Default.overrideSSTop;
             this.nUDOverrideSSTop.ValueChanged += new System.EventHandler(this.nUDOverrideSSTop_ValueChanged);
             // 
             // tBOverrideSS
             // 
+            resources.ApplyResources(this.tBOverrideSS, "tBOverrideSS");
             this.tBOverrideSS.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "overrideSSValue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tBOverrideSS.LargeChange = 1000;
-            this.tBOverrideSS.Location = new System.Drawing.Point(6, 111);
             this.tBOverrideSS.Maximum = 10000;
             this.tBOverrideSS.Minimum = 100;
             this.tBOverrideSS.Name = "tBOverrideSS";
-            this.tBOverrideSS.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.tBOverrideSS.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tBOverrideSS.Size = new System.Drawing.Size(45, 124);
             this.tBOverrideSS.SmallChange = 100;
-            this.tBOverrideSS.TabIndex = 1;
             this.tBOverrideSS.TickFrequency = 1000;
             this.tBOverrideSS.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.toolTip1.SetToolTip(this.tBOverrideSS, "Set spindle speed override value");
+            this.toolTip1.SetToolTip(this.tBOverrideSS, resources.GetString("tBOverrideSS.ToolTip"));
             this.tBOverrideSS.Value = global::GRBL_Plotter.Properties.Settings.Default.overrideSSValue;
             this.tBOverrideSS.Scroll += new System.EventHandler(this.tBOverrideSS_Scroll);
             this.tBOverrideSS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tBOverrideSS_KeyUp);
@@ -317,16 +260,14 @@
             // 
             // ControlStreamingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 341);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(240, 380);
             this.Name = "ControlStreamingForm";
-            this.Text = "Overrides";
+            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlStreamingForm_FormClosing);
             this.Load += new System.EventHandler(this.StreamingForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

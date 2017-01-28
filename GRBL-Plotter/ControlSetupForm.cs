@@ -22,13 +22,20 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading;
+using System.ComponentModel;
 
 namespace GRBL_Plotter
 {
     public partial class ControlSetupForm : Form
     {
         public ControlSetupForm()
-        {     InitializeComponent();
+        {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            InitializeComponent();
         }
 
         private void SetupForm_Load(object sender, EventArgs e)
@@ -207,6 +214,11 @@ namespace GRBL_Plotter
             nUDJoyZSpeed3.Value = (decimal)((double)nUDJoyZStep3.Value / time * 60 * correct);
             nUDJoyZSpeed4.Value = (decimal)((double)nUDJoyZStep4.Value / time * 60 * correct);
             nUDJoyZSpeed5.Value = (decimal)((double)nUDJoyZStep5.Value / time * 60 * correct);
+        }
+
+        private void cBImportSVGResize_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

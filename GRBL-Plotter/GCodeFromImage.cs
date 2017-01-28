@@ -34,6 +34,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading;
 
 namespace GRBL_Plotter
 {
@@ -58,6 +60,9 @@ namespace GRBL_Plotter
 
         public GCodeFromImage(bool loadFile=false)
         {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
             loadFromFile = loadFile;
         }
@@ -73,6 +78,9 @@ namespace GRBL_Plotter
         {
             if (loadFromFile) loadExtern(lastFile);
             originalImage = new Bitmap(Properties.Resources.modell);
+            Location = Properties.Settings.Default.locationImageForm;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             processLoading();
         }
 
@@ -1012,6 +1020,11 @@ namespace GRBL_Plotter
             }
             adjustedImage = new Bitmap(originalImage);
             userAdjust();
+        }
+
+        private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.locationImageForm = Location;
         }
 
         private Point oldPoint = new Point(0,0);

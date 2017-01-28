@@ -32,6 +32,9 @@ using System.IO;
 using System.Windows.Forms;
 using virtualJoystick;
 using FastColoredTextBoxNS;
+using System.Globalization;
+using System.Threading;
+using System.ComponentModel;
 
 namespace GRBL_Plotter
 {
@@ -64,9 +67,12 @@ namespace GRBL_Plotter
         private double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
-
+        
         public MainForm()
         {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
             gcode.setup();
             updateDrawing();
@@ -91,7 +97,7 @@ namespace GRBL_Plotter
         // open Camera form
         private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Application.OpenForms["CameraForm"] as ControlCameraForm) == null)
+            if (_camera_form == null)
             {   _camera_form = new ControlCameraForm();
                 _camera_form.FormClosed += formClosed_CameraForm;
                 _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
@@ -108,7 +114,7 @@ namespace GRBL_Plotter
         // open Setup form
         private void setupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Application.OpenForms["SetupForm"] as ControlSetupForm) == null)
+            if (_setup_form == null)
             {   _setup_form = new ControlSetupForm();
                 _setup_form.FormClosed += formClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += loadSettings;
@@ -159,7 +165,7 @@ namespace GRBL_Plotter
 
         private void imageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Application.OpenForms["Image2GCode"] as GCodeFromImage) == null)
+            if (_image_form == null)
             {
                 _image_form = new GCodeFromImage();
                 _image_form.FormClosed += formClosed_ImageToGCode;
@@ -179,7 +185,7 @@ namespace GRBL_Plotter
             {
                 if (_streaming_form2 != null)
                     _streaming_form2.Visible = false;
-                if ((Application.OpenForms["StreamingForm"] as ControlStreamingForm) == null)
+                if (_streaming_form == null)
                 {
                     _streaming_form = new ControlStreamingForm();
                     _streaming_form.RaiseOverrideEvent += OnRaiseOverrideEvent;      // assign  event
@@ -192,11 +198,11 @@ namespace GRBL_Plotter
                 }
                 _streaming_form.Show(this);
             }
-        else
+            else
             {
                 if (_streaming_form != null)
                     _streaming_form.Visible = false;
-                if ((Application.OpenForms["StreamingForm2"] as ControlStreamingForm2) == null)
+                if (_streaming_form2 == null)
                 {
                     _streaming_form2 = new ControlStreamingForm2();
                     _streaming_form2.RaiseOverrideEvent += OnRaiseOverrideMessage;      // assign  event
@@ -218,7 +224,7 @@ namespace GRBL_Plotter
 
         private void control2ndGRBLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Application.OpenForms["Control2ndGRBL"] as Control2ndGRBL) == null)
+            if (_2ndGRBL_form == null)
             {
                 _2ndGRBL_form = new Control2ndGRBL(_serial_form2);
                 if (_serial_form2 == null)
@@ -245,7 +251,7 @@ namespace GRBL_Plotter
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
             loadSettings(sender, e);
-            if ((Application.OpenForms["SerialForm"] as ControlSerialForm) == null)
+            if (_serial_form == null)
             {
                 if (Properties.Settings.Default.useSerial2)
                 {
@@ -275,7 +281,7 @@ namespace GRBL_Plotter
             Properties.Settings.Default.locationMForm = Location;
             saveSettings();
             _serial_form.Close();
-            if ((Application.OpenForms["CameraForm"] as ControlCameraForm) != null) _camera_form.Close();
+//            if ((Application.OpenForms["CameraForm"] as ControlCameraForm) != null) _camera_form.Close();
         }
         // load settings
         private void loadSettings(object sender, EventArgs e)
@@ -968,12 +974,20 @@ namespace GRBL_Plotter
             { routeTransformCode((float)e.PosX); }
             else
             {
-                double realStepX = Math.Round(e.PosX * 100) / 100;
-                double realStepY = Math.Round(e.PosY * 100) / 100;
+                double realStepX = Math.Round(e.PosX,3);
+                double realStepY = Math.Round(e.PosY,3);
                 int speed = 1000;
-                //               String s = String.Format("F{0}"+ G91G1 X{1} Y{2}", speed, realStepX, realStepY);
-                String s = String.Format("F{0} " + e.Command + " X{1} Y{2}", speed, realStepX, realStepY).Replace(',', '.');
-                sendCommand(s,true);
+                string s = "";
+                if (e.Command == "G92")
+                {   s = String.Format(e.Command + " X{0} Y{1}", realStepX, realStepY).Replace(',', '.');
+                    sendCommand(s);
+                }
+                else
+                {   speed = 100+(int)Math.Sqrt(realStepX* realStepX+ realStepY* realStepY)*120;
+                    s = String.Format("F{0} " + e.Command + " X{1} Y{2}", speed, realStepX, realStepY).Replace(',', '.');
+                    sendCommand(s, true);
+                }
+                
             }
         }
 
@@ -1713,7 +1727,7 @@ namespace GRBL_Plotter
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 var MyIni = new IniFile(sfd.FileName);
-                MyIni.WriteAll();
+                MyIni.WriteAll(_serial_form.GRBLSettings);
             }
         }
 
@@ -1727,6 +1741,17 @@ namespace GRBL_Plotter
                 MyIni.ReadAll();
                 loadSettings(sender, e);
             }
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.language = "en";
+            MessageBox.Show("Restart of GRBL-Plotter is needed");
+        }
+        private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.language = "de-DE";
+            MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich");
         }
 
     }

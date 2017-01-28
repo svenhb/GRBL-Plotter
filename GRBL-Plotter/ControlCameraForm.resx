@@ -117,2238 +117,542 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label_my.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;lblFileProgress.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="lbInfo.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pictureBoxVideo.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 6</value>
+  <data name="pictureBoxVideo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 113</value>
   </data>
-  <data name="btnTransformCode.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="pictureBoxVideo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
-  <data name="tBURL.Text" xml:space="preserve">
-    <value>Paste URL of SVG file here</value>
+  <data name="pictureBoxVideo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>640, 480</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnCustom5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="lbDimension.Text" xml:space="preserve">
-    <value>Dimensions</value>
-  </data>
-  <data name="&gt;&gt;lbDimension.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnKillAlarm.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.ZOrder" xml:space="preserve">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pictureBoxVideo.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;btnJogZeroX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;pictureBoxVideo.Name" xml:space="preserve">
+    <value>pictureBoxVideo</value>
   </data>
-  <data name="&gt;&gt;label_mz.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;pictureBoxVideo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnJogZeroZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 14</value>
+  <data name="&gt;&gt;pictureBoxVideo.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUntenRechts.Name" xml:space="preserve">
-    <value>tLPRechtsUntenRechts</value>
-  </data>
-  <data name="&gt;&gt;lbInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnZeroXYZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 62</value>
-  </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
-    <value>fileToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;btnCustom3.Name" xml:space="preserve">
-    <value>btnCustom3</value>
-  </data>
-  <data name="lbInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="cmsScale.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 48</value>
-  </data>
-  <data name="&gt;&gt;btnCustom7.Name" xml:space="preserve">
-    <value>btnCustom7</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;scaleToWidthOfToolStripMenuItem.Name" xml:space="preserve">
-    <value>scaleToWidthOfToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="cBCoolant.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>%   Angle</value>
-  </data>
-  <data name="&gt;&gt;pbFile.Name" xml:space="preserve">
-    <value>pbFile</value>
-  </data>
-  <data name="btnJogStop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 69</value>
-  </data>
-  <data name="&gt;&gt;loadToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tLPAussen.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="loadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Open File</value>
-  </data>
-  <data name="&gt;&gt;btnKillAlarm.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="tbFile.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="btnZeroX.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBox3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="pbBuffer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 12</value>
-  </data>
-  <data name="&gt;&gt;MainTimer.Name" xml:space="preserve">
-    <value>MainTimer</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Status:</value>
-  </data>
-  <data name="btnJogZeroX.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnZeroY.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="btnResume.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="cmsScale.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
-    <value>Grbl's alarm mode is a state when something has gone critically wrong, 
-such as a hard limit or an abort during a cycle, or if Grbl doesn't know its position. 
-By default, if you have homing enabled and power-up the Arduino, Grbl enters
-the alarm state, because it does not know its position. The alarm mode will lock all 
-G-code commands until the '$H' homing cycle has been performed. Or if a user needs 
-to override the alarm lock to move their axes off their limit switches, for example, '$X' kill alarm lock 
-will override the locks and allow G-code functions to work again. 
-</value>
-  </data>
-  <data name="tbChangeSize.ToolTip" xml:space="preserve">
-    <value>Right click for other options</value>
-  </data>
-  <data name="btnReset.Text" xml:space="preserve">
-    <value>RESET</value>
-  </data>
-  <data name="&gt;&gt;lbInfo.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblTool.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;btnTransformCode.Name" xml:space="preserve">
-    <value>btnTransformCode</value>
-  </data>
-  <data name="imageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
-  </data>
-  <data name="cmsPictureBox.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;fCTBCode.Parent" xml:space="preserve">
-    <value>tLPLinks</value>
-  </data>
-  <data name="&gt;&gt;tLPLinks.Name" xml:space="preserve">
-    <value>tLPLinks</value>
-  </data>
-  <data name="&gt;&gt;lbInfo.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;tbChangeSize.Name" xml:space="preserve">
-    <value>tbChangeSize</value>
-  </data>
-  <data name="btnJogZeroY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="label3.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="tLPLinks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 532</value>
-  </data>
-  <data name="&gt;&gt;label_mx.Name" xml:space="preserve">
-    <value>label_mx</value>
-  </data>
-  <data name="btnFeedHold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 305</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tLPMitteUnten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 374</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Name" xml:space="preserve">
-    <value>virtualJoystickZ</value>
-  </data>
-  <data name="btnCustom4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 91</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem4.Name" xml:space="preserve">
-    <value>toolStripMenuItem4</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Name" xml:space="preserve">
-    <value>toolStripMenuItem3</value>
-  </data>
-  <data name="fCTBCode.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cmsCodeCopy.Text" xml:space="preserve">
-    <value>Copy</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Scale</value>
-  </data>
-  <data name="&gt;&gt;lbDimension.Name" xml:space="preserve">
-    <value>lbDimension</value>
-  </data>
-  <data name="label_wx.Text" xml:space="preserve">
-    <value>0000.000</value>
-  </data>
-  <data name="cBCoolant.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 17</value>
-  </data>
-  <data name="&gt;&gt;label_status.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label_status.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
-    <value>pictureBox1</value>
-  </data>
-  <data name="&gt;&gt;btnShiftToZero.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
-    <value>toolTip1</value>
-  </data>
-  <data name="&gt;&gt;btnMirrorX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCustom3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="pictureBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="menuStrip1.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;fCTBCode.Name" xml:space="preserve">
-    <value>fCTBCode</value>
-  </data>
-  <data name="lbDimension.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;saveMachineParametersToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnReset.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>11, 13</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 98</value>
-  </data>
-  <data name="pbBuffer.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;pictureBoxVideo.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="tLPRechtsOben.Size" type="System.Drawing.Size, System.Drawing">
-    <value>572, 146</value>
+  <data name="nUDCameraZoom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 14</value>
   </data>
-  <data name="&gt;&gt;btnFeedHold.Name" xml:space="preserve">
-    <value>btnFeedHold</value>
+  <data name="nUDCameraZoom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
   </data>
-  <data name="btnZeroXY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>171, 27</value>
+  <data name="nUDCameraZoom.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 45</value>
+  <data name="&gt;&gt;nUDCameraZoom.Name" xml:space="preserve">
+    <value>nUDCameraZoom</value>
   </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+  <data name="&gt;&gt;nUDCameraZoom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnCustom7.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="&gt;&gt;nUDCameraZoom.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;virtualJoystickXY.Name" xml:space="preserve">
-    <value>virtualJoystickXY</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 105</value>
-  </data>
-  <data name="cBSpindle.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label_wy.Text" xml:space="preserve">
-    <value>0000.000</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pbFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 23</value>
-  </data>
-  <data name="cBSpindle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 17</value>
-  </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="lblRemaining.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;tLPRechtsOben.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;nUDCameraZoom.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="btnCustom4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;tLPRechtsOben.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label_my.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnStreamStop.Name" xml:space="preserve">
-    <value>btnStreamStop</value>
-  </data>
-  <data name="scaleToWidthOfToolStripMenuItem.Text" xml:space="preserve">
-    <value>Scale to width of</value>
-  </data>
-  <data name="&gt;&gt;cBTool.Name" xml:space="preserve">
-    <value>cBTool</value>
-  </data>
-  <data name="&gt;&gt;btnResume.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
-    <value>cmsPictureBox</value>
-  </data>
-  <data name="imageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Convert Image</value>
-  </data>
-  <data name="lbInfo.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="btnCustom7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 61</value>
-  </data>
-  <data name="&gt;&gt;saveToolStripMenuItem.Name" xml:space="preserve">
-    <value>saveToolStripMenuItem</value>
-  </data>
-  <data name="btnZeroY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 45</value>
-  </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="btnHome.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label_wz.Text" xml:space="preserve">
-    <value>0000.000</value>
-  </data>
-  <data name="tLPAussen.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MainForm</value>
-  </data>
-  <data name="label_wy.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label_wz.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>STOP Jogging</value>
-  </data>
-  <data name="tLPMitteUnten.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btnStreamCheck.Name" xml:space="preserve">
-    <value>btnStreamCheck</value>
-  </data>
-  <data name="&gt;&gt;btnStreamCheck.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnStreamCheck.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Z</value>
-  </data>
-  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="&gt;&gt;cmsScale.Name" xml:space="preserve">
-    <value>cmsScale</value>
-  </data>
-  <data name="&gt;&gt;loadMachineParametersToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Stop current jogging motion</value>
-  </data>
-  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Name" xml:space="preserve">
-    <value>btnJogStop</value>
-  </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="btnCustom6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;deleteThisCodeLineToolStripMenuItem.Name" xml:space="preserve">
-    <value>deleteThisCodeLineToolStripMenuItem</value>
-  </data>
-  <data name="lblElapsed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 13</value>
-  </data>
-  <data name="label_mz.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;btnCustom4.Name" xml:space="preserve">
-    <value>btnCustom4</value>
-  </data>
-  <data name="&gt;&gt;label_mz.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label_wy.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;btnCustom5.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="btnStreamCheck.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 35</value>
-  </data>
-  <data name="btnJogZeroXY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 35</value>
-  </data>
-  <data name="tLPAussen.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Override Feed rate and Spindle speed</value>
-  </data>
-  <data name="&gt;&gt;btnOpenFile.Name" xml:space="preserve">
-    <value>btnOpenFile</value>
-  </data>
-  <data name="&gt;&gt;btnCustom4.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;cmsCodeSelect.Name" xml:space="preserve">
-    <value>cmsCodeSelect</value>
-  </data>
-  <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Open GCode or SVG file</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label_mz.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 14</value>
-  </data>
-  <data name="&gt;&gt;btnResume.Name" xml:space="preserve">
-    <value>btnResume</value>
-  </data>
-  <data name="label_wy.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="btnFeedHold.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="btnZeroZ.Text" xml:space="preserve">
-    <value>Zero Z</value>
-  </data>
-  <data name="btnCustom5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="btnShiftToZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 123</value>
-  </data>
-  <data name="&gt;&gt;label_wz.Name" xml:space="preserve">
-    <value>label_wz</value>
-  </data>
-  <data name="lblTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 39</value>
-  </data>
-  <data name="&gt;&gt;moveToFirstPosToolStripMenuItem.Name" xml:space="preserve">
-    <value>moveToFirstPosToolStripMenuItem</value>
-  </data>
-  <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Create Simple Shapes</value>
-  </data>
-  <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
-  </data>
-  <data name="btnCustom7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 28</value>
-  </data>
-  <data name="btnCustom5.Text" xml:space="preserve">
-    <value>button11</value>
-  </data>
-  <data name="btnZeroZ.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="loadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="btnJogZeroXY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 20</value>
-  </data>
-  <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mark code (no delete)</value>
-  </data>
-  <data name="label_my.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="btnHome.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 30</value>
-  </data>
-  <data name="label_mz.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechts</value>
-  </data>
-  <data name="&gt;&gt;btnHome.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_wz.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="tLPMitteUnten.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;aboutToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblElapsed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>169, 10</value>
-  </data>
-  <data name="btnFeedHold.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="&gt;&gt;tLPAussen.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="virtualJoystickZ.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="&gt;&gt;deletenotMarkToolStripMenuItem.Name" xml:space="preserve">
-    <value>deletenotMarkToolStripMenuItem</value>
-  </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tLPMitteUnten.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="saveMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="&gt;&gt;cmsCodeSelect.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnStreamStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 13</value>
-  </data>
-  <data name="&gt;&gt;label_status.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;setupToolStripMenuItem.Name" xml:space="preserve">
-    <value>setupToolStripMenuItem</value>
-  </data>
-  <data name="btnCustom2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 31</value>
-  </data>
-  <data name="btnStreamStop.ToolTip" xml:space="preserve">
-    <value>Stop sending code to GRBL</value>
-  </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="btnZeroY.Text" xml:space="preserve">
-    <value>Zero Y</value>
-  </data>
-  <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tbFile.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
-    <value>toolStripMenuItem2</value>
-  </data>
-  <data name="createGCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 20</value>
-  </data>
-  <data name="&gt;&gt;cBSpindle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnJogZeroXY.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="loadMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="tLPRechts.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
-    <value>Show camera picture</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="btnCustom8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 91</value>
-  </data>
-  <data name="cBTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 17</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 20</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroXY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label_my.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="tLPRechtsUnten.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;btnZeroXY.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;btnCustom8.Name" xml:space="preserve">
-    <value>btnCustom8</value>
-  </data>
-  <data name="tLPRechtsOben.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="btnJogZeroX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 14</value>
-  </data>
-  <data name="&gt;&gt;btnOpenFile.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;lblElapsed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cmsCodeSendLine.Text" xml:space="preserve">
-    <value>Send Line</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="btnZeroX.Text" xml:space="preserve">
-    <value>Zero X</value>
-  </data>
-  <data name="btnCustom1.Text" xml:space="preserve">
-    <value>button7</value>
-  </data>
-  <data name="btnStreamStop.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;cmsCodeCopy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnShiftToZero.Text" xml:space="preserve">
-    <value>Set Offset to 0;0</value>
-  </data>
-  <data name="label_wx.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;controlStreamingToolStripMenuItem.Name" xml:space="preserve">
-    <value>controlStreamingToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Save displayed GCode to a file</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnKillAlarm.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="tLPRechtsUnten.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;label_wx.Name" xml:space="preserve">
-    <value>label_wx</value>
-  </data>
-  <data name="btnCustom8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;cmsScale.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMirrorY.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;lbDimension.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>°</value>
-  </data>
-  <data name="&gt;&gt;machineToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tLPLinks.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;cmsCodePaste.Name" xml:space="preserve">
-    <value>cmsCodePaste</value>
-  </data>
-  <data name="&gt;&gt;btnKillAlarm.Name" xml:space="preserve">
-    <value>btnKillAlarm</value>
-  </data>
-  <data name="btnCustom3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 28</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;tbChangeSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tableLayoutPanel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnResume.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 43</value>
-  </data>
-  <data name="&gt;&gt;cBTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label_mx.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;btnCustom1.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 Y0</value>
-  </data>
-  <data name="&gt;&gt;btnFeedHold.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
-  </data>
-  <data name="&gt;&gt;btnCustom3.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="btnCustom6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 28</value>
-  </data>
-  <data name="btnCustom4.Text" xml:space="preserve">
-    <value>button10</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="tLPLinks.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="label_mx.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="virtualJoystickXY.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="&gt;&gt;btnCustom2.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="deletePathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Delete/Mark complete path of marked pos.</value>
-  </data>
-  <data name="deutschToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="&gt;&gt;tbFile.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 121</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;btnStreamStart.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 20</value>
-  </data>
-  <data name="label5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="tLPMitteUnten.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="btnZeroY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCustom1.Name" xml:space="preserve">
-    <value>btnCustom1</value>
-  </data>
-  <data name="btnCustom5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 28</value>
-  </data>
-  <data name="&gt;&gt;deutschToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCustom7.Text" xml:space="preserve">
-    <value>button12</value>
-  </data>
-  <data name="btnMirrorX.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnCustom5.Name" xml:space="preserve">
-    <value>btnCustom5</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnZeroZ.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Setup</value>
-  </data>
-  <data name="lbInfo.Text" xml:space="preserve">
-    <value>Message</value>
-  </data>
-  <data name="&gt;&gt;loadMachineParametersToolStripMenuItem.Name" xml:space="preserve">
-    <value>loadMachineParametersToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;deletenotMarkToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;loadToolStripMenuItem.Name" xml:space="preserve">
-    <value>loadToolStripMenuItem</value>
-  </data>
-  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Machine</value>
-  </data>
-  <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Control Streaming</value>
-  </data>
-  <data name="&gt;&gt;btnZeroXY.Name" xml:space="preserve">
-    <value>btnZeroXY</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUnten.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCustom1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 1</value>
-  </data>
-  <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 38</value>
-  </data>
-  <data name="label_my.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="&gt;&gt;btnCustom2.Name" xml:space="preserve">
-    <value>btnCustom2</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label_status.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Y</value>
+    <value>Zoom</value>
   </data>
-  <data name="&gt;&gt;lblTool.Name" xml:space="preserve">
-    <value>lblTool</value>
-  </data>
-  <data name="&gt;&gt;fCTBCode.Type" xml:space="preserve">
-    <value>FastColoredTextBoxNS.FastColoredTextBox, FastColoredTextBox, Version=2.16.11.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b</value>
-  </data>
-  <data name="tBURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 357</value>
-  </data>
-  <data name="&gt;&gt;btnZeroZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tLPRechtsUntenRechts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>342, 0</value>
-  </data>
-  <data name="btnCustom2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tLPMitteUnten.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="&gt;&gt;label_wy.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUntenRechts.Parent" xml:space="preserve">
-    <value>tLPRechtsUnten</value>
-  </data>
-  <data name="btnShiftToZero.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="tLPAussen.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;btnCustom8.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>tLPRechtsOben</value>
-  </data>
-  <data name="&gt;&gt;tBSpeed.Name" xml:space="preserve">
-    <value>tBSpeed</value>
-  </data>
-  <data name="&gt;&gt;btnHome.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pbBuffer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 46</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
-  </data>
-  <data name="&gt;&gt;btnStreamStop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnZeroXY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cBCoolant.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="btnCustom1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="lblFileProgress.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom8.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;label_mx.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Create GCode</value>
-  </data>
-  <data name="lbInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 21</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="lblElapsed.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;lblRemaining.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 55</value>
-  </data>
-  <data name="btnCustom1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 28</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="&gt;&gt;cBCoolant.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;control2ndGRBLToolStripMenuItem.Name" xml:space="preserve">
-    <value>control2ndGRBLToolStripMenuItem</value>
-  </data>
-  <data name="btnCustom2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 28</value>
-  </data>
-  <data name="lblFileProgress.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="btnCustom6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="btnJogZeroXY.Text" xml:space="preserve">
-    <value>Move XY=0</value>
-  </data>
-  <data name="tableLayoutPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="lblFileProgress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="&gt;&gt;label_wz.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>193, 24</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnMirrorX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 123</value>
-  </data>
-  <data name="btnResume.Text" xml:space="preserve">
-    <value>Resume</value>
-  </data>
-  <data name="btnCustom6.Text" xml:space="preserve">
-    <value>button12</value>
-  </data>
-  <data name="btnZeroXYZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 23</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
-    <value>toolStripMenuItem1</value>
-  </data>
-  <data name="btnOpenFile.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>884, 562</value>
-  </data>
-  <data name="btnHome.Text" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="&gt;&gt;tbChangeSize.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 105</value>
-  </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label_status.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;tLPMitteUnten.Name" xml:space="preserve">
-    <value>tLPMitteUnten</value>
-  </data>
-  <data name="btnCustom3.Text" xml:space="preserve">
-    <value>button9</value>
-  </data>
-  <data name="&gt;&gt;pbFile.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="groupBox2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnOpenFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 165</value>
-  </data>
-  <data name="&gt;&gt;lblElapsed.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;btnMirrorY.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;deletePathToolStripMenuItem.Name" xml:space="preserve">
-    <value>deletePathToolStripMenuItem</value>
-  </data>
-  <data name="label_wx.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnMirrorX.Text" xml:space="preserve">
-    <value>Mirror X</value>
-  </data>
-  <data name="&gt;&gt;fCTBCode.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;scaleToHeightOfToolStripMenuItem.Name" xml:space="preserve">
-    <value>scaleToHeightOfToolStripMenuItem</value>
-  </data>
-  <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
-    <value>Move to first pos.</value>
-  </data>
-  <data name="btnCustom4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 29</value>
-  </data>
-  <data name="cBTool.Text" xml:space="preserve">
-    <value>Tool is in Spindle</value>
-  </data>
-  <data name="&gt;&gt;btnZeroXYZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Tool Coordinates (World / Machine)</value>
-  </data>
-  <data name="&gt;&gt;tLPAussen.Name" xml:space="preserve">
-    <value>tLPAussen</value>
-  </data>
-  <data name="tBSpeed.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;cmsCode.Name" xml:space="preserve">
-    <value>cmsCode</value>
-  </data>
-  <data name="&gt;&gt;lblFileProgress.Name" xml:space="preserve">
-    <value>lblFileProgress</value>
-  </data>
-  <data name="label2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="tLPRechtsUntenRechts.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblFileProgress.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="btnJogZeroZ.Text" xml:space="preserve">
-    <value>Z=0</value>
-  </data>
-  <data name="&gt;&gt;createGCodeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblRemaining.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
-  </data>
-  <data name="cmsCodePaste.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="&gt;&gt;btnFeedHold.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="tLPRechtsUnten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 380</value>
-  </data>
-  <data name="&gt;&gt;btnCustom3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMirrorX.Name" xml:space="preserve">
-    <value>btnMirrorX</value>
-  </data>
-  <data name="&gt;&gt;lbInfo.Name" xml:space="preserve">
-    <value>lbInfo</value>
-  </data>
-  <data name="btnJogZeroY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 14</value>
-  </data>
-  <data name="tbFile.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnZeroXYZ.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnJogZeroX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Move to</value>
-  </data>
-  <data name="&gt;&gt;imageToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tbChangeAngle.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;cBCoolant.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="groupBox5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnTransformCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 100</value>
-  </data>
-  <data name="tLPRechts.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPRechtsUnten" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechtsOben" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,152,Absolute,248" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="cBCoolant.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btnCustom8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnZeroY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="fCTBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 372</value>
-  </data>
-  <data name="toolStripScaleTextBoxHeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="&gt;&gt;label_mz.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroZ.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblFileProgress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblRemaining.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 67</value>
-  </data>
-  <data name="&gt;&gt;lblElapsed.Name" xml:space="preserve">
-    <value>lblElapsed</value>
-  </data>
-  <data name="&gt;&gt;deletePathToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBSpindle.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="label_status.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 119</value>
-  </data>
-  <data name="btnJogZeroX.Text" xml:space="preserve">
-    <value>X=0</value>
-  </data>
-  <data name="&gt;&gt;createGCodeToolStripMenuItem.Name" xml:space="preserve">
-    <value>createGCodeToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;toolStripScaleTextBoxWidth.Name" xml:space="preserve">
-    <value>toolStripScaleTextBoxWidth</value>
-  </data>
-  <data name="scaleToHeightOfToolStripMenuItem.Text" xml:space="preserve">
-    <value>Scale to height of</value>
-  </data>
-  <data name="tbFile.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnStreamStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tBURL.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tLPRechtsUnten.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroY.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Custom Buttons</value>
-  </data>
-  <data name="tLPRechts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 532</value>
-  </data>
-  <data name="tLPMitteUnten.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;cmsCodeSendLine.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnResume.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="tLPAussen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 538</value>
-  </data>
-  <data name="&gt;&gt;btnOpenFile.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="&gt;&gt;btnMirrorY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnMirrorY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tLPRechts.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label_my.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="btnHome.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Control / Jogging</value>
-  </data>
-  <data name="&gt;&gt;tbChangeSize.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroXY.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnZeroX.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="tLPMitteUnten.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 13</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>tLPLinks</value>
-  </data>
-  <data name="&gt;&gt;btnReset.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="btnKillAlarm.Text" xml:space="preserve">
-    <value>Kill Alarm</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickXY.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnZeroXYZ.Name" xml:space="preserve">
-    <value>btnZeroXYZ</value>
-  </data>
-  <data name="lblTool.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Export GUI-Settings (Button definitions, Joystick parameters) to an INI-file</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnZeroXY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="control2ndGRBLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickXY.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="label_mx.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 12</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="btnCustom2.Text" xml:space="preserve">
-    <value>button8</value>
-  </data>
-  <data name="&gt;&gt;label_wx.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="btnCustom1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tLPLinks.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;lblRemaining.Name" xml:space="preserve">
-    <value>lblRemaining</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;tbChangeAngle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label5.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label_mx.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 31</value>
-  </data>
-  <data name="&gt;&gt;moveToFirstPosToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;saveToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;machineToolStripMenuItem.Name" xml:space="preserve">
-    <value>machineToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;tBURL.Parent" xml:space="preserve">
-    <value>tLPMitteUnten</value>
-  </data>
-  <data name="btnCustom8.Text" xml:space="preserve">
-    <value>button12</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCustom6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 31</value>
-  </data>
-  <data name="btnCustom2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tLPRechtsUnten.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tBSpeed.Text" xml:space="preserve">
-    <value>1000</value>
-  </data>
-  <data name="toolStripScaleTextBoxHeight.Text" xml:space="preserve">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;btnZeroX.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUnten.Name" xml:space="preserve">
-    <value>tLPRechtsUnten</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnZeroXY.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblElapsed.Text" xml:space="preserve">
-    <value>Time</value>
-  </data>
-  <data name="pictureBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="label_my.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 14</value>
-  </data>
-  <data name="pbFile.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="btnOpenFile.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cBSpindle.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="&gt;&gt;btnCustom4.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Click to toggle</value>
-  </data>
-  <data name="cBCoolant.Text" xml:space="preserve">
-    <value>Coolant</value>
-  </data>
-  <data name="&gt;&gt;tLPRechts.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="virtualJoystickZ.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="tbChangeSize.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="menuStrip1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="menuStripCamera.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="camSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Video Source</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Select camera source.</value>
+  </data>
+  <data name="toolStripTextBox1.MaxLength" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="toolStripTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="toolStripTextBox1.Text" xml:space="preserve">
+    <value>000,00</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Picture Rotation</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Upper Position</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Teach camera view</value>
+  </data>
+  <data name="toolStripTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="toolStripTextBox2.Text" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set teach radius top</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Lower Position</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Teach camera view</value>
+  </data>
+  <data name="toolStripTextBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 23</value>
+  </data>
+  <data name="toolStripTextBox3.Text" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set teach radius bottom</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Scaling</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Home Plotter
+2) move camera to upper position
+3) click in picture to teach distance of top radius
+4) move camera to lower position
+5) click in picture to teach distance of bottom radius
+</value>
+  </data>
+  <data name="teachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 22</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Camera Offset</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Zero X,Y position
+2) Mark tool position (at X=0,Y=0)
+3) Move until marker is in center of camera view
+4) Teach actual position as offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Zero X,Y position
+2) Mark tool position (at X=0,Y=0)
+3) Move until marker is in center of camera view
+4) Teach actual position as offset</value>
+  </data>
+  <data name="textToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 22</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 22</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cross Hairs</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="teachZeroPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="teachZeroPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set XY = 0;0</value>
+  </data>
+  <data name="teachMarkerPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set XY = Marker position</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 20</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set Coordinate System Offset</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Set Coordinate zero with camera offset</value>
+  </data>
+  <data name="menuStripCamera.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStripCamera.Size" type="System.Drawing.Size, System.Drawing">
+    <value>640, 24</value>
+  </data>
+  <data name="menuStripCamera.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="menuStripCamera.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStripCamera.Name" xml:space="preserve">
+    <value>menuStripCamera</value>
+  </data>
+  <data name="&gt;&gt;menuStripCamera.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStripCamera.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStripCamera.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>167, 17</value>
+  </metadata>
+  <data name="btnApplyAngle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>103, 11</value>
+  </data>
+  <data name="btnApplyAngle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 22</value>
+  </data>
+  <data name="btnApplyAngle.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="btnApplyAngle.Text" xml:space="preserve">
+    <value>Apply Angle to GCode</value>
+  </data>
+  <data name="btnApplyAngle.ToolTip" xml:space="preserve">
+    <value>Use right mouse button to measure angle.
+Press button to transform GCode with measured angle.</value>
+  </data>
+  <data name="&gt;&gt;btnApplyAngle.Name" xml:space="preserve">
+    <value>btnApplyAngle</value>
+  </data>
+  <data name="&gt;&gt;btnApplyAngle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnApplyAngle.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;btnApplyAngle.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnCamOffsetPlus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="btnCamOffsetPlus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 20</value>
+  </data>
+  <data name="btnCamOffsetPlus.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="btnCamOffsetPlus.Text" xml:space="preserve">
+    <value>Tool -&gt; Cam</value>
+  </data>
+  <data name="btnCamOffsetPlus.ToolTip" xml:space="preserve">
+    <value>Move current Tool position below camera</value>
+  </data>
+  <data name="&gt;&gt;btnCamOffsetPlus.Name" xml:space="preserve">
+    <value>btnCamOffsetPlus</value>
+  </data>
+  <data name="&gt;&gt;btnCamOffsetPlus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCamOffsetPlus.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnCamOffsetPlus.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBCamOffset.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBCamOffset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>178, 15</value>
+  </data>
+  <data name="cBCamOffset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
+  </data>
+  <data name="cBCamOffset.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="cBCamOffset.Text" xml:space="preserve">
+    <value>Offset Graphics</value>
+  </data>
+  <data name="cBCamOffset.ToolTip" xml:space="preserve">
+    <value>Apply camera offset to graphics</value>
+  </data>
+  <data name="&gt;&gt;cBCamOffset.Name" xml:space="preserve">
+    <value>cBCamOffset</value>
+  </data>
+  <data name="&gt;&gt;cBCamOffset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBCamOffset.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;cBCamOffset.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblAngle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblAngle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>49, 16</value>
+  </data>
+  <data name="lblAngle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 13</value>
+  </data>
+  <data name="lblAngle.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0.00°</value>
+  </data>
+  <data name="lblAngle.ToolTip" xml:space="preserve">
+    <value>Measured Angle</value>
+  </data>
+  <data name="&gt;&gt;lblAngle.Name" xml:space="preserve">
+    <value>lblAngle</value>
+  </data>
+  <data name="&gt;&gt;lblAngle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblAngle.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;lblAngle.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnCamOffsetMinus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>92, 13</value>
+  </data>
+  <data name="btnCamOffsetMinus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 20</value>
+  </data>
+  <data name="btnCamOffsetMinus.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="btnCamOffsetMinus.Text" xml:space="preserve">
+    <value>Cam -&gt; Tool</value>
+  </data>
+  <data name="btnCamOffsetMinus.ToolTip" xml:space="preserve">
+    <value>Move current camera position below Tool</value>
+  </data>
+  <data name="&gt;&gt;btnCamOffsetMinus.Name" xml:space="preserve">
+    <value>btnCamOffsetMinus</value>
+  </data>
+  <data name="&gt;&gt;btnCamOffsetMinus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCamOffsetMinus.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnCamOffsetMinus.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblOffset.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblOffset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>283, 16</value>
+  </data>
+  <data name="lblOffset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="lblOffset.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="lblOffset.Text" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;lblOffset.Name" xml:space="preserve">
+    <value>lblOffset</value>
+  </data>
+  <data name="&gt;&gt;lblOffset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblOffset.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;lblOffset.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 26</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 39</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>109, 26</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>519, 39</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Camera Offset / Movement</value>
+  </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="label_status.Text" xml:space="preserve">
-    <value>Status</value>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tLPRechtsOben.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="groupBox2" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,251,Percent,100" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;btnStreamCheck.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="tLPRechts.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnStreamStop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="&gt;&gt;btnZeroX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label_wx.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="tbChangeSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="&gt;&gt;btnCustom7.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;cmsCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBSpeed.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Delete/Mark code line</value>
-  </data>
-  <data name="&gt;&gt;tBURL.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tLPAussen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCustom6.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tLPRechts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>303, 3</value>
-  </data>
-  <data name="&gt;&gt;btnZeroZ.Name" xml:space="preserve">
-    <value>btnZeroZ</value>
-  </data>
-  <data name="&gt;&gt;tLPAussen.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnStreamStop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
-  </data>
-  <data name="&gt;&gt;btnTransformCode.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tLPRechtsUnten.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 152</value>
-  </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tLPAussen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
-  </data>
-  <data name="label3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 24</value>
-  </data>
-  <data name="&gt;&gt;btnZeroZ.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lblFileProgress.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btnHome.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnReset.Name" xml:space="preserve">
-    <value>btnReset</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
-  </data>
-  <data name="label_mx.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;btnCustom5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnMirrorY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="&gt;&gt;label_wx.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lbDimension.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 20</value>
-  </data>
-  <data name="&gt;&gt;btnCustom7.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cBTool.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tbChangeAngle.Text" xml:space="preserve">
-    <value>0.00</value>
-  </data>
-  <data name="tLPRechtsUntenRechts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 379</value>
-  </data>
-  <data name="btnTransformCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 23</value>
-  </data>
-  <data name="&gt;&gt;tLPLinks.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cmsCodeCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="&gt;&gt;lblTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnMirrorX.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;tLPRechts.Parent" xml:space="preserve">
-    <value>tLPAussen</value>
-  </data>
-  <data name="label4.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="btnTransformCode.ToolTip" xml:space="preserve">
-    <value>Recalculate GCode XY positions, applying scale and angle</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>Show Camera</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
-    <value>toolStripSeparator2</value>
-  </data>
-  <data name="tLPAussen.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPLinks" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,300,Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;btnStreamStop.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnZeroXY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 23</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 600</value>
-  </data>
-  <data name="cBSpindle.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
-    <value>aboutToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;btnCustom3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;createSimpleShapesToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 X0</value>
-  </data>
-  <data name="btnCustom5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="moveToFirstPosToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Mark path from marked pos. to end (and move to beginning of path)</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 13</value>
-  </data>
-  <data name="cmsCode.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="virtualJoystickXY.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="btnCustom5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 1</value>
-  </data>
-  <data name="scaleToHeightOfToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 22</value>
-  </data>
-  <data name="lbDimension.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7.5pt</value>
-  </data>
-  <data name="btnCustom4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="deletenotMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 22</value>
-  </data>
-  <data name="&gt;&gt;cmsCodeCopy.Name" xml:space="preserve">
-    <value>cmsCodeCopy</value>
-  </data>
-  <data name="scaleToWidthOfToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 22</value>
-  </data>
-  <data name="btnCustom8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 29</value>
-  </data>
-  <data name="virtualJoystickZ.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Control 2nd GRBL</value>
-  </data>
-  <data name="&gt;&gt;tLPMitteUnten.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_wy.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="label_wz.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;tBURL.Name" xml:space="preserve">
-    <value>tBURL</value>
-  </data>
-  <data name="tLPRechtsOben.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cmsCodeSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="&gt;&gt;lblRemaining.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>254, 3</value>
-  </data>
-  <data name="btnCustom6.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="label_status.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 20</value>
-  </data>
-  <data name="label_mz.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 96</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 20</value>
-  </data>
-  <data name="&gt;&gt;label_wz.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>The feed hold command '!' will bring the active cycle to a stop via a controlled deceleration, so as not to lose position. 
-It is also real-time and may be activated at any time. Once finished or paused, Grbl will wait until a cycle start command 
-is issued to resume the program. Feed hold can only pause a cycle and will not affect homing or any other process.
-If you need to stop a cycle mid-program and can't afford losing position, perform a feed hold to have Grbl bring 
-everything to a controlled stop. Once finished, you can then issue a reset. Always try to execute a feed hold whenever 
-the machine is running before hitting reset, except of course if there is some emergency situation.
-</value>
-  </data>
-  <data name="&gt;&gt;tLPMitteUnten.Parent" xml:space="preserve">
-    <value>tLPRechtsUnten</value>
-  </data>
-  <data name="label_wx.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 13</value>
-  </data>
-  <data name="&gt;&gt;btnReset.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cmsCodeSelect.Text" xml:space="preserve">
-    <value>Select All</value>
-  </data>
-  <data name="btnZeroXY.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnReset.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="label_mx.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnStreamStop.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="btnJogZeroZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="label_wx.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="btnCustom4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="tbChangeSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 102</value>
-  </data>
-  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBTool.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;cmsPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMirrorX.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;btnCustom2.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
-    <value>tLPMitteUnten</value>
-  </data>
-  <data name="&gt;&gt;tLPRechts.Name" xml:space="preserve">
-    <value>tLPRechts</value>
-  </data>
-  <data name="label_wz.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="tLPRechtsUntenRechts.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnCustom6.Name" xml:space="preserve">
-    <value>btnCustom6</value>
-  </data>
-  <data name="&gt;&gt;tbChangeAngle.Name" xml:space="preserve">
-    <value>tbChangeAngle</value>
-  </data>
-  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;cmsCodeSendLine.Name" xml:space="preserve">
-    <value>cmsCodeSendLine</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
-  </data>
-  <data name="btnZeroZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 78</value>
-  </data>
-  <data name="&gt;&gt;openFileDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
-  </data>
-  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 X0 Y0</value>
-  </data>
-  <data name="&gt;&gt;label_my.Name" xml:space="preserve">
-    <value>label_my</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUntenRechts.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroXY.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label_mz.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="btnCustom7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;tbFile.Name" xml:space="preserve">
-    <value>tbFile</value>
-  </data>
-  <data name="label_wz.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="moveToFirstPosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 22</value>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="btnCustom8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="fCTBCode.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 8pt</value>
-  </data>
-  <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAADFBJREFUeF7t3TFuJIcRheG9gUJHBhQpMSAHihQpZaATGHDqAxiT6iAL8BjKeQEf
-        Ym4yLi7JbU7XL2/XvxC62/sAfbVkDQUUqh4aA2Kx8+F2q/8i/k9U7c2Is6ramxFnVbU3I86qam9GnFXV
-        VfP64fbwoV54dXl66T8+vPbqz+v6/4k4iKqrZgX68rjqVagfXnvX+vMt5BFHU3XVrLC+PZ3fnsZ3IX4X
-        7oijqdqbb56D/Bzep0u95agn96f+81uS+n79sxFHULU3P3sNb57QcRZV7xvPT+O38L49ofMeOs6iam9e
-        Vu+hn3v5LUecQdXejDirqr0ZcVZVezPirKr2ZsRZVe3NiLOq2psRZ1W1N52fIr4CZWquam86NGTEVpSp
-        uaq96dCQEVtRpuaq9qZDQ0ZsRZmaq9qbDg0ZsRVlaq5qbzo05E+36+N3t8vT2/c/vvs7Id/frqufjW8Z
-        ZWquam866wF/+PyXnD4H+ukvt4fHHz99fR/0CMrUXNXedGjI++DehfhduCM4U3NVe9OhIe9D/HT57vZ4
-        fX3t+v3t4fLD3c/Gt4wyNVe1Nx0aMk/o2IoyNVe1Nx0a8o9DfNePwEzNVe1Nh4ZcBze/5Yg/Qpmaq9qb
-        Dg0ZsRVlaq5qbzo0ZMRWlKm5qr3p0JARW1Gm5qr2pkNDRmxFmZqr2psODRmxFWVqrmpvOjRkxFaUqbmq
-        venQkMa/4lTohgZlaq5qbzo0pEFLi+OiGxqUqbmqvenQkAYtLY6LbmhQpuaq9qZDQxq0tDguuqFBmZqr
-        2psODWnQ0uK46IYGZWquam86NKSxWtj1l9Vnvqxej53RDQ3K1FzV3nRoSGO1sAr05fEfvR8HQTc0KFNz
-        VXvToSGN1cKe/v756fzh4Zfbdf167IxuaFCm5qr2pkNDGrS0F9fHv94e8rQ+GLqhQZmaq9qbDg1p0NJe
-        Pb+fvvzKr8VO6IYGZWquam86NKRxv7CXz3x5+TpP6COiGxqUqbmqvenQkMZ6Yb+++8yXvIc+HrqhQZma
-        q9qbDg1p0NLiuOiGBmVqrmpvOjSkQUuL46IbGpSpuaq96dCQBi0tjotuaFCm5qr2pkNDGrS0OC66oUGZ
-        mqvamw4NadDS4rjohgZlaq5qbzo0pEFLi+OiGxqUqbmqvenQkAYtzfgY/xPtzKAbGpSpuaq96dCQBi3N
-        oCPGgnZm0A0NytRc1d50aEiDlmbQEWNBOzPohgZlaq5qbzo0pEFLM+iIsaCdGXRDgzI1V7U3HRrSoKUZ
-        dMRY0M4MuqFBmZqr2psODWnQ0gw64sfb9fFvt8sTv/ZtoZ0ZdEODMjVXtTcdGtKgpRnrA/773We+rF/7
-        FtHODLqhQZmaq9qbDg1p0NIMOmKe0AvamUE3NChTc1V706EhDVqaQUdMoBe0M4NuaFCm5qr2pkNDGrQ0
-        g46YQC9oZwbd0KBMzVXtTYeGNGhpBh0xgV7Qzgy6oUGZmqvamw4NadDSDDpiAr2gnRl0Q4MyNVe1Nx0a
-        0qClGXTEWNDODLqhQZmaq9qbDg1p0NIMOmIsaGcG3dCgTM1V7U2HhjRoaQYdMRa0M4NuaFCm5qr2pkND
-        GrQ0g44YC9qZQTc0KFNzVXvToSENWppBR4wF7cygGxqUqbmqvenQkAYtzaAjxoJ2ZtANDcrUXNXedGhI
-        g5Zm0BGN/xwMzWjQzgy6oUGZmqvamw4NadDSDDqiQaHaE81o0M4MuqFBmZqr2psODWnQ0gw6okGh2hPN
-        aNDODLqhQZmaq9qbDg1p0NIMOqJBodoTzWjQzgy6oUGZmqvamw4NadDSDDqiQaHaE81o0M4MuqFBmZqr
-        2psODWnQ0gw6orEO1O+3x4da3Kd/DfW323X9+vW31WfCrF7/ajSjQTsz6IYGZWquam86NKRBSzPoiMYq
-        UE//vD08/v7p6+vjzz2wFejL6+t/DprRoJ0ZdEODMjVXtTcdGtKgpRl0ROM+UHchfhfuz6r39nTGJ/hX
-        oxkN2plBNzQoU3NVe9OhIQ1amkFHNO4D9XT5+fZ4ff3++e3Fpf/Mm+fwt8B/tfV8Fu3MoBsalKm5qr3p
-        0JAGLc2gIxr3gfriE/q9LwTeWc9n0c4MuqFBmZqr2psODWnQ0gw6orEK1BfeQ798JszL13lCT1Cm5qr2
-        pkNDGrQ0g45orAMFv+W4exJ/fPeZMHkPvR1laq5qbzo0pEFLM+iIBoVq5U//zcZ7NKNBOzPohgZlaq5q
-        bzo0pEFLM+iIBoVqTzSjQTsz6IYGZWquam86NKRBSzPoiAaFak80o0E7M+iGBmVqrmpvOjSkQUsz6IgG
-        hWpPNKNBOzPohgZlaq5qbzo0pEFLM+iIBoVqTzSjQTsz6IYGZWquam86NKRBSzPoiAaFak80o0E7M+iG
-        BmVqrmpvOjSkQUsz6IgGhWpPNKNBOzPohgZlaq5qbzo0pEFLM+iIBoVqTzSjQTsz6IYGZWquam86NKRB
-        SzPoiAaFak80o0E7M+iGBmVqrmpvOjSkQUsz6IgGhWpPNKNBOzPohgZlaq5qbzo0pEFLM+iIBoVqTzSj
-        QTsz6IYGZWquam86NKRBSzPoiAaFak80o0E7M+iGBmVqrmpvOjSkQUsz6IgGhWpPNKNBOzPohgZlaq5q
-        bzo0pEFLM+iIBoVqTzSjQTsz6IYGZWquam86NKRBSzPoiAaFak80o0E7M+iGBmVqrmpvOjSkQUsz6IgG
-        hWpPNKNBOzPohgZlaq5qbzo0pEFLM+iIBoVqTzSjQTsz6IYGZWquam86NKRBSzPoiAaFak80o0E7M+iG
-        BmVqrmpvOjSkQUsz6IgGhWpPNKNBOzPohgZlaq5qbzo0pEFLM+iIBoVqTzSjQTsz6IYGZWquam86NKRB
-        SzPoiAaFak80o0E7M+iGBmVqrmpvOjSkQUsz6IgGhWpPNKNBOzPohgZlaq5qbzo0pEFLM+iIBoVqTzSj
-        QTsz6IYGZWquam86NKRBSzPoiAaFak80o0E7M+iGBmVqrmpvOjSkQUsz6IixoJ0ZdEODMjVXtTcdGtKg
-        pRl0xFjQzgy6oUGZmqvamw4NadDSDDpiLGhnBt3QoEzNVe1Nh4Y0aGkGHTEWtDODbmhQpuaq9qZDQxq0
-        NIOOGAvamUE3NChTc1V706EhDVqaQUeMBe3MoBsalKm5qr3p0JAGLc2gI8aCdmbQDQ3K1FzV3nRoSIOW
-        ZtARY0E7M+iGBmVqrmpvOjSkQUsz6IixoJ0ZdEODMjVXtTcdGtKgpRl0xFjQzgy6oUGZmqvamw4NadDS
-        DDpiLGhnBt3QoEzNVe1Nh4Y0aGkGHTEWtDODbmhQpuaq9qZDQxq0NIOOGAvamUE3NChTc1V706EhDVqa
-        QUeMBe3MoBsalKm5qr3p0JAGLc2gI8aCdmbQDQ3K1FzV3nRoSIOWZtARY0E7M+iGBmVqrmpvOjSkQUsz
-        6IixoJ0ZdEODMjVXtTcdGtKgpRl0xFjQzgy6oUGZmqvamw4NadDS4rjohgZlaq5qbzo0pEFLi+OiGxqU
-        qbmqvenQkAYtLY6LbmhQpuaq9qZDQxq0tDguuqFBmZqr2psODWnQ0uK46IYGZWquam86NKRBS4vjohsa
-        lKm5qr3p0JAGLS2Oi25oUKbmqvamQ0MatLQ4LrqhQZmaq9qbDg1p0NLiuOiGBmVqrmpvOjSkQUuL46Ib
-        GpSpuaq96dCQBi0tjotuaFCm5qr2pkNDGrS0OC66oUGZmqvamw4NadDS4rjohgZlaq5qbzo0pEFLi+Oi
-        GxqUqbmqvenQkAYtLY6LbmhQpuaq9qZDQxq0tDguuqFBmZqr2psODWnQ0uK46IYGZWquam86NKRBS4vj
-        ohsalKm5qr3p0JARW1Gm5qr2pkNDRmxFmZqr2psODRmxFWVqrmpvOjRkxFaUqbmqvenQkBFbUabmqvam
-        Q0NGbEWZmqvamw4NGbEVZWquam86NGTEVpSpuaq96dCQEVtRpuaq9qZDQ0ZsRZmaq9qbDg0ZsRVlaq5q
-        bzo0ZMRWlKm5qr3p0JARW1Gm5qr2pkNDRmxFmZqr2psODRmxFWVqrmpvOjRkxFaUqbmqvenQkBFbUabm
-        qvamQ0NGbEWZmqvamxFnVbU3I86qam9GnFXV3ow4q6q9GXFWVXsz4qyq9mbEWVXtzYizqtqbEWdVtTcj
-        zqpqb0acVdXejDirqr0ZcVZVezPirKr2ZsRZVe3NiLOq2psRZ1W1NyPO6cPtvwacwKqyMhFmAAAAAElF
-        TkSuQmCC
-</value>
-  </data>
-  <data name="fCTBCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 157</value>
-  </data>
-  <data name="groupBox6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="fCTBCode.Text" xml:space="preserve">
-    <value>Paste GCode or load file
-</value>
-  </data>
-  <data name="&gt;&gt;deleteThisCodeLineToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;setupToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblElapsed.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 106</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
   </data>
-  <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Import GUI-Settings (Button definitions, Joystick parameters) from an INI-file</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
   </data>
-  <data name="label9.ToolTip" xml:space="preserve">
-    <value />
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G-Code File</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Angle</value>
   </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 16</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
-  <data name="&gt;&gt;btnCustom4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lbDimension.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 87</value>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;toolStripScaleTextBoxWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnResume.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;createSimpleShapesToolStripMenuItem.Name" xml:space="preserve">
-    <value>createSimpleShapesToolStripMenuItem</value>
-  </data>
-  <data name="btnHome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 107</value>
-  </data>
-  <data name="btnZeroXYZ.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="lblElapsed.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnCustom8" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom7" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom6" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom2" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom3" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom4" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="cBTool.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="createSimpleShapesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
-  </data>
-  <data name="deletePathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 22</value>
-  </data>
-  <data name="btnStreamStart.ToolTip" xml:space="preserve">
-    <value>Send code from text-editor to GRBL</value>
-  </data>
-  <data name="&gt;&gt;controlStreamingToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblFileProgress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 10</value>
-  </data>
-  <data name="label_my.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 63</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tBSpeed.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Setup GUI and import parameters</value>
-  </data>
-  <data name="toolStripScaleTextBoxWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete corresponding path</value>
-  </data>
-  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="btnCustom3.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnJogZeroY.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;scaleToHeightOfToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblRemaining.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUnten.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;lblElapsed.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 71</value>
   </data>
-  <data name="tBURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 20</value>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 39</value>
   </data>
-  <data name="btnCustom3.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
   </data>
-  <data name="&gt;&gt;scaleToWidthOfToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Measure</value>
   </data>
-  <data name="tLPRechts.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="tLPRechtsUntenRechts.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox6" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0" /&gt;&lt;Rows Styles="Absolute,379" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
-    <value>tLPRechtsOben</value>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>264, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>640, 595</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5356,862 +3660,145 @@ the machine is running before hitting reset, except of course if there is some e
         //8=
 </value>
   </data>
-  <data name="&gt;&gt;label_wy.Name" xml:space="preserve">
-    <value>label_wy</value>
-  </data>
-  <data name="&gt;&gt;btnCustom1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripScaleTextBoxHeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tbFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 167</value>
-  </data>
-  <data name="&gt;&gt;btnShiftToZero.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="lblFileProgress.Text" xml:space="preserve">
-    <value>Progress</value>
-  </data>
-  <data name="&gt;&gt;lbDimension.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;btnTransformCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pbFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 35</value>
-  </data>
-  <data name="virtualJoystickZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 180</value>
-  </data>
-  <data name="tLPRechtsUntenRechts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="tBURL.ToolTip" xml:space="preserve">
-    <value>Check
-https://openclipart.org/
-for SVG files</value>
-  </data>
-  <data name="tLPRechtsOben.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="cBCoolant.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 14</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Import Machine Settings</value>
-  </data>
-  <data name="label_wy.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="label_wz.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 78</value>
-  </data>
-  <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
-  </data>
-  <data name="&gt;&gt;pbBuffer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;imageToolStripMenuItem.Name" xml:space="preserve">
-    <value>imageToolStripMenuItem</value>
-  </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
-  </data>
-  <data name="&gt;&gt;textWizzardToolStripMenuItem.Name" xml:space="preserve">
-    <value>textWizzardToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;btnZeroX.Name" xml:space="preserve">
-    <value>btnZeroX</value>
-  </data>
-  <data name="fCTBCode.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;btnZeroXYZ.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;btnCustom2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 148</value>
-  </data>
-  <data name="btnMirrorY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 123</value>
-  </data>
-  <data name="&gt;&gt;btnCustom5.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;cBCoolant.Name" xml:space="preserve">
-    <value>cBCoolant</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnZeroY.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="btnZeroXY.Text" xml:space="preserve">
-    <value>Zero XY</value>
-  </data>
-  <data name="&gt;&gt;tLPMitteUnten.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="cBTool.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="&gt;&gt;btnZeroY.Name" xml:space="preserve">
-    <value>btnZeroY</value>
-  </data>
-  <data name="toolStripMenuItem4.Text" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="lblRemaining.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
-    <value>openFileDialog1</value>
-  </data>
-  <data name="cBSpindle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 15</value>
-  </data>
-  <data name="btnZeroXYZ.Text" xml:space="preserve">
-    <value>Zero XYZ</value>
-  </data>
-  <data name="&gt;&gt;tLPRechts.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnStreamStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 23</value>
-  </data>
-  <data name="label_my.Text" xml:space="preserve">
-    <value>0000.000</value>
-  </data>
-  <data name="tbChangeAngle.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;pbFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRemaining.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="btnMirrorY.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="btnFeedHold.Text" xml:space="preserve">
-    <value>Feed Hold</value>
-  </data>
-  <data name="&gt;&gt;btnMirrorX.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="pictureBox1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="&gt;&gt;btnCustom7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 140</value>
-  </data>
-  <data name="&gt;&gt;label_wz.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>Open Recent File</value>
-  </data>
-  <data name="label_my.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="cBSpindle.Text" xml:space="preserve">
-    <value>Spindle</value>
-  </data>
-  <data name="&gt;&gt;pbBuffer.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="btnCustom3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 61</value>
-  </data>
-  <data name="&gt;&gt;tBSpeed.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="tLPLinks.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label_my.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label_mz.Text" xml:space="preserve">
-    <value>0000.000</value>
-  </data>
-  <data name="tLPRechtsUnten.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="btnJogStop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 41</value>
-  </data>
-  <data name="btnKillAlarm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 350</value>
-  </data>
-  <data name="label_wy.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;tLPLinks.Parent" xml:space="preserve">
-    <value>tLPAussen</value>
-  </data>
-  <data name="tLPRechtsOben.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="label_status.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;tBSpeed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCustom5.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="btnReset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 305</value>
-  </data>
-  <data name="btnZeroZ.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroZ.Name" xml:space="preserve">
-    <value>btnJogZeroZ</value>
-  </data>
-  <data name="tbChangeAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 102</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 58</value>
-  </data>
-  <data name="deutschToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deutsch</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;saveMachineParametersToolStripMenuItem.Name" xml:space="preserve">
-    <value>saveMachineParametersToolStripMenuItem</value>
-  </data>
-  <data name="lblTool.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="cmsCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 92</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tLPRechts.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;tbChangeAngle.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;tbChangeAngle.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="btnMirrorX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="cmsCodePaste.Text" xml:space="preserve">
-    <value>Paste</value>
-  </data>
-  <data name="cBSpindle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="toolStripScaleTextBoxWidth.Text" xml:space="preserve">
-    <value>100</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Delete this code line</value>
-  </data>
-  <data name="&gt;&gt;label_mz.Name" xml:space="preserve">
-    <value>label_mz</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroY.Name" xml:space="preserve">
-    <value>btnJogZeroY</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="btnZeroZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 23</value>
-  </data>
-  <data name="btnTransformCode.Text" xml:space="preserve">
-    <value>Transform GCode</value>
-  </data>
-  <data name="&gt;&gt;btnShiftToZero.Name" xml:space="preserve">
-    <value>btnShiftToZero</value>
-  </data>
-  <data name="tBSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 12</value>
-  </data>
-  <data name="btnZeroX.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnTransformCode.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroXY.Name" xml:space="preserve">
-    <value>btnJogZeroXY</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUnten.Parent" xml:space="preserve">
-    <value>tLPRechts</value>
-  </data>
-  <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="btnCustom2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="&gt;&gt;btnStreamStart.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 140</value>
-  </data>
-  <data name="virtualJoystickXY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 180</value>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 22</value>
-  </data>
-  <data name="fCTBCode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="virtualJoystickZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 119</value>
-  </data>
-  <data name="&gt;&gt;pbBuffer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnJogZeroY.Text" xml:space="preserve">
-    <value>Y=0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroX.Name" xml:space="preserve">
-    <value>btnJogZeroX</value>
-  </data>
-  <data name="label_wy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 45</value>
-  </data>
-  <data name="btnShiftToZero.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 23</value>
-  </data>
-  <data name="tLPAussen.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tLPRechtsUntenRechts.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="tLPLinks.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="fCTBCode" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="groupBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0" /&gt;&lt;Rows Styles="AutoSize,0,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnStreamCheck.Text" xml:space="preserve">
-    <value>Check Code</value>
-  </data>
-  <data name="textWizzardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 22</value>
-  </data>
-  <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACgAAAC0CAYAAADmWm5VAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAsxJREFUeF7tnD1u3DAUhPcGLlMFcOUmgFOkcuV2C58gQNocIFDrgxjQMdzrAjkE
-        b6KMVn+knrBxMFlpBAzg7y01IuBvnymboA2f2hYfwqDGUAnUGCqBGkMlUGOoBOpwkU7t+YRgoGr6vD4P
-        GV7TOHdDUIcLCFb1fOMCJM9DlvA6Sm8J6nCBTz52b+xWIZXJbglqDDuxTqap8CVGZy95twRwvZx7a1Bj
-        OMpIdbDr1igzdlBrDYJqsQa7TOcpFgU1hkqgxlAJ1BgqgRpDJVBjqATqNwx0sSCLBVmCYKrvsCkYrx+z
-        n8X3+Flczt2CTPBh2ixMgs0n7GYeL+NSfDuudrCQymS35KpgU91hRz3cS/fYxD4Uc7fg2B2UX4NiT7Em
-        FmSxIMsRBH9ioIsFWSzIMgum58UZdTlxLwrBqv4eJuzNLNh8nbp3Oj9j51JO3IvVNZjqz9gHanRz/SHp
-        1mP1EvMdmAT7M+p+LNrBl+yMWnwNKmFBFguyHEHwDQNdLMhiQZYgmOov2DSU2Z5kgr+yM+py0p4cqYM9
-        FvxHLMgSBNWwIIsFWY4g+BsDXSzIYkGWTPA9+93wa5uySRfS6+IMe3H/RsyCzY/2XL9fxql+igIQrIb7
-        WzIJFlKZ7ASysXurHb4Rk2BTPbV1Gm50X86q+0Y5T8zp3kx4Azfi4x3M+csb+J98eA32Z9j9eJcOrj7F
-        RafesjPsHdbgKjs9uTnXBQWwIIsFWSzIYkEWC7JYkMWCLBZksSCLBVksyALB+cBaEQuyWJDFgiwWZLEg
-        iwVZLMhiQZYjCK7/gbUKFmSxIIsFWSzIYkEWC7JYkMWCLEcQXP8nICpYkMWCLBZksSCLBVksyGJBFguy
-        HEEQH8KgxlAJ1BgqgRpDJVBjqARqDJVAjaESqDFUAjWGSqDGUAnUGCqBGkMlUGOoBGoMlUCNoRKoMVQC
-        NYZKoMZQh1P7Byy1eMMEX2wHAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="btnZeroX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 12</value>
-  </data>
-  <data name="btnResume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 330</value>
-  </data>
-  <data name="tLPRechtsUnten.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 373</value>
-  </data>
-  <data name="label8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;lblTool.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="pbFile.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;tLPLinks.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label_mz.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 7pt</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUntenRechts.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cmsCodeSendLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnMirrorY.Name" xml:space="preserve">
-    <value>btnMirrorY</value>
-  </data>
-  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save GCode</value>
-  </data>
-  <data name="btnZeroY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 23</value>
-  </data>
-  <data name="&gt;&gt;label_wy.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
-    <value>toolStripSeparator3</value>
-  </data>
-  <data name="&gt;&gt;tbFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmsCodePaste.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCustom1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lbDimension.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 13</value>
-  </data>
-  <data name="btnCustom7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnCustom7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="tLPLinks.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Create Text</value>
-  </data>
-  <data name="virtualJoystickXY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 119</value>
-  </data>
-  <data name="&gt;&gt;btnFeedHold.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 20</value>
-  </data>
-  <data name="&gt;&gt;control2ndGRBLToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tLPRechtsOben.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroX.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 98</value>
-  </data>
-  <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdGYXN0Q29sb3JlZFRleHRCb3gsIFZlcnNpb249Mi4xNi4xMS4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWZiOGFhMTJiOTk0ZWY2MWIMAwAAAFFTeXN0
-        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
-        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACJGYXN0Q29sb3JlZFRleHRCb3hOUy5TZXJ2aWNlQ29sb3JzBgAA
-        ACg8Q29sbGFwc2VNYXJrZXJGb3JlQ29sb3I+a19fQmFja2luZ0ZpZWxkKDxDb2xsYXBzZU1hcmtlckJh
-        Y2tDb2xvcj5rX19CYWNraW5nRmllbGQqPENvbGxhcHNlTWFya2VyQm9yZGVyQ29sb3I+a19fQmFja2lu
-        Z0ZpZWxkJjxFeHBhbmRNYXJrZXJGb3JlQ29sb3I+a19fQmFja2luZ0ZpZWxkJjxFeHBhbmRNYXJrZXJC
-        YWNrQ29sb3I+a19fQmFja2luZ0ZpZWxkKDxFeHBhbmRNYXJrZXJCb3JkZXJDb2xvcj5rX19CYWNraW5n
-        RmllbGQEBAQEBAQUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAA
-        ABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5E
-        cmF3aW5nLkNvbG9yAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAACAAAABfz///8UU3lzdGVtLkRy
-        YXdpbmcuQ29sb3IEAAAABG5hbWUFdmFsdWUKa25vd25Db2xvcgVzdGF0ZQEAAAAJBwcDAAAACgAAAAAA
-        AAAAlgABAAH7/////P///woAAAAAAAAAAKQAAQAB+v////z///8KAAAAAAAAAACWAAEAAfn////8////
-        CgAAAAAAAAAAjQABAAH4/////P///woAAAAAAAAAAKQAAQAB9/////z///8KAAAAAAAAAACWAAEACw==
-</value>
-  </data>
-  <data name="&gt;&gt;label_mx.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 78</value>
-  </data>
-  <data name="tLPMitteUnten.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tBURL" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;label_mx.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="tbChangeAngle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 20</value>
-  </data>
-  <data name="&gt;&gt;btnOpenFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;deutschToolStripMenuItem.Name" xml:space="preserve">
-    <value>deutschToolStripMenuItem</value>
-  </data>
-  <data name="groupBox5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnJogZeroX.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnCustom1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="lbInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 61</value>
-  </data>
-  <data name="virtualJoystickXY.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="label_wx.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="btnKillAlarm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 23</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 13</value>
-  </data>
-  <data name="label_status.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnMirrorY.Text" xml:space="preserve">
-    <value>Mirror Y</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripScaleTextBoxHeight.Name" xml:space="preserve">
-    <value>toolStripScaleTextBoxHeight</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="&gt;&gt;pbFile.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="btnJogZeroZ.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;MainTimer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCustom4.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="btnStreamStart.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsOben.Parent" xml:space="preserve">
-    <value>tLPRechts</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsOben.Name" xml:space="preserve">
-    <value>tLPRechtsOben</value>
-  </data>
-  <data name="btnShiftToZero.ToolTip" xml:space="preserve">
-    <value>Set GCode XY Offset to zero</value>
-  </data>
-  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="btnJogStop.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="tLPAussen.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="btnCustom2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnCustom6.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="tbChangeSize.Text" xml:space="preserve">
-    <value>100.00</value>
-  </data>
-  <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>The cycle start or resume command '~' can be issued at any time, as it is a real-time command. 
-When Grbl has motions queued in its buffer and is ready to go, the  ~  cycle start command will 
-start executing the buffer and Grbl will begin moving the axes.</value>
-  </data>
-  <data name="tLPLinks.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 348</value>
-  </data>
-  <data name="&gt;&gt;cBSpindle.Name" xml:space="preserve">
-    <value>cBSpindle</value>
-  </data>
-  <data name="&gt;&gt;cBCoolant.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnOpenFile.ToolTip" xml:space="preserve">
-    <value>Select file to load</value>
-  </data>
-  <data name="btnZeroX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 23</value>
-  </data>
-  <data name="btnStreamCheck.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="tLPRechtsOben.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label_mz.ToolTip" xml:space="preserve">
-    <value />
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>656, 634</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>656, 634</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>GRBL Plotter</value>
+    <value>Camera</value>
   </data>
-  <data name="tLPRechtsUnten.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPRechtsUntenRechts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tLPMitteUnten" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,236" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  <data name="&gt;&gt;setupToolStripMenuItem.Name" xml:space="preserve">
+    <value>setupToolStripMenuItem</value>
   </data>
-  <data name="btnZeroY.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tLPRechtsUntenRechts.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="tbFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 20</value>
-  </data>
-  <data name="btnReset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 43</value>
-  </data>
-  <data name="label_wx.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
-  </data>
-  <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>This is Grbl's soft reset command 'Ctrl-x'. It's real-time and can be sent at any time. 
-As the name implies, it resets Grbl, but in a controlled way, retains your machine position, 
-and all is done without powering down your Arduino. The only times a soft-reset could 
-lose position is when problems arise and the steppers were killed while they were moving. 
-If so, it will report if Grbl's tracking of the machine position has been lost. 
-This is because an uncontrolled deceleration can lead to lost steps, and Grbl has no feedback 
-to how much it lost (this is the problem with steppers in general). Otherwise, Grbl will just re-initialize,
- run the startup lines, and continue on its merry way. 
-</value>
-  </data>
-  <data name="toolStripMenuItem3.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="label_mx.Text" xml:space="preserve">
-    <value>0000.000</value>
-  </data>
-  <data name="btnOpenFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 23</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem2.Type" xml:space="preserve">
+  <data name="&gt;&gt;setupToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnOpenFile.Text" xml:space="preserve">
-    <value>...</value>
+  <data name="&gt;&gt;camSourceToolStripMenuItem.Name" xml:space="preserve">
+    <value>camSourceToolStripMenuItem</value>
   </data>
-  <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Export Machine Settings</value>
-  </data>
-  <data name="btnCustom3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnCustom1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="controlStreamingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="btnCustom6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="&gt;&gt;btnStreamStart.Name" xml:space="preserve">
-    <value>btnStreamStart</value>
-  </data>
-  <data name="&gt;&gt;textWizzardToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;camSourceToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnCustom6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;setRotationAngleToolStripMenuItem.Name" xml:space="preserve">
+    <value>setRotationAngleToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;label_status.Name" xml:space="preserve">
-    <value>label_status</value>
+  <data name="&gt;&gt;setRotationAngleToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnHome.Name" xml:space="preserve">
-    <value>btnHome</value>
+  <data name="&gt;&gt;toolStripTextBox1.Name" xml:space="preserve">
+    <value>toolStripTextBox1</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Speed</value>
+  <data name="&gt;&gt;toolStripTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pbBuffer.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;teachScalingToolStripMenuItem.Name" xml:space="preserve">
+    <value>teachScalingToolStripMenuItem</value>
   </data>
-  <data name="label_wx.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
+  <data name="&gt;&gt;teachScalingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label_mx.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;upperPositionToolStripMenuItem.Name" xml:space="preserve">
+    <value>upperPositionToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;btnStreamCheck.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;upperPositionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label_wz.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
+  <data name="&gt;&gt;teachRadiusTopToolStripMenuItem.Name" xml:space="preserve">
+    <value>teachRadiusTopToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;pbBuffer.Name" xml:space="preserve">
-    <value>pbBuffer</value>
+  <data name="&gt;&gt;teachRadiusTopToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tBURL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripTextBox2.Name" xml:space="preserve">
+    <value>toolStripTextBox2</value>
   </data>
-  <data name="&gt;&gt;btnKillAlarm.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+  <data name="&gt;&gt;toolStripTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;virtualJoystickXY.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+  <data name="&gt;&gt;lowerPositionToolStripMenuItem.Name" xml:space="preserve">
+    <value>lowerPositionToolStripMenuItem</value>
   </data>
-  <data name="label_wy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
+  <data name="&gt;&gt;lowerPositionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnCustom8.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;teachRadiusBottomToolStripMenuItem.Name" xml:space="preserve">
+    <value>teachRadiusBottomToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;btnShiftToZero.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;teachRadiusBottomToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 Z0</value>
+  <data name="&gt;&gt;toolStripTextBox3.Name" xml:space="preserve">
+    <value>toolStripTextBox3</value>
   </data>
-  <data name="tBURL.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;toolStripTextBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnJogZeroY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;teachOffsetToolStripMenuItem.Name" xml:space="preserve">
+    <value>teachOffsetToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;teachOffsetToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>344, 17</value>
-  </metadata>
-  <metadata name="cmsCode.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>581, 17</value>
-  </metadata>
-  <metadata name="cmsPictureBox.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>784, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="MainTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>126, 21</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de-DE</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="cmsScale.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>683, 17</value>
-  </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>484, 17</value>
-  </metadata>
+  <data name="&gt;&gt;teachToolStripMenuItem.Name" xml:space="preserve">
+    <value>teachToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;teachToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colorsToolStripMenuItem.Name" xml:space="preserve">
+    <value>colorsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;colorsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textToolStripMenuItem.Name" xml:space="preserve">
+    <value>textToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;textToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;crossHairsToolStripMenuItem.Name" xml:space="preserve">
+    <value>crossHairsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;crossHairsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;setZeroToolStripMenuItem.Name" xml:space="preserve">
+    <value>setZeroToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;setZeroToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;teachZeroPositionToolStripMenuItem.Name" xml:space="preserve">
+    <value>teachZeroPositionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;teachZeroPositionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;teachMarkerPositionToolStripMenuItem.Name" xml:space="preserve">
+    <value>teachMarkerPositionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;teachMarkerPositionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colorDialog1.Name" xml:space="preserve">
+    <value>colorDialog1</value>
+  </data>
+  <data name="&gt;&gt;colorDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ControlCameraForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

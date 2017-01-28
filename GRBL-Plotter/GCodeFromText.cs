@@ -22,6 +22,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Globalization;
+using System.Threading;
+using System.Drawing;
 
 
 // Hershey code from: http://www.evilmadscientist.com/2011/hershey-text-an-inkscape-extension-for-engraving-fonts/
@@ -62,7 +65,11 @@ namespace GRBL_Plotter
         private static StringBuilder gcodeString = new StringBuilder();
 
         public GCodeFromText()
-        {  InitializeComponent(); }
+        {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            InitializeComponent(); }
 
         private string textgcode = "";
         public string textGCode
@@ -79,6 +86,9 @@ namespace GRBL_Plotter
             cBFont.SelectedIndex = Properties.Settings.Default.textFontIndex;
             tBText.Text = Properties.Settings.Default.textFontText;
             nUDFontSize.Value = Properties.Settings.Default.textFontSize;
+            Location = Properties.Settings.Default.locationTextForm;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             getSettings();
         }
         private void getSettings()
@@ -91,6 +101,7 @@ namespace GRBL_Plotter
             Properties.Settings.Default.textFontIndex = cBFont.SelectedIndex;
             Properties.Settings.Default.textFontSize= nUDFontSize.Value;
             Properties.Settings.Default.textFontText = tBText.Text;
+            Properties.Settings.Default.locationTextForm = Location;
             Properties.Settings.Default.Save();
         }
 

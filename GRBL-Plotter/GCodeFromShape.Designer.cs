@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCodeFromShape));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nUDToolOverlap = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
@@ -104,12 +105,9 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.nUDToolDiameter);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(1, 3);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(379, 61);
-            this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tool";
             // 
             // nUDToolOverlap
             // 
@@ -118,17 +116,14 @@
             0,
             0,
             0});
-            this.nUDToolOverlap.Location = new System.Drawing.Point(240, 32);
+            resources.ApplyResources(this.nUDToolOverlap, "nUDToolOverlap");
             this.nUDToolOverlap.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDToolOverlap.Name = "nUDToolOverlap";
-            this.nUDToolOverlap.Size = new System.Drawing.Size(59, 20);
-            this.nUDToolOverlap.TabIndex = 11;
-            this.nUDToolOverlap.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDToolOverlap, "Overlap of paths when making a pocket");
+            this.toolTip1.SetToolTip(this.nUDToolOverlap, resources.GetString("nUDToolOverlap.ToolTip"));
             this.nUDToolOverlap.Value = new decimal(new int[] {
             75,
             0,
@@ -137,12 +132,8 @@
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(237, 16);
+            resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(44, 13);
-            this.label16.TabIndex = 10;
-            this.label16.Text = "Overlap";
             // 
             // nUDToolSpindleSpeed
             // 
@@ -151,7 +142,7 @@
             0,
             0,
             0});
-            this.nUDToolSpindleSpeed.Location = new System.Drawing.Point(305, 32);
+            resources.ApplyResources(this.nUDToolSpindleSpeed, "nUDToolSpindleSpeed");
             this.nUDToolSpindleSpeed.Maximum = new decimal(new int[] {
             500000,
             0,
@@ -163,10 +154,7 @@
             0,
             0});
             this.nUDToolSpindleSpeed.Name = "nUDToolSpindleSpeed";
-            this.nUDToolSpindleSpeed.Size = new System.Drawing.Size(59, 20);
-            this.nUDToolSpindleSpeed.TabIndex = 9;
-            this.nUDToolSpindleSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDToolSpindleSpeed, "Spindle speed");
+            this.toolTip1.SetToolTip(this.nUDToolSpindleSpeed, resources.GetString("nUDToolSpindleSpeed.ToolTip"));
             this.nUDToolSpindleSpeed.Value = new decimal(new int[] {
             20000,
             0,
@@ -175,12 +163,8 @@
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(302, 16);
+            resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(64, 13);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Spindle-Spd";
             // 
             // nUDToolFeedZ
             // 
@@ -189,7 +173,7 @@
             0,
             0,
             0});
-            this.nUDToolFeedZ.Location = new System.Drawing.Point(175, 32);
+            resources.ApplyResources(this.nUDToolFeedZ, "nUDToolFeedZ");
             this.nUDToolFeedZ.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -201,10 +185,7 @@
             0,
             0});
             this.nUDToolFeedZ.Name = "nUDToolFeedZ";
-            this.nUDToolFeedZ.Size = new System.Drawing.Size(59, 20);
-            this.nUDToolFeedZ.TabIndex = 7;
-            this.nUDToolFeedZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDToolFeedZ, "Feed rate for Z");
+            this.toolTip1.SetToolTip(this.nUDToolFeedZ, resources.GetString("nUDToolFeedZ.ToolTip"));
             this.nUDToolFeedZ.Value = new decimal(new int[] {
             500,
             0,
@@ -213,12 +194,8 @@
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(172, 16);
+            resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(41, 13);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "Feed-Z";
             // 
             // nUDToolFeedXY
             // 
@@ -227,7 +204,7 @@
             0,
             0,
             0});
-            this.nUDToolFeedXY.Location = new System.Drawing.Point(110, 32);
+            resources.ApplyResources(this.nUDToolFeedXY, "nUDToolFeedXY");
             this.nUDToolFeedXY.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -239,10 +216,7 @@
             0,
             0});
             this.nUDToolFeedXY.Name = "nUDToolFeedXY";
-            this.nUDToolFeedXY.Size = new System.Drawing.Size(59, 20);
-            this.nUDToolFeedXY.TabIndex = 5;
-            this.nUDToolFeedXY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDToolFeedXY, "Feed rate for XY direction");
+            this.toolTip1.SetToolTip(this.nUDToolFeedXY, resources.GetString("nUDToolFeedXY.ToolTip"));
             this.nUDToolFeedXY.Value = new decimal(new int[] {
             500,
             0,
@@ -251,12 +225,8 @@
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(107, 16);
+            resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 13);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Feed-XY";
             // 
             // nUDToolZStep
             // 
@@ -266,17 +236,14 @@
             0,
             0,
             65536});
-            this.nUDToolZStep.Location = new System.Drawing.Point(58, 32);
+            resources.ApplyResources(this.nUDToolZStep, "nUDToolZStep");
             this.nUDToolZStep.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             65536});
             this.nUDToolZStep.Name = "nUDToolZStep";
-            this.nUDToolZStep.Size = new System.Drawing.Size(46, 20);
-            this.nUDToolZStep.TabIndex = 3;
-            this.nUDToolZStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDToolZStep, "Depth per pass (not final depth)");
+            this.toolTip1.SetToolTip(this.nUDToolZStep, resources.GetString("nUDToolZStep.ToolTip"));
             this.nUDToolZStep.Value = new decimal(new int[] {
             1,
             0,
@@ -285,12 +252,8 @@
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(69, 16);
+            resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(20, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Z+";
             // 
             // nUDToolDiameter
             // 
@@ -300,17 +263,14 @@
             0,
             0,
             65536});
-            this.nUDToolDiameter.Location = new System.Drawing.Point(6, 32);
+            resources.ApplyResources(this.nUDToolDiameter, "nUDToolDiameter");
             this.nUDToolDiameter.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             65536});
             this.nUDToolDiameter.Name = "nUDToolDiameter";
-            this.nUDToolDiameter.Size = new System.Drawing.Size(46, 20);
-            this.nUDToolDiameter.TabIndex = 1;
-            this.nUDToolDiameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDToolDiameter, "Tool diameter to calculate offset path offset");
+            this.toolTip1.SetToolTip(this.nUDToolDiameter, resources.GetString("nUDToolDiameter.ToolTip"));
             this.nUDToolDiameter.Value = new decimal(new int[] {
             3,
             0,
@@ -319,12 +279,8 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 16);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Diameter";
             // 
             // groupBox2
             // 
@@ -339,12 +295,9 @@
             this.groupBox2.Controls.Add(this.rBShape2);
             this.groupBox2.Controls.Add(this.rBShape1);
             this.groupBox2.Controls.Add(this.rBShape3);
-            this.groupBox2.Location = new System.Drawing.Point(1, 70);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(299, 84);
-            this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Shape";
             // 
             // nUDImportGCZDown
             // 
@@ -354,7 +307,7 @@
             0,
             0,
             65536});
-            this.nUDImportGCZDown.Location = new System.Drawing.Point(240, 57);
+            resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
             this.nUDImportGCZDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -366,10 +319,7 @@
             0,
             -2147483648});
             this.nUDImportGCZDown.Name = "nUDImportGCZDown";
-            this.nUDImportGCZDown.Size = new System.Drawing.Size(55, 20);
-            this.nUDImportGCZDown.TabIndex = 19;
-            this.nUDImportGCZDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.toolTip1.SetToolTip(this.nUDImportGCZDown, "Final deepth of the shape");
+            this.toolTip1.SetToolTip(this.nUDImportGCZDown, resources.GetString("nUDImportGCZDown.ToolTip"));
             this.nUDImportGCZDown.Value = new decimal(new int[] {
             3,
             0,
@@ -378,17 +328,13 @@
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(237, 41);
+            resources.ApplyResources(this.label20, "label20");
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(52, 13);
-            this.label20.TabIndex = 18;
-            this.label20.Text = "Depth (Z)";
             // 
             // nUDShapeY
             // 
             this.nUDShapeY.DecimalPlaces = 1;
-            this.nUDShapeY.Location = new System.Drawing.Point(80, 57);
+            resources.ApplyResources(this.nUDShapeY, "nUDShapeY");
             this.nUDShapeY.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -400,9 +346,6 @@
             0,
             65536});
             this.nUDShapeY.Name = "nUDShapeY";
-            this.nUDShapeY.Size = new System.Drawing.Size(55, 20);
-            this.nUDShapeY.TabIndex = 17;
-            this.nUDShapeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nUDShapeY.Value = new decimal(new int[] {
             10,
             0,
@@ -412,17 +355,13 @@
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(77, 41);
+            resources.ApplyResources(this.label19, "label19");
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(66, 13);
-            this.label19.TabIndex = 16;
-            this.label19.Text = "Y-Dimension";
             // 
             // nUDShapeX
             // 
             this.nUDShapeX.DecimalPlaces = 1;
-            this.nUDShapeX.Location = new System.Drawing.Point(6, 57);
+            resources.ApplyResources(this.nUDShapeX, "nUDShapeX");
             this.nUDShapeX.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -434,9 +373,6 @@
             0,
             65536});
             this.nUDShapeX.Name = "nUDShapeX";
-            this.nUDShapeX.Size = new System.Drawing.Size(55, 20);
-            this.nUDShapeX.TabIndex = 15;
-            this.nUDShapeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nUDShapeX.Value = new decimal(new int[] {
             10,
             0,
@@ -446,17 +382,13 @@
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(3, 41);
+            resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(66, 13);
-            this.label18.TabIndex = 14;
-            this.label18.Text = "X-Dimension";
             // 
             // nUDShapeR
             // 
             this.nUDShapeR.DecimalPlaces = 1;
-            this.nUDShapeR.Location = new System.Drawing.Point(156, 57);
+            resources.ApplyResources(this.nUDShapeR, "nUDShapeR");
             this.nUDShapeR.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -468,9 +400,6 @@
             0,
             65536});
             this.nUDShapeR.Name = "nUDShapeR";
-            this.nUDShapeR.Size = new System.Drawing.Size(55, 20);
-            this.nUDShapeR.TabIndex = 13;
-            this.nUDShapeR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nUDShapeR.Value = new decimal(new int[] {
             3,
             0,
@@ -480,56 +409,36 @@
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(153, 41);
+            resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(40, 13);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "Radius";
             // 
             // rBShape2
             // 
-            this.rBShape2.AutoSize = true;
-            this.rBShape2.Location = new System.Drawing.Point(80, 19);
+            resources.ApplyResources(this.rBShape2, "rBShape2");
             this.rBShape2.Name = "rBShape2";
-            this.rBShape2.Size = new System.Drawing.Size(131, 17);
-            this.rBShape2.TabIndex = 2;
-            this.rBShape2.Text = "Rectangle round edge";
             this.rBShape2.UseVisualStyleBackColor = true;
             this.rBShape2.CheckedChanged += new System.EventHandler(this.nUDShapeR_ValueChanged);
             // 
             // rBShape1
             // 
-            this.rBShape1.AutoSize = true;
+            resources.ApplyResources(this.rBShape1, "rBShape1");
             this.rBShape1.Checked = true;
-            this.rBShape1.Location = new System.Drawing.Point(6, 19);
             this.rBShape1.Name = "rBShape1";
-            this.rBShape1.Size = new System.Drawing.Size(74, 17);
-            this.rBShape1.TabIndex = 1;
             this.rBShape1.TabStop = true;
-            this.rBShape1.Text = "Rectangle";
             this.rBShape1.UseVisualStyleBackColor = true;
             this.rBShape1.CheckedChanged += new System.EventHandler(this.nUDShapeR_ValueChanged);
             // 
             // rBShape3
             // 
-            this.rBShape3.AutoSize = true;
-            this.rBShape3.Location = new System.Drawing.Point(217, 19);
+            resources.ApplyResources(this.rBShape3, "rBShape3");
             this.rBShape3.Name = "rBShape3";
-            this.rBShape3.Size = new System.Drawing.Size(51, 17);
-            this.rBShape3.TabIndex = 0;
-            this.rBShape3.Text = "Circle";
             this.rBShape3.UseVisualStyleBackColor = true;
             this.rBShape3.CheckedChanged += new System.EventHandler(this.nUDShapeR_ValueChanged);
             // 
             // rBToolpath2
             // 
-            this.rBToolpath2.AutoSize = true;
-            this.rBToolpath2.Location = new System.Drawing.Point(6, 42);
+            resources.ApplyResources(this.rBToolpath2, "rBToolpath2");
             this.rBToolpath2.Name = "rBToolpath2";
-            this.rBToolpath2.Size = new System.Drawing.Size(111, 17);
-            this.rBToolpath2.TabIndex = 20;
-            this.rBToolpath2.Text = "Outside the shape";
             this.rBToolpath2.UseVisualStyleBackColor = true;
             // 
             // groupBox3
@@ -538,62 +447,41 @@
             this.groupBox3.Controls.Add(this.rBToolpath3);
             this.groupBox3.Controls.Add(this.rBToolpath1);
             this.groupBox3.Controls.Add(this.rBToolpath2);
-            this.groupBox3.Location = new System.Drawing.Point(1, 160);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(268, 99);
-            this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Toolpath";
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.cBToolpathPocket);
-            this.groupBox4.Location = new System.Drawing.Point(156, 19);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(101, 74);
-            this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Pocket";
             // 
             // cBToolpathPocket
             // 
-            this.cBToolpathPocket.AutoSize = true;
-            this.cBToolpathPocket.Location = new System.Drawing.Point(6, 19);
+            resources.ApplyResources(this.cBToolpathPocket, "cBToolpathPocket");
             this.cBToolpathPocket.Name = "cBToolpathPocket";
-            this.cBToolpathPocket.Size = new System.Drawing.Size(94, 17);
-            this.cBToolpathPocket.TabIndex = 0;
-            this.cBToolpathPocket.Text = "Create Pocket";
             this.cBToolpathPocket.UseVisualStyleBackColor = true;
             // 
             // rBToolpath3
             // 
-            this.rBToolpath3.AutoSize = true;
-            this.rBToolpath3.Location = new System.Drawing.Point(6, 65);
+            resources.ApplyResources(this.rBToolpath3, "rBToolpath3");
             this.rBToolpath3.Name = "rBToolpath3";
-            this.rBToolpath3.Size = new System.Drawing.Size(103, 17);
-            this.rBToolpath3.TabIndex = 22;
-            this.rBToolpath3.Text = "Inside the shape";
             this.rBToolpath3.UseVisualStyleBackColor = true;
             // 
             // rBToolpath1
             // 
-            this.rBToolpath1.AutoSize = true;
+            resources.ApplyResources(this.rBToolpath1, "rBToolpath1");
             this.rBToolpath1.Checked = true;
-            this.rBToolpath1.Location = new System.Drawing.Point(6, 19);
             this.rBToolpath1.Name = "rBToolpath1";
-            this.rBToolpath1.Size = new System.Drawing.Size(145, 17);
-            this.rBToolpath1.TabIndex = 21;
             this.rBToolpath1.TabStop = true;
-            this.rBToolpath1.Text = "On the shape (engraving)";
             this.rBToolpath1.UseVisualStyleBackColor = true;
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(148, 265);
+            resources.ApplyResources(this.btnApply, "btnApply");
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(98, 23);
-            this.btnApply.TabIndex = 29;
-            this.btnApply.Text = "Create GCode";
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
@@ -608,120 +496,84 @@
             this.groupBox5.Controls.Add(this.rBOrigin3);
             this.groupBox5.Controls.Add(this.rBOrigin2);
             this.groupBox5.Controls.Add(this.rBOrigin1);
-            this.groupBox5.Location = new System.Drawing.Point(309, 70);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(71, 84);
-            this.groupBox5.TabIndex = 30;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Origin";
             // 
             // rBOrigin9
             // 
-            this.rBOrigin9.AutoSize = true;
-            this.rBOrigin9.Location = new System.Drawing.Point(51, 60);
+            resources.ApplyResources(this.rBOrigin9, "rBOrigin9");
             this.rBOrigin9.Name = "rBOrigin9";
-            this.rBOrigin9.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin9.TabIndex = 8;
             this.rBOrigin9.UseVisualStyleBackColor = true;
             // 
             // rBOrigin8
             // 
-            this.rBOrigin8.AutoSize = true;
-            this.rBOrigin8.Location = new System.Drawing.Point(31, 60);
+            resources.ApplyResources(this.rBOrigin8, "rBOrigin8");
             this.rBOrigin8.Name = "rBOrigin8";
-            this.rBOrigin8.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin8.TabIndex = 7;
             this.rBOrigin8.UseVisualStyleBackColor = true;
             // 
             // rBOrigin7
             // 
-            this.rBOrigin7.AutoSize = true;
-            this.rBOrigin7.Location = new System.Drawing.Point(11, 60);
+            resources.ApplyResources(this.rBOrigin7, "rBOrigin7");
             this.rBOrigin7.Name = "rBOrigin7";
-            this.rBOrigin7.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin7.TabIndex = 6;
             this.rBOrigin7.UseVisualStyleBackColor = true;
             // 
             // rBOrigin6
             // 
-            this.rBOrigin6.AutoSize = true;
-            this.rBOrigin6.Location = new System.Drawing.Point(51, 41);
+            resources.ApplyResources(this.rBOrigin6, "rBOrigin6");
             this.rBOrigin6.Name = "rBOrigin6";
-            this.rBOrigin6.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin6.TabIndex = 5;
             this.rBOrigin6.UseVisualStyleBackColor = true;
             // 
             // rBOrigin5
             // 
-            this.rBOrigin5.AutoSize = true;
+            resources.ApplyResources(this.rBOrigin5, "rBOrigin5");
             this.rBOrigin5.Checked = true;
-            this.rBOrigin5.Location = new System.Drawing.Point(31, 41);
             this.rBOrigin5.Name = "rBOrigin5";
-            this.rBOrigin5.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin5.TabIndex = 4;
             this.rBOrigin5.TabStop = true;
             this.rBOrigin5.UseVisualStyleBackColor = true;
             // 
             // rBOrigin4
             // 
-            this.rBOrigin4.AutoSize = true;
-            this.rBOrigin4.Location = new System.Drawing.Point(11, 41);
+            resources.ApplyResources(this.rBOrigin4, "rBOrigin4");
             this.rBOrigin4.Name = "rBOrigin4";
-            this.rBOrigin4.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin4.TabIndex = 3;
             this.rBOrigin4.UseVisualStyleBackColor = true;
             // 
             // rBOrigin3
             // 
-            this.rBOrigin3.AutoSize = true;
-            this.rBOrigin3.Location = new System.Drawing.Point(51, 22);
+            resources.ApplyResources(this.rBOrigin3, "rBOrigin3");
             this.rBOrigin3.Name = "rBOrigin3";
-            this.rBOrigin3.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin3.TabIndex = 2;
             this.rBOrigin3.UseVisualStyleBackColor = true;
             // 
             // rBOrigin2
             // 
-            this.rBOrigin2.AutoSize = true;
-            this.rBOrigin2.Location = new System.Drawing.Point(31, 22);
+            resources.ApplyResources(this.rBOrigin2, "rBOrigin2");
             this.rBOrigin2.Name = "rBOrigin2";
-            this.rBOrigin2.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin2.TabIndex = 1;
             this.rBOrigin2.UseVisualStyleBackColor = true;
             // 
             // rBOrigin1
             // 
-            this.rBOrigin1.AutoSize = true;
-            this.rBOrigin1.Location = new System.Drawing.Point(11, 22);
+            resources.ApplyResources(this.rBOrigin1, "rBOrigin1");
             this.rBOrigin1.Name = "rBOrigin1";
-            this.rBOrigin1.Size = new System.Drawing.Size(14, 13);
-            this.rBOrigin1.TabIndex = 0;
             this.rBOrigin1.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(305, 265);
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 31;
-            this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // GCodeFromShape
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 291);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.MinimumSize = new System.Drawing.Size(400, 330);
             this.Name = "GCodeFromShape";
-            this.Text = "Create GCode from Shapes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShapeToGCode_FormClosing);
             this.Load += new System.EventHandler(this.ShapeToGCode_Load);
             this.groupBox1.ResumeLayout(false);

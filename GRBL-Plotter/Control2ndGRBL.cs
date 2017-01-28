@@ -20,6 +20,9 @@
 using System;
 using System.Windows.Forms;
 using virtualJoystick;
+using System.Globalization;
+using System.Threading;
+using System.Drawing;
 
 namespace GRBL_Plotter
 {
@@ -36,7 +39,11 @@ namespace GRBL_Plotter
         private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
 
         public Control2ndGRBL(ControlSerialForm handle = null)
-        {   InitializeComponent();
+        {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            InitializeComponent();
             set2ndSerial(handle);
         }
 
@@ -183,6 +190,15 @@ namespace GRBL_Plotter
             virtualJoystickZ.JoystickLabel = joystickZStep;
 
             btnJogStop.Visible = !_serial_form2.isGrblVers0;
+
+            Location = Properties.Settings.Default.location2ndGRBLForm;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(50, 50); }
+        }
+
+        private void Control2ndGRBL_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.location2ndGRBLForm = Location;
         }
     }
 }

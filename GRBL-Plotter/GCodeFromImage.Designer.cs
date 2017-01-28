@@ -106,17 +106,13 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 384);
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(374, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(118, 17);
-            this.lblStatus.Text = "toolStripStatusLabel1";
+            resources.ApplyResources(this.lblStatus, "lblStatus");
             // 
             // groupBox3
             // 
@@ -127,12 +123,9 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.cbLockRatio);
-            this.groupBox3.Location = new System.Drawing.Point(2, 208);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 73);
-            this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Output size in units";
             // 
             // nUDReso
             // 
@@ -142,7 +135,7 @@
             0,
             0,
             65536});
-            this.nUDReso.Location = new System.Drawing.Point(152, 45);
+            resources.ApplyResources(this.nUDReso, "nUDReso");
             this.nUDReso.Maximum = new decimal(new int[] {
             10,
             0,
@@ -154,9 +147,7 @@
             0,
             65536});
             this.nUDReso.Name = "nUDReso";
-            this.nUDReso.Size = new System.Drawing.Size(42, 20);
-            this.nUDReso.TabIndex = 24;
-            this.toolTip1.SetToolTip(this.nUDReso, "Distance between lines");
+            this.toolTip1.SetToolTip(this.nUDReso, resources.GetString("nUDReso.ToolTip"));
             this.nUDReso.Value = new decimal(new int[] {
             4,
             0,
@@ -172,7 +163,7 @@
             0,
             0,
             0});
-            this.nUDHeight.Location = new System.Drawing.Point(42, 45);
+            resources.ApplyResources(this.nUDHeight, "nUDHeight");
             this.nUDHeight.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -184,8 +175,6 @@
             0,
             0});
             this.nUDHeight.Name = "nUDHeight";
-            this.nUDHeight.Size = new System.Drawing.Size(53, 20);
-            this.nUDHeight.TabIndex = 23;
             this.nUDHeight.Value = new decimal(new int[] {
             50,
             0,
@@ -201,7 +190,7 @@
             0,
             0,
             0});
-            this.nUDWidth.Location = new System.Drawing.Point(42, 19);
+            resources.ApplyResources(this.nUDWidth, "nUDWidth");
             this.nUDWidth.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -213,8 +202,6 @@
             0,
             0});
             this.nUDWidth.Name = "nUDWidth";
-            this.nUDWidth.Size = new System.Drawing.Size(53, 20);
-            this.nUDWidth.TabIndex = 5;
             this.nUDWidth.Value = new decimal(new int[] {
             50,
             0,
@@ -224,291 +211,193 @@
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 21);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Width";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(99, 47);
+            resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Resolution";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 47);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Height";
             // 
             // cbLockRatio
             // 
-            this.cbLockRatio.AutoSize = true;
+            resources.ApplyResources(this.cbLockRatio, "cbLockRatio");
             this.cbLockRatio.Checked = true;
             this.cbLockRatio.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLockRatio.Location = new System.Drawing.Point(121, 20);
             this.cbLockRatio.Name = "cbLockRatio";
-            this.cbLockRatio.Size = new System.Drawing.Size(73, 17);
-            this.cbLockRatio.TabIndex = 12;
-            this.cbLockRatio.Text = "keep ratio";
             this.cbLockRatio.UseVisualStyleBackColor = true;
             // 
             // lblGamma
             // 
-            this.lblGamma.AutoSize = true;
-            this.lblGamma.Location = new System.Drawing.Point(67, 114);
+            resources.ApplyResources(this.lblGamma, "lblGamma");
             this.lblGamma.Name = "lblGamma";
-            this.lblGamma.Size = new System.Drawing.Size(35, 13);
-            this.lblGamma.TabIndex = 19;
-            this.lblGamma.Text = "label6";
             // 
             // lblContrast
             // 
-            this.lblContrast.AutoSize = true;
-            this.lblContrast.Location = new System.Drawing.Point(67, 65);
+            resources.ApplyResources(this.lblContrast, "lblContrast");
             this.lblContrast.Name = "lblContrast";
-            this.lblContrast.Size = new System.Drawing.Size(35, 13);
-            this.lblContrast.TabIndex = 18;
-            this.lblContrast.Text = "label5";
             // 
             // lblBrightness
             // 
-            this.lblBrightness.AutoSize = true;
-            this.lblBrightness.Location = new System.Drawing.Point(67, 16);
+            resources.ApplyResources(this.lblBrightness, "lblBrightness");
             this.lblBrightness.Name = "lblBrightness";
-            this.lblBrightness.Size = new System.Drawing.Size(35, 13);
-            this.lblBrightness.TabIndex = 17;
-            this.lblBrightness.Text = "label4";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 114);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Gamma";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 65);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Contrast";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 16);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Brightness";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cbGrayscale);
             this.groupBox1.Controls.Add(this.rbModeDither);
             this.groupBox1.Controls.Add(this.rbModeGray);
-            this.groupBox1.Location = new System.Drawing.Point(208, 210);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(162, 71);
-            this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Conversion mode";
             // 
             // cbGrayscale
             // 
-            this.cbGrayscale.AutoSize = true;
-            this.cbGrayscale.Location = new System.Drawing.Point(8, 18);
+            resources.ApplyResources(this.cbGrayscale, "cbGrayscale");
             this.cbGrayscale.Name = "cbGrayscale";
-            this.cbGrayscale.Size = new System.Drawing.Size(73, 17);
-            this.cbGrayscale.TabIndex = 2;
-            this.cbGrayscale.Text = "Grayscale";
             this.cbGrayscale.UseVisualStyleBackColor = true;
             this.cbGrayscale.CheckedChanged += new System.EventHandler(this.cbGrayscale_CheckedChanged);
             // 
             // rbModeDither
             // 
-            this.rbModeDither.AutoSize = true;
-            this.rbModeDither.Location = new System.Drawing.Point(89, 41);
+            resources.ApplyResources(this.rbModeDither, "rbModeDither");
             this.rbModeDither.Name = "rbModeDither";
-            this.rbModeDither.Size = new System.Drawing.Size(67, 17);
-            this.rbModeDither.TabIndex = 1;
-            this.rbModeDither.Text = "Dithering";
             this.rbModeDither.UseVisualStyleBackColor = true;
             this.rbModeDither.CheckedChanged += new System.EventHandler(this.rbModeGray_CheckedChanged);
             // 
             // rbModeGray
             // 
-            this.rbModeGray.AutoSize = true;
+            resources.ApplyResources(this.rbModeGray, "rbModeGray");
             this.rbModeGray.Checked = true;
-            this.rbModeGray.Location = new System.Drawing.Point(8, 41);
             this.rbModeGray.Name = "rbModeGray";
-            this.rbModeGray.Size = new System.Drawing.Size(72, 17);
-            this.rbModeGray.TabIndex = 0;
             this.rbModeGray.TabStop = true;
-            this.rbModeGray.Text = "Grayscale";
             this.rbModeGray.UseVisualStyleBackColor = true;
             this.rbModeGray.CheckedChanged += new System.EventHandler(this.rbModeGray_CheckedChanged);
             // 
             // btnInvert
             // 
             this.btnInvert.BackgroundImage = global::GRBL_Plotter.Properties.Resources.inv2;
-            this.btnInvert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnInvert.Location = new System.Drawing.Point(132, 171);
+            resources.ApplyResources(this.btnInvert, "btnInvert");
             this.btnInvert.Name = "btnInvert";
-            this.btnInvert.Size = new System.Drawing.Size(25, 25);
-            this.btnInvert.TabIndex = 8;
-            this.btnInvert.Text = "button5";
-            this.toolTip1.SetToolTip(this.btnInvert, "Invert colors");
+            this.toolTip1.SetToolTip(this.btnInvert, resources.GetString("btnInvert.ToolTip"));
             this.btnInvert.UseVisualStyleBackColor = true;
             this.btnInvert.Click += new System.EventHandler(this.btnInvert_Click);
             // 
             // btnHorizMirror
             // 
             this.btnHorizMirror.BackgroundImage = global::GRBL_Plotter.Properties.Resources.flip_horizontal;
-            this.btnHorizMirror.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHorizMirror.Location = new System.Drawing.Point(101, 171);
+            resources.ApplyResources(this.btnHorizMirror, "btnHorizMirror");
             this.btnHorizMirror.Name = "btnHorizMirror";
-            this.btnHorizMirror.Size = new System.Drawing.Size(25, 23);
-            this.btnHorizMirror.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.btnHorizMirror, "Horizontal flip");
+            this.toolTip1.SetToolTip(this.btnHorizMirror, resources.GetString("btnHorizMirror.ToolTip"));
             this.btnHorizMirror.UseVisualStyleBackColor = true;
             this.btnHorizMirror.Click += new System.EventHandler(this.btnHorizMirror_Click);
             // 
             // btnVertMirror
             // 
             this.btnVertMirror.BackgroundImage = global::GRBL_Plotter.Properties.Resources.flip_vertical;
-            this.btnVertMirror.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnVertMirror.Location = new System.Drawing.Point(70, 171);
+            resources.ApplyResources(this.btnVertMirror, "btnVertMirror");
             this.btnVertMirror.Name = "btnVertMirror";
-            this.btnVertMirror.Size = new System.Drawing.Size(25, 25);
-            this.btnVertMirror.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.btnVertMirror, "Vertical flip");
+            this.toolTip1.SetToolTip(this.btnVertMirror, resources.GetString("btnVertMirror.ToolTip"));
             this.btnVertMirror.UseVisualStyleBackColor = true;
             this.btnVertMirror.Click += new System.EventHandler(this.btnVertMirror_Click);
             // 
             // btnRotateRight
             // 
             this.btnRotateRight.BackgroundImage = global::GRBL_Plotter.Properties.Resources.turn_r;
-            this.btnRotateRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRotateRight.Location = new System.Drawing.Point(39, 171);
+            resources.ApplyResources(this.btnRotateRight, "btnRotateRight");
             this.btnRotateRight.Name = "btnRotateRight";
-            this.btnRotateRight.Size = new System.Drawing.Size(25, 25);
-            this.btnRotateRight.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.btnRotateRight, "Rotate picture 90° cw");
+            this.toolTip1.SetToolTip(this.btnRotateRight, resources.GetString("btnRotateRight.ToolTip"));
             this.btnRotateRight.UseVisualStyleBackColor = true;
             this.btnRotateRight.Click += new System.EventHandler(this.btnRotateRight_Click);
             // 
             // btnRotateLeft
             // 
             this.btnRotateLeft.BackgroundImage = global::GRBL_Plotter.Properties.Resources.turn_l;
-            this.btnRotateLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRotateLeft.Location = new System.Drawing.Point(8, 171);
+            resources.ApplyResources(this.btnRotateLeft, "btnRotateLeft");
             this.btnRotateLeft.Name = "btnRotateLeft";
-            this.btnRotateLeft.Size = new System.Drawing.Size(25, 25);
-            this.btnRotateLeft.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.btnRotateLeft, "Rotate picture 90° ccw");
+            this.toolTip1.SetToolTip(this.btnRotateLeft, resources.GetString("btnRotateLeft.ToolTip"));
             this.btnRotateLeft.UseVisualStyleBackColor = true;
             this.btnRotateLeft.Click += new System.EventHandler(this.btnRotateLeft_Click);
             // 
             // tBarGamma
             // 
-            this.tBarGamma.AutoSize = false;
-            this.tBarGamma.Location = new System.Drawing.Point(8, 130);
+            resources.ApplyResources(this.tBarGamma, "tBarGamma");
             this.tBarGamma.Maximum = 500;
             this.tBarGamma.Minimum = 1;
             this.tBarGamma.Name = "tBarGamma";
-            this.tBarGamma.Size = new System.Drawing.Size(149, 30);
-            this.tBarGamma.TabIndex = 3;
             this.tBarGamma.Value = 1;
             this.tBarGamma.Scroll += new System.EventHandler(this.tBarGamma_Scroll);
             // 
             // tBarContrast
             // 
-            this.tBarContrast.AutoSize = false;
-            this.tBarContrast.Location = new System.Drawing.Point(8, 81);
+            resources.ApplyResources(this.tBarContrast, "tBarContrast");
             this.tBarContrast.Maximum = 127;
             this.tBarContrast.Minimum = -127;
             this.tBarContrast.Name = "tBarContrast";
-            this.tBarContrast.Size = new System.Drawing.Size(149, 30);
-            this.tBarContrast.TabIndex = 2;
             this.tBarContrast.Scroll += new System.EventHandler(this.tBarContrast_Scroll);
             // 
             // tBarBrightness
             // 
-            this.tBarBrightness.AutoSize = false;
-            this.tBarBrightness.Location = new System.Drawing.Point(8, 32);
+            resources.ApplyResources(this.tBarBrightness, "tBarBrightness");
             this.tBarBrightness.Maximum = 127;
             this.tBarBrightness.Minimum = -127;
             this.tBarBrightness.Name = "tBarBrightness";
-            this.tBarBrightness.Size = new System.Drawing.Size(149, 30);
-            this.tBarBrightness.TabIndex = 1;
             this.tBarBrightness.Scroll += new System.EventHandler(this.tBarBrightness_Scroll);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.rbEngravingPattern2);
             this.groupBox2.Controls.Add(this.rbEngravingPattern1);
-            this.groupBox2.Location = new System.Drawing.Point(2, 287);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(85, 65);
-            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Plot direction";
             // 
             // rbEngravingPattern2
             // 
-            this.rbEngravingPattern2.AutoSize = true;
-            this.rbEngravingPattern2.Location = new System.Drawing.Point(6, 41);
+            resources.ApplyResources(this.rbEngravingPattern2, "rbEngravingPattern2");
             this.rbEngravingPattern2.Name = "rbEngravingPattern2";
-            this.rbEngravingPattern2.Size = new System.Drawing.Size(65, 17);
-            this.rbEngravingPattern2.TabIndex = 1;
-            this.rbEngravingPattern2.Text = "diagonal";
             this.rbEngravingPattern2.UseVisualStyleBackColor = true;
             // 
             // rbEngravingPattern1
             // 
-            this.rbEngravingPattern1.AutoSize = true;
+            resources.ApplyResources(this.rbEngravingPattern1, "rbEngravingPattern1");
             this.rbEngravingPattern1.Checked = true;
-            this.rbEngravingPattern1.Location = new System.Drawing.Point(6, 19);
             this.rbEngravingPattern1.Name = "rbEngravingPattern1";
-            this.rbEngravingPattern1.Size = new System.Drawing.Size(70, 17);
-            this.rbEngravingPattern1.TabIndex = 0;
             this.rbEngravingPattern1.TabStop = true;
-            this.rbEngravingPattern1.Text = "horizontal";
             this.rbEngravingPattern1.UseVisualStyleBackColor = true;
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(270, 358);
+            resources.ApplyResources(this.btnGenerate, "btnGenerate");
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(100, 24);
-            this.btnGenerate.TabIndex = 3;
-            this.btnGenerate.Text = "Create GCode";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GRBL_Plotter.Properties.Resources.modell;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(5, 5);
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
@@ -516,10 +405,8 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(2, 2);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 200);
-            this.panel1.TabIndex = 4;
             // 
             // groupBox4
             // 
@@ -537,37 +424,28 @@
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Location = new System.Drawing.Point(208, 2);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(162, 202);
-            this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Color correction";
             // 
             // cbExceptColor
             // 
-            this.cbExceptColor.AutoSize = true;
+            resources.ApplyResources(this.cbExceptColor, "cbExceptColor");
             this.cbExceptColor.BackColor = System.Drawing.Color.White;
-            this.cbExceptColor.Location = new System.Drawing.Point(6, 42);
             this.cbExceptColor.Name = "cbExceptColor";
-            this.cbExceptColor.Size = new System.Drawing.Size(50, 17);
-            this.cbExceptColor.TabIndex = 1;
-            this.cbExceptColor.Text = "Color";
-            this.toolTip1.SetToolTip(this.cbExceptColor, "Left click inside picture to select color");
+            this.toolTip1.SetToolTip(this.cbExceptColor, resources.GetString("cbExceptColor.ToolTip"));
             this.cbExceptColor.UseVisualStyleBackColor = false;
             this.cbExceptColor.CheckedChanged += new System.EventHandler(this.cbExceptColor_CheckedChanged);
             // 
             // nUDMode
             // 
-            this.nUDMode.Location = new System.Drawing.Point(45, 18);
+            resources.ApplyResources(this.nUDMode, "nUDMode");
             this.nUDMode.Maximum = new decimal(new int[] {
             2,
             0,
             0,
             0});
             this.nUDMode.Name = "nUDMode";
-            this.nUDMode.Size = new System.Drawing.Size(33, 20);
-            this.nUDMode.TabIndex = 27;
             this.toolTip1.SetToolTip(this.nUDMode, resources.GetString("nUDMode.ToolTip"));
             this.nUDMode.Value = new decimal(new int[] {
             2,
@@ -577,23 +455,15 @@
             // 
             // cbSkipToolOrder
             // 
-            this.cbSkipToolOrder.AutoSize = true;
-            this.cbSkipToolOrder.Location = new System.Drawing.Point(9, 42);
+            resources.ApplyResources(this.cbSkipToolOrder, "cbSkipToolOrder");
             this.cbSkipToolOrder.Name = "cbSkipToolOrder";
-            this.cbSkipToolOrder.Size = new System.Drawing.Size(137, 17);
-            this.cbSkipToolOrder.TabIndex = 29;
-            this.cbSkipToolOrder.Text = "Skip tool nr from palette";
-            this.toolTip1.SetToolTip(this.cbSkipToolOrder, "Instead of using tool number from palette (e.g. 3,7,9) tools will be counted from" +
-        " zero (0,1,2)");
+            this.toolTip1.SetToolTip(this.cbSkipToolOrder, resources.GetString("cbSkipToolOrder.ToolTip"));
             this.cbSkipToolOrder.UseVisualStyleBackColor = true;
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(2, 358);
+            resources.ApplyResources(this.btnLoad, "btnLoad");
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(85, 24);
-            this.btnLoad.TabIndex = 24;
-            this.btnLoad.Text = "Load picture";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -601,43 +471,30 @@
             // 
             this.groupBox5.Controls.Add(this.cbExceptColor);
             this.groupBox5.Controls.Add(this.cbExceptAlpha);
-            this.groupBox5.Location = new System.Drawing.Point(93, 287);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(75, 65);
-            this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Exceptions";
             // 
             // cbExceptAlpha
             // 
-            this.cbExceptAlpha.AutoSize = true;
+            resources.ApplyResources(this.cbExceptAlpha, "cbExceptAlpha");
             this.cbExceptAlpha.Checked = true;
             this.cbExceptAlpha.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbExceptAlpha.Location = new System.Drawing.Point(6, 19);
             this.cbExceptAlpha.Name = "cbExceptAlpha";
-            this.cbExceptAlpha.Size = new System.Drawing.Size(64, 17);
-            this.cbExceptAlpha.TabIndex = 0;
-            this.cbExceptAlpha.Text = "alpha=0";
             this.cbExceptAlpha.UseVisualStyleBackColor = true;
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(106, 358);
+            resources.ApplyResources(this.btnTest, "btnTest");
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(71, 24);
-            this.btnTest.TabIndex = 26;
-            this.btnTest.Text = "Show result";
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCheckOrig_MouseDown);
             this.btnTest.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnCheckOrig_MouseUp);
             // 
             // btnList
             // 
-            this.btnList.Location = new System.Drawing.Point(183, 358);
+            resources.ApplyResources(this.btnList, "btnList");
             this.btnList.Name = "btnList";
-            this.btnList.Size = new System.Drawing.Size(64, 24);
-            this.btnList.TabIndex = 28;
-            this.btnList.Text = "List colors";
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
             // 
@@ -646,27 +503,19 @@
             this.groupBox6.Controls.Add(this.cbSkipToolOrder);
             this.groupBox6.Controls.Add(this.label7);
             this.groupBox6.Controls.Add(this.nUDMode);
-            this.groupBox6.Location = new System.Drawing.Point(174, 287);
+            resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(196, 65);
-            this.groupBox6.TabIndex = 29;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Color replacing";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 20);
+            resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 13);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "Mode";
             // 
             // GCodeFromImage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 406);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.btnList);
             this.Controls.Add(this.btnTest);
@@ -679,9 +528,8 @@
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
-            this.MinimumSize = new System.Drawing.Size(390, 445);
             this.Name = "GCodeFromImage";
-            this.Text = "Create GCode from Image";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GCodeFromImage_FormClosing);
             this.Load += new System.EventHandler(this.ImageToGCode_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

@@ -362,7 +362,9 @@
             this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(320, 270);
             this.Name = "ControlStreamingForm2";
-            this.Text = "Overrides";
+            this.Text = "Overrides GRBL 1.1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlStreamingForm2_FormClosing);
+            this.Load += new System.EventHandler(this.ControlStreamingForm2_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

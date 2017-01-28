@@ -20,6 +20,9 @@
 using System;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading;
+using System.Drawing;
 
 namespace GRBL_Plotter
 {
@@ -33,6 +36,9 @@ namespace GRBL_Plotter
         public float offsetX = 0, offsetY = 0;
         public GCodeFromShape()
         {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
         }
 
@@ -228,6 +234,10 @@ namespace GRBL_Plotter
 
         private void ShapeToGCode_Load(object sender, EventArgs e)
         {
+            Location = Properties.Settings.Default.locationShapeForm;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+
             nUDToolDiameter.Value = Properties.Settings.Default.toolDiameter;
             nUDToolZStep.Value = Properties.Settings.Default.toolZStep;
             nUDToolFeedXY.Value = Properties.Settings.Default.toolFeedXY;
@@ -296,6 +306,7 @@ namespace GRBL_Plotter
 
         private void ShapeToGCode_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Properties.Settings.Default.locationShapeForm = Location;
             saveSettings();
         }
         private void saveSettings()

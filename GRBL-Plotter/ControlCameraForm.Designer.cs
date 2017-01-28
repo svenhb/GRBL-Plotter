@@ -58,8 +58,8 @@ namespace GRBL_Plotter
             this.nUDCameraZoom = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.menuStripCamera = new System.Windows.Forms.MenuStrip();
+            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.camSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setRotationAngleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.teachScalingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,30 +71,37 @@ namespace GRBL_Plotter
             this.toolStripTextBox3 = new System.Windows.Forms.ToolStripTextBox();
             this.teachOffsetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.teachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crossHairsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setZeroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.teachZeroPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.teachMarkerPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnApplyAngle = new System.Windows.Forms.Button();
             this.btnCamOffsetPlus = new System.Windows.Forms.Button();
-            this.lblOffset = new System.Windows.Forms.Label();
             this.cBCamOffset = new System.Windows.Forms.CheckBox();
             this.lblAngle = new System.Windows.Forms.Label();
             this.btnCamOffsetMinus = new System.Windows.Forms.Button();
+            this.lblOffset = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVideo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDCameraZoom)).BeginInit();
             this.menuStripCamera.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxVideo
             // 
-            this.pictureBoxVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            resources.ApplyResources(this.pictureBoxVideo, "pictureBoxVideo");
             this.pictureBoxVideo.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.pictureBoxVideo.Location = new System.Drawing.Point(0, 51);
-            this.pictureBoxVideo.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxVideo.Name = "pictureBoxVideo";
-            this.pictureBoxVideo.Size = new System.Drawing.Size(640, 480);
-            this.pictureBoxVideo.TabIndex = 0;
             this.pictureBoxVideo.TabStop = false;
             this.pictureBoxVideo.Click += new System.EventHandler(this.pictureBoxVideo_Click);
             this.pictureBoxVideo.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxVideo_Paint);
@@ -103,7 +110,7 @@ namespace GRBL_Plotter
             // 
             // nUDCameraZoom
             // 
-            this.nUDCameraZoom.Location = new System.Drawing.Point(38, 28);
+            resources.ApplyResources(this.nUDCameraZoom, "nUDCameraZoom");
             this.nUDCameraZoom.Maximum = new decimal(new int[] {
             5,
             0,
@@ -116,8 +123,6 @@ namespace GRBL_Plotter
             0});
             this.nUDCameraZoom.Name = "nUDCameraZoom";
             this.nUDCameraZoom.ReadOnly = true;
-            this.nUDCameraZoom.Size = new System.Drawing.Size(35, 20);
-            this.nUDCameraZoom.TabIndex = 8;
             this.nUDCameraZoom.Value = new decimal(new int[] {
             1,
             0,
@@ -127,59 +132,46 @@ namespace GRBL_Plotter
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 31);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Zoom";
             // 
             // menuStripCamera
             // 
             this.menuStripCamera.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.camSourceToolStripMenuItem,
-            this.rotationToolStripMenuItem,
-            this.teachScalingToolStripMenuItem,
-            this.teachOffsetToolStripMenuItem,
+            this.setupToolStripMenuItem,
             this.setZeroToolStripMenuItem});
-            this.menuStripCamera.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.menuStripCamera, "menuStripCamera");
             this.menuStripCamera.Name = "menuStripCamera";
             this.menuStripCamera.ShowItemToolTips = true;
-            this.menuStripCamera.Size = new System.Drawing.Size(640, 24);
-            this.menuStripCamera.TabIndex = 12;
-            this.menuStripCamera.Text = "menuStrip1";
+            // 
+            // setupToolStripMenuItem
+            // 
+            this.setupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.camSourceToolStripMenuItem,
+            this.setRotationAngleToolStripMenuItem,
+            this.teachScalingToolStripMenuItem,
+            this.teachOffsetToolStripMenuItem,
+            this.colorsToolStripMenuItem});
+            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
+            resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
             // 
             // camSourceToolStripMenuItem
             // 
             this.camSourceToolStripMenuItem.AutoToolTip = true;
             this.camSourceToolStripMenuItem.Name = "camSourceToolStripMenuItem";
-            this.camSourceToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.camSourceToolStripMenuItem.Text = "Source";
-            this.camSourceToolStripMenuItem.ToolTipText = "Select camera source.";
-            // 
-            // rotationToolStripMenuItem
-            // 
-            this.rotationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setRotationAngleToolStripMenuItem});
-            this.rotationToolStripMenuItem.Name = "rotationToolStripMenuItem";
-            this.rotationToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.rotationToolStripMenuItem.Text = "Rotation";
+            resources.ApplyResources(this.camSourceToolStripMenuItem, "camSourceToolStripMenuItem");
             // 
             // setRotationAngleToolStripMenuItem
             // 
             this.setRotationAngleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTextBox1});
             this.setRotationAngleToolStripMenuItem.Name = "setRotationAngleToolStripMenuItem";
-            this.setRotationAngleToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.setRotationAngleToolStripMenuItem.Text = "Set Rotation angle";
+            resources.ApplyResources(this.setRotationAngleToolStripMenuItem, "setRotationAngleToolStripMenuItem");
             // 
             // toolStripTextBox1
             // 
-            this.toolStripTextBox1.MaxLength = 6;
+            resources.ApplyResources(this.toolStripTextBox1, "toolStripTextBox1");
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(50, 23);
-            this.toolStripTextBox1.Text = "000,00";
-            this.toolStripTextBox1.Leave += new System.EventHandler(this.nUDCameraZoom_ValueChanged);
             this.toolStripTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyUp);
             // 
             // teachScalingToolStripMenuItem
@@ -191,18 +183,12 @@ namespace GRBL_Plotter
             this.lowerPositionToolStripMenuItem,
             this.teachRadiusBottomToolStripMenuItem});
             this.teachScalingToolStripMenuItem.Name = "teachScalingToolStripMenuItem";
-            this.teachScalingToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
-            this.teachScalingToolStripMenuItem.Text = "Teach Scaling";
-            this.teachScalingToolStripMenuItem.ToolTipText = "1) Home Plotter\r\n2) move camera to upper position\r\n3) click in picture to teach d" +
-    "istance of top radius\r\n4) move camera to lower position\r\n5) click in picture to " +
-    "teach distance of bottom radius\r\n";
+            resources.ApplyResources(this.teachScalingToolStripMenuItem, "teachScalingToolStripMenuItem");
             // 
             // upperPositionToolStripMenuItem
             // 
             this.upperPositionToolStripMenuItem.Name = "upperPositionToolStripMenuItem";
-            this.upperPositionToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.upperPositionToolStripMenuItem.Text = "Teach Upper Position";
-            this.upperPositionToolStripMenuItem.ToolTipText = "Teach camera view";
+            resources.ApplyResources(this.upperPositionToolStripMenuItem, "upperPositionToolStripMenuItem");
             this.upperPositionToolStripMenuItem.Click += new System.EventHandler(this.upperPositionToolStripMenuItem_Click);
             // 
             // teachRadiusTopToolStripMenuItem
@@ -210,22 +196,18 @@ namespace GRBL_Plotter
             this.teachRadiusTopToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTextBox2});
             this.teachRadiusTopToolStripMenuItem.Name = "teachRadiusTopToolStripMenuItem";
-            this.teachRadiusTopToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.teachRadiusTopToolStripMenuItem.Text = "Set teach radius top";
+            resources.ApplyResources(this.teachRadiusTopToolStripMenuItem, "teachRadiusTopToolStripMenuItem");
             // 
             // toolStripTextBox2
             // 
             this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.Size = new System.Drawing.Size(30, 23);
-            this.toolStripTextBox2.Text = "30";
+            resources.ApplyResources(this.toolStripTextBox2, "toolStripTextBox2");
             this.toolStripTextBox2.TextChanged += new System.EventHandler(this.toolStripTextBox2_TextChanged);
             // 
             // lowerPositionToolStripMenuItem
             // 
             this.lowerPositionToolStripMenuItem.Name = "lowerPositionToolStripMenuItem";
-            this.lowerPositionToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.lowerPositionToolStripMenuItem.Text = "Teach Lower Position";
-            this.lowerPositionToolStripMenuItem.ToolTipText = "Teach camera view";
+            resources.ApplyResources(this.lowerPositionToolStripMenuItem, "lowerPositionToolStripMenuItem");
             this.lowerPositionToolStripMenuItem.Click += new System.EventHandler(this.lowerPositionToolStripMenuItem_Click);
             // 
             // teachRadiusBottomToolStripMenuItem
@@ -233,14 +215,12 @@ namespace GRBL_Plotter
             this.teachRadiusBottomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTextBox3});
             this.teachRadiusBottomToolStripMenuItem.Name = "teachRadiusBottomToolStripMenuItem";
-            this.teachRadiusBottomToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.teachRadiusBottomToolStripMenuItem.Text = "Set teach radius bottom";
+            resources.ApplyResources(this.teachRadiusBottomToolStripMenuItem, "teachRadiusBottomToolStripMenuItem");
             // 
             // toolStripTextBox3
             // 
             this.toolStripTextBox3.Name = "toolStripTextBox3";
-            this.toolStripTextBox3.Size = new System.Drawing.Size(30, 23);
-            this.toolStripTextBox3.Text = "20";
+            resources.ApplyResources(this.toolStripTextBox3, "toolStripTextBox3");
             this.toolStripTextBox3.TextChanged += new System.EventHandler(this.toolStripTextBox3_TextChanged);
             // 
             // teachOffsetToolStripMenuItem
@@ -249,19 +229,33 @@ namespace GRBL_Plotter
             this.teachOffsetToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.teachToolStripMenuItem});
             this.teachOffsetToolStripMenuItem.Name = "teachOffsetToolStripMenuItem";
-            this.teachOffsetToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
-            this.teachOffsetToolStripMenuItem.Text = "Teach Offset";
-            this.teachOffsetToolStripMenuItem.ToolTipText = "1) Zero X,Y position\r\n2) Mark tool position (at X=0,Y=0)\r\n3) Move until marker is" +
-    " in center of camera view\r\n4) Teach actual position as offset";
+            resources.ApplyResources(this.teachOffsetToolStripMenuItem, "teachOffsetToolStripMenuItem");
             // 
             // teachToolStripMenuItem
             // 
             this.teachToolStripMenuItem.Name = "teachToolStripMenuItem";
-            this.teachToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.teachToolStripMenuItem.Text = "Teach Camera Offset";
-            this.teachToolStripMenuItem.ToolTipText = "1) Zero X,Y position\r\n2) Mark tool position (at X=0,Y=0)\r\n3) Move until marker is" +
-    " in center of camera view\r\n4) Teach actual position as offset";
+            resources.ApplyResources(this.teachToolStripMenuItem, "teachToolStripMenuItem");
             this.teachToolStripMenuItem.Click += new System.EventHandler(this.teachToolStripMenuItem_Click);
+            // 
+            // colorsToolStripMenuItem
+            // 
+            this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textToolStripMenuItem,
+            this.crossHairsToolStripMenuItem});
+            this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
+            resources.ApplyResources(this.colorsToolStripMenuItem, "colorsToolStripMenuItem");
+            // 
+            // textToolStripMenuItem
+            // 
+            this.textToolStripMenuItem.Name = "textToolStripMenuItem";
+            resources.ApplyResources(this.textToolStripMenuItem, "textToolStripMenuItem");
+            this.textToolStripMenuItem.Click += new System.EventHandler(this.textToolStripMenuItem_Click);
+            // 
+            // crossHairsToolStripMenuItem
+            // 
+            this.crossHairsToolStripMenuItem.Name = "crossHairsToolStripMenuItem";
+            resources.ApplyResources(this.crossHairsToolStripMenuItem, "crossHairsToolStripMenuItem");
+            this.crossHairsToolStripMenuItem.Click += new System.EventHandler(this.crossHairsToolStripMenuItem_Click);
             // 
             // setZeroToolStripMenuItem
             // 
@@ -270,109 +264,109 @@ namespace GRBL_Plotter
             this.teachZeroPositionToolStripMenuItem,
             this.teachMarkerPositionToolStripMenuItem});
             this.setZeroToolStripMenuItem.Name = "setZeroToolStripMenuItem";
-            this.setZeroToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
-            this.setZeroToolStripMenuItem.Text = "Set Coordinates";
-            this.setZeroToolStripMenuItem.ToolTipText = "Set Coordinate zero with camera offset";
+            resources.ApplyResources(this.setZeroToolStripMenuItem, "setZeroToolStripMenuItem");
             // 
             // teachZeroPositionToolStripMenuItem
             // 
             this.teachZeroPositionToolStripMenuItem.Name = "teachZeroPositionToolStripMenuItem";
-            this.teachZeroPositionToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
-            this.teachZeroPositionToolStripMenuItem.Text = "Set new coordinates to match Zero";
+            resources.ApplyResources(this.teachZeroPositionToolStripMenuItem, "teachZeroPositionToolStripMenuItem");
             this.teachZeroPositionToolStripMenuItem.Click += new System.EventHandler(this.btnSetOffsetZero_Click);
             // 
             // teachMarkerPositionToolStripMenuItem
             // 
             this.teachMarkerPositionToolStripMenuItem.Name = "teachMarkerPositionToolStripMenuItem";
-            this.teachMarkerPositionToolStripMenuItem.Size = new System.Drawing.Size(271, 22);
-            this.teachMarkerPositionToolStripMenuItem.Text = "Set new coordinates to match Marker";
+            resources.ApplyResources(this.teachMarkerPositionToolStripMenuItem, "teachMarkerPositionToolStripMenuItem");
             this.teachMarkerPositionToolStripMenuItem.Click += new System.EventHandler(this.btnSetOffsetMarker_Click);
             // 
             // btnApplyAngle
             // 
-            this.btnApplyAngle.Location = new System.Drawing.Point(122, 26);
+            resources.ApplyResources(this.btnApplyAngle, "btnApplyAngle");
             this.btnApplyAngle.Name = "btnApplyAngle";
-            this.btnApplyAngle.Size = new System.Drawing.Size(74, 23);
-            this.btnApplyAngle.TabIndex = 17;
-            this.btnApplyAngle.Text = "Apply Angle";
-            this.toolTip1.SetToolTip(this.btnApplyAngle, "Use right mouse button to measure angle.\r\nPress button to transform GCode with me" +
-        "asured angle.");
+            this.toolTip1.SetToolTip(this.btnApplyAngle, resources.GetString("btnApplyAngle.ToolTip"));
             this.btnApplyAngle.UseVisualStyleBackColor = true;
             this.btnApplyAngle.Click += new System.EventHandler(this.btnApplyAngle_Click);
             // 
             // btnCamOffsetPlus
             // 
-            this.btnCamOffsetPlus.Location = new System.Drawing.Point(477, 26);
+            resources.ApplyResources(this.btnCamOffsetPlus, "btnCamOffsetPlus");
             this.btnCamOffsetPlus.Name = "btnCamOffsetPlus";
-            this.btnCamOffsetPlus.Size = new System.Drawing.Size(82, 23);
-            this.btnCamOffsetPlus.TabIndex = 14;
-            this.btnCamOffsetPlus.Text = "+ Cam Offset";
+            this.toolTip1.SetToolTip(this.btnCamOffsetPlus, resources.GetString("btnCamOffsetPlus.ToolTip"));
             this.btnCamOffsetPlus.UseVisualStyleBackColor = true;
             this.btnCamOffsetPlus.Click += new System.EventHandler(this.btnCamOffsetPlus_Click);
             // 
-            // lblOffset
-            // 
-            this.lblOffset.AutoSize = true;
-            this.lblOffset.Location = new System.Drawing.Point(199, 31);
-            this.lblOffset.Name = "lblOffset";
-            this.lblOffset.Size = new System.Drawing.Size(35, 13);
-            this.lblOffset.TabIndex = 16;
-            this.lblOffset.Text = "label1";
-            // 
             // cBCamOffset
             // 
-            this.cBCamOffset.AutoSize = true;
-            this.cBCamOffset.Location = new System.Drawing.Point(370, 30);
+            resources.ApplyResources(this.cBCamOffset, "cBCamOffset");
             this.cBCamOffset.Name = "cBCamOffset";
-            this.cBCamOffset.Size = new System.Drawing.Size(106, 17);
-            this.cBCamOffset.TabIndex = 13;
-            this.cBCamOffset.Text = "Draw Cam Offset";
+            this.toolTip1.SetToolTip(this.cBCamOffset, resources.GetString("cBCamOffset.ToolTip"));
             this.cBCamOffset.UseVisualStyleBackColor = true;
             // 
             // lblAngle
             // 
-            this.lblAngle.AutoSize = true;
-            this.lblAngle.Location = new System.Drawing.Point(79, 31);
+            resources.ApplyResources(this.lblAngle, "lblAngle");
             this.lblAngle.Name = "lblAngle";
-            this.lblAngle.Size = new System.Drawing.Size(32, 13);
-            this.lblAngle.TabIndex = 18;
-            this.lblAngle.Text = "0.00°";
+            this.toolTip1.SetToolTip(this.lblAngle, resources.GetString("lblAngle.ToolTip"));
             // 
             // btnCamOffsetMinus
             // 
-            this.btnCamOffsetMinus.Location = new System.Drawing.Point(558, 26);
+            resources.ApplyResources(this.btnCamOffsetMinus, "btnCamOffsetMinus");
             this.btnCamOffsetMinus.Name = "btnCamOffsetMinus";
-            this.btnCamOffsetMinus.Size = new System.Drawing.Size(82, 23);
-            this.btnCamOffsetMinus.TabIndex = 19;
-            this.btnCamOffsetMinus.Text = "- Cam Offset";
+            this.toolTip1.SetToolTip(this.btnCamOffsetMinus, resources.GetString("btnCamOffsetMinus.ToolTip"));
             this.btnCamOffsetMinus.UseVisualStyleBackColor = true;
             this.btnCamOffsetMinus.Click += new System.EventHandler(this.btnCamOffsetMinus_Click);
             // 
-            // CameraForm
+            // lblOffset
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this.lblOffset, "lblOffset");
+            this.lblOffset.Name = "lblOffset";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.nUDCameraZoom);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnCamOffsetPlus);
+            this.groupBox2.Controls.Add(this.btnCamOffsetMinus);
+            this.groupBox2.Controls.Add(this.cBCamOffset);
+            this.groupBox2.Controls.Add(this.lblOffset);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.lblAngle);
+            this.groupBox3.Controls.Add(this.btnApplyAngle);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // ControlCameraForm
+            // 
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 532);
-            this.Controls.Add(this.btnCamOffsetMinus);
-            this.Controls.Add(this.lblAngle);
-            this.Controls.Add(this.btnApplyAngle);
-            this.Controls.Add(this.lblOffset);
-            this.Controls.Add(this.btnCamOffsetPlus);
-            this.Controls.Add(this.cBCamOffset);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.nUDCameraZoom);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBoxVideo);
             this.Controls.Add(this.menuStripCamera);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::GRBL_Plotter.Properties.Settings.Default, "locationCamForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = global::GRBL_Plotter.Properties.Settings.Default.locationCamForm;
             this.MainMenuStrip = this.menuStripCamera;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(656, 570);
-            this.MinimumSize = new System.Drawing.Size(656, 570);
-            this.Name = "CameraForm";
-            this.Text = "Camera";
+            this.Name = "ControlCameraForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.camera_form_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.camera_form_FormClosed);
             this.Load += new System.EventHandler(this.camera_form_Load);
@@ -380,6 +374,12 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDCameraZoom)).EndInit();
             this.menuStripCamera.ResumeLayout(false);
             this.menuStripCamera.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,20 +391,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.NumericUpDown nUDCameraZoom;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MenuStrip menuStripCamera;
-        private System.Windows.Forms.ToolStripMenuItem camSourceToolStripMenuItem;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolStripMenuItem rotationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teachScalingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem upperPositionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem lowerPositionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setRotationAngleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripMenuItem teachRadiusTopToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
-        private System.Windows.Forms.ToolStripMenuItem teachRadiusBottomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
-        private System.Windows.Forms.ToolStripMenuItem teachOffsetToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teachToolStripMenuItem;
         private System.Windows.Forms.Button btnCamOffsetPlus;
         private System.Windows.Forms.Label lblOffset;
         private System.Windows.Forms.ToolStripMenuItem setZeroToolStripMenuItem;
@@ -414,5 +401,26 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnCamOffsetMinus;
         private System.Windows.Forms.ToolStripMenuItem teachZeroPositionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem teachMarkerPositionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem camSourceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem teachScalingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem upperPositionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem teachRadiusTopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
+        private System.Windows.Forms.ToolStripMenuItem lowerPositionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem teachRadiusBottomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox3;
+        private System.Windows.Forms.ToolStripMenuItem teachOffsetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem teachToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setRotationAngleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem crossHairsToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }

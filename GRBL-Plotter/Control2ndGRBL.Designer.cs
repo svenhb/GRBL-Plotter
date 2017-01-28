@@ -70,46 +70,34 @@
             this.groupBox6.Controls.Add(this.virtualJoystickX);
             this.groupBox6.Controls.Add(this.btnJogStop);
             this.groupBox6.Controls.Add(this.virtualJoystickZ);
-            this.groupBox6.Location = new System.Drawing.Point(2, 148);
+            resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(159, 266);
-            this.groupBox6.TabIndex = 21;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Control / Jogging";
             // 
             // btnJogZeroZ
             // 
-            this.btnJogZeroZ.Location = new System.Drawing.Point(107, 53);
+            resources.ApplyResources(this.btnJogZeroZ, "btnJogZeroZ");
             this.btnJogZeroZ.Name = "btnJogZeroZ";
-            this.btnJogZeroZ.Size = new System.Drawing.Size(45, 20);
-            this.btnJogZeroZ.TabIndex = 4;
-            this.btnJogZeroZ.Text = "Z=0";
             this.btnJogZeroZ.UseVisualStyleBackColor = true;
             this.btnJogZeroZ.Click += new System.EventHandler(this.btnJogZ_Click);
             // 
             // btnJogZeroY
             // 
-            this.btnJogZeroY.Location = new System.Drawing.Point(55, 53);
+            resources.ApplyResources(this.btnJogZeroY, "btnJogZeroY");
             this.btnJogZeroY.Name = "btnJogZeroY";
-            this.btnJogZeroY.Size = new System.Drawing.Size(45, 20);
-            this.btnJogZeroY.TabIndex = 3;
-            this.btnJogZeroY.Text = "Y=0";
             this.btnJogZeroY.UseVisualStyleBackColor = true;
             this.btnJogZeroY.Click += new System.EventHandler(this.btnJogY_Click);
             // 
             // btnJogZeroX
             // 
-            this.btnJogZeroX.Location = new System.Drawing.Point(4, 53);
+            resources.ApplyResources(this.btnJogZeroX, "btnJogZeroX");
             this.btnJogZeroX.Name = "btnJogZeroX";
-            this.btnJogZeroX.Size = new System.Drawing.Size(45, 20);
-            this.btnJogZeroX.TabIndex = 2;
-            this.btnJogZeroX.Text = "X=0";
             this.btnJogZeroX.UseVisualStyleBackColor = true;
             this.btnJogZeroX.Click += new System.EventHandler(this.btnJogX_Click);
             // 
             // virtualJoystickY
             // 
-            this.virtualJoystickY.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("virtualJoystickY.BackgroundImage")));
+            resources.ApplyResources(this.virtualJoystickY, "virtualJoystickY");
             this.virtualJoystickY.Joystick2Dimension = false;
             this.virtualJoystickY.JoystickActive = System.Drawing.Color.Red;
             this.virtualJoystickY.JoystickLabel = new double[] {
@@ -121,19 +109,14 @@
         50D};
             this.virtualJoystickY.JoystickRaster = 5;
             this.virtualJoystickY.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickY.Location = new System.Drawing.Point(55, 79);
-            this.virtualJoystickY.MaximumSize = new System.Drawing.Size(400, 400);
-            this.virtualJoystickY.MinimumSize = new System.Drawing.Size(25, 100);
             this.virtualJoystickY.Name = "virtualJoystickY";
-            this.virtualJoystickY.Size = new System.Drawing.Size(45, 180);
-            this.virtualJoystickY.TabIndex = 30;
             this.virtualJoystickY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickY_JoyStickEvent);
             this.virtualJoystickY.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickY.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
             // 
             // virtualJoystickX
             // 
-            this.virtualJoystickX.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("virtualJoystickX.BackgroundImage")));
+            resources.ApplyResources(this.virtualJoystickX, "virtualJoystickX");
             this.virtualJoystickX.Joystick2Dimension = false;
             this.virtualJoystickX.JoystickActive = System.Drawing.Color.Red;
             this.virtualJoystickX.JoystickLabel = new double[] {
@@ -145,12 +128,7 @@
         50D};
             this.virtualJoystickX.JoystickRaster = 5;
             this.virtualJoystickX.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickX.Location = new System.Drawing.Point(4, 79);
-            this.virtualJoystickX.MaximumSize = new System.Drawing.Size(400, 400);
-            this.virtualJoystickX.MinimumSize = new System.Drawing.Size(25, 100);
             this.virtualJoystickX.Name = "virtualJoystickX";
-            this.virtualJoystickX.Size = new System.Drawing.Size(45, 180);
-            this.virtualJoystickX.TabIndex = 29;
             this.virtualJoystickX.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickX_JoyStickEvent);
             this.virtualJoystickX.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickX.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
@@ -158,17 +136,14 @@
             // btnJogStop
             // 
             this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnJogStop.Location = new System.Drawing.Point(4, 19);
+            resources.ApplyResources(this.btnJogStop, "btnJogStop");
             this.btnJogStop.Name = "btnJogStop";
-            this.btnJogStop.Size = new System.Drawing.Size(148, 28);
-            this.btnJogStop.TabIndex = 28;
-            this.btnJogStop.Text = "STOP Jogging";
             this.btnJogStop.UseVisualStyleBackColor = false;
             this.btnJogStop.Click += new System.EventHandler(this.btnJogStop_Click);
             // 
             // virtualJoystickZ
             // 
-            this.virtualJoystickZ.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("virtualJoystickZ.BackgroundImage")));
+            resources.ApplyResources(this.virtualJoystickZ, "virtualJoystickZ");
             this.virtualJoystickZ.Joystick2Dimension = false;
             this.virtualJoystickZ.JoystickActive = System.Drawing.Color.Red;
             this.virtualJoystickZ.JoystickLabel = new double[] {
@@ -180,53 +155,36 @@
         50D};
             this.virtualJoystickZ.JoystickRaster = 5;
             this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickZ.Location = new System.Drawing.Point(107, 79);
-            this.virtualJoystickZ.MaximumSize = new System.Drawing.Size(400, 400);
-            this.virtualJoystickZ.MinimumSize = new System.Drawing.Size(25, 100);
             this.virtualJoystickZ.Name = "virtualJoystickZ";
-            this.virtualJoystickZ.Size = new System.Drawing.Size(45, 180);
-            this.virtualJoystickZ.TabIndex = 24;
             this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickZ_JoyStickEvent);
             this.virtualJoystickZ.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickZ.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
             // 
             // btnKillAlarm
             // 
-            this.btnKillAlarm.Location = new System.Drawing.Point(167, 325);
+            resources.ApplyResources(this.btnKillAlarm, "btnKillAlarm");
             this.btnKillAlarm.Name = "btnKillAlarm";
-            this.btnKillAlarm.Size = new System.Drawing.Size(113, 40);
-            this.btnKillAlarm.TabIndex = 18;
-            this.btnKillAlarm.Text = "Kill Alarm";
             this.btnKillAlarm.UseVisualStyleBackColor = true;
             this.btnKillAlarm.Click += new System.EventHandler(this.btnKillAlarm_Click);
             // 
             // btnFeedHold
             // 
-            this.btnFeedHold.Location = new System.Drawing.Point(167, 167);
+            resources.ApplyResources(this.btnFeedHold, "btnFeedHold");
             this.btnFeedHold.Name = "btnFeedHold";
-            this.btnFeedHold.Size = new System.Drawing.Size(113, 40);
-            this.btnFeedHold.TabIndex = 16;
-            this.btnFeedHold.Text = "Feed Hold";
             this.btnFeedHold.UseVisualStyleBackColor = true;
             this.btnFeedHold.Click += new System.EventHandler(this.btnFeedHold_Click);
             // 
             // btnResume
             // 
-            this.btnResume.Location = new System.Drawing.Point(167, 213);
+            resources.ApplyResources(this.btnResume, "btnResume");
             this.btnResume.Name = "btnResume";
-            this.btnResume.Size = new System.Drawing.Size(113, 40);
-            this.btnResume.TabIndex = 17;
-            this.btnResume.Text = "Resume";
             this.btnResume.UseVisualStyleBackColor = true;
             this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(167, 259);
+            resources.ApplyResources(this.btnReset, "btnReset");
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(113, 60);
-            this.btnReset.TabIndex = 15;
-            this.btnReset.Text = "RESET";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
@@ -247,187 +205,105 @@
             this.groupBox2.Controls.Add(this.label_wz);
             this.groupBox2.Controls.Add(this.label_wx);
             this.groupBox2.Controls.Add(this.label_wy);
-            this.groupBox2.Location = new System.Drawing.Point(2, 2);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(193, 140);
-            this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tool Coordinates (World / Machine)";
             // 
             // btnHome
             // 
-            this.btnHome.Location = new System.Drawing.Point(122, 107);
+            resources.ApplyResources(this.btnHome, "btnHome");
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(63, 30);
-            this.btnHome.TabIndex = 0;
-            this.btnHome.Text = "Home";
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // label5
             // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(0, 98);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label5.Size = new System.Drawing.Size(62, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Status:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(13, 78);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label4.Size = new System.Drawing.Size(25, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Z";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnZeroZ
             // 
-            this.btnZeroZ.Location = new System.Drawing.Point(122, 78);
+            resources.ApplyResources(this.btnZeroZ, "btnZeroZ");
             this.btnZeroZ.Name = "btnZeroZ";
-            this.btnZeroZ.Size = new System.Drawing.Size(63, 23);
-            this.btnZeroZ.TabIndex = 3;
-            this.btnZeroZ.Text = "Zero Z";
             this.btnZeroZ.UseVisualStyleBackColor = true;
             this.btnZeroZ.Click += new System.EventHandler(this.btnZeroZ_Click);
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(15, 45);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label3.Size = new System.Drawing.Size(23, 20);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Y";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnZeroY
             // 
-            this.btnZeroY.Location = new System.Drawing.Point(122, 45);
+            resources.ApplyResources(this.btnZeroY, "btnZeroY");
             this.btnZeroY.Name = "btnZeroY";
-            this.btnZeroY.Size = new System.Drawing.Size(63, 23);
-            this.btnZeroY.TabIndex = 2;
-            this.btnZeroY.Text = "Zero Y";
             this.btnZeroY.UseVisualStyleBackColor = true;
             this.btnZeroY.Click += new System.EventHandler(this.btnZeroY_Click);
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(15, 13);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(23, 20);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "X";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnZeroX
             // 
-            this.btnZeroX.Location = new System.Drawing.Point(122, 12);
+            resources.ApplyResources(this.btnZeroX, "btnZeroX");
             this.btnZeroX.Name = "btnZeroX";
-            this.btnZeroX.Size = new System.Drawing.Size(63, 23);
-            this.btnZeroX.TabIndex = 1;
-            this.btnZeroX.Text = "Zero X";
             this.btnZeroX.UseVisualStyleBackColor = true;
             this.btnZeroX.Click += new System.EventHandler(this.btnZeroX_Click);
             // 
             // label_status
             // 
-            this.label_status.AutoSize = true;
-            this.label_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_status.Location = new System.Drawing.Point(2, 119);
+            resources.ApplyResources(this.label_status, "label_status");
             this.label_status.Name = "label_status";
-            this.label_status.Size = new System.Drawing.Size(56, 20);
-            this.label_status.TabIndex = 7;
-            this.label_status.Text = "Status";
             // 
             // label_mx
             // 
-            this.label_mx.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label_mx.Location = new System.Drawing.Point(48, 31);
+            resources.ApplyResources(this.label_mx, "label_mx");
             this.label_mx.Name = "label_mx";
-            this.label_mx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label_mx.Size = new System.Drawing.Size(72, 12);
-            this.label_mx.TabIndex = 1;
-            this.label_mx.Text = "0000.000";
-            this.label_mx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label_my
             // 
-            this.label_my.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label_my.Location = new System.Drawing.Point(48, 63);
+            resources.ApplyResources(this.label_my, "label_my");
             this.label_my.Name = "label_my";
-            this.label_my.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label_my.Size = new System.Drawing.Size(72, 14);
-            this.label_my.TabIndex = 2;
-            this.label_my.Text = "0000.000";
-            this.label_my.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label_mz
             // 
-            this.label_mz.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label_mz.Location = new System.Drawing.Point(48, 96);
+            resources.ApplyResources(this.label_mz, "label_mz");
             this.label_mz.Name = "label_mz";
-            this.label_mz.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label_mz.Size = new System.Drawing.Size(72, 14);
-            this.label_mz.TabIndex = 3;
-            this.label_mz.Text = "0000.000";
-            this.label_mz.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label_wz
             // 
-            this.label_wz.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_wz.Location = new System.Drawing.Point(44, 78);
+            resources.ApplyResources(this.label_wz, "label_wz");
             this.label_wz.Name = "label_wz";
-            this.label_wz.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label_wz.Size = new System.Drawing.Size(76, 20);
-            this.label_wz.TabIndex = 6;
-            this.label_wz.Text = "0000.000";
-            this.label_wz.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label_wx
             // 
-            this.label_wx.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_wx.Location = new System.Drawing.Point(44, 13);
+            resources.ApplyResources(this.label_wx, "label_wx");
             this.label_wx.Name = "label_wx";
-            this.label_wx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label_wx.Size = new System.Drawing.Size(76, 20);
-            this.label_wx.TabIndex = 4;
-            this.label_wx.Text = "0000.000";
-            this.label_wx.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label_wy
             // 
-            this.label_wy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_wy.Location = new System.Drawing.Point(44, 45);
+            resources.ApplyResources(this.label_wy, "label_wy");
             this.label_wy.Name = "label_wy";
-            this.label_wy.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label_wy.Size = new System.Drawing.Size(76, 20);
-            this.label_wy.TabIndex = 5;
-            this.label_wy.Text = "0000.000";
-            this.label_wy.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Control2ndGRBL
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 421);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.btnFeedHold);
             this.Controls.Add(this.btnResume);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnKillAlarm);
-            this.MinimumSize = new System.Drawing.Size(300, 460);
             this.Name = "Control2ndGRBL";
-            this.Text = "Control2ndGRBL";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Control2ndGRBL_FormClosing);
             this.Load += new System.EventHandler(this.Control2ndGRBL_Load);
             this.groupBox6.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

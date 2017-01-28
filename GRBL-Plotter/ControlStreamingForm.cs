@@ -19,6 +19,7 @@
 
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace GRBL_Plotter
 {
@@ -26,12 +27,19 @@ namespace GRBL_Plotter
     {
         public ControlStreamingForm()
         {
+//            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+//            Thread.CurrentThread.CurrentCulture = ci;
+//            Thread.CurrentThread.CurrentUICulture = ci; InitializeComponent();
             InitializeComponent();
         }
 
         private void StreamingForm_Load(object sender, EventArgs e)
         {
             //      SetRange_ValueChanged(sender, e);
+            Location = Properties.Settings.Default.locationStreamForm;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+
             tBOverrideFR.Minimum = (int)nUDOverrideFRBtm.Value;
             tBOverrideFR.Maximum = (int)nUDOverrideFRTop.Value;
             tBOverrideSS.Minimum = (int)nUDOverrideSSBtm.Value;
@@ -106,6 +114,11 @@ namespace GRBL_Plotter
             {
                 handler(this, e);
             }
+        }
+
+        private void ControlStreamingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.locationStreamForm = Location;
         }
     }
     public enum overrideSource { spindleSpeed, feedRate};

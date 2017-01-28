@@ -26,6 +26,9 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Threading;
+using System.ComponentModel;
 
 // AForge Library http://www.aforgenet.com/framework/
 using AForge.Video.DirectShow;
@@ -36,7 +39,7 @@ namespace GRBL_Plotter
     {
         private int cameraIndex = 0;
         private int cameraResolution = 640;
-        private float cameraRotation = 180;
+        private double cameraRotation = 180;
         private double cameraTeachRadiusTop = 30;
         private double cameraTeachRadiusBot = 10;
         private double cameraScalingTop = 20;
@@ -51,6 +54,10 @@ namespace GRBL_Plotter
         private bool teachingTop = false;
         private bool teachingBot = false;
 
+        private Color colText=Color.Lime;
+        private Brush brushText = Brushes.Lime;
+        private Color colCross=Color.Yellow;
+
         private xyzPoint actualPosWorld;
         private xyzPoint actualPosMachine;
         private xyzPoint actualPosMarker;
@@ -64,7 +71,11 @@ namespace GRBL_Plotter
 
 
         public ControlCameraForm()
-        {  InitializeComponent(); }
+        {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            InitializeComponent(); }
 
         VideoCaptureDevice videoSource;
         FilterInfoCollection videosources;
@@ -75,11 +86,11 @@ namespace GRBL_Plotter
             cameraRotation = Properties.Settings.Default.camerarotation;
             if (cameraRotation > 360)
                 cameraRotation = 0;
-            toolStripTextBox1.Text = cameraRotation.ToString();
+            toolStripTextBox1.Text = String.Format("{0}",cameraRotation);
             cameraTeachRadiusTop = Properties.Settings.Default.cameraTeachRadiusTop;
             cameraTeachRadiusBot = Properties.Settings.Default.cameraTeachRadiusBot;
-            toolStripTextBox2.Text = cameraTeachRadiusTop.ToString();
-            toolStripTextBox3.Text = cameraTeachRadiusBot.ToString();
+            toolStripTextBox2.Text = String.Format("{0}", cameraTeachRadiusTop);
+            toolStripTextBox3.Text = String.Format("{0}", cameraTeachRadiusBot);
             cameraScalingTop = Properties.Settings.Default.camerascalingTop;
             cameraScalingBot = Properties.Settings.Default.camerascalingBot;
             cameraPosTop = Properties.Settings.Default.cameraPosTop;
@@ -87,6 +98,14 @@ namespace GRBL_Plotter
             cameraToolOffsetX = Properties.Settings.Default.cameraToolOffsetX;
             cameraToolOffsetY = Properties.Settings.Default.cameraToolOffsetY;
             lblOffset.Text = String.Format("Cam.Off.: X{0} Y{1}", cameraToolOffsetX, cameraToolOffsetY);
+
+            colText = Properties.Settings.Default.cameraColorText;
+            setButtonColors(textToolStripMenuItem, colText);
+            brushText = new SolidBrush(colText);
+
+            colCross = Properties.Settings.Default.cameraColorCross;
+            setButtonColors(crossHairsToolStripMenuItem, colCross);
+            pen1 = new Pen(colCross, 1f);
 
             penUp.Color = Properties.Settings.Default.colorPenUp;
             penDown.Color = Properties.Settings.Default.colorPenDown;
@@ -110,6 +129,7 @@ namespace GRBL_Plotter
                     items[i].Name = "camselect" + i.ToString();
                     items[i].Tag = i;
                     items[i].Text = videosources[i].Name;
+                    items[i].Checked = false;
                     items[i].Click += new EventHandler(camSourceSubmenuItem_Click);
                 }
                 if (videosources.Count > 0)
@@ -180,7 +200,7 @@ namespace GRBL_Plotter
             frameCounter++;
             if (frameCounter > 10)
             {
-                pictureBoxVideo.BackgroundImage = RotateImage((Bitmap)eventArgs.Frame.Clone(), cameraRotation, cameraZoom);
+                pictureBoxVideo.BackgroundImage = RotateImage((Bitmap)eventArgs.Frame.Clone(), (float)cameraRotation, cameraZoom);
                 frameCounter = 0;
             }
         }
@@ -243,19 +263,19 @@ namespace GRBL_Plotter
             {
                 radius = (int)(cameraTeachRadiusTop * cameraZoom * xmid / actualScaling);
                 e.Graphics.DrawEllipse(pen1, new Rectangle(xmid - radius, ymid - radius, 2 * radius, 2 * radius));
-                e.Graphics.DrawString("Next click will teach scaling\r\n of upper camera view to " + cameraTeachRadiusTop.ToString(), new Font("Microsoft Sans Serif", 8), Brushes.White, stringpos);
+                e.Graphics.DrawString("Next click will teach scaling\r\n of upper camera view to " + cameraTeachRadiusTop.ToString(), new Font("Microsoft Sans Serif", 8), brushText, stringpos);
             }
             else if (teachingBot)
             {
                 radius = (int)(cameraTeachRadiusBot * cameraZoom * xmid / actualScaling);
                 e.Graphics.DrawEllipse(pen1, new Rectangle(xmid - radius, ymid - radius, 2 * radius, 2 * radius));
-                e.Graphics.DrawString("Next click will teach scaling\r\n of upper camera view to " + cameraTeachRadiusBot.ToString(), new Font("Microsoft Sans Serif", 8), Brushes.White, stringpos);
+                e.Graphics.DrawString("Next click will teach scaling\r\n of upper camera view to " + cameraTeachRadiusBot.ToString(), new Font("Microsoft Sans Serif", 8), brushText, stringpos);
             }
             else if (measureAngle)
             {
                 calculateAngle();
                 e.Graphics.DrawLine(pen1, measureAngleStartX, measureAngleStartY, measureAngleStopX, measureAngleStopY);
-                e.Graphics.DrawString(String.Format("Angle: {0:0.00}", angle), new Font("Microsoft Sans Serif", 8), Brushes.White, stringpos);
+                e.Graphics.DrawString(String.Format("Angle: {0:0.00}", angle), new Font("Microsoft Sans Serif", 8), brushText, stringpos);
             }
             else
             {
@@ -263,7 +283,7 @@ namespace GRBL_Plotter
                 double y2 = actualPosWorld.Y + relposY;
                 double x3 = x2 + cameraToolOffsetX;
                 double y3 = y2 + cameraToolOffsetY;
-                e.Graphics.DrawString(String.Format("Relative {0:0.00} ; {1:0.00}\r\nAbsolute {2:0.00} ; {3:0.00}\r\nCam.Off. {4:0.00} ; {5:0.00}", relposX, relposY, x2, y2,x3,y3), new Font("Lucida Console", 8), Brushes.White, stringpos);
+                e.Graphics.DrawString(String.Format("Relative {0:0.00} ; {1:0.00}\r\nAbsolute {2:0.00} ; {3:0.00}\r\nCam.Off. {4:0.00} ; {5:0.00}", relposX, relposY, x2, y2,x3,y3), new Font("Lucida Console", 8), brushText, stringpos);
             }
 
             float scale = (float)(xmid/actualScaling * cameraZoom);
@@ -316,7 +336,7 @@ namespace GRBL_Plotter
                 cameraPosBot = actualPosMachine.Z;
             }
             else if (!measureAngle)
-                OnRaiseXYEvent(new XYEventArgs(relposX, relposY, "G91G1")); // move relative and slow
+                OnRaiseXYEvent(new XYEventArgs(relposX, relposY, "G91")); // move relative and slow
             pictureBoxVideo.Invalidate();
         }
         public event EventHandler<XYEventArgs> RaiseXYEvent;
@@ -332,6 +352,7 @@ namespace GRBL_Plotter
         private void camSourceSubmenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
+            ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[cameraIndex]).Checked = false;
             cameraIndex = (int)clickedItem.Tag;
             clickedItem.Checked = true;
             selectCameraSource(cameraIndex, cameraResolution);
@@ -345,11 +366,13 @@ namespace GRBL_Plotter
         private void upperPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             teachingTop = true;
+            teachingBot = false;
         }
         // activate teaching of camera view range lower position
         private void lowerPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             teachingBot = true;
+            teachingTop = false;
         }
         // get values of teach range textbox
         private void toolStripTextBox2_TextChanged(object sender, EventArgs e)
@@ -378,18 +401,20 @@ namespace GRBL_Plotter
         // sent event to apply offset
         private void btnCamOffsetPlus_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(-cameraToolOffsetX, -cameraToolOffsetY, "G91G0"));   // move relative and fast
+            OnRaiseXYEvent(new XYEventArgs(-cameraToolOffsetX, -cameraToolOffsetY, "G91"));   // move relative and fast
+            cBCamOffset.Checked = true;
         }
         // sent event to apply offset
         private void btnCamOffsetMinus_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(cameraToolOffsetX, cameraToolOffsetY, "G91G0"));   // move relative and fast
+            OnRaiseXYEvent(new XYEventArgs(cameraToolOffsetX, cameraToolOffsetY, "G91"));   // move relative and fast
+            cBCamOffset.Checked = false;
         }
         // show actual offset from tool position
         private void teachToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cameraToolOffsetX = -actualPosWorld.X;
-            cameraToolOffsetY = -actualPosWorld.Y;
+            cameraToolOffsetX = Math.Round(-actualPosWorld.X,3);
+            cameraToolOffsetY = Math.Round(-actualPosWorld.Y,3);
             lblOffset.Text=String.Format("Camera Offset: X{0} Y{1}", cameraToolOffsetX, cameraToolOffsetY);
         }
 
@@ -424,11 +449,49 @@ namespace GRBL_Plotter
         // change camera rotation
         private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
         {   if (e.KeyCode == Keys.Enter)
-            {   if (!float.TryParse(toolStripTextBox1.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out cameraRotation))
+            {   if (!double.TryParse(toolStripTextBox1.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out cameraRotation))
                     cameraRotation = 0;
-                toolStripTextBox2.Text = cameraRotation.ToString();
+                toolStripTextBox1.Text = cameraRotation.ToString();
             }
         }
+
+        private void textToolStripMenuItem_Click(object sender, EventArgs e)
+        {   applyColor(textToolStripMenuItem, "cameraColorText");
+            brushText = new SolidBrush(Properties.Settings.Default.cameraColorText);
+        }
+        private void crossHairsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            applyColor(crossHairsToolStripMenuItem, "cameraColorCross");
+            colCross = Properties.Settings.Default.cameraColorCross;
+            pen1 = new Pen(colCross, 1f);
+        }
+
+        private void applyColor(ToolStripMenuItem btn, string settings)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                setButtonColors(btn, colorDialog1.Color);
+                Properties.Settings.Default[settings] = colorDialog1.Color;
+//                saveSettings();
+            }
+        }
+        private void setButtonColors(ToolStripMenuItem btn, Color col)
+        {
+            btn.BackColor = col;
+            btn.ForeColor = ContrastColor(col);
+        }
+        private Color ContrastColor(Color color)
+        {
+            int d = 0;
+            // Counting the perceptive luminance - human eye favors green color... 
+            double a = 1 - (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
+            if (a < 0.5)
+                d = 0; // bright colors - black font
+            else
+                d = 255; // dark colors - white font
+            return Color.FromArgb(d, d, d);
+        }
+
     }
 
     // establish own event to send XY coordinates

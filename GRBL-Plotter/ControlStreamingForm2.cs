@@ -19,6 +19,7 @@
 
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace GRBL_Plotter
 {
@@ -89,6 +90,17 @@ namespace GRBL_Plotter
             }
         }
 
+        private void ControlStreamingForm2_Load(object sender, EventArgs e)
+        {
+            Location = Properties.Settings.Default.locationStreamForm;
+            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+        }
+
+        private void ControlStreamingForm2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.locationStreamForm = Location;
+        }
     }
 
     public class OverrideMsgArgs : EventArgs

@@ -21,10 +21,12 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 
 namespace GRBL_Plotter
 {
@@ -35,8 +37,8 @@ namespace GRBL_Plotter
 
         [DllImport("kernel32", CharSet = CharSet.Unicode)]
         static extern IntPtr WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
-        //       [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        //       static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
+        [DllImport("kernel32", CharSet = CharSet.Unicode)]
+        static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
 
         public IniFile(string IniPath = null)
         {
@@ -46,15 +48,19 @@ namespace GRBL_Plotter
         public string Read(string Key, string Section = null)
         {
             var RetVal = new StringBuilder(255);
-            NativeMethods.GetPrivateProfileString(Section ?? EXE, Key, "", RetVal, 255, Path);
-            return RetVal.ToString();
+            try
+            {
+                GetPrivateProfileString(Section ?? EXE, Key, "", RetVal, 255, Path);
+                return RetVal.ToString();
+            }
+            catch (Exception err) { return ""; }
         }
 
         public void Write(string Key, string Value, string Section = null)
         {
             try
             {
-               WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
+                WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
             }
             catch (Exception err) { }
         }
@@ -74,10 +80,14 @@ namespace GRBL_Plotter
             return Read(Key, Section).Length > 0;
         }
 
-        public void WriteAll()
+        public void WriteAll(List<string> GRBLSettings)
         {
             var setup = Properties.Settings.Default;
-            string section = "GCode generation";
+            string section = "Info";
+            DateTime localDate = DateTime.Now;
+            Write("Date", localDate.ToString(), section);
+
+            section = "GCode generation";
             Write("Dec Places", setup.importGCDecPlaces.ToString(), section);
             Write("XY Feedrate", setup.importGCXYFeed.ToString(), section);
             Write("Header Code", setup.importGCHeader.ToString(), section);
@@ -95,6 +105,14 @@ namespace GRBL_Plotter
             Write("PWM Up Dly", setup.importGCPWMDlyUp.ToString(), section);
             Write("PWM Down Val", setup.importGCPWMDown.ToString(), section);
             Write("PWM Down Dly", setup.importGCPWMDlyDown.ToString(), section);
+
+            section = "Tool";
+            Write("Diameter", setup.toolDiameter.ToString(), section);
+            Write("Z Step", setup.toolZStep.ToString(), section);
+            Write("XY Feedrate", setup.toolFeedXY.ToString(), section);
+            Write("Z Feedrate", setup.toolFeedZ.ToString(), section);
+            Write("Overlap", setup.toolOverlap.ToString(), section);
+            Write("Spindle Speed", setup.toolSpindleSpeed.ToString(), section);
 
             section = "Buttons";
             Write("Button1", setup.custom1.ToString(), section);
@@ -127,6 +145,27 @@ namespace GRBL_Plotter
             Write("Z3 Speed", setup.joyZSpeed3.ToString(), section);
             Write("Z4 Speed", setup.joyZSpeed4.ToString(), section);
             Write("Z5 Speed", setup.joyZSpeed5.ToString(), section);
+
+            section = "Camera";
+            Write("Index", setup.camerindex.ToString(), section);
+            Write("Rotation", setup.camerarotation.ToString(), section);
+            Write("Top Pos", setup.cameraPosTop.ToString(), section);
+            Write("Top Radius", setup.cameraTeachRadiusTop.ToString(), section);
+            Write("Top Scaling", setup.camerascalingTop.ToString(), section);
+            Write("Bottom Pos", setup.cameraPosBot.ToString(), section);
+            Write("Bottom Radius", setup.cameraTeachRadiusBot.ToString(), section);
+            Write("Bottom Scaling", setup.camerascalingBot.ToString(), section);
+            Write("X Tool Offset", setup.cameraToolOffsetX.ToString(), section);
+            Write("Y Tool Offset", setup.cameraToolOffsetY.ToString(), section);
+
+            section = "GRBL Settings";
+            if (GRBLSettings.Count > 0)
+            {   foreach (string setting in GRBLSettings)
+                {   string[] splt = setting.Split('=');
+                    if (splt.Length > 1)
+                        Write(splt[0], splt[1], section);
+                }
+            }
         }
         public void ReadAll()
         {
@@ -165,6 +204,45 @@ namespace GRBL_Plotter
             setup.joyZSpeed4 = Convert.ToDecimal(Read("Z4 Speed", section));
             setup.joyZSpeed5 = Convert.ToDecimal(Read("Z5 Speed", section));
 
+            section = "GCode generation";
+            setup.importGCDecPlaces = Convert.ToDecimal(Read("Dec Places", section));
+            setup.importGCXYFeed = Convert.ToDecimal(Read("XY Feedrate", section));
+            setup.importGCHeader =Read("Header Code", section);
+            setup.importGCFooter = Read("Footer Code", section);
+            setup.importGCAddComments = Convert.ToBoolean(Read("Add Comments", section));
+            setup.importGCTool = Convert.ToBoolean(Read("Add Tool Cmd", section));
+            setup.importGCZEnable = Convert.ToBoolean(Read("Z Enable", section));
+            setup.importGCZUp = Convert.ToDecimal(Read("Z Up Pos", section));
+            setup.importGCZDown = Convert.ToDecimal(Read("Z Down Pos", section));
+            setup.importGCZFeed = Convert.ToDecimal(Read("Z Feedrate", section));
+            setup.importGCSpindleToggle = Convert.ToBoolean(Read("Spindle Toggle", section));
+            setup.importGCSSpeed = Convert.ToDecimal(Read("Spindle Speed", section));
+            setup.importGCPWMEnable = Convert.ToBoolean(Read("PWM Enable", section));
+            setup.importGCPWMUp = Convert.ToDecimal(Read("PWM Up Val", section));
+            setup.importGCPWMDlyUp = Convert.ToDecimal(Read("PWM Up Dly", section));
+            setup.importGCPWMDown = Convert.ToDecimal(Read("PWM Down Val", section));
+            setup.importGCPWMDlyDown = Convert.ToDecimal(Read("PWM Down Dly", section));
+
+            section = "Tool";
+            setup.toolDiameter = Convert.ToDecimal(Read("Diameter", section));
+            setup.toolZStep = Convert.ToDecimal(Read("Z Step", section));
+            setup.toolFeedXY = Convert.ToDecimal(Read("XY Feedrate", section));
+            setup.toolFeedZ = Convert.ToDecimal(Read("Z Feedrate", section));
+            setup.toolOverlap = Convert.ToDecimal(Read("Overlap", section));
+            setup.toolSpindleSpeed = Convert.ToDecimal(Read("Spindle Speed", section));
+
+            section = "Camera";
+            setup.camerindex = Convert.ToInt16 (Read("Spindle Speed", section));
+            setup.camerarotation = Convert.ToDouble(Read("Rotation", section));
+            setup.cameraPosTop = Convert.ToDouble(Read("Top Pos", section));
+            setup.cameraTeachRadiusTop = Convert.ToDouble(Read("Top Radius", section));
+            setup.camerascalingTop = Convert.ToDouble(Read("Top Scaling", section));
+            setup.cameraPosBot = Convert.ToDouble(Read("Bottom Pos", section));
+            setup.cameraTeachRadiusBot = Convert.ToDouble(Read("Bottom Radius", section));
+            setup.camerascalingBot = Convert.ToDouble(Read("Bottom Scaling", section));
+            setup.cameraToolOffsetX = Convert.ToDouble(Read("X Tool Offset", section));
+            setup.cameraToolOffsetY = Convert.ToDouble(Read("Y Tool Offset", section));
+
         }
     }
     internal static class NativeMethods
@@ -174,7 +252,7 @@ namespace GRBL_Plotter
         internal static extern IntPtr WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
 
         [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        [return: MarshalAs(UnmanagedType.Bool)]
+        [return: MarshalAs(UnmanagedType.SysInt)]
         internal static extern int GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
     }
 

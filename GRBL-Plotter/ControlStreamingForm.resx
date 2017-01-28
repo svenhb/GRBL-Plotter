@@ -117,10 +117,379 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tBOverrideSS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 111</value>
+  </data>
+  <data name="&gt;&gt;lblSSValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBOverrideSSEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="nUDOverrideSSBtm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 241</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tBOverrideFR.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="nUDOverrideFRBtm.ToolTip" xml:space="preserve">
+    <value>Set lower limit for track bar</value>
+  </data>
+  <data name="nUDOverrideSSTop.ToolTip" xml:space="preserve">
+    <value>Set upper limit for track bar</value>
+  </data>
+  <data name="lblFRValue.ToolTip" xml:space="preserve">
+    <value>Last feed rate sent to GRBL</value>
+  </data>
+  <data name="nUDOverrideFRTop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 85</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>240, 380</value>
+  </data>
+  <data name="lblOverrideFRValue.ToolTip" xml:space="preserve">
+    <value>New feed rate value</value>
+  </data>
+  <data name="&gt;&gt;lblFRValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="nUDOverrideSSBtm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nUDOverrideFRTop.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tBOverrideSS.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lblFRValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="cBOverrideSSEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="nUDOverrideSSTop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 85</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Overrides</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideSSValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;nUDOverrideSSTop.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="lblOverrideFRValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lblOverrideFRValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 62</value>
+  </data>
+  <data name="&gt;&gt;tBOverrideFR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cBOverrideFREnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 17</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideFRTop.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="tBOverrideSS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 124</value>
+  </data>
+  <data name="nUDOverrideSSTop.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblFRValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 23</value>
+  </data>
+  <data name="tBOverrideSS.ToolTip" xml:space="preserve">
+    <value>Set spindle speed override value</value>
+  </data>
+  <data name="cBOverrideSSEnable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="nUDOverrideFRBtm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 241</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideSSTop.Name" xml:space="preserve">
+    <value>nUDOverrideSSTop</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideFRValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideSSTop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideSSBtm.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideSSValue.Name" xml:space="preserve">
+    <value>lblOverrideSSValue</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideFRBtm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideFRValue.Name" xml:space="preserve">
+    <value>lblOverrideFRValue</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="lblFRValue.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideFRBtm.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cBOverrideSSEnable.ToolTip" xml:space="preserve">
+    <value>Apply new spindle speed value and replace all upcomming spindle speeds in gcode
+Note: override takes effect after the current GRBL buffer is processed.</value>
+  </data>
+  <data name="&gt;&gt;tBOverrideSS.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tBOverrideFR.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 111</value>
+  </data>
+  <data name="nUDOverrideSSTop.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideSSTop.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lblOverrideFRValue.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tBOverrideFR.ToolTip" xml:space="preserve">
+    <value>Set feed rate override value</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideFRValue.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ControlStreamingForm</value>
+  </data>
+  <data name="lblSSValue.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt, style=Bold</value>
+  </data>
+  <data name="lblFRValue.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;tBOverrideSS.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideFRTop.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="lblOverrideSSValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 62</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 70</value>
+  </data>
+  <data name="tBOverrideFR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 124</value>
+  </data>
+  <data name="tBOverrideFR.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cBOverrideSSEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 42</value>
+  </data>
+  <data name="&gt;&gt;lblFRValue.Name" xml:space="preserve">
+    <value>lblFRValue</value>
+  </data>
+  <data name="nUDOverrideSSBtm.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lblOverrideFRValue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblOverrideSSValue.Text" xml:space="preserve">
+    <value>000</value>
+  </data>
+  <data name="&gt;&gt;tBOverrideFR.Name" xml:space="preserve">
+    <value>tBOverrideFR</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideSSValue.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideSSBtm.Name" xml:space="preserve">
+    <value>nUDOverrideSSBtm</value>
+  </data>
+  <data name="cBOverrideSSEnable.Text" xml:space="preserve">
+    <value>Override</value>
+  </data>
+  <data name="lblSSValue.ToolTip" xml:space="preserve">
+    <value>Last spindle speed sent to GRBL</value>
+  </data>
+  <data name="tBOverrideFR.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="&gt;&gt;cBOverrideFREnable.Name" xml:space="preserve">
+    <value>cBOverrideFREnable</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 70</value>
+  </data>
+  <data name="nUDOverrideFRBtm.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="nUDOverrideFRTop.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tBOverrideSS.Name" xml:space="preserve">
+    <value>tBOverrideSS</value>
+  </data>
+  <data name="&gt;&gt;lblFRValue.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideSSBtm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBOverrideSSEnable.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="tBOverrideSS.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="&gt;&gt;cBOverrideSSEnable.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBOverrideFREnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 42</value>
+  </data>
+  <data name="nUDOverrideFRBtm.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tBOverrideFR.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;cBOverrideSSEnable.Name" xml:space="preserve">
+    <value>cBOverrideSSEnable</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;cBOverrideFREnable.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblSSValue.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="&gt;&gt;lblSSValue.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="lblOverrideSSValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="&gt;&gt;tBOverrideFR.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="nUDOverrideSSTop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="&gt;&gt;cBOverrideFREnable.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="groupBox2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;lblSSValue.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBOverrideFREnable.Text" xml:space="preserve">
+    <value>Override</value>
+  </data>
+  <data name="lblSSValue.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="cBOverrideSSEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 17</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideFRTop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblOverrideSSValue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBOverrideFREnable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;lblSSValue.Name" xml:space="preserve">
+    <value>lblSSValue</value>
+  </data>
+  <data name="cBOverrideFREnable.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideSSBtm.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="lblOverrideSSValue.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideFRValue.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 67</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAOEAAAEAGABIvwIAFgAAACgAAAAAAQAAwgEAAAEAGAAAAAAAAAAAALQAAAC0AAAAAAAAAAAA
@@ -3127,4 +3496,112 @@
         //8=
 </value>
   </data>
+  <data name="tBOverrideSS.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideSSValue.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblSSValue.Text" xml:space="preserve">
+    <value>00000</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>GRBL Vers. 0.9:
+'Override' will inject feed rate (F) or spindle speed (S) command immediately.
+Also later upcoming F or S commands will be replaced by override-value.</value>
+  </data>
+  <data name="lblFRValue.Text" xml:space="preserve">
+    <value>00000</value>
+  </data>
+  <data name="nUDOverrideSSBtm.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="lblOverrideSSValue.ToolTip" xml:space="preserve">
+    <value>New spindle speed value</value>
+  </data>
+  <data name="lblOverrideFRValue.Text" xml:space="preserve">
+    <value>000</value>
+  </data>
+  <data name="&gt;&gt;tBOverrideSS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBOverrideFR.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lblFRValue.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>224, 341</value>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDOverrideSSBtm.ToolTip" xml:space="preserve">
+    <value>Set lower limit for track bar</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 267</value>
+  </data>
+  <data name="nUDOverrideFRTop.ToolTip" xml:space="preserve">
+    <value>Set upper limit for track bar</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblFRValue.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cBOverrideFREnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideFRBtm.Name" xml:space="preserve">
+    <value>nUDOverrideFRBtm</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Spindle Speed</value>
+  </data>
+  <data name="cBOverrideFREnable.ToolTip" xml:space="preserve">
+    <value>Apply new feed rate value and replace all upcomming feed rates in gcode.
+Note: override takes effect after the current GRBL buffer is processed.</value>
+  </data>
+  <data name="lblSSValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 16</value>
+  </data>
+  <data name="lblSSValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 23</value>
+  </data>
+  <data name="nUDOverrideFRTop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideFRTop.Name" xml:space="preserve">
+    <value>nUDOverrideFRTop</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 267</value>
+  </data>
+  <data name="&gt;&gt;nUDOverrideFRBtm.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Feed Rate</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="nUDOverrideFRBtm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>de-DE</value>
+  </metadata>
 </root>
