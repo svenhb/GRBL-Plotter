@@ -25,25 +25,193 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
-        public string port1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("en")]
+        public string language {
             get {
-                return ((string)(this["port1"]));
+                return ((string)(this["language"]));
             }
             set {
-                this["port1"] = value;
+                this["language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point locationMForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationMForm"]));
+            }
+            set {
+                this["locationMForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 50")]
+        public global::System.Drawing.Point locationSerForm1 {
+            get {
+                return ((global::System.Drawing.Point)(this["locationSerForm1"]));
+            }
+            set {
+                this["locationSerForm1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("300, 50")]
+        public global::System.Drawing.Point locationSerForm2 {
+            get {
+                return ((global::System.Drawing.Point)(this["locationSerForm2"]));
+            }
+            set {
+                this["locationSerForm2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 150")]
+        public global::System.Drawing.Point locationCamForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationCamForm"]));
+            }
+            set {
+                this["locationCamForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 200")]
+        public global::System.Drawing.Point location2ndGRBLForm {
+            get {
+                return ((global::System.Drawing.Point)(this["location2ndGRBLForm"]));
+            }
+            set {
+                this["location2ndGRBLForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 300")]
+        public global::System.Drawing.Point locationTextForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationTextForm"]));
+            }
+            set {
+                this["locationTextForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 350")]
+        public global::System.Drawing.Point locationImageForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationImageForm"]));
+            }
+            set {
+                this["locationImageForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("150, 400")]
+        public global::System.Drawing.Point locationShapeForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationShapeForm"]));
+            }
+            set {
+                this["locationShapeForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 150")]
+        public global::System.Drawing.Point locationSetForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationSetForm"]));
+            }
+            set {
+                this["locationSetForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 200")]
+        public global::System.Drawing.Point locationStreamForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationStreamForm"]));
+            }
+            set {
+                this["locationStreamForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
+        public string serialPort1 {
+            get {
+                return ((string)(this["serialPort1"]));
+            }
+            set {
+                this["serialPort1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("115200")]
-        public string baud1 {
+        public string serialBaud1 {
             get {
-                return ((string)(this["baud1"]));
+                return ((string)(this["serialBaud1"]));
             }
             set {
-                this["baud1"] = value;
+                this["serialBaud1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM2")]
+        public string serialPort2 {
+            get {
+                return ((string)(this["serialPort2"]));
+            }
+            set {
+                this["serialPort2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
+        public string serialBaud2 {
+            get {
+                return ((string)(this["serialBaud2"]));
+            }
+            set {
+                this["serialBaud2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool serialMinimize {
+            get {
+                return ((bool)(this["serialMinimize"]));
+            }
+            set {
+                this["serialMinimize"] = value;
             }
         }
         
@@ -170,9 +338,9 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("180")]
-        public float camerarotation {
+        public double camerarotation {
             get {
-                return ((float)(this["camerarotation"]));
+                return ((double)(this["camerarotation"]));
             }
             set {
                 this["camerarotation"] = value;
@@ -373,6 +541,18 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DeepPink")]
+        public global::System.Drawing.Color colorMarker {
+            get {
+                return ((global::System.Drawing.Color)(this["colorMarker"]));
+            }
+            set {
+                this["colorMarker"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public decimal widthRuler {
             get {
@@ -416,18 +596,6 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["widthTool"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DeepPink")]
-        public global::System.Drawing.Color colorMarker {
-            get {
-                return ((global::System.Drawing.Color)(this["colorMarker"]));
-            }
-            set {
-                this["colorMarker"] = value;
             }
         }
         
@@ -769,102 +937,6 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point locationSerForm1 {
-            get {
-                return ((global::System.Drawing.Point)(this["locationSerForm1"]));
-            }
-            set {
-                this["locationSerForm1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point locationMForm {
-            get {
-                return ((global::System.Drawing.Point)(this["locationMForm"]));
-            }
-            set {
-                this["locationMForm"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point locationSetForm {
-            get {
-                return ((global::System.Drawing.Point)(this["locationSetForm"]));
-            }
-            set {
-                this["locationSetForm"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point locationCamForm {
-            get {
-                return ((global::System.Drawing.Point)(this["locationCamForm"]));
-            }
-            set {
-                this["locationCamForm"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool serialMinimize {
-            get {
-                return ((bool)(this["serialMinimize"]));
-            }
-            set {
-                this["serialMinimize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM2")]
-        public string port2 {
-            get {
-                return ((string)(this["port2"]));
-            }
-            set {
-                this["port2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
-        public string baud2 {
-            get {
-                return ((string)(this["baud2"]));
-            }
-            set {
-                this["baud2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point locationSerForm2 {
-            get {
-                return ((global::System.Drawing.Point)(this["locationSerForm2"]));
-            }
-            set {
-                this["locationSerForm2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool UpgradeRequired {
             get {
@@ -1004,6 +1076,54 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["importGCDecPlaces"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCSpindleCmd {
+            get {
+                return ((bool)(this["importGCSpindleCmd"]));
+            }
+            set {
+                this["importGCSpindleCmd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlLaserMode {
+            get {
+                return ((bool)(this["ctrlLaserMode"]));
+            }
+            set {
+                this["ctrlLaserMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlReplaceEnable {
+            get {
+                return ((bool)(this["ctrlReplaceEnable"]));
+            }
+            set {
+                this["ctrlReplaceEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ctrlReplaceM3 {
+            get {
+                return ((bool)(this["ctrlReplaceM3"]));
+            }
+            set {
+                this["ctrlReplaceM3"] = value;
             }
         }
         
@@ -1465,49 +1585,25 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importGCSpindleCmd {
+        [global::System.Configuration.DefaultSettingValueAttribute("Lime")]
+        public global::System.Drawing.Color cameraColorText {
             get {
-                return ((bool)(this["importGCSpindleCmd"]));
+                return ((global::System.Drawing.Color)(this["cameraColorText"]));
             }
             set {
-                this["importGCSpindleCmd"] = value;
+                this["cameraColorText"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ctrlLaserMode {
+        [global::System.Configuration.DefaultSettingValueAttribute("Yellow")]
+        public global::System.Drawing.Color cameraColorCross {
             get {
-                return ((bool)(this["ctrlLaserMode"]));
+                return ((global::System.Drawing.Color)(this["cameraColorCross"]));
             }
             set {
-                this["ctrlLaserMode"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ctrlReplaceEnable {
-            get {
-                return ((bool)(this["ctrlReplaceEnable"]));
-            }
-            set {
-                this["ctrlReplaceEnable"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ctrlReplaceM3 {
-            get {
-                return ((bool)(this["ctrlReplaceM3"]));
-            }
-            set {
-                this["ctrlReplaceM3"] = value;
+                this["cameraColorCross"] = value;
             }
         }
     }

@@ -2,53 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRBL_Plotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="language" Type="System.String" Scope="User">
-      <Value Profile="(Default)">en</Value>
-    </Setting>
-    <Setting Name="locationMForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="locationSerForm1" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 50</Value>
-    </Setting>
-    <Setting Name="locationSerForm2" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">300, 50</Value>
-    </Setting>
-    <Setting Name="locationCamForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 150</Value>
-    </Setting>
-    <Setting Name="location2ndGRBLForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">100, 200</Value>
-    </Setting>
-    <Setting Name="locationTextForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 300</Value>
-    </Setting>
-    <Setting Name="locationImageForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">100, 350</Value>
-    </Setting>
-    <Setting Name="locationShapeForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">150, 400</Value>
-    </Setting>
-    <Setting Name="locationSetForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">200, 150</Value>
-    </Setting>
-    <Setting Name="locationStreamForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 200</Value>
-    </Setting>
-    <Setting Name="serialPort1" Type="System.String" Scope="User">
+    <Setting Name="port1" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM1</Value>
     </Setting>
-    <Setting Name="serialBaud1" Type="System.String" Scope="User">
+    <Setting Name="baud1" Type="System.String" Scope="User">
       <Value Profile="(Default)">115200</Value>
-    </Setting>
-    <Setting Name="serialPort2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COM2</Value>
-    </Setting>
-    <Setting Name="serialBaud2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">115200</Value>
-    </Setting>
-    <Setting Name="serialMinimize" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="file" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\</Value>
@@ -80,7 +38,7 @@
     <Setting Name="camerindex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="camerarotation" Type="System.Double" Scope="User">
+    <Setting Name="camerarotation" Type="System.Single" Scope="User">
       <Value Profile="(Default)">180</Value>
     </Setting>
     <Setting Name="camerascalingTop" Type="System.Double" Scope="User">
@@ -131,9 +89,6 @@
     <Setting Name="colorTool" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
     </Setting>
-    <Setting Name="colorMarker" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">DeepPink</Value>
-    </Setting>
     <Setting Name="widthRuler" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
     </Setting>
@@ -145,6 +100,9 @@
     </Setting>
     <Setting Name="widthTool" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="colorMarker" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
     </Setting>
     <Setting Name="widthMarker" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -230,6 +188,30 @@
     <Setting Name="importSVGPathExtend" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="locationSerForm1" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 50</Value>
+    </Setting>
+    <Setting Name="locationMForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="locationSetForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">200, 150</Value>
+    </Setting>
+    <Setting Name="locationCamForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="serialMinimize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="port2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM2</Value>
+    </Setting>
+    <Setting Name="baud2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">115200</Value>
+    </Setting>
+    <Setting Name="locationSerForm2" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">150, 100</Value>
+    </Setting>
     <Setting Name="UpgradeRequired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -265,18 +247,6 @@
     </Setting>
     <Setting Name="importGCDecPlaces" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3</Value>
-    </Setting>
-    <Setting Name="importGCSpindleCmd" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="ctrlLaserMode" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="ctrlReplaceEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="ctrlReplaceM3" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="joyXYStep1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
@@ -392,11 +362,20 @@
     <Setting Name="shapeOrigin" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="cameraColorText" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Lime</Value>
+    <Setting Name="importGCSpindleCmd" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="cameraColorCross" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Yellow</Value>
+    <Setting Name="ctrlLaserMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlReplaceEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlReplaceM3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
     </Setting>
   </Settings>
 </SettingsFile>
