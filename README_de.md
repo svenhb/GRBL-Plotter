@@ -17,7 +17,7 @@ Einlesen von GCode mit optionaler Ersetzung von M3 / M4 Befehlen (hilfreich für
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-####[GRBL-Plotter Vers. 1020](GRBL-Plotter_1020_Publish.zip)  2017-01-03 
+####[GRBL-Plotter Vers. 1030](GRBL-Plotter_1030_Publish.zip)  2017-01-28 
 Leider wird der '_misc' Ordner nicht mit installiert beim 'ClickOnce'. Deswegen werden die Beispieldateien für Farbpalette GCode Skripte nicht gefunden. Die nötigen Pfade müssen dann manuell neu gesetzt werden - siehe Screenshots unten.
 
 ### Voraussetzung für das Kompilieren
