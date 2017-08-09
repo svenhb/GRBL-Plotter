@@ -326,12 +326,12 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int camerindex {
+        public byte cameraindex {
             get {
-                return ((int)(this["camerindex"]));
+                return ((byte)(this["cameraindex"]));
             }
             set {
-                this["camerindex"] = value;
+                this["cameraindex"] = value;
             }
         }
         
@@ -721,7 +721,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importGCAddComments {
             get {
                 return ((bool)(this["importGCAddComments"]));
@@ -745,7 +745,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G90 G1 M3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string importGCHeader {
             get {
                 return ((string)(this["importGCHeader"]));
@@ -757,7 +757,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("M5; G0 X0 Y0; M30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("M30")]
         public string importGCFooter {
             get {
                 return ((string)(this["importGCFooter"]));
@@ -961,7 +961,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importGCTool {
             get {
                 return ((bool)(this["importGCTool"]));
@@ -1604,6 +1604,342 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["cameraColorCross"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("360")]
+        public decimal rotarySubstitutionScale {
+            get {
+                return ((decimal)(this["rotarySubstitutionScale"]));
+            }
+            set {
+                this["rotarySubstitutionScale"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool rotarySubstitutionEnable {
+            get {
+                return ((bool)(this["rotarySubstitutionEnable"]));
+            }
+            set {
+                this["rotarySubstitutionEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool rotarySubstitutionX {
+            get {
+                return ((bool)(this["rotarySubstitutionX"]));
+            }
+            set {
+                this["rotarySubstitutionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public decimal rotarySubstitutionDiameter {
+            get {
+                return ((decimal)(this["rotarySubstitutionDiameter"]));
+            }
+            set {
+                this["rotarySubstitutionDiameter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool rotarySubstitutionSetupEnable {
+            get {
+                return ((bool)(this["rotarySubstitutionSetupEnable"]));
+            }
+            set {
+                this["rotarySubstitutionSetupEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$100=4.444;$110=10000;$120=1000")]
+        public string rotarySubstitutionSetupOn {
+            get {
+                return ((string)(this["rotarySubstitutionSetupOn"]));
+            }
+            set {
+                this["rotarySubstitutionSetupOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$100=1600;$110=1000;$120=50")]
+        public string rotarySubstitutionSetupOff {
+            get {
+                return ((string)(this["rotarySubstitutionSetupOff"]));
+            }
+            set {
+                this["rotarySubstitutionSetupOff"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCZIncEnable {
+            get {
+                return ((bool)(this["importGCZIncEnable"]));
+            }
+            set {
+                this["importGCZIncEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCZIncrement {
+            get {
+                return ((decimal)(this["importGCZIncrement"]));
+            }
+            set {
+                this["importGCZIncrement"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCCompress {
+            get {
+                return ((bool)(this["importGCCompress"]));
+            }
+            set {
+                this["importGCCompress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ImportDXFSize {
+            get {
+                return ((bool)(this["ImportDXFSize"]));
+            }
+            set {
+                this["ImportDXFSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCRelative {
+            get {
+                return ((bool)(this["importGCRelative"]));
+            }
+            set {
+                this["importGCRelative"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCNoArcs {
+            get {
+                return ((bool)(this["importGCNoArcs"]));
+            }
+            set {
+                this["importGCNoArcs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCSegment {
+            get {
+                return ((decimal)(this["importGCSegment"]));
+            }
+            set {
+                this["importGCSegment"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal widthHeightMap {
+            get {
+                return ((decimal)(this["widthHeightMap"]));
+            }
+            set {
+                this["widthHeightMap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yellow")]
+        public global::System.Drawing.Color colorHeightMap {
+            get {
+                return ((global::System.Drawing.Color)(this["colorHeightMap"]));
+            }
+            set {
+                this["colorHeightMap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal heightMapX1 {
+            get {
+                return ((decimal)(this["heightMapX1"]));
+            }
+            set {
+                this["heightMapX1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal heightMapY1 {
+            get {
+                return ((decimal)(this["heightMapY1"]));
+            }
+            set {
+                this["heightMapY1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal heightMapX2 {
+            get {
+                return ((decimal)(this["heightMapX2"]));
+            }
+            set {
+                this["heightMapX2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal heightMapY2 {
+            get {
+                return ((decimal)(this["heightMapY2"]));
+            }
+            set {
+                this["heightMapY2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal heightMapDeltaX {
+            get {
+                return ((decimal)(this["heightMapDeltaX"]));
+            }
+            set {
+                this["heightMapDeltaX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal heightMapDeltaY {
+            get {
+                return ((decimal)(this["heightMapDeltaY"]));
+            }
+            set {
+                this["heightMapDeltaY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal heightMapGridX {
+            get {
+                return ((decimal)(this["heightMapGridX"]));
+            }
+            set {
+                this["heightMapGridX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal heightMapGridY {
+            get {
+                return ((decimal)(this["heightMapGridY"]));
+            }
+            set {
+                this["heightMapGridY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-5")]
+        public decimal heightMapProbeDepth {
+            get {
+                return ((decimal)(this["heightMapProbeDepth"]));
+            }
+            set {
+                this["heightMapProbeDepth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal heightMapProbeHeight {
+            get {
+                return ((decimal)(this["heightMapProbeHeight"]));
+            }
+            set {
+                this["heightMapProbeHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400")]
+        public decimal heightMapProbeSpeed {
+            get {
+                return ((decimal)(this["heightMapProbeSpeed"]));
+            }
+            set {
+                this["heightMapProbeSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point locationHeightForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationHeightForm"]));
+            }
+            set {
+                this["locationHeightForm"] = value;
             }
         }
     }

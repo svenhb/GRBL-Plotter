@@ -77,7 +77,7 @@
     <Setting Name="custom8" Type="System.String" Scope="User">
       <Value Profile="(Default)">Set Pen 0|G92 Z25</Value>
     </Setting>
-    <Setting Name="camerindex" Type="System.Int32" Scope="User">
+    <Setting Name="cameraindex" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="camerarotation" Type="System.Double" Scope="User">
@@ -177,16 +177,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCAddComments" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCXYFeed" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2000</Value>
     </Setting>
     <Setting Name="importGCHeader" Type="System.String" Scope="User">
-      <Value Profile="(Default)">G90 G1 M3</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="importGCFooter" Type="System.String" Scope="User">
-      <Value Profile="(Default)">M5; G0 X0 Y0; M30</Value>
+      <Value Profile="(Default)">M30</Value>
     </Setting>
     <Setting Name="importGCPWMEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -237,7 +237,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGCTool" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ctrlToolChange" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -397,6 +397,90 @@
     </Setting>
     <Setting Name="cameraColorCross" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionScale" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">360</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionSetupEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionSetupOn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$100=4.444;$110=10000;$120=1000</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionSetupOff" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$100=1600;$110=1000;$120=50</Value>
+    </Setting>
+    <Setting Name="importGCZIncEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCZIncrement" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCCompress" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ImportDXFSize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCRelative" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCNoArcs" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCSegment" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="widthHeightMap" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="colorHeightMap" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="heightMapX1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="heightMapY1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="heightMapX2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="heightMapY2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="heightMapDeltaX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="heightMapDeltaY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="heightMapGridX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="heightMapGridY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="heightMapProbeDepth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-5</Value>
+    </Setting>
+    <Setting Name="heightMapProbeHeight" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="heightMapProbeSpeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="locationHeightForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
