@@ -25,9 +25,8 @@ Einlesen von GCode mit optionaler Ersetzung von M3 / M4 Befehlen (hilfreich für
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-####[GRBL-Plotter Vers. 1.1.0.0](GRBL-Plotter_1100_Publish.zip)  2017-08-11 
-Leider wird der '_misc' Ordner nicht mit installiert beim 'ClickOnce'. Deswegen werden die Beispieldateien für Farbpalette GCode Skripte nicht gefunden. Die nötigen Pfade müssen dann manuell neu gesetzt werden - siehe Screenshots unten.
-
+#### [GRBL-Plotter Vers. 1.1.0.0](GRBL-Plotter_1100_Publish.zip)  2017-08-11  
+  
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
 * DotNET 4.0
