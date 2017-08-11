@@ -3,6 +3,14 @@
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2015.
 
+### New in version 1.1.0.0:  
+Surface scanning for height map creation
+Autoleveling using height map
+Substitution for [Rotary Axis](https://github.com/svenhb/GRBL-Plotter/wiki/rotary-axis) (instead of X or Y control a rotary axis)
+[Subroutines](https://github.com/svenhb/GRBL-Plotter/wiki/subroutines) M98, M99 Sub-Program Call (P, L):  
+DXF Import (Missing: Text and Ellipse, Spline with more than 4 points nok)
+Create GCode absolute or relative (for further use as subroutine)
+
 ### New in version 1.0.3.0:  
 Two languages - german, english  
 Rework the camera form 
@@ -17,7 +25,7 @@ Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser 
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-####[GRBL-Plotter Vers. 1030](GRBL-Plotter_1030_Publish.zip)  2017-01-28 
+####[GRBL-Plotter Vers. 1.1.0.0](GRBL-Plotter_1100_Publish.zip)  2017-08-11 
 Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'. Therefore the example files for color palettes and GCode-scripts will not be found by GRBL-Plotter (with default setup). You need to set the according paths new in the setup dialog - check screenshots below.
 
 ### Requirements for compiling
@@ -35,7 +43,7 @@ Unfortunatly the enclosed '_misc' folder will not be installed with 'ClickOnce'.
 * Recent File List (Files and URLs)
 * 2-dimensional preview
 * Import/creation and conversion into GCode 
-  - from SVG Graphics
+  - from SVG and DXF Graphics
   - from Text (into Hershey Font)
   - conversion of the Z-Dimension into Z-axis (router) or Spindle on/off (laser) or Spindle-Speed (RC-Servo PWM) 
 * GCode can be edited and saved
