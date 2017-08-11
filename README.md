@@ -5,7 +5,7 @@ Written in C# VisualStudio 2015.
 
 ### New in version 1.1.0.0:  
 Surface scanning for height map creation  
-Autoleveling using height map  
+[Autoleveling](https://github.com/svenhb/GRBL-Plotter/wiki/auto-leveling) using height map  
 Substitution for [Rotary Axis](https://github.com/svenhb/GRBL-Plotter/wiki/rotary-axis) (instead of X or Y control a rotary axis)  
 [Subroutines](https://github.com/svenhb/GRBL-Plotter/wiki/subroutines) M98, M99 Sub-Program Call (P, L)    
 Create GCode absolute or relative (for further use as subroutine)  
