@@ -4,13 +4,13 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.
 
 ### New in version 1.1.0.0:  
-Surface scanning for height map creation
-Autoleveling using height map
-Substitution for [Rotary Axis](https://github.com/svenhb/GRBL-Plotter/wiki/rotary-axis) (instead of X or Y control a rotary axis)
-[Subroutines](https://github.com/svenhb/GRBL-Plotter/wiki/subroutines) M98, M99 Sub-Program Call (P, L):  
-DXF Import (Missing: Text and Ellipse, Spline with more than 4 points nok)
-Create GCode absolute or relative (for further use as subroutine)
-
+Surface scanning for height map creation 
+Autoleveling using height map 
+Substitution for [Rotary Axis](https://github.com/svenhb/GRBL-Plotter/wiki/rotary-axis) (instead of X or Y control a rotary axis) 
+[Subroutines](https://github.com/svenhb/GRBL-Plotter/wiki/subroutines) M98, M99 Sub-Program Call (P, L):   
+DXF Import (Missing: Text and Ellipse, Spline with more than 4 points nok) 
+Create GCode absolute or relative (for further use as subroutine) 
+ 
 ### New in version 1.0.3.0:  
 Two languages - german, english  
 Rework the camera form 
