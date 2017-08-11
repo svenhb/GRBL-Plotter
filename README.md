@@ -7,10 +7,10 @@ Written in C# VisualStudio 2015.
 Surface scanning for height map creation  
 Autoleveling using height map  
 Substitution for [Rotary Axis](https://github.com/svenhb/GRBL-Plotter/wiki/rotary-axis) (instead of X or Y control a rotary axis)  
-[Subroutines](https://github.com/svenhb/GRBL-Plotter/wiki/subroutines) M98, M99 Sub-Program Call (P, L):    
-DXF Import (Missing: Text and Ellipse, Spline with more than 4 points nok)  
+[Subroutines](https://github.com/svenhb/GRBL-Plotter/wiki/subroutines) M98, M99 Sub-Program Call (P, L)    
 Create GCode absolute or relative (for further use as subroutine)  
- 
+DXF Import (Missing: Text and Ellipse, Spline with more than 4 points nok)  
+  
 ### New in version 1.0.3.0:  
 Two languages - german, english  
 Rework the camera form 
