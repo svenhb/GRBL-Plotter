@@ -5,7 +5,7 @@ Geschrieben in C# VisualStudio 2015.
 
 ### Neu in Version 1.1.0.0:  
 Oberflächenabtastung zur Erzeugung eines Höhenprofils  
-Autoleveling mit Hilfe eines Höhenprofils  
+[Autoleveling](https://github.com/svenhb/GRBL-Plotter/wiki/Autoleveling) mit Hilfe eines Höhenprofils  
 Substitution für [Drehachse](https://github.com/svenhb/GRBL-Plotter/wiki/Drehachse) (statt X oder Y eine Drehachse ansteuern)  
 [Unterprogramme](https://github.com/svenhb/GRBL-Plotter/wiki/Unterprogramme) M98, M99 Sub-Program Call (P, L)  
 GCode Erzeugung absolut oder relative (für weitere Verwendung als Unterprogramm)  
