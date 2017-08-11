@@ -72,20 +72,54 @@ namespace GRBL_Plotter
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.setupToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.saveMachineParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadMachineParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deutschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createGCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createSimpleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mirrorXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mirrorYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.rotate90ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rotate90ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.rotateFreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_rotate = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.sToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_XY_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.skalierenXYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_XY_X_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.skalierenXYUmXUnitsZuErreichenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_XY_Y_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.skaliereXUmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_X_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.skaliereAufXUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_X_X_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.skaliereYUmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_Y_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.skaliereAufYUnitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_Y_Y_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.rotaryDimaeterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_rotary_diameter = new System.Windows.Forms.ToolStripTextBox();
+            this.skaliereXAufDrehachseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_X_A_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.skaliereYAufDrehachseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_Y_A_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.ersetzteG23DurchLinienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_mx = new System.Windows.Forms.Label();
             this.label_my = new System.Windows.Forms.Label();
@@ -95,24 +129,25 @@ namespace GRBL_Plotter
             this.label_wz = new System.Windows.Forms.Label();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnOffsetApply = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbOffsetY = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbOffsetX = new System.Windows.Forms.TextBox();
+            this.rBOrigin9 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin8 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin7 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin6 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin5 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin4 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin3 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin2 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin1 = new System.Windows.Forms.RadioButton();
+            this.lbDimension = new System.Windows.Forms.TextBox();
             this.pbBuffer = new System.Windows.Forms.ProgressBar();
             this.btnStreamStop = new System.Windows.Forms.Button();
             this.btnStreamCheck = new System.Windows.Forms.Button();
-            this.btnMirrorY = new System.Windows.Forms.Button();
-            this.btnMirrorX = new System.Windows.Forms.Button();
-            this.btnShiftToZero = new System.Windows.Forms.Button();
-            this.btnTransformCode = new System.Windows.Forms.Button();
-            this.tbChangeAngle = new System.Windows.Forms.TextBox();
-            this.tbChangeSize = new System.Windows.Forms.TextBox();
-            this.cmsScale = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.scaleToWidthOfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripScaleTextBoxWidth = new System.Windows.Forms.ToolStripTextBox();
-            this.scaleToHeightOfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripScaleTextBoxHeight = new System.Windows.Forms.ToolStripTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbDimension = new System.Windows.Forms.Label();
             this.lbInfo = new System.Windows.Forms.Label();
             this.lblRemaining = new System.Windows.Forms.Label();
             this.pbFile = new System.Windows.Forms.ProgressBar();
@@ -187,7 +222,7 @@ namespace GRBL_Plotter
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.cmsScale.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.cmsCode.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -208,190 +243,424 @@ namespace GRBL_Plotter
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.machineToolStripMenuItem,
             this.createGCodeToolStripMenuItem,
+            this.gCodeToolStripMenuItem,
+            this.machineToolStripMenuItem,
             this.aboutToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
-            this.toolTip1.SetToolTip(this.menuStrip1, resources.GetString("menuStrip1.ToolTip"));
             // 
             // fileToolStripMenuItem
             // 
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
             this.saveToolStripMenuItem,
             this.toolStripSeparator3,
+            this.setupToolStripMenuItem1,
+            this.toolStripSeparator7,
             this.saveMachineParametersToolStripMenuItem,
             this.loadMachineParametersToolStripMenuItem,
             this.toolStripMenuItem3});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // loadToolStripMenuItem
             // 
-            resources.ApplyResources(this.loadToolStripMenuItem, "loadToolStripMenuItem");
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            resources.ApplyResources(this.loadToolStripMenuItem, "loadToolStripMenuItem");
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
             // toolStripMenuItem2
             // 
-            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // toolStripSeparator2
             // 
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // saveToolStripMenuItem
             // 
-            resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            resources.ApplyResources(this.saveToolStripMenuItem, "saveToolStripMenuItem");
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.btnSaveFile_Click);
             // 
             // toolStripSeparator3
             // 
-            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+            // 
+            // setupToolStripMenuItem1
+            // 
+            this.setupToolStripMenuItem1.Name = "setupToolStripMenuItem1";
+            resources.ApplyResources(this.setupToolStripMenuItem1, "setupToolStripMenuItem1");
+            this.setupToolStripMenuItem1.Click += new System.EventHandler(this.setupToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
             // 
             // saveMachineParametersToolStripMenuItem
             // 
-            resources.ApplyResources(this.saveMachineParametersToolStripMenuItem, "saveMachineParametersToolStripMenuItem");
             this.saveMachineParametersToolStripMenuItem.Name = "saveMachineParametersToolStripMenuItem";
+            resources.ApplyResources(this.saveMachineParametersToolStripMenuItem, "saveMachineParametersToolStripMenuItem");
             this.saveMachineParametersToolStripMenuItem.Click += new System.EventHandler(this.saveMachineParametersToolStripMenuItem_Click);
             // 
             // loadMachineParametersToolStripMenuItem
             // 
-            resources.ApplyResources(this.loadMachineParametersToolStripMenuItem, "loadMachineParametersToolStripMenuItem");
             this.loadMachineParametersToolStripMenuItem.Name = "loadMachineParametersToolStripMenuItem";
+            resources.ApplyResources(this.loadMachineParametersToolStripMenuItem, "loadMachineParametersToolStripMenuItem");
             this.loadMachineParametersToolStripMenuItem.Click += new System.EventHandler(this.loadMachineParametersToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
-            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
+            this.englishToolStripMenuItem,
             this.deutschToolStripMenuItem});
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             // 
-            // toolStripMenuItem4
+            // englishToolStripMenuItem
             // 
-            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
             // 
             // deutschToolStripMenuItem
             // 
-            resources.ApplyResources(this.deutschToolStripMenuItem, "deutschToolStripMenuItem");
             this.deutschToolStripMenuItem.Name = "deutschToolStripMenuItem";
+            resources.ApplyResources(this.deutschToolStripMenuItem, "deutschToolStripMenuItem");
             this.deutschToolStripMenuItem.Click += new System.EventHandler(this.deutschToolStripMenuItem_Click);
-            // 
-            // machineToolStripMenuItem
-            // 
-            resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
-            this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.controlStreamingToolStripMenuItem,
-            this.control2ndGRBLToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.setupToolStripMenuItem});
-            this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
-            // 
-            // controlStreamingToolStripMenuItem
-            // 
-            resources.ApplyResources(this.controlStreamingToolStripMenuItem, "controlStreamingToolStripMenuItem");
-            this.controlStreamingToolStripMenuItem.Name = "controlStreamingToolStripMenuItem";
-            this.controlStreamingToolStripMenuItem.Click += new System.EventHandler(this.controlStreamingToolStripMenuItem_Click);
-            // 
-            // control2ndGRBLToolStripMenuItem
-            // 
-            resources.ApplyResources(this.control2ndGRBLToolStripMenuItem, "control2ndGRBLToolStripMenuItem");
-            this.control2ndGRBLToolStripMenuItem.Name = "control2ndGRBLToolStripMenuItem";
-            this.control2ndGRBLToolStripMenuItem.Click += new System.EventHandler(this.control2ndGRBLToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
-            // 
-            // setupToolStripMenuItem
-            // 
-            resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
-            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
-            this.setupToolStripMenuItem.Click += new System.EventHandler(this.setupToolStripMenuItem_Click);
             // 
             // createGCodeToolStripMenuItem
             // 
-            resources.ApplyResources(this.createGCodeToolStripMenuItem, "createGCodeToolStripMenuItem");
             this.createGCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.textWizzardToolStripMenuItem,
             this.imageToolStripMenuItem,
             this.createSimpleShapesToolStripMenuItem});
             this.createGCodeToolStripMenuItem.Name = "createGCodeToolStripMenuItem";
+            resources.ApplyResources(this.createGCodeToolStripMenuItem, "createGCodeToolStripMenuItem");
             // 
             // textWizzardToolStripMenuItem
             // 
-            resources.ApplyResources(this.textWizzardToolStripMenuItem, "textWizzardToolStripMenuItem");
             this.textWizzardToolStripMenuItem.Name = "textWizzardToolStripMenuItem";
+            resources.ApplyResources(this.textWizzardToolStripMenuItem, "textWizzardToolStripMenuItem");
             this.textWizzardToolStripMenuItem.Click += new System.EventHandler(this.textWizzardToolStripMenuItem_Click);
             // 
             // imageToolStripMenuItem
             // 
-            resources.ApplyResources(this.imageToolStripMenuItem, "imageToolStripMenuItem");
             this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
+            resources.ApplyResources(this.imageToolStripMenuItem, "imageToolStripMenuItem");
             this.imageToolStripMenuItem.Click += new System.EventHandler(this.imageToolStripMenuItem_Click);
             // 
             // createSimpleShapesToolStripMenuItem
             // 
-            resources.ApplyResources(this.createSimpleShapesToolStripMenuItem, "createSimpleShapesToolStripMenuItem");
             this.createSimpleShapesToolStripMenuItem.Name = "createSimpleShapesToolStripMenuItem";
+            resources.ApplyResources(this.createSimpleShapesToolStripMenuItem, "createSimpleShapesToolStripMenuItem");
             this.createSimpleShapesToolStripMenuItem.Click += new System.EventHandler(this.createSimpleShapesToolStripMenuItem_Click);
+            // 
+            // gCodeToolStripMenuItem
+            // 
+            this.gCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mirrorXToolStripMenuItem,
+            this.mirrorYToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.rotate90ToolStripMenuItem,
+            this.rotate90ToolStripMenuItem1,
+            this.rotateFreeToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.sToolStripMenuItem,
+            this.skalierenXYToolStripMenuItem,
+            this.skalierenXYUmXUnitsZuErreichenToolStripMenuItem,
+            this.skaliereXUmToolStripMenuItem,
+            this.skaliereAufXUnitsToolStripMenuItem,
+            this.skaliereYUmToolStripMenuItem,
+            this.skaliereAufYUnitsToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.rotaryDimaeterToolStripMenuItem,
+            this.skaliereXAufDrehachseToolStripMenuItem,
+            this.skaliereYAufDrehachseToolStripMenuItem,
+            this.ersetzteG23DurchLinienToolStripMenuItem});
+            this.gCodeToolStripMenuItem.Name = "gCodeToolStripMenuItem";
+            resources.ApplyResources(this.gCodeToolStripMenuItem, "gCodeToolStripMenuItem");
+            // 
+            // mirrorXToolStripMenuItem
+            // 
+            this.mirrorXToolStripMenuItem.Name = "mirrorXToolStripMenuItem";
+            resources.ApplyResources(this.mirrorXToolStripMenuItem, "mirrorXToolStripMenuItem");
+            this.mirrorXToolStripMenuItem.Click += new System.EventHandler(this.mirrorXToolStripMenuItem_Click);
+            // 
+            // mirrorYToolStripMenuItem
+            // 
+            this.mirrorYToolStripMenuItem.Name = "mirrorYToolStripMenuItem";
+            resources.ApplyResources(this.mirrorYToolStripMenuItem, "mirrorYToolStripMenuItem");
+            this.mirrorYToolStripMenuItem.Click += new System.EventHandler(this.mirrorYToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
+            // 
+            // rotate90ToolStripMenuItem
+            // 
+            this.rotate90ToolStripMenuItem.Name = "rotate90ToolStripMenuItem";
+            resources.ApplyResources(this.rotate90ToolStripMenuItem, "rotate90ToolStripMenuItem");
+            this.rotate90ToolStripMenuItem.Click += new System.EventHandler(this.rotate90ToolStripMenuItem_Click);
+            // 
+            // rotate90ToolStripMenuItem1
+            // 
+            this.rotate90ToolStripMenuItem1.Name = "rotate90ToolStripMenuItem1";
+            resources.ApplyResources(this.rotate90ToolStripMenuItem1, "rotate90ToolStripMenuItem1");
+            this.rotate90ToolStripMenuItem1.Click += new System.EventHandler(this.rotate90ToolStripMenuItem1_Click);
+            // 
+            // rotateFreeToolStripMenuItem
+            // 
+            this.rotateFreeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_rotate});
+            this.rotateFreeToolStripMenuItem.Name = "rotateFreeToolStripMenuItem";
+            resources.ApplyResources(this.rotateFreeToolStripMenuItem, "rotateFreeToolStripMenuItem");
+            // 
+            // toolStrip_tb_rotate
+            // 
+            this.toolStrip_tb_rotate.Name = "toolStrip_tb_rotate";
+            resources.ApplyResources(this.toolStrip_tb_rotate, "toolStrip_tb_rotate");
+            this.toolStrip_tb_rotate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_rotate_KeyDown);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
+            // 
+            // sToolStripMenuItem
+            // 
+            this.sToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_XY_scale});
+            this.sToolStripMenuItem.Name = "sToolStripMenuItem";
+            resources.ApplyResources(this.sToolStripMenuItem, "sToolStripMenuItem");
+            // 
+            // toolStrip_tb_XY_scale
+            // 
+            this.toolStrip_tb_XY_scale.Name = "toolStrip_tb_XY_scale";
+            resources.ApplyResources(this.toolStrip_tb_XY_scale, "toolStrip_tb_XY_scale");
+            this.toolStrip_tb_XY_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_XY_scale_KeyDown);
+            // 
+            // skalierenXYToolStripMenuItem
+            // 
+            this.skalierenXYToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_XY_X_scale});
+            this.skalierenXYToolStripMenuItem.Name = "skalierenXYToolStripMenuItem";
+            resources.ApplyResources(this.skalierenXYToolStripMenuItem, "skalierenXYToolStripMenuItem");
+            // 
+            // toolStrip_tb_XY_X_scale
+            // 
+            this.toolStrip_tb_XY_X_scale.Name = "toolStrip_tb_XY_X_scale";
+            resources.ApplyResources(this.toolStrip_tb_XY_X_scale, "toolStrip_tb_XY_X_scale");
+            this.toolStrip_tb_XY_X_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_XY_X_scale_KeyDown);
+            // 
+            // skalierenXYUmXUnitsZuErreichenToolStripMenuItem
+            // 
+            this.skalierenXYUmXUnitsZuErreichenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_XY_Y_scale});
+            this.skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Name = "skalierenXYUmXUnitsZuErreichenToolStripMenuItem";
+            resources.ApplyResources(this.skalierenXYUmXUnitsZuErreichenToolStripMenuItem, "skalierenXYUmXUnitsZuErreichenToolStripMenuItem");
+            // 
+            // toolStrip_tb_XY_Y_scale
+            // 
+            this.toolStrip_tb_XY_Y_scale.Name = "toolStrip_tb_XY_Y_scale";
+            resources.ApplyResources(this.toolStrip_tb_XY_Y_scale, "toolStrip_tb_XY_Y_scale");
+            this.toolStrip_tb_XY_Y_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_XY_Y_scale_KeyDown);
+            // 
+            // skaliereXUmToolStripMenuItem
+            // 
+            this.skaliereXUmToolStripMenuItem.AutoToolTip = true;
+            this.skaliereXUmToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_X_scale});
+            this.skaliereXUmToolStripMenuItem.Name = "skaliereXUmToolStripMenuItem";
+            resources.ApplyResources(this.skaliereXUmToolStripMenuItem, "skaliereXUmToolStripMenuItem");
+            // 
+            // toolStrip_tb_X_scale
+            // 
+            this.toolStrip_tb_X_scale.Name = "toolStrip_tb_X_scale";
+            resources.ApplyResources(this.toolStrip_tb_X_scale, "toolStrip_tb_X_scale");
+            this.toolStrip_tb_X_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_X_scale_KeyDown);
+            // 
+            // skaliereAufXUnitsToolStripMenuItem
+            // 
+            this.skaliereAufXUnitsToolStripMenuItem.AutoToolTip = true;
+            this.skaliereAufXUnitsToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
+            this.skaliereAufXUnitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_X_X_scale});
+            this.skaliereAufXUnitsToolStripMenuItem.Name = "skaliereAufXUnitsToolStripMenuItem";
+            resources.ApplyResources(this.skaliereAufXUnitsToolStripMenuItem, "skaliereAufXUnitsToolStripMenuItem");
+            // 
+            // toolStrip_tb_X_X_scale
+            // 
+            this.toolStrip_tb_X_X_scale.Name = "toolStrip_tb_X_X_scale";
+            resources.ApplyResources(this.toolStrip_tb_X_X_scale, "toolStrip_tb_X_X_scale");
+            this.toolStrip_tb_X_X_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_X_X_scale_KeyDown);
+            // 
+            // skaliereYUmToolStripMenuItem
+            // 
+            this.skaliereYUmToolStripMenuItem.AutoToolTip = true;
+            this.skaliereYUmToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_Y_scale});
+            this.skaliereYUmToolStripMenuItem.Name = "skaliereYUmToolStripMenuItem";
+            resources.ApplyResources(this.skaliereYUmToolStripMenuItem, "skaliereYUmToolStripMenuItem");
+            // 
+            // toolStrip_tb_Y_scale
+            // 
+            this.toolStrip_tb_Y_scale.Name = "toolStrip_tb_Y_scale";
+            resources.ApplyResources(this.toolStrip_tb_Y_scale, "toolStrip_tb_Y_scale");
+            this.toolStrip_tb_Y_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_Y_scale_KeyDown);
+            // 
+            // skaliereAufYUnitsToolStripMenuItem
+            // 
+            this.skaliereAufYUnitsToolStripMenuItem.AutoToolTip = true;
+            this.skaliereAufYUnitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_Y_Y_scale});
+            this.skaliereAufYUnitsToolStripMenuItem.Name = "skaliereAufYUnitsToolStripMenuItem";
+            resources.ApplyResources(this.skaliereAufYUnitsToolStripMenuItem, "skaliereAufYUnitsToolStripMenuItem");
+            // 
+            // toolStrip_tb_Y_Y_scale
+            // 
+            this.toolStrip_tb_Y_Y_scale.Name = "toolStrip_tb_Y_Y_scale";
+            resources.ApplyResources(this.toolStrip_tb_Y_Y_scale, "toolStrip_tb_Y_Y_scale");
+            this.toolStrip_tb_Y_Y_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_Y_Y_scale_KeyDown);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
+            // 
+            // rotaryDimaeterToolStripMenuItem
+            // 
+            this.rotaryDimaeterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_rotary_diameter});
+            this.rotaryDimaeterToolStripMenuItem.Name = "rotaryDimaeterToolStripMenuItem";
+            resources.ApplyResources(this.rotaryDimaeterToolStripMenuItem, "rotaryDimaeterToolStripMenuItem");
+            // 
+            // toolStrip_tb_rotary_diameter
+            // 
+            this.toolStrip_tb_rotary_diameter.Name = "toolStrip_tb_rotary_diameter";
+            resources.ApplyResources(this.toolStrip_tb_rotary_diameter, "toolStrip_tb_rotary_diameter");
+            this.toolStrip_tb_rotary_diameter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_rotary_diameter_KeyDown);
+            // 
+            // skaliereXAufDrehachseToolStripMenuItem
+            // 
+            this.skaliereXAufDrehachseToolStripMenuItem.AutoToolTip = true;
+            this.skaliereXAufDrehachseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_X_A_scale});
+            this.skaliereXAufDrehachseToolStripMenuItem.Name = "skaliereXAufDrehachseToolStripMenuItem";
+            resources.ApplyResources(this.skaliereXAufDrehachseToolStripMenuItem, "skaliereXAufDrehachseToolStripMenuItem");
+            // 
+            // toolStrip_tb_X_A_scale
+            // 
+            this.toolStrip_tb_X_A_scale.Name = "toolStrip_tb_X_A_scale";
+            resources.ApplyResources(this.toolStrip_tb_X_A_scale, "toolStrip_tb_X_A_scale");
+            this.toolStrip_tb_X_A_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_X_A_scale_KeyDown);
+            // 
+            // skaliereYAufDrehachseToolStripMenuItem
+            // 
+            this.skaliereYAufDrehachseToolStripMenuItem.AutoToolTip = true;
+            this.skaliereYAufDrehachseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_Y_A_scale});
+            this.skaliereYAufDrehachseToolStripMenuItem.Name = "skaliereYAufDrehachseToolStripMenuItem";
+            resources.ApplyResources(this.skaliereYAufDrehachseToolStripMenuItem, "skaliereYAufDrehachseToolStripMenuItem");
+            // 
+            // toolStrip_tb_Y_A_scale
+            // 
+            this.toolStrip_tb_Y_A_scale.Name = "toolStrip_tb_Y_A_scale";
+            resources.ApplyResources(this.toolStrip_tb_Y_A_scale, "toolStrip_tb_Y_A_scale");
+            this.toolStrip_tb_Y_A_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_Y_A_scale_KeyDown);
+            // 
+            // ersetzteG23DurchLinienToolStripMenuItem
+            // 
+            this.ersetzteG23DurchLinienToolStripMenuItem.Name = "ersetzteG23DurchLinienToolStripMenuItem";
+            resources.ApplyResources(this.ersetzteG23DurchLinienToolStripMenuItem, "ersetzteG23DurchLinienToolStripMenuItem");
+            this.ersetzteG23DurchLinienToolStripMenuItem.Click += new System.EventHandler(this.ersetzteG23DurchLinienToolStripMenuItem_Click);
+            // 
+            // machineToolStripMenuItem
+            // 
+            this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.heightMapToolStripMenuItem,
+            this.controlStreamingToolStripMenuItem,
+            this.control2ndGRBLToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.setupToolStripMenuItem});
+            this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
+            resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
+            // 
+            // heightMapToolStripMenuItem
+            // 
+            this.heightMapToolStripMenuItem.Name = "heightMapToolStripMenuItem";
+            resources.ApplyResources(this.heightMapToolStripMenuItem, "heightMapToolStripMenuItem");
+            this.heightMapToolStripMenuItem.Click += new System.EventHandler(this.heightMapToolStripMenuItem_Click);
+            // 
+            // controlStreamingToolStripMenuItem
+            // 
+            this.controlStreamingToolStripMenuItem.Name = "controlStreamingToolStripMenuItem";
+            resources.ApplyResources(this.controlStreamingToolStripMenuItem, "controlStreamingToolStripMenuItem");
+            this.controlStreamingToolStripMenuItem.Click += new System.EventHandler(this.controlStreamingToolStripMenuItem_Click);
+            // 
+            // control2ndGRBLToolStripMenuItem
+            // 
+            this.control2ndGRBLToolStripMenuItem.Name = "control2ndGRBLToolStripMenuItem";
+            resources.ApplyResources(this.control2ndGRBLToolStripMenuItem, "control2ndGRBLToolStripMenuItem");
+            this.control2ndGRBLToolStripMenuItem.Click += new System.EventHandler(this.control2ndGRBLToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
+            // 
+            // setupToolStripMenuItem
+            // 
+            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
+            resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
+            this.setupToolStripMenuItem.Click += new System.EventHandler(this.setupToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
-            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // label_mx
             // 
             resources.ApplyResources(this.label_mx, "label_mx");
             this.label_mx.Name = "label_mx";
-            this.toolTip1.SetToolTip(this.label_mx, resources.GetString("label_mx.ToolTip"));
             // 
             // label_my
             // 
             resources.ApplyResources(this.label_my, "label_my");
             this.label_my.Name = "label_my";
-            this.toolTip1.SetToolTip(this.label_my, resources.GetString("label_my.ToolTip"));
             // 
             // label_mz
             // 
             resources.ApplyResources(this.label_mz, "label_mz");
             this.label_mz.Name = "label_mz";
-            this.toolTip1.SetToolTip(this.label_mz, resources.GetString("label_mz.ToolTip"));
             // 
             // label_wx
             // 
             resources.ApplyResources(this.label_wx, "label_wx");
             this.label_wx.Name = "label_wx";
-            this.toolTip1.SetToolTip(this.label_wx, resources.GetString("label_wx.ToolTip"));
             // 
             // label_wy
             // 
             resources.ApplyResources(this.label_wy, "label_wy");
             this.label_wy.Name = "label_wy";
-            this.toolTip1.SetToolTip(this.label_wy, resources.GetString("label_wy.ToolTip"));
             // 
             // label_wz
             // 
             resources.ApplyResources(this.label_wz, "label_wz");
             this.label_wz.Name = "label_wz";
-            this.toolTip1.SetToolTip(this.label_wz, resources.GetString("label_wz.ToolTip"));
             // 
             // MainTimer
             // 
@@ -401,20 +670,11 @@ namespace GRBL_Plotter
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.groupBox4);
+            this.groupBox1.Controls.Add(this.lbDimension);
             this.groupBox1.Controls.Add(this.pbBuffer);
             this.groupBox1.Controls.Add(this.btnStreamStop);
             this.groupBox1.Controls.Add(this.btnStreamCheck);
-            this.groupBox1.Controls.Add(this.btnMirrorY);
-            this.groupBox1.Controls.Add(this.btnMirrorX);
-            this.groupBox1.Controls.Add(this.btnShiftToZero);
-            this.groupBox1.Controls.Add(this.btnTransformCode);
-            this.groupBox1.Controls.Add(this.tbChangeAngle);
-            this.groupBox1.Controls.Add(this.tbChangeSize);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.lbDimension);
             this.groupBox1.Controls.Add(this.lbInfo);
             this.groupBox1.Controls.Add(this.lblRemaining);
             this.groupBox1.Controls.Add(this.pbFile);
@@ -423,20 +683,130 @@ namespace GRBL_Plotter
             this.groupBox1.Controls.Add(this.tbFile);
             this.groupBox1.Controls.Add(this.btnStreamStart);
             this.groupBox1.Controls.Add(this.btnOpenFile);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnOffsetApply);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.tbOffsetY);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.tbOffsetX);
+            this.groupBox4.Controls.Add(this.rBOrigin9);
+            this.groupBox4.Controls.Add(this.rBOrigin8);
+            this.groupBox4.Controls.Add(this.rBOrigin7);
+            this.groupBox4.Controls.Add(this.rBOrigin6);
+            this.groupBox4.Controls.Add(this.rBOrigin5);
+            this.groupBox4.Controls.Add(this.rBOrigin4);
+            this.groupBox4.Controls.Add(this.rBOrigin3);
+            this.groupBox4.Controls.Add(this.rBOrigin2);
+            this.groupBox4.Controls.Add(this.rBOrigin1);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // btnOffsetApply
+            // 
+            resources.ApplyResources(this.btnOffsetApply, "btnOffsetApply");
+            this.btnOffsetApply.Name = "btnOffsetApply";
+            this.btnOffsetApply.UseVisualStyleBackColor = true;
+            this.btnOffsetApply.Click += new System.EventHandler(this.btnOffsetApply_Click);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // tbOffsetY
+            // 
+            resources.ApplyResources(this.tbOffsetY, "tbOffsetY");
+            this.tbOffsetY.Name = "tbOffsetY";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // tbOffsetX
+            // 
+            resources.ApplyResources(this.tbOffsetX, "tbOffsetX");
+            this.tbOffsetX.Name = "tbOffsetX";
+            // 
+            // rBOrigin9
+            // 
+            resources.ApplyResources(this.rBOrigin9, "rBOrigin9");
+            this.rBOrigin9.Name = "rBOrigin9";
+            this.rBOrigin9.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin8
+            // 
+            resources.ApplyResources(this.rBOrigin8, "rBOrigin8");
+            this.rBOrigin8.Name = "rBOrigin8";
+            this.rBOrigin8.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin7
+            // 
+            resources.ApplyResources(this.rBOrigin7, "rBOrigin7");
+            this.rBOrigin7.Name = "rBOrigin7";
+            this.rBOrigin7.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin6
+            // 
+            resources.ApplyResources(this.rBOrigin6, "rBOrigin6");
+            this.rBOrigin6.Name = "rBOrigin6";
+            this.rBOrigin6.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin5
+            // 
+            resources.ApplyResources(this.rBOrigin5, "rBOrigin5");
+            this.rBOrigin5.Checked = true;
+            this.rBOrigin5.Name = "rBOrigin5";
+            this.rBOrigin5.TabStop = true;
+            this.rBOrigin5.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin4
+            // 
+            resources.ApplyResources(this.rBOrigin4, "rBOrigin4");
+            this.rBOrigin4.Name = "rBOrigin4";
+            this.rBOrigin4.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin3
+            // 
+            resources.ApplyResources(this.rBOrigin3, "rBOrigin3");
+            this.rBOrigin3.Name = "rBOrigin3";
+            this.rBOrigin3.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin2
+            // 
+            resources.ApplyResources(this.rBOrigin2, "rBOrigin2");
+            this.rBOrigin2.Name = "rBOrigin2";
+            this.rBOrigin2.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin1
+            // 
+            resources.ApplyResources(this.rBOrigin1, "rBOrigin1");
+            this.rBOrigin1.Name = "rBOrigin1";
+            this.rBOrigin1.UseVisualStyleBackColor = true;
+            // 
+            // lbDimension
+            // 
+            this.lbDimension.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            resources.ApplyResources(this.lbDimension, "lbDimension");
+            this.lbDimension.HideSelection = false;
+            this.lbDimension.Name = "lbDimension";
+            this.lbDimension.ReadOnly = true;
             // 
             // pbBuffer
             // 
             resources.ApplyResources(this.pbBuffer, "pbBuffer");
             this.pbBuffer.Name = "pbBuffer";
-            this.toolTip1.SetToolTip(this.pbBuffer, resources.GetString("pbBuffer.ToolTip"));
             // 
             // btnStreamStop
             // 
-            resources.ApplyResources(this.btnStreamStop, "btnStreamStop");
             this.btnStreamStop.Image = global::GRBL_Plotter.Properties.Resources.btn_stop;
+            resources.ApplyResources(this.btnStreamStop, "btnStreamStop");
             this.btnStreamStop.Name = "btnStreamStop";
             this.toolTip1.SetToolTip(this.btnStreamStop, resources.GetString("btnStreamStop.ToolTip"));
             this.btnStreamStop.UseVisualStyleBackColor = true;
@@ -446,157 +816,43 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnStreamCheck, "btnStreamCheck");
             this.btnStreamCheck.Name = "btnStreamCheck";
-            this.toolTip1.SetToolTip(this.btnStreamCheck, resources.GetString("btnStreamCheck.ToolTip"));
             this.btnStreamCheck.UseVisualStyleBackColor = true;
             this.btnStreamCheck.Click += new System.EventHandler(this.btnStreamCheck_Click);
-            // 
-            // btnMirrorY
-            // 
-            resources.ApplyResources(this.btnMirrorY, "btnMirrorY");
-            this.btnMirrorY.Name = "btnMirrorY";
-            this.toolTip1.SetToolTip(this.btnMirrorY, resources.GetString("btnMirrorY.ToolTip"));
-            this.btnMirrorY.UseVisualStyleBackColor = true;
-            this.btnMirrorY.Click += new System.EventHandler(this.btnShiftToZero_MirrorXY_Click);
-            // 
-            // btnMirrorX
-            // 
-            resources.ApplyResources(this.btnMirrorX, "btnMirrorX");
-            this.btnMirrorX.Name = "btnMirrorX";
-            this.toolTip1.SetToolTip(this.btnMirrorX, resources.GetString("btnMirrorX.ToolTip"));
-            this.btnMirrorX.UseVisualStyleBackColor = true;
-            this.btnMirrorX.Click += new System.EventHandler(this.btnShiftToZero_MirrorXY_Click);
-            // 
-            // btnShiftToZero
-            // 
-            resources.ApplyResources(this.btnShiftToZero, "btnShiftToZero");
-            this.btnShiftToZero.Name = "btnShiftToZero";
-            this.toolTip1.SetToolTip(this.btnShiftToZero, resources.GetString("btnShiftToZero.ToolTip"));
-            this.btnShiftToZero.UseVisualStyleBackColor = true;
-            this.btnShiftToZero.Click += new System.EventHandler(this.btnShiftToZero_MirrorXY_Click);
-            // 
-            // btnTransformCode
-            // 
-            resources.ApplyResources(this.btnTransformCode, "btnTransformCode");
-            this.btnTransformCode.Name = "btnTransformCode";
-            this.toolTip1.SetToolTip(this.btnTransformCode, resources.GetString("btnTransformCode.ToolTip"));
-            this.btnTransformCode.UseVisualStyleBackColor = true;
-            this.btnTransformCode.Click += new System.EventHandler(this.btnTransformCode_Click);
-            // 
-            // tbChangeAngle
-            // 
-            resources.ApplyResources(this.tbChangeAngle, "tbChangeAngle");
-            this.tbChangeAngle.Name = "tbChangeAngle";
-            this.toolTip1.SetToolTip(this.tbChangeAngle, resources.GetString("tbChangeAngle.ToolTip"));
-            // 
-            // tbChangeSize
-            // 
-            resources.ApplyResources(this.tbChangeSize, "tbChangeSize");
-            this.tbChangeSize.ContextMenuStrip = this.cmsScale;
-            this.tbChangeSize.Name = "tbChangeSize";
-            this.toolTip1.SetToolTip(this.tbChangeSize, resources.GetString("tbChangeSize.ToolTip"));
-            // 
-            // cmsScale
-            // 
-            resources.ApplyResources(this.cmsScale, "cmsScale");
-            this.cmsScale.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scaleToWidthOfToolStripMenuItem,
-            this.scaleToHeightOfToolStripMenuItem});
-            this.cmsScale.Name = "contextMenuStripScale";
-            this.toolTip1.SetToolTip(this.cmsScale, resources.GetString("cmsScale.ToolTip"));
-            // 
-            // scaleToWidthOfToolStripMenuItem
-            // 
-            resources.ApplyResources(this.scaleToWidthOfToolStripMenuItem, "scaleToWidthOfToolStripMenuItem");
-            this.scaleToWidthOfToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripScaleTextBoxWidth});
-            this.scaleToWidthOfToolStripMenuItem.Name = "scaleToWidthOfToolStripMenuItem";
-            // 
-            // toolStripScaleTextBoxWidth
-            // 
-            resources.ApplyResources(this.toolStripScaleTextBoxWidth, "toolStripScaleTextBoxWidth");
-            this.toolStripScaleTextBoxWidth.Name = "toolStripScaleTextBoxWidth";
-            this.toolStripScaleTextBoxWidth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripScaleTextBoxWidth_KeyDown);
-            this.toolStripScaleTextBoxWidth.TextChanged += new System.EventHandler(this.toolStripScaleTextBox1_TextChanged);
-            // 
-            // scaleToHeightOfToolStripMenuItem
-            // 
-            resources.ApplyResources(this.scaleToHeightOfToolStripMenuItem, "scaleToHeightOfToolStripMenuItem");
-            this.scaleToHeightOfToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripScaleTextBoxHeight});
-            this.scaleToHeightOfToolStripMenuItem.Name = "scaleToHeightOfToolStripMenuItem";
-            // 
-            // toolStripScaleTextBoxHeight
-            // 
-            resources.ApplyResources(this.toolStripScaleTextBoxHeight, "toolStripScaleTextBoxHeight");
-            this.toolStripScaleTextBoxHeight.Name = "toolStripScaleTextBoxHeight";
-            this.toolStripScaleTextBoxHeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripScaleTextBoxWidth_KeyDown);
-            this.toolStripScaleTextBoxHeight.TextChanged += new System.EventHandler(this.toolStripScaleTextBoxHeight_TextChanged);
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            this.toolTip1.SetToolTip(this.label8, resources.GetString("label8.ToolTip"));
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            this.toolTip1.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            this.toolTip1.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
-            // 
-            // lbDimension
-            // 
-            resources.ApplyResources(this.lbDimension, "lbDimension");
-            this.lbDimension.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.lbDimension.Name = "lbDimension";
-            this.toolTip1.SetToolTip(this.lbDimension, resources.GetString("lbDimension.ToolTip"));
             // 
             // lbInfo
             // 
             resources.ApplyResources(this.lbInfo, "lbInfo");
             this.lbInfo.Name = "lbInfo";
-            this.toolTip1.SetToolTip(this.lbInfo, resources.GetString("lbInfo.ToolTip"));
             // 
             // lblRemaining
             // 
             resources.ApplyResources(this.lblRemaining, "lblRemaining");
             this.lblRemaining.Name = "lblRemaining";
-            this.toolTip1.SetToolTip(this.lblRemaining, resources.GetString("lblRemaining.ToolTip"));
             // 
             // pbFile
             // 
             resources.ApplyResources(this.pbFile, "pbFile");
             this.pbFile.Name = "pbFile";
-            this.toolTip1.SetToolTip(this.pbFile, resources.GetString("pbFile.ToolTip"));
             // 
             // lblElapsed
             // 
             resources.ApplyResources(this.lblElapsed, "lblElapsed");
             this.lblElapsed.Name = "lblElapsed";
-            this.toolTip1.SetToolTip(this.lblElapsed, resources.GetString("lblElapsed.ToolTip"));
             // 
             // lblFileProgress
             // 
             resources.ApplyResources(this.lblFileProgress, "lblFileProgress");
             this.lblFileProgress.Name = "lblFileProgress";
-            this.toolTip1.SetToolTip(this.lblFileProgress, resources.GetString("lblFileProgress.ToolTip"));
             // 
             // tbFile
             // 
             resources.ApplyResources(this.tbFile, "tbFile");
             this.tbFile.Name = "tbFile";
-            this.toolTip1.SetToolTip(this.tbFile, resources.GetString("tbFile.ToolTip"));
             // 
             // btnStreamStart
             // 
-            resources.ApplyResources(this.btnStreamStart, "btnStreamStart");
             this.btnStreamStart.Image = global::GRBL_Plotter.Properties.Resources.btn_play;
+            resources.ApplyResources(this.btnStreamStart, "btnStreamStart");
             this.btnStreamStart.Name = "btnStreamStart";
             this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
             this.btnStreamStart.UseVisualStyleBackColor = true;
@@ -612,7 +868,6 @@ namespace GRBL_Plotter
             // 
             // cmsCode
             // 
-            resources.ApplyResources(this.cmsCode, "cmsCode");
             this.cmsCode.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmsCodeSelect,
             this.cmsCodeCopy,
@@ -620,37 +875,35 @@ namespace GRBL_Plotter
             this.cmsCodeSendLine});
             this.cmsCode.Name = "cmsCode";
             this.cmsCode.ShowImageMargin = false;
-            this.toolTip1.SetToolTip(this.cmsCode, resources.GetString("cmsCode.ToolTip"));
+            resources.ApplyResources(this.cmsCode, "cmsCode");
             this.cmsCode.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsCode_ItemClicked);
             // 
             // cmsCodeSelect
             // 
-            resources.ApplyResources(this.cmsCodeSelect, "cmsCodeSelect");
             this.cmsCodeSelect.Name = "cmsCodeSelect";
+            resources.ApplyResources(this.cmsCodeSelect, "cmsCodeSelect");
             // 
             // cmsCodeCopy
             // 
-            resources.ApplyResources(this.cmsCodeCopy, "cmsCodeCopy");
             this.cmsCodeCopy.Name = "cmsCodeCopy";
+            resources.ApplyResources(this.cmsCodeCopy, "cmsCodeCopy");
             // 
             // cmsCodePaste
             // 
-            resources.ApplyResources(this.cmsCodePaste, "cmsCodePaste");
             this.cmsCodePaste.Name = "cmsCodePaste";
+            resources.ApplyResources(this.cmsCodePaste, "cmsCodePaste");
             // 
             // cmsCodeSendLine
             // 
-            resources.ApplyResources(this.cmsCodeSendLine, "cmsCodeSendLine");
             this.cmsCodeSendLine.Name = "cmsCodeSendLine";
+            resources.ApplyResources(this.cmsCodeSendLine, "cmsCodeSendLine");
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.btnHome);
             this.groupBox2.Controls.Add(this.btnZeroXYZ);
             this.groupBox2.Controls.Add(this.label5);
@@ -668,15 +921,14 @@ namespace GRBL_Plotter
             this.groupBox2.Controls.Add(this.label_wz);
             this.groupBox2.Controls.Add(this.label_wx);
             this.groupBox2.Controls.Add(this.label_wy);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
             // 
             // btnHome
             // 
             resources.ApplyResources(this.btnHome, "btnHome");
             this.btnHome.Name = "btnHome";
-            this.toolTip1.SetToolTip(this.btnHome, resources.GetString("btnHome.ToolTip"));
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
@@ -684,7 +936,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnZeroXYZ, "btnZeroXYZ");
             this.btnZeroXYZ.Name = "btnZeroXYZ";
-            this.toolTip1.SetToolTip(this.btnZeroXYZ, resources.GetString("btnZeroXYZ.ToolTip"));
             this.btnZeroXYZ.UseVisualStyleBackColor = true;
             this.btnZeroXYZ.Click += new System.EventHandler(this.btnZeroXYZ_Click);
             // 
@@ -692,13 +943,11 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.toolTip1.SetToolTip(this.label5, resources.GetString("label5.ToolTip"));
             // 
             // btnZeroXY
             // 
             resources.ApplyResources(this.btnZeroXY, "btnZeroXY");
             this.btnZeroXY.Name = "btnZeroXY";
-            this.toolTip1.SetToolTip(this.btnZeroXY, resources.GetString("btnZeroXY.ToolTip"));
             this.btnZeroXY.UseVisualStyleBackColor = true;
             this.btnZeroXY.Click += new System.EventHandler(this.btnZeroXY_Click);
             // 
@@ -706,13 +955,11 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
             // 
             // btnZeroZ
             // 
             resources.ApplyResources(this.btnZeroZ, "btnZeroZ");
             this.btnZeroZ.Name = "btnZeroZ";
-            this.toolTip1.SetToolTip(this.btnZeroZ, resources.GetString("btnZeroZ.ToolTip"));
             this.btnZeroZ.UseVisualStyleBackColor = true;
             this.btnZeroZ.Click += new System.EventHandler(this.btnZeroZ_Click);
             // 
@@ -720,13 +967,11 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // btnZeroY
             // 
             resources.ApplyResources(this.btnZeroY, "btnZeroY");
             this.btnZeroY.Name = "btnZeroY";
-            this.toolTip1.SetToolTip(this.btnZeroY, resources.GetString("btnZeroY.ToolTip"));
             this.btnZeroY.UseVisualStyleBackColor = true;
             this.btnZeroY.Click += new System.EventHandler(this.btnZeroY_Click);
             // 
@@ -734,13 +979,11 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
             // 
             // btnZeroX
             // 
             resources.ApplyResources(this.btnZeroX, "btnZeroX");
             this.btnZeroX.Name = "btnZeroX";
-            this.toolTip1.SetToolTip(this.btnZeroX, resources.GetString("btnZeroX.ToolTip"));
             this.btnZeroX.UseVisualStyleBackColor = true;
             this.btnZeroX.Click += new System.EventHandler(this.btnZeroX_Click);
             // 
@@ -748,7 +991,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label_status, "label_status");
             this.label_status.Name = "label_status";
-            this.toolTip1.SetToolTip(this.label_status, resources.GetString("label_status.ToolTip"));
             // 
             // btnJogZeroXY
             // 
@@ -784,11 +1026,10 @@ namespace GRBL_Plotter
             // 
             // groupBox5
             // 
-            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Controls.Add(this.tableLayoutPanel1);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox5, resources.GetString("groupBox5.ToolTip"));
             // 
             // tableLayoutPanel1
             // 
@@ -802,13 +1043,11 @@ namespace GRBL_Plotter
             this.tableLayoutPanel1.Controls.Add(this.btnCustom3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnCustom4, 0, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.toolTip1.SetToolTip(this.tableLayoutPanel1, resources.GetString("tableLayoutPanel1.ToolTip"));
             // 
             // btnCustom8
             // 
             resources.ApplyResources(this.btnCustom8, "btnCustom8");
             this.btnCustom8.Name = "btnCustom8";
-            this.toolTip1.SetToolTip(this.btnCustom8, resources.GetString("btnCustom8.ToolTip"));
             this.btnCustom8.UseVisualStyleBackColor = true;
             this.btnCustom8.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
@@ -816,7 +1055,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnCustom7, "btnCustom7");
             this.btnCustom7.Name = "btnCustom7";
-            this.toolTip1.SetToolTip(this.btnCustom7, resources.GetString("btnCustom7.ToolTip"));
             this.btnCustom7.UseVisualStyleBackColor = true;
             this.btnCustom7.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
@@ -824,7 +1062,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnCustom6, "btnCustom6");
             this.btnCustom6.Name = "btnCustom6";
-            this.toolTip1.SetToolTip(this.btnCustom6, resources.GetString("btnCustom6.ToolTip"));
             this.btnCustom6.UseVisualStyleBackColor = true;
             this.btnCustom6.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
@@ -832,7 +1069,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnCustom5, "btnCustom5");
             this.btnCustom5.Name = "btnCustom5";
-            this.toolTip1.SetToolTip(this.btnCustom5, resources.GetString("btnCustom5.ToolTip"));
             this.btnCustom5.UseVisualStyleBackColor = true;
             this.btnCustom5.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
@@ -840,7 +1076,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnCustom1, "btnCustom1");
             this.btnCustom1.Name = "btnCustom1";
-            this.toolTip1.SetToolTip(this.btnCustom1, resources.GetString("btnCustom1.ToolTip"));
             this.btnCustom1.UseVisualStyleBackColor = true;
             this.btnCustom1.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
@@ -848,7 +1083,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnCustom2, "btnCustom2");
             this.btnCustom2.Name = "btnCustom2";
-            this.toolTip1.SetToolTip(this.btnCustom2, resources.GetString("btnCustom2.ToolTip"));
             this.btnCustom2.UseVisualStyleBackColor = true;
             this.btnCustom2.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
@@ -856,7 +1090,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnCustom3, "btnCustom3");
             this.btnCustom3.Name = "btnCustom3";
-            this.toolTip1.SetToolTip(this.btnCustom3, resources.GetString("btnCustom3.ToolTip"));
             this.btnCustom3.UseVisualStyleBackColor = true;
             this.btnCustom3.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
@@ -864,7 +1097,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnCustom4, "btnCustom4");
             this.btnCustom4.Name = "btnCustom4";
-            this.toolTip1.SetToolTip(this.btnCustom4, resources.GetString("btnCustom4.ToolTip"));
             this.btnCustom4.UseVisualStyleBackColor = true;
             this.btnCustom4.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
@@ -909,8 +1141,8 @@ namespace GRBL_Plotter
             // 
             // btnJogStop
             // 
-            resources.ApplyResources(this.btnJogStop, "btnJogStop");
             this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.btnJogStop, "btnJogStop");
             this.btnJogStop.Name = "btnJogStop";
             this.toolTip1.SetToolTip(this.btnJogStop, resources.GetString("btnJogStop.ToolTip"));
             this.btnJogStop.UseVisualStyleBackColor = false;
@@ -918,7 +1150,6 @@ namespace GRBL_Plotter
             // 
             // groupBox6
             // 
-            resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Controls.Add(this.btnJogStop);
             this.groupBox6.Controls.Add(this.groupBox3);
             this.groupBox6.Controls.Add(this.lblTool);
@@ -933,32 +1164,29 @@ namespace GRBL_Plotter
             this.groupBox6.Controls.Add(this.btnFeedHold);
             this.groupBox6.Controls.Add(this.btnResume);
             this.groupBox6.Controls.Add(this.btnReset);
+            resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox6, resources.GetString("groupBox6.ToolTip"));
             // 
             // groupBox3
             // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.btnJogZeroX);
             this.groupBox3.Controls.Add(this.btnJogZeroXY);
             this.groupBox3.Controls.Add(this.btnJogZeroY);
             this.groupBox3.Controls.Add(this.btnJogZeroZ);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
             // 
             // lblTool
             // 
             resources.ApplyResources(this.lblTool, "lblTool");
             this.lblTool.Name = "lblTool";
-            this.toolTip1.SetToolTip(this.lblTool, resources.GetString("lblTool.ToolTip"));
             // 
             // cBTool
             // 
             resources.ApplyResources(this.cBTool, "cBTool");
             this.cBTool.Name = "cBTool";
-            this.toolTip1.SetToolTip(this.cBTool, resources.GetString("cBTool.ToolTip"));
             this.cBTool.UseVisualStyleBackColor = true;
             this.cBTool.CheckedChanged += new System.EventHandler(this.cBTool_CheckedChanged);
             // 
@@ -977,7 +1205,6 @@ namespace GRBL_Plotter
             this.virtualJoystickZ.JoystickRaster = 5;
             this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickZ.Name = "virtualJoystickZ";
-            this.toolTip1.SetToolTip(this.virtualJoystickZ, resources.GetString("virtualJoystickZ.ToolTip"));
             this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickZ_JoyStickEvent);
             this.virtualJoystickZ.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickZ.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
@@ -997,7 +1224,6 @@ namespace GRBL_Plotter
             this.virtualJoystickXY.JoystickRaster = 5;
             this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickXY.Name = "virtualJoystickXY";
-            this.toolTip1.SetToolTip(this.virtualJoystickXY, resources.GetString("virtualJoystickXY.ToolTip"));
             this.virtualJoystickXY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickXY_JoyStickEvent);
             this.virtualJoystickXY.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickXY.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
@@ -1006,19 +1232,16 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
             // 
             // tBSpeed
             // 
             resources.ApplyResources(this.tBSpeed, "tBSpeed");
             this.tBSpeed.Name = "tBSpeed";
-            this.toolTip1.SetToolTip(this.tBSpeed, resources.GetString("tBSpeed.ToolTip"));
             // 
             // cBCoolant
             // 
             resources.ApplyResources(this.cBCoolant, "cBCoolant");
             this.cBCoolant.Name = "cBCoolant";
-            this.toolTip1.SetToolTip(this.cBCoolant, resources.GetString("cBCoolant.ToolTip"));
             this.cBCoolant.UseVisualStyleBackColor = true;
             this.cBCoolant.CheckedChanged += new System.EventHandler(this.cBCoolant_CheckedChanged);
             // 
@@ -1026,13 +1249,11 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.cBSpindle, "cBSpindle");
             this.cBSpindle.Name = "cBSpindle";
-            this.toolTip1.SetToolTip(this.cBSpindle, resources.GetString("cBSpindle.ToolTip"));
             this.cBSpindle.UseVisualStyleBackColor = true;
             this.cBSpindle.CheckedChanged += new System.EventHandler(this.cBSpindle_CheckedChanged);
             // 
             // fCTBCode
             // 
-            resources.ApplyResources(this.fCTBCode, "fCTBCode");
             this.fCTBCode.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -1045,6 +1266,7 @@ namespace GRBL_Plotter
         '\'',
         '\''};
             this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
+            resources.ApplyResources(this.fCTBCode, "fCTBCode");
             this.fCTBCode.BackBrush = null;
             this.fCTBCode.CharHeight = 12;
             this.fCTBCode.CharWidth = 7;
@@ -1057,7 +1279,6 @@ namespace GRBL_Plotter
             this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
             this.fCTBCode.ToolTip = null;
-            this.toolTip1.SetToolTip(this.fCTBCode, resources.GetString("fCTBCode.ToolTip"));
             this.fCTBCode.Zoom = 100;
             this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
             this.fCTBCode.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChangedDelayed);
@@ -1066,15 +1287,14 @@ namespace GRBL_Plotter
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox1.BackgroundImage = global::GRBL_Plotter.Properties.Resources.modell;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.ContextMenuStrip = this.cmsPictureBox;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, resources.GetString("pictureBox1.ToolTip"));
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -1082,7 +1302,6 @@ namespace GRBL_Plotter
             // 
             // cmsPictureBox
             // 
-            resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deletenotMarkToolStripMenuItem,
             this.toolStripSeparator1,
@@ -1090,35 +1309,35 @@ namespace GRBL_Plotter
             this.moveToFirstPosToolStripMenuItem,
             this.deletePathToolStripMenuItem});
             this.cmsPictureBox.Name = "cmsPictureBox";
-            this.toolTip1.SetToolTip(this.cmsPictureBox, resources.GetString("cmsPictureBox.ToolTip"));
+            resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
             // 
             // deletenotMarkToolStripMenuItem
             // 
-            resources.ApplyResources(this.deletenotMarkToolStripMenuItem, "deletenotMarkToolStripMenuItem");
             this.deletenotMarkToolStripMenuItem.Name = "deletenotMarkToolStripMenuItem";
+            resources.ApplyResources(this.deletenotMarkToolStripMenuItem, "deletenotMarkToolStripMenuItem");
             this.deletenotMarkToolStripMenuItem.Click += new System.EventHandler(this.deletenotMarkToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // deleteThisCodeLineToolStripMenuItem
             // 
-            resources.ApplyResources(this.deleteThisCodeLineToolStripMenuItem, "deleteThisCodeLineToolStripMenuItem");
             this.deleteThisCodeLineToolStripMenuItem.Name = "deleteThisCodeLineToolStripMenuItem";
+            resources.ApplyResources(this.deleteThisCodeLineToolStripMenuItem, "deleteThisCodeLineToolStripMenuItem");
             this.deleteThisCodeLineToolStripMenuItem.Click += new System.EventHandler(this.deleteThisCodeLineToolStripMenuItem_Click);
             // 
             // moveToFirstPosToolStripMenuItem
             // 
-            resources.ApplyResources(this.moveToFirstPosToolStripMenuItem, "moveToFirstPosToolStripMenuItem");
             this.moveToFirstPosToolStripMenuItem.Name = "moveToFirstPosToolStripMenuItem";
+            resources.ApplyResources(this.moveToFirstPosToolStripMenuItem, "moveToFirstPosToolStripMenuItem");
             this.moveToFirstPosToolStripMenuItem.Click += new System.EventHandler(this.moveToFirstPosToolStripMenuItem_Click);
             // 
             // deletePathToolStripMenuItem
             // 
-            resources.ApplyResources(this.deletePathToolStripMenuItem, "deletePathToolStripMenuItem");
             this.deletePathToolStripMenuItem.Name = "deletePathToolStripMenuItem";
+            resources.ApplyResources(this.deletePathToolStripMenuItem, "deletePathToolStripMenuItem");
             this.deletePathToolStripMenuItem.Click += new System.EventHandler(this.deletePathToolStripMenuItem_Click);
             // 
             // tLPAussen
@@ -1127,7 +1346,6 @@ namespace GRBL_Plotter
             this.tLPAussen.Controls.Add(this.tLPLinks, 0, 0);
             this.tLPAussen.Controls.Add(this.tLPRechts, 1, 0);
             this.tLPAussen.Name = "tLPAussen";
-            this.toolTip1.SetToolTip(this.tLPAussen, resources.GetString("tLPAussen.ToolTip"));
             // 
             // tLPLinks
             // 
@@ -1135,7 +1353,6 @@ namespace GRBL_Plotter
             this.tLPLinks.Controls.Add(this.fCTBCode, 0, 1);
             this.tLPLinks.Controls.Add(this.groupBox1, 0, 0);
             this.tLPLinks.Name = "tLPLinks";
-            this.toolTip1.SetToolTip(this.tLPLinks, resources.GetString("tLPLinks.ToolTip"));
             // 
             // tLPRechts
             // 
@@ -1143,7 +1360,6 @@ namespace GRBL_Plotter
             this.tLPRechts.Controls.Add(this.tLPRechtsUnten, 0, 1);
             this.tLPRechts.Controls.Add(this.tLPRechtsOben, 0, 0);
             this.tLPRechts.Name = "tLPRechts";
-            this.toolTip1.SetToolTip(this.tLPRechts, resources.GetString("tLPRechts.ToolTip"));
             // 
             // tLPRechtsUnten
             // 
@@ -1151,14 +1367,12 @@ namespace GRBL_Plotter
             this.tLPRechtsUnten.Controls.Add(this.tLPRechtsUntenRechts, 1, 0);
             this.tLPRechtsUnten.Controls.Add(this.tLPMitteUnten, 0, 0);
             this.tLPRechtsUnten.Name = "tLPRechtsUnten";
-            this.toolTip1.SetToolTip(this.tLPRechtsUnten, resources.GetString("tLPRechtsUnten.ToolTip"));
             // 
             // tLPRechtsUntenRechts
             // 
             resources.ApplyResources(this.tLPRechtsUntenRechts, "tLPRechtsUntenRechts");
             this.tLPRechtsUntenRechts.Controls.Add(this.groupBox6, 0, 0);
             this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
-            this.toolTip1.SetToolTip(this.tLPRechtsUntenRechts, resources.GetString("tLPRechtsUntenRechts.ToolTip"));
             // 
             // tLPMitteUnten
             // 
@@ -1166,7 +1380,6 @@ namespace GRBL_Plotter
             this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
             this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 1);
             this.tLPMitteUnten.Name = "tLPMitteUnten";
-            this.toolTip1.SetToolTip(this.tLPMitteUnten, resources.GetString("tLPMitteUnten.ToolTip"));
             // 
             // tLPRechtsOben
             // 
@@ -1174,18 +1387,16 @@ namespace GRBL_Plotter
             this.tLPRechtsOben.Controls.Add(this.groupBox5, 1, 0);
             this.tLPRechtsOben.Controls.Add(this.groupBox2, 0, 0);
             this.tLPRechtsOben.Name = "tLPRechtsOben";
-            this.toolTip1.SetToolTip(this.tLPRechtsOben, resources.GetString("tLPRechtsOben.ToolTip"));
             // 
             // MainForm
             // 
-            resources.ApplyResources(this, "$this");
             this.AllowDrop = true;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tLPAussen);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
@@ -1194,7 +1405,8 @@ namespace GRBL_Plotter
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.cmsScale.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.cmsCode.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1269,19 +1481,12 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnFeedHold;
         private System.Windows.Forms.Button btnResume;
         private System.Windows.Forms.Label lbInfo;
-        private System.Windows.Forms.Label lbDimension;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbChangeAngle;
-        private System.Windows.Forms.Button btnTransformCode;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbChangeSize;
         private System.Windows.Forms.ContextMenuStrip cmsCode;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeSelect;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeCopy;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeSendLine;
         private System.Windows.Forms.ToolStripMenuItem cmsCodePaste;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TableLayoutPanel tLPAussen;
         private System.Windows.Forms.TableLayoutPanel tLPLinks;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -1298,18 +1503,10 @@ namespace GRBL_Plotter
         private System.Windows.Forms.TextBox tBSpeed;
         private System.Windows.Forms.CheckBox cBCoolant;
         private System.Windows.Forms.CheckBox cBSpindle;
-        private System.Windows.Forms.ContextMenuStrip cmsScale;
-        private System.Windows.Forms.ToolStripMenuItem scaleToWidthOfToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripScaleTextBoxWidth;
-        private System.Windows.Forms.ToolStripMenuItem scaleToHeightOfToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripScaleTextBoxHeight;
-        private System.Windows.Forms.Button btnShiftToZero;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tLPMitteUnten;
         private System.Windows.Forms.TextBox tBURL;
-        private System.Windows.Forms.Button btnMirrorY;
-        private System.Windows.Forms.Button btnMirrorX;
         private virtualJoystick.virtualJoystick virtualJoystickZ;
         private virtualJoystick.virtualJoystick virtualJoystickXY;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
@@ -1340,8 +1537,58 @@ namespace GRBL_Plotter
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ToolStripMenuItem control2ndGRBLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deutschToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mirrorXToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mirrorYToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem rotate90ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rotate90ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem rotateFreeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_rotate;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem sToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_XY_scale;
+        private System.Windows.Forms.ToolStripMenuItem skalierenXYToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_XY_X_scale;
+        private System.Windows.Forms.ToolStripMenuItem skalierenXYUmXUnitsZuErreichenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_XY_Y_scale;
+        private System.Windows.Forms.ToolStripMenuItem skaliereXUmToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_X_scale;
+        private System.Windows.Forms.ToolStripMenuItem skaliereAufXUnitsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_X_X_scale;
+        private System.Windows.Forms.ToolStripMenuItem skaliereXAufDrehachseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_X_A_scale;
+        private System.Windows.Forms.ToolStripMenuItem skaliereYUmToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_Y_scale;
+        private System.Windows.Forms.ToolStripMenuItem skaliereAufYUnitsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_Y_Y_scale;
+        private System.Windows.Forms.ToolStripMenuItem skaliereYAufDrehachseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_Y_A_scale;
+        private System.Windows.Forms.TextBox lbDimension;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton rBOrigin9;
+        private System.Windows.Forms.RadioButton rBOrigin8;
+        private System.Windows.Forms.RadioButton rBOrigin7;
+        private System.Windows.Forms.RadioButton rBOrigin6;
+        private System.Windows.Forms.RadioButton rBOrigin5;
+        private System.Windows.Forms.RadioButton rBOrigin4;
+        private System.Windows.Forms.RadioButton rBOrigin3;
+        private System.Windows.Forms.RadioButton rBOrigin2;
+        private System.Windows.Forms.RadioButton rBOrigin1;
+        private System.Windows.Forms.Button btnOffsetApply;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbOffsetY;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbOffsetX;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem rotaryDimaeterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_rotary_diameter;
+        private System.Windows.Forms.ToolStripMenuItem setupToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem ersetzteG23DurchLinienToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem heightMapToolStripMenuItem;
     }
 }
 

@@ -118,6 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 20</value>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>GCode erzeugen</value>
+  </data>
+  <data name="gCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 20</value>
+  </data>
+  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>GCode transformieren</value>
+  </data>
+  <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Maschine</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Über...</value>
+  </data>
   <data name="loadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 22</value>
   </data>
@@ -148,6 +178,15 @@
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>261, 6</value>
   </data>
+  <data name="setupToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 6</value>
+  </data>
   <data name="saveMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 22</value>
   </data>
@@ -166,12 +205,6 @@
   <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Importiere Programmeinstellungen (Button Definitionen, Joystick Parameter) aus einer INI-Datei</value>
   </data>
-  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
-  <data name="deutschToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 22</value>
-  </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 22</value>
   </data>
@@ -181,11 +214,143 @@
   <data name="toolStripMenuItem3.ToolTipText" xml:space="preserve">
     <value>Nach Änderung der Sprache ist ein Neustart nötig</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 20</value>
+  <data name="textWizzardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Datei</value>
+  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Erzeuge Text</value>
+  </data>
+  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Einfache Texterstellung mit Hershey Fonts</value>
+  </data>
+  <data name="imageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="imageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bild umwandeln</value>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 22</value>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Erzeuge einfache Formen</value>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Kreis oder Rechteck, optional mit abgerundenten Ecken, optional als Tasche</value>
+  </data>
+  <data name="mirrorXToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
+    <value>Spiegeln X (horizontal)</value>
+  </data>
+  <data name="mirrorYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Spiegeln Y (vertikal)</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 6</value>
+  </data>
+  <data name="rotate90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Drehen um +90° (gegen Uhrzeiger)</value>
+  </data>
+  <data name="rotate90ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Drehen um -90° (Uhrzeiger)</value>
+  </data>
+  <data name="rotateFreeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Drehen um ...°</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 6</value>
+  </data>
+  <data name="sToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="sToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere XY um ...%</value>
+  </data>
+  <data name="skalierenXYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere XY auf X=... units</value>
+  </data>
+  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere XY auf Y=... units</value>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere X um ...%</value>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere X auf X=... units</value>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere Y um ...%</value>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere Y auf Y= ... units</value>
+  </data>
+  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 6</value>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Durchmesser der Drehachse</value>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Gebe den Durchmesser des Drehachsenwerkstücks an</value>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere X auf ...° (Drehachse)</value>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere Y auf ...° (Drehachse)</value>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ersetzte G2/3 durch Linien</value>
+  </data>
+  <data name="heightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Höhenprofil aufnehmen</value>
   </data>
   <data name="controlStreamingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 22</value>
@@ -223,95 +388,23 @@
   <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Einstellungen an Programmoberfläche, Importoptionen und GCode-Erzeugung</value>
   </data>
-  <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>G-Code Datei</value>
   </data>
-  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Maschine</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Nullpunkt XY</value>
   </data>
-  <data name="textWizzardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
+  <data name="btnOffsetApply.Text" xml:space="preserve">
+    <value>Offset setzen</value>
   </data>
-  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Erzeuge Text</value>
-  </data>
-  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Einfache Texterstellung mit Hershey Fonts</value>
-  </data>
-  <data name="imageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
-  </data>
-  <data name="imageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bild umwandeln</value>
-  </data>
-  <data name="createSimpleShapesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 22</value>
-  </data>
-  <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Erzeuge einfache Formen</value>
-  </data>
-  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Kreis oder Rechteck, optional mit abgerundenten Ecken, optional als Tasche</value>
-  </data>
-  <data name="createGCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 20</value>
-  </data>
-  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Erzeuge GCode</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>Über...</value>
-  </data>
-  <data name="btnStreamStop.ToolTip" xml:space="preserve">
-    <value>Stoppt die Übertragung</value>
-  </data>
-  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value>Übertargung des GCodes ohne Ausführung</value>
-  </data>
-  <data name="btnMirrorY.Text" xml:space="preserve">
-    <value>Spiegeln Y</value>
-  </data>
-  <data name="btnMirrorY.ToolTip" xml:space="preserve">
-    <value>Spiegelt alle Y-Koordinaten</value>
-  </data>
-  <data name="btnMirrorX.Text" xml:space="preserve">
-    <value>Spiegeln X</value>
-  </data>
-  <data name="btnMirrorX.ToolTip" xml:space="preserve">
-    <value>Spiegelt alle X-Koordinaten</value>
-  </data>
-  <data name="btnShiftToZero.AccessibleDescription" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnShiftToZero.Text" xml:space="preserve">
-    <value>Setze Offset auf 0;0</value>
-  </data>
-  <data name="btnShiftToZero.ToolTip" xml:space="preserve">
-    <value>Verschiebt alle XY-Koordinaten, so dass keine negativen Koordinaten vorkommen</value>
-  </data>
-  <data name="btnTransformCode.Text" xml:space="preserve">
-    <value>GCode umwandeln</value>
-  </data>
-  <data name="btnTransformCode.ToolTip" xml:space="preserve">
-    <value>Neuberechnung der XY-GCode Koordinaten unter Berücksichtigung der angegebenen Skalierung und Winkel</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Skal.</value>
-  </data>
-  <data name="label8.ToolTip" xml:space="preserve">
-    <value>Skaliert die XY-Koordinaten um den entsprechenden Prozentwert</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>% Winkel</value>
-  </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value>Dreht alle XY-Koordinaten um den Nullpunkt</value>
+  <data name="lbDimension.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 58</value>
   </data>
   <data name="lbDimension.Text" xml:space="preserve">
     <value>Abmessungen</value>
+  </data>
+  <data name="btnStreamStop.ToolTip" xml:space="preserve">
+    <value>Stoppt die Übertragung</value>
   </data>
   <data name="lblElapsed.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 13</value>
@@ -328,8 +421,8 @@
   <data name="btnStreamStart.ToolTip" xml:space="preserve">
     <value>Sende den GCode aus dem Editor an GRBL</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G-Code Datei</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Werkzeug Koordinaten (World / Machine)</value>
   </data>
   <data name="btnZeroXYZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 62</value>
@@ -360,9 +453,6 @@
   </data>
   <data name="btnZeroX.Text" xml:space="preserve">
     <value>X nullen</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Werkzeug Koordinaten (World / Machine)</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Benutzerdefinierte Buttons</value>
@@ -408,6 +498,9 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
   </data>
   <data name="btnJogStop.ToolTip" xml:space="preserve">
     <value>Abbruch der jetzigen Jogging-Bewegung</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Steuerung / Jogging</value>
   </data>
   <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -486,11 +579,8 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
         nMCqsjIRZgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Steuerung / Jogging</value>
-  </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>114, 12</value>
+    <value>137, 12</value>
   </data>
   <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>

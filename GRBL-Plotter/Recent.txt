@@ -1,0 +1,4 @@
+_misc\test_svg\grbl.svg
+_misc\test_gcode\test_subroutine.nc
+_misc\test_gcode\scale.nc
+_misc\test_dxf\Bunny.dxf

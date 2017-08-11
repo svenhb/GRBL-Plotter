@@ -28,7 +28,7 @@
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
+    <ApplicationVersion>1.1.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -85,14 +85,20 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge.Video">
-      <HintPath>..\..\..\..\..\Programme\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\AForge.Video.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video.DirectShow">
-      <HintPath>..\..\..\..\..\Programme\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="FastColoredTextBox">
-      <HintPath>..\..\FastColoredTextBox-master\Binary\FastColoredTextBox.dll</HintPath>
+    <Reference Include="DXFLib">
+      <HintPath>DLLs\DXFLib.dll</HintPath>
+    </Reference>
+    <Reference Include="FastColoredTextBox, Version=2.16.11.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\FastColoredTextBox.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -105,9 +111,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="virtualJoystick, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="virtualJoystick, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\virtualJoystick\virtualJoystick\obj\Release\virtualJoystick.dll</HintPath>
+      <HintPath>DLLs\virtualJoystick.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -118,26 +124,33 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlCameraForm.cs">
+    <Compile Include="MachineControl\ControlCameraForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ControlCameraForm.Designer.cs">
+    <Compile Include="MachineControl\ControlCameraForm.Designer.cs">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control2ndGRBL.cs">
+    <Compile Include="MachineControl\Control2ndGRBL.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Control2ndGRBL.Designer.cs">
+    <Compile Include="MachineControl\Control2ndGRBL.Designer.cs">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </Compile>
-    <Compile Include="gcodeRelated.cs" />
-    <Compile Include="grblRelated.cs" />
-    <Compile Include="IniFile.cs" />
-    <Compile Include="GCodeVisuAndTransform.cs" />
-    <Compile Include="GCodeFromImage.cs">
+    <Compile Include="MachineControl\ControlHeightMap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeFromImage.Designer.cs">
+    <Compile Include="MachineControl\ControlHeightMap.Designer.cs">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCodeCreation\GCodeFromDXF.cs" />
+    <Compile Include="GCodeCreation\gcodeRelated.cs" />
+    <Compile Include="MachineControl\grblRelated.cs" />
+    <Compile Include="MachineControl\IniFile.cs" />
+    <Compile Include="MachineControl\GCodeVisuAndTransform.cs" />
+    <Compile Include="GCodeCreation\GCodeFromImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCodeCreation\GCodeFromImage.Designer.cs">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -148,79 +161,85 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ControlSerialForm.cs">
+    <Compile Include="MachineControl\ControlSerialForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ControlSerialForm.Designer.cs">
+    <Compile Include="MachineControl\ControlSerialForm.Designer.cs">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="ControlSetupForm.cs">
+    <Compile Include="MachineControl\ControlSetupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ControlSetupForm.Designer.cs">
+    <Compile Include="MachineControl\ControlSetupForm.Designer.cs">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlStreamingForm.cs">
+    <Compile Include="MachineControl\ControlStreamingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ControlStreamingForm.Designer.cs">
+    <Compile Include="MachineControl\ControlStreamingForm.Designer.cs">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlStreamingForm2.cs">
+    <Compile Include="MachineControl\ControlStreamingForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ControlStreamingForm2.Designer.cs">
+    <Compile Include="MachineControl\ControlStreamingForm2.Designer.cs">
       <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </Compile>
-    <Compile Include="svgPalette.cs" />
-    <Compile Include="GCodeFromSVG.cs" />
-    <Compile Include="GCodeFromText.cs">
+    <Compile Include="GCodeCreation\svgPalette.cs" />
+    <Compile Include="GCodeCreation\GCodeFromSVG.cs" />
+    <Compile Include="GCodeCreation\GCodeFromText.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeFromText.Designer.cs">
+    <Compile Include="GCodeCreation\GCodeFromText.Designer.cs">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeFromShape.cs">
+    <Compile Include="GCodeCreation\GCodeFromShape.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeFromShape.Designer.cs">
+    <Compile Include="GCodeCreation\GCodeFromShape.Designer.cs">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control2ndGRBL.de-DE.resx">
+    <EmbeddedResource Include="MachineControl\Control2ndGRBL.de-DE.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlCameraForm.de-DE.resx">
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.de-DE.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlCameraForm.resx">
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Control2ndGRBL.resx">
+    <EmbeddedResource Include="MachineControl\Control2ndGRBL.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlSerialForm.de-DE.resx">
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.de-DE.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.de-DE.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlSetupForm.de-DE.resx">
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.de-DE.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlStreamingForm.de-DE.resx">
+    <EmbeddedResource Include="MachineControl\ControlStreamingForm.de-DE.resx">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeFromImage.de-DE.resx">
+    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.de-DE.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeFromImage.resx">
+    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeFromShape.de-DE.resx">
+    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.de-DE.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeFromText.de-DE.resx">
+    <EmbeddedResource Include="GCodeCreation\GCodeFromText.de-DE.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.de-DE.resx">
@@ -239,25 +258,24 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ControlSerialForm.resx">
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlSetupForm.resx">
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlStreamingForm.resx">
+    <EmbeddedResource Include="MachineControl\ControlStreamingForm.resx">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlStreamingForm2.resx">
+    <EmbeddedResource Include="MachineControl\ControlStreamingForm2.resx">
       <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeFromText.resx">
+    <EmbeddedResource Include="GCodeCreation\GCodeFromText.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeFromShape.resx">
+    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="GRBL-Plotter_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -268,6 +286,54 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Recent.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\script_pen_pickup.nc" />
+    <Content Include="_misc\script_pen_remove.nc" />
+    <Content Include="_misc\script_pen_select.nc" />
+    <Content Include="_misc\script_probing_gripper.nc" />
+    <Content Include="_misc\script_probing_tool.nc" />
+    <Content Include="_misc\Stabilo_by_Color.gpl" />
+    <Content Include="_misc\Stabilo_by_PN.gpl" />
+    <Content Include="_misc\Stabilo_by_PN.pal" />
+    <Content Include="_misc\test_dxf\Bunny.dxf" />
+    <Content Include="_misc\test_gcode\scale.nc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\test_gcode\test_absolute_and_relative.nc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\test_gcode\test_relative.nc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\test_gcode\test_subroutine.nc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\test_map\cent.map" />
+    <Content Include="_misc\test_map\lens.map" />
+    <Content Include="_misc\Test_Pen_change.nc" />
+    <None Include="_misc\test_svg\0_Scalable Vector Graphics.url" />
+    <None Include="_misc\test_svg\7_Coordinate Systems.url" />
+    <None Include="_misc\test_svg\8_Paths.url" />
+    <None Include="_misc\test_svg\9_Basic Shapes.url" />
+    <None Include="_misc\test_svg\Example arcs01 - arc commands in path data.url" />
+    <None Include="_misc\test_svg\Example arcs02 - arc options in paths.url" />
+    <None Include="_misc\test_svg\Example cubic01- cubic Bézier commands in path data.url" />
+    <None Include="_misc\test_svg\Example cubic02 - cubic Bézier commands in path data.url" />
+    <None Include="_misc\test_svg\Example quad01 - quadratic Bézier commands in path data.url" />
+    <None Include="_misc\test_svg\nok_Example Units.url" />
+    <None Include="_misc\test_svg\nok_SVG-images-coords-Skew.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-coords-Nested.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-coords-PreserveAspectRatio.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-coords-RotateScale.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-shapes-circle01.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-shapes-ellipse01.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-shapes-line01.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-shapes-polygon01.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-shapes-polyline01.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-shapes-rect01.svg.url" />
+    <None Include="_misc\test_svg\SVG-images-shapes-rect02.svg.url" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -293,6 +359,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <Content Include="_misc\modell.png" />
+    <Content Include="_misc\test_map\cent.bmp" />
+    <Content Include="_misc\test_svg\grbl.svg" />
+    <Content Include="_misc\test_svg\Testbild.svg" />
     <None Include="Resources\inv2.png" />
     <None Include="Resources\turn_r.png" />
     <None Include="Resources\turn_l.png" />
@@ -300,9 +370,6 @@
     <None Include="Resources\flip_horizontal.png" />
     <None Include="Resources\flip_horizontal.bmp" />
     <None Include="Resources\Image1.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

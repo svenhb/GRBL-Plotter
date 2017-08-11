@@ -24,6 +24,7 @@
  *  2016-12-31  Add GRBL 1.1 function
  *  2017-01-01  check form-location and fix strange location
  *  2017-01-03  Add 'Replace M3 by M4' during GCode file open
+ *  2017-06-22  Cleanup transform actions
  */
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ using virtualJoystick;
 using FastColoredTextBoxNS;
 using System.Globalization;
 using System.Threading;
+using System.Text;
 using System.ComponentModel;
 
 namespace GRBL_Plotter
@@ -53,6 +55,7 @@ namespace GRBL_Plotter
         ControlStreamingForm2 _streaming_form2 = null;
         ControlCameraForm _camera_form = null;
         ControlSetupForm _setup_form = null;
+        ControlHeightMapForm _heightmap_form = null;
         GCodeFromText _text_form = null;
         GCodeFromImage _image_form = null;
         GCodeFromShape _shape_form = null;
@@ -67,7 +70,7 @@ namespace GRBL_Plotter
         private double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
-        
+
         public MainForm()
         {
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
@@ -94,154 +97,6 @@ namespace GRBL_Plotter
                 MessageBox.Show(ex.Message, "Application exception");
             }
         }
-        // open Camera form
-        private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (_camera_form == null)
-            {   _camera_form = new ControlCameraForm();
-                _camera_form.FormClosed += formClosed_CameraForm;
-                _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
-            }
-            else
-            {
-                _camera_form.Visible = false;
-            }
-            _camera_form.Show(this);
-        }
-        private void formClosed_CameraForm(object sender, FormClosedEventArgs e)
-        { _camera_form = null; }
-
-        // open Setup form
-        private void setupToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (_setup_form == null)
-            {   _setup_form = new ControlSetupForm();
-                _setup_form.FormClosed += formClosed_SetupForm;
-                _setup_form.btnApplyChangings.Click += loadSettings;
-                _setup_form.btnReloadFile.Click += reStartConvertSVG;
-            }
-            else
-            {
-                _setup_form.Visible = false;
-            }
-            _setup_form.Show(this);
-        }
-        private void formClosed_SetupForm(object sender, FormClosedEventArgs e)
-        { _setup_form = null; }
-
-        // open text creation form
-        private void textWizzardToolStripMenuItem_Click(object sender, EventArgs e)
-        {   if (_text_form == null)
-            {
-                _text_form = new GCodeFromText();
-                _text_form.FormClosed += formClosed_TextToGCode;
-                _text_form.btnApply.Click += getGCodeFromText;      // assign btn-click event
-            }
-            else
-            {
-                _text_form.Visible = false;
-            }
-            _text_form.Show(this);
-        }
-        private void formClosed_TextToGCode(object sender, FormClosedEventArgs e)
-        { _text_form = null; }
-
-        private void createSimpleShapesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (_shape_form == null)
-            {
-                _shape_form = new GCodeFromShape();
-                _shape_form.FormClosed += formClosed_ShapeToGCode;
-                _shape_form.btnApply.Click += getGCodeFromShape;      // assign btn-click event
-            }
-            else
-            {
-                _shape_form.Visible = false;
-            }
-            _shape_form.Show(this);
-        }
-        private void formClosed_ShapeToGCode(object sender, FormClosedEventArgs e)
-        { _shape_form = null; }
-
-        private void imageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (_image_form == null)
-            {
-                _image_form = new GCodeFromImage();
-                _image_form.FormClosed += formClosed_ImageToGCode;
-                _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
-            }
-            else
-            {
-                _image_form.Visible = false;
-            }
-            _image_form.Show(this);
-        }
-        private void formClosed_ImageToGCode(object sender, FormClosedEventArgs e)
-        { _image_form = null; }
-
-        private void controlStreamingToolStripMenuItem_Click(object sender, EventArgs e)
-        {   if (_serial_form.isGrblVers0)
-            {
-                if (_streaming_form2 != null)
-                    _streaming_form2.Visible = false;
-                if (_streaming_form == null)
-                {
-                    _streaming_form = new ControlStreamingForm();
-                    _streaming_form.RaiseOverrideEvent += OnRaiseOverrideEvent;      // assign  event
-                    _streaming_form.show_value_FR(actualFR);
-                    _streaming_form.show_value_SS(actualSS);
-                }
-                else
-                {
-                    _streaming_form.Visible = false;
-                }
-                _streaming_form.Show(this);
-            }
-            else
-            {
-                if (_streaming_form != null)
-                    _streaming_form.Visible = false;
-                if (_streaming_form2 == null)
-                {
-                    _streaming_form2 = new ControlStreamingForm2();
-                    _streaming_form2.RaiseOverrideEvent += OnRaiseOverrideMessage;      // assign  event
-                }
-                else
-                {
-                    _streaming_form2.Visible = false;
-                }
-                _streaming_form2.Show(this);
-            }
-        }
-
-        // open About form
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form frmAbout = new AboutForm();
-            frmAbout.ShowDialog();
-        }
-
-        private void control2ndGRBLToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (_2ndGRBL_form == null)
-            {
-                _2ndGRBL_form = new Control2ndGRBL(_serial_form2);
-                if (_serial_form2 == null)
-                {
-                    _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
-                    _serial_form2.Show(this);
-                    _2ndGRBL_form.set2ndSerial(_serial_form2);
-                    _serial_form.set2ndSerial(_serial_form2);
-                }
-
-            }
-            else
-            {
-                _2ndGRBL_form.Visible = false;
-            }
-            _2ndGRBL_form.Show(this);
-        }
 
         // initialize Main form
         private void MainForm_Load(object sender, EventArgs e)
@@ -250,7 +105,6 @@ namespace GRBL_Plotter
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
-            loadSettings(sender, e);
             if (_serial_form == null)
             {
                 if (Properties.Settings.Default.useSerial2)
@@ -263,6 +117,8 @@ namespace GRBL_Plotter
                 _serial_form.RaisePosEvent += OnRaisePosEvent;
                 _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
             }
+            lbDimension.Select(0, 0);
+            loadSettings(sender, e);
             updateControls();
             LoadRecentList();
             foreach (string item in MRUlist)
@@ -280,8 +136,13 @@ namespace GRBL_Plotter
         {
             Properties.Settings.Default.locationMForm = Location;
             saveSettings();
+            if (_2ndGRBL_form != null) _2ndGRBL_form.Close();
+            if (_heightmap_form != null) _heightmap_form.Close();
+            if (_setup_form != null) _setup_form.Close();
+            if (_camera_form != null) _camera_form.Close();
+            if (_streaming_form != null) _streaming_form.Close();
+            if (_heightmap_form != null) _heightmap_form.Close();
             _serial_form.Close();
-//            if ((Application.OpenForms["CameraForm"] as ControlCameraForm) != null) _camera_form.Close();
         }
         // load settings
         private void loadSettings(object sender, EventArgs e)
@@ -308,9 +169,11 @@ namespace GRBL_Plotter
                 //                visuGCode.setColors();
                 penUp.Color = Properties.Settings.Default.colorPenUp;
                 penDown.Color = Properties.Settings.Default.colorPenDown;
+                penHeightMap.Color = Properties.Settings.Default.colorHeightMap;
                 penRuler.Color = Properties.Settings.Default.colorRuler;
                 penTool.Color = Properties.Settings.Default.colorTool;
                 penMarker.Color = Properties.Settings.Default.colorMarker;
+                penHeightMap.Width = (float)Properties.Settings.Default.widthHeightMap;
                 penRuler.Width = (float)Properties.Settings.Default.widthRuler;
                 penUp.Width = (float)Properties.Settings.Default.widthPenUp;
                 penDown.Width = (float)Properties.Settings.Default.widthPenDown;
@@ -341,6 +204,49 @@ namespace GRBL_Plotter
                 joystickZSpeed[5] = (double)Properties.Settings.Default.joyZSpeed5;
                 virtualJoystickXY.JoystickLabel = joystickXYStep;
                 virtualJoystickZ.JoystickLabel = joystickZStep;
+
+                skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
+                skaliereXAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
+                skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
+                skaliereAufXUnitsToolStripMenuItem.BackColor = SystemColors.Control;
+                skaliereAufXUnitsToolStripMenuItem.ToolTipText = "Enable in Setup - Control";
+                skaliereYAufDrehachseToolStripMenuItem.Enabled = false;
+                skaliereYAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
+                skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
+                skaliereAufYUnitsToolStripMenuItem.BackColor = SystemColors.Control;
+                skaliereAufYUnitsToolStripMenuItem.ToolTipText = "Enable in Setup - Control";
+                toolStrip_tb_rotary_diameter.Text = string.Format("{0:0.00}", Properties.Settings.Default.rotarySubstitutionDiameter);
+
+                if (Properties.Settings.Default.rotarySubstitutionEnable)
+                { string tmp = string.Format("Calculating rotary angle depending on part diameter ({0:0.00} units) and desired size.\r\nSet part diameter in Setup - Control.", Properties.Settings.Default.rotarySubstitutionDiameter);
+                    if (Properties.Settings.Default.rotarySubstitutionX)
+                    { skaliereXAufDrehachseToolStripMenuItem.Enabled = true;
+                        skaliereXAufDrehachseToolStripMenuItem.BackColor = Color.Yellow;
+                        skaliereAufXUnitsToolStripMenuItem.BackColor = Color.Yellow;
+                        skaliereAufXUnitsToolStripMenuItem.ToolTipText = tmp;
+                        skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "";
+                    }
+                    else
+                    { skaliereYAufDrehachseToolStripMenuItem.Enabled = true;
+                        skaliereYAufDrehachseToolStripMenuItem.BackColor = Color.Yellow;
+                        skaliereAufYUnitsToolStripMenuItem.BackColor = Color.Yellow;
+                        skaliereAufYUnitsToolStripMenuItem.ToolTipText = tmp;
+                        skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "";
+                    }
+                }
+                if (Properties.Settings.Default.rotarySubstitutionSetupEnable)
+                {
+                    string[] commands;
+                    if (Properties.Settings.Default.rotarySubstitutionEnable)
+                    { commands = Properties.Settings.Default.rotarySubstitutionSetupOn.Split(';'); }
+                    else
+                    { commands = Properties.Settings.Default.rotarySubstitutionSetupOff.Split(';'); }
+                    if (_serial_form.serialPortOpen)
+                        foreach (string cmd in commands)
+                        {   sendCommand(cmd.Trim());
+                            Thread.Sleep(100);
+                        }
+                }
             }
             catch (Exception a)
             {
@@ -365,7 +271,7 @@ namespace GRBL_Plotter
         // update controls on Main form
         public void updateControls(bool allowControl = false)
         {
-            bool isConnected = _serial_form.SerialPortOpen;
+            bool isConnected = _serial_form.serialPortOpen;
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
             btnCustom1.Enabled = isConnected && (!isStreaming || allowControl);
@@ -398,11 +304,6 @@ namespace GRBL_Plotter
             btnStreamStop.Enabled = isConnected; // & isFileLoaded;
             btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
 
-            btnMirrorX.Enabled = isConnected & !isStreaming;
-            btnMirrorY.Enabled = isConnected & !isStreaming;
-            btnTransformCode.Enabled = isConnected & !isStreaming;
-            btnShiftToZero.Enabled = isConnected & !isStreaming;
-
             btnJogStop.Enabled = isConnected & !isStreaming | allowControl; ;
             btnJogStop.Visible = !_serial_form.isGrblVers0;
         }
@@ -423,7 +324,10 @@ namespace GRBL_Plotter
                     _streaming_form2.showActualValues(e.StatMsg.FS);
             }
             if (e.Status == grblState.probe)
-            { posProbe = _serial_form.posProbe; }
+            { posProbe = _serial_form.posProbe;
+                if (_heightmap_form != null)
+                    _heightmap_form.setPosProbe = posProbe;
+            }
 
             label_mx.Text = string.Format("{0:0.000}", posMachine.X);
             label_my.Text = string.Format("{0:0.000}", posMachine.Y);
@@ -431,11 +335,17 @@ namespace GRBL_Plotter
             label_wx.Text = string.Format("{0:0.000}", posWorld.X);
             label_wy.Text = string.Format("{0:0.000}", posWorld.Y);
             label_wz.Text = string.Format("{0:0.000}", posWorld.Z);
-            visuGCode.setPosTool(posWorld.X, posWorld.Y);
+            visuGCode.setPosTool(posWorld.X, posWorld.Y, posWorld.Z);
             if (_camera_form != null)
             {
                 _camera_form.setPosWorld = posWorld;
                 _camera_form.setPosMachine = posMachine;
+            }
+            if (_heightmap_form != null)
+            {
+                _heightmap_form.setPosWorld = posWorld;
+                _heightmap_form.setPosMachine = posMachine;
+                //         _heightmap_form.setPosProbe = posProbe;
             }
             if (flagResetOffset)
             {
@@ -456,6 +366,7 @@ namespace GRBL_Plotter
         private grblState lastMachineStatus = grblState.unknown;
         private string lastInfoText = "";
         private string lastLabelInfoText = "";
+        private bool updateDrawingPath = false;
         private void processStatus() // {idle, run, hold, home, alarm, check, door}
         {
             if (machineStatus != lastMachineStatus)
@@ -472,7 +383,9 @@ namespace GRBL_Plotter
                         }
                         signalResume = 0;
                         btnResume.BackColor = SystemColors.Control;
-                        cBTool.Checked = _serial_form.TooInSpindle;
+                        cBTool.Checked = _serial_form.toolInSpindle;
+                        if (!isStreaming)                       // update drawing if G91 is used
+                            updateDrawingPath = true;
                         break;
                     case grblState.run:
                         if (lastMachineStatus == grblState.hold)
@@ -514,10 +427,11 @@ namespace GRBL_Plotter
             lastMachineStatus = machineStatus;
         }
 
+        // handle last sent commands from serial form
         private string actualFR = "";
         private string actualSS = "";
         private void processLastCommand(string cmd)
-        {   if (cmd.Length < 2) return;
+        { if (cmd.Length < 2) return;
             if (cmd.LastIndexOf("F") >= 0)
             {
                 actualFR = gcode.getStringValue('F', cmd).Substring(1);
@@ -532,7 +446,7 @@ namespace GRBL_Plotter
             }
             foreach (string singleCmd in cmd.Split('M'))
             {
-                int cmdNr = gcode.getIntGCode('M',"M" + singleCmd);
+                int cmdNr = gcode.getIntGCode('M', "M" + singleCmd);
                 if ((cmdNr == 3) || (cmdNr == 3)) cBSpindle.Checked = true;
                 if (cmdNr == 5) cBSpindle.Checked = false;
                 if ((cmdNr == 7) || (cmdNr == 8)) cBCoolant.Checked = true;
@@ -547,16 +461,36 @@ namespace GRBL_Plotter
         {
             visuGCode.createImagePath();  // show initial empty picture
             pictureBox1.Invalidate();
+            if (visuGCode.containsG2G3Command())
+            {
+                skaliereXUmToolStripMenuItem.Enabled = false;
+                skaliereAufXUnitsToolStripMenuItem.Enabled = false;
+                skaliereYUmToolStripMenuItem.Enabled = false;
+                skaliereAufYUnitsToolStripMenuItem.Enabled = false;
+                skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
+                skaliereYAufDrehachseToolStripMenuItem.Enabled = false;
+                ersetzteG23DurchLinienToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                skaliereXUmToolStripMenuItem.Enabled = true;
+                skaliereAufXUnitsToolStripMenuItem.Enabled = true;
+                skaliereYUmToolStripMenuItem.Enabled = true;
+                skaliereAufYUnitsToolStripMenuItem.Enabled = true;
+                skaliereXAufDrehachseToolStripMenuItem.Enabled = true;
+                skaliereYAufDrehachseToolStripMenuItem.Enabled = true;
+                ersetzteG23DurchLinienToolStripMenuItem.Enabled = false;
+            }
         }
 
         // send command via serial form
         private void sendRealtimeCommand(int cmd)
-        {    _serial_form.realtimeCommand(cmd);        }
+        { _serial_form.realtimeCommand(cmd); }
 
         // send command via serial form
-        private void sendCommand(string txt, bool jogging=false)
-        {   if ((jogging) && (_serial_form.isGrblVers0 == false))
-                txt = "$J="+txt;
+        private void sendCommand(string txt, bool jogging = false)
+        { if ((jogging) && (_serial_form.isGrblVers0 == false))
+                txt = "$J=" + txt;
             _serial_form.requestSend(txt);
         }
 
@@ -566,8 +500,8 @@ namespace GRBL_Plotter
         // get override events from form "StreamingForm" for GRBL 0.9
         private string overrideMessage = "";
         private void OnRaiseOverrideEvent(object sender, OverrideEventArgs e)
-        {   if (e.Source == overrideSource.feedRate)
-                _serial_form.injectCode("F",(int)e.Value,e.Enable);
+        { if (e.Source == overrideSource.feedRate)
+                _serial_form.injectCode("F", (int)e.Value, e.Enable);
             if (e.Source == overrideSource.spindleSpeed)
                 _serial_form.injectCode("S", (int)e.Value, e.Enable);
 
@@ -577,27 +511,83 @@ namespace GRBL_Plotter
             lbInfo.Text = lastLabelInfoText + overrideMessage;
         }
 
+        #region MAIN-MENU FILE
         // open a file via dialog
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "gcode files (*.nc)|*.nc|SVG files (*.svg)|*.svg|All files (*.*)|*.*";
+            openFileDialog1.Filter = "gcode files (*.nc)|*.nc|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            { loadFile(openFileDialog1.FileName); }
+            {   loadFile(openFileDialog1.FileName);
+                isHeightMapApplied = false;
+            }
         }
+        // handle MRU List
+        private int MRUnumber = 20;
+        private List<string> MRUlist = new List<string>();
+        private void SaveRecentFile(string path)
+        {
+            //   recentToolStripMenuItem.DropDownItems.Clear();
+            toolStripMenuItem2.DropDownItems.Clear();
+            LoadRecentList(); //load list from file
+            if (MRUlist.Contains(path)) //prevent duplication on recent list
+                MRUlist.Remove(path);
+            MRUlist.Insert(0, path);    //insert given path into list on top
+                                        //keep list number not exceeded the given value
+            while (MRUlist.Count > MRUnumber)
+            { MRUlist.RemoveAt(MRUlist.Count - 1); }
+            foreach (string item in MRUlist)
+            {
+                ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
+                //           recentToolStripMenuItem.DropDownItems.Add(fileRecent);
+                toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
+            }
+            StreamWriter stringToWrite =
+            new StreamWriter(System.Environment.CurrentDirectory + "\\Recent.txt");
+            foreach (string item in MRUlist)
+            { stringToWrite.WriteLine(item); }
+            stringToWrite.Flush(); //write stream to file
+            stringToWrite.Close(); //close the stream and reclaim memory
+        }
+        private void LoadRecentList()
+        {
+            MRUlist.Clear();
+            try
+            {
+                StreamReader listToRead =
+                new StreamReader(System.Environment.CurrentDirectory + "\\Recent.txt");
+                string line;
+                MRUlist.Clear();
+                while ((line = listToRead.ReadLine()) != null) //read each line until end of file
+                    MRUlist.Add(line); //insert to list
+                listToRead.Close(); //close the stream
+            }
+            catch (Exception) { }
+        }
+        private void RecentFile_click(object sender, EventArgs e)
+        {
+            loadFile(sender.ToString());
+        }
+
         private void loadFile(string fileName)
         {
+            if (!File.Exists(fileName))
+            { MessageBox.Show("File not found: '"+fileName+"'"); }
+
             pictureBox1.BackgroundImage = null;
-            visuGCode.setMarkerOnDrawing("G0 X0 Y0");
+            visuGCode.setPosMarker(0, 0);
+            visuGCode.createMarkerPath(); ;
             String ext = Path.GetExtension(fileName).ToLower();
             if (ext == ".svg")
             { startConvertSVG(fileName); }
-            if (ext == ".nc")
+            else if (ext == ".dxf")
+            { startConvertDXF(fileName); }
+            else if (ext == ".nc")
             {
                 tbFile.Text = fileName;
                 loadGcode();
             }
-            if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
+            else if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
             {
                 if (_image_form == null)
                 {
@@ -613,8 +603,124 @@ namespace GRBL_Plotter
                 _image_form.loadExtern(fileName);
             }
             SaveRecentFile(fileName);
-//            isFileLoaded = true;
+            if (ext == ".url")
+            { getURL(fileName); }
+            //            isFileLoaded = true;
         }
+
+        private void getURL(string filename)
+        {
+            var MyIni = new IniFile(filename);
+            tBURL.Text = MyIni.Read("URL", "InternetShortcut");
+        }
+
+        // drag and drop file or URL
+        private void MainForm_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            string s = (string)e.Data.GetData(DataFormats.Text);
+            if (files != null)
+            {
+                loadFile(files[0]);
+            }
+            else
+            { tBURL.Text = s; }
+        }
+        private void tBURL_TextChanged(object sender, EventArgs e)
+        {
+            var parts = tBURL.Text.Split('.');
+            string ext = parts[parts.Length - 1];
+            if (ext.ToLower() == "svg")
+            {
+                startConvertSVG(tBURL.Text);
+                tBURL.Text = "";
+            }
+            else if (ext.ToLower() == "dxf")
+            {
+                startConvertDXF(tBURL.Text);
+                tBURL.Text = "";
+            }
+            else
+            {
+                if (tBURL.Text.Length > 5)
+                    MessageBox.Show("URL extension is not 'svg' or 'dxf'");
+            }
+        }
+        public void reStartConvertSVG(object sender, EventArgs e)   // event from setup form
+        { if (!isStreaming) loadFile(lastSource); }
+        private string lastSource = "";
+        private void startConvertSVG(string source)
+        {
+            lastSource = source;
+            this.Cursor = Cursors.WaitCursor;
+            string gcode = GCodeFromSVG.ConvertFile(source);
+            if (gcode.Length > 2)
+            {
+                fCTBCode.Text = gcode;
+                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                redrawGCodePath();
+                SaveRecentFile(source);
+                //               isFileLoaded = true;
+                this.Text = appName + " | Source: " + source;
+            }
+            this.Cursor = Cursors.Default;
+            updateControls();
+        }
+
+        private void startConvertDXF(string source)
+        {
+            lastSource = source;
+            this.Cursor = Cursors.WaitCursor;
+            string gcode = GCodeFromDXF.ConvertFile(source);
+            if (gcode.Length > 2)
+            {
+                fCTBCode.Text = gcode;
+                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                redrawGCodePath();
+                SaveRecentFile(source);
+                //               isFileLoaded = true;
+                this.Text = appName + " | Source: " + source;
+            }
+            this.Cursor = Cursors.Default;
+            updateControls();
+        }
+
+        bool blockRTBEvents = false;
+        private void loadGcode()
+        {
+            if (File.Exists(tbFile.Text))
+            {
+                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                fCTBCodeClickedLineNow = 0;
+                fCTBCodeClickedLineLast = 0;
+                visuGCode.setPosMarker(0, 0);
+                blockRTBEvents = true;
+                fCTBCode.OpenFile(tbFile.Text);
+                if (_serial_form.isLasermode && Properties.Settings.Default.ctrlReplaceEnable)
+                { if (Properties.Settings.Default.ctrlReplaceM3)
+                    { fCTBCode.Text = fCTBCode.Text.Replace("M3", "M4");
+                        fCTBCode.Text = "(!!! Replaced M3 by M4 !!!)\r\n" + fCTBCode.Text.Replace("M03", "M04");
+                    }
+                    else
+                    { fCTBCode.Text = fCTBCode.Text.Replace("M4", "M3");
+                        fCTBCode.Text = "(!!! Replaced M4 by M3 !!!)\r\n" + fCTBCode.Text.Replace("M04", "M03");
+                    }
+                }
+
+                redrawGCodePath();
+                blockRTBEvents = false;
+                lbInfo.Text = "G-Code loaded";
+                lbInfo.BackColor = SystemColors.Control;
+                updateControls();
+                SaveRecentFile(tbFile.Text);
+                this.Text = appName + " | File: " + tbFile.Text;
+            }
+        }
+
         // save content from TextEditor (GCode) to file
         private void btnSaveFile_Click(object sender, EventArgs e)
         {
@@ -626,47 +732,511 @@ namespace GRBL_Plotter
                 File.WriteAllText(sfd.FileName, txt);
             }
         }
-
-        bool blockRTBEvents = false;
-        private void btnLoad_Click(object sender, EventArgs e)
-        { }
-        private void loadGcode()
+        // save Properties.Settings.Default... to text-file
+        private void saveMachineParametersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(tbFile.Text))
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Machine Ini files (*.ini)|*.ini";
+            sfd.FileName = "GRBL-Plotter.ini";
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                fCTBCodeClickedLineNow = 0;
-                fCTBCodeClickedLineLast = 0;
-                visuGCode.setPosMarker(0, 0);
-                blockRTBEvents = true;
-                fCTBCode.OpenFile(tbFile.Text);
-                if (_serial_form.isLaserMode && Properties.Settings.Default.ctrlReplaceEnable)
-                {   if (Properties.Settings.Default.ctrlReplaceM3)
-                    {   fCTBCode.Text = fCTBCode.Text.Replace("M3", "M4");
-                        fCTBCode.Text = "(!!! Replaced M3 by M4 !!!)\r\n" + fCTBCode.Text.Replace("M03", "M04");
-//                        MessageBox.Show("Replaced M3 by M4");
-                    }
-                    else
-                    {   fCTBCode.Text = fCTBCode.Text.Replace("M4", "M3");
-                        fCTBCode.Text = "(!!! Replaced M4 by M3 !!!)\r\n" + fCTBCode.Text.Replace("M04", "M03");
-//                        MessageBox.Show("Replaced M4 by M3");
-                    }
-                }
-
-                redrawGCodePath();
- //               isFileLoaded = true;
-                blockRTBEvents = false;
-                lbInfo.Text = "G-Code loaded";
-                lbInfo.BackColor = SystemColors.Control;
-                updateControls();
-                SaveRecentFile(tbFile.Text);
-                this.Text = appName + " | File: " + tbFile.Text;
+                var MyIni = new IniFile(sfd.FileName);
+                MyIni.WriteAll(_serial_form.GRBLSettings);
+            }
+        }
+        // load Properties.Settings.Default... from text-file
+        private void loadMachineParametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.FileName = "GRBL-Plotter.ini";
+            openFileDialog1.Filter = "Machine Ini files (*.ini)|*.ini";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var MyIni = new IniFile(openFileDialog1.FileName);
+                MyIni.ReadAll();
+                loadSettings(sender, e);
             }
         }
 
+        // switch language
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.language = "en";
+            MessageBox.Show("Restart of GRBL-Plotter is needed");
+        }
+        private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.language = "de-DE";
+            MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich");
+        }
+        #endregion
+        #region MAIN-MENU GCode creation
+        // open text creation form
+        private void textWizzardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_text_form == null)
+            {
+                _text_form = new GCodeFromText();
+                _text_form.FormClosed += formClosed_TextToGCode;
+                _text_form.btnApply.Click += getGCodeFromText;      // assign btn-click event
+            }
+            else
+            {
+                _text_form.Visible = false;
+            }
+            _text_form.Show(this);
+        }
+        private void formClosed_TextToGCode(object sender, FormClosedEventArgs e)
+        { _text_form = null; }
+
+        private void imageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_image_form == null)
+            {
+                _image_form = new GCodeFromImage();
+                _image_form.FormClosed += formClosed_ImageToGCode;
+                _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
+            }
+            else
+            {
+                _image_form.Visible = false;
+            }
+            _image_form.Show(this);
+        }
+        private void formClosed_ImageToGCode(object sender, FormClosedEventArgs e)
+        { _image_form = null; }
+
+        private void createSimpleShapesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_shape_form == null)
+            {
+                _shape_form = new GCodeFromShape();
+                _shape_form.FormClosed += formClosed_ShapeToGCode;
+                _shape_form.btnApply.Click += getGCodeFromShape;      // assign btn-click event
+            }
+            else
+            {
+                _shape_form.Visible = false;
+            }
+            _shape_form.Show(this);
+        }
+        private void formClosed_ShapeToGCode(object sender, FormClosedEventArgs e)
+        { _shape_form = null; }
+        #endregion
+        #region MAIN-MENU GCode Transform
+        private void mirrorXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fCTBCode.Text = visuGCode.transformGCodeMirror(GCodeVisuAndTransform.translate.MirrorX);
+            updateGUI();
+        }
+
+        private void mirrorYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fCTBCode.Text = visuGCode.transformGCodeMirror(GCodeVisuAndTransform.translate.MirrorY);
+            updateGUI();
+        }
+
+        private void rotate90ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fCTBCode.Text = visuGCode.transformGCodeRotate(90);
+            updateGUI();
+        }
+
+        private void rotate90ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            fCTBCode.Text = visuGCode.transformGCodeRotate(-90);
+            updateGUI();
+        }
+
+        private void toolStrip_tb_rotate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double sizenew;
+                if (Double.TryParse(toolStrip_tb_rotate.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
+                {
+                    fCTBCode.Text = visuGCode.transformGCodeRotate(sizenew);
+                    updateGUI();
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_rotate.Text = "0.0";
+                }
+            }
+        }
+
+        private void toolStrip_tb_XY_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double size;
+                if (Double.TryParse(toolStrip_tb_XY_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out size))
+                {
+                    fCTBCode.Cursor = Cursors.WaitCursor;
+                    fCTBCode.Text = visuGCode.transformGCodeScale(size, size);
+                    updateGUI();
+                    fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
+                    fCTBCodeMarkLine();
+                    fCTBCode.Cursor = Cursors.IBeam;
+                    showChangedMessage = true;
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_XY_scale.Text = "100.00";
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_XY_X_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double sizenew;
+                double sizeold = visuGCode.xyzSize.dimx;
+                if (Double.TryParse(toolStrip_tb_XY_X_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
+                {
+                    toolStrip_tb_XY_scale.Text = string.Format("{0:0.00000}", (100 * sizenew / sizeold));
+                    toolStrip_tb_XY_scale_KeyDown(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_XY_X_scale.Text = string.Format("{0:0.00}", sizeold);
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_XY_Y_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double sizenew;
+                double sizeold = visuGCode.xyzSize.dimy;
+                if (Double.TryParse(toolStrip_tb_XY_Y_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
+                {
+                    toolStrip_tb_XY_scale.Text = string.Format("{0:0.00000}", (100 * sizenew / sizeold));
+                    toolStrip_tb_XY_scale_KeyDown(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.00}", sizeold);
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_X_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double size;
+                if (Double.TryParse(toolStrip_tb_X_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out size))
+                {
+                    fCTBCode.Cursor = Cursors.WaitCursor;
+                    fCTBCode.Text = visuGCode.transformGCodeScale(size, 100);
+                    updateGUI();
+                    fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
+                    fCTBCodeMarkLine();
+                    fCTBCode.Cursor = Cursors.IBeam;
+                    showChangedMessage = true;
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_X_scale.Text = "100.00";
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_X_X_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double sizenew;
+                double sizeold = visuGCode.xyzSize.dimx;
+                if (Double.TryParse(toolStrip_tb_X_X_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
+                {
+                    if (Properties.Settings.Default.rotarySubstitutionEnable)
+                    {
+                        double length = (float)Properties.Settings.Default.rotarySubstitutionDiameter * Math.PI;
+                        sizenew = (float)Properties.Settings.Default.rotarySubstitutionScale * sizenew / length;
+                    }
+                    toolStrip_tb_X_scale.Text = string.Format("{0:0.00000}", (100 * sizenew / sizeold));
+                    toolStrip_tb_X_scale_KeyDown(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_X_X_scale.Text = string.Format("{0:0.00}", sizeold);
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_X_A_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double sizenew;
+                double sizeold = visuGCode.xyzSize.dimx;
+                if (Double.TryParse(toolStrip_tb_X_A_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
+                {
+                    sizenew = (float)Properties.Settings.Default.rotarySubstitutionScale * sizenew / 360;
+                    toolStrip_tb_X_scale.Text = string.Format("{0:0.00000}", (100 * sizenew / sizeold));
+                    toolStrip_tb_X_scale_KeyDown(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_X_A_scale.Text = string.Format("{0:0.00}", sizeold);
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_Y_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double size;
+                if (Double.TryParse(toolStrip_tb_Y_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out size))
+                {
+                    fCTBCode.Cursor = Cursors.WaitCursor;
+                    fCTBCode.Text = visuGCode.transformGCodeScale(100, size);
+                    updateGUI();
+                    fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
+                    fCTBCodeMarkLine();
+                    fCTBCode.Cursor = Cursors.IBeam;
+                    showChangedMessage = true;
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_Y_scale.Text = "100.00";
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_Y_Y_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double sizenew;
+                double sizeold = visuGCode.xyzSize.dimy;
+                if (Double.TryParse(toolStrip_tb_Y_Y_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
+                {
+                    if (Properties.Settings.Default.rotarySubstitutionEnable)
+                    {
+                        double length = (float)Properties.Settings.Default.rotarySubstitutionDiameter * Math.PI;
+                        sizenew = (float)Properties.Settings.Default.rotarySubstitutionScale * sizenew / length;
+                    }
+                    toolStrip_tb_Y_scale.Text = string.Format("{0:0.00000}", (100 * sizenew / sizeold));
+                    toolStrip_tb_Y_scale_KeyDown(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.00}", sizeold);
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_Y_A_scale_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double sizenew;
+                double sizeold = visuGCode.xyzSize.dimy;
+                if (Double.TryParse(toolStrip_tb_Y_A_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
+                {
+                    sizenew = (float)Properties.Settings.Default.rotarySubstitutionScale * sizenew / 360;
+                    toolStrip_tb_Y_scale.Text = string.Format("{0:0.00000}", (100 * sizenew / sizeold));
+                    toolStrip_tb_Y_scale_KeyDown(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_Y_A_scale.Text = string.Format("{0:0.00}", sizeold);
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void toolStrip_tb_rotary_diameter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double sizenew;
+                double sizeold = visuGCode.xyzSize.dimx;
+                if (Double.TryParse(toolStrip_tb_rotary_diameter.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
+                {
+                    Properties.Settings.Default.rotarySubstitutionDiameter = (decimal)sizenew;
+                    string tmp = string.Format("Calculating rotary angle depending on part diameter ({0:0.00} units) and desired size.\r\nSet part diameter in Setup - Control.", Properties.Settings.Default.rotarySubstitutionDiameter);
+                    skaliereAufXUnitsToolStripMenuItem.ToolTipText = tmp;
+                    skaliereAufYUnitsToolStripMenuItem.ToolTipText = tmp;
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tb_rotary_diameter.Text = string.Format("{0:0.00}", Properties.Settings.Default.rotarySubstitutionDiameter);
+                }
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
+        private void ersetzteG23DurchLinienToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fCTBCode.Text = visuGCode.replaceG23();
+            updateGUI();
+        }
+
+        private void updateGUI()
+        {
+            updateDrawing();
+            lbDimension.Text = visuGCode.xyzSize.getMinMaxString(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
+            lbDimension.Select(0, 0);
+            toolStrip_tb_XY_X_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimx);
+            toolStrip_tb_X_X_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimx);
+            toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
+            toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
+        }
+        #endregion
+        #region MAIN-MENU Machine control
+        private void controlStreamingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_serial_form.isGrblVers0)
+            {
+                if (_streaming_form2 != null)
+                    _streaming_form2.Visible = false;
+                if (_streaming_form == null)
+                {
+                    _streaming_form = new ControlStreamingForm();
+                    _streaming_form.RaiseOverrideEvent += OnRaiseOverrideEvent;      // assign  event
+                    _streaming_form.show_value_FR(actualFR);
+                    _streaming_form.show_value_SS(actualSS);
+                }
+                else
+                {
+                    _streaming_form.Visible = false;
+                }
+                _streaming_form.Show(this);
+            }
+            else
+            {
+                if (_streaming_form != null)
+                    _streaming_form.Visible = false;
+                if (_streaming_form2 == null)
+                {
+                    _streaming_form2 = new ControlStreamingForm2();
+                    _streaming_form2.RaiseOverrideEvent += OnRaiseOverrideMessage;      // assign  event
+                }
+                else
+                {
+                    _streaming_form2.Visible = false;
+                }
+                _streaming_form2.Show(this);
+            }
+        }
+        private void control2ndGRBLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_2ndGRBL_form == null)
+            {
+                _2ndGRBL_form = new Control2ndGRBL(_serial_form2);
+                if (_serial_form2 == null)
+                {
+                    _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
+                    _serial_form2.Show(this);
+                }
+                _2ndGRBL_form.set2ndSerial(_serial_form2);
+                _serial_form.set2ndSerial(_serial_form2);
+                _2ndGRBL_form.FormClosed += formClosed_2ndGRBLForm;                
+            }
+            else
+            {
+                _2ndGRBL_form.Visible = false;
+            }
+            _2ndGRBL_form.Show(this);
+        }
+        private void formClosed_2ndGRBLForm(object sender, FormClosedEventArgs e)
+        { _2ndGRBL_form = null; }
+        // open Camera form
+        private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_camera_form == null)
+            {
+                _camera_form = new ControlCameraForm();
+                _camera_form.FormClosed += formClosed_CameraForm;
+                _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
+            }
+            else
+            {
+                _camera_form.Visible = false;
+            }
+            _camera_form.Show(this);
+        }
+        private void formClosed_CameraForm(object sender, FormClosedEventArgs e)
+        { _camera_form = null; }
+        // Height Map
+        private void heightMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_heightmap_form == null)
+            {
+                _heightmap_form = new ControlHeightMapForm();
+                _heightmap_form.FormClosed += formClosed_HeightmapForm;
+                _heightmap_form.btnStartHeightScan.Click += getGCodeFromHeightMap;      // assign btn-click event
+                _heightmap_form.loadHeightMapToolStripMenuItem.Click += loadHeightMap;
+                _heightmap_form.btnApply.Click += applyHeightMap;
+            }
+            else
+            {
+                _heightmap_form.Visible = false;
+            }
+            _heightmap_form.Show(this);
+        }
+        private void formClosed_HeightmapForm(object sender, FormClosedEventArgs e)
+        {   _heightmap_form = null;
+            GCodeVisuAndTransform.clearHeightMap();
+            _serial_form.stopStreaming();
+        }
+
+        // open Setup form
+        private void setupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_setup_form == null)
+            {
+                _setup_form = new ControlSetupForm();
+                _setup_form.FormClosed += formClosed_SetupForm;
+                _setup_form.btnApplyChangings.Click += loadSettings;
+                _setup_form.btnReloadFile.Click += reStartConvertSVG;
+            }
+            else
+            {
+                _setup_form.Visible = false;
+            }
+            _setup_form.Show(this);
+        }
+        private void formClosed_SetupForm(object sender, FormClosedEventArgs e)
+        { loadSettings(sender, e); _setup_form = null; }
+        #endregion
+        // open About form
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frmAbout = new AboutForm();
+            frmAbout.ShowDialog();
+        }
+
+
+
         private void showLaserMode()
         {
-            if (!_serial_form.isGrblVers0 && _serial_form.isLaserMode)
+            if (!_serial_form.isGrblVers0 && _serial_form.isLasermode)
             {
                 lbInfo.Text = "Laser Mode active $32=1";
                 lbInfo.BackColor = Color.Fuchsia;
@@ -677,6 +1247,8 @@ namespace GRBL_Plotter
                 lbInfo.BackColor = Color.Lime;
             }
         }
+
+        #region Streaming
         // handle file streaming
         TimeSpan elapsed;               //elapsed time from file burnin
         DateTime timeInit;              //time start to burning file
@@ -695,7 +1267,7 @@ namespace GRBL_Plotter
             pbBuffer.Value = bPrgs;
             lblFileProgress.Text = string.Format("Progress {0:0.0}%", e.CodeProgress);
             fCTBCode.Selection = fCTBCode.GetLine(e.CodeLine);
-            fCTBCodeClickedLineNow = e.CodeLine-1;
+            fCTBCodeClickedLineNow = e.CodeLine - 1;
             fCTBCodeMarkLine();
             fCTBCode.DoCaretVisible();
 
@@ -724,7 +1296,7 @@ namespace GRBL_Plotter
             if ((e.Status == grblStreaming.ok) && !isStreamingCheck)
             {
                 updateControls();
-                lbInfo.Text = "Send G-Code ("+ e.CodeLine.ToString()+")";
+                lbInfo.Text = "Send G-Code (" + e.CodeLine.ToString() + ")";
                 lbInfo.BackColor = Color.Lime;
                 signalPlay = 0;
                 btnStreamStart.BackColor = SystemColors.Control;
@@ -773,7 +1345,7 @@ namespace GRBL_Plotter
                 btnStreamStart.Image = Properties.Resources.btn_play;
                 lbInfo.Text = "Tool change...";
                 lbInfo.BackColor = Color.Yellow;
-                cBTool.Checked = _serial_form.TooInSpindle;
+                cBTool.Checked = _serial_form.toolInSpindle;
             }
 
             if (e.Status == grblStreaming.stop)
@@ -792,8 +1364,8 @@ namespace GRBL_Plotter
                 {
                     if (_streaming_form != null)
                     {
-//                        _streaming_form.cBOverrideFREnable.Checked = false;
-//                        _streaming_form.cBOverrideSSEnable.Checked = false;
+                        //                        _streaming_form.cBOverrideFREnable.Checked = false;
+                        //                        _streaming_form.cBOverrideSSEnable.Checked = false;
                     }
                     isStreaming = true;
                     isStreamingPause = false;
@@ -830,7 +1402,7 @@ namespace GRBL_Plotter
             }
         }
         private void btnStreamCheck_Click(object sender, EventArgs e)
-        {   if ((fCTBCode.LinesCount > 1) && (!isStreaming))
+        { if ((fCTBCode.LinesCount > 1) && (!isStreaming))
             {
                 isStreaming = true;
                 isStreamingCheck = true;
@@ -857,7 +1429,7 @@ namespace GRBL_Plotter
             _serial_form.stopStreaming();
             if (isStreaming || isStreamingCheck)
             {
-                lbInfo.Text = " STOP streaming ("+ (fCTBCodeClickedLineNow+1).ToString()+")";
+                lbInfo.Text = " STOP streaming (" + (fCTBCodeClickedLineNow + 1).ToString() + ")";
                 lbInfo.BackColor = Color.Fuchsia;
             }
             isStreaming = false;
@@ -869,6 +1441,63 @@ namespace GRBL_Plotter
         }
         private void btnStreamPause_Click(object sender, EventArgs e)
         { _serial_form.pauseStreaming(); }
+        #endregion
+
+        // handle event from create Height Map form
+        private void getGCodeFromHeightMap(object sender, EventArgs e)
+        {
+            if (!isStreaming && _serial_form.serialPortOpen)
+            { if (_heightmap_form.scanStarted)
+                {
+                    string[] commands = _heightmap_form.getCode.ToString().Split('\r');
+                    _serial_form.isHeightProbing = true;
+                    foreach (string cmd in commands)
+                        sendCommand(cmd);
+                    visuGCode.drawHeightMap(_heightmap_form.Map);
+                }
+                else
+                {
+                    _serial_form.stopStreaming();
+                }
+                isHeightMapApplied = false;
+            }
+        }
+        private void loadHeightMap(object sender, EventArgs e)
+        {
+            visuGCode.drawHeightMap(_heightmap_form.Map);
+            visuGCode.createMarkerPath();
+            visuGCode.createImagePath();
+            pictureBox1.BackgroundImage = null;
+            pictureBox1.Invalidate();
+            isHeightMapApplied = false;
+        }
+
+        private bool isHeightMapApplied = false;
+        private StringBuilder codeBeforeHeightMap = new StringBuilder();
+        private void applyHeightMap(object sender, EventArgs e)
+        {
+            if (!isHeightMapApplied)
+            {
+                codeBeforeHeightMap.Clear();
+                foreach (string codeline in fCTBCode.Lines)
+                {   if (codeline.Length>0)
+                        codeBeforeHeightMap.AppendLine(codeline);
+                }
+                visuGCode.getGCodeLines(fCTBCode.Lines);
+                fCTBCode.Text = visuGCode.applyHeightMap(fCTBCode.Lines, _heightmap_form.Map);
+                updateGUI();
+                _heightmap_form.setBtnApply(isHeightMapApplied);
+                isHeightMapApplied = true;
+            }
+            else
+            {
+                fCTBCode.Text = codeBeforeHeightMap.ToString();
+                updateGUI();
+                _heightmap_form.setBtnApply(isHeightMapApplied);
+                isHeightMapApplied = false;
+            }
+        }
+
 
         // handle event from create Text form
         private void getGCodeFromText(object sender, EventArgs e)
@@ -904,13 +1533,20 @@ namespace GRBL_Plotter
                 updateControls();
             }
         }
-
+        // update 500ms
         private void MainTimer_Tick(object sender, EventArgs e)
         {
             if (isStreaming)
             {
                 elapsed = DateTime.UtcNow - timeInit;
                 lblElapsed.Text = "Time " + elapsed.ToString(@"hh\:mm\:ss");
+            }
+            else
+            {   if (updateDrawingPath && visuGCode.containsG91Command())
+                {       redrawGCodePath();
+                        pictureBox1.Invalidate(); // will be called by parent function
+                }
+                updateDrawingPath = false;
             }
             if (signalResume > 0)   // activate blinking buttob
             {
@@ -929,7 +1565,73 @@ namespace GRBL_Plotter
             }
         }
 
-        // Setup Custom Buttons during loadSettings()
+        // handle positon click event from camera form
+        private void OnRaiseCameraClickEvent(object sender, XYEventArgs e)
+        {
+            if (e.Command == "a")
+            { routeTransformCode((float)e.PosX); }
+            else
+            {
+                double realStepX = Math.Round(e.PosX,3);
+                double realStepY = Math.Round(e.PosY,3);
+                int speed = 1000;
+                string s = "";
+                if (e.Command == "G92")
+                {   s = String.Format(e.Command + " X{0} Y{1}", realStepX, realStepY).Replace(',', '.');
+                    sendCommand(s);
+                }
+                else
+                {   speed = 100+(int)Math.Sqrt(realStepX* realStepX+ realStepY* realStepY)*120;
+                    s = String.Format("F{0} " + e.Command + " X{1} Y{2}", speed, realStepX, realStepY).Replace(',', '.');
+                    sendCommand(s, true);
+                }
+                
+            }
+        }
+        public void routeTransformCode(float angle)
+        {
+            fCTBCode.Text = visuGCode.transformGCodeRotate((double)angle);
+            updateGUI();
+            return;
+        }
+
+
+        #region GUI Objects
+
+        private void btnOffsetApply_Click(object sender, EventArgs e)
+        {
+            double offsetx=0, offsety=0;
+            if (!Double.TryParse(tbOffsetX.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out offsetx))
+            {
+                MessageBox.Show("Not a valid number", "Attention");
+                tbOffsetX.Text = string.Format("{0:0.00}", offsetx);
+            }
+            if (!Double.TryParse(tbOffsetY.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out offsety))
+            {
+                MessageBox.Show("Not a valid number", "Attention");
+                tbOffsetY.Text = string.Format("{0:0.00}", offsety);
+            }
+            if (fCTBCode.Lines.Count > 1)
+            {
+                fCTBCode.Cursor = Cursors.WaitCursor;
+                if (rBOrigin1.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset1); }
+                if (rBOrigin2.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset2); }
+                if (rBOrigin3.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset3); }
+                if (rBOrigin4.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset4); }
+                if (rBOrigin5.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset5); }
+                if (rBOrigin6.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset6); }
+                if (rBOrigin7.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset7); }
+                if (rBOrigin8.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset8); }
+                if (rBOrigin9.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset9); }
+                updateDrawing();
+                fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
+                fCTBCodeClickedLineLast = 0;
+                fCTBCodeMarkLine();
+                fCTBCode.Cursor = Cursors.IBeam;
+                showChangedMessage = true;
+            }
+        }
+      // Setup Custom Buttons during loadSettings()
         string[] btnCustomCommand = new string[9];
         private void setCustomButton(Button btn, string text)
         {
@@ -967,29 +1669,6 @@ namespace GRBL_Plotter
                 sendCommand(cmd.Trim());
         }
 
-        // handle positon click event from camera form
-        private void OnRaiseCameraClickEvent(object sender, XYEventArgs e)
-        {
-            if (e.Command == "a")
-            { routeTransformCode((float)e.PosX); }
-            else
-            {
-                double realStepX = Math.Round(e.PosX,3);
-                double realStepY = Math.Round(e.PosY,3);
-                int speed = 1000;
-                string s = "";
-                if (e.Command == "G92")
-                {   s = String.Format(e.Command + " X{0} Y{1}", realStepX, realStepY).Replace(',', '.');
-                    sendCommand(s);
-                }
-                else
-                {   speed = 100+(int)Math.Sqrt(realStepX* realStepX+ realStepY* realStepY)*120;
-                    s = String.Format("F{0} " + e.Command + " X{1} Y{2}", speed, realStepX, realStepY).Replace(',', '.');
-                    sendCommand(s, true);
-                }
-                
-            }
-        }
 
         // virtualJoystic sends two step-width-values per second. One position should be reached before next command
         // speed (units/min) = 2 * stepsize * 60 * factor (to compensate speed-ramps)
@@ -1108,6 +1787,8 @@ namespace GRBL_Plotter
             updateControls();
         }
 
+        #endregion
+
 
         /// <summary>
         /// Handling of RichTextBox rtBCode
@@ -1138,79 +1819,22 @@ namespace GRBL_Plotter
             }
         }
 
-        private void btnTransformCode_Click(object sender, EventArgs e)
-        {
-            double size, angle;
-            if (!Double.TryParse(tbChangeSize.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out size))
-            {
-                size = 100; tbChangeSize.Text = "100.00";
-            }
-            if (!Double.TryParse(tbChangeAngle.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out angle))
-            {
-                angle = 0; tbChangeAngle.Text = "0.00";
-            }
-            fCTBCode.Cursor = Cursors.WaitCursor;
-            transformGCode(size, angle, GCodeVisuAndTransform.translate.None);
-            fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
-            fCTBCodeMarkLine();
-            fCTBCode.Cursor = Cursors.IBeam;
-            showChangedMessage = true;
-            tbChangeSize.Text = "100.00";
-            tbChangeAngle.Text = "0.00";
-        }
-        public void routeTransformCode(float angle)
-        {
-            tbChangeSize.Text = "100.00";
-            tbChangeAngle.Text = String.Format("{0:0.00}", angle);
-            fCTBCode.Cursor = Cursors.WaitCursor;
-            transformGCode(Convert.ToDouble(tbChangeSize.Text), Convert.ToDouble(tbChangeAngle.Text), GCodeVisuAndTransform.translate.None);
-            visuGCode.createImagePath();
-            picBoxCopy = 0;
-            pictureBox1.BackgroundImage = null;
-            pictureBox1.Invalidate();
-            fCTBCode.Cursor = Cursors.IBeam;
-            showChangedMessage = true;
-            tbChangeSize.Text = "100.00";
-            tbChangeAngle.Text = "0.00";
-        }
-        private void btnShiftToZero_MirrorXY_Click(object sender, EventArgs e)
-        {
-            fCTBCode.Cursor = Cursors.WaitCursor;
-            Button clickedButton = sender as Button;
-            if (clickedButton.Name == "btnShiftToZero")
-                transformGCode(100, 0, GCodeVisuAndTransform.translate.Offset0);
-            else if (clickedButton.Name == "btnMirrorX")
-                transformGCode(100, 0, GCodeVisuAndTransform.translate.MirrorX);
-            else if (clickedButton.Name == "btnMirrorY")
-                transformGCode(100, 0, GCodeVisuAndTransform.translate.MirrorY);
-            updateDrawing();
-            fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
-            fCTBCodeClickedLineLast = 0;
-            fCTBCodeMarkLine();
-            fCTBCode.Cursor = Cursors.IBeam;
-            showChangedMessage = true;
-        }
-
-        public GCodeVisuAndTransform visuGCode = new GCodeVisuAndTransform(100, 100);
+        public GCodeVisuAndTransform visuGCode = new GCodeVisuAndTransform();
         // Refresh drawing path in GCodeVisuAndTransform by applying no transform
         private void redrawGCodePath()
         {
-            visuGCode.transformGCode(fCTBCode.Lines, 100, 0, GCodeVisuAndTransform.translate.None);
+            //            visuGCode.transformGCode(fCTBCode.Lines, 100, 0, GCodeVisuAndTransform.translate.None);
+            visuGCode.getGCodeLines(fCTBCode.Lines);
             updateDrawing();
-            lbDimension.Text = visuGCode.xyzSize.GetString(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
-            toolStripScaleTextBoxWidth.Text = string.Format("{0:0.00}", visuGCode.xyzSize.dimx);
-            toolStripScaleTextBoxHeight.Text = string.Format("{0:0.00}", visuGCode.xyzSize.dimy);
-        }
-        // tranform drawing and refresh path
-        private void transformGCode(double scale, double angle, GCodeVisuAndTransform.translate trans)
-        {
-            fCTBCode.Text = visuGCode.transformGCode(fCTBCode.Lines, scale, angle, trans);
-            updateDrawing();
-            lbDimension.Text = visuGCode.xyzSize.GetString(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
-            toolStripScaleTextBoxWidth.Text = string.Format("{0:0.00}", visuGCode.xyzSize.dimx);
-            toolStripScaleTextBoxHeight.Text = string.Format("{0:0.00}", visuGCode.xyzSize.dimy);
+            lbDimension.Text = visuGCode.xyzSize.getMinMaxString(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
+            lbDimension.Select(0, 0);
+            toolStrip_tb_XY_X_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimx);
+            toolStrip_tb_X_X_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimx);
+            toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
+            toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
         }
 
+        #region fCTB FastColoredTextBox related
         // highlight code in editor
         Style StyleComment = new TextStyle(Brushes.Gray, null, FontStyle.Italic);
         Style StyleGWord = new TextStyle(Brushes.Blue, null, FontStyle.Bold);
@@ -1232,9 +1856,16 @@ namespace GRBL_Plotter
             e.ChangedRange.SetStyle(StyleTool, "(T\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleXAxis, "[XIxi]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleZAxis, "[Zz]-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
+            e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
         }
-
+        private void fCTBCode_TextChangedDelayed(object sender, TextChangedEventArgs e)
+        {   showChangedMessage = true;
+            if (fCTBCode.LinesCount > 2)
+            {
+                pictureBox1.BackgroundImage = null;
+                redrawGCodePath();
+            }
+        }
         // mark clicked line in editor
         int fCTBCodeClickedLineNow = 0;
         int fCTBCodeClickedLineLast = 0;
@@ -1242,6 +1873,8 @@ namespace GRBL_Plotter
         {
             fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
             fCTBCodeMarkLine();
+ //           MessageBox.Show(visuGCode.getLineInfo(fCTBCodeClickedLineNow));
+//            fCTBCode.t  (visuGCode.getLineInfo(fCTBCodeClickedLineNow));
         }
         private void fCTBCode_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1272,7 +1905,8 @@ namespace GRBL_Plotter
                     fCTBCode.SelectionColor = Color.Orange;
                     fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
                     // Set marker in drawing
-                    visuGCode.setMarkerOnDrawing(fCTBCode.SelectedText);
+                    //visuGCode.setMarkerOnDrawing(fCTBCode.SelectedText);
+                    visuGCode.setPosMarkerLine(fCTBCodeClickedLineNow);
                     pictureBox1.Invalidate(); // avoid too much events
                     if (_camera_form != null)
                         _camera_form.setPosMarker(visuGCode.GetPosMarkerX(), visuGCode.GetPosMarkerY());
@@ -1299,143 +1933,20 @@ namespace GRBL_Plotter
             if (e.ClickedItem.Name == "cmsCodeSendLine")
             {
                 int clickedLine = fCTBCode.Selection.ToLine;
-                sendCommand("G90 " + fCTBCode.Lines[clickedLine] + " F" + joystickXYSpeed[5].ToString(),true);
-                MessageBox.Show("G90 " + fCTBCode.Lines[clickedLine]);
+                sendCommand(fCTBCode.Lines[clickedLine] , false);
+                //MessageBox.Show(fCTBCode.Lines[clickedLine]);
             }
         }
 
-        private void fCTBCode_TextChangedDelayed(object sender, TextChangedEventArgs e)
-        { showChangedMessage = true; }
+        #endregion
 
-        private void toolStripScaleTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            double sizenew;
-            double sizeold = visuGCode.xyzSize.dimx;
-            if (!Double.TryParse(toolStripScaleTextBoxWidth.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
-                sizenew = sizeold;
-            tbChangeSize.Text = string.Format("{0:0.00}", (100 * sizenew / sizeold));
-        }
-        private void toolStripScaleTextBoxHeight_TextChanged(object sender, EventArgs e)
-        {
-            double sizenew;
-            double sizeold = visuGCode.xyzSize.dimy;
-            if (!Double.TryParse(toolStripScaleTextBoxHeight.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
-                sizenew = sizeold;
-            tbChangeSize.Text = string.Format("{0:0.00}", (100 * sizenew / sizeold));
-        }
-        private void toolStripScaleTextBoxWidth_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == (char)13)
-            {
-                btnTransformCode_Click(sender, e);
-                cmsScale.Close();
-            }
-        }
 
-        // drag and drop file or URL
-        private void MainForm_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.All;
-        }
-        private void MainForm_DragDrop(object sender, DragEventArgs e)
-        {
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            string s = (string)e.Data.GetData(DataFormats.Text);
-            if (files != null)
-            {
-                loadFile(files[0]);
-            }
-            else
-            { tBURL.Text = s; }
-        }
-        private void tBURL_TextChanged(object sender, EventArgs e)
-        {
-            var parts = tBURL.Text.Split('.');
-            string ext = parts[parts.Length - 1];
-            if (ext.ToLower() == "svg")
-            {
-                startConvertSVG(tBURL.Text);
-                tBURL.Text = "";
-            }
-            else
-            {
-                if (tBURL.Text.Length > 5)
-                    MessageBox.Show("URL extension is not 'svg'");
-            }
-        }
-        public void reStartConvertSVG(object sender, EventArgs e)   // event from setup form
-        { if (!isStreaming) startConvertSVG(lastSource); }
-        private string lastSource = "";
-        private void startConvertSVG(string source)
-        {
-            lastSource = source;
-            this.Cursor = Cursors.WaitCursor;
-            string gcodeh = "( Imported with GRBL-Plotter )\r\n";
-            gcodeh += string.Format("( Source: {0} )\r\n", source);
-            string gcode = GCodeFromSVG.ConvertFile(source);
-            if (gcode.Length > 2)
-            {
-                fCTBCode.Text = gcodeh + gcode;
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                redrawGCodePath();
-                SaveRecentFile(source);
- //               isFileLoaded = true;
-                this.Text = appName + " | Source: " + source;
-            }
-            this.Cursor = Cursors.Default;
-            updateControls();
-        }
 
-        // handle MRU List
-        private int MRUnumber = 20;
-        private List<string> MRUlist = new List<string>();
-        private void SaveRecentFile(string path)
-        {
-         //   recentToolStripMenuItem.DropDownItems.Clear();
-            toolStripMenuItem2.DropDownItems.Clear();
-            LoadRecentList(); //load list from file
-            if (MRUlist.Contains(path)) //prevent duplication on recent list
-                MRUlist.Remove(path);
-            MRUlist.Insert(0, path);    //insert given path into list on top
-                                        //keep list number not exceeded the given value
-            while (MRUlist.Count > MRUnumber)
-            { MRUlist.RemoveAt(MRUlist.Count - 1); }
-            foreach (string item in MRUlist)
-            {
-                ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
-                //           recentToolStripMenuItem.DropDownItems.Add(fileRecent);
-                toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
-            }
-            StreamWriter stringToWrite =
-            new StreamWriter(System.Environment.CurrentDirectory + "\\Recent.txt");
-            foreach (string item in MRUlist)
-            { stringToWrite.WriteLine(item); }
-            stringToWrite.Flush(); //write stream to file
-            stringToWrite.Close(); //close the stream and reclaim memory
-        }
-        private void LoadRecentList()
-        {
-            MRUlist.Clear();
-            try
-            {
-                StreamReader listToRead =
-                new StreamReader(System.Environment.CurrentDirectory + "\\Recent.txt");
-                string line;
-                MRUlist.Clear();
-                while ((line = listToRead.ReadLine()) != null) //read each line until end of file
-                    MRUlist.Add(line); //insert to list
-                listToRead.Close(); //close the stream
-            }
-            catch (Exception) { }
-        }
-        private void RecentFile_click(object sender, EventArgs e)
-        {
-            loadFile(sender.ToString());
-        }
 
         // onPaint drawing
         private Pen penUp = new Pen(Color.Green, 0.1F);
         private Pen penDown = new Pen(Color.Red, 0.4F);
+        private Pen penHeightMap = new Pen(Color.Yellow, 1F);
         private Pen penRuler = new Pen(Color.Blue, 0.1F);
         private Pen penTool = new Pen(Color.Black, 0.5F);
         private Pen penMarker = new Pen(Color.DeepPink, 1F);
@@ -1496,6 +2007,7 @@ namespace GRBL_Plotter
         }
         private void onPaint_drawToolPath(Graphics e)
         {
+            e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathHeightMap);
             e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
             e.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
             e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
@@ -1523,47 +2035,13 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();
         }
 
+        // find closest coordinate in GCode and mark
         private void pictureBox1_Click(object sender, EventArgs e)
-        {   // find closest coordinate in GCode and mark
-            // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
-            double last_distance = 999999999999;
-            double distance;
-            int last_linenr = 0;
-            string singleLine;
-            string tokens = "(X-?\\d+(.\\d+)?)|(Y-?\\d+(.\\d+)?)|(Z-?\\d+(.\\d+)?)|(I-?\\d+(.\\d+)?)|(J-?\\d+(.\\d+)?)";
-            System.Text.RegularExpressions.Regex rex = new System.Text.RegularExpressions.Regex(tokens);
-            System.Text.RegularExpressions.MatchCollection mc;
-            double valx = 0, valy = 0, value = 0;
-            double lastx = 0, lasty = 0;
-            for (int i = 0; i < fCTBCode.LinesCount; i++)
-            {
-                singleLine = fCTBCode.Lines[i];
-                mc = rex.Matches(singleLine.ToUpper());
-                if ((singleLine.Length > 1) && (mc.Count > 0))
-                {
-                    foreach (System.Text.RegularExpressions.Match m in mc)
-                    {
-                        int startIndex = m.Index;
-                        int StopIndex = m.Length;
-                        string matchText = singleLine.Substring(startIndex, StopIndex);
-                        Double.TryParse(matchText.Substring(1), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out value);
-                        if (m.Groups[1].Success || m.Groups[2].Success)             // X
-                        { valx = value; }
-                        if (m.Groups[3].Success || m.Groups[4].Success)             // Y
-                        { valy = value; }
-                    }
-                    distance = Math.Sqrt((picAbsPosX - valx) * (picAbsPosX - valx) + (picAbsPosY - valy) * (picAbsPosY - valy));
-                    if (distance < last_distance)
-                    {
-                        last_distance = distance;
-                        last_linenr = i;
-                        lastx = valx;
-                        lasty = valy;
-                    }
-                }
-            }
-            fCTBCode.Selection = fCTBCode.GetLine(last_linenr);
-            fCTBCodeClickedLineNow = last_linenr;
+        {   // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
+            int line;
+            line = visuGCode.setPosMarkerNearBy(picAbsPosX, picAbsPosY);
+            fCTBCode.Selection = fCTBCode.GetLine(line);
+            fCTBCodeClickedLineNow = line;
             fCTBCodeMarkLine();
             fCTBCode.DoCaretVisible();
         }
@@ -1716,42 +2194,7 @@ namespace GRBL_Plotter
 
         private void cBTool_CheckedChanged(object sender, EventArgs e)
         {
-            _serial_form.TooInSpindle = cBTool.Checked;
-        }
-
-        private void saveMachineParametersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Machine Ini files (*.ini)|*.ini";
-            sfd.FileName = "GRBL-Plotter.ini";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                var MyIni = new IniFile(sfd.FileName);
-                MyIni.WriteAll(_serial_form.GRBLSettings);
-            }
-        }
-
-        private void loadMachineParametersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.FileName = "GRBL-Plotter.ini";
-            openFileDialog1.Filter = "Machine Ini files (*.ini)|*.ini";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                var MyIni = new IniFile(openFileDialog1.FileName);
-                MyIni.ReadAll();
-                loadSettings(sender, e);
-            }
-        }
-
-        private void toolStripMenuItem4_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.language = "en";
-            MessageBox.Show("Restart of GRBL-Plotter is needed");
-        }
-        private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.language = "de-DE";
-            MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich");
+            _serial_form.toolInSpindle = cBTool.Checked;
         }
 
     }
