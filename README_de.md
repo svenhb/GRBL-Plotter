@@ -3,6 +3,14 @@
 Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)  
 Geschrieben in C# VisualStudio 2015.
 
+### Neu in Version 1.1.0.0:  
+Oberflächenabtastung zur Erzeugung eines Höhenprofils  
+Autoleveling mit Hilfe eines Höhenprofils  
+Substitution für [Drehachse](https://github.com/svenhb/GRBL-Plotter/wiki/Drehachse) (statt X oder Y eine Drehachse ansteuern)  
+[Unterprogramme](https://github.com/svenhb/GRBL-Plotter/wiki/Unterprogramme) M98, M99 Sub-Program Call (P, L)  
+GCode Erzeugung absolut oder relative (für weitere Verwendung als Unterprogramm)  
+DXF Import (Fehlend: Text und Ellipse, Spline mit mehr als 4 punkten nok)  
+  
 ### Neu in Version 1.0.3.0:  
 Zweisprachig - deutsch, englisch  
 Überarbeitung der Kameraunterstützung
@@ -17,7 +25,7 @@ Einlesen von GCode mit optionaler Ersetzung von M3 / M4 Befehlen (hilfreich für
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-####[GRBL-Plotter Vers. 1030](GRBL-Plotter_1030_Publish.zip)  2017-01-28 
+####[GRBL-Plotter Vers. 1.1.0.0](GRBL-Plotter_1100_Publish.zip)  2017-08-11 
 Leider wird der '_misc' Ordner nicht mit installiert beim 'ClickOnce'. Deswegen werden die Beispieldateien für Farbpalette GCode Skripte nicht gefunden. Die nötigen Pfade müssen dann manuell neu gesetzt werden - siehe Screenshots unten.
 
 ### Voraussetzung für das Kompilieren
