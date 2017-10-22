@@ -535,7 +535,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label_mx.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>15</value>
   </data>
   <data name="label_my.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
@@ -568,7 +568,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label_my.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>16</value>
   </data>
   <data name="label_mz.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
@@ -601,7 +601,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label_mz.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>17</value>
   </data>
   <data name="label_wx.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -634,7 +634,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label_wx.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>19</value>
   </data>
   <data name="label_wy.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -667,7 +667,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label_wy.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>20</value>
   </data>
   <data name="label_wz.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -700,7 +700,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label_wz.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>18</value>
   </data>
   <metadata name="MainTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>126, 21</value>
@@ -1491,17 +1491,191 @@
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>344, 17</value>
   </metadata>
+  <data name="label_status0.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="label_status0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 118</value>
+  </data>
+  <data name="label_status0.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label_status0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="label_status0.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label_status0.Text" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="label_status0.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label_status0.Name" xml:space="preserve">
+    <value>label_status0</value>
+  </data>
+  <data name="&gt;&gt;label_status0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_status0.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_status0.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label_a.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="label_a.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_a.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 110</value>
+  </data>
+  <data name="label_a.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label_a.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 20</value>
+  </data>
+  <data name="label_a.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="label_a.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="label_a.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label_a.Name" xml:space="preserve">
+    <value>label_a</value>
+  </data>
+  <data name="&gt;&gt;label_a.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_a.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_a.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnZeroA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 110</value>
+  </data>
+  <data name="btnZeroA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="btnZeroA.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btnZeroA.Text" xml:space="preserve">
+    <value>Zero Z</value>
+  </data>
+  <data name="btnZeroA.ToolTip" xml:space="preserve">
+    <value>Set world coordinate to zero</value>
+  </data>
+  <data name="&gt;&gt;btnZeroA.Name" xml:space="preserve">
+    <value>btnZeroA</value>
+  </data>
+  <data name="&gt;&gt;btnZeroA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnZeroA.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnZeroA.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label_ma.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="label_ma.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_ma.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 128</value>
+  </data>
+  <data name="label_ma.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label_ma.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 14</value>
+  </data>
+  <data name="label_ma.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label_ma.Text" xml:space="preserve">
+    <value>0000.000</value>
+  </data>
+  <data name="label_ma.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label_ma.Name" xml:space="preserve">
+    <value>label_ma</value>
+  </data>
+  <data name="&gt;&gt;label_ma.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_ma.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_ma.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label_wa.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="label_wa.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_wa.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 110</value>
+  </data>
+  <data name="label_wa.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label_wa.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 20</value>
+  </data>
+  <data name="label_wa.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="label_wa.Text" xml:space="preserve">
+    <value>0000.000</value>
+  </data>
+  <data name="label_wa.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label_wa.Name" xml:space="preserve">
+    <value>label_wa</value>
+  </data>
+  <data name="&gt;&gt;label_wa.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_wa.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label_wa.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="btnHome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 107</value>
+    <value>122, 111</value>
   </data>
   <data name="btnHome.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 30</value>
+    <value>117, 57</value>
   </data>
   <data name="btnHome.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="btnHome.Text" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="btnHome.ToolTip" xml:space="preserve">
+    <value>Start Homing (if enabled in GRBL)</value>
   </data>
   <data name="&gt;&gt;btnHome.Name" xml:space="preserve">
     <value>btnHome</value>
@@ -1513,7 +1687,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnHome.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="btnZeroXYZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 62</value>
@@ -1527,6 +1701,9 @@
   <data name="btnZeroXYZ.Text" xml:space="preserve">
     <value>Zero XYZ</value>
   </data>
+  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
+    <value>Set world X,Y,Z coordinate to zero</value>
+  </data>
   <data name="&gt;&gt;btnZeroXYZ.Name" xml:space="preserve">
     <value>btnZeroXYZ</value>
   </data>
@@ -1537,40 +1714,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnZeroXYZ.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 98</value>
-  </data>
-  <data name="label5.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Status:</value>
-  </data>
-  <data name="label5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="btnZeroXY.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 27</value>
@@ -1584,6 +1728,9 @@
   <data name="btnZeroXY.Text" xml:space="preserve">
     <value>Zero XY</value>
   </data>
+  <data name="btnZeroXY.ToolTip" xml:space="preserve">
+    <value>Set world X,Y coordinate to zero</value>
+  </data>
   <data name="&gt;&gt;btnZeroXY.Name" xml:space="preserve">
     <value>btnZeroXY</value>
   </data>
@@ -1594,7 +1741,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnZeroXY.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -1627,7 +1774,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>8</value>
   </data>
   <data name="btnZeroZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 78</value>
@@ -1641,6 +1788,9 @@
   <data name="btnZeroZ.Text" xml:space="preserve">
     <value>Zero Z</value>
   </data>
+  <data name="btnZeroZ.ToolTip" xml:space="preserve">
+    <value>Set world Z coordinate to zero</value>
+  </data>
   <data name="&gt;&gt;btnZeroZ.Name" xml:space="preserve">
     <value>btnZeroZ</value>
   </data>
@@ -1651,7 +1801,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnZeroZ.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>9</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -1684,7 +1834,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="btnZeroY.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 45</value>
@@ -1698,6 +1848,9 @@
   <data name="btnZeroY.Text" xml:space="preserve">
     <value>Zero Y</value>
   </data>
+  <data name="btnZeroY.ToolTip" xml:space="preserve">
+    <value>Set world Y coordinate to zero</value>
+  </data>
   <data name="&gt;&gt;btnZeroY.Name" xml:space="preserve">
     <value>btnZeroY</value>
   </data>
@@ -1708,7 +1861,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnZeroY.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -1741,7 +1894,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>12</value>
   </data>
   <data name="btnZeroX.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 12</value>
@@ -1755,6 +1908,9 @@
   <data name="btnZeroX.Text" xml:space="preserve">
     <value>Zero X</value>
   </data>
+  <data name="btnZeroX.ToolTip" xml:space="preserve">
+    <value>Set world X coordinate to zero</value>
+  </data>
   <data name="&gt;&gt;btnZeroX.Name" xml:space="preserve">
     <value>btnZeroX</value>
   </data>
@@ -1765,25 +1921,25 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnZeroX.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="label_status.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>13</value>
   </data>
   <data name="label_status.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="label_status.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 119</value>
+    <value>3, 138</value>
   </data>
   <data name="label_status.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 20</value>
+    <value>117, 20</value>
   </data>
   <data name="label_status.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="label_status.Text" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="label_status.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;label_status.Name" xml:space="preserve">
     <value>label_status</value>
@@ -1795,13 +1951,13 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label_status.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>14</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 140</value>
+    <value>245, 170</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -1846,7 +2002,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnJogZeroXY.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnJogZeroZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>86, 14</value>
@@ -1873,7 +2029,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnJogZeroY.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 14</value>
@@ -1900,7 +2056,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnJogZeroX.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 14</value>
@@ -1927,7 +2083,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnJogZeroX.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1936,13 +2092,13 @@
     <value>Fill</value>
   </data>
   <data name="btnCustom8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 91</value>
+    <value>157, 112</value>
   </data>
   <data name="btnCustom8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 29</value>
+    <value>149, 38</value>
   </data>
   <data name="btnCustom8.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -1966,13 +2122,13 @@
     <value>Fill</value>
   </data>
   <data name="btnCustom7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 61</value>
+    <value>157, 75</value>
   </data>
   <data name="btnCustom7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 28</value>
+    <value>149, 35</value>
   </data>
   <data name="btnCustom7.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1996,13 +2152,13 @@
     <value>Fill</value>
   </data>
   <data name="btnCustom6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 31</value>
+    <value>157, 38</value>
   </data>
   <data name="btnCustom6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 28</value>
+    <value>149, 35</value>
   </data>
   <data name="btnCustom6.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -2032,7 +2188,7 @@
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 28</value>
+    <value>149, 35</value>
   </data>
   <data name="btnCustom5.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2062,13 +2218,13 @@
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 28</value>
+    <value>148, 35</value>
   </data>
   <data name="btnCustom1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="btnCustom1.Text" xml:space="preserve">
-    <value>button7</value>
+    <value>Custom 1</value>
   </data>
   <data name="&gt;&gt;btnCustom1.Name" xml:space="preserve">
     <value>btnCustom1</value>
@@ -2086,19 +2242,19 @@
     <value>Fill</value>
   </data>
   <data name="btnCustom2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 31</value>
+    <value>3, 38</value>
   </data>
   <data name="btnCustom2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 28</value>
+    <value>148, 35</value>
   </data>
   <data name="btnCustom2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="btnCustom2.Text" xml:space="preserve">
-    <value>button8</value>
+    <value>Custom 2</value>
   </data>
   <data name="&gt;&gt;btnCustom2.Name" xml:space="preserve">
     <value>btnCustom2</value>
@@ -2116,19 +2272,19 @@
     <value>Fill</value>
   </data>
   <data name="btnCustom3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 61</value>
+    <value>3, 75</value>
   </data>
   <data name="btnCustom3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 28</value>
+    <value>148, 35</value>
   </data>
   <data name="btnCustom3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="btnCustom3.Text" xml:space="preserve">
-    <value>button9</value>
+    <value>Custom 3</value>
   </data>
   <data name="&gt;&gt;btnCustom3.Name" xml:space="preserve">
     <value>btnCustom3</value>
@@ -2146,19 +2302,19 @@
     <value>Fill</value>
   </data>
   <data name="btnCustom4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 91</value>
+    <value>3, 112</value>
   </data>
   <data name="btnCustom4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 29</value>
+    <value>148, 38</value>
   </data>
   <data name="btnCustom4.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="btnCustom4.Text" xml:space="preserve">
-    <value>button10</value>
+    <value>Custom 4</value>
   </data>
   <data name="&gt;&gt;btnCustom4.Name" xml:space="preserve">
     <value>btnCustom4</value>
@@ -2185,7 +2341,7 @@
     <value>4</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 121</value>
+    <value>309, 151</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2212,7 +2368,7 @@
     <value>254, 3</value>
   </data>
   <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>315, 140</value>
+    <value>315, 170</value>
   </data>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -2263,7 +2419,7 @@ the machine is running before hitting reset, except of course if there is some e
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnFeedHold.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="btnReset.Location" type="System.Drawing.Point, System.Drawing">
     <value>106, 305</value>
@@ -2298,7 +2454,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnReset.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="btnResume.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 330</value>
@@ -2327,7 +2483,7 @@ start executing the buffer and Grbl will begin moving the axes.</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnResume.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="btnKillAlarm.Location" type="System.Drawing.Point, System.Drawing">
     <value>106, 350</value>
@@ -2361,13 +2517,13 @@ will override the locks and allow G-code functions to work again.
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnKillAlarm.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="tBURL.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="tBURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 357</value>
+    <value>3, 362</value>
   </data>
   <data name="tBURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>330, 20</value>
@@ -2420,79 +2576,84 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 55</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 58</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Move to</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="lblTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 39</value>
+  <data name="btnJogZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="lblTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 13</value>
+  <data name="btnJogZeroA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 35</value>
   </data>
-  <data name="lblTool.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+  <data name="btnJogZeroA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
   </data>
-  <data name="&gt;&gt;lblTool.Name" xml:space="preserve">
-    <value>lblTool</value>
+  <data name="btnJogZeroA.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;lblTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnJogZeroA.Text" xml:space="preserve">
+    <value>A=0</value>
   </data>
-  <data name="&gt;&gt;lblTool.Parent" xml:space="preserve">
+  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
+    <value>Send G90 G0 A(),or B,C)0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroA.Name" xml:space="preserve">
+    <value>btnJogZeroA</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroA.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroA.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="virtualJoystickA.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAACgCAYAAAAb8NynAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ5SURBVHhe7ZoxTuQwFIZzA0qqlagoodiKig5NwQmQZss9
+        gVsOgpRj0PsCHMI3CZ8TZ+LwstIKnH+KeVK+N84fz3x2MuDJQDcMbGeAakMFVBsqoLKlbjh07GQO3ZDI
+        eh7zfojrJ7SCysaL14LUL/t9mAYyH2sFlQ3JONsyw4is5yzkY7kdS+eWUJlRkWSyKHwRz+2WUO0Ma3G+
+        1rvNuD7VHdKchbJ/4HrXT2gF1YYKqDZUQLWhAqoNFVBtqIBqQwVUGyqg/qah58LFMVzzezm376r1eDne
+        kkmcbsoHgUmc+qsiZADhhvV4/aQWbM44hitWp3VW92vBf4iXdks2xam/LrJ8rYUzHobbaj2+Ox1vyUqs
+        xMUyXCwD8V8aei5VnB6r++NHlkHbsTWTON6z/tqDe3ISj7MF1QBGcUovpyCGe1Yo27E1oziGX6y/U1C3
+        98Sc6i48b3ZszSQ+Ay6W4WIZiN9o6LlwcQxPLBDrDnsxidOf8kFALS7oZ1xw8Z6sxEpcLMPFMhB/0NBz
+        seL36vvpqkN6re6bX7lvro79kFGc+ociZAChEsTjeiANGcUxPHCHOAUxHFkoSgfE881c6wFsiJd2Su+n
+        jqsBNaCc6mOR5Wu9CP41oBaUN9db9f00s+QUz4/zqe5C/sG3L/BdivgLs3jrWCO2xQJcLMPFMlwsw8Uy
+        XCzDxTJcLAOxvWlW4GIZLpbhYhkuluFiGYi3/7C8Ny6W4WIZLpbhYhkuloF4+x+v98bFMlwsw8UyXCzD
+        xTIQs50Bqg0VUG2ogGpDBVQbKqDaUAHVhgqoNlRAtaECqg0VUG2ogGpDBVQbKqDaUAHVhgqoNtyfbvgE
+        fzTcntgnQdAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="virtualJoystickA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 119</value>
+  </data>
+  <data name="virtualJoystickA.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 400</value>
+  </data>
+  <data name="virtualJoystickA.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="virtualJoystickA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 160</value>
+  </data>
+  <data name="virtualJoystickA.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
+    <value>Jog 4th axis</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickA.Name" xml:space="preserve">
+    <value>virtualJoystickA</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickA.Type" xml:space="preserve">
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickA.Parent" xml:space="preserve">
     <value>groupBox6</value>
   </data>
-  <data name="&gt;&gt;lblTool.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="cBTool.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 38</value>
-  </data>
-  <data name="cBTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 17</value>
-  </data>
-  <data name="cBTool.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="cBTool.Text" xml:space="preserve">
-    <value>Tool is in Spindle</value>
-  </data>
-  <data name="&gt;&gt;cBTool.Name" xml:space="preserve">
-    <value>cBTool</value>
-  </data>
-  <data name="&gt;&gt;cBTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBTool.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;virtualJoystickA.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2527,17 +2688,20 @@ for SVG files</value>
   <data name="virtualJoystickZ.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
+  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
+    <value>Jog Z axis</value>
+  </data>
   <data name="&gt;&gt;virtualJoystickZ.Name" xml:space="preserve">
     <value>virtualJoystickZ</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.Parent" xml:space="preserve">
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2613,17 +2777,92 @@ for SVG files</value>
   <data name="virtualJoystickXY.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
+  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
+    <value>Jog X and Y axis</value>
+  </data>
   <data name="&gt;&gt;virtualJoystickXY.Name" xml:space="preserve">
     <value>virtualJoystickXY</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.Parent" xml:space="preserve">
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 55</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 58</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Move to</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 39</value>
+  </data>
+  <data name="lblTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 13</value>
+  </data>
+  <data name="lblTool.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;lblTool.Name" xml:space="preserve">
+    <value>lblTool</value>
+  </data>
+  <data name="&gt;&gt;lblTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTool.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;lblTool.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cBTool.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 38</value>
+  </data>
+  <data name="cBTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 17</value>
+  </data>
+  <data name="cBTool.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="cBTool.Text" xml:space="preserve">
+    <value>Tool is in Spindle</value>
+  </data>
+  <data name="&gt;&gt;cBTool.Name" xml:space="preserve">
+    <value>cBTool</value>
+  </data>
+  <data name="&gt;&gt;cBTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBTool.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2650,7 +2889,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="tBSpeed.Location" type="System.Drawing.Point, System.Drawing">
     <value>64, 12</value>
@@ -2674,7 +2913,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;tBSpeed.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cBCoolant.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2701,7 +2940,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBCoolant.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="cBSpindle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2728,7 +2967,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBSpindle.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -2755,7 +2994,7 @@ for SVG files</value>
     <value>0</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>184, 12</value>
+    <value>207, 12</value>
   </data>
   <data name="fCTBCode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2785,7 +3024,7 @@ for SVG files</value>
 </value>
   </data>
   <data name="fCTBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 372</value>
+    <value>288, 411</value>
   </data>
   <data name="fCTBCode.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -2811,6 +3050,15 @@ for SVG files</value>
   <metadata name="cmsPictureBox.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>784, 17</value>
   </metadata>
+  <data name="resetZoomingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reset Zooming</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 6</value>
+  </data>
   <data name="deletenotMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
   </data>
@@ -2851,7 +3099,7 @@ for SVG files</value>
     <value>Delete/Mark complete path of marked pos.</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 98</value>
+    <value>215, 126</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
@@ -2866,7 +3114,7 @@ for SVG files</value>
     <value>3, 3</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 348</value>
+    <value>330, 353</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -2902,7 +3150,7 @@ for SVG files</value>
     <value>2</value>
   </data>
   <data name="tLPLinks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 532</value>
+    <value>294, 571</value>
   </data>
   <data name="tLPLinks.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -2977,7 +3225,7 @@ for SVG files</value>
     <value>2</value>
   </data>
   <data name="tLPMitteUnten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 374</value>
+    <value>336, 383</value>
   </data>
   <data name="tLPMitteUnten.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -2995,13 +3243,13 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPMitteUnten.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tBURL" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tBURL" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,24" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPRechtsUnten.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="tLPRechtsUnten.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 152</value>
+    <value>0, 182</value>
   </data>
   <data name="tLPRechtsUnten.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3010,7 +3258,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPRechtsUnten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 380</value>
+    <value>578, 389</value>
   </data>
   <data name="tLPRechtsUnten.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -3043,7 +3291,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPRechtsOben.Size" type="System.Drawing.Size, System.Drawing">
-    <value>572, 146</value>
+    <value>572, 176</value>
   </data>
   <data name="tLPRechtsOben.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -3061,7 +3309,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPRechtsOben.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="groupBox2" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,251,Percent,100" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="groupBox2" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,251,Percent,100" /&gt;&lt;Rows Styles="Absolute,162" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPRechts.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3073,7 +3321,7 @@ for SVG files</value>
     <value>2</value>
   </data>
   <data name="tLPRechts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 532</value>
+    <value>578, 571</value>
   </data>
   <data name="tLPRechts.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -3091,7 +3339,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPRechts.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPRechtsUnten" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechtsOben" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,152,Absolute,248" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPRechtsUnten" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechtsOben" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,182,Absolute,248" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPAussen.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3103,7 +3351,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPAussen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>884, 538</value>
+    <value>884, 577</value>
   </data>
   <data name="tLPAussen.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -3130,7 +3378,7 @@ for SVG files</value>
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>884, 562</value>
+    <value>884, 601</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6518,6 +6766,18 @@ for SVG files</value>
   </data>
   <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resetZoomingToolStripMenuItem.Name" xml:space="preserve">
+    <value>resetZoomingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;resetZoomingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
+    <value>toolStripSeparator8</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;deletenotMarkToolStripMenuItem.Name" xml:space="preserve">
     <value>deletenotMarkToolStripMenuItem</value>
