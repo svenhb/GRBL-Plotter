@@ -59,6 +59,10 @@ namespace GRBL_Plotter
         private static float gcodePWMDown = 799;        // Spindle speed for Pen-down
         private static float gcodePWMDlyDown = 0;       // Delay to apply after Pen-down (because servo is slow)
 
+        private static bool gcodeIndividualTool = false;     // Use individual Pen down/up
+        private static string gcodeIndividualUp = "";
+        private static string gcodeIndividualDown = "";
+
         private static bool gcodeCompress = false;      // reduce code by avoiding sending again same G-Nr and unchanged coordinates
         public static bool gcodeRelative = false;      // calculate relative coordinates for G91
         private static bool gcodeNoArcs = false;        // replace arcs by line segments
@@ -87,6 +91,10 @@ namespace GRBL_Plotter
             gcodePWMDlyUp = (float)Properties.Settings.Default.importGCPWMDlyUp;
             gcodePWMDown = (float)Properties.Settings.Default.importGCPWMDown;
             gcodePWMDlyDown = (float)Properties.Settings.Default.importGCPWMDlyDown;
+
+            gcodeIndividualTool = Properties.Settings.Default.importGCIndEnable;
+            gcodeIndividualUp = Properties.Settings.Default.importGCIndPenUp;
+            gcodeIndividualDown = Properties.Settings.Default.importGCIndPenDown;
 
             gcodeReduce = Properties.Settings.Default.importSVGReduce;
             gcodeReduceVal = (float)Properties.Settings.Default.importSVGReduceLimit;
@@ -191,15 +199,16 @@ namespace GRBL_Plotter
             gcodeLines++;
         }
 
-        public static void PenDown(StringBuilder gcodeString)
-        {
-            string cmt = "";
-            if (gcodeComments) cmt = "Pen Down";
+        public static void PenDown(StringBuilder gcodeString, string cmt = "")
+        {   if (gcodeComments) gcodeString.Append("\r\n");
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
 
-            if (gcodeSpindleToggle) SpindleOn(gcodeString, cmt);
+            if (gcodeSpindleToggle)
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Spindle-On");
+                SpindleOn(gcodeString, cmt);
+            }
             if (gcodeZApply)
-            {
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Z-Axis");
                 float z_relative = gcodeZDown - lastz;
                 if (gcodeRelative)
                     gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(z_relative), gcodeZFeed, cmt);
@@ -212,41 +221,61 @@ namespace GRBL_Plotter
                 lastz = gcodeZDown;
             }
             if (gcodePWMEnable)
-            {   gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMDown, cmt);
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Servo control");
+                gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMDown, cmt);
                 gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyDown));
                 gcodeTime += gcodePWMDlyDown;
                 gcodeLines++;
             }
+            if (gcodeIndividualTool)
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Individual Cmd");
+                string[] commands = gcodeIndividualDown.Split(';');
+                foreach (string cmd in commands)
+                { gcodeString.AppendFormat("{0}\r\n", cmd.Trim()); }
+//                gcodeString.AppendFormat("{0}\r\n", gcodeIndividualDown);
+            }
+            if (gcodeComments) gcodeString.Append("\r\n");
         }
 
         private static float lastz = 0;
-        public static void PenUp(StringBuilder gcodeString, int gnr = 1, string cmt = "")
-        {
-            //string cmt = "";
-            if (gcodeComments) cmt = "Pen Up";
+        public static void PenUp(StringBuilder gcodeString, string cmt = "")
+        {   if (gcodeComments) gcodeString.Append("\r\n");
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
 
+            if (gcodeIndividualTool)
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Individual Cmd");
+                string[] commands = gcodeIndividualUp.Split(';'); 
+                foreach (string cmd in commands)
+                {   gcodeString.AppendFormat("{0}\r\n", cmd.Trim());}
+//                gcodeString.AppendFormat("{0}\r\n", gcodeIndividualUp);
+            }
+
             if (gcodePWMEnable)
-            {   gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMUp, cmt);
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Servo control");
+                gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMUp, cmt);
                 gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyUp));
                 gcodeTime += gcodePWMDlyUp;
                 gcodeLines++;
             }
+
             if (gcodeZApply)
-            {
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
                 float z_relative = gcodeZUp - lastz;
                 if (gcodeRelative)
                     gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(z_relative), cmt); // use G0 without feedrate
                 else
                     gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), cmt); // use G0 without feedrate
 
-                //gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(gnr), frmtNum(gcodeZUp), gcodeZFeed, cmt);
                 gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
                 gcodeLines++; lastg = 1; lastf = gcodeZFeed;
-                //applyXYFeedRate = true;
                 lastz = gcodeZUp;
             }
-            if (gcodeSpindleToggle) SpindleOff(gcodeString, cmt);
+
+            if (gcodeSpindleToggle)
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Spindle-Off");
+                SpindleOff(gcodeString, cmt);
+            }
+            if (gcodeComments) gcodeString.Append("\r\n");
         }
 
         public static float lastx, lasty, lastg, lastf;
