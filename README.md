@@ -2,7 +2,14 @@
 [README deutsch](README_de.md)  
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2015.
-
+ 
+### New in version 1.1.1.0: 
+Zooming into graphic 
+New font 'Dot Matrix' 
+Option for SVG-Import 'Process path nodes only' 
+Support of 4th axis 
+SVG-Import bug fix 
+ 
 ### New in version 1.1.0.0:  
 Surface scanning for height map creation  
 [Autoleveling](https://github.com/svenhb/GRBL-Plotter/wiki/auto-leveling) using height map  
@@ -25,7 +32,7 @@ Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser 
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.0.0](GRBL-Plotter_1100_Publish.zip)  2017-08-11  
+#### [GRBL-Plotter Vers. 1.1.1.0](GRBL-Plotter_1110_Publish.zip)  2017-10-22  
 
 ### Requirements for compiling
 * VisualStudio 2015 
