@@ -48,7 +48,7 @@
       <Value Profile="(Default)">115200</Value>
     </Setting>
     <Setting Name="serialMinimize" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="file" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\</Value>
@@ -204,10 +204,10 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="importSVGBezier" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">6</Value>
+      <Value Profile="(Default)">12</Value>
     </Setting>
     <Setting Name="importSVGRezise" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGMaxSize" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
@@ -216,7 +216,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGReduce" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGReduceLimit" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
@@ -234,19 +234,19 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importSVGToolColor" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCTool" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ctrlToolChange" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ctrlToolScriptGet" Type="System.String" Scope="User">
       <Value Profile="(Default)">_misc\script_pen_pickup.nc</Value>
     </Setting>
     <Setting Name="useSerial2" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ctrlToolScriptPut" Type="System.String" Scope="User">
       <Value Profile="(Default)">_misc\script_pen_remove.nc</Value>
@@ -255,7 +255,7 @@
       <Value Profile="(Default)">_misc\script_pen_select.nc</Value>
     </Setting>
     <Setting Name="importSVGToolSort" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ctrlToolScriptProbe" Type="System.String" Scope="User">
       <Value Profile="(Default)">_misc\script_probing_tool.nc</Value>
@@ -481,6 +481,27 @@
     </Setting>
     <Setting Name="locationHeightForm" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="importGCIndEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCIndPenUp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(Pen Up command);(Cmd2)</Value>
+    </Setting>
+    <Setting Name="importGCIndPenDown" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(Pen Down command);(Cmd2)</Value>
+    </Setting>
+    <Setting Name="importSVGNodesOnly" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrl4thName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="ctrl4thUse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="lastOffsetA" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
