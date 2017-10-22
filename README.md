@@ -4,12 +4,12 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.
  
 ### New in version 1.1.1.0: 
-Zooming into graphic 
-New font 'Dot Matrix' 
-Option for SVG-Import 'Process path nodes only' 
-Support of 4th axis 
-SVG-Import bug fix 
- 
+Zooming into graphic  
+New font 'Dot Matrix'  
+Option for SVG-Import 'Process path nodes only'  
+Support of 4th axis  
+SVG-Import bug fix  
+  
 ### New in version 1.1.0.0:  
 Surface scanning for height map creation  
 [Autoleveling](https://github.com/svenhb/GRBL-Plotter/wiki/auto-leveling) using height map  
