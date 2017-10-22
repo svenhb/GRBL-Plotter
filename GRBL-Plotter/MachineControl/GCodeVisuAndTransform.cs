@@ -202,8 +202,8 @@ namespace GRBL_Plotter
                 gcodeList.Add(new gcodeLine(newLine));      // add parsed line to list
                 coordList.Add(new coordinateLine(index, newLine.actualPos));
                 if (!programEnd)
-                {   if ((newLine.motionMode > 0) || (newLine.z != null))
-                        xyzSize.setDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
+                {   //if ((newLine.motionMode > 0))// || (newLine.z != null))
+                    //    xyzSize.setDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
                     // add data to drawing path
                     createDarwingPathFromGCode(newLine.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z, newLine.i, newLine.j);
                     oldLine = new gcodeLine(newLine);   // get copy of newLine      
@@ -279,27 +279,40 @@ namespace GRBL_Plotter
             if (newLine.x != null)
             {
                 if (newLine.isdistanceModeG90)
+                {
                     newLine.actualPos.X = (double)newLine.x;
+                    xyzSize.setDimensionX(newLine.actualPos.X);
+                }
                 else
-                    newLine.actualPos.X = oldLine.actualPos.X + (double)newLine.x;
+                {   newLine.actualPos.X = oldLine.actualPos.X + (double)newLine.x;
+                    xyzSize.setDimensionX(newLine.actualPos.X - toolPosX);
+                }
             }
             else
                 newLine.actualPos.X = oldLine.actualPos.X;
             if (newLine.y != null)
             {
                 if (newLine.isdistanceModeG90)
-                    newLine.actualPos.Y = (double)newLine.y;
+                {   newLine.actualPos.Y = (double)newLine.y;
+                    xyzSize.setDimensionY(newLine.actualPos.Y);
+                }
                 else
-                    newLine.actualPos.Y = oldLine.actualPos.Y + (double)newLine.y;
+                {   newLine.actualPos.Y = oldLine.actualPos.Y + (double)newLine.y;
+                    xyzSize.setDimensionY(newLine.actualPos.Y - toolPosY);
+                }
             }
             else
                 newLine.actualPos.Y = oldLine.actualPos.Y;
             if (newLine.z != null)
             {
                 if (newLine.isdistanceModeG90)
-                    newLine.actualPos.Z = (double)newLine.z;
+                {   newLine.actualPos.Z = (double)newLine.z;
+                    xyzSize.setDimensionZ(newLine.actualPos.Z - toolPosZ);
+                }
                 else
-                    newLine.actualPos.Z = oldLine.actualPos.Z + (double)newLine.z;
+                {   newLine.actualPos.Z = oldLine.actualPos.Z + (double)newLine.z;
+                    xyzSize.setDimensionZ(newLine.actualPos.Z - toolPosZ);
+                }
             }
             else
                 newLine.actualPos.Z = oldLine.actualPos.Z;
@@ -353,7 +366,7 @@ namespace GRBL_Plotter
         /// fill current gcode line structure
         /// </summary>
         private void parseGCodeToken(char cmd, double value)
-        {   switch (cmd)
+        {   switch (Char.ToUpper(cmd))
             {   case 'X':
                     newLine.x = value;
                     break;
@@ -362,6 +375,24 @@ namespace GRBL_Plotter
                     break;
                 case 'Z':
                     newLine.z = value;
+                    break;
+                case 'A':
+                    newLine.a = value;
+                    break;
+                case 'B':
+                    newLine.b = value;
+                    break;
+                case 'C':
+                    newLine.c = value;
+                    break;
+                case 'U':
+                    newLine.u = value;
+                    break;
+                case 'V':
+                    newLine.v = value;
+                    break;
+                case 'W':
+                    newLine.w = value;
                     break;
                 case 'I':
                     newLine.i = value;

@@ -86,14 +86,13 @@ namespace GRBL_Plotter
             // 
             // cbPort
             // 
-            resources.ApplyResources(this.cbPort, "cbPort");
             this.cbPort.FormattingEnabled = true;
+            resources.ApplyResources(this.cbPort, "cbPort");
             this.cbPort.Name = "cbPort";
             this.toolTipSerial.SetToolTip(this.cbPort, resources.GetString("cbPort.ToolTip"));
             // 
             // cbBaud
             // 
-            resources.ApplyResources(this.cbBaud, "cbBaud");
             this.cbBaud.FormattingEnabled = true;
             this.cbBaud.Items.AddRange(new object[] {
             resources.GetString("cbBaud.Items"),
@@ -101,6 +100,7 @@ namespace GRBL_Plotter
             resources.GetString("cbBaud.Items2"),
             resources.GetString("cbBaud.Items3"),
             resources.GetString("cbBaud.Items4")});
+            resources.ApplyResources(this.cbBaud, "cbBaud");
             this.cbBaud.Name = "cbBaud";
             this.toolTipSerial.SetToolTip(this.cbBaud, resources.GetString("cbBaud.ToolTip"));
             // 
@@ -132,7 +132,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.rtbLog, "rtbLog");
             this.rtbLog.Name = "rtbLog";
-            this.toolTipSerial.SetToolTip(this.rtbLog, resources.GetString("rtbLog.ToolTip"));
             // 
             // btnClear
             // 
@@ -272,7 +271,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnGRBLReset, "btnGRBLReset");
             this.btnGRBLReset.Name = "btnGRBLReset";
-            this.toolTipSerial.SetToolTip(this.btnGRBLReset, resources.GetString("btnGRBLReset.ToolTip"));
             this.btnGRBLReset.UseVisualStyleBackColor = true;
             this.btnGRBLReset.Click += new System.EventHandler(this.btnGRBLReset_Click);
             // 
@@ -280,30 +278,26 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.lblSrState, "lblSrState");
             this.lblSrState.Name = "lblSrState";
-            this.toolTipSerial.SetToolTip(this.lblSrState, resources.GetString("lblSrState.ToolTip"));
             // 
             // cBCommand
             // 
-            resources.ApplyResources(this.cBCommand, "cBCommand");
             this.cBCommand.FormattingEnabled = true;
             this.cBCommand.Items.AddRange(new object[] {
             resources.GetString("cBCommand.Items"),
             resources.GetString("cBCommand.Items1"),
             resources.GetString("cBCommand.Items2")});
+            resources.ApplyResources(this.cBCommand, "cBCommand");
             this.cBCommand.Name = "cBCommand";
-            this.toolTipSerial.SetToolTip(this.cBCommand, resources.GetString("cBCommand.ToolTip"));
             this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCommand_KeyPress);
             // 
             // cbStatus
             // 
             resources.ApplyResources(this.cbStatus, "cbStatus");
             this.cbStatus.Name = "cbStatus";
-            this.toolTipSerial.SetToolTip(this.cbStatus, resources.GetString("cbStatus.ToolTip"));
             this.cbStatus.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.cbStatus);
             this.groupBox1.Controls.Add(this.lblSrA);
             this.groupBox1.Controls.Add(this.lblSrLn);
@@ -319,9 +313,9 @@ namespace GRBL_Plotter
             this.groupBox1.Controls.Add(this.lblSrFS);
             this.groupBox1.Controls.Add(this.lblSrBf);
             this.groupBox1.Controls.Add(this.label4);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
-            this.toolTipSerial.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
             // 
             // timerSerial
             // 
@@ -349,7 +343,6 @@ namespace GRBL_Plotter
             this.Controls.Add(this.cbPort);
             this.MaximizeBox = false;
             this.Name = "ControlSerialForm";
-            this.toolTipSerial.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SerialForm_FormClosing);
             this.Load += new System.EventHandler(this.SerialForm_Load);
             this.Resize += new System.EventHandler(this.SerialForm_Resize);

@@ -103,6 +103,8 @@ namespace GRBL_Plotter
                 Double.TryParse(dataValue[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.Y);
                 Double.TryParse(dataValue[2], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.Z);
             }
+            if (dataValue.Length > 3)
+                Double.TryParse(dataValue[3], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.A);
         }
 
         public static string getError(string rxString)
@@ -219,6 +221,7 @@ namespace GRBL_Plotter
 
         public static string getSetting(int id)
         {
+            string fourthAxis = Properties.Settings.Default.ctrl4thName;
             switch (id)
             {
                 case 0:
@@ -271,24 +274,32 @@ namespace GRBL_Plotter
                     return "Y -axis steps per millimeter";
                 case 102:
                     return "Z -axis steps per millimeter";
+                case 103:
+                    return fourthAxis+" -axis steps per millimeter";
                 case 110:
                     return "X -axis maximum rate, mm/min";
                 case 111:
                     return "Y -axis maximum rate, mm/min";
                 case 112:
                     return "Z -axis maximum rate, mm/min";
+                case 113:
+                    return fourthAxis + " -axis maximum rate, mm/min";
                 case 120:
                     return "X -axis acceleration, mm/sec^2";
                 case 121:
                     return "Y -axis acceleration, mm/sec^2";
                 case 122:
                     return "Z -axis acceleration, mm/sec^2";
+                case 123:
+                    return fourthAxis + " -axis acceleration, mm/sec^2";
                 case 130:
                     return "X -axis maximum travel, millimeters";
                 case 131:
                     return "Y -axis maximum travel, millimeters";
                 case 132:
                     return "Z -axis maximum travel, millimeters";
+                case 133:
+                    return fourthAxis + " -axis maximum travel, millimeters";
                 default:
                     return "unknown setting " + id.ToString();
             }

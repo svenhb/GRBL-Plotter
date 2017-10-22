@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Grafik Import</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Steuerung</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Benutzerdefinierte Buttons</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Joystick / Farben</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Grafik Import</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnResizeForm.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 23</value>
@@ -130,15 +145,24 @@
   <data name="cBImportSVGPauseP.Text" xml:space="preserve">
     <value>Pause (M0) vor 'Pen down'</value>
   </data>
-  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 17</value>
+  <data name="cBImportSVGNodesOnly.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 17</value>
   </data>
-  <data name="checkBox1.Text" xml:space="preserve">
-    <value>Sortiere Objekte nach Stiftnummer</value>
+  <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
+    <value>Nur Pfadknoten verarbeiten</value>
   </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>Sortiere die SVG-Pfade nach Stiftnummern (aufsteigend) vor der GCode Erzeugung
-Achtung: Nicht mit "Komprimiere G-Code" oder "Relative Bewegung" verwenden</value>
+  <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
+    <value>Es werden nur Knoten (z.B. Linien Start- und Endpunkt) für Stift runter / hoch berücksichtigt.
+Diese Option ist für Fadenbilder gedacht um die Nagelpositionen vorzubohren.
+In Inkscape müssen Objekte zuerst in Pfade konvertiert werden 'Pfad - Objekt zu Pfad',
+dann füge Knoten hinzu via 'Erweiterungen - Pfad modifizieren - Knoten hinzufügen...'
+</value>
+  </data>
+  <data name="cBImportSVGSort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 17</value>
+  </data>
+  <data name="cBImportSVGSort.Text" xml:space="preserve">
+    <value>Sortiere Objekte nach Stiftindex</value>
   </data>
   <data name="cBImportSVGResize.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 17</value>
@@ -208,8 +232,8 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
   <data name="label1.ToolTip" xml:space="preserve">
     <value>Kurven werden durch kurze Linienstücke erzeugt, je höher die Anzahl, desto weniger Knicke</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Grafik Import</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>G-Code Erzeugung</value>
   </data>
   <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
@@ -291,6 +315,12 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label12.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Servo Steuerung</value>
+  </data>
+  <data name="groupBox4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBImportGCUsePWM.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 17</value>
   </data>
@@ -345,10 +375,10 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label10.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Servo Steuerung</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Z-Achse</value>
   </data>
-  <data name="groupBox4.ToolTip" xml:space="preserve">
+  <data name="groupBox5.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
@@ -393,20 +423,14 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label5.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Z-Achse</value>
-  </data>
-  <data name="groupBox5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label11.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit für G1,2,3 Befehle bei X oder Y Koordinaten</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>G-Code Erzeugung</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Drehachsen Steuerung</value>
   </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Grafik Import</value>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>GRBL Setup für ersetzte Achse</value>
   </data>
   <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 62</value>
@@ -431,9 +455,6 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
   <data name="label32.Text" xml:space="preserve">
     <value>Drehachse</value>
-  </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>GRBL Setup für ersetzte Achse</value>
   </data>
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
@@ -471,8 +492,11 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="cBRotarySubstitute.Text" xml:space="preserve">
     <value>Achsen Ersetzung</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Drehachsen Steuerung</value>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>GCode einlesen</value>
+  </data>
+  <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 78</value>
   </data>
   <data name="rBCtrlReplaceM4.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 17</value>
@@ -498,11 +522,11 @@ M3 Constant Laser Power Mode
 oder
 M4 Dynamic Laser Power Mode</value>
   </data>
-  <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 78</value>
+  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 67</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>GCode einlesen</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Serielle Verbindung</value>
   </data>
   <data name="cBSerial2.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 17</value>
@@ -523,11 +547,8 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
   <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
     <value>Das serielle Fenster wird nach erfolgreicher Verbindung zum GRBL minimiert</value>
   </data>
-  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 67</value>
-  </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Serielle Verbindung</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Werkzeugwechsel</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Pfad zum Skript PROBE tool</value>
@@ -547,12 +568,6 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
   <data name="cBToolChange.Text" xml:space="preserve">
     <value>Werkzeugwechsel ausführen</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Werkzeugwechsel</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Steuerung</value>
-  </data>
   <data name="btnChangeDefinition.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 23</value>
   </data>
@@ -565,8 +580,8 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
   <data name="columnHeader3.Text" xml:space="preserve">
     <value>G-Code oder Pfad zum Skript</value>
   </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Benutzerdefinierte Buttons</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Farben der 2D Vorschau</value>
   </data>
   <data name="btnColorHeightMap.Text" xml:space="preserve">
     <value>Höhenprofil</value>
@@ -586,14 +601,8 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
   <data name="btnColorBackground.Text" xml:space="preserve">
     <value>Hintergrund</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Farben der 2D Vorschau</value>
-  </data>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Joystick Einstellungen</value>
-  </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Joystick / Farben</value>
   </data>
   <data name="btnApplyChangings.Text" xml:space="preserve">
     <value>Änderungen jetzt übernehmen</value>
@@ -3603,5 +3612,9 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
         ////////////////////////////////////////////////////////////////////////////////
         //8=
 </value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
 </root>

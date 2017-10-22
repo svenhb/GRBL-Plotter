@@ -231,10 +231,5 @@ namespace GRBL_Plotter
             nUDJoyZSpeed4.Value = (decimal)((double)nUDJoyZStep4.Value / time * 60 * correct);
             nUDJoyZSpeed5.Value = (decimal)((double)nUDJoyZStep5.Value / time * 60 * correct);
         }
-
-        private void cBImportSVGResize_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

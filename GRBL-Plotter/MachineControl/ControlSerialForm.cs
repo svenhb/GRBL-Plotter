@@ -62,6 +62,8 @@ namespace GRBL_Plotter
         private string title = "";
         public bool toolInSpindle { get; set; } = false;
         public bool isHeightProbing { get; set; } = false;  // automatic height probing -> less feedback
+        private bool ctrl4thUse = false;
+        private string ctrl4thName = "A";
 
         public List<string> GRBLSettings = new List<string>();
 
@@ -114,7 +116,10 @@ namespace GRBL_Plotter
             openPort();
             statusMsg.Bf = ""; statusMsg.Ln = ""; statusMsg.FS = ""; statusMsg.Pn = ""; statusMsg.Ov = ""; statusMsg.A = "";
             if (iamSerial == 1)
-            {   Location = Properties.Settings.Default.locationSerForm1;}
+            {   Location = Properties.Settings.Default.locationSerForm1;
+                ctrl4thUse  = Properties.Settings.Default.ctrl4thUse;
+                ctrl4thName = Properties.Settings.Default.ctrl4thName;
+            }
             else
             {   Location = Properties.Settings.Default.locationSerForm2;}
             Text = title;
@@ -259,11 +264,14 @@ namespace GRBL_Plotter
         private void saveLastPos()
         {
             if (iamSerial == 1)
-            {
-                rtbLog.AppendText(String.Format("Save last pos.: X{0} Y{1} Z{2}\r\n", posWorld.X, posWorld.Y, posWorld.Z));
+            {   if (ctrl4thUse)
+                    rtbLog.AppendText(String.Format("Save last pos.: X{0:0.###} Y{1:0.###} Z{2:0.###} {3}{4:0.###}\r\n", posWorld.X, posWorld.Y, posWorld.Z, ctrl4thName, posWorld.A));
+                else
+                    rtbLog.AppendText(String.Format("Save last pos.: X{0:0.###} Y{1:0.###} Z{2:0.###}\r\n", posWorld.X, posWorld.Y, posWorld.Z));
                 Properties.Settings.Default.lastOffsetX = Math.Round(posWorld.X, 3);
                 Properties.Settings.Default.lastOffsetY = Math.Round(posWorld.Y, 3);
                 Properties.Settings.Default.lastOffsetZ = Math.Round(posWorld.Z, 3);
+                Properties.Settings.Default.lastOffsetA = Math.Round(posWorld.A, 3);
                 Properties.Settings.Default.Save();
             }
         }
@@ -391,6 +399,10 @@ namespace GRBL_Plotter
             serialPort1.Write(dataArray, 0, 1);
             rtbLog.AppendText("[CTRL-X]\r\n");
             lastCmd = "M5M9M0";
+            if (iamSerial == 1)
+            {   ctrl4thUse  = Properties.Settings.Default.ctrl4thUse;
+                ctrl4thName = Properties.Settings.Default.ctrl4thName;
+            }
         }
 
         #region serial receive handling
@@ -677,6 +689,7 @@ namespace GRBL_Plotter
                     posWorld.X = posMachine.X - posWCO.X;
                     posWorld.Y = posMachine.Y - posWCO.Y;
                     posWorld.Z = posMachine.Z - posWCO.Z;
+                    posWorld.A = posMachine.A - posWCO.A;
                 }
                 else
                 {
@@ -684,6 +697,7 @@ namespace GRBL_Plotter
                     posMachine.X = posWorld.X + posWCO.X;
                     posMachine.Y = posWorld.Y + posWCO.Y;
                     posMachine.Z = posWorld.Z + posWCO.Z;
+                    posMachine.A = posWorld.A + posWCO.A;
                 }
 
                 statusMsg.Bf = ""; statusMsg.Ln = ""; statusMsg.FS = "";
@@ -720,7 +734,11 @@ namespace GRBL_Plotter
             grblStateNow = grbl.parseStatus(status);
             lblSrState.BackColor = grbl.grblStateColor(grblStateNow);
             lblSrState.Text = status;
-            lblSrPos.Text = string.Format("X={0:0.000} Y={1:0.000} Z={2:0.000}", posWorld.X, posWorld.Y, posWorld.Z);
+            if (ctrl4thUse)
+                lblSrPos.Text = string.Format("X={0:0.000} Y={1:0.000} Z={2:0.000} {3}={4:0.000}", posWorld.X, posWorld.Y, posWorld.Z, ctrl4thName, posWorld.A);
+            else
+                lblSrPos.Text = string.Format("X={0:0.000} Y={1:0.000} Z={2:0.000}", posWorld.X, posWorld.Y, posWorld.Z);
+
             if (grblStateNow != grblStateLast) { grblStateChanged(); }
             if (grblStateNow == grblState.idle)
             {   if (useSerial2 && _serial_form2.serialPortOpen)
@@ -1069,7 +1087,7 @@ namespace GRBL_Plotter
         public void startStreaming(IList<string> gCodeList, bool check = false)
         {
             rtbLog.Clear();
-            if (check)
+            if (!check)
                 addToLog("[Start streaming - no echo]");
             else
                 addToLog("[Start code check]");
