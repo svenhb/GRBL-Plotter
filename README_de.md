@@ -2,7 +2,14 @@
 [README english](README.md)  
 Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)  
 Geschrieben in C# VisualStudio 2015.
-
+  
+### New in version 1.1.1.0: 
+Zoomen in der Grafikdarstellung  
+Neue Schriftart 'Dot Matrix' 
+Option für SVG-Import 'Nur Pfadknoten verarbeiten'  
+Unsterstützung einer vierten Achse  
+SVG-Import bug fix  
+  
 ### Neu in Version 1.1.0.0:  
 Oberflächenabtastung zur Erzeugung eines Höhenprofils  
 [Autoleveling](https://github.com/svenhb/GRBL-Plotter/wiki/Autoleveling) mit Hilfe eines Höhenprofils  
