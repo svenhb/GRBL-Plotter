@@ -5,7 +5,7 @@ Written in C# VisualStudio 2015.
  
 ### New in version 1.1.1.0: 
 Zooming into graphic  
-New font 'Dot Matrix'  
+New font ['Dot Matrix'](https://youtu.be/ip_qCQwoufw)   
 Option for SVG-Import 'Process path nodes only'  
 Support of 4th axis  
 SVG-Import bug fix  
