@@ -5,7 +5,7 @@ Geschrieben in C# VisualStudio 2015.
   
 ### New in version 1.1.1.0: 
 Zoomen in der Grafikdarstellung  
-Neue Schriftart 'Dot Matrix' 
+Neue Schriftart ['Dot Matrix'](https://youtu.be/ip_qCQwoufw)   
 Option für SVG-Import 'Nur Pfadknoten verarbeiten'  
 Unsterstützung einer vierten Achse  
 SVG-Import bug fix  
