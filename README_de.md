@@ -12,7 +12,7 @@ SVG-Import bug fix
 ### Neu in Version 1.1.1.0: 
 Zoomen in der Grafikdarstellung  
 Neue Schriftart ['Dot Matrix'](https://youtu.be/ip_qCQwoufw)   
-Option für SVG-Import 'Nur Pfadknoten verarbeiten' nützlich für ['String Art'](https://youtu.be/ymWi15rvTvM)  
+Option für SVG-Import 'Nur Pfadknoten verarbeiten' nützlich für ['String Art - Fadenbilder'](https://youtu.be/ymWi15rvTvM)  
 Unsterstützung einer vierten Achse  
 SVG-Import bug fix  
   
