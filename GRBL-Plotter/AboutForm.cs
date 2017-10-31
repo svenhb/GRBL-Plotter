@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,16 @@ namespace GRBL_Plotter
         public AboutForm()
         {
             InitializeComponent();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(@"https://github.com/svenhb/GRBL-Plotter");
+        }
+
+        private void AboutForm_Load(object sender, EventArgs e)
+        {
+            lblVersion.Text = Application.ProductVersion.ToString();
         }
     }
 }

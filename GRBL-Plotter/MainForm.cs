@@ -74,6 +74,7 @@ namespace GRBL_Plotter
 
         private bool ctrl4thAxis = false;
         private string ctrl4thName = "A";
+        private string lastLoadSource = "Nothing loaded";
 
         public MainForm()
         {
@@ -109,6 +110,8 @@ namespace GRBL_Plotter
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
+            checkUpdate.CheckVersion();  // check update
+
             if (_serial_form == null)
             {
                 if (Properties.Settings.Default.useSerial2)
@@ -285,12 +288,6 @@ namespace GRBL_Plotter
                     virtualJoystickZ.Size = new Size(40, 180);
                     virtualJoystickZ.Location = new Point(186, 119);
                 }
-                virtualJoystickXY.Focus();
-                virtualJoystickXY.Validate(true);
-                virtualJoystickXY.Invalidate(true);
-                virtualJoystickZ.Focus();
-                virtualJoystickZ.Validate(true);
-                virtualJoystickA.Focus();
             }
             catch (Exception a)
             {
@@ -573,7 +570,7 @@ namespace GRBL_Plotter
             openFileDialog1.FileName = "";
             openFileDialog1.Filter = "gcode files (*.nc)|*.nc|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            { loadFile(openFileDialog1.FileName);
+            {   loadFile(openFileDialog1.FileName);
                 isHeightMapApplied = false;
             }
         }
@@ -669,13 +666,19 @@ namespace GRBL_Plotter
                 _image_form.loadExtern(fileName);
             }
             SaveRecentFile(fileName);
+            setLastLoadedFile("Data from file: " +fileName);
+
             if (ext == ".url")
             { getURL(fileName); }
             Cursor.Current = Cursors.Default;
             pBoxTransform.Reset();
-            //            isFileLoaded = true;
         }
 
+        private void setLastLoadedFile(string text)
+        {   lastLoadSource = text;
+            if (_setup_form != null)
+            { _setup_form.setLastLoadedFile(lastLoadSource); }
+        }
         private void getURL(string filename)
         {
             var MyIni = new IniFile(filename);
@@ -701,38 +704,65 @@ namespace GRBL_Plotter
         private void tBURL_TextChanged(object sender, EventArgs e)
         {
             var parts = tBURL.Text.Split('.');
-            string ext = parts[parts.Length - 1];
-            if (ext.ToLower() == "svg")
+            string ext = parts[parts.Length - 1];   // get extension
+            if (ext.ToLower().IndexOf("svg") >= 0)
             {
                 startConvertSVG(tBURL.Text);
+                setLastLoadedFile("Data from URL: " + tBURL.Text);
                 tBURL.Text = "";
             }
-            else if (ext.ToLower() == "dxf")
+            else if (ext.ToLower().IndexOf("dxf") >= 0)
             {
                 startConvertDXF(tBURL.Text);
+                setLastLoadedFile("Data from URL: " + tBURL.Text);
+                tBURL.Text = "";
+            }
+            else if ((ext.ToLower().IndexOf("bmp") >= 0) || (ext.ToLower().IndexOf("gif") >= 0) || (ext.ToLower().IndexOf("png") >= 0) || (ext.ToLower().IndexOf("jpg") >= 0))
+            {
+                if (_image_form == null)
+                {
+                    _image_form = new GCodeFromImage(true);
+                    _image_form.FormClosed += formClosed_ImageToGCode;
+                    _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
+                }
+                else
+                {
+                    _image_form.Visible = false;
+                }
+                _image_form.Show(this);
+                _image_form.loadURL(tBURL.Text);
+                setLastLoadedFile("Data from URL: " + tBURL.Text);
                 tBURL.Text = "";
             }
             else
-            {
+            {              
                 if (tBURL.Text.Length > 5)
-                    MessageBox.Show("URL extension is not 'svg' or 'dxf'");
+                {   MessageBox.Show("URL extension is not 'svg' or 'dxf'\r\nTry SVG import anyway, but without setting 'Recent File' list.");
+                    startConvertSVG(tBURL.Text);
+                }
             }
         }
         public void reStartConvertSVG(object sender, EventArgs e)   // event from setup form
-        { if (!isStreaming) loadFile(lastSource); }
+        {   if (!isStreaming)
+            {
+                if (lastLoadSource.IndexOf("Clipboard") >= 0)
+                { loadFromClipboard(); }
+                else
+                { loadFile(lastSource); }
+            }
+        }
         private string lastSource = "";
         private void startConvertSVG(string source)
         {
             lastSource = source;
             this.Cursor = Cursors.WaitCursor;
-            string gcode = GCodeFromSVG.ConvertFile(source);
+            string gcode = GCodeFromSVG.convertFromFile(source);
             if (gcode.Length > 2)
             {
                 fCTBCode.Text = gcode;
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 redrawGCodePath();
                 SaveRecentFile(source);
-                //               isFileLoaded = true;
                 this.Text = appName + " | Source: " + source;
             }
             this.Cursor = Cursors.Default;
@@ -1315,6 +1345,7 @@ namespace GRBL_Plotter
                 _setup_form.FormClosed += formClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += loadSettings;
                 _setup_form.btnReloadFile.Click += reStartConvertSVG;
+                _setup_form.setLastLoadedFile(lastLoadSource);
             }
             else
             {
@@ -2177,12 +2208,15 @@ namespace GRBL_Plotter
         // find closest coordinate in GCode and mark
         private void pictureBox1_Click(object sender, EventArgs e)
         {   // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
-            int line;
-            line = visuGCode.setPosMarkerNearBy(picAbsPosX, picAbsPosY);
-            fCTBCode.Selection = fCTBCode.GetLine(line);
-            fCTBCodeClickedLineNow = line;
-            fCTBCodeMarkLine();
-            fCTBCode.DoCaretVisible();
+            if (fCTBCode.LinesCount > 2)
+            {
+                int line;
+                line = visuGCode.setPosMarkerNearBy(picAbsPosX, picAbsPosY);
+                fCTBCode.Selection = fCTBCode.GetLine(line);
+                fCTBCodeClickedLineNow = line;
+                fCTBCodeMarkLine();
+                fCTBCode.DoCaretVisible();
+            }
         }
 
         private Matrix pBoxTransform = new Matrix();
@@ -2381,5 +2415,72 @@ namespace GRBL_Plotter
         {
             _serial_form.toolInSpindle = cBTool.Checked;
         }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
+            {
+                loadFromClipboard();
+                e.SuppressKeyPress = true;
+            }
+        }
+        private void loadFromClipboard()
+        {   string svg_format1 = "image/x-inkscape-svg";
+            string svg_format2 = "image/svg+xml";
+            IDataObject iData = Clipboard.GetDataObject();
+            if (iData.GetDataPresent(DataFormats.Text))
+            {   fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
+                setLastLoadedFile("Data from Clipboard: Text");
+            }
+            else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
+            {
+                MemoryStream stream = new MemoryStream();
+                if (iData.GetDataPresent(svg_format1))
+                    stream = (MemoryStream)iData.GetData(svg_format1);
+                else
+                    stream = (MemoryStream)iData.GetData(svg_format2);
+
+                byte[] bytes = stream.ToArray();
+                string txt = System.Text.Encoding.Default.GetString(bytes);
+                this.Cursor = Cursors.WaitCursor;
+
+                string gcode = GCodeFromSVG.convertFromText(txt);
+                if (gcode.Length > 2)
+                {
+                    fCTBCode.Text = gcode;
+                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                    redrawGCodePath();
+                    this.Text = appName + " | Source: from Clipboard";
+                }
+                this.Cursor = Cursors.Default;
+                updateControls();
+                setLastLoadedFile("Data from Clipboard: SVG");
+            }
+            else if (iData.GetDataPresent(DataFormats.Bitmap))
+            {
+                if (_image_form == null)
+                {
+                    _image_form = new GCodeFromImage(true);
+                    _image_form.FormClosed += formClosed_ImageToGCode;
+                    _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
+                }
+                else
+                {
+                    _image_form.Visible = false;
+                }
+                _image_form.Show(this);
+                _image_form.loadClipboard();
+                setLastLoadedFile("Data from Clipboard: Image");
+            }
+            else
+            {   string tmp = "";
+                foreach (string format in iData.GetFormats())
+                { tmp += format + "\r\n"; }
+                MessageBox.Show(tmp);
+            }
+        }
+
+        private void pasteFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {   loadFromClipboard();    }
     }
 }

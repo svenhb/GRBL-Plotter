@@ -214,6 +214,8 @@ namespace GRBL_Plotter
             this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.resetZoomingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1259,6 +1261,7 @@ namespace GRBL_Plotter
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnResume);
             this.groupBox6.Controls.Add(this.virtualJoystickA);
             this.groupBox6.Controls.Add(this.btnJogStop);
             this.groupBox6.Controls.Add(this.groupBox3);
@@ -1272,7 +1275,6 @@ namespace GRBL_Plotter
             this.groupBox6.Controls.Add(this.cBSpindle);
             this.groupBox6.Controls.Add(this.btnKillAlarm);
             this.groupBox6.Controls.Add(this.btnFeedHold);
-            this.groupBox6.Controls.Add(this.btnResume);
             this.groupBox6.Controls.Add(this.btnReset);
             resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
@@ -1377,6 +1379,8 @@ namespace GRBL_Plotter
             // cmsPictureBox
             // 
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteFromClipboardToolStripMenuItem,
+            this.toolStripSeparator9,
             this.resetZoomingToolStripMenuItem,
             this.toolStripSeparator8,
             this.deletenotMarkToolStripMenuItem,
@@ -1386,6 +1390,17 @@ namespace GRBL_Plotter
             this.deletePathToolStripMenuItem});
             this.cmsPictureBox.Name = "cmsPictureBox";
             resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
+            // 
+            // pasteFromClipboardToolStripMenuItem
+            // 
+            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
+            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
+            this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
             // 
             // resetZoomingToolStripMenuItem
             // 
@@ -1482,12 +1497,14 @@ namespace GRBL_Plotter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tLPAussen);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1683,6 +1700,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label_wa;
         private virtualJoystick.virtualJoystick virtualJoystickA;
         private System.Windows.Forms.Button btnJogZeroA;
+        private System.Windows.Forms.ToolStripMenuItem pasteFromClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
     }
 }
 

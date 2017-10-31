@@ -2389,7 +2389,7 @@
     <value>0</value>
   </data>
   <data name="btnFeedHold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 305</value>
+    <value>3, 310</value>
   </data>
   <data name="btnFeedHold.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -2419,10 +2419,10 @@ the machine is running before hitting reset, except of course if there is some e
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnFeedHold.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="btnReset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 305</value>
+    <value>106, 310</value>
   </data>
   <data name="btnReset.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 43</value>
@@ -2457,7 +2457,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>14</value>
   </data>
   <data name="btnResume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 330</value>
+    <value>3, 335</value>
   </data>
   <data name="btnResume.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 43</value>
@@ -2483,10 +2483,10 @@ start executing the buffer and Grbl will begin moving the axes.</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnResume.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>0</value>
   </data>
   <data name="btnKillAlarm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 350</value>
+    <value>106, 355</value>
   </data>
   <data name="btnKillAlarm.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 23</value>
@@ -2517,7 +2517,7 @@ will override the locks and allow G-code functions to work again.
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnKillAlarm.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="tBURL.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2576,7 +2576,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnJogZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2653,7 +2653,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;virtualJoystickA.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2701,7 +2701,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2790,7 +2790,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 55</value>
@@ -2814,10 +2814,10 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lblTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 39</value>
+    <value>115, 37</value>
   </data>
   <data name="lblTool.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 13</value>
@@ -2835,13 +2835,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;lblTool.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cBTool.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 38</value>
+    <value>3, 37</value>
   </data>
   <data name="cBTool.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 17</value>
@@ -2862,13 +2862,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 16</value>
+    <value>103, 19</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 13</value>
@@ -2889,10 +2889,10 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="tBSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 12</value>
+    <value>64, 15</value>
   </data>
   <data name="tBSpeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -2913,13 +2913,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;tBSpeed.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="cBCoolant.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="cBCoolant.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 14</value>
+    <value>165, 17</value>
   </data>
   <data name="cBCoolant.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 17</value>
@@ -2940,13 +2940,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBCoolant.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="cBSpindle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="cBSpindle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 15</value>
+    <value>3, 18</value>
   </data>
   <data name="cBSpindle.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 17</value>
@@ -2967,13 +2967,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBSpindle.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
   <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 373</value>
+    <value>230, 385</value>
   </data>
   <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -3050,6 +3050,15 @@ for SVG files</value>
   <metadata name="cmsPictureBox.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>784, 17</value>
   </metadata>
+  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paste from Clipboard</value>
+  </data>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 6</value>
+  </data>
   <data name="resetZoomingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
   </data>
@@ -3099,7 +3108,7 @@ for SVG files</value>
     <value>Delete/Mark complete path of marked pos.</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 126</value>
+    <value>215, 154</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
@@ -3189,7 +3198,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPRechtsUntenRechts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 379</value>
+    <value>236, 389</value>
   </data>
   <data name="tLPRechtsUntenRechts.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -3207,7 +3216,7 @@ for SVG files</value>
     <value>0</value>
   </data>
   <data name="tLPRechtsUntenRechts.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox6" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0" /&gt;&lt;Rows Styles="Absolute,379" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox6" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0" /&gt;&lt;Rows Styles="Absolute,420" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPMitteUnten.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3276,7 +3285,7 @@ for SVG files</value>
     <value>0</value>
   </data>
   <data name="tLPRechtsUnten.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPRechtsUntenRechts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tLPMitteUnten" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,236" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPRechtsUntenRechts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tLPMitteUnten" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,236" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPRechtsOben.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -6387,7 +6396,7 @@ for SVG files</value>
 </value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 600</value>
+    <value>800, 640</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -6766,6 +6775,18 @@ for SVG files</value>
   </data>
   <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pasteFromClipboardToolStripMenuItem.Name" xml:space="preserve">
+    <value>pasteFromClipboardToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;pasteFromClipboardToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator9.Name" xml:space="preserve">
+    <value>toolStripSeparator9</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;resetZoomingToolStripMenuItem.Name" xml:space="preserve">
     <value>resetZoomingToolStripMenuItem</value>

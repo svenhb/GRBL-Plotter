@@ -118,6 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 20</value>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>GCode erzeugen</value>
+  </data>
+  <data name="gCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 20</value>
+  </data>
+  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>GCode transformieren</value>
+  </data>
+  <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Maschine</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Über...</value>
+  </data>
   <data name="loadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 22</value>
   </data>
@@ -184,12 +214,6 @@
   <data name="toolStripMenuItem3.ToolTipText" xml:space="preserve">
     <value>Nach Änderung der Sprache ist ein Neustart nötig</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 20</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Datei</value>
-  </data>
   <data name="textWizzardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
@@ -213,12 +237,6 @@
   </data>
   <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Kreis oder Rechteck, optional mit abgerundenten Ecken, optional als Tasche</value>
-  </data>
-  <data name="createGCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 20</value>
-  </data>
-  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>GCode erzeugen</value>
   </data>
   <data name="mirrorXToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 22</value>
@@ -328,12 +346,6 @@
   <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
     <value>Ersetzte G2/3 durch Linien</value>
   </data>
-  <data name="gCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 20</value>
-  </data>
-  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>GCode transformieren</value>
-  </data>
   <data name="heightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 22</value>
   </data>
@@ -376,89 +388,14 @@
   <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Einstellungen an Programmoberfläche, Importoptionen und GCode-Erzeugung</value>
   </data>
-  <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
-  </data>
-  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Maschine</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>Über...</value>
-  </data>
-  <data name="menuStrip1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_mx.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_my.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_mz.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_wx.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_wy.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_wz.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnOffsetApply.Text" xml:space="preserve">
-    <value>Offset setzen</value>
-  </data>
-  <data name="btnOffsetApply.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tbOffsetY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tbOffsetX.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin9.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBOrigin1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>G-Code Datei</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Nullpunkt XY</value>
   </data>
-  <data name="groupBox4.ToolTip" xml:space="preserve">
-    <value />
+  <data name="btnOffsetApply.Text" xml:space="preserve">
+    <value>Offset setzen</value>
   </data>
   <data name="lbDimension.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 58</value>
@@ -466,26 +403,8 @@
   <data name="lbDimension.Text" xml:space="preserve">
     <value>Abmessungen</value>
   </data>
-  <data name="lbDimension.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="pbBuffer.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnStreamStop.ToolTip" xml:space="preserve">
     <value>Stoppt die Übertragung</value>
-  </data>
-  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lbInfo.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblRemaining.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="pbFile.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="lblElapsed.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 13</value>
@@ -493,38 +412,44 @@
   <data name="lblElapsed.Text" xml:space="preserve">
     <value>Dauer</value>
   </data>
-  <data name="lblElapsed.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="lblFileProgress.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
   </data>
   <data name="lblFileProgress.Text" xml:space="preserve">
     <value>Fortschritt</value>
   </data>
-  <data name="lblFileProgress.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tbFile.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnStreamStart.ToolTip" xml:space="preserve">
     <value>Sende den GCode aus dem Editor an GRBL</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G-Code Datei</value>
+  <data name="cmsCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 92</value>
   </data>
-  <data name="groupBox1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cmsCodeSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 22</value>
   </data>
-  <data name="cmsCode.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cmsCodeSelect.Text" xml:space="preserve">
+    <value>Alles auswählen</value>
   </data>
-  <data name="label_status0.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cmsCodeCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 22</value>
   </data>
-  <data name="label_a.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cmsCodeCopy.Text" xml:space="preserve">
+    <value>Kopieren</value>
+  </data>
+  <data name="cmsCodePaste.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 22</value>
+  </data>
+  <data name="cmsCodePaste.Text" xml:space="preserve">
+    <value>Einfügen</value>
+  </data>
+  <data name="cmsCodeSendLine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 22</value>
+  </data>
+  <data name="cmsCodeSendLine.Text" xml:space="preserve">
+    <value>Sende Codezeile</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Werkzeug Koordinaten (World / Machine)</value>
   </data>
   <data name="btnZeroA.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 23</value>
@@ -535,12 +460,6 @@
   <data name="btnZeroA.ToolTip" xml:space="preserve">
     <value>Setze World Koordinate auf Null
 </value>
-  </data>
-  <data name="label_ma.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label_wa.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnZeroXYZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 62</value>
@@ -562,9 +481,6 @@
     <value>Setze World Koordinate X,Y auf Null
 </value>
   </data>
-  <data name="label4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnZeroZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 23</value>
   </data>
@@ -573,9 +489,6 @@
   </data>
   <data name="btnZeroZ.ToolTip" xml:space="preserve">
     <value>Setze World Koordinate X auf Null</value>
-  </data>
-  <data name="label3.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnZeroY.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 23</value>
@@ -587,9 +500,6 @@
     <value>Setze World Koordinate Y auf Null
 </value>
   </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnZeroX.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 23</value>
   </data>
@@ -599,47 +509,8 @@
   <data name="btnZeroX.ToolTip" xml:space="preserve">
     <value>Setze World Koordinate X auf Null</value>
   </data>
-  <data name="label_status.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Werkzeug Koordinaten (World / Machine)</value>
-  </data>
-  <data name="groupBox2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCustom4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tableLayoutPanel1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Benutzerdefinierte Buttons</value>
-  </data>
-  <data name="groupBox5.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnFeedHold.ToolTip" xml:space="preserve">
     <value>! Feed Hold
@@ -780,32 +651,8 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
         nMCqsjIRZgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="groupBox3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblTool.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cBTool.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label9.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBSpeed.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cBCoolant.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cBSpindle.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Steuerung / Jogging</value>
-  </data>
-  <data name="groupBox6.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
     <value>137, 12</value>
@@ -831,35 +678,50 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
   <data name="fCTBCode.Text" xml:space="preserve">
     <value>Paste GCode hier</value>
   </data>
-  <data name="fCTBCode.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 154</value>
   </data>
-  <data name="cmsPictureBox.ToolTip" xml:space="preserve">
-    <value />
+  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
   </data>
-  <data name="pictureBox1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Einfügen aus Zwischenablage</value>
   </data>
-  <data name="tLPLinks.ToolTip" xml:space="preserve">
-    <value />
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 6</value>
   </data>
-  <data name="tLPRechtsUntenRechts.ToolTip" xml:space="preserve">
-    <value />
+  <data name="resetZoomingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
   </data>
-  <data name="tLPMitteUnten.ToolTip" xml:space="preserve">
-    <value />
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 6</value>
   </data>
-  <data name="tLPRechtsUnten.ToolTip" xml:space="preserve">
-    <value />
+  <data name="deletenotMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
   </data>
-  <data name="tLPRechtsOben.ToolTip" xml:space="preserve">
-    <value />
+  <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Markiere  Code (kein Löschen)</value>
   </data>
-  <data name="tLPRechts.ToolTip" xml:space="preserve">
-    <value />
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 6</value>
   </data>
-  <data name="tLPAussen.ToolTip" xml:space="preserve">
-    <value />
+  <data name="deleteThisCodeLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lösche diese Codezeile</value>
+  </data>
+  <data name="moveToFirstPosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gehe zur ersten Pos.</value>
+  </data>
+  <data name="deletePathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lösche zugehörigen Pfad</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3866,8 +3728,5 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
         ////////////////////////////////////////////////////////////////////////////////
         //8=
 </value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>
