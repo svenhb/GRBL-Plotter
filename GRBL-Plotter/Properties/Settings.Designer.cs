@@ -2026,5 +2026,17 @@ namespace GRBL_Plotter.Properties {
                 this["lastOffsetA"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool guiCheckUpdate {
+            get {
+                return ((bool)(this["guiCheckUpdate"]));
+            }
+            set {
+                this["guiCheckUpdate"] = value;
+            }
+        }
     }
 }
