@@ -15,68 +15,52 @@ New font ['Dot Matrix'](https://youtu.be/ip_qCQwoufw)
 Option for SVG-Import 'Process path nodes only' usefull for ['String Art'](https://youtu.be/ymWi15rvTvM)  
 Support of 4th axis  
 SVG-Import bug fix  
-  
-### New in version 1.1.0.0:  
-Surface scanning for height map creation  
-[Autoleveling](https://github.com/svenhb/GRBL-Plotter/wiki/auto-leveling) using height map  
-Substitution for [Rotary Axis](https://github.com/svenhb/GRBL-Plotter/wiki/rotary-axis) (instead of X or Y control a rotary axis)  
-[Subroutines](https://github.com/svenhb/GRBL-Plotter/wiki/subroutines) M98, M99 Sub-Program Call (P, L)    
-Create GCode absolute or relative (for further use as subroutine)  
-DXF Import (Missing: Text and Ellipse, Spline with more than 4 points nok)  
-  
-### New in version 1.0.3.0:  
-Two languages - german, english  
-Rework the camera form 
-  
-### New in version 1.0.2.0:
-Supporting GRBL 1.1 (and 0.9 also)  
-Export / import machine specific settings (Joystick, Buttons)  
-Simple shapes  
-Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1)  
-
+      
 [Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.1.0](GRBL-Plotter_1110_Publish.zip)  2017-10-22  
+#### [GRBL-Plotter Vers. 1.1.2.0](GRBL-Plotter_1120_Publish.zip)  2017-10-31  
 
 ### Requirements for compiling
 * VisualStudio 2015 
 * DotNET 4.0
  
 ### Features:
-* Supporting GRBL 1.1 (and 0.9 also)  
-* Controlling a 2nd GRBL-Hardware  
+* Supporting GRBL 1.1 (and 0.9 also)
+* Controlling a 2nd GRBL-Hardware
 * Supports 4th axis (A, B, C, U, V or W). Status and control
-* Axis Substitution for Rotary Axis  
-* Export / import machine specific settings (Joystick, Buttons) 
-* Surface scanning for height map creation and Autoleveling  
+* Axis Substitution for Rotary Axis
+* Surface scanning for height map creation and Autoleveling
   
-* GCode import via file load, drag & drop or copy & paste 
-* SVG graphics import via file load, drag & drop (also URL) or copy & paste 
-* DXF graphics import via file load, drag & drop (also URL) 
-* Image import via file load, drag & drop (also URL) or copy & paste 
-* GCode generation from Text (Hershey Font) 
-* GCode generation from simple shapes
-* Several options to translate Pen Up/Down 
-  - controlling a Z axis   
-  - controlling a servo 
-  - controlling a laser 
-  - user defined commands 
+* GCode import via file load, drag & drop or copy & paste
+  - Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1)
+* SVG graphics import via file load, drag & drop (also URL) or copy & paste
+* DXF graphics import via file load, drag & drop (also URL)
+* Image import via file load, drag & drop (also URL) or copy & paste
+* GCode generation from Text (Hershey Font)
+* GCode generation from simple shape
+* Several options to translate Pen Up/Down
+  - controlling a Z axis
+  - controlling a servo
+  - controlling a laser
+  - user defined commands
+  - Create GCode absolute or relative (for further use as subroutine)  
     
-* Transformation of GCodes (scale, rotation, mirror, zero-Offset) 
-* Supporting subroutines M98, M99 Sub-Program Call (P, L)    
-* GCode can be edited and saved 
-* User defined Buttons - GCode from text-field or file 
-* Joystick like control 
-* Automatic reconnect on program start 
-* Recent File List (Files and URLs) 
-* 2-dimensional preview 
-* Optional usage of a WebCam with graphics overlay of the current GCode, set zero point, measure angle, zoom 
-* Internal variable to support probing, e.g.: 
-  - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.) 
-  - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch) 
-  - examine SerialForm.cs for implementation 
+* Transformation of GCodes (scale, rotation, mirror, zero-Offset)
+* Supporting subroutines M98, M99 Sub-Program Call (P, L)
+* GCode can be edited and saved
+* User defined Buttons - GCode from text-field or file
+* Joystick like control
+* Export / import machine specific settings (Joystick, Buttons)
+* Automatic reconnect on program start
+* Recent File List (Files and URLs)
+* 2-dimensional preview
+* Optional usage of a WebCam with graphics overlay of the current GCode, set zero point, measure angle, zoom
+* Internal variable to support probing, e.g.:
+  - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.)
+  - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
+  - examine SerialForm.cs for implementation
  
 ### My test bed
 On my german homepage:
