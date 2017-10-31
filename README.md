@@ -3,10 +3,16 @@
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2015.
  
+### New in version 1.1.2.0: 
+Import of SVG graphics or Image via Ctrl-V 'Paste' into GRBL-Plotter   
+Copy SVG data from "URL imported SVG" to clipboard for pasting into inkscape   
+Check for GRBL-Plotter update   
+SVG-Import bug fix  
+  
 ### New in version 1.1.1.0: 
 Zooming into graphic  
 New font ['Dot Matrix'](https://youtu.be/ip_qCQwoufw)   
-Option for SVG-Import 'Process path nodes only'  
+Option for SVG-Import 'Process path nodes only' usefull for ['String Art'](https://youtu.be/ymWi15rvTvM)  
 Support of 4th axis  
 SVG-Import bug fix  
   
