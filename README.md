@@ -46,31 +46,38 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
  
 ### Features:
 * Supporting GRBL 1.1 (and 0.9 also)  
-* Export / import machine specific settings (Joystick, Buttons)
-* Controlling a 2nd GRBL-Hardware
-* Tool exchange
-* User defined Buttons - GCode from text-field or file
-* Joystick like control
-* Automatic reconnect on program start
-* Recent File List (Files and URLs)
-* 2-dimensional preview
-* Import/creation and conversion into GCode 
-  - from SVG and DXF Graphics
-  - from Text (into Hershey Font)
-  - conversion of the Z-Dimension into Z-axis (router) or Spindle on/off (laser) or Spindle-Speed (RC-Servo PWM) 
-* GCode can be edited and saved
-* Drag & Drop of GCode (*.nc) and SVG (*.svg) files
-* Drag & Drop (or Copy & Paste) of Browserlinks to SVG-files (works only with Chrome) for example from https://openclipart.org/
-* Transformation of GCodes (scale, rotation, mirror, zero-Offset)
-* Optional usage of a WebCam with graphics overlay of the current GCode, set zero point, measure angle, zoom
-* Internal variable to support probing, e.g.:
-  - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.)
-  - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
-  - examine SerialForm.cs for implementation
-
-### ToDo
-* Wizzard to generate simple forms in GCode
-
+* Controlling a 2nd GRBL-Hardware  
+* Supports 4th axis (A, B, C, U, V or W). Status and control
+* Axis Substitution for Rotary Axis  
+* Export / import machine specific settings (Joystick, Buttons) 
+* Surface scanning for height map creation and Autoleveling  
+  
+* GCode import via file load, drag & drop or copy & paste 
+* SVG graphics import via file load, drag & drop (also URL) or copy & paste 
+* DXF graphics import via file load, drag & drop (also URL) 
+* Image import via file load, drag & drop (also URL) or copy & paste 
+* GCode generation from Text (Hershey Font) 
+* GCode generation from simple shapes
+* Several options to translate Pen Up/Down 
+  - controlling a Z axis   
+  - controlling a servo 
+  - controlling a laser 
+  - user defined commands 
+    
+* Transformation of GCodes (scale, rotation, mirror, zero-Offset) 
+* Supporting subroutines M98, M99 Sub-Program Call (P, L)    
+* GCode can be edited and saved 
+* User defined Buttons - GCode from text-field or file 
+* Joystick like control 
+* Automatic reconnect on program start 
+* Recent File List (Files and URLs) 
+* 2-dimensional preview 
+* Optional usage of a WebCam with graphics overlay of the current GCode, set zero point, measure angle, zoom 
+* Internal variable to support probing, e.g.: 
+  - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.) 
+  - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch) 
+  - examine SerialForm.cs for implementation 
+ 
 ### My test bed
 On my german homepage:
 [my XYZ platform](http://svenhb.bplaced.net/?CNC___Plotter) 
