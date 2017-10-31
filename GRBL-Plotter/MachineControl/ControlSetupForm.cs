@@ -25,6 +25,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace GRBL_Plotter
 {
@@ -37,6 +38,9 @@ namespace GRBL_Plotter
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
         }
+
+        public void setLastLoadedFile(string text)
+        { toolTip1.SetToolTip(btnReloadFile,text); }
 
         private void SetupForm_Load(object sender, EventArgs e)
         {
@@ -231,5 +235,29 @@ namespace GRBL_Plotter
             nUDJoyZSpeed4.Value = (decimal)((double)nUDJoyZStep4.Value / time * 60 * correct);
             nUDJoyZSpeed5.Value = (decimal)((double)nUDJoyZStep5.Value / time * 60 * correct);
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {    Process.Start(@"https://openclipart.org/tags/svg");   }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { Process.Start(@"https://publicdomainvectors.org/"); }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { Process.Start(@"https://simplemaps.com/"); }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { Process.Start(@"http://www.cliparts101.com/"); }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { Process.Start(@"http://www.clker.com/"); }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { Process.Start(@"https://free.clipartof.com/"); }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { Process.Start(@"https://github.com/gnea/grbl/wiki"); }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        { Process.Start(@"http://linuxcnc.org/docs/html/gcode.html"); }
     }
 }

@@ -326,6 +326,7 @@ namespace GRBL_Plotter
             char cmd = '\0';
             string num = "";
             bool comment = false;
+            double value = 0;
 
             if (! (line.StartsWith("$")|| line.StartsWith("("))) //do not parse grbl commands
             {
@@ -342,8 +343,15 @@ namespace GRBL_Plotter
                             if (Char.IsLetter(c))
                             {
                                 if (cmd != '\0')
-                                    parseGCodeToken(cmd, double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo));
-
+                                {
+                                    value = 0;
+                                    if (num.Length > 0)
+                                    {
+                                        try { value = double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo); }
+                                        catch { }
+                                    }
+                                    parseGCodeToken(cmd,value);
+                                }
                                 cmd = c;
                                 num = "";
                             }
@@ -828,6 +836,9 @@ namespace GRBL_Plotter
                 double i = (double)ii;
                 double j = (double)jj;
                 float radius = (float)Math.Sqrt(i * i + j * j);
+                if (radius == 0)               // kleinster Wert > 0
+                { radius = 0.0000001f; }
+
                 float x1 = (float)(ox + i - radius);
                 float y1 = (float)(oy + j - radius);
 

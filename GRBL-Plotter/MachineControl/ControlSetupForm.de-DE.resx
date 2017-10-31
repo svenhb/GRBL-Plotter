@@ -117,21 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Grafik Import</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Steuerung</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Benutzerdefinierte Buttons</value>
-  </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Joystick / Farben</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Grafik Import</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnResizeForm.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 23</value>
@@ -139,11 +124,26 @@
   <data name="btnResizeForm.Text" xml:space="preserve">
     <value>Fenster erweitern &gt;</value>
   </data>
+  <data name="btnResizeForm.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rBImportDXFSize2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rBImportDXFSize1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox15.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBImportSVGPauseP.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 17</value>
   </data>
   <data name="cBImportSVGPauseP.Text" xml:space="preserve">
     <value>Pause (M0) vor 'Pen down'</value>
+  </data>
+  <data name="cBImportSVGPauseP.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBImportSVGNodesOnly.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 17</value>
@@ -179,6 +179,9 @@ Default wenn keine Datei angegeben ist:
   0   0 255  blue (Tool 4)
 </value>
   </data>
+  <data name="nUDSVGScale.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBImportSVGPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 17</value>
   </data>
@@ -199,6 +202,12 @@ Diese Einstellung ist für Schneidmesser gedacht</value>
     <value>Berechne Stift-Nummer durch Auswahl der am besten übereinstimmenden Farbe des SVG-Pfades in der GIMP-Pallette
 Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet werden</value>
   </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox14.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btnReloadFile.Text" xml:space="preserve">
     <value>DXF/SVG neu laden</value>
   </data>
@@ -207,6 +216,15 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
   </data>
   <data name="cBImportSVGPauseE.Text" xml:space="preserve">
     <value>Pause (M0) vor jedem Pfad</value>
+  </data>
+  <data name="cBImportSVGPauseE.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDImportReduce.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBImportSVGReduce.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 17</value>
@@ -223,6 +241,12 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
   <data name="cBImportSVGComments.Text" xml:space="preserve">
     <value>Zusätzliche SVG Kommentare</value>
   </data>
+  <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 13</value>
   </data>
@@ -232,14 +256,32 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
   <data name="label1.ToolTip" xml:space="preserve">
     <value>Kurven werden durch kurze Linienstücke erzeugt, je höher die Anzahl, desto weniger Knicke</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>G-Code Erzeugung</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Grafik Import</value>
+  </data>
+  <data name="groupBox3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label37.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cBImportGCUseIndividual.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox16.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
   </data>
   <data name="label34.Text" xml:space="preserve">
     <value>Linien Länge</value>
+  </data>
+  <data name="label34.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBImportGCNoArcs.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 17</value>
@@ -269,6 +311,9 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="cBImportGCCompress.ToolTip" xml:space="preserve">
     <value>Entferne überflüssige Informationen
 Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
+  </data>
+  <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
@@ -300,11 +345,20 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="cBImportGCComments.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 13</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>G-Code Fußzeile</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tBImportGCFooter.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 13</value>
@@ -313,12 +367,6 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <value>G-Code Kopfzeile</value>
   </data>
   <data name="label12.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Servo Steuerung</value>
-  </data>
-  <data name="groupBox4.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cBImportGCUsePWM.Size" type="System.Drawing.Size, System.Drawing">
@@ -375,10 +423,16 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label10.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Z-Achse</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Servo Steuerung</value>
   </data>
-  <data name="groupBox5.ToolTip" xml:space="preserve">
+  <data name="groupBox4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDImportGCFeedXY.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
@@ -414,23 +468,62 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label2.ToolTip" xml:space="preserve">
     <value>Stift hoch</value>
   </data>
+  <data name="nUDImportGCZUp.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Z-Höhe gravieren</value>
   </data>
   <data name="label3.ToolTip" xml:space="preserve">
     <value>Stift runter</value>
   </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Z-Achse</value>
+  </data>
+  <data name="groupBox5.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="label11.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit für G1,2,3 Befehle bei X oder Y Koordinaten</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Drehachsen Steuerung</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>G-Code Erzeugung</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>GRBL Setup für ersetzte Achse</value>
+  <data name="groupBox2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Grafik Import</value>
+  </data>
+  <data name="tabPage3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cBcheckupdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 17</value>
+  </data>
+  <data name="cBcheckupdate.Text" xml:space="preserve">
+    <value>Überprüfe auf neue GRBL-Plotter Version auf GitHub</value>
+  </data>
+  <data name="cBcheckupdate.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comboBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label38.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox17.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 62</value>
@@ -441,11 +534,23 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label31.Text" xml:space="preserve">
     <value>Original Achse</value>
   </data>
+  <data name="label31.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tBRotarySetupOff.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBRotarySetupApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 17</value>
   </data>
   <data name="cBRotarySetupApply.Text" xml:space="preserve">
     <value>Sende settings</value>
+  </data>
+  <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tBRotarySetupOn.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 38</value>
@@ -456,11 +561,23 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label32.Text" xml:space="preserve">
     <value>Drehachse</value>
   </data>
+  <data name="label32.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>GRBL Setup für ersetzte Achse</value>
+  </data>
+  <data name="groupBox13.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
   </data>
   <data name="label30.Text" xml:space="preserve">
     <value>Einheiten</value>
+  </data>
+  <data name="label30.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 13</value>
@@ -468,11 +585,23 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label29.Text" xml:space="preserve">
     <value>Durchmesser</value>
   </data>
+  <data name="label29.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDRotaryDiameter.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 13</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Einheiten der Achse</value>
+  </data>
+  <data name="label27.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDRotaryScale.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 13</value>
@@ -480,11 +609,20 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label26.Text" xml:space="preserve">
     <value>360° entsprechen</value>
   </data>
+  <data name="label26.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="rBRotaryY.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 17</value>
   </data>
   <data name="rBRotaryY.Text" xml:space="preserve">
     <value>Y Achse</value>
+  </data>
+  <data name="rBRotaryY.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rBRotaryX.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBRotarySubstitute.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 17</value>
@@ -492,11 +630,14 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="cBRotarySubstitute.Text" xml:space="preserve">
     <value>Achsen Ersetzung</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>GCode einlesen</value>
+  <data name="cBRotarySubstitute.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 78</value>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Drehachsen Steuerung</value>
+  </data>
+  <data name="groupBox12.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="rBCtrlReplaceM4.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 17</value>
@@ -522,11 +663,17 @@ M3 Constant Laser Power Mode
 oder
 M4 Dynamic Laser Power Mode</value>
   </data>
-  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 67</value>
+  <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 78</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Serielle Verbindung</value>
+  <data name="groupBox11.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>GCode einlesen</value>
+  </data>
+  <data name="groupBox10.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBSerial2.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 17</value>
@@ -547,26 +694,62 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
   <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
     <value>Das serielle Fenster wird nach erfolgreicher Verbindung zum GRBL minimiert</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Werkzeugwechsel</value>
+  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 67</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Serielle Verbindung</value>
+  </data>
+  <data name="groupBox9.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Pfad zum Skript PROBE tool</value>
   </data>
+  <data name="label18.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Pfad zum Skript SELECT tool</value>
+  </data>
+  <data name="label17.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Pfad zum Skript REMOVE tool</value>
   </data>
+  <data name="label16.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Pfad zum Skript PICK UP tool</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBToolChange.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 17</value>
   </data>
   <data name="cBToolChange.Text" xml:space="preserve">
     <value>Werkzeugwechsel ausführen</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Werkzeugwechsel</value>
+  </data>
+  <data name="groupBox7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Steuerung</value>
+  </data>
+  <data name="tabPage2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblcbnr.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnChangeDefinition.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 23</value>
@@ -580,29 +763,203 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
   <data name="columnHeader3.Text" xml:space="preserve">
     <value>G-Code oder Pfad zum Skript</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Farben der 2D Vorschau</value>
+  <data name="lvCustomButtons.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Benutzerdefinierte Buttons</value>
+  </data>
+  <data name="tabPage1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnColorHeightMap.Text" xml:space="preserve">
     <value>Höhenprofil</value>
   </data>
+  <data name="btnColorHeightMap.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnColorMarker.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btnColorTool.Text" xml:space="preserve">
     <value>Werkzeug</value>
+  </data>
+  <data name="btnColorTool.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnColorPenDown.Text" xml:space="preserve">
     <value>Stift unten</value>
   </data>
+  <data name="btnColorPenDown.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btnColorPenUp.Text" xml:space="preserve">
     <value>Stift oben</value>
+  </data>
+  <data name="btnColorPenUp.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnColorRuler.Text" xml:space="preserve">
     <value>Lineal</value>
   </data>
+  <data name="btnColorRuler.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btnColorBackground.Text" xml:space="preserve">
     <value>Hintergrund</value>
   </data>
+  <data name="btnColorBackground.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Farben der 2D Vorschau</value>
+  </data>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label28.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZSpeed5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZSpeed4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZSpeed3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZSpeed2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZSpeed1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZStep5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZStep4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZStep3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZStep2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyZStep1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label25.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label24.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label23.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label22.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label21.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label20.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYSpeed5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYSpeed4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYSpeed3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYSpeed2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYSpeed1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYStep5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYStep4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYStep3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYStep2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDJoyXYStep1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Joystick Einstellungen</value>
+  </data>
+  <data name="groupBox8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Joystick / Farben</value>
+  </data>
+  <data name="tabPage4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>298, 92</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>GRBL und GCode betreffend</value>
+  </data>
+  <data name="groupBox19.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Achtung: drag and drop funktioniert nicht mit dem IE-Browser aber mit Google Chrome</value>
+  </data>
+  <data name="label39.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox18.Text" xml:space="preserve">
+    <value>Freie SVG Grafik Quellen (mit drag and drop Möglichkeit)</value>
+  </data>
+  <data name="groupBox18.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabPage5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tabControl1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnApplyChangings.Text" xml:space="preserve">
     <value>Änderungen jetzt übernehmen</value>
@@ -3613,8 +3970,7 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
         //8=
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>
