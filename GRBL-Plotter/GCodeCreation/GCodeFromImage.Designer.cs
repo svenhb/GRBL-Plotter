@@ -79,10 +79,10 @@
             this.tBImportSVGPalette = new System.Windows.Forms.TextBox();
             this.cBImportSVGTool = new System.Windows.Forms.CheckBox();
             this.cBImportGCTool = new System.Windows.Forms.CheckBox();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnList = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.loadPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,6 +97,7 @@
             this.rBProcessTool = new System.Windows.Forms.RadioButton();
             this.rBProcessZ = new System.Windows.Forms.RadioButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDReso)).BeginInit();
@@ -544,21 +545,6 @@
             this.toolTip1.SetToolTip(this.cBImportGCTool, resources.GetString("cBImportGCTool.ToolTip"));
             this.cBImportGCTool.UseVisualStyleBackColor = true;
             // 
-            // btnLoad
-            // 
-            resources.ApplyResources(this.btnLoad, "btnLoad");
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.cbExceptColor);
-            this.groupBox5.Controls.Add(this.cbExceptAlpha);
-            resources.ApplyResources(this.groupBox5, "groupBox5");
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.TabStop = false;
-            // 
             // btnTest
             // 
             resources.ApplyResources(this.btnTest, "btnTest");
@@ -576,6 +562,21 @@
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
             // 
+            // btnLoad
+            // 
+            resources.ApplyResources(this.btnLoad, "btnLoad");
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.cbExceptColor);
+            this.groupBox5.Controls.Add(this.cbExceptAlpha);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.TabStop = false;
+            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.cbSkipToolOrder);
@@ -589,7 +590,8 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.Yellow;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadPictureToolStripMenuItem});
+            this.loadPictureToolStripMenuItem,
+            this.pasteFromClipboardToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
@@ -688,6 +690,12 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // pasteFromClipboardToolStripMenuItem
+            // 
+            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
+            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
+            this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
+            // 
             // GCodeFromImage
             // 
             resources.ApplyResources(this, "$this");
@@ -702,10 +710,12 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GCodeFromImage";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GCodeFromImage_FormClosing);
             this.Load += new System.EventHandler(this.ImageToGCode_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GCodeFromImage_KeyDown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -809,5 +819,6 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label lblColors;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem pasteFromClipboardToolStripMenuItem;
     }
 }

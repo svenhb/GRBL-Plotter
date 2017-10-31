@@ -30,6 +30,7 @@ namespace GRBL_Plotter
 
         private static int gcodeLines = 0;              // counter for GCode lines
         private static float gcodeDistance = 0;         // counter for GCode move distance
+        private static int gcodeDownUp = 0;             // counter for GCode Pen Down / Up
         private static float gcodeTime = 0;             // counter for GCode work time
         private static int gcodePauseCounter = 0;       // counter for GCode pause M0 commands
         private static int gcodeToolCounter = 0;       // counter for GCode Tools
@@ -108,6 +109,7 @@ namespace GRBL_Plotter
 
             gcodeLines = 1;             // counter for GCode lines
             gcodeDistance = 0;          // counter for GCode move distance
+            gcodeDownUp = 0;            // counter for GCode Down/Up
             gcodeTime = 0;              // counter for GCode work time
             gcodePauseCounter = 0;      // counter for GCode pause M0 commands
             gcodeToolCounter = 0;
@@ -235,6 +237,8 @@ namespace GRBL_Plotter
 //                gcodeString.AppendFormat("{0}\r\n", gcodeIndividualDown);
             }
             if (gcodeComments) gcodeString.Append("\r\n");
+
+            gcodeDownUp++;
         }
 
         private static float lastz = 0;
@@ -494,6 +498,7 @@ namespace GRBL_Plotter
                 header += string.Format("( Source: {0} )\r\n", source);
 
             header += string.Format("( G-Code lines: {0} )\r\n", gcodeLines);
+            header += string.Format("( Pen Down/Up : {0} times )\r\n", gcodeDownUp);
             header += string.Format("( Path length : {0:0.0} units )\r\n", gcodeDistance);
             header += string.Format("( Duration    : {0:0.0} min. )\r\n", gcodeTime);
             if (gcodeToolChange)

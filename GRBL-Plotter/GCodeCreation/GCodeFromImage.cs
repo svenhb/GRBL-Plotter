@@ -36,11 +36,13 @@ using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
+using System.Net;
 
 namespace GRBL_Plotter
 {
     public partial class GCodeFromImage : Form
     {
+        Bitmap loadedImage;
         Bitmap originalImage;
         Bitmap adjustedImage;
         Bitmap resultImage;
@@ -69,7 +71,7 @@ namespace GRBL_Plotter
 
         private void getSettings()
         {
-            svgToolIndex = svgPalette.init();
+            svgToolIndex = svgPalette.init();       // svgPalette.cs
         }
 
         // load picture when form opens
@@ -98,6 +100,7 @@ namespace GRBL_Plotter
                     if (!File.Exists(sfd.FileName)) return;
                     fileLoaded = true;
                     lastFile = sfd.FileName;
+                    loadedImage = new Bitmap(Image.FromFile(sfd.FileName));
                     originalImage = new Bitmap(Image.FromFile(sfd.FileName));
                     processLoading();
                 }
@@ -110,12 +113,33 @@ namespace GRBL_Plotter
 
         public void loadExtern(string file)
         {
-//            MessageBox.Show(file);
             if (!File.Exists(file)) return;
             lastFile = file;
             fileLoaded = true;
+            loadedImage = new Bitmap(Image.FromFile(file));
             originalImage = new Bitmap(Image.FromFile(file));
             processLoading();
+        }
+
+        private void pasteFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {   loadClipboard();  }
+        public void loadClipboard()
+        {
+            IDataObject iData = Clipboard.GetDataObject();
+            if (iData.GetDataPresent(DataFormats.Bitmap))
+            {
+                lastFile = "";
+                fileLoaded = true;
+                loadedImage = new Bitmap(Clipboard.GetImage());
+                originalImage = new Bitmap(Clipboard.GetImage());
+                processLoading();
+            }
+        }
+
+        public void loadURL(string url)
+        {
+            pictureBox1.Load(url);
+            originalImage = new Bitmap(pictureBox1.Image);
         }
 
         private void processLoading()
@@ -416,7 +440,7 @@ namespace GRBL_Plotter
             Array.Resize<string>(ref usedColors, svgToolIndex + 1);     //usedColors = string[svgToolIndex + 1];
             Array.Resize<int>(ref countColors, svgToolIndex + 1);     //countColors = new int[svgToolIndex + 1];
             for (int i = 0; i <= svgToolIndex; i++)
-            { usedColors[i] = ""; countColors[i] = 0; }
+            {  countColors[i] = 0; usedColors[i] = ""; }    // usedColors[i] = "";
             generateResultImage();
             pictureBox1.Image = resultImage;
         }
@@ -998,19 +1022,20 @@ namespace GRBL_Plotter
             generateResultImage();
 
             string tool_string = "";
+            string not_used = "\r\nAll current palette colors:\r\n";
             Dictionary<int, string> values =  new Dictionary<int, string>();
 
-            debug_string = "Palette has " + (svgToolIndex - 1).ToString() + " colors\r\n";
+            debug_string = "Palette has " + (svgToolIndex - 1).ToString() + " colors\r\n\r\n";
             if (cbSkipToolOrder.Checked)
                 debug_string += "Colors / Tools used in image (sort by pixel count):\r\nTool nr not from palette\r\n ";
             else
                 debug_string += "Colors / Tools used in image:\r\n ";
-            for (int i = 0; i < svgToolIndex; i++)
+            for (int i = 0; i <= svgToolIndex; i++)
             {
                 if (usedColors[i].Length > 1)
                 {
                     if (i < 2)
-                        debug_string += "Exception color " + usedColors[i] + "\r\n";
+                        debug_string += (i - 2).ToString() + ") Exception color " + usedColors[i] + "\r\n";
                     else
                     {
                         tool_string += (i - 2).ToString() + ") " + usedColors[i] + "\r\n";
@@ -1020,6 +1045,9 @@ namespace GRBL_Plotter
                     }
                 }
             }
+            for (int i = 0; i < svgToolIndex-1; i++)
+            { not_used += (i).ToString() + ") " + svgPalette.getToolName(i) + "\r\n"; }
+
             if (cbSkipToolOrder.Checked)
             {   if (values.Count() > 0)
                 {
@@ -1034,7 +1062,7 @@ namespace GRBL_Plotter
                     }
                 }
             }
-            MessageBox.Show(debug_string + tool_string);
+            MessageBox.Show(debug_string + tool_string + not_used, "List of pens");
         }
 
         private void generateResultImage()
@@ -1045,15 +1073,17 @@ namespace GRBL_Plotter
             else
                 svgPalette.clrExceptionColor();
             int myToolNr, myIndex;
+            int mode = (int)nUDMode.Value;
             for (y = 0; y < adjustedImage.Height; y++)
             {
                 for (x = 0; x < adjustedImage.Width; x++)
                 {
-                    myColor = adjustedImage.GetPixel(x, y);  //Get pixel color}
-                    if (((cbExceptAlpha.Checked) && (myColor.A == 0)))
-                    {  newColor = Color.White; myToolNr = -2; usedColors[0] = "Alpha = 0      " + myColor.ToString(); }
+                    myColor = adjustedImage.GetPixel(x, y);                 // Get pixel color}
+                    if (((cbExceptAlpha.Checked) && (myColor.A == 0)))      // skip exception
+                    {  newColor = Color.White; myToolNr = -2; usedColors[0] = "Alpha = 0      " + myColor.ToString();
+                    }
                     else
-                    {   myToolNr = svgPalette.getToolNr(myColor, (int)nUDMode.Value);     // find nearest color in palette
+                    {   myToolNr = svgPalette.getToolNr(myColor, mode);     // find nearest color in palette
                         if (myToolNr < 0)
                             newColor = Color.White;
                         else
@@ -1187,10 +1217,11 @@ namespace GRBL_Plotter
             if (cbGrayscale.Checked)
                 originalImage = imgGrayscale(originalImage);
             else
-            {   if (fileLoaded)
-                    originalImage = new Bitmap(Image.FromFile(lastFile));
-                else
-                    originalImage = new Bitmap(Properties.Resources.modell);
+            {   //if (fileLoaded)
+               //     originalImage = new Bitmap(Image.FromFile(lastFile));
+               // else
+               //     originalImage = new Bitmap(Properties.Resources.modell);
+                originalImage = new Bitmap(loadedImage);
             }
             adjustedImage = new Bitmap(originalImage);
             userAdjust();
@@ -1199,6 +1230,15 @@ namespace GRBL_Plotter
         private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.locationImageForm = Location;
+        }
+
+        private void GCodeFromImage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
+            {
+                loadClipboard();
+                e.SuppressKeyPress = true;
+            }
         }
 
         private Point oldPoint = new Point(0,0);

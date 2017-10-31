@@ -88,13 +88,16 @@ namespace GRBL_Plotter
             //            gcodeToolChange = Properties.Settings.Default.importGCTool;
             useException=false;
             Array.Resize(ref svgToolTable, svgToolMax);
-            svgToolIndex = 1;
+            svgToolIndex = 2;
             svgToolTable[0].toolnr = -1; 
             svgToolTable[0].clr = Color.White; 
             svgToolTable[0].use = false; 
             svgToolTable[0].diff = int.MaxValue; 
             svgToolTable[0].name = "except";
             svgToolTable[0].pixelCount=0;
+
+            svgToolTable[1].toolnr = 0; svgToolTable[1].pixelCount = 0; svgToolTable[svgToolIndex].use = true; svgToolTable[1].clr = Color.Black; svgToolTable[1].diff = int.MaxValue; svgToolTable[1].name = "black";
+
             if (svgToolColor)
             {
                 if (File.Exists(svgPaletteFile))
@@ -177,7 +180,7 @@ namespace GRBL_Plotter
             if (useException) start=0;  // first element is exception
             for (i = start; i < svgToolIndex; i++)
             {
-                if (mycolor == svgToolTable[i].clr)
+                if (mycolor == svgToolTable[i].clr)         // direct hit
                 {
                     tmpIndex = i;
                     return svgToolTable[i].toolnr;
