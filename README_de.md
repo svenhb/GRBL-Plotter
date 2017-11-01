@@ -18,27 +18,18 @@ SVG-Import bug fix
   
 ### Neu in Version 1.1.0.0:  
 Oberflächenabtastung zur Erzeugung eines Höhenprofils  
-[Autoleveling](https://github.com/svenhb/GRBL-Plotter/wiki/Autoleveling) mit Hilfe eines Höhenprofils  
-Substitution für [Drehachse](https://github.com/svenhb/GRBL-Plotter/wiki/Drehachse) (statt X oder Y eine Drehachse ansteuern)  
-[Unterprogramme](https://github.com/svenhb/GRBL-Plotter/wiki/Unterprogramme) M98, M99 Sub-Program Call (P, L)  
+Autoleveling mit Hilfe eines Höhenprofils  
+Substitution für Drehachse (statt X oder Y eine Drehachse ansteuern)  
+Unterprogramme M98, M99 Sub-Program Call (P, L)  
 GCode Erzeugung absolut oder relative (für weitere Verwendung als Unterprogramm)  
 DXF Import (Fehlend: Text und Ellipse, Spline mit mehr als 4 punkten nok)  
   
-### Neu in Version 1.0.3.0:  
-Zweisprachig - deutsch, englisch  
-Überarbeitung der Kameraunterstützung
-    
-### Neu in Version 1.0.2.0:
-Unterstützung der neuen GRBL Version 1.1 (und auch der Version 0.9)  
-Export / Import maschinen-spezifischer Einstellungen (Joystick, Buttons)  
-Erzeugung einfacher Formen (Kreis, Rechteck auch als Tasche)  
-Einlesen von GCode mit optionaler Ersetzung von M3 / M4 Befehlen (hilfreich für den neuen 'Laser Mode' $32=1)  
-
+  
 [Im Wiki gibt es weitere Informationen](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.0.0](GRBL-Plotter_1100_Publish.zip)  2017-08-11  
+#### [GRBL-Plotter Vers. 1.1.2.0](GRBL-Plotter_1120_Publish.zip)  2017-10-31  
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
@@ -46,22 +37,34 @@ Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewün
  
 ### Funktionen:
 * Unterstützung der GRBL Versionen 1.1 (und auch 0.9)  
-* Export / import machine specific settings (Joystick, Buttons)  
 * Ansteuerung einer zweiten GRBL-Hardware 
-* automatischer Werkzeugwechsel (mit zweiter GRBL-Hardware)
+* Unterstützung einer vierten Achse (A, B, C, U, V or W). Status und Steuerung (spezielle GRBL Version wird benötigt) 
+* Substitution für Drehachse (statt X oder Y eine Drehachse ansteuern)
+* Oberflächenabtastung zur Erzeugung eines Höhenprofils für Autoleveling
+
+* GCode Import via file load, drag & drop oder copy & paste
+  - Laden des GCodes mit optionaler Ersetzung von M3 / M4 Befehlen (nützlich für 'Laser Mode' $32=1)
+* SVG Grafikimport via file load, drag & drop (auch URL) oder copy & paste
+* DXF Grafikimport via file load, drag & drop (auch URL)
+* Bildimport via file load, drag & drop (auch URL) oder copy & paste
+* GCode-Erzeugung von Text (Hershey Font)
+* GCode-Erzeugung von einfachen Formen
+* Verschiedene Optionen um "Stift Auf/Ab" umzusetzen
+  - Steuerung der Z axis
+  - Steuerung  eines Servos
+  - Steuerung  eines Lasers
+  - Benutzerdefinierte Kommandos
+  - Erzeugt GCode in absoluten oder relativen Koordinaten (nützlich für Unterprogramme)  
+  
+* Transformation von GCodes (Skalierung, Drehung, Spiegeln, Nullpunkt)
+* Unterprogramme M98, M99 Sub-Program Call (P, L)  
+* GCode kann geändert und gespeichert werden
 * Benutzerdefinierte Buttons - GCode aus Textfeld oder Datei ausführen
 * Joystick-ähnliche Steuerung
+* Export / import machine specific settings (Joystick, Buttons)  
 * Automatische Verbindung zur GRBL-Hardware beim Programmstart
 * Recent File List (Files and URLs)
 * 2D Vorschau
-* Import/Erzeugung und Umwandlung in GCode 
-  - aus SVG Grafik
-  - aus Text (in Hershey Font)
-  - Umwandlung der Höheninformation in Bewegung der Z-Achse (Fräse) oder Fräsmotor ein/aus (Laser) oder Fräser-Drehzahl (RC-Servo PWM) 
-* GCode kann geändert und gespeichert werden
-* Drag & Drop von GCode (*.nc) und SVG (*.svg) Dateien
-* Drag & Drop (oder Copy & Paste) von Browserlinks auf SVG-Dateien (funktioniert nur unter Chrome) z.B. von https://openclipart.org/
-* Transformation von GCodes (Skalierung, Drehung, Spiegeln, Nullpunkt)
 * Optionale Nutzung einer WebCam mit Grafikeinblendung des GCodes, Nullpunktsetzung, Winkelmessung, Zoom
 * Interne Variablen um Probing zu unterstützen:
   - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.)
