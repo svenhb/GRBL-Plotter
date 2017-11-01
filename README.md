@@ -29,9 +29,10 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 ### Features:
 * Supporting GRBL 1.1 (and 0.9 also)
 * Controlling a 2nd GRBL-Hardware
-* Supports 4th axis (A, B, C, U, V or W). Status and control
+* Supports 4th axis (A, B, C, U, V or W). Status and control (special GRBL version needed)
 * Axis Substitution for Rotary Axis
 * Surface scanning for height map creation and Autoleveling
+  
   
 * GCode import via file load, drag & drop or copy & paste
   - Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1)
@@ -46,6 +47,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
   - controlling a laser
   - user defined commands
   - Create GCode absolute or relative (for further use as subroutine)  
+    
     
 * Transformation of GCodes (scale, rotation, mirror, zero-Offset)
 * Supporting subroutines M98, M99 Sub-Program Call (P, L)
