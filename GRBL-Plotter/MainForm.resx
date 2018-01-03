@@ -705,6 +705,456 @@
   <metadata name="MainTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>126, 21</value>
   </metadata>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 18</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 13</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Set:</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>267, 19</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblOverrideSSValue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblOverrideSSValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 18</value>
+  </data>
+  <data name="lblOverrideSSValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lblOverrideSSValue.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="lblOverrideSSValue.Text" xml:space="preserve">
+    <value>000</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideSSValue.Name" xml:space="preserve">
+    <value>lblOverrideSSValue</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideSSValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideSSValue.Parent" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideSSValue.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnOverrideSS2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 14</value>
+  </data>
+  <data name="btnOverrideSS2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="btnOverrideSS2.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="btnOverrideSS2.Text" xml:space="preserve">
+    <value>+1%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS2.Name" xml:space="preserve">
+    <value>btnOverrideSS2</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS2.Parent" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnOverrideSS0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>79, 14</value>
+  </data>
+  <data name="btnOverrideSS0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
+  </data>
+  <data name="btnOverrideSS0.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="btnOverrideSS0.Text" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS0.Name" xml:space="preserve">
+    <value>btnOverrideSS0</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS0.Parent" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS0.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnOverrideSS1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 14</value>
+  </data>
+  <data name="btnOverrideSS1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
+  </data>
+  <data name="btnOverrideSS1.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="btnOverrideSS1.Text" xml:space="preserve">
+    <value>+10%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS1.Name" xml:space="preserve">
+    <value>btnOverrideSS1</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS1.Parent" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnOverrideSS4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 14</value>
+  </data>
+  <data name="btnOverrideSS4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
+  </data>
+  <data name="btnOverrideSS4.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="btnOverrideSS4.Text" xml:space="preserve">
+    <value>-10%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS4.Name" xml:space="preserve">
+    <value>btnOverrideSS4</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS4.Parent" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS4.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnOverrideSS3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 14</value>
+  </data>
+  <data name="btnOverrideSS3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="btnOverrideSS3.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="btnOverrideSS3.Text" xml:space="preserve">
+    <value>-1%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS3.Name" xml:space="preserve">
+    <value>btnOverrideSS3</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS3.Parent" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSS3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btnOverrideSSGB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 102</value>
+  </data>
+  <data name="btnOverrideSSGB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>284, 36</value>
+  </data>
+  <data name="btnOverrideSSGB.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="btnOverrideSSGB.Text" xml:space="preserve">
+    <value>Spindle Speed Override (GRBL 1.1 only)</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSSGB.Name" xml:space="preserve">
+    <value>btnOverrideSSGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSSGB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSSGB.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideSSGB.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 18</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 13</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Set:</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>267, 19</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblOverrideFRValue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblOverrideFRValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 18</value>
+  </data>
+  <data name="lblOverrideFRValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lblOverrideFRValue.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="lblOverrideFRValue.Text" xml:space="preserve">
+    <value>000</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideFRValue.Name" xml:space="preserve">
+    <value>lblOverrideFRValue</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideFRValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideFRValue.Parent" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;lblOverrideFRValue.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnOverrideFR1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 14</value>
+  </data>
+  <data name="btnOverrideFR1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
+  </data>
+  <data name="btnOverrideFR1.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="btnOverrideFR1.Text" xml:space="preserve">
+    <value>+10%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR1.Name" xml:space="preserve">
+    <value>btnOverrideFR1</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR1.Parent" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnOverrideFR2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 14</value>
+  </data>
+  <data name="btnOverrideFR2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="btnOverrideFR2.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="btnOverrideFR2.Text" xml:space="preserve">
+    <value>+1%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR2.Name" xml:space="preserve">
+    <value>btnOverrideFR2</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR2.Parent" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnOverrideFR0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>79, 14</value>
+  </data>
+  <data name="btnOverrideFR0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
+  </data>
+  <data name="btnOverrideFR0.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="btnOverrideFR0.Text" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR0.Name" xml:space="preserve">
+    <value>btnOverrideFR0</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR0.Parent" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR0.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnOverrideFR4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 14</value>
+  </data>
+  <data name="btnOverrideFR4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
+  </data>
+  <data name="btnOverrideFR4.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="btnOverrideFR4.Text" xml:space="preserve">
+    <value>-10%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR4.Name" xml:space="preserve">
+    <value>btnOverrideFR4</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR4.Parent" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR4.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnOverrideFR3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 14</value>
+  </data>
+  <data name="btnOverrideFR3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="btnOverrideFR3.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="btnOverrideFR3.Text" xml:space="preserve">
+    <value>-1%</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR3.Name" xml:space="preserve">
+    <value>btnOverrideFR3</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR3.Parent" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFR3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btnOverrideFRGB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 62</value>
+  </data>
+  <data name="btnOverrideFRGB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>284, 36</value>
+  </data>
+  <data name="btnOverrideFRGB.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="btnOverrideFRGB.Text" xml:space="preserve">
+    <value>Feed Rate Override (GRBL 1.1 only)</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFRGB.Name" xml:space="preserve">
+    <value>btnOverrideFRGB</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFRGB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFRGB.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideFRGB.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="btnOffsetApply.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
   </data>
@@ -1044,6 +1494,63 @@
   <data name="&gt;&gt;rBOrigin3.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="tbFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-114, 6</value>
+  </data>
+  <data name="tbFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 20</value>
+  </data>
+  <data name="tbFile.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tbFile.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;tbFile.Name" xml:space="preserve">
+    <value>tbFile</value>
+  </data>
+  <data name="&gt;&gt;tbFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbFile.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;tbFile.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="btnOpenFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>128, 3</value>
+  </data>
+  <data name="btnOpenFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 23</value>
+  </data>
+  <data name="btnOpenFile.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnOpenFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>484, 17</value>
+  </metadata>
+  <data name="btnOpenFile.ToolTip" xml:space="preserve">
+    <value>Select file to load</value>
+  </data>
+  <data name="btnOpenFile.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnOpenFile.Name" xml:space="preserve">
+    <value>btnOpenFile</value>
+  </data>
+  <data name="&gt;&gt;btnOpenFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOpenFile.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;btnOpenFile.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
   <data name="rBOrigin2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1069,7 +1576,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;rBOrigin2.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="rBOrigin1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1096,10 +1603,10 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;rBOrigin1.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 84</value>
+    <value>133, 165</value>
   </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
     <value>154, 65</value>
@@ -1120,13 +1627,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="lbDimension.Font" type="System.Drawing.Font, System.Drawing">
     <value>Consolas, 7.75pt</value>
   </data>
   <data name="lbDimension.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 87</value>
+    <value>3, 168</value>
   </data>
   <data name="lbDimension.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1150,7 +1657,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lbDimension.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="pbBuffer.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 46</value>
@@ -1171,7 +1678,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;pbBuffer.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="btnStreamStop.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 13</value>
@@ -1182,9 +1689,6 @@
   <data name="btnStreamStop.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>484, 17</value>
-  </metadata>
   <data name="btnStreamStop.ToolTip" xml:space="preserve">
     <value>Stop sending code to GRBL</value>
   </data>
@@ -1198,7 +1702,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnStreamStop.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="btnStreamCheck.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 35</value>
@@ -1222,13 +1726,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnStreamCheck.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="lbInfo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
   <data name="lbInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 61</value>
+    <value>3, 142</value>
   </data>
   <data name="lbInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 21</value>
@@ -1249,7 +1753,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lbInfo.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="lblRemaining.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1273,7 +1777,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblRemaining.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="pbFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 23</value>
@@ -1294,7 +1798,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;pbFile.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="lblElapsed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1321,7 +1825,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblElapsed.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="lblFileProgress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1348,31 +1852,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblFileProgress.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="tbFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 167</value>
-  </data>
-  <data name="tbFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>251, 20</value>
-  </data>
-  <data name="tbFile.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tbFile.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;tbFile.Name" xml:space="preserve">
-    <value>tbFile</value>
-  </data>
-  <data name="&gt;&gt;tbFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbFile.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;tbFile.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="btnStreamStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 13</value>
@@ -1396,43 +1876,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnStreamStart.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="btnOpenFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 165</value>
-  </data>
-  <data name="btnOpenFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 23</value>
-  </data>
-  <data name="btnOpenFile.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="btnOpenFile.Text" xml:space="preserve">
-    <value>...</value>
-  </data>
-  <data name="btnOpenFile.ToolTip" xml:space="preserve">
-    <value>Select file to load</value>
-  </data>
-  <data name="btnOpenFile.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;btnOpenFile.Name" xml:space="preserve">
-    <value>btnOpenFile</value>
-  </data>
-  <data name="&gt;&gt;btnOpenFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOpenFile.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;btnOpenFile.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 148</value>
+    <value>287, 236</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -3003,7 +3453,7 @@ for SVG files</value>
     <value>Courier New, 8pt</value>
   </data>
   <data name="fCTBCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 157</value>
+    <value>3, 245</value>
   </data>
   <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -3024,7 +3474,7 @@ for SVG files</value>
 </value>
   </data>
   <data name="fCTBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 411</value>
+    <value>288, 323</value>
   </data>
   <data name="fCTBCode.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>

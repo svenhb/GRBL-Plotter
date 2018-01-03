@@ -129,6 +129,24 @@ namespace GRBL_Plotter
             this.label_wz = new System.Windows.Forms.Label();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnOverrideSSGB = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblOverrideSSValue = new System.Windows.Forms.Label();
+            this.btnOverrideSS2 = new System.Windows.Forms.Button();
+            this.btnOverrideSS0 = new System.Windows.Forms.Button();
+            this.btnOverrideSS1 = new System.Windows.Forms.Button();
+            this.btnOverrideSS4 = new System.Windows.Forms.Button();
+            this.btnOverrideSS3 = new System.Windows.Forms.Button();
+            this.btnOverrideFRGB = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblOverrideFRValue = new System.Windows.Forms.Label();
+            this.btnOverrideFR1 = new System.Windows.Forms.Button();
+            this.btnOverrideFR2 = new System.Windows.Forms.Button();
+            this.btnOverrideFR0 = new System.Windows.Forms.Button();
+            this.btnOverrideFR4 = new System.Windows.Forms.Button();
+            this.btnOverrideFR3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnOffsetApply = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -142,6 +160,8 @@ namespace GRBL_Plotter
             this.rBOrigin5 = new System.Windows.Forms.RadioButton();
             this.rBOrigin4 = new System.Windows.Forms.RadioButton();
             this.rBOrigin3 = new System.Windows.Forms.RadioButton();
+            this.tbFile = new System.Windows.Forms.TextBox();
+            this.btnOpenFile = new System.Windows.Forms.Button();
             this.rBOrigin2 = new System.Windows.Forms.RadioButton();
             this.rBOrigin1 = new System.Windows.Forms.RadioButton();
             this.lbDimension = new System.Windows.Forms.TextBox();
@@ -153,9 +173,7 @@ namespace GRBL_Plotter
             this.pbFile = new System.Windows.Forms.ProgressBar();
             this.lblElapsed = new System.Windows.Forms.Label();
             this.lblFileProgress = new System.Windows.Forms.Label();
-            this.tbFile = new System.Windows.Forms.TextBox();
             this.btnStreamStart = new System.Windows.Forms.Button();
-            this.btnOpenFile = new System.Windows.Forms.Button();
             this.cmsCode = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsCodeSelect = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeCopy = new System.Windows.Forms.ToolStripMenuItem();
@@ -232,6 +250,8 @@ namespace GRBL_Plotter
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.btnOverrideSSGB.SuspendLayout();
+            this.btnOverrideFRGB.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.cmsCode.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -680,6 +700,8 @@ namespace GRBL_Plotter
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnOverrideSSGB);
+            this.groupBox1.Controls.Add(this.btnOverrideFRGB);
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.lbDimension);
             this.groupBox1.Controls.Add(this.pbBuffer);
@@ -690,12 +712,138 @@ namespace GRBL_Plotter
             this.groupBox1.Controls.Add(this.pbFile);
             this.groupBox1.Controls.Add(this.lblElapsed);
             this.groupBox1.Controls.Add(this.lblFileProgress);
-            this.groupBox1.Controls.Add(this.tbFile);
             this.groupBox1.Controls.Add(this.btnStreamStart);
-            this.groupBox1.Controls.Add(this.btnOpenFile);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // btnOverrideSSGB
+            // 
+            this.btnOverrideSSGB.Controls.Add(this.label8);
+            this.btnOverrideSSGB.Controls.Add(this.label10);
+            this.btnOverrideSSGB.Controls.Add(this.lblOverrideSSValue);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS2);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS0);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS1);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS4);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS3);
+            resources.ApplyResources(this.btnOverrideSSGB, "btnOverrideSSGB");
+            this.btnOverrideSSGB.Name = "btnOverrideSSGB";
+            this.btnOverrideSSGB.TabStop = false;
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // lblOverrideSSValue
+            // 
+            resources.ApplyResources(this.lblOverrideSSValue, "lblOverrideSSValue");
+            this.lblOverrideSSValue.Name = "lblOverrideSSValue";
+            // 
+            // btnOverrideSS2
+            // 
+            resources.ApplyResources(this.btnOverrideSS2, "btnOverrideSS2");
+            this.btnOverrideSS2.Name = "btnOverrideSS2";
+            this.btnOverrideSS2.UseVisualStyleBackColor = true;
+            this.btnOverrideSS2.Click += new System.EventHandler(this.btnOverrideSS2_Click);
+            // 
+            // btnOverrideSS0
+            // 
+            resources.ApplyResources(this.btnOverrideSS0, "btnOverrideSS0");
+            this.btnOverrideSS0.Name = "btnOverrideSS0";
+            this.btnOverrideSS0.UseVisualStyleBackColor = true;
+            this.btnOverrideSS0.Click += new System.EventHandler(this.btnOverrideSS0_Click);
+            // 
+            // btnOverrideSS1
+            // 
+            resources.ApplyResources(this.btnOverrideSS1, "btnOverrideSS1");
+            this.btnOverrideSS1.Name = "btnOverrideSS1";
+            this.btnOverrideSS1.UseVisualStyleBackColor = true;
+            this.btnOverrideSS1.Click += new System.EventHandler(this.btnOverrideSS1_Click);
+            // 
+            // btnOverrideSS4
+            // 
+            resources.ApplyResources(this.btnOverrideSS4, "btnOverrideSS4");
+            this.btnOverrideSS4.Name = "btnOverrideSS4";
+            this.btnOverrideSS4.UseVisualStyleBackColor = true;
+            this.btnOverrideSS4.Click += new System.EventHandler(this.btnOverrideSS4_Click);
+            // 
+            // btnOverrideSS3
+            // 
+            resources.ApplyResources(this.btnOverrideSS3, "btnOverrideSS3");
+            this.btnOverrideSS3.Name = "btnOverrideSS3";
+            this.btnOverrideSS3.UseVisualStyleBackColor = true;
+            this.btnOverrideSS3.Click += new System.EventHandler(this.btnOverrideSS3_Click);
+            // 
+            // btnOverrideFRGB
+            // 
+            this.btnOverrideFRGB.Controls.Add(this.label5);
+            this.btnOverrideFRGB.Controls.Add(this.label7);
+            this.btnOverrideFRGB.Controls.Add(this.lblOverrideFRValue);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR1);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR2);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR0);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR4);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR3);
+            resources.ApplyResources(this.btnOverrideFRGB, "btnOverrideFRGB");
+            this.btnOverrideFRGB.Name = "btnOverrideFRGB";
+            this.btnOverrideFRGB.TabStop = false;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // lblOverrideFRValue
+            // 
+            resources.ApplyResources(this.lblOverrideFRValue, "lblOverrideFRValue");
+            this.lblOverrideFRValue.Name = "lblOverrideFRValue";
+            // 
+            // btnOverrideFR1
+            // 
+            resources.ApplyResources(this.btnOverrideFR1, "btnOverrideFR1");
+            this.btnOverrideFR1.Name = "btnOverrideFR1";
+            this.btnOverrideFR1.UseVisualStyleBackColor = true;
+            this.btnOverrideFR1.Click += new System.EventHandler(this.btnOverrideFR1_Click);
+            // 
+            // btnOverrideFR2
+            // 
+            resources.ApplyResources(this.btnOverrideFR2, "btnOverrideFR2");
+            this.btnOverrideFR2.Name = "btnOverrideFR2";
+            this.btnOverrideFR2.UseVisualStyleBackColor = true;
+            this.btnOverrideFR2.Click += new System.EventHandler(this.btnOverrideFR2_Click);
+            // 
+            // btnOverrideFR0
+            // 
+            resources.ApplyResources(this.btnOverrideFR0, "btnOverrideFR0");
+            this.btnOverrideFR0.Name = "btnOverrideFR0";
+            this.btnOverrideFR0.UseVisualStyleBackColor = true;
+            this.btnOverrideFR0.Click += new System.EventHandler(this.btnOverrideFR0_Click);
+            // 
+            // btnOverrideFR4
+            // 
+            resources.ApplyResources(this.btnOverrideFR4, "btnOverrideFR4");
+            this.btnOverrideFR4.Name = "btnOverrideFR4";
+            this.btnOverrideFR4.UseVisualStyleBackColor = true;
+            this.btnOverrideFR4.Click += new System.EventHandler(this.btnOverrideFR4_Click);
+            // 
+            // btnOverrideFR3
+            // 
+            resources.ApplyResources(this.btnOverrideFR3, "btnOverrideFR3");
+            this.btnOverrideFR3.Name = "btnOverrideFR3";
+            this.btnOverrideFR3.UseVisualStyleBackColor = true;
+            this.btnOverrideFR3.Click += new System.EventHandler(this.btnOverrideFR3_Click);
             // 
             // groupBox4
             // 
@@ -711,6 +859,8 @@ namespace GRBL_Plotter
             this.groupBox4.Controls.Add(this.rBOrigin5);
             this.groupBox4.Controls.Add(this.rBOrigin4);
             this.groupBox4.Controls.Add(this.rBOrigin3);
+            this.groupBox4.Controls.Add(this.tbFile);
+            this.groupBox4.Controls.Add(this.btnOpenFile);
             this.groupBox4.Controls.Add(this.rBOrigin2);
             this.groupBox4.Controls.Add(this.rBOrigin1);
             resources.ApplyResources(this.groupBox4, "groupBox4");
@@ -788,6 +938,19 @@ namespace GRBL_Plotter
             this.rBOrigin3.Name = "rBOrigin3";
             this.rBOrigin3.UseVisualStyleBackColor = true;
             // 
+            // tbFile
+            // 
+            resources.ApplyResources(this.tbFile, "tbFile");
+            this.tbFile.Name = "tbFile";
+            // 
+            // btnOpenFile
+            // 
+            resources.ApplyResources(this.btnOpenFile, "btnOpenFile");
+            this.btnOpenFile.Name = "btnOpenFile";
+            this.toolTip1.SetToolTip(this.btnOpenFile, resources.GetString("btnOpenFile.ToolTip"));
+            this.btnOpenFile.UseVisualStyleBackColor = true;
+            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
+            // 
             // rBOrigin2
             // 
             resources.ApplyResources(this.rBOrigin2, "rBOrigin2");
@@ -854,11 +1017,6 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.lblFileProgress, "lblFileProgress");
             this.lblFileProgress.Name = "lblFileProgress";
             // 
-            // tbFile
-            // 
-            resources.ApplyResources(this.tbFile, "tbFile");
-            this.tbFile.Name = "tbFile";
-            // 
             // btnStreamStart
             // 
             this.btnStreamStart.Image = global::GRBL_Plotter.Properties.Resources.btn_play;
@@ -867,14 +1025,6 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
             this.btnStreamStart.UseVisualStyleBackColor = true;
             this.btnStreamStart.Click += new System.EventHandler(this.btnStreamStart_Click);
-            // 
-            // btnOpenFile
-            // 
-            resources.ApplyResources(this.btnOpenFile, "btnOpenFile");
-            this.btnOpenFile.Name = "btnOpenFile";
-            this.toolTip1.SetToolTip(this.btnOpenFile, resources.GetString("btnOpenFile.ToolTip"));
-            this.btnOpenFile.UseVisualStyleBackColor = true;
-            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
             // cmsCode
             // 
@@ -1357,6 +1507,7 @@ namespace GRBL_Plotter
             this.fCTBCode.Zoom = 100;
             this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
             this.fCTBCode.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChangedDelayed);
+            this.fCTBCode.Load += new System.EventHandler(this.fCTBCode_Load);
             this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
             this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
             // 
@@ -1509,6 +1660,10 @@ namespace GRBL_Plotter
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.btnOverrideSSGB.ResumeLayout(false);
+            this.btnOverrideSSGB.PerformLayout();
+            this.btnOverrideFRGB.ResumeLayout(false);
+            this.btnOverrideFRGB.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.cmsCode.ResumeLayout(false);
@@ -1702,6 +1857,24 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnJogZeroA;
         private System.Windows.Forms.ToolStripMenuItem pasteFromClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.GroupBox btnOverrideFRGB;
+        private System.Windows.Forms.Button btnOverrideFR1;
+        private System.Windows.Forms.Button btnOverrideFR2;
+        private System.Windows.Forms.Button btnOverrideFR0;
+        private System.Windows.Forms.Button btnOverrideFR4;
+        private System.Windows.Forms.Button btnOverrideFR3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblOverrideFRValue;
+        private System.Windows.Forms.GroupBox btnOverrideSSGB;
+        private System.Windows.Forms.Button btnOverrideSS2;
+        private System.Windows.Forms.Button btnOverrideSS0;
+        private System.Windows.Forms.Button btnOverrideSS1;
+        private System.Windows.Forms.Button btnOverrideSS4;
+        private System.Windows.Forms.Button btnOverrideSS3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblOverrideSSValue;
     }
 }
 

@@ -86,7 +86,7 @@ namespace GRBL_Plotter
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "© 2015-2017 svenhb@web.de";
+            this.label1.Text = "© 2015-2018 svenhb@web.de";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // linkLabel1
