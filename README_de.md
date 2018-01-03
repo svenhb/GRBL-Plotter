@@ -4,7 +4,7 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.
   
 ### Neu in version 1.1.3.0: 
-Knöpfe für "Feed rate-" und "Spindle speed override" hinzugefügt  
+Knöpfe für "Feed rate-" und "Spindle speed override" (GRBL 1.1) hinzugefügt  
 Fehlerbehebung - keine Vergrößerung während Code-Streamings  
 Fehlerbehebung SVG Import: Rechteck-Transformation (G3 Befehl)  
 Fehlerbehebung SVG Import: fehlendes Ende im GCode bevor im SVG ein neuer Suppath beginnt  
