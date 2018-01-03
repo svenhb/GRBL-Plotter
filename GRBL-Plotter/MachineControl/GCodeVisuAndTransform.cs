@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -285,7 +285,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {   newLine.actualPos.X = oldLine.actualPos.X + (double)newLine.x;
-                    xyzSize.setDimensionX(newLine.actualPos.X - toolPosX);
+                    xyzSize.setDimensionX(newLine.actualPos.X);// - toolPosX);
                 }
             }
             else
@@ -298,7 +298,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {   newLine.actualPos.Y = oldLine.actualPos.Y + (double)newLine.y;
-                    xyzSize.setDimensionY(newLine.actualPos.Y - toolPosY);
+                    xyzSize.setDimensionY(newLine.actualPos.Y);// - toolPosY);
                 }
             }
             else
@@ -307,11 +307,11 @@ namespace GRBL_Plotter
             {
                 if (newLine.isdistanceModeG90)
                 {   newLine.actualPos.Z = (double)newLine.z;
-                    xyzSize.setDimensionZ(newLine.actualPos.Z - toolPosZ);
+                    xyzSize.setDimensionZ(newLine.actualPos.Z); // removed - toolPosZ
                 }
                 else
                 {   newLine.actualPos.Z = oldLine.actualPos.Z + (double)newLine.z;
-                    xyzSize.setDimensionZ(newLine.actualPos.Z - toolPosZ);
+                    xyzSize.setDimensionZ(newLine.actualPos.Z);// - toolPosZ);
                 }
             }
             else

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
  *  2016-09-26  reduce  grblBufferSize to 100 during $C check gcode to reduce fake errors
  *  2016-12-31  add GRBL 1.1 compatiblity, clean-up
  *  2017-01-01  check form-location and fix strange location
+ *  2018-01-02  Bugfix route errors during streaming from serialform to gui
 */
 
 //#define debuginfo 
@@ -479,14 +480,29 @@ namespace GRBL_Plotter
 
             else if (rxString.IndexOf("ALARM") >= 0)
             {
+                addToLog("<\r\n< !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n<");
                 addToLog(string.Format("< {0} \t{1}", rxString, grbl.getAlarm(rxString)));
                 isDataProcessing = false;
+                this.WindowState = FormWindowState.Minimized;
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
                 return;
             }
             else if (rxString.IndexOf("error") >= 0)
             {
+                addToLog("<\r\n< !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n<");
                 addToLog(string.Format("< {0} \t{1}", rxString, grbl.getError(rxString)));
+                grblStatus = grblStreaming.error;
+                if (isStreaming)
+                {
+                    addToLog(string.Format("< Error before code line {0} \r\n", gCodeLineNr[gCodeLinesSent]));
+                    sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
+                    isStreamingRequestPause = true;
+                }
                 isDataProcessing = false;
+                this.WindowState = FormWindowState.Minimized;
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
                 return;
             }
 
