@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,8 +23,11 @@
 
     GCode will be written to gcodeString[gcodeStringIndex] where gcodeStringIndex corresponds with color of element to draw
 */
-/*  2016-07-18 get stroke-color from shapes, use GIMP-palette information to find tool-nr related to stroke-color
-    add gcode for tool change
+/*  2016-07-18  get stroke-color from shapes, use GIMP-palette information to find tool-nr related to stroke-color
+                add gcode for tool change
+    2018-01-02  Bugfix SVG rect transform (G3 in roundrect)
+                Bugfix SVG End GCode Path before next SVG subpath
+                Bugfix Scale to max dimension
 */
 
 using System;
@@ -301,22 +304,22 @@ namespace GRBL_Plotter
                 }
             }
 
+            float newWidth = Math.Max(svgWidthPx, vbWidth);
+            float newHeight = Math.Max(svgHeightPx, vbHeight);
+            if ((newWidth > 0) && (newHeight > 0))
+            {   if (svgScaleApply)
+                {   gcodeScale = svgMaxSize / Math.Max(newWidth, newHeight);
+                    if (svgComments)
+                        gcodeString[gcodeStringIndex].AppendFormat("( Scale to X={0} Y={1} f={2} )\r\n", newWidth * gcodeScale, newHeight * gcodeScale, gcodeScale);
+                }
+            }
+            else
+                if (svgComments) gcodeString[gcodeStringIndex].Append("( SVG Dimension not given )\r\n");
+
             for (int i = 0; i < matrixGroup.Length; i++)
             { matrixGroup[i] = tmp; }
             matrixElement = tmp;
             if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( Inital Matrix {0} )\r\n", tmp.ToString());
-
-            if ((svgWidthPx > 0) && (svgHeightPx > 0))
-            {
-                if (svgScaleApply)
-                {
-                    gcodeScale = svgMaxSize / Math.Max(svgWidthPx, svgHeightPx);
-                    if (svgComments) 
-                        gcodeString[gcodeStringIndex].AppendFormat("( Scale to X={0} Y={1} f={2} )\r\n", svgWidthPx * gcodeScale, svgHeightPx * gcodeScale, gcodeScale);
-                }
-            }
-            else
-                if (svgComments) gcodeString[gcodeStringIndex].Append("( SVG Dimension not given )");
 
             return;
         }
@@ -343,7 +346,7 @@ namespace GRBL_Plotter
         /// Parse Transform information - more information here: http://www.w3.org/TR/SVG/coords.html
         /// transform will be applied in gcodeMove
         /// </summary>
-        private static void parseTransform(XElement element,bool isGroup, int level)
+        private static bool parseTransform(XElement element,bool isGroup, int level)
         {   Matrix tmp = new Matrix(1, 0, 0, 1, 0, 0); // m11, m12, m21, m22, offsetx, offsety
             bool transf = false;
             if (element.Attribute("transform") != null)
@@ -431,7 +434,7 @@ namespace GRBL_Plotter
                     if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( gc-Offset {0} {1} )\r\n", matrixElement.OffsetX, matrixElement.OffsetY);
                 }
             }
-            return;
+            return transf;
         }
         private static string getTextBetween(string source,string s1, string s2)
         {
@@ -520,6 +523,7 @@ namespace GRBL_Plotter
                         offsetX = 0; offsetY = 0;
 
                         oldMatrixElement = matrixElement;
+                        bool avoidG23 = false;
                         parseTransform(pathElement, false, level);  // transform will be applied in gcodeMove
 
                         float x=0, y=0, x1=0, y1=0, x2=0, y2=0, width=0, height=0, rx=0, ry=0,cx=0,cy=0,r=0;
@@ -544,18 +548,24 @@ namespace GRBL_Plotter
                         {
                             if (ry == 0) { ry = rx; }
                             else if (rx == 0) { rx = ry; }
-                            if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( SVG-Rect x:{0} y:{1} width:{2} height:{3} )\r\n", x, y, width, height);
+                            else if (rx != ry) { rx = Math.Min(rx,ry); ry = rx; }   // only same r for x and y are possible
+                            if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( SVG-Rect x:{0} y:{1} width:{2} height:{3} rx:{4} ry:{5})\r\n", x, y, width, height, rx, ry);
+/*                            if (Math.Round((rx * 2),2) >= Math.Round(Math.Min(width, height),2))
+                            {   rx = ry = (float)(Math.Round(Math.Min(width, height) / 2 - 0.01,2));
+                                gcodeString[gcodeStringIndex].AppendFormat("( Corrected rx:{0} ry:{1})\r\n", rx, ry);
+                            }   */
                             x += offsetX; y += offsetY;
                             gcodeStartPath(x + rx, y + height, form);
                             gcodeMoveTo(x + width - rx, y + height, form);
-                            if (rx > 0) gcodeArcToCCW(x + width, y + height - ry, 0, ry, form);
+                            if (rx > 0) gcodeArcToCCW(x + width, y + height - ry, 0, -ry, form, avoidG23);  // +ry
                             gcodeMoveTo(x + width, y + ry, form);                        // upper right
-                            if (rx > 0) gcodeArcToCCW(x + width - rx, y, -rx, 0, form);
+                            if (rx > 0) gcodeArcToCCW(x + width - rx, y, -rx, 0, form, avoidG23);
                             gcodeMoveTo(x + rx, y, form);                                // upper left
-                            if (rx > 0) gcodeArcToCCW(x, y + ry, 0, -ry, form);
+                            if (rx > 0) gcodeArcToCCW(x, y + ry, 0, ry, form, avoidG23);                    // -ry
                             gcodeMoveTo(x, y + height - ry, form);                       // lower left
-                            if (rx > 0) gcodeArcToCCW(x + rx, y + height, rx, 0, form);
+                            if (rx > 0) gcodeArcToCCW(x + rx, y + height, rx, 0, form, avoidG23);
 
+                            gcodeMoveTo(x + rx, y + height, form);  // repeat first point to avoid back draw after last G3
                             gcodeStopPath(form);
                         }
                         else if (form == "circle")
@@ -563,7 +573,7 @@ namespace GRBL_Plotter
                             if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( circle cx:{0} cy:{1} r:{2} )\r\n", cx, cy, r);
                             cx += offsetX; cy += offsetY;
                             gcodeStartPath(cx + r, cy, form);
-                            gcodeArcToCCW(cx + r, cy, -r, 0, form);
+                            gcodeArcToCCW(cx + r, cy, -r, 0, form, avoidG23);
                             gcodeStopPath(form);
                         }
                         else if (form == "ellipse")
@@ -707,6 +717,7 @@ namespace GRBL_Plotter
 
         private static bool penIsDown = true;
         private static bool startSubPath = true;
+        private static int countSubPath = 0;
         private static bool startPath = true;
         private static bool startFirstElement = true;
         private static float svgWidthPx, svgHeightPx;
@@ -748,7 +759,8 @@ namespace GRBL_Plotter
                         if (startSubPath)
                         {   if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( Start new subpath at {0} {1} )\r\n", floatArgs[i], floatArgs[i+1]); }
 //                            pathCount = 0;
-//                            gcodeStopPath("");
+                            if (countSubPath++ > 0)
+                                gcodeStopPath("Stop Path");
                             if (svgNodesOnly)
                                 gcodeDotOnly(currentX, currentY, command.ToString());
                             else
@@ -1209,8 +1221,8 @@ namespace GRBL_Plotter
         {
             Point pointResult = pointStart;
             double tmp_i = pointStart.X, tmp_j = pointStart.Y;
-            pointResult.X = tmp_i * matrixElement.M11 - tmp_j * matrixElement.M21;
-            pointResult.Y = tmp_i * -matrixElement.M12 + tmp_j * matrixElement.M22; // i,j are relative - no offset needed, but perhaps rotation
+            pointResult.X = tmp_i * matrixElement.M11 + tmp_j * matrixElement.M21;  // - tmp
+            pointResult.Y = tmp_i * matrixElement.M12 + tmp_j * matrixElement.M22; // tmp_i*-matrix     // i,j are relative - no offset needed, but perhaps rotation
 
             if (gcodeScale != 1)
             {
@@ -1294,7 +1306,7 @@ namespace GRBL_Plotter
         /// <summary>
         /// Insert G2/G3 gcode command
         /// </summary>
-        private static void gcodeArcToCCW(float x, float y, float i, float j, string cmt)
+        private static void gcodeArcToCCW(float x, float y, float i, float j, string cmt, bool avoidG23=false)
         {
             Point coordxy = translateXY(x, y);
             Point coordij = translateIJ(i, j);
@@ -1303,7 +1315,7 @@ namespace GRBL_Plotter
                 if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
                     gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
             }
-            gcode.Arc(gcodeString[gcodeStringIndex], 3, coordxy, coordij, cmt);
+            gcode.Arc(gcodeString[gcodeStringIndex], 3, coordxy, coordij, cmt, avoidG23);
         }
 
         /// <summary>

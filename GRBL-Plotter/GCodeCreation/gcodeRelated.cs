@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -202,8 +202,9 @@ namespace GRBL_Plotter
         }
 
         public static void PenDown(StringBuilder gcodeString, string cmt = "")
-        {   if (gcodeComments) gcodeString.Append("\r\n");
-            if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
+        {   if (gcodeComments) { gcodeString.Append("\r\n"); }
+            if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
+            if (cmt.Length >0) { cmt = string.Format("({0})", cmt); }
 
             if (gcodeSpindleToggle)
             {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Spindle-On");
@@ -241,10 +242,10 @@ namespace GRBL_Plotter
             gcodeDownUp++;
         }
 
-        private static float lastz = 0;
         public static void PenUp(StringBuilder gcodeString, string cmt = "")
-        {   if (gcodeComments) gcodeString.Append("\r\n");
-            if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
+        {   if (gcodeComments) { gcodeString.Append("\r\n"); }
+            if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
+            if (cmt.Length >0) { cmt = string.Format("({0})", cmt); }
 
             if (gcodeIndividualTool)
             {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Individual Cmd");
@@ -282,7 +283,7 @@ namespace GRBL_Plotter
             if (gcodeComments) gcodeString.Append("\r\n");
         }
 
-        public static float lastx, lasty, lastg, lastf;
+        public static float lastx, lasty, lastz, lastg, lastf;
 
         public static void MoveTo(StringBuilder gcodeString, Point coord, string cmt = "")
         {   Move(gcodeString, 1, (float)coord.X, (float)coord.Y, applyXYFeedRate, cmt); }
@@ -397,11 +398,11 @@ namespace GRBL_Plotter
         }
 
 
-        public static void Arc(StringBuilder gcodeString, int gnr, Point coordxy, Point coordij, string cmt = "")
-        { MoveArc(gcodeString, gnr, (float)coordxy.X, (float)coordxy.Y, (float)coordij.X, (float)coordij.Y, applyXYFeedRate, cmt); }
-        public static void Arc(StringBuilder gcodeString, int gnr, float x, float y, float i, float j, string cmt = "")
-        { MoveArc(gcodeString, gnr, x, y, i, j, applyXYFeedRate, cmt); }
-        private static void MoveArc(StringBuilder gcodeString, int gnr, float x, float y, float i, float j, bool applyFeed, string cmt="")
+        public static void Arc(StringBuilder gcodeString, int gnr, Point coordxy, Point coordij, string cmt = "", bool avoidG23 = false)
+        { MoveArc(gcodeString, gnr, (float)coordxy.X, (float)coordxy.Y, (float)coordij.X, (float)coordij.Y, applyXYFeedRate, cmt, avoidG23); }
+        public static void Arc(StringBuilder gcodeString, int gnr, float x, float y, float i, float j, string cmt = "", bool avoidG23 = false)
+        { MoveArc(gcodeString, gnr, x, y, i, j, applyXYFeedRate, cmt, avoidG23); }
+        private static void MoveArc(StringBuilder gcodeString, int gnr, float x, float y, float i, float j, bool applyFeed, string cmt="", bool avoidG23 = false)
         {
             string feed = "";
             float x_relative = x - lastx;
@@ -412,7 +413,7 @@ namespace GRBL_Plotter
                 applyXYFeedRate = false;                        // don't set feed next time
             }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-            if (gcodeNoArcs)
+            if (gcodeNoArcs || avoidG23)
             {
                     splitArc(gcodeString, gnr, lastx, lasty, x, y, i, j, applyFeed, cmt);
             }
