@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@
  *  2017-01-01  check form-location and fix strange location
  *  2017-01-03  Add 'Replace M3 by M4' during GCode file open
  *  2017-06-22  Cleanup transform actions
+ *  2018-01-02  Add Override Buttons
+ *              Bugfix - no zooming during  streaming - disable background image (XP Problems?)
  */
 using System;
 using System.Collections.Generic;
@@ -348,8 +350,10 @@ namespace GRBL_Plotter
             btnStreamStop.Enabled = isConnected; // & isFileLoaded;
             btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
 
-            btnJogStop.Enabled = isConnected & !isStreaming | allowControl; ;
             btnJogStop.Visible = !_serial_form.isGrblVers0;
+            btnJogStop.Enabled = isConnected & !isStreaming | allowControl;
+            btnOverrideFRGB.Enabled = !_serial_form.isGrblVers0 & isConnected & isStreaming | allowControl;
+            btnOverrideSSGB.Enabled = !_serial_form.isGrblVers0 & isConnected & isStreaming | allowControl;
         }
 
         // handle position events from serial form
@@ -359,8 +363,16 @@ namespace GRBL_Plotter
             posMachine = e.PosMachine;
             machineStatus = e.Status;
             if (e.StatMsg.Ov.Length > 1)    // check and submit override values
-            { if (_streaming_form2 != null)
-                    _streaming_form2.showOverrideValues(e.StatMsg.Ov);
+            {
+                if (_streaming_form2 != null)
+                { _streaming_form2.showOverrideValues(e.StatMsg.Ov); }
+
+                string[] value = e.StatMsg.Ov.Split(',');
+                if (value.Length > 2)
+                {
+                    lblOverrideFRValue.Text = value[0];
+                    lblOverrideSSValue.Text = value[2];
+                }
             }
             if (e.StatMsg.FS.Length > 1)    // check and submit override values
             {
@@ -700,6 +712,9 @@ namespace GRBL_Plotter
             }
             else
             { tBURL.Text = s; }
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
         private void tBURL_TextChanged(object sender, EventArgs e)
         {
@@ -1417,7 +1432,7 @@ namespace GRBL_Plotter
             if (e.Status == grblStreaming.error)
             {
                 pbFile.ForeColor = Color.Red;
-                lbInfo.Text = "Error in line " + e.CodeLine.ToString();
+                lbInfo.Text = "Error before line " + e.CodeLine.ToString();
                 lbInfo.BackColor = Color.Fuchsia;
                 fCTBCode.BookmarkLine(e.CodeLine - 1);
                 fCTBCode.DoSelectionVisible();
@@ -1449,7 +1464,7 @@ namespace GRBL_Plotter
                 btnStreamStart.Image = Properties.Resources.btn_play;
                 btnStreamStart.Enabled = true;
                 btnStreamCheck.Enabled = true;
-                picBoxCopy = 0;
+                picBoxCopy = 0;                     // don't show background image anymore
                 pictureBox1.BackgroundImage = null;
                 updateControls();
             }
@@ -1552,7 +1567,7 @@ namespace GRBL_Plotter
         }
         private void btnStreamStop_Click(object sender, EventArgs e)
         {
-            picBoxCopy = 0;
+            picBoxCopy = 0;                 // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             btnStreamStart.Image = Properties.Resources.btn_play;
             btnStreamStart.Enabled = true;
@@ -1636,7 +1651,7 @@ namespace GRBL_Plotter
         private void getGCodeFromText(object sender, EventArgs e)
         { if (!isStreaming)
             {
-                picBoxCopy = 0;
+                picBoxCopy = 0;                 // don't show background image anymore
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _text_form.textGCode;
                 redrawGCodePath();
@@ -1648,7 +1663,7 @@ namespace GRBL_Plotter
         {
             if (!isStreaming)
             {
-                picBoxCopy = 0;
+                picBoxCopy = 0;                     // don't show background image anymore
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _shape_form.shapeGCode;
                 redrawGCodePath();
@@ -1659,7 +1674,7 @@ namespace GRBL_Plotter
         private void getGCodeFromImage(object sender, EventArgs e)
         { if (!isStreaming)
             {
-                picBoxCopy = 0;
+                picBoxCopy = 0;                 // don't show background image anymore
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _image_form.imageGCode;
                 redrawGCodePath();
@@ -2152,11 +2167,12 @@ namespace GRBL_Plotter
 
                 Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y - 10);
                 e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
+                e.Graphics.DrawString(String.Format("Zooming: {0,2:0.00}%", 100/zoomRange), new Font("Lucida Console", 8), Brushes.Black, new Point(5,5));
 
                 e.Graphics.Transform = pBoxTransform;
                 e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);        // apply scaling (flip Y)
                 e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
-                if (picBoxCopy == 0)
+           //     if (picBoxCopy == 0)
                     onPaint_drawToolPath(e.Graphics);
                 e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
                 e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
@@ -2183,7 +2199,7 @@ namespace GRBL_Plotter
             e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
         }
         private void onPaint_setBackground()
-        { 
+        {   /*
             picBoxCopy = 1;
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
             picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -2192,6 +2208,7 @@ namespace GRBL_Plotter
             onPaint_scaling(graphics);
             onPaint_drawToolPath(graphics);
             pictureBox1.BackgroundImage = new Bitmap(picBoxBackround);//Properties.Resources.modell;
+            */
         }
 
         private void pictureBox1_SizeChanged(object sender, EventArgs e)
@@ -2482,5 +2499,33 @@ namespace GRBL_Plotter
 
         private void pasteFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {   loadFromClipboard();    }
+
+        private void fCTBCode_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void btnOverrideFR0_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(144); }     // 0x90 : Set 100% of programmed rate.    
+        private void btnOverrideFR1_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(145); }     // 0x91 : Increase 10%        
+        private void btnOverrideFR4_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(146); }     // 0x92 : Decrease 10%   
+        private void btnOverrideFR2_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(147); }     // 0x93 : Increase 1%   
+        private void btnOverrideFR3_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(148); }     // 0x94 : Decrease 1%   
+
+        private void btnOverrideSS0_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(153); }     // 0x99 : Set 100% of programmed spindle speed    
+        private void btnOverrideSS1_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(154); }     // 0x9A : Increase 10%        
+        private void btnOverrideSS4_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(155); }     // 0x9B : Decrease 10%   
+        private void btnOverrideSS2_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(156); }     // 0x9C : Increase 1%   
+        private void btnOverrideSS3_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(157); }     // 0x9D : Decrease 1%   
     }
 }
