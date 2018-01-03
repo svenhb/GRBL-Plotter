@@ -3,6 +3,13 @@
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2015.
  
+### New in version 1.1.3.0: 
+Add feed rate and spindle speed override buttons (GRBL 1.1) to main GUI  
+Bug fix in main GUI: no zooming during streaming - disabled background image (perhaps performance in Win-XP is affected)  
+Bug fix SVG Import: rectangle transform (G3 in roundrect) was bad  
+Bug fix SVG Import: missing end of GCode path before next SVG subpath starts  
+Bug fix routing error-message during streaming (or code check) from serialform to main GUI  
+  
 ### New in version 1.1.2.0: 
 Import of SVG graphics or Image via Ctrl-V 'Paste' into GRBL-Plotter   
 Copy SVG data from "URL imported SVG" to clipboard for pasting into inkscape   
@@ -20,7 +27,7 @@ SVG-Import bug fix
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.2.0](GRBL-Plotter_1120_Publish.zip)  2017-10-31  
+#### [GRBL-Plotter Vers. 1.1.3.0](GRBL-Plotter_1130_Publish.zip)  2018-01-03  
 
 ### Requirements for compiling
 * VisualStudio 2015 
