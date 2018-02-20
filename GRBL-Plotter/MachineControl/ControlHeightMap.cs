@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@ namespace GRBL_Plotter
         private Bitmap heightMapBMP;
         private Bitmap heightLegendBMP;
         private bool isMapOk = false;
+//        eventArgsTemplates _event = null;
 
         public xyzPoint setPosWorld
         { set { actualPosWorld = value; } }
@@ -284,12 +285,18 @@ namespace GRBL_Plotter
         private int BMPsizeX = 240;
         private int BMPsizeY = 160;
         public bool scanStarted = false;
+        public void stopScan()
+        {   scanStarted = false;
+            btnStartHeightScan.Text = "Generate Height Map";
+        }
 
         private void ControlHeightMapForm_Load(object sender, EventArgs e)
         {
             Location = Properties.Settings.Default.locationImageForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+
+            //_event = new eventArgsTemplates();
 
             nUDDeltaX.Value = Properties.Settings.Default.heightMapX2 - Properties.Settings.Default.heightMapX1;
             nUDDeltaY.Value = Properties.Settings.Default.heightMapY2 - Properties.Settings.Default.heightMapY1;
@@ -315,6 +322,34 @@ namespace GRBL_Plotter
         {   Properties.Settings.Default.heightMapX2 = nUDX2.Value;
             Properties.Settings.Default.heightMapY2 = nUDY2.Value;
             Properties.Settings.Default.locationImageForm = Location;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (Map != null)
+            {
+                double relposX = Map.Delta.X * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X) / pictureBox1.Width);
+                double relposY = Map.Delta.Y - Map.Delta.Y * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
+                double posX = Map.Min.X + relposX;
+                double posY = Map.Min.Y + relposY;
+                DialogResult result;
+                result = MessageBox.Show("Move to this position? " + posX.ToString() + " ; " + posY.ToString(), "Attention", MessageBoxButtons.YesNo);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if ((decimal)actualPosWorld.Z < nUDProbeUp.Value)
+                        OnRaiseXYZEvent(new XYZEventArgs(null, null, (double)nUDProbeUp.Value, "G91"));
+                    OnRaiseXYZEvent(new XYZEventArgs(posX, posY, "G91 G0"));   // move relative and fast
+                }
+            }
+        }
+        public event EventHandler<XYZEventArgs> RaiseXYZEvent;
+        protected virtual void OnRaiseXYZEvent(XYZEventArgs e)
+        {
+            EventHandler<XYZEventArgs> handler = RaiseXYZEvent;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
 
         private void btnStartHeightScan_Click(object sender, EventArgs e)
@@ -363,6 +398,7 @@ namespace GRBL_Plotter
                 for (int iy = 0; iy < Map.SizeY; iy++)
                 {
                     tmp = Map.GetCoordinates(0, iy);
+                    scanCode.AppendFormat("G0Z{0}\r\n", gcode.frmtNum((float)nUDProbeUp.Value));
                     scanCode.AppendFormat("G0Y{0}\r\n", gcode.frmtNum((float)tmp.Y));
                     pixY = iy * BMPsizeY / Map.SizeY;
                     for (int ix = 0; ix < Map.SizeX; ix++)
@@ -380,6 +416,7 @@ namespace GRBL_Plotter
                     {
                         iy++;
                         tmp = Map.GetCoordinates(0, iy);
+                        scanCode.AppendFormat("G0Z{0}\r\n", gcode.frmtNum((float)nUDProbeUp.Value));
                         scanCode.AppendFormat("G0Y{0}\r\n", gcode.frmtNum((float)tmp.Y));
                         for (int ix = Map.SizeX - 1; ix >= 0; ix--)
                         {
