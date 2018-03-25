@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -86,7 +86,6 @@ namespace GRBL_Plotter
             processLoading();
         }
 
-        private static bool fileLoaded = false;
         private static string lastFile = "";
         //OpenFile, save picture grayscaled to originalImage and save the original aspect ratio to ratio
         private void btnLoad_Click(object sender, EventArgs e)
@@ -98,7 +97,6 @@ namespace GRBL_Plotter
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     if (!File.Exists(sfd.FileName)) return;
-                    fileLoaded = true;
                     lastFile = sfd.FileName;
                     loadedImage = new Bitmap(Image.FromFile(sfd.FileName));
                     originalImage = new Bitmap(Image.FromFile(sfd.FileName));
@@ -115,7 +113,6 @@ namespace GRBL_Plotter
         {
             if (!File.Exists(file)) return;
             lastFile = file;
-            fileLoaded = true;
             loadedImage = new Bitmap(Image.FromFile(file));
             originalImage = new Bitmap(Image.FromFile(file));
             processLoading();
@@ -129,7 +126,6 @@ namespace GRBL_Plotter
             if (iData.GetDataPresent(DataFormats.Bitmap))
             {
                 lastFile = "";
-                fileLoaded = true;
                 loadedImage = new Bitmap(Clipboard.GetImage());
                 originalImage = new Bitmap(Clipboard.GetImage());
                 processLoading();
