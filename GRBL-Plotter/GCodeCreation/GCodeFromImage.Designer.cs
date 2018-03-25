@@ -19,6 +19,8 @@
                 adjustedImage.Dispose();
                 originalImage.Dispose();
                 resultImage.Dispose();
+                try { loadedImage.Dispose(); }
+                catch { }
             }
             base.Dispose(disposing);
         }

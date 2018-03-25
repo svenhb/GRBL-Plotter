@@ -51,6 +51,7 @@ namespace GRBL_Plotter //DXFImporter
         private static bool dxfPauseElement = true;     // if true insert GCode pause M0 before each element
         private static bool dxfPausePenDown = true;     // if true insert pause M0 before pen down
         private static bool dxfComments = true;         // if true insert additional comments into GCode
+        private static bool importUnitmm = true;        // convert units if needed
 
         private static ArrayList drawingList;
         private static ArrayList objectIdentifier;
@@ -72,6 +73,7 @@ namespace GRBL_Plotter //DXFImporter
             gcodeStringIndex = 0;
             gcodeString[gcodeStringIndex] = new StringBuilder();
             gcodeString[gcodeStringIndex].Clear();
+            importUnitmm = Properties.Settings.Default.importUnitmm;
             gcode.setup();  // initialize GCode creation (get stored settings for export)
 
             if (file.Substring(0, 4) == "http")
@@ -94,6 +96,11 @@ namespace GRBL_Plotter //DXFImporter
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
 
             finalString.Clear();
+/*            if (importUnitmm)
+            { finalString.AppendLine("G21 (use mm as unit - check setup)"); }
+            else
+            { finalString.AppendLine("G20 (use inch as unit - check setup)"); }
+*/
             if (gcodeUseSpindle) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
             finalString.Append(gcodeString[0]);     //.Replace(',', '.')
             if (gcodeUseSpindle) gcode.SpindleOff(finalString, "Stop spindle - Option Z-Axis");

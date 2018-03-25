@@ -318,12 +318,12 @@ namespace GRBL_Plotter
 
         private static void gcodePenDown()
         {
-            gcode.PenDown(gcodeString);
+            gcode.PenDown(gcodeString,"");
             gcodePenIsUp = false;
         }
         private static void gcodePenUp()
         {   if (!gcodePenIsUp)
-                gcode.PenUp(gcodeString);
+                gcode.PenUp(gcodeString,"");
             gcodePenIsUp = true;
         }
     }

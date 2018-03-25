@@ -83,7 +83,7 @@ namespace GRBL_Plotter
         private static bool gcodeUseSpindle = false; // Switch on/off spindle for Pen down/up (M3/M5)
 
         private static bool svgConvertToMM = true;
-        private static float gcodeScale = 1;            // finally scale with this factor if svgScaleApply and svgMaxSize
+        private static float gcodeScale = 1;                    // finally scale with this factor if svgScaleApply and svgMaxSize
         private static Matrix[] matrixGroup = new Matrix[10];   // store SVG-Group transformation matrixes
         private static Matrix matrixElement = new Matrix();     // store finally applied matrix
         private static Matrix oldMatrixElement = new Matrix();     // store finally applied matrix
@@ -153,6 +153,13 @@ namespace GRBL_Plotter
             }
             gcode.setup();          // initialize GCode creation (get stored settings for export)
             finalString.Clear();
+
+ /*           svgConvertToMM = Properties.Settings.Default.importUnitmm;
+            if (svgConvertToMM)
+            { finalString.AppendLine("G21 (use mm as unit - check setup)"); }
+            else
+            { finalString.AppendLine("G20 (use inch as unit - check setup)"); }
+*/
             gcode.PenUp(finalString, "SVG Start ");
 
             startConvert(svgCode);
@@ -197,6 +204,7 @@ namespace GRBL_Plotter
             svgPauseElement = Properties.Settings.Default.importSVGPauseElement;
             svgPausePenDown = Properties.Settings.Default.importSVGPausePenDown;
             svgComments = Properties.Settings.Default.importSVGAddComments;
+            svgConvertToMM = Properties.Settings.Default.importUnitmm;
 
             gcodeReduce = Properties.Settings.Default.importSVGReduce;
             gcodeReduceVal = (float)Properties.Settings.Default.importSVGReduceLimit;
@@ -266,15 +274,18 @@ namespace GRBL_Plotter
             {
                 tmpString = svgCode.Attribute("width").Value;
                 svgWidthPx = floatParse(tmpString);
+                scale = 1;
                 if (svgConvertToMM && tmpString.IndexOf("in")>0)
                     scale = 25.4f;
+                if (!svgConvertToMM && tmpString.IndexOf("mm") > 0)
+                    scale = (1 / 25.4f);
                 tmpString = removeUnit(tmpString);
                 float svgWidthUnit = floatParse(tmpString);//floatParse(svgCode.Attribute("width").Value.Replace("mm", ""));
 
                 if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG width :" + svgCode.Attribute("width").Value + " )");
                 tmp.M11 = scale * svgWidthUnit / svgWidthPx; // get desired scale
                 if (fromClipboard)
-                    tmp.M11 = 1 / 3.543307;
+                    tmp.M11 = 1 / 3.543307;         // https://www.w3.org/TR/SVG/coords.html#Units
                 if (vbWidth > 0)
                 {   tmp.M11 = scale * svgWidthPx / vbWidth;
                     tmp.OffsetX = vbOffX * svgWidthUnit / vbWidth;
@@ -285,18 +296,21 @@ namespace GRBL_Plotter
             {
                 tmpString = svgCode.Attribute("height").Value;
                 svgHeightPx = floatParse(tmpString);
+                scale = 1;
                 if (svgConvertToMM && tmpString.IndexOf("in") > 0)
                     scale = 25.4f;
+                if (!svgConvertToMM && tmpString.IndexOf("mm") > 0)
+                    scale = (1/25.4f);
                 tmpString = removeUnit(tmpString);
                 float svgHeightUnit = floatParse(tmpString);// svgCode.Attribute("height").Value.Replace("mm", ""));
 
                 if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG height :" + svgCode.Attribute("height").Value + " )");
                 tmp.M22 = -scale * svgHeightUnit / svgHeightPx;   // get desired scale and flip vertical
-                tmp.OffsetY = svgHeightUnit ;
+                tmp.OffsetY = scale * svgHeightUnit ;
 
                 if (fromClipboard)
                 {   tmp.M22 = -1 / 3.543307;
-                    tmp.OffsetY = svgHeightUnit / 3.543307;
+                    tmp.OffsetY = svgHeightUnit / 3.543307;     // https://www.w3.org/TR/SVG/coords.html#Units
                 }
                 if (vbHeight > 0)
                 {   tmp.M22 = -scale * svgHeightPx / vbHeight;
@@ -304,11 +318,17 @@ namespace GRBL_Plotter
                 }
             }
 
-            float newWidth = Math.Max(svgWidthPx, vbWidth);
+            float newWidth = Math.Max(svgWidthPx, vbWidth);     // use value from 'width' or 'viewbox' parameter
             float newHeight = Math.Max(svgHeightPx, vbHeight);
             if ((newWidth > 0) && (newHeight > 0))
             {   if (svgScaleApply)
-                {   gcodeScale = svgMaxSize / Math.Max(newWidth, newHeight);
+                {   gcodeScale = svgMaxSize / Math.Max(newWidth, newHeight);        // calc. factor to get desired max. size
+                    tmp.Scale((double)gcodeScale, (double)gcodeScale);
+                    if (svgConvertToMM)                         // https://www.w3.org/TR/SVG/coords.html#Units
+                        tmp.Scale(3.543307, 3.543307);
+                    else
+                        tmp.Scale(90, 90);
+
                     if (svgComments)
                         gcodeString[gcodeStringIndex].AppendFormat("( Scale to X={0} Y={1} f={2} )\r\n", newWidth * gcodeScale, newHeight * gcodeScale, gcodeScale);
                 }
@@ -448,7 +468,7 @@ namespace GRBL_Plotter
             return source.Substring(start,source.Length-start-1);
         }
         private static float floatParse(string str, float ext=1)
-        {
+        {       // https://www.w3.org/TR/SVG/coords.html#Units
             bool percent = false;
             float factor = 1;
             if (str.IndexOf("pt") > 0) { factor = 1.25f; }
@@ -1199,12 +1219,6 @@ namespace GRBL_Plotter
         private static Point translateXY(Point pointStart)
         {
             Point pointResult = matrixElement.Transform(pointStart);
-//            pointResult.Y = svgHeightUnit - pointResult.Y;          // mirror Y axis, because GCode 0;0 is lower-left. SVG is upper-left
-            if (gcodeScale != 1)
-            {
-                pointResult.X = pointResult.X * gcodeScale; // final scaling to reach given size svgMaxSize
-                pointResult.Y = pointResult.Y * gcodeScale;
-            }
             return pointResult;
         }
         /// <summary>
@@ -1223,12 +1237,6 @@ namespace GRBL_Plotter
             double tmp_i = pointStart.X, tmp_j = pointStart.Y;
             pointResult.X = tmp_i * matrixElement.M11 + tmp_j * matrixElement.M21;  // - tmp
             pointResult.Y = tmp_i * matrixElement.M12 + tmp_j * matrixElement.M22; // tmp_i*-matrix     // i,j are relative - no offset needed, but perhaps rotation
-
-            if (gcodeScale != 1)
-            {
-                pointResult.X = pointResult.X * gcodeScale; // final scaling to reach given size svgMaxSize
-                pointResult.Y = pointResult.Y * gcodeScale;
-            }
             return pointResult;
         }
 

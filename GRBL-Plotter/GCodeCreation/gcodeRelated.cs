@@ -516,6 +516,11 @@ namespace GRBL_Plotter
             if (gcodeRelative)
             { header += string.Format("G91 (Setup relative movement)\r\n"); gcodeLines++; }
 
+            if (Properties.Settings.Default.importUnitmm)
+            { header += "G21 (use mm as unit - check setup)"; }
+            else
+            { header += "G20 (use inch as unit - check setup)"; }
+
             return header;
         }
 
