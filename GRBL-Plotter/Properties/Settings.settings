@@ -506,5 +506,86 @@
     <Setting Name="guiCheckUpdate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ctrlCommentOut" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importUnitmm" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gPButtons0" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#Start (Start streaming)</Value>
+    </Setting>
+    <Setting Name="gPButtons1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#F+10 (Feedrate +10%)</Value>
+    </Setting>
+    <Setting Name="gPButtons2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#F100 (Feedrate =100%)</Value>
+    </Setting>
+    <Setting Name="gPButtons3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#F-10 (Feedrate -10%)</Value>
+    </Setting>
+    <Setting Name="gPButtons4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 X0 (Zero X)</Value>
+    </Setting>
+    <Setting Name="gPButtons5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 Z0 (Zero Z)</Value>
+    </Setting>
+    <Setting Name="gPButtons6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 Y0 (Zero Y)</Value>
+    </Setting>
+    <Setting Name="gPButtons7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 X0 Y0 Z0 (Zero all)</Value>
+    </Setting>
+    <Setting Name="gPButtons8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$H (Homing)</Value>
+    </Setting>
+    <Setting Name="gPButtons9" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#Start (Start streaming)</Value>
+    </Setting>
+    <Setting Name="gPButtons10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 X0 Y0 (Zero X and Y)</Value>
+    </Setting>
+    <Setting Name="gPButtons11" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gPButtons12" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gPButtons13" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gPButtons14" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gPButtons15" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gPXAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">X</Value>
+    </Setting>
+    <Setting Name="gPYAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Y</Value>
+    </Setting>
+    <Setting Name="gPZAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Z</Value>
+    </Setting>
+    <Setting Name="gPRAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="gPXInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gPYInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gPZInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gPRInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gPEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

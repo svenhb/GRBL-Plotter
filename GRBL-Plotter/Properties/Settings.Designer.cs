@@ -2038,5 +2038,329 @@ namespace GRBL_Plotter.Properties {
                 this["guiCheckUpdate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ctrlCommentOut {
+            get {
+                return ((bool)(this["ctrlCommentOut"]));
+            }
+            set {
+                this["ctrlCommentOut"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importUnitmm {
+            get {
+                return ((bool)(this["importUnitmm"]));
+            }
+            set {
+                this["importUnitmm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#Start (Start streaming)")]
+        public string gPButtons0 {
+            get {
+                return ((string)(this["gPButtons0"]));
+            }
+            set {
+                this["gPButtons0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#F+10 (Feedrate +10%)")]
+        public string gPButtons1 {
+            get {
+                return ((string)(this["gPButtons1"]));
+            }
+            set {
+                this["gPButtons1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#F100 (Feedrate =100%)")]
+        public string gPButtons2 {
+            get {
+                return ((string)(this["gPButtons2"]));
+            }
+            set {
+                this["gPButtons2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#F-10 (Feedrate -10%)")]
+        public string gPButtons3 {
+            get {
+                return ((string)(this["gPButtons3"]));
+            }
+            set {
+                this["gPButtons3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G92 X0 (Zero X)")]
+        public string gPButtons4 {
+            get {
+                return ((string)(this["gPButtons4"]));
+            }
+            set {
+                this["gPButtons4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G92 Z0 (Zero Z)")]
+        public string gPButtons5 {
+            get {
+                return ((string)(this["gPButtons5"]));
+            }
+            set {
+                this["gPButtons5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G92 Y0 (Zero Y)")]
+        public string gPButtons6 {
+            get {
+                return ((string)(this["gPButtons6"]));
+            }
+            set {
+                this["gPButtons6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G92 X0 Y0 Z0 (Zero all)")]
+        public string gPButtons7 {
+            get {
+                return ((string)(this["gPButtons7"]));
+            }
+            set {
+                this["gPButtons7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$H (Homing)")]
+        public string gPButtons8 {
+            get {
+                return ((string)(this["gPButtons8"]));
+            }
+            set {
+                this["gPButtons8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#Start (Start streaming)")]
+        public string gPButtons9 {
+            get {
+                return ((string)(this["gPButtons9"]));
+            }
+            set {
+                this["gPButtons9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G92 X0 Y0 (Zero X and Y)")]
+        public string gPButtons10 {
+            get {
+                return ((string)(this["gPButtons10"]));
+            }
+            set {
+                this["gPButtons10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string gPButtons11 {
+            get {
+                return ((string)(this["gPButtons11"]));
+            }
+            set {
+                this["gPButtons11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string gPButtons12 {
+            get {
+                return ((string)(this["gPButtons12"]));
+            }
+            set {
+                this["gPButtons12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string gPButtons13 {
+            get {
+                return ((string)(this["gPButtons13"]));
+            }
+            set {
+                this["gPButtons13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string gPButtons14 {
+            get {
+                return ((string)(this["gPButtons14"]));
+            }
+            set {
+                this["gPButtons14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string gPButtons15 {
+            get {
+                return ((string)(this["gPButtons15"]));
+            }
+            set {
+                this["gPButtons15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("X")]
+        public string gPXAxis {
+            get {
+                return ((string)(this["gPXAxis"]));
+            }
+            set {
+                this["gPXAxis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Y")]
+        public string gPYAxis {
+            get {
+                return ((string)(this["gPYAxis"]));
+            }
+            set {
+                this["gPYAxis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Z")]
+        public string gPZAxis {
+            get {
+                return ((string)(this["gPZAxis"]));
+            }
+            set {
+                this["gPZAxis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("A")]
+        public string gPRAxis {
+            get {
+                return ((string)(this["gPRAxis"]));
+            }
+            set {
+                this["gPRAxis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gPXInvert {
+            get {
+                return ((bool)(this["gPXInvert"]));
+            }
+            set {
+                this["gPXInvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gPYInvert {
+            get {
+                return ((bool)(this["gPYInvert"]));
+            }
+            set {
+                this["gPYInvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gPZInvert {
+            get {
+                return ((bool)(this["gPZInvert"]));
+            }
+            set {
+                this["gPZInvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gPRInvert {
+            get {
+                return ((bool)(this["gPRInvert"]));
+            }
+            set {
+                this["gPRInvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gPEnable {
+            get {
+                return ((bool)(this["gPEnable"]));
+            }
+            set {
+                this["gPEnable"] = value;
+            }
+        }
     }
 }
