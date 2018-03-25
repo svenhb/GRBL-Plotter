@@ -3,7 +3,7 @@
 Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)  
 Geschrieben in C# VisualStudio 2015.
   
-## Neu in Version 1.1.4.0: 
+### Neu in Version 1.1.4.0: 
 Import von Eagle Drill Dateien
 Unterstützung von NoName USB GamePad  
 Importauswahl (und Linealeinstellung) 'mm' / 'inch' im Setup  
