@@ -350,7 +350,8 @@ namespace GRBL_Plotter
                                         try { value = double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo); }
                                         catch { }
                                     }
-                                    parseGCodeToken(cmd,value);
+                                    try { parseGCodeToken(cmd, value); }
+                                    catch { }
                                 }
                                 cmd = c;
                                 num = "";
@@ -364,7 +365,10 @@ namespace GRBL_Plotter
                             comment = false;
                     }
                     if (cmd != '\0')
-                        parseGCodeToken(cmd, double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo));
+                    {
+                        try { parseGCodeToken(cmd, double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo)); }
+                        catch { }
+                    }
                 }
                 catch { }
             }
@@ -451,24 +455,30 @@ namespace GRBL_Plotter
         /// </summary>
         public void setPosMarkerLine(int line)
         {   //MessageBox.Show(String.Format("Line:{0} X:{1} Y:{2} ", line, gcodeList[line].actualPos.X, gcodeList[line].actualPos.Y));
-            if (line < coordList.Count)
-            {   if (line == coordList[line].lineNumber)
+            try
+            {
+                if (line < coordList.Count)
                 {
-                    setPosMarker(coordList[line].actualPos.X, coordList[line].actualPos.Y);
-                    createMarkerPath();
-                }
-                else
-                {
-                    foreach (coordinateLine gcline in coordList)
-                    {   if (line == gcline.lineNumber)
+                    if (line == coordList[line].lineNumber)
+                    {
+                        setPosMarker(coordList[line].actualPos.X, coordList[line].actualPos.Y);
+                        createMarkerPath();
+                    }
+                    else
+                    {
+                        foreach (coordinateLine gcline in coordList)
                         {
-                            setPosMarker(gcline.actualPos.X, gcline.actualPos.Y);
-                            createMarkerPath();
-                            break;
+                            if (line == gcline.lineNumber)
+                            {
+                                setPosMarker(gcline.actualPos.X, gcline.actualPos.Y);
+                                createMarkerPath();
+                                break;
+                            }
                         }
                     }
                 }
             }
+            catch { }
         }
 
         /// <summary>
@@ -702,14 +712,14 @@ namespace GRBL_Plotter
         {   return createGCodeProg(true,false); }
 
         /// <summary>
-        /// generate GCode from given coordinates in GCodeList
+        /// Generate GCode from given coordinates in GCodeList
         /// only replace lines with coordinate information
         /// </summary>
         private string createGCodeProg(bool replaceG23, bool applyNewZ, HeightMap Map=null)
         {
             StringBuilder newCode = new StringBuilder();
             StringBuilder tmpCode = new StringBuilder();
-            bool getCoordinate;
+            bool getCoordinateXY, getCoordinateZ;
             double feedRate = 0;
             double spindleSpeed=0;
             double lastActualX = 0, lastActualY = 0,i,j;
@@ -718,7 +728,8 @@ namespace GRBL_Plotter
             foreach (gcodeLine gcline in gcodeList)
             {
                 tmpCode.Clear();
-                getCoordinate = false;
+                getCoordinateXY = false;
+                getCoordinateZ = false;
                 if (gcline.codeLine.Length == 0)
                     continue;
 
@@ -750,22 +761,23 @@ namespace GRBL_Plotter
                 else
                 {
                     if (gcline.x != null)
-                    { tmpCode.AppendFormat(" X{0}", gcode.frmtNum((double)gcline.x)); getCoordinate = true; }
+                    { tmpCode.AppendFormat(" X{0}", gcode.frmtNum((double)gcline.x)); getCoordinateXY = true; }
                     if (gcline.y != null)
-                    { tmpCode.AppendFormat(" Y{0}", gcode.frmtNum((double)gcline.y)); getCoordinate = true; }
-                    if (getCoordinate && applyNewZ && (Map != null))
+                    { tmpCode.AppendFormat(" Y{0}", gcode.frmtNum((double)gcline.y)); getCoordinateXY = true; }
+                    if (getCoordinateXY && applyNewZ && (Map != null))
                     {   newZ = Map.InterpolateZ(gcline.actualPos.X, gcline.actualPos.Y);
                         gcline.z = gcline.actualPos.Z + newZ;
                     }
 
                     if (gcline.z != null)
-                    { tmpCode.AppendFormat(" Z{0}", gcode.frmtNum((double)gcline.z)); getCoordinate = true; }
+                    { tmpCode.AppendFormat(" Z{0}", gcode.frmtNum((double)gcline.z)); getCoordinateZ = true; }
                     if (gcline.i != null)
-                    { tmpCode.AppendFormat(" I{0}", gcode.frmtNum((double)gcline.i)); getCoordinate = true; }
+                    { tmpCode.AppendFormat(" I{0}", gcode.frmtNum((double)gcline.i)); getCoordinateXY = true; }
                     if (gcline.j != null)
-                    { tmpCode.AppendFormat(" J{0}", gcode.frmtNum((double)gcline.j)); getCoordinate = true; }
-                    if (getCoordinate)
-                    {   if ((gcline.motionMode > 0) && (lastMotionMode != gcline.motionMode))//(feedRate != gcline.feedRate)
+                    { tmpCode.AppendFormat(" J{0}", gcode.frmtNum((double)gcline.j)); getCoordinateXY = true; }
+                    if (getCoordinateXY || getCoordinateZ)
+                    {   //if ((gcline.motionMode > 0) && (lastMotionMode != gcline.motionMode))//(feedRate != gcline.feedRate)
+                        if ((gcline.motionMode > 0) && (feedRate != gcline.feedRate) && ((getCoordinateXY && !getCoordinateZ) || (!getCoordinateXY && getCoordinateZ)))
                         { tmpCode.AppendFormat(" F{0,0}", gcline.feedRate); }
                         if (spindleSpeed != gcline.spindleSpeed)
                         { tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed); }
@@ -824,8 +836,11 @@ namespace GRBL_Plotter
                 // mark Z-only movements - could be drills
                 if ((onlyZ > 1) && (passLimit) && (path == pathPenUp))  // pen moved from -z to +z
                 {
-                    createMarker(pathPenDown, (float)nx, (float)ny, 1.0f, 1, false);
-                    createMarker(pathPenUp, (float)nx, (float)ny, 1.0f, 4, false);
+                    float markerSize = 1;
+                    if (!Properties.Settings.Default.importUnitmm)
+                    { markerSize /= 25.4F; }
+                    createMarker(pathPenDown, (float)nx, (float)ny, markerSize, 1, false);
+                    createMarker(pathPenUp, (float)nx, (float)ny, markerSize, 4, false);
                     path = pathPenUp;      
                     onlyZ = 0;
                 }
@@ -873,6 +888,8 @@ namespace GRBL_Plotter
         public void createImagePath()
         {   double extend = 1.01;                                                       // extend dimension a little bit
             double roundTo = 5;                                                         // round-up dimensions
+            if (!Properties.Settings.Default.importUnitmm)
+            { roundTo = 0.25; }
             drawingSize.minX = Math.Floor(xyzSize.minx* extend / roundTo)* roundTo;                  // extend dimensions
             if (drawingSize.minX >= 0) { drawingSize.minX = -roundTo; }                                          // be sure to show 0;0 position
             drawingSize.maxX = Math.Ceiling(xyzSize.maxx* extend / roundTo) * roundTo;
@@ -890,37 +907,63 @@ namespace GRBL_Plotter
 
         public void createMarkerPath()
         {
-            float msize = (float) Math.Max(xyzSize.dimx, xyzSize.dimy) / 50; 
+            float msize = (float) Math.Max(xyzSize.dimx, xyzSize.dimy) / 50;
+ //           if (!Properties.Settings.Default.importUnitmm)
+ //           { msize /= 25.4F; }
             createMarker(pathTool, (float)toolPosX, (float)toolPosY, msize, 2);
             createMarker(pathMarker, (float)markerPosX, (float)markerPosY, msize, 3);
         }
         private void createRuler(double maxX, double maxY)
         {
+            pathRuler.Reset();
+            float unit = 1;
+            int divider = 1;
+            int divider_long    = 100; //
+            int divider_med     = 10;
+            int divider_short   = 5;
+            int show_short      = 500;
+            int show_smallest   = 200;
+            float length1 = 1F, length2 = 2F, length3 = 3F, length5 = 5F;
+            if (!Properties.Settings.Default.importUnitmm)
+            {   //unit = 25.4F;
+                divider = 16;
+                divider_long    = divider; 
+                divider_med     = 8;
+                divider_short   = 4;
+                show_short      = 20*divider;
+                show_smallest   = 6*divider;
+                maxX = maxX * divider; // unit;
+                maxY = maxY * divider; // unit;
+                length1 = 0.05F; length2 = 0.1F; length3 = 0.15F; length5 = 0.25F;
+            }
+            float x = 0, y = 0;
             for (int i = 0; i < maxX; i++)          // horizontal ruler
             {   pathRuler.StartFigure();
-                if (i % 5 == 0)
-                {   if (i % 100 == 0)
-                    { pathRuler.AddLine((float)i, 0, (float)i, -5F); }  // 100                    
-                    else if ((i % 10 == 0) && (maxX < 1000))
-                    { pathRuler.AddLine((float)i, 0, (float)i, -3F); }  // 10                  
-                    else if (maxX < 500)
-                    { pathRuler.AddLine((float)i, 0, (float)i, -2F); }  // 5
-                    }
-                    else if (maxX < 200)
-                    { pathRuler.AddLine((float)i, 0, (float)i, -1F); }  // 1
+                x = (float)i*unit / (float)divider;
+                if (i % divider_short == 0)
+                {   if (i % divider_long == 0)
+                    { pathRuler.AddLine(x, 0, x, -length5); }  // 100                    
+                    else if ((i % divider_med == 0) && (maxX < (2* show_short)))
+                    { pathRuler.AddLine(x, 0, x, -length3); }  // 10                  
+                    else if (maxX < show_short)
+                    { pathRuler.AddLine(x, 0, x, -length2); }  // 5
+                }
+                else if (maxX < show_smallest)
+                { pathRuler.AddLine(x, 0, x, -length1); }  // 1
             }
             for (int i = 0; i < maxY; i++)          // vertical ruler
             {   pathRuler.StartFigure();
-                if (i % 5 == 0)
-                {   if (i % 100 == 0)
-                    { pathRuler.AddLine(0, (float)i, -5F, (float)i); } // 100                   
-                    else if ((i % 10 == 0) && (maxY < 1000))
-                    { pathRuler.AddLine(0, (float)i, -3F, (float)i); } // 10           
-                    else if (maxY < 500)
-                    { pathRuler.AddLine(0, (float)i, -2F, (float)i); } // 5
+                y = (float)i*unit / (float)divider;
+                if (i % divider_short == 0)
+                {   if (i % divider_long == 0)
+                    { pathRuler.AddLine(0, y, -length5, y); } // 100                   
+                    else if ((i % divider_med == 0) && (maxY < (2* show_short)))
+                    { pathRuler.AddLine(0, y, -length3, y); } // 10           
+                    else if (maxY < show_short)
+                    { pathRuler.AddLine(0, y, -length2, y); } // 5
                 }
-                else if (maxY < 200)
-                { pathRuler.AddLine(0, (float)i, -1F, (float)i); }     // 1
+                else if (maxY < show_smallest)
+                { pathRuler.AddLine(0, y, -length1, y); }     // 1
             }
         }
         private void createMarker(GraphicsPath path, float centerX,float centerY, float dimension,int style,bool rst=true)
@@ -1043,8 +1086,18 @@ namespace GRBL_Plotter
         }
         // return string with dimensions
         public String getMinMaxString()
-        {
-            return String.Format("    Min.   | Max.\r\nX:{0,8:####0.00} |{1,8:####0.00}\r\nY:{2,8:####0.00} |{3,8:####0.00}\r\nZ:{4,8:####0.00} |{5,8:####0.00}", minx, maxx, miny, maxy, minz,maxz);
+        {   
+            string x = String.Format("X:{0,8:####0.00} |{1,8:####0.00}\r\n", minx, maxx);
+            string y = String.Format("Y:{0,8:####0.00} |{1,8:####0.00}\r\n", miny, maxy);
+            string z = String.Format("Z:{0,8:####0.00} |{1,8:####0.00}", minz, maxz);
+            if ((minx == Double.MaxValue) || (maxx == Double.MinValue))
+                x = "X: unknown | unknown\r\n";
+            if ((miny == Double.MaxValue) || (maxy == Double.MinValue))
+                y = "Y: unknown | unknown\r\n";
+            if ((minz == Double.MaxValue) || (maxz == Double.MinValue))
+                z = "Z: unknown | unknown";
+            return  "    Min.   | Max.\r\n" + x + y + z;
+//            return String.Format("    Min.   | Max.\r\nX:{0,8:####0.00} |{1,8:####0.00}\r\nY:{2,8:####0.00} |{3,8:####0.00}\r\nZ:{4,8:####0.00} |{5,8:####0.00}", minx, maxx, miny, maxy, minz,maxz);
         }
     }
 }

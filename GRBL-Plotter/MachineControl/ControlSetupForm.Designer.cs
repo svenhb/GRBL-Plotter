@@ -51,10 +51,10 @@ namespace GRBL_Plotter
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rBImportUnitInch = new System.Windows.Forms.RadioButton();
+            this.label40 = new System.Windows.Forms.Label();
+            this.rBImportUnitmm = new System.Windows.Forms.RadioButton();
             this.btnResizeForm = new System.Windows.Forms.Button();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.rBImportDXFSize2 = new System.Windows.Forms.RadioButton();
-            this.rBImportDXFSize1 = new System.Windows.Forms.RadioButton();
             this.cBImportSVGPauseP = new System.Windows.Forms.CheckBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.cBImportSVGNodesOnly = new System.Windows.Forms.CheckBox();
@@ -146,6 +146,7 @@ namespace GRBL_Plotter
             this.rBRotaryX = new System.Windows.Forms.RadioButton();
             this.cBRotarySubstitute = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.cBCtrlCommentOut = new System.Windows.Forms.CheckBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.rBCtrlReplaceM4 = new System.Windows.Forms.RadioButton();
             this.rBCtrlReplaceM3 = new System.Windows.Forms.RadioButton();
@@ -164,6 +165,8 @@ namespace GRBL_Plotter
             this.tBToolChangeScriptGet = new System.Windows.Forms.TextBox();
             this.cBToolChange = new System.Windows.Forms.CheckBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblFilePath = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
             this.lblcbnr = new System.Windows.Forms.Label();
             this.btnChangeDefinition = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -172,8 +175,63 @@ namespace GRBL_Plotter
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.gBGP = new System.Windows.Forms.GroupBox();
+            this.cBGPEnable = new System.Windows.Forms.CheckBox();
+            this.cBRInvert = new System.Windows.Forms.CheckBox();
+            this.cBZInvert = new System.Windows.Forms.CheckBox();
+            this.cBYInvert = new System.Windows.Forms.CheckBox();
+            this.cBXInvert = new System.Windows.Forms.CheckBox();
+            this.tBRAxis = new System.Windows.Forms.TextBox();
+            this.tBZAxis = new System.Windows.Forms.TextBox();
+            this.tBYAxis = new System.Windows.Forms.TextBox();
+            this.tBXAxis = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.tBGP15 = new System.Windows.Forms.TextBox();
+            this.tBGP14 = new System.Windows.Forms.TextBox();
+            this.tBGP13 = new System.Windows.Forms.TextBox();
+            this.tBGP12 = new System.Windows.Forms.TextBox();
+            this.tBGP11 = new System.Windows.Forms.TextBox();
+            this.tBGP10 = new System.Windows.Forms.TextBox();
+            this.tBGP9 = new System.Windows.Forms.TextBox();
+            this.tBGP8 = new System.Windows.Forms.TextBox();
+            this.tBGP7 = new System.Windows.Forms.TextBox();
+            this.tBGP6 = new System.Windows.Forms.TextBox();
+            this.tBGP5 = new System.Windows.Forms.TextBox();
+            this.tBGP4 = new System.Windows.Forms.TextBox();
+            this.tBGP3 = new System.Windows.Forms.TextBox();
+            this.tBGP2 = new System.Windows.Forms.TextBox();
+            this.tBGP1 = new System.Windows.Forms.TextBox();
+            this.lblgp = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.trackBarR = new System.Windows.Forms.TrackBar();
+            this.label43 = new System.Windows.Forms.Label();
+            this.trackBarZ = new System.Windows.Forms.TrackBar();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.trackBarY = new System.Windows.Forms.TrackBar();
+            this.trackBarX = new System.Windows.Forms.TrackBar();
+            this.lblButtons15 = new System.Windows.Forms.Label();
+            this.lblButtons0 = new System.Windows.Forms.Label();
+            this.lblButtons14 = new System.Windows.Forms.Label();
+            this.tBGP0 = new System.Windows.Forms.TextBox();
+            this.lblButtons13 = new System.Windows.Forms.Label();
+            this.lblButtons1 = new System.Windows.Forms.Label();
+            this.lblButtons12 = new System.Windows.Forms.Label();
+            this.lblButtons2 = new System.Windows.Forms.Label();
+            this.lblButtons11 = new System.Windows.Forms.Label();
+            this.lblButtons3 = new System.Windows.Forms.Label();
+            this.lblButtons10 = new System.Windows.Forms.Label();
+            this.lblButtons4 = new System.Windows.Forms.Label();
+            this.lblButtons9 = new System.Windows.Forms.Label();
+            this.lblButtons5 = new System.Windows.Forms.Label();
+            this.lblButtons8 = new System.Windows.Forms.Label();
+            this.lblButtons6 = new System.Windows.Forms.Label();
+            this.lblButtons7 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
             this.nUDHeightMap = new System.Windows.Forms.NumericUpDown();
             this.btnColorHeightMap = new System.Windows.Forms.Button();
             this.nUDMarker = new System.Windows.Forms.NumericUpDown();
@@ -232,10 +290,10 @@ namespace GRBL_Plotter
             this.btnApplyChangings = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).BeginInit();
@@ -268,6 +326,12 @@ namespace GRBL_Plotter
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.gBGP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeightMap)).BeginInit();
@@ -308,6 +372,7 @@ namespace GRBL_Plotter
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Name = "tabControl1";
@@ -327,8 +392,10 @@ namespace GRBL_Plotter
             // groupBox3
             // 
             resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Controls.Add(this.rBImportUnitInch);
+            this.groupBox3.Controls.Add(this.label40);
+            this.groupBox3.Controls.Add(this.rBImportUnitmm);
             this.groupBox3.Controls.Add(this.btnResizeForm);
-            this.groupBox3.Controls.Add(this.groupBox15);
             this.groupBox3.Controls.Add(this.cBImportSVGPauseP);
             this.groupBox3.Controls.Add(this.groupBox14);
             this.groupBox3.Controls.Add(this.btnReloadFile);
@@ -343,6 +410,29 @@ namespace GRBL_Plotter
             this.groupBox3.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
             // 
+            // rBImportUnitInch
+            // 
+            resources.ApplyResources(this.rBImportUnitInch, "rBImportUnitInch");
+            this.rBImportUnitInch.Name = "rBImportUnitInch";
+            this.toolTip1.SetToolTip(this.rBImportUnitInch, resources.GetString("rBImportUnitInch.ToolTip"));
+            this.rBImportUnitInch.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.Name = "label40";
+            this.toolTip1.SetToolTip(this.label40, resources.GetString("label40.ToolTip"));
+            // 
+            // rBImportUnitmm
+            // 
+            resources.ApplyResources(this.rBImportUnitmm, "rBImportUnitmm");
+            this.rBImportUnitmm.Checked = global::GRBL_Plotter.Properties.Settings.Default.importUnitmm;
+            this.rBImportUnitmm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importUnitmm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rBImportUnitmm.Name = "rBImportUnitmm";
+            this.rBImportUnitmm.TabStop = true;
+            this.toolTip1.SetToolTip(this.rBImportUnitmm, resources.GetString("rBImportUnitmm.ToolTip"));
+            this.rBImportUnitmm.UseVisualStyleBackColor = true;
+            // 
             // btnResizeForm
             // 
             resources.ApplyResources(this.btnResizeForm, "btnResizeForm");
@@ -351,32 +441,6 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.btnResizeForm, resources.GetString("btnResizeForm.ToolTip"));
             this.btnResizeForm.UseVisualStyleBackColor = false;
             this.btnResizeForm.Click += new System.EventHandler(this.btnResizeForm_Click);
-            // 
-            // groupBox15
-            // 
-            resources.ApplyResources(this.groupBox15, "groupBox15");
-            this.groupBox15.Controls.Add(this.rBImportDXFSize2);
-            this.groupBox15.Controls.Add(this.rBImportDXFSize1);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox15, resources.GetString("groupBox15.ToolTip"));
-            // 
-            // rBImportDXFSize2
-            // 
-            resources.ApplyResources(this.rBImportDXFSize2, "rBImportDXFSize2");
-            this.rBImportDXFSize2.Name = "rBImportDXFSize2";
-            this.toolTip1.SetToolTip(this.rBImportDXFSize2, resources.GetString("rBImportDXFSize2.ToolTip"));
-            this.rBImportDXFSize2.UseVisualStyleBackColor = true;
-            // 
-            // rBImportDXFSize1
-            // 
-            resources.ApplyResources(this.rBImportDXFSize1, "rBImportDXFSize1");
-            this.rBImportDXFSize1.Checked = global::GRBL_Plotter.Properties.Settings.Default.ImportDXFSize;
-            this.rBImportDXFSize1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ImportDXFSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rBImportDXFSize1.Name = "rBImportDXFSize1";
-            this.rBImportDXFSize1.TabStop = true;
-            this.toolTip1.SetToolTip(this.rBImportDXFSize1, resources.GetString("rBImportDXFSize1.ToolTip"));
-            this.rBImportDXFSize1.UseVisualStyleBackColor = true;
             // 
             // cBImportSVGPauseP
             // 
@@ -1339,10 +1403,21 @@ namespace GRBL_Plotter
             // groupBox10
             // 
             resources.ApplyResources(this.groupBox10, "groupBox10");
+            this.groupBox10.Controls.Add(this.cBCtrlCommentOut);
             this.groupBox10.Controls.Add(this.groupBox11);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox10, resources.GetString("groupBox10.ToolTip"));
+            // 
+            // cBCtrlCommentOut
+            // 
+            resources.ApplyResources(this.cBCtrlCommentOut, "cBCtrlCommentOut");
+            this.cBCtrlCommentOut.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlCommentOut;
+            this.cBCtrlCommentOut.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBCtrlCommentOut.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlCommentOut", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBCtrlCommentOut.Name = "cBCtrlCommentOut";
+            this.toolTip1.SetToolTip(this.cBCtrlCommentOut, resources.GetString("cBCtrlCommentOut.ToolTip"));
+            this.cBCtrlCommentOut.UseVisualStyleBackColor = true;
             // 
             // groupBox11
             // 
@@ -1491,6 +1566,8 @@ namespace GRBL_Plotter
             // tabPage1
             // 
             resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Controls.Add(this.lblFilePath);
+            this.tabPage1.Controls.Add(this.label46);
             this.tabPage1.Controls.Add(this.lblcbnr);
             this.tabPage1.Controls.Add(this.btnChangeDefinition);
             this.tabPage1.Controls.Add(this.textBox2);
@@ -1499,6 +1576,18 @@ namespace GRBL_Plotter
             this.tabPage1.Name = "tabPage1";
             this.toolTip1.SetToolTip(this.tabPage1, resources.GetString("tabPage1.ToolTip"));
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lblFilePath
+            // 
+            resources.ApplyResources(this.lblFilePath, "lblFilePath");
+            this.lblFilePath.Name = "lblFilePath";
+            this.toolTip1.SetToolTip(this.lblFilePath, resources.GetString("lblFilePath.ToolTip"));
+            // 
+            // label46
+            // 
+            resources.ApplyResources(this.label46, "label46");
+            this.label46.Name = "label46";
+            this.toolTip1.SetToolTip(this.label46, resources.GetString("label46.ToolTip"));
             // 
             // lblcbnr
             // 
@@ -1556,6 +1645,464 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.columnHeader3, "columnHeader3");
             // 
+            // tabPage6
+            // 
+            resources.ApplyResources(this.tabPage6, "tabPage6");
+            this.tabPage6.Controls.Add(this.gBGP);
+            this.tabPage6.Name = "tabPage6";
+            this.toolTip1.SetToolTip(this.tabPage6, resources.GetString("tabPage6.ToolTip"));
+            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPage6.Enter += new System.EventHandler(this.tabPage6_Enter);
+            this.tabPage6.Leave += new System.EventHandler(this.tabPage6_Leave);
+            // 
+            // gBGP
+            // 
+            resources.ApplyResources(this.gBGP, "gBGP");
+            this.gBGP.Controls.Add(this.cBGPEnable);
+            this.gBGP.Controls.Add(this.cBRInvert);
+            this.gBGP.Controls.Add(this.cBZInvert);
+            this.gBGP.Controls.Add(this.cBYInvert);
+            this.gBGP.Controls.Add(this.cBXInvert);
+            this.gBGP.Controls.Add(this.tBRAxis);
+            this.gBGP.Controls.Add(this.tBZAxis);
+            this.gBGP.Controls.Add(this.tBYAxis);
+            this.gBGP.Controls.Add(this.tBXAxis);
+            this.gBGP.Controls.Add(this.label45);
+            this.gBGP.Controls.Add(this.tBGP15);
+            this.gBGP.Controls.Add(this.tBGP14);
+            this.gBGP.Controls.Add(this.tBGP13);
+            this.gBGP.Controls.Add(this.tBGP12);
+            this.gBGP.Controls.Add(this.tBGP11);
+            this.gBGP.Controls.Add(this.tBGP10);
+            this.gBGP.Controls.Add(this.tBGP9);
+            this.gBGP.Controls.Add(this.tBGP8);
+            this.gBGP.Controls.Add(this.tBGP7);
+            this.gBGP.Controls.Add(this.tBGP6);
+            this.gBGP.Controls.Add(this.tBGP5);
+            this.gBGP.Controls.Add(this.tBGP4);
+            this.gBGP.Controls.Add(this.tBGP3);
+            this.gBGP.Controls.Add(this.tBGP2);
+            this.gBGP.Controls.Add(this.tBGP1);
+            this.gBGP.Controls.Add(this.lblgp);
+            this.gBGP.Controls.Add(this.label44);
+            this.gBGP.Controls.Add(this.trackBarR);
+            this.gBGP.Controls.Add(this.label43);
+            this.gBGP.Controls.Add(this.trackBarZ);
+            this.gBGP.Controls.Add(this.label42);
+            this.gBGP.Controls.Add(this.label41);
+            this.gBGP.Controls.Add(this.trackBarY);
+            this.gBGP.Controls.Add(this.trackBarX);
+            this.gBGP.Controls.Add(this.lblButtons15);
+            this.gBGP.Controls.Add(this.lblButtons0);
+            this.gBGP.Controls.Add(this.lblButtons14);
+            this.gBGP.Controls.Add(this.tBGP0);
+            this.gBGP.Controls.Add(this.lblButtons13);
+            this.gBGP.Controls.Add(this.lblButtons1);
+            this.gBGP.Controls.Add(this.lblButtons12);
+            this.gBGP.Controls.Add(this.lblButtons2);
+            this.gBGP.Controls.Add(this.lblButtons11);
+            this.gBGP.Controls.Add(this.lblButtons3);
+            this.gBGP.Controls.Add(this.lblButtons10);
+            this.gBGP.Controls.Add(this.lblButtons4);
+            this.gBGP.Controls.Add(this.lblButtons9);
+            this.gBGP.Controls.Add(this.lblButtons5);
+            this.gBGP.Controls.Add(this.lblButtons8);
+            this.gBGP.Controls.Add(this.lblButtons6);
+            this.gBGP.Controls.Add(this.lblButtons7);
+            this.gBGP.Name = "gBGP";
+            this.gBGP.TabStop = false;
+            this.toolTip1.SetToolTip(this.gBGP, resources.GetString("gBGP.ToolTip"));
+            // 
+            // cBGPEnable
+            // 
+            resources.ApplyResources(this.cBGPEnable, "cBGPEnable");
+            this.cBGPEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.gPEnable;
+            this.cBGPEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gPEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBGPEnable.Name = "cBGPEnable";
+            this.toolTip1.SetToolTip(this.cBGPEnable, resources.GetString("cBGPEnable.ToolTip"));
+            this.cBGPEnable.UseVisualStyleBackColor = true;
+            // 
+            // cBRInvert
+            // 
+            resources.ApplyResources(this.cBRInvert, "cBRInvert");
+            this.cBRInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gPRInvert;
+            this.cBRInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gPRInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBRInvert.Name = "cBRInvert";
+            this.toolTip1.SetToolTip(this.cBRInvert, resources.GetString("cBRInvert.ToolTip"));
+            this.cBRInvert.UseVisualStyleBackColor = true;
+            // 
+            // cBZInvert
+            // 
+            resources.ApplyResources(this.cBZInvert, "cBZInvert");
+            this.cBZInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gPZInvert;
+            this.cBZInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gPZInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBZInvert.Name = "cBZInvert";
+            this.toolTip1.SetToolTip(this.cBZInvert, resources.GetString("cBZInvert.ToolTip"));
+            this.cBZInvert.UseVisualStyleBackColor = true;
+            // 
+            // cBYInvert
+            // 
+            resources.ApplyResources(this.cBYInvert, "cBYInvert");
+            this.cBYInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gPYInvert;
+            this.cBYInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gPYInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBYInvert.Name = "cBYInvert";
+            this.toolTip1.SetToolTip(this.cBYInvert, resources.GetString("cBYInvert.ToolTip"));
+            this.cBYInvert.UseVisualStyleBackColor = true;
+            // 
+            // cBXInvert
+            // 
+            resources.ApplyResources(this.cBXInvert, "cBXInvert");
+            this.cBXInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gPXInvert;
+            this.cBXInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gPXInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBXInvert.Name = "cBXInvert";
+            this.toolTip1.SetToolTip(this.cBXInvert, resources.GetString("cBXInvert.ToolTip"));
+            this.cBXInvert.UseVisualStyleBackColor = true;
+            // 
+            // tBRAxis
+            // 
+            resources.ApplyResources(this.tBRAxis, "tBRAxis");
+            this.tBRAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tBRAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPRAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBRAxis.Name = "tBRAxis";
+            this.tBRAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gPRAxis;
+            this.toolTip1.SetToolTip(this.tBRAxis, resources.GetString("tBRAxis.ToolTip"));
+            // 
+            // tBZAxis
+            // 
+            resources.ApplyResources(this.tBZAxis, "tBZAxis");
+            this.tBZAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tBZAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPZAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBZAxis.Name = "tBZAxis";
+            this.tBZAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gPZAxis;
+            this.toolTip1.SetToolTip(this.tBZAxis, resources.GetString("tBZAxis.ToolTip"));
+            // 
+            // tBYAxis
+            // 
+            resources.ApplyResources(this.tBYAxis, "tBYAxis");
+            this.tBYAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tBYAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPYAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBYAxis.Name = "tBYAxis";
+            this.tBYAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gPYAxis;
+            this.toolTip1.SetToolTip(this.tBYAxis, resources.GetString("tBYAxis.ToolTip"));
+            // 
+            // tBXAxis
+            // 
+            resources.ApplyResources(this.tBXAxis, "tBXAxis");
+            this.tBXAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tBXAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPXAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBXAxis.Name = "tBXAxis";
+            this.tBXAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gPXAxis;
+            this.toolTip1.SetToolTip(this.tBXAxis, resources.GetString("tBXAxis.ToolTip"));
+            // 
+            // label45
+            // 
+            resources.ApplyResources(this.label45, "label45");
+            this.label45.Name = "label45";
+            this.toolTip1.SetToolTip(this.label45, resources.GetString("label45.ToolTip"));
+            // 
+            // tBGP15
+            // 
+            resources.ApplyResources(this.tBGP15, "tBGP15");
+            this.tBGP15.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons15", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP15.Name = "tBGP15";
+            this.tBGP15.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons15;
+            this.toolTip1.SetToolTip(this.tBGP15, resources.GetString("tBGP15.ToolTip"));
+            // 
+            // tBGP14
+            // 
+            resources.ApplyResources(this.tBGP14, "tBGP14");
+            this.tBGP14.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons14", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP14.Name = "tBGP14";
+            this.tBGP14.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons14;
+            this.toolTip1.SetToolTip(this.tBGP14, resources.GetString("tBGP14.ToolTip"));
+            // 
+            // tBGP13
+            // 
+            resources.ApplyResources(this.tBGP13, "tBGP13");
+            this.tBGP13.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons13", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP13.Name = "tBGP13";
+            this.tBGP13.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons13;
+            this.toolTip1.SetToolTip(this.tBGP13, resources.GetString("tBGP13.ToolTip"));
+            // 
+            // tBGP12
+            // 
+            resources.ApplyResources(this.tBGP12, "tBGP12");
+            this.tBGP12.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons12", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP12.Name = "tBGP12";
+            this.tBGP12.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons12;
+            this.toolTip1.SetToolTip(this.tBGP12, resources.GetString("tBGP12.ToolTip"));
+            // 
+            // tBGP11
+            // 
+            resources.ApplyResources(this.tBGP11, "tBGP11");
+            this.tBGP11.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons11", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP11.Name = "tBGP11";
+            this.tBGP11.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons11;
+            this.toolTip1.SetToolTip(this.tBGP11, resources.GetString("tBGP11.ToolTip"));
+            // 
+            // tBGP10
+            // 
+            resources.ApplyResources(this.tBGP10, "tBGP10");
+            this.tBGP10.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons10", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP10.Name = "tBGP10";
+            this.tBGP10.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons10;
+            this.toolTip1.SetToolTip(this.tBGP10, resources.GetString("tBGP10.ToolTip"));
+            // 
+            // tBGP9
+            // 
+            resources.ApplyResources(this.tBGP9, "tBGP9");
+            this.tBGP9.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons9", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP9.Name = "tBGP9";
+            this.tBGP9.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons9;
+            this.toolTip1.SetToolTip(this.tBGP9, resources.GetString("tBGP9.ToolTip"));
+            // 
+            // tBGP8
+            // 
+            resources.ApplyResources(this.tBGP8, "tBGP8");
+            this.tBGP8.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons8", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP8.Name = "tBGP8";
+            this.tBGP8.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons8;
+            this.toolTip1.SetToolTip(this.tBGP8, resources.GetString("tBGP8.ToolTip"));
+            // 
+            // tBGP7
+            // 
+            resources.ApplyResources(this.tBGP7, "tBGP7");
+            this.tBGP7.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons7", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP7.Name = "tBGP7";
+            this.tBGP7.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons7;
+            this.toolTip1.SetToolTip(this.tBGP7, resources.GetString("tBGP7.ToolTip"));
+            // 
+            // tBGP6
+            // 
+            resources.ApplyResources(this.tBGP6, "tBGP6");
+            this.tBGP6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons6", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP6.Name = "tBGP6";
+            this.tBGP6.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons6;
+            this.toolTip1.SetToolTip(this.tBGP6, resources.GetString("tBGP6.ToolTip"));
+            // 
+            // tBGP5
+            // 
+            resources.ApplyResources(this.tBGP5, "tBGP5");
+            this.tBGP5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP5.Name = "tBGP5";
+            this.tBGP5.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons5;
+            this.toolTip1.SetToolTip(this.tBGP5, resources.GetString("tBGP5.ToolTip"));
+            // 
+            // tBGP4
+            // 
+            resources.ApplyResources(this.tBGP4, "tBGP4");
+            this.tBGP4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP4.Name = "tBGP4";
+            this.tBGP4.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons4;
+            this.toolTip1.SetToolTip(this.tBGP4, resources.GetString("tBGP4.ToolTip"));
+            // 
+            // tBGP3
+            // 
+            resources.ApplyResources(this.tBGP3, "tBGP3");
+            this.tBGP3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP3.Name = "tBGP3";
+            this.tBGP3.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons3;
+            this.toolTip1.SetToolTip(this.tBGP3, resources.GetString("tBGP3.ToolTip"));
+            // 
+            // tBGP2
+            // 
+            resources.ApplyResources(this.tBGP2, "tBGP2");
+            this.tBGP2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP2.Name = "tBGP2";
+            this.tBGP2.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons2;
+            this.toolTip1.SetToolTip(this.tBGP2, resources.GetString("tBGP2.ToolTip"));
+            // 
+            // tBGP1
+            // 
+            resources.ApplyResources(this.tBGP1, "tBGP1");
+            this.tBGP1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP1.Name = "tBGP1";
+            this.tBGP1.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons1;
+            this.toolTip1.SetToolTip(this.tBGP1, resources.GetString("tBGP1.ToolTip"));
+            // 
+            // lblgp
+            // 
+            resources.ApplyResources(this.lblgp, "lblgp");
+            this.lblgp.BackColor = System.Drawing.Color.LightGray;
+            this.lblgp.Name = "lblgp";
+            this.toolTip1.SetToolTip(this.lblgp, resources.GetString("lblgp.ToolTip"));
+            // 
+            // label44
+            // 
+            resources.ApplyResources(this.label44, "label44");
+            this.label44.Name = "label44";
+            this.toolTip1.SetToolTip(this.label44, resources.GetString("label44.ToolTip"));
+            // 
+            // trackBarR
+            // 
+            resources.ApplyResources(this.trackBarR, "trackBarR");
+            this.trackBarR.Maximum = 65535;
+            this.trackBarR.Name = "trackBarR";
+            this.toolTip1.SetToolTip(this.trackBarR, resources.GetString("trackBarR.ToolTip"));
+            this.trackBarR.Value = 32767;
+            // 
+            // label43
+            // 
+            resources.ApplyResources(this.label43, "label43");
+            this.label43.Name = "label43";
+            this.toolTip1.SetToolTip(this.label43, resources.GetString("label43.ToolTip"));
+            // 
+            // trackBarZ
+            // 
+            resources.ApplyResources(this.trackBarZ, "trackBarZ");
+            this.trackBarZ.Maximum = 65535;
+            this.trackBarZ.Name = "trackBarZ";
+            this.toolTip1.SetToolTip(this.trackBarZ, resources.GetString("trackBarZ.ToolTip"));
+            this.trackBarZ.Value = 32767;
+            // 
+            // label42
+            // 
+            resources.ApplyResources(this.label42, "label42");
+            this.label42.Name = "label42";
+            this.toolTip1.SetToolTip(this.label42, resources.GetString("label42.ToolTip"));
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.Name = "label41";
+            this.toolTip1.SetToolTip(this.label41, resources.GetString("label41.ToolTip"));
+            // 
+            // trackBarY
+            // 
+            resources.ApplyResources(this.trackBarY, "trackBarY");
+            this.trackBarY.Maximum = 65535;
+            this.trackBarY.Name = "trackBarY";
+            this.toolTip1.SetToolTip(this.trackBarY, resources.GetString("trackBarY.ToolTip"));
+            this.trackBarY.Value = 32767;
+            // 
+            // trackBarX
+            // 
+            resources.ApplyResources(this.trackBarX, "trackBarX");
+            this.trackBarX.Maximum = 65600;
+            this.trackBarX.Name = "trackBarX";
+            this.toolTip1.SetToolTip(this.trackBarX, resources.GetString("trackBarX.ToolTip"));
+            this.trackBarX.Value = 32767;
+            // 
+            // lblButtons15
+            // 
+            resources.ApplyResources(this.lblButtons15, "lblButtons15");
+            this.lblButtons15.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons15.Name = "lblButtons15";
+            this.toolTip1.SetToolTip(this.lblButtons15, resources.GetString("lblButtons15.ToolTip"));
+            // 
+            // lblButtons0
+            // 
+            resources.ApplyResources(this.lblButtons0, "lblButtons0");
+            this.lblButtons0.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons0.Name = "lblButtons0";
+            this.toolTip1.SetToolTip(this.lblButtons0, resources.GetString("lblButtons0.ToolTip"));
+            // 
+            // lblButtons14
+            // 
+            resources.ApplyResources(this.lblButtons14, "lblButtons14");
+            this.lblButtons14.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons14.Name = "lblButtons14";
+            this.toolTip1.SetToolTip(this.lblButtons14, resources.GetString("lblButtons14.ToolTip"));
+            // 
+            // tBGP0
+            // 
+            resources.ApplyResources(this.tBGP0, "tBGP0");
+            this.tBGP0.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gPButtons0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP0.Name = "tBGP0";
+            this.tBGP0.Text = global::GRBL_Plotter.Properties.Settings.Default.gPButtons0;
+            this.toolTip1.SetToolTip(this.tBGP0, resources.GetString("tBGP0.ToolTip"));
+            // 
+            // lblButtons13
+            // 
+            resources.ApplyResources(this.lblButtons13, "lblButtons13");
+            this.lblButtons13.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons13.Name = "lblButtons13";
+            this.toolTip1.SetToolTip(this.lblButtons13, resources.GetString("lblButtons13.ToolTip"));
+            // 
+            // lblButtons1
+            // 
+            resources.ApplyResources(this.lblButtons1, "lblButtons1");
+            this.lblButtons1.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons1.Name = "lblButtons1";
+            this.toolTip1.SetToolTip(this.lblButtons1, resources.GetString("lblButtons1.ToolTip"));
+            // 
+            // lblButtons12
+            // 
+            resources.ApplyResources(this.lblButtons12, "lblButtons12");
+            this.lblButtons12.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons12.Name = "lblButtons12";
+            this.toolTip1.SetToolTip(this.lblButtons12, resources.GetString("lblButtons12.ToolTip"));
+            // 
+            // lblButtons2
+            // 
+            resources.ApplyResources(this.lblButtons2, "lblButtons2");
+            this.lblButtons2.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons2.Name = "lblButtons2";
+            this.toolTip1.SetToolTip(this.lblButtons2, resources.GetString("lblButtons2.ToolTip"));
+            // 
+            // lblButtons11
+            // 
+            resources.ApplyResources(this.lblButtons11, "lblButtons11");
+            this.lblButtons11.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons11.Name = "lblButtons11";
+            this.toolTip1.SetToolTip(this.lblButtons11, resources.GetString("lblButtons11.ToolTip"));
+            // 
+            // lblButtons3
+            // 
+            resources.ApplyResources(this.lblButtons3, "lblButtons3");
+            this.lblButtons3.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons3.Name = "lblButtons3";
+            this.toolTip1.SetToolTip(this.lblButtons3, resources.GetString("lblButtons3.ToolTip"));
+            // 
+            // lblButtons10
+            // 
+            resources.ApplyResources(this.lblButtons10, "lblButtons10");
+            this.lblButtons10.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons10.Name = "lblButtons10";
+            this.toolTip1.SetToolTip(this.lblButtons10, resources.GetString("lblButtons10.ToolTip"));
+            // 
+            // lblButtons4
+            // 
+            resources.ApplyResources(this.lblButtons4, "lblButtons4");
+            this.lblButtons4.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons4.Name = "lblButtons4";
+            this.toolTip1.SetToolTip(this.lblButtons4, resources.GetString("lblButtons4.ToolTip"));
+            // 
+            // lblButtons9
+            // 
+            resources.ApplyResources(this.lblButtons9, "lblButtons9");
+            this.lblButtons9.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons9.Name = "lblButtons9";
+            this.toolTip1.SetToolTip(this.lblButtons9, resources.GetString("lblButtons9.ToolTip"));
+            // 
+            // lblButtons5
+            // 
+            resources.ApplyResources(this.lblButtons5, "lblButtons5");
+            this.lblButtons5.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons5.Name = "lblButtons5";
+            this.toolTip1.SetToolTip(this.lblButtons5, resources.GetString("lblButtons5.ToolTip"));
+            // 
+            // lblButtons8
+            // 
+            resources.ApplyResources(this.lblButtons8, "lblButtons8");
+            this.lblButtons8.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons8.Name = "lblButtons8";
+            this.toolTip1.SetToolTip(this.lblButtons8, resources.GetString("lblButtons8.ToolTip"));
+            // 
+            // lblButtons6
+            // 
+            resources.ApplyResources(this.lblButtons6, "lblButtons6");
+            this.lblButtons6.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons6.Name = "lblButtons6";
+            this.toolTip1.SetToolTip(this.lblButtons6, resources.GetString("lblButtons6.ToolTip"));
+            // 
+            // lblButtons7
+            // 
+            resources.ApplyResources(this.lblButtons7, "lblButtons7");
+            this.lblButtons7.BackColor = System.Drawing.Color.LightGray;
+            this.lblButtons7.Name = "lblButtons7";
+            this.toolTip1.SetToolTip(this.lblButtons7, resources.GetString("lblButtons7.ToolTip"));
+            // 
             // tabPage4
             // 
             resources.ApplyResources(this.tabPage4, "tabPage4");
@@ -1568,6 +2115,8 @@ namespace GRBL_Plotter
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.label48);
+            this.groupBox1.Controls.Add(this.label47);
             this.groupBox1.Controls.Add(this.nUDHeightMap);
             this.groupBox1.Controls.Add(this.btnColorHeightMap);
             this.groupBox1.Controls.Add(this.nUDMarker);
@@ -1584,6 +2133,18 @@ namespace GRBL_Plotter
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
+            // 
+            // label48
+            // 
+            resources.ApplyResources(this.label48, "label48");
+            this.label48.Name = "label48";
+            this.toolTip1.SetToolTip(this.label48, resources.GetString("label48.ToolTip"));
+            // 
+            // label47
+            // 
+            resources.ApplyResources(this.label47, "label47");
+            this.label47.Name = "label47";
+            this.toolTip1.SetToolTip(this.label47, resources.GetString("label47.ToolTip"));
             // 
             // nUDHeightMap
             // 
@@ -2300,6 +2861,10 @@ namespace GRBL_Plotter
             this.btnApplyChangings.UseVisualStyleBackColor = true;
             this.btnApplyChangings.Click += new System.EventHandler(this.btnApplyChangings_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2314,8 +2879,6 @@ namespace GRBL_Plotter
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox15.ResumeLayout(false);
-            this.groupBox15.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).EndInit();
@@ -2354,6 +2917,7 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryDiameter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryScale)).EndInit();
             this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -2362,8 +2926,16 @@ namespace GRBL_Plotter
             this.groupBox7.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.gBGP.ResumeLayout(false);
+            this.gBGP.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeightMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMarker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDTool)).EndInit();
@@ -2552,10 +3124,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox cBImportGCCompress;
-        private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.GroupBox groupBox14;
-        private System.Windows.Forms.RadioButton rBImportDXFSize2;
-        private System.Windows.Forms.RadioButton rBImportDXFSize1;
+        private System.Windows.Forms.RadioButton rBImportUnitInch;
+        private System.Windows.Forms.RadioButton rBImportUnitmm;
         private System.Windows.Forms.CheckBox cBImportGCNoArcs;
         private System.Windows.Forms.CheckBox cBImportGCRelative;
         private System.Windows.Forms.Label label34;
@@ -2587,5 +3158,65 @@ namespace GRBL_Plotter
         private System.Windows.Forms.LinkLabel linkLabel8;
         private System.Windows.Forms.LinkLabel linkLabel7;
         private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.CheckBox cBCtrlCommentOut;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Label lblgp;
+        private System.Windows.Forms.Label lblButtons5;
+        private System.Windows.Forms.Label lblButtons4;
+        private System.Windows.Forms.Label lblButtons3;
+        private System.Windows.Forms.Label lblButtons2;
+        private System.Windows.Forms.Label lblButtons1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblButtons14;
+        private System.Windows.Forms.Label lblButtons13;
+        private System.Windows.Forms.Label lblButtons12;
+        private System.Windows.Forms.Label lblButtons11;
+        private System.Windows.Forms.Label lblButtons10;
+        private System.Windows.Forms.Label lblButtons9;
+        private System.Windows.Forms.Label lblButtons8;
+        private System.Windows.Forms.Label lblButtons7;
+        private System.Windows.Forms.Label lblButtons6;
+        private System.Windows.Forms.Label lblButtons0;
+        private System.Windows.Forms.GroupBox gBGP;
+        private System.Windows.Forms.TrackBar trackBarX;
+        private System.Windows.Forms.Label lblButtons15;
+        private System.Windows.Forms.TextBox tBGP0;
+        private System.Windows.Forms.TrackBar trackBarY;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.TrackBar trackBarR;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TrackBar trackBarZ;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox tBGP15;
+        private System.Windows.Forms.TextBox tBGP14;
+        private System.Windows.Forms.TextBox tBGP13;
+        private System.Windows.Forms.TextBox tBGP12;
+        private System.Windows.Forms.TextBox tBGP11;
+        private System.Windows.Forms.TextBox tBGP10;
+        private System.Windows.Forms.TextBox tBGP9;
+        private System.Windows.Forms.TextBox tBGP8;
+        private System.Windows.Forms.TextBox tBGP7;
+        private System.Windows.Forms.TextBox tBGP6;
+        private System.Windows.Forms.TextBox tBGP5;
+        private System.Windows.Forms.TextBox tBGP4;
+        private System.Windows.Forms.TextBox tBGP3;
+        private System.Windows.Forms.TextBox tBGP2;
+        private System.Windows.Forms.TextBox tBGP1;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox tBRAxis;
+        private System.Windows.Forms.TextBox tBZAxis;
+        private System.Windows.Forms.TextBox tBYAxis;
+        private System.Windows.Forms.TextBox tBXAxis;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label lblFilePath;
+        private System.Windows.Forms.CheckBox cBRInvert;
+        private System.Windows.Forms.CheckBox cBZInvert;
+        private System.Windows.Forms.CheckBox cBYInvert;
+        private System.Windows.Forms.CheckBox cBXInvert;
+        private System.Windows.Forms.CheckBox cBGPEnable;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label47;
     }
 }

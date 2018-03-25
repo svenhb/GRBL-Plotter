@@ -617,10 +617,10 @@ namespace GRBL_Plotter
             grblBufferSize = 127;  //rx bufer size of grbl on arduino 127
             grblBufferFree = grblBufferSize;
             addToLog("> RESET\r\n" + rxString);
-            if (rxString.IndexOf("Grbl 0") >= 0)
+            if (rxString.ToLower().IndexOf("grbl 0") >= 0)
             { isGrblVers0 = true; isLasermode = false; }
-            if (rxString.IndexOf("Grbl 1") >= 0)
-            { isGrblVers0 = false; }
+            if (rxString.ToLower().IndexOf("grbl 1") >= 0)
+            { isGrblVers0 = false; addToLog("> Version 1.x\r\n"); }
             OnRaiseStreamEvent(new StreamEventArgs(0, 0, 0, grblStreaming.reset));
             lblSrBf.Text = "";
             lblSrFS.Text = "";

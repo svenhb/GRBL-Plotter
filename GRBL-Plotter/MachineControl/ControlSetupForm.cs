@@ -80,6 +80,13 @@ namespace GRBL_Plotter
                 rBRotaryX.Checked = true;
             else
                 rBRotaryY.Checked = true;
+
+            if (Properties.Settings.Default.importUnitmm)
+                rBImportUnitmm.Checked = true;
+            else
+                rBImportUnitInch.Checked = true;
+
+            lblFilePath.Text = System.Windows.Forms.Application.StartupPath;
         }
 
         private void saveSettings()
@@ -237,27 +244,70 @@ namespace GRBL_Plotter
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {    Process.Start(@"https://openclipart.org/tags/svg");   }
+        {   Process.Start(@"https://openclipart.org/tags/svg");   }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://publicdomainvectors.org/"); }
+        {   Process.Start(@"https://publicdomainvectors.org/"); }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://simplemaps.com/"); }
+        {   Process.Start(@"https://simplemaps.com/"); }
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"http://www.cliparts101.com/"); }
+        {   Process.Start(@"http://www.cliparts101.com/"); }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"http://www.clker.com/"); }
+        {   Process.Start(@"http://www.clker.com/"); }
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://free.clipartof.com/"); }
+        {   Process.Start(@"https://free.clipartof.com/"); }
 
         private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://github.com/gnea/grbl/wiki"); }
+        {   Process.Start(@"https://github.com/gnea/grbl/wiki"); }
 
         private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"http://linuxcnc.org/docs/html/gcode.html"); }
+        {   Process.Start(@"http://linuxcnc.org/docs/html/gcode.html"); }
+
+        private void tabPage6_Enter(object sender, EventArgs e)
+        {   timer1.Enabled = true;   }
+
+        private void tabPage6_Leave(object sender, EventArgs e)
+        {   timer1.Enabled = false;  }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {   try
+            {
+                ControlGamePad.gamePad.Poll();
+                var datas = ControlGamePad.gamePad.GetBufferedData();
+                foreach (var state in datas)
+                {
+                    lblgp.Text = state.Offset + " Value: " + state.Value.ToString();
+                    processGamepad(state);
+                }
+            }
+            catch
+            {
+                try { ControlGamePad.Initialize(); timer1.Interval = 200; }
+                catch { timer1.Interval = 5000; }
+            }
+        }
+        private void processGamepad(SharpDX.DirectInput.JoystickUpdate state)
+        {   string offset = state.Offset.ToString();
+            int value = state.Value;
+            if (offset.IndexOf("Buttons") >= 0)
+            {   foreach (Control c in this.gBGP.Controls)
+                {
+                    if (c.Name == ("lbl" + offset)) if (c != null)
+                        { c.BackColor = (value > 0) ? Color.Lime : Color.LightGray; break; }
+                }
+            }
+            if (offset == "X")
+            { trackBarX.Value = value; }
+            if (offset == "Y")
+            { trackBarY.Value = value; }
+            if (offset == "Z")
+            { trackBarZ.Value = value; }
+            if (offset == "RotationZ")
+            { trackBarR.Value = value; }
+        }
     }
 }
