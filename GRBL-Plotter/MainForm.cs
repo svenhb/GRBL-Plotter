@@ -27,19 +27,17 @@
  *  2017-06-22  Cleanup transform actions
  *  2018-01-02  Add Override Buttons
  *              Bugfix - no zooming during  streaming - disable background image (XP Problems?)
+ *  2018-03-18  Divide this file into several files
  */
+
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using virtualJoystick;
-using FastColoredTextBoxNS;
 using System.Globalization;
 using System.Threading;
 using System.Text;
-using System.ComponentModel;
-using System.Drawing.Drawing2D;
 
 namespace GRBL_Plotter
 {
@@ -112,7 +110,6 @@ namespace GRBL_Plotter
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
-            checkUpdate.CheckVersion();  // check update
 
             if (_serial_form == null)
             {
@@ -139,6 +136,8 @@ namespace GRBL_Plotter
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length > 1)
             { loadFile(args[1]); }
+
+            checkUpdate.CheckVersion();  // check update
         }
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -152,208 +151,6 @@ namespace GRBL_Plotter
             if (_streaming_form != null) _streaming_form.Close();
             if (_heightmap_form != null) _heightmap_form.Close();
             _serial_form.Close();
-        }
-        // load settings
-        private void loadSettings(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Properties.Settings.Default.UpgradeRequired)
-                {
-                    Properties.Settings.Default.Upgrade();
-                    Properties.Settings.Default.UpgradeRequired = false;
-                    Properties.Settings.Default.Save();
-                }
-                tbFile.Text = Properties.Settings.Default.file;
-                setCustomButton(btnCustom1, Properties.Settings.Default.custom1);
-                setCustomButton(btnCustom2, Properties.Settings.Default.custom2);
-                setCustomButton(btnCustom3, Properties.Settings.Default.custom3);
-                setCustomButton(btnCustom4, Properties.Settings.Default.custom4);
-                setCustomButton(btnCustom5, Properties.Settings.Default.custom5);
-                setCustomButton(btnCustom6, Properties.Settings.Default.custom6);
-                setCustomButton(btnCustom7, Properties.Settings.Default.custom7);
-                setCustomButton(btnCustom8, Properties.Settings.Default.custom8);
-                fCTBCode.BookmarkColor = Properties.Settings.Default.colorMarker; ;
-                pictureBox1.BackColor = Properties.Settings.Default.colorBackground;
-                //                visuGCode.setColors();
-                penUp.Color = Properties.Settings.Default.colorPenUp;
-                penDown.Color = Properties.Settings.Default.colorPenDown;
-                penHeightMap.Color = Properties.Settings.Default.colorHeightMap;
-                penRuler.Color = Properties.Settings.Default.colorRuler;
-                penTool.Color = Properties.Settings.Default.colorTool;
-                penMarker.Color = Properties.Settings.Default.colorMarker;
-                penHeightMap.Width = (float)Properties.Settings.Default.widthHeightMap;
-                penRuler.Width = (float)Properties.Settings.Default.widthRuler;
-                penUp.Width = (float)Properties.Settings.Default.widthPenUp;
-                penDown.Width = (float)Properties.Settings.Default.widthPenDown;
-                penTool.Width = (float)Properties.Settings.Default.widthTool;
-                penMarker.Width = (float)Properties.Settings.Default.widthMarker;
-                picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                updateDrawing();
-
-                joystickXYStep[1] = (double)Properties.Settings.Default.joyXYStep1;
-                joystickXYStep[2] = (double)Properties.Settings.Default.joyXYStep2;
-                joystickXYStep[3] = (double)Properties.Settings.Default.joyXYStep3;
-                joystickXYStep[4] = (double)Properties.Settings.Default.joyXYStep4;
-                joystickXYStep[5] = (double)Properties.Settings.Default.joyXYStep5;
-                joystickZStep[1] = (double)Properties.Settings.Default.joyZStep1;
-                joystickZStep[2] = (double)Properties.Settings.Default.joyZStep2;
-                joystickZStep[3] = (double)Properties.Settings.Default.joyZStep3;
-                joystickZStep[4] = (double)Properties.Settings.Default.joyZStep4;
-                joystickZStep[5] = (double)Properties.Settings.Default.joyZStep5;
-                joystickXYSpeed[1] = (double)Properties.Settings.Default.joyXYSpeed1;
-                joystickXYSpeed[2] = (double)Properties.Settings.Default.joyXYSpeed2;
-                joystickXYSpeed[3] = (double)Properties.Settings.Default.joyXYSpeed3;
-                joystickXYSpeed[4] = (double)Properties.Settings.Default.joyXYSpeed4;
-                joystickXYSpeed[5] = (double)Properties.Settings.Default.joyXYSpeed5;
-                joystickZSpeed[1] = (double)Properties.Settings.Default.joyZSpeed1;
-                joystickZSpeed[2] = (double)Properties.Settings.Default.joyZSpeed2;
-                joystickZSpeed[3] = (double)Properties.Settings.Default.joyZSpeed3;
-                joystickZSpeed[4] = (double)Properties.Settings.Default.joyZSpeed4;
-                joystickZSpeed[5] = (double)Properties.Settings.Default.joyZSpeed5;
-                virtualJoystickXY.JoystickLabel = joystickXYStep;
-                virtualJoystickZ.JoystickLabel = joystickZStep;
-                virtualJoystickA.JoystickLabel = joystickZStep;
-                skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
-                skaliereXAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
-                skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
-                skaliereAufXUnitsToolStripMenuItem.BackColor = SystemColors.Control;
-                skaliereAufXUnitsToolStripMenuItem.ToolTipText = "Enable in Setup - Control";
-                skaliereYAufDrehachseToolStripMenuItem.Enabled = false;
-                skaliereYAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
-                skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
-                skaliereAufYUnitsToolStripMenuItem.BackColor = SystemColors.Control;
-                skaliereAufYUnitsToolStripMenuItem.ToolTipText = "Enable in Setup - Control";
-                toolStrip_tb_rotary_diameter.Text = string.Format("{0:0.00}", Properties.Settings.Default.rotarySubstitutionDiameter);
-
-                if (Properties.Settings.Default.rotarySubstitutionEnable)
-                { string tmp = string.Format("Calculating rotary angle depending on part diameter ({0:0.00} units) and desired size.\r\nSet part diameter in Setup - Control.", Properties.Settings.Default.rotarySubstitutionDiameter);
-                    if (Properties.Settings.Default.rotarySubstitutionX)
-                    { skaliereXAufDrehachseToolStripMenuItem.Enabled = true;
-                        skaliereXAufDrehachseToolStripMenuItem.BackColor = Color.Yellow;
-                        skaliereAufXUnitsToolStripMenuItem.BackColor = Color.Yellow;
-                        skaliereAufXUnitsToolStripMenuItem.ToolTipText = tmp;
-                        skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "";
-                    }
-                    else
-                    { skaliereYAufDrehachseToolStripMenuItem.Enabled = true;
-                        skaliereYAufDrehachseToolStripMenuItem.BackColor = Color.Yellow;
-                        skaliereAufYUnitsToolStripMenuItem.BackColor = Color.Yellow;
-                        skaliereAufYUnitsToolStripMenuItem.ToolTipText = tmp;
-                        skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "";
-                    }
-                }
-                if (Properties.Settings.Default.rotarySubstitutionSetupEnable)
-                {
-                    string[] commands;
-                    if (Properties.Settings.Default.rotarySubstitutionEnable)
-                    { commands = Properties.Settings.Default.rotarySubstitutionSetupOn.Split(';'); }
-                    else
-                    { commands = Properties.Settings.Default.rotarySubstitutionSetupOff.Split(';'); }
-                    if (_serial_form.serialPortOpen)
-                        foreach (string cmd in commands)
-                        { sendCommand(cmd.Trim());
-                            Thread.Sleep(100);
-                        }
-                }
-
-                ctrl4thAxis = Properties.Settings.Default.ctrl4thUse;
-                ctrl4thName = Properties.Settings.Default.ctrl4thName;
-                label_a.Visible = ctrl4thAxis;
-                label_a.Text = ctrl4thName;
-                label_wa.Visible = ctrl4thAxis;
-                label_ma.Visible = ctrl4thAxis;
-                btnZeroA.Visible = ctrl4thAxis;
-                btnZeroA.Text = "Zero "+ ctrl4thName;
-                if(Properties.Settings.Default.language == "de-DE")
-                    btnZeroA.Text = ctrl4thName+" nullen";
-
-                virtualJoystickA.Visible = ctrl4thAxis;
-                btnJogZeroA.Visible = ctrl4thAxis;
-                btnJogZeroA.Text = ctrl4thName+"=0";
-                if (ctrl4thAxis)
-                {   label_status0.Location = new Point(1,128);
-                    label_status.Location = new Point(1, 148);
-                    btnHome.Location = new Point(122, 138);
-                    btnHome.Size = new Size (117,30);
-                    virtualJoystickXY.Size = new Size(160, 160);
-                    virtualJoystickZ.Size = new Size(30, 160);
-                    virtualJoystickZ.Location = new Point(166, 119);
-                }
-                else
-                {
-                    label_status0.Location = new Point(1, 118);
-                    label_status.Location = new Point(1, 138);
-                    btnHome.Location = new Point(122, 111);
-                    btnHome.Size = new Size(117, 57);
-                    virtualJoystickXY.Size = new Size(180, 180);
-                    virtualJoystickZ.Size = new Size(40, 180);
-                    virtualJoystickZ.Location = new Point(186, 119);
-                }
-            }
-            catch (Exception a)
-            {
-                MessageBox.Show("Load Settings: " + a);
-                //               logError("Loading settings", e);
-            }
-        }
-        // Save settings
-        public void saveSettings()
-        {
-            try
-            {
-                Properties.Settings.Default.file = tbFile.Text;
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Save Settings: " + e);
-                //               logError("Saving settings", e);
-            }
-        }
-        // update controls on Main form
-        public void updateControls(bool allowControl = false)
-        {
-            bool isConnected = _serial_form.serialPortOpen;
-            virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);
-            btnCustom1.Enabled = isConnected && (!isStreaming || allowControl);
-            btnCustom2.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom3.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom4.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom5.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom6.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom7.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom8.Enabled = isConnected & !isStreaming | allowControl;
-            btnHome.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroX.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroY.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroZ.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroA.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroXY.Enabled = isConnected & !isStreaming | allowControl;
-            btnZeroXYZ.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroX.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroY.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroZ.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroA.Enabled = isConnected & !isStreaming | allowControl;
-            btnJogZeroXY.Enabled = isConnected & !isStreaming | allowControl;
-            cBSpindle.Enabled = isConnected & !isStreaming | allowControl;
-            tBSpeed.Enabled = isConnected & !isStreaming | allowControl;
-            cBCoolant.Enabled = isConnected & !isStreaming | allowControl;
-            cBTool.Enabled = isConnected & !isStreaming | allowControl;
-            btnReset.Enabled = isConnected;
-            btnFeedHold.Enabled = isConnected;
-            btnResume.Enabled = isConnected;
-            btnKillAlarm.Enabled = isConnected;
-            btnStreamStart.Enabled = isConnected;// & isFileLoaded;
-            btnStreamStop.Enabled = isConnected; // & isFileLoaded;
-            btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
-
-            btnJogStop.Visible = !_serial_form.isGrblVers0;
-            btnJogStop.Enabled = isConnected & !isStreaming | allowControl;
-            btnOverrideFRGB.Enabled = !_serial_form.isGrblVers0 & isConnected & isStreaming | allowControl;
-            btnOverrideSSGB.Enabled = !_serial_form.isGrblVers0 & isConnected & isStreaming | allowControl;
         }
 
         // handle position events from serial form
@@ -520,14 +317,13 @@ namespace GRBL_Plotter
             }
         }
 
-        // update drawing on Main form
+        // update drawing on Main form and enable / disable 
         private void updateDrawing()
         {
-            visuGCode.createImagePath();  // show initial empty picture
-            pictureBox1.Invalidate();
-            if (visuGCode.containsG2G3Command())
-            {
-                skaliereXUmToolStripMenuItem.Enabled = false;
+            visuGCode.createImagePath();                                // show initial empty picture . just ruler and tool-pos
+            pictureBox1.Invalidate();                                   // resfresh view
+            if (visuGCode.containsG2G3Command())                        // disable X/Y independend scaling if G2 or G3 GCode is in use
+            {                                                           // because it's not possible to stretch (convert 1st to G1 GCode)                skaliereXUmToolStripMenuItem.Enabled = false;
                 skaliereAufXUnitsToolStripMenuItem.Enabled = false;
                 skaliereYUmToolStripMenuItem.Enabled = false;
                 skaliereAufYUnitsToolStripMenuItem.Enabled = false;
@@ -537,7 +333,7 @@ namespace GRBL_Plotter
             }
             else
             {
-                skaliereXUmToolStripMenuItem.Enabled = true;
+                skaliereXUmToolStripMenuItem.Enabled = true;                // enable X/Y independend scaling because no G2 or G3 GCode
                 skaliereAufXUnitsToolStripMenuItem.Enabled = true;
                 skaliereYUmToolStripMenuItem.Enabled = true;
                 skaliereAufYUnitsToolStripMenuItem.Enabled = true;
@@ -575,313 +371,8 @@ namespace GRBL_Plotter
             lbInfo.Text = lastLabelInfoText + overrideMessage;
         }
 
-        #region MAIN-MENU FILE
-        // open a file via dialog
-        private void btnOpenFile_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "gcode files (*.nc)|*.nc|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|All files (*.*)|*.*";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {   loadFile(openFileDialog1.FileName);
-                isHeightMapApplied = false;
-            }
-        }
-        // handle MRU List
-        private int MRUnumber = 20;
-        private List<string> MRUlist = new List<string>();
-        private void SaveRecentFile(string path)
-        {
-            //   recentToolStripMenuItem.DropDownItems.Clear();
-            toolStripMenuItem2.DropDownItems.Clear();
-            LoadRecentList(); //load list from file
-            if (MRUlist.Contains(path)) //prevent duplication on recent list
-                MRUlist.Remove(path);
-            MRUlist.Insert(0, path);    //insert given path into list on top
-                                        //keep list number not exceeded the given value
-            while (MRUlist.Count > MRUnumber)
-            { MRUlist.RemoveAt(MRUlist.Count - 1); }
-            foreach (string item in MRUlist)
-            {
-                ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
-                //           recentToolStripMenuItem.DropDownItems.Add(fileRecent);
-                toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
-            }
-            StreamWriter stringToWrite =
-            new StreamWriter(System.Environment.CurrentDirectory + "\\Recent.txt");
-            foreach (string item in MRUlist)
-            { stringToWrite.WriteLine(item); }
-            stringToWrite.Flush(); //write stream to file
-            stringToWrite.Close(); //close the stream and reclaim memory
-        }
-        private void LoadRecentList()
-        {
-            MRUlist.Clear();
-            try
-            {
-                StreamReader listToRead =
-                new StreamReader(System.Environment.CurrentDirectory + "\\Recent.txt");
-                string line;
-                MRUlist.Clear();
-                while ((line = listToRead.ReadLine()) != null) //read each line until end of file
-                    MRUlist.Add(line); //insert to list
-                listToRead.Close(); //close the stream
-            }
-            catch (Exception) { }
-        }
-        private void RecentFile_click(object sender, EventArgs e)
-        {
-            loadFile(sender.ToString());
-        }
+        // Main-Menu File outsourced to MaiFormLoadFile.cs
 
-        private void loadFile(string fileName)
-        {
-            if (fileName.IndexOf("http") >= 0)
-            {   tBURL.Text = fileName;
-                return;
-            }
-            else
-            {
-                if (!File.Exists(fileName))
-                {
-                    MessageBox.Show("File not found: '" + fileName + "'");
-                    return;
-                }
-            }
-            Cursor.Current = Cursors.WaitCursor;
-
-            pictureBox1.BackgroundImage = null;
-            visuGCode.setPosMarker(0, 0);
-            visuGCode.createMarkerPath(); ;
-            String ext = Path.GetExtension(fileName).ToLower();
-            if (ext == ".svg")
-            { startConvertSVG(fileName); }
-            else if (ext == ".dxf")
-            { startConvertDXF(fileName); }
-            else if (ext == ".nc")
-            {
-                tbFile.Text = fileName;
-                loadGcode();
-            }
-            else if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
-            {
-                if (_image_form == null)
-                {
-                    _image_form = new GCodeFromImage(true);
-                    _image_form.FormClosed += formClosed_ImageToGCode;
-                    _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
-                }
-                else
-                {
-                    _image_form.Visible = false;
-                }
-                _image_form.Show(this);
-                _image_form.loadExtern(fileName);
-            }
-            SaveRecentFile(fileName);
-            setLastLoadedFile("Data from file: " +fileName);
-
-            if (ext == ".url")
-            { getURL(fileName); }
-            Cursor.Current = Cursors.Default;
-            pBoxTransform.Reset();
-        }
-
-        private void setLastLoadedFile(string text)
-        {   lastLoadSource = text;
-            if (_setup_form != null)
-            { _setup_form.setLastLoadedFile(lastLoadSource); }
-        }
-        private void getURL(string filename)
-        {
-            var MyIni = new IniFile(filename);
-            tBURL.Text = MyIni.Read("URL", "InternetShortcut");
-        }
-
-        // drag and drop file or URL
-        private void MainForm_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.All;
-        }
-        private void MainForm_DragDrop(object sender, DragEventArgs e)
-        {
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            string s = (string)e.Data.GetData(DataFormats.Text);
-            if (files != null)
-            {
-                loadFile(files[0]);
-            }
-            else
-            { tBURL.Text = s; }
-            this.WindowState = FormWindowState.Minimized;
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-        }
-        private void tBURL_TextChanged(object sender, EventArgs e)
-        {
-            var parts = tBURL.Text.Split('.');
-            string ext = parts[parts.Length - 1];   // get extension
-            if (ext.ToLower().IndexOf("svg") >= 0)
-            {
-                startConvertSVG(tBURL.Text);
-                setLastLoadedFile("Data from URL: " + tBURL.Text);
-                tBURL.Text = "";
-            }
-            else if (ext.ToLower().IndexOf("dxf") >= 0)
-            {
-                startConvertDXF(tBURL.Text);
-                setLastLoadedFile("Data from URL: " + tBURL.Text);
-                tBURL.Text = "";
-            }
-            else if ((ext.ToLower().IndexOf("bmp") >= 0) || (ext.ToLower().IndexOf("gif") >= 0) || (ext.ToLower().IndexOf("png") >= 0) || (ext.ToLower().IndexOf("jpg") >= 0))
-            {
-                if (_image_form == null)
-                {
-                    _image_form = new GCodeFromImage(true);
-                    _image_form.FormClosed += formClosed_ImageToGCode;
-                    _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
-                }
-                else
-                {
-                    _image_form.Visible = false;
-                }
-                _image_form.Show(this);
-                _image_form.loadURL(tBURL.Text);
-                setLastLoadedFile("Data from URL: " + tBURL.Text);
-                tBURL.Text = "";
-            }
-            else
-            {              
-                if (tBURL.Text.Length > 5)
-                {   MessageBox.Show("URL extension is not 'svg' or 'dxf'\r\nTry SVG import anyway, but without setting 'Recent File' list.");
-                    startConvertSVG(tBURL.Text);
-                }
-            }
-        }
-        public void reStartConvertSVG(object sender, EventArgs e)   // event from setup form
-        {   if (!isStreaming)
-            {
-                if (lastLoadSource.IndexOf("Clipboard") >= 0)
-                { loadFromClipboard(); }
-                else
-                { loadFile(lastSource); }
-            }
-        }
-        private string lastSource = "";
-        private void startConvertSVG(string source)
-        {
-            lastSource = source;
-            this.Cursor = Cursors.WaitCursor;
-            string gcode = GCodeFromSVG.convertFromFile(source);
-            if (gcode.Length > 2)
-            {
-                fCTBCode.Text = gcode;
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                redrawGCodePath();
-                SaveRecentFile(source);
-                this.Text = appName + " | Source: " + source;
-            }
-            this.Cursor = Cursors.Default;
-            updateControls();
-        }
-
-        private void startConvertDXF(string source)
-        {
-            lastSource = source;
-            this.Cursor = Cursors.WaitCursor;
-            string gcode = GCodeFromDXF.ConvertFile(source);
-            if (gcode.Length > 2)
-            {
-                fCTBCode.Text = gcode;
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                redrawGCodePath();
-                SaveRecentFile(source);
-                //               isFileLoaded = true;
-                this.Text = appName + " | Source: " + source;
-            }
-            this.Cursor = Cursors.Default;
-            updateControls();
-        }
-
-        bool blockRTBEvents = false;
-        private void loadGcode()
-        {
-            if (File.Exists(tbFile.Text))
-            {
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                fCTBCodeClickedLineNow = 0;
-                fCTBCodeClickedLineLast = 0;
-                visuGCode.setPosMarker(0, 0);
-                blockRTBEvents = true;
-                fCTBCode.OpenFile(tbFile.Text);
-                if (_serial_form.isLasermode && Properties.Settings.Default.ctrlReplaceEnable)
-                { if (Properties.Settings.Default.ctrlReplaceM3)
-                    { fCTBCode.Text = fCTBCode.Text.Replace("M3", "M4");
-                        fCTBCode.Text = "(!!! Replaced M3 by M4 !!!)\r\n" + fCTBCode.Text.Replace("M03", "M04");
-                    }
-                    else
-                    { fCTBCode.Text = fCTBCode.Text.Replace("M4", "M3");
-                        fCTBCode.Text = "(!!! Replaced M4 by M3 !!!)\r\n" + fCTBCode.Text.Replace("M04", "M03");
-                    }
-                }
-
-                redrawGCodePath();
-                blockRTBEvents = false;
-                lbInfo.Text = "G-Code loaded";
-                lbInfo.BackColor = SystemColors.Control;
-                updateControls();
-                SaveRecentFile(tbFile.Text);
-                this.Text = appName + " | File: " + tbFile.Text;
-            }
-        }
-
-        // save content from TextEditor (GCode) to file
-        private void btnSaveFile_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "GCode|*.nc";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                string txt = fCTBCode.Text;
-                File.WriteAllText(sfd.FileName, txt);
-            }
-        }
-        // save Properties.Settings.Default... to text-file
-        private void saveMachineParametersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Machine Ini files (*.ini)|*.ini";
-            sfd.FileName = "GRBL-Plotter.ini";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                var MyIni = new IniFile(sfd.FileName);
-                MyIni.WriteAll(_serial_form.GRBLSettings);
-            }
-        }
-        // load Properties.Settings.Default... from text-file
-        private void loadMachineParametersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            openFileDialog1.FileName = "GRBL-Plotter.ini";
-            openFileDialog1.Filter = "Machine Ini files (*.ini)|*.ini";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                var MyIni = new IniFile(openFileDialog1.FileName);
-                MyIni.ReadAll();
-                loadSettings(sender, e);
-            }
-        }
-
-        // switch language
-        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.language = "en";
-            MessageBox.Show("Restart of GRBL-Plotter is needed");
-        }
-        private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.language = "de-DE";
-            MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich");
-        }
-        #endregion
         #region MAIN-MENU GCode creation
         // open text creation form
         private void textWizzardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1361,6 +852,7 @@ namespace GRBL_Plotter
                 _setup_form.btnApplyChangings.Click += loadSettings;
                 _setup_form.btnReloadFile.Click += reStartConvertSVG;
                 _setup_form.setLastLoadedFile(lastLoadSource);
+                gamePadTimer.Enabled = false;
             }
             else
             {
@@ -1369,7 +861,11 @@ namespace GRBL_Plotter
             _setup_form.Show(this);
         }
         private void formClosed_SetupForm(object sender, FormClosedEventArgs e)
-        { loadSettings(sender, e); _setup_form = null; }
+        {   loadSettings(sender, e);
+            _setup_form = null;
+            updateDrawing();
+            gamePadTimer.Enabled = Properties.Settings.Default.gPEnable;
+        }
         #endregion
         // open About form
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1377,8 +873,6 @@ namespace GRBL_Plotter
             Form frmAbout = new AboutForm();
             frmAbout.ShowDialog();
         }
-
-
 
         private void showLaserMode()
         {
@@ -1426,7 +920,11 @@ namespace GRBL_Plotter
                 flagResetOffset = true;
                 isStreaming = false;
                 isStreamingCheck = false;
-                showLaserMode();
+                //showLaserMode();
+                lbInfo.Text = "GRBL Vers. ";
+                lbInfo.BackColor = Color.Lime;
+                if (_serial_form.isGrblVers0) { lbInfo.Text += "0.x"; }
+                else { lbInfo.Text += "1.x"; }
                 updateControls();
             }
             if (e.Status == grblStreaming.error)
@@ -1819,20 +1317,21 @@ namespace GRBL_Plotter
         {
             Button clickedButton = sender as Button;
             int index = Convert.ToUInt16(clickedButton.Name.Substring("btnCustom".Length));
-            string btnCmd = btnCustomCommand[index];
-            string[] commands;
-            if (File.Exists(btnCmd))
-            {
-                string fileCmd = File.ReadAllText(btnCmd);
-                _serial_form.addToLog("file: " + btnCmd);
-                commands = fileCmd.Split('\n');
-            }
-            else
-            {
-                commands = btnCustomCommand[index].Split(';');
-            }
-            foreach (string cmd in commands)
-                sendCommand(cmd.Trim());
+            processCommands(btnCustomCommand[index]);
+            /*            string btnCmd = btnCustomCommand[index];
+                        string[] commands;
+                        if (File.Exists(btnCmd))
+                        {
+                            string fileCmd = File.ReadAllText(btnCmd);
+                            _serial_form.addToLog("file: " + btnCmd);
+                            commands = fileCmd.Split('\n');
+                        }
+                        else
+                        {
+                            commands = btnCustomCommand[index].Split(';');
+                        }
+                        foreach (string cmd in commands)
+                            sendCommand(cmd.Trim());*/
         }
 
 
@@ -1912,7 +1411,7 @@ namespace GRBL_Plotter
         private void btnZeroZ_Click(object sender, EventArgs e)
         { sendCommand("G92 Z0"); }
         private void btnZeroA_Click(object sender, EventArgs e)
-        { sendCommand("G92 "+ctrl4thName+"0"); }
+        { sendCommand("G92 " + ctrl4thName + "0"); }
         private void btnZeroXY_Click(object sender, EventArgs e)
         { sendCommand("G92 X0 Y0"); }
         private void btnZeroXYZ_Click(object sender, EventArgs e)
@@ -1925,7 +1424,7 @@ namespace GRBL_Plotter
         private void btnJogZ_Click(object sender, EventArgs e)
         { sendCommand("G90 Z0 F" + joystickZSpeed[5].ToString(), true); }
         private void btnJogZeroA_Click(object sender, EventArgs e)
-        { sendCommand("G90 "+ctrl4thName+"0 F" + joystickZSpeed[5].ToString(), true); }
+        { sendCommand("G90 " + ctrl4thName + "0 F" + joystickZSpeed[5].ToString(), true); }
         private void btnJogXY_Click(object sender, EventArgs e)
         { sendCommand("G90 X0 Y0 F" + joystickXYSpeed[5].ToString(), true); }
         private void btnJogStop_Click(object sender, EventArgs e)
@@ -1972,41 +1471,10 @@ namespace GRBL_Plotter
 
         #endregion
 
-
-        /// <summary>
-        /// Handling of RichTextBox rtBCode
-        /// </summary>
-        bool showChangedMessage = true;     // show Message if TextChanged
-        int rtbSize = 0;
-        private void rtbCode_TextChanged(object sender, EventArgs e)
-        {
-            if (!blockRTBEvents)
-            {
-                int rtbActualSize = fCTBCode.LinesCount;
-                if (Math.Abs(rtbActualSize - rtbSize) > 20)     // Highlight / Redraw after huge change
-                {
-                    redrawGCodePath();
-                    showChangedMessage = true;
-                }
-                else
-                {
-                    if (showChangedMessage)
-                    {
-                        lbInfo.Text = "G-Code was changed";
-                        lbInfo.BackColor = Color.Orange;
-                        if (Math.Abs(rtbActualSize - rtbSize) > 20)     // Highlight / Redraw after huge change
-                            redrawGCodePath();
-                    }
-                }
-                rtbSize = rtbActualSize;
-            }
-        }
-
         public GCodeVisuAndTransform visuGCode = new GCodeVisuAndTransform();
         // Refresh drawing path in GCodeVisuAndTransform by applying no transform
         private void redrawGCodePath()
         {
-            //            visuGCode.transformGCode(fCTBCode.Lines, 100, 0, GCodeVisuAndTransform.translate.None);
             visuGCode.getGCodeLines(fCTBCode.Lines);
             updateDrawing();
             lbDimension.Text = visuGCode.xyzSize.getMinMaxString(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
@@ -2017,494 +1485,10 @@ namespace GRBL_Plotter
             toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
         }
 
-        #region fCTB FastColoredTextBox related
-        // highlight code in editor
-        Style StyleComment = new TextStyle(Brushes.Gray, null, FontStyle.Italic);
-        Style StyleGWord = new TextStyle(Brushes.Blue, null, FontStyle.Bold);
-        Style StyleMWord = new TextStyle(Brushes.SaddleBrown, null, FontStyle.Regular);
-        Style StyleFWord = new TextStyle(Brushes.Red, null, FontStyle.Regular);
-        Style StyleSWord = new TextStyle(Brushes.OrangeRed, null, FontStyle.Regular);
-        Style StyleTool = new TextStyle(Brushes.Black, null, FontStyle.Regular);
-        Style StyleXAxis = new TextStyle(Brushes.Green, null, FontStyle.Bold);
-        Style StyleYAxis = new TextStyle(Brushes.BlueViolet, null, FontStyle.Bold);
-        Style StyleZAxis = new TextStyle(Brushes.Red, null, FontStyle.Bold);
-        private void fCTBCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
-        {
-            e.ChangedRange.ClearStyle(StyleComment);
-            e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleGWord, "(G\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleMWord, "(M\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleFWord, "(F\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleSWord, "(S\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleTool, "(T\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleXAxis, "[XIxi]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-        }
-        private void fCTBCode_TextChangedDelayed(object sender, TextChangedEventArgs e)
-        { showChangedMessage = true;
-            if (fCTBCode.LinesCount > 2)
-            {
-                pictureBox1.BackgroundImage = null;
-                redrawGCodePath();
-            }
-        }
-        // mark clicked line in editor
-        int fCTBCodeClickedLineNow = 0;
-        int fCTBCodeClickedLineLast = 0;
-        private void fCTBCode_Click(object sender, EventArgs e)
-        {
-            fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
-            fCTBCodeMarkLine();
-            //           MessageBox.Show(visuGCode.getLineInfo(fCTBCodeClickedLineNow));
-            //            fCTBCode.t  (visuGCode.getLineInfo(fCTBCodeClickedLineNow));
-        }
-        private void fCTBCode_KeyDown(object sender, KeyEventArgs e)
-        {
-            int key = e.KeyValue;
-            if ((key == 38) && (fCTBCodeClickedLineNow > 0))
-            {
-                fCTBCodeClickedLineNow -= 1;
-                fCTBCode.Selection = fCTBCode.GetLine(fCTBCodeClickedLineNow);
-                fCTBCodeMarkLine();
-            }
-            if ((key == 40) && (fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))
-            {
-                fCTBCodeClickedLineNow += 1;
-                fCTBCode.Selection = fCTBCode.GetLine(fCTBCodeClickedLineNow);
-                fCTBCodeMarkLine();
-            }
-        }
-        private void fCTBCodeMarkLine()
-        {
-            if ((fCTBCodeClickedLineNow <= fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
-            {
-                if (fCTBCodeClickedLineNow != fCTBCodeClickedLineLast)
-                {
-                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                    fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);
-                    Range selected = fCTBCode.GetLine(fCTBCodeClickedLineNow);
-                    fCTBCode.Selection = selected;
-                    fCTBCode.SelectionColor = Color.Orange;
-                    fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
-                    // Set marker in drawing
-                    //visuGCode.setMarkerOnDrawing(fCTBCode.SelectedText);
-                    visuGCode.setPosMarkerLine(fCTBCodeClickedLineNow);
-                    pictureBox1.Invalidate(); // avoid too much events
-                    if (_camera_form != null)
-                        _camera_form.setPosMarker(visuGCode.GetPosMarkerX(), visuGCode.GetPosMarkerY());
-                }
-            }
-        }
-
-        // context Menu on fastColoredTextBox
-        private void cmsCode_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (e.ClickedItem.Name == "cmsCodeSelect")
-            {
-                fCTBCode.SelectAll();
-            }
-            if (e.ClickedItem.Name == "cmsCodeCopy")
-            {
-                if (fCTBCode.SelectedText.Length > 0)
-                    fCTBCode.Copy();
-            }
-            if (e.ClickedItem.Name == "cmsCodePaste")
-            {
-                fCTBCode.Paste();
-            }
-            if (e.ClickedItem.Name == "cmsCodeSendLine")
-            {
-                int clickedLine = fCTBCode.Selection.ToLine;
-                sendCommand(fCTBCode.Lines[clickedLine], false);
-                //MessageBox.Show(fCTBCode.Lines[clickedLine]);
-            }
-        }
-
-        #endregion
-
-
-
-        #region paintBox
-        // onPaint drawing
-        private Pen penUp = new Pen(Color.Green, 0.1F);
-        private Pen penDown = new Pen(Color.Red, 0.4F);
-        private Pen penHeightMap = new Pen(Color.Yellow, 1F);
-        private Pen penRuler = new Pen(Color.Blue, 0.1F);
-        private Pen penTool = new Pen(Color.Black, 0.5F);
-        private Pen penMarker = new Pen(Color.DeepPink, 1F);
-        private double picAbsPosX = 0;
-        private double picAbsPosY = 0;
-        private Bitmap picBoxBackround;
-        private int picBoxCopy = 0;
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-            double minx = GCodeVisuAndTransform.drawingSize.minX;                  // extend dimensions
-            double maxx = GCodeVisuAndTransform.drawingSize.maxX;
-            double miny = GCodeVisuAndTransform.drawingSize.minY;
-            double maxy = GCodeVisuAndTransform.drawingSize.maxY;
-            double xRange = (maxx - minx);                                              // calculate new size
-            double yRange = (maxy - miny);
-            double picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
-
-            if ((picScaling > 0.001) && (picScaling < 10000))
-            {
-                double relposX = zoomOffsetX + zoomRange * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X) / pictureBox1.Width);
-                double relposY = zoomOffsetY + zoomRange * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
-                double ratioVisu = xRange / yRange;
-                double ratioPic = Convert.ToDouble(pictureBox1.Width) / pictureBox1.Height;
-                if (ratioVisu > ratioPic)
-                    relposY = relposY * ratioVisu / ratioPic;
-                else
-                    relposX = relposX * ratioPic / ratioVisu;
-
-                picAbsPosX = relposX * xRange + minx;
-                picAbsPosY = yRange - relposY * yRange + miny;
-                int offX = +5;
-
-                if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width - 100))
-                { offX = -75; }
-
-                Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y - 10);
-                e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
-                e.Graphics.DrawString(String.Format("Zooming: {0,2:0.00}%", 100/zoomRange), new Font("Lucida Console", 8), Brushes.Black, new Point(5,5));
-
-                e.Graphics.Transform = pBoxTransform;
-                e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);        // apply scaling (flip Y)
-                e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
-           //     if (picBoxCopy == 0)
-                    onPaint_drawToolPath(e.Graphics);
-                e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
-                e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
-            }
-        }
-
-        private void onPaint_scaling(Graphics e)
-        {
-            double minx = GCodeVisuAndTransform.drawingSize.minX;                  // extend dimensions
-            double maxx = GCodeVisuAndTransform.drawingSize.maxX;
-            double miny = GCodeVisuAndTransform.drawingSize.minY;
-            double maxy = GCodeVisuAndTransform.drawingSize.maxY;
-            double xRange = (maxx - minx);                                              // calculate new size
-            double yRange = (maxy - miny);
-            double picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
-            e.ScaleTransform((float)picScaling, (float)-picScaling);        // apply scaling (flip Y)
-            e.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
-        }
-        private void onPaint_drawToolPath(Graphics e)
-        {
-            e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathHeightMap);
-            e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
-            e.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
-            e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
-        }
-        private void onPaint_setBackground()
-        {   /*
-            picBoxCopy = 1;
-            pictureBox1.BackgroundImageLayout = ImageLayout.None;
-            picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            Graphics graphics = Graphics.FromImage(picBoxBackround);
-            graphics.DrawString("Streaming", new Font("Lucida Console", 8), Brushes.Black, 1, 1);
-            onPaint_scaling(graphics);
-            onPaint_drawToolPath(graphics);
-            pictureBox1.BackgroundImage = new Bitmap(picBoxBackround);//Properties.Resources.modell;
-            */
-        }
-
-        private void pictureBox1_SizeChanged(object sender, EventArgs e)
-        {
-            if (picBoxCopy > 0)
-                onPaint_setBackground();
-            pictureBox1.Invalidate();
-        }
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            pictureBox1.Invalidate();
-        }
-
-        // find closest coordinate in GCode and mark
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {   // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
-            if (fCTBCode.LinesCount > 2)
-            {
-                int line;
-                line = visuGCode.setPosMarkerNearBy(picAbsPosX, picAbsPosY);
-                fCTBCode.Selection = fCTBCode.GetLine(line);
-                fCTBCodeClickedLineNow = line;
-                fCTBCodeMarkLine();
-                fCTBCode.DoCaretVisible();
-            }
-        }
-
-        private Matrix pBoxTransform = new Matrix();
-        private static float s_dScrollValue = 2f; // zoom factor   
-        private float zoomRange = 1f;
-        private float zoomOffsetX = 0f;
-        private float zoomOffsetY = 0f;
-
-        private void pictureBox1_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            pictureBox1.Focus();
-            if (pictureBox1.Focused == true && e.Delta != 0)
-            {   ZoomScroll(e.Location, e.Delta > 0);            }
-        }
-        private void ZoomScroll(Point location, bool zoomIn)
-        {
-            float locX = - location.X;
-            float locY = - location.Y;
-            float posX = (float)location.X / (float)pictureBox1.Width;      // range 0..1
-            float posY = (float)location.Y / (float)pictureBox1.Height;     // range 0..1
-            float valX = zoomOffsetX + posX * zoomRange;                    // range offset...(offset+range)
-            float valY = zoomOffsetY + posY * zoomRange;
-
-            pBoxTransform.Translate(-locX, -locY);
-            if (zoomIn)
-            {   pBoxTransform.Scale((float)s_dScrollValue, (float)s_dScrollValue);
-                zoomRange *= 1/s_dScrollValue;
-            }
-            else
-            {   pBoxTransform.Scale(1 / (float)s_dScrollValue, 1 / (float)s_dScrollValue);
-                zoomRange *= s_dScrollValue;
-            }
-            zoomOffsetX = valX - posX * zoomRange;
-            zoomOffsetY = valY - posY * zoomRange;
-            pBoxTransform.Translate(locX, locY);
-            if (zoomRange == 1)
-            { pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0; }
-
-            pictureBox1.Invalidate();
-        }
-        private void resetZoomingToolStripMenuItem_Click(object sender, EventArgs e)
-        { pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0; }
-        private float transformMousePos(float old, float offset)
-        { return old * zoomRange + offset; }
-        #endregion
-
-
-
-        private int findEndOfPath(int startLine, bool toEnd)
-        {
-            int endVal = fCTBCode.LinesCount;
-            int lineNr = startLine;
-            int lastNr = lineNr;
-            string curLine;
-            if (endVal < 2) return -1;
-            if (toEnd)
-            {   if (startLine > endVal) return -1; }
-            else
-            {   endVal = 0;
-                if (startLine < endVal) return -1;                 
-            }
-            do
-            {
-                curLine = fCTBCode.Lines[lineNr];
-                if ((curLine.IndexOf("X") >= 0) || (curLine.IndexOf("Y") >= 0))
-                { lastNr = lineNr; }
-                if ((curLine.IndexOf("Z") >= 0) || (curLine.IndexOf("G0") >= 0) || (curLine.IndexOf("M30") >= 0) || (curLine.IndexOf("F") >= 0))
-                {
-                    if (toEnd)
-                        lastNr++;
-                    return lastNr;
-                }
-                if (toEnd)
-                { lineNr++; }
-                else
-                { lineNr--; }
-            } while ((lineNr <= fCTBCode.LinesCount) || (lineNr > 0));
-            return -1;
-        }
-
-        private void moveToFirstPosToolStripMenuItem_Click(object sender, EventArgs e)
-        {   // rotate coordinates until marked line first
-            int lineNr = fCTBCodeClickedLineNow;
-            Range mySelection=fCTBCode.Range;
-            Place selStart, selEnd;
-            selStart.iLine = fCTBCodeClickedLineNow;
-            selStart.iChar = 0;
-            mySelection.Start = selStart;
-            selEnd.iLine = lineNr;
-            selEnd.iChar = 0;
-            // select from marked line until end of this path - needs to be moved to front
-            lineNr = findEndOfPath(fCTBCodeClickedLineNow,true);            // find end
-            if (lineNr > 0)
-            {   selEnd.iLine = lineNr;
-                selEnd.iChar = 0;
-                mySelection.End = selEnd;
-                fCTBCode.Selection = mySelection;
-                fCTBCode.SelectionColor = Color.Red;
-                // find current begin of path, to insert selected code
-                lineNr = findEndOfPath(fCTBCodeClickedLineNow, false);      // find start
-                if (lineNr > 0)
-                {   if (deleteMarkedCode)
-                    {
-                        fCTBCode.Cut();
-                        selStart.iLine = lineNr;
-                        selStart.iChar = 0;
-                        selEnd.iLine = lineNr;
-                        selEnd.iChar = 0;
-                        mySelection.Start = selStart;
-                        mySelection.End = selEnd;
-                        fCTBCode.Selection = mySelection;
-                        fCTBCode.Paste();
-                        fCTBCodeClickedLineNow = lineNr;
-                        fCTBCodeMarkLine();
-                    }
-                    fCTBCode.DoCaretVisible();
-                    redrawGCodePath();
-                    return;
-                }
-            }
-            MessageBox.Show("Path start / end could not be identified");
-        }
-
-        private void deletePathToolStripMenuItem_Click(object sender, EventArgs e)
-        {   // mark start to end of path and delete
-            int lineNr = fCTBCodeClickedLineNow;
-            Range mySelection = fCTBCode.Range;
-            Place selStart, selEnd;
-            selStart.iLine = fCTBCodeClickedLineNow;
-            selStart.iChar = 0;
-            mySelection.Start = selStart;
-            selEnd.iLine = lineNr;
-            selEnd.iChar = 0;
-            // find start of path
-            lineNr = findEndOfPath(fCTBCodeClickedLineNow, false);
-            if (lineNr > 0)
-            {   if (fCTBCode.Lines[lineNr].IndexOf("Z") >= 0) { lineNr--; }
-                selStart.iLine = lineNr;
-                selStart.iChar = 0;
-                mySelection.Start = selStart;
-                // find end of path
-                lineNr = findEndOfPath(fCTBCodeClickedLineNow, true);
-                if (lineNr > 0)
-                {
-                    if (fCTBCode.Lines[lineNr].IndexOf("Z") >= 0) { lineNr++; }
-                    selEnd.iLine = lineNr;
-                    selEnd.iChar = 0;
-                    mySelection.End = selEnd;
-                    fCTBCode.Selection = mySelection;
-                    fCTBCode.SelectionColor = Color.Red;
-                    fCTBCodeClickedLineNow = selStart.iLine;
-
-                    if (deleteMarkedCode)
-                    {
-                        fCTBCode.Cut();
-                        fCTBCodeMarkLine();
-                    }
-                    fCTBCode.DoCaretVisible();
-                    redrawGCodePath();
-                    return;
-                }
-            }
-            MessageBox.Show("Path start / end could not be identified");
-        }
-
-        private void deleteThisCodeLineToolStripMenuItem_Click(object sender, EventArgs e)
-        {   if (fCTBCode.LinesCount < 1) return;
-            fCTBCodeClickedLineLast = 1;
-            fCTBCodeMarkLine();
-            if (deleteMarkedCode)
-            {
-                fCTBCode.Cut();
-                fCTBCodeClickedLineNow--;
-                fCTBCodeMarkLine();
-            }
-            fCTBCode.DoCaretVisible();
-            redrawGCodePath();
-            return;
-        }
-
-        private bool deleteMarkedCode = false;
-        private void deletenotMarkToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (deleteMarkedCode)
-            {   deleteMarkedCode = false;
-                deletenotMarkToolStripMenuItem.Text = "Mark (not delete)";
-            }
-            else
-            {
-                deleteMarkedCode = true;
-                deletenotMarkToolStripMenuItem.Text = "Delete (not mark)";
-            }
-        }
-
         private void cBTool_CheckedChanged(object sender, EventArgs e)
         {
             _serial_form.toolInSpindle = cBTool.Checked;
         }
-
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
-            {
-                loadFromClipboard();
-                e.SuppressKeyPress = true;
-            }
-        }
-        private void loadFromClipboard()
-        {   string svg_format1 = "image/x-inkscape-svg";
-            string svg_format2 = "image/svg+xml";
-            IDataObject iData = Clipboard.GetDataObject();
-            if (iData.GetDataPresent(DataFormats.Text))
-            {   fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
-                setLastLoadedFile("Data from Clipboard: Text");
-            }
-            else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
-            {
-                MemoryStream stream = new MemoryStream();
-                if (iData.GetDataPresent(svg_format1))
-                    stream = (MemoryStream)iData.GetData(svg_format1);
-                else
-                    stream = (MemoryStream)iData.GetData(svg_format2);
-
-                byte[] bytes = stream.ToArray();
-                string txt = System.Text.Encoding.Default.GetString(bytes);
-                this.Cursor = Cursors.WaitCursor;
-
-                string gcode = GCodeFromSVG.convertFromText(txt);
-                if (gcode.Length > 2)
-                {
-                    fCTBCode.Text = gcode;
-                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                    redrawGCodePath();
-                    this.Text = appName + " | Source: from Clipboard";
-                }
-                this.Cursor = Cursors.Default;
-                updateControls();
-                setLastLoadedFile("Data from Clipboard: SVG");
-            }
-            else if (iData.GetDataPresent(DataFormats.Bitmap))
-            {
-                if (_image_form == null)
-                {
-                    _image_form = new GCodeFromImage(true);
-                    _image_form.FormClosed += formClosed_ImageToGCode;
-                    _image_form.btnGenerate.Click += getGCodeFromImage;      // assign btn-click event
-                }
-                else
-                {
-                    _image_form.Visible = false;
-                }
-                _image_form.Show(this);
-                _image_form.loadClipboard();
-                setLastLoadedFile("Data from Clipboard: Image");
-            }
-            else
-            {   string tmp = "";
-                foreach (string format in iData.GetFormats())
-                { tmp += format + "\r\n"; }
-                MessageBox.Show(tmp);
-            }
-        }
-
-        private void pasteFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
-        {   loadFromClipboard();    }
-
-        private void fCTBCode_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void btnOverrideFR0_Click(object sender, EventArgs e)
         { sendRealtimeCommand(144); }     // 0x90 : Set 100% of programmed rate.    
@@ -2527,5 +1511,165 @@ namespace GRBL_Plotter
         { sendRealtimeCommand(156); }     // 0x9C : Increase 1%   
         private void btnOverrideSS3_Click(object sender, EventArgs e)
         { sendRealtimeCommand(157); }     // 0x9D : Decrease 1%   
+
+        private void processCommands(string command)
+        {   string[] commands;
+            if (File.Exists(command))
+            {
+                string fileCmd = File.ReadAllText(command);
+                _serial_form.addToLog("file: " + command);
+                commands = fileCmd.Split('\n');
+            }
+            else
+            {
+                commands = command.Split(';');
+            }
+            foreach (string btncmd in commands)
+                sendCommand(btncmd.Trim());
+        }
+        private void processSpecialCommands(string command)
+        {   if (command.ToLower().IndexOf("#start") >= 0) { btnStreamStart_Click(this, EventArgs.Empty); }
+            else if (command.ToLower().IndexOf("#stop") >= 0) { btnStreamStop_Click(this, EventArgs.Empty); }
+            else if(command.ToLower().IndexOf("#f100") >= 0) { sendRealtimeCommand(144); }
+            else if(command.ToLower().IndexOf("#f+10") >= 0) { sendRealtimeCommand(145); }
+            else if(command.ToLower().IndexOf("#f-10") >= 0) { sendRealtimeCommand(146); }
+            else if(command.ToLower().IndexOf("#f+1") >= 0)  { sendRealtimeCommand(147); }
+            else if(command.ToLower().IndexOf("#f-1") >= 0)  { sendRealtimeCommand(148); }
+            else if(command.ToLower().IndexOf("#s100") >= 0) { sendRealtimeCommand(153); }
+            else if(command.ToLower().IndexOf("#s+10") >= 0) { sendRealtimeCommand(154); }
+            else if(command.ToLower().IndexOf("#s-10") >= 0) { sendRealtimeCommand(155); }
+            else if(command.ToLower().IndexOf("#s+1") >= 0)  { sendRealtimeCommand(156); }
+            else if(command.ToLower().IndexOf("#s-1") >= 0)  { sendRealtimeCommand(157); }
+        }
+        private bool gamePadSendCmd = false;
+        private string gamePadSendString = "";
+        private int gamePadRepitition = 0;
+        private void gamePadTimer_Tick(object sender, EventArgs e)
+        {
+            string command = "";
+            try
+            { ControlGamePad.gamePad.Poll();
+                var datas = ControlGamePad.gamePad.GetBufferedData();
+                int absVal = 0, stepIndex = 0, feed = 10000, speed1 = 1, speed2 = 1;
+                string cmdX = "", cmdY = "", cmdZ = "", cmdR = "", cmd="";
+                bool stopJog = false;
+                var prop = Properties.Settings.Default;
+
+                gamePadRepitition++;
+                if (gamePadRepitition > 4) { gamePadRepitition = 0; }
+
+                if (datas.Length > 0)
+                {
+                    cmd = "G91";
+                    foreach (var state in datas)
+                    {
+                        string offset = state.Offset.ToString();
+                        int value = state.Value;
+                        if ((value > 0) && (offset.IndexOf("Buttons") >= 0))
+                        {   try
+                            {   command = Properties.Settings.Default["gP" + offset].ToString();
+                                if (command.IndexOf('#') >= 0)
+                                { processSpecialCommands(command); }
+                                else
+                                { processCommands(command); }
+                            }
+                            catch { }
+                        }
+
+
+                        if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
+                        {
+                            if ((value > 28000) && (value < 36000))
+                            { sendRealtimeCommand(133); stopJog = true;
+                                gamePadSendCmd = false;
+                                gamePadSendString = "";
+                            }
+                            else
+                            {
+                                stepIndex = gamePadIndex(value);// absVal) / 6500;
+                                if (stepIndex > 0)
+                                {   Int32.TryParse(prop["joyXYSpeed" + stepIndex.ToString()].ToString(), out speed1);
+                                    Int32.TryParse(prop["joyZSpeed" + stepIndex.ToString()].ToString(), out speed2);
+                                }
+
+                                if (offset == "X")
+                                {
+                                    gamePadSendCmd = true;
+                                    cmdX = gamePadGCode(value, stepIndex, prop.gPXAxis, prop.gPXInvert);    // refresh axis data
+                                    feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPXAxis);
+                                }
+                                if (offset == "Y")
+                                {
+                                    gamePadSendCmd = true;
+                                    cmdY = gamePadGCode(value, stepIndex, prop.gPYAxis, prop.gPYInvert);    // refresh axis data
+                                    feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPYAxis);
+                                }
+                                if (offset == "Z")
+                                {
+                                    gamePadSendCmd = true;
+                                    cmdZ = gamePadGCode(value, stepIndex, prop.gPZAxis, prop.gPZInvert);    // refresh axis data
+                                    feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPZAxis);
+                                }
+                                if (offset == "RotationZ")
+                                {
+                                    gamePadSendCmd = true;
+                                    cmdR = gamePadGCode(value, stepIndex, prop.gPRAxis, prop.gPRInvert);    // refresh axis data
+                                    feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPRAxis);
+                                }
+                            }
+                        }
+                        else
+                        {   gamePadSendCmd = false;
+                            gamePadSendString = "";
+                        }
+                    }
+                    cmd += cmdX + cmdY + cmdZ + cmdR;               // build up command word with last axis information
+                    if (cmd.Length > 4)
+                        gamePadSendString = cmd + "F" + feed;
+                }
+                if (gamePadSendCmd && !stopJog && gamePadRepitition == 0)
+                { if (gamePadSendString.Length > 0)
+                        sendCommand(gamePadSendString, true);
+                }
+
+            }
+            catch
+            {
+                try { ControlGamePad.Initialize(); gamePadTimer.Interval = 100; }
+                catch { gamePadTimer.Interval = 5000; }
+            }
+        }
+
+        private int gamePadIndex(int value)         // calculate matching index for virtual joystick values
+        {   int absval = Math.Abs(value - 32767);   // depending on joystick position (strange behavior)
+            if (absval < 5000) { return 0; }
+            if (absval < 12000) { return 1; }
+            if (absval < 19000) { return 2; }
+            if (absval < 26000) { return 3; }
+            if (absval < 32700) { return 4; }
+            if (absval >= 32700) { return 5; }
+            return 0;
+        }
+
+        private string gamePadGCode(int value, int stpIndex, string axis, bool invert)
+        {
+            string sign = (((value < 32767) && (!invert)) || ((value > 32767) && (invert))) ? "-" : "";
+            if (stpIndex > 0)
+            {
+                string sstep = Properties.Settings.Default["joyXYStep" + stpIndex.ToString()].ToString();
+                if ((axis != "X") && (axis != "Y"))
+                { sstep = Properties.Settings.Default["joyZStep" + stpIndex.ToString()].ToString();
+                }
+                return string.Format("{0}{1}{2}", axis, sign, sstep);
+            }
+            return "";
+        }
+
+        private int gamePadGCodeFeed(int feed, int speed1, int speed2, string axis)
+        {   if ((axis != "X") && (axis != "Y"))
+            { return speed2; }    // Math.Min(feed,speed2);}
+                return speed1;  // Math.Min(feed,speed1);
+        }
     }
 }
+

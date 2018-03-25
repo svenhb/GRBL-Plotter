@@ -6,11 +6,10 @@ namespace GRBL_Plotter
 {
     class checkUpdate
     {
-        public delegate void NewVersionDlg(Version current, Version latest, string name, string url);
-//        public static event NewVersionDlg NewVersion;
-
-        public static void CheckVersion()
+        private static bool showAny = false;
+        public static void CheckVersion(bool showAnyResult=false)
         {
+            showAny = showAnyResult;
             if (Properties.Settings.Default.guiCheckUpdate)
                 System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(checkUpdate.AsyncCheckVersion));
         }
@@ -18,15 +17,31 @@ namespace GRBL_Plotter
         private static void AsyncCheckVersion(object foo)
         {
             try
-            { CheckSite(@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest"); } //official https
+            { CheckSite1(@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest"); } //official https
             catch
             {
-          //      try { CheckSite(@"https://github.com/svenhb/GRBL-Plotter/releases"); }//http mirror
-         //       catch { }
+                try
+                { CheckSite2(@"http://svenhb.bplaced.net/GRBL-Plotter.php"); }  // get Version-Nr and count individual ip to get an idea of amount of users
+                catch
+                { }
             }
         }
 
-        private static void CheckSite(string site)
+        // Suddenly it was not possible anymore to get latest version from here (@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest"); 
+        // workarround: put file 'GRBL-Plotter.txt' with actual version on own server
+
+        private static void CheckSite2(string site)
+        {
+           using (System.Net.WebClient wc = new System.Net.WebClient())
+            {
+                string vers = wc.DownloadString(site);
+                Version current = typeof(checkUpdate).Assembly.GetName().Version; 
+                Version latest = new Version(vers);
+                showResult(current, latest);
+            }
+        }
+
+        private static void CheckSite1(string site)
         {
             using (System.Net.WebClient wc = new System.Net.WebClient())
             {
@@ -46,16 +61,33 @@ namespace GRBL_Plotter
                 foreach (Match m in Regex.Matches(json, @"""name"":""([^""]+)"""))
                     if (name == null)
                         name = m.Groups[1].Value;
-             
+
                 Version current = typeof(checkUpdate).Assembly.GetName().Version;
                 Version latest = new Version(versionstr);
 
-                if (current < latest)
+                showResult(current, latest);
+            }
+        }
+
+        private static void showResult(Version current, Version latest)
+        {
+            if ((current < latest) || showAny)
+            {
+                String txt = "A new GRBL-Plotter version is available";
+                String title = "New Version";
+                if (current >= latest)
                 {
-                    MessageBox.Show("A new GRBL-Plotter version is available\r\nInstalled Version: " + current + "\r\nLatest Version     : " + latest + "\r\n\r\nCheck:\r\nhttps://github.com/svenhb/GRBL-Plotter/releases", "New Version",
-                        MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);// (MessageBoxOptions)0x40000);
+                    txt = "Installed version is up to date - nothing to do";
+                    title = "Information";
+                }
+
+                if (MessageBox.Show(txt + "\r\nInstalled Version: " + current + "\r\nLatest Version     : " + latest + "\r\n\r\nCheck: https://github.com/svenhb/GRBL-Plotter/releases \r\n\r\nOpen website?", title,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly, false) == DialogResult.Yes)    // (MessageBoxOptions)0x40000);
+                {
+                    System.Diagnostics.Process.Start(@"https://github.com/svenhb/GRBL-Plotter/releases");
                 }
             }
         }
+
     }
 }

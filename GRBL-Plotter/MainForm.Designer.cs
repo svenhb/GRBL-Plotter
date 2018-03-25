@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2016 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,7 +35,6 @@ namespace GRBL_Plotter
             {
                 components.Dispose();
                 picBoxBackround.Dispose();
-     //           gcodeImage.Dispose();
                 StyleComment.Dispose();
                 StyleFWord.Dispose();
                 StyleGWord.Dispose();
@@ -50,7 +49,8 @@ namespace GRBL_Plotter
                 penRuler.Dispose();
                 penTool.Dispose();
                 penUp.Dispose();
-                //                visuGCode.Dispose();
+                pBoxTransform.Dispose();
+                penHeightMap.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -179,6 +179,7 @@ namespace GRBL_Plotter
             this.cmsCodeCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodePaste = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeSendLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCommentOut = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label_status0 = new System.Windows.Forms.Label();
@@ -248,6 +249,7 @@ namespace GRBL_Plotter
             this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
             this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
+            this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.btnOverrideSSGB.SuspendLayout();
@@ -1032,7 +1034,8 @@ namespace GRBL_Plotter
             this.cmsCodeSelect,
             this.cmsCodeCopy,
             this.cmsCodePaste,
-            this.cmsCodeSendLine});
+            this.cmsCodeSendLine,
+            this.cmsCommentOut});
             this.cmsCode.Name = "cmsCode";
             this.cmsCode.ShowImageMargin = false;
             resources.ApplyResources(this.cmsCode, "cmsCode");
@@ -1057,6 +1060,11 @@ namespace GRBL_Plotter
             // 
             this.cmsCodeSendLine.Name = "cmsCodeSendLine";
             resources.ApplyResources(this.cmsCodeSendLine, "cmsCodeSendLine");
+            // 
+            // cmsCommentOut
+            // 
+            this.cmsCommentOut.Name = "cmsCommentOut";
+            resources.ApplyResources(this.cmsCommentOut, "cmsCommentOut");
             // 
             // openFileDialog1
             // 
@@ -1507,7 +1515,6 @@ namespace GRBL_Plotter
             this.fCTBCode.Zoom = 100;
             this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
             this.fCTBCode.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChangedDelayed);
-            this.fCTBCode.Load += new System.EventHandler(this.fCTBCode_Load);
             this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
             this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
             // 
@@ -1640,6 +1647,10 @@ namespace GRBL_Plotter
             this.tLPRechtsOben.Controls.Add(this.groupBox5, 1, 0);
             this.tLPRechtsOben.Controls.Add(this.groupBox2, 0, 0);
             this.tLPRechtsOben.Name = "tLPRechtsOben";
+            // 
+            // gamePadTimer
+            // 
+            this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
             // 
             // MainForm
             // 
@@ -1875,6 +1886,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblOverrideSSValue;
+        private System.Windows.Forms.ToolStripMenuItem cmsCommentOut;
+        private System.Windows.Forms.Timer gamePadTimer;
     }
 }
 

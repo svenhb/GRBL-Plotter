@@ -46,6 +46,7 @@ namespace GRBL_Plotter
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -54,15 +55,19 @@ namespace GRBL_Plotter
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(3, 300);
+            this.button1.Location = new System.Drawing.Point(138, 340);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(258, 37);
+            this.button1.Size = new System.Drawing.Size(123, 37);
             this.button1.TabIndex = 0;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
@@ -82,7 +87,7 @@ namespace GRBL_Plotter
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 260);
+            this.label1.Location = new System.Drawing.Point(12, 237);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 13);
             this.label1.TabIndex = 2;
@@ -92,12 +97,13 @@ namespace GRBL_Plotter
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 284);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 254);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(144, 13);
             this.linkLabel1.TabIndex = 3;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Visit GRBL-Plotter on GitHUb";
+            this.toolTip1.SetToolTip(this.linkLabel1, "Open brower and visit \'https://github.com/svenhb/GRBL-Plotter\'");
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label2
@@ -112,7 +118,7 @@ namespace GRBL_Plotter
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 239);
+            this.label3.Location = new System.Drawing.Point(87, 220);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 5;
@@ -121,18 +127,51 @@ namespace GRBL_Plotter
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(60, 239);
+            this.lblVersion.Location = new System.Drawing.Point(135, 220);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(35, 13);
             this.lblVersion.TabIndex = 6;
             this.lblVersion.Text = "label4";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 340);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(129, 37);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Check for update";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.Location = new System.Drawing.Point(12, 289);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(249, 33);
+            this.linkLabel2.TabIndex = 9;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Startup path";
+            this.toolTip1.SetToolTip(this.linkLabel2, "Open Folder");
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 273);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Startup Path: ";
             // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
-            this.ClientSize = new System.Drawing.Size(264, 341);
+            this.ClientSize = new System.Drawing.Size(264, 381);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -142,9 +181,9 @@ namespace GRBL_Plotter
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(280, 380);
+            this.MaximumSize = new System.Drawing.Size(280, 420);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(280, 380);
+            this.MinimumSize = new System.Drawing.Size(280, 420);
             this.Name = "AboutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "About";
@@ -165,5 +204,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

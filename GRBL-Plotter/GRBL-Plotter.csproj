@@ -24,7 +24,6 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <TargetCulture>en</TargetCulture>
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
@@ -39,7 +38,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -102,6 +101,14 @@
       <HintPath>DLLs\FastColoredTextBox.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\SharpDX.DirectInput.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -126,6 +133,7 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="eventHandler.cs" />
+    <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
     <Compile Include="MachineControl\ControlCameraForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +146,7 @@
     <Compile Include="MachineControl\Control2ndGRBL.Designer.cs">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineControl\ControlGamePad.cs" />
     <Compile Include="MachineControl\ControlHeightMap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +169,15 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainFormFCTB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormLoadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFormPictureBox.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -230,6 +248,9 @@
     <EmbeddedResource Include="MachineControl\ControlSetupForm.de-DE.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.de.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlStreamingForm.de-DE.resx">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,6 +300,7 @@
     <EmbeddedResource Include="GCodeCreation\GCodeFromShape.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

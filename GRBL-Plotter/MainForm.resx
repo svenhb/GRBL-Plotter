@@ -1906,31 +1906,37 @@
     <value>581, 17</value>
   </metadata>
   <data name="cmsCodeSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>216, 22</value>
   </data>
   <data name="cmsCodeSelect.Text" xml:space="preserve">
     <value>Select All</value>
   </data>
   <data name="cmsCodeCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>216, 22</value>
   </data>
   <data name="cmsCodeCopy.Text" xml:space="preserve">
-    <value>Copy</value>
+    <value>Copy to clipboard</value>
   </data>
   <data name="cmsCodePaste.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>216, 22</value>
   </data>
   <data name="cmsCodePaste.Text" xml:space="preserve">
-    <value>Paste</value>
+    <value>Paste from clipboard</value>
   </data>
   <data name="cmsCodeSendLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>216, 22</value>
   </data>
   <data name="cmsCodeSendLine.Text" xml:space="preserve">
-    <value>Send Line</value>
+    <value>Send marked line towards GRBL</value>
+  </data>
+  <data name="cmsCommentOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
+  </data>
+  <data name="cmsCommentOut.Text" xml:space="preserve">
+    <value>Comment out unknown GCode</value>
   </data>
   <data name="cmsCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 92</value>
+    <value>217, 114</value>
   </data>
   <data name="&gt;&gt;cmsCode.Name" xml:space="preserve">
     <value>cmsCode</value>
@@ -3830,6 +3836,9 @@ for SVG files</value>
   <data name="tLPAussen.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPLinks" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,300,Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
+  <metadata name="gamePadTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>233, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -7214,6 +7223,12 @@ for SVG files</value>
   <data name="&gt;&gt;cmsCodeSendLine.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;cmsCommentOut.Name" xml:space="preserve">
+    <value>cmsCommentOut</value>
+  </data>
+  <data name="&gt;&gt;cmsCommentOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
     <value>openFileDialog1</value>
   </data>
@@ -7279,6 +7294,12 @@ for SVG files</value>
   </data>
   <data name="&gt;&gt;deletePathToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gamePadTimer.Name" xml:space="preserve">
+    <value>gamePadTimer</value>
+  </data>
+  <data name="&gt;&gt;gamePadTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

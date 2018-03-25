@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,13 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GRBL_Plotter
@@ -33,6 +27,9 @@ namespace GRBL_Plotter
         public AboutForm()
         {
             InitializeComponent();
+            linkLabel2.Text = System.Windows.Forms.Application.StartupPath;
+            toolTip1.SetToolTip(linkLabel2, "Open file explorer and visit '"+ System.Windows.Forms.Application.StartupPath + "'");
+//            linkLabel3.Text = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.DataDirectory;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -44,5 +41,16 @@ namespace GRBL_Plotter
         {
             lblVersion.Text = Application.ProductVersion.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            checkUpdate.CheckVersion(true);
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(System.Windows.Forms.Application.StartupPath);// (@"c:\test");
+        }
+
     }
 }
