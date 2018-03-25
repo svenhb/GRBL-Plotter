@@ -3,7 +3,13 @@
 Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)  
 Geschrieben in C# VisualStudio 2015.
   
-### Neu in version 1.1.3.0: 
+## Neu in Version 1.1.4.0: 
+Import von Eagle Drill Dateien
+Unterstützung von NoName USB GamePad  
+Importauswahl (und Linealeinstellung) 'mm' / 'inch' im Setup  
+Auskommentierung von unbekannten GCode  
+  
+### Neu in Version 1.1.3.0: 
 Knöpfe für "Feed rate-" und "Spindle speed override" (GRBL 1.1) hinzugefügt  
 Fehlerbehebung - keine Vergrößerung während Code-Streamings  
 Fehlerbehebung SVG Import: Rechteck-Transformation (G3 Befehl)  
@@ -36,7 +42,7 @@ DXF Import (Fehlend: Text und Ellipse, Spline mit mehr als 4 punkten nok)
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.3.0](GRBL-Plotter_1130_Publish.zip)  2018-01-03  
+#### [GRBL-Plotter Vers. 1.1.4.0](GRBL-Plotter_1140_Publish.zip)  2018-03-25  
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
