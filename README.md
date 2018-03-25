@@ -3,6 +3,12 @@
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2015.
  
+### New in version 1.1.4.0: 
+Add import of Eagle Drill file  
+Add support of noname USB GamePad  
+Add import (and ruler) selection 'mm' / 'inch' in setup  
+Comment-out unknown GCode  
+ 
 ### New in version 1.1.3.0: 
 Add feed rate and spindle speed override buttons (GRBL 1.1) to main GUI  
 Bug fix in main GUI: no zooming during streaming - disabled background image (perhaps performance in Win-XP is affected)  
