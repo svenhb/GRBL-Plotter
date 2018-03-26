@@ -98,14 +98,20 @@ Separate serial COM window(s) - one for the CNC, one for the tool changer (or 4t
 ![GRBL-Plotter COM interface](doc/GRBLPlotter_COM2.png?raw=true "Serial connection") ![2nd GRBL control](doc/GRBLPlotter_Control_COM2.png?raw=true "Serial connection") 
 
 Setup import / GCode conversion  
-![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1.png?raw=true "Setup1") 
-
-Setup user defined buttons  
-![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2.png?raw=true "Setup2") 
-
-Setup tool change and colors  
-![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3.png?raw=true "Setup3") 
-
+![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1_de.png?raw=true "Setup1") 
+  
+Setup configuration 
+![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_de.png?raw=true "Setup2") 
+  
+Setup Custom Buttons  
+![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_de.png?raw=true "Setup3") 
+  
+Setup GamePad  
+![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_de.png?raw=true "Setup4") 
+  
+Setup virtual Joystick and colors  
+![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_de.png?raw=true "Setup5") 
+  
 Text import  
 ![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
 
