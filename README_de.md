@@ -101,16 +101,16 @@ Setup import / GCode conversion
 ![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1_de.png?raw=true "Setup1") 
   
 Setup configuration 
-![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_de.png?raw=true "Setup2") 
+![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_de.png?raw=true "Setup2") 
   
 Setup Custom Buttons  
-![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_de.png?raw=true "Setup3") 
+![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_de.png?raw=true "Setup3") 
   
 Setup GamePad  
-![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_de.png?raw=true "Setup4") 
+![GRBL-Plotter Setup4](doc/GRBLPlotter_Setup4_de.png?raw=true "Setup4") 
   
 Setup virtual Joystick and colors  
-![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_de.png?raw=true "Setup5") 
+![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_de.png?raw=true "Setup5") 
   
 Text import  
 ![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
