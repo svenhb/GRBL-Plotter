@@ -92,20 +92,26 @@ Separate serial COM window(s) - one for the CNC, one for the tool changer (or 4t
 ![GRBL-Plotter COM interface](doc/GRBLPlotter_COM2.png?raw=true "Serial connection") ![2nd GRBL control](doc/GRBLPlotter_Control_COM2.png?raw=true "Serial connection")
 
 Setup import / GCode conversion  
-![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1.png?raw=true "Setup1") 
-
+![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1_en.png?raw=true "Setup1") 
+  
+Setup main configuration  
+![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_en.png?raw=true "Setup2") 
+  
 Setup user defined buttons  
-![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2.png?raw=true "Setup2") 
-
-Setup tool change and colors  
-![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3.png?raw=true "Setup3") 
-
+![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_en.png?raw=true "Setup3") 
+  
+Setup GamePad  
+![GRBL-Plotter Setup4](doc/GRBLPlotter_Setup4_en.png?raw=true "Setup4") 
+  
+Setup virtual Joystick  
+![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_en.png?raw=true "Setup5") 
+  
 Text import  
 ![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
-
+  
 Picture import  
 ![GRBL-Plotter Image](doc/GRBLPlotter_Image.png?raw=true "Image import") 
-
+  
 Different scaling options  
 ![GRBL-Plotter Scaling](doc/GRBLPlotter_scaling.png?raw=true "GCode scaling") 
 
