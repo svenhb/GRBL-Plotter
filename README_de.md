@@ -2,7 +2,7 @@
 [README english](README.md)  
 Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)  
 Geschrieben in C# VisualStudio 2015.  
-Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende. [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)
+Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)
   
 ### Neu in Version 1.1.5.0: 
 Die Kamera nutzt nun ihr eigenes Koordinatensystem G59 (gegenüber dem Default-Koordinatensystem G54). Achtung! Vor Ausführung des GCodes muss wieder auf das Default-Koordinatensystem G54 umgeschaltet werden!  
