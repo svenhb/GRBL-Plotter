@@ -2,7 +2,13 @@
 [README deutsch](README_de.md)  
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2015.
- 
+  
+### New in version 1.1.5.0: 
+For the camera view now a seperate coordinate system G59 will be used. Attention! Switch back to default coordinate system G54 before starting any GCode!  
+Transforming GCode with camera aid, to match drill file with PCB view [PCB drilling](https://github.com/svenhb/GRBL-Plotter/wiki/PCB-drilling)   
+Shape recogniton for easier teachpoint (fiducial) assignment  
+New import option 'Repeat code' to repeat paths (laser cutting with weak laser)  
+    
 ### New in version 1.1.4.0: 
 Add import of Eagle Drill file  
 Add support of noname USB GamePad  
