@@ -112,6 +112,9 @@ Setup GamePad
 Setup virtual Joystick and colors  
 ![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_de.png?raw=true "Setup5") 
   
+Formenerkennung für Passmarken       
+![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup6_de.png?raw=true "Setup6") 
+    
 Text import  
 ![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
 
