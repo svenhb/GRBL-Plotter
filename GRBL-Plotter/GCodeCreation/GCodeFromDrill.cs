@@ -66,14 +66,19 @@ namespace GRBL_Plotter
             {
                 string file_dri="", file_drd="";
                 if (file.Substring(file.Length - 3, 3).ToLower() == "dri")      // build up filenames
-                {   file_dri = file;
+                {
+                    file_dri = file;
                     file_drd = file.Substring(0, file.Length - 3) + "drd";
                 }
-                if (file.Substring(file.Length - 3, 3).ToLower() == "drd")      // build up filenames
-                {   file_drd = file;
+                else if (file.Substring(file.Length - 3, 3).ToLower() == "drd")      // build up filenames
+                {
+                    file_drd = file;
                     file_dri = file.Substring(0, file.Length - 3) + "dri";
                 }
-
+                else
+                {   file_drd = file;        // KiCad drl
+                    file_dri = "";
+                }
                 if (File.Exists(file_dri))              
                 {   try
                     {   string[] drillInformation = File.ReadAllLines(file_dri);     // get drill information
@@ -100,11 +105,7 @@ namespace GRBL_Plotter
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
 
             finalString.Clear();
-/*            if (importUnitmm)
-            {   finalString.AppendLine("G21 (use mm as unit - check setup)");}
-            else
-            {   finalString.AppendLine("G20 (use inch as unit - check setup)"); }
-*/
+
             if (gcodeUseSpindle) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
 
             finalString.Append(gcodeString);     

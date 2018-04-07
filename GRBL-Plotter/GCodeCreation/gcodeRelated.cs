@@ -497,7 +497,8 @@ namespace GRBL_Plotter
             string header = "( "+cmt+" by GRBL-Plotter )\r\n";
             if (source.Length>1)
                 header += string.Format("( Source: {0} )\r\n", source);
-
+            if (Properties.Settings.Default.importSVGRepeatEnable)
+                header += string.Format("( G-Code repetitions: {0:0} times)\r\n", Properties.Settings.Default.importSVGRepeat);
             header += string.Format("( G-Code lines: {0} )\r\n", gcodeLines);
             header += string.Format("( Pen Down/Up : {0} times )\r\n", gcodeDownUp);
             header += string.Format("( Path length : {0:0.0} units )\r\n", gcodeDistance);
@@ -516,11 +517,13 @@ namespace GRBL_Plotter
             if (gcodeRelative)
             { header += string.Format("G91 (Setup relative movement)\r\n"); gcodeLines++; }
 
-            if (Properties.Settings.Default.importUnitmm)
-            { header += "G21 (use mm as unit - check setup)"; }
-            else
-            { header += "G20 (use inch as unit - check setup)"; }
-
+            if (Properties.Settings.Default.importUnitGCode)
+            {
+                if (Properties.Settings.Default.importUnitmm)
+                { header += "G21 (use mm as unit - check setup)"; }
+                else
+                { header += "G20 (use inch as unit - check setup)"; }
+            }
             return header;
         }
 

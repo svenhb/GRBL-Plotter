@@ -96,16 +96,21 @@ namespace GRBL_Plotter //DXFImporter
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
 
             finalString.Clear();
-/*            if (importUnitmm)
-            { finalString.AppendLine("G21 (use mm as unit - check setup)"); }
-            else
-            { finalString.AppendLine("G20 (use inch as unit - check setup)"); }
-*/
+
             if (gcodeUseSpindle) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
             finalString.Append(gcodeString[0]);     //.Replace(',', '.')
             if (gcodeUseSpindle) gcode.SpindleOff(finalString, "Stop spindle - Option Z-Axis");
 
-            return header + finalString.ToString().Replace(',', '.') + footer;
+            string output = "";
+            if (Properties.Settings.Default.importSVGRepeatEnable)
+            {
+                for (int i = 0; i < Properties.Settings.Default.importSVGRepeat; i++)
+                    output += finalString.ToString().Replace(',', '.');
+
+                return header + output + footer;
+            }
+            else
+                return header + finalString.ToString().Replace(',', '.') + footer;
         }
 
 
