@@ -745,7 +745,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("G54; ")]
         public string importGCHeader {
             get {
                 return ((string)(this["importGCHeader"]));
@@ -2360,6 +2360,270 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["gPEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int camFilterRed1 {
+            get {
+                return ((int)(this["camFilterRed1"]));
+            }
+            set {
+                this["camFilterRed1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("64")]
+        public int camFilterRed2 {
+            get {
+                return ((int)(this["camFilterRed2"]));
+            }
+            set {
+                this["camFilterRed2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int camFilterGreen1 {
+            get {
+                return ((int)(this["camFilterGreen1"]));
+            }
+            set {
+                this["camFilterGreen1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("64")]
+        public int camFilterGreen2 {
+            get {
+                return ((int)(this["camFilterGreen2"]));
+            }
+            set {
+                this["camFilterGreen2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int camFilterBlue1 {
+            get {
+                return ((int)(this["camFilterBlue1"]));
+            }
+            set {
+                this["camFilterBlue1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("64")]
+        public int camFilterBlue2 {
+            get {
+                return ((int)(this["camFilterBlue2"]));
+            }
+            set {
+                this["camFilterBlue2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool camShapeCircle {
+            get {
+                return ((bool)(this["camShapeCircle"]));
+            }
+            set {
+                this["camShapeCircle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool camShapeRect {
+            get {
+                return ((bool)(this["camShapeRect"]));
+            }
+            set {
+                this["camShapeRect"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal camShapeSize {
+            get {
+                return ((decimal)(this["camShapeSize"]));
+            }
+            set {
+                this["camShapeSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal camShapeDist {
+            get {
+                return ((decimal)(this["camShapeDist"]));
+            }
+            set {
+                this["camShapeDist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.03")]
+        public decimal camShapeDistMax {
+            get {
+                return ((decimal)(this["camShapeDistMax"]));
+            }
+            set {
+                this["camShapeDistMax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public decimal camShapeSizeMin {
+            get {
+                return ((decimal)(this["camShapeSizeMin"]));
+            }
+            set {
+                this["camShapeSizeMin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal camShapeSizeMax {
+            get {
+                return ((decimal)(this["camShapeSizeMax"]));
+            }
+            set {
+                this["camShapeSizeMax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool camFilterOutside {
+            get {
+                return ((bool)(this["camFilterOutside"]));
+            }
+            set {
+                this["camFilterOutside"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Paper|0|100|0|100|0|100|True|True|True|20|200|0.5|1|")]
+        public string camShapeSet1 {
+            get {
+                return ((string)(this["camShapeSet1"]));
+            }
+            set {
+                this["camShapeSet1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PCB|0|150|0|150|0|150|False|False|True|20|100|0.5|1|")]
+        public string camShapeSet2 {
+            get {
+                return ((string)(this["camShapeSet2"]));
+            }
+            set {
+                this["camShapeSet2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Wood|0|106|0|237|123|246|True|True|False|10|100|0.5|2.0|")]
+        public string camShapeSet3 {
+            get {
+                return ((string)(this["camShapeSet3"]));
+            }
+            set {
+                this["camShapeSet3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string camShapeSet4 {
+            get {
+                return ((string)(this["camShapeSet4"]));
+            }
+            set {
+                this["camShapeSet4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importUnitGCode {
+            get {
+                return ((bool)(this["importUnitGCode"]));
+            }
+            set {
+                this["importUnitGCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("54")]
+        public int lastOffsetCoord {
+            get {
+                return ((int)(this["lastOffsetCoord"]));
+            }
+            set {
+                this["lastOffsetCoord"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importSVGRepeatEnable {
+            get {
+                return ((bool)(this["importSVGRepeatEnable"]));
+            }
+            set {
+                this["importSVGRepeatEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal importSVGRepeat {
+            get {
+                return ((decimal)(this["importSVGRepeat"]));
+            }
+            set {
+                this["importSVGRepeat"] = value;
             }
         }
     }

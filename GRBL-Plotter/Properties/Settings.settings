@@ -183,7 +183,7 @@
       <Value Profile="(Default)">2000</Value>
     </Setting>
     <Setting Name="importGCHeader" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">G54; </Value>
     </Setting>
     <Setting Name="importGCFooter" Type="System.String" Scope="User">
       <Value Profile="(Default)">M30</Value>
@@ -586,6 +586,72 @@
     </Setting>
     <Setting Name="gPEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="camFilterRed1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camFilterRed2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="camFilterGreen1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camFilterGreen2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="camFilterBlue1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camFilterBlue2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="camShapeCircle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="camShapeRect" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="camShapeSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="camShapeDist" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="camShapeDistMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.03</Value>
+    </Setting>
+    <Setting Name="camShapeSizeMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="camShapeSizeMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="camFilterOutside" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="camShapeSet1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Paper|0|100|0|100|0|100|True|True|True|20|200|0.5|1|</Value>
+    </Setting>
+    <Setting Name="camShapeSet2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PCB|0|150|0|150|0|150|False|False|True|20|100|0.5|1|</Value>
+    </Setting>
+    <Setting Name="camShapeSet3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Wood|0|106|0|237|123|246|True|True|False|10|100|0.5|2.0|</Value>
+    </Setting>
+    <Setting Name="camShapeSet4" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="importUnitGCode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="lastOffsetCoord" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">54</Value>
+    </Setting>
+    <Setting Name="importSVGRepeatEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGRepeat" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>

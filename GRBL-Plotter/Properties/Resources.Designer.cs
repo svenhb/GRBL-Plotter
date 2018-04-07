@@ -61,6 +61,19 @@ namespace GRBL_Plotter.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;Alarm Code in v1.1+&quot;,&quot; Alarm Message in v1.0-&quot;,&quot; Alarm Description&quot;
+        ///&quot;1&quot;,&quot;Hard limit&quot;,&quot;Hard limit has been triggered. Machine position is likely lost due to sudden halt. Re-homing is highly recommended.&quot;
+        ///&quot;2&quot;,&quot;Soft limit&quot;,&quot;Soft limit alarm. G-code motion target exceeds machine travel. Machine position retained. Alarm may be safely unlocked.&quot;
+        ///&quot;3&quot;,&quot;Abort during cycle&quot;,&quot;Reset while in motion. Machine position is likely lost due to sudden halt. Re-homing is highly recommended.&quot;
+        ///&quot;4&quot;,&quot;Probe fail&quot;,&quot;Probe fail. Prob [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string alarm_codes_en_US {
+            get {
+                return ResourceManager.GetString("alarm_codes_en_US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap btn_pause {
@@ -87,6 +100,20 @@ namespace GRBL_Plotter.Properties {
             get {
                 object obj = ResourceManager.GetObject("btn_stop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;Error Code in v1.1+&quot;,&quot;Error Message in v1.0-&quot;,&quot;Error Description&quot;
+        ///&quot;1&quot;,&quot;Expected command letter&quot;,&quot;G-code words consist of a letter and a value. Letter was not found.&quot;
+        ///&quot;2&quot;,&quot;Bad number format&quot;,&quot;Missing the expected G-code word value or numeric value format is not valid.&quot;
+        ///&quot;3&quot;,&quot;Invalid statement&quot;,&quot;Grbl &apos;$&apos; system command was not recognized or supported.&quot;
+        ///&quot;4&quot;,&quot;Value &lt; 0&quot;,&quot;Negative value received for an expected positive value.&quot;
+        ///&quot;5&quot;,&quot;Setting disabled&quot;,&quot;Homing cycle failure. Homing is not enabled via settings [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string error_codes_en_US {
+            get {
+                return ResourceManager.GetString("error_codes_en_US", resourceCulture);
             }
         }
         
@@ -137,6 +164,20 @@ namespace GRBL_Plotter.Properties {
             get {
                 object obj = ResourceManager.GetObject("modell", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;$-Code&quot;,&quot; Setting&quot;,&quot; Units&quot;,&quot; Setting Description&quot;
+        ///&quot;0&quot;,&quot;Step pulse time&quot;,&quot;microseconds&quot;,&quot;Sets time length per step. Minimum 3usec.&quot;
+        ///&quot;1&quot;,&quot;Step idle delay&quot;,&quot;milliseconds&quot;,&quot;Sets a short hold delay when stopping to let dynamics settle before disabling steppers. Value 255 keeps motors enabled with no delay.&quot;
+        ///&quot;2&quot;,&quot;Step pulse invert&quot;,&quot;mask&quot;,&quot;Inverts the step signal. Set axis bit to invert (00000ZYX).&quot;
+        ///&quot;3&quot;,&quot;Step direction invert&quot;,&quot;mask&quot;,&quot;Inverts the direction signal. Set axis bit to invert (00000ZYX).&quot;
+        ///&quot;4&quot;,&quot;Invert [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string setting_codes_en_US {
+            get {
+                return ResourceManager.GetString("setting_codes_en_US", resourceCulture);
             }
         }
         
