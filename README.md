@@ -9,6 +9,7 @@ For the camera view now a seperate coordinate system G59 will be used. Attention
 Transforming GCode with camera aid, to match drill file with PCB view [PCB drilling](https://github.com/svenhb/GRBL-Plotter/wiki/PCB-drilling)   
 Shape recogniton for easier teachpoint (fiducial) assignment  
 New import option 'Repeat code' to repeat paths (laser cutting with weak laser)  
+Check limits of GRBL setup - max. STEP frequency and min. FEED rate in COM CNC window  
     
 ### New in version 1.1.4.0: 
 Add import of Eagle Drill file  
