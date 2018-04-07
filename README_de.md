@@ -7,7 +7,7 @@ Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Don
 ### Neu in Version 1.1.5.0: 
 Die Kamera nutzt nun ihr eigenes Koordinatensystem G59 (gegenüber dem Default-Koordinatensystem G54). Achtung! Vor Ausführung des GCodes muss wieder auf das Default-Koordinatensystem G54 umgeschaltet werden!  
 GCode Transformierung mit Hilfe der Kamera, um die Bohrdatei auf die Platine zu projezieren [Platinen bohren](https://github.com/svenhb/GRBL-Plotter/wiki/Platinen-bohren)   
-Formenerkennung um das zentrieren von Passmarken zu erleichtern  
+Formenerkennung um das Zentrieren von Passmarken zu erleichtern  
 Neue Importoption 'Code wiederholen' um Pfade mehrfach abzufahren (Laserschneiden mit schwachem Laser)  
 Überprüfung der GRBL Limits - max. STEP Frequenz und min. FEED rate im COM CNC Fenster  
     
