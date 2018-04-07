@@ -1,7 +1,8 @@
 # GRBL-Plotter
 [README deutsch](README_de.md)  
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
-Written in C# VisualStudio 2015.
+Written in C# VisualStudio 2015.  
+If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)
   
 ### New in version 1.1.5.0: 
 For the camera view now a seperate coordinate system G59 will be used. Attention! Switch back to default coordinate system G54 before starting any GCode!  
