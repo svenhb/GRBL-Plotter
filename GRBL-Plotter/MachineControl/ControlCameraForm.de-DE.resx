@@ -117,18 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="pictureBoxVideo.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 76</value>
+  </data>
+  <data name="moveMarkerToCenterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Setze aktuelle Pos. als Markerpos.</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Winkel und Skalierung ausgleichen</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 6</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zeige GCode Grafik</value>
+  </data>
   <data name="nUDCameraZoom.Location" type="System.Drawing.Point, System.Drawing">
     <value>47, 14</value>
   </data>
-  <data name="nUDCameraZoom.ToolTip" xml:space="preserve">
-    <value />
+  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 20</value>
   </data>
-  <data name="label3.ToolTip" xml:space="preserve">
-    <value />
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="camSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
@@ -139,9 +160,6 @@
   <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Wähle die Videoquelle aus</value>
   </data>
-  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
-    <value>Videobild drehen - Winkel eingeben</value>
-  </data>
   <data name="setRotationAngleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
   </data>
@@ -151,35 +169,8 @@
   <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Videobild drehen - Winkel eingeben</value>
   </data>
-  <data name="upperPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
-  </data>
-  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Setze Skalierung obere Position</value>
-  </data>
-  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
-    <value>in GRBL Einheiten (mm oder Inch)</value>
-  </data>
-  <data name="teachRadiusTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
-  </data>
-  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
-    <value>Skalierungsradius oben</value>
-  </data>
-  <data name="lowerPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
-  </data>
-  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Setze Skalierung untere Position</value>
-  </data>
-  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
-    <value>in GRBL Einheiten (mm oder Inch)</value>
-  </data>
-  <data name="teachRadiusBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
-  </data>
-  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
-    <value>Skalierungsradius unten</value>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>Videobild drehen - Winkel eingeben</value>
   </data>
   <data name="teachScalingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
@@ -197,6 +188,51 @@ um Abhängig von der Z-Position die richtige Grafikskalierung zu berechnen
 4) Fahre die Kamera zur unteren Position
 5) Linksklick im Bild setzt untere Skalierung auf unteren Skalierungsradius</value>
   </data>
+  <data name="upperPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Setze Skalierung obere Position</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skalierungsradius oben</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>in GRBL Einheiten (mm oder Inch)</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Setze Skalierung untere Position</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skalierungsradius unten</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>in GRBL Einheiten (mm oder Inch)</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bild Offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Setzen des Offsets zwischen Mitte Kamerabild und Werkzeugposition
+1) setze 'Tool coord.' (G54)
+2) Nulle die X,Y Position
+3) Markiere die Werkzeugposition (bei Koordinate X=0,Y=0) mit Werkzeug auf Werkstück
+4) Verfahre XY bis die Markierung in der Bildmitte erscheint
+5) Setze den Kameraoffset
+6) setze 'Cam coord.' - steht nun aux X=0, Y=0</value>
+  </data>
   <data name="teachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
@@ -210,18 +246,11 @@ um Abhängig von der Z-Position die richtige Grafikskalierung zu berechnen
 3) Verfahre XY bis die Markierung in der Bildmitte erscheint
 4) Setze den Kameraoffset</value>
   </data>
-  <data name="teachOffsetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
   </data>
-  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bild Offset</value>
-  </data>
-  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Setzen des Offsets zwischen Mitte Kamerabild und Werkzeugposition
-1) Nulle die X,Y Position
-2) Markiere die Werkzeugposition (bei Koordinate X=0,Y=0)
-3) Verfahre XY bis die Markierung in der Bildmitte erscheint
-4) Setze den Kameraoffset</value>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Farben</value>
   </data>
   <data name="textToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 22</value>
@@ -232,17 +261,14 @@ um Abhängig von der Z-Position die richtige Grafikskalierung zu berechnen
   <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
     <value>Fadenkreuz</value>
   </data>
-  <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+  <data name="setZeroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 20</value>
   </data>
-  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Farben</value>
+  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
+    <value>Setze Koordinaten System Offset</value>
   </data>
-  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
-  </data>
-  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Setze XY-Koordinate mit Mauszeiger und Linksklick</value>
   </data>
   <data name="teachZeroPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 22</value>
@@ -259,18 +285,6 @@ um Abhängig von der Z-Position die richtige Grafikskalierung zu berechnen
   <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
     <value>Setze XY=Markerposition</value>
   </data>
-  <data name="setZeroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 20</value>
-  </data>
-  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
-    <value>Setze Koordinaten System Offset</value>
-  </data>
-  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Setze XY-Koordinate mit Mauszeiger und Linksklick</value>
-  </data>
-  <data name="menuStripCamera.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnApplyAngle.Text" xml:space="preserve">
     <value>Winkel -&gt; GCode</value>
   </data>
@@ -278,53 +292,26 @@ um Abhängig von der Z-Position die richtige Grafikskalierung zu berechnen
     <value>Rechte Maustaste um WInkel zu messen
 Drücke diesen Knopf um den GCode um diesen Winkel zu drehen</value>
   </data>
-  <data name="btnCamOffsetPlus.ToolTip" xml:space="preserve">
-    <value>Fahre jetzige Werkzeugposition unter Kamera</value>
-  </data>
-  <data name="cBCamOffset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>178, 16</value>
-  </data>
-  <data name="cBCamOffset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 17</value>
-  </data>
-  <data name="cBCamOffset.Text" xml:space="preserve">
-    <value>Offset Grafik</value>
-  </data>
-  <data name="cBCamOffset.ToolTip" xml:space="preserve">
-    <value>Wende Kameraoffset auf eingeblendete Grafik an</value>
-  </data>
   <data name="lblAngle.Location" type="System.Drawing.Point, System.Drawing">
     <value>50, 16</value>
   </data>
   <data name="lblAngle.ToolTip" xml:space="preserve">
     <value>Gemessener Winkel</value>
   </data>
-  <data name="btnCamOffsetMinus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 14</value>
-  </data>
-  <data name="btnCamOffsetMinus.Text" xml:space="preserve">
-    <value>Cam .&gt; Tool</value>
-  </data>
-  <data name="btnCamOffsetMinus.ToolTip" xml:space="preserve">
-    <value>Fahre jetzige Kameraposition unter das Werkzeug</value>
-  </data>
   <data name="lblOffset.Location" type="System.Drawing.Point, System.Drawing">
     <value>283, 18</value>
-  </data>
-  <data name="lblOffset.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Kamera</value>
   </data>
-  <data name="groupBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Kamera Offset</value>
   </data>
-  <data name="groupBox2.ToolTip" xml:space="preserve">
-    <value />
+  <data name="lblCenterPos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 59</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Messen</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
@@ -332,14 +319,23 @@ Drücke diesen Knopf um den GCode um diesen Winkel zu drehen</value>
   <data name="label1.Text" xml:space="preserve">
     <value>Winkel:</value>
   </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="cBShapeDetection.Text" xml:space="preserve">
+    <value>Formenerkennung</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Messen</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Formenerkennung</value>
   </data>
-  <data name="groupBox3.ToolTip" xml:space="preserve">
-    <value />
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Filterset wählen</value>
+  </data>
+  <data name="btnAutoCenter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 23</value>
+  </data>
+  <data name="btnAutoCenter.Text" xml:space="preserve">
+    <value>Roten Ring zentrieren</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3349,8 +3345,5 @@ Drücke diesen Knopf um den GCode um diesen Winkel zu drehen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Kamera</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>

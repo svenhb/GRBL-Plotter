@@ -129,10 +129,44 @@
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Joystick / Farben</value>
   </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Formenerkennung</value>
+  </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Grafik Import</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label58.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 133</value>
+  </data>
+  <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 13</value>
+  </data>
+  <data name="label58.Text" xml:space="preserve">
+    <value>mal</value>
+  </data>
+  <data name="nUDImportRepeat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 131</value>
+  </data>
+  <data name="cBImportSVGRepeat.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportSVGRepeat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="cBImportSVGRepeat.Text" xml:space="preserve">
+    <value>Code wiederholen</value>
+  </data>
+  <data name="cBImportSVGRepeat.ToolTip" xml:space="preserve">
+    <value>Code mehrfach ausführen (z.B. damit schwache Laser dickeres Material schneiden können)</value>
+  </data>
+  <data name="cBImportUnitGCode.ToolTip" xml:space="preserve">
+    <value>G20 / G21 Befehle im GCode einfügen</value>
+  </data>
   <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
   </data>
@@ -179,6 +213,9 @@ dann füge Knoten hinzu via 'Erweiterungen - Pfad modifizieren - Knoten hinzufü
   <data name="cBImportSVGResize.Text" xml:space="preserve">
     <value>Objektgröße max.</value>
   </data>
+  <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
+    <value>Es wird versucht die Grafik auf die gewünschte Größe zu skalieren</value>
+  </data>
   <data name="tBImportSVGPalette.ToolTip" xml:space="preserve">
     <value>Pfad zur GIMP Pallette (Inkscape), Reihenfolge der Farben = Werkzeugnummer.
 Default wenn keine Datei angegeben ist:
@@ -220,6 +257,12 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
   <data name="cBImportSVGPauseE.Text" xml:space="preserve">
     <value>Pause (M0) vor jedem Pfad</value>
   </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 59</value>
+  </data>
+  <data name="nUDImportReduce.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 57</value>
+  </data>
   <data name="cBImportSVGReduce.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 17</value>
   </data>
@@ -227,13 +270,16 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
     <value>Schritt auslassen &lt;</value>
   </data>
   <data name="cBImportSVGReduce.ToolTip" xml:space="preserve">
-    <value>Kleine Fahrbefehle werden übersprungen um den Code zu verkleinern</value>
+    <value>Kurze Fahrbefehle werden übersprungen um den Code zu verkleinern</value>
   </data>
   <data name="cBImportSVGComments.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 17</value>
   </data>
   <data name="cBImportSVGComments.Text" xml:space="preserve">
     <value>Zusätzliche SVG Kommentare</value>
+  </data>
+  <data name="nUDImportSVGSegemnts.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 35</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 13</value>
@@ -337,7 +383,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <value>GCode Kommentare</value>
   </data>
   <data name="cBImportGCComments.ToolTip" xml:space="preserve">
-    <value />
+    <value>Zusätzliche Kommentare im GCode ausgeben</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 13</value>
@@ -472,7 +518,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <value>Stift runter</value>
   </data>
   <data name="label5.ToolTip" xml:space="preserve">
-    <value />
+    <value>Geschwindigkeit der Z Achse für G1 Befehl</value>
   </data>
   <data name="label11.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit für G1,2,3 Befehle bei X oder Y Koordinaten</value>
@@ -482,6 +528,24 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
   <data name="cBcheckupdate.Text" xml:space="preserve">
     <value>Überprüfe auf neue GRBL-Plotter Version auf GitHub</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>GRBL 4te Achse (spezielle Version)</value>
+  </data>
+  <data name="cB4thUse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 17</value>
+  </data>
+  <data name="cB4thUse.Text" xml:space="preserve">
+    <value>Zeige Status und Steuerelemente</value>
+  </data>
+  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 35</value>
+  </data>
+  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 13</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Name der 4ten Achse</value>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Drehachsen Steuerung</value>
@@ -661,7 +725,6 @@ Relativer Dateipfad beginnt hier:</value>
   <data name="cBGPEnable.Text" xml:space="preserve">
     <value>GamePad im Program freigeben</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="cBGPEnable.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageAboveText</value>
   </data>
@@ -739,6 +802,72 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Joystick Einstellungen</value>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Einstellungen für die Formenerkennung mit Kamera</value>
+  </data>
+  <data name="label59.Size" type="System.Drawing.Size, System.Drawing">
+    <value>321, 42</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Speichere Parameter-sets mit Namen um diese im Kamera Fenster aufzurufen. Damit ändert ich das Verhlaten der Formerkennung. Nach Umbenennung Kamerfenster schließen/öffnen.</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Farbfilter</value>
+  </data>
+  <data name="cBFilterOuside.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 17</value>
+  </data>
+  <data name="cBFilterOuside.Text" xml:space="preserve">
+    <value>Pixel ausserhalb des Farbraumes ausblenden</value>
+  </data>
+  <data name="label51.Text" xml:space="preserve">
+    <value>Blau</value>
+  </data>
+  <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 13</value>
+  </data>
+  <data name="label50.Text" xml:space="preserve">
+    <value>Grün</value>
+  </data>
+  <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 13</value>
+  </data>
+  <data name="label49.Text" xml:space="preserve">
+    <value>Rot</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Formenerkennung</value>
+  </data>
+  <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 13</value>
+  </data>
+  <data name="label56.Text" xml:space="preserve">
+    <value>Maximale Verzerrung</value>
+  </data>
+  <data name="label53.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 13</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Minimale Verzerrung</value>
+  </data>
+  <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 13</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>Min. max. Größe der Form</value>
+  </data>
+  <data name="cBShapeRect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="cBShapeRect.Text" xml:space="preserve">
+    <value>Rechteck</value>
+  </data>
+  <data name="cBShapeCircle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 17</value>
+  </data>
+  <data name="cBShapeCircle.Text" xml:space="preserve">
+    <value>Kreis</value>
   </data>
   <data name="groupBox19.Size" type="System.Drawing.Size, System.Drawing">
     <value>298, 92</value>

@@ -87,6 +87,13 @@ namespace GRBL_Plotter
                 rBImportUnitInch.Checked = true;
 
             lblFilePath.Text = System.Windows.Forms.Application.StartupPath;
+
+            hsFilterScrollSetLabels();
+
+            setLabelParameterSet(1, Properties.Settings.Default.camShapeSet1);
+            setLabelParameterSet(2, Properties.Settings.Default.camShapeSet2);
+            setLabelParameterSet(3, Properties.Settings.Default.camShapeSet3);
+            setLabelParameterSet(4, Properties.Settings.Default.camShapeSet4);
         }
 
         private void saveSettings()
@@ -309,5 +316,93 @@ namespace GRBL_Plotter
             if (offset == "RotationZ")
             { trackBarR.Value = value; }
         }
+
+
+        private void hsFilterScroll(object sender, ScrollEventArgs e)
+        {   hsFilterScrollSetLabels(); }
+        private void hsFilterScrollSetLabels()
+        { 
+            lblFilterRed1.Text = hSFilterRed1.Value.ToString();
+            lblFilterRed2.Text = hSFilterRed2.Value.ToString();
+            lblFilterGreen1.Text = hSFilterGreen1.Value.ToString();
+            lblFilterGreen2.Text = hSFilterGreen2.Value.ToString();
+            lblFilterBlue1.Text = hSFilterBlue1.Value.ToString();
+            lblFilterBlue2.Text = hSFilterBlue2.Value.ToString();
+        }
+
+        private void btnShapeSetSave_Click(object sender, EventArgs e)
+        {   
+            Button clickedButton = sender as Button;
+            int index = Convert.ToUInt16(clickedButton.Name.Substring("btnShapeSetSave".Length));
+  //          MessageBox.Show(index.ToString());
+            if (index == 1) { Properties.Settings.Default.camShapeSet1 = shapeSetSave(tBShapeSet1.Text); }
+            if (index == 2) { Properties.Settings.Default.camShapeSet2 = shapeSetSave(tBShapeSet2.Text); }
+            if (index == 3) { Properties.Settings.Default.camShapeSet3 = shapeSetSave(tBShapeSet3.Text); }
+            if (index == 4) { Properties.Settings.Default.camShapeSet4 = shapeSetSave(tBShapeSet4.Text); }
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnShapeSetLoad_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            int index = Convert.ToUInt16(clickedButton.Name.Substring("btnShapeSetLoad".Length));
+ //           MessageBox.Show(index.ToString());
+            if (index == 1) { tBShapeSet1.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet1); }
+            if (index == 2) { tBShapeSet2.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet2); }
+            if (index == 3) { tBShapeSet3.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet3); }
+            if (index == 4) { tBShapeSet4.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet4); }
+        }
+
+        private String shapeSetSave(string head)
+        {   string txt = head+"|";
+            txt += hSFilterRed1.Value.ToString() + "|";
+            txt += hSFilterRed2.Value.ToString() + "|";
+            txt += hSFilterGreen1.Value.ToString() + "|";
+            txt += hSFilterGreen2.Value.ToString() + "|";
+            txt += hSFilterBlue1.Value.ToString() + "|";
+            txt += hSFilterBlue2.Value.ToString() + "|";
+            txt += cBFilterOuside.Checked.ToString() + "|";
+            txt += cBShapeCircle.Checked.ToString() + "|";
+            txt += cBShapeRect.Checked.ToString() + "|";
+            txt += nUDShapeSizeMin.Value.ToString() + "|";
+            txt += nUDShapeSizeMax.Value.ToString() + "|";
+            txt += nUDShapeDistMin.Value.ToString() + "|";
+            txt += nUDShapeDistMax.Value.ToString() + "|";
+            textBox3.Text = txt;
+            return txt;
+        }
+
+        private string shapeSetLoad(string txt)
+        {   string[] value = txt.Split('|');
+            int i = 1;
+            try
+            {
+                hSFilterRed1.Value = Convert.ToInt16(value[i++]);
+                hSFilterRed2.Value = Convert.ToInt16(value[i++]);
+                hSFilterGreen1.Value = Convert.ToInt16(value[i++]);
+                hSFilterGreen2.Value = Convert.ToInt16(value[i++]);
+                hSFilterBlue1.Value = Convert.ToInt16(value[i++]);
+                hSFilterBlue2.Value = Convert.ToInt16(value[i++]);
+                cBFilterOuside.Checked = (value[i++] == "True") ? true : false;
+                cBShapeCircle.Checked = (value[i++] == "True") ? true : false;
+                cBShapeRect.Checked = (value[i++] == "True") ? true : false;
+                nUDShapeSizeMin.Value = Convert.ToDecimal(value[i++]);
+                nUDShapeSizeMax.Value = Convert.ToDecimal(value[i++]);
+                nUDShapeDistMin.Value = Convert.ToDecimal(value[i++]);
+                nUDShapeDistMax.Value = Convert.ToDecimal(value[i++]);
+                hsFilterScrollSetLabels();
+                return value[0];
+            }
+            catch { }
+            return "not set";
+        }
+
+        private void setLabelParameterSet(int index, string txt)
+        {   if (index == 1) { tBShapeSet1.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (index == 2) { tBShapeSet2.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (index == 3) { tBShapeSet3.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (index == 4) { tBShapeSet4.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+        }
+
     }
 }

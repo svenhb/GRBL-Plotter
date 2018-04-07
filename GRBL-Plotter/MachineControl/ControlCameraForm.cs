@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 /*
     Thanks to http://code-bude.net/2011/06/02/webcam-benutzen-in-csharp/
 */
-/*
+/*  2018-04-02  add shape recognition and code clean-up
  *  2017-01-01  check form-location and fix strange location
 */
 
@@ -28,10 +28,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
-using System.ComponentModel;
+using System.Drawing.Imaging;
 
 // AForge Library http://www.aforgenet.com/framework/
 using AForge.Video.DirectShow;
+using AForge.Imaging;
+using AForge.Imaging.Filters;
+using AForge;
+using AForge.Math.Geometry;
+using System.Collections.Generic;
 
 namespace GRBL_Plotter
 {
@@ -46,28 +51,40 @@ namespace GRBL_Plotter
         private double cameraScalingBot = 20;
         private double cameraPosTop = 0;
         private double cameraPosBot = -50;
-        private double cameraToolOffsetX = 0;
-        private double cameraToolOffsetY = 0;
-        private double relposX;
-        private double relposY;
+        xyPoint realPosition;
+
         private float cameraZoom = 1;
         private bool teachingTop = false;
         private bool teachingBot = false;
+        private bool showOverlay = true;
+        private bool teachTP1 = false;
 
-        private Color colText=Color.Lime;
+        private Color colText = Color.Lime;
         private Brush brushText = Brushes.Lime;
-        private Color colCross=Color.Yellow;
+        private Color colCross = Color.Yellow;
 
         private xyzPoint actualPosWorld;
         private xyzPoint actualPosMachine;
-        private xyzPoint actualPosMarker;
+        private xyPoint actualPosMarker;
+        private xyPoint teachPoint1;
+        private xyPoint teachPoint2;
+        private xyPoint teachPoint3;
+        private int coordG = 54;
 
         public xyzPoint setPosWorld
-        { set { actualPosWorld=value; } }
+        { set { actualPosWorld = value; } }
         public xyzPoint setPosMachine
         { set { actualPosMachine = value; } }
-        public void setPosMarker(double x, double y)
-        { actualPosMarker.X = x; actualPosMarker.Y = y; actualPosMarker.Z = 0;  }
+        public void setPosMarker(xyPoint tmp)// double x, double y)
+        { actualPosMarker= tmp; }
+        public int setCoordG
+        {   set { coordG = value;
+                btnCamCoordTool.BackColor = SystemColors.Control;
+                btnCamCoordCam.BackColor = SystemColors.Control;
+                if (coordG == 54) { btnCamCoordTool.BackColor = Color.Lime; }
+                else if (coordG == 59) { btnCamCoordCam.BackColor = Color.Lime; }
+            }
+        }
 
 
         public ControlCameraForm()
@@ -75,7 +92,8 @@ namespace GRBL_Plotter
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
-            InitializeComponent(); }
+            InitializeComponent();
+        }
 
         VideoCaptureDevice videoSource;
         FilterInfoCollection videosources;
@@ -86,7 +104,7 @@ namespace GRBL_Plotter
             cameraRotation = Properties.Settings.Default.camerarotation;
             if (cameraRotation > 360)
                 cameraRotation = 0;
-            toolStripTextBox1.Text = String.Format("{0}",cameraRotation);
+            toolStripTextBox1.Text = String.Format("{0}", cameraRotation);
             cameraTeachRadiusTop = Properties.Settings.Default.cameraTeachRadiusTop;
             cameraTeachRadiusBot = Properties.Settings.Default.cameraTeachRadiusBot;
             toolStripTextBox2.Text = String.Format("{0}", cameraTeachRadiusTop);
@@ -95,9 +113,6 @@ namespace GRBL_Plotter
             cameraScalingBot = Properties.Settings.Default.camerascalingBot;
             cameraPosTop = Properties.Settings.Default.cameraPosTop;
             cameraPosBot = Properties.Settings.Default.cameraPosBot;
-            cameraToolOffsetX = Properties.Settings.Default.cameraToolOffsetX;
-            cameraToolOffsetY = Properties.Settings.Default.cameraToolOffsetY;
-            lblOffset.Text = String.Format("Cam.Off.: X{0} Y{1}", cameraToolOffsetX, cameraToolOffsetY);
 
             colText = Properties.Settings.Default.cameraColorText;
             setButtonColors(textToolStripMenuItem, colText);
@@ -145,11 +160,19 @@ namespace GRBL_Plotter
             }
             xmid = pictureBoxVideo.Size.Width / 2;
             ymid = pictureBoxVideo.Size.Height / 2;
+            picCenter.X = xmid;
+            picCenter.Y = ymid;
             ratio = (double)pictureBoxVideo.Size.Height / pictureBoxVideo.Size.Width;
 
             Location = Properties.Settings.Default.locationCamForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+
+            fillComboBox(1, Properties.Settings.Default.camShapeSet1);
+            fillComboBox(2, Properties.Settings.Default.camShapeSet2);
+            fillComboBox(3, Properties.Settings.Default.camShapeSet3);
+            fillComboBox(4, Properties.Settings.Default.camShapeSet4);
+            //comboBox1.Text
         }
         // save settings
         private void camera_form_FormClosing(object sender, FormClosingEventArgs e)
@@ -163,8 +186,8 @@ namespace GRBL_Plotter
             Properties.Settings.Default.cameraTeachRadiusBot = cameraTeachRadiusBot;
             Properties.Settings.Default.cameraPosTop = cameraPosTop;
             Properties.Settings.Default.cameraPosBot = cameraPosBot;
-            Properties.Settings.Default.cameraToolOffsetX = cameraToolOffsetX;
-            Properties.Settings.Default.cameraToolOffsetY = cameraToolOffsetY;
+  //          Properties.Settings.Default.cameraToolOffsetX = cameraToolOffsetX;
+  //          Properties.Settings.Default.cameraToolOffsetY = cameraToolOffsetY;
             Properties.Settings.Default.Save();
         }
         // try to set video-source, set event-handler
@@ -187,15 +210,15 @@ namespace GRBL_Plotter
                     {
                         if (videoSource.VideoCapabilities[i].FrameSize.Width == resolution)
                             break;
-                     }
+                    }
                     videoSource.VideoResolution = videoSource.VideoCapabilities[i];
-                 }
+                }
             }
             catch { }
             videoSource.NewFrame += new AForge.Video.NewFrameEventHandler(videoSource_NewFrame);
             videoSource.Start();
         }
- 
+
         int frameCounter = 0;
         // event-handler of video - rotate image and display
         void videoSource_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
@@ -203,12 +226,15 @@ namespace GRBL_Plotter
             frameCounter++;
             if (frameCounter > 10)
             {
-                pictureBoxVideo.BackgroundImage = RotateImage((Bitmap)eventArgs.Frame.Clone(), (float)cameraRotation, cameraZoom);
+                if (cBShapeDetection.Checked)
+                    ProcessImage((Bitmap)RotateImage((Bitmap)eventArgs.Frame.Clone(), (float)cameraRotation, cameraZoom));
+                else
+                    pictureBoxVideo.BackgroundImage = RotateImage((Bitmap)eventArgs.Frame.Clone(), (float)cameraRotation, cameraZoom);
                 frameCounter = 0;
             }
         }
         // rotate image from: http://code-bude.net/2011/07/12/bilder-rotieren-mit-csharp-bitmap-rotateflip-vs-gdi-graphics/
-        public static Image RotateImage(Image img, float rotationAngle, float zoom)
+        public static System.Drawing.Image RotateImage(System.Drawing.Image img, float rotationAngle, float zoom)
         {
             using (Graphics gfx = Graphics.FromImage(img))
             {
@@ -223,7 +249,7 @@ namespace GRBL_Plotter
 
         private void camera_form_FormClosed(object sender, FormClosedEventArgs e)
         {
-           if (videoSource != null && videoSource.IsRunning)
+            if (videoSource != null && videoSource.IsRunning)
             {
                 videoSource.SignalToStop();
                 videoSource = null;
@@ -231,6 +257,7 @@ namespace GRBL_Plotter
         }
 
         // onPaint event
+        private Pen penTeach = new Pen(Color.LightPink, 0.5F);
         private Pen penUp = new Pen(Color.Green, 0.1F);
         private Pen penDown = new Pen(Color.Red, 0.4F);
         private Pen penRuler = new Pen(Color.Blue, 0.1F);
@@ -244,93 +271,93 @@ namespace GRBL_Plotter
         private Pen pen1 = new Pen(Color.Yellow, 1f);
         private void pictureBoxVideo_Paint(object sender, PaintEventArgs e)
         {
-            double diff = cameraPosTop-cameraPosBot;
+            double diff = cameraPosTop - cameraPosBot;
             if (diff == 0) diff = 1;
             double m = (cameraScalingTop - cameraScalingBot) / diff;
             double n = cameraScalingTop - m * cameraPosTop;
-            float actualScaling = (float)Math.Abs(actualPosMachine.Z *m+n);
+            float actualScaling = (float)Math.Abs(actualPosMachine.Z * m + n);
             if (actualScaling < 1) actualScaling = 5;
 
             int gap = 5;
             int chlen = 200;
-            e.Graphics.DrawLine(pen1, new Point(xmid- chlen, ymid), new Point(xmid-gap, ymid));
-            e.Graphics.DrawLine(pen1, new Point(xmid + gap, ymid), new Point(xmid+ chlen, ymid));
-            e.Graphics.DrawLine(pen1, new Point(xmid, ymid- chlen), new Point(xmid, ymid-gap));
-            e.Graphics.DrawLine(pen1, new Point(xmid, ymid+gap), new Point(xmid, ymid+ chlen));
-            relposX =  2 * (Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).X) / pictureBoxVideo.Size.Width  - 0.5)* actualScaling / cameraZoom;
-            relposY = -2 * (Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).Y) / pictureBoxVideo.Size.Height - 0.5) * actualScaling * ratio / cameraZoom;
+            e.Graphics.DrawLine(pen1, new Point(xmid - chlen, ymid), new Point(xmid - gap, ymid));
+            e.Graphics.DrawLine(pen1, new Point(xmid + gap, ymid), new Point(xmid + chlen, ymid));
+            e.Graphics.DrawLine(pen1, new Point(xmid, ymid - chlen), new Point(xmid, ymid - gap));
+            e.Graphics.DrawLine(pen1, new Point(xmid, ymid + gap), new Point(xmid, ymid + chlen));
+
+            realPosition.X = 2 * (Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).X) / pictureBoxVideo.Size.Width - 0.5) * actualScaling / cameraZoom;
+            realPosition.Y = -2 * (Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).Y) / pictureBoxVideo.Size.Height - 0.5) * actualScaling * ratio / cameraZoom;
             int stringposY = -40;
-            if (relposY > 0) stringposY = 10;
-            Point stringpos = new Point(pictureBoxVideo.PointToClient(MousePosition).X-60, pictureBoxVideo.PointToClient(MousePosition).Y+ stringposY);
+            if (realPosition.Y > 0) stringposY = 10;
+            Point stringpos = new Point(pictureBoxVideo.PointToClient(MousePosition).X - 60, pictureBoxVideo.PointToClient(MousePosition).Y + stringposY);
             if (teachingTop)
             {
                 radius = (int)(cameraTeachRadiusTop * cameraZoom * xmid / actualScaling);
                 e.Graphics.DrawEllipse(pen1, new Rectangle(xmid - radius, ymid - radius, 2 * radius, 2 * radius));
-                e.Graphics.DrawString("Next click will teach scaling\r\n of upper camera view to " + cameraTeachRadiusTop.ToString(), new Font("Microsoft Sans Serif", 8), brushText, stringpos);
+                string txt = "Next click will teach scaling\r\n of camera view to " + cameraTeachRadiusTop.ToString();
+                showLabel(txt, stringpos, e.Graphics);
             }
             else if (teachingBot)
             {
                 radius = (int)(cameraTeachRadiusBot * cameraZoom * xmid / actualScaling);
                 e.Graphics.DrawEllipse(pen1, new Rectangle(xmid - radius, ymid - radius, 2 * radius, 2 * radius));
-                e.Graphics.DrawString("Next click will teach scaling\r\n of upper camera view to " + cameraTeachRadiusBot.ToString(), new Font("Microsoft Sans Serif", 8), brushText, stringpos);
+                string txt = "Next click will teach scaling\r\n of camera view to " + cameraTeachRadiusBot.ToString();
+                showLabel(txt, stringpos, e.Graphics);
             }
             else if (measureAngle)
             {
-                calculateAngle();
-                e.Graphics.DrawLine(pen1, measureAngleStartX, measureAngleStartY, measureAngleStopX, measureAngleStopY);
-                e.Graphics.DrawString(String.Format("Angle: {0:0.00}", angle), new Font("Microsoft Sans Serif", 8), brushText, stringpos);
+                measureAngleStop = (xyPoint)pictureBoxVideo.PointToClient(MousePosition);
+                e.Graphics.DrawLine(pen1, measureAngleStart.ToPoint(), measureAngleStop.ToPoint());
+                angle = (float)measureAngleStart.AngleTo(measureAngleStop);
+                string txt = String.Format("Angle: {0:0.00}", angle);
+                showLabel(txt, stringpos, e.Graphics);
             }
             else
             {
-                double x2 = actualPosWorld.X + relposX;
-                double y2 = actualPosWorld.Y + relposY;
-                double x3 = x2 + cameraToolOffsetX;
-                double y3 = y2 + cameraToolOffsetY;
-                e.Graphics.DrawString(String.Format("Relative {0:0.00} ; {1:0.00}\r\nAbsolute {2:0.00} ; {3:0.00}\r\nCam.Off. {4:0.00} ; {5:0.00}", relposX, relposY, x2, y2,x3,y3), new Font("Lucida Console", 8), brushText, stringpos);
+                xyPoint absolute = (xyPoint)actualPosWorld + realPosition;
+                string txt = String.Format("Relative {0:0.00} ; {1:0.00}\r\nAbsolute {2:0.00} ; {3:0.00}", realPosition.X, realPosition.Y, absolute.X, absolute.Y);
+                showLabel(txt, stringpos, e.Graphics);
             }
-
-            float scale = (float)(xmid/actualScaling * cameraZoom);
-            e.Graphics.ScaleTransform(scale,-scale);
-            float offX = (float)(xmid/scale- actualPosWorld.X);
-            float offY = (float)(ymid/scale+ actualPosWorld.Y);
-            if (cBCamOffset.Checked)
-            {   offX = (float)(xmid / scale - actualPosWorld.X - cameraToolOffsetX);
-                offY = (float)(ymid / scale + actualPosWorld.Y + cameraToolOffsetY);
-            }
+/*            if (teachTP1)
+            {
+                angle = (float)measureAngleStart.AngleTo(measureAngleStop);
+                e.Graphics.DrawString(String.Format("Angle: {0:0.00}", angle), new Font("Microsoft Sans Serif", 8), brushText, stringpos);
+            }*/
+            float scale = (float)(xmid / actualScaling * cameraZoom);
+            e.Graphics.ScaleTransform(scale, -scale);
+            float offX = (float)(xmid / scale - actualPosWorld.X);
+            float offY = (float)(ymid / scale + actualPosWorld.Y);
             e.Graphics.TranslateTransform(offX, -offY);       // apply offset
             // show drawing from MainForm (static members of class GCodeVisualization)
-            e.Graphics.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
-            e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
-            e.Graphics.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
-            e.Graphics.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
+            if (showOverlay)
+            {
+                e.Graphics.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
+                e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
+                e.Graphics.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
+                e.Graphics.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
+                //           e.Graphics.DrawEllipse(penTeach, new Rectangle((int)actualPosMarker.X-2, (int)actualPosMarker.Y - 2, (int)actualPosMarker.X + 2, (int)actualPosMarker.Y + 2));
+            }
         }
-
-        private void calculateAngle()
+        private void showLabel(string txt, Point stringpos, Graphics graph)
         {
-            measureAngleStopX = pictureBoxVideo.PointToClient(MousePosition).X;
-            measureAngleStopY = pictureBoxVideo.PointToClient(MousePosition).Y;
-            int distanceX = measureAngleStopX - measureAngleStartX;
-            int distanceY = measureAngleStopY - measureAngleStartY;
-            double radius = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
-            float cos1 = (float)distanceX / (float)radius;
-            if (cos1 > 1) cos1 = 1;
-            if (cos1 < -1) cos1 = -1;
-            angle = 180 * (float)(Math.Acos(cos1) / Math.PI);
-            if (distanceY > 0)
-                angle = -angle;
+            Font fnt = new Font("Lucida Console", 8);
+            var size = graph.MeasureString(txt, fnt);
+            var rect = new RectangleF(stringpos.X-2, stringpos.Y-2, size.Width+1, size.Height+1);
+            graph.FillRectangle(Brushes.White, rect);           //Filling a rectangle before drawing the string.
+            graph.DrawString(txt, fnt, brushText, stringpos);
         }
-
         // Calculate click position and send coordinates via event
-        private void pictureBoxVideo_Click(object sender, EventArgs e)
+        private void pictureBoxVideo_Click(object sender, MouseEventArgs e)//, EventArgs e)
         {
-            double relposx = 2*(Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).X) / pictureBoxVideo.Size.Width-0.5);
-            double relposy = -2*(Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).Y) / pictureBoxVideo.Size.Height-0.5);
+            double relposx = 2 * (Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).X) / pictureBoxVideo.Size.Width - 0.5);
+            double relposy = -2 * (Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).Y) / pictureBoxVideo.Size.Height - 0.5);
             if (teachingTop)
-            {   teachingTop = false;
+            {
+                teachingTop = false;
                 double radius = Math.Sqrt(relposx * relposx + relposy * relposy);
                 cameraScalingTop = cameraTeachRadiusTop / radius;
                 cameraPosTop = actualPosMachine.Z;
-             }
+            }
             else if (teachingBot)
             {
                 teachingBot = false;
@@ -338,13 +365,16 @@ namespace GRBL_Plotter
                 cameraScalingBot = cameraTeachRadiusBot / radius;
                 cameraPosBot = actualPosMachine.Z;
             }
-            else if (!measureAngle)
-                OnRaiseXYEvent(new XYEventArgs(relposX, relposY, "G91")); // move relative and slow
+            else if ((e.Button == MouseButtons.Left) && !measureAngle)
+                OnRaiseXYEvent(new XYEventArgs(0, 1, realPosition, "G91")); // move relative and slow
             pictureBoxVideo.Invalidate();
         }
+
+
         public event EventHandler<XYEventArgs> RaiseXYEvent;
         protected virtual void OnRaiseXYEvent(XYEventArgs e)
-        {   EventHandler<XYEventArgs> handler = RaiseXYEvent;
+        {
+            EventHandler<XYEventArgs> handler = RaiseXYEvent;
             if (handler != null)
             {
                 handler(this, e);
@@ -380,86 +410,130 @@ namespace GRBL_Plotter
         // get values of teach range textbox
         private void toolStripTextBox2_TextChanged(object sender, EventArgs e)
         {
+            double old = cameraTeachRadiusTop;
             if (!Double.TryParse(toolStripTextBox2.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out cameraTeachRadiusTop))
+                cameraTeachRadiusTop = old;
+            if (cameraTeachRadiusTop <= 0)
                 cameraTeachRadiusTop = 20;
-            toolStripTextBox2.Text = cameraTeachRadiusTop.ToString();
+            //            toolStripTextBox2.Text = cameraTeachRadiusTop.ToString();
+        }
+        private void toolStripTextBox2_Leave(object sender, EventArgs e)
+        {   toolStripTextBox2.Text = cameraTeachRadiusBot.ToString();
         }
         // get values of teach range textbox
         private void toolStripTextBox3_TextChanged(object sender, EventArgs e)
         {
+            double old = cameraTeachRadiusBot;
             if (!Double.TryParse(toolStripTextBox3.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out cameraTeachRadiusBot))
-                cameraTeachRadiusBot=10;
-            toolStripTextBox3.Text = cameraTeachRadiusBot.ToString();
+                cameraTeachRadiusBot = old;
+            if (cameraTeachRadiusBot <= 0)
+                cameraTeachRadiusBot = 10;
+            //           toolStripTextBox3.Text = cameraTeachRadiusBot.ToString();
         }
+        private void toolStripTextBox3_Leave(object sender, EventArgs e)
+        {   toolStripTextBox3.Text = cameraTeachRadiusBot.ToString();
+        }
+
+
         // send event to teach Zero offset
         private void btnSetOffsetZero_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(-cameraToolOffsetX, -cameraToolOffsetY, "G92")); // set new coordinates
+            OnRaiseXYEvent(new XYEventArgs(0,0, 0, "G92")); // set new coordinates
         }
         // send event to teach Marker offset
         private void btnSetOffsetMarker_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(-cameraToolOffsetX + actualPosMarker.X, -cameraToolOffsetY + actualPosMarker.Y, "G92")); // set new coordinates
+            OnRaiseXYEvent(new XYEventArgs(0, 1, actualPosMarker, "G92"));        // set new coordinates
         }
         // sent event to apply offset
-        private void btnCamOffsetPlus_Click(object sender, EventArgs e)
-        {
-            OnRaiseXYEvent(new XYEventArgs(-cameraToolOffsetX, -cameraToolOffsetY, "G91"));   // move relative and fast
-            cBCamOffset.Checked = true;
+        private void btnCamCoordTool_Click(object sender, EventArgs e)
+        {   if (cBCamCoordMove.Checked)
+                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G54; G0G90"));  // switch coord system and move
+            else
+                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G54"));         // only switch
+            btnCamCoordTool.BackColor = Color.Lime;
+            btnCamCoordCam.BackColor = SystemColors.Control;
         }
         // sent event to apply offset
-        private void btnCamOffsetMinus_Click(object sender, EventArgs e)
-        {
-            OnRaiseXYEvent(new XYEventArgs(cameraToolOffsetX, cameraToolOffsetY, "G91"));   // move relative and fast
-            cBCamOffset.Checked = false;
+        private void btnCamCoordCam_Click(object sender, EventArgs e)
+        {   if (cBCamCoordMove.Checked)
+                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G59; G0G90"));  // switch coord system and move
+            else
+                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G59"));         // only switch
+            btnCamCoordCam.BackColor = Color.Lime;
+            btnCamCoordTool.BackColor = SystemColors.Control;
         }
         // show actual offset from tool position
-        private void teachToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            cameraToolOffsetX = Math.Round(-actualPosWorld.X,3);
-            cameraToolOffsetY = Math.Round(-actualPosWorld.Y,3);
-            lblOffset.Text=String.Format("Camera Offset: X{0} Y{1}", cameraToolOffsetX, cameraToolOffsetY);
+        private void teachToolStripMenuItem_Click(object sender, EventArgs e)       // teach offset of G59 coord system
+        {   OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G10 L2 P6 "));   // move relative and fast
         }
 
         // measure angle 
         private bool measureAngle = false;
-        private int measureAngleStartX = 0;
-        private int measureAngleStartY = 0;
-        private int measureAngleStopX = 0;
-        private int measureAngleStopY = 0;
+        private xyPoint measureAngleStart = new xyPoint(0, 0);
+        private xyPoint measureAngleStop = new xyPoint(0, 0);
         private void pictureBoxVideo_MouseDown(object sender, MouseEventArgs e)
-        {   if (e.Button == MouseButtons.Right)
+        {
+            //cmsPictureBox.Visible = true;
+            if (e.Button == MouseButtons.Right)
             {
-                measureAngleStartX = pictureBoxVideo.PointToClient(MousePosition).X;
-                measureAngleStartY = pictureBoxVideo.PointToClient(MousePosition).Y;
+                measureAngleStart = (xyPoint)pictureBoxVideo.PointToClient(MousePosition);
                 measureAngle = true;
             }
+            if (e.Delta > 0)
+            {
+                nUDCameraZoom.Value += nUDCameraZoom.Increment;
+                MessageBox.Show(e.Delta.ToString());
+            }
+            if (e.Delta < 0)
+                nUDCameraZoom.Value-= nUDCameraZoom.Increment;
         }
+
+        private void pictureBoxVideo_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+            {   if (nUDCameraZoom.Value < nUDCameraZoom.Maximum)
+                    nUDCameraZoom.Value += nUDCameraZoom.Increment;
+            }
+            if (e.Delta < 0)
+            {   if (nUDCameraZoom.Value > nUDCameraZoom.Minimum)
+                    nUDCameraZoom.Value -= nUDCameraZoom.Increment;
+            }
+        }
+
         private void pictureBoxVideo_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                calculateAngle();
+                measureAngleStop = (xyPoint)pictureBoxVideo.PointToClient(MousePosition);
+                angle = (float)measureAngleStart.AngleTo(measureAngleStop);
                 measureAngle = false;
-                lblAngle.Text = String.Format("{0:0.00}°",angle);
+                lblAngle.Text = String.Format("{0:0.00}°", angle);
+                if (angle != 0)
+                    cmsPictureBox.Visible = false;
+                else
+                    cmsPictureBox.Visible = true;
             }
         }
 
         private void btnApplyAngle_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(angle, angle, "a"));
+            OnRaiseXYEvent(new XYEventArgs(angle, 1, new xyPoint(0,0), "a"));
         }
         // change camera rotation
         private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
-        {   if (e.KeyCode == Keys.Enter)
-            {   if (!double.TryParse(toolStripTextBox1.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out cameraRotation))
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (!double.TryParse(toolStripTextBox1.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out cameraRotation))
                     cameraRotation = 0;
                 toolStripTextBox1.Text = cameraRotation.ToString();
             }
         }
 
         private void textToolStripMenuItem_Click(object sender, EventArgs e)
-        {   applyColor(textToolStripMenuItem, "cameraColorText");
+        {
+            applyColor(textToolStripMenuItem, "cameraColorText");
             brushText = new SolidBrush(Properties.Settings.Default.cameraColorText);
         }
         private void crossHairsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -475,7 +549,7 @@ namespace GRBL_Plotter
             {
                 setButtonColors(btn, colorDialog1.Color);
                 Properties.Settings.Default[settings] = colorDialog1.Color;
-//                saveSettings();
+                //                saveSettings();
             }
         }
         private void setButtonColors(ToolStripMenuItem btn, Color col)
@@ -495,31 +569,253 @@ namespace GRBL_Plotter
             return Color.FromArgb(d, d, d);
         }
 
-    }
+        // Process image
+        private DoublePoint shapeCenter, picCenter;
+        private bool shapeFound = false;
+        private void ProcessImage(Bitmap bitmap)
+        {
+            // lock image
+            BitmapData bitmapData = bitmap.LockBits(
+                new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                ImageLockMode.ReadWrite, bitmap.PixelFormat);
 
-    // establish own event to send XY coordinates
-    public class XYEventArgs : EventArgs
-    {
-        private double posX, posY;
-        string command;
-        public XYEventArgs(double x,double y,string cmd)
-        {
-            posX=x;
-            posY=y;
-            command = cmd;
+            // step 1 - turn background to black
+            ColorFiltering colorFilter = new ColorFiltering();
+
+            colorFilter.Red = new IntRange(Properties.Settings.Default.camFilterRed1, Properties.Settings.Default.camFilterRed2);
+            colorFilter.Green = new IntRange(Properties.Settings.Default.camFilterGreen1, Properties.Settings.Default.camFilterGreen2);
+            colorFilter.Blue = new IntRange(Properties.Settings.Default.camFilterBlue1, Properties.Settings.Default.camFilterBlue2);
+            colorFilter.FillOutsideRange = Properties.Settings.Default.camFilterOutside;
+
+            colorFilter.ApplyInPlace(bitmapData);
+
+            // step 2 - locating objects
+            BlobCounter blobCounter = new BlobCounter();
+
+            blobCounter.FilterBlobs = true;
+            blobCounter.MinHeight = (int)Properties.Settings.Default.camShapeSizeMin * (int)cameraZoom;
+            blobCounter.MinWidth = (int)Properties.Settings.Default.camShapeSizeMin * (int)cameraZoom;
+            blobCounter.MaxHeight = (int)Properties.Settings.Default.camShapeSizeMax * (int)cameraZoom;
+            blobCounter.MaxWidth = (int)Properties.Settings.Default.camShapeSizeMax * (int)cameraZoom;
+
+            blobCounter.ProcessImage(bitmapData);
+
+            Blob[] blobs = blobCounter.GetObjectsInformation();
+            bitmap.UnlockBits(bitmapData);
+
+            // step 3 - check objects' type and highlight
+            SimpleShapeChecker shapeChecker = new SimpleShapeChecker();
+            shapeChecker.MinAcceptableDistortion = (float)Properties.Settings.Default.camShapeDist;
+            shapeChecker.RelativeDistortionLimit = (float)Properties.Settings.Default.camShapeDistMax;
+
+            Graphics g = Graphics.FromImage(bitmap);
+            Pen yellowPen = new Pen(Color.Yellow, 5); // circles
+            Pen redPen = new Pen(Color.Red, 10); // circles
+            Pen greenPen = new Pen(Color.Green, 5);   // known triangle
+
+            double lowestDistance = xmid;
+            double distance;
+            shapeFound = false;
+            DoublePoint center;
+            double shapeRadius = 1;
+            for (int i = 0, n = blobs.Length; i < n; i++)
+            {
+                List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
+                double radius;
+                // is circle ?
+                //          g.DrawPolygon(greenPen, ToPointsArray(edgePoints));
+
+                if (Properties.Settings.Default.camShapeCircle && shapeChecker.IsCircle(edgePoints, out center, out radius))
+                {
+                    shapeFound = true;
+                    distance = center.DistanceTo(picCenter);
+                    g.DrawEllipse(yellowPen,
+                        (float)(shapeCenter.X - shapeRadius), (float)(shapeCenter.Y - shapeRadius),
+                        (float)(shapeRadius * 2), (float)(shapeRadius * 2));
+
+                    if (lowestDistance > Math.Abs(distance))
+                    {
+                        lowestDistance = Math.Abs(distance);
+                        shapeCenter = center;
+                        shapeRadius = radius;
+                    }
+                }
+                List<IntPoint> corners;
+                if (Properties.Settings.Default.camShapeRect && shapeChecker.IsQuadrilateral(edgePoints, out corners))  //.IsConvexPolygon
+                {
+                    IntPoint minxy, maxxy, centxy;
+                    shapeFound = true;
+                    PolygonSubType subType = shapeChecker.CheckPolygonSubType(corners);
+                    g.DrawPolygon(yellowPen, ToPointsArray(corners));
+                    PointsCloud.GetBoundingRectangle(corners, out minxy, out maxxy);
+                    centxy = (minxy + maxxy) / 2;
+                    distance = picCenter.DistanceTo(centxy);// PointsCloud.GetCenterOfGravity(corners));
+                    if (lowestDistance > Math.Abs(distance))
+                    {
+                        lowestDistance = Math.Abs(distance);
+                        shapeCenter = centxy;// PointsCloud.GetCenterOfGravity(corners);
+                        shapeRadius = maxxy.DistanceTo(minxy) / 2;// 50;
+                    }
+                }
+
+            }
+            if (shapeFound)
+            {
+                g.DrawEllipse(redPen,
+               (float)(shapeCenter.X - shapeRadius * 1.2), (float)(shapeCenter.Y - shapeRadius * 1.2),
+               (float)(shapeRadius * 2.4), (float)(shapeRadius * 2.4));
+            }
+
+            yellowPen.Dispose();
+            redPen.Dispose();
+            greenPen.Dispose();
+            g.Dispose();
+
+            // put new image to clipboard
+            //           Clipboard.SetDataObject(bitmap);
+            // and to picture box
+            pictureBoxVideo.BackgroundImage = bitmap;
+            //UpdatePictureBoxPosition();
+
         }
-        public double PosX
+        // Convert list of AForge.NET's points to array of .NET points
+        private Point[] ToPointsArray(List<IntPoint> points)
         {
-            get { return posX; }
+            Point[] array = new Point[points.Count];
+            for (int i = 0, n = points.Count; i < n; i++)
+            {
+                array[i] = new Point(points[i].X, points[i].Y);
+            }
+            return array;
         }
-        public double PosY
+
+        private void cBShapeDetection_CheckedChanged(object sender, EventArgs e)
         {
-            get { return posY; }
+            if (cBShapeDetection.Checked)
+                btnAutoCenter.Enabled = true;
+            else
+                btnAutoCenter.Enabled = false;
         }
-        public string Command
+        
+        private void btnAutoCenter_Click(object sender, EventArgs e)
         {
-            get { return command; }
+            if (shapeFound)
+            {
+                float actualScaling = getActualScaling();
+                xyPoint tmp;
+                tmp.X = 2 * (Convert.ToDouble(shapeCenter.X) / pictureBoxVideo.Size.Width - 0.5) * actualScaling / cameraZoom;
+                tmp.Y = -2 * (Convert.ToDouble(shapeCenter.Y) / pictureBoxVideo.Size.Height - 0.5) * actualScaling * ratio / cameraZoom;
+                OnRaiseXYEvent(new XYEventArgs(0, 1, tmp/2, "G91")); // move relative and slow
+                                                                      //               MessageBox.Show(x.ToString() + "  " + y.ToString()+"\r\n"+ shapeCenter.X.ToString()+"  "+ shapeCenter.Y.ToString());
+                lblCenterPos.Text = string.Format("X: {0:0.000}  Y: {1:0.000}", tmp.X, tmp.Y);
+            }
+            else
+                lblCenterPos.Text = "No shape found";
+        }
+
+        private float getActualScaling()
+        {
+            double diff = cameraPosTop - cameraPosBot;
+            if (diff == 0) diff = 1;
+            double m = (cameraScalingTop - cameraScalingBot) / diff;
+            double n = cameraScalingTop - m * cameraPosTop;
+            float actualScaling = (float)Math.Abs(actualPosMachine.Z * m + n);
+            if (actualScaling < 1) actualScaling = 1;
+            return actualScaling;
+        }
+
+        private void shapeSetLoad(string txt)
+        {
+            string[] value = txt.Split('|');
+            int i = 1;
+            try
+            {
+                Properties.Settings.Default.camFilterRed1 = Convert.ToInt16(value[i++]);
+                Properties.Settings.Default.camFilterRed2 = Convert.ToInt16(value[i++]);
+                Properties.Settings.Default.camFilterGreen1 = Convert.ToInt16(value[i++]);
+                Properties.Settings.Default.camFilterGreen2 = Convert.ToInt16(value[i++]);
+                Properties.Settings.Default.camFilterBlue1 = Convert.ToInt16(value[i++]);
+                Properties.Settings.Default.camFilterBlue2 = Convert.ToInt16(value[i++]);
+                Properties.Settings.Default.camFilterOutside = (value[i++] == "True") ? true : false;
+                Properties.Settings.Default.camShapeCircle = (value[i++] == "True") ? true : false;
+                Properties.Settings.Default.camShapeRect = (value[i++] == "True") ? true : false;
+                Properties.Settings.Default.camShapeSizeMin = Convert.ToDecimal(value[i++]);
+                Properties.Settings.Default.camShapeSizeMax = Convert.ToDecimal(value[i++]);
+                Properties.Settings.Default.camShapeDist = Convert.ToDecimal(value[i++]);
+                Properties.Settings.Default.camShapeDistMax = Convert.ToDecimal(value[i++]);
+                Properties.Settings.Default.Save();
+            }
+            catch { }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = comboBox1.SelectedIndex;
+            if (selectedIndex == 0) { shapeSetLoad(Properties.Settings.Default.camShapeSet1); }
+            if (selectedIndex == 1) { shapeSetLoad(Properties.Settings.Default.camShapeSet2); }
+            if (selectedIndex == 2) { shapeSetLoad(Properties.Settings.Default.camShapeSet3); }
+            if (selectedIndex == 3) { shapeSetLoad(Properties.Settings.Default.camShapeSet4); }
+        }
+
+        private void teachpoint1_process_Click(object sender, EventArgs e)
+        {   teachPoint1 = actualPosMarker;
+            teachPoint2 = teachPoint1; teachPoint3 = teachPoint1;
+            measureAngleStart = teachPoint1;
+            OnRaiseXYEvent(new XYEventArgs(0, 1, actualPosMarker, "G92"));        // set new coordinates
+            teachTP1 = true;
+        }
+
+        private void teachpoint2_process_Click(object sender, EventArgs e)
+        {
+            teachPoint2 = actualPosMarker;
+            double angle1 = teachPoint1.AngleTo(teachPoint2);
+            double dist1  = teachPoint1.DistanceTo(teachPoint2);
+            double angle2 = teachPoint1.AngleTo((xyPoint)actualPosWorld);
+            double dist2 = teachPoint1.DistanceTo((xyPoint)actualPosWorld);
+            double angle = angle1 - angle2;
+            lblAngle.Text = String.Format("{0:0.00}°", angle);
+
+            OnRaiseXYEvent(new XYEventArgs(angle, dist2/dist1, teachPoint1, "a"));       // rotate arround TP1
+            teachTP1 = false;
+        }
+
+        private void ControlCameraForm_KeyDown(object sender, KeyEventArgs e)
+        {   if (e.KeyCode == Keys.Space)
+            { showOverlay = false; } }
+
+        private void ControlCameraForm_KeyUp(object sender, KeyEventArgs e)
+        {   if (e.KeyCode == Keys.Space)
+            { showOverlay = true; } }
+
+        private void showOverlayGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {   showOverlay = showOverlay ? false : true;
+            showOverlayGraphicsToolStripMenuItem.Checked = showOverlay;
+        }
+
+        private void pictureBoxVideo_MouseEnter(object sender, EventArgs e)
+        {
+            if (!pictureBoxVideo.Focused)
+                pictureBoxVideo.Focus();      
+        }
+
+        private void pictureBoxVideo_MouseLeave(object sender, EventArgs e)
+        {
+            if (pictureBoxVideo.Focused)
+                pictureBoxVideo.Parent.Focus();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string txt="";
+            MessageBox.Show(txt);
+        }
+
+        private void fillComboBox(int index, string txt)
+        {
+            if (index == 1) { comboBox1.Items[0] = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (index == 2) { comboBox1.Items[1] = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (index == 3) { comboBox1.Items[2] = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (index == 4) { comboBox1.Items[3] = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
         }
     }
-
 }

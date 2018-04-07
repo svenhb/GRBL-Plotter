@@ -52,7 +52,7 @@ namespace GRBL_Plotter
             this.cbBaud = new System.Windows.Forms.ComboBox();
             this.btnOpenPort = new System.Windows.Forms.Button();
             this.btnScanPort = new System.Windows.Forms.Button();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
@@ -81,6 +81,7 @@ namespace GRBL_Plotter
             this.cbStatus = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.timerSerial = new System.Windows.Forms.Timer(this.components);
+            this.btnCheckGRBL = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,11 +123,11 @@ namespace GRBL_Plotter
             // 
             // serialPort1
             // 
-            this.serialPort1.BaudRate = 115200;
-            this.serialPort1.ReadBufferSize = 2048;
-            this.serialPort1.ReadTimeout = 3000;
-            this.serialPort1.WriteTimeout = 3000;
-            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            this.serialPort.BaudRate = 115200;
+            this.serialPort.ReadBufferSize = 2048;
+            this.serialPort.ReadTimeout = 3000;
+            this.serialPort.WriteTimeout = 3000;
+            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
             // rtbLog
             // 
@@ -298,6 +299,7 @@ namespace GRBL_Plotter
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCheckGRBL);
             this.groupBox1.Controls.Add(this.cbStatus);
             this.groupBox1.Controls.Add(this.lblSrA);
             this.groupBox1.Controls.Add(this.lblSrLn);
@@ -321,6 +323,14 @@ namespace GRBL_Plotter
             // 
             this.timerSerial.Interval = 500;
             this.timerSerial.Tick += new System.EventHandler(this.timerSerial_Tick);
+            // 
+            // btnCheckGRBL
+            // 
+            resources.ApplyResources(this.btnCheckGRBL, "btnCheckGRBL");
+            this.btnCheckGRBL.Name = "btnCheckGRBL";
+            this.toolTipSerial.SetToolTip(this.btnCheckGRBL, resources.GetString("btnCheckGRBL.ToolTip"));
+            this.btnCheckGRBL.UseVisualStyleBackColor = true;
+            this.btnCheckGRBL.Click += new System.EventHandler(this.btnCheckGRBL_Click);
             // 
             // ControlSerialForm
             // 
@@ -358,7 +368,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ComboBox cbBaud;
         private System.Windows.Forms.Button btnOpenPort;
         private System.Windows.Forms.Button btnScanPort;
-        private System.IO.Ports.SerialPort serialPort1;
+        private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.RichTextBox rtbLog;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSend;
@@ -387,5 +397,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label lblSrLn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnCheckGRBL;
     }
 }

@@ -22,14 +22,13 @@
     Return transformed GCode 
 */
 /* 2016-09-18 use gcode.frmtNum to control amount of decimal places
- * 
+ * 2018-04-03 code clean up
 */
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 
 namespace GRBL_Plotter
 {
@@ -45,32 +44,20 @@ namespace GRBL_Plotter
         public static GraphicsPath pathHeightMap = new GraphicsPath();
         public static GraphicsPath path = pathPenUp;
 
-        private double toolPosX = 0;
-        private double toolPosY = 0;
-        private double toolPosZ = 0;
-        private double markerPosX = 0;
-        private double markerPosY = 0;
-        private double zeroOffsetX = 0;
-        private double zeroOffsetY = 0;
-        private int picWidth = 640;
-        private int picHeight = 480;
-        private double picScaling = 1;
+        private xyzPoint toolPos = new xyzPoint(0,0,0);
+        private xyPoint markerPos = new xyPoint(0, 0);
+ //       private int picWidth = 640;
+  //      private int picHeight = 480;
         private double zLimit = 0.0;
         private bool containsG2G3 = false;
         private bool containsG91 = false;
 
-        public void setPosTool(double x, double y, double z)
-        { toolPosX = x; toolPosY = y; toolPosZ = z; }
-        public void setPosMarker(double x, double y)
-        { markerPosX = x; markerPosY = y; }
-        public void setPosMarkerX(double x)
-        { markerPosX = x; }
-        public double GetPosMarkerX()
-        { return markerPosX; }
-        public void setPosMarkerY(double y)
-        { markerPosY = y; }
-        public double GetPosMarkerY()
-        { return markerPosY; }
+        public void setPosTool(xyzPoint tmp)
+        { toolPos = tmp; }
+        public void setPosMarker(xyPoint tmp)
+        { markerPos = tmp; }
+        public xyPoint GetPosMarker()
+        { return markerPos; }
         public bool containsG2G3Command()
         { return containsG2G3; }
         public bool containsG91Command()
@@ -115,6 +102,9 @@ namespace GRBL_Plotter
         // analyse each GCode line and track actual position and modes for each code line
         private List<gcodeLine> gcodeList;          // keep original program
         private List<coordinateLine> coordList;     // get all coordinmates (also subroutines)
+        /// <summary>
+        /// Hold absolute coordinate for given linenumber
+        /// </summary>
         private class coordinateLine
         {
             public int lineNumber;          // line number in fCTBCode
@@ -178,9 +168,7 @@ namespace GRBL_Plotter
             gcodeList = new List<gcodeLine>();    //.Clear();
             coordList = new List<coordinateLine>();    //.Clear();
             oldLine.resetAll();                     // reset coordinates and parser modes
-            oldLine.actualPos.X = toolPosX;
-            oldLine.actualPos.Y = toolPosY;
-            oldLine.actualPos.Z = toolPosZ;
+            oldLine.actualPos = toolPos;
             clearDrawingnPath();                    // reset path, dimensions
             newLine.resetAll();                     // reset coordinates and parser modes
             containsG2G3 = false;
@@ -202,9 +190,7 @@ namespace GRBL_Plotter
                 gcodeList.Add(new gcodeLine(newLine));      // add parsed line to list
                 coordList.Add(new coordinateLine(index, newLine.actualPos));
                 if (!programEnd)
-                {   //if ((newLine.motionMode > 0))// || (newLine.z != null))
-                    //    xyzSize.setDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
-                    // add data to drawing path
+                {   // add data to drawing path
                     createDarwingPathFromGCode(newLine.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z, newLine.i, newLine.j);
                     oldLine = new gcodeLine(newLine);   // get copy of newLine      
                 }
@@ -263,7 +249,7 @@ namespace GRBL_Plotter
                         if (processSubs)
                             gcodeList.Add(new gcodeLine(newLine));      // add parsed line to list
                         coordList.Add(new coordinateLine(index, newLine.actualPos));
-                        if ((newLine.motionMode > 0) || (newLine.z != null))
+                        if (((newLine.motionMode > 0) || (newLine.z != null)) && !((newLine.x == toolPos.X) && (newLine.y == toolPos.Y)))
                             xyzSize.setDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
                                                                                                                                 // add data to drawing path
                         createDarwingPathFromGCode(newLine.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z, newLine.i, newLine.j);
@@ -281,11 +267,13 @@ namespace GRBL_Plotter
                 if (newLine.isdistanceModeG90)
                 {
                     newLine.actualPos.X = (double)newLine.x;
-                    xyzSize.setDimensionX(newLine.actualPos.X);
+                    if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
+                        xyzSize.setDimensionX(newLine.actualPos.X);
                 }
                 else
                 {   newLine.actualPos.X = oldLine.actualPos.X + (double)newLine.x;
-                    xyzSize.setDimensionX(newLine.actualPos.X);// - toolPosX);
+                    if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
+                        xyzSize.setDimensionX(newLine.actualPos.X);// - toolPosX);
                 }
             }
             else
@@ -294,11 +282,13 @@ namespace GRBL_Plotter
             {
                 if (newLine.isdistanceModeG90)
                 {   newLine.actualPos.Y = (double)newLine.y;
-                    xyzSize.setDimensionY(newLine.actualPos.Y);
+                    if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
+                        xyzSize.setDimensionY(newLine.actualPos.Y);
                 }
                 else
                 {   newLine.actualPos.Y = oldLine.actualPos.Y + (double)newLine.y;
-                    xyzSize.setDimensionY(newLine.actualPos.Y);// - toolPosY);
+                    if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
+                        xyzSize.setDimensionY(newLine.actualPos.Y);// - toolPosY);
                 }
             }
             else
@@ -307,11 +297,13 @@ namespace GRBL_Plotter
             {
                 if (newLine.isdistanceModeG90)
                 {   newLine.actualPos.Z = (double)newLine.z;
-                    xyzSize.setDimensionZ(newLine.actualPos.Z); // removed - toolPosZ
+                    if (newLine.actualPos.Z != toolPos.Z)            // don't add actual tool pos
+                        xyzSize.setDimensionZ(newLine.actualPos.Z); // removed - toolPosZ
                 }
                 else
                 {   newLine.actualPos.Z = oldLine.actualPos.Z + (double)newLine.z;
-                    xyzSize.setDimensionZ(newLine.actualPos.Z);// - toolPosZ);
+                    if (newLine.actualPos.Z != toolPos.Z)            // don't add actual tool pos
+                        xyzSize.setDimensionZ(newLine.actualPos.Z);// - toolPosZ);
                 }
             }
             else
@@ -461,7 +453,7 @@ namespace GRBL_Plotter
                 {
                     if (line == coordList[line].lineNumber)
                     {
-                        setPosMarker(coordList[line].actualPos.X, coordList[line].actualPos.Y);
+                        setPosMarker((xyPoint)coordList[line].actualPos);//.X, coordList[line].actualPos.Y);
                         createMarkerPath();
                     }
                     else
@@ -470,7 +462,7 @@ namespace GRBL_Plotter
                         {
                             if (line == gcline.lineNumber)
                             {
-                                setPosMarker(gcline.actualPos.X, gcline.actualPos.Y);
+                                setPosMarker((xyPoint)gcline.actualPos);//.X, gcline.actualPos.Y);
                                 createMarkerPath();
                                 break;
                             }
@@ -491,7 +483,7 @@ namespace GRBL_Plotter
             }
             int line = 0;
             List<coordinateLine> SortedList = coordList.OrderBy(o => o.distance).ToList();
-            setPosMarker(SortedList[line].actualPos.X, SortedList[line].actualPos.Y);
+            setPosMarker((xyPoint)SortedList[line].actualPos);//.X, SortedList[line].actualPos.Y);
             createMarkerPath();
             return SortedList[line].lineNumber;
         }
@@ -518,9 +510,7 @@ namespace GRBL_Plotter
             double oldmaxx = xyzSize.maxx;
             double oldmaxy = xyzSize.maxy;
             oldLine.resetAll();         // reset coordinates and parser modes
-            oldLine.actualPos.X = toolPosX;
-            oldLine.actualPos.Y = toolPosY;
-            oldLine.actualPos.Z = toolPosZ;
+            oldLine.actualPos = toolPos;
             clearDrawingnPath();                    // reset path, dimensions
             foreach (gcodeLine gcline in gcodeList)
             {
@@ -551,66 +541,61 @@ namespace GRBL_Plotter
                     gcline.j = -gcline.j;
                 }
 
-                //newLine = new gcodeLine(gcline);
                 calcAbsPosition(gcline, oldLine);
-                if (gcline.motionMode > 0)
-                    xyzSize.setDimensionXYZ(gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z);             // calculate max dimensions
-                // add data to drawing path
                 createDarwingPathFromGCode(gcline.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
                 oldLine = new gcodeLine(gcline);   // get copy of newLine
             }
             return createGCodeProg(false,false);
         }
-        public string transformGCodeRotate(double angle)
+        /// <summary>
+        /// rotate and scale arround offset
+        /// </summary>
+        public string transformGCodeRotate(double angle, double scale, xyPoint offset)
         {
             double? newvalx, newvaly, newvali, newvalj;
             oldLine.resetAll();         // reset coordinates and parser modes
-            oldLine.actualPos.X = toolPosX;
-            oldLine.actualPos.Y = toolPosY;
-            oldLine.actualPos.Z = toolPosZ;
+            oldLine.actualPos = toolPos;
             clearDrawingnPath();                    // reset path, dimensions
             foreach (gcodeLine gcline in gcodeList)
             {
                 if ((gcline.x != null) || (gcline.y != null))
                 {   if (gcline.isdistanceModeG90)
                     {
-                        newvalx = gcline.actualPos.X * Math.Cos(angle * Math.PI / 180) - gcline.actualPos.Y * Math.Sin(angle * Math.PI / 180);
-                        newvaly = gcline.actualPos.X * Math.Sin(angle * Math.PI / 180) + gcline.actualPos.Y * Math.Cos(angle * Math.PI / 180);
+                        newvalx = (gcline.actualPos.X - offset.X)* Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
+                        newvaly = (gcline.actualPos.X - offset.X)* Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
                     }
                     else
                     {   if (gcline.x == null) { gcline.x = 0; }
                         if (gcline.y == null) { gcline.y = 0; }
-                        newvalx = gcline.x * Math.Cos(angle * Math.PI / 180) - gcline.y * Math.Sin(angle * Math.PI / 180);
-                        newvaly = gcline.x * Math.Sin(angle * Math.PI / 180) + gcline.y * Math.Cos(angle * Math.PI / 180);
+                        newvalx = (gcline.x - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.y - offset.Y) * Math.Sin(angle * Math.PI / 180);
+                        newvaly = (gcline.x - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.y - offset.Y) * Math.Cos(angle * Math.PI / 180);
                     }
-                    gcline.x = newvalx;
-                    gcline.y = newvaly;
+                    gcline.x = (newvalx * scale) + offset.X;
+                    gcline.y = (newvaly * scale) + offset.Y;
                 }
                 if ((gcline.i != null) || (gcline.j != null))
                 {
                     newvali = (double)gcline.i* Math.Cos(angle* Math.PI / 180) - (double)gcline.j * Math.Sin(angle* Math.PI / 180);
                     newvalj = (double)gcline.i * Math.Sin(angle* Math.PI / 180) + (double)gcline.j * Math.Cos(angle* Math.PI / 180);
-                    gcline.i = newvali;
-                    gcline.j = newvalj;
+                    gcline.i = newvali * scale;
+                    gcline.j = newvalj * scale;
                 }
-                //newLine = new gcodeLine(gcline);
+
                 calcAbsPosition(gcline, oldLine);
-                if (gcline.motionMode > 0)
-                    xyzSize.setDimensionXYZ(gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z);             // calculate max dimensions
-                // add data to drawing path
                 createDarwingPathFromGCode(gcline.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
                 oldLine = new gcodeLine(gcline);   // get copy of newLine
             }
             return createGCodeProg(false,false);
         }
+        /// <summary>
+        /// scale x and y seperatly in %
+        /// </summary>
         public string transformGCodeScale(double scaleX, double scaleY)
         {
             double factor_x = scaleX / 100;
             double factor_y = scaleY / 100;
             oldLine.resetAll();         // reset coordinates and parser modes
-            oldLine.actualPos.X = toolPosX;
-            oldLine.actualPos.Y = toolPosY;
-            oldLine.actualPos.Z = toolPosZ;
+            oldLine.actualPos = toolPos;
             clearDrawingnPath();                    // reset path, dimensions
             foreach (gcodeLine gcline in gcodeList)
             {
@@ -623,11 +608,7 @@ namespace GRBL_Plotter
                 if (gcline.j != null)
                     gcline.j = gcline.j * factor_y;
 
-                //newLine = new gcodeLine(gcline);
                 calcAbsPosition(gcline, oldLine);
-                if (gcline.motionMode > 0)
-                    xyzSize.setDimensionXYZ(gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z);             // calculate max dimensions
-                // add data to drawing path
                 createDarwingPathFromGCode(gcline.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
                 oldLine = new gcodeLine(gcline);   // get copy of newLine
             }
@@ -640,9 +621,7 @@ namespace GRBL_Plotter
             bool offsetApplied = false;
             bool noInsertNeeded = false;
             oldLine.resetAll();         // reset coordinates and parser modes
-            oldLine.actualPos.X = toolPosX;
-            oldLine.actualPos.Y = toolPosY;
-            oldLine.actualPos.Z = toolPosZ;
+            oldLine.actualPos = toolPos;
             if (shiftToZero == translate.Offset1) { offsetX = x + xyzSize.minx; offsetY = y + xyzSize.miny + xyzSize.dimy; }
             if (shiftToZero == translate.Offset2) { offsetX = x + xyzSize.minx + xyzSize.dimx / 2; offsetY = y + xyzSize.miny + xyzSize.dimy; }
             if (shiftToZero == translate.Offset3) { offsetX = x + xyzSize.minx + xyzSize.dimx; offsetY = y + xyzSize.miny + xyzSize.dimy; }
@@ -699,9 +678,6 @@ namespace GRBL_Plotter
                     }
                 }
                 calcAbsPosition(gcline, oldLine);
-                if (gcline.motionMode > 0)
-                    xyzSize.setDimensionXYZ(gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z);             // calculate max dimensions
-                // add data to drawing path
                 createDarwingPathFromGCode(gcline.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
                 oldLine = new gcodeLine(gcline);   // get copy of newLine
             }
@@ -725,8 +701,9 @@ namespace GRBL_Plotter
             double lastActualX = 0, lastActualY = 0,i,j;
             double newZ = 0;
             int lastMotionMode = 0;
-            foreach (gcodeLine gcline in gcodeList)
-            {
+            xyzSize.resetDimension();
+            for (int iCode=0; iCode < gcodeList.Count; iCode++)
+            {   gcodeLine gcline = gcodeList[iCode];
                 tmpCode.Clear();
                 getCoordinateXY = false;
                 getCoordinateZ = false;
@@ -795,6 +772,9 @@ namespace GRBL_Plotter
                 feedRate = gcline.feedRate;
                 spindleSpeed = gcline.spindleSpeed;
                 lastActualX = gcline.actualPos.X; lastActualY = gcline.actualPos.Y;
+                if (!((gcline.actualPos.X == toolPos.X) && (gcline.actualPos.Y == toolPos.Y)))            // don't add actual tool pos
+                    xyzSize.setDimensionXYZ(gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z);
+                coordList[iCode] = new coordinateLine(iCode, gcline.actualPos);
             }
             return newCode.ToString().Replace(',','.');
         }
@@ -813,16 +793,19 @@ namespace GRBL_Plotter
 
         // add given coordinates to drawing path
         private int onlyZ = 0;
+        /// <summary>
+        /// add segement to drawing path old-xyz, new-xyz
+        /// </summary>
         public void createDarwingPathFromGCode(int motionMode, double ox, double oy, double oz, double nx, double ny, double nz, double? ii, double? jj)
         {
             //MessageBox.Show(String.Format("G{0} ox{1} oy{2} nx{3} ny{4} i{5} j{6}", motionMode, ox, oy, nx, ny, ii, jj));
             bool passLimit = false;
             var pathOld = path;
-            if (nz <= zLimit)                    // select path to draw depending on Z-Value
+            if (nz < zLimit)                    // select path to draw depending on Z-Value
             { path = pathPenDown; }
             else
             { path = pathPenUp;  }
-            if (path != pathOld)
+            if ((path != pathOld))// && !((ox == toolPosX) && (oy == toolPosY) ))
                 passLimit = true;
             path.StartFigure();                 // Start Figure but never close to avoid connecting first and last point
             if (motionMode == 0 || motionMode == 1)
@@ -839,8 +822,8 @@ namespace GRBL_Plotter
                     float markerSize = 1;
                     if (!Properties.Settings.Default.importUnitmm)
                     { markerSize /= 25.4F; }
-                    createMarker(pathPenDown, (float)nx, (float)ny, markerSize, 1, false);
-                    createMarker(pathPenUp, (float)nx, (float)ny, markerSize, 4, false);
+                    createMarker(pathPenDown, (float)nx, (float)ny, markerSize, 1, false);  // draw cross
+                    createMarker(pathPenUp, (float)nx, (float)ny, markerSize, 4, false);    // draw circle
                     path = pathPenUp;      
                     onlyZ = 0;
                 }
@@ -898,9 +881,6 @@ namespace GRBL_Plotter
             drawingSize.maxY = Math.Ceiling(xyzSize.maxy* extend / roundTo) * roundTo;
             double xRange = (drawingSize.maxX - drawingSize.minX);                                              // calculate new size
             double yRange = (drawingSize.maxY - drawingSize.minY);
-            zeroOffsetX = drawingSize.minX;
-            zeroOffsetY = drawingSize.minY;
-            picScaling = Math.Min(picWidth/(xRange), picHeight/(yRange));               // calculate scaling px/unit
             createRuler(drawingSize.maxX, drawingSize.maxY);
             createMarkerPath();
         }
@@ -908,10 +888,8 @@ namespace GRBL_Plotter
         public void createMarkerPath()
         {
             float msize = (float) Math.Max(xyzSize.dimx, xyzSize.dimy) / 50;
- //           if (!Properties.Settings.Default.importUnitmm)
- //           { msize /= 25.4F; }
-            createMarker(pathTool, (float)toolPosX, (float)toolPosY, msize, 2);
-            createMarker(pathMarker, (float)markerPosX, (float)markerPosY, msize, 3);
+            createMarker(pathTool, (float)toolPos.X, (float)toolPos.Y, msize, 2);
+            createMarker(pathMarker, (float)markerPos.X, (float)markerPos.Y, msize, 3);
         }
         private void createRuler(double maxX, double maxY)
         {
@@ -1016,7 +994,9 @@ namespace GRBL_Plotter
     };
 
 
-    // calculate overall dimensions of drawing
+    /// <summary>
+    /// calculate overall dimensions of drawing
+    /// </summary>
     public class Dimensions
     {
         public double minx, maxx, miny, maxy, minz, maxz;
