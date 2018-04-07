@@ -19,7 +19,7 @@ namespace GRBL_Plotter
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "gcode files (*.nc)|*.nc|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd)|*.drd|All files (*.*)|*.*";
+            openFileDialog1.Filter = "gcode files (*.nc)|*.nc|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd, *.drl)|*.drd;*.drl|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 loadFile(openFileDialog1.FileName);
@@ -88,14 +88,14 @@ namespace GRBL_Plotter
             Cursor.Current = Cursors.WaitCursor;
 
             pictureBox1.BackgroundImage = null;
-            visuGCode.setPosMarker(0, 0);
+            visuGCode.setPosMarker(new xyPoint(0,0));
             visuGCode.createMarkerPath(); ;
             String ext = Path.GetExtension(fileName).ToLower();
             if (ext == ".svg")
             { startConvertSVG(fileName); }
             else if (ext == ".dxf")
             { startConvertDXF(fileName); }
-            else if ((ext == ".drd") || (ext == ".dri"))
+            else if ((ext == ".drd") || (ext == ".drl") || (ext == ".dri"))
             { startConvertDrill(fileName); }
             else if (ext == ".nc")
             {   tbFile.Text = fileName;
@@ -202,7 +202,7 @@ namespace GRBL_Plotter
         }
         private string lastSource = "";
         private void startConvertSVG(string source)
-        {   lastSource = source;
+        {   lastSource = source;                        // store current file-path/name
             this.Cursor = Cursors.WaitCursor;
             string gcode = GCodeFromSVG.convertFromFile(source);
             if (gcode.Length > 2)
@@ -218,7 +218,7 @@ namespace GRBL_Plotter
         }
 
         private void startConvertDXF(string source)
-        {   lastSource = source;
+        {   lastSource = source;                        // store current file-path/name
             this.Cursor = Cursors.WaitCursor;
             string gcode = GCodeFromDXF.ConvertFile(source);
             if (gcode.Length > 2)
@@ -233,7 +233,7 @@ namespace GRBL_Plotter
         }
 
         private void startConvertDrill(string source)
-        {   lastSource = source;
+        {   lastSource = source;                        // store current file-path/name
             this.Cursor = Cursors.WaitCursor;
             string gcode = GCodeFromDrill.ConvertFile(source);
             if (gcode.Length > 2)
@@ -256,7 +256,7 @@ namespace GRBL_Plotter
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCodeClickedLineNow = 0;
                 fCTBCodeClickedLineLast = 0;
-                visuGCode.setPosMarker(0, 0);
+                visuGCode.setPosMarker(new xyPoint(0, 0));
                 blockFCTB_Events = true;
                 fCTBCode.OpenFile(tbFile.Text);
                 if (_serial_form.isLasermode && Properties.Settings.Default.ctrlReplaceEnable)
@@ -340,6 +340,7 @@ namespace GRBL_Plotter
                 loadFromClipboard();
                 e.SuppressKeyPress = true;
             }
+            e.SuppressKeyPress = true;
         }
 
         // paste from clipboard SVG or image

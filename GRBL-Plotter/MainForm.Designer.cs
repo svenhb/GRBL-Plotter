@@ -182,6 +182,7 @@ namespace GRBL_Plotter
             this.cmsCommentOut = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblCurrentG = new System.Windows.Forms.Label();
             this.label_status0 = new System.Windows.Forms.Label();
             this.label_a = new System.Windows.Forms.Label();
             this.btnZeroA = new System.Windows.Forms.Button();
@@ -233,6 +234,7 @@ namespace GRBL_Plotter
             this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.moveToMarkedPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.resetZoomingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1072,6 +1074,7 @@ namespace GRBL_Plotter
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblCurrentG);
             this.groupBox2.Controls.Add(this.label_status0);
             this.groupBox2.Controls.Add(this.label_a);
             this.groupBox2.Controls.Add(this.btnZeroA);
@@ -1096,6 +1099,12 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // lblCurrentG
+            // 
+            resources.ApplyResources(this.lblCurrentG, "lblCurrentG");
+            this.lblCurrentG.Name = "lblCurrentG";
+            this.toolTip1.SetToolTip(this.lblCurrentG, resources.GetString("lblCurrentG.ToolTip"));
             // 
             // label_status0
             // 
@@ -1537,6 +1546,7 @@ namespace GRBL_Plotter
             // cmsPictureBox
             // 
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveToMarkedPositionToolStripMenuItem,
             this.pasteFromClipboardToolStripMenuItem,
             this.toolStripSeparator9,
             this.resetZoomingToolStripMenuItem,
@@ -1549,10 +1559,16 @@ namespace GRBL_Plotter
             this.cmsPictureBox.Name = "cmsPictureBox";
             resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
             // 
+            // moveToMarkedPositionToolStripMenuItem
+            // 
+            this.moveToMarkedPositionToolStripMenuItem.Name = "moveToMarkedPositionToolStripMenuItem";
+            resources.ApplyResources(this.moveToMarkedPositionToolStripMenuItem, "moveToMarkedPositionToolStripMenuItem");
+            this.moveToMarkedPositionToolStripMenuItem.Click += new System.EventHandler(this.moveToMarkedPositionToolStripMenuItem_Click);
+            // 
             // pasteFromClipboardToolStripMenuItem
             // 
-            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
             resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
+            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
             this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
@@ -1573,8 +1589,8 @@ namespace GRBL_Plotter
             // 
             // deletenotMarkToolStripMenuItem
             // 
-            this.deletenotMarkToolStripMenuItem.Name = "deletenotMarkToolStripMenuItem";
             resources.ApplyResources(this.deletenotMarkToolStripMenuItem, "deletenotMarkToolStripMenuItem");
+            this.deletenotMarkToolStripMenuItem.Name = "deletenotMarkToolStripMenuItem";
             this.deletenotMarkToolStripMenuItem.Click += new System.EventHandler(this.deletenotMarkToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
@@ -1667,6 +1683,7 @@ namespace GRBL_Plotter
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1679,6 +1696,7 @@ namespace GRBL_Plotter
             this.groupBox4.PerformLayout();
             this.cmsCode.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -1888,6 +1906,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label lblOverrideSSValue;
         private System.Windows.Forms.ToolStripMenuItem cmsCommentOut;
         private System.Windows.Forms.Timer gamePadTimer;
+        private System.Windows.Forms.ToolStripMenuItem moveToMarkedPositionToolStripMenuItem;
+        private System.Windows.Forms.Label lblCurrentG;
     }
 }
 

@@ -132,7 +132,9 @@ namespace GRBL_Plotter
                     visuGCode.setPosMarkerLine(fCTBCodeClickedLineNow);
                     pictureBox1.Invalidate(); // avoid too much events
                     if (_camera_form != null)
-                        _camera_form.setPosMarker(visuGCode.GetPosMarkerX(), visuGCode.GetPosMarkerY());
+                    { _camera_form.setPosMarker(visuGCode.GetPosMarker());// X(), visuGCode.GetPosMarkerY());
+                        //MessageBox.Show("x "+visuGCode.GetPosMarkerX().ToString()+ "  y "+ visuGCode.GetPosMarkerY().ToString());
+                    }
                 }
             }
         }

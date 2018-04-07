@@ -138,7 +138,7 @@ namespace GRBL_Plotter
         private float zoomOffsetX = 0f;
         private float zoomOffsetY = 0f;
 
-        private void pictureBox1_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
         {
             pictureBox1.Focus();
             if (pictureBox1.Focused == true && e.Delta != 0)

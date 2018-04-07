@@ -28,7 +28,7 @@
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.1.4.0</ApplicationVersion>
+    <ApplicationVersion>1.1.5.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -85,6 +85,16 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging">
+      <HintPath>DLLs\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math">
+      <HintPath>DLLs\AForge.Math.dll</HintPath>
+    </Reference>
     <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLLs\AForge.Video.dll</HintPath>
@@ -132,7 +142,7 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="eventHandler.cs" />
+    <Compile Include="mainObjects.cs" />
     <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
     <Compile Include="MachineControl\ControlCameraForm.cs">
       <SubType>Form</SubType>
@@ -248,9 +258,6 @@
     <EmbeddedResource Include="MachineControl\ControlSetupForm.de-DE.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MachineControl\ControlSetupForm.de.resx">
-      <DependentUpon>ControlSetupForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlStreamingForm.de-DE.resx">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -338,6 +345,9 @@
     <Content Include="_misc\test_map\cent.map" />
     <Content Include="_misc\test_map\lens.map" />
     <Content Include="_misc\Test_Pen_change.nc" />
+    <None Include="Resources\alarm_codes_en_US.csv" />
+    <None Include="Resources\error_codes_en_US.csv" />
+    <None Include="Resources\setting_codes_en_US.csv" />
     <None Include="_misc\test_svg\0_Scalable Vector Graphics.url" />
     <None Include="_misc\test_svg\7_Coordinate Systems.url" />
     <None Include="_misc\test_svg\8_Paths.url" />
