@@ -41,7 +41,7 @@ SVG-Import bug fix
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.4.0](GRBL-Plotter_1140_Publish.zip)  2018-03-25  
+#### [GRBL-Plotter Vers. 1.1.5.0](GRBL-Plotter_1150_Publish.zip)  2018-04-07  
 
 ### Requirements for compiling
 * VisualStudio 2015 
