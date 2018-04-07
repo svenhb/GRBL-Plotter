@@ -3,6 +3,11 @@
 Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windows XP)  
 Geschrieben in C# VisualStudio 2015.
   
+### Neu in Version 1.1.5.0: 
+Die Kamera nutzt nun ihr eigenes Koordinatensystem G59 (gegenüber dem Default-Koordinatensystem G54). Achtung! Vor Ausführung des GCodes muss wieder auf das Default-Koordinatensystem G54 umgeschaltet werden!  
+GCode Transformierung mit Hilfe der Kamera, um die Bohrdatei auf die Platine zu projezieren [Platinen bohren](https://github.com/svenhb/GRBL-Plotter/wiki/Platinen-bohren)   
+Neue Importoption 'Code wiederholen' um Pfade mehrfach abzufahren (Laserschneiden mit schwachem Laser)  
+    
 ### Neu in Version 1.1.4.0: 
 Import von Eagle Drill Dateien
 Unterstützung von NoName USB GamePad  
