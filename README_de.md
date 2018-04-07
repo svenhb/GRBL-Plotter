@@ -50,7 +50,7 @@ DXF Import (Fehlend: Text und Ellipse, Spline mit mehr als 4 punkten nok)
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.4.0](GRBL-Plotter_1140_Publish.zip)  2018-03-25  
+#### [GRBL-Plotter Vers. 1.1.5.0](GRBL-Plotter_1150_Publish.zip)  2018-04-07  
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
