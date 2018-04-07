@@ -107,7 +107,7 @@ Setup virtual Joystick
 ![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_en.png?raw=true "Setup5") 
   
 Setup shape recogniton for fiducial camera     
-![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_en.png?raw=true "Setup6") 
+![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup6_en.png?raw=true "Setup6") 
   
 Text import  
 ![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
