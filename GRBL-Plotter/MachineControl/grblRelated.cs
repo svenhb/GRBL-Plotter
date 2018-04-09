@@ -143,11 +143,11 @@ namespace GRBL_Plotter
                     break;
                 case 'M':
                     if ((value <= 2) || (value == 30))
-                        myParserState.spindle = (byte)value;
+                        myParserState.program_flow = (byte)value;    // M0, M1 pause, M2, M30 stop
                     if ((value >= 3) && (value <= 5))
-                        myParserState.spindle = (byte)value;
+                        myParserState.spindle = (byte)value;    // M3, M4 start, M5 stop
                     if ((value >= 7) && (value <= 9))
-                        myParserState.coolant = (byte)value;
+                        myParserState.coolant = (byte)value;    // M7, M8 on   M9 coolant off
                     if (value == 6)
                         myParserState.toolchange = true;
                     myParserState.changed = true;
@@ -167,16 +167,6 @@ namespace GRBL_Plotter
             }
         }
         // check https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#g---view-gcode-parser-state
-   /*     public static void resetParserState1(ref pState myParserState)
-        { 
-            myParserState.motion = 0; myParserState.plane_select = 17;myParserState.units = 21;
-            myParserState.coord_select = 54; myParserState.distance = 90; myParserState.feed_rate = 94;
-            myParserState.program_flow = 0; myParserState.coolant = 9; myParserState.spindle = 5;
-            myParserState.toolchange = false; myParserState.tool = 0; myParserState.FR = 0; myParserState.SS = 0;
-            myParserState.changed = true;
-        }   */
-
-
         public static int[] unknownG = { 41, 64, 81, 83 };
         public static grblState parseStatus(string status)    // {idle, run, hold, home, alarm, check, door}
         {   for (int i = 0; i < statusConvert.Length; i++)
@@ -184,16 +174,6 @@ namespace GRBL_Plotter
                     return statusConvert[i].state;
             }
             return grblState.unknown;
-    /*        if (status.IndexOf("Idle") >= 0) { return grblState.idle; }
-            if (status.IndexOf("Run") >= 0) { return grblState.run; }
-            if (status.IndexOf("Hold") >= 0) { return grblState.hold; }
-            if (status.IndexOf("Jog") >= 0) { return grblState.jog; }
-            if (status.IndexOf("Alarm") >= 0) { return grblState.alarm; }
-            if (status.IndexOf("Door") >= 0) { return grblState.door; }
-            if (status.IndexOf("Check") >= 0) { return grblState.check; }
-            if (status.IndexOf("Home") >= 0) { return grblState.home; }
-            if (status.IndexOf("Sleep") >= 0) { return grblState.sleep; }
-            return grblState.unknown;*/
         }
         public static string statusToText(grblState state)
         {
@@ -203,22 +183,6 @@ namespace GRBL_Plotter
                     return statusConvert[i].msg;
             }
             return "Unknown";
-  /*          switch (state)
-            {
-                case grblState.idle: return "Idle";
-                case grblState.run: return "Run";
-                case grblState.hold: return "Hold";
-                case grblState.jog: return "Jogging";
-                case grblState.alarm: return "Alarm";
-                case grblState.door: return "Door";
-                case grblState.check: return "Check code";
-                case grblState.home: return "Homing";
-                case grblState.sleep: return "Sleep";
-                case grblState.probe: return "Probing";
-                case grblState.unknown:
-                default:
-                    return "Unknown";
-            }*/
         }
         public static Color grblStateColor(grblState state)
         {
@@ -228,28 +192,6 @@ namespace GRBL_Plotter
                     return statusConvert[i].color;
             }
             return Color.Fuchsia;
-
-    /*        switch (state)
-            {
-                case grblState.run:
-                    return Color.Yellow;
-                case grblState.hold:
-                    return Color.YellowGreen;
-                case grblState.home:
-                    return Color.Magenta;
-                case grblState.check:
-                    return Color.Orange;
-                case grblState.idle:
-                    return Color.Lime;
-                case grblState.probe:
-                    return Color.LightBlue;
-                case grblState.unknown:
-                    return Color.Red;
-                case grblState.alarm:
-                case grblState.door:
-                default:
-                    return Color.Fuchsia;
-            }*/
         }
         public static void getPosition(string text, ref xyzPoint position)
         {
