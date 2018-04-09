@@ -303,8 +303,8 @@ namespace GRBL_Plotter
                 if (_streaming_form != null)
                     _streaming_form.show_value_SS(actualSS);
 
-                cBSpindle.Checked = (cmd.spindle <= 4) ? true : false;
-                cBCoolant.Checked = (cmd.coolant <= 8) ? true : false;
+                cBSpindle.Checked = (cmd.spindle <= 4) ? true : false;  // M3, M4 start, M5 stop
+                cBCoolant.Checked = (cmd.coolant <= 8) ? true : false;  // M7, M8 on   M9 coolant off
 
                 if (cmd.toolchange)
                     lblTool.Text = cmd.tool.ToString();
@@ -1679,10 +1679,9 @@ namespace GRBL_Plotter
             sendCommand(fCTBCode.Lines[clickedLine], false);
         }
 
-
-        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+        private void MainForm_Activated(object sender, EventArgs e)
         {
-            e.Handled = true;
+            lbDimension.Focus();
         }
     }
 }
