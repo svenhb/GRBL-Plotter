@@ -13,7 +13,7 @@
   - Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1) 
 * SVG graphics import via file load, drag & drop (also URL) or copy & paste - tested with [Inkscape](https://inkscape.org/de/) generated SVGs 
   - optional resize to fixed size
-  - optional output of nodes only (generating drill holes for string art)
+  - optional output of nodes only (generating drill holes for string art [Video 'String Art'](https://youtu.be/ymWi15rvTvM)  )
   - optional sorting of paths by used color
   - optional tool change
   - if text needs to be imported, convert text into path first
@@ -27,6 +27,7 @@
   
 #### GCode creation:
 * Create Text
+  - own created 'Dot Matrix' font [Video 'Dot Matrix'](https://youtu.be/ip_qCQwoufw) 
 * Create simple shapes
     
 #### GCode manipulation:  
