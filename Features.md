@@ -12,6 +12,10 @@
 * GCode import via file load, drag & drop or copy & paste
   - Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1) 
 * SVG graphics import via file load, drag & drop (also URL) or copy & paste - tested with [Inkscape](https://inkscape.org/de/) generated SVGs 
+  - optional resize to fixed size
+  - optional output of nodes only (generating drill holes for string art)
+  - optional sorting of paths by used color
+  - optional tool change
   - if text needs to be imported, convert text into path first
 * DXF graphics import via file load, drag & drop (also URL) - tested with [LibreCAD](http://librecad.org/cms/home.html) generated DXFs 
   - few entities are missing
