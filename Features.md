@@ -16,6 +16,7 @@
 * DXF graphics import via file load, drag & drop (also URL) - tested with [LibreCAD](http://librecad.org/cms/home.html) generated DXFs 
   - few entities are missing
 * Drill file import via file load, drag & drop
+* Image import via file load or drag & drop
 * GCode can be edited and saved
 * Recent File List (Files and URLs)
 * Export / import machine specific settings (Joystick, Buttons)
