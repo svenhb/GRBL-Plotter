@@ -1,17 +1,16 @@
-## Fonts 
-GRBL-Plotter 
-
-### Hershey Dot-Matrix font
-Copyright (C): 2017 Sven Hasemann
-
-### Other Hershey fonts   
-Hershey text data are imported from Inkscape extension made by Evil Mad Scientist  
+## Fonts
+GRBL-Plotter uses following fonts for text to gcode functionality and for DXF text import.  
+  
+### Hershey fonts   
+Hershey fonts data (except 'Dot Matrix') are imported from Inkscape extension made by Evil Mad Scientist  
 [Evil Mad Scientist - Hershey Text] (https://www.evilmadscientist.com/2011/hershey-text-an-inkscape-extension-for-engraving-fonts/)  
 [Inkscape] (https://inkscape.org/de/)  
-This license applies to Inkscape the program, it's packages, extensions and source code as published or made available through any third party.  
-GNU GENERAL PUBLIC LICENSE  
+GNU GENERAL PUBLIC LICENSE applies to Inkscape the program, it's packages, extensions and source code as published or made available through any third party.  
   
-### LibreCAD fonts  
+### Hershey Dot-Matrix font
+Copyright (C): 2017 Sven Hasemann  
+  
+### LibreCAD fonts
 LibreCad fonts are copied from LibreCAD installation   
 [LibreCAD] (http://librecad.org/cms/home.html)  
 LibreCAD is free software; you can redistribute it and/or modify  
