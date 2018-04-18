@@ -41,7 +41,7 @@
 * support of no-name USB GamePad  
 * Optional usage of a WebCam with separate coordinate system: graphics overlay of the current GCode, set zero point, measure angle, zoom, teaching  
   - Shape recognition for easier teach-point (fiducial) assignment  
-  - Transforming GCode with camera aid, to match drill file with PCB view [PCB drilling](https://github.com/svenhb/GRBL-Plotter/wiki/PCB-drilling)   
+  - Transforming GCode with camera aid, to match drill file with PCB view [Wiki 'PCB drilling'](https://github.com/svenhb/GRBL-Plotter/wiki/PCB-drilling)   
   
 #### Flow control:
 * Supporting subroutines M98, M99 Sub-Program Call (P, L)
