@@ -308,144 +308,144 @@
     <EmbeddedResource Include="GCodeCreation\GCodeFromShape.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="fonts\amiri-regular.lff">
+    <Content Include="fonts\amiri-regular.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\azomix.lff">
+    </Content>
+    <Content Include="fonts\azomix.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\azomix_i.lff">
+    </Content>
+    <Content Include="fonts\azomix_i.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\cursive.lff">
+    </Content>
+    <Content Include="fonts\cursive.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\cyrillic_ii.lff">
+    </Content>
+    <Content Include="fonts\cyrillic_ii.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\gothgbt.lff">
+    </Content>
+    <Content Include="fonts\gothgbt.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\gothgrt.lff">
+    </Content>
+    <Content Include="fonts\gothgrt.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\gothitt.lff">
+    </Content>
+    <Content Include="fonts\gothitt.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\greekc.lff">
+    </Content>
+    <Content Include="fonts\greekc.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\greekcs.lff">
+    </Content>
+    <Content Include="fonts\greekcs.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\greekp.lff">
+    </Content>
+    <Content Include="fonts\greekp.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\greeks.lff">
+    </Content>
+    <Content Include="fonts\greeks.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\greek_ol.lff">
+    </Content>
+    <Content Include="fonts\greek_ol.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\iso.lff">
+    </Content>
+    <Content Include="fonts\iso.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\iso3098.lff">
+    </Content>
+    <Content Include="fonts\iso3098.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\iso3098_i.lff">
+    </Content>
+    <Content Include="fonts\iso3098_i.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\italicc.lff">
+    </Content>
+    <Content Include="fonts\italicc.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\italiccs.lff">
+    </Content>
+    <Content Include="fonts\italiccs.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\italict.lff">
+    </Content>
+    <Content Include="fonts\italict.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\kochigothic.lff">
+    </Content>
+    <Content Include="fonts\kochigothic.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\kochimincho.lff">
+    </Content>
+    <Content Include="fonts\kochimincho.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\kst32b.lff">
+    </Content>
+    <Content Include="fonts\kst32b.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\lc_opengost-ar.lff">
+    </Content>
+    <Content Include="fonts\lc_opengost-ar.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\lc_opengost-br.lff">
+    </Content>
+    <Content Include="fonts\lc_opengost-br.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\OpenGostTypeA-Regular.lff">
+    </Content>
+    <Content Include="fonts\OpenGostTypeA-Regular.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\OpenGostTypeB-Regular.lff">
+    </Content>
+    <Content Include="fonts\OpenGostTypeB-Regular.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\romanc.lff">
+    </Content>
+    <Content Include="fonts\romanc.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\romancs.lff">
+    </Content>
+    <Content Include="fonts\romancs.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\romand.lff">
+    </Content>
+    <Content Include="fonts\romand.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\romanp.lff">
+    </Content>
+    <Content Include="fonts\romanp.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\romans.lff">
+    </Content>
+    <Content Include="fonts\romans.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\romansi.lff">
+    </Content>
+    <Content Include="fonts\romansi.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\romant.lff">
+    </Content>
+    <Content Include="fonts\romant.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\scriptc.lff">
+    </Content>
+    <Content Include="fonts\scriptc.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\scripts.lff">
+    </Content>
+    <Content Include="fonts\scripts.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\simplex.lff">
+    </Content>
+    <Content Include="fonts\simplex.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\standard.lff">
+    </Content>
+    <Content Include="fonts\standard.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\syastro.lff">
+    </Content>
+    <Content Include="fonts\syastro.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\symap.lff">
+    </Content>
+    <Content Include="fonts\symap.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\symath.lff">
+    </Content>
+    <Content Include="fonts\symath.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\symbol.lff">
+    </Content>
+    <Content Include="fonts\symbol.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\symbol_misc1.lff">
+    </Content>
+    <Content Include="fonts\symbol_misc1.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\symbol_misc2.lff">
+    </Content>
+    <Content Include="fonts\symbol_misc2.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\symeteo.lff">
+    </Content>
+    <Content Include="fonts\symeteo.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\symusic.lff">
+    </Content>
+    <Content Include="fonts\symusic.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="fonts\unicode.lff">
+    </Content>
+    <Content Include="fonts\unicode.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="fonts\wqy-unicode.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
