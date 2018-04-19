@@ -4,89 +4,86 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.  
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)
   
-### Soon:  
+### New in version 1.1.6.0: 
 DXF-Text import [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) (not supported up to now)  
+Just extend fonts by copying LFF files to subfolder fonts  
+Information about used fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
+
   
-### New in version 1.1.5.0: 
-For the camera view now a seperate coordinate system G59 will be used. Attention! Switch back to default coordinate system G54 before starting any GCode!  
-Transforming GCode with camera aid, to match drill file with PCB view [PCB drilling](https://github.com/svenhb/GRBL-Plotter/wiki/PCB-drilling)   
-Shape recogniton for easier teachpoint (fiducial) assignment  
-New import option 'Repeat code' to repeat paths (laser cutting with weak laser)  
-Check limits of GRBL setup - max. STEP frequency and min. FEED rate in COM CNC window  
-    
-### New in version 1.1.4.0: 
-Add import of Eagle Drill file  
-Add support of noname USB GamePad  
-Add import (and ruler) selection 'mm' / 'inch' in setup  
-Comment-out unknown GCode  
- 
-### New in version 1.1.3.0: 
-Add feed rate and spindle speed override buttons (GRBL 1.1) to main GUI  
-Bug fix in main GUI: no zooming during streaming - disabled background image (perhaps performance in Win-XP is affected)  
-Bug fix SVG Import: rectangle transform (G3 in roundrect) was bad  
-Bug fix SVG Import: missing end of GCode path before next SVG subpath starts  
-Bug fix routing error-message during streaming (or code check) from serialform to main GUI  
-  
-### New in version 1.1.2.0: 
-Import of SVG graphics or Image via Ctrl-V 'Paste' into GRBL-Plotter   
-Copy SVG data from "URL imported SVG" to clipboard for pasting into inkscape   
-Check for GRBL-Plotter update   
-SVG-Import bug fix  
-  
-### New in version 1.1.1.0: 
-Zooming into graphic  
-New font ['Dot Matrix'](https://youtu.be/ip_qCQwoufw)   
-Option for SVG-Import 'Process path nodes only' usefull for ['String Art'](https://youtu.be/ymWi15rvTvM)  
-Support of 4th axis  
-SVG-Import bug fix  
+### [Updates History](https://github.com/svenhb/GRBL-Plotter/blob/master/History.md)  
       
 [Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.5.0](GRBL-Plotter_1150_Publish.zip)  2018-04-07  
+#### [GRBL-Plotter Vers. 1.1.6.0](GRBL-Plotter_1160_Publish.zip)  2018-04-19    
 
 ### Requirements for compiling
 * VisualStudio 2015 
 * DotNET 4.0
  
-### Features:
-* Supporting GRBL 1.1 (and 0.9 also)
-* Controlling a 2nd GRBL-Hardware
-* Supports 4th axis (A, B, C, U, V or W). Status and control (special GRBL version needed)
-* Axis Substitution for Rotary Axis
-* Surface scanning for height map creation and Autoleveling
-  
-  
-* GCode import via file load, drag & drop or copy & paste
-  - Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1)
-* SVG graphics import via file load, drag & drop (also URL) or copy & paste
-* DXF graphics import via file load, drag & drop (also URL)
-* Image import via file load, drag & drop (also URL) or copy & paste
-* GCode generation from Text (Hershey Font)
-* GCode generation from simple shape
+### Feature list:
+#### Import/Export:  
 * Several options to translate Pen Up/Down
   - controlling a Z axis
   - controlling a servo
   - controlling a laser
   - user defined commands
   - Create GCode absolute or relative (for further use as subroutine)  
-    
-    
-* Transformation of GCodes (scale, rotation, mirror, zero-Offset)
-* Supporting subroutines M98, M99 Sub-Program Call (P, L)
+* Ruler and import units can be switched between mm or inch
+* GCode import via file load, drag & drop or copy & paste
+  - Loading GCode with optional replacement of M3 / M4 commands (helpful for 'Laser Mode' $32=1) 
+* SVG graphics import via file load, drag & drop (also URL) or copy & paste - tested with [Inkscape](https://inkscape.org/de/) generated SVGs 
+  - optional resize to fixed size
+  - optional output of nodes only (generating drill holes for string art [Video 'String Art'](https://youtu.be/ymWi15rvTvM)  )
+  - optional sorting of paths by used color
+  - optional tool change
+  - if text needs to be imported, convert text into path first
+* DXF graphics import via file load, drag & drop (also URL) - tested with [LibreCAD](http://librecad.org/cms/home.html) generated DXFs 
+  - few entities are missing
+* Drill file import via file load, drag & drop
+* Image import via file load or drag & drop
 * GCode can be edited and saved
-* User defined Buttons - GCode from text-field or file
-* Joystick like control
-* Export / import machine specific settings (Joystick, Buttons)
-* Automatic reconnect on program start
 * Recent File List (Files and URLs)
-* 2-dimensional preview
-* Optional usage of a WebCam with graphics overlay of the current GCode, set zero point, measure angle, zoom
+* Export / import machine specific settings (Joystick, Buttons)
+  
+#### GCode creation:
+* Create Text
+  - own created 'Dot Matrix' font [Video 'Dot Matrix'](https://youtu.be/ip_qCQwoufw) 
+* Create simple shapes
+    
+#### GCode manipulation:  
+* Transformation of GCodes (scale, rotation, mirror, zero-Offset)  
+* Transformation via camera teaching
+* Axis Substitution for Rotary Axis
+  
+#### Machine control:  
+* Individual commands via user defined Buttons  
+* Joystick like control in user interface  
+* support of no-name USB GamePad  
+* Optional usage of a WebCam with separate coordinate system: graphics overlay of the current GCode, set zero point, measure angle, zoom, teaching  
+  - Shape recognition for easier teach-point (fiducial) assignment  
+  - Transforming GCode with camera aid, to match drill file with PCB view [Wiki 'PCB drilling'](https://github.com/svenhb/GRBL-Plotter/wiki/PCB-drilling)   
+  
+#### Flow control:
+* Supporting subroutines M98, M99 Sub-Program Call (P, L)
 * Internal variable to support probing, e.g.:
-  - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of decelaration stop-pos. is not trigger-pos.)
+  - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of deceleration stop-pos. is not trigger-pos.)
   - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
   - examine SerialForm.cs for implementation
+  
+#### GRBL:  
+* Automatic reconnect on program start  
+* Supporting GRBL 1.1 (and 0.9 also)
+* Supporting new GRBL 1.1 features
+  - Jogging
+  - Feed rate override
+  - Spindle speed override
+  - real time display GRBL states (in COM CNC window)
+* Check limits of GRBL setup - max. STEP frequency and min. FEED rate in COM CNC window  
+* Controlling a 2nd GRBL-Hardware
+* Supports 4th axis (A, B, C, U, V or W). Status and control (special GRBL version needed)
+
  
 ### My test bed
 On my german homepage:
