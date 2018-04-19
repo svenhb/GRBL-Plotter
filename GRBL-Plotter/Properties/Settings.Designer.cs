@@ -2626,5 +2626,17 @@ namespace GRBL_Plotter.Properties {
                 this["importSVGRepeat"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCToolM0 {
+            get {
+                return ((bool)(this["importGCToolM0"]));
+            }
+            set {
+                this["importGCToolM0"] = value;
+            }
+        }
     }
 }
