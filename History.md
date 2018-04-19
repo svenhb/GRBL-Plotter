@@ -35,3 +35,11 @@ New font ['Dot Matrix'](https://youtu.be/ip_qCQwoufw)
 Option for SVG-Import 'Process path nodes only' usefull for ['String Art'](https://youtu.be/ymWi15rvTvM)  
 Support of 4th axis  
 SVG-Import bug fix  
+
+### 2015-09 Start of GRBL-Plotter
+After struggeling with an other GCode sender (just working when logged-in as admin) and missing features,
+I started my own GCode sender. 
+The most disturbing points were:  
+* no automatic reconnect
+* no automatic set of the feed rate the first time
+* poor manual control (joystick) via user interface
