@@ -1,8 +1,10 @@
 ## History
 Needs to be read from the bottom up ;-)  
   
-### Soon:  
-DXF-Text import [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) (not supported up to now) using libreCAD fonts  
+### 2018-04 version 1.1.6.0:  
+DXF-Text import, check [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html)  using libreCAD fonts  
+Just extend fonts by copying LFF files to subfolder fonts  
+Information about used fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
 Revision of Text creation dialog, supporting libreCAD fonts  
 Hide 'PenUp' path in 2D view by pressing the space bar.  
 Bug fixes:
