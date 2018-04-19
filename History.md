@@ -2,7 +2,8 @@
 Needs to be read from the bottom up ;-)  
   
 ### Soon:  
-DXF-Text import [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) (not supported up to now)  
+DXF-Text import [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) (not supported up to now) using libreCAD fonts
+Revision of Text creation dialog, supporting libreCAD fonts
 Hide 'PenUp' path in 2D view by pressing the space bar.  
 Bug fixes:
 * Win7 zooming in 2D view not possible
