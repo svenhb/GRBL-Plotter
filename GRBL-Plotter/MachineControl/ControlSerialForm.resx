@@ -132,7 +132,7 @@
     <value>COM123</value>
   </data>
   <metadata name="toolTipSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>126, 17</value>
+    <value>119, 17</value>
   </metadata>
   <data name="cbPort.ToolTip" xml:space="preserve">
     <value>Select free serial port</value>
@@ -245,7 +245,7 @@
   <data name="&gt;&gt;btnScanPort.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <metadata name="serialPort1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="serialPort.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="rtbLog.Font" type="System.Drawing.Font, System.Drawing">
@@ -518,7 +518,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrPos.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -548,7 +548,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="lblSrBf.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -578,7 +578,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrBf.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -608,7 +608,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="lblSrFS.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -638,7 +638,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrFS.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="lblSrPn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -668,7 +668,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrPn.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -698,7 +698,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="lblSrOv.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -728,7 +728,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrOv.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -758,7 +758,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lblSrA.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -788,7 +788,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrA.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -818,7 +818,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="lblSrLn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -848,7 +848,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrLn.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -878,7 +878,35 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
+  </data>
+  <data name="btnCheckGRBL.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 64</value>
+  </data>
+  <data name="btnCheckGRBL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 20</value>
+  </data>
+  <data name="btnCheckGRBL.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="btnCheckGRBL.Text" xml:space="preserve">
+    <value>Check GRBL</value>
+  </data>
+  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
+    <value>Check GRBL setup for maximum and minimum limits
+Not for GRBL Vers. &lt; 1.0</value>
+  </data>
+  <data name="&gt;&gt;btnCheckGRBL.Name" xml:space="preserve">
+    <value>btnCheckGRBL</value>
+  </data>
+  <data name="&gt;&gt;btnCheckGRBL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCheckGRBL.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;btnCheckGRBL.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="btnGRBLReset.Location" type="System.Drawing.Point, System.Drawing">
     <value>191, 417</value>
@@ -932,7 +960,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrState.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBCommand.Items" xml:space="preserve">
     <value>$H (Homing)</value>
@@ -989,13 +1017,13 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cbStatus.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 27</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 84</value>
+    <value>276, 90</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -1016,7 +1044,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>0</value>
   </data>
   <metadata name="timerSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>246, 17</value>
+    <value>239, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -4046,10 +4074,10 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
   <data name="$this.Text" xml:space="preserve">
     <value>COM C</value>
   </data>
-  <data name="&gt;&gt;serialPort1.Name" xml:space="preserve">
-    <value>serialPort1</value>
+  <data name="&gt;&gt;serialPort.Name" xml:space="preserve">
+    <value>serialPort</value>
   </data>
-  <data name="&gt;&gt;serialPort1.Type" xml:space="preserve">
+  <data name="&gt;&gt;serialPort.Type" xml:space="preserve">
     <value>System.IO.Ports.SerialPort, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolTipSerial.Name" xml:space="preserve">

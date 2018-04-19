@@ -296,14 +296,14 @@ namespace GRBL_Plotter
             cbBaud.Enabled = !isConnected;
             btnScanPort.Enabled = !isConnected;
             btnClear.Enabled = isConnected;
-            cBCommand.Enabled = isConnected & !isSensing;
-            btnSend.Enabled = isConnected & !isSensing;
-            btnGRBLCommand0.Enabled = isConnected & !isSensing;
-            btnGRBLCommand1.Enabled = isConnected & !isSensing;
-            btnGRBLCommand2.Enabled = isConnected & !isSensing;
-            btnGRBLCommand3.Enabled = isConnected & !isSensing;
-            btnGRBLCommand4.Enabled = isConnected & !isSensing;
-            btnCheckGRBL.Enabled = isConnected & !isSensing;
+            cBCommand.Enabled = isConnected && !isSensing;
+            btnSend.Enabled = isConnected && !isSensing;
+            btnGRBLCommand0.Enabled = isConnected && !isSensing;
+            btnGRBLCommand1.Enabled = isConnected && !isSensing;
+            btnGRBLCommand2.Enabled = isConnected && !isSensing;
+            btnGRBLCommand3.Enabled = isConnected && !isSensing;
+            btnGRBLCommand4.Enabled = isConnected && !isSensing;
+            btnCheckGRBL.Enabled = isConnected && !isSensing;// && !isGrblVers0;
             btnGRBLReset.Enabled = isConnected;// & !isSensing;
         }
 
@@ -618,10 +618,11 @@ namespace GRBL_Plotter
 
         private void handleRX_Reset(string rxString)
         {
-            sendLines.Clear();
-            sendLinesCount = 0;
-            sendLinesSent = 0;
-            sendLinesConfirmed = 0;
+//            sendLines.Clear();
+//            sendLinesCount = 0;
+//            sendLinesSent = 0;
+//            sendLinesConfirmed = 0;
+            resetStreaming();
             grblBufferSize = 127;  //rx bufer size of grbl on arduino 127
             grblBufferFree = grblBufferSize;
             addToLog("> RESET\r\n" + rxString);
@@ -941,9 +942,9 @@ namespace GRBL_Plotter
                     else
                     {
                         addToLog("!!! Port is closed !!!");
-                        isStreaming = false;
-                        isStreamingRequestPause = false;
-                        isStreamingPause = false;
+//                        isStreaming = false;
+//                        isStreamingRequestPause = false;
+//                        isStreamingPause = false;
                         resetStreaming();
                     }
 
@@ -974,6 +975,9 @@ namespace GRBL_Plotter
         /// </summary>
         private void resetStreaming()
         {
+            isStreaming = false;
+            isStreamingRequestPause = false;
+            isStreamingPause = false;
             gCodeLinesSent = 0;
             gCodeLinesCount = 0;
             gCodeLinesConfirmed = 0;
@@ -1068,9 +1072,9 @@ namespace GRBL_Plotter
                 sendStreamEvent(line, grblStreaming.stop);
             }
             isHeightProbing = false;
-            isStreaming = false;
-            isStreamingRequestPause = false;
-            isStreamingPause = false;
+//            isStreaming = false;
+//            isStreamingRequestPause = false;
+//            isStreamingPause = false;
             addToLog("[STOP Streaming ("+line.ToString()+")]");
             resetStreaming();
             grblBufferFree = grblBufferSize;

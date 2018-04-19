@@ -216,14 +216,18 @@ namespace GRBL_Plotter
         public static string getError(string rxString)
         {   string[] tmp = rxString.Split(':');
             string msg = " no information found '" + tmp[1] + "'";
-            try { msg = grbl.messageErrorCodes[tmp[1].Trim()]; }
+            try {   msg = grbl.messageErrorCodes[tmp[1].Trim()];
+                    if (Convert.ToInt16(tmp[1].Trim()) >= 32)
+                        msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";
+                }
             catch { }
             return msg;
         }
         public static string getAlarm(string rxString)
         {   string[] tmp = rxString.Split(':');
             string msg = " no information found '" + tmp[1] + "'";
-            try { msg = grbl.messageAlarmCodes[tmp[1].Trim()]; }
+            try {    msg = grbl.messageAlarmCodes[tmp[1].Trim()];
+                }
             catch { }
             return msg;
         }

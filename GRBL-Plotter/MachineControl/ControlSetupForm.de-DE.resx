@@ -207,6 +207,11 @@ dann füge Knoten hinzu via 'Erweiterungen - Pfad modifizieren - Knoten hinzufü
   <data name="cBImportSVGSort.Text" xml:space="preserve">
     <value>Sortiere Objekte nach Stiftindex</value>
   </data>
+  <data name="cBImportSVGSort.ToolTip" xml:space="preserve">
+    <value>Sortiere Pfadsegemnte nach Stiftindex - am häufigsten benutzter Stift zuerst. 
+Um die Anzahl der Werkzeugwechselbefehle (Tool change) zu veringern.
+Achtung: nicht mit 'Komprimiere GCode' oder 'Relative Bewegung' verwenden.</value>
+  </data>
   <data name="cBImportSVGResize.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 17</value>
   </data>
@@ -346,10 +351,10 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
 Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
   <data name="cBImportGCCompress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 17</value>
+    <value>119, 17</value>
   </data>
   <data name="cBImportGCCompress.Text" xml:space="preserve">
-    <value>Komprimiere G-Code</value>
+    <value>Komprimiere GCode</value>
   </data>
   <data name="cBImportGCCompress.ToolTip" xml:space="preserve">
     <value>Entferne überflüssige Informationen
@@ -403,6 +408,9 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Spindle On/Off mit Stift hoch/runter</value>
   </data>
+  <data name="groupBox6.ToolTip" xml:space="preserve">
+    <value>Schalte die Spindle 'aus' mit 'Stift-hoch' und 'ein' mit 'Stift-runter' Befehlen (für Laser engraver)</value>
+  </data>
   <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
     <value>Schalte die Spindle 'aus' mit 'Stift-hoch' und 'ein' mit 'Stift-runter' Befehlen (für Laser engraver)</value>
   </data>
@@ -440,7 +448,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <value>Pause danach</value>
   </data>
   <data name="label9.ToolTip" xml:space="preserve">
-    <value />
+    <value>Pause G4 in Sek. nach 'Stift runter'</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 13</value>
@@ -449,7 +457,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <value>Pause danach</value>
   </data>
   <data name="label8.ToolTip" xml:space="preserve">
-    <value />
+    <value>Pause G4 in Sek. nach 'Stift hoch'</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
@@ -458,7 +466,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <value>Stift runter</value>
   </data>
   <data name="label6.ToolTip" xml:space="preserve">
-    <value />
+    <value>PWM Wert (S) für 'Stift runter'</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 13</value>
@@ -467,7 +475,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <value>Stift hoch</value>
   </data>
   <data name="label10.ToolTip" xml:space="preserve">
-    <value />
+    <value>PWM Wert (S) für 'Stift hoch'</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Z-Achse</value>
@@ -562,11 +570,17 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="label31.Text" xml:space="preserve">
     <value>Original Achse</value>
   </data>
+  <data name="label31.ToolTip" xml:space="preserve">
+    <value>Diese Einstellungen werden beim Deaktivieren der Achsenersetzung aktiviert</value>
+  </data>
   <data name="cBRotarySetupApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 17</value>
   </data>
   <data name="cBRotarySetupApply.Text" xml:space="preserve">
     <value>Sende settings</value>
+  </data>
+  <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
+    <value>Automatisches Anpassen der grbl Einstellungen wenn Achsenersetzung aktiviert oder deaktiviert wird</value>
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 38</value>
@@ -576,6 +590,9 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
   <data name="label32.Text" xml:space="preserve">
     <value>Drehachse</value>
+  </data>
+  <data name="label32.ToolTip" xml:space="preserve">
+    <value>Diese Einstellungen werden beim Aktivieren der Achsenersetzung aktiviert</value>
   </data>
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
@@ -588,6 +605,9 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
   <data name="label29.Text" xml:space="preserve">
     <value>Durchmesser</value>
+  </data>
+  <data name="label29.ToolTip" xml:space="preserve">
+    <value>Wird benötigt um den Umfang zu berechnen für die Zuordnung Strecke &lt;=&gt; Winkel</value>
   </data>
   <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 13</value>
@@ -709,6 +729,9 @@ Relativer Dateipfad beginnt hier:</value>
   </data>
   <data name="btnChangeDefinition.Text" xml:space="preserve">
     <value>Übernehme Änderung in Definitionsliste</value>
+  </data>
+  <data name="btnChangeDefinition.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="columnHeader2.Text" xml:space="preserve">
     <value>Beschriftung</value>
@@ -883,6 +906,9 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   </data>
   <data name="btnApplyChangings.Text" xml:space="preserve">
     <value>Änderungen jetzt übernehmen</value>
+  </data>
+  <data name="btnApplyChangings.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

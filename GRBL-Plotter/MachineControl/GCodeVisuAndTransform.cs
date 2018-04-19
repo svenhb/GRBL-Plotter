@@ -46,8 +46,6 @@ namespace GRBL_Plotter
 
         private xyzPoint toolPos = new xyzPoint(0,0,0);
         private xyPoint markerPos = new xyPoint(0, 0);
- //       private int picWidth = 640;
-  //      private int picHeight = 480;
         private double zLimit = 0.0;
         private bool containsG2G3 = false;
         private bool containsG91 = false;
@@ -191,7 +189,7 @@ namespace GRBL_Plotter
                 coordList.Add(new coordinateLine(index, newLine.actualPos));
                 if (!programEnd)
                 {   // add data to drawing path
-                    createDarwingPathFromGCode(newLine.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z, newLine.i, newLine.j);
+                    createDarwingPathFromGCode(newLine.motionMode, newLine.spindleState, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z, newLine.i, newLine.j);
                     oldLine = new gcodeLine(newLine);   // get copy of newLine      
                 }
                 if ((actualM == 30)|| (actualM == 2)) { programEnd = true; }
@@ -252,7 +250,7 @@ namespace GRBL_Plotter
                         if (((newLine.motionMode > 0) || (newLine.z != null)) && !((newLine.x == toolPos.X) && (newLine.y == toolPos.Y)))
                             xyzSize.setDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
                                                                                                                                 // add data to drawing path
-                        createDarwingPathFromGCode(newLine.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z, newLine.i, newLine.j);
+                        createDarwingPathFromGCode(newLine.motionMode, newLine.spindleState, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z, newLine.i, newLine.j);
                         oldLine = new gcodeLine(newLine);   // get copy of newLine                         
                     }
                 }//MessageBox.Show(debug);
@@ -542,7 +540,7 @@ namespace GRBL_Plotter
                 }
 
                 calcAbsPosition(gcline, oldLine);
-                createDarwingPathFromGCode(gcline.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
+                createDarwingPathFromGCode(gcline.motionMode, gcline.spindleState, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
                 oldLine = new gcodeLine(gcline);   // get copy of newLine
             }
             return createGCodeProg(false,false);
@@ -582,7 +580,7 @@ namespace GRBL_Plotter
                 }
 
                 calcAbsPosition(gcline, oldLine);
-                createDarwingPathFromGCode(gcline.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
+                createDarwingPathFromGCode(gcline.motionMode, gcline.spindleState, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
                 oldLine = new gcodeLine(gcline);   // get copy of newLine
             }
             return createGCodeProg(false,false);
@@ -609,7 +607,7 @@ namespace GRBL_Plotter
                     gcline.j = gcline.j * factor_y;
 
                 calcAbsPosition(gcline, oldLine);
-                createDarwingPathFromGCode(gcline.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
+                createDarwingPathFromGCode(gcline.motionMode, gcline.spindleState, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
                 oldLine = new gcodeLine(gcline);   // get copy of newLine
             }
             return createGCodeProg(false, false);
@@ -678,7 +676,7 @@ namespace GRBL_Plotter
                     }
                 }
                 calcAbsPosition(gcline, oldLine);
-                createDarwingPathFromGCode(gcline.motionMode, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
+                createDarwingPathFromGCode(gcline.motionMode, gcline.spindleState, oldLine.actualPos.X, oldLine.actualPos.Y, oldLine.actualPos.Z, gcline.actualPos.X, gcline.actualPos.Y, gcline.actualPos.Z, gcline.i, gcline.j);
                 oldLine = new gcodeLine(gcline);   // get copy of newLine
             }
             return createGCodeProg(false, false);
@@ -793,18 +791,30 @@ namespace GRBL_Plotter
 
         // add given coordinates to drawing path
         private int onlyZ = 0;
+        private byte oldSpindleState = 5;
         /// <summary>
         /// add segement to drawing path old-xyz, new-xyz
         /// </summary>
-        public void createDarwingPathFromGCode(int motionMode, double ox, double oy, double oz, double nx, double ny, double nz, double? ii, double? jj)
+        public void createDarwingPathFromGCode(byte motionMode, byte spindleState, double ox, double oy, double oz, double nx, double ny, double nz, double? ii, double? jj)
         {
             //MessageBox.Show(String.Format("G{0} ox{1} oy{2} nx{3} ny{4} i{5} j{6}", motionMode, ox, oy, nx, ny, ii, jj));
             bool passLimit = false;
             var pathOld = path;
-            if (nz < zLimit)                    // select path to draw depending on Z-Value
+
+            // select path to draw depending on Z-Value
+            if ((oldSpindleState == 5) && ((spindleState == 3) || (spindleState == 4)))     // Laser on
             { path = pathPenDown; }
-            else
+            if (((oldSpindleState == 3) || (oldSpindleState == 3)) && (spindleState == 5))  // laser off
+            { path = pathPenUp; }
+            oldSpindleState = spindleState;
+
+            if ((nz < oz) && (nz < zLimit))             // tool down
+            { path = pathPenDown; }
+            else if ((nz < oz) && (nz >= zLimit))       // overwrite Laser on
+            { path = pathPenUp; }
+            else if ((nz > oz) && (nz >= zLimit))       // tool up
             { path = pathPenUp;  }
+
             if ((path != pathOld))// && !((ox == toolPosX) && (oy == toolPosY) ))
                 passLimit = true;
             path.StartFigure();                 // Start Figure but never close to avoid connecting first and last point

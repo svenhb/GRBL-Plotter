@@ -75,13 +75,13 @@ namespace GRBL_Plotter
             this.label11 = new System.Windows.Forms.Label();
             this.lblSrLn = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.btnCheckGRBL = new System.Windows.Forms.Button();
             this.btnGRBLReset = new System.Windows.Forms.Button();
             this.lblSrState = new System.Windows.Forms.Label();
             this.cBCommand = new System.Windows.Forms.ComboBox();
             this.cbStatus = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.timerSerial = new System.Windows.Forms.Timer(this.components);
-            this.btnCheckGRBL = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,7 +121,7 @@ namespace GRBL_Plotter
             this.btnScanPort.UseVisualStyleBackColor = true;
             this.btnScanPort.Click += new System.EventHandler(this.btnScanPort_Click);
             // 
-            // serialPort1
+            // serialPort
             // 
             this.serialPort.BaudRate = 115200;
             this.serialPort.ReadBufferSize = 2048;
@@ -268,6 +268,14 @@ namespace GRBL_Plotter
             this.label13.Name = "label13";
             this.toolTipSerial.SetToolTip(this.label13, resources.GetString("label13.ToolTip"));
             // 
+            // btnCheckGRBL
+            // 
+            resources.ApplyResources(this.btnCheckGRBL, "btnCheckGRBL");
+            this.btnCheckGRBL.Name = "btnCheckGRBL";
+            this.toolTipSerial.SetToolTip(this.btnCheckGRBL, resources.GetString("btnCheckGRBL.ToolTip"));
+            this.btnCheckGRBL.UseVisualStyleBackColor = true;
+            this.btnCheckGRBL.Click += new System.EventHandler(this.btnCheckGRBL_Click);
+            // 
             // btnGRBLReset
             // 
             resources.ApplyResources(this.btnGRBLReset, "btnGRBLReset");
@@ -323,14 +331,6 @@ namespace GRBL_Plotter
             // 
             this.timerSerial.Interval = 500;
             this.timerSerial.Tick += new System.EventHandler(this.timerSerial_Tick);
-            // 
-            // btnCheckGRBL
-            // 
-            resources.ApplyResources(this.btnCheckGRBL, "btnCheckGRBL");
-            this.btnCheckGRBL.Name = "btnCheckGRBL";
-            this.toolTipSerial.SetToolTip(this.btnCheckGRBL, resources.GetString("btnCheckGRBL.ToolTip"));
-            this.btnCheckGRBL.UseVisualStyleBackColor = true;
-            this.btnCheckGRBL.Click += new System.EventHandler(this.btnCheckGRBL_Click);
             // 
             // ControlSerialForm
             // 
