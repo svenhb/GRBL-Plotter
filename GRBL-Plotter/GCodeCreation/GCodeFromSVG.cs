@@ -129,16 +129,14 @@ namespace GRBL_Plotter
             else
             {
                 if (File.Exists(file))
-                {
-                    try
-                    {
-                        svgCode = XElement.Load(file, LoadOptions.None);    // PreserveWhitespace);
+                {   try
+                    {   svgCode = XElement.Load(file, LoadOptions.None);    // PreserveWhitespace);
                         return convertSVG(svgCode, file);                   // startConvert(svgCode);
                     }
                     catch (Exception e)
-                    { MessageBox.Show("Error '" + e.ToString() + "' in XML file " + file + "\r\n\r\nTry to save file with other encoding e.g. UTF-8"); return ""; }
+                    {   MessageBox.Show("Error '" + e.ToString() + "' in XML file " + file + "\r\n\r\nTry to save file with other encoding e.g. UTF-8"); return ""; }
                 }
-                else { MessageBox.Show("File does not exist: " + file); return ""; }
+                else {  MessageBox.Show("File does not exist: " + file); return ""; }
             }
             return "";
         }
@@ -226,6 +224,7 @@ namespace GRBL_Plotter
 
             svgToolIndex = svgPalette.init();
 
+            countSubPath = 0;
             startFirstElement = true;
             gcodeScale = 1;
             currentX = 0; currentY = 0;

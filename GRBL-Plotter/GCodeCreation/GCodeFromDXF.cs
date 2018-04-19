@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
  *  
  *  Spline conversion is faulty if more than 4 point are given
  *  Not implemented by me up to now: 
- *      Text, Image, Ellipse
+ *      Text, Image
  *      Transform: rotation, scaling
 */
 
@@ -78,13 +78,31 @@ namespace GRBL_Plotter //DXFImporter
 
             if (file.Substring(0, 4) == "http")
             {
+                string content = "";
+                using (var wc = new System.Net.WebClient())
+                {   try { content = wc.DownloadString(file); }
+                    catch { MessageBox.Show("Could not load content from " + file); return ""; }
+                }
+                int pos = content.IndexOf("dxfrw");
+                if ((content != "") && (pos >= 0) && (pos < 8))
+                {   try
+                    {
+                        byte[] byteArray = Encoding.UTF8.GetBytes(content);
+                        MemoryStream stream = new MemoryStream(byteArray);
+                        loadDXF(stream);
+                    }
+                    catch (Exception e)
+                    { MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + file); }
+                }
+                else
+                    MessageBox.Show("This is probably not a DXF document.\r\nFirst line: " + content.Substring(0, 50));
             }
             else
             {
                 if (File.Exists(file))
                 {
                     try
-                    {   GetVectorDXF(file); }
+                    {   loadDXF(file); }
                     catch (Exception e)
                     {   MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + file ); return ""; }
                 }
@@ -119,12 +137,23 @@ namespace GRBL_Plotter //DXFImporter
         /// </summary>
         /// <param name="filename">String keeping file-name</param>
         /// <returns></returns>
-        private static void GetVectorDXF(string filename)
-        {
-            DXFDocument doc = new DXFDocument();
+        private static DXFDocument doc;
+        private static void loadDXF(string filename)
+        {   doc = new DXFDocument();
             doc.Load(filename);
+            GetVectorDXF();
+        }
+        private static void loadDXF(Stream content)
+        {   doc = new DXFDocument();
+            doc.Load(content);
+            GetVectorDXF();
+        }
+        private static void GetVectorDXF()
+        {
             gcodePenUp("DXF Start");
             lastGCX = -1; lastGCY = -1; lastSetGCX = -1; lastSetGCY = -1;
+//            MessageBox.Show("unit "+ doc.Header.MeasurementUnits.Value.ToString());
+
             foreach (DXFEntity dxfEntity in doc.Entities)
             {
                 dxfBezierAccuracy = (int)Properties.Settings.Default.importSVGBezier;
@@ -233,7 +262,7 @@ namespace GRBL_Plotter //DXFImporter
                     }
                     x2 = x; y2 = y;
                 }
-                if (lp.Flags>0)
+                if (lp.Flags > 0)
                     gcodeMoveTo((float)lp.Elements[0].Vertex.X, (float)lp.Elements[0].Vertex.Y, "End LWPolyLine");
                 gcodeStopPath();
             }
@@ -281,7 +310,7 @@ namespace GRBL_Plotter //DXFImporter
             {
                 DXFSpline spline = (DXFSpline)entity;
                 index = 0;
-                double cx0,cy0,cx1,cy1,cx2, cy2, cx3, cy3, cxMirror, cyMirror, lastX,lastY;
+                double cx0, cy0, cx1, cy1, cx2, cy2, cx3, cy3, cxMirror, cyMirror, lastX, lastY;
                 lastX = (double)spline.ControlPoints[0].X + offsetX;
                 lastY = (double)spline.ControlPoints[0].Y + offsetY;
                 string cmt = "Start Spline " + spline.KnotValues.Count.ToString() + " " + spline.ControlPoints.Count.ToString() + " " + spline.FitPoints.Count.ToString();
@@ -329,7 +358,7 @@ namespace GRBL_Plotter //DXFImporter
             else if (entity.GetType() == typeof(DXFArc))
             {
                 DXFArc arc = (DXFArc)entity;
-
+                
                 double X = (double)arc.Center.X + offsetX;
                 double Y = (double)arc.Center.Y + offsetY;
                 double R = arc.Radius;
@@ -369,6 +398,27 @@ namespace GRBL_Plotter //DXFImporter
                     index++;
                 }
                 gcodeStopPath();
+            }
+            #endregion
+            #region DXFMText
+            else if (entity.GetType() == typeof(DXFMText))
+            {   // https://www.autodesk.com/techpubs/autocad/acad2000/dxf/mtext_dxf_06.htm
+                DXFMText txt = (DXFMText)entity;
+                xyPoint origin = new xyPoint(0,0);
+                GCodeFromFont.reset();
+
+                foreach (var entry in txt.Entries)
+                {   if (entry.GroupCode == 1)  { GCodeFromFont.gcText = entry.Value.ToString(); }
+                    else if (entry.GroupCode == 40) { GCodeFromFont.gcHeight = Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Height "+entry.Value); }
+                    else if(entry.GroupCode == 41) { GCodeFromFont.gcWidth = Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Width "+entry.Value); }
+                    else if(entry.GroupCode == 71) { GCodeFromFont.gcAttachPoint = Convert.ToInt16(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Origin " + entry.Value); }
+                    else if(entry.GroupCode == 10) { GCodeFromFont.gcOffX = Convert.ToDouble(entry.Value); }
+                    else if(entry.GroupCode == 20) { GCodeFromFont.gcOffY = Convert.ToDouble(entry.Value); }
+                    else if(entry.GroupCode == 50) { GCodeFromFont.gcAngle = Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Angle " + entry.Value); }
+                    else if(entry.GroupCode == 44) { GCodeFromFont.gcSpacing = Convert.ToDouble(entry.Value); }
+                    else if(entry.GroupCode == 7)  { GCodeFromFont.gcFontName = entry.Value.ToString(); }
+                }
+                GCodeFromFont.getCode(gcodeString[gcodeStringIndex]);
             }
             #endregion
             else
@@ -414,9 +464,8 @@ namespace GRBL_Plotter //DXFImporter
             bool girou = false;
 
             //For my method, this angle should always be less than 180. 
-            if (angle >= Math.PI)
-            {
-                angle = Math.PI * 2 - angle;
+            if (angle > Math.PI)
+            {   angle = Math.PI * 2 - angle;
                 girou = true;
             }
 
@@ -424,6 +473,8 @@ namespace GRBL_Plotter //DXFImporter
             double distance = Math.Sqrt(Math.Pow(p1x - p2x, 2) + Math.Pow(p1y - p2y, 2));
             double alpha = (Math.PI - angle) / 2;
             double ratio = distance * Math.Sin(alpha) / Math.Sin(angle);
+            if (angle == Math.PI)
+                ratio = distance / 2;
 
             double xc, yc, direction;
 
@@ -434,13 +485,14 @@ namespace GRBL_Plotter //DXFImporter
                 direction = -1;
 
             //calculate the arc center
+            double part = Math.Sqrt(Math.Pow(2 * ratio / distance, 2) - 1);
             if (!girou)
-            {   xc = ((p1x + p2x) / 2) - direction * ((p1y - p2y) / 2) * Math.Sqrt((Math.Pow(2 * ratio / distance, 2)) - 1);
-                yc = ((p1y + p2y) / 2) + direction * ((p1x - p2x) / 2) * Math.Sqrt((Math.Pow(2 * ratio / distance, 2)) - 1);
+            {   xc = ((p1x + p2x) / 2) - direction * ((p1y - p2y) / 2) * part;
+                yc = ((p1y + p2y) / 2) + direction * ((p1x - p2x) / 2) * part;
             }
             else
-            {   xc = ((p1x + p2x) / 2) + direction * ((p1y - p2y) / 2) * Math.Sqrt((Math.Pow(2 * ratio / distance, 2)) - 1);
-                yc = ((p1y + p2y) / 2) - direction * ((p1x - p2x) / 2) * Math.Sqrt((Math.Pow(2 * ratio / distance, 2)) - 1);
+            {   xc = ((p1x + p2x) / 2) + direction * ((p1y - p2y) / 2) * part;
+                yc = ((p1y + p2y) / 2) - direction * ((p1x - p2x) / 2) * part;
             }
 
             string cmt = "";

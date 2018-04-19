@@ -82,8 +82,8 @@ namespace GRBL_Plotter
             // 
             // cBFont
             // 
-            resources.ApplyResources(this.cBFont, "cBFont");
             this.cBFont.FormattingEnabled = true;
+            resources.ApplyResources(this.cBFont, "cBFont");
             this.cBFont.Name = "cBFont";
             // 
             // btnApply
@@ -95,7 +95,6 @@ namespace GRBL_Plotter
             // 
             // groupBox3
             // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.nUDFontLine);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.nUDFontDistance);
@@ -103,13 +102,14 @@ namespace GRBL_Plotter
             this.groupBox3.Controls.Add(this.nUDFontSize);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.cBFont);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
             // nUDFontLine
             // 
-            resources.ApplyResources(this.nUDFontLine, "nUDFontLine");
             this.nUDFontLine.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDFontLine, "nUDFontLine");
             this.nUDFontLine.Minimum = new decimal(new int[] {
             1,
             0,
@@ -129,13 +129,13 @@ namespace GRBL_Plotter
             // 
             // nUDFontDistance
             // 
-            resources.ApplyResources(this.nUDFontDistance, "nUDFontDistance");
             this.nUDFontDistance.DecimalPlaces = 1;
             this.nUDFontDistance.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDFontDistance, "nUDFontDistance");
             this.nUDFontDistance.Minimum = new decimal(new int[] {
             100,
             0,
@@ -150,8 +150,8 @@ namespace GRBL_Plotter
             // 
             // nUDFontSize
             // 
-            resources.ApplyResources(this.nUDFontSize, "nUDFontSize");
             this.nUDFontSize.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDFontSize, "nUDFontSize");
             this.nUDFontSize.Minimum = new decimal(new int[] {
             1,
             0,
@@ -167,19 +167,19 @@ namespace GRBL_Plotter
             // 
             // btnCancel
             // 
-            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.cBPauseLine);
             this.groupBox1.Controls.Add(this.cBPauseWord);
             this.groupBox1.Controls.Add(this.cBPauseChar);
             this.groupBox1.Controls.Add(this.label2);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
