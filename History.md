@@ -36,7 +36,26 @@ DXF-Text import [Font examples](https://www.circuitousroot.com/artifice/drafting
 * Option for SVG-Import 'Process path nodes only' usefull for ['String Art'](https://youtu.be/ymWi15rvTvM)  
 * Support of 'real' 4th axis (other hardware and grbl version needed) 
 * SVG-Import bug fix  
-
+ 
+### 2017-08 version 1.1.0.0:
+* Surface scanning to generate height profile
+* Autoleveling using height profile
+* Axis substitution: using X or Y axis as rotary axis
+* Supporting Sub routine M98, M99
+* Generating GCode in absolute or relative coordinates (good for sub routines)
+* DXF-Import (missing: text, ellipse)
+ 
+### 2017-01 version 1.0.1.1:
+* Support GRBL Vers. 1.1 incl. Override und Jogging
+* Import/Export GUI settings (Joystick, Buttons)
+* Control window for 2nd GRBL hardware
+  
+### 2016-07:
+* Controlling a 2nd GRBL hardware for tool exchange or 4th axis
+* SVG-Import: assigning SVG colors to tool numbers
+* Generating tool exchange command (M6 Tx) during SVG-Import
+* Gcode streaming: replace tool change commands by user defined scripts
+  
 ### 2015-09 Start of GRBL-Plotter
 After struggeling with an other GCode sender (just working when logged-in as admin) and missing features,
 I started my own GCode sender. 
