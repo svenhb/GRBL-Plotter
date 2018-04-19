@@ -28,6 +28,7 @@ namespace GRBL_Plotter
         private double picAbsPosY = 0;
         private Bitmap picBoxBackround;
         private int picBoxCopy = 0;
+        private bool showPathPenUp = true;
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -92,7 +93,8 @@ namespace GRBL_Plotter
             e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathHeightMap);
             e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
             e.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
-            e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
+            if (showPathPenUp)
+                e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
         }
         private void onPaint_setBackground()
         {   /*
@@ -121,6 +123,7 @@ namespace GRBL_Plotter
         // find closest coordinate in GCode and mark
         private void pictureBox1_Click(object sender, EventArgs e)
         {   // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
+            pictureBox1.Focus();
             if (fCTBCode.LinesCount > 2)
             {
                 int line;

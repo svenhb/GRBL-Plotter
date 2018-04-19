@@ -73,6 +73,12 @@ namespace GRBL_Plotter
             loadFile(sender.ToString());
         }
 
+        private void preset2DView()
+        {   Cursor.Current = Cursors.WaitCursor;
+            pictureBox1.BackgroundImage = null;
+            visuGCode.setPosMarker(new xyPoint(0, 0));
+            visuGCode.createMarkerPath(); ;
+        }
         private void loadFile(string fileName)
         {
             if (fileName.IndexOf("http") >= 0)
@@ -85,11 +91,8 @@ namespace GRBL_Plotter
                     return;
                 }
             }
-            Cursor.Current = Cursors.WaitCursor;
+            preset2DView();
 
-            pictureBox1.BackgroundImage = null;
-            visuGCode.setPosMarker(new xyPoint(0,0));
-            visuGCode.createMarkerPath(); ;
             String ext = Path.GetExtension(fileName).ToLower();
             if (ext == ".svg")
             { startConvertSVG(fileName); }
@@ -203,8 +206,10 @@ namespace GRBL_Plotter
         private string lastSource = "";
         private void startConvertSVG(string source)
         {   lastSource = source;                        // store current file-path/name
-            this.Cursor = Cursors.WaitCursor;
+            preset2DView();
             string gcode = GCodeFromSVG.convertFromFile(source);
+
+
             if (gcode.Length > 2)
             {
                 fCTBCode.Text = gcode;
@@ -219,7 +224,7 @@ namespace GRBL_Plotter
 
         private void startConvertDXF(string source)
         {   lastSource = source;                        // store current file-path/name
-            this.Cursor = Cursors.WaitCursor;
+            preset2DView();
             string gcode = GCodeFromDXF.ConvertFile(source);
             if (gcode.Length > 2)
             {   fCTBCode.Text = gcode;
@@ -234,7 +239,7 @@ namespace GRBL_Plotter
 
         private void startConvertDrill(string source)
         {   lastSource = source;                        // store current file-path/name
-            this.Cursor = Cursors.WaitCursor;
+            preset2DView();
             string gcode = GCodeFromDrill.ConvertFile(source);
             if (gcode.Length > 2)
             {   fCTBCode.Text = gcode;
@@ -340,18 +345,25 @@ namespace GRBL_Plotter
                 loadFromClipboard();
                 e.SuppressKeyPress = true;
             }
-            e.SuppressKeyPress = true;
+            else if ((e.KeyCode == Keys.Space) && (pictureBox1.Focused))
+            {   showPathPenUp = false;
+                pictureBox1.Invalidate();
+            }
+         //   e.SuppressKeyPress = true;
         }
 
         // paste from clipboard SVG or image
         private void loadFromClipboard()
         {
+            preset2DView();
             string svg_format1 = "image/x-inkscape-svg";
             string svg_format2 = "image/svg+xml";
             IDataObject iData = Clipboard.GetDataObject();
             if (iData.GetDataPresent(DataFormats.Text))
             {
                 fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
+                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                redrawGCodePath();
                 setLastLoadedFile("Data from Clipboard: Text");
             }
             else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))

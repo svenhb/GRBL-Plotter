@@ -202,7 +202,7 @@ namespace GRBL_Plotter
                 if (ctrl4thAxis)
                     sendCommand(String.Format("G92 X{0} Y{1} Z{2} {3}{4}F{5}", x, y, z, ctrl4thName, a, Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
                 else
-                    sendCommand(String.Format("G92 X{0} Y{1} Z{2} F10", x, y, z).Replace(',', '.'));
+                    sendCommand(String.Format("G92 X{0} Y{1} Z{2} F{3}", x, y, z, Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
                 flagResetOffset = false;
                 updateControls();
             }
@@ -920,12 +920,17 @@ namespace GRBL_Plotter
                 flagResetOffset = true;
                 isStreaming = false;
                 isStreamingCheck = false;
+                btnStreamStart.BackColor = SystemColors.Control;
+                btnStreamStart.Image = Properties.Resources.btn_play;
                 lbInfo.Text = "Vers. "+_serial_form.grblVers;
                 lbInfo.BackColor = Color.Lime;
+
                 updateControls();
             }
             if (e.Status == grblStreaming.error)
             {
+                isStreaming = false;
+                isStreamingCheck = false;
                 pbFile.ForeColor = Color.Red;
                 lbInfo.Text = "Error before line " + e.CodeLine.ToString();
                 lbInfo.BackColor = Color.Fuchsia;
@@ -1681,7 +1686,25 @@ namespace GRBL_Plotter
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            lbDimension.Focus();
+            pictureBox1.Focus();
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            pictureBox1.Focus();
+        }
+
+        private void fCTBCode_MouseHover(object sender, EventArgs e)
+        {
+            fCTBCode.Focus();
+        }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)  // KeyDown in MainFormLoadFile 344
+        {
+            if ((e.KeyCode == Keys.Space) )
+            {   showPathPenUp = true;
+                pictureBox1.Invalidate();
+            }
         }
     }
 }
