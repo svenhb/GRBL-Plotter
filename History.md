@@ -1,5 +1,6 @@
 ## History
-
+Needs to be read from the bottom up ;-)  
+  
 ### Soon:  
 DXF-Text import [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) (not supported up to now)  
   
@@ -39,7 +40,8 @@ SVG-Import bug fix
 ### 2015-09 Start of GRBL-Plotter
 After struggeling with an other GCode sender (just working when logged-in as admin) and missing features,
 I started my own GCode sender. 
+My main use is 2.5D usage for a CNC router and a plotter.  
 The most disturbing points were:  
-* no automatic reconnect
-* no automatic set of the feed rate the first time
+* no automatic reconnect, when starting the program
+* no automatic set of the feed rate, when moving the stage the first time
 * poor manual control (joystick) via user interface
