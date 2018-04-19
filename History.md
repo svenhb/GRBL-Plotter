@@ -3,8 +3,14 @@ Needs to be read from the bottom up ;-)
   
 ### Soon:  
 DXF-Text import [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) (not supported up to now)  
+Hide 'PenUp' path in 2D view by pressing the space bar.  
+Bug fixes:
+* Win7 zooming in 2D view not possible
+* Paste code via Ctrl-V was diabled
+
   
 ### 2018-04 version 1.1.5.0 to 1.1.5.4: 
+Unfortunatly I get confused with some key and mouse events, which makes some bug fixes needed. 
 * For the camera view now a seperate coordinate system G59 will be used. Attention! Switch back to default coordinate system G54 before starting any GCode!  
 * Transforming GCode with camera aid, to match drill file with PCB view [PCB drilling](https://github.com/svenhb/GRBL-Plotter/wiki/PCB-drilling)   
 * Shape recogniton for easier teachpoint (fiducial) assignment  
