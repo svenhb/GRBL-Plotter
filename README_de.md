@@ -4,9 +4,11 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)
   
-### Bald:  
-DXF-Text import [Font Beispiele](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) (not supported up to now)  (Text wird bisher ignoriert)  
-  
+### Neu in Version 1.1.6.0: 
+* DXF-Text import [Font Beispiele](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) 
+  - Fonts einfach erweitern durch kopieren von LFF Dateien in den Unterordner fonts  
+  - Information über die benutzen Fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
+    
 ### Neu in Version 1.1.5.0: 
 Die Kamera nutzt nun ihr eigenes Koordinatensystem G59 (gegenüber dem Default-Koordinatensystem G54). Achtung! Vor Ausführung des GCodes muss wieder auf das Default-Koordinatensystem G54 umgeschaltet werden!  
 GCode Transformierung mit Hilfe der Kamera, um die Bohrdatei auf die Platine zu projezieren [Platinen bohren](https://github.com/svenhb/GRBL-Plotter/wiki/Platinen-bohren)   
@@ -20,40 +22,12 @@ Unterstützung von NoName USB GamePad
 Importauswahl (und Linealeinstellung) 'mm' / 'inch' im Setup  
 Auskommentierung von unbekannten GCode  
   
-### Neu in Version 1.1.3.0: 
-Knöpfe für "Feed rate-" und "Spindle speed override" (GRBL 1.1) hinzugefügt  
-Fehlerbehebung - keine Vergrößerung während Code-Streamings  
-Fehlerbehebung SVG Import: Rechteck-Transformation (G3 Befehl)  
-Fehlerbehebung SVG Import: fehlendes Ende im GCode bevor im SVG ein neuer Suppath beginnt  
-Fehlerbehebung Weiterleitung von Fehlermeldung im serial Form zum Hauptfenster  o main GUI
- 
-### Neu in Version 1.1.2.0: 
-Import von SVG Grafik oder Bild via Strg-V 'Paste' in GRBL-Plotter   
-Kopieren von SVG Daten ins Clipboard wenn diese über eine URL geladen wurden - um diese in Inkscape zu laden   
-Überprüfung auf GRBL-Plotter updates   
-SVG-Import bug fix  
-  
-### Neu in Version 1.1.1.0: 
-Zoomen in der Grafikdarstellung  
-Neue Schriftart ['Dot Matrix'](https://youtu.be/ip_qCQwoufw)   
-Option für SVG-Import 'Nur Pfadknoten verarbeiten' nützlich für ['String Art - Fadenbilder'](https://youtu.be/ymWi15rvTvM)  
-Unsterstützung einer vierten Achse  
-SVG-Import bug fix  
-  
-### Neu in Version 1.1.0.0:  
-Oberflächenabtastung zur Erzeugung eines Höhenprofils  
-Autoleveling mit Hilfe eines Höhenprofils  
-Substitution für Drehachse (statt X oder Y eine Drehachse ansteuern)  
-Unterprogramme M98, M99 Sub-Program Call (P, L)  
-GCode Erzeugung absolut oder relative (für weitere Verwendung als Unterprogramm)  
-DXF Import (Fehlend: Text und Ellipse, Spline mit mehr als 4 punkten nok)  
-  
   
 [Im Wiki gibt es weitere Informationen](https://github.com/svenhb/GRBL-Plotter/wiki)  
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.1.5.0](GRBL-Plotter_1150_Publish.zip)  2018-04-07  
+#### [GRBL-Plotter Vers. 1.1.6.0](GRBL-Plotter_1160_Publish.zip)  2018-04-20  
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
