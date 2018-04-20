@@ -5,14 +5,14 @@ Written in C# VisualStudio 2015.
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)
   
 ### New in version 1.1.6.0: 
-DXF-Text import, check [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html)   
-Just extend fonts by copying LFF files to subfolder fonts  
-Information about used fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
+* DXF-Text import, check [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html)   
+  - Just extend fonts by copying LFF files to subfolder fonts  
+  - Information about used fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
 
   
-### [Updates History](https://github.com/svenhb/GRBL-Plotter/blob/master/History.md)  
+### Check [Updates History](https://github.com/svenhb/GRBL-Plotter/blob/master/History.md)  
       
-[Check the Wiki for further information](https://github.com/svenhb/GRBL-Plotter/wiki)  
+Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further information   
 
 ### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
