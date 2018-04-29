@@ -10,12 +10,12 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
   - Information about used fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
 
   
-### Check [Updates History](https://github.com/svenhb/GRBL-Plotter/blob/master/History.md)  
+### Check [History](https://github.com/svenhb/GRBL-Plotter/blob/master/History.md)  
       
 Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further information   
 
-### Program is free and you can use it at your own risk, as you understand there is no warranty of any kind
-Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.  
+### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
+Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
 #### [GRBL-Plotter Vers. 1.1.6.0](GRBL-Plotter_1160_Publish.zip)  2018-04-19    
 
 ### Requirements for compiling
