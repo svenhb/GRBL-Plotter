@@ -117,6 +117,7 @@ namespace GRBL_Plotter
             gcodeToolCounter = 0;
             gcodeToolText = "";
             lastx = -1; lasty = -1; lastz = 0;
+
             if (gcodeRelative)
             { lastx = 0; lasty = 0; }
         }

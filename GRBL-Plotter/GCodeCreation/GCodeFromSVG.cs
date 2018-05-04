@@ -95,16 +95,21 @@ namespace GRBL_Plotter
         /// <returns>String with GCode of imported data</returns>
         private static XElement svgCode;
         private static bool fromClipboard = false;
-        public static string convertFromText(string svgText)
+        private static bool importInMM = false;
+        public static string convertFromText(string svgText, bool importMM=false)
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
             MemoryStream stream = new MemoryStream(byteArray);
             svgCode = XElement.Load(stream, LoadOptions.None);
+            //MessageBox.Show(svgCode.ToString());
             fromClipboard = true;
+            importInMM = importMM;
             return convertSVG(svgCode, "from Clipboard");                   // startConvert(svgCode);
         }
         public static string convertFromFile(string file)
         {
+            fromClipboard = false;
+            importInMM = false;
             if (file == "")
             { MessageBox.Show("Empty file name"); return ""; }
             if (file.Substring(0, 4) == "http")
@@ -227,10 +232,16 @@ namespace GRBL_Plotter
             countSubPath = 0;
             startFirstElement = true;
             gcodeScale = 1;
+            svgWidthPx = 0; svgHeightPx = 0;
             currentX = 0; currentY = 0;
             offsetX = 0; offsetY = 0;
+            firstX = null;
+            firstY = null;
+            lastX = 0;
+            lastY = 0;
 
             matrixElement.SetIdentity();
+            oldMatrixElement.SetIdentity();
             for (int i=0; i<matrixGroup.Length;i++)
                 matrixGroup[i].SetIdentity(); 
 
@@ -247,7 +258,7 @@ namespace GRBL_Plotter
         /// </summary>
         private static XNamespace nspace = "http://www.w3.org/2000/svg";
         private static void parseGlobals(XElement svgCode)
-        {
+        {   // One px unit is defined to be equal to one user unit. Thus, a length of "5px" is the same as a length of "5".
             Matrix tmp = new Matrix(1, 0, 0, 1, 0, 0); // m11, m12, m21, m22, offsetx, offsety
             svgWidthPx = 0;
             svgHeightPx = 0;
@@ -275,6 +286,10 @@ namespace GRBL_Plotter
             {
                 tmpString = svgCode.Attribute("width").Value;
                 svgWidthPx = floatParse(tmpString);
+                if (importInMM)
+                {   if (tmpString.IndexOf("mm") > 0)
+                        svgWidthPx = svgWidthPx / 3.543307f;
+                }
                 scale = 1;
                 if (svgConvertToMM && tmpString.IndexOf("in")>0)
                     scale = 25.4f;
@@ -297,6 +312,10 @@ namespace GRBL_Plotter
             {
                 tmpString = svgCode.Attribute("height").Value;
                 svgHeightPx = floatParse(tmpString);
+                if (importInMM)
+                {   if (tmpString.IndexOf("mm") > 0)
+                        svgHeightPx = svgHeightPx / 3.543307f;
+                }
                 scale = 1;
                 if (svgConvertToMM && tmpString.IndexOf("in") > 0)
                     scale = 25.4f;
@@ -795,6 +814,8 @@ namespace GRBL_Plotter
                         {
                             if (svgNodesOnly)
                                 gcodeDotOnly(currentX, currentY, command.ToString());
+                            else if (i<=1)
+                            {   gcodeStartPath(currentX, currentY, command.ToString()); }//gcodeMoveTo(currentX, currentY, command.ToString());  // G1
                             else
                                 gcodeMoveTo(currentX, currentY, command.ToString());  // G1
                         }
@@ -1245,8 +1266,10 @@ namespace GRBL_Plotter
         private static void gcodeDotOnly(float x, float y, string cmt)
         {
             gcodeStartPath(x, y, cmt);
-            gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
-            penIsDown = false;
+            gcodePenDown(cmt);
+            gcodePenUp(cmt);
+//            gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
+//            penIsDown = false;
         }
 
 
@@ -1259,8 +1282,9 @@ namespace GRBL_Plotter
             lastSetGCX = coord.X; lastSetGCY = coord.Y;
             gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
             if (svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before Pen Down"); }
-            gcode.PenDown(gcodeString[gcodeStringIndex], cmt);
-            penIsDown = true;
+            //            gcode.PenDown(gcodeString[gcodeStringIndex], cmt);
+            //            penIsDown = true;
+            penIsDown = false;
             isReduceOk = false;
         }
         /// <summary>
@@ -1273,8 +1297,9 @@ namespace GRBL_Plotter
                 if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY)) // restore last skipped point for accurat G2/G3 use
                     gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), "restore Point");
             }
-            gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
-            penIsDown = false;
+//            gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
+//            penIsDown = false;
+            gcodePenUp(cmt);
         }
 
         /// <summary>
@@ -1296,6 +1321,7 @@ namespace GRBL_Plotter
         {
             Point coord = translateXY(orig);
             rejectPoint = false;
+            gcodePenDown(cmt);
             if (gcodeReduce && isReduceOk)
             {   distance = Math.Sqrt(((coord.X - lastSetGCX) * (coord.X - lastSetGCX)) + ((coord.Y - lastSetGCY) * (coord.Y - lastSetGCY)));
                 if (distance < gcodeReduceVal)      // discard actual G1 movement
@@ -1334,6 +1360,11 @@ namespace GRBL_Plotter
         {   if (penIsDown)
                 gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
             penIsDown = false;
+        }
+        private static void gcodePenDown(string cmt)
+        {   if (!penIsDown)
+                gcode.PenDown(gcodeString[gcodeStringIndex], cmt);
+            penIsDown = true;
         }
 
         /// <summary>

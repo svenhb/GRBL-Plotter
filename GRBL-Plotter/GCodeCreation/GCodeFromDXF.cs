@@ -63,29 +63,27 @@ namespace GRBL_Plotter //DXFImporter
         /// </summary>
         /// <param name="file">String keeping file-name or URL</param>
         /// <returns>String with GCode of imported data</returns>
-        public static string ConvertFile(string file)
+        public static string convertFromText(string text)
         {
-            drawingList = new ArrayList();
-            objectIdentifier = new ArrayList();
-            if (file == "")
+            byte[] byteArray = Encoding.UTF8.GetBytes(text);
+            MemoryStream stream = new MemoryStream(byteArray);
+            loadDXF(stream);
+            return convertDXF("from Clipboard");                  
+        }
+        public static string ConvertFromFile(string file)
+        {   if (file == "")
             { MessageBox.Show("Empty file name"); return ""; }
-
-            gcodeStringIndex = 0;
-            gcodeString[gcodeStringIndex] = new StringBuilder();
-            gcodeString[gcodeStringIndex].Clear();
-            importUnitmm = Properties.Settings.Default.importUnitmm;
-            gcode.setup();  // initialize GCode creation (get stored settings for export)
 
             if (file.Substring(0, 4) == "http")
             {
                 string content = "";
                 using (var wc = new System.Net.WebClient())
-                {   try { content = wc.DownloadString(file); }
+                { try { content = wc.DownloadString(file); }
                     catch { MessageBox.Show("Could not load content from " + file); return ""; }
                 }
                 int pos = content.IndexOf("dxfrw");
                 if ((content != "") && (pos >= 0) && (pos < 8))
-                {   try
+                { try
                     {
                         byte[] byteArray = Encoding.UTF8.GetBytes(content);
                         MemoryStream stream = new MemoryStream(byteArray);
@@ -102,14 +100,29 @@ namespace GRBL_Plotter //DXFImporter
                 if (File.Exists(file))
                 {
                     try
-                    {   loadDXF(file); }
+                    {   loadDXF(file);
+                    }
                     catch (Exception e)
-                    {   MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + file ); return ""; }
+                    { MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + file); return ""; }
                 }
                 else { MessageBox.Show("File does not exist: " + file); return ""; }
             }
+            return convertDXF(file);
+        }
 
-            string header = gcode.GetHeader("DXF import",file);
+        private static string convertDXF(string txt)
+        {
+            drawingList = new ArrayList();
+            objectIdentifier = new ArrayList();
+            gcodeStringIndex = 0;
+            gcodeString[gcodeStringIndex] = new StringBuilder();
+            gcodeString[gcodeStringIndex].Clear();
+            importUnitmm = Properties.Settings.Default.importUnitmm;
+            gcode.setup();  // initialize GCode creation (get stored settings for export)
+
+            GetVectorDXF();
+
+            string header = gcode.GetHeader("DXF import",txt);
             string footer = gcode.GetFooter();
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
 
@@ -141,12 +154,12 @@ namespace GRBL_Plotter //DXFImporter
         private static void loadDXF(string filename)
         {   doc = new DXFDocument();
             doc.Load(filename);
-            GetVectorDXF();
+        //    GetVectorDXF();
         }
         private static void loadDXF(Stream content)
         {   doc = new DXFDocument();
             doc.Load(content);
-            GetVectorDXF();
+        //    GetVectorDXF();
         }
         private static void GetVectorDXF()
         {
