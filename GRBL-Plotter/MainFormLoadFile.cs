@@ -195,6 +195,9 @@ namespace GRBL_Plotter
                 }
             }
         }
+        private void reloadFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {   reStartConvertSVG(sender, e);
+        }
         public void reStartConvertSVG(object sender, EventArgs e)   // event from setup form
         {   if (!isStreaming)
             {   if (lastLoadSource.IndexOf("Clipboard") >= 0)
@@ -225,7 +228,7 @@ namespace GRBL_Plotter
         private void startConvertDXF(string source)
         {   lastSource = source;                        // store current file-path/name
             preset2DView();
-            string gcode = GCodeFromDXF.ConvertFile(source);
+            string gcode = GCodeFromDXF.ConvertFromFile(source);
             if (gcode.Length > 2)
             {   fCTBCode.Text = gcode;
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
@@ -361,10 +364,63 @@ namespace GRBL_Plotter
             IDataObject iData = Clipboard.GetDataObject();
             if (iData.GetDataPresent(DataFormats.Text))
             {
-                fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                redrawGCodePath();
-                setLastLoadedFile("Data from Clipboard: Text");
+                string checkContent = (String)iData.GetData(DataFormats.Text);
+                string[] checkLines = checkContent.Split('\n');
+                int posSVG = checkContent.IndexOf("<svg ");
+                if ((posSVG >= 0) && (posSVG < 2))
+                {
+                    MemoryStream stream = new MemoryStream();
+                    stream = (MemoryStream)iData.GetData("text");
+                    byte[] bytes = stream.ToArray();
+                    string txt = "";
+                    if (!(checkContent.IndexOf("<?xml version") >= 0))
+                        txt += "<?xml version=\"1.0\"?>\r\n";
+                    txt += System.Text.Encoding.Default.GetString(bytes);
+                    if (!(txt.IndexOf("xmlns") >= 0))
+                        txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ");
+
+                    this.Cursor = Cursors.WaitCursor;
+                    //MessageBox.Show(txt);
+                    string gcode = GCodeFromSVG.convertFromText(txt.Trim((char)0x00),true);    // import as mm
+                    if (gcode.Length > 2)
+                    {
+                        fCTBCode.Text = gcode;
+                        fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                        redrawGCodePath();
+                        this.Text = appName + " | Source: from Clipboard";
+                    }
+                    this.Cursor = Cursors.Default;
+                    updateControls();
+                    setLastLoadedFile("Data from Clipboard: SVG");
+                }
+                else if ((checkLines[0].Trim() == "0") && (checkLines[1].Trim() == "SECTION"))
+                {
+                    MemoryStream stream = new MemoryStream();
+                    stream = (MemoryStream)iData.GetData("text");
+                    byte[] bytes = stream.ToArray();
+                    string txt = System.Text.Encoding.Default.GetString(bytes);
+
+                    this.Cursor = Cursors.WaitCursor;
+                    //MessageBox.Show(txt);
+                    string gcode = GCodeFromDXF.convertFromText(txt);
+                    if (gcode.Length > 2)
+                    {
+                        fCTBCode.Text = gcode;
+                        fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                        redrawGCodePath();
+                        this.Text = appName + " | Source: from Clipboard";
+                    }
+                    this.Cursor = Cursors.Default;
+                    updateControls();
+                    setLastLoadedFile("Data from Clipboard: DXF");
+                }
+                else
+                {
+                    fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
+                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                    redrawGCodePath();
+                    setLastLoadedFile("Data from Clipboard: Text");
+                }
             }
             else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
             {

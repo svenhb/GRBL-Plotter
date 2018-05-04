@@ -252,6 +252,7 @@ namespace GRBL_Plotter
             this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
+            this.reloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.btnOverrideSSGB.SuspendLayout();
@@ -1549,10 +1550,11 @@ namespace GRBL_Plotter
             // 
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.moveToMarkedPositionToolStripMenuItem,
-            this.pasteFromClipboardToolStripMenuItem,
             this.toolStripSeparator9,
             this.resetZoomingToolStripMenuItem,
             this.toolStripSeparator8,
+            this.pasteFromClipboardToolStripMenuItem,
+            this.reloadFileToolStripMenuItem,
             this.deletenotMarkToolStripMenuItem,
             this.toolStripSeparator1,
             this.deleteThisCodeLineToolStripMenuItem,
@@ -1569,8 +1571,8 @@ namespace GRBL_Plotter
             // 
             // pasteFromClipboardToolStripMenuItem
             // 
-            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
             this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
+            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
             this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
@@ -1669,6 +1671,12 @@ namespace GRBL_Plotter
             // gamePadTimer
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
+            // 
+            // reloadFileToolStripMenuItem
+            // 
+            this.reloadFileToolStripMenuItem.Name = "reloadFileToolStripMenuItem";
+            resources.ApplyResources(this.reloadFileToolStripMenuItem, "reloadFileToolStripMenuItem");
+            this.reloadFileToolStripMenuItem.Click += new System.EventHandler(this.reloadFileToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1911,6 +1919,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Timer gamePadTimer;
         private System.Windows.Forms.ToolStripMenuItem moveToMarkedPositionToolStripMenuItem;
         private System.Windows.Forms.Label lblCurrentG;
+        private System.Windows.Forms.ToolStripMenuItem reloadFileToolStripMenuItem;
     }
 }
 
