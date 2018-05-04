@@ -266,12 +266,16 @@ namespace GRBL_Plotter
                 {
                     newLine.actualPos.X = (double)newLine.x;
                     if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
-                        xyzSize.setDimensionX(newLine.actualPos.X);
+                    {   xyzSize.setDimensionX(newLine.actualPos.X);
+                        xyzSize.setDimensionX(oldLine.actualPos.X);
+                    }
                 }
                 else
                 {   newLine.actualPos.X = oldLine.actualPos.X + (double)newLine.x;
                     if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
-                        xyzSize.setDimensionX(newLine.actualPos.X);// - toolPosX);
+                    {   xyzSize.setDimensionX(newLine.actualPos.X);// - toolPosX);
+                        xyzSize.setDimensionX(oldLine.actualPos.X);
+                    }
                 }
             }
             else
@@ -281,12 +285,16 @@ namespace GRBL_Plotter
                 if (newLine.isdistanceModeG90)
                 {   newLine.actualPos.Y = (double)newLine.y;
                     if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
-                        xyzSize.setDimensionY(newLine.actualPos.Y);
+                    {   xyzSize.setDimensionY(newLine.actualPos.Y);
+                        xyzSize.setDimensionY(oldLine.actualPos.Y);
+                    }
                 }
                 else
                 {   newLine.actualPos.Y = oldLine.actualPos.Y + (double)newLine.y;
                     if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
-                        xyzSize.setDimensionY(newLine.actualPos.Y);// - toolPosY);
+                    {   xyzSize.setDimensionY(newLine.actualPos.Y);// - toolPosY);
+                        xyzSize.setDimensionY(oldLine.actualPos.Y);
+                    }
                 }
             }
             else
@@ -1047,14 +1055,14 @@ namespace GRBL_Plotter
             double end = start + delta;
             if (delta > 0)
             {
-                for (double i = start; i < end; i += 10)
+                for (double i = start; i < end; i += 5)
                 {   setDimensionX(x+radius*Math.Cos(i/180*Math.PI));
                     setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
                 }
             }
             else
             {
-                for (double i = start; i > end; i -= 10)
+                for (double i = start; i > end; i -= 5)
                 {
                     setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
                     setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
