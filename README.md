@@ -4,7 +4,11 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.  
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)
   
-### New in version 1.1.6.0: 
+### New in version 1.1.6.1: 
+* Import copied code from [maker.js](https://maker.js.org/demos/)  
+  - Just select .DXF or .SVG, press 'Generate', then 'copy the text above'  
+  - then paste the code into GRBL-Plotter  
+    
 * DXF-Text import, check [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html)   
   - Just extend fonts by copying LFF files to subfolder fonts  
   - Information about used fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
@@ -16,7 +20,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.1.6.0](GRBL-Plotter_1160_Publish.zip)  2018-04-19    
+#### [GRBL-Plotter Vers. 1.1.6.1](GRBL-Plotter_1161_Publish.zip)  2018-05-04    
 
 ### Requirements for compiling
 * VisualStudio 2015 
