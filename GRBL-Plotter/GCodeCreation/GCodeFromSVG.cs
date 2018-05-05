@@ -157,10 +157,10 @@ namespace GRBL_Plotter
             gcode.setup();          // initialize GCode creation (get stored settings for export)
             finalString.Clear();
 
+            if (gcodeUseSpindle) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
             gcode.PenUp(finalString, "SVG Start ");
             startConvert(svgCode);
 
-            if (gcodeUseSpindle) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
             if (svgToolSort)
             {
                 int toolnr;
