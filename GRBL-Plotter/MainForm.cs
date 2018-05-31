@@ -140,12 +140,14 @@ namespace GRBL_Plotter
         {
             Properties.Settings.Default.locationMForm = Location;
             saveSettings();
+            _serial_form.stopStreaming();
+            _serial_form.grblReset(false);
             if (_2ndGRBL_form != null) _2ndGRBL_form.Close();
             if (_heightmap_form != null) _heightmap_form.Close();
             if (_setup_form != null) _setup_form.Close();
             if (_camera_form != null) _camera_form.Close();
             if (_streaming_form != null) _streaming_form.Close();
-            if (_heightmap_form != null) _heightmap_form.Close();
+            _serial_form.closePort();
             _serial_form.Close();
         }
 
@@ -173,7 +175,7 @@ namespace GRBL_Plotter
                     _streaming_form2.showActualValues(e.StatMsg.FS);
             }
             if (e.Status == grblState.probe)
-            { posProbe = _serial_form.posProbe;
+            {   posProbe = _serial_form.posProbe;
                 if (_heightmap_form != null)
                     _heightmap_form.setPosProbe = posProbe;
             }
@@ -826,9 +828,7 @@ namespace GRBL_Plotter
                 _heightmap_form.btnStartHeightScan.Click += getGCodeFromHeightMap;      // assign btn-click event
                 _heightmap_form.loadHeightMapToolStripMenuItem.Click += loadHeightMap;
                 _heightmap_form.btnApply.Click += applyHeightMap;
-                //                _heightmap_form.btnApply.Click += applyHeightMap;
                 _heightmap_form.RaiseXYZEvent += OnRaisePositionClickEvent;
-
             }
             else
             {
@@ -1095,17 +1095,22 @@ namespace GRBL_Plotter
         private void getGCodeFromHeightMap(object sender, EventArgs e)
         {
             if (!isStreaming && _serial_form.serialPortOpen)
-            { if (_heightmap_form.scanStarted)
-                {
-                    string[] commands = _heightmap_form.getCode.ToString().Split('\r');
+            {   if (_heightmap_form.scanStarted)
+                {   string[] commands = _heightmap_form.getCode.ToString().Split('\r');
                     _serial_form.isHeightProbing = true;
-                    foreach (string cmd in commands)
+                    foreach (string cmd in commands)            // fill up send queue
+                    {   if (machineStatus == grblState.alarm)
+                            break;
                         sendCommand(cmd);
+                    }
                     visuGCode.drawHeightMap(_heightmap_form.Map);
+                    visuGCode.createMarkerPath();
+                    visuGCode.createImagePath();
+                    pictureBox1.BackgroundImage = null;
+                    pictureBox1.Invalidate();
                 }
                 else
-                {
-                    _serial_form.stopStreaming();
+                {   _serial_form.stopStreaming();
                 }
                 isHeightMapApplied = false;
             }
