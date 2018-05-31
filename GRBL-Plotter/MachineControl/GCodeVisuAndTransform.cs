@@ -81,6 +81,7 @@ namespace GRBL_Plotter
             xyzSize.setDimensionXY(tmp.X, tmp.Y);
             tmp = Map.GetCoordinates(Map.SizeX, Map.SizeY);
             xyzSize.setDimensionXY(tmp.X, tmp.Y);
+//            createRuler(drawingSize.maxX, drawingSize.maxY);
         }
 
         public string applyHeightMap(IList<string> oldCode, HeightMap Map)

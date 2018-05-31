@@ -16,8 +16,10 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
-                heightLegendBMP.Dispose();
-                heightMapBMP.Dispose();
+                if (heightLegendBMP != null)
+                    heightLegendBMP.Dispose();
+                if (heightMapBMP != null)
+                    heightMapBMP.Dispose();
             }
             base.Dispose(disposing);
         }

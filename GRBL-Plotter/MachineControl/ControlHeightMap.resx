@@ -718,13 +718,13 @@
     <value>6, 16</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 13</value>
+    <value>57, 13</value>
   </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Max deepth</value>
+    <value>Max depth</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>

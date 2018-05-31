@@ -52,36 +52,39 @@ namespace GRBL_Plotter
         {   set {
                 actualPosProbe = value;
                 double worldZ = actualPosProbe.Z - (actualPosMachine.Z - actualPosWorld.Z);
-                Map.AddPoint(MapIndex[cntReceived].X, MapIndex[cntReceived].Y, worldZ);
-                using (Graphics graph = Graphics.FromImage(heightMapBMP))
+                if (scanStarted)
                 {
-                    int x = MapIndex[cntReceived].X * BMPsizeX / (Map.SizeX-1);
-                    int dx= BMPsizeX / (Map.SizeX - 1);
-                    int y = BMPsizeY - (MapIndex[cntReceived].Y * BMPsizeY / (Map.SizeY-1));
-                    int dy = BMPsizeY / (Map.SizeY - 1);
-                    Rectangle ImageSize = new Rectangle(x-dx/2, y-dy/2, dx, dy);
-                    SolidBrush myColor = new SolidBrush(getColor(Map.MinHeight, Map.MaxHeight, worldZ, false));
-                    graph.FillRectangle(myColor, ImageSize);
-                }
-                pictureBox1.Image = new Bitmap(heightMapBMP);
-                pictureBox1.Refresh();
-                lblMin.Text = string.Format("{0:0.000}", Map.MinHeight);
-                lblMid.Text = string.Format("{0:0.000}", (Map.MinHeight + Map.MaxHeight) / 2);
-                lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
+                    Map.AddPoint(MapIndex[cntReceived].X, MapIndex[cntReceived].Y, worldZ);
+                    using (Graphics graph = Graphics.FromImage(heightMapBMP))
+                    {
+                        int x = MapIndex[cntReceived].X * BMPsizeX / (Map.SizeX - 1);
+                        int dx = BMPsizeX / (Map.SizeX - 1);
+                        int y = BMPsizeY - (MapIndex[cntReceived].Y * BMPsizeY / (Map.SizeY - 1));
+                        int dy = BMPsizeY / (Map.SizeY - 1);
+                        Rectangle ImageSize = new Rectangle(x - dx / 2, y - dy / 2, dx, dy);
+                        SolidBrush myColor = new SolidBrush(getColor(Map.MinHeight, Map.MaxHeight, worldZ, false));
+                        graph.FillRectangle(myColor, ImageSize);
+                    }
+                    pictureBox1.Image = new Bitmap(heightMapBMP);
+                    pictureBox1.Refresh();
+                    lblMin.Text = string.Format("{0:0.000}", Map.MinHeight);
+                    lblMid.Text = string.Format("{0:0.000}", (Map.MinHeight + Map.MaxHeight) / 2);
+                    lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
 
-                cntReceived++;
-                progressBar1.Value = cntReceived;
-                elapsed = DateTime.UtcNow - timeInit;
-                lblProgress.Text = string.Format("{0}% {1} of {2}  t={3}", (100 * cntReceived / progressBar1.Maximum), cntReceived, progressBar1.Maximum, elapsed.ToString(@"hh\:mm\:ss"));
-                textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", actualPosWorld.X, actualPosWorld.Y, worldZ);
-                if (cntReceived == progressBar1.Maximum)
-                {
-                    enableControls(true);
-                    scanStarted = false;
-                    btnStartHeightScan.Text = "Generate Height Map";
-                    showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
-                    isMapOk = true;
-                    enableControls(true);
+                    cntReceived++;
+                    progressBar1.Value = cntReceived;
+                    elapsed = DateTime.UtcNow - timeInit;
+                    lblProgress.Text = string.Format("{0}% {1} of {2}  t={3}", (100 * cntReceived / progressBar1.Maximum), cntReceived, progressBar1.Maximum, elapsed.ToString(@"hh\:mm\:ss"));
+                    textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", actualPosWorld.X, actualPosWorld.Y, worldZ);
+                    if (cntReceived == progressBar1.Maximum)
+                    {
+                        enableControls(true);
+                        scanStarted = false;
+                        btnStartHeightScan.Text = "Generate Height Map";
+                        showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                        isMapOk = true;
+                        enableControls(true);
+                    }
                 }
             }
         }
@@ -284,11 +287,6 @@ namespace GRBL_Plotter
 
         private int BMPsizeX = 240;
         private int BMPsizeY = 160;
-        public bool scanStarted = false;
-        public void stopScan()
-        {   scanStarted = false;
-            btnStartHeightScan.Text = "Generate Height Map";
-        }
 
         private void ControlHeightMapForm_Load(object sender, EventArgs e)
         {
@@ -369,8 +367,8 @@ namespace GRBL_Plotter
                 if (x1 == x2) x2 = x1 + 10;
                 if (y1 == y2) y2 = y1 + 10;
                 nUDX1.Value = x1; nUDX2.Value = x2; nUDY1.Value = y1; nUDY2.Value = y2;
-                decimal stepX = (x2 - x1) / (nUDGridX.Value - 1);
-                decimal stepY = (y2 - y1) / (nUDGridY.Value - 1);
+                //decimal stepX = (x2 - x1) / (nUDGridX.Value - 1);
+                //decimal stepY = (y2 - y1) / (nUDGridY.Value - 1);
                 cntSent = 0; cntReceived = 0;
                 gcode.reduceGCode = true;   // reduce number format to #.# in gcode.frmtNum()
 
@@ -445,6 +443,16 @@ namespace GRBL_Plotter
                 btnStartHeightScan.Text = "Generate Height Map";
             scanStarted = !scanStarted;
         }
+
+        public bool scanStarted = false;
+        public void stopScan()
+        {   scanStarted = false;
+            btnStartHeightScan.Text = "Generate Height Map";
+            progressBar1.Maximum = 100;
+            progressBar1.Value = 0;
+            enableControls(true);
+        }
+
     }
 
     public class HeightMap
