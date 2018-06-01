@@ -4,8 +4,10 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)
   
-### Neu in Version 1.1.6.1: 
-* Import von [maker.js](https://maker.js.org/demos/) generiertem Code   
+### Neu in Version 1.1.6.x: 
+* 1.1.6.3 Bug fix in surface scan   
+* 1.1.6.2 Fixed: nach SVG Import wurde die erste 'pen-up' Bewegung als 'pen-down' angezeigt   
+* 1.1.6.1 Import von [maker.js](https://maker.js.org/demos/) generiertem Code   
   - Wähle .DXF oder .SVG aus, 'Generate', dann 'copy the text above'  
   - den Code in GRBL-Plotter via Ctrl-V einfügen   
 * DXF-Text import [Font Beispiele](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html) 
