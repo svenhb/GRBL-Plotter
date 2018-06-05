@@ -2,8 +2,9 @@
 [README deutsch](README_de.md)  
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2015.  
-If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)
-  
+If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
+   
+Soon: Export of height map as STL or X3D
 ### New in version 1.1.6.x: 
 * 1.1.6.3 Bug fix in surface scan   
 * 1.1.6.2 Fixed: After SVG import, first 'pen-up' move was shown as 'pen-down' move   
