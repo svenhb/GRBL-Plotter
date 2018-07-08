@@ -48,7 +48,7 @@ namespace GRBL_Plotter
 
         private static float gcodeXYFeed = 2000;
         private static bool gcodeUseSpindle = false;
-        private static bool gcodePenIsUp = false;
+//        private static bool gcodePenIsUp = false;
         private void TextForm_Load(object sender, EventArgs e)
         {
             cBFont.Items.AddRange(GCodeFromFont.fontNames);
