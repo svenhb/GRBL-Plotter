@@ -6,6 +6,7 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
    
 #### Soon: Export of height map as STL or X3D - [X3D example](http://svenhb.bplaced.net/?CNC___GRBL-Plotter___Hoehenprofil)
 ### New in version 1.1.6.x: 
+* 1.1.6.4 Add height map manipulation and export to STL, X3D
 * 1.1.6.3 Bug fix in surface scan   
 * 1.1.6.2 Fixed: After SVG import, first 'pen-up' move was shown as 'pen-down' move   
 * 1.1.6.1 Import copied code from [maker.js](https://maker.js.org/demos/)  
@@ -23,7 +24,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.1.6.3](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2018-06-01    
+#### [GRBL-Plotter Vers. 1.1.6.4](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2018-07-08    
 
 ### Requirements for compiling
 * VisualStudio 2015 
