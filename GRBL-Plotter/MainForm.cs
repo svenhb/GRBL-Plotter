@@ -825,10 +825,12 @@ namespace GRBL_Plotter
             {
                 _heightmap_form = new ControlHeightMapForm();
                 _heightmap_form.FormClosed += formClosed_HeightmapForm;
-                _heightmap_form.btnStartHeightScan.Click += getGCodeFromHeightMap;      // assign btn-click event
+                _heightmap_form.btnStartHeightScan.Click += getGCodeScanHeightMap;      // assign btn-click event
                 _heightmap_form.loadHeightMapToolStripMenuItem.Click += loadHeightMap;
                 _heightmap_form.btnApply.Click += applyHeightMap;
                 _heightmap_form.RaiseXYZEvent += OnRaisePositionClickEvent;
+                _heightmap_form.btnGCode.Click += getGCodeFromHeightMap;      // assign btn-click event
+
             }
             else
             {
@@ -837,7 +839,7 @@ namespace GRBL_Plotter
             _heightmap_form.Show(this);
         }
         private void formClosed_HeightmapForm(object sender, FormClosedEventArgs e)
-        { _heightmap_form = null;
+        {   _heightmap_form = null;
             GCodeVisuAndTransform.clearHeightMap();
             _serial_form.stopStreaming();
         }
@@ -1092,7 +1094,7 @@ namespace GRBL_Plotter
         #endregion
 
         // handle event from create Height Map form
-        private void getGCodeFromHeightMap(object sender, EventArgs e)
+        private void getGCodeScanHeightMap(object sender, EventArgs e)
         {
             if (!isStreaming && _serial_form.serialPortOpen)
             {   if (_heightmap_form.scanStarted)
@@ -1132,6 +1134,7 @@ namespace GRBL_Plotter
             Cursor.Current = Cursors.WaitCursor;
             if (!isHeightMapApplied)
             {
+                loadHeightMap(sender, e);
                 codeBeforeHeightMap.Clear();
                 foreach (string codeline in fCTBCode.Lines)
                 { if (codeline.Length > 0)
@@ -1188,6 +1191,21 @@ namespace GRBL_Plotter
                 updateControls();
             }
         }
+
+        private void getGCodeFromHeightMap(object sender, EventArgs e)
+        {
+            if (!isStreaming)
+            {
+                GCodeVisuAndTransform.clearHeightMap();
+                isHeightMapApplied = false;
+                picBoxCopy = 0;                     // don't show background image anymore
+                pictureBox1.BackgroundImage = null;
+                fCTBCode.Text = _heightmap_form.scanCode.ToString().Replace(',','.');
+                redrawGCodePath();
+                updateControls();
+            }
+        }
+
         // update 500ms
         private void MainTimer_Tick(object sender, EventArgs e)
         {
@@ -1563,7 +1581,7 @@ namespace GRBL_Plotter
             try
             { ControlGamePad.gamePad.Poll();
                 var datas = ControlGamePad.gamePad.GetBufferedData();
-                int absVal = 0, stepIndex = 0, feed = 10000, speed1 = 1, speed2 = 1;
+                int stepIndex = 0, feed = 10000, speed1 = 1, speed2 = 1;
                 string cmdX = "", cmdY = "", cmdZ = "", cmdR = "", cmd="";
                 bool stopJog = false;
                 var prop = Properties.Settings.Default;
@@ -1680,8 +1698,8 @@ namespace GRBL_Plotter
 
         private int gamePadGCodeFeed(int feed, int speed1, int speed2, string axis)
         {   if ((axis != "X") && (axis != "Y"))
-            { return speed2; }    // Math.Min(feed,speed2);}
-                return speed1;  // Math.Min(feed,speed1);
+            {   return speed2; }    // Math.Min(feed,speed2);}
+            return speed1;  // Math.Min(feed,speed1);
         }
 
         private void moveToMarkedPositionToolStripMenuItem_Click(object sender, EventArgs e)

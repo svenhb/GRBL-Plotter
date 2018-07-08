@@ -3099,18 +3099,17 @@ for SVG files</value>
   <data name="virtualJoystickA.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAACgCAYAAAAb8NynAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ5SURBVHhe7ZoxTuQwFIZzA0qqlagoodiKig5NwQmQZss9
-        gVsOgpRj0PsCHMI3CZ8TZ+LwstIKnH+KeVK+N84fz3x2MuDJQDcMbGeAakMFVBsqoLKlbjh07GQO3ZDI
-        eh7zfojrJ7SCysaL14LUL/t9mAYyH2sFlQ3JONsyw4is5yzkY7kdS+eWUJlRkWSyKHwRz+2WUO0Ma3G+
-        1rvNuD7VHdKchbJ/4HrXT2gF1YYKqDZUQLWhAqoNFVBtqIBqQwVUGyqg/qah58LFMVzzezm376r1eDne
-        kkmcbsoHgUmc+qsiZADhhvV4/aQWbM44hitWp3VW92vBf4iXdks2xam/LrJ8rYUzHobbaj2+Ox1vyUqs
-        xMUyXCwD8V8aei5VnB6r++NHlkHbsTWTON6z/tqDe3ISj7MF1QBGcUovpyCGe1Yo27E1oziGX6y/U1C3
-        98Sc6i48b3ZszSQ+Ay6W4WIZiN9o6LlwcQxPLBDrDnsxidOf8kFALS7oZ1xw8Z6sxEpcLMPFMhB/0NBz
-        seL36vvpqkN6re6bX7lvro79kFGc+ociZAChEsTjeiANGcUxPHCHOAUxHFkoSgfE881c6wFsiJd2Su+n
-        jqsBNaCc6mOR5Wu9CP41oBaUN9db9f00s+QUz4/zqe5C/sG3L/BdivgLs3jrWCO2xQJcLMPFMlwsw8Uy
-        XCzDxTJcLAOxvWlW4GIZLpbhYhkuluFiGYi3/7C8Ny6W4WIZLpbhYhkuloF4+x+v98bFMlwsw8UyXCzD
-        xTIQs50Bqg0VUG2ogGpDBVQbKqDaUAHVhgqoNlRAtaECqg0VUG2ogGpDBVQbKqDaUAHVhgqoNtyfbvgE
-        fzTcntgnQdAAAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJQSURBVHhe7Zo9TsQwEEZzA0oqpK0o2YKKig5twQmQlpIT
+        uOUgSDnG9r4Ah/BNzAyZ2E7ilUCxP0fKID2tf8b7PInCrBc6+vGN6Lz3WDYgdp0/DR3fnTrvaLKnV+4b
+        u1y4liimN08Fro/93gwbGedKMBFL51doSdbTVeAgbtvZwrUEsRMJwyIzE4/tUgTxPMNUzPe6Wsbppe5I
+        ypNG+ie63/OFaxFXfrImKoahYhhB3AjexSOU7YituaXfy9x+SOrxdFEJotgd5IPAIHb9jQhpA+ZA9Xi5
+        eA1RLANjxtbcUHWajo0xJfijOLZLcVXs+luR8b0GZuz9fVKPH8J8KRZiFCqGoWIYQdwIzvgDygbE7jk5
+        Hz9TGcwvKEUU2yPV33xQDSZi6UA2EMTOvYVBa45UoZbBJQlia+6o/g6DabsWQZxe6s68ZoNLEsWZyZqo
+        GIaKYQRxIzjjLyjbEVvzQgViGViaKHbv8kEALZYBfMYyoOJaLMQoVAxDxTCCuBGc8TeULYgvyffTSZD7
+        TM7Nn3RuTuZWEMSufxIhbcAkAnuebqQQQWzNE50Qh0FrzlQoJIjEElR0A1fEse3cJQRPNrSSIHb9WWR8
+        r6Pg2obWEsT8UMfvpylLusTjqwTRuZkf/vwb/Rd5z8zjNIrn44W4Lq6MimGoGIaKYagYhophqBjGjsWN
+        4IyXh+eaqBiGimGoGIaKYexY3AjOOP8H5lqoGIaKYagYhoph7FjcCM44/w/YtVAxDBXDUDEMFcPYsbgR
+        nDEWFcNQMQwVw1AxjB2L8XT+B5J6QfMyLfApAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="virtualJoystickA.Location" type="System.Drawing.Point, System.Drawing">
@@ -3135,7 +3134,7 @@ for SVG files</value>
     <value>virtualJoystickA</value>
   </data>
   <data name="&gt;&gt;virtualJoystickA.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.1.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickA.Parent" xml:space="preserve">
     <value>groupBox6</value>
@@ -3146,19 +3145,18 @@ for SVG files</value>
   <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="virtualJoystickZ.Location" type="System.Drawing.Point, System.Drawing">
@@ -3183,7 +3181,7 @@ for SVG files</value>
     <value>virtualJoystickZ</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.1.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.Parent" xml:space="preserve">
     <value>groupBox6</value>
@@ -3194,60 +3192,59 @@ for SVG files</value>
   <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
-        nMCqsjIRZgAAAABJRU5ErkJggg==
+        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
+        VuJ9Tgv7jwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="virtualJoystickXY.Location" type="System.Drawing.Point, System.Drawing">
@@ -3272,7 +3269,7 @@ for SVG files</value>
     <value>virtualJoystickXY</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.1.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.Parent" xml:space="preserve">
     <value>groupBox6</value>

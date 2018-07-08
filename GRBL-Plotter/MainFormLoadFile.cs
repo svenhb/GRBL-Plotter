@@ -147,9 +147,8 @@ namespace GRBL_Plotter
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             string s = (string)e.Data.GetData(DataFormats.Text);
             if (files != null)
-            {   loadFile(files[0]);
-            }
-            else
+            {   loadFile(files[0]);}
+            else if (s.Length > 0)
             {   tBURL.Text = s; }
             this.WindowState = FormWindowState.Normal;
         }

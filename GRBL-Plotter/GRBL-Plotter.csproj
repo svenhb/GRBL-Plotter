@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.1.6.3</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.1.6.4</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -248,6 +248,9 @@
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlHeightMap.de-DE.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.de.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlHeightMap.resx">
@@ -507,6 +510,7 @@
     <None Include="Resources\alarm_codes_en_US.csv" />
     <None Include="Resources\error_codes_en_US.csv" />
     <None Include="Resources\setting_codes_en_US.csv" />
+    <Content Include="_misc\test_map\pfennig_1.map" />
     <None Include="_misc\test_svg\0_Scalable Vector Graphics.url" />
     <None Include="_misc\test_svg\7_Coordinate Systems.url" />
     <None Include="_misc\test_svg\8_Paths.url" />
