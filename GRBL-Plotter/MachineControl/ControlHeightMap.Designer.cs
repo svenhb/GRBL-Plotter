@@ -77,9 +77,21 @@
             this.loadHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePictureAsBWBMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.savePictureAsBMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveMapAsSTLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveMapAsX3DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cBGray = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnOffsetZ = new System.Windows.Forms.Button();
+            this.btnZoomZ = new System.Windows.Forms.Button();
+            this.btnInvertZ = new System.Windows.Forms.Button();
+            this.btnCutOffZ = new System.Windows.Forms.Button();
+            this.btnGCode = new System.Windows.Forms.Button();
+            this.gB_Manipulation = new System.Windows.Forms.GroupBox();
+            this.nUDCutOffZ = new System.Windows.Forms.NumericUpDown();
+            this.nUDZoomZ = new System.Windows.Forms.NumericUpDown();
+            this.nUDOffsetZ = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaX)).BeginInit();
@@ -97,6 +109,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.gB_Manipulation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDCutOffZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDZoomZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetZ)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -406,11 +422,6 @@
             // 
             this.nUDProbeUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "heightMapProbeHeight", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDProbeUp.DecimalPlaces = 2;
-            this.nUDProbeUp.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             resources.ApplyResources(this.nUDProbeUp, "nUDProbeUp");
             this.nUDProbeUp.Maximum = new decimal(new int[] {
             1000000,
@@ -429,11 +440,6 @@
             // 
             this.nUDProbeDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "heightMapProbeDepth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDProbeDown.DecimalPlaces = 2;
-            this.nUDProbeDown.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             resources.ApplyResources(this.nUDProbeDown, "nUDProbeDown");
             this.nUDProbeDown.Maximum = new decimal(new int[] {
             0,
@@ -566,9 +572,30 @@
             // 
             // savePictureAsBWBMPToolStripMenuItem
             // 
+            this.savePictureAsBWBMPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.savePictureAsBMPToolStripMenuItem,
+            this.saveMapAsSTLToolStripMenuItem,
+            this.saveMapAsX3DToolStripMenuItem});
             this.savePictureAsBWBMPToolStripMenuItem.Name = "savePictureAsBWBMPToolStripMenuItem";
             resources.ApplyResources(this.savePictureAsBWBMPToolStripMenuItem, "savePictureAsBWBMPToolStripMenuItem");
-            this.savePictureAsBWBMPToolStripMenuItem.Click += new System.EventHandler(this.savePictureAsBMPToolStripMenuItem_Click);
+            // 
+            // savePictureAsBMPToolStripMenuItem
+            // 
+            this.savePictureAsBMPToolStripMenuItem.Name = "savePictureAsBMPToolStripMenuItem";
+            resources.ApplyResources(this.savePictureAsBMPToolStripMenuItem, "savePictureAsBMPToolStripMenuItem");
+            this.savePictureAsBMPToolStripMenuItem.Click += new System.EventHandler(this.savePictureAsBMPToolStripMenuItem_Click);
+            // 
+            // saveMapAsSTLToolStripMenuItem
+            // 
+            this.saveMapAsSTLToolStripMenuItem.Name = "saveMapAsSTLToolStripMenuItem";
+            resources.ApplyResources(this.saveMapAsSTLToolStripMenuItem, "saveMapAsSTLToolStripMenuItem");
+            this.saveMapAsSTLToolStripMenuItem.Click += new System.EventHandler(this.btnSaveSTL_Click);
+            // 
+            // saveMapAsX3DToolStripMenuItem
+            // 
+            this.saveMapAsX3DToolStripMenuItem.Name = "saveMapAsX3DToolStripMenuItem";
+            resources.ApplyResources(this.saveMapAsX3DToolStripMenuItem, "saveMapAsX3DToolStripMenuItem");
+            this.saveMapAsX3DToolStripMenuItem.Click += new System.EventHandler(this.btnSaveX3D_Click);
             // 
             // groupBox3
             // 
@@ -592,10 +619,128 @@
             this.cBGray.UseVisualStyleBackColor = true;
             this.cBGray.CheckedChanged += new System.EventHandler(this.cBGray_CheckedChanged);
             // 
+            // btnOffsetZ
+            // 
+            resources.ApplyResources(this.btnOffsetZ, "btnOffsetZ");
+            this.btnOffsetZ.Name = "btnOffsetZ";
+            this.toolTip1.SetToolTip(this.btnOffsetZ, resources.GetString("btnOffsetZ.ToolTip"));
+            this.btnOffsetZ.UseVisualStyleBackColor = true;
+            this.btnOffsetZ.Click += new System.EventHandler(this.btnOffsetZ_Click);
+            // 
+            // btnZoomZ
+            // 
+            resources.ApplyResources(this.btnZoomZ, "btnZoomZ");
+            this.btnZoomZ.Name = "btnZoomZ";
+            this.toolTip1.SetToolTip(this.btnZoomZ, resources.GetString("btnZoomZ.ToolTip"));
+            this.btnZoomZ.UseVisualStyleBackColor = true;
+            this.btnZoomZ.Click += new System.EventHandler(this.btnZoomZ_Click);
+            // 
+            // btnInvertZ
+            // 
+            resources.ApplyResources(this.btnInvertZ, "btnInvertZ");
+            this.btnInvertZ.Name = "btnInvertZ";
+            this.toolTip1.SetToolTip(this.btnInvertZ, resources.GetString("btnInvertZ.ToolTip"));
+            this.btnInvertZ.UseVisualStyleBackColor = true;
+            this.btnInvertZ.Click += new System.EventHandler(this.btnInvertZ_Click);
+            // 
+            // btnCutOffZ
+            // 
+            resources.ApplyResources(this.btnCutOffZ, "btnCutOffZ");
+            this.btnCutOffZ.Name = "btnCutOffZ";
+            this.toolTip1.SetToolTip(this.btnCutOffZ, resources.GetString("btnCutOffZ.ToolTip"));
+            this.btnCutOffZ.UseVisualStyleBackColor = true;
+            this.btnCutOffZ.Click += new System.EventHandler(this.btnCutOffZ_Click);
+            // 
+            // btnGCode
+            // 
+            resources.ApplyResources(this.btnGCode, "btnGCode");
+            this.btnGCode.Name = "btnGCode";
+            this.toolTip1.SetToolTip(this.btnGCode, resources.GetString("btnGCode.ToolTip"));
+            this.btnGCode.UseVisualStyleBackColor = true;
+            this.btnGCode.Click += new System.EventHandler(this.btnGCode_Click);
+            // 
+            // gB_Manipulation
+            // 
+            this.gB_Manipulation.Controls.Add(this.btnGCode);
+            this.gB_Manipulation.Controls.Add(this.btnCutOffZ);
+            this.gB_Manipulation.Controls.Add(this.nUDCutOffZ);
+            this.gB_Manipulation.Controls.Add(this.btnInvertZ);
+            this.gB_Manipulation.Controls.Add(this.btnZoomZ);
+            this.gB_Manipulation.Controls.Add(this.nUDZoomZ);
+            this.gB_Manipulation.Controls.Add(this.btnOffsetZ);
+            this.gB_Manipulation.Controls.Add(this.nUDOffsetZ);
+            resources.ApplyResources(this.gB_Manipulation, "gB_Manipulation");
+            this.gB_Manipulation.Name = "gB_Manipulation";
+            this.gB_Manipulation.TabStop = false;
+            // 
+            // nUDCutOffZ
+            // 
+            this.nUDCutOffZ.DecimalPlaces = 1;
+            this.nUDCutOffZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDCutOffZ, "nUDCutOffZ");
+            this.nUDCutOffZ.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDCutOffZ.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nUDCutOffZ.Name = "nUDCutOffZ";
+            this.nUDCutOffZ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nUDZoomZ
+            // 
+            this.nUDZoomZ.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDZoomZ, "nUDZoomZ");
+            this.nUDZoomZ.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDZoomZ.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDZoomZ.Name = "nUDZoomZ";
+            this.nUDZoomZ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nUDOffsetZ
+            // 
+            this.nUDOffsetZ.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDOffsetZ, "nUDOffsetZ");
+            this.nUDOffsetZ.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDOffsetZ.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nUDOffsetZ.Name = "nUDOffsetZ";
+            // 
             // ControlHeightMapForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gB_Manipulation);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnLoad);
@@ -632,6 +777,10 @@
             this.menuStrip1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.gB_Manipulation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nUDCutOffZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDZoomZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetZ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -685,5 +834,17 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnOffset;
         private System.Windows.Forms.CheckBox cBGray;
+        private System.Windows.Forms.ToolStripMenuItem savePictureAsBMPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveMapAsSTLToolStripMenuItem;
+        private System.Windows.Forms.GroupBox gB_Manipulation;
+        private System.Windows.Forms.Button btnZoomZ;
+        private System.Windows.Forms.NumericUpDown nUDZoomZ;
+        private System.Windows.Forms.Button btnOffsetZ;
+        private System.Windows.Forms.NumericUpDown nUDOffsetZ;
+        private System.Windows.Forms.Button btnInvertZ;
+        private System.Windows.Forms.ToolStripMenuItem saveMapAsX3DToolStripMenuItem;
+        private System.Windows.Forms.Button btnCutOffZ;
+        private System.Windows.Forms.NumericUpDown nUDCutOffZ;
+        public System.Windows.Forms.Button btnGCode;
     }
 }

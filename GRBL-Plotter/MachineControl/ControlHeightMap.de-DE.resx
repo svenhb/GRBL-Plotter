@@ -148,14 +148,14 @@
   <data name="btnOffset.Text" xml:space="preserve">
     <value>Setze max. Wert = 0</value>
   </data>
+  <data name="btnOffset.ToolTip" xml:space="preserve">
+    <value>Entferne Offset von allen Z Werten</value>
+  </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Sichere Höhe</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Max. Tiefe</value>
@@ -181,11 +181,26 @@
   <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Speichere Höhenprofil</value>
   </data>
-  <data name="savePictureAsBWBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 20</value>
+  <data name="savePictureAsBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
   </data>
-  <data name="savePictureAsBWBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Bild</value>
+  <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
+    <value>Speichere Bild als BMP</value>
+  </data>
+  <data name="saveMapAsSTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Speichere Höhenprofil als STL</value>
+  </data>
+  <data name="saveMapAsX3DToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 22</value>
+  </data>
+  <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
+    <value>Speichere Höhenprofil als X3D</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Ergebnis</value>
   </data>
   <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 17</value>
@@ -193,8 +208,30 @@
   <data name="cBGray.Text" xml:space="preserve">
     <value>Grauwert</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ergebnis</value>
+  <data name="btnOffsetZ.ToolTip" xml:space="preserve">
+    <value>Addiere gegebenen Offset zu allen Z Werten</value>
+  </data>
+  <data name="btnZoomZ.ToolTip" xml:space="preserve">
+    <value>Multipliziere alle Z Werte mit gegebenen Wert</value>
+  </data>
+  <data name="btnInvertZ.Text" xml:space="preserve">
+    <value>Invertiere Z</value>
+  </data>
+  <data name="btnInvertZ.ToolTip" xml:space="preserve">
+    <value>Invertiere Z Werte (Vorzeichen wird von '+' auf '-' geändert und umgekehrt)</value>
+  </data>
+  <data name="btnCutOffZ.Text" xml:space="preserve">
+    <value>Z Cut off</value>
+  </data>
+  <data name="btnCutOffZ.ToolTip" xml:space="preserve">
+    <value>Setze alle Z Werte kleiner dem gegeben Wert auf diesen Wert. 
+Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
+  </data>
+  <data name="btnGCode.Text" xml:space="preserve">
+    <value>Generiere GCode</value>
+  </data>
+  <data name="btnGCode.ToolTip" xml:space="preserve">
+    <value>Generiere GCode um Höhenprofil abzufahren</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

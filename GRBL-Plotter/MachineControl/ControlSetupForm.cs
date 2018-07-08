@@ -192,8 +192,8 @@ namespace GRBL_Plotter
         {
             if (!isExpand)
             {
-                this.Width = 730;
-                this.Height = 350;
+                this.Width = 750;
+                this.Height = 420;
                 btnResizeForm.Text = "reduce <";
                 isExpand = true;
             } 
@@ -304,7 +304,7 @@ namespace GRBL_Plotter
             {   foreach (Control c in this.gBGP.Controls)
                 {
                     if (c.Name == ("lbl" + offset)) if (c != null)
-                        { c.BackColor = (value > 0) ? Color.Lime : Color.LightGray; break; }
+                    {   c.BackColor = (value > 0) ? Color.Lime : Color.LightGray; break; }
                 }
             }
             if (offset == "X")

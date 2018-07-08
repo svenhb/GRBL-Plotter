@@ -1410,11 +1410,14 @@ namespace GRBL_Plotter
                 maxfX = stepX * speedX / 60000; rx = (maxfX < 30) ? "ok" : "problem!";
                 maxfY = stepY * speedY / 60000; ry = (maxfY < 30) ? "ok" : "problem!";
                 maxfZ = stepZ * speedZ / 60000; rz = (maxfZ < 30) ? "ok" : "problem!";
-
-                string output = "Maximum frequency at a 'STEP' pin (at Arduino) must not exceed 30kHz.\r\nCalculation: steps/mm ($100) * speed-mm/min ($110) / 60 / 1000\r\n";
+                float minF = 1800 / Math.Max(stepX, Math.Max(stepY, stepZ));
+                string output = "Maximum frequency at a 'STEP' pin (at Arduino UNO, Nano) must not exceed 30kHz.\r\nCalculation: steps/mm ($100) * speed-mm/min ($110) / 60 / 1000\r\n";
                 output += string.Format("Max frequency X = {0:.##}kHz - {1}\r\nMax frequency Y = {2:.##}kHz - {3}\r\nMax frequency Z = {4:.##}kHz - {1}\r\n\r\n", maxfX, rx, maxfY, ry, maxfZ, rz);
-                output += "Minimum feedrate must not be below 30 steps/sec.\r\nCalculation: (lowest mm/min) = (30 steps/sec) * (60 sec/min) / (axis steps/mm setting)\r\n";
-                output += string.Format("Min Feedrate X = {0:.#}mm/min\r\nMin Feedrate Y = {1:.#}mm/min\r\nMin Feedrate Z = {2:.#}mm/min\r\n\r\n", (1800 / stepX), (1800 / stepY), (1800 / stepZ));
+                output += "Minimum feedrate (F) must not go below 30 steps/sec.\r\nCalculation: (lowest mm/min) = (30 steps/sec) * (60 sec/min) / (axis steps/mm setting)\r\n";
+                output += string.Format("Min Feedrate for X = {0:.#}mm/min\r\nMin Feedrate for Y = {1:.#}mm/min\r\nMin Feedrate for Z = {2:.#}mm/min\r\n\r\n", (1800 / stepX), (1800 / stepY), (1800 / stepZ));
+                output += string.Format("Avoid feedrates (F) below {0:.#}mm/min\r\n", minF);
+                output += "\r\nSettings are copied to clipboard for further use (e.g. save as text file)";
+                System.Windows.Forms.Clipboard.SetText(string.Join("\r\n",GRBLSettings.ToArray()));
                 MessageBox.Show(output, "Information");
             }
             else
