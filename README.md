@@ -4,6 +4,11 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.  
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
+### Soon... supporting water color drawing
+* Tool table instead of color palette (incl. tool exchange positions (water color pos.))  
+* drag tool compensation (to compensate offset when drawing with a brush)   
+* automatic subroutine insertion (to refresh brush after drawing a certain distance)  
+   
 ### New in version 1.1.6.x: 
 * 1.1.6.4 Add height map manipulation and export to STL, X3D [X3D example](http://svenhb.bplaced.net/?CNC___GRBL-Plotter___Hoehenprofil)  
 * 1.1.6.3 Bug fix in surface scan   
