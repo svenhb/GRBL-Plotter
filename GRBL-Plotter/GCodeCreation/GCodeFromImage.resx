@@ -121,6 +121,12 @@
     <value>262, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="lblStatus.Text" xml:space="preserve">
+    <value>toolStripStatusLabel1</value>
+  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 519</value>
   </data>
@@ -144,125 +150,8 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
-  <data name="lblStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
-  </data>
-  <data name="lblStatus.Text" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
-  </data>
-  <data name="&gt;&gt;nUDReso.Name" xml:space="preserve">
-    <value>nUDReso</value>
-  </data>
-  <data name="&gt;&gt;nUDReso.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDReso.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDReso.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.Name" xml:space="preserve">
-    <value>nUDHeight</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Name" xml:space="preserve">
-    <value>nUDWidth</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Name" xml:space="preserve">
-    <value>cbLockRatio</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 236</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 73</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Output size in units</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>378, 17</value>
-  </metadata>
   <data name="nUDReso.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 45</value>
   </data>
@@ -272,6 +161,9 @@
   <data name="nUDReso.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>378, 17</value>
+  </metadata>
   <data name="nUDReso.ToolTip" xml:space="preserve">
     <value>Distance between lines</value>
   </data>
@@ -332,6 +224,10 @@
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 21</value>
   </data>
@@ -358,6 +254,9 @@
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>99, 47</value>
@@ -386,6 +285,9 @@
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 47</value>
   </data>
@@ -413,6 +315,9 @@
   <data name="cbLockRatio.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="cbLockRatio.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="cbLockRatio.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 20</value>
   </data>
@@ -437,8 +342,35 @@
   <data name="&gt;&gt;cbLockRatio.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 236</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 73</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Output size in units</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="lblGamma.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblGamma.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblGamma.Location" type="System.Drawing.Point, System.Drawing">
     <value>67, 114</value>
@@ -467,6 +399,9 @@
   <data name="lblContrast.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblContrast.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblContrast.Location" type="System.Drawing.Point, System.Drawing">
     <value>67, 65</value>
   </data>
@@ -493,6 +428,9 @@
   </data>
   <data name="lblBrightness.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblBrightness.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblBrightness.Location" type="System.Drawing.Point, System.Drawing">
     <value>67, 16</value>
@@ -521,6 +459,9 @@
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 114</value>
   </data>
@@ -547,6 +488,9 @@
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 65</value>
@@ -575,6 +519,9 @@
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 16</value>
   </data>
@@ -599,6 +546,24 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="cbGrayscale.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbGrayscale.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbGrayscale.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 18</value>
+  </data>
+  <data name="cbGrayscale.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="cbGrayscale.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cbGrayscale.Text" xml:space="preserve">
+    <value>Grayscale</value>
+  </data>
   <data name="&gt;&gt;cbGrayscale.Name" xml:space="preserve">
     <value>cbGrayscale</value>
   </data>
@@ -611,6 +576,24 @@
   <data name="&gt;&gt;cbGrayscale.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="rbModeDither.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbModeDither.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbModeDither.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 41</value>
+  </data>
+  <data name="rbModeDither.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="rbModeDither.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rbModeDither.Text" xml:space="preserve">
+    <value>Dithering</value>
+  </data>
   <data name="&gt;&gt;rbModeDither.Name" xml:space="preserve">
     <value>rbModeDither</value>
   </data>
@@ -622,6 +605,24 @@
   </data>
   <data name="&gt;&gt;rbModeDither.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="rbModeGray.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbModeGray.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbModeGray.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 41</value>
+  </data>
+  <data name="rbModeGray.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 17</value>
+  </data>
+  <data name="rbModeGray.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rbModeGray.Text" xml:space="preserve">
+    <value>Grayscale</value>
   </data>
   <data name="&gt;&gt;rbModeGray.Name" xml:space="preserve">
     <value>rbModeGray</value>
@@ -657,92 +658,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="cbGrayscale.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cbGrayscale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 18</value>
-  </data>
-  <data name="cbGrayscale.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="cbGrayscale.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="cbGrayscale.Text" xml:space="preserve">
-    <value>Grayscale</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.Name" xml:space="preserve">
-    <value>cbGrayscale</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rbModeDither.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbModeDither.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 41</value>
-  </data>
-  <data name="rbModeDither.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
-  </data>
-  <data name="rbModeDither.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rbModeDither.Text" xml:space="preserve">
-    <value>Dithering</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.Name" xml:space="preserve">
-    <value>rbModeDither</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rbModeGray.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbModeGray.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 41</value>
-  </data>
-  <data name="rbModeGray.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 17</value>
-  </data>
-  <data name="rbModeGray.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="rbModeGray.Text" xml:space="preserve">
-    <value>Grayscale</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Name" xml:space="preserve">
-    <value>rbModeGray</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnInvert.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
+  </data>
+  <data name="btnInvert.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnInvert.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 171</value>
@@ -774,6 +696,9 @@
   <data name="btnHorizMirror.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
+  <data name="btnHorizMirror.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnHorizMirror.Location" type="System.Drawing.Point, System.Drawing">
     <value>86, 172</value>
   </data>
@@ -800,6 +725,9 @@
   </data>
   <data name="btnVertMirror.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
+  </data>
+  <data name="btnVertMirror.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnVertMirror.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 171</value>
@@ -828,6 +756,9 @@
   <data name="btnRotateRight.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
+  <data name="btnRotateRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnRotateRight.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 171</value>
   </data>
@@ -854,6 +785,9 @@
   </data>
   <data name="btnRotateLeft.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
+  </data>
+  <data name="btnRotateLeft.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnRotateLeft.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 171</value>
@@ -882,6 +816,9 @@
   <data name="tBarGamma.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="tBarGamma.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="tBarGamma.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 130</value>
   </data>
@@ -905,6 +842,9 @@
   </data>
   <data name="tBarContrast.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="tBarContrast.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="tBarContrast.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 81</value>
@@ -930,6 +870,9 @@
   <data name="tBarBrightness.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="tBarBrightness.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="tBarBrightness.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 32</value>
   </data>
@@ -951,6 +894,24 @@
   <data name="&gt;&gt;tBarBrightness.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="rbEngravingPattern2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbEngravingPattern2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbEngravingPattern2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 41</value>
+  </data>
+  <data name="rbEngravingPattern2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
+  </data>
+  <data name="rbEngravingPattern2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rbEngravingPattern2.Text" xml:space="preserve">
+    <value>diagonal</value>
+  </data>
   <data name="&gt;&gt;rbEngravingPattern2.Name" xml:space="preserve">
     <value>rbEngravingPattern2</value>
   </data>
@@ -962,6 +923,24 @@
   </data>
   <data name="&gt;&gt;rbEngravingPattern2.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="rbEngravingPattern1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbEngravingPattern1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbEngravingPattern1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="rbEngravingPattern1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="rbEngravingPattern1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rbEngravingPattern1.Text" xml:space="preserve">
+    <value>horizontal</value>
   </data>
   <data name="&gt;&gt;rbEngravingPattern1.Name" xml:space="preserve">
     <value>rbEngravingPattern1</value>
@@ -997,61 +976,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
-  <data name="rbEngravingPattern2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbEngravingPattern2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 41</value>
-  </data>
-  <data name="rbEngravingPattern2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
-  </data>
-  <data name="rbEngravingPattern2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rbEngravingPattern2.Text" xml:space="preserve">
-    <value>diagonal</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Name" xml:space="preserve">
-    <value>rbEngravingPattern2</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rbEngravingPattern1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbEngravingPattern1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
-  </data>
-  <data name="rbEngravingPattern1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 17</value>
-  </data>
-  <data name="rbEngravingPattern1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="rbEngravingPattern1.Text" xml:space="preserve">
-    <value>horizontal</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Name" xml:space="preserve">
-    <value>rbEngravingPattern1</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="btnGenerate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnGenerate.Location" type="System.Drawing.Point, System.Drawing">
     <value>341, 491</value>
@@ -1075,7 +1003,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGenerate.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1126,7 +1054,25 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
+  </data>
+  <data name="lblColors.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblColors.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblColors.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 177</value>
+  </data>
+  <data name="lblColors.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
+  </data>
+  <data name="lblColors.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="lblColors.Text" xml:space="preserve">
+    <value>Color count</value>
   </data>
   <data name="&gt;&gt;lblColors.Name" xml:space="preserve">
     <value>lblColors</value>
@@ -1162,40 +1108,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
-  <data name="lblColors.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblColors.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 177</value>
-  </data>
-  <data name="lblColors.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
-  </data>
-  <data name="lblColors.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="lblColors.Text" xml:space="preserve">
-    <value>Color count</value>
-  </data>
-  <data name="&gt;&gt;lblColors.Name" xml:space="preserve">
-    <value>lblColors</value>
-  </data>
-  <data name="&gt;&gt;lblColors.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblColors.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;lblColors.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>378, 17</value>
-  </metadata>
   <data name="cbExceptColor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="cbExceptColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cbExceptColor.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 42</value>
@@ -1254,6 +1173,9 @@
   <data name="cbSkipToolOrder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="cbSkipToolOrder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="cbSkipToolOrder.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 42</value>
   </data>
@@ -1311,6 +1233,9 @@
   <data name="cbExceptAlpha.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="cbExceptAlpha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="cbExceptAlpha.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
   </data>
@@ -1340,6 +1265,9 @@
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 20</value>
@@ -1372,102 +1300,8 @@
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tBImportSVGPalette.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 49</value>
-  </data>
-  <data name="tBImportSVGPalette.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 20</value>
-  </data>
-  <data name="tBImportSVGPalette.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="tBImportSVGPalette.ToolTip" xml:space="preserve">
-    <value>Path to GIMP palette (Inkscape), order of colors = tool number.
-Default, if no valid file given:
-  0   0   0  black (Tool 1)
-255   0   0  red  (Tool 2)
-  0 255   0  green  (Tool 3)
-  0   0 255  blue (Tool 4)
-</value>
-  </data>
-  <data name="&gt;&gt;tBImportSVGPalette.Name" xml:space="preserve">
-    <value>tBImportSVGPalette</value>
-  </data>
-  <data name="&gt;&gt;tBImportSVGPalette.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBImportSVGPalette.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;tBImportSVGPalette.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="cBImportSVGTool.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBImportSVGTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnTest.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="cBImportSVGTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 31</value>
-  </data>
-  <data name="cBImportSVGTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 17</value>
-  </data>
-  <data name="cBImportSVGTool.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="cBImportSVGTool.Text" xml:space="preserve">
-    <value>Get pen index from color palette:</value>
-  </data>
-  <data name="cBImportSVGTool.ToolTip" xml:space="preserve">
-    <value>Calculate pen number by using closest color in given GIMP palette.
-Pen number can then be used to select tool number or Z-deepth</value>
-  </data>
-  <data name="&gt;&gt;cBImportSVGTool.Name" xml:space="preserve">
-    <value>cBImportSVGTool</value>
-  </data>
-  <data name="&gt;&gt;cBImportSVGTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBImportSVGTool.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;cBImportSVGTool.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="cBImportGCTool.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBImportGCTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 83</value>
-  </data>
-  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 17</value>
-  </data>
-  <data name="cBImportGCTool.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="cBImportGCTool.Text" xml:space="preserve">
-    <value>Add Tool Change command</value>
-  </data>
-  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
-    <value>Add tool change command M06 Txx if information is available</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Name" xml:space="preserve">
-    <value>cBImportGCTool</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="btnTest.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 80</value>
@@ -1494,7 +1328,10 @@ Pen number can then be used to select tool number or Z-deepth</value>
     <value>groupBox9</value>
   </data>
   <data name="&gt;&gt;btnTest.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="btnList.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnList.Location" type="System.Drawing.Point, System.Drawing">
     <value>99, 80</value>
@@ -1521,40 +1358,13 @@ Pen number can then be used to select tool number or Z-deepth</value>
     <value>groupBox9</value>
   </data>
   <data name="&gt;&gt;btnList.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="btnLoad.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, -9</value>
-  </data>
-  <data name="btnLoad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 24</value>
-  </data>
-  <data name="btnLoad.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Load picture</value>
-  </data>
-  <data name="btnLoad.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Name" xml:space="preserve">
-    <value>btnLoad</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 15</value>
   </data>
   <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 65</value>
+    <value>91, 65</value>
   </data>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -1572,10 +1382,10 @@ Pen number can then be used to select tool number or Z-deepth</value>
     <value>groupBox9</value>
   </data>
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 15</value>
+    <value>101, 15</value>
   </data>
   <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 65</value>
@@ -1596,7 +1406,7 @@ Pen number can then be used to select tool number or Z-deepth</value>
     <value>groupBox9</value>
   </data>
   <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>475, 17</value>
@@ -1635,121 +1445,82 @@ Pen number can then be used to select tool number or Z-deepth</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
+  <data name="cBImportSVGTool.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportSVGTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportSVGTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 54</value>
+  </data>
+  <data name="cBImportSVGTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 17</value>
+  </data>
+  <data name="cBImportSVGTool.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="cBImportSVGTool.Text" xml:space="preserve">
+    <value>Sort by tool nr or most used color first</value>
+  </data>
+  <data name="cBImportSVGTool.ToolTip" xml:space="preserve">
+    <value>Calculate pen number (= tool nr.) by using closest color in given tool table.</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGTool.Name" xml:space="preserve">
+    <value>cBImportSVGTool</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGTool.Parent" xml:space="preserve">
     <value>groupBox9</value>
   </data>
-  <data name="&gt;&gt;groupBox9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cBImportSVGTool.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;groupBox8.Name" xml:space="preserve">
-    <value>groupBox8</value>
+  <data name="cBImportGCTool.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;groupBox8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cBImportGCTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;groupBox8.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+  <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 31</value>
   </data>
-  <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 17</value>
   </data>
-  <data name="&gt;&gt;rBProcessTool.Name" xml:space="preserve">
-    <value>rBProcessTool</value>
+  <data name="cBImportGCTool.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
   </data>
-  <data name="&gt;&gt;rBProcessTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Add Tool Change command</value>
   </data>
-  <data name="&gt;&gt;rBProcessTool.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Add tool change command M06 Txx if information is available</value>
   </data>
-  <data name="&gt;&gt;rBProcessTool.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;cBImportGCTool.Name" xml:space="preserve">
+    <value>cBImportGCTool</value>
   </data>
-  <data name="&gt;&gt;rBProcessZ.Name" xml:space="preserve">
-    <value>rBProcessZ</value>
+  <data name="&gt;&gt;cBImportGCTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;rBProcessZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cBImportGCTool.Parent" xml:space="preserve">
+    <value>groupBox9</value>
   </data>
-  <data name="&gt;&gt;rBProcessZ.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;rBProcessZ.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cBImportGCTool.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 315</value>
-  </data>
-  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>459, 176</value>
-  </data>
-  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Color processing</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label10.Name" xml:space="preserve">
-    <value>label10</value>
-  </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="groupBox9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 59</value>
-  </data>
-  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 112</value>
-  </data>
-  <data name="groupBox9.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Color as Tool Nr.</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>187, 15</value>
+    <value>209, 15</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 13</value>
@@ -1772,80 +1543,35 @@ Pen number can then be used to select tool number or Z-deepth</value>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
+  <data name="groupBox9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 59</value>
   </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>427, 112</value>
   </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>groupBox8</value>
+  <data name="groupBox9.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
   </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Color as Tool Nr.</value>
   </data>
-  <data name="&gt;&gt;nUDZTop.Name" xml:space="preserve">
-    <value>nUDZTop</value>
+  <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
+    <value>groupBox9</value>
   </data>
-  <data name="&gt;&gt;nUDZTop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Name" xml:space="preserve">
-    <value>cBCompress</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 17</value>
-  </data>
-  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 39</value>
-  </data>
-  <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Gray value as Z deepth</value>
-  </data>
-  <data name="&gt;&gt;groupBox8.Name" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;groupBox8.Type" xml:space="preserve">
+  <data name="&gt;&gt;groupBox9.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox8.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
     <value>groupBox7</value>
   </data>
-  <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 16</value>
@@ -1898,6 +1624,9 @@ Pen number can then be used to select tool number or Z-deepth</value>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 16</value>
   </data>
@@ -1925,8 +1654,11 @@ Pen number can then be used to select tool number or Z-deepth</value>
   <data name="cBCompress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="cBCompress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="cBCompress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>270, 30</value>
+    <value>302, 15</value>
   </data>
   <data name="cBCompress.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 17</value>
@@ -1952,8 +1684,35 @@ Pen number can then be used to select tool number or Z-deepth</value>
   <data name="&gt;&gt;cBCompress.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 17</value>
+  </data>
+  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>427, 39</value>
+  </data>
+  <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Gray value as Z deepth</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Name" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="rBProcessTool.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="rBProcessTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="rBProcessTool.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 59</value>
@@ -1979,6 +1738,9 @@ Pen number can then be used to select tool number or Z-deepth</value>
   <data name="rBProcessZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="rBProcessZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="rBProcessZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 17</value>
   </data>
@@ -1999,6 +1761,30 @@ Pen number can then be used to select tool number or Z-deepth</value>
   </data>
   <data name="&gt;&gt;rBProcessZ.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 315</value>
+  </data>
+  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>459, 176</value>
+  </data>
+  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Color processing</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>590, 17</value>
@@ -5021,6 +4807,9 @@ Pen number can then be used to select tool number or Z-deepth</value>
         //8=
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>100, 350</value>
   </data>
@@ -5051,17 +4840,17 @@ Pen number can then be used to select tool number or Z-deepth</value>
   <data name="&gt;&gt;loadPictureToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
-    <value>timer1</value>
-  </data>
-  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;pasteFromClipboardToolStripMenuItem.Name" xml:space="preserve">
     <value>pasteFromClipboardToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;pasteFromClipboardToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
+    <value>timer1</value>
+  </data>
+  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>GCodeFromImage</value>

@@ -71,7 +71,7 @@ namespace GRBL_Plotter
 
         private void getSettings()
         {
-            svgToolIndex = svgPalette.init();       // svgPalette.cs
+            svgToolIndex = toolTable.init();       // svgPalette.cs
         }
 
         // load picture when form opens
@@ -478,8 +478,8 @@ namespace GRBL_Plotter
         private void setColorMap(int col, int line, int direction)
         {
             Color myColor = adjustedImage.GetPixel(col, (adjustedImage.Height - 1) - line);  //Get pixel color
-            myToolNumber = svgPalette.getToolNr(myColor, (int)nUDMode.Value);     // find nearest color in palette
-            svgPalette.countPixel();
+            myToolNumber = toolTable.getToolNr(myColor, (int)nUDMode.Value);     // find nearest color in palette
+            toolTable.countPixel();
             if (((cbExceptAlpha.Checked) && (myColor.A == 0)) || (myToolNumber < 0))
                 myToolNumber = -1;
 
@@ -517,16 +517,16 @@ namespace GRBL_Plotter
             gcode.MoveToRapid(finalString, 0, 0);          // move to start pos
             for (int index = 0; index < svgToolIndex; index++)  // go through sorted by pixel-amount list
             {
-                svgPalette.setIndex(index);                     // set index in class
-                key = svgPalette.indexToolNr();                 // if tool-nr == known key go on
+                toolTable.setIndex(index);                     // set index in class
+                key = toolTable.indexToolNr();                 // if tool-nr == known key go on
                 if (colorMap.ContainsKey(key))
                 {
-                    tool = svgPalette.indexToolNr();            // use tool in palette order
+                    tool = toolTable.indexToolNr();            // use tool in palette order
                     if (cbSkipToolOrder.Checked)
                         tool = skipTooNr++;                     // or start tool-nr at 0
 
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
-                    gcode.Tool(finalString, tool, svgPalette.indexName());  // + svgPalette.pixelCount());
+                    gcode.Tool(finalString, tool, toolTable.indexName());  // + svgPalette.pixelCount());
                     for (int y = 0; y < adjustedImage.Height; y++)
                     {
                         while (colorMap[key][y].Count > 1)          // stat at line 0 and check line by line
@@ -624,8 +624,8 @@ namespace GRBL_Plotter
         private void drawPixel(int col, int lin, float coordX, float coordY, int edge, int dir)
         {
             Color myColor = adjustedImage.GetPixel(col, (adjustedImage.Height - 1) - lin);  //Get pixel color
-            int myToolNumber = svgPalette.getToolNr(myColor,(int)nUDMode.Value);     // find nearest color in palette
-            svgPalette.countPixel();
+            int myToolNumber = toolTable.getToolNr(myColor,(int)nUDMode.Value);     // find nearest color in palette
+            toolTable.countPixel();
             bool ifBackground = false;
             float myX = coordX;
             float myY = coordY;
@@ -633,10 +633,10 @@ namespace GRBL_Plotter
             if (((cbExceptAlpha.Checked) && (myColor.A == 0)) || (myToolNumber < 0))
             {   ifBackground = true;
                 myToolNumber = -1;
-                svgPalette.setUse(false);
+                toolTable.setUse(false);
             }
             else
-                svgPalette.setUse(true);
+                toolTable.setUse(true);
 
             if (edge == 0)
             {
@@ -674,13 +674,14 @@ namespace GRBL_Plotter
 
         //Generate button click
         public void btnGenerate_Click(object sender, EventArgs e)
-        {  
+        {
+            Cursor.Current = Cursors.WaitCursor;
             getSettings();
             colorMap.Clear();
             if (cbExceptColor.Checked)
-                svgPalette.setExceptionColor(cbExceptColor.BackColor);
+                toolTable.setExceptionColor(cbExceptColor.BackColor);
             else
-                svgPalette.clrExceptionColor();
+                toolTable.clrExceptionColor();
 
             gcodeStringIndex = 0;
             for (int i = 0; i < svgToolMax; i++)
@@ -843,25 +844,28 @@ namespace GRBL_Plotter
             int skipTooNr = 0;
             int tool = 0;
 
-            svgPalette.sortByPixelCount();    // sort by color area (max. first)
+            if (cBImportSVGTool.Checked)
+                toolTable.sortByToolNr();       
+            else
+                toolTable.sortByPixelCount();    // sort by color area (max. first)
 
             if (!rbEngravingPattern1.Checked)   // diagonal
             {
                 for (int i = 0; i < svgToolIndex; i++)
                 {
-                    svgPalette.setIndex(i);
-                    arrayIndex = svgPalette.indexToolNr();
+                    toolTable.setIndex(i);
+                    arrayIndex = toolTable.indexToolNr();
                     if ((arrayIndex >= 0) && (gcodeString[arrayIndex].Length > 1))
                     {
-                        if ((gcodeToolChange) && svgPalette.indexUse())
+                        if ((gcodeToolChange) && toolTable.indexUse())
                         {
-                            tool = svgPalette.indexToolNr();
+                            tool = toolTable.indexToolNr();
                             if (cbSkipToolOrder.Checked)
                                 tool = skipTooNr++;
                             finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
-                            gcode.Tool(finalString, tool, svgPalette.indexName());  // + svgPalette.pixelCount());
+                            gcode.Tool(finalString, tool, toolTable.indexName());  // + svgPalette.pixelCount());
                         }
-                        finalString.Append(gcodeString[svgPalette.indexToolNr()]);
+                        finalString.Append(gcodeString[toolTable.indexToolNr()]);
                     }
                 }
 
@@ -1042,7 +1046,7 @@ namespace GRBL_Plotter
                 }
             }
             for (int i = 0; i < svgToolIndex-1; i++)
-            { not_used += (i).ToString() + ") " + svgPalette.getToolName(i) + "\r\n"; }
+            { not_used += "Tool Nr.: "+(i).ToString() + ") " + toolTable.getToolName(i) + "\r\n"; }
 
             if (cbSkipToolOrder.Checked)
             {   if (values.Count() > 0)
@@ -1065,9 +1069,9 @@ namespace GRBL_Plotter
         {   int x, y;
             Color myColor,newColor;
             if (cbExceptColor.Checked)
-                svgPalette.setExceptionColor(cbExceptColor.BackColor);
+                toolTable.setExceptionColor(cbExceptColor.BackColor);
             else
-                svgPalette.clrExceptionColor();
+                toolTable.clrExceptionColor();
             int myToolNr, myIndex;
             int mode = (int)nUDMode.Value;
             for (y = 0; y < adjustedImage.Height; y++)
@@ -1079,16 +1083,20 @@ namespace GRBL_Plotter
                     {  newColor = Color.White; myToolNr = -2; usedColors[0] = "Alpha = 0      " + myColor.ToString();
                     }
                     else
-                    {   myToolNr = svgPalette.getToolNr(myColor, mode);     // find nearest color in palette
+                    {   myToolNr = toolTable.getToolNr(myColor, mode);     // find nearest color in palette
                         if (myToolNr < 0)
                             newColor = Color.White;
                         else
-                            newColor = svgPalette.getColor();   // Color.FromArgb(255, r, g, b);
+                            newColor = toolTable.getColor();   // Color.FromArgb(255, r, g, b);
                     }
                     myIndex = myToolNr + 2;
-                    countColors[myIndex]++;
-                    if (usedColors[myIndex].Length < 1)
-                        usedColors[myIndex] = svgPalette.getName() + "      " + svgPalette.getColor().ToString();
+                    if (myIndex < 0) MessageBox.Show("index <0");
+                    else
+                    {
+                        countColors[myIndex]++;
+                        if (usedColors[myIndex].Length < 1)
+                            usedColors[myIndex] = toolTable.getName() + "      " + toolTable.getColor().ToString();
+                    }
                     resultImage.SetPixel(x, y, newColor);
                 }
             }
@@ -1245,8 +1253,8 @@ namespace GRBL_Plotter
                 Color clr = GetColorAt(e.Location);
                 if (e.Button == MouseButtons.Left)
                 {
-                    int i = svgPalette.getToolNr(clr, (int)nUDMode.Value);
-                    lblStatus.Text = clr.ToString() + " = " + svgPalette.getToolName(i);
+                    int i = toolTable.getToolNr(clr, (int)nUDMode.Value);
+                    lblStatus.Text = clr.ToString() + " = " + toolTable.getToolName(i);
                     cbExceptColor.BackColor = clr;
                 }
                 float zoom = (float)nUDWidth.Value / pictureBox1.Width;
@@ -1259,9 +1267,9 @@ namespace GRBL_Plotter
         private void cbExceptColor_CheckedChanged(object sender, EventArgs e)
         {
             if (cbExceptColor.Checked)
-                svgPalette.setExceptionColor(cbExceptColor.BackColor);
+                toolTable.setExceptionColor(cbExceptColor.BackColor);
             else
-                svgPalette.clrExceptionColor();
+                toolTable.clrExceptionColor();
         }
 
         private Color GetColorAt(Point point)

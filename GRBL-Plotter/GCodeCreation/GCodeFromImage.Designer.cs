@@ -38,9 +38,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.nUDReso = new System.Windows.Forms.NumericUpDown();
-            this.nUDHeight = new System.Windows.Forms.NumericUpDown();
-            this.nUDWidth = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -78,16 +75,13 @@
             this.nUDZBot = new System.Windows.Forms.NumericUpDown();
             this.cbExceptAlpha = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.tBImportSVGPalette = new System.Windows.Forms.TextBox();
-            this.cBImportSVGTool = new System.Windows.Forms.CheckBox();
-            this.cBImportGCTool = new System.Windows.Forms.CheckBox();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnList = new System.Windows.Forms.Button();
-            this.btnLoad = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.loadPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -99,12 +93,13 @@
             this.rBProcessTool = new System.Windows.Forms.RadioButton();
             this.rBProcessZ = new System.Windows.Forms.RadioButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cBImportSVGTool = new System.Windows.Forms.CheckBox();
+            this.cBImportGCTool = new System.Windows.Forms.CheckBox();
+            this.nUDReso = new System.Windows.Forms.NumericUpDown();
+            this.nUDHeight = new System.Windows.Forms.NumericUpDown();
+            this.nUDWidth = new System.Windows.Forms.NumericUpDown();
             this.statusStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDReso)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDWidth)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBarGamma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tBarContrast)).BeginInit();
@@ -122,6 +117,9 @@
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDZTop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDReso)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -149,88 +147,6 @@
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
-            // nUDReso
-            // 
-            this.nUDReso.DecimalPlaces = 1;
-            this.nUDReso.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDReso, "nUDReso");
-            this.nUDReso.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDReso.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDReso.Name = "nUDReso";
-            this.toolTip1.SetToolTip(this.nUDReso, resources.GetString("nUDReso.ToolTip"));
-            this.nUDReso.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            65536});
-            this.nUDReso.ValueChanged += new System.EventHandler(this.nUDReso_ValueChanged);
-            // 
-            // nUDHeight
-            // 
-            this.nUDHeight.DecimalPlaces = 1;
-            this.nUDHeight.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDHeight, "nUDHeight");
-            this.nUDHeight.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDHeight.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nUDHeight.Name = "nUDHeight";
-            this.nUDHeight.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.nUDHeight.ValueChanged += new System.EventHandler(this.nUDHeight_ValueChanged);
-            // 
-            // nUDWidth
-            // 
-            this.nUDWidth.DecimalPlaces = 1;
-            this.nUDWidth.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDWidth, "nUDWidth");
-            this.nUDWidth.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDWidth.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nUDWidth.Name = "nUDWidth";
-            this.nUDWidth.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.nUDWidth.ValueChanged += new System.EventHandler(this.nUDWidth_ValueChanged);
-            // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
@@ -249,8 +165,9 @@
             // cbLockRatio
             // 
             resources.ApplyResources(this.cbLockRatio, "cbLockRatio");
-            this.cbLockRatio.Checked = true;
+            this.cbLockRatio.Checked = global::GRBL_Plotter.Properties.Settings.Default.importImageKeepRatio;
             this.cbLockRatio.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbLockRatio.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importImageKeepRatio", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbLockRatio.Name = "cbLockRatio";
             this.cbLockRatio.UseVisualStyleBackColor = true;
             // 
@@ -520,33 +437,6 @@
             this.label7.Name = "label7";
             this.toolTip1.SetToolTip(this.label7, resources.GetString("label7.ToolTip"));
             // 
-            // tBImportSVGPalette
-            // 
-            this.tBImportSVGPalette.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importPalette", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBImportSVGPalette, "tBImportSVGPalette");
-            this.tBImportSVGPalette.Name = "tBImportSVGPalette";
-            this.tBImportSVGPalette.Text = global::GRBL_Plotter.Properties.Settings.Default.importPalette;
-            this.toolTip1.SetToolTip(this.tBImportSVGPalette, resources.GetString("tBImportSVGPalette.ToolTip"));
-            // 
-            // cBImportSVGTool
-            // 
-            resources.ApplyResources(this.cBImportSVGTool, "cBImportSVGTool");
-            this.cBImportSVGTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGToolColor;
-            this.cBImportSVGTool.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportSVGTool.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGToolColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGTool.Name = "cBImportSVGTool";
-            this.toolTip1.SetToolTip(this.cBImportSVGTool, resources.GetString("cBImportSVGTool.ToolTip"));
-            this.cBImportSVGTool.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGCTool
-            // 
-            resources.ApplyResources(this.cBImportGCTool, "cBImportGCTool");
-            this.cBImportGCTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTool;
-            this.cBImportGCTool.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTool", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCTool.Name = "cBImportGCTool";
-            this.toolTip1.SetToolTip(this.cBImportGCTool, resources.GetString("cBImportGCTool.ToolTip"));
-            this.cBImportGCTool.UseVisualStyleBackColor = true;
-            // 
             // btnTest
             // 
             resources.ApplyResources(this.btnTest, "btnTest");
@@ -563,13 +453,6 @@
             this.toolTip1.SetToolTip(this.btnList, resources.GetString("btnList.ToolTip"));
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
-            // 
-            // btnLoad
-            // 
-            resources.ApplyResources(this.btnLoad, "btnLoad");
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // groupBox5
             // 
@@ -603,6 +486,12 @@
             resources.ApplyResources(this.loadPictureToolStripMenuItem, "loadPictureToolStripMenuItem");
             this.loadPictureToolStripMenuItem.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // pasteFromClipboardToolStripMenuItem
+            // 
+            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
+            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
+            this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.groupBox9);
@@ -615,14 +504,13 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.cBImportSVGTool);
             this.groupBox9.Controls.Add(this.groupBox6);
             this.groupBox9.Controls.Add(this.groupBox5);
             this.groupBox9.Controls.Add(this.cBImportGCTool);
             this.groupBox9.Controls.Add(this.btnTest);
             this.groupBox9.Controls.Add(this.btnList);
-            this.groupBox9.Controls.Add(this.tBImportSVGPalette);
             this.groupBox9.Controls.Add(this.label10);
-            this.groupBox9.Controls.Add(this.cBImportSVGTool);
             resources.ApplyResources(this.groupBox9, "groupBox9");
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.TabStop = false;
@@ -675,15 +563,15 @@
             // rBProcessTool
             // 
             resources.ApplyResources(this.rBProcessTool, "rBProcessTool");
+            this.rBProcessTool.Checked = true;
             this.rBProcessTool.Name = "rBProcessTool";
+            this.rBProcessTool.TabStop = true;
             this.rBProcessTool.UseVisualStyleBackColor = true;
             // 
             // rBProcessZ
             // 
             resources.ApplyResources(this.rBProcessZ, "rBProcessZ");
-            this.rBProcessZ.Checked = true;
             this.rBProcessZ.Name = "rBProcessZ";
-            this.rBProcessZ.TabStop = true;
             this.rBProcessZ.UseVisualStyleBackColor = true;
             // 
             // timer1
@@ -692,11 +580,96 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pasteFromClipboardToolStripMenuItem
+            // cBImportSVGTool
             // 
-            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
-            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
-            this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
+            resources.ApplyResources(this.cBImportSVGTool, "cBImportSVGTool");
+            this.cBImportSVGTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGToolSort;
+            this.cBImportSVGTool.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGToolSort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGTool.Name = "cBImportSVGTool";
+            this.toolTip1.SetToolTip(this.cBImportSVGTool, resources.GetString("cBImportSVGTool.ToolTip"));
+            this.cBImportSVGTool.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGCTool
+            // 
+            resources.ApplyResources(this.cBImportGCTool, "cBImportGCTool");
+            this.cBImportGCTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTool;
+            this.cBImportGCTool.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTool", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTool.Name = "cBImportGCTool";
+            this.toolTip1.SetToolTip(this.cBImportGCTool, resources.GetString("cBImportGCTool.ToolTip"));
+            this.cBImportGCTool.UseVisualStyleBackColor = true;
+            // 
+            // nUDReso
+            // 
+            this.nUDReso.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importImageReso", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDReso.DecimalPlaces = 1;
+            this.nUDReso.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDReso, "nUDReso");
+            this.nUDReso.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDReso.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDReso.Name = "nUDReso";
+            this.toolTip1.SetToolTip(this.nUDReso, resources.GetString("nUDReso.ToolTip"));
+            this.nUDReso.Value = global::GRBL_Plotter.Properties.Settings.Default.importImageReso;
+            this.nUDReso.ValueChanged += new System.EventHandler(this.nUDReso_ValueChanged);
+            // 
+            // nUDHeight
+            // 
+            this.nUDHeight.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importImageHeight", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDHeight.DecimalPlaces = 1;
+            this.nUDHeight.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDHeight, "nUDHeight");
+            this.nUDHeight.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDHeight.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nUDHeight.Name = "nUDHeight";
+            this.nUDHeight.Value = global::GRBL_Plotter.Properties.Settings.Default.importImageHeight;
+            this.nUDHeight.ValueChanged += new System.EventHandler(this.nUDHeight_ValueChanged);
+            // 
+            // nUDWidth
+            // 
+            this.nUDWidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importImageWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDWidth.DecimalPlaces = 1;
+            this.nUDWidth.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDWidth, "nUDWidth");
+            this.nUDWidth.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDWidth.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nUDWidth.Name = "nUDWidth";
+            this.nUDWidth.Value = global::GRBL_Plotter.Properties.Settings.Default.importImageWidth;
+            this.nUDWidth.ValueChanged += new System.EventHandler(this.nUDWidth_ValueChanged);
             // 
             // GCodeFromImage
             // 
@@ -704,7 +677,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox4);
@@ -722,9 +694,6 @@
             this.statusStrip1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDReso)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDWidth)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBarGamma)).EndInit();
@@ -751,6 +720,9 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDZTop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDReso)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -792,7 +764,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.NumericUpDown nUDReso;
-        private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.CheckBox cbGrayscale;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox cbExceptAlpha;
@@ -814,13 +785,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox cBCompress;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox tBImportSVGPalette;
-        private System.Windows.Forms.CheckBox cBImportSVGTool;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.CheckBox cBImportGCTool;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label lblColors;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem pasteFromClipboardToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cBImportSVGTool;
     }
 }

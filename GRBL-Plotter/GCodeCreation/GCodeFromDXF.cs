@@ -32,6 +32,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.IO;
 using DXFLib;
+using System.Globalization;
 
 namespace GRBL_Plotter //DXFImporter
 {
@@ -53,10 +54,13 @@ namespace GRBL_Plotter //DXFImporter
         private static bool dxfComments = true;         // if true insert additional comments into GCode
         private static bool importUnitmm = true;        // convert units if needed
 
+        private static bool gcodeToolChange = false;          // Apply tool exchange command
+
         private static ArrayList drawingList;
         private static ArrayList objectIdentifier;
 
         private static int dxfBezierAccuracy = 6;       // applied line segments at bezier curves
+        private static int dxfColor = -1;
 
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
@@ -118,7 +122,28 @@ namespace GRBL_Plotter //DXFImporter
             gcodeString[gcodeStringIndex] = new StringBuilder();
             gcodeString[gcodeStringIndex].Clear();
             importUnitmm = Properties.Settings.Default.importUnitmm;
+
+            dxfBezierAccuracy = (int)Properties.Settings.Default.importSVGBezier;
+            gcodeReduce = Properties.Settings.Default.importSVGReduce;
+            gcodeReduceVal = (double)Properties.Settings.Default.importSVGReduceLimit;
+
+            gcodeZIncEnable = Properties.Settings.Default.importGCZIncEnable;
+            gcodeZIncrement = (double)Properties.Settings.Default.importGCZIncrement;
+
+            dxfPauseElement = Properties.Settings.Default.importSVGPauseElement;
+            dxfPausePenDown = Properties.Settings.Default.importSVGPausePenDown;
+            dxfComments = Properties.Settings.Default.importSVGAddComments;
+
+            gcodeToolChange = Properties.Settings.Default.importGCTool;
+            dxfColor = -1;
+            int dxfToolIndex = toolTable.init();
+
             gcode.setup();  // initialize GCode creation (get stored settings for export)
+            if (Properties.Settings.Default.importGCTool && !Properties.Settings.Default.importDXFToolIndex)
+            {
+                toolProp tmpTool = toolTable.getToolProperties((int)Properties.Settings.Default.importGCToolDefNr);
+                gcode.Tool(gcodeString[gcodeStringIndex], tmpTool.toolnr, tmpTool.name);
+            }
 
             GetVectorDXF();
 
@@ -169,16 +194,6 @@ namespace GRBL_Plotter //DXFImporter
 
             foreach (DXFEntity dxfEntity in doc.Entities)
             {
-                dxfBezierAccuracy = (int)Properties.Settings.Default.importSVGBezier;
-                gcodeReduce = Properties.Settings.Default.importSVGReduce;
-                gcodeReduceVal = (double)Properties.Settings.Default.importSVGReduceLimit;
-
-                gcodeZIncEnable = Properties.Settings.Default.importGCZIncEnable;
-                gcodeZIncrement = (double)Properties.Settings.Default.importGCZIncrement;
-
-                dxfPauseElement = Properties.Settings.Default.importSVGPauseElement;
-                dxfPausePenDown = Properties.Settings.Default.importSVGPausePenDown;
-                dxfComments = Properties.Settings.Default.importSVGAddComments;
 
                 if (dxfEntity.GetType() == typeof(DXFInsert))
                 {
@@ -230,6 +245,15 @@ namespace GRBL_Plotter //DXFImporter
             {   gcode.Comment(gcodeString[gcodeStringIndex], "Entity: " + entity.GetType().ToString());
                 gcode.Comment(gcodeString[gcodeStringIndex], "Color:  " + entity.ColorNumber.ToString());
             }
+
+            if (dxfColor != entity.ColorNumber)
+            {
+                if (Properties.Settings.Default.importGCTool && Properties.Settings.Default.importDXFToolIndex)
+                {
+                    gcode.Tool(gcodeString[gcodeStringIndex], entity.ColorNumber, entity.ColorNumber.ToString());
+                }
+            }
+            dxfColor = entity.ColorNumber;
 
             if (entity.GetType() == typeof(DXFPointEntity))
             {
@@ -421,15 +445,15 @@ namespace GRBL_Plotter //DXFImporter
                 GCodeFromFont.reset();
 
                 foreach (var entry in txt.Entries)
-                {   if (entry.GroupCode == 1)  { GCodeFromFont.gcText = entry.Value.ToString(); }
-                    else if (entry.GroupCode == 40) { GCodeFromFont.gcHeight = Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Height "+entry.Value); }
-                    else if(entry.GroupCode == 41) { GCodeFromFont.gcWidth = Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Width "+entry.Value); }
-                    else if(entry.GroupCode == 71) { GCodeFromFont.gcAttachPoint = Convert.ToInt16(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Origin " + entry.Value); }
-                    else if(entry.GroupCode == 10) { GCodeFromFont.gcOffX = Convert.ToDouble(entry.Value); }
-                    else if(entry.GroupCode == 20) { GCodeFromFont.gcOffY = Convert.ToDouble(entry.Value); }
-                    else if(entry.GroupCode == 50) { GCodeFromFont.gcAngle = Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Angle " + entry.Value); }
-                    else if(entry.GroupCode == 44) { GCodeFromFont.gcSpacing = Convert.ToDouble(entry.Value); }
-                    else if(entry.GroupCode == 7)  { GCodeFromFont.gcFontName = entry.Value.ToString(); }
+                {   if (entry.GroupCode == 1) { GCodeFromFont.gcText = entry.Value.ToString(); }
+                    else if (entry.GroupCode == 40) { GCodeFromFont.gcHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Height "+entry.Value); }
+                    else if (entry.GroupCode == 41) { GCodeFromFont.gcWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Width "+entry.Value); }
+                    else if (entry.GroupCode == 71) { GCodeFromFont.gcAttachPoint = Convert.ToInt16(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Origin " + entry.Value); }
+                    else if (entry.GroupCode == 10) { GCodeFromFont.gcOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }
+                    else if (entry.GroupCode == 20) { GCodeFromFont.gcOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }
+                    else if (entry.GroupCode == 50) { GCodeFromFont.gcAngle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Angle " + entry.Value); }
+                    else if (entry.GroupCode == 44) { GCodeFromFont.gcSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }
+                    else if (entry.GroupCode == 7) { GCodeFromFont.gcFontName = entry.Value.ToString(); }
                 }
                 GCodeFromFont.getCode(gcodeString[gcodeStringIndex]);
             }

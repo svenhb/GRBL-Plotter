@@ -28,6 +28,7 @@
     2018-01-02  Bugfix SVG rect transform (G3 in roundrect)
                 Bugfix SVG End GCode Path before next SVG subpath
                 Bugfix Scale to max dimension
+    2018-07     importInMM = Properties.Settings.Default.importUnitmm;
 */
 
 using System;
@@ -54,10 +55,10 @@ namespace GRBL_Plotter
         private static int svgBezierAccuracy = 6;       // applied line segments at bezier curves
         private static bool svgScaleApply = true;       // try to scale final GCode if true
         private static float svgMaxSize = 100;          // final GCode size (greater dimension) if scale is applied
-        private static bool svgClosePathExtend = true;  // if true move to first and second point of path to get overlap
-        private static bool svgToolColor = true;        // if true take tool nr. from nearest pallet entry
+        private static bool svgClosePathExtend = true;  // not working if true move to first and second point of path to get overlap
+        private static bool svgToolSortNr = true;        // if true take tool nr. from nearest pallet entry
         private static bool svgToolSort = true;         // if true sort objects by tool-nr. (to avoid back and forth pen change)
-        private static int svgToolIndex = 0;            // last index
+        private static int amountOfTools = 0;            // last index
 
         private static bool svgNodesOnly = true;        // if true only do pen-down -up on given coordinates
 
@@ -71,7 +72,7 @@ namespace GRBL_Plotter
         private static float gcodeXYFeed = 2000;        // XY feed to apply for G1
 
         private static bool gcodeToolChange = false;          // Apply tool exchange command
-        private static int gcodeToolNr = 0;
+        private static int gcodeOldToolNr = -1;
 
         // Using Z-Axis for Pen up down
         private static bool gcodeZApply = true;         // if true insert Z movements for Pen up/down
@@ -109,7 +110,7 @@ namespace GRBL_Plotter
         public static string convertFromFile(string file)
         {
             fromClipboard = false;
-            importInMM = false;
+            importInMM = Properties.Settings.Default.importUnitmm;
             if (file == "")
             { MessageBox.Show("Empty file name"); return ""; }
             if (file.Substring(0, 4) == "http")
@@ -147,8 +148,7 @@ namespace GRBL_Plotter
         }
 
         private static string convertSVG(XElement svgCode, string info)
-        {
-            gcodeStringIndex = 0;
+        {   gcodeStringIndex = 0;
             for (int i = 0; i < svgToolMax; i++)    // hold gcode snippes for later sorting
             {
                 gcodeString[i] = new StringBuilder();
@@ -157,24 +157,26 @@ namespace GRBL_Plotter
             gcode.setup();          // initialize GCode creation (get stored settings for export)
             finalString.Clear();
 
-            if (gcodeUseSpindle) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
+            gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
+            if (gcodeUseSpindle && !gcodeToolChange) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
             gcode.PenUp(finalString, "SVG Start ");
             startConvert(svgCode);
 
             if (svgToolSort)
             {
                 int toolnr;
-                svgPalette.sortByToolNr();
-                for (int i = 0; i < svgToolIndex; i++)
+                if (svgToolSortNr)
+                    toolTable.sortByToolNr();
+                else
+                    toolTable.sortByCodeSize();
+                for (int i = 0; i < amountOfTools; i++)
                 {
-                    svgPalette.setIndex(i);                 // set index in svgPalette
-                    toolnr = svgPalette.indexToolNr();      // get value from set index
+                    toolTable.setIndex(i);                 // set index in svgPalette
+                    toolnr = toolTable.indexToolNr();      // get value from set index
                     if ((toolnr >= 0) && (gcodeString[toolnr].Length > 1))
                     {
                         finalString.Append("\r\n\r\n");
-                        if ((gcodeToolChange) && svgPalette.indexUse())
-                        {   gcode.Tool(finalString, toolnr, svgPalette.indexName());
-                        }
+                        gcode.Tool(finalString, toolnr, toolTable.indexName());
                         finalString.Append(gcodeString[toolnr]);
                     }
                 }
@@ -221,13 +223,14 @@ namespace GRBL_Plotter
             gcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
 
-            svgToolColor    = Properties.Settings.Default.importSVGToolColor;
-            svgToolSort     = Properties.Settings.Default.importSVGToolSort;
+            svgToolSort     = Properties.Settings.Default.importSVGToolUse;
+            svgToolSortNr   = Properties.Settings.Default.importSVGToolSort;
             gcodeToolChange = Properties.Settings.Default.importGCTool;
 
             svgNodesOnly    = Properties.Settings.Default.importSVGNodesOnly;
 
-            svgToolIndex = svgPalette.init();
+            gcodeOldToolNr = -1;
+            amountOfTools = toolTable.init();
 
             countSubPath = 0;
             startFirstElement = true;
@@ -287,7 +290,7 @@ namespace GRBL_Plotter
                 tmpString = svgCode.Attribute("width").Value;
                 svgWidthPx = floatParse(tmpString);
                 if (importInMM)
-                {   if (tmpString.IndexOf("mm") > 0)
+                {   if ((tmpString.IndexOf("mm") > 0) && (vbWidth>0))
                         svgWidthPx = svgWidthPx / 3.543307f;
                 }
                 scale = 1;
@@ -313,7 +316,7 @@ namespace GRBL_Plotter
                 tmpString = svgCode.Attribute("height").Value;
                 svgHeightPx = floatParse(tmpString);
                 if (importInMM)
-                {   if (tmpString.IndexOf("mm") > 0)
+                {   if ((tmpString.IndexOf("mm") > 0) && (vbHeight > 0))
                         svgHeightPx = svgHeightPx / 3.543307f;
                 }
                 scale = 1;
@@ -544,7 +547,7 @@ namespace GRBL_Plotter
                     if (pathElement != null)
                     {
                         string myColor = getColor(pathElement);
-                        int myTool = svgPalette.getToolNr(myColor,0);
+                        int myTool = toolTable.getToolNr(myColor,0);
 
                         if ((svgToolSort) && (myTool >= 0))
                             gcodeStringIndex = myTool;
@@ -590,22 +593,19 @@ namespace GRBL_Plotter
                             else if (rx == 0) { rx = ry; }
                             else if (rx != ry) { rx = Math.Min(rx,ry); ry = rx; }   // only same r for x and y are possible
                             if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( SVG-Rect x:{0} y:{1} width:{2} height:{3} rx:{4} ry:{5})\r\n", x, y, width, height, rx, ry);
-/*                            if (Math.Round((rx * 2),2) >= Math.Round(Math.Min(width, height),2))
-                            {   rx = ry = (float)(Math.Round(Math.Min(width, height) / 2 - 0.01,2));
-                                gcodeString[gcodeStringIndex].AppendFormat("( Corrected rx:{0} ry:{1})\r\n", rx, ry);
-                            }   */
                             x += offsetX; y += offsetY;
                             gcodeStartPath(x + rx, y + height, form);
-                            gcodeMoveTo(x + width - rx, y + height, form);
+                            gcodeMoveTo(x + width - rx, y + height, form+" a1");
                             if (rx > 0) gcodeArcToCCW(x + width, y + height - ry, 0, -ry, form, avoidG23);  // +ry
-                            gcodeMoveTo(x + width, y + ry, form);                        // upper right
+                            gcodeMoveTo(x + width, y + ry, form + " b1");                        // upper right
                             if (rx > 0) gcodeArcToCCW(x + width - rx, y, -rx, 0, form, avoidG23);
-                            gcodeMoveTo(x + rx, y, form);                                // upper left
+                            gcodeMoveTo(x + rx, y, form + " a2");                                // upper left
                             if (rx > 0) gcodeArcToCCW(x, y + ry, 0, ry, form, avoidG23);                    // -ry
-                            gcodeMoveTo(x, y + height - ry, form);                       // lower left
-                            if (rx > 0) gcodeArcToCCW(x + rx, y + height, rx, 0, form, avoidG23);
-
-                            gcodeMoveTo(x + rx, y + height, form);  // repeat first point to avoid back draw after last G3
+                            gcodeMoveTo(x, y + height - ry, form + " b2");                       // lower left
+                            if (rx > 0)
+                            {   gcodeArcToCCW(x + rx, y + height, rx, 0, form, avoidG23);
+                                gcodeMoveTo(x + rx, y + height, form);  // repeat first point to avoid back draw after last G3
+                            }
                             gcodeStopPath(form);
                         }
                         else if (form == "circle")
@@ -712,7 +712,7 @@ namespace GRBL_Plotter
                         id = id.Substring(0, 20);
 
                     string myColor = getColor(pathElement);
-                    int myTool = svgPalette.getToolNr(myColor,0);// svgToolTable[myIndex].toolnr;
+                    int myTool = toolTable.getToolNr(myColor,0);    // svgToolTable[myIndex].toolnr;
 
                     if ((svgToolSort) && (myTool >= 0))
                     {   if(penIsDown) gcodePenUp("Start path");
@@ -802,7 +802,7 @@ namespace GRBL_Plotter
                             if (countSubPath++ > 0)
                                 gcodeStopPath("Stop Path");
                             if (svgNodesOnly)
-                                gcodeDotOnly(currentX, currentY, command.ToString());
+                                gcodeDotOnly(currentX, currentY, (command.ToString()));
                             else
                                 gcodeStartPath(currentX, currentY, command.ToString());
                             isReduceOk = true;
@@ -814,7 +814,7 @@ namespace GRBL_Plotter
                         {
                             if (svgNodesOnly)
                                 gcodeDotOnly(currentX, currentY, command.ToString());
-                            else if (i<=1)
+                            else if (i<=1) // amount of coordinates
                             {   gcodeStartPath(currentX, currentY, command.ToString()); }//gcodeMoveTo(currentX, currentY, command.ToString());  // G1
                             else
                                 gcodeMoveTo(currentX, currentY, command.ToString());  // G1
@@ -952,8 +952,6 @@ namespace GRBL_Plotter
                             var b = GetBezierApproximation(points, svgBezierAccuracy);
                             if (svgNodesOnly)
                             {
-                                //gcodeDotOnly(cx1, cy1, command.ToString());
-                                //gcodeDotOnly(cx2, cy2, command.ToString());
                                 gcodeDotOnly(cx3, cy3, command.ToString());
                             }
                             else
@@ -995,8 +993,6 @@ namespace GRBL_Plotter
                         var b = GetBezierApproximation(points, svgBezierAccuracy);
                         if (svgNodesOnly)
                         {
-                            //gcodeDotOnly(cxMirror, cyMirror, command.ToString());
-                            //gcodeDotOnly(cx2, cy2, command.ToString());
                             gcodeDotOnly(cx3, cy3, command.ToString());
                         }
                         else
@@ -1042,8 +1038,6 @@ namespace GRBL_Plotter
                         var b = GetBezierApproximation(points, svgBezierAccuracy);
                         if (svgNodesOnly)
                         {
-                            //gcodeDotOnly(qpx1, qpy1, command.ToString());
-                            //gcodeDotOnly(qpx2, qpy2, command.ToString());
                             gcodeDotOnly(cx3, cy3, command.ToString());
                         }
                         else
@@ -1085,8 +1079,6 @@ namespace GRBL_Plotter
                         var b = GetBezierApproximation(points, svgBezierAccuracy);
                         if (svgNodesOnly)
                         {
-                            //gcodeDotOnly(qpx1, qpy1, command.ToString());
-                            //gcodeDotOnly(qpx2, qpy2, command.ToString());
                             gcodeDotOnly(cx3, cy3, command.ToString());
                         }
                         else
@@ -1181,7 +1173,6 @@ namespace GRBL_Plotter
                 var b = GetBezierApproximation(points, svgBezierAccuracy);
                 for (int k = 1; k < b.Points.Count; k++)
                     gcodeMoveTo(b.Points[k], "arc");
-                //gcodeMove(1, (float)b.Points[k].X, (float)b.Points[k].Y, 0, 0, "arc");
 
                 theta1 = theta2;
                 startX = (float)endpointX;
@@ -1268,8 +1259,6 @@ namespace GRBL_Plotter
             gcodeStartPath(x, y, cmt);
             gcodePenDown(cmt);
             gcodePenUp(cmt);
-//            gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
-//            penIsDown = false;
         }
 
 
@@ -1280,10 +1269,9 @@ namespace GRBL_Plotter
         {   Point coord = translateXY(x, y);
             lastGCX = coord.X; lastGCY = coord.Y;
             lastSetGCX = coord.X; lastSetGCY = coord.Y;
+            gcodePenUp(cmt);
             gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
             if (svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before Pen Down"); }
-            //            gcode.PenDown(gcodeString[gcodeStringIndex], cmt);
-            //            penIsDown = true;
             penIsDown = false;
             isReduceOk = false;
         }
@@ -1297,8 +1285,6 @@ namespace GRBL_Plotter
                 if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY)) // restore last skipped point for accurat G2/G3 use
                     gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), "restore Point");
             }
-//            gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
-//            penIsDown = false;
             gcodePenUp(cmt);
         }
 
@@ -1345,6 +1331,7 @@ namespace GRBL_Plotter
         {
             Point coordxy = translateXY(x, y);
             Point coordij = translateIJ(i, j);
+            gcodePenDown(cmt);
             if (gcodeReduce && isReduceOk)      // restore last skipped point for accurat G2/G3 use
             {
                 if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
@@ -1374,13 +1361,25 @@ namespace GRBL_Plotter
         {
             if (toolnr >= 0)
             {
-                svgPalette.setUse(true);
-                if (!svgToolSort)               // if sort, insert tool command later
-                {
-                    if (gcodeToolNr != toolnr)  // if tool already in use, don't select again
-                    {
-                        gcode.Tool(gcodeString[gcodeStringIndex], toolnr, svgPalette.getName());
-                        gcodeToolNr = toolnr;
+                if (gcodeOldToolNr != toolnr)       // if tool already in use, don't select again
+                {   gcodeOldToolNr = toolnr;
+                    toolProp toolInfo = toolTable.getToolProperties(toolnr);
+                    if (!svgToolSort)               // if sort, insert tool command later
+                    {   gcode.Tool(gcodeString[gcodeStringIndex], toolInfo.toolnr, toolInfo.name);      //toolnr, toolTable.getName());
+                        gcodeOldToolNr = toolnr;
+                    }
+                    else
+                    {   // set now values from tool table, because gcode.Tool will be called after sorting objects
+                        if (Properties.Settings.Default.importGCTTSSpeed)
+                            gcode.gcodeSpindleSpeed = toolInfo.spindleSpeed;
+                        if (Properties.Settings.Default.importGCTTXYFeed)
+                            gcode.gcodeXYFeed = toolInfo.feedXY;
+                        if (Properties.Settings.Default.importGCTTZFeed)
+                            gcode.gcodeZFeed = toolInfo.feedZ;
+                        if (Properties.Settings.Default.importGCTTZDeepth)
+                            gcode.gcodeZDown = toolInfo.stepZ;
+                        if (Properties.Settings.Default.importGCDragKnifePercentEnable)
+                        {   gcode.gcodeDragRadius = Math.Abs(gcode.gcodeZDown * (float)Properties.Settings.Default.importGCDragKnifePercent / 100); }
                     }
                 }
             }

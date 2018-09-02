@@ -170,7 +170,6 @@ namespace GRBL_Plotter
                         {
                             int tnr = 0;
                             Int32.TryParse(line.Substring(1), out tnr);
-
                             gcode.Tool(gcodeString, tnr, infoDrill[tnr]);
                         }
                         else

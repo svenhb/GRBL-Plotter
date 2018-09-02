@@ -49,7 +49,6 @@ namespace GRBL_Plotter
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            //           getSettings();
             saveSettings();
             gcode.setup();                  // load defaults from setup-tab
             gcode.gcodeXYFeed = (float)nUDToolFeedXY.Value;    // override devault values
@@ -58,11 +57,9 @@ namespace GRBL_Plotter
             gcode.gcodeZDown = (float)nUDImportGCZDown.Value;
 
             gcodeString.Clear();
-            //           gcodeLines = 0;
-            //        gcodePause = 0;
-            gcode.Tool(gcodeString, 0, "");
+
+            gcode.Tool(gcodeString, tprop.toolnr, tprop.name);
             if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
- //           gcode.PenUp(gcodeString);
 
             float x, y, rShape,d,dTool,overlap,rTool,zStep;
             float zStart = 0;
@@ -305,6 +302,25 @@ namespace GRBL_Plotter
                     rBOrigin5.Checked = true;
                     break;
             }
+            int toolCount = toolTable.init();
+            toolProp tmpTool;
+            bool defaultToolFound = false;
+            for (int i = 0; i < toolCount; i++)
+            {
+                tmpTool = toolTable.getToolProperties(i);
+                if (i == tmpTool.toolnr)
+                {
+                    cBTool.Items.Add(i.ToString() + ") " + tmpTool.name);
+                    if (i == Properties.Settings.Default.importGCToolDefNr)
+                    {   cBTool.SelectedIndex = cBTool.Items.Count - 1;
+                        defaultToolFound=true;
+                    }
+                }
+            }
+            if (!defaultToolFound)
+                cBTool.SelectedIndex = 0;
+            tprop = toolTable.getToolProperties(1);
+            enableTool(!cBToolSet.Checked);
         }
 
         private void ShapeToGCode_FormClosing(object sender, FormClosingEventArgs e)
@@ -348,6 +364,42 @@ namespace GRBL_Plotter
                 decimal min = Math.Min(nUDShapeX.Value, nUDShapeY.Value);
                 if (nUDShapeR.Value > min / 2)
                     nUDShapeR.Value = min / 2;
+            }
+        }
+
+        private void cBToolSet_CheckedChanged(object sender, EventArgs e)
+        {
+            enableTool(!cBToolSet.Checked);
+            cBTool_SelectedIndexChanged(sender, e);
+        }
+
+        private void enableTool(bool state)
+        {   nUDToolDiameter.Enabled = state;
+            nUDToolFeedXY.Enabled = state;
+            nUDToolZStep.Enabled = state;
+            nUDToolFeedZ.Enabled = state;
+            nUDToolOverlap.Enabled = state;
+            nUDToolSpindleSpeed.Enabled = state;
+        }
+
+        toolProp tprop;
+        private void cBTool_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tmp = cBTool.SelectedItem.ToString();
+            if (tmp.IndexOf(")") > 0)
+            {
+                int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")));
+                Properties.Settings.Default.importGCToolDefNr = tnr;
+                if (cBToolSet.Checked)
+                {
+                    tprop = toolTable.getToolProperties(tnr);
+                    nUDToolDiameter.Value = (decimal)tprop.diameter;
+                    nUDToolFeedXY.Value = (decimal)tprop.feedXY;
+                    nUDToolZStep.Value = (decimal)Math.Abs(tprop.stepZ);
+                    nUDToolFeedZ.Value = (decimal)tprop.feedZ;
+                    nUDToolOverlap.Value = (decimal)tprop.overlap;
+                    nUDToolSpindleSpeed.Value = (decimal)tprop.spindleSpeed;
+                }
             }
         }
 

@@ -18,6 +18,7 @@
 */
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -223,12 +224,12 @@ namespace GRBL_Plotter
                     foreach (string line in fileContent)
                     {   if (line.IndexOf("LetterSpacing") >= 0)
                         {   string[] tmp = line.Split(':');
-                            gcLetterSpacing = Convert.ToDouble(tmp[1].Trim());
+                            gcLetterSpacing = double.Parse(tmp[1].Trim(), CultureInfo.InvariantCulture.NumberFormat);//Convert.ToDouble(tmp[1].Trim());
                         }
                         if (line.IndexOf("WordSpacing") >= 0)
                         {
                             string[] tmp = line.Split(':');
-                            gcWordSpacing = Convert.ToDouble(tmp[1].Trim());
+                            gcWordSpacing = double.Parse(tmp[1].Trim(), CultureInfo.InvariantCulture.NumberFormat);//Convert.ToDouble(tmp[1].Trim());
                         }
                     }
                 }
@@ -236,6 +237,12 @@ namespace GRBL_Plotter
                 {   gcodeString.AppendFormat("( Font '{0}' not found )\r\n", gcFontName);
                     gcodeString.Append("( Using alternative font )\r\n");
                 }
+            }
+
+            if (Properties.Settings.Default.importGCTool)
+            {
+                toolProp tmpTool = toolTable.getToolProperties((int)Properties.Settings.Default.importGCToolDefNr);
+                gcode.Tool(gcodeString, tmpTool.toolnr, tmpTool.name);
             }
             if ((gcAttachPoint == 2) || (gcAttachPoint == 5) || (gcAttachPoint == 8))
                 gcOffX -= gcWidth / 2;
@@ -359,11 +366,11 @@ namespace GRBL_Plotter
             double xx,yy,x,y,xOld=0,yOld=0,bulge=0,maxX = 0;
             foreach (string point in points)
             {   string[] scoord = point.Split(',');
-                charX = Convert.ToDouble(scoord[0]);
+                charX = double.Parse(scoord[0], CultureInfo.InvariantCulture.NumberFormat);// Convert.ToDouble(scoord[0]);
                 xx = charX * scale ;
                 maxX = Math.Max(maxX, xx);
                 xx += offX;
-                charY = Convert.ToDouble(scoord[1]);
+                charY = double.Parse(scoord[1], CultureInfo.InvariantCulture.NumberFormat); // Convert.ToDouble(scoord[1]);
                 yy = charY * scale + offY;
                 if (gcAngle == 0)
                 { x = xx; y = yy; }
@@ -375,7 +382,7 @@ namespace GRBL_Plotter
 
                 if (scoord.Length > 2)
                 {   if (scoord[2].IndexOf('A')>=0)
-                        bulge = Convert.ToDouble(scoord[2].Substring(1)) ;
+                        bulge = double.Parse(scoord[2].Substring(1), CultureInfo.InvariantCulture.NumberFormat); //Convert.ToDouble(scoord[2].Substring(1)) ;
                     //AddRoundCorner(gcodeString, bulge, xOld + offX, yOld + offY, x + offX, y + offY);
                     AddRoundCorner(gcodeString, bulge, xOld, yOld, x, y);
                 }

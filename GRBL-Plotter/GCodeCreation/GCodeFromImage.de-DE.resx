@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Größe</value>
+  </data>
   <data name="nUDReso.ToolTip" xml:space="preserve">
     <value>Abstand zwischen zwei Zeilen in Einheiten (mm oder Inch)</value>
   </data>
@@ -160,9 +163,6 @@
   <data name="cbLockRatio.Text" xml:space="preserve">
     <value>Seitenverhältnis</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Größe</value>
-  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Kontrast</value>
   </data>
@@ -171,6 +171,9 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Helligkeit</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Umwandlungs Mode</value>
   </data>
   <data name="cbGrayscale.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 17</value>
@@ -183,9 +186,6 @@
   </data>
   <data name="rbModeGray.Text" xml:space="preserve">
     <value>Graustufen</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Umwandlungs Mode</value>
   </data>
   <data name="btnInvert.ToolTip" xml:space="preserve">
     <value>Bild invertieren</value>
@@ -208,14 +208,14 @@
   <data name="btnGenerate.Text" xml:space="preserve">
     <value>Erzeuge GCode</value>
   </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Farbkorrektur</value>
+  </data>
   <data name="lblColors.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
   </data>
   <data name="lblColors.Text" xml:space="preserve">
     <value>Anzahl Farben</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Farbkorrektur</value>
   </data>
   <data name="cbExceptColor.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 17</value>
@@ -227,7 +227,7 @@
     <value>Linksklick im Bild um Farbe auszuwählen</value>
   </data>
   <data name="nUDMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 18</value>
+    <value>60, 14</value>
   </data>
   <data name="nUDMode.ToolTip" xml:space="preserve">
     <value>Methode um am besten passende Farbe zu finden
@@ -235,8 +235,15 @@
 1: Abstand im Farbraum (0°-360°)
 2: Abstand im Farbraum (0°-360°) + Sättigung + Helligkeit</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbSkipToolOrder.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cbSkipToolOrder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 35</value>
+  </data>
   <data name="cbSkipToolOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 17</value>
+    <value>98, 30</value>
   </data>
   <data name="cbSkipToolOrder.Text" xml:space="preserve">
     <value>Fortlaufende Stiftnummern</value>
@@ -247,54 +254,29 @@
   <data name="nUDZBot.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 14</value>
   </data>
+  <data name="cbExceptAlpha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="cbExceptAlpha.ToolTip" xml:space="preserve">
+    <value>Transparenz ignorieren</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Methode</value>
   </data>
-  <data name="tBImportSVGPalette.ToolTip" xml:space="preserve">
-    <value>Pfad zur GIMP Pallette (Inkscape), Reihenfolge der Farben = Werkzeugnummer.
-Default wenn keine Datei angegeben ist:
-  0   0   0  black (Tool 1)
-255   0   0  red  (Tool 2)
-  0 255   0  green  (Tool 3)
-  0   0 255  blue (Tool 4)</value>
-  </data>
-  <data name="cBImportSVGTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 17</value>
-  </data>
-  <data name="cBImportSVGTool.Text" xml:space="preserve">
-    <value>Stiftnummer aus Farbpalette lesen</value>
-  </data>
-  <data name="cBImportSVGTool.ToolTip" xml:space="preserve">
-    <value>Berechne Stift-Nummer durch Auswahl der am besten übereinstimmenden Farbe des SVG-Pfades in der GIMP-Pallette
-Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet werden
-</value>
-  </data>
-  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 17</value>
-  </data>
-  <data name="cBImportGCTool.Text" xml:space="preserve">
-    <value>Füge Tool Change Befehle ein</value>
-  </data>
-  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
-    <value>Fügt M06 Txx Befehle ein</value>
-  </data>
-  <data name="btnLoad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 24</value>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Bild laden</value>
-  </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 65</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Ausnahmen</value>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>Methode um am besten passende Farbe zu finden
+0: Abstand im RGB-Raum: Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }
+1: Abstand im Farbraum (0°-360°)
+2: Abstand im Farbraum (0°-360°) + Sättigung + Helligkeit</value>
   </data>
   <data name="btnTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>79, 358</value>
+    <value>9, 83</value>
   </data>
   <data name="btnTest.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 24</value>
@@ -303,7 +285,7 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
     <value>Ergebnis zeigen</value>
   </data>
   <data name="btnList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 358</value>
+    <value>106, 83</value>
   </data>
   <data name="btnList.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 24</value>
@@ -311,11 +293,50 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
   <data name="btnList.Text" xml:space="preserve">
     <value>Liste der Farben</value>
   </data>
+  <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 31</value>
+  </data>
+  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 17</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Füge Tool Change Befehle ein</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Fügt Tx M06 Befehle ein</value>
+  </data>
+  <data name="cBImportSVGTool.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cBImportSVGTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 49</value>
+  </data>
+  <data name="cBImportSVGTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 30</value>
+  </data>
+  <data name="cBImportSVGTool.Text" xml:space="preserve">
+    <value>Sortiere nach Wkzg. Nr. oder meist genutzte Farbe</value>
+  </data>
+  <data name="cBImportSVGTool.ToolTip" xml:space="preserve">
+    <value>Sortiere Stiftfarben nach Wkzg. Nr. oder Nutzung</value>
+  </data>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 14</value>
+  </data>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 67</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Ausnahmen</value>
+  </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 287</value>
+    <value>108, 14</value>
   </data>
   <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 65</value>
+    <value>113, 67</value>
+  </data>
+  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Farbersetzung</value>
@@ -326,14 +347,29 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
   <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
     <value>Bild laden</value>
   </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Farbverarbeitung</value>
+  </data>
+  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>427, 111</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Farbe als Tool Nr.</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 14</value>
+  </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 13</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Vom Setup Tab:</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Farbe als Tool Nr.</value>
+  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>427, 38</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Grauwert als Z Tiefe</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -347,11 +383,8 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
   <data name="label9.Text" xml:space="preserve">
     <value>Z min (schwarz)</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Grauwert als Z Tiefe</value>
-  </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Farbverarbeitung</value>
+  <data name="cBCompress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>313, 17</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3358,6 +3391,10 @@ Die Stift-Nummer kann dann als Werkzeugnummer beim Werkzeugwechsel verwendet wer
         ////////////////////////////////////////////////////////////////////////////////
         //8=
 </value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Erzeuge GCode aus Bild</value>

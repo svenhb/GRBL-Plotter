@@ -59,6 +59,8 @@ namespace GRBL_Plotter
             this.nUDFontSize = new System.Windows.Forms.NumericUpDown();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cBTool = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cBPauseLine = new System.Windows.Forms.CheckBox();
             this.cBPauseWord = new System.Windows.Forms.CheckBox();
             this.cBPauseChar = new System.Windows.Forms.CheckBox();
@@ -175,6 +177,8 @@ namespace GRBL_Plotter
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cBTool);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cBPauseLine);
             this.groupBox1.Controls.Add(this.cBPauseWord);
             this.groupBox1.Controls.Add(this.cBPauseChar);
@@ -182,6 +186,18 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // cBTool
+            // 
+            this.cBTool.FormattingEnabled = true;
+            resources.ApplyResources(this.cBTool, "cBTool");
+            this.cBTool.Name = "cBTool";
+            this.cBTool.SelectedIndexChanged += new System.EventHandler(this.cBTool_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
             // 
             // cBPauseLine
             // 
@@ -251,5 +267,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBPauseLine;
         private System.Windows.Forms.CheckBox cBPauseWord;
         private System.Windows.Forms.CheckBox cBPauseChar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cBTool;
     }
 }
