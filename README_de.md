@@ -4,10 +4,13 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
-### Bald... malen mit Wasserfarben  
+### Neu in Version 1.2.0.x:  
 * Werkzeugliste statt Farbpalette (inkl. Werkzeugwechselpositionen (bzw. Wasserfarben Position))  
 * Schleppwerkzeugkompensation (um den Offset der Pinselspitze zu kompensieren)  
 * Automatisches Einfügen eines Unterprogramms (um die Farbe eines Pinsels 'nachzutanken')  
+* Anzeige des max. Arbeitsbereiches, Alarm bei Überschreitung  
+* Reduzierung der CPU-Last durch Anzeige eines Hintergrundbildes statt realtime Anzeige während des Streamens  
+* Empfang von Steuerbefehlen über eine serielle Schnittstelle für DIY-Steuerungen  
   
 ### Neu in Version 1.1.6.x: 
 * 1.1.6.4 Höhenprofil Manipulation und Export als STL und X3D  [X3D Beispiel](http://svenhb.bplaced.net/?CNC___GRBL-Plotter___Hoehenprofil)  
