@@ -86,7 +86,7 @@ namespace GRBL_Plotter
             iamSerial = nr;
             set2ndSerial(handle);
             InitializeComponent();
-            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+ //           Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Application_UnhandledException);
         }

@@ -56,10 +56,13 @@ namespace GRBL_Plotter
                 dGVToolList.Rows.Add(tmp);
             }
 
-            string[] parts;
+            string[] parts;// = new string[] { "-", "(-)" };
             for (int i = 1; i <= 8; i++)
             {
                 parts = Properties.Settings.Default["custom" + i.ToString()].ToString().Split('|');
+  //              MessageBox.Show(i.ToString()+" len " + parts.Length.ToString()+ " "+ parts[0] + " "+ parts[1]);
+                if (parts.Length <= 1)
+                { parts[0] = "-";parts[1] = "(-)"; }
                 ListViewItem item = new ListViewItem((i - 1).ToString());
                 item.SubItems.AddRange(parts);
                 lvCustomButtons.Items.Add(item);
@@ -328,24 +331,24 @@ namespace GRBL_Plotter
         private void btnShapeSetSave_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
-            int index = Convert.ToUInt16(clickedButton.Name.Substring("btnShapeSetSave".Length));
+            int btnSetIndex = Convert.ToUInt16(clickedButton.Name.Substring("btnShapeSetSave".Length));
             //          MessageBox.Show(index.ToString());
-            if (index == 1) { Properties.Settings.Default.camShapeSet1 = shapeSetSave(tBShapeSet1.Text); }
-            if (index == 2) { Properties.Settings.Default.camShapeSet2 = shapeSetSave(tBShapeSet2.Text); }
-            if (index == 3) { Properties.Settings.Default.camShapeSet3 = shapeSetSave(tBShapeSet3.Text); }
-            if (index == 4) { Properties.Settings.Default.camShapeSet4 = shapeSetSave(tBShapeSet4.Text); }
+            if (btnSetIndex == 1) { Properties.Settings.Default.camShapeSet1 = shapeSetSave(tBShapeSet1.Text); }
+            if (btnSetIndex == 2) { Properties.Settings.Default.camShapeSet2 = shapeSetSave(tBShapeSet2.Text); }
+            if (btnSetIndex == 3) { Properties.Settings.Default.camShapeSet3 = shapeSetSave(tBShapeSet3.Text); }
+            if (btnSetIndex == 4) { Properties.Settings.Default.camShapeSet4 = shapeSetSave(tBShapeSet4.Text); }
             Properties.Settings.Default.Save();
         }
 
         private void btnShapeSetLoad_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
-            int index = Convert.ToUInt16(clickedButton.Name.Substring("btnShapeSetLoad".Length));
+            int btnLoadIndex = Convert.ToUInt16(clickedButton.Name.Substring("btnShapeSetLoad".Length));
             //           MessageBox.Show(index.ToString());
-            if (index == 1) { tBShapeSet1.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet1); }
-            if (index == 2) { tBShapeSet2.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet2); }
-            if (index == 3) { tBShapeSet3.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet3); }
-            if (index == 4) { tBShapeSet4.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet4); }
+            if (btnLoadIndex == 1) { tBShapeSet1.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet1); }
+            if (btnLoadIndex == 2) { tBShapeSet2.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet2); }
+            if (btnLoadIndex == 3) { tBShapeSet3.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet3); }
+            if (btnLoadIndex == 4) { tBShapeSet4.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet4); }
         }
 
         private String shapeSetSave(string head)
@@ -394,12 +397,12 @@ namespace GRBL_Plotter
             return "not set";
         }
 
-        private void setLabelParameterSet(int index, string txt)
+        private void setLabelParameterSet(int lblSetIndex, string txt)
         {
-            if (index == 1) { tBShapeSet1.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
-            if (index == 2) { tBShapeSet2.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
-            if (index == 3) { tBShapeSet3.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
-            if (index == 4) { tBShapeSet4.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (lblSetIndex == 1) { tBShapeSet1.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (lblSetIndex == 2) { tBShapeSet2.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (lblSetIndex == 3) { tBShapeSet3.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
+            if (lblSetIndex == 4) { tBShapeSet4.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
         }
 
 
