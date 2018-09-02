@@ -11,20 +11,7 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
 * Show machine working area, alert on exceed  
 * Reduce CPU load by showing background picture instead of real object path during streaming   
 * Receive commands via serial port for DIY control pad / pendant  
-
-   
-### New in version 1.1.6.x: 
-* 1.1.6.4 Add height map manipulation and export to STL, X3D [X3D example](http://svenhb.bplaced.net/?CNC___GRBL-Plotter___Hoehenprofil)  
-* 1.1.6.3 Bug fix in surface scan   
-* 1.1.6.2 Fixed: After SVG import, first 'pen-up' move was shown as 'pen-down' move   
-* 1.1.6.1 Import copied code from [maker.js](https://maker.js.org/demos/)  
-  - Just select .DXF or .SVG, press 'Generate', then 'copy the text above'  
-  - then paste the code into GRBL-Plotter  
-    
-* DXF-Text import, check [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html)   
-  - Just extend fonts by copying LFF files to subfolder fonts  
-  - Information about used fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
-
+  
   
 ### Check [History](https://github.com/svenhb/GRBL-Plotter/blob/master/History.md)  
       
