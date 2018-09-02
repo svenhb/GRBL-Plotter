@@ -1,6 +1,14 @@
 ## History
 Needs to be read from the bottom up ;-)  
   
+### 2018-09 version 1.2.0.x:
+* Tool table instead of color palette (incl. tool exchange positions (water color pos.))  
+* drag tool compensation (to compensate offset when drawing with a brush)   
+* automatic subroutine insertion (to refresh brush after drawing a certain distance)  
+* Show machine working area, alert on exceed  
+* Reduce CPU load by showing background picture instead of real object path during streaming   
+* Receive commands via serial port for DIY control pad / pendant  
+  
 ### 2018-04 version 1.1.6.0:  
 * Add height map manipulation and export to STL, X3D [X3D example](http://svenhb.bplaced.net/?CNC___GRBL-Plotter___Hoehenprofil)  
 * DXF-Text import, check [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html)  using libreCAD fonts  
@@ -15,7 +23,6 @@ Needs to be read from the bottom up ;-)
   - Just select .DXF or .SVG, press 'Generate', then 'copy the text above'  
   - then paste the code into GRBL-Plotter  
    
-  
 ### 2018-04 version 1.1.5.0 to 1.1.5.4: 
 Unfortunatly I get confused with some key and mouse events, which makes some bug fixes needed. 
 * For the camera view now a seperate coordinate system G59 will be used. Attention! Switch back to default coordinate system G54 before starting any GCode!  
