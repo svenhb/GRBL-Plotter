@@ -41,6 +41,7 @@ namespace GRBL_Plotter
                 penTool.Dispose();
                 penUp.Dispose();
                 brushText.Dispose();
+                penTeach.Dispose();
             }
             base.Dispose(disposing);
         }

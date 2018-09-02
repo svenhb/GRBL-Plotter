@@ -199,14 +199,14 @@
   <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
     <value>Speichere Höhenprofil als X3D</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ergebnis</value>
-  </data>
   <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 17</value>
   </data>
   <data name="cBGray.Text" xml:space="preserve">
     <value>Grauwert</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Ergebnis</value>
   </data>
   <data name="btnOffsetZ.ToolTip" xml:space="preserve">
     <value>Addiere gegebenen Offset zu allen Z Werten</value>

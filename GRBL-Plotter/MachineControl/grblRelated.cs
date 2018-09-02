@@ -364,13 +364,15 @@ namespace GRBL_Plotter
         private grblState status;
         private mState statMsg;
         private pState lastCmd;
-        public PosEventArgs(xyzPoint world, xyzPoint machine, grblState stat, mState msg, pState last)
+        private string raw;
+        public PosEventArgs(xyzPoint world, xyzPoint machine, grblState stat, mState msg, pState last, string sraw)
         {
             posWorld = world;
             posMachine = machine;
             status = stat;
             statMsg = msg;
             lastCmd = last;
+            raw = sraw;
         }
         public xyzPoint PosWorld
         { get { return posWorld; } }
@@ -382,5 +384,7 @@ namespace GRBL_Plotter
         { get { return statMsg; } }
         public pState parserState
         { get { return lastCmd; } }
+        public string Raw
+        { get { return raw; } }
     }
 }

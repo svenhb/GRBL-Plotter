@@ -57,7 +57,7 @@ namespace GRBL_Plotter
         private bool teachingTop = false;
         private bool teachingBot = false;
         private bool showOverlay = true;
-        private bool teachTP1 = false;
+        //private bool teachTP1 = false;
 
         private Color colText = Color.Lime;
         private Brush brushText = Brushes.Lime;
@@ -762,7 +762,7 @@ namespace GRBL_Plotter
             teachPoint2 = teachPoint1; teachPoint3 = teachPoint1;
             measureAngleStart = teachPoint1;
             OnRaiseXYEvent(new XYEventArgs(0, 1, actualPosMarker, "G92"));        // set new coordinates
-            teachTP1 = true;
+            //teachTP1 = true;
         }
 
         private void teachpoint2_process_Click(object sender, EventArgs e)
@@ -776,7 +776,7 @@ namespace GRBL_Plotter
             lblAngle.Text = String.Format("{0:0.00}°", angle);
 
             OnRaiseXYEvent(new XYEventArgs(angle, dist2/dist1, teachPoint1, "a"));       // rotate arround TP1
-            teachTP1 = false;
+            //teachTP1 = false;
         }
 
         private void ControlCameraForm_KeyDown(object sender, KeyEventArgs e)
