@@ -277,7 +277,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Pen remove|_misc\\script_pen_remove.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Set Pen 1|T1 M06;")]
         public string custom5 {
             get {
                 return ((string)(this["custom5"]));
@@ -289,7 +289,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Pen pickup|_misc\\script_pen_pickup.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pen take|_misc\\script_pen2_select.nc")]
         public string custom6 {
             get {
                 return ((string)(this["custom6"]));
@@ -301,7 +301,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Pen probing|_misc\\script_probing_tool.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pen remove|_misc\\script_pen2_remove.nc")]
         public string custom7 {
             get {
                 return ((string)(this["custom7"]));
@@ -313,7 +313,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Set Pen 0|G92 Z25")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string custom8 {
             get {
                 return ((string)(this["custom8"]));
@@ -950,12 +950,12 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importSVGToolColor {
+        public bool importSVGToolUse {
             get {
-                return ((bool)(this["importSVGToolColor"]));
+                return ((bool)(this["importSVGToolUse"]));
             }
             set {
-                this["importSVGToolColor"] = value;
+                this["importSVGToolUse"] = value;
             }
         }
         
@@ -2636,6 +2636,498 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["importGCToolM0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal toolOffX {
+            get {
+                return ((decimal)(this["toolOffX"]));
+            }
+            set {
+                this["toolOffX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("120")]
+        public decimal toolOffY {
+            get {
+                return ((decimal)(this["toolOffY"]));
+            }
+            set {
+                this["toolOffY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal toolOffZ {
+            get {
+                return ((decimal)(this["toolOffZ"]));
+            }
+            set {
+                this["toolOffZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCSubEnable {
+            get {
+                return ((bool)(this["importGCSubEnable"]));
+            }
+            set {
+                this["importGCSubEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("_misc\\subroutine.nc")]
+        public string importGCSubroutine {
+            get {
+                return ((string)(this["importGCSubroutine"]));
+            }
+            set {
+                this["importGCSubroutine"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCLineSegmentation {
+            get {
+                return ((bool)(this["importGCLineSegmentation"]));
+            }
+            set {
+                this["importGCLineSegmentation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal importGCLineSegmentLength {
+            get {
+                return ((decimal)(this["importGCLineSegmentLength"]));
+            }
+            set {
+                this["importGCLineSegmentLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCLineSegmentEquidistant {
+            get {
+                return ((bool)(this["importGCLineSegmentEquidistant"]));
+            }
+            set {
+                this["importGCLineSegmentEquidistant"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCDragKnifeEnable {
+            get {
+                return ((bool)(this["importGCDragKnifeEnable"]));
+            }
+            set {
+                this["importGCDragKnifeEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal importGCDragKnifeLength {
+            get {
+                return ((decimal)(this["importGCDragKnifeLength"]));
+            }
+            set {
+                this["importGCDragKnifeLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlToolChangeEmpty {
+            get {
+                return ((bool)(this["ctrlToolChangeEmpty"]));
+            }
+            set {
+                this["ctrlToolChangeEmpty"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal ctrlToolChangeEmptyNr {
+            get {
+                return ((decimal)(this["ctrlToolChangeEmptyNr"]));
+            }
+            set {
+                this["ctrlToolChangeEmptyNr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCToolDefNr {
+            get {
+                return ((decimal)(this["importGCToolDefNr"]));
+            }
+            set {
+                this["importGCToolDefNr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCToolUseRouter {
+            get {
+                return ((bool)(this["importGCToolUseRouter"]));
+            }
+            set {
+                this["importGCToolUseRouter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public decimal importGCDragKnifeAngle {
+            get {
+                return ((decimal)(this["importGCDragKnifeAngle"]));
+            }
+            set {
+                this["importGCDragKnifeAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importDXFToolIndex {
+            get {
+                return ((bool)(this["importDXFToolIndex"]));
+            }
+            set {
+                this["importDXFToolIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCTTSSpeed {
+            get {
+                return ((bool)(this["importGCTTSSpeed"]));
+            }
+            set {
+                this["importGCTTSSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCTTXYFeed {
+            get {
+                return ((bool)(this["importGCTTXYFeed"]));
+            }
+            set {
+                this["importGCTTXYFeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCTTZFeed {
+            get {
+                return ((bool)(this["importGCTTZFeed"]));
+            }
+            set {
+                this["importGCTTZFeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCTTZDeepth {
+            get {
+                return ((bool)(this["importGCTTZDeepth"]));
+            }
+            set {
+                this["importGCTTZDeepth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool machineLimitsShow {
+            get {
+                return ((bool)(this["machineLimitsShow"]));
+            }
+            set {
+                this["machineLimitsShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool machineLimitsAlarm {
+            get {
+                return ((bool)(this["machineLimitsAlarm"]));
+            }
+            set {
+                this["machineLimitsAlarm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
+        public decimal machineLimitsRangeX {
+            get {
+                return ((decimal)(this["machineLimitsRangeX"]));
+            }
+            set {
+                this["machineLimitsRangeX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("180")]
+        public decimal machineLimitsRangeY {
+            get {
+                return ((decimal)(this["machineLimitsRangeY"]));
+            }
+            set {
+                this["machineLimitsRangeY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal machineLimitsRangeZ {
+            get {
+                return ((decimal)(this["machineLimitsRangeZ"]));
+            }
+            set {
+                this["machineLimitsRangeZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal machineLimitsHomeX {
+            get {
+                return ((decimal)(this["machineLimitsHomeX"]));
+            }
+            set {
+                this["machineLimitsHomeX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal machineLimitsHomeY {
+            get {
+                return ((decimal)(this["machineLimitsHomeY"]));
+            }
+            set {
+                this["machineLimitsHomeY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal machineLimitsHomeZ {
+            get {
+                return ((decimal)(this["machineLimitsHomeZ"]));
+            }
+            set {
+                this["machineLimitsHomeZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Fuchsia")]
+        public global::System.Drawing.Color colorMachineLimit {
+            get {
+                return ((global::System.Drawing.Color)(this["colorMachineLimit"]));
+            }
+            set {
+                this["colorMachineLimit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool guiBackgroundImageEnable {
+            get {
+                return ((bool)(this["guiBackgroundImageEnable"]));
+            }
+            set {
+                this["guiBackgroundImageEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM9")]
+        public string serialPortDIY {
+            get {
+                return ((string)(this["serialPortDIY"]));
+            }
+            set {
+                this["serialPortDIY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
+        public string serialBaudDIY {
+            get {
+                return ((string)(this["serialBaudDIY"]));
+            }
+            set {
+                this["serialBaudDIY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool useSerialDIY {
+            get {
+                return ((bool)(this["useSerialDIY"]));
+            }
+            set {
+                this["useSerialDIY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool feedbackDIY {
+            get {
+                return ((bool)(this["feedbackDIY"]));
+            }
+            set {
+                this["feedbackDIY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCSubFirst {
+            get {
+                return ((bool)(this["importGCSubFirst"]));
+            }
+            set {
+                this["importGCSubFirst"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCDragKnifePercentEnable {
+            get {
+                return ((bool)(this["importGCDragKnifePercentEnable"]));
+            }
+            set {
+                this["importGCDragKnifePercentEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal importGCDragKnifePercent {
+            get {
+                return ((decimal)(this["importGCDragKnifePercent"]));
+            }
+            set {
+                this["importGCDragKnifePercent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal importImageWidth {
+            get {
+                return ((decimal)(this["importImageWidth"]));
+            }
+            set {
+                this["importImageWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal importImageHeight {
+            get {
+                return ((decimal)(this["importImageHeight"]));
+            }
+            set {
+                this["importImageHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
+        public decimal importImageReso {
+            get {
+                return ((decimal)(this["importImageReso"]));
+            }
+            set {
+                this["importImageReso"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImageKeepRatio {
+            get {
+                return ((bool)(this["importImageKeepRatio"]));
+            }
+            set {
+                this["importImageKeepRatio"] = value;
             }
         }
     }
