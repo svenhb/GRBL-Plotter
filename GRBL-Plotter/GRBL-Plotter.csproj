@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.1.6.4</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.2.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -143,6 +143,12 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GCodeCreation\GCodeFromFont.cs" />
+    <Compile Include="MachineControl\ControlDIYControlPad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\ControlDIYControlPad.Designer.cs">
+      <DependentUpon>ControlDIYControlPad.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainObjects.cs" />
     <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
     <Compile Include="MachineControl\ControlCameraForm.cs">
@@ -217,7 +223,7 @@
     <Compile Include="MachineControl\ControlStreamingForm2.Designer.cs">
       <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeCreation\svgPalette.cs" />
+    <Compile Include="GCodeCreation\toolTable.cs" />
     <Compile Include="GCodeCreation\GCodeFromSVG.cs" />
     <Compile Include="GCodeCreation\GCodeFromText.cs">
       <SubType>Form</SubType>
@@ -247,10 +253,10 @@
     <EmbeddedResource Include="MachineControl\Control2ndGRBL.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MachineControl\ControlHeightMap.de-DE.resx">
-      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    <EmbeddedResource Include="MachineControl\ControlDIYControlPad.resx">
+      <DependentUpon>ControlDIYControlPad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MachineControl\ControlHeightMap.de.resx">
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.de-DE.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlHeightMap.resx">
@@ -478,15 +484,6 @@
     <Content Include="_misc\script_probing_tool.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\Stabilo_by_Color.gpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="_misc\Stabilo_by_PN.gpl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="_misc\Stabilo_by_PN.pal">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="_misc\test_dxf\Bunny.dxf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -511,27 +508,33 @@
     <None Include="Resources\error_codes_en_US.csv" />
     <None Include="Resources\setting_codes_en_US.csv" />
     <Content Include="_misc\test_map\pfennig_1.map" />
-    <None Include="_misc\test_svg\0_Scalable Vector Graphics.url" />
-    <None Include="_misc\test_svg\7_Coordinate Systems.url" />
-    <None Include="_misc\test_svg\8_Paths.url" />
-    <None Include="_misc\test_svg\9_Basic Shapes.url" />
-    <None Include="_misc\test_svg\Example arcs01 - arc commands in path data.url" />
-    <None Include="_misc\test_svg\Example arcs02 - arc options in paths.url" />
-    <None Include="_misc\test_svg\Example cubic01- cubic Bézier commands in path data.url" />
-    <None Include="_misc\test_svg\Example cubic02 - cubic Bézier commands in path data.url" />
-    <None Include="_misc\test_svg\Example quad01 - quadratic Bézier commands in path data.url" />
-    <None Include="_misc\test_svg\nok_Example Units.url" />
-    <None Include="_misc\test_svg\nok_SVG-images-coords-Skew.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-coords-Nested.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-coords-PreserveAspectRatio.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-coords-RotateScale.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-shapes-circle01.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-shapes-ellipse01.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-shapes-line01.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-shapes-polygon01.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-shapes-polyline01.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-shapes-rect01.svg.url" />
-    <None Include="_misc\test_svg\SVG-images-shapes-rect02.svg.url" />
+    <Content Include="_misc\script_brush_clean.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\script_brush_refresh.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\script_brush_select.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\tools.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\script_down_up.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\script_pen2_remove.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\script_pen2_select.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\Stabilo_power.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\watercolor.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

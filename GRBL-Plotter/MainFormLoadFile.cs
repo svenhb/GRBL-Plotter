@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
 using System.Threading;
@@ -78,6 +79,7 @@ namespace GRBL_Plotter
             pictureBox1.BackgroundImage = null;
             visuGCode.setPosMarker(new xyPoint(0, 0));
             visuGCode.createMarkerPath(); ;
+            visuGCode.drawMachineLimit(toolTable.getToolCordinates());
         }
         private void loadFile(string fileName)
         {
@@ -199,19 +201,25 @@ namespace GRBL_Plotter
         }
         public void reStartConvertSVG(object sender, EventArgs e)   // event from setup form
         {   if (!isStreaming)
-            {   if (lastLoadSource.IndexOf("Clipboard") >= 0)
+            {
+                this.Cursor = Cursors.WaitCursor;
+                if (lastLoadSource.IndexOf("Clipboard") >= 0)
                 { loadFromClipboard(); }
                 else
                 { loadFile(lastSource); }
+                this.Cursor = Cursors.Default;
             }
+        }
+        public void moveToPickup(object sender, EventArgs e)   // event from setup form
+        {   sendCommand(_setup_form.commandToSend);
+            _setup_form.commandToSend = "";
         }
         private string lastSource = "";
         private void startConvertSVG(string source)
         {   lastSource = source;                        // store current file-path/name
             preset2DView();
             string gcode = GCodeFromSVG.convertFromFile(source);
-
-
+            blockFCTB_Events = true;
             if (gcode.Length > 2)
             {
                 fCTBCode.Text = gcode;
@@ -228,6 +236,7 @@ namespace GRBL_Plotter
         {   lastSource = source;                        // store current file-path/name
             preset2DView();
             string gcode = GCodeFromDXF.ConvertFromFile(source);
+            blockFCTB_Events = true;
             if (gcode.Length > 2)
             {   fCTBCode.Text = gcode;
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
@@ -243,6 +252,7 @@ namespace GRBL_Plotter
         {   lastSource = source;                        // store current file-path/name
             preset2DView();
             string gcode = GCodeFromDrill.ConvertFile(source);
+            blockFCTB_Events = true;
             if (gcode.Length > 2)
             {   fCTBCode.Text = gcode;
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
@@ -255,7 +265,7 @@ namespace GRBL_Plotter
         }
 
 
-        bool blockFCTB_Events = false;
+        bool blockFCTB_Events = true;
         private void loadGcode()
         {
             if (File.Exists(tbFile.Text))
@@ -281,7 +291,7 @@ namespace GRBL_Plotter
                 }
 
                 redrawGCodePath();
-                blockFCTB_Events = false;
+//                blockFCTB_Events = false;
                 lbInfo.Text = "G-Code loaded";
                 lbInfo.BackColor = SystemColors.Control;
                 updateControls();
@@ -508,6 +518,7 @@ namespace GRBL_Plotter
                 penDown.Width = (float)Properties.Settings.Default.widthPenDown;
                 penTool.Width = (float)Properties.Settings.Default.widthTool;
                 penMarker.Width = (float)Properties.Settings.Default.widthMarker;
+                brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.colorMachineLimit,Color.Transparent);
                 picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 commentOut = Properties.Settings.Default.ctrlCommentOut;
                 updateDrawing();

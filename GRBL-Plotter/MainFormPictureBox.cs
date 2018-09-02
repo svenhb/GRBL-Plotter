@@ -24,10 +24,12 @@ namespace GRBL_Plotter
         private Pen penRuler = new Pen(Color.Blue, 0.1F);
         private Pen penTool = new Pen(Color.Black, 0.5F);
         private Pen penMarker = new Pen(Color.DeepPink, 1F);
+ //       SolidBrush machineLimit = new SolidBrush(Color.Red);
+        private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
         private double picAbsPosX = 0;
         private double picAbsPosY = 0;
         private Bitmap picBoxBackround;
-        private int picBoxCopy = 0;
+        private bool showPicBoxBgImage = false;
         private bool showPathPenUp = true;
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -65,8 +67,9 @@ namespace GRBL_Plotter
                 e.Graphics.Transform = pBoxTransform;
                 e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);        // apply scaling (flip Y)
                 e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
-                                                                                            //     if (picBoxCopy == 0)
-                onPaint_drawToolPath(e.Graphics);
+                     
+                if (!showPicBoxBgImage)
+                    onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
                 e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
                 e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
             }
@@ -86,6 +89,12 @@ namespace GRBL_Plotter
         }
         private void onPaint_drawToolPath(Graphics e)
         {
+            if (Properties.Settings.Default.machineLimitsShow)
+            {   e.FillPath(brushMachineLimit, GCodeVisuAndTransform.pathMachineLimit);
+                e.DrawPath(penTool, GCodeVisuAndTransform.pathToolTable);
+            }
+
+                //e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathMachineLimit);
             if (!Properties.Settings.Default.importUnitmm)
             {   penDown.Width = 0.01F; penUp.Width = 0.01F; penRuler.Width = 0.01F; penHeightMap.Width = 0.01F;
                 penMarker.Width = 0.01F; penTool.Width = 0.01F;
@@ -96,22 +105,27 @@ namespace GRBL_Plotter
             if (showPathPenUp)
                 e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
         }
+
+        // Generante a background-image for pictureBox to avoid frequent drawing of pen-up/down paths
         private void onPaint_setBackground()
-        {   /*
-            picBoxCopy = 1;
-            pictureBox1.BackgroundImageLayout = ImageLayout.None;
-            picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            Graphics graphics = Graphics.FromImage(picBoxBackround);
-            graphics.DrawString("Streaming", new Font("Lucida Console", 8), Brushes.Black, 1, 1);
-            onPaint_scaling(graphics);
-            onPaint_drawToolPath(graphics);
-            pictureBox1.BackgroundImage = new Bitmap(picBoxBackround);//Properties.Resources.modell;
-            */
+        {
+            if (Properties.Settings.Default.guiBackgroundImageEnable)
+            {
+                showPicBoxBgImage = true;
+                pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0;
+                pictureBox1.BackgroundImageLayout = ImageLayout.None;
+                picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                Graphics graphics = Graphics.FromImage(picBoxBackround);
+                graphics.DrawString("Streaming, zooming disabled", new Font("Lucida Console", 8), Brushes.Black, 1, 1);
+                onPaint_scaling(graphics);
+                onPaint_drawToolPath(graphics);     // draw path
+                pictureBox1.BackgroundImage = new Bitmap(picBoxBackround);//Properties.Resources.modell;
+            }
         }
 
         private void pictureBox1_SizeChanged(object sender, EventArgs e)
         {
-            if (picBoxCopy > 0)
+            if (showPicBoxBgImage)
                 onPaint_setBackground();
             pictureBox1.Invalidate();
         }
@@ -149,6 +163,8 @@ namespace GRBL_Plotter
         }
         private void ZoomScroll(Point location, bool zoomIn)
         {
+            if (showPicBoxBgImage)              // don't zoom if background image is shown
+                return;
             float locX = -location.X;
             float locY = -location.Y;
             float posX = (float)location.X / (float)pictureBox1.Width;      // range 0..1

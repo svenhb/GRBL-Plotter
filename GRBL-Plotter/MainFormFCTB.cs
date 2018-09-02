@@ -28,6 +28,7 @@ namespace GRBL_Plotter
         Style StyleXAxis = new TextStyle(Brushes.Green, null, FontStyle.Bold);
         Style StyleYAxis = new TextStyle(Brushes.BlueViolet, null, FontStyle.Bold);
         Style StyleZAxis = new TextStyle(Brushes.Red, null, FontStyle.Bold);
+
         private void fCTBCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
             e.ChangedRange.ClearStyle(StyleComment);
@@ -41,13 +42,19 @@ namespace GRBL_Plotter
             e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
         }
+
+        //bool showChangedMessage = true;     // show Message if TextChanged
         private void fCTBCode_TextChangedDelayed(object sender, TextChangedEventArgs e)
-        {   showChangedMessage = true;
-            if (false)//fCTBCode.LinesCount > 2)            // only redraw if GCode is available, otherwise startup picture disappears
+        {   //showChangedMessage = true;
+            if (fCTBCode.LinesCount > 2)            // only redraw if GCode is available, otherwise startup picture disappears
             {   if (commentOut)
                 {   fCTB_CheckUnknownCode(); }
                 pictureBox1.BackgroundImage = null;
-                redrawGCodePath();
+                if (!blockFCTB_Events)
+                {   redrawGCodePath();
+     //               MessageBox.Show("textchangedelayed");
+                }
+                blockFCTB_Events = false;
             }
         }
 
@@ -168,36 +175,7 @@ namespace GRBL_Plotter
         }
 
         #endregion
-
-        /// <summary>
-        /// Handling of RichTextBox rtBCode
-        /// </summary>
-        bool showChangedMessage = true;     // show Message if TextChanged
-        int rtbSize = 0;
-        private void rtbCode_TextChanged(object sender, EventArgs e)
-        {
-            if (!blockFCTB_Events)
-            {
-                int rtbActualSize = fCTBCode.LinesCount;
-                if (Math.Abs(rtbActualSize - rtbSize) > 20)     // Highlight / Redraw after huge change
-                {
-                    redrawGCodePath();
-                    showChangedMessage = true;
-                }
-                else
-                {
-                    if (showChangedMessage)
-                    {
-                        lbInfo.Text = "G-Code was changed";
-                        lbInfo.BackColor = Color.Orange;
-                        if (Math.Abs(rtbActualSize - rtbSize) > 20)     // Highlight / Redraw after huge change
-                            redrawGCodePath();
-                    }
-                }
-                rtbSize = rtbActualSize;
-            }
-        }
-
+                
         private int findEndOfPath(int startLine, bool toEnd)
         {
             int endVal = fCTBCode.LinesCount;

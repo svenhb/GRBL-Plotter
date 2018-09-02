@@ -51,6 +51,7 @@ namespace GRBL_Plotter
                 penUp.Dispose();
                 pBoxTransform.Dispose();
                 penHeightMap.Dispose();
+                brushMachineLimit.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -659,7 +660,7 @@ namespace GRBL_Plotter
             // 
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
             resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
-            this.setupToolStripMenuItem.Click += new System.EventHandler(this.setupToolStripMenuItem_Click);
+            this.setupToolStripMenuItem.Click += new System.EventHandler(this.DIYControlopen);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1508,6 +1509,7 @@ namespace GRBL_Plotter
         '\"',
         '\'',
         '\''};
+            this.fCTBCode.AutoIndent = false;
             this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
             resources.ApplyResources(this.fCTBCode, "fCTBCode");
             this.fCTBCode.BackBrush = null;
