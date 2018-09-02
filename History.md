@@ -2,6 +2,7 @@
 Needs to be read from the bottom up ;-)  
   
 ### 2018-04 version 1.1.6.0:  
+* Add height map manipulation and export to STL, X3D [X3D example](http://svenhb.bplaced.net/?CNC___GRBL-Plotter___Hoehenprofil)  
 * DXF-Text import, check [Font examples](https://www.circuitousroot.com/artifice/drafting/librecad-miscellany/index.html)  using libreCAD fonts  
   - Just extend fonts by copying LFF files to sub folder fonts  
   - Information about used fonts [Fonts](https://github.com/svenhb/GRBL-Plotter/blob/master/GRBL-Plotter/fonts/README.md)  
@@ -9,8 +10,11 @@ Needs to be read from the bottom up ;-)
 * Hide 'PenUp' path in 2D view by pressing the space bar.  
 * Bug fixes:
   - Win7 zooming in 2D view not possible
-  - Paste code via Ctrl-V was disabled
-
+  - Paste code via Ctrl-V was disabled  
+* Import copied code from [maker.js](https://maker.js.org/demos/)  
+  - Just select .DXF or .SVG, press 'Generate', then 'copy the text above'  
+  - then paste the code into GRBL-Plotter  
+   
   
 ### 2018-04 version 1.1.5.0 to 1.1.5.4: 
 Unfortunatly I get confused with some key and mouse events, which makes some bug fixes needed. 
