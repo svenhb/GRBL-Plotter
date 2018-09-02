@@ -16,7 +16,7 @@ G90 G53 G1 X-168 F1000
 (^2 G4 P0.5)
 (Turn pen storage back)
 (^2 G91 G0 X-0.15)
-(#TOOL-OUT)
+($TOOL-OUT)
 
 (Remove gripper)
 G4 P0.5
