@@ -96,28 +96,35 @@ Main GUI
 Separate serial COM window(s) - one for the CNC, one for the tool changer (or 4th axis)  
 ![GRBL-Plotter COM interface](doc/GRBLPlotter_COM2.png?raw=true "Serial connection") ![2nd GRBL control](doc/GRBLPlotter_Control_COM2.png?raw=true "Serial connection") 
 
-Setup import / GCode conversion  
-![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1_de.png?raw=true "Setup1") 
+Setup Import / GCode Konvertierung  
+![GRBL-Plotter Setup1.1](doc/GRBLPlotter_Setup1_1_de.png?raw=true "Setup1.1") 
+Setup Import / GCode Konvertierung  
+![GRBL-Plotter Setup1.2](doc/GRBLPlotter_Setup1_2_de.png?raw=true "Setup1.2") 
+Setup Import / GCode Konvertierung  
+![GRBL-Plotter Setup1.3](doc/GRBLPlotter_Setup1_3_de.png?raw=true "Setup1.3") 
   
-Setup configuration 
+Setup Werkzeugwechsel  
 ![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_de.png?raw=true "Setup2") 
   
-Setup Custom Buttons  
+Setup Konfiguration 
 ![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_de.png?raw=true "Setup3") 
   
-Setup GamePad  
+Setup benutzerdefinierte Befehle  
 ![GRBL-Plotter Setup4](doc/GRBLPlotter_Setup4_de.png?raw=true "Setup4") 
   
-Setup virtual Joystick and colors  
+Setup GamePad  
 ![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_de.png?raw=true "Setup5") 
   
+Setup virtual Joystick and colors  
+![GRBL-Plotter Setup6](doc/GRBLPlotter_Setup6_de.png?raw=true "Setup6") 
+  
 Formenerkennung für Passmarken       
-![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup6_de.png?raw=true "Setup6") 
+![GRBL-Plotter Setup7](doc/GRBLPlotter_Setup7_de.png?raw=true "Setup7") 
     
-Text import  
+Text Import  
 ![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
 
-Picture import  
+Picture Import  
 ![GRBL-Plotter Image](doc/GRBLPlotter_Image.png?raw=true "Image import") 
 
 Different scaling options  

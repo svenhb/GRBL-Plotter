@@ -103,22 +103,29 @@ Separate serial COM window(s) - one for the CNC, one for the tool changer (or 4t
 ![GRBL-Plotter COM interface](doc/GRBLPlotter_COM2.png?raw=true "Serial connection") ![2nd GRBL control](doc/GRBLPlotter_Control_COM2.png?raw=true "Serial connection")
 
 Setup import / GCode conversion  
-![GRBL-Plotter Setup1](doc/GRBLPlotter_Setup1_en.png?raw=true "Setup1") 
-  
-Setup main configuration  
+![GRBL-Plotter Setup1.1](doc/GRBLPlotter_Setup1_1_en.png?raw=true "Setup1.1") 
+Setup import / GCode conversion  
+![GRBL-Plotter Setup1.2](doc/GRBLPlotter_Setup1_2_en.png?raw=true "Setup1.2") 
+Setup import / GCode conversion  
+![GRBL-Plotter Setup1.3](doc/GRBLPlotter_Setup1_3_en.png?raw=true "Setup1.3") 
+   
+Setup main tool table  
 ![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_en.png?raw=true "Setup2") 
-  
-Setup user defined buttons  
+   
+Setup main configuration  
 ![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_en.png?raw=true "Setup3") 
   
-Setup GamePad  
+Setup user defined buttons  
 ![GRBL-Plotter Setup4](doc/GRBLPlotter_Setup4_en.png?raw=true "Setup4") 
   
-Setup virtual Joystick  
+Setup GamePad  
 ![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_en.png?raw=true "Setup5") 
   
+Setup virtual Joystick  
+![GRBL-Plotter Setup6](doc/GRBLPlotter_Setup6_en.png?raw=true "Setup6") 
+  
 Setup shape recogniton for fiducial camera     
-![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup6_en.png?raw=true "Setup6") 
+![GRBL-Plotter Setup7](doc/GRBLPlotter_Setup7_en.png?raw=true "Setup7") 
   
 Text import  
 ![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
