@@ -110,31 +110,31 @@ Setup import / GCode conversion
 ![GRBL-Plotter Setup1.3](doc/GRBLPlotter_Setup1_3_en.png?raw=true "Setup1.3") 
    
 Setup main tool table  
-![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_en.png?raw=true "Setup2") 
+![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_en.png?raw=true "Setup2")  
    
 Setup main configuration  
-![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_en.png?raw=true "Setup3") 
+![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_en.png?raw=true "Setup3")  
   
 Setup user defined buttons  
-![GRBL-Plotter Setup4](doc/GRBLPlotter_Setup4_en.png?raw=true "Setup4") 
+![GRBL-Plotter Setup4](doc/GRBLPlotter_Setup4_en.png?raw=true "Setup4")  
   
 Setup GamePad  
-![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_en.png?raw=true "Setup5") 
+![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_en.png?raw=true "Setup5")  
   
 Setup virtual Joystick  
-![GRBL-Plotter Setup6](doc/GRBLPlotter_Setup6_en.png?raw=true "Setup6") 
+![GRBL-Plotter Setup6](doc/GRBLPlotter_Setup6_en.png?raw=true "Setup6")  
   
 Setup shape recogniton for fiducial camera     
-![GRBL-Plotter Setup7](doc/GRBLPlotter_Setup7_en.png?raw=true "Setup7") 
+![GRBL-Plotter Setup7](doc/GRBLPlotter_Setup7_en.png?raw=true "Setup7")  
   
 Text import  
-![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion") 
+![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion")  
   
 Picture import  
-![GRBL-Plotter Image](doc/GRBLPlotter_Image.png?raw=true "Image import") 
+![GRBL-Plotter Image](doc/GRBLPlotter_Image.png?raw=true "Image import")  
   
 Different scaling options  
-![GRBL-Plotter Scaling](doc/GRBLPlotter_scaling.png?raw=true "GCode scaling") 
+![GRBL-Plotter Scaling](doc/GRBLPlotter_scaling.png?raw=true "GCode scaling")  
 
 Feed rate overrid for Version 0.9 and 1.1  
 ![GRBL-Plotter Override](doc/GRBLPlotter_override.png?raw=true "GCode override") ![GRBL-Plotter Override](doc/GRBLPlotter_override2.png?raw=true "GCode override")
