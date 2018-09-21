@@ -7,7 +7,7 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
 ### New in version 1.2.0.x:
 * Tool table instead of color palette (incl. tool exchange positions (water color pos.))  
 * [Drag tool compensation](https://github.com/svenhb/GRBL-Plotter/wiki/Drag-tool-compensation) (to compensate offset when drawing with a brush)   
-* automatic subroutine insertion (to refresh brush after drawing a certain distance)  
+* automatic subroutine insertion (to refresh brush after drawing a certain distance - [Video](https://youtu.be/3LHnGV8jKIs))  
 * Show machine working area, alert on exceed  
 * Reduce CPU load by showing background picture instead of real object path during streaming   
 * Receive commands via serial port for [DIY control pad / pendant](https://github.com/svenhb/GRBL-Plotter/wiki/DIY-control)  
