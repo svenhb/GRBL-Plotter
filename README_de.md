@@ -7,7 +7,7 @@ Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Don
 ### Neu in Version 1.2.0.x:  
 * Werkzeugliste statt Farbpalette (inkl. Werkzeugwechselpositionen (bzw. Wasserfarben Position))  
 * Schleppwerkzeugkompensation (um den Offset der Pinselspitze zu kompensieren)  
-* Automatisches Einfügen eines Unterprogramms (um die Farbe eines Pinsels 'nachzutanken')  
+* Automatisches Einfügen eines Unterprogramms (um die Farbe eines Pinsels 'nachzutanken'  - [Video](https://youtu.be/3LHnGV8jKIs))  
 * Anzeige des max. Arbeitsbereiches, Alarm bei Überschreitung  
 * Reduzierung der CPU-Last durch Anzeige eines Hintergrundbildes statt realtime Anzeige während des Streamens  
 * Empfang von Steuerbefehlen über eine serielle Schnittstelle für DIY-Steuerungen  
