@@ -313,7 +313,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-|(-)")]
         public string custom8 {
             get {
                 return ((string)(this["custom8"]));
@@ -3128,6 +3128,18 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["importImageKeepRatio"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ctrlSendStopJog {
+            get {
+                return ((bool)(this["ctrlSendStopJog"]));
+            }
+            set {
+                this["ctrlSendStopJog"] = value;
             }
         }
     }
