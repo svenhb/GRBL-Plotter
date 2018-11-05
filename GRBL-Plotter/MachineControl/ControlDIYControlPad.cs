@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
 
 namespace GRBL_Plotter
 {
     public partial class ControlDIYControlPad : Form
     {
-        private string rxString;
-        private bool isDataProcessing = false;      // false when no data processing pending
+        private string rxString,rxTmpString;
+        private byte rxChar;
 
         public ControlDIYControlPad()
-        {
-            InitializeComponent();
+        {   InitializeComponent();
         }
 
         private void btnOpenPort_Click(object sender, EventArgs e)
-        {
-            if (serialPort.IsOpen)
+        {   if (serialPort.IsOpen)
                 closePort();
             else
                 openPort();
@@ -38,11 +37,10 @@ namespace GRBL_Plotter
         }
 
         private bool openPort()
-        {
-            try
-            {
-                serialPort.PortName = cbPort.Text;
+        {   try
+            {   serialPort.PortName = cbPort.Text;
                 serialPort.BaudRate = Convert.ToInt32(cbBaud.Text);
+                serialPort.Encoding = Encoding.GetEncoding(28591);
                 serialPort.Open();
                 rtbLog.Clear();
                 rtbLog.AppendText("Open " + cbPort.Text + "\r\n");
@@ -77,13 +75,36 @@ namespace GRBL_Plotter
             rtbLog.ScrollToCaret();
         }
 
+        private static byte lastChar = 0;
+        private static List<byte> isRealTimeCmd = new List<byte> { 0x18, (byte)'?', (byte)'~', (byte)'!'};
         private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {   while ((serialPort.IsOpen) && (serialPort.BytesToRead > 0))
-            {   rxString = string.Empty;
+            {
+                byte[] rxBuff = new byte[serialPort.BytesToRead];
+                serialPort.Read(rxBuff, 0, serialPort.BytesToRead);
+                byte rxTmpChar = 0;
                 try
-                {   rxString = serialPort.ReadTo("\r\n");              //read line from grbl, discard CR LF
-                    this.Invoke(new EventHandler(handleRxData));        //tigger rx process 
-                    while ((serialPort.IsOpen) && (isDataProcessing)) ;  //wait previous data line processed done
+                {   foreach (byte rxTmpChart in rxBuff)
+                    {
+                        rxTmpChar = rxTmpChart;
+                        if ((rxTmpChar > 0x7F) || (isRealTimeCmd.Contains(rxTmpChar)))  // is real time cmd ?
+                        {   rxChar = rxTmpChar;
+                            this.Invoke(new EventHandler(handleRxData));
+                        }
+                        else
+                        {   rxTmpString += (char)rxTmpChar;
+                            if ((rxTmpChar == '\r') || (rxTmpChar == '\n'))             // end of regular command
+                            {   if (lastChar >= ' ')
+                                {
+                                    rxChar = 0;
+                                    rxString = rxTmpString.Trim();
+                                    this.Invoke(new EventHandler(handleRxData));
+                                }
+                                rxTmpString = "";
+                            }
+                        }
+                        lastChar = rxTmpChar;
+                    }
                 }
                 catch (Exception errort)
                 {   serialPort.Close();
@@ -94,9 +115,18 @@ namespace GRBL_Plotter
 
         private void handleRxData(object sender, EventArgs e)
         {
-            rtbLog.AppendText(string.Format("< {0} \r\n", rxString));
-            OnRaiseCommandEvent(new CommandEventArgs(rxString));
-            isDataProcessing = false;
+            if ((rxChar > 0x7F) || (isRealTimeCmd.Contains(rxChar)))
+            {   rtbLog.AppendText(string.Format("< 0x{0:X} {1}\r\n", rxChar, grbl.getRealtime(rxChar)));
+                OnRaiseCommandEvent(new CommandEventArgs(rxChar));
+                rxChar = 0;
+            }
+            else
+            {   if (rxString.Length > 2)        // don't send single \n
+                {   rtbLog.AppendText(string.Format("< {0} \r\n", rxString));
+                    OnRaiseCommandEvent(new CommandEventArgs(rxString));
+                }
+                rxString = "";
+            }
         }
 
         public void sendFeedback(string data)
@@ -108,10 +138,17 @@ namespace GRBL_Plotter
         private void sendLine(string data)
         {
             try
-            {
-                serialPort.Write(data + "\r");
-                if (cBFeedback.Checked)
-                    rtbLog.AppendText(string.Format("> {0} \r\n", data));
+            {   if (serialPort.IsOpen)
+                {
+                    serialPort.Write(data + "\r\n");
+                    if (cBFeedback.Checked)
+                        rtbLog.AppendText(string.Format("> {0} \r\n", data));
+                }
+                else {
+                    if (cBFeedback.Checked)
+                        rtbLog.AppendText(string.Format(">| {0} \r\n", data));
+                }
+
             }
             catch (Exception err)
             {   if (cBFeedback.Checked)
@@ -124,8 +161,10 @@ namespace GRBL_Plotter
                 rtbLog.SelectedText = "";
             }
 
-            rtbLog.Select(rtbLog.TextLength, 0);
-            rtbLog.ScrollToCaret();
+            if (cBFeedback.Checked)
+            {   rtbLog.Select(rtbLog.TextLength, 0);
+                rtbLog.ScrollToCaret();
+            }
         }
         public event EventHandler<CommandEventArgs> RaiseStreamEvent;
         protected virtual void OnRaiseCommandEvent(CommandEventArgs e)
@@ -156,12 +195,18 @@ namespace GRBL_Plotter
 
     public class CommandEventArgs : EventArgs
     {
-        private string command;
+        private string cmdString;
+        private byte cmdChar;
         public CommandEventArgs(string cmd)
-        {   command = cmd;
+        {   cmdString = cmd;
+        }
+        public CommandEventArgs(byte cmd)
+        {   cmdChar = cmd;
         }
         public string Command
-        { get { return command; } }
+        { get { return cmdString; } }
+        public byte RealTimeCommand
+        { get { return cmdChar; } }
     }
 
 }
