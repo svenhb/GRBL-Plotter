@@ -5,7 +5,7 @@ Written in C# VisualStudio 2015.
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
 ### New in version 1.2.1.x:
-* Improved import of images - check wiki
+* Improved import of images - check [wiki](https://github.com/svenhb/GRBL-Plotter/wiki/Image-import)
   - New filters for easy color quantization
   - Create outline contour to avoid wavy edges
   
