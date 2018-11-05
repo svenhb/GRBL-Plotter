@@ -29,6 +29,8 @@
                 Bugfix SVG End GCode Path before next SVG subpath
                 Bugfix Scale to max dimension
     2018-07     importInMM = Properties.Settings.Default.importUnitmm;
+    2018-11-04  Y-Offset Problem line 347: ...(svgHeightPx * scale)
+                Transform problem: overwrite old matrix[index] line 467: end if here
 */
 
 using System;
@@ -73,6 +75,8 @@ namespace GRBL_Plotter
 
         private static bool gcodeToolChange = false;          // Apply tool exchange command
         private static int gcodeOldToolNr = -1;
+        private static int myTool = 1;
+        private static string myColor = "";
 
         // Using Z-Axis for Pen up down
         private static bool gcodeZApply = true;         // if true insert Z movements for Pen up/down
@@ -272,9 +276,10 @@ namespace GRBL_Plotter
             float scale = 1;
             string tmpString="";
 
-            if (svgCode.Attribute("viewBox") != null)
+            if (svgCode.Attribute("viewBox") != null)   // viewBox unit always in px
             {
-                string viewbox = svgCode.Attribute("viewBox").Value.Replace(' ', '|');
+                string viewbox = svgCode.Attribute("viewBox").Value;
+                viewbox = Regex.Replace(viewbox, @"\s+", " ").Replace(' ', '|');    // remove double space
                 var split = viewbox.Split('|');
                 vbOffX = -floatParse(split[0]);
                 vbOffY = -floatParse(split[1]);
@@ -283,19 +288,21 @@ namespace GRBL_Plotter
                 tmp.M11 = 1; tmp.M22 = -1;      // flip Y
                 tmp.OffsetY = vbHeight;
                 if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG viewbox :" + viewbox+" )");
+                //MessageBox.Show(string.Format("{0} {1} {2} {3}",vbOffX,vbOffY,vbWidth,vbHeight));
             }
 
             if (svgCode.Attribute("width") != null)
             {
                 tmpString = svgCode.Attribute("width").Value;
-                svgWidthPx = floatParse(tmpString);
+                svgWidthPx = floatParse(tmpString);             // convert in px
+
                 if (importInMM)
                 {   if ((tmpString.IndexOf("mm") > 0) && (vbWidth>0))
                         svgWidthPx = svgWidthPx / 3.543307f;
                 }
                 scale = 1;
-                if (svgConvertToMM && tmpString.IndexOf("in")>0)
-                    scale = 25.4f;
+                if (svgConvertToMM && tmpString.IndexOf("in") > 0)
+                    scale = (1 / 3.543307f);    // 25.4f;
                 if (!svgConvertToMM && tmpString.IndexOf("mm") > 0)
                     scale = (1 / 25.4f);
                 tmpString = removeUnit(tmpString);
@@ -315,15 +322,16 @@ namespace GRBL_Plotter
             {
                 tmpString = svgCode.Attribute("height").Value;
                 svgHeightPx = floatParse(tmpString);
+
                 if (importInMM)
                 {   if ((tmpString.IndexOf("mm") > 0) && (vbHeight > 0))
                         svgHeightPx = svgHeightPx / 3.543307f;
                 }
                 scale = 1;
                 if (svgConvertToMM && tmpString.IndexOf("in") > 0)
-                    scale = 25.4f;
+                    scale = (1 / 3.543307f);    // 25.4f;
                 if (!svgConvertToMM && tmpString.IndexOf("mm") > 0)
-                    scale = (1/25.4f);
+                    scale = (1 / 25.4f);
                 tmpString = removeUnit(tmpString);
                 float svgHeightUnit = floatParse(tmpString);// svgCode.Attribute("height").Value.Replace("mm", ""));
 
@@ -337,7 +345,7 @@ namespace GRBL_Plotter
                 }
                 if (vbHeight > 0)
                 {   tmp.M22 = -scale * svgHeightPx / vbHeight;
-                    tmp.OffsetY = -vbOffX * svgHeightUnit / vbHeight + svgHeightPx;
+                    tmp.OffsetY = -vbOffY * svgHeightUnit / vbHeight + (svgHeightPx * scale);
                 }
             }
 
@@ -379,6 +387,10 @@ namespace GRBL_Plotter
                 parseTransform(groupElement,true, level);   // transform will be applied in gcodeMove
                 if (!svgNodesOnly)
                     parseBasicElements(groupElement, level);
+                if (groupElement.Attribute("stroke") != null)
+                {   myColor = groupElement.Attribute("stroke").Value; //getColor(groupElement);
+                    myTool = toolTable.getToolNr(myColor, 0);
+                }
                 parsePath(groupElement, level);
                 parseGroup(groupElement, level+1);
             }
@@ -392,6 +404,7 @@ namespace GRBL_Plotter
         private static bool parseTransform(XElement element,bool isGroup, int level)
         {   Matrix tmp = new Matrix(1, 0, 0, 1, 0, 0); // m11, m12, m21, m22, offsetx, offsety
             bool transf = false;
+
             if (element.Attribute("transform") != null)
             {
                 transf = true;
@@ -451,7 +464,7 @@ namespace GRBL_Plotter
                     tmp.OffsetY = floatParse(split[5]); // f    offset y
                     if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("\r\n( SVG-Matrix {0} {1} {2} )\r\n", coord.Replace(',', '|'), level, isGroup));
                 }
-                //}
+        }
                 if (isGroup)
                 {
                     matrixGroup[level].SetIdentity();
@@ -476,7 +489,7 @@ namespace GRBL_Plotter
                     if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( gc-Scale {0} {1} )\r\n", matrixElement.M11, matrixElement.M22);
                     if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( gc-Offset {0} {1} )\r\n", matrixElement.OffsetX, matrixElement.OffsetY);
                 }
-            }
+          //  }
             return transf;
         }
         private static string getTextBetween(string source,string s1, string s2)
@@ -490,15 +503,15 @@ namespace GRBL_Plotter
             }
             return source.Substring(start,source.Length-start-1);
         }
-        private static float floatParse(string str, float ext=1)
-        {       // https://www.w3.org/TR/SVG/coords.html#Units
+        private static float floatParse(string str, float ext=1)        // return value in px
+        {       // https://www.w3.org/TR/SVG/coords.html#Units          // in=90 or 96 ???
             bool percent = false;
-            float factor = 1;
+            float factor = 1;   // no unit = px
             if (str.IndexOf("pt") > 0) { factor = 1.25f; }
             if (str.IndexOf("pc") > 0) { factor = 15f; }
             if (str.IndexOf("mm") > 0) { factor = 3.543307f; }
             if (str.IndexOf("cm") > 0) { factor = 35.43307f; }
-            if (str.IndexOf("in") > 0) { factor = 90f; }
+            if (str.IndexOf("in") > 0) { factor = 90f; }            // 96?
             if (str.IndexOf("em") > 0) { factor = 150f; }
             if (str.IndexOf("%") > 0)  { percent = true; }
             str = str.Replace("pt", "").Replace("pc", "").Replace("mm", "").Replace("cm", "").Replace("in", "").Replace("em ", "").Replace("%", "").Replace("px", "");
@@ -519,14 +532,13 @@ namespace GRBL_Plotter
         {
             string style = "";
             string stroke_color = "000000";        // default=black
+            int start, end;
             if (pathElement.Attribute("style") != null)
             {
-                int start, end;
                 style = pathElement.Attribute("style").Value;
                 start = style.IndexOf("stroke:#");
                 if (start >= 0)
-                {
-                    end = style.IndexOf(';', start);
+                {   end = style.IndexOf(';', start);
                     if (end > start)
                         stroke_color = style.Substring(start + 8, end - start - 8);
                 }
@@ -546,8 +558,10 @@ namespace GRBL_Plotter
                 {
                     if (pathElement != null)
                     {
-                        string myColor = getColor(pathElement);
-                        int myTool = toolTable.getToolNr(myColor,0);
+                        if (pathElement.Attribute("style") != null)
+                        {   myColor = getColor(pathElement);
+                            myTool = toolTable.getToolNr(myColor, 0);
+                        }
 
                         if ((svgToolSort) && (myTool >= 0))
                             gcodeStringIndex = myTool;
@@ -707,12 +721,15 @@ namespace GRBL_Plotter
                     startSubPath = true;
                     lastX = offsetX; lastY = offsetY;
                     string d = pathElement.Attribute("d").Value;
-                    string id = d;
+
+                    string id = d.Replace("\n","");
                     if (id.Length > 20)
                         id = id.Substring(0, 20);
 
-                    string myColor = getColor(pathElement);
-                    int myTool = toolTable.getToolNr(myColor,0);    // svgToolTable[myIndex].toolnr;
+                    if (pathElement.Attribute("style") != null)
+                    {   myColor = getColor(pathElement);
+                        myTool = toolTable.getToolNr(myColor, 0);    // svgToolTable[myIndex].toolnr;
+                    }
 
                     if ((svgToolSort) && (myTool >= 0))
                     {   if(penIsDown) gcodePenUp("Start path");
@@ -1294,6 +1311,7 @@ namespace GRBL_Plotter
         private static void gcodeMoveTo(float x, float y, string cmt)
         {
             Point coord = new Point(x, y);
+            //Point coord = translateXY(x, y);
             gcodeMoveTo(coord, cmt);
         }
 

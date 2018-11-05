@@ -120,24 +120,36 @@
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Größe</value>
   </data>
+  <data name="btnKeepSizeReso.Text" xml:space="preserve">
+    <value>Orig. px Größe - Anpassung Auflös.</value>
+  </data>
+  <data name="btnKeepSizeWidth.Text" xml:space="preserve">
+    <value>Orig. px Größe - Anpassung Breite</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="nUDReso.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 39</value>
+  </data>
   <data name="nUDReso.ToolTip" xml:space="preserve">
     <value>Abstand zwischen zwei Zeilen in Einheiten (mm oder Inch)</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="nUDHeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 45</value>
+    <value>37, 38</value>
   </data>
   <data name="nUDWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 19</value>
+    <value>37, 18</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 20</value>
+    <value>2, 21</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 13</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Breite</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 41</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 13</value>
@@ -146,7 +158,7 @@
     <value>Auflösung</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 47</value>
+    <value>2, 41</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 13</value>
@@ -208,8 +220,20 @@
   <data name="btnGenerate.Text" xml:space="preserve">
     <value>Erzeuge GCode</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Farbkorrektur</value>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 13</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Farbwinkel</value>
+  </data>
+  <data name="tBarHueShift.ToolTip" xml:space="preserve">
+    <value>Im HSV Farbraum wird der Farbwinkel verschoben</value>
+  </data>
+  <data name="nUDMaxColors.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 29</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="lblColors.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
@@ -217,36 +241,20 @@
   <data name="lblColors.Text" xml:space="preserve">
     <value>Anzahl Farben</value>
   </data>
-  <data name="cbExceptColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 17</value>
-  </data>
   <data name="cbExceptColor.Text" xml:space="preserve">
-    <value>Farbe</value>
+    <value>Ausnahmefarbe</value>
   </data>
   <data name="cbExceptColor.ToolTip" xml:space="preserve">
-    <value>Linksklick im Bild um Farbe auszuwählen</value>
-  </data>
-  <data name="nUDMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 14</value>
-  </data>
-  <data name="nUDMode.ToolTip" xml:space="preserve">
-    <value>Methode um am besten passende Farbe zu finden
-0: Abstand im RGB-Raum: Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }
-1: Abstand im Farbraum (0°-360°)
-2: Abstand im Farbraum (0°-360°) + Sättigung + Helligkeit</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cbSkipToolOrder.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
+    <value>Linksklick im Bild um Farbe auszuwählen, welche nicht exportiert werden soll</value>
   </data>
   <data name="cbSkipToolOrder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 35</value>
+    <value>14, 140</value>
   </data>
   <data name="cbSkipToolOrder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 30</value>
+    <value>180, 17</value>
   </data>
   <data name="cbSkipToolOrder.Text" xml:space="preserve">
-    <value>Fortlaufende Stiftnummern</value>
+    <value>Fortlaufende Werkzeugnummern</value>
   </data>
   <data name="cbSkipToolOrder.ToolTip" xml:space="preserve">
     <value>Anstatt die Stiftnummer (=Werkzeugnummer) aus der Palette zu ermitteln, werden die Stifte der Reihe nach von Null beginnend gezählt (0,1,2...)</value>
@@ -254,14 +262,43 @@
   <data name="nUDZBot.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 14</value>
   </data>
-  <data name="cbExceptAlpha.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
+  <data name="tBRMin.ToolTip" xml:space="preserve">
+    <value>Rotwerte unterhalb dieses Wertes werden zu Null gesetzt</value>
   </data>
-  <data name="cbExceptAlpha.ToolTip" xml:space="preserve">
-    <value>Transparenz ignorieren</value>
+  <data name="tBRMax.ToolTip" xml:space="preserve">
+    <value>Rotwerte oberhalb dieses Wertes werden zu Null gesetzt</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
+  <data name="tBGMax.ToolTip" xml:space="preserve">
+    <value>Grünwerte oberhalb dieses Wertes werden zu Null gesetzt
+</value>
+  </data>
+  <data name="tBGMin.ToolTip" xml:space="preserve">
+    <value>Grünwerte unterhalb dieses Wertes werden zu Null gesetzt</value>
+  </data>
+  <data name="tBBMax.ToolTip" xml:space="preserve">
+    <value>Blauwerte oberhalb dieses Wertes werden zu Null gesetzt
+</value>
+  </data>
+  <data name="tBBMin.ToolTip" xml:space="preserve">
+    <value>Blauwerte unterhalb dieses Wertes werden zu Null gesetzt</value>
+  </data>
+  <data name="rBMode0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 17</value>
+  </data>
+  <data name="rBMode0.Text" xml:space="preserve">
+    <value>Abstand im RGB-Raum</value>
+  </data>
+  <data name="rBMode1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 17</value>
+  </data>
+  <data name="rBMode1.Text" xml:space="preserve">
+    <value>Abstand im Farbwert (0°-360°)</value>
+  </data>
+  <data name="rBMode2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 17</value>
+  </data>
+  <data name="rBMode2.Text" xml:space="preserve">
+    <value>Abstd in Farbw., Hellw., Sättigung</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 13</value>
@@ -269,72 +306,98 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Methode</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Methode um am besten passende Farbe zu finden
-0: Abstand im RGB-Raum: Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }
-1: Abstand im Farbraum (0°-360°)
-2: Abstand im Farbraum (0°-360°) + Sättigung + Helligkeit</value>
-  </data>
-  <data name="btnTest.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 83</value>
-  </data>
-  <data name="btnTest.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 24</value>
-  </data>
-  <data name="btnTest.Text" xml:space="preserve">
-    <value>Ergebnis zeigen</value>
-  </data>
-  <data name="btnList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 83</value>
-  </data>
-  <data name="btnList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 24</value>
-  </data>
-  <data name="btnList.Text" xml:space="preserve">
-    <value>Liste der Farben</value>
-  </data>
-  <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 31</value>
-  </data>
   <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 17</value>
+    <value>193, 17</value>
   </data>
   <data name="cBImportGCTool.Text" xml:space="preserve">
-    <value>Füge Tool Change Befehle ein</value>
+    <value>Füge Werkzeugwechselbefehle ein</value>
   </data>
   <data name="cBImportGCTool.ToolTip" xml:space="preserve">
     <value>Fügt Tx M06 Befehle ein</value>
   </data>
-  <data name="cBImportSVGTool.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="cBToolChange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 17</value>
   </data>
-  <data name="cBImportSVGTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 49</value>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Werkzeugwechsel ausführen bei Tx M06</value>
   </data>
-  <data name="cBImportSVGTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 30</value>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Führt die angegebenen Skripte (siehe Setup-Tab) für den Werkzeugwechsel aus bei Tx M06 Befehlen </value>
   </data>
-  <data name="cBImportSVGTool.Text" xml:space="preserve">
-    <value>Sortiere nach Wkzg. Nr. oder meist genutzte Farbe</value>
+  <data name="btnTest.Text" xml:space="preserve">
+    <value>Vorschau</value>
   </data>
-  <data name="cBImportSVGTool.ToolTip" xml:space="preserve">
-    <value>Sortiere Stiftfarben nach Wkzg. Nr. oder Nutzung</value>
+  <data name="nUDColorPercent.ToolTip" xml:space="preserve">
+    <value>Mindest Vorkommen einer Farbe in Prozent</value>
   </data>
-  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 14</value>
+  <data name="cBImportGCTTXYFeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 17</value>
   </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 67</value>
+  <data name="cBImportGCTTXYFeed.Text" xml:space="preserve">
+    <value>aus Wkzg liste</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Ausnahmen</value>
+  <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
+    <value>Wenn "Werkzeugwechselbefehle" und "Werkzeugwechsel ausführen" aktiviert sind, 
+wird der entsprechende Wert aus der Werkzeugliste importiert während der GCodeerstellung</value>
+  </data>
+  <data name="cBImportGCTTZDeepth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 17</value>
+  </data>
+  <data name="cBImportGCTTZDeepth.Text" xml:space="preserve">
+    <value>aus Wkzg liste</value>
+  </data>
+  <data name="cBImportGCTTZDeepth.ToolTip" xml:space="preserve">
+    <value>Wenn "Werkzeugwechselbefehle" und "Werkzeugwechsel ausführen" aktiviert sind, 
+wird der entsprechende Wert aus der Werkzeugliste importiert während der GCodeerstellung</value>
+  </data>
+  <data name="cBImportGCTTZFeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 17</value>
+  </data>
+  <data name="cBImportGCTTZFeed.Text" xml:space="preserve">
+    <value>aus Wkzg liste</value>
+  </data>
+  <data name="cBImportGCTTZFeed.ToolTip" xml:space="preserve">
+    <value>Wenn "Werkzeugwechselbefehle" und "Werkzeugwechsel ausführen" aktiviert sind, 
+wird der entsprechende Wert aus der Werkzeugliste importiert während der GCodeerstellung</value>
+  </data>
+  <data name="btnPresetCorrection3.Text" xml:space="preserve">
+    <value>Comic - wenige Farben</value>
+  </data>
+  <data name="btnPresetCorrection3.ToolTip" xml:space="preserve">
+    <value>Es werden so wenig Farben wie möglich verwendet. Farben mit einer Häufigkeit 
+unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandelt.</value>
+  </data>
+  <data name="rBImportSVGTool2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 32</value>
+  </data>
+  <data name="rBImportSVGTool2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 17</value>
+  </data>
+  <data name="rBImportSVGTool2.Text" xml:space="preserve">
+    <value>Sort. nach Nutzung</value>
+  </data>
+  <data name="rBImportSVGTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 17</value>
+  </data>
+  <data name="rBImportSVGTool.Text" xml:space="preserve">
+    <value>Sortiert nach WkzgNr.</value>
+  </data>
+  <data name="btnShowSettings.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="nUDGCodeOutlineSmooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>357, 124</value>
+  </data>
+  <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
+    <value>Glättungszyklen</value>
   </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 14</value>
+    <value>8, 19</value>
   </data>
   <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 67</value>
+    <value>187, 72</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -347,26 +410,20 @@
   <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
     <value>Bild laden</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Farbverarbeitung</value>
+  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 20</value>
   </data>
-  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>427, 111</value>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aus Zwischenablage</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Farbe als Tool Nr.</value>
+  <data name="rBProcessTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 17</value>
   </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 14</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Vom Setup Tab:</value>
+  <data name="rBProcessTool.Text" xml:space="preserve">
+    <value>  Farbe bestimmt Werkzeugnummer</value>
   </data>
   <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>427, 38</value>
+    <value>387, 38</value>
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Grauwert als Z Tiefe</value>
@@ -385,6 +442,96 @@
   </data>
   <data name="cBCompress.Location" type="System.Drawing.Point, System.Drawing">
     <value>313, 17</value>
+  </data>
+  <data name="cBPreview.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 4</value>
+  </data>
+  <data name="cBPreview.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 17</value>
+  </data>
+  <data name="cBPreview.Text" xml:space="preserve">
+    <value>Vorschau mit Farben der Werkzeugliste</value>
+  </data>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 95</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Farbreduktion</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 17</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
+    <value>Reduziere Farben</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 13</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Werkzeugliste</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Umwandlungsassistent</value>
+  </data>
+  <data name="btnPresetCorrection4.Text" xml:space="preserve">
+    <value>Kontur (kein Rückgängig)</value>
+  </data>
+  <data name="btnPresetCorrection2.Text" xml:space="preserve">
+    <value>Grafik - viele Farben</value>
+  </data>
+  <data name="btnResetCorrection.Text" xml:space="preserve">
+    <value>RESET der Einstellungen</value>
+  </data>
+  <data name="btnPresetCorrection1.Text" xml:space="preserve">
+    <value>Bild - dunkler Hintergrund</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Farben ändern</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 13</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Farbsättig.</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Farbeffekte</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Farbersetzung</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 13</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Abwählen von Farben</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>GCode Erzeugung</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>291, 125</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 17</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
+    <value>glätten</value>
+  </data>
+  <data name="cBGCodeOutline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 17</value>
+  </data>
+  <data name="cBGCodeOutline.Text" xml:space="preserve">
+    <value>Umrandung zeichnen</value>
+  </data>
+  <data name="cBGCodeFill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="cBGCodeFill.Text" xml:space="preserve">
+    <value>Flächen füllen</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Farbkorrektur</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3391,10 +3538,6 @@
         ////////////////////////////////////////////////////////////////////////////////
         //8=
 </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Erzeuge GCode aus Bild</value>

@@ -52,6 +52,7 @@ namespace GRBL_Plotter
         private static string gcodeToolText = "";       // counter for GCode Tools
 
         public static float gcodeXYFeed = 1999;        // XY feed to apply for G1
+        private static bool gcodeXYFeedToolTable=false;     // from Tool Table
         private static bool gcodeComments = true;       // if true insert additional comments into GCode
 
         private static bool gcodeToolChange = false;          // Apply tool exchange command
@@ -59,7 +60,7 @@ namespace GRBL_Plotter
 
         // Using Z-Axis for Pen up down
         private static bool gcodeZApply = true;         // if true insert Z movements for Pen up/down
-        private static float gcodeZUp = 1.999f;         // Z-up position
+        public static float gcodeZUp = 1.999f;         // Z-up position
         public static float gcodeZDown = -1.999f;      // Z-down position
         public static float gcodeZFeed = 499;          // Z feed to apply for G1
         public static float gcodeZRepitition;          // Z feed to apply for G1
@@ -87,12 +88,19 @@ namespace GRBL_Plotter
         private static bool gcodeInsertSubroutine = false;
         private static int gcodeSubroutineCount = 0;
 
+        private static bool gcodeLineSegmentation;
+        private static float gcodeLineSegmentLength;
+        private static bool gcodeLineSegmentEquidistant;
+        private static bool gcodeLineSegementSubroutine;
+
+
         private static Stopwatch stopwatch = new Stopwatch();
 
         public static void setup()
         {
             setDecimalPlaces((int)Properties.Settings.Default.importGCDecPlaces);
             gcodeXYFeed = (float)Properties.Settings.Default.importGCXYFeed;
+            gcodeXYFeedToolTable = Properties.Settings.Default.importGCTTXYFeed;
 
             gcodeComments = Properties.Settings.Default.importGCAddComments;
             gcodeSpindleToggle = Properties.Settings.Default.importGCSpindleToggle;
@@ -142,6 +150,11 @@ namespace GRBL_Plotter
             gcodeLines = 1;             // counter for GCode lines
             gcodeDistance = 0;          // counter for GCode move distance
             remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;
+
+            gcodeLineSegmentation = Properties.Settings.Default.importGCLineSegmentation;
+            gcodeLineSegmentLength = (float)Properties.Settings.Default.importGCLineSegmentLength;
+            gcodeLineSegmentEquidistant = Properties.Settings.Default.importGCLineSegmentEquidistant;
+            gcodeLineSegementSubroutine = Properties.Settings.Default.importGCSubFirst;
 
             gcodeSubroutineEnable = 0;
             gcodeSubroutine = "";
@@ -370,7 +383,7 @@ namespace GRBL_Plotter
                 finalx = (float)tmp.X; finaly = (float)tmp.Y;   // get extended final position
             }
 
-            if (Properties.Settings.Default.importGCLineSegmentation)       // apply segmentation
+            if (gcodeLineSegmentation)       // apply segmentation
             {   float segFinalX = finalx, segFinalY = finaly;
                 if (gcodeDragCompensation)
                 {   lastx = segLastFinalX;// origLastX;
@@ -379,11 +392,11 @@ namespace GRBL_Plotter
                 float dx = finalx -  lastx;       // remaining distance until full move
                 float dy = finaly -  lasty;       // lastXY is global
                 float moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
-                float segmentLength = (float)Properties.Settings.Default.importGCLineSegmentLength;
-                bool equidistance = Properties.Settings.Default.importGCLineSegmentEquidistant;
+                float segmentLength = gcodeLineSegmentLength;
+                bool equidistance = gcodeLineSegmentEquidistant;
 
                 //auch nach G0 move
-                if (Properties.Settings.Default.importGCSubFirst && (lastMovewasG0 || (moveLength >= segmentLength)))       // also subroutine at first point
+                if (gcodeLineSegementSubroutine && (lastMovewasG0 || (moveLength >= segmentLength)))       // also subroutine at first point
                 {
                     if (gcodeInsertSubroutine)
                         applyFeed = insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);
@@ -547,7 +560,7 @@ namespace GRBL_Plotter
                 feed = string.Format("F{0}", gcodeXYFeed);
                 applyXYFeedRate = false;                        // don't set feed next time
             }
-            if (Properties.Settings.Default.importGCTTXYFeed) { cmt += " XY feed from tool table"; }
+            if (gcodeXYFeedToolTable) { cmt += " XY feed from tool table"; }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
 
             if (gcodeCompress)
