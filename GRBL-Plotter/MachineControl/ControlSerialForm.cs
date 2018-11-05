@@ -307,14 +307,15 @@ namespace GRBL_Plotter
             cbBaud.Enabled = !isConnected;
             btnScanPort.Enabled = !isConnected;
             btnClear.Enabled = isConnected;
-            cBCommand.Enabled = isConnected && !isSensing;
-            btnSend.Enabled = isConnected && !isSensing;
-            btnGRBLCommand0.Enabled = isConnected && !isSensing;
-            btnGRBLCommand1.Enabled = isConnected && !isSensing;
-            btnGRBLCommand2.Enabled = isConnected && !isSensing;
-            btnGRBLCommand3.Enabled = isConnected && !isSensing;
-            btnGRBLCommand4.Enabled = isConnected && !isSensing;
-            btnCheckGRBL.Enabled = isConnected && !isSensing;// && !isGrblVers0;
+            cBCommand.Enabled = isConnected &&       (!isStreaming || isStreamingPause);
+            btnSend.Enabled = isConnected &&         (!isStreaming || isStreamingPause);
+            btnGRBLCommand0.Enabled = isConnected && (!isStreaming || isStreamingPause);
+            btnGRBLCommand1.Enabled = isConnected && (!isStreaming || isStreamingPause);
+            btnGRBLCommand2.Enabled = isConnected && (!isStreaming || isStreamingPause);
+            btnGRBLCommand3.Enabled = isConnected && (!isStreaming || isStreamingPause);
+            btnGRBLCommand4.Enabled = isConnected && (!isStreaming || isStreamingPause);
+            btnCheckGRBL.Enabled = isConnected &&    (!isStreaming || isStreamingPause);// && !isGrblVers0;
+            //btnCheckGRBLResult.Enabled
             btnGRBLReset.Enabled = isConnected;// & !isSensing;
         }
 
@@ -587,14 +588,8 @@ namespace GRBL_Plotter
                 }
             }
             if (isStreaming)
-            {
-                if (!isStreamingPause)
-                {
-                    gCodeLinesConfirmed++;  //line processed
-#if (debuginfo)
-   //                 rtbLog.AppendText(string.Format("> ok {0} {1} {2}\r\n", gCodeLinesSent, gCodeLinesConfirmed, gCodeLinesCount));//if not in transfer log the txLine
-                    rtbLog.AppendText(string.Format("> ok {0} {1} {2}  \r\n", sendLinesSent, sendLinesConfirmed, grblBufferFree));//if not in transfer log the txLine
-#endif
+            {   if (!isStreamingPause)
+                {   gCodeLinesConfirmed++;  //line processed
                     // Remove already handled GCode lines to release memory
                     if ((gCodeLines.Count > 1) && (gCodeLinesSent > 1))
                     {
@@ -605,8 +600,9 @@ namespace GRBL_Plotter
                         gCodeLinesCount--;
                         tmpIndex = gCodeLinesSent;
                     }
-
                 }
+                else
+                    grblStatus = grblStreaming.pause;   // update status
                 //Transfer finished and processed? Update status and controls
                 if ((gCodeLinesConfirmed >= gCodeLinesCount) && (sendLinesConfirmed == sendLinesCount))
                 {
@@ -623,22 +619,16 @@ namespace GRBL_Plotter
                     if (!(isStreamingPause || isStreamingRequestPause))
                         preProcessStreaming();//If more lines on file, send it  
                 }
-#if (debuginfo)
-                addToLog("Line " + gCodeLineNr[gCodeLinesSent].ToString());
-#endif
-                //   if (allowStreamingEvent)    // allowed each 200ms to prevent too much events
-                //       sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
-                //   allowStreamingEvent = false;
                 if ((oldStatus != grblStatus) || allowStreamingEvent)
                 {
                     sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
-                    grblStatus = oldStatus;
+                    oldStatus = grblStatus;     //grblStatus = oldStatus;
                     allowStreamingEvent = false;
                 }
             }
             processSend();
         }
-        private grblStreaming oldStatus = grblStreaming.ok;
+
         /*  sendStreamEvent update main prog 
          * */
         private void sendStreamEvent(int lineNr, grblStreaming status)
@@ -698,8 +688,7 @@ namespace GRBL_Plotter
             }
             else if (dataField[0].IndexOf("MSG") >= 0) //[MSG:Pgm End]
             {   if (dataField[1].IndexOf("Pgm End") >= 0)
-                {   //MessageBox.Show("Pgm End");
-                    if (isStreaming)
+                {   if (isStreaming)
                     {
                         isStreaming = false;
                         addToLog("\r[Streaming finish]");
@@ -741,7 +730,6 @@ namespace GRBL_Plotter
 
         private grblState grblStateNow = grblState.unknown;
         private grblState grblStateLast = grblState.unknown;
-//        private string lastCmd = "";
 
         // should occur with same frequent as timer interrupt -> each 200ms
         // old:         <Idle,MPos:0.000,0.000,0.000,WPos:0.000,0.000,0.000>
@@ -825,12 +813,13 @@ namespace GRBL_Plotter
         }
         public event EventHandler<PosEventArgs> RaisePosEvent;
         protected virtual void OnRaisePosEvent(PosEventArgs e)
-        {   EventHandler<PosEventArgs> handler = RaisePosEvent;
+        {
+            //addToLog("OnRaisePosEvent " + e.Status.ToString());
+            EventHandler<PosEventArgs> handler = RaisePosEvent;
             if (handler != null)
             {
                 handler(this, e);
             }
-//            lastCmd = "";
         }
 
         #endregion
@@ -849,7 +838,7 @@ namespace GRBL_Plotter
         private int sendLinesConfirmed=0;         // already received line
 
         /*  requestSend fill up send buffer, called by main-prog for single commands
-         *  or called by preProcessStreaming to steam GCode data
+         *  or called by preProcessStreaming to stream GCode data
          * */
         public void requestSend(string data)
         {
@@ -860,7 +849,7 @@ namespace GRBL_Plotter
                 var tmp = cleanUpCodeLine(data);
                 if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
                 {
-                    sendLines.Add(tmp); // cleanUpCodeLine(data));
+                    sendLines.Add(tmp);
                     sendLinesCount++;
                     processSend();
                 }
@@ -1019,8 +1008,10 @@ namespace GRBL_Plotter
                             }
                         }
                     }
-                    if (line == "($TOOL-IN)") { toolInSpindle = true; }
+                    if (line.IndexOf("$TOOL") >=0) { grblStatus = grblStreaming.toolchange; }
+                    if (line == "($TOOL-IN)")  { toolInSpindle = true; }
                     if (line == "($TOOL-OUT)") { toolInSpindle = false; }
+                    if (line == "($END)")      { grblStatus = grblStreaming.ok; }
                 }
                 else
                     return;
@@ -1053,32 +1044,40 @@ namespace GRBL_Plotter
             int pos = 0, posold = 0;
             string variable, mykey = "";
             double myvalue = 0;
-            do
-            {
-                pos = line.IndexOf('#', posold);
-                if (pos > 0)
-                {   myvalue = 0;
-                    variable = line.Substring(pos, 5);
-                    mykey = variable.Substring(1);
-                    if (gcodeVariable.ContainsKey(mykey))
-                    { myvalue = gcodeVariable[mykey]; }
-                    else { line += " (" + mykey + " not found)"; }
-                    line = line.Replace(variable, string.Format("{0:0.000}", myvalue));
-  //                  addToLog("replace "+ mykey+" by "+ myvalue.ToString());
-                }
-                posold = pos + 5;
-            } while (pos > 0);
+            if (line.Length > 5)        // min length needed to be replaceable: x#TOLX
+            {   do
+                {   pos = line.IndexOf('#', posold);
+                    if (pos > 0)
+                    {   myvalue = 0;
+                        variable = line.Substring(pos, 5);
+                        mykey = variable.Substring(1);
+                        if (gcodeVariable.ContainsKey(mykey))
+                        { myvalue = gcodeVariable[mykey]; }
+                        else { line += " (" + mykey + " not found)"; }
+                        line = line.Replace(variable, string.Format("{0:0.000}", myvalue));
+                        //                  addToLog("replace "+ mykey+" by "+ myvalue.ToString());
+                    }
+                    posold = pos + 5;
+                } while (pos > 0);
+            }
             return line.Replace(',', '.');
         }
 
 
-        public void realtimeCommand(int cmd)
+        public void realtimeCommand(byte cmd)
         {
             var dataArray = new byte[] { Convert.ToByte(cmd) };
             serialPort.Write(dataArray, 0, 1);
-            addToLog("> '0x"+cmd.ToString("X")+"' "+grbl.getRealtime(cmd));
+            addToLog("> '0x" + cmd.ToString("X") + "' " + grbl.getRealtime(cmd));
+            if ((cmd == 0x85) && !(isStreaming && !isStreamingPause))
+            {
+                sendLinesSent = 0;
+                sendLinesCount = 0;
+                sendLinesConfirmed = 0;
+                sendLines.Clear();
+                grblBufferFree = grblBufferSize;
+            }
         }
-
         /// <summary>
         /// sendLine - now really send data to Arduino
         /// </summary>
@@ -1116,6 +1115,7 @@ namespace GRBL_Plotter
         private bool getParserState = false;      // true to send $G after status switched to idle
         private bool isDataProcessing=false;      // false when no data processing pending
         private grblStreaming grblStatus = grblStreaming.ok;
+        private grblStreaming oldStatus = grblStreaming.ok;
         public void stopStreaming()
         {
             int line = 0;
@@ -1131,6 +1131,7 @@ namespace GRBL_Plotter
             {   sendLine("$C");
                 isStreamingCheck = false;
             }
+            updateControls();
         }
         public void pauseStreaming()
         {   if (!isStreamingPause)
@@ -1157,6 +1158,7 @@ namespace GRBL_Plotter
                 addToLog("[Start streaming - no echo]");
                 preProcessStreaming();
             }
+            updateControls();
         }
 
         /*  startStreaming called by main-Prog
@@ -1247,6 +1249,7 @@ namespace GRBL_Plotter
             gCodeLineNr.Add(gCode.Length-1);         // add line nr
             gCodeLinesTotal = gCode.Length - 1;  // gCodeLinesCount will reduced after each 'confirmed' line
             isStreaming = true;
+            updateControls();
             preProcessStreaming();
         }
         private static double findDouble(string start, double notfound, string txt)
@@ -1272,7 +1275,7 @@ namespace GRBL_Plotter
          * */
  //       int currentTool = -1;
         private void preProcessStreaming()
-        { while ((gCodeLinesSent < gCodeLinesCount) && (grblBufferFree >= gCodeLines[gCodeLinesSent].Length + 1) && !waitForIdle)
+        {   while ((gCodeLinesSent < gCodeLinesCount) && (grblBufferFree >= gCodeLines[gCodeLinesSent].Length + 1) && !waitForIdle)
             {
                 string line = gCodeLines[gCodeLinesSent];
                 int cmdMNr = gcode.getIntGCode('M',line);
@@ -1313,7 +1316,7 @@ namespace GRBL_Plotter
                         int linenr = gCodeLineNr[gCodeLinesSent];
                         grblStatus = grblStreaming.toolchange;
                         sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
-
+                        index = insertComment(index, linenr, "($TOOL-START)");
                         addToLog("\r[TOOL change: T" + gcodeVariable["TOAN"].ToString() + " at " + gcodeVariable["TOAX"].ToString() + " , " + gcodeVariable["TOAY"].ToString() + " , " + gcodeVariable["TOAZ"].ToString() + "]");
                         if (toolInSpindle)
                         {   addToLog("[TOOL run script 1) " + Properties.Settings.Default.ctrlToolScriptPut + "  T" + gcodeVariable["TOLN"].ToString() + " at " + gcodeVariable["TOLX"].ToString() + " , " + gcodeVariable["TOLY"].ToString() + " , " + gcodeVariable["TOLZ"].ToString() + "]");
@@ -1359,12 +1362,6 @@ namespace GRBL_Plotter
                         }
                     }
                 }
-                if (line == "($END)")
-                {
-                    grblStatus = grblStreaming.ok;
-                    sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
-                }
-
                 if ((cmdMNr == 0) && !isStreamingCheck)
                 {
                     isStreamingRequestPause = true;
@@ -1441,6 +1438,7 @@ namespace GRBL_Plotter
                     grblStatus = grblStreaming.pause;
                     if (getParserState)
                     { requestSend("$G"); }
+                    updateControls();
                 }
             }
         }
@@ -1448,6 +1446,7 @@ namespace GRBL_Plotter
         public event EventHandler<StreamEventArgs> RaiseStreamEvent;
         protected virtual void OnRaiseStreamEvent(StreamEventArgs e)
         {
+            //addToLog("OnRaiseStreamEvent " + e.Status.ToString());
             EventHandler<StreamEventArgs> handler = RaiseStreamEvent;
             if (handler != null)
             {
@@ -1463,7 +1462,7 @@ namespace GRBL_Plotter
             btnSend_Click(sender, e);
         }
         private void btnSend_Click(object sender, EventArgs e)
-        {   if (!isStreaming)
+        {   if (!isStreaming || isStreamingPause)
             {
                 string cmd = cBCommand.Text;
                 cBCommand.Items.Remove(cBCommand.SelectedItem);
@@ -1476,6 +1475,8 @@ namespace GRBL_Plotter
                     if (cmd.IndexOf("0") >= 0) isLasermode = false;
                     OnRaiseStreamEvent(new StreamEventArgs(0, 0, 0, grblStreaming.lasermode));
                 }
+                if (cmd.IndexOf("$") >= 0)
+                { btnCheckGRBLResult.Enabled = false; btnCheckGRBLResult.BackColor = SystemColors.Control; }
             }
         }
         private void btnGRBLCommand0_Click(object sender, EventArgs e)
@@ -1498,32 +1499,48 @@ namespace GRBL_Plotter
                     {
                         if (int.TryParse(splt[0].Substring(1), out id))
                         {
-                            if (id == 100) { float.TryParse(splt[1], out stepX); }
-                            if (id == 101) { float.TryParse(splt[1], out stepY); }
-                            if (id == 102) { float.TryParse(splt[1], out stepZ); }
-                            if (id == 110) { float.TryParse(splt[1], out speedX); }
-                            if (id == 111) { float.TryParse(splt[1], out speedY); }
-                            if (id == 112) { float.TryParse(splt[1], out speedZ); }
+                            if (id == 100) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepX); }
+                            else if (id == 101) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepY); }
+                            else if (id == 102) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepZ); }
+                            else if (id == 110) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedX); }
+                            else if (id == 111) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedY); }
+                            else if (id == 112) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedZ); }
                         }
                     }
                 }
                 maxfX = stepX * speedX / 60000; rx = (maxfX < 30) ? "ok" : "problem!";
                 maxfY = stepY * speedY / 60000; ry = (maxfY < 30) ? "ok" : "problem!";
                 maxfZ = stepZ * speedZ / 60000; rz = (maxfZ < 30) ? "ok" : "problem!";
+                if ((maxfX < 30) && (maxfY < 30) && (maxfZ < 30))
+                    btnCheckGRBLResult.BackColor = Color.Lime;
+                else
+                    btnCheckGRBLResult.BackColor = Color.Fuchsia;
+                btnCheckGRBLResult.Enabled = true;
                 float minF = 1800 / Math.Max(stepX, Math.Max(stepY, stepZ));
-                string output = "Maximum frequency at a 'STEP' pin (at Arduino UNO, Nano) must not exceed 30kHz.\r\nCalculation: steps/mm ($100) * speed-mm/min ($110) / 60 / 1000\r\n";
-                output += string.Format("Max frequency X = {0:.##}kHz - {1}\r\nMax frequency Y = {2:.##}kHz - {3}\r\nMax frequency Z = {4:.##}kHz - {5}\r\n\r\n", maxfX, rx, maxfY, ry, maxfZ, rz);
-                output += "Minimum feedrate (F) must not go below 30 steps/sec.\r\nCalculation: (lowest mm/min) = (30 steps/sec) * (60 sec/min) / (axis steps/mm setting)\r\n";
-                output += string.Format("Min Feedrate for X = {0:.#}mm/min\r\nMin Feedrate for Y = {1:.#}mm/min\r\nMin Feedrate for Z = {2:.#}mm/min\r\n\r\n", (1800 / stepX), (1800 / stepY), (1800 / stepZ));
-                output += string.Format("Avoid feedrates (F) below {0:.#}mm/min\r\n", minF);
-                output += "\r\nSettings are copied to clipboard for further use (e.g. save as text file)";
-                System.Windows.Forms.Clipboard.SetText(string.Join("\r\n",GRBLSettings.ToArray()));
-                MessageBox.Show(output, "Information");
+                strCheckResult = "Maximum frequency at a 'STEP' pin (at Arduino UNO, Nano) must not exceed 30kHz.\r\nCalculation: steps/mm ($100) * speed-mm/min ($110) / 60 / 1000\r\n";
+                strCheckResult += string.Format("Max frequency X = {0:.##}kHz - {1}\r\nMax frequency Y = {2:.##}kHz - {3}\r\nMax frequency Z = {4:.##}kHz - {5}\r\n\r\n", maxfX, rx, maxfY, ry, maxfZ, rz);
+                strCheckResult += "Minimum feedrate (F) must not go below 30 steps/sec.\r\nCalculation: (lowest mm/min) = (30 steps/sec) * (60 sec/min) / (axis steps/mm setting)\r\n";
+                strCheckResult += string.Format("Min Feedrate for X = {0:.#}mm/min\r\nMin Feedrate for Y = {1:.#}mm/min\r\nMin Feedrate for Z = {2:.#}mm/min\r\n\r\n", (1800 / stepX), (1800 / stepY), (1800 / stepZ));
+                strCheckResult += string.Format("Avoid feedrates (F) below {0:.#}mm/min\r\n", minF);
+                strCheckResult += "\r\nSettings are copied to clipboard for further use (e.g. save as text file)";
+                System.Windows.Forms.Clipboard.SetText(string.Join("\r\n", GRBLSettings.ToArray()));
+
+ //               MessageBox.Show(strCheckResult, "Information");
+                GRBLSettings.Clear();
             }
             else
-            {   requestSend("$$"); GRBLSettings.Clear();
-                callCheckGRBL = 4;                         // timer1 will recall this function after 2 seconds
+            {   if (grblStateNow == grblState.idle)
+                {   requestSend("$$"); //GRBLSettings.Clear();
+                    callCheckGRBL = 4;                         // timer1 will recall this function after 2 seconds
+                }
+                else {
+                    addToLog("Wait for IDLE, then try again!");
+                }
             }
+        }
+        private static string strCheckResult = "";
+        private void btnCheckGRBLResult_Click(object sender, EventArgs e)
+        {   MessageBox.Show(strCheckResult, "Information");
         }
 
         private void btnGRBLCommand1_Click(object sender, EventArgs e)
@@ -1536,22 +1553,5 @@ namespace GRBL_Plotter
         { requestSend("$X"); }
         private void btnGRBLReset_Click(object sender, EventArgs e)
         { grblReset(); }
-
-  /*      private string getToolInformation(int toolNr)
-        {   string file = System.Windows.Forms.Application.StartupPath + "\\tools.csv";
-            if ((toolNr > 0) && (File.Exists(file)))
-            {
-                string[] readText = File.ReadAllLines(file);
-                string[] col;
-                foreach (string s in readText)
-                {   if (s.Length > 10)
-                    {   col = s.Split(';');
-                        if (Convert.ToInt32(col[0]) == toolNr)
-                            return s;
-                    }
-                }
-            }
-            return "";
-        }*/
     }
 }
