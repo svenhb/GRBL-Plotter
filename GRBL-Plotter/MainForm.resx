@@ -503,10 +503,13 @@
   <data name="label_mx.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label_mx.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label_mx.Location" type="System.Drawing.Point, System.Drawing">
     <value>48, 31</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label_mx.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
@@ -536,6 +539,9 @@
   </data>
   <data name="label_my.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="label_my.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label_my.Location" type="System.Drawing.Point, System.Drawing">
     <value>48, 63</value>
@@ -570,6 +576,9 @@
   <data name="label_mz.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
   </data>
+  <data name="label_mz.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label_mz.Location" type="System.Drawing.Point, System.Drawing">
     <value>48, 96</value>
   </data>
@@ -602,6 +611,9 @@
   </data>
   <data name="label_wx.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="label_wx.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label_wx.Location" type="System.Drawing.Point, System.Drawing">
     <value>44, 13</value>
@@ -636,6 +648,9 @@
   <data name="label_wy.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+  <data name="label_wy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label_wy.Location" type="System.Drawing.Point, System.Drawing">
     <value>44, 45</value>
   </data>
@@ -668,6 +683,9 @@
   </data>
   <data name="label_wz.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="label_wz.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label_wz.Location" type="System.Drawing.Point, System.Drawing">
     <value>44, 78</value>
@@ -702,8 +720,41 @@
   <metadata name="MainTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>126, 21</value>
   </metadata>
+  <data name="btnLimitExceed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLimitExceed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 206</value>
+  </data>
+  <data name="btnLimitExceed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="btnLimitExceed.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="btnLimitExceed.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="btnLimitExceed.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnLimitExceed.Name" xml:space="preserve">
+    <value>btnLimitExceed</value>
+  </data>
+  <data name="&gt;&gt;btnLimitExceed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLimitExceed.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;btnLimitExceed.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>215, 18</value>
@@ -732,6 +783,9 @@
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
     <value>267, 19</value>
   </data>
@@ -759,6 +813,9 @@
   <data name="lblOverrideSSValue.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblOverrideSSValue.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblOverrideSSValue.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 18</value>
   </data>
@@ -782,6 +839,9 @@
   </data>
   <data name="&gt;&gt;lblOverrideSSValue.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="btnOverrideSS2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnOverrideSS2.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 14</value>
@@ -807,6 +867,9 @@
   <data name="&gt;&gt;btnOverrideSS2.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="btnOverrideSS0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnOverrideSS0.Location" type="System.Drawing.Point, System.Drawing">
     <value>79, 14</value>
   </data>
@@ -830,6 +893,9 @@
   </data>
   <data name="&gt;&gt;btnOverrideSS0.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="btnOverrideSS1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnOverrideSS1.Location" type="System.Drawing.Point, System.Drawing">
     <value>156, 14</value>
@@ -855,6 +921,9 @@
   <data name="&gt;&gt;btnOverrideSS1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btnOverrideSS4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnOverrideSS4.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 14</value>
   </data>
@@ -878,6 +947,9 @@
   </data>
   <data name="&gt;&gt;btnOverrideSS4.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="btnOverrideSS3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnOverrideSS3.Location" type="System.Drawing.Point, System.Drawing">
     <value>44, 14</value>
@@ -925,10 +997,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnOverrideSSGB.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>215, 18</value>
@@ -957,6 +1032,9 @@
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>267, 19</value>
   </data>
@@ -984,6 +1062,9 @@
   <data name="lblOverrideFRValue.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblOverrideFRValue.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblOverrideFRValue.Location" type="System.Drawing.Point, System.Drawing">
     <value>242, 18</value>
   </data>
@@ -1007,6 +1088,9 @@
   </data>
   <data name="&gt;&gt;lblOverrideFRValue.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="btnOverrideFR1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnOverrideFR1.Location" type="System.Drawing.Point, System.Drawing">
     <value>156, 14</value>
@@ -1032,6 +1116,9 @@
   <data name="&gt;&gt;btnOverrideFR1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="btnOverrideFR2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnOverrideFR2.Location" type="System.Drawing.Point, System.Drawing">
     <value>121, 14</value>
   </data>
@@ -1055,6 +1142,9 @@
   </data>
   <data name="&gt;&gt;btnOverrideFR2.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="btnOverrideFR0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnOverrideFR0.Location" type="System.Drawing.Point, System.Drawing">
     <value>79, 14</value>
@@ -1080,6 +1170,9 @@
   <data name="&gt;&gt;btnOverrideFR0.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btnOverrideFR4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnOverrideFR4.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 14</value>
   </data>
@@ -1103,6 +1196,9 @@
   </data>
   <data name="&gt;&gt;btnOverrideFR4.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="btnOverrideFR3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnOverrideFR3.Location" type="System.Drawing.Point, System.Drawing">
     <value>44, 14</value>
@@ -1150,10 +1246,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnOverrideFRGB.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnOffsetApply.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="btnOffsetApply.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnOffsetApply.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 42</value>
@@ -1247,6 +1346,9 @@
   </data>
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 11</value>
@@ -1515,6 +1617,9 @@
   <data name="&gt;&gt;tbFile.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="btnOpenFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnOpenFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>128, 3</value>
   </data>
@@ -1624,7 +1729,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lbDimension.Font" type="System.Drawing.Font, System.Drawing">
     <value>Consolas, 7.75pt</value>
@@ -1654,7 +1759,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lbDimension.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="pbBuffer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pbBuffer.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 46</value>
@@ -1675,7 +1783,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;pbBuffer.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
+  </data>
+  <data name="btnStreamStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnStreamStop.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 13</value>
@@ -1699,7 +1810,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnStreamStop.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
+  </data>
+  <data name="btnStreamCheck.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnStreamCheck.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 35</value>
@@ -1723,10 +1837,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnStreamCheck.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="lbInfo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="lbInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lbInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 142</value>
@@ -1750,10 +1867,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lbInfo.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lblRemaining.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblRemaining.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblRemaining.Location" type="System.Drawing.Point, System.Drawing">
     <value>229, 67</value>
@@ -1774,7 +1894,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblRemaining.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
+  </data>
+  <data name="pbFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pbFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 23</value>
@@ -1795,10 +1918,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;pbFile.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="lblElapsed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblElapsed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblElapsed.Location" type="System.Drawing.Point, System.Drawing">
     <value>169, 10</value>
@@ -1822,10 +1948,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblElapsed.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="lblFileProgress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblFileProgress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblFileProgress.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 10</value>
@@ -1849,7 +1978,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblFileProgress.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
+  </data>
+  <data name="btnStreamStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnStreamStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 13</value>
@@ -1873,7 +2005,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnStreamStart.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -1947,6 +2079,9 @@
   <data name="lblCurrentG.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblCurrentG.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblCurrentG.Location" type="System.Drawing.Point, System.Drawing">
     <value>188, 0</value>
   </data>
@@ -1978,6 +2113,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="label_status0.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="label_status0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label_status0.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 118</value>
@@ -2147,6 +2285,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="&gt;&gt;label_wa.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btnHome.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 111</value>
   </data>
@@ -2174,6 +2315,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="&gt;&gt;btnHome.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="btnZeroXYZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnZeroXYZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 62</value>
   </data>
@@ -2200,6 +2344,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="&gt;&gt;btnZeroXYZ.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="btnZeroXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnZeroXY.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 27</value>
@@ -2231,6 +2378,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 78</value>
   </data>
@@ -2260,6 +2410,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="btnZeroZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnZeroZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 78</value>
@@ -2291,6 +2444,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 45</value>
   </data>
@@ -2320,6 +2476,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>11</value>
+  </data>
+  <data name="btnZeroY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnZeroY.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 45</value>
@@ -2351,6 +2510,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 13</value>
   </data>
@@ -2381,6 +2543,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <data name="btnZeroX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnZeroX.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 12</value>
   </data>
@@ -2410,6 +2575,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="label_status.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="label_status.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label_status.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 138</value>
@@ -2462,6 +2630,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnJogZeroXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnJogZeroXY.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 35</value>
   </data>
@@ -2488,6 +2659,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="&gt;&gt;btnJogZeroXY.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="btnJogZeroZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnJogZeroZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>86, 14</value>
@@ -2516,6 +2690,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="btnJogZeroY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnJogZeroY.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 14</value>
   </data>
@@ -2542,6 +2719,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="btnJogZeroX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnJogZeroX.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 14</value>
@@ -2576,6 +2756,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="btnCustom8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="btnCustom8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnCustom8.Location" type="System.Drawing.Point, System.Drawing">
     <value>157, 112</value>
   </data>
@@ -2605,6 +2788,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="btnCustom7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="btnCustom7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnCustom7.Location" type="System.Drawing.Point, System.Drawing">
     <value>157, 75</value>
@@ -2636,6 +2822,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="btnCustom6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="btnCustom6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnCustom6.Location" type="System.Drawing.Point, System.Drawing">
     <value>157, 38</value>
   </data>
@@ -2665,6 +2854,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="btnCustom5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="btnCustom5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnCustom5.Location" type="System.Drawing.Point, System.Drawing">
     <value>157, 1</value>
@@ -2696,6 +2888,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="btnCustom1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="btnCustom1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnCustom1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 1</value>
   </data>
@@ -2725,6 +2920,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="btnCustom2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="btnCustom2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnCustom2.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 38</value>
@@ -2756,6 +2954,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="btnCustom3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="btnCustom3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnCustom3.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 75</value>
   </data>
@@ -2785,6 +2986,9 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   </data>
   <data name="btnCustom4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="btnCustom4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnCustom4.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 112</value>
@@ -2873,8 +3077,11 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnFeedHold.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnFeedHold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 310</value>
+    <value>3, 314</value>
   </data>
   <data name="btnFeedHold.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -2904,10 +3111,13 @@ the machine is running before hitting reset, except of course if there is some e
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnFeedHold.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
+  </data>
+  <data name="btnReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnReset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 310</value>
+    <value>106, 314</value>
   </data>
   <data name="btnReset.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 43</value>
@@ -2939,10 +3149,13 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnReset.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
+  </data>
+  <data name="btnResume.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnResume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 335</value>
+    <value>3, 339</value>
   </data>
   <data name="btnResume.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 43</value>
@@ -2968,10 +3181,13 @@ start executing the buffer and Grbl will begin moving the axes.</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnResume.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="btnKillAlarm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnKillAlarm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 355</value>
+    <value>106, 359</value>
   </data>
   <data name="btnKillAlarm.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 23</value>
@@ -3002,7 +3218,7 @@ will override the locks and allow G-code functions to work again.
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnKillAlarm.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="tBURL.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3036,6 +3252,9 @@ for SVG files</value>
   <data name="&gt;&gt;tBURL.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnJogStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnJogStop.Location" type="System.Drawing.Point, System.Drawing">
     <value>136, 69</value>
   </data>
@@ -3061,7 +3280,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnJogZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3110,7 +3329,7 @@ for SVG files</value>
 </value>
   </data>
   <data name="virtualJoystickA.Location" type="System.Drawing.Point, System.Drawing">
-    <value>199, 119</value>
+    <value>199, 115</value>
   </data>
   <data name="virtualJoystickA.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>400, 400</value>
@@ -3137,7 +3356,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;virtualJoystickA.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3157,7 +3376,7 @@ for SVG files</value>
 </value>
   </data>
   <data name="virtualJoystickZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 119</value>
+    <value>186, 115</value>
   </data>
   <data name="virtualJoystickZ.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>400, 400</value>
@@ -3184,7 +3403,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3245,7 +3464,7 @@ for SVG files</value>
 </value>
   </data>
   <data name="virtualJoystickXY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 119</value>
+    <value>4, 115</value>
   </data>
   <data name="virtualJoystickXY.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>400, 400</value>
@@ -3272,7 +3491,37 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
+  </data>
+  <data name="cBSendJogStop.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBSendJogStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBSendJogStop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 297</value>
+  </data>
+  <data name="cBSendJogStop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 17</value>
+  </data>
+  <data name="cBSendJogStop.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="cBSendJogStop.Text" xml:space="preserve">
+    <value>STOP Jogging on mouse up</value>
+  </data>
+  <data name="&gt;&gt;cBSendJogStop.Name" xml:space="preserve">
+    <value>cBSendJogStop</value>
+  </data>
+  <data name="&gt;&gt;cBSendJogStop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBSendJogStop.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;cBSendJogStop.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 55</value>
@@ -3296,7 +3545,10 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
+  </data>
+  <data name="lblTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblTool.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 37</value>
@@ -3317,10 +3569,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;lblTool.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBTool.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="cBTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 37</value>
@@ -3344,10 +3599,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>103, 19</value>
@@ -3371,7 +3629,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="tBSpeed.Location" type="System.Drawing.Point, System.Drawing">
     <value>64, 15</value>
@@ -3395,10 +3653,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;tBSpeed.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="cBCoolant.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="cBCoolant.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cBCoolant.Location" type="System.Drawing.Point, System.Drawing">
     <value>165, 17</value>
@@ -3422,10 +3683,13 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBCoolant.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="cBSpindle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="cBSpindle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cBSpindle.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 18</value>
@@ -3449,7 +3713,7 @@ for SVG files</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBSpindle.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -3618,6 +3882,9 @@ for SVG files</value>
   </data>
   <data name="pictureBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -3878,7 +4145,7 @@ for SVG files</value>
     <value>2</value>
   </data>
   <data name="tLPAussen.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPLinks" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,300,Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tLPLinks" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechts" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,300,Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,577" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="gamePadTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>233, 17</value>
@@ -6897,6 +7164,9 @@ for SVG files</value>
         ////////////////////////////////////////////////////////////////////////////////
         //8=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 640</value>

@@ -130,6 +130,7 @@ namespace GRBL_Plotter
             this.label_wz = new System.Windows.Forms.Label();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLimitExceed = new System.Windows.Forms.Button();
             this.btnOverrideSSGB = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -254,6 +255,7 @@ namespace GRBL_Plotter
             this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
+            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.btnOverrideSSGB.SuspendLayout();
@@ -706,6 +708,7 @@ namespace GRBL_Plotter
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnLimitExceed);
             this.groupBox1.Controls.Add(this.btnOverrideSSGB);
             this.groupBox1.Controls.Add(this.btnOverrideFRGB);
             this.groupBox1.Controls.Add(this.groupBox4);
@@ -722,6 +725,14 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // btnLimitExceed
+            // 
+            this.btnLimitExceed.BackColor = System.Drawing.Color.Yellow;
+            resources.ApplyResources(this.btnLimitExceed, "btnLimitExceed");
+            this.btnLimitExceed.Name = "btnLimitExceed";
+            this.btnLimitExceed.UseVisualStyleBackColor = false;
+            this.btnLimitExceed.Click += new System.EventHandler(this.btnLimitExceed_Click);
             // 
             // btnOverrideSSGB
             // 
@@ -1387,6 +1398,7 @@ namespace GRBL_Plotter
             this.virtualJoystickA.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickA_JoyStickEvent);
             this.virtualJoystickA.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickA.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickA.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
             // 
             // virtualJoystickZ
             // 
@@ -1407,6 +1419,7 @@ namespace GRBL_Plotter
             this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickZ_JoyStickEvent);
             this.virtualJoystickZ.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickZ.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickZ.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
             // 
             // virtualJoystickXY
             // 
@@ -1427,9 +1440,11 @@ namespace GRBL_Plotter
             this.virtualJoystickXY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickXY_JoyStickEvent);
             this.virtualJoystickXY.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickXY.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickXY.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.cBSendJogStop);
             this.groupBox6.Controls.Add(this.btnResume);
             this.groupBox6.Controls.Add(this.virtualJoystickA);
             this.groupBox6.Controls.Add(this.btnJogStop);
@@ -1680,6 +1695,15 @@ namespace GRBL_Plotter
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
             // 
+            // cBSendJogStop
+            // 
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
+            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
+            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSendJogStop.Name = "cBSendJogStop";
+            this.cBSendJogStop.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -1922,6 +1946,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem moveToMarkedPositionToolStripMenuItem;
         private System.Windows.Forms.Label lblCurrentG;
         private System.Windows.Forms.ToolStripMenuItem reloadFileToolStripMenuItem;
+        private System.Windows.Forms.Button btnLimitExceed;
+        private System.Windows.Forms.CheckBox cBSendJogStop;
     }
 }
 

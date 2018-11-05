@@ -107,7 +107,7 @@ namespace GRBL_Plotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
-            this.Text = appName + " Ver " + System.Windows.Forms.Application.ProductVersion.ToString(); // Application.ProductVersion.ToString();    //Application.ProductVersion;
+            this.Text = appName + " Ver. " + System.Windows.Forms.Application.ProductVersion.ToString(); 
 
             if (_serial_form == null)
             {
@@ -155,6 +155,7 @@ namespace GRBL_Plotter
             if (_diyControlPad != null) _diyControlPad.Close();
             _serial_form.closePort();
             _serial_form.Close();
+            ControlPowerSaving.EnableStandby();
         }
 
         // handle position events from serial form
@@ -366,6 +367,8 @@ namespace GRBL_Plotter
 
         // send command via serial form
         private void sendRealtimeCommand(int cmd)
+        { _serial_form.realtimeCommand((byte)cmd); }
+        private void sendRealtimeCommand(byte cmd)
         { _serial_form.realtimeCommand(cmd); }
 
         // send command via serial form
@@ -767,10 +770,10 @@ namespace GRBL_Plotter
             toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
             toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
         }
+   //     private static int limitcnt = 0;
         private void checkMachineLimit()
         {
-            toolTip1.SetToolTip(lbDimension, "");
-            if (Properties.Settings.Default.machineLimitsShow)
+            if ((Properties.Settings.Default.machineLimitsShow) && (pictureBox1.BackgroundImage == null))
             {
                 if (!visuGCode.xyzSize.withinLimits(posMachine, posWorld))
                 {
@@ -779,20 +782,23 @@ namespace GRBL_Plotter
                     decimal maxx = minx + Properties.Settings.Default.machineLimitsRangeX;
                     decimal miny = Properties.Settings.Default.machineLimitsHomeY;
                     decimal maxy = miny + Properties.Settings.Default.machineLimitsRangeY;
-
-                    string tmp = string.Format("\r\nminX: {0:0.0} min: {1:0.0} max: {2:0.0} maxX: {3:0.0}", minx, visuGCode.xyzSize.minx + posMachine.X, visuGCode.xyzSize.maxx + posMachine.X, maxx);
-                    tmp += string.Format("\r\nminY: {0:0.0} min: {1:0.0} maxY: {2:0.0} maxY: {3:0.0}", miny, visuGCode.xyzSize.miny + posMachine.Y, visuGCode.xyzSize.maxy + posMachine.Y, maxy);
-                    toolTip1.SetToolTip(lbDimension, tmp);
+                    btnLimitExceed.Visible = true;
                 }
                 else
-                {
-                    lbDimension.BackColor = Color.Lime;
+                {   lbDimension.BackColor = Color.Lime;
                     toolTip1.SetToolTip(lbDimension, "");
+                    btnLimitExceed.Visible = false;
                 }
             }
             else
-                lbDimension.BackColor = Color.FromArgb(255, 255, 128);
+            {   lbDimension.BackColor = Color.FromArgb(255, 255, 128);
+                btnLimitExceed.Visible = false;
+            }
         }
+        private void btnLimitExceed_Click(object sender, EventArgs e)
+        {   MessageBox.Show("Graphics dimension exceeds machine dimension!\r\nTransformation is recommended to avoid damaging the machine! " , "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
         #endregion
 
         #region MAIN-MENU Machine control
@@ -893,7 +899,11 @@ namespace GRBL_Plotter
         private void OnRaiseDIYCommandEvent(object sender, CommandEventArgs e)
         {
             if (!isStreaming)
-                sendCommand(e.Command);
+            {   if (e.RealTimeCommand > 0x00)
+                    sendRealtimeCommand(e.RealTimeCommand);
+                else
+                    sendCommand(e.Command);
+            }
         }
 
         // Height Map
@@ -1018,6 +1028,7 @@ namespace GRBL_Plotter
                     }
                     toolTip1.SetToolTip(lbInfo, lbInfo.Text);
                     updateControls();
+                    ControlPowerSaving.EnableStandby();
                     break;
                 case grblStreaming.error:
                     isStreaming = false;
@@ -1059,6 +1070,7 @@ namespace GRBL_Plotter
                     showPicBoxBgImage = false;                     // don't show background image anymore
                     pictureBox1.BackgroundImage = null;
                     updateControls();
+                    ControlPowerSaving.EnableStandby();
                     break;
                 case grblStreaming.waitidle:
                     updateControls(true);
@@ -1120,6 +1132,7 @@ namespace GRBL_Plotter
                     btnStreamStart.Image = Properties.Resources.btn_pause;
                     btnStreamCheck.Enabled = false;
                     onPaint_setBackground();
+                    ControlPowerSaving.SuppressStandby();
                 }
                 else
                 {
@@ -1128,12 +1141,14 @@ namespace GRBL_Plotter
                         btnStreamStart.Image = Properties.Resources.btn_play;
                         _serial_form.pauseStreaming();
                         isStreamingPause = true;
+//                        ControlPowerSaving.EnableStandby();
                     }
                     else
                     {
                         btnStreamStart.Image = Properties.Resources.btn_pause;
                         _serial_form.pauseStreaming();
                         isStreamingPause = false;
+//                        ControlPowerSaving.SuppressStandby();
                     }
                 }
             }
@@ -1176,7 +1191,7 @@ namespace GRBL_Plotter
             pbFile.Value = 0;
             pbBuffer.Value = 0;
             signalPlay = 0;
-
+            ControlPowerSaving.EnableStandby();
             updateControls();
         }
         private void btnStreamPause_Click(object sender, EventArgs e)
@@ -1264,7 +1279,7 @@ namespace GRBL_Plotter
                 updateControls();
             }
             else
-                MessageBox.Show("Streaming is still active - press Stop and try again");
+                MessageBox.Show("Streaming is still active - press Stop and try again", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
         // handle event from create Text form
         private void getGCodeFromShape(object sender, EventArgs e)
@@ -1323,7 +1338,7 @@ namespace GRBL_Plotter
             {
                 if (updateDrawingPath && visuGCode.containsG91Command())
                 {
-                    redrawGCodePath();
+                    //redrawGCodePath();
                     pictureBox1.Invalidate(); // will be called by parent function
                 }
                 updateDrawingPath = false;
@@ -1501,11 +1516,13 @@ namespace GRBL_Plotter
 
                         string tmp = string.Format("\r\nminX: {0:0.0} moveTo: {1:0.0} maxX: {2:0.0}",minx, (posMachine.X + joystickXYStep[indexX] * dirX), maxx);
                         tmp += string.Format("\r\nminY: {0:0.0} moveTo: {1:0.0} maxY: {2:0.0}", miny, (posMachine.Y + joystickXYStep[indexY] * dirY), maxy);
-                        DialogResult dialogResult = MessageBox.Show("Next move will exceed machine limits!"+tmp+"\r\n Press 'Ok' to move anyway", "Attention", MessageBoxButtons.OKCancel);
+                        DialogResult dialogResult = MessageBox.Show("Next move will exceed machine limits!"+tmp+"\r\n Press 'Ok' to move anyway", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (dialogResult == DialogResult.Cancel)
                             return;
                     }
                 }
+                //if ((e.JogPosX == 0) && (e.JogPosY == 0))
+                //    s = String.Format("(stop)");// sendRealtimeCommand(133); 
                 if (e.JogPosX == 0)
                     s = String.Format("G91 Y{0} F{1}", strY, speed).Replace(',', '.');
                 else if (e.JogPosY == 0)
@@ -1515,6 +1532,11 @@ namespace GRBL_Plotter
                 sendCommand(s, true);
             }
         }
+        private void virtualJoystickXY_MouseUp(object sender, MouseEventArgs e)
+        { if (!_serial_form.isGrblVers0 && cBSendJogStop.Checked) sendRealtimeCommand(133); }
+        private void btnJogStop_Click(object sender, EventArgs e)
+        { if (!_serial_form.isGrblVers0) sendRealtimeCommand(133); }    //0x85
+
         private void virtualJoystickXY_Enter(object sender, EventArgs e)
         { if (_serial_form.isGrblVers0) sendCommand("G91G1F100"); }
         private void virtualJoystickXY_Leave(object sender, EventArgs e)
@@ -1584,8 +1606,6 @@ namespace GRBL_Plotter
         { sendCommand("G90 " + ctrl4thName + "0 F" + joystickZSpeed[5].ToString(), true); }
         private void btnJogXY_Click(object sender, EventArgs e)
         { sendCommand("G90 X0 Y0 F" + joystickXYSpeed[5].ToString(), true); }
-        private void btnJogStop_Click(object sender, EventArgs e)
-        { sendRealtimeCommand(133); }    //0x85
 
         private void btnReset_Click(object sender, EventArgs e)
         {
@@ -1600,6 +1620,7 @@ namespace GRBL_Plotter
             cBSpindle.Checked = false;
             cBCoolant.Checked = false;
             updateControls();
+            ControlPowerSaving.EnableStandby();
         }
         private void btnFeedHold_Click(object sender, EventArgs e)
         {
@@ -1712,96 +1733,98 @@ namespace GRBL_Plotter
             string command = "";
             try
             {
-                ControlGamePad.gamePad.Poll();
-                var datas = ControlGamePad.gamePad.GetBufferedData();
-                int stepIndex = 0, feed = 10000, speed1 = 1, speed2 = 1;
-                string cmdX = "", cmdY = "", cmdZ = "", cmdR = "", cmd = "";
-                bool stopJog = false;
-                var prop = Properties.Settings.Default;
-
-                gamePadRepitition++;
-                if (gamePadRepitition > 4) { gamePadRepitition = 0; }
-
-                if (datas.Length > 0)
+                if (ControlGamePad.gamePad != null)
                 {
-                    cmd = "G91";
-                    foreach (var state in datas)
+                    ControlGamePad.gamePad.Poll();
+                    var datas = ControlGamePad.gamePad.GetBufferedData();
+                    int stepIndex = 0, feed = 10000, speed1 = 1, speed2 = 1;
+                    string cmdX = "", cmdY = "", cmdZ = "", cmdR = "", cmd = "";
+                    bool stopJog = false;
+                    var prop = Properties.Settings.Default;
+
+                    gamePadRepitition++;
+                    if (gamePadRepitition > 4) { gamePadRepitition = 0; }
+
+                    if (datas.Length > 0)
                     {
-                        string offset = state.Offset.ToString();
-                        int value = state.Value;
-                        if ((value > 0) && (offset.IndexOf("Buttons") >= 0))
+                        cmd = "G91";
+                        foreach (var state in datas)
                         {
-                            try
+                            string offset = state.Offset.ToString();
+                            int value = state.Value;
+                            if ((value > 0) && (offset.IndexOf("Buttons") >= 0))
                             {
-                                command = Properties.Settings.Default["gP" + offset].ToString();
-                                if (command.IndexOf('#') >= 0)
-                                { processSpecialCommands(command); }
-                                else
-                                { processCommands(command); }
+                                try
+                                {
+                                    command = Properties.Settings.Default["gP" + offset].ToString();
+                                    if (command.IndexOf('#') >= 0)
+                                    { processSpecialCommands(command); }
+                                    else
+                                    { processCommands(command); }
+                                }
+                                catch { }
                             }
-                            catch { }
-                        }
 
 
-                        if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
-                        {
-                            if ((value > 28000) && (value < 36000))
+                            if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
                             {
-                                sendRealtimeCommand(133); stopJog = true;
-                                gamePadSendCmd = false;
-                                gamePadSendString = "";
+                                if ((value > 28000) && (value < 36000))
+                                {
+                                    sendRealtimeCommand(133); stopJog = true;
+                                    gamePadSendCmd = false;
+                                    gamePadSendString = "";
+                                }
+                                else
+                                {
+                                    stepIndex = gamePadIndex(value);// absVal) / 6500;
+                                    if (stepIndex > 0)
+                                    {
+                                        Int32.TryParse(prop["joyXYSpeed" + stepIndex.ToString()].ToString(), out speed1);
+                                        Int32.TryParse(prop["joyZSpeed" + stepIndex.ToString()].ToString(), out speed2);
+                                    }
+
+                                    if (offset == "X")
+                                    {
+                                        gamePadSendCmd = true;
+                                        cmdX = gamePadGCode(value, stepIndex, prop.gPXAxis, prop.gPXInvert);    // refresh axis data
+                                        feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPXAxis);
+                                    }
+                                    if (offset == "Y")
+                                    {
+                                        gamePadSendCmd = true;
+                                        cmdY = gamePadGCode(value, stepIndex, prop.gPYAxis, prop.gPYInvert);    // refresh axis data
+                                        feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPYAxis);
+                                    }
+                                    if (offset == "Z")
+                                    {
+                                        gamePadSendCmd = true;
+                                        cmdZ = gamePadGCode(value, stepIndex, prop.gPZAxis, prop.gPZInvert);    // refresh axis data
+                                        feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPZAxis);
+                                    }
+                                    if (offset == "RotationZ")
+                                    {
+                                        gamePadSendCmd = true;
+                                        cmdR = gamePadGCode(value, stepIndex, prop.gPRAxis, prop.gPRInvert);    // refresh axis data
+                                        feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPRAxis);
+                                    }
+                                }
                             }
                             else
                             {
-                                stepIndex = gamePadIndex(value);// absVal) / 6500;
-                                if (stepIndex > 0)
-                                {
-                                    Int32.TryParse(prop["joyXYSpeed" + stepIndex.ToString()].ToString(), out speed1);
-                                    Int32.TryParse(prop["joyZSpeed" + stepIndex.ToString()].ToString(), out speed2);
-                                }
-
-                                if (offset == "X")
-                                {
-                                    gamePadSendCmd = true;
-                                    cmdX = gamePadGCode(value, stepIndex, prop.gPXAxis, prop.gPXInvert);    // refresh axis data
-                                    feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPXAxis);
-                                }
-                                if (offset == "Y")
-                                {
-                                    gamePadSendCmd = true;
-                                    cmdY = gamePadGCode(value, stepIndex, prop.gPYAxis, prop.gPYInvert);    // refresh axis data
-                                    feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPYAxis);
-                                }
-                                if (offset == "Z")
-                                {
-                                    gamePadSendCmd = true;
-                                    cmdZ = gamePadGCode(value, stepIndex, prop.gPZAxis, prop.gPZInvert);    // refresh axis data
-                                    feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPZAxis);
-                                }
-                                if (offset == "RotationZ")
-                                {
-                                    gamePadSendCmd = true;
-                                    cmdR = gamePadGCode(value, stepIndex, prop.gPRAxis, prop.gPRInvert);    // refresh axis data
-                                    feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPRAxis);
-                                }
+                                gamePadSendCmd = false;
+                                gamePadSendString = "";
                             }
                         }
-                        else
-                        {
-                            gamePadSendCmd = false;
-                            gamePadSendString = "";
-                        }
+                        cmd += cmdX + cmdY + cmdZ + cmdR;               // build up command word with last axis information
+                        if (cmd.Length > 4)
+                            gamePadSendString = cmd + "F" + feed;
                     }
-                    cmd += cmdX + cmdY + cmdZ + cmdR;               // build up command word with last axis information
-                    if (cmd.Length > 4)
-                        gamePadSendString = cmd + "F" + feed;
+                    if (gamePadSendCmd && !stopJog && gamePadRepitition == 0)
+                    {
+                        if (gamePadSendString.Length > 0)
+                            sendCommand(gamePadSendString, true);
+                    }
                 }
-                if (gamePadSendCmd && !stopJog && gamePadRepitition == 0)
-                {
-                    if (gamePadSendString.Length > 0)
-                        sendCommand(gamePadSendString, true);
-                }
-
             }
             catch
             {
@@ -1873,6 +1896,7 @@ namespace GRBL_Plotter
                 pictureBox1.Invalidate();
             }
         }
+
     }
 }
 

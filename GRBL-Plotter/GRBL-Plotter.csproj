@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.2.0.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.2.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -45,6 +45,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,6 +56,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>GRBL_Plotter.Program</StartupObject>
@@ -63,10 +65,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>96DA7F429AB248F22347F39F5478AEA3FD237938</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>186D66FB9A6200BA5A9AEEF93F4A1EAF157226F6</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>GRBL-Plotter_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -120,7 +123,9 @@
       <HintPath>DLLs\SharpDX.DirectInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -142,13 +147,20 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCodeCreation\AForge_Imaging_Filter_HueShift.cs" />
+    <Compile Include="GCodeCreation\AForge_Imaging_Filter_RemoveArtefact.cs" />
     <Compile Include="GCodeCreation\GCodeFromFont.cs" />
+    <Compile Include="GCodeCreation\GCodeFromImageCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCodeCreation\GCodeFromImageOutline.cs" />
     <Compile Include="MachineControl\ControlDIYControlPad.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MachineControl\ControlDIYControlPad.Designer.cs">
       <DependentUpon>ControlDIYControlPad.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineControl\ControlPowerSaving.cs" />
     <Compile Include="mainObjects.cs" />
     <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
     <Compile Include="MachineControl\ControlCameraForm.cs">
@@ -455,6 +467,7 @@
     <Content Include="fonts\unicode.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="GRBL-Plotter_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

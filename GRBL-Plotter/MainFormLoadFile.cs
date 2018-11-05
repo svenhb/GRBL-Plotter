@@ -615,7 +615,7 @@ namespace GRBL_Plotter
                     btnHome.Size = new Size(117, 30);
                     virtualJoystickXY.Size = new Size(160, 160);
                     virtualJoystickZ.Size = new Size(30, 160);
-                    virtualJoystickZ.Location = new Point(166, 119);
+                    virtualJoystickZ.Location = new Point(166, 115);
                 }
                 else
                 {
@@ -625,9 +625,10 @@ namespace GRBL_Plotter
                     btnHome.Size = new Size(117, 57);
                     virtualJoystickXY.Size = new Size(180, 180);
                     virtualJoystickZ.Size = new Size(40, 180);
-                    virtualJoystickZ.Location = new Point(186, 119);
+                    virtualJoystickZ.Location = new Point(186, 115);
                 }
                 gamePadTimer.Enabled = Properties.Settings.Default.gPEnable;
+                checkMachineLimit();
             }
             catch (Exception a)
             {
@@ -676,6 +677,9 @@ namespace GRBL_Plotter
             btnJogZeroZ.Enabled = isConnected & !isStreaming | allowControl;
             btnJogZeroA.Enabled = isConnected & !isStreaming | allowControl;
             btnJogZeroXY.Enabled = isConnected & !isStreaming | allowControl;
+            btnOffsetApply.Enabled = !isStreaming;
+            gCodeToolStripMenuItem.Enabled = !isStreaming;
+
             cBSpindle.Enabled = isConnected & !isStreaming | allowControl;
             tBSpeed.Enabled = isConnected & !isStreaming | allowControl;
             cBCoolant.Enabled = isConnected & !isStreaming | allowControl;
