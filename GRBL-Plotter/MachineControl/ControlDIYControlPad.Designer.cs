@@ -101,6 +101,7 @@
             // 
             // serialPort
             // 
+            this.serialPort.RtsEnable = true;
             this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort_DataReceived);
             // 
             // cBFeedback

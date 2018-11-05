@@ -3272,7 +3272,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT4.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT4.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -3299,7 +3299,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT3.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT3.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -3326,7 +3326,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT2.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT2.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -3350,7 +3350,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT1.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT1.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -3374,7 +3374,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;numericUpDown2.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;numericUpDown2.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -3404,7 +3404,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label15.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -3434,7 +3434,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nUDToolChangeEmpty.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;nUDToolChangeEmpty.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -3467,7 +3467,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBToolChangeEmpty.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;cBToolChangeEmpty.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -3494,7 +3494,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label61.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;label61.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -3518,7 +3518,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnReNumberTools.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;btnReNumberTools.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -3545,7 +3545,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnMoveToolXY.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;btnMoveToolXY.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -3575,7 +3575,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label60.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;label60.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -3605,7 +3605,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnToolImport.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;btnToolImport.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -3629,7 +3629,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nUDToolOffsetZ.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;nUDToolOffsetZ.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -3659,7 +3659,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnToolExport.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;btnToolExport.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -3683,7 +3683,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nUDToolOffsetX.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;nUDToolOffsetX.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -3707,7 +3707,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nUDToolOffsetY.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;nUDToolOffsetY.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -3878,33 +3878,33 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dGVToolList.Parent" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+    <value>gBToolTable</value>
   </data>
   <data name="&gt;&gt;dGVToolList.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="btnReNumberToolNr.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gBToolTable.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 92</value>
   </data>
-  <data name="btnReNumberToolNr.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="gBToolTable.Size" type="System.Drawing.Size, System.Drawing">
     <value>765, 258</value>
   </data>
-  <data name="btnReNumberToolNr.TabIndex" type="System.Int32, mscorlib">
+  <data name="gBToolTable.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="btnReNumberToolNr.Text" xml:space="preserve">
+  <data name="gBToolTable.Text" xml:space="preserve">
     <value>Tool table - positions in machine coordinates! Homing recommended prior use.</value>
   </data>
-  <data name="&gt;&gt;btnReNumberToolNr.Name" xml:space="preserve">
-    <value>btnReNumberToolNr</value>
+  <data name="&gt;&gt;gBToolTable.Name" xml:space="preserve">
+    <value>gBToolTable</value>
   </data>
-  <data name="&gt;&gt;btnReNumberToolNr.Type" xml:space="preserve">
+  <data name="&gt;&gt;gBToolTable.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnReNumberToolNr.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+  <data name="&gt;&gt;gBToolTable.Parent" xml:space="preserve">
+    <value>gBToolChange</value>
   </data>
-  <data name="&gt;&gt;btnReNumberToolNr.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gBToolTable.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
   <data name="lbl_4.AutoSize" type="System.Boolean, mscorlib">
@@ -3935,7 +3935,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbl_4.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;lbl_4.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -3959,7 +3959,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptProbe.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptProbe.ZOrder" xml:space="preserve">
     <value>11</value>
@@ -3992,7 +3992,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbl_2.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;lbl_2.ZOrder" xml:space="preserve">
     <value>12</value>
@@ -4016,7 +4016,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptSelect.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptSelect.ZOrder" xml:space="preserve">
     <value>13</value>
@@ -4049,7 +4049,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbl_1.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;lbl_1.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -4073,7 +4073,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptPut.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptPut.ZOrder" xml:space="preserve">
     <value>15</value>
@@ -4106,7 +4106,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lbl_3.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;lbl_3.ZOrder" xml:space="preserve">
     <value>16</value>
@@ -4130,7 +4130,7 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptGet.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptGet.ZOrder" xml:space="preserve">
     <value>17</value>
@@ -4160,33 +4160,33 @@ Don't use with "Relative movements"</value>
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBToolChange.Parent" xml:space="preserve">
-    <value>groupBox7</value>
+    <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;cBToolChange.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
-  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gBToolChange.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 6</value>
   </data>
-  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="gBToolChange.Size" type="System.Drawing.Size, System.Drawing">
     <value>771, 352</value>
   </data>
-  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
+  <data name="gBToolChange.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
+  <data name="gBToolChange.Text" xml:space="preserve">
     <value>Tool change</value>
   </data>
-  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
-    <value>groupBox7</value>
+  <data name="&gt;&gt;gBToolChange.Name" xml:space="preserve">
+    <value>gBToolChange</value>
   </data>
-  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
+  <data name="&gt;&gt;gBToolChange.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gBToolChange.Parent" xml:space="preserve">
     <value>tabPage8</value>
   </data>
-  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gBToolChange.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="tabPage8.Location" type="System.Drawing.Point, System.Drawing">
@@ -5661,6 +5661,51 @@ M4 Dynamic Laser Power Mode</value>
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="Column20.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column20.HeaderText" xml:space="preserve">
+    <value>Nr.</value>
+  </data>
+  <data name="Column20.Width" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <metadata name="Column21.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column21.HeaderText" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <metadata name="Column22.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Column22.HeaderText" xml:space="preserve">
+    <value>G-Code</value>
+  </data>
+  <data name="Column22.Width" type="System.Int32, mscorlib">
+    <value>600</value>
+  </data>
+  <data name="dGVCustomBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="dGVCustomBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>762, 202</value>
+  </data>
+  <data name="dGVCustomBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;dGVCustomBtn.Name" xml:space="preserve">
+    <value>dGVCustomBtn</value>
+  </data>
+  <data name="&gt;&gt;dGVCustomBtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dGVCustomBtn.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;dGVCustomBtn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="lblFilePath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5668,7 +5713,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>NoControl</value>
   </data>
   <data name="lblFilePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 243</value>
+    <value>8, 266</value>
   </data>
   <data name="lblFilePath.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 13</value>
@@ -5689,16 +5734,16 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;lblFilePath.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label46.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 199</value>
+    <value>8, 222</value>
   </data>
   <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
-    <value>473, 44</value>
+    <value>689, 44</value>
   </data>
   <data name="label46.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -5718,157 +5763,7 @@ Relative file path starts from here:</value>
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label46.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lblcbnr.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblcbnr.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblcbnr.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 176</value>
-  </data>
-  <data name="lblcbnr.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 13</value>
-  </data>
-  <data name="lblcbnr.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="lblcbnr.Text" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblcbnr.Name" xml:space="preserve">
-    <value>lblcbnr</value>
-  </data>
-  <data name="&gt;&gt;lblcbnr.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblcbnr.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;lblcbnr.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="btnChangeDefinition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnChangeDefinition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 199</value>
-  </data>
-  <data name="btnChangeDefinition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 23</value>
-  </data>
-  <data name="btnChangeDefinition.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="btnChangeDefinition.Text" xml:space="preserve">
-    <value>Change Button definitions in list</value>
-  </data>
-  <data name="btnChangeDefinition.ToolTip" xml:space="preserve">
-    <value>Press button to update values in list. and save the settings.</value>
-  </data>
-  <data name="&gt;&gt;btnChangeDefinition.Name" xml:space="preserve">
-    <value>btnChangeDefinition</value>
-  </data>
-  <data name="&gt;&gt;btnChangeDefinition.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChangeDefinition.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;btnChangeDefinition.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="textBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 173</value>
-  </data>
-  <data name="textBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 20</value>
-  </data>
-  <data name="textBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="textBox2.ToolTip" xml:space="preserve">
-    <value>GCode to send. Seperate lines with ';'.</value>
-  </data>
-  <data name="&gt;&gt;textBox2.Name" xml:space="preserve">
-    <value>textBox2</value>
-  </data>
-  <data name="&gt;&gt;textBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBox2.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;textBox2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 173</value>
-  </data>
-  <data name="textBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
-  </data>
-  <data name="textBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="textBox1.ToolTip" xml:space="preserve">
-    <value>Define text of button</value>
-  </data>
-  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
-    <value>textBox1</value>
-  </data>
-  <data name="&gt;&gt;textBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <metadata name="lvCustomButtons.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Nr.</value>
-  </data>
-  <data name="columnHeader1.Width" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>Label</value>
-  </data>
-  <data name="columnHeader2.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="columnHeader3.Text" xml:space="preserve">
-    <value>G-Code</value>
-  </data>
-  <data name="columnHeader3.Width" type="System.Int32, mscorlib">
-    <value>575</value>
-  </data>
-  <data name="lvCustomButtons.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 6</value>
-  </data>
-  <data name="lvCustomButtons.Size" type="System.Drawing.Size, System.Drawing">
-    <value>698, 165</value>
-  </data>
-  <data name="lvCustomButtons.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lvCustomButtons.Name" xml:space="preserve">
-    <value>lvCustomButtons</value>
-  </data>
-  <data name="&gt;&gt;lvCustomButtons.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lvCustomButtons.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;lvCustomButtons.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -13383,7 +13278,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>200, 150</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 450</value>
+    <value>800, 720</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 450</value>
@@ -13463,23 +13358,23 @@ Setup window must be closed to use GamePad in GUI.
   <data name="&gt;&gt;Column12.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;columnHeader1.Name" xml:space="preserve">
-    <value>columnHeader1</value>
+  <data name="&gt;&gt;Column20.Name" xml:space="preserve">
+    <value>Column20</value>
   </data>
-  <data name="&gt;&gt;columnHeader1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;Column20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;columnHeader2.Name" xml:space="preserve">
-    <value>columnHeader2</value>
+  <data name="&gt;&gt;Column21.Name" xml:space="preserve">
+    <value>Column21</value>
   </data>
-  <data name="&gt;&gt;columnHeader2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;Column21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;columnHeader3.Name" xml:space="preserve">
-    <value>columnHeader3</value>
+  <data name="&gt;&gt;Column22.Name" xml:space="preserve">
+    <value>Column22</value>
   </data>
-  <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;Column22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
     <value>toolTip1</value>

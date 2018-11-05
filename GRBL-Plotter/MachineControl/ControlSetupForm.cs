@@ -56,18 +56,26 @@ namespace GRBL_Plotter
                 dGVToolList.Rows.Add(tmp);
             }
 
+            string text;
             string[] parts;// = new string[] { "-", "(-)" };
+            dGVCustomBtn.Rows.Clear();
+            int row = 0;
             for (int i = 1; i <= 8; i++)
             {
-                parts = Properties.Settings.Default["custom" + i.ToString()].ToString().Split('|');
-  //              MessageBox.Show(i.ToString()+" len " + parts.Length.ToString()+ " "+ parts[0] + " "+ parts[1]);
-                if (parts.Length <= 1)
+                parts = new string[2];
+                text = Properties.Settings.Default["custom" + i.ToString()].ToString();
+                if (text.IndexOf('|') > 0)
+                { parts = text.Split('|'); }
+                else
                 { parts[0] = "-";parts[1] = "(-)"; }
-                ListViewItem item = new ListViewItem((i - 1).ToString());
-                item.SubItems.AddRange(parts);
-                lvCustomButtons.Items.Add(item);
-            }
-            lvCustomButtons.Items[0].Selected = true;
+                dGVCustomBtn.Rows.Add();
+                dGVCustomBtn.Rows[row].Cells[0].Value = i.ToString();
+                dGVCustomBtn.Rows[row].Cells[1].Value = parts[0];
+                dGVCustomBtn.Rows[row].Cells[2].Value = parts[1];
+                row++;
+             }
+
+         //   lvCustomButtons.Items[0].Selected = true;
             setButtonColors(btnColorBackground, Properties.Settings.Default.colorBackground);
             setButtonColors(btnColorRuler, Properties.Settings.Default.colorRuler);
             setButtonColors(btnColorPenUp, Properties.Settings.Default.colorPenUp);
@@ -120,8 +128,8 @@ namespace GRBL_Plotter
         {
             for (int i = 1; i <= 8; i++)
             {
-                ListViewItem item = lvCustomButtons.Items[i - 1];
-                Properties.Settings.Default["custom" + i.ToString()] = item.SubItems[1].Text + "|" + item.SubItems[2].Text;// + "|" + item.SubItems[3].Text;
+                try { Properties.Settings.Default["custom" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value; }
+                catch { Properties.Settings.Default["custom" + i.ToString()] = " | "; }
             }
             Properties.Settings.Default.importGCDecPlaces = nUDImportDecPlaces.Value;
             Properties.Settings.Default.importGCSpindleCmd = rBImportGCSpindleCmd1.Checked;
@@ -132,36 +140,9 @@ namespace GRBL_Plotter
 
             ExportDgvToCSV(defaultToolList);
         }
-
-        int lastIndex = 0;
-        private void lvCustomButtons_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-            if (lvCustomButtons != null)
-            { //MessageBox.Show(e.ItemIndex.ToString());
-                lastIndex = e.ItemIndex;
-                ListViewItem item = lvCustomButtons.Items[lastIndex];
-                textBox1.Text = item.SubItems[1].Text;
-                textBox2.Text = item.SubItems[2].Text;
-                //                textBox3.Text = item.SubItems[3].Text;
-                lblcbnr.Text = lastIndex.ToString();
-            }
-        }
-
-        private void btnChangeDefinition_Click(object sender, EventArgs e)
-        {
-            if (lvCustomButtons != null)
-            {
-                ListViewItem item = lvCustomButtons.Items[lastIndex]; // SelectedItems[0];
-                item.SubItems[1].Text = textBox1.Text;
-                item.SubItems[2].Text = textBox2.Text;
-                //                item.SubItems[3].Text = textBox3.Text;
-            }
-        }
-
+        
         private void btnApplyChangings_Click(object sender, EventArgs e)
-        {
-            saveSettings();
-        }
+        {   saveSettings();  }
 
         private void btnColorBackground_Click(object sender, EventArgs e)
         { applyColor(btnColorBackground, "colorBackground"); }
@@ -278,13 +259,14 @@ namespace GRBL_Plotter
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
-            {
-                ControlGamePad.gamePad.Poll();
-                var datas = ControlGamePad.gamePad.GetBufferedData();
-                foreach (var state in datas)
-                {
-                    lblgp.Text = state.Offset + " Value: " + state.Value.ToString();
-                    processGamepad(state);
+            {   if (ControlGamePad.gamePad != null)
+                {   ControlGamePad.gamePad.Poll();
+                    var datas = ControlGamePad.gamePad.GetBufferedData();
+                    foreach (var state in datas)
+                    {
+                        lblgp.Text = state.Offset + " Value: " + state.Value.ToString();
+                        processGamepad(state);
+                    }
                 }
             }
             catch
@@ -523,15 +505,18 @@ namespace GRBL_Plotter
             }
         }
 
+        private static string importPath = Application.StartupPath+"\\_misc";
         private void btnToolImport_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.InitialDirectory = importPath;
             openFileDialog1.Filter = "CSV File|*.csv";
             openFileDialog1.Title = "Load Tool List";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ImportCSVToDgv(openFileDialog1.FileName);
                 ExportDgvToCSV(defaultToolList);
+                importPath = openFileDialog1.FileName;
             }
         }
 
@@ -581,7 +566,7 @@ namespace GRBL_Plotter
         private void showFileContent(TextBox tmp)
         {
             if (File.Exists(tmp.Text))
-            {   MessageBox.Show("Current directory: " + Directory.GetCurrentDirectory() + "\r\nFile: '" + tmp.Text+ "'\r\n\r\n" + File.ReadAllText(tmp.Text), "File content of " + tmp.Text);
+            {   MessageBox.Show("Current directory: " + Directory.GetCurrentDirectory() + "\r\nFile: '" + tmp.Text+ "'\r\n\r\n" + File.ReadAllText(tmp.Text).Replace('\t',' '), "File content of " + tmp.Text);
             }
             else
                 MessageBox.Show("Current directory: " + Directory.GetCurrentDirectory() + "\r\nFile: '" + tmp.Text + "' not found", "File content");
@@ -661,5 +646,14 @@ namespace GRBL_Plotter
             return iNewFilename;
         }
 
+        private void ControlSetupForm_SizeChanged(object sender, EventArgs e)
+        {
+            int y = Height;
+            tabControl1.Height = y - 64;
+            btnApplyChangings.Top = y - 64;
+            gBToolChange.Height = y - 98;
+            gBToolTable.Height = y - 192;
+            dGVToolList.Height = y - 64;
+        }
     }
 }

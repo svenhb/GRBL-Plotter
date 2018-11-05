@@ -54,7 +54,7 @@ namespace GRBL_Plotter
         }
 
         // send command via serial form
-        private void sendRealtimeCommand(int cmd)
+        private void sendRealtimeCommand(byte cmd)
         { if (_serial_form2.serialPortOpen)
                 _serial_form2.realtimeCommand(cmd);
         }
@@ -106,20 +106,16 @@ namespace GRBL_Plotter
         { sendRealtimeCommand(133); }    //0x85
 
         private void btnReset_Click(object sender, EventArgs e)
-        {
-            _serial_form2.grblReset();
+        {   _serial_form2.grblReset();
         }
         private void btnFeedHold_Click(object sender, EventArgs e)
-        {
-            sendRealtimeCommand('!');
+        {   sendRealtimeCommand((byte)'!');
         }
         private void btnResume_Click(object sender, EventArgs e)
-        {
-            sendRealtimeCommand('~');
+        {   sendRealtimeCommand((byte)'~');
         }
         private void btnKillAlarm_Click(object sender, EventArgs e)
-        {
-            sendCommand("$X");
+        {   sendCommand("$X");
         }
 
         private void virtualJoystickXY_Enter(object sender, EventArgs e)

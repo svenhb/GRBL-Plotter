@@ -166,7 +166,7 @@ namespace GRBL_Plotter
 
             Location = Properties.Settings.Default.locationCamForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new System.Drawing.Point(0, 0); }
 
             fillComboBox(1, Properties.Settings.Default.camShapeSet1);
             fillComboBox(2, Properties.Settings.Default.camShapeSet2);
@@ -242,7 +242,7 @@ namespace GRBL_Plotter
                 gfx.RotateTransform(rotationAngle);
                 gfx.ScaleTransform(zoom, zoom);
                 gfx.TranslateTransform(-(float)img.Width / 2, -(float)img.Height / 2);
-                gfx.DrawImage(img, new Point(0, 0));
+                gfx.DrawImage(img, new System.Drawing.Point(0, 0));
             }
             return img;
         }
@@ -280,16 +280,16 @@ namespace GRBL_Plotter
 
             int gap = 5;
             int chlen = 200;
-            e.Graphics.DrawLine(pen1, new Point(xmid - chlen, ymid), new Point(xmid - gap, ymid));
-            e.Graphics.DrawLine(pen1, new Point(xmid + gap, ymid), new Point(xmid + chlen, ymid));
-            e.Graphics.DrawLine(pen1, new Point(xmid, ymid - chlen), new Point(xmid, ymid - gap));
-            e.Graphics.DrawLine(pen1, new Point(xmid, ymid + gap), new Point(xmid, ymid + chlen));
+            e.Graphics.DrawLine(pen1, new System.Drawing.Point(xmid - chlen, ymid), new System.Drawing.Point(xmid - gap, ymid));
+            e.Graphics.DrawLine(pen1, new System.Drawing.Point(xmid + gap, ymid), new System.Drawing.Point(xmid + chlen, ymid));
+            e.Graphics.DrawLine(pen1, new System.Drawing.Point(xmid, ymid - chlen), new System.Drawing.Point(xmid, ymid - gap));
+            e.Graphics.DrawLine(pen1, new System.Drawing.Point(xmid, ymid + gap), new System.Drawing.Point(xmid, ymid + chlen));
 
             realPosition.X = 2 * (Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).X) / pictureBoxVideo.Size.Width - 0.5) * actualScaling / cameraZoom;
             realPosition.Y = -2 * (Convert.ToDouble(pictureBoxVideo.PointToClient(MousePosition).Y) / pictureBoxVideo.Size.Height - 0.5) * actualScaling * ratio / cameraZoom;
             int stringposY = -40;
             if (realPosition.Y > 0) stringposY = 10;
-            Point stringpos = new Point(pictureBoxVideo.PointToClient(MousePosition).X - 60, pictureBoxVideo.PointToClient(MousePosition).Y + stringposY);
+            System.Drawing.Point stringpos = new System.Drawing.Point(pictureBoxVideo.PointToClient(MousePosition).X - 60, pictureBoxVideo.PointToClient(MousePosition).Y + stringposY);
             if (teachingTop)
             {
                 radius = (int)(cameraTeachRadiusTop * cameraZoom * xmid / actualScaling);
@@ -338,7 +338,7 @@ namespace GRBL_Plotter
                 //           e.Graphics.DrawEllipse(penTeach, new Rectangle((int)actualPosMarker.X-2, (int)actualPosMarker.Y - 2, (int)actualPosMarker.X + 2, (int)actualPosMarker.Y + 2));
             }
         }
-        private void showLabel(string txt, Point stringpos, Graphics graph)
+        private void showLabel(string txt, System.Drawing.Point stringpos, Graphics graph)
         {
             Font fnt = new Font("Lucida Console", 8);
             var size = graph.MeasureString(txt, fnt);
@@ -616,19 +616,19 @@ namespace GRBL_Plotter
             double lowestDistance = xmid;
             double distance;
             shapeFound = false;
-            DoublePoint center;
+            AForge.Point center;
             double shapeRadius = 1;
             for (int i = 0, n = blobs.Length; i < n; i++)
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
-                double radius;
+                System.Single radius;
                 // is circle ?
                 //          g.DrawPolygon(greenPen, ToPointsArray(edgePoints));
 
                 if (Properties.Settings.Default.camShapeCircle && shapeChecker.IsCircle(edgePoints, out center, out radius))
                 {
                     shapeFound = true;
-                    distance = center.DistanceTo(picCenter);
+                    distance = center.DistanceTo((AForge.Point)picCenter);
                     g.DrawEllipse(yellowPen,
                         (float)(shapeCenter.X - shapeRadius), (float)(shapeCenter.Y - shapeRadius),
                         (float)(shapeRadius * 2), (float)(shapeRadius * 2));
@@ -679,12 +679,12 @@ namespace GRBL_Plotter
 
         }
         // Convert list of AForge.NET's points to array of .NET points
-        private Point[] ToPointsArray(List<IntPoint> points)
+        private System.Drawing.Point[] ToPointsArray(List<IntPoint> points)
         {
-            Point[] array = new Point[points.Count];
+            System.Drawing.Point[] array = new System.Drawing.Point[points.Count];
             for (int i = 0, n = points.Count; i < n; i++)
             {
-                array[i] = new Point(points[i].X, points[i].Y);
+                array[i] = new System.Drawing.Point(points[i].X, points[i].Y);
             }
             return array;
         }

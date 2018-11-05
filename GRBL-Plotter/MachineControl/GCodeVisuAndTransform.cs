@@ -934,13 +934,14 @@ namespace GRBL_Plotter
                 path.StartFigure();                 // Start Figure but never close to avoid connecting first and last point
                 if (newL.motionMode == 0 || newL.motionMode == 1)
                 {
-                    if ((newL.actualPos.X != oldL.actualPos.X) || (newL.actualPos.Y != oldL.actualPos.Y))
+                    if ((newL.actualPos.X != oldL.actualPos.X) || (newL.actualPos.Y != oldL.actualPos.Y) || (oldL.motionMode == 2 || oldL.motionMode == 3))
                     {
                         path.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
                         onlyZ = 0;  // x or y has changed
                     }
                     else
                     { onlyZ++; }
+
                     // mark Z-only movements - could be drills
                     if ((onlyZ > 1) && (passLimit) && (path == pathPenUp))  // pen moved from -z to +z
                     {
