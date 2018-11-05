@@ -60,6 +60,9 @@ namespace GRBL_Plotter
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -167,7 +170,7 @@ namespace GRBL_Plotter
             this.cBImportGCLineSegments = new System.Windows.Forms.CheckBox();
             this.btnReloadFile = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.gBToolChange = new System.Windows.Forms.GroupBox();
             this.btnFileDialogTT4 = new System.Windows.Forms.Button();
             this.btnFileDialogTT3 = new System.Windows.Forms.Button();
             this.btnFileDialogTT2 = new System.Windows.Forms.Button();
@@ -177,7 +180,7 @@ namespace GRBL_Plotter
             this.nUDToolChangeEmpty = new System.Windows.Forms.NumericUpDown();
             this.cBToolChangeEmpty = new System.Windows.Forms.CheckBox();
             this.label61 = new System.Windows.Forms.Label();
-            this.btnReNumberToolNr = new System.Windows.Forms.GroupBox();
+            this.gBToolTable = new System.Windows.Forms.GroupBox();
             this.btnReNumberTools = new System.Windows.Forms.Button();
             this.btnMoveToolXY = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
@@ -259,16 +262,12 @@ namespace GRBL_Plotter
             this.cBSerialMinimize = new System.Windows.Forms.CheckBox();
             this.cBcheckupdate = new System.Windows.Forms.CheckBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dGVCustomBtn = new System.Windows.Forms.DataGridView();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblFilePath = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.lblcbnr = new System.Windows.Forms.Label();
-            this.btnChangeDefinition = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lvCustomButtons = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.gBGP = new System.Windows.Forms.GroupBox();
             this.cBGPEnable = new System.Windows.Forms.CheckBox();
@@ -475,10 +474,10 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSegment)).BeginInit();
             this.tabPage8.SuspendLayout();
-            this.groupBox7.SuspendLayout();
+            this.gBToolChange.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).BeginInit();
-            this.btnReNumberToolNr.SuspendLayout();
+            this.gBToolTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).BeginInit();
@@ -501,6 +500,7 @@ namespace GRBL_Plotter
             this.groupBox11.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGVCustomBtn)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.gBGP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).BeginInit();
@@ -1685,35 +1685,35 @@ namespace GRBL_Plotter
             // 
             // tabPage8
             // 
-            this.tabPage8.Controls.Add(this.groupBox7);
+            this.tabPage8.Controls.Add(this.gBToolChange);
             resources.ApplyResources(this.tabPage8, "tabPage8");
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // groupBox7
+            // gBToolChange
             // 
-            this.groupBox7.Controls.Add(this.btnFileDialogTT4);
-            this.groupBox7.Controls.Add(this.btnFileDialogTT3);
-            this.groupBox7.Controls.Add(this.btnFileDialogTT2);
-            this.groupBox7.Controls.Add(this.btnFileDialogTT1);
-            this.groupBox7.Controls.Add(this.numericUpDown2);
-            this.groupBox7.Controls.Add(this.label15);
-            this.groupBox7.Controls.Add(this.nUDToolChangeEmpty);
-            this.groupBox7.Controls.Add(this.cBToolChangeEmpty);
-            this.groupBox7.Controls.Add(this.label61);
-            this.groupBox7.Controls.Add(this.btnReNumberToolNr);
-            this.groupBox7.Controls.Add(this.lbl_4);
-            this.groupBox7.Controls.Add(this.tBToolChangeScriptProbe);
-            this.groupBox7.Controls.Add(this.lbl_2);
-            this.groupBox7.Controls.Add(this.tBToolChangeScriptSelect);
-            this.groupBox7.Controls.Add(this.lbl_1);
-            this.groupBox7.Controls.Add(this.tBToolChangeScriptPut);
-            this.groupBox7.Controls.Add(this.lbl_3);
-            this.groupBox7.Controls.Add(this.tBToolChangeScriptGet);
-            this.groupBox7.Controls.Add(this.cBToolChange);
-            resources.ApplyResources(this.groupBox7, "groupBox7");
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.TabStop = false;
+            this.gBToolChange.Controls.Add(this.btnFileDialogTT4);
+            this.gBToolChange.Controls.Add(this.btnFileDialogTT3);
+            this.gBToolChange.Controls.Add(this.btnFileDialogTT2);
+            this.gBToolChange.Controls.Add(this.btnFileDialogTT1);
+            this.gBToolChange.Controls.Add(this.numericUpDown2);
+            this.gBToolChange.Controls.Add(this.label15);
+            this.gBToolChange.Controls.Add(this.nUDToolChangeEmpty);
+            this.gBToolChange.Controls.Add(this.cBToolChangeEmpty);
+            this.gBToolChange.Controls.Add(this.label61);
+            this.gBToolChange.Controls.Add(this.gBToolTable);
+            this.gBToolChange.Controls.Add(this.lbl_4);
+            this.gBToolChange.Controls.Add(this.tBToolChangeScriptProbe);
+            this.gBToolChange.Controls.Add(this.lbl_2);
+            this.gBToolChange.Controls.Add(this.tBToolChangeScriptSelect);
+            this.gBToolChange.Controls.Add(this.lbl_1);
+            this.gBToolChange.Controls.Add(this.tBToolChangeScriptPut);
+            this.gBToolChange.Controls.Add(this.lbl_3);
+            this.gBToolChange.Controls.Add(this.tBToolChangeScriptGet);
+            this.gBToolChange.Controls.Add(this.cBToolChange);
+            resources.ApplyResources(this.gBToolChange, "gBToolChange");
+            this.gBToolChange.Name = "gBToolChange";
+            this.gBToolChange.TabStop = false;
             // 
             // btnFileDialogTT4
             // 
@@ -1787,20 +1787,20 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.label61, "label61");
             this.label61.Name = "label61";
             // 
-            // btnReNumberToolNr
+            // gBToolTable
             // 
-            this.btnReNumberToolNr.Controls.Add(this.btnReNumberTools);
-            this.btnReNumberToolNr.Controls.Add(this.btnMoveToolXY);
-            this.btnReNumberToolNr.Controls.Add(this.label60);
-            this.btnReNumberToolNr.Controls.Add(this.btnToolImport);
-            this.btnReNumberToolNr.Controls.Add(this.nUDToolOffsetZ);
-            this.btnReNumberToolNr.Controls.Add(this.btnToolExport);
-            this.btnReNumberToolNr.Controls.Add(this.nUDToolOffsetX);
-            this.btnReNumberToolNr.Controls.Add(this.nUDToolOffsetY);
-            this.btnReNumberToolNr.Controls.Add(this.dGVToolList);
-            resources.ApplyResources(this.btnReNumberToolNr, "btnReNumberToolNr");
-            this.btnReNumberToolNr.Name = "btnReNumberToolNr";
-            this.btnReNumberToolNr.TabStop = false;
+            this.gBToolTable.Controls.Add(this.btnReNumberTools);
+            this.gBToolTable.Controls.Add(this.btnMoveToolXY);
+            this.gBToolTable.Controls.Add(this.label60);
+            this.gBToolTable.Controls.Add(this.btnToolImport);
+            this.gBToolTable.Controls.Add(this.nUDToolOffsetZ);
+            this.gBToolTable.Controls.Add(this.btnToolExport);
+            this.gBToolTable.Controls.Add(this.nUDToolOffsetX);
+            this.gBToolTable.Controls.Add(this.nUDToolOffsetY);
+            this.gBToolTable.Controls.Add(this.dGVToolList);
+            resources.ApplyResources(this.gBToolTable, "gBToolTable");
+            this.gBToolTable.Name = "gBToolTable";
+            this.gBToolTable.TabStop = false;
             // 
             // btnReNumberTools
             // 
@@ -2626,16 +2626,58 @@ namespace GRBL_Plotter
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dGVCustomBtn);
             this.tabPage1.Controls.Add(this.lblFilePath);
             this.tabPage1.Controls.Add(this.label46);
-            this.tabPage1.Controls.Add(this.lblcbnr);
-            this.tabPage1.Controls.Add(this.btnChangeDefinition);
-            this.tabPage1.Controls.Add(this.textBox2);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.lvCustomButtons);
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dGVCustomBtn
+            // 
+            this.dGVCustomBtn.AllowUserToAddRows = false;
+            this.dGVCustomBtn.AllowUserToDeleteRows = false;
+            this.dGVCustomBtn.AllowUserToResizeColumns = false;
+            this.dGVCustomBtn.AllowUserToResizeRows = false;
+            this.dGVCustomBtn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVCustomBtn.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column20,
+            this.Column21,
+            this.Column22});
+            resources.ApplyResources(this.dGVCustomBtn, "dGVCustomBtn");
+            this.dGVCustomBtn.Name = "dGVCustomBtn";
+            this.dGVCustomBtn.RowHeadersVisible = false;
+            // 
+            // Column20
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column20.DefaultCellStyle = dataGridViewCellStyle13;
+            resources.ApplyResources(this.Column20, "Column20");
+            this.Column20.MaxInputLength = 2;
+            this.Column20.Name = "Column20";
+            this.Column20.ReadOnly = true;
+            this.Column20.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column20.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column21
+            // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column21.DefaultCellStyle = dataGridViewCellStyle14;
+            resources.ApplyResources(this.Column21, "Column21");
+            this.Column21.MaxInputLength = 100;
+            this.Column21.Name = "Column21";
+            this.Column21.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column21.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column22
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column22.DefaultCellStyle = dataGridViewCellStyle15;
+            resources.ApplyResources(this.Column22, "Column22");
+            this.Column22.MaxInputLength = 300;
+            this.Column22.Name = "Column22";
+            this.Column22.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column22.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // lblFilePath
             // 
@@ -2646,60 +2688,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label46, "label46");
             this.label46.Name = "label46";
-            // 
-            // lblcbnr
-            // 
-            resources.ApplyResources(this.lblcbnr, "lblcbnr");
-            this.lblcbnr.Name = "lblcbnr";
-            // 
-            // btnChangeDefinition
-            // 
-            resources.ApplyResources(this.btnChangeDefinition, "btnChangeDefinition");
-            this.btnChangeDefinition.Name = "btnChangeDefinition";
-            this.toolTip1.SetToolTip(this.btnChangeDefinition, resources.GetString("btnChangeDefinition.ToolTip"));
-            this.btnChangeDefinition.UseVisualStyleBackColor = true;
-            this.btnChangeDefinition.Click += new System.EventHandler(this.btnChangeDefinition_Click);
-            // 
-            // textBox2
-            // 
-            resources.ApplyResources(this.textBox2, "textBox2");
-            this.textBox2.Name = "textBox2";
-            this.toolTip1.SetToolTip(this.textBox2, resources.GetString("textBox2.ToolTip"));
-            // 
-            // textBox1
-            // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
-            this.toolTip1.SetToolTip(this.textBox1, resources.GetString("textBox1.ToolTip"));
-            // 
-            // lvCustomButtons
-            // 
-            this.lvCustomButtons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvCustomButtons.FullRowSelect = true;
-            this.lvCustomButtons.GridLines = true;
-            this.lvCustomButtons.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            resources.ApplyResources(this.lvCustomButtons, "lvCustomButtons");
-            this.lvCustomButtons.MultiSelect = false;
-            this.lvCustomButtons.Name = "lvCustomButtons";
-            this.lvCustomButtons.Scrollable = false;
-            this.lvCustomButtons.UseCompatibleStateImageBehavior = false;
-            this.lvCustomButtons.View = System.Windows.Forms.View.Details;
-            this.lvCustomButtons.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lvCustomButtons_ItemSelectionChanged);
-            // 
-            // columnHeader1
-            // 
-            resources.ApplyResources(this.columnHeader1, "columnHeader1");
-            // 
-            // columnHeader2
-            // 
-            resources.ApplyResources(this.columnHeader2, "columnHeader2");
-            // 
-            // columnHeader3
-            // 
-            resources.ApplyResources(this.columnHeader3, "columnHeader3");
             // 
             // tabPage6
             // 
@@ -4251,6 +4239,7 @@ namespace GRBL_Plotter
             this.Name = "ControlSetupForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SetupForm_FormClosing);
             this.Load += new System.EventHandler(this.SetupForm_Load);
+            this.SizeChanged += new System.EventHandler(this.ControlSetupForm_SizeChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
@@ -4301,12 +4290,12 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSegment)).EndInit();
             this.tabPage8.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
+            this.gBToolChange.ResumeLayout(false);
+            this.gBToolChange.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).EndInit();
-            this.btnReNumberToolNr.ResumeLayout(false);
-            this.btnReNumberToolNr.PerformLayout();
+            this.gBToolTable.ResumeLayout(false);
+            this.gBToolTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).EndInit();
@@ -4339,6 +4328,7 @@ namespace GRBL_Plotter
             this.groupBox9.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dGVCustomBtn)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.gBGP.ResumeLayout(false);
             this.gBGP.PerformLayout();
@@ -4410,13 +4400,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ListView lvCustomButtons;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnChangeDefinition;
         public System.Windows.Forms.Button btnApplyChangings;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ColorDialog colorDialog1;
@@ -4459,7 +4442,6 @@ namespace GRBL_Plotter
         public System.Windows.Forms.Button btnReloadFile;
         private System.Windows.Forms.CheckBox cBImportSVGPauseE;
         private System.Windows.Forms.CheckBox cBImportSVGPauseP;
-        private System.Windows.Forms.Label lblcbnr;
         private System.Windows.Forms.CheckBox cBImportSVGPath;
         private System.Windows.Forms.CheckBox cBSerialMinimize;
         private System.Windows.Forms.CheckBox cBImportSVGTool;
@@ -4684,7 +4666,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.DataGridView dGVToolList;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox gBToolChange;
         private System.Windows.Forms.Label lbl_4;
         private System.Windows.Forms.TextBox tBToolChangeScriptProbe;
         private System.Windows.Forms.Label lbl_2;
@@ -4700,7 +4682,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.NumericUpDown nUDToolOffsetY;
         private System.Windows.Forms.NumericUpDown nUDToolOffsetX;
         private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.GroupBox btnReNumberToolNr;
+        private System.Windows.Forms.GroupBox gBToolTable;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.TextBox tBImportGCSubroutine;
         private System.Windows.Forms.CheckBox cBImportGCSubEnable;
@@ -4783,5 +4765,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridView dGVCustomBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
     }
 }
