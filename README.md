@@ -4,6 +4,11 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.  
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
+### New in version 1.2.1.x:
+* Improved import of images - check wiki
+  - New filters for easy color quantization
+  - Create outline contour to avoid wavy edges
+  
 ### New in version 1.2.0.x:
 * Tool table instead of color palette (incl. tool exchange positions (water color pos.))  
 * [Drag tool compensation](https://github.com/svenhb/GRBL-Plotter/wiki/Drag-tool-compensation) (to compensate offset when drawing with a brush)   
@@ -19,7 +24,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.2.0.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2018-09-02    
+#### [GRBL-Plotter Vers. 1.2.1.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2018-11-05    
 
 ### Requirements for compiling
 * VisualStudio 2015 
