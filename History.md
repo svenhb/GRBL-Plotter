@@ -1,6 +1,11 @@
 ## History
 Needs to be read from the bottom up ;-)  
   
+### 2018-11 version 1.2.1.x:
+* Improved import of images - check [wiki](https://github.com/svenhb/GRBL-Plotter/wiki/Image-import)
+  - New filters for easy color quantization
+  - Create outline contour to avoid wavy edges
+  
 ### 2018-09 version 1.2.0.x:
 * Tool table instead of color palette (incl. tool exchange positions (water color pos.))  
 * drag tool compensation (to compensate offset when drawing with a brush)   
