@@ -5,7 +5,7 @@ Geschrieben in C# VisualStudio 2015.
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
 ### Neu in version 1.2.1.x:
-* Verbesserter Bildimport - check [wiki](https://github.com/svenhb/GRBL-Plotter/wiki/Image-import)
+* Verbesserter Bildimport - check [wiki](https://github.com/svenhb/GRBL-Plotter/wiki/Bild-import)
   - Neue Filter für einfache Farbersetzung
   - Erzeugung einer Aussenkontur um wellige Ränder zu vermeiden
   
