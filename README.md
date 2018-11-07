@@ -98,7 +98,7 @@ On my german homepage:
 [my XYZ platform](http://svenhb.bplaced.net/?CNC___Plotter) 
 
 ### GRBL-Plotter in tool change action
-[![Import an image](https://img.youtube.com/vi/x5UTHpgsfII/0.jpg)](https://www.youtube.com/watch?v=x5UTHpgsfII) 
+[![Import an image](https://i9.ytimg.com/vi/GGtdwYdZWi8/mq2.jpg?sqp=COypi98F&rs=AOn4CLAbkofKlCN1cepOQkGvpG6YlnRwrQ)](https://youtu.be/GGtdwYdZWi8) 
 
 ### Screenshots
 Main GUI
