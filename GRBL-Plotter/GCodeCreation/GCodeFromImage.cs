@@ -683,6 +683,7 @@ namespace GRBL_Plotter
                     resoFactor = 5;
                 resoDesired = resoDesired / resoFactor;              // set rounded value
             }
+            lblInfo1.Text = "Reso: " + resoDesired + "  factor: " + resoFactor;
             int xSize = (int)(nUDWidth.Value / resoDesired);  //Total X pixels of resulting image for GCode generation
             int ySize = (int)(nUDHeight.Value / resoDesired); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
 

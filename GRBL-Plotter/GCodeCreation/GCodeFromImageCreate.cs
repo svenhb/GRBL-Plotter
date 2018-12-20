@@ -182,7 +182,7 @@ namespace GRBL_Plotter
                         int smoothCnt = (int)nUDGCodeOutlineSmooth.Value;
                         if (!cBGCodeOutlineSmooth.Checked)
                             smoothCnt = 0;
-                        outlineList = Vectorize.getPaths(resultToolNrArray, adjustedImage.Width, adjustedImage.Height, key, smoothCnt);
+                        outlineList = Vectorize.getPaths(resultToolNrArray, adjustedImage.Width, adjustedImage.Height, key, smoothCnt, (float)0.5/resoOutline, cBGCodeOutlineShrink.Checked);// half pen-width in pixels
                         int cnt = 0;
                         float tmpY;
                         foreach (List<PointF> path in outlineList)
@@ -200,7 +200,9 @@ namespace GRBL_Plotter
                             tmpY = (adjustedImage.Height - 1) - tmpP.Y;
                             gcode.PenUp(finalString);
                         }
-                        shrink = 0.8f;
+                        shrink = 0.8f;          // shrink value in pixels!
+                        if(cBGCodeOutlineShrink.Checked)
+                            shrink = resoOutline*resoFactor*1.2f;   // mm/px * factor * 1,6
                         tmp += "\r\nTool Nr "+ key + " Points: "+cnt+" \r\n"+Vectorize.logList.ToString();
                     }
                     else
@@ -208,7 +210,42 @@ namespace GRBL_Plotter
 
                     if (cBGCodeFill.Checked)
                     {   int factor = resoFactor;
-                        for (int y = factor/2; y < resultImage.Height; y+= factor)  // go through all lines
+                        int start = factor / 2;
+                        // if (cBGCodeOutlineShrink.Checked)
+                        //     start = factor; 
+                        // if shrink, adapt start and stop posditions
+                        if (shrink > 0)
+                        {
+                            int pos1, pos2, min,max,minO,maxO, center;
+                            int pxOffset = (int)(shrink / (float)resoDesired);
+                            for (int y = start; y < resultImage.Height; y += factor)  // go through all lines
+                            {   if (colorMap[key][y].Count > 1)
+                                {   for (int k = 0; k < colorMap[key][y].Count; k += 2)
+                                    {   pos1 = colorMap[key][y][k];
+                                        pos2 = colorMap[key][y][k+1];
+                                        min = Math.Min(pos1, pos2);
+                                        max = Math.Max(pos1, pos2);
+                                        minO = min + pxOffset;
+                                        maxO = max - pxOffset;
+                                        center = (min + max) / 2;
+                                        if (minO < maxO)
+                                        {   colorMap[key][y][k] = minO;
+                                            colorMap[key][y][k+1] = maxO;
+                                        }
+                                        else if ((minO > max) || (maxO < min))
+                                        {   colorMap[key][y][k] =-1;
+                                            colorMap[key][y][k + 1] = -1;
+                                        }
+                                        else
+                                        {   colorMap[key][y][k] = center;
+                                            colorMap[key][y][k + 1] = center;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        for (int y=start; y < resultImage.Height; y+= factor)  // go through all lines
                         {   while (colorMap[key][y].Count > 1)          // start at line 0 and check line by line
                                 drawColorMap(resol, key, y, 0, true);
                         }
@@ -244,8 +281,8 @@ namespace GRBL_Plotter
                 }
                 float tmpShrink = shrink;
                 if (start > stop) tmpShrink = -shrink;
-
-                if (!((start == stop) && (cBGCodeOutline.Checked)))
+                tmpShrink = 0;
+                if ((start >= 0) && (stop >= 0) && (cBGCodeFill.Checked))
                 {   float coordX = reso * (float)start + tmpShrink;
                     if (first)                                              // is this inital first call?
                     {   gcode.MoveToRapid(finalString, coordX, coordY, "1st pos.");     // move to start pos
@@ -261,21 +298,61 @@ namespace GRBL_Plotter
                 {
                     var nextLine = colorMap[toolNr][line + factor];      // check for start-pos nearby in next line
                     bool end = true;
+                    int dir = Math.Sign(tmpShrink);
+                    int sfactor = (int)(factor * 1.5);
+
+                    if (start < stop)                                   // comming from left, search from rigth to left
+                    {   for (int k = stop + sfactor; k >= start - sfactor; k--)
+                        {   newIndex = nextLine.IndexOf(k);             // first check direction were I came from
+                            if (newIndex >= 0)                          // entry found
+                            {   drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
+                                end = false;
+                                break;
+                            }
+                        }
+                    } else
+                    {                                                   // comming from right, search from left to right
+                        for (int k = stop - sfactor; k <= start + sfactor; k++)
+                        {   newIndex = nextLine.IndexOf(k);             // first check direction were I came from
+                            if (newIndex >= 0)                          // entry found
+                            {   drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
+                                end = false;
+                                break;
+                            }
+                        }
+                    } 
+
+/*
                     for (int k = 0; k <= factor; k++)               // check pixel left and right in next line    
                     {   // check recursive line by line for same color near by given x-value
-                        newIndex = nextLine.IndexOf(stop - k);      // check if entry is available left
+                        delta = k * Math.Sign(shrink);          // get last direction
+                        newIndex = nextLine.IndexOf(stop - delta);  // first check direction were I came from
                         if (newIndex >= 0)                          // entry found
                         {   drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
                             end = false;
                             break;
                         }
-                        newIndex = nextLine.IndexOf(stop + k);      // check if entry is available right
+                        newIndex = nextLine.IndexOf(stop + delta);      // check if entry is available right
                         if (newIndex >= 0)                          // entry found
                         {   drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
                             end = false;
                             break;
                         }
-                    }
+                        newIndex = nextLine.IndexOf(start - delta);  // first check direction were I came from
+                        if (newIndex >= 0)                          // entry found
+                        {
+                            drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
+                            end = false;
+                            break;
+                        }
+                        newIndex = nextLine.IndexOf(start + delta);      // check if entry is available right
+                        if (newIndex >= 0)                          // entry found
+                        {
+                            drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
+                            end = false;
+                            break;
+                        }
+                    }*/
                     if (end)
                         gcode.PenUp(finalString);
                 }

@@ -31,6 +31,7 @@ namespace GRBL_Plotter
     static class Vectorize
     {
         private static int Width, Height;
+        private static float penRadius;
         private static sbyte toolNr;
         private static sbyte[,] bitmap;
         private static sbyte markObject     = sbyte.MaxValue;
@@ -39,16 +40,19 @@ namespace GRBL_Plotter
         private static int Smooth = 0;
         public static StringBuilder logList  = new StringBuilder();
         public static bool log = false;
+        public static bool shrinkPath = false;
 
         /// <summary>
         /// Get a List of PointF-Lists from paths found in sbyte-array
         /// </summary>
-        public static List<List<PointF>> getPaths(sbyte[,] bitm, int sizeX, int sizeY, sbyte toolN, int smooth)
+        public static List<List<PointF>> getPaths(sbyte[,] bitm, int sizeX, int sizeY, sbyte toolN, int smooth, float pradius, bool shrink)
         {
             Width  = sizeX;
             Height = sizeY;
             toolNr = toolN;
             Smooth = smooth;
+            penRadius = pradius;      // width in pixels
+            shrinkPath = shrink;
             bitmap = new sbyte[Width, Height];
             for (int y = 0; y < Height; y++)    // make working copy
                 for (int x = 0; x < Width; x++)
@@ -137,53 +141,138 @@ namespace GRBL_Plotter
                 if (cnt++ > abortCount) { logList.Append("Abort\r\n"); return; }    // safety stop
             } while (!startFound);
 
+            if (onePath.Count <= 3)     // 
+                return;
+
             if (Smooth > 0)
                 for (int k=0; k<Smooth;k++)
                     smoothContour(onePath);
+
+            if (shrinkPath)
+                shrinkContour(onePath, penRadius);   // half width in pixels
+            simplifyContour(onePath, 0.2f);
+
             outlinePaths.Add(new List<PointF>(onePath));
+
             if (log) showList(onePath);
         }
 
-        private static List<PointF> smoothed;
+        private static List<PointF> tmpList;
         /// <summary>
         /// Smooth points by calc. average of last, current and next point
         /// </summary>
         private static void smoothContour(List<PointF> list)
         {   
-            if (list.Count < 10) return;
+            if (list.Count < 10) return;    // too less points to smooth
             PointF a, b, c;
             a = list[0]; b = list[1]; c = list[2];
             float newX, newY;
-            smoothed = new List<PointF>();
+            tmpList = new List<PointF>();
             for (int i = 1; i < list.Count-1; i++)
             {
                 a = list[i-1]; b = list[i]; c= list[i + 1];
                 newX = (a.X + b.X + c.X) / 3;
                 newY = (a.Y + b.Y + c.Y) / 3;
-                smoothed.Add(new PointF(newX,newY));
+                tmpList.Add(new PointF(newX,newY));
             }
             newX = (b.X + c.X + list[0].X) / 3;             // last point
             newY = (b.Y + c.Y + list[0].Y) / 3;
-            smoothed.Add(new PointF(newX, newY));
+            tmpList.Add(new PointF(newX, newY));
             newX = (c.X + list[0].X + list[1].X) / 3;       // first point
             newY = (c.Y + list[0].Y + list[1].Y) / 3;
-            smoothed.Add(new PointF(newX, newY));
+            tmpList.Add(new PointF(newX, newY));
 
             for (int i = 0; i < list.Count; i++)            // copy points to referenced list
-            { list[i] = smoothed[i]; }
+            { list[i] = tmpList[i]; }
+        }
+
+        private static void shrinkContour(List<PointF> list, float width)   // width in pixels
+        {   // average of last end next vector [i-1]-[i] and [i]-[i+1]
+            // move i 90 degree of vector
+            if (list.Count < 3) return;     // too less points to shrink
+            PointF a, b, c,p;
+            a = list[0]; b = list[1]; c = list[2];
+
+            float newX, newY;
+            tmpList = new List<PointF>();
+            for (int i = 1; i < list.Count - 1; i++)
+            {
+                a = list[i - 1]; b = list[i]; c = list[i + 1];
+                p = calcOffset(width, getAngle(a, c) + Math.PI / 2);
+                newX = b.X+p.X;
+                newY = b.Y+p.Y;
+                tmpList.Add(new PointF(newX, newY));
+            }
+            p = calcOffset(width, getAngle(b, list[0]) + Math.PI / 2);// last point
+            newX = c.X + p.X;
+            newY = c.Y + p.Y;
+            tmpList.Add(new PointF(newX, newY));
+
+            p = calcOffset(width, getAngle(c, list[1]) + Math.PI / 2);// first point
+            newX = list[0].X + p.X;
+            newY = list[0].Y + p.Y;
+            tmpList.Add(new PointF(newX, newY));
+
+            for (int i = 0; i < list.Count; i++)            // copy points to referenced list
+            { list[i] = tmpList[i]; }
+
+        }
+
+        private static void simplifyContour(List<PointF> list, float error)
+        {
+            if (list.Count < 10) return;    // too less points to simplify
+            PointF delta1 = new PointF();
+            PointF delta2 = new PointF();
+            PointF p1 = new PointF();
+            p1 = list[list.Count-1];
+            for (int i = list.Count - 2; i > 0; i--)
+            {   
+                delta1.X = list[i].X - p1.X;
+                delta1.Y = list[i].Y - p1.Y;
+                delta2.X = list[i - 1].X - list[i].X;
+                delta2.Y = list[i - 1].Y - list[i].Y;
+                while (sameDirection(delta1, delta2, error))
+                {
+                    list.RemoveAt(i);
+                    i--;
+                    if (i > 2)
+                    {
+                        delta2.X = list[i - 1].X - list[i].X;
+                        delta2.Y = list[i - 1].Y - list[i].Y;
+                    }
+                    else
+                        break;
+                }
+                p1 = list[i];// oder delta1 = delta2
+            }
+        }
+        private static bool sameDirection(PointF p1, PointF p2, float delta)
+        {
+            if ((Math.Abs(p1.X - p2.X) <= delta) && (Math.Abs(p1.Y - p2.Y) <= delta))
+                return true;
+            return false;
         }
 
         private static double getDistance(PointF p1, PointF p2)
         { return Math.Sqrt((p1.X-p2.X)* (p1.X - p2.X) + (p1.Y - p2.Y)* (p1.Y - p2.Y)); }
-        private static double getAngle(Point p1, Point p2)
+        private static double getAngle(PointF p1, PointF p2)
         {   if ((p2.X - p1.X) == 0)
-                if ((p2.Y - p1.Y) > 0)
+            {   if ((p2.Y - p1.Y) > 0)
                     return Math.PI / 2;
                 else
                     return -Math.PI / 2;
-            return Math.Atan((p2.Y - p1.Y) / (p2.X - p1.X));
+            }
+            if ((p2.X - p1.X) > 0)
+                return Math.Atan((p2.Y - p1.Y) / (p2.X - p1.X));
+            else 
+                return Math.PI + Math.Atan((p2.Y - p1.Y) / (p2.X - p1.X));
         }
-
+        private static PointF calcOffset(float r, double a)
+        {   PointF tmp = new PointF();
+            tmp.X = (float)(r * Math.Cos(a));
+            tmp.Y = (float)(r * Math.Sin(a));
+            return tmp;
+        }
         private static void showList(List<PointF> list)
         {
             logList.Append("showList\r\n");

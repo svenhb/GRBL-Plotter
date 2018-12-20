@@ -111,7 +111,7 @@ namespace GRBL_Plotter
                 }
                 gcode.PenUp(gcodeString);
             }
-            if (rBShape2.Checked)           // rectangle with round edge
+            else if (rBShape2.Checked)           // rectangle with round edge
             {
                 getOffset(x, y);
                 offsetX -= rTool; offsetY -= rTool;
@@ -151,7 +151,7 @@ namespace GRBL_Plotter
                 }
                 gcode.PenUp(gcodeString);
             }
-            if (rBShape3.Checked)           // circle
+            else if (rBShape3.Checked)           // circle
             {
                 getOffset(d, d);
                 offsetX -= rTool; offsetY -= rTool;
