@@ -3108,7 +3108,7 @@ the machine is running before hitting reset, except of course if there is some e
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnFeedHold.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;btnFeedHold.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -3146,7 +3146,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnReset.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;btnReset.ZOrder" xml:space="preserve">
     <value>15</value>
@@ -3178,7 +3178,7 @@ start executing the buffer and Grbl will begin moving the axes.</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnResume.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;btnResume.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -3215,7 +3215,7 @@ will override the locks and allow G-code functions to work again.
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnKillAlarm.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;btnKillAlarm.ZOrder" xml:space="preserve">
     <value>13</value>
@@ -3277,7 +3277,7 @@ for SVG files</value>
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogStop.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -3353,7 +3353,7 @@ for SVG files</value>
     <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.1.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickA.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;virtualJoystickA.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -3400,7 +3400,7 @@ for SVG files</value>
     <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.1.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -3463,6 +3463,9 @@ for SVG files</value>
         VuJ9Tgv7jwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="virtualJoystickXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Off</value>
+  </data>
   <data name="virtualJoystickXY.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 115</value>
   </data>
@@ -3488,7 +3491,7 @@ for SVG files</value>
     <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.1.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -3518,7 +3521,7 @@ for SVG files</value>
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBSendJogStop.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;cBSendJogStop.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -3542,7 +3545,7 @@ for SVG files</value>
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -3566,7 +3569,7 @@ for SVG files</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblTool.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;lblTool.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -3596,7 +3599,7 @@ for SVG files</value>
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBTool.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -3626,7 +3629,7 @@ for SVG files</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -3650,7 +3653,7 @@ for SVG files</value>
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tBSpeed.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;tBSpeed.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -3680,7 +3683,7 @@ for SVG files</value>
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBCoolant.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;cBCoolant.ZOrder" xml:space="preserve">
     <value>11</value>
@@ -3710,33 +3713,33 @@ for SVG files</value>
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBSpindle.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>gB_Jogging</value>
   </data>
   <data name="&gt;&gt;cBSpindle.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gB_Jogging.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="gB_Jogging.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 385</value>
   </data>
-  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
+  <data name="gB_Jogging.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
+  <data name="gB_Jogging.Text" xml:space="preserve">
     <value>Control / Jogging</value>
   </data>
-  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
-    <value>groupBox6</value>
+  <data name="&gt;&gt;gB_Jogging.Name" xml:space="preserve">
+    <value>gB_Jogging</value>
   </data>
-  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jogging.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jogging.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
   </data>
-  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jogging.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
@@ -3983,7 +3986,7 @@ for SVG files</value>
     <value>0</value>
   </data>
   <data name="tLPRechtsUntenRechts.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox6" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0" /&gt;&lt;Rows Styles="Absolute,420" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gB_Jogging" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0" /&gt;&lt;Rows Styles="Absolute,420" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPMitteUnten.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7164,9 +7167,6 @@ for SVG files</value>
         ////////////////////////////////////////////////////////////////////////////////
         //8=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 640</value>

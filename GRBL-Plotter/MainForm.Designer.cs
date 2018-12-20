@@ -225,7 +225,8 @@ namespace GRBL_Plotter
             this.virtualJoystickA = new virtualJoystick.virtualJoystick();
             this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
             this.virtualJoystickXY = new virtualJoystick.virtualJoystick();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.gB_Jogging = new System.Windows.Forms.GroupBox();
+            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblTool = new System.Windows.Forms.Label();
             this.cBTool = new System.Windows.Forms.CheckBox();
@@ -255,7 +256,6 @@ namespace GRBL_Plotter
             this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
-            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.btnOverrideSSGB.SuspendLayout();
@@ -265,7 +265,7 @@ namespace GRBL_Plotter
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.gB_Jogging.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -1394,11 +1394,13 @@ namespace GRBL_Plotter
             this.virtualJoystickA.JoystickRaster = 5;
             this.virtualJoystickA.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickA.Name = "virtualJoystickA";
+            this.virtualJoystickA.TabStop = false;
             this.toolTip1.SetToolTip(this.virtualJoystickA, resources.GetString("virtualJoystickA.ToolTip"));
             this.virtualJoystickA.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickA_JoyStickEvent);
             this.virtualJoystickA.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickA.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
             this.virtualJoystickA.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
+            this.virtualJoystickA.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
             // 
             // virtualJoystickZ
             // 
@@ -1415,11 +1417,13 @@ namespace GRBL_Plotter
             this.virtualJoystickZ.JoystickRaster = 5;
             this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickZ.Name = "virtualJoystickZ";
+            this.virtualJoystickZ.TabStop = false;
             this.toolTip1.SetToolTip(this.virtualJoystickZ, resources.GetString("virtualJoystickZ.ToolTip"));
             this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickZ_JoyStickEvent);
             this.virtualJoystickZ.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickZ.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
             this.virtualJoystickZ.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
+            this.virtualJoystickZ.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
             // 
             // virtualJoystickXY
             // 
@@ -1436,33 +1440,44 @@ namespace GRBL_Plotter
             this.virtualJoystickXY.JoystickRaster = 5;
             this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickXY.Name = "virtualJoystickXY";
+            this.virtualJoystickXY.TabStop = false;
             this.toolTip1.SetToolTip(this.virtualJoystickXY, resources.GetString("virtualJoystickXY.ToolTip"));
             this.virtualJoystickXY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickXY_JoyStickEvent);
             this.virtualJoystickXY.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.virtualJoystickXY.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
             this.virtualJoystickXY.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
+            this.virtualJoystickXY.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
             // 
-            // groupBox6
+            // gB_Jogging
             // 
-            this.groupBox6.Controls.Add(this.cBSendJogStop);
-            this.groupBox6.Controls.Add(this.btnResume);
-            this.groupBox6.Controls.Add(this.virtualJoystickA);
-            this.groupBox6.Controls.Add(this.btnJogStop);
-            this.groupBox6.Controls.Add(this.groupBox3);
-            this.groupBox6.Controls.Add(this.lblTool);
-            this.groupBox6.Controls.Add(this.cBTool);
-            this.groupBox6.Controls.Add(this.virtualJoystickZ);
-            this.groupBox6.Controls.Add(this.virtualJoystickXY);
-            this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.tBSpeed);
-            this.groupBox6.Controls.Add(this.cBCoolant);
-            this.groupBox6.Controls.Add(this.cBSpindle);
-            this.groupBox6.Controls.Add(this.btnKillAlarm);
-            this.groupBox6.Controls.Add(this.btnFeedHold);
-            this.groupBox6.Controls.Add(this.btnReset);
-            resources.ApplyResources(this.groupBox6, "groupBox6");
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.TabStop = false;
+            this.gB_Jogging.Controls.Add(this.cBSendJogStop);
+            this.gB_Jogging.Controls.Add(this.btnResume);
+            this.gB_Jogging.Controls.Add(this.virtualJoystickA);
+            this.gB_Jogging.Controls.Add(this.btnJogStop);
+            this.gB_Jogging.Controls.Add(this.groupBox3);
+            this.gB_Jogging.Controls.Add(this.lblTool);
+            this.gB_Jogging.Controls.Add(this.cBTool);
+            this.gB_Jogging.Controls.Add(this.virtualJoystickZ);
+            this.gB_Jogging.Controls.Add(this.virtualJoystickXY);
+            this.gB_Jogging.Controls.Add(this.label9);
+            this.gB_Jogging.Controls.Add(this.tBSpeed);
+            this.gB_Jogging.Controls.Add(this.cBCoolant);
+            this.gB_Jogging.Controls.Add(this.cBSpindle);
+            this.gB_Jogging.Controls.Add(this.btnKillAlarm);
+            this.gB_Jogging.Controls.Add(this.btnFeedHold);
+            this.gB_Jogging.Controls.Add(this.btnReset);
+            resources.ApplyResources(this.gB_Jogging, "gB_Jogging");
+            this.gB_Jogging.Name = "gB_Jogging";
+            this.gB_Jogging.TabStop = false;
+            // 
+            // cBSendJogStop
+            // 
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
+            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
+            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSendJogStop.Name = "cBSendJogStop";
+            this.cBSendJogStop.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -1674,7 +1689,7 @@ namespace GRBL_Plotter
             // tLPRechtsUntenRechts
             // 
             resources.ApplyResources(this.tLPRechtsUntenRechts, "tLPRechtsUntenRechts");
-            this.tLPRechtsUntenRechts.Controls.Add(this.groupBox6, 0, 0);
+            this.tLPRechtsUntenRechts.Controls.Add(this.gB_Jogging, 0, 0);
             this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
             // 
             // tLPMitteUnten
@@ -1694,15 +1709,6 @@ namespace GRBL_Plotter
             // gamePadTimer
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
-            // 
-            // cBSendJogStop
-            // 
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
-            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
-            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSendJogStop.Name = "cBSendJogStop";
-            this.cBSendJogStop.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1736,8 +1742,8 @@ namespace GRBL_Plotter
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.gB_Jogging.ResumeLayout(false);
+            this.gB_Jogging.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1813,7 +1819,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TableLayoutPanel tLPAussen;
         private System.Windows.Forms.TableLayoutPanel tLPLinks;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox gB_Jogging;
         private System.Windows.Forms.TableLayoutPanel tLPRechts;
         private System.Windows.Forms.TableLayoutPanel tLPRechtsUnten;
         private System.Windows.Forms.TableLayoutPanel tLPRechtsUntenRechts;

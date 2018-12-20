@@ -1494,12 +1494,38 @@ namespace GRBL_Plotter
 
         // virtualJoystic sends two step-width-values per second. One position should be reached before next command
         // speed (units/min) = 2 * stepsize * 60 * factor (to compensate speed-ramps)
-        private void virtualJoystickXY_JoyStickEvent(object sender, JogEventArgs e)
+        private int virtualJoystickXY_lastIndex = 1;
+        private int virtualJoystickZ_lastIndex = 1;
+        private void virtualJoystickXY_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            int indexX = Math.Abs(e.JogPosX);
-            int indexY = Math.Abs(e.JogPosY);
-            int dirX = Math.Sign(e.JogPosX);
-            int dirY = Math.Sign(e.JogPosY);
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                case Keys.Right:
+                case Keys.Down:
+                case Keys.Up:
+                    e.IsInputKey = true;
+                    break;
+            }
+        }
+
+        private void virtualJoystickXY_JoyStickEvent(object sender, JogEventArgs e)
+        {   virtualJoystickXY_move(e.JogPosX, e.JogPosY); }
+        private void virtualJoystickXY_move(int index_X, int index_Y)
+        { 
+            int indexX = Math.Abs(index_X);
+            int indexY = Math.Abs(index_Y);
+            int dirX = Math.Sign(index_X);
+            int dirY = Math.Sign(index_Y);
+            virtualJoystickXY_lastIndex = Math.Max(indexX, indexY);
+            if (indexX > joystickXYStep.Length)
+            { indexX = joystickXYStep.Length; index_X = indexX; }
+            if (indexX < 0)
+            { indexX = 0; index_X = 0; }
+            if (indexY > joystickXYStep.Length)
+            { indexY = joystickXYStep.Length; index_Y = indexY; }
+            if (indexY < 0)
+            { indexY = 0; index_Y = 0; }
             int speed = (int)Math.Max(joystickXYSpeed[indexX], joystickXYSpeed[indexY]);
             String strX = gcode.frmtNum(joystickXYStep[indexX] * dirX);
             String strY = gcode.frmtNum(joystickXYStep[indexY] * dirY);
@@ -1516,6 +1542,7 @@ namespace GRBL_Plotter
 
                         string tmp = string.Format("\r\nminX: {0:0.0} moveTo: {1:0.0} maxX: {2:0.0}",minx, (posMachine.X + joystickXYStep[indexX] * dirX), maxx);
                         tmp += string.Format("\r\nminY: {0:0.0} moveTo: {1:0.0} maxY: {2:0.0}", miny, (posMachine.Y + joystickXYStep[indexY] * dirY), maxy);
+                        System.Media.SystemSounds.Beep.Play();
                         DialogResult dialogResult = MessageBox.Show("Next move will exceed machine limits!"+tmp+"\r\n Press 'Ok' to move anyway", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (dialogResult == DialogResult.Cancel)
                             return;
@@ -1523,9 +1550,9 @@ namespace GRBL_Plotter
                 }
                 //if ((e.JogPosX == 0) && (e.JogPosY == 0))
                 //    s = String.Format("(stop)");// sendRealtimeCommand(133); 
-                if (e.JogPosX == 0)
+                if (index_X == 0)
                     s = String.Format("G91 Y{0} F{1}", strY, speed).Replace(',', '.');
-                else if (e.JogPosY == 0)
+                else if (index_Y == 0)
                     s = String.Format("G91 X{0} F{1}", strX, speed).Replace(',', '.');
                 else
                     s = String.Format("G91 X{0} Y{1} F{2}", strX, strY, speed).Replace(',', '.');
@@ -1538,13 +1565,28 @@ namespace GRBL_Plotter
         { if (!_serial_form.isGrblVers0) sendRealtimeCommand(133); }    //0x85
 
         private void virtualJoystickXY_Enter(object sender, EventArgs e)
-        { if (_serial_form.isGrblVers0) sendCommand("G91G1F100"); }
+        {   if (_serial_form.isGrblVers0) sendCommand("G91G1F100");
+            gB_Jogging.BackColor=Color.LightGreen;
+        }
         private void virtualJoystickXY_Leave(object sender, EventArgs e)
-        { if (_serial_form.isGrblVers0) sendCommand("G90"); }
+        {   if (_serial_form.isGrblVers0) sendCommand("G90");
+            gB_Jogging.BackColor = SystemColors.Control;
+            virtualJoystickXY.JoystickRasterMark = 0;
+            virtualJoystickZ.JoystickRasterMark = 0;
+            virtualJoystickA.JoystickRasterMark = 0;
+        }
         private void virtualJoystickZ_JoyStickEvent(object sender, JogEventArgs e)
+        { virtualJoystickZ_move(e.JogPosY); }
+        private void virtualJoystickZ_move(int index_Z)
         {
-            int indexZ = Math.Abs(e.JogPosY);
-            int dirZ = Math.Sign(e.JogPosY);
+            int indexZ = Math.Abs(index_Z);
+            int dirZ = Math.Sign(index_Z);
+            if (indexZ > joystickZStep.Length)
+            { indexZ = joystickZStep.Length; index_Z = indexZ; }
+            if (indexZ < 0)
+            { indexZ = 0; index_Z = 0; }
+
+            virtualJoystickZ_lastIndex = indexZ;
             int speed = (int)joystickZSpeed[indexZ];
             String strZ = gcode.frmtNum(joystickZStep[indexZ] * dirZ);
             if (speed > 0)
@@ -1888,15 +1930,11 @@ namespace GRBL_Plotter
             fCTBCode.Focus();
         }
 
-        private void MainForm_KeyUp(object sender, KeyEventArgs e)  // KeyDown in MainFormLoadFile 344
+        private void virtualJoystickXY_Load(object sender, EventArgs e)
         {
-            if ((e.KeyCode == Keys.Space))
-            {
-                showPathPenUp = true;
-                pictureBox1.Invalidate();
-            }
-        }
 
+
+        }
     }
 }
 

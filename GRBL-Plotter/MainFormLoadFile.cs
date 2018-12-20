@@ -352,16 +352,85 @@ namespace GRBL_Plotter
         // Ctrl-V to paste graphics
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
+            if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
             {
                 loadFromClipboard();
                 e.SuppressKeyPress = true;
             }
-            else if ((e.KeyCode == Keys.Space) && (pictureBox1.Focused))
-            {   showPathPenUp = false;
+            else if ((e.KeyCode == Keys.Space) && (pictureBox1.Focused))    // space = hide pen-up path
+            {
+                showPathPenUp = false;
                 pictureBox1.Invalidate();
             }
-         //   e.SuppressKeyPress = true;
+            else if (e.KeyCode == Keys.NumLock)
+                virtualJoystickXY.Focus();
+
+            if (virtualJoystickXY.Focused || virtualJoystickZ.Focused || virtualJoystickA.Focused)
+            {   if ((e.KeyCode == Keys.NumPad4) || (e.KeyCode == Keys.Left))   // 4 = left
+                { virtualJoystickXY_move(-virtualJoystickXY_lastIndex, 0); }
+                else if ((e.KeyCode == Keys.NumPad6) || (e.KeyCode == Keys.Right))  // 6 = right
+                { virtualJoystickXY_move(virtualJoystickXY_lastIndex, 0); }
+                else if ((e.KeyCode == Keys.NumPad2) || (e.KeyCode == Keys.Down))   // 2 = down
+                { virtualJoystickXY_move(0, -virtualJoystickXY_lastIndex); }
+                else if ((e.KeyCode == Keys.NumPad8) || (e.KeyCode == Keys.Up))     // 8 = up
+                { virtualJoystickXY_move(0, virtualJoystickXY_lastIndex); }
+                else if (e.KeyCode == Keys.NumPad1)                                 // 1 = 
+                { virtualJoystickXY_move(-virtualJoystickXY_lastIndex, -virtualJoystickXY_lastIndex); }
+                else if (e.KeyCode == Keys.NumPad7)                                 // 7 = 
+                { virtualJoystickXY_move(-virtualJoystickXY_lastIndex, virtualJoystickXY_lastIndex); }
+                else if (e.KeyCode == Keys.NumPad9)                                 // 9 = 
+                { virtualJoystickXY_move(virtualJoystickXY_lastIndex, virtualJoystickXY_lastIndex); }
+                else if (e.KeyCode == Keys.NumPad3)                                 // 3 = 
+                { virtualJoystickXY_move(virtualJoystickXY_lastIndex, -virtualJoystickXY_lastIndex); }
+
+                else if (e.KeyCode == Keys.NumPad5)                                 // 5 = Stop jogging
+                { if (!_serial_form.isGrblVers0) sendRealtimeCommand(133); }    //0x85
+
+                else if (e.KeyCode == Keys.Home)
+                {
+                    virtualJoystickXY_lastIndex++;
+                    if (virtualJoystickXY_lastIndex > virtualJoystickXY.JoystickRaster) virtualJoystickXY_lastIndex = virtualJoystickXY.JoystickRaster;
+                    if (virtualJoystickXY_lastIndex < 1) virtualJoystickXY_lastIndex = 1;
+                }
+                else if (e.KeyCode == Keys.End)
+                {
+                    virtualJoystickXY_lastIndex--;
+                    if (virtualJoystickXY_lastIndex > virtualJoystickXY.JoystickRaster) virtualJoystickXY_lastIndex = virtualJoystickXY.JoystickRaster;
+                    if (virtualJoystickXY_lastIndex < 1) virtualJoystickXY_lastIndex = 1;
+                }
+                else if ((e.KeyCode == Keys.Add))   // 4 = left
+                {   virtualJoystickZ_move(-virtualJoystickZ_lastIndex);      }
+                else if ((e.KeyCode == Keys.Subtract))   // 4 = left
+                {   virtualJoystickZ_move(virtualJoystickZ_lastIndex);       }
+
+                else if (e.KeyCode == Keys.PageUp)
+                {    virtualJoystickZ_lastIndex++;
+                    if (virtualJoystickZ_lastIndex > virtualJoystickZ.JoystickRaster) virtualJoystickZ_lastIndex = virtualJoystickZ.JoystickRaster;
+                    if (virtualJoystickZ_lastIndex < 1) virtualJoystickZ_lastIndex = 1;
+                }
+                else if (e.KeyCode == Keys.PageDown)
+                {    virtualJoystickZ_lastIndex--;
+                    if (virtualJoystickZ_lastIndex > virtualJoystickZ.JoystickRaster) virtualJoystickZ_lastIndex = virtualJoystickZ.JoystickRaster;
+                    if (virtualJoystickZ_lastIndex < 1) virtualJoystickZ_lastIndex = 1;
+                }
+
+                virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
+                virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
+                virtualJoystickA.JoystickRasterMark = virtualJoystickZ_lastIndex;
+
+                e.SuppressKeyPress = true;
+            }
+            //   e.SuppressKeyPress = true;
+        }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)  // KeyDown in MainFormLoadFile 344
+        {
+            if ((e.KeyCode == Keys.Space))
+            {   showPathPenUp = true;
+                pictureBox1.Invalidate();
+            }
+            if (((e.KeyCode >= Keys.NumPad0) && (e.KeyCode <= Keys.NumPad9)) || e.KeyCode <= Keys.Add || e.KeyCode <= Keys.Subtract)     // send jog-stop
+                if (!_serial_form.isGrblVers0 && cBSendJogStop.Checked) sendRealtimeCommand(133);
         }
 
         // paste from clipboard SVG or image
@@ -523,21 +592,25 @@ namespace GRBL_Plotter
                 commentOut = Properties.Settings.Default.ctrlCommentOut;
                 updateDrawing();
 
+                joystickXYStep[0] = 0;
                 joystickXYStep[1] = (double)Properties.Settings.Default.joyXYStep1;
                 joystickXYStep[2] = (double)Properties.Settings.Default.joyXYStep2;
                 joystickXYStep[3] = (double)Properties.Settings.Default.joyXYStep3;
                 joystickXYStep[4] = (double)Properties.Settings.Default.joyXYStep4;
                 joystickXYStep[5] = (double)Properties.Settings.Default.joyXYStep5;
+                joystickZStep[0] = 0;
                 joystickZStep[1] = (double)Properties.Settings.Default.joyZStep1;
                 joystickZStep[2] = (double)Properties.Settings.Default.joyZStep2;
                 joystickZStep[3] = (double)Properties.Settings.Default.joyZStep3;
                 joystickZStep[4] = (double)Properties.Settings.Default.joyZStep4;
                 joystickZStep[5] = (double)Properties.Settings.Default.joyZStep5;
+                joystickXYSpeed[0] = 0.1;
                 joystickXYSpeed[1] = (double)Properties.Settings.Default.joyXYSpeed1;
                 joystickXYSpeed[2] = (double)Properties.Settings.Default.joyXYSpeed2;
                 joystickXYSpeed[3] = (double)Properties.Settings.Default.joyXYSpeed3;
                 joystickXYSpeed[4] = (double)Properties.Settings.Default.joyXYSpeed4;
                 joystickXYSpeed[5] = (double)Properties.Settings.Default.joyXYSpeed5;
+                joystickZSpeed[0] = 0.1;
                 joystickZSpeed[1] = (double)Properties.Settings.Default.joyZSpeed1;
                 joystickZSpeed[2] = (double)Properties.Settings.Default.joyZSpeed2;
                 joystickZSpeed[3] = (double)Properties.Settings.Default.joyZSpeed3;
