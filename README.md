@@ -6,7 +6,7 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
    
    
 ### New in version 1.2.2.x:
-* Control via Keyboard
+* Control via  [Keyboard](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
 * Improved import of images - check wiki
   - smoothing of outline contour
   - shrink contour to compensate pen width
