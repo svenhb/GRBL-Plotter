@@ -1006,9 +1006,19 @@ namespace GRBL_Plotter
                         }
                     }
                     if (line.IndexOf("$TOOL") >=0) { grblStatus = grblStreaming.toolchange; }
-                    if (line == "($TOOL-IN)")  { toolInSpindle = true; }
-                    if (line == "($TOOL-OUT)") { toolInSpindle = false; }
-                    if (line == "($END)")      { grblStatus = grblStreaming.ok; }
+                    switch (line)
+                    {
+                        case "($TOOL-IN)":
+                            toolInSpindle = true;
+                            break;
+                        case "($TOOL-OUT)":
+                            toolInSpindle = false;
+                            break;
+                        case "($END)":
+                            grblStatus = grblStreaming.ok;
+                            break;
+                    }
+                      
                 }
                 else
                     return;
@@ -1492,12 +1502,27 @@ namespace GRBL_Plotter
                     {
                         if (int.TryParse(splt[0].Substring(1), out id))
                         {
-                            if (id == 100) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepX); }
-                            else if (id == 101) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepY); }
-                            else if (id == 102) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepZ); }
-                            else if (id == 110) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedX); }
-                            else if (id == 111) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedY); }
-                            else if (id == 112) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedZ); }
+                            switch (id)
+                            {
+                                case 100:
+                                    float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepX);
+                                    break;
+                                case 101:
+                                    float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepY);
+                                    break;
+                                case 102:
+                                    float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepZ);
+                                    break;
+                                case 110:
+                                    float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedX);
+                                    break;
+                                case 111:
+                                    float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedY);
+                                    break;
+                                case 112:
+                                    float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedZ);
+                                    break;
+                            }
                         }
                     }
                 }
