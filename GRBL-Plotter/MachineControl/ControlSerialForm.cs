@@ -319,10 +319,10 @@ namespace GRBL_Plotter
             btnGRBLReset.Enabled = isConnected;// & !isSensing;
         }
 
-        private void logError(string message, Exception err)
+        private void logError(string message, Exception error)
         {
             string textmsg = "\r\n[ERROR]: " + message + ". ";
-            if (err != null) textmsg += err.Message;
+            if (error != null) textmsg += error.Message;
             textmsg += "\r\n";
             rtbLog.AppendText(textmsg);
             rtbLog.ScrollToCaret();
@@ -439,7 +439,9 @@ namespace GRBL_Plotter
                 {   rxString = serialPort.ReadTo("\r\n");              //read line from grbl, discard CR LF
                     isDataProcessing = true;
                     this.Invoke(new EventHandler(handleRxData));        //tigger rx process 
-                    while ((serialPort.IsOpen) && (isDataProcessing)) ;  //wait previous data line processed done
+                    while ((serialPort.IsOpen) && (isDataProcessing))
+                    {
+                    }
                 }
                 catch (Exception errort)
                 {
@@ -564,7 +566,7 @@ namespace GRBL_Plotter
                 grblBufferFree += (sendLines[sendLinesConfirmed].Length + 1);   //update bytes supose to be free on grbl rx bufer
                 sendLinesConfirmed++;                   // line processed
                 // Remove already sent lines to release memory
-                if ((sendLines.Count > 1) && (sendLinesConfirmed == sendLinesSent == sendLinesCount > 1))
+                if ((sendLines.Count > 1) && (sendLinesConfirmed == sendLinesSent == (sendLinesCount > 1)))
                 {
                     sendLines.RemoveAt(0);
                     sendLinesConfirmed--;
@@ -703,15 +705,15 @@ namespace GRBL_Plotter
             }
         }
 
-        private void handleRX_Setup(string rxString)
+        private void handleRX_Setup(string rxStr)
         {
-            string[] splt = rxString.Split('=');
+            string[] splt = rxStr.Split('=');
             int id;
             if (int.TryParse(splt[0].Substring(1), out id))
             {
                 if (!isGrblVers0)
                 {   string msgNr = splt[0].Substring(1).Trim();
-                    addToLog(string.Format("< {0} ({1})", rxString.PadRight(14,' '), grbl.getSetting(msgNr)));   // output $$ response
+                    addToLog(string.Format("< {0} ({1})", rxStr.PadRight(14,' '), grbl.getSetting(msgNr)));   // output $$ response
                     if (id == 32)
                     {   if (splt[1].IndexOf("1") >= 0)
                             isLasermode = true;
@@ -721,11 +723,11 @@ namespace GRBL_Plotter
                     }
                 }
                 else
-                    addToLog(string.Format("< {0}", rxString));
-                GRBLSettings.Add(rxString);
+                    addToLog(string.Format("< {0}", rxStr));
+                GRBLSettings.Add(rxStr);
             }
             else
-                addToLog(string.Format("< {0}", rxString));
+                addToLog(string.Format("< {0}", rxStr));
         }
 
         private grblState grblStateNow = grblState.unknown;

@@ -1804,7 +1804,8 @@ namespace GRBL_Plotter
                                     else
                                     { processCommands(command); }
                                 }
-                                catch { }
+                                catch (Exception)
+                                { }
                             }
 
 
@@ -1904,9 +1905,11 @@ namespace GRBL_Plotter
 
         private int gamePadGCodeFeed(int feed, int speed1, int speed2, string axis)
         {
-            if ((axis != "X") && (axis != "Y"))
-            { return speed2; }    // Math.Min(feed,speed2);}
-            return speed1;  // Math.Min(feed,speed1);
+            //if ((axis != "X") && (axis != "Y"))
+            //{ return speed2; }    // Math.Min(feed,speed2);}
+            //return speed1;  // Math.Min(feed,speed1);
+            
+            return (axis != "X") && (axis != "Y") ? speed2 : speed1;
         }
 
         private void moveToMarkedPositionToolStripMenuItem_Click(object sender, EventArgs e)
