@@ -20,12 +20,10 @@
 * Thanks to http://stackoverflow.com/questions/217902/reading-writing-an-ini-file
 */
 
-using DWORD = System.UInt32;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
@@ -34,17 +32,13 @@ namespace GRBL_Plotter
 {
     class IniFile
     {
-        string Path;
-        string EXE = Assembly.GetExecutingAssembly().GetName().Name;
+        readonly string Path;
+        readonly string ExeName = Assembly.GetExecutingAssembly().GetName().Name;
 
-        [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        static extern DWORD WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
-        [DllImport("kernel32", CharSet = CharSet.Unicode)]
-        static extern DWORD GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
-
+       
         public IniFile(string IniPath = null)
         {
-            Path = new FileInfo(IniPath ?? EXE + ".ini").FullName.ToString();
+            Path = new FileInfo(IniPath ?? ExeName + ".ini").FullName.ToString();
         }
 
         public string Read(string Key, string Section = null)
@@ -52,7 +46,7 @@ namespace GRBL_Plotter
             var RetVal = new StringBuilder(255);
             try
             {
-                GetPrivateProfileString(Section ?? EXE, Key, "", RetVal, 255, Path);
+                NativeMethods.GetPrivateProfileString(Section ?? ExeName, Key, "", RetVal, 255, Path);
                 return RetVal.ToString();
             }
             catch (Exception err) { MessageBox.Show("Error in IniFile-Read: " +err.ToString()); return ""; }
@@ -62,19 +56,19 @@ namespace GRBL_Plotter
         {
             try
             {
-                WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
+                NativeMethods.WritePrivateProfileString(Section ?? ExeName, Key, Value, Path);
             }
             catch (Exception err) { MessageBox.Show("Error in IniFile-Read: " + err.ToString()); }
         }
 
         public void DeleteKey(string Key, string Section = null)
         {
-            Write(Key, null, Section ?? EXE);
+            Write(Key, null, Section ?? ExeName);
         }
 
         public void DeleteSection(string Section = null)
         {
-            Write(null, null, Section ?? EXE);
+            Write(null, null, Section ?? ExeName);
         }
 
         public bool KeyExists(string Key, string Section = null)

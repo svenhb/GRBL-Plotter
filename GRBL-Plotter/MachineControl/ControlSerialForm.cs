@@ -812,14 +812,11 @@ namespace GRBL_Plotter
             allowStreamingEvent = true;
         }
         public event EventHandler<PosEventArgs> RaisePosEvent;
+
         protected virtual void OnRaisePosEvent(PosEventArgs e)
         {
             //addToLog("OnRaisePosEvent " + e.Status.ToString());
-            EventHandler<PosEventArgs> handler = RaisePosEvent;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            RaisePosEvent?.Invoke(this, e);
         }
 
         #endregion
@@ -1447,11 +1444,7 @@ namespace GRBL_Plotter
         protected virtual void OnRaiseStreamEvent(StreamEventArgs e)
         {
             //addToLog("OnRaiseStreamEvent " + e.Status.ToString());
-            EventHandler<StreamEventArgs> handler = RaiseStreamEvent;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            RaiseStreamEvent?.Invoke(this, e);
         }
 
         private void btnClear_Click(object sender, EventArgs e)

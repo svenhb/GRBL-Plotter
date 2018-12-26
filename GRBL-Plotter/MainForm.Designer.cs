@@ -1392,6 +1392,7 @@ namespace GRBL_Plotter
         10D,
         50D};
             this.virtualJoystickA.JoystickRaster = 5;
+            this.virtualJoystickA.JoystickRasterMark = 0;
             this.virtualJoystickA.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickA.Name = "virtualJoystickA";
             this.virtualJoystickA.TabStop = false;
@@ -1415,6 +1416,7 @@ namespace GRBL_Plotter
         10D,
         50D};
             this.virtualJoystickZ.JoystickRaster = 5;
+            this.virtualJoystickZ.JoystickRasterMark = 0;
             this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickZ.Name = "virtualJoystickZ";
             this.virtualJoystickZ.TabStop = false;
@@ -1438,6 +1440,7 @@ namespace GRBL_Plotter
         10D,
         50D};
             this.virtualJoystickXY.JoystickRaster = 5;
+            this.virtualJoystickXY.JoystickRasterMark = 0;
             this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickXY.Name = "virtualJoystickXY";
             this.virtualJoystickXY.TabStop = false;

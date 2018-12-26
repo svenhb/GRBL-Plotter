@@ -150,8 +150,9 @@ namespace GRBL_Plotter
                 }
 
             }
-            catch (Exception err)
-            {   if (cBFeedback.Checked)
+            catch (Exception)
+            {
+                if (cBFeedback.Checked)
                     rtbLog.AppendText(string.Format(">| {0} \r\n", data));
             }
             while (rtbLog.Lines.Length > 99)
@@ -169,11 +170,7 @@ namespace GRBL_Plotter
         public event EventHandler<CommandEventArgs> RaiseStreamEvent;
         protected virtual void OnRaiseCommandEvent(CommandEventArgs e)
         {
-            EventHandler<CommandEventArgs> handler = RaiseStreamEvent;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            RaiseStreamEvent?.Invoke(this, e);
         }
 
         private void ControlDIYControlPad_Load(object sender, EventArgs e)
@@ -195,8 +192,8 @@ namespace GRBL_Plotter
 
     public class CommandEventArgs : EventArgs
     {
-        private string cmdString;
-        private byte cmdChar;
+        private readonly string cmdString;
+        private readonly byte cmdChar;
         public CommandEventArgs(string cmd)
         {   cmdString = cmd;
         }

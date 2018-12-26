@@ -46,6 +46,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -161,6 +162,7 @@
       <DependentUpon>ControlDIYControlPad.cs</DependentUpon>
     </Compile>
     <Compile Include="MachineControl\ControlPowerSaving.cs" />
+    <Compile Include="MachineControl\NativeMethods.cs" />
     <Compile Include="mainObjects.cs" />
     <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
     <Compile Include="MachineControl\ControlCameraForm.cs">
@@ -467,7 +469,6 @@
     <Content Include="fonts\unicode.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="GRBL-Plotter_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -586,7 +587,6 @@
     <None Include="Resources\turn_l.png" />
     <None Include="Resources\flip_vertical.png" />
     <None Include="Resources\flip_horizontal.png" />
-    <None Include="Resources\flip_horizontal.bmp" />
     <None Include="Resources\Image1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
