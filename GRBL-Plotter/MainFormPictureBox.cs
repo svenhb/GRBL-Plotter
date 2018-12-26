@@ -26,10 +26,10 @@ namespace GRBL_Plotter
         private Pen penMarker = new Pen(Color.DeepPink, 1F);
  //       SolidBrush machineLimit = new SolidBrush(Color.Red);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
-        private double picAbsPosX = 0;
-        private double picAbsPosY = 0;
+        private double picAbsPosX;
+        private double picAbsPosY;
         private Bitmap picBoxBackround;
-        private bool showPicBoxBgImage = false;
+        private bool showPicBoxBgImage;
         private bool showPathPenUp = true;
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -152,8 +152,8 @@ namespace GRBL_Plotter
         private Matrix pBoxTransform = new Matrix();
         private static float s_dScrollValue = 2f; // zoom factor   
         private float zoomRange = 1f;
-        private float zoomOffsetX = 0f;
-        private float zoomOffsetY = 0f;
+        private float zoomOffsetX;
+        private float zoomOffsetY;
 
         private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
         {

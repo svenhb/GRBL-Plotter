@@ -45,9 +45,9 @@ namespace GRBL_Plotter
         Bitmap originalImage;
         Bitmap adjustedImage;
         Bitmap resultImage;
-        private static int maxToolTableIndex = 0;       // last index
-        private static bool gcodeSpindleToggle = false; // Switch on/off spindle for Pen down/up (M3/M5)
-        private static bool loadFromFile = false;
+        private static int maxToolTableIndex;       // last index
+        private static bool gcodeSpindleToggle; // Switch on/off spindle for Pen down/up (M3/M5)
+        private static bool loadFromFile;
         private static Color backgroundColor = Color.White;
 
         private string imagegcode = "";
@@ -339,7 +339,7 @@ namespace GRBL_Plotter
             rBMode2.CheckedChanged += rBMode0_CheckedChanged;
         }
 
-        private static bool redoColorAdjust = false;
+        private static bool redoColorAdjust;
         private void presetColorCorrection(int tmp)
         {
             disableControlEvents();
@@ -415,7 +415,7 @@ namespace GRBL_Plotter
 
         #region image manipulation
 
-        private static decimal oldWidth=0, oldHeight=0;
+        private static decimal oldWidth, oldHeight;
         private void nUDWidthHeight_ValueChanged(object sender, EventArgs e)
         {   nUDWidth.ValueChanged -= nUDWidthHeight_ValueChanged;
             nUDHeight.ValueChanged -= nUDWidthHeight_ValueChanged;
@@ -509,7 +509,7 @@ namespace GRBL_Plotter
         {   applyColorCorrections();
         }
 
-        private static int conversionMode = 0, conversionModeOld = 0;
+        private static int conversionMode, conversionModeOld;
         private void rBMode0_CheckedChanged(object sender, EventArgs e)
         {   conversionMode = 0;
             if (rBMode1.Checked) conversionMode = 1;
@@ -663,7 +663,7 @@ namespace GRBL_Plotter
 
         //Invoked when the user input any value for image adjust
         private static int pixelCount = 100;
-        private static bool useFullReso = false;
+        private static bool useFullReso;
         private static decimal resoFull = 1;
         private static decimal resoDesired = 1;
         private static int resoFactor = 1;
@@ -810,8 +810,8 @@ namespace GRBL_Plotter
             Cursor.Current = Cursors.Default;
         }
 
-        private static bool showResultActive = false;
-        private static bool showResultPreview = false;
+        private static bool showResultActive;
+        private static bool showResultPreview;
         private void showResultImage(bool showResult=true)//, bool preview = false)
         {
             if (adjustedImage == null) return;//if no image, do nothing
@@ -977,7 +977,7 @@ namespace GRBL_Plotter
 
         #endregion
 
-        private bool updateLabelColorCount = false;
+        private bool updateLabelColorCount;
         private void timer1_Tick(object sender, EventArgs e)
         {   if (updateLabelColorCount)
                 countImageColors();

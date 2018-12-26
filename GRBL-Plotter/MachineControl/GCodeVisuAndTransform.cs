@@ -52,8 +52,8 @@ namespace GRBL_Plotter
         private xyzPoint machinePos = new xyzPoint(0, 0, 0);
         private xyPoint markerPos = new xyPoint(0, 0);
         private double zLimit = -0.001;
-        private bool containsG2G3 = false;
-        private bool containsG91 = false;
+        private bool containsG2G3;
+        private bool containsG91;
 
         public void setPosTool(xyzPoint tmp)
         { toolPos = tmp; }
@@ -896,7 +896,7 @@ namespace GRBL_Plotter
         }
 
         // add given coordinates to drawing path
-        private int onlyZ = 0;
+        private int onlyZ;
         private byte oldSpindleState = 5;
         /// <summary>
         /// add segement to drawing path 'PenUp' or 'PenDown' from old-xyz to new-xyz

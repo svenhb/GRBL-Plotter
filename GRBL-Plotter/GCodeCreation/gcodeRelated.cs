@@ -35,28 +35,28 @@ namespace GRBL_Plotter
     {   private static string formatCode = "00";
         private static string formatNumber = "0.###";
 
-        private static int gcodeLines = 0;              // counter for GCode lines
-        private static float gcodeDistance = 0;         // counter for GCode move distance
+        private static int gcodeLines;              // counter for GCode lines
+        private static float gcodeDistance;         // counter for GCode move distance
 
-        private static int gcodeSubroutineEnable = 0;    // state subroutine
+        private static int gcodeSubroutineEnable;    // state subroutine
         private static string gcodeSubroutine = "";    //  subroutine
 
-        private static bool gcodeDragCompensation = false;
-        public static float gcodeDragRadius = 0;
+        private static bool gcodeDragCompensation;
+        public static float gcodeDragRadius;
         private static float gcodeDragAngle = 30;
 
-        private static int gcodeDownUp = 0;             // counter for GCode Pen Down / Up
-        private static float gcodeTime = 0;             // counter for GCode work time
-        private static int gcodePauseCounter = 0;       // counter for GCode pause M0 commands
-        private static int gcodeToolCounter = 0;       // counter for GCode Tools
+        private static int gcodeDownUp;             // counter for GCode Pen Down / Up
+        private static float gcodeTime;             // counter for GCode work time
+        private static int gcodePauseCounter;       // counter for GCode pause M0 commands
+        private static int gcodeToolCounter;       // counter for GCode Tools
         private static string gcodeToolText = "";       // counter for GCode Tools
 
         public static float gcodeXYFeed = 1999;        // XY feed to apply for G1
-        private static bool gcodeXYFeedToolTable=false;     // from Tool Table
+        private static bool gcodeXYFeedToolTable;     // from Tool Table
         private static bool gcodeComments = true;       // if true insert additional comments into GCode
 
-        private static bool gcodeToolChange = false;          // Apply tool exchange command
-        private static bool gcodeToolChangeM0 = false;
+        private static bool gcodeToolChange;          // Apply tool exchange command
+        private static bool gcodeToolChangeM0;
 
         // Using Z-Axis for Pen up down
         private static bool gcodeZApply = true;         // if true insert Z movements for Pen up/down
@@ -66,27 +66,27 @@ namespace GRBL_Plotter
         public static float gcodeZRepitition;          // Z feed to apply for G1
 
         // Using Spindle pwr. to switch on/off laser
-        private static bool gcodeSpindleToggle = false; // Switch on/off spindle for Pen down/up (M3/M5)
+        private static bool gcodeSpindleToggle; // Switch on/off spindle for Pen down/up (M3/M5)
         public static float gcodeSpindleSpeed = 999; // Spindle speed to apply
         private static string gcodeSpindleCmd = "3"; // Spindle Command M3 / M4
 
         // Using Spindle-Speed als PWM output to control RC-Servo
-        private static bool gcodePWMEnable = false;     // Change Spindle speed for Pen down/up
+        private static bool gcodePWMEnable;     // Change Spindle speed for Pen down/up
         private static float gcodePWMUp = 199;          // Spindle speed for Pen-up
-        private static float gcodePWMDlyUp = 0;         // Delay to apply after Pen-up (because servo is slow)
+        private static float gcodePWMDlyUp;         // Delay to apply after Pen-up (because servo is slow)
         private static float gcodePWMDown = 799;        // Spindle speed for Pen-down
-        private static float gcodePWMDlyDown = 0;       // Delay to apply after Pen-down (because servo is slow)
+        private static float gcodePWMDlyDown;       // Delay to apply after Pen-down (because servo is slow)
 
-        private static bool gcodeIndividualTool = false;     // Use individual Pen down/up
+        private static bool gcodeIndividualTool;     // Use individual Pen down/up
         private static string gcodeIndividualUp = "";
         private static string gcodeIndividualDown = "";
 
-        private static bool gcodeCompress = false;      // reduce code by avoiding sending again same G-Nr and unchanged coordinates
-        public static bool gcodeRelative = false;      // calculate relative coordinates for G91
-        private static bool gcodeNoArcs = false;        // replace arcs by line segments
+        private static bool gcodeCompress;      // reduce code by avoiding sending again same G-Nr and unchanged coordinates
+        public static bool gcodeRelative;      // calculate relative coordinates for G91
+        private static bool gcodeNoArcs;        // replace arcs by line segments
         private static float gcodeAngleStep = 0.1f;
-        private static bool gcodeInsertSubroutine = false;
-        private static int gcodeSubroutineCount = 0;
+        private static bool gcodeInsertSubroutine;
+        private static int gcodeSubroutineCount;
 
         private static bool gcodeLineSegmentation;
         private static float gcodeLineSegmentLength;
@@ -232,7 +232,7 @@ namespace GRBL_Plotter
         public static string frmtNum(double number)     // convert double to string using format pattern
         {   return number.ToString(formatNumber); }
 
-        private static bool gcodeReduce = false;        // if true remove G1 commands if distance is < limit
+        private static bool gcodeReduce;        // if true remove G1 commands if distance is < limit
         private static float gcodeReduceVal = 0.1f;     // limit when to remove G1 commands
         private static StringBuilder secondMove = new StringBuilder();
         private static bool applyXYFeedRate = true; // apply XY feed after each Pen-move
@@ -372,7 +372,7 @@ namespace GRBL_Plotter
         { MoveSplit(gcodeString, gnr, x, y, null, applyFeed, cmt); }
 
         private static float remainingX = 10, remainingY = 10, remainingC = 10;
-        private static float segFinalX = 0, segFinalY = 0, segLastFinalX = 0, segLastFinalY = 0;
+        private static float segFinalX, segFinalY, segLastFinalX, segLastFinalY;
         private static void MoveSplit(StringBuilder gcodeString, int gnr, float finalx, float finaly, float? z, bool applyFeed, string cmt)
         {
             segLastFinalX = segFinalX; segLastFinalY = segFinalY;
@@ -464,9 +464,9 @@ namespace GRBL_Plotter
             lastMovewasG0 = false;
         }
 
-        private static bool dragArc = false, drag1stMove = true;
+        private static bool dragArc, drag1stMove = true;
         private static float origLastX, origLastY, origFinalX, origFinalY;
-        private static float dragCompi = 0, dragCompj = 0;
+        private static float dragCompi, dragCompj;
         private static Point dragToolCompensation(StringBuilder gcodeString, float finalx, float finaly)
         {
             float dx = finalx - origFinalX;// lastx;       // remaining distance until full move

@@ -26,7 +26,7 @@ namespace GRBL_Plotter
 {   public partial class GCodeFromImage
     {
         private static Dictionary<int, StringBuilder> gcodeByToolNr = new Dictionary<int, StringBuilder>();
-        private static int gcodeStringIndex = 0;
+        private static int gcodeStringIndex;
         private static StringBuilder finalString = new StringBuilder();
         private static StringBuilder tmpString = new StringBuilder();
 
@@ -110,7 +110,7 @@ namespace GRBL_Plotter
 
         private static Dictionary<int, List<int>[]> colorMap = new Dictionary<int, List<int>[]>();
         private static int colorStart = -2, colorEnd = -2, lastTool = -2, lastLine = -2;
-        int myToolNumber = 0;
+        int myToolNumber;
         /// <summary>
         /// colorMap stores x-start and x-stop values for each line(y) in an array (color)
         /// </summary>
@@ -461,7 +461,7 @@ namespace GRBL_Plotter
         }
 
         private float lastDrawX, lastDrawY;
-        bool lastIfBackground = false;
+        bool lastIfBackground;
         private void drawPixel(int picPosX, int picPosY, float coordX, float coordY, int edge, int dir)
         {   int myToolNumber = resultToolNrArray[picPosX, (resultImage.Height - 1) - picPosY];
             bool ifBackground = false;

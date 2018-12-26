@@ -97,8 +97,8 @@ namespace GRBL_Plotter
         }
 
         // mark clicked line in editor
-        int fCTBCodeClickedLineNow = 0;
-        int fCTBCodeClickedLineLast = 0;
+        int fCTBCodeClickedLineNow;
+        int fCTBCodeClickedLineLast;
         private void fCTBCode_Click(object sender, EventArgs e)
         {
             fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
@@ -313,7 +313,7 @@ namespace GRBL_Plotter
             return;
         }
 
-        private bool deleteMarkedCode = false;
+        private bool deleteMarkedCode;
         private void deletenotMarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (deleteMarkedCode)

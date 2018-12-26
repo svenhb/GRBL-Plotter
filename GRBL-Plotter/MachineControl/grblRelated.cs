@@ -298,7 +298,7 @@ namespace GRBL_Plotter
     public class pState
     {
         public bool changed=true;
-        public int motion=0;           // {G0,G1,G2,G3,G38.2,G80} 
+        public int motion;           // {G0,G1,G2,G3,G38.2,G80} 
         public int feed_rate=94;       // {G93,G94} 
         public int units=21;           // {G20,G21} 
         public int distance=90;        // {G90,G91} 
@@ -308,13 +308,13 @@ namespace GRBL_Plotter
                                     //        int tool_length;     // {G43.1,G49} 
         public int coord_select=54;    // {G54,G55,G56,G57,G58,G59} 
                                     // uint8_t control;      // {G61} NOTE: Don't track. Only default supported. 
-        public int program_flow=0;    // {M0,M1,M2,M30} 
+        public int program_flow;    // {M0,M1,M2,M30} 
         public int coolant=9;         // {M7,M8,M9} 
         public int spindle=5;         // {M3,M4,M5} 
-        public bool toolchange=false;
-        public int tool=0;            // tool number
-        public double FR=0;           // feedrate
-        public double SS=0;           // spindle speed
+        public bool toolchange;
+        public int tool;            // tool number
+        public double FR;           // feedrate
+        public double SS;           // spindle speed
 
         public void reset()
         {

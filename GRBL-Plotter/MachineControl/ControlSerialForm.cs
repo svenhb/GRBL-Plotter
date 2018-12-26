@@ -70,7 +70,7 @@ namespace GRBL_Plotter
 
         private const int timerReload=200;
         private string rxString;
-        private bool useSerial2 = false;
+        private bool useSerial2;
         private int iamSerial = 1;
         private string formTitle = "";
 
@@ -131,7 +131,7 @@ namespace GRBL_Plotter
             isLasermode = Properties.Settings.Default.ctrlLaserMode;
             resetVariables(true);
         }
-        private bool mainformAskClosing = false;
+        private bool mainformAskClosing;
         private void SerialForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (iamSerial == 1)
@@ -360,7 +360,7 @@ namespace GRBL_Plotter
                 openPort();
             updateControls();
         }
-        private int minimizeCount = 0;
+        private int minimizeCount;
         private bool openPort()
         {
             try
@@ -830,9 +830,9 @@ namespace GRBL_Plotter
         private int grblBufferSize = 127;  //rx bufer size of grbl on arduino 127
         private int grblBufferFree = 127;    //actual suposed free bytes on grbl buffer
         private List<string> sendLines = new List<string>();
-        private int sendLinesCount=0;             // actual buffer size
-        private int sendLinesSent=0;              // actual sent line
-        private int sendLinesConfirmed=0;         // already received line
+        private int sendLinesCount;             // actual buffer size
+        private int sendLinesSent;              // actual sent line
+        private int sendLinesConfirmed;         // already received line
 
         /*  requestSend fill up send buffer, called by main-prog for single commands
          *  or called by preProcessStreaming to stream GCode data
@@ -853,8 +853,8 @@ namespace GRBL_Plotter
             }
         }
 
-        private bool replaceFeedRate = false;
-        private bool replaceSpindleSpeed = false;
+        private bool replaceFeedRate;
+        private bool replaceSpindleSpeed;
         private string replaceFeedRateCmd = "";
         private string replaceSpindleSpeedCmd = "";
         private string replaceFeedRateCmdOld = "";
@@ -932,7 +932,7 @@ namespace GRBL_Plotter
          *  called by timer and rx-interrupt
          *  take care of keywords
          * */
-        private bool waitForIdle = false;
+        private bool waitForIdle;
         private string[] eeprom1 = { "G54", "G55", "G56", "G57", "G58", "G59"};
         private string[] eeprom2 = { "G10", "G28", "G30", "G28" };
         public void processSend()
@@ -1111,16 +1111,16 @@ namespace GRBL_Plotter
         // 2. proceedStreaming() to copy data to stack for sending
         private List<string> gCodeLines = new List<string>();      // buffer with gcode commands
         private List<int> gCodeLineNr   = new List<int>();         // corresponding line-nr from main-form
-        private int gCodeLinesCount=0;             // amount of lines to sent
-        private int gCodeLinesSent=0;              // actual sent line
-        private int gCodeLinesConfirmed=0;         // received line
-        private int gCodeLinesTotal=0;
-        private bool isStreaming = false;        // true when steaming is in progress
-        private bool isStreamingRequestPause = false; // true when request pause (wait for idle to switch to pause)
-        private bool isStreamingPause = false;    // true when steaming-pause 
-        private bool isStreamingCheck = false;    // true when steaming is in progress (check)
-        private bool getParserState = false;      // true to send $G after status switched to idle
-        private bool isDataProcessing=false;      // false when no data processing pending
+        private int gCodeLinesCount;             // amount of lines to sent
+        private int gCodeLinesSent;              // actual sent line
+        private int gCodeLinesConfirmed;         // received line
+        private int gCodeLinesTotal;
+        private bool isStreaming;        // true when steaming is in progress
+        private bool isStreamingRequestPause; // true when request pause (wait for idle to switch to pause)
+        private bool isStreamingPause;    // true when steaming-pause 
+        private bool isStreamingCheck;    // true when steaming is in progress (check)
+        private bool getParserState;      // true to send $G after status switched to idle
+        private bool isDataProcessing;      // false when no data processing pending
         private grblStreaming grblStatus = grblStreaming.ok;
         private grblStreaming oldStatus = grblStreaming.ok;
         public void stopStreaming()
@@ -1485,7 +1485,7 @@ namespace GRBL_Plotter
         private void btnGRBLCommand0_Click(object sender, EventArgs e)
         { requestSend("$"); }
 
-        private static int callCheckGRBL = 0;
+        private static int callCheckGRBL;
         private void btnCheckGRBL_Click(object sender, EventArgs e)
         {
             float stepX = 0, stepY = 0, stepZ = 0;

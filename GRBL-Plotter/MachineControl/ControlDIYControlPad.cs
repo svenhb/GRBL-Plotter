@@ -75,7 +75,7 @@ namespace GRBL_Plotter
             rtbLog.ScrollToCaret();
         }
 
-        private static byte lastChar = 0;
+        private static byte lastChar;
         private static List<byte> isRealTimeCmd = new List<byte> { 0x18, (byte)'?', (byte)'~', (byte)'!'};
         private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {   while ((serialPort.IsOpen) && (serialPort.BytesToRead > 0))

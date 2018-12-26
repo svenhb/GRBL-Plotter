@@ -27,8 +27,8 @@ namespace GRBL_Plotter
     {
         private static StringBuilder finalString = new StringBuilder();
         private static StringBuilder gcodeString = new StringBuilder();
-        private static bool gcodeUseSpindle = false;            // Switch on/off spindle for Pen down/up (M3/M5)
-        private static bool gcodeToolChange = false;            // Apply tool exchange command
+        private static bool gcodeUseSpindle;            // Switch on/off spindle for Pen down/up (M3/M5)
+        private static bool gcodeToolChange;            // Apply tool exchange command
         private static bool importComments = true;              // if true insert additional comments into GCode
         private static bool importUnitmm = true;                // convert units if needed
 

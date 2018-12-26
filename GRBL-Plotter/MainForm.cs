@@ -44,18 +44,18 @@ namespace GRBL_Plotter
 
     public partial class MainForm : Form
     {
-        ControlSerialForm _serial_form = null;
-        ControlSerialForm _serial_form2 = null;
-        Control2ndGRBL _2ndGRBL_form = null;
-        ControlStreamingForm _streaming_form = null;
-        ControlStreamingForm2 _streaming_form2 = null;
-        ControlCameraForm _camera_form = null;
-        ControlSetupForm _setup_form = null;
-        ControlHeightMapForm _heightmap_form = null;
-        ControlDIYControlPad _diyControlPad = null;
-        GCodeFromText _text_form = null;
-        GCodeFromImage _image_form = null;
-        GCodeFromShape _shape_form = null;
+        ControlSerialForm _serial_form;
+        ControlSerialForm _serial_form2;
+        Control2ndGRBL _2ndGRBL_form;
+        ControlStreamingForm _streaming_form;
+        ControlStreamingForm2 _streaming_form2;
+        ControlCameraForm _camera_form;
+        ControlSetupForm _setup_form;
+        ControlHeightMapForm _heightmap_form;
+        ControlDIYControlPad _diyControlPad;
+        GCodeFromText _text_form;
+        GCodeFromImage _image_form;
+        GCodeFromShape _shape_form;
 
 
         private const string appName = "GRBL Plotter";
@@ -63,13 +63,13 @@ namespace GRBL_Plotter
         private xyzPoint posWorld = new xyzPoint(0, 0, 0);
         private xyzPoint posProbe = new xyzPoint(0, 0, 0);
         private grblState machineStatus;
-        public bool flagResetOffset = false;
+        public bool flagResetOffset;
         private double[] joystickXYStep = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
 
-        private bool ctrl4thAxis = false;
+        private bool ctrl4thAxis;
         private string ctrl4thName = "A";
         private string lastLoadSource = "Nothing loaded";
         private int coordinateG = 54;
@@ -246,7 +246,7 @@ namespace GRBL_Plotter
         private grblState lastMachineStatus = grblState.unknown;
         private string lastInfoText = "";
         private string lastLabelInfoText = "";
-        private bool updateDrawingPath = false;
+        private bool updateDrawingPath;
         private void processStatus() // {idle, run, hold, home, alarm, check, door}
         {
             if (machineStatus != lastMachineStatus)
@@ -985,12 +985,12 @@ namespace GRBL_Plotter
         // handle file streaming
         TimeSpan elapsed;               //elapsed time from file burnin
         DateTime timeInit;              //time start to burning file
-        private int signalResume = 0;   // blinking button
-        private int signalLock = 0;     // blinking button
-        private int signalPlay = 0;     // blinking button
-        private bool isStreaming = false;
-        private bool isStreamingPause = false;
-        private bool isStreamingCheck = false;
+        private int signalResume;   // blinking button
+        private int signalLock;     // blinking button
+        private int signalPlay;     // blinking button
+        private bool isStreaming;
+        private bool isStreamingPause;
+        private bool isStreamingCheck;
         private bool isStreamingOk = true;
         private void OnRaiseStreamEvent(object sender, StreamEventArgs e)
         {
@@ -1236,7 +1236,7 @@ namespace GRBL_Plotter
             isHeightMapApplied = false;
         }
 
-        private bool isHeightMapApplied = false;
+        private bool isHeightMapApplied;
         private StringBuilder codeBeforeHeightMap = new StringBuilder();
         private void applyHeightMap(object sender, EventArgs e)
         {
@@ -1767,9 +1767,9 @@ namespace GRBL_Plotter
             else if (command.ToLower().IndexOf("#s+1") >= 0) { sendRealtimeCommand(156); }
             else if (command.ToLower().IndexOf("#s-1") >= 0) { sendRealtimeCommand(157); }
         }
-        private bool gamePadSendCmd = false;
+        private bool gamePadSendCmd;
         private string gamePadSendString = "";
-        private int gamePadRepitition = 0;
+        private int gamePadRepitition;
         private void gamePadTimer_Tick(object sender, EventArgs e)
         {
             string command = "";

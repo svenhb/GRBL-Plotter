@@ -33,7 +33,7 @@ namespace GRBL_Plotter
         { get { return shapegcode; } }
         private static StringBuilder gcodeString = new StringBuilder();
 
-        public float offsetX = 0, offsetY = 0;
+        public float offsetX, offsetY;
         public GCodeFromShape()
         {
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);

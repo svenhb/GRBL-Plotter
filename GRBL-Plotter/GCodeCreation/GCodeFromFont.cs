@@ -31,28 +31,28 @@ namespace GRBL_Plotter
     {
         public static string gcFontName = "standard";
         public static string gcText = "";       // text to convert
-        public static int gcFont = 0;           // text to convert
+        public static int gcFont;           // text to convert
         public static int gcAttachPoint = 7;    // origin of text 1 = Top left; 2 = Top center; 3 = Top right; etc
         public static double gcHeight = 1;      // desired Text height
         public static double gcWidth = 1;       // desired Text width
-        public static double gcAngle = 0;
+        public static double gcAngle;
         public static double gcSpacing = 1;     // Percentage of default (3-on-5) line spacing to be applied. Valid values range from 0.25 to 4.00.
-        public static double gcOffX = 0;
-        public static double gcOffY = 0;
+        public static double gcOffX;
+        public static double gcOffY;
         public static double gcLineDistance = 1.5;
-        public static double gcFontDistance = 0;
+        public static double gcFontDistance;
 
-        public static bool gcPauseLine = false;
-        public static bool gcPauseWord = false;
-        public static bool gcPauseChar = false;
+        public static bool gcPauseLine;
+        public static bool gcPauseWord;
+        public static bool gcPauseChar;
 
         private static double gcLetterSpacing = 3;  //  # LetterSpacing:     3
         private static double gcWordSpacing = 6.75; //  # WordSpacing:       6.75
 
-        private static double offsetX = 0;
-        private static double offsetY = 0;
-        private static bool gcodePenIsUp = false;
-        private static bool useLFF = false;
+        private static double offsetX;
+        private static double offsetY;
+        private static bool gcodePenIsUp;
+        private static bool useLFF;
 
 
         #region Hershey Font
@@ -359,7 +359,7 @@ namespace GRBL_Plotter
             return maxX;
         }
 
-        private static double charX, charY, charXOld=0, charYOld=0;
+        private static double charX, charY, charXOld, charYOld;
         private static double drawPathLFF(StringBuilder gcodeString, string txtPath, double offX, double offY, double scale)
         {   string[] points = txtPath.Split(';');
             int cnt = 0;

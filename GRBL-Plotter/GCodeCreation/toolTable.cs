@@ -56,10 +56,10 @@ namespace GRBL_Plotter
     {
         private static int toolTableMax = 100;            // max amount of tools
         private static toolProp[] toolTableArray = new toolProp[toolTableMax];   // load color palette into this array
-        private static int toolTableIndex = 0;            // last index
-        private static bool useException = false;
-        private static int tmpIndex = 0;
-        private static bool init_done = false;
+        private static int toolTableIndex;            // last index
+        private static bool useException;
+        private static int tmpIndex;
+        private static bool init_done;
 
         // defaultTool needed in Setup      ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
         public static string[] defaultTool = { "1", "000000", "Default black", "0.0", "0.0", "0.0", "3.0", "500","1","100","10000","75" };

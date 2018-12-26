@@ -50,7 +50,7 @@ namespace GRBL_Plotter
     {
         private static int svgToolMax = 100;            // max amount of tools
         private static StringBuilder[] gcodeString = new StringBuilder[svgToolMax];
-        private static int gcodeStringIndex = 0;
+        private static int gcodeStringIndex;
         private static StringBuilder finalString = new StringBuilder();
 
         // following settings will be read from Properties.Settings.Default in startConvert()
@@ -60,7 +60,7 @@ namespace GRBL_Plotter
         private static bool svgClosePathExtend = true;  // not working if true move to first and second point of path to get overlap
         private static bool svgToolSortNr = true;        // if true take tool nr. from nearest pallet entry
         private static bool svgToolSort = true;         // if true sort objects by tool-nr. (to avoid back and forth pen change)
-        private static int amountOfTools = 0;            // last index
+        private static int amountOfTools;            // last index
 
         private static bool svgNodesOnly = true;        // if true only do pen-down -up on given coordinates
 
@@ -68,12 +68,12 @@ namespace GRBL_Plotter
         private static bool svgPausePenDown = true;     // if true insert pause M0 before pen down
         private static bool svgComments = true;         // if true insert additional comments into GCode
 
-        private static bool gcodeReduce = false;        // if true remove G1 commands if distance is < limit
+        private static bool gcodeReduce;        // if true remove G1 commands if distance is < limit
         private static float gcodeReduceVal = .1f;        // limit when to remove G1 commands
 
         private static float gcodeXYFeed = 2000;        // XY feed to apply for G1
 
-        private static bool gcodeToolChange = false;          // Apply tool exchange command
+        private static bool gcodeToolChange;          // Apply tool exchange command
         private static int gcodeOldToolNr = -1;
         private static int myTool = 1;
         private static string myColor = "";
@@ -85,7 +85,7 @@ namespace GRBL_Plotter
         private static float gcodeZFeed = 500;          // Z feed to apply for G1
 
         // Using Spindle pwr. to switch on/off laser
-        private static bool gcodeUseSpindle = false; // Switch on/off spindle for Pen down/up (M3/M5)
+        private static bool gcodeUseSpindle; // Switch on/off spindle for Pen down/up (M3/M5)
 
         private static bool svgConvertToMM = true;
         private static float gcodeScale = 1;                    // finally scale with this factor if svgScaleApply and svgMaxSize
@@ -99,8 +99,8 @@ namespace GRBL_Plotter
         /// <param name="file">String keeping file-name or URL</param>
         /// <returns>String with GCode of imported data</returns>
         private static XElement svgCode;
-        private static bool fromClipboard = false;
-        private static bool importInMM = false;
+        private static bool fromClipboard;
+        private static bool importInMM;
         public static string convertFromText(string svgText, bool importMM=false)
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
@@ -774,7 +774,7 @@ namespace GRBL_Plotter
 
         private static bool penIsDown = true;
         private static bool startSubPath = true;
-        private static int countSubPath = 0;
+        private static int countSubPath;
         private static bool startPath = true;
         private static bool startFirstElement = true;
         private static float svgWidthPx, svgHeightPx;
@@ -782,7 +782,7 @@ namespace GRBL_Plotter
         private static float currentX, currentY;
         private static float? firstX, firstY;
         private static float lastX, lastY;
-        private static float cxMirror=0, cyMirror=0;
+        private static float cxMirror, cyMirror;
         private static StringBuilder secondMove = new StringBuilder();
 
         /// <summary>
@@ -1315,9 +1315,9 @@ namespace GRBL_Plotter
             gcodeMoveTo(coord, cmt);
         }
 
-        private static bool isReduceOk = false;
-        private static bool rejectPoint = false;
-        private static double lastGCX = 0, lastGCY = 0, lastSetGCX = 0, lastSetGCY = 0, distance;
+        private static bool isReduceOk;
+        private static bool rejectPoint;
+        private static double lastGCX, lastGCY, lastSetGCX, lastSetGCY, distance;
         /// <summary>
         /// Insert G1 gcode command
         /// </summary>

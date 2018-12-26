@@ -40,13 +40,13 @@ namespace GRBL_Plotter //DXFImporter
     {
         private static int svgToolMax = 100;            // max amount of tools
         private static StringBuilder[] gcodeString = new StringBuilder[svgToolMax];
-        private static int gcodeStringIndex = 0;
+        private static int gcodeStringIndex;
         private static StringBuilder finalString = new StringBuilder();
-        private static bool gcodeUseSpindle = false; // Switch on/off spindle for Pen down/up (M3/M5)
-        private static bool gcodeReduce = false;        // if true remove G1 commands if distance is < limit
+        private static bool gcodeUseSpindle; // Switch on/off spindle for Pen down/up (M3/M5)
+        private static bool gcodeReduce;        // if true remove G1 commands if distance is < limit
         private static double gcodeReduceVal = .1;        // limit when to remove G1 commands
 
-        private static bool gcodeZIncEnable = false;
+        private static bool gcodeZIncEnable;
         private static double gcodeZIncrement = 2;
 
         private static bool dxfPauseElement = true;     // if true insert GCode pause M0 before each element
@@ -54,7 +54,7 @@ namespace GRBL_Plotter //DXFImporter
         private static bool dxfComments = true;         // if true insert additional comments into GCode
         private static bool importUnitmm = true;        // convert units if needed
 
-        private static bool gcodeToolChange = false;          // Apply tool exchange command
+        private static bool gcodeToolChange;          // Apply tool exchange command
 
         private static ArrayList drawingList;
         private static ArrayList objectIdentifier;
@@ -232,7 +232,7 @@ namespace GRBL_Plotter //DXFImporter
         /// <param name="offsetX">Offset to apply if called by block insertion</param>
         /// <returns></returns>                       
         private static System.Windows.Point[] points;
-        private static bool isReduceOk=false;
+        private static bool isReduceOk;
 
         /// <summary>
         /// Process entities
@@ -603,8 +603,8 @@ namespace GRBL_Plotter //DXFImporter
             }
             isReduceOk = false;
         }
-        private static bool askPenUp = false;
-        private static bool isPenDown = false;
+        private static bool askPenUp;
+        private static bool isPenDown;
         private static void gcodeStopPath(string cmt="")
         {
             if (!dxfComments)
@@ -637,7 +637,7 @@ namespace GRBL_Plotter //DXFImporter
             gcodeMoveTo(coord, cmt);
         }
 
-        private static bool rejectPoint = false;
+        private static bool rejectPoint;
         private static double lastGCX =-1, lastGCY=-1, lastSetGCX = -1, lastSetGCY = -1, distance;
         /// <summary>
         /// Insert G1 gcode command

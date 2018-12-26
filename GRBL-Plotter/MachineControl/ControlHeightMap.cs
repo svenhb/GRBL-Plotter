@@ -43,7 +43,7 @@ namespace GRBL_Plotter
         private List<Point> MapIndex;
         private Bitmap heightMapBMP;
         private Bitmap heightLegendBMP;
-        private bool isMapOk = false;
+        private bool isMapOk;
         //        eventArgsTemplates _event = null;
 
         public xyzPoint setPosWorld
@@ -182,7 +182,7 @@ namespace GRBL_Plotter
             nUDCutOffZ.Value = (decimal)Map.MinHeight;
         }
 
-        private bool isgray = false;
+        private bool isgray;
         private void cBGray_CheckedChanged(object sender, EventArgs e)
         {
             int legendHeight = heightLegendBMP.Height;
@@ -252,7 +252,7 @@ namespace GRBL_Plotter
             InitializeComponent();
         }
 
-        int cntReceived = 0, cntSent = 0;
+        int cntReceived, cntSent;
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -502,7 +502,7 @@ namespace GRBL_Plotter
             scanStarted = !scanStarted;
         }
 
-        public bool scanStarted = false;
+        public bool scanStarted;
 
         private void btnGCode_Click(object sender, EventArgs e)
         {

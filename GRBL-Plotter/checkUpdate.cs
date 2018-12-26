@@ -6,7 +6,7 @@ namespace GRBL_Plotter
 {
     class checkUpdate
     {
-        private static bool showAny = false;
+        private static bool showAny;
         public static void CheckVersion(bool showAnyResult=false)
         {
             showAny = showAnyResult;

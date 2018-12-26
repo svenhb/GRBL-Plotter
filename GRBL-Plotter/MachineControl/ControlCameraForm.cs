@@ -42,20 +42,20 @@ namespace GRBL_Plotter
 {
     public partial class ControlCameraForm : Form
     {
-        private byte cameraIndex = 0;
+        private byte cameraIndex;
         private int cameraResolution = 640;
         private double cameraRotation = 180;
         private double cameraTeachRadiusTop = 30;
         private double cameraTeachRadiusBot = 10;
         private double cameraScalingTop = 20;
         private double cameraScalingBot = 20;
-        private double cameraPosTop = 0;
+        private double cameraPosTop;
         private double cameraPosBot = -50;
         xyPoint realPosition;
 
         private float cameraZoom = 1;
-        private bool teachingTop = false;
-        private bool teachingBot = false;
+        private bool teachingTop;
+        private bool teachingBot;
         private bool showOverlay = true;
         //private bool teachTP1 = false;
 
@@ -219,7 +219,7 @@ namespace GRBL_Plotter
             videoSource.Start();
         }
 
-        int frameCounter = 0;
+        int frameCounter;
         // event-handler of video - rotate image and display
         void videoSource_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
@@ -267,7 +267,7 @@ namespace GRBL_Plotter
         private int ymid;// = pictureBoxVideo.Size.Height / 2;
         private int radius;// = (int)(cameraTeachRadius * cameraZoom * xmid / cameraScaling);
         private double ratio;// = (double)pictureBoxVideo.Size.Height / pictureBoxVideo.Size.Width;
-        private float angle = 0;
+        private float angle;
         private Pen pen1 = new Pen(Color.Yellow, 1f);
         private void pictureBoxVideo_Paint(object sender, PaintEventArgs e)
         {
@@ -469,7 +469,7 @@ namespace GRBL_Plotter
         }
 
         // measure angle 
-        private bool measureAngle = false;
+        private bool measureAngle;
         private xyPoint measureAngleStart = new xyPoint(0, 0);
         private xyPoint measureAngleStop = new xyPoint(0, 0);
         private void pictureBoxVideo_MouseDown(object sender, MouseEventArgs e)
@@ -571,7 +571,7 @@ namespace GRBL_Plotter
 
         // Process image
         private DoublePoint shapeCenter, picCenter;
-        private bool shapeFound = false;
+        private bool shapeFound;
         private void ProcessImage(Bitmap bitmap)
         {
             // lock image

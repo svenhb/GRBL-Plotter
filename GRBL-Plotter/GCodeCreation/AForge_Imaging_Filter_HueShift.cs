@@ -27,7 +27,7 @@ namespace AForge.Imaging.Filters
     /// 
     public class HueShift : BaseInPlacePartialFilter
     {
-        private int hue = 0;
+        private int hue;
 
         // private format translation dictionary
         private Dictionary<PixelFormat, PixelFormat> formatTranslations = new Dictionary<PixelFormat, PixelFormat>();

@@ -37,10 +37,10 @@ namespace GRBL_Plotter
         private static sbyte markObject     = sbyte.MaxValue;
         private static sbyte markBackground = sbyte.MinValue;
         private static List<List<PointF>> outlinePaths = new List<List<PointF>>();
-        private static int Smooth = 0;
+        private static int Smooth;
         public static StringBuilder logList  = new StringBuilder();
-        public static bool log = false;
-        public static bool shrinkPath = false;
+        public static bool log;
+        public static bool shrinkPath;
 
         /// <summary>
         /// Get a List of PointF-Lists from paths found in sbyte-array

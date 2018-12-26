@@ -48,7 +48,7 @@ namespace GRBL_Plotter
         { get { return textgcode; } }
 
         //        private static float gcodeXYFeed = 2000;
-        private static bool gcodeUseSpindle = false;
+        private static bool gcodeUseSpindle;
         //        private static bool gcodePenIsUp = false;
         private void TextForm_Load(object sender, EventArgs e)
         {
