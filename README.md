@@ -5,6 +5,12 @@ Written in C# VisualStudio 2015.
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
    
+### New in version 1.2.3.x:
+* User definable [hotkeys](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
+* Surface Scan with [Z-Probing](https://github.com/svenhb/GRBL-Plotter/wiki/Surface-scan#Z-Value-from-DIY-Control-interface) value from DIY-Control interface
+* Restart paused job after program restart
+* some bug fixes and improvements
+   
 ### New in version 1.2.2.x:
 * Control via  [Keyboard](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
 * Improved import of images - check wiki
@@ -31,7 +37,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.2.2.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2018-12-20    
+#### [GRBL-Plotter Vers. 1.2.3.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-01-04    
 
 ### Requirements for compiling
 * VisualStudio 2015 
