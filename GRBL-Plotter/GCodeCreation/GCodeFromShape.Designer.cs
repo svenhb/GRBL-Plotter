@@ -336,10 +336,10 @@
             65536});
             resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
             this.nUDImportGCZDown.Maximum = new decimal(new int[] {
-            1000,
+            1,
             0,
             0,
-            0});
+            -2147418112});
             this.nUDImportGCZDown.Minimum = new decimal(new int[] {
             1000,
             0,

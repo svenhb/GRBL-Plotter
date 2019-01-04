@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -293,7 +293,8 @@ namespace GRBL_Plotter
             if (gcodePWMEnable)
             {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Servo control");
                 gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMDown, cmt);
-                gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyDown));
+                if (gcodePWMDlyDown>0)
+                    gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyDown));
                 gcodeTime += gcodePWMDlyDown;
                 gcodeLines++;
             }
@@ -328,7 +329,8 @@ namespace GRBL_Plotter
             if (gcodePWMEnable)
             {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Servo control");
                 gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMUp, cmt);
-                gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyUp));
+                if (gcodePWMDlyUp>0)
+                    gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyUp));
                 gcodeTime += gcodePWMDlyUp;
                 gcodeLines++;
             }
