@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,11 +17,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
-using System.Data;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Threading;
 using System.Drawing;
@@ -56,8 +53,8 @@ namespace GRBL_Plotter
             cBFont.Items.AddRange(GCodeFromFont.fontFileName());
 
             cBFont.SelectedIndex = Properties.Settings.Default.textFontIndex;
-            tBText.Text = Properties.Settings.Default.textFontText;
-            nUDFontSize.Value = Properties.Settings.Default.textFontSize;
+//            tBText.Text = Properties.Settings.Default.textFontText;
+//            nUDFontSize.Value = Properties.Settings.Default.textFontSize;
 
             Location = Properties.Settings.Default.locationTextForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
@@ -91,8 +88,8 @@ namespace GRBL_Plotter
         private void TextForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.textFontIndex = cBFont.SelectedIndex;
-            Properties.Settings.Default.textFontSize = nUDFontSize.Value;
-            Properties.Settings.Default.textFontText = tBText.Text;
+//            Properties.Settings.Default.textFontSize = nUDFontSize.Value;
+//            Properties.Settings.Default.textFontText = tBText.Text;
             Properties.Settings.Default.locationTextForm = Location;
             Properties.Settings.Default.Save();
         }
