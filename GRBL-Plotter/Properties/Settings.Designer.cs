@@ -3142,5 +3142,29 @@ namespace GRBL_Plotter.Properties {
                 this["ctrlSendStopJog"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal textFontDistance {
+            get {
+                return ((decimal)(this["textFontDistance"]));
+            }
+            set {
+                this["textFontDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public decimal textLineDistance {
+            get {
+                return ((decimal)(this["textLineDistance"]));
+            }
+            set {
+                this["textLineDistance"] = value;
+            }
+        }
     }
 }
