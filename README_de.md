@@ -4,6 +4,12 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+### Neu in Version 1.2.3.x:
+* Benutzerdefinierbare [hotkeys](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
+* Surface Scan mit [Z-Probing](https://github.com/svenhb/GRBL-Plotter/wiki/Surface-scan#Z-Value-from-DIY-Control-interface) Wert vom DIY-Control Interface
+* Wiederaufnahme eines pausierten Jobs nach Programneustart
+* Einige Fehlerbehebungen und Verbesserungen
+  
 ### Neu in Version 1.2.2.x:
 * Steuerung über  [Keyboard](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
 * Verbesserter Bildimport
@@ -52,7 +58,7 @@ Auskommentierung von unbekannten GCode
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.2.2.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2018-12-20  
+#### [GRBL-Plotter Vers. 1.2.3.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-01-04  
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
