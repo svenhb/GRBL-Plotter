@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GCode lineNr="207" lineContent="G01 X55.255 Y21.677  (c)">
+  <WPos X="55.256" Y="21.676" Z="-3" />
+  <Parser State="G1 G54 G17 G21 G90 G94 M3 M9 T0 F2000 S1000" />
+</GCode>
