@@ -15,7 +15,6 @@ namespace GRBL_Plotter
 {
     public partial class MainForm
     {
-
         #region pictureBox
         // onPaint drawing
         private Pen penUp = new Pen(Color.Green, 0.1F);
@@ -26,6 +25,7 @@ namespace GRBL_Plotter
         private Pen penMarker = new Pen(Color.DeepPink, 1F);
  //       SolidBrush machineLimit = new SolidBrush(Color.Red);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
+        private SolidBrush brushBackground = new SolidBrush(Color.White);
         private double picAbsPosX = 0;
         private double picAbsPosY = 0;
         private Bitmap picBoxBackround;
@@ -61,17 +61,26 @@ namespace GRBL_Plotter
                 { offX = -75; }
 
                 Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y - 10);
-                e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
-                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}", 100 / zoomRange, unit), new Font("Lucida Console", 8), Brushes.Black, new Point(5, 5));
+ //               e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
+ //               e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}", 100 / zoomRange, unit), new Font("Lucida Console", 8), Brushes.Black, new Point(5, 5));
 
+                pBoxOrig = e.Graphics.Transform;
                 e.Graphics.Transform = pBoxTransform;
-                e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);        // apply scaling (flip Y)
+                e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);           // apply scaling (flip Y)
                 e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
                      
                 if (!showPicBoxBgImage)
                     onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
                 e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
                 e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
+
+                e.Graphics.Transform = pBoxOrig;
+                if (Properties.Settings.Default.machineLimitsShow)
+                {   e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
+                    e.Graphics.FillRectangle(brushBackground, new Rectangle(3, 3, 140, 24));
+                }
+                e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
+                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}", 100 / zoomRange, unit), new Font("Lucida Console", 8), Brushes.Black, new Point(5, 5));
             }
         }
 
@@ -150,6 +159,7 @@ namespace GRBL_Plotter
         }
 
         private Matrix pBoxTransform = new Matrix();
+        private Matrix pBoxOrig = new Matrix();
         private static float s_dScrollValue = 2f; // zoom factor   
         private float zoomRange = 1f;
         private float zoomOffsetX = 0f;

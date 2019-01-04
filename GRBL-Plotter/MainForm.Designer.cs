@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -121,6 +121,8 @@ namespace GRBL_Plotter
             this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startStreamingAtLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tb_StreamLine = new System.Windows.Forms.ToolStripTextBox();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_mx = new System.Windows.Forms.Label();
             this.label_my = new System.Windows.Forms.Label();
@@ -630,7 +632,8 @@ namespace GRBL_Plotter
             this.controlStreamingToolStripMenuItem,
             this.control2ndGRBLToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.setupToolStripMenuItem});
+            this.setupToolStripMenuItem,
+            this.startStreamingAtLineToolStripMenuItem});
             this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
             resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
             // 
@@ -663,6 +666,19 @@ namespace GRBL_Plotter
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
             resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
             this.setupToolStripMenuItem.Click += new System.EventHandler(this.DIYControlopen);
+            // 
+            // startStreamingAtLineToolStripMenuItem
+            // 
+            this.startStreamingAtLineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tb_StreamLine});
+            this.startStreamingAtLineToolStripMenuItem.Name = "startStreamingAtLineToolStripMenuItem";
+            resources.ApplyResources(this.startStreamingAtLineToolStripMenuItem, "startStreamingAtLineToolStripMenuItem");
+            // 
+            // toolStrip_tb_StreamLine
+            // 
+            this.toolStrip_tb_StreamLine.Name = "toolStrip_tb_StreamLine";
+            resources.ApplyResources(this.toolStrip_tb_StreamLine, "toolStrip_tb_StreamLine");
+            this.toolStrip_tb_StreamLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_StreamLine_KeyDown);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1392,6 +1408,7 @@ namespace GRBL_Plotter
         10D,
         50D};
             this.virtualJoystickA.JoystickRaster = 5;
+            this.virtualJoystickA.JoystickRasterMark = 0;
             this.virtualJoystickA.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickA.Name = "virtualJoystickA";
             this.virtualJoystickA.TabStop = false;
@@ -1415,6 +1432,7 @@ namespace GRBL_Plotter
         10D,
         50D};
             this.virtualJoystickZ.JoystickRaster = 5;
+            this.virtualJoystickZ.JoystickRasterMark = 0;
             this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickZ.Name = "virtualJoystickZ";
             this.virtualJoystickZ.TabStop = false;
@@ -1438,6 +1456,7 @@ namespace GRBL_Plotter
         10D,
         50D};
             this.virtualJoystickXY.JoystickRaster = 5;
+            this.virtualJoystickXY.JoystickRasterMark = 0;
             this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickXY.Name = "virtualJoystickXY";
             this.virtualJoystickXY.TabStop = false;
@@ -1954,6 +1973,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem reloadFileToolStripMenuItem;
         private System.Windows.Forms.Button btnLimitExceed;
         private System.Windows.Forms.CheckBox cBSendJogStop;
+        private System.Windows.Forms.ToolStripMenuItem startStreamingAtLineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tb_StreamLine;
     }
 }
 

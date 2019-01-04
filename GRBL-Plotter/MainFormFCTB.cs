@@ -5,6 +5,9 @@
  * fCTBCode_TextChanged
  * fCTBCode_TextChangedDelayed
  * */
+ /*
+  * 2018-01-04 no selection of text to highlight current line 136...
+ */
 
 using System;
 using System.Drawing;
@@ -97,8 +100,8 @@ namespace GRBL_Plotter
         }
 
         // mark clicked line in editor
-        int fCTBCodeClickedLineNow = 0;
-        int fCTBCodeClickedLineLast = 0;
+        private int fCTBCodeClickedLineNow = 0;
+        private int fCTBCodeClickedLineLast = 0;
         private void fCTBCode_Click(object sender, EventArgs e)
         {
             fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
@@ -112,13 +115,13 @@ namespace GRBL_Plotter
             if ((key == 38) && (fCTBCodeClickedLineNow > 0))
             {
                 fCTBCodeClickedLineNow -= 1;
-                fCTBCode.Selection = fCTBCode.GetLine(fCTBCodeClickedLineNow);
+  //              fCTBCode.Selection = fCTBCode.GetLine(fCTBCodeClickedLineNow);
                 fCTBCodeMarkLine();
             }
             if ((key == 40) && (fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))
             {
                 fCTBCodeClickedLineNow += 1;
-                fCTBCode.Selection = fCTBCode.GetLine(fCTBCodeClickedLineNow);
+  //              fCTBCode.Selection = fCTBCode.GetLine(fCTBCodeClickedLineNow);
                 fCTBCodeMarkLine();
             }
         }
@@ -130,9 +133,9 @@ namespace GRBL_Plotter
                 {
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                     fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);
-                    Range selected = fCTBCode.GetLine(fCTBCodeClickedLineNow);
-                    fCTBCode.Selection = selected;
-                    fCTBCode.SelectionColor = Color.Orange;
+    //                Range selected = fCTBCode.GetLine(fCTBCodeClickedLineNow);
+   //                 fCTBCode.Selection = selected;
+   //                 fCTBCode.SelectionColor = Color.Orange;
                     fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
                     // Set marker in drawing
                     //visuGCode.setMarkerOnDrawing(fCTBCode.SelectedText);
@@ -142,6 +145,7 @@ namespace GRBL_Plotter
                     { _camera_form.setPosMarker(visuGCode.GetPosMarker());// X(), visuGCode.GetPosMarkerY());
                         //MessageBox.Show("x "+visuGCode.GetPosMarkerX().ToString()+ "  y "+ visuGCode.GetPosMarkerY().ToString());
                     }
+                    toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
                 }
             }
         }

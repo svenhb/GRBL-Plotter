@@ -122,25 +122,25 @@
     <value>46, 20</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Datei</value>
+    <value>&amp;Datei</value>
   </data>
   <data name="createGCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 20</value>
   </data>
   <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>GCode erzeugen</value>
+    <value>GCode &amp;erzeugen</value>
   </data>
   <data name="gCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 20</value>
   </data>
   <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>GCode transformieren</value>
+    <value>GCode &amp;transformieren</value>
   </data>
   <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 20</value>
   </data>
   <data name="machineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Maschine</value>
+    <value>&amp;Maschine</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -149,64 +149,64 @@
     <value>Über...</value>
   </data>
   <data name="loadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+    <value>303, 22</value>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Datei öffnen</value>
+    <value>&amp;Datei öffnen</value>
   </data>
   <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Öffne GCode oder SVG Datei</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+    <value>303, 22</value>
   </data>
   <data name="toolStripMenuItem2.Text" xml:space="preserve">
     <value>Zuletzt geöffnete Dateien</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 6</value>
+    <value>300, 6</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+    <value>303, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere GCode</value>
+    <value>&amp;Speichere GCode</value>
   </data>
   <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Speichere  GCode aus dem Editor in eine Datei</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 6</value>
+    <value>300, 6</value>
   </data>
   <data name="setupToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+    <value>303, 22</value>
   </data>
   <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 6</value>
+    <value>300, 6</value>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+    <value>303, 22</value>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exportiere Maschinen Einstellungen</value>
+    <value>&amp;Exportiere Maschinen Einstellungen</value>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Exportiere Programmeinstellungen (Button Definitionen, Joystick Parameter) in eine INI-Datei</value>
   </data>
   <data name="loadMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+    <value>303, 22</value>
   </data>
   <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Importiere Maschinen Einstellungen</value>
+    <value>&amp;Importiere Maschinen Einstellungen</value>
   </data>
   <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Importiere Programmeinstellungen (Button Definitionen, Joystick Parameter) aus einer INI-Datei</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 22</value>
+    <value>303, 22</value>
   </data>
   <data name="toolStripMenuItem3.Text" xml:space="preserve">
     <value>Spracheinstellung</value>
@@ -218,7 +218,7 @@
     <value>207, 22</value>
   </data>
   <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Erzeuge Text</value>
+    <value>Erzeuge &amp;Text</value>
   </data>
   <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Einfache Texterstellung mit Hershey Fonts</value>
@@ -227,13 +227,13 @@
     <value>207, 22</value>
   </data>
   <data name="imageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bild umwandeln</value>
+    <value>&amp;Bild umwandeln</value>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 22</value>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Erzeuge einfache Formen</value>
+    <value>Erzeuge einfache &amp;Formen</value>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Kreis oder Rechteck, optional mit abgerundenten Ecken, optional als Tasche</value>
@@ -242,13 +242,13 @@
     <value>258, 22</value>
   </data>
   <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
-    <value>Spiegeln X (horizontal)</value>
+    <value>Spiegeln X (&amp;horizontal)</value>
   </data>
   <data name="mirrorYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 22</value>
   </data>
   <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Spiegeln Y (vertikal)</value>
+    <value>Spiegeln Y (&amp;vertikal)</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 6</value>
@@ -421,17 +421,35 @@
   <data name="btnStreamStart.ToolTip" xml:space="preserve">
     <value>Sende den GCode aus dem Editor an GRBL</value>
   </data>
+  <data name="cmsCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 114</value>
+  </data>
+  <data name="cmsCodeSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
+  </data>
   <data name="cmsCodeSelect.Text" xml:space="preserve">
     <value>Alles auswählen</value>
+  </data>
+  <data name="cmsCodeCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
   </data>
   <data name="cmsCodeCopy.Text" xml:space="preserve">
     <value>Kopieren</value>
   </data>
+  <data name="cmsCodePaste.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
+  </data>
   <data name="cmsCodePaste.Text" xml:space="preserve">
     <value>Einfügen</value>
   </data>
+  <data name="cmsCodeSendLine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
+  </data>
   <data name="cmsCodeSendLine.Text" xml:space="preserve">
     <value>Sende Codezeile</value>
+  </data>
+  <data name="cmsCommentOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 22</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Werkzeug Koordinaten (World / Machine)</value>
@@ -633,9 +651,6 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
         VuJ9Tgv7jwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Steuerung / Jogging</value>
-  </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
     <value>137, 12</value>
   </data>
@@ -661,52 +676,52 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
     <value>Paste GCode hier</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 198</value>
+    <value>275, 198</value>
   </data>
   <data name="moveToMarkedPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 6</value>
+    <value>271, 6</value>
   </data>
   <data name="resetZoomingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 6</value>
+    <value>271, 6</value>
   </data>
   <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Einfügen aus Zwischenablage</value>
   </data>
   <data name="reloadFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Markiere  Code (kein Löschen)</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>231, 6</value>
+    <value>271, 6</value>
   </data>
   <data name="deleteThisCodeLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
     <value>Lösche diese Codezeile</value>
   </data>
   <data name="moveToFirstPosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
     <value>Gehe zur ersten Pos.</value>
   </data>
   <data name="deletePathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 22</value>
+    <value>274, 22</value>
   </data>
   <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
     <value>Lösche zugehörigen Pfad</value>

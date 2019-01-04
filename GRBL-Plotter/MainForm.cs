@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,9 @@
  *  2018-01-02  Add Override Buttons
  *              Bugfix - no zooming during  streaming - disable background image (XP Problems?)
  *  2018-03-18  Divide this file into several files
+ *  2018-12-26	Commits from RasyidUFA via Github
+ *  2019-01-01  Pass CustomButton command "($abc)" through DIY-Control "[abc]"
+ *              Add variable hotkeys
  */
 
 using System;
@@ -59,9 +62,11 @@ namespace GRBL_Plotter
 
 
         private const string appName = "GRBL Plotter";
+        private const string fileLastProcessed = "lastProcessed";
         private xyzPoint posMachine = new xyzPoint(0, 0, 0);
         private xyzPoint posWorld = new xyzPoint(0, 0, 0);
         private xyzPoint posProbe = new xyzPoint(0, 0, 0);
+        private double? alternateZ = null;
         private grblState machineStatus;
         public bool flagResetOffset = false;
         private double[] joystickXYStep = { 0, 1, 2, 3, 4, 5 };
@@ -126,6 +131,7 @@ namespace GRBL_Plotter
 
             lbDimension.Select(0, 0);
             loadSettings(sender, e);
+            loadHotkeys();
             updateControls();
             LoadRecentList();
             foreach (string item in MRUlist)
@@ -184,6 +190,11 @@ namespace GRBL_Plotter
             if (e.Status == grblState.probe)
             {
                 posProbe = _serial_form.posProbe;
+                if (_diyControlPad != null)
+                {   if (alternateZ != null)
+                        posProbe.Z = (double)alternateZ;
+                    //_diyControlPad.sendFeedback("Probe: "+posProbe.Z.ToString());
+                }
                 if (_heightmap_form != null)
                     _heightmap_form.setPosProbe = posProbe;
             }
@@ -898,12 +909,25 @@ namespace GRBL_Plotter
         { _diyControlPad = null; }
         private void OnRaiseDIYCommandEvent(object sender, CommandEventArgs e)
         {
-            if (!isStreaming)
-            {   if (e.RealTimeCommand > 0x00)
+            if (e.RealTimeCommand > 0x00)
+            {   if (!isStreaming || isStreamingPause)
                     sendRealtimeCommand(e.RealTimeCommand);
-                else
-                    sendCommand(e.Command);
             }
+            else
+            {   if (!isStreaming || isStreamingPause)
+                    sendCommand(e.Command);
+                if (e.Command.StartsWith("(PRB:Z"))
+                {
+                    string num = e.Command.Substring(6);
+                    double myZ;
+                    num = num.Trim(')');
+                    alternateZ = null;
+                    if (double.TryParse(num, out myZ))
+                    { alternateZ = myZ; }
+                    else
+                    { _diyControlPad.sendFeedback("Error in parsing " + num,true); }
+                }
+            }           
         }
 
         // Height Map
@@ -1086,6 +1110,10 @@ namespace GRBL_Plotter
                     lbInfo.Text = "Pause streaming - press play (" + e.CodeLine.ToString() + ")";
                     signalPlay = 1;
                     lbInfo.BackColor = Color.Yellow;
+
+                    // save parser state on pause
+                    saveStreamingStatus(e.CodeLine);
+
                     break;
                 case grblStreaming.toolchange:
                     updateControls();
@@ -1106,20 +1134,23 @@ namespace GRBL_Plotter
             lbInfo.Text += overrideMessage;
         }
         private void btnStreamStart_Click(object sender, EventArgs e)
+        {   startStreaming(); }
+        // if startline > 0 start with pause
+        private void startStreaming(int startLine=0)
         {
             if (fCTBCode.LinesCount > 1)
             {
                 if (!isStreaming)
                 {
-                    if (_streaming_form != null)
-                    {
-                        //                        _streaming_form.cBOverrideFREnable.Checked = false;
-                        //                        _streaming_form.cBOverrideSSEnable.Checked = false;
-                    }
                     isStreaming = true;
                     isStreamingPause = false;
                     isStreamingCheck = false;
                     isStreamingOk = true;
+                    if (startLine > 0)
+                    {   btnStreamStart.Image = Properties.Resources.btn_pause;
+                        isStreamingPause = true;
+                    }
+
                     updateControls();
                     timeInit = DateTime.UtcNow;
                     elapsed = TimeSpan.Zero;
@@ -1127,8 +1158,16 @@ namespace GRBL_Plotter
                     lbInfo.BackColor = Color.Lime;
                     for (int i = 0; i < fCTBCode.LinesCount; i++)
                         fCTBCode.UnbookmarkLine(i);
+
+                    //save gcode
+                    string fileName = System.Environment.CurrentDirectory + "\\"+ fileLastProcessed;
+                    string txt = fCTBCode.Text;
+                    File.WriteAllText(fileName + ".nc", txt);
+                    File.Delete(fileName + ".xml");
+                    SaveRecentFile(fileLastProcessed + ".nc");
+
                     lblElapsed.Text = "Time " + elapsed.ToString(@"hh\:mm\:ss");
-                    _serial_form.startStreaming(fCTBCode.Lines);
+                    _serial_form.startStreaming(fCTBCode.Lines, startLine);
                     btnStreamStart.Image = Properties.Resources.btn_pause;
                     btnStreamCheck.Enabled = false;
                     onPaint_setBackground();
@@ -1167,7 +1206,7 @@ namespace GRBL_Plotter
                 lbInfo.BackColor = SystemColors.Control;
                 for (int i = 0; i < fCTBCode.LinesCount; i++)
                     fCTBCode.UnbookmarkLine(i);
-                _serial_form.startStreaming(fCTBCode.Lines, true);
+                _serial_form.startStreaming(fCTBCode.Lines, 0, true);
                 btnStreamStart.Enabled = false;
                 onPaint_setBackground();
             }
@@ -1468,7 +1507,7 @@ namespace GRBL_Plotter
         }
         // Setup Custom Buttons during loadSettings()
         string[] btnCustomCommand = new string[9];
-        private void setCustomButton(Button btn, string text)
+        private void setCustomButton(Button btn, string text, int cnt)
         {
             int index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length));
             string[] parts = text.Split('|');
@@ -1596,11 +1635,17 @@ namespace GRBL_Plotter
             }
         }
         private void virtualJoystickA_JoyStickEvent(object sender, JogEventArgs e)
-        {
-            int indexZ = Math.Abs(e.JogPosY);
-            int dirZ = Math.Sign(e.JogPosY);
-            int speed = (int)joystickZSpeed[indexZ];
-            String strZ = gcode.frmtNum(joystickZStep[indexZ] * dirZ);
+        { virtualJoystickA_move(e.JogPosY);  }
+        private void virtualJoystickA_move(int index_A)
+        {   int indexA = Math.Abs(index_A);
+            int dirA = Math.Sign(index_A);
+            if (indexA > joystickZStep.Length)
+            { indexA = joystickZStep.Length; index_A = indexA; }
+            if (indexA < 0)
+            { indexA = 0; index_A = 0; }
+
+            int speed = (int)joystickZSpeed[indexA];
+            String strZ = gcode.frmtNum(joystickZStep[indexA] * dirA);
             if (speed > 0)
             {
                 String s = String.Format("G91 {0}{1} F{2}", ctrl4thName, strZ, speed).Replace(',', '.');
@@ -1750,7 +1795,14 @@ namespace GRBL_Plotter
                 commands = command.Split(';');
             }
             foreach (string btncmd in commands)
-                sendCommand(btncmd.Trim());
+            {   if (btncmd.StartsWith("($") && (_diyControlPad != null))
+                {   string tmp = btncmd.Replace("($", "[");
+                    tmp = tmp.Replace(")", "]");
+                    _diyControlPad.sendFeedback(tmp);
+                }
+                else
+                    sendCommand(btncmd.Trim());
+            }
         }
         private void processSpecialCommands(string command)
         {
@@ -1804,7 +1856,8 @@ namespace GRBL_Plotter
                                     else
                                     { processCommands(command); }
                                 }
-                                catch { }
+                                catch (Exception)
+								{ }
                             }
 
 
@@ -1904,9 +1957,10 @@ namespace GRBL_Plotter
 
         private int gamePadGCodeFeed(int feed, int speed1, int speed2, string axis)
         {
-            if ((axis != "X") && (axis != "Y"))
+            return (axis != "X") && (axis != "Y") ? speed2 : speed1;
+			/*if ((axis != "X") && (axis != "Y"))
             { return speed2; }    // Math.Min(feed,speed2);}
-            return speed1;  // Math.Min(feed,speed1);
+            return speed1;  // Math.Min(feed,speed1);*/
         }
 
         private void moveToMarkedPositionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1930,10 +1984,19 @@ namespace GRBL_Plotter
             fCTBCode.Focus();
         }
 
-        private void virtualJoystickXY_Load(object sender, EventArgs e)
+        private void toolStrip_tb_StreamLine_KeyDown(object sender, KeyEventArgs e)
         {
-
-
+            if (e.KeyValue == (char)13)
+            {
+                int lineNr; ;
+                if (int.TryParse(toolStrip_tb_StreamLine.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out lineNr))
+                {   startStreaming(lineNr);      // 1142
+                }
+                else
+                {   MessageBox.Show("Not a valid number, set line to 0", "Attention");
+                    toolStrip_tb_StreamLine.Text = "0";
+                }
+            }
         }
     }
 }
