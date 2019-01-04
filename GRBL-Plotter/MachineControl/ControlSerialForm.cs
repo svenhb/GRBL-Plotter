@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
  *  2018-01-02  Bugfix route errors during streaming from serialform to gui
  *  2018-04-05  Code clean up
  *  2018-07-27  change key-signs : variable: old:@, new:#   internal sign old:#, new:$
+ *  2018-12-26	Commits from RasyidUFA via Github
 */
 
 //#define debuginfo 
@@ -52,8 +53,8 @@ namespace GRBL_Plotter
     {
         ControlSerialForm _serial_form2;
         private xyzPoint posWorld, posMachine;
-        private xyzPoint posWCO, posPause;
-        public xyzPoint posProbe, posProbeOld;
+        private xyzPoint posWCO;
+        public xyzPoint posPause, posProbe, posProbeOld;
         private mState machineState = new mState();     // Keep info about Bf, Ln, FS, Pn, Ov, A;
         private pState mParserState = new pState();     // keep info about last M and G settings
 
@@ -66,7 +67,7 @@ namespace GRBL_Plotter
         public List<string> GRBLSettings = new List<string>();  // keep $$ settings
 
         private Dictionary<string, double> gcodeVariable = new Dictionary<string, double>();    // keep variables "PRBX" etc.
-        private string parserStateGC = "";                  // keep parser state response [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
+        public string parserStateGC = "";                  // keep parser state response [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
 
         private const int timerReload=200;
         private string rxString;
@@ -319,10 +320,10 @@ namespace GRBL_Plotter
             btnGRBLReset.Enabled = isConnected;// & !isSensing;
         }
 
-        private void logError(string message, Exception err)
+        private void logError(string message, Exception error)
         {
             string textmsg = "\r\n[ERROR]: " + message + ". ";
-            if (err != null) textmsg += err.Message;
+            if (error != null) textmsg += error.Message;
             textmsg += "\r\n";
             rtbLog.AppendText(textmsg);
             rtbLog.ScrollToCaret();
@@ -420,6 +421,7 @@ namespace GRBL_Plotter
             isStreamingPause = false;
             toolInSpindle = false;
             waitForIdle = false;
+            externalProbe = false;
             var dataArray = new byte[] { 24 };//Ctrl-X
             if (serialPort.IsOpen)
                 serialPort.Write(dataArray, 0, 1);
@@ -439,7 +441,8 @@ namespace GRBL_Plotter
                 {   rxString = serialPort.ReadTo("\r\n");              //read line from grbl, discard CR LF
                     isDataProcessing = true;
                     this.Invoke(new EventHandler(handleRxData));        //tigger rx process 
-                    while ((serialPort.IsOpen) && (isDataProcessing)) ;  //wait previous data line processed done
+                    while ((serialPort.IsOpen) && (isDataProcessing))   //wait previous data line processed done
+					{}
                 }
                 catch (Exception errort)
                 {
@@ -609,6 +612,7 @@ namespace GRBL_Plotter
                     isStreaming = false;
                     addToLog("\r\n[Streaming finish]");
                     grblStatus = grblStreaming.finish;
+                    requestSend("$G");
                     if (isStreamingCheck)
                     { requestSend("$C"); isStreamingCheck = false; }
                     updateControls();
@@ -795,6 +799,8 @@ namespace GRBL_Plotter
 
             lblSrPos.Text = posWorld.Print();
             if (grblStateNow != grblStateLast) { grblStateChanged(); }
+            OnRaisePosEvent(new PosEventArgs(posWorld, posMachine, grblStateNow, machineState, mParserState, rxString));
+
             if ((grblStateNow == grblState.idle) || (grblStateNow == grblState.check))
             {   if (useSerial2 && _serial_form2.serialPortOpen)
                 {
@@ -805,21 +811,27 @@ namespace GRBL_Plotter
                 }
                 else
                     waitForIdle = false;
+                if (externalProbe)
+                {   posProbe = posMachine;
+                    externalProbe = false;
+                    OnRaisePosEvent(new PosEventArgs(posWorld, posMachine, grblState.probe, machineState, mParserState, "($PROBE)"));              
+                }
                 processSend();
             }
             grblStateLast = grblStateNow;
-            OnRaisePosEvent(new PosEventArgs(posWorld, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+//            OnRaisePosEvent(new PosEventArgs(posWorld, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
             allowStreamingEvent = true;
         }
         public event EventHandler<PosEventArgs> RaisePosEvent;
         protected virtual void OnRaisePosEvent(PosEventArgs e)
         {
             //addToLog("OnRaisePosEvent " + e.Status.ToString());
-            EventHandler<PosEventArgs> handler = RaisePosEvent;
+            RaisePosEvent?.Invoke(this, e);
+			/*EventHandler<PosEventArgs> handler = RaisePosEvent;
             if (handler != null)
             {
                 handler(this, e);
-            }
+            }*/
         }
 
         #endregion
@@ -936,6 +948,7 @@ namespace GRBL_Plotter
          *  take care of keywords
          * */
         private bool waitForIdle = false;
+        private bool externalProbe = false;
         private string[] eeprom1 = { "G54", "G55", "G56", "G57", "G58", "G59"};
         private string[] eeprom2 = { "G10", "G28", "G30", "G28" };
         public void processSend()
@@ -1012,6 +1025,8 @@ namespace GRBL_Plotter
                     if (line == "($TOOL-IN)")  { toolInSpindle = true; }
                     if (line == "($TOOL-OUT)") { toolInSpindle = false; }
                     if (line == "($END)")      { grblStatus = grblStreaming.ok; }
+                    if (line == "($PROBE)")
+                    { waitForIdle = true; externalProbe = true; }
                 }
                 else
                     return;
@@ -1023,6 +1038,7 @@ namespace GRBL_Plotter
         /// </summary>
         private void resetStreaming()
         {
+            externalProbe = false;
             isStreaming = false;
             isStreamingRequestPause = false;
             isStreamingPause = false;
@@ -1142,20 +1158,22 @@ namespace GRBL_Plotter
                 getParserState = true;
             }
             else
-            {   if ((posPause.X != posWorld.X) || (posPause.Y != posWorld.Y) || (posPause.Z != posWorld.Z))
+            {   //if ((posPause.X != posWorld.X) || (posPause.Y != posWorld.Y) || (posPause.Z != posWorld.Z))
+                addToLog("++++++++++++++++++++++++++++++++++++");
+                if (!xyzPoint.AlmostEqual(posPause, posWorld))
                 {
                     addToLog("[Restore Position]");
                     requestSend(string.Format("G90 G0 X{0:0.0} Y{1:0.0}", posPause.X, posPause.Y).Replace(',', '.'));  // restore last position
                     requestSend(string.Format("G1 Z{0:0.0}", posPause.Z).Replace(',', '.'));                      // restore last position
                 }
-                addToLog("[Restore Settings]");
+                addToLog("[Start streaming - no echo]");
+                addToLog("[Restore Settings: "+ parserStateGC+" ]");
                 isStreamingPause = false;
                 isStreamingRequestPause = false;
                 grblStatus = grblStreaming.ok;
-                requestSend(parserStateGC);            // restore actual GCode settings one by one
-                gCodeLinesConfirmed--;           // each restored setting will cause 'ok' and gCodeLinesConfirmed++
+                requestSend(parserStateGC);         // restore actual GCode settings one by one
+                gCodeLinesConfirmed--;              // each restored setting will cause 'ok' and gCodeLinesConfirmed++
 
-                addToLog("[Start streaming - no echo]");
                 preProcessStreaming();
             }
             updateControls();
@@ -1164,8 +1182,9 @@ namespace GRBL_Plotter
         /*  startStreaming called by main-Prog
          *  get complete GCode list and copy to own list
          *  initialize streaming
+         *  if startAtLine > 0 start with pause
          * */
-        public void startStreaming(IList<string> gCodeList, bool check = false)
+        public void startStreaming(IList<string> gCodeList, int startAtLine, bool check = false)
         {
             lastError = "";
             toolTable.init();       // fill structure
@@ -1195,7 +1214,7 @@ namespace GRBL_Plotter
             string tmp;
             double pWord,lWord, oWord;
             string subline;
-            for (int i = 0; i < gCode.Length; i++)
+            for (int i = startAtLine; i < gCode.Length; i++)
             {
                 tmp = cleanUpCodeLine(gCode[i]);
                 if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
@@ -1250,7 +1269,12 @@ namespace GRBL_Plotter
             gCodeLinesTotal = gCode.Length - 1;  // gCodeLinesCount will reduced after each 'confirmed' line
             isStreaming = true;
             updateControls();
-            preProcessStreaming();
+            if (startAtLine > 0)
+            {  // pauseStreaming();
+                isStreamingPause = true;
+            }
+            else
+                preProcessStreaming();
         }
         private static double findDouble(string start, double notfound, string txt)
         {   int istart = txt.IndexOf(start);
@@ -1447,7 +1471,8 @@ namespace GRBL_Plotter
         protected virtual void OnRaiseStreamEvent(StreamEventArgs e)
         {
             //addToLog("OnRaiseStreamEvent " + e.Status.ToString());
-            EventHandler<StreamEventArgs> handler = RaiseStreamEvent;
+            //RaisePosEvent?.Invoke(this, e);
+			EventHandler<StreamEventArgs> handler = RaiseStreamEvent;
             if (handler != null)
             {
                 handler(this, e);

@@ -1,4 +1,4 @@
-﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
     Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
@@ -16,34 +16,28 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-/* Thanks to:
- * https://decatec.de/programmierung/c-sharp-windows-standby-unterdruecken/
- * 
-*/
 /*  2018-12-26	Commits from RasyidUFA via Github
  */
 
+using DWORD = System.UInt32;
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Text;
+
 namespace GRBL_Plotter
 {
-    public static class ControlPowerSaving
-    {
-        public static void SuppressStandby()
-        {   if (NativeMethods.PowerAvailabilityRequestsSupported())
-                NativeMethods.SuppressStandbyWin7();
-            else
-                NativeMethods.SuppressStandbyXP();
-        }
-        public static void EnableStandby()
-        {   if (NativeMethods.PowerAvailabilityRequestsSupported())
-                NativeMethods.EnableStandbyWin7();
-            else
-                NativeMethods.EnableStandbyXP();
-        }
-/*
+
+
+    /// <summary>
+    /// Providing all native methods
+    /// </summary>
+    internal class NativeMethods {
+        #region PowerSaving
+
         #region Win7 functions
-        private const int POWER_REQUEST_CONTEXT_VERSION = 0;
-        private const int POWER_REQUEST_CONTEXT_SIMPLE_STRING = 0x1;
+        internal const int POWER_REQUEST_CONTEXT_VERSION = 0;
+        internal const int POWER_REQUEST_CONTEXT_SIMPLE_STRING = 0x1;
 
         [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern IntPtr PowerCreateRequest(ref POWER_REQUEST_CONTEXT Context);
@@ -71,8 +65,9 @@ namespace GRBL_Plotter
             PowerRequestExecutionRequired // Not to be used by drivers
         }
 
-        private static IntPtr currentPowerRequest;
-        private static void SuppressStandbyWin7()
+        internal static IntPtr currentPowerRequest;
+
+        internal static void SuppressStandbyWin7()
         {
             // Clear current power request if there is any.
             if (currentPowerRequest != IntPtr.Zero)
@@ -111,7 +106,7 @@ namespace GRBL_Plotter
             }
         }
 
-        private static void EnableStandbyWin7()
+        internal static void EnableStandbyWin7()
         {
             // Only try to clear power request if any power request is set.
             if (currentPowerRequest != IntPtr.Zero)
@@ -141,7 +136,7 @@ namespace GRBL_Plotter
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         internal static extern IntPtr LoadLibrary(string dllToLoad);
 
-        private static bool PowerAvailabilityRequestsSupported()
+        internal static bool PowerAvailabilityRequestsSupported()
         {
             var ptr = LoadLibrary("kernel32.dll");
             var ptr2 = GetProcAddress(ptr, "PowerSetRequest");
@@ -160,16 +155,16 @@ namespace GRBL_Plotter
         #endregion
 
         #region winXP function
-        private const uint ES_SYSTEM_REQUIRED = 0x00000001;
-        private const uint ES_DISPLAY_REQUIRED = 0x00000002;
-        private const uint ES_USER_PRESENT = 0x00000004; // Only supported by Windows XP/Windows Server 2003
-        private const uint ES_AWAYMODE_REQUIRED = 0x00000040; // Not supported by Windows XP/Windows Server 2003
-        private const uint ES_CONTINUOUS = 0x80000000;
+        internal const uint ES_SYSTEM_REQUIRED = 0x00000001;
+        internal const uint ES_DISPLAY_REQUIRED = 0x00000002;
+        internal const uint ES_USER_PRESENT = 0x00000004; // Only supported by Windows XP/Windows Server 2003
+        internal const uint ES_AWAYMODE_REQUIRED = 0x00000040; // Not supported by Windows XP/Windows Server 2003
+        internal const uint ES_CONTINUOUS = 0x80000000;
 
         [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern uint SetThreadExecutionState(uint esFlags);
 
-        private static void SuppressStandbyXP()
+        internal static void SuppressStandbyXP()
         {
             var success = SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
 
@@ -183,7 +178,7 @@ namespace GRBL_Plotter
             }
         }
 
-        private static void EnableStandbyXP()
+        internal static void EnableStandbyXP()
         {
             var success = SetThreadExecutionState(ES_CONTINUOUS);
 
@@ -197,6 +192,16 @@ namespace GRBL_Plotter
             }
         }
         #endregion
-    */
-	}
+
+        #endregion
+
+        #region
+        [DllImport("kernel32", CharSet = CharSet.Unicode)]
+        internal static extern DWORD WritePrivateProfileString(string Section, string Key, string Value, string FilePath);
+        [DllImport("kernel32", CharSet = CharSet.Unicode)]
+        internal static extern DWORD GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
+
+        #endregion
+    }
+
 }

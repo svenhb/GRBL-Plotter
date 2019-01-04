@@ -1,4 +1,24 @@
-﻿using System;
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*  2018-12-26	Commits from RasyidUFA via Github
+*/
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
@@ -128,9 +148,19 @@ namespace GRBL_Plotter
                 rxString = "";
             }
         }
+        private void btnSimulate_Click(object sender, EventArgs e)
+        {
+            rtbLog.AppendText(string.Format("< {0} \r\n", tBSimulate.Text));
+            OnRaiseCommandEvent(new CommandEventArgs(tBSimulate.Text));
+        }
 
-        public void sendFeedback(string data)
-        { sendLine(data); }
+
+        public void sendFeedback(string data, bool forceShow=false)
+        {   sendLine(data);
+            if (forceShow)
+            {   rtbLog.AppendText(string.Format(">!!! {0} \r\n", data));
+            }
+        }
 
         /// <summary>
         /// sendLine - now really send data to Arduino
@@ -150,7 +180,7 @@ namespace GRBL_Plotter
                 }
 
             }
-            catch (Exception err)
+            catch (Exception)
             {   if (cBFeedback.Checked)
                     rtbLog.AppendText(string.Format(">| {0} \r\n", data));
             }
@@ -169,11 +199,12 @@ namespace GRBL_Plotter
         public event EventHandler<CommandEventArgs> RaiseStreamEvent;
         protected virtual void OnRaiseCommandEvent(CommandEventArgs e)
         {
-            EventHandler<CommandEventArgs> handler = RaiseStreamEvent;
+            RaiseStreamEvent?.Invoke(this, e);
+			/*EventHandler<CommandEventArgs> handler = RaiseStreamEvent;
             if (handler != null)
             {
                 handler(this, e);
-            }
+            }*/
         }
 
         private void ControlDIYControlPad_Load(object sender, EventArgs e)
@@ -195,8 +226,8 @@ namespace GRBL_Plotter
 
     public class CommandEventArgs : EventArgs
     {
-        private string cmdString;
-        private byte cmdChar;
+        private readonly string cmdString;
+        private readonly byte cmdChar;
         public CommandEventArgs(string cmd)
         {   cmdString = cmd;
         }

@@ -594,9 +594,6 @@ Don't use with "Relative movements"</value>
   <data name="btnReloadFile.ToolTip" xml:space="preserve">
     <value>Datei neu importieren um geänderte Einstellungen anzuwenden</value>
   </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Werkzeugwechsel</value>
-  </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 50</value>
   </data>
@@ -626,9 +623,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="label61.Text" xml:space="preserve">
     <value>Die Skripte werden in der vorgegebenen Reihenfolge ausgeführt. 'REMOVE' Skript wird nur ausgeführt, wenn ein Werkeug bereits geladen ist.</value>
-  </data>
-  <data name="groupBox26.Text" xml:space="preserve">
-    <value>Werkzeugliste</value>
   </data>
   <data name="btnMoveToolXY.Text" xml:space="preserve">
     <value>Fahre zur XY Position der markierten Zeile</value>
@@ -898,21 +892,6 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
 Oder gebe eine Datei an, welcher GCode enthält.
 Relativer Dateipfad beginnt hier:</value>
   </data>
-  <data name="btnChangeDefinition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 23</value>
-  </data>
-  <data name="btnChangeDefinition.Text" xml:space="preserve">
-    <value>Übernehme Änderung in Definitionsliste</value>
-  </data>
-  <data name="btnChangeDefinition.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>Beschriftung</value>
-  </data>
-  <data name="columnHeader3.Text" xml:space="preserve">
-    <value>G-Code oder Pfad zum Skript</value>
-  </data>
   <data name="gBGP.Text" xml:space="preserve">
     <value>GamePad Tastenzuordnung</value>
   </data>
@@ -1045,6 +1024,21 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Joystick Einstellungen</value>
+  </data>
+  <data name="btnHotkeyRefresh.Text" xml:space="preserve">
+    <value>hotkeys.xml neu Laden</value>
+  </data>
+  <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
+    <value>609, 13</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Inhalt von hotkeys.xml (muss manuell geändert werden, um Zuordnung zu übernehmen, drücke 'Änderungen jetzt übernehmen'):</value>
+  </data>
+  <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
+    <value>298, 13</value>
+  </data>
+  <data name="label67.Text" xml:space="preserve">
+    <value>Teste Tastaturcodes hier (Ergebnis wird ins Clipboard kopiert):</value>
   </data>
   <data name="groupBox21.Text" xml:space="preserve">
     <value>Einstellungen für die Formenerkennung mit Kamera</value>

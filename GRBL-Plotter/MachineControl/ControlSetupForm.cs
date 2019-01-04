@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,10 +24,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Data;
-using System.Xml;
 using System.IO;
 using System.Text;
 
@@ -122,6 +119,8 @@ namespace GRBL_Plotter
             cBImportGCTool_CheckedChanged(sender, e);
 
             dGVToolList.SortCompare += new DataGridViewSortCompareEventHandler(this.dGV_SortColor);
+
+            listHotkeys();
         }
 
         private void saveSettings()
@@ -655,5 +654,21 @@ namespace GRBL_Plotter
             gBToolTable.Height = y - 192;
             dGVToolList.Height = y - 64;
         }
+
+        private void tB_KeyPad_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox clickedTB = sender as TextBox;
+            clickedTB.Text = e.KeyData.ToString();
+            Clipboard.SetText(e.KeyData.ToString());
+        }
+
+        private void listHotkeys()
+        {   tBHotkeyList.Clear();
+            string tmp = File.ReadAllText(System.Environment.CurrentDirectory + "\\hotkeys.xml"); ;
+            tBHotkeyList.Text = tmp;
+        }
+
+        private void btnHotkeyRefresh_Click(object sender, EventArgs e)
+        {   listHotkeys(); }
     }
 }

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,13 +50,15 @@ namespace GRBL_Plotter
         { set { actualPosWorld = value; } }
         public xyzPoint setPosMachine
         { set { actualPosMachine = value; } }
+
+        // get height information from main-GUI OnRaisePosEvent line 192
         public xyzPoint setPosProbe
         { set {
                 actualPosProbe = value;
                 double worldZ = actualPosProbe.Z - (actualPosMachine.Z - actualPosWorld.Z);
+                lblInfo.Text = "Last XYZ: X: " + actualPosProbe.Z + " Y: " + actualPosProbe.Y + " Zc: " + worldZ;
                 if (scanStarted)
-                {
-                    Map.AddPoint(MapIndex[cntReceived].X, MapIndex[cntReceived].Y, worldZ);
+                {   Map.AddPoint(MapIndex[cntReceived].X, MapIndex[cntReceived].Y, worldZ);
                     using (Graphics graph = Graphics.FromImage(heightMapBMP))
                     {
                         int x = MapIndex[cntReceived].X * BMPsizeX / (Map.SizeX - 1);
@@ -100,34 +102,34 @@ namespace GRBL_Plotter
 
         private void btnOffset_Click(object sender, EventArgs e)
         { if ((Map != null) && (cntReceived == cntSent))
-            { Map.setZOffset(-Map.MaxHeight);
+            {   Map.setZOffset(-Map.MaxHeight);
                 showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
             }
         }
         private void btnOffsetZ_Click(object sender, EventArgs e)
         { if ((Map != null) && (cntReceived == cntSent))
-            { Map.setZOffset((double)nUDOffsetZ.Value);
+            {   Map.setZOffset((double)nUDOffsetZ.Value);
                 showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
             }
         }
 
         private void btnZoomZ_Click(object sender, EventArgs e)
         { if ((Map != null) && (cntReceived == cntSent))
-            { Map.setZZoom((double)nUDZoomZ.Value);
+            {   Map.setZZoom((double)nUDZoomZ.Value);
                 showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
             }
         }
 
         private void btnInvertZ_Click(object sender, EventArgs e)
         { if ((Map != null) && (cntReceived == cntSent))
-            { Map.setZInvert();
+            {   Map.setZInvert();
                 showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
             }
         }
 
         private void btnCutOffZ_Click(object sender, EventArgs e)
         { if ((Map != null) && (cntReceived == cntSent))
-            { Map.setZCutOff((double)nUDCutOffZ.Value);
+            {   Map.setZCutOff((double)nUDCutOffZ.Value);
                 showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
             }
         }
@@ -153,7 +155,7 @@ namespace GRBL_Plotter
         }
 
         private void createHightMapBMP(Bitmap bmp, int sizeX, bool gray)
-        { lblProgress.Text = "Finish t=" + elapsed.ToString(@"hh\:mm\:ss");
+        {   lblProgress.Text = "Finish t=" + elapsed.ToString(@"hh\:mm\:ss");
             progressBar1.Value = 0;
             int sizeY = Map.SizeY * sizeX / Map.SizeX;
             double x, y, z;
@@ -465,7 +467,10 @@ namespace GRBL_Plotter
                         MapIndex.Add(new Point(ix, iy));
                         scanCode.AppendFormat("G0Z{0}\r\n", gcode.frmtNum((float)nUDProbeUp.Value));
                         scanCode.AppendFormat("X{0}\r\n", gcode.frmtNum((float)tmp.X));
-                        scanCode.AppendFormat("G38.3Z{0}\r\n", gcode.frmtNum((float)nUDProbeDown.Value));
+                        if (nUDProbeDown.Value == 0)
+                            scanCode.AppendFormat("($PROBE)\r\n");
+                        else
+                            scanCode.AppendFormat("G38.3Z{0}\r\n", gcode.frmtNum((float)nUDProbeDown.Value));
                         cntSent++;
                     }
                     if (iy < Map.SizeY - 1)
@@ -482,7 +487,10 @@ namespace GRBL_Plotter
                             MapIndex.Add(new Point(ix, iy));
                             scanCode.AppendFormat("G0Z{0}\r\n", gcode.frmtNum((float)nUDProbeUp.Value));
                             scanCode.AppendFormat("X{0}\r\n", gcode.frmtNum((float)tmp.X));
-                            scanCode.AppendFormat("G38.3Z{0}\r\n", gcode.frmtNum((float)nUDProbeDown.Value));
+                            if (nUDProbeDown.Value == 0)
+                                scanCode.AppendFormat("($PROBE)\r\n");
+                            else
+                                scanCode.AppendFormat("G38.3Z{0}\r\n", gcode.frmtNum((float)nUDProbeDown.Value));
                             cntSent++;
                         }
                     }
@@ -491,7 +499,7 @@ namespace GRBL_Plotter
                 tmp = Map.GetCoordinates(0, 0);
                 scanCode.AppendFormat("G0 X{0} Y{1}\r\n", gcode.frmtNum((float)tmp.X), gcode.frmtNum((float)tmp.Y));
 
-                textBox1.Text += "Code sent\r\n";// scanCode.ToString();
+                textBox1.Text += "Code sent\r\n"+ scanCode.ToString();
                 progressBar1.Maximum = cntSent;
                 lblProgress.Text = string.Format("{0}%", (100 * cntReceived / progressBar1.Maximum));
                 pictureBox1.Image = new Bitmap(heightMapBMP);

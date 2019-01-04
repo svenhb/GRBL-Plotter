@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2016-12-31   Add GRBL 1.1 information
  * 2018-04-07   reorder
+ * 2018-01-01   edit parseStatus to identify also Hold:0
 */
 
 using System;
@@ -29,10 +30,12 @@ namespace GRBL_Plotter
 {
     public static class grbl
     {       // need to have global access to this data?
-//        public static xyzPoint posWorld   = new xyzPoint(0, 0, 0);
-//        public static xyzPoint posMachine = new xyzPoint(0, 0, 0);
-//        public static pState parserState;
-//        public static bool isVers0 = true;
+            //        public static xyzPoint posWorld   = new xyzPoint(0, 0, 0);
+            //        public static xyzPoint posMachine = new xyzPoint(0, 0, 0);
+            //        public static pState parserState;
+            //        public static bool isVers0 = true;
+
+        public static double resolution = 0.000001;
 
         public static Dictionary<string, string> messageAlarmCodes = new Dictionary<string, string>();
         public static Dictionary<string, string> messageErrorCodes = new Dictionary<string, string>();
@@ -170,7 +173,7 @@ namespace GRBL_Plotter
         public static int[] unknownG = { 41, 64, 81, 83 };
         public static grblState parseStatus(string status)    // {idle, run, hold, home, alarm, check, door}
         {   for (int i = 0; i < statusConvert.Length; i++)
-            {   if (status == statusConvert[i].msg)
+            {   if (status.StartsWith(statusConvert[i].msg))     // status == statusConvert[i].msg
                     return statusConvert[i].state;
             }
             return grblState.unknown;

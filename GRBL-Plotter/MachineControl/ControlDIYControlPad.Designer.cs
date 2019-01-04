@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlDIYControlPad));
             this.btnScanPort = new System.Windows.Forms.Button();
             this.btnOpenPort = new System.Windows.Forms.Button();
             this.cbBaud = new System.Windows.Forms.ComboBox();
@@ -37,6 +38,8 @@
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cBFeedback = new System.Windows.Forms.CheckBox();
+            this.tBSimulate = new System.Windows.Forms.TextBox();
+            this.btnSimulate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnScanPort
@@ -117,17 +120,42 @@
             this.cBFeedback.Text = "show GRBL-Plotter feedback";
             this.cBFeedback.UseVisualStyleBackColor = true;
             // 
+            // tBSimulate
+            // 
+            this.tBSimulate.Location = new System.Drawing.Point(180, 25);
+            this.tBSimulate.Name = "tBSimulate";
+            this.tBSimulate.Size = new System.Drawing.Size(100, 20);
+            this.tBSimulate.TabIndex = 10;
+            this.tBSimulate.Text = "(PRB:Z-5.12)";
+            this.tBSimulate.Visible = false;
+            // 
+            // btnSimulate
+            // 
+            this.btnSimulate.Location = new System.Drawing.Point(180, 51);
+            this.btnSimulate.Name = "btnSimulate";
+            this.btnSimulate.Size = new System.Drawing.Size(100, 23);
+            this.btnSimulate.TabIndex = 11;
+            this.btnSimulate.Text = "Simulate RX";
+            this.btnSimulate.UseVisualStyleBackColor = true;
+            this.btnSimulate.Visible = false;
+            this.btnSimulate.Click += new System.EventHandler(this.btnSimulate_Click);
+            // 
             // ControlDIYControlPad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.btnSimulate);
+            this.Controls.Add(this.tBSimulate);
             this.Controls.Add(this.cBFeedback);
             this.Controls.Add(this.rtbLog);
             this.Controls.Add(this.btnScanPort);
             this.Controls.Add(this.btnOpenPort);
             this.Controls.Add(this.cbBaud);
             this.Controls.Add(this.cbPort);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "ControlDIYControlPad";
             this.Text = "ControlDIYControlPad";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlDIYControlPad_FormClosing);
@@ -148,5 +176,7 @@
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox cBFeedback;
+        private System.Windows.Forms.TextBox tBSimulate;
+        private System.Windows.Forms.Button btnSimulate;
     }
 }
