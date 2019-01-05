@@ -1,6 +1,20 @@
 ## History
 Needs to be read from the bottom up ;-)  
-  
+
+### 2019-01 version 1.2.3.x:
+* User definable [hotkeys](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control) 
+* Surface Scan with [Z-Probing](https://github.com/svenhb/GRBL-Plotter/wiki/Surface-scan#Z-Value-from-DIY-Control-interface) value from DIY-Control interface 
+* Restart paused job after program restart 
+* some bug fixes and improvements
+ 
+### 2018-12 version 1.2.2.x: 
+* Control via [Keyboard](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control) 
+* Improved import of images 
+  - check wiki 
+  - smoothing of outline contour
+  - shrink contour to compensate pen width
+
+
 ### 2018-11 version 1.2.1.x:
 * Improved import of images - check [wiki](https://github.com/svenhb/GRBL-Plotter/wiki/Image-import)
   - New filters for easy color quantization
