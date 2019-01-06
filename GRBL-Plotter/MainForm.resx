@@ -3706,9 +3706,6 @@ for SVG files</value>
   <data name="tBSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
   </data>
-  <data name="tBSpeed.Text" xml:space="preserve">
-    <value>1000</value>
-  </data>
   <data name="&gt;&gt;tBSpeed.Name" xml:space="preserve">
     <value>tBSpeed</value>
   </data>

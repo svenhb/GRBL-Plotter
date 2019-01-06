@@ -1528,8 +1528,10 @@ namespace GRBL_Plotter
             // 
             // tBSpeed
             // 
+            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "spindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBSpeed, "tBSpeed");
             this.tBSpeed.Name = "tBSpeed";
+            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.spindleSpeed;
             // 
             // cBCoolant
             // 
