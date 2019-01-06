@@ -336,8 +336,12 @@ namespace GRBL_Plotter
                 if (_streaming_form != null)
                     _streaming_form.show_value_SS(actualSS);
 
+                cBSpindle.CheckedChanged -= cBSpindle_CheckedChanged;
                 cBSpindle.Checked = (cmd.spindle <= 4) ? true : false;  // M3, M4 start, M5 stop
+                cBSpindle.CheckedChanged += cBSpindle_CheckedChanged;
+                cBCoolant.CheckedChanged -= cBSpindle_CheckedChanged;
                 cBCoolant.Checked = (cmd.coolant <= 8) ? true : false;  // M7, M8 on   M9 coolant off
+                cBCoolant.CheckedChanged += cBSpindle_CheckedChanged;
 
                 if (cmd.toolchange)
                     lblTool.Text = cmd.tool.ToString();
@@ -1704,8 +1708,12 @@ namespace GRBL_Plotter
             btnResume.BackColor = SystemColors.Control;
             lbInfo.Text = "";
             lbInfo.BackColor = SystemColors.Control;
+            cBSpindle.CheckedChanged -= cBSpindle_CheckedChanged;
             cBSpindle.Checked = false;
+            cBSpindle.CheckedChanged += cBSpindle_CheckedChanged;
+            cBCoolant.CheckedChanged -= cBSpindle_CheckedChanged;
             cBCoolant.Checked = false;
+            cBCoolant.CheckedChanged += cBSpindle_CheckedChanged;
             updateControls();
             ControlPowerSaving.EnableStandby();
         }
