@@ -839,7 +839,7 @@ namespace GRBL_Plotter
                     { tmpCode.AppendFormat(" X{0}", gcode.frmtNum((double)gcline.x)); getCoordinateXY = true; }
                     if (gcline.y != null)
                     { tmpCode.AppendFormat(" Y{0}", gcode.frmtNum((double)gcline.y)); getCoordinateXY = true; }
-                    if (getCoordinateXY && applyNewZ && (Map != null))
+                    if ((getCoordinateXY || (gcline.z != null)) && applyNewZ && (gcline.motionMode != 0) && (Map != null))  //if (getCoordinateXY && applyNewZ && (Map != null))
                     {   newZ = Map.InterpolateZ(gcline.actualPos.X, gcline.actualPos.Y);
                         gcline.z = gcline.actualPos.Z + newZ;
                     }

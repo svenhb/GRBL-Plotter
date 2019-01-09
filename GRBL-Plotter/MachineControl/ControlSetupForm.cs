@@ -664,11 +664,21 @@ namespace GRBL_Plotter
 
         private void listHotkeys()
         {   tBHotkeyList.Clear();
-            string tmp = File.ReadAllText(System.Environment.CurrentDirectory + "\\hotkeys.xml"); ;
+            string fileName = System.Environment.CurrentDirectory + "\\hotkeys.xml";
+            if (!File.Exists(fileName))
+            {   tBHotkeyList.Text = "File 'hotkeys.xml' not found in program-directory, no hotkeys set!";
+                return;
+            }
+            string tmp = File.ReadAllText(fileName); ;
             tBHotkeyList.Text = tmp;
         }
 
         private void btnHotkeyRefresh_Click(object sender, EventArgs e)
         {   listHotkeys(); }
+
+        private void textBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            textBox1.Text = "X: " + e.X + "\r\nY: " + e.Y + "\r\nZ: ";
+        }
     }
 }
