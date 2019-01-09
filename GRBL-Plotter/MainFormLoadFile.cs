@@ -776,6 +776,13 @@ namespace GRBL_Plotter
         private void loadHotkeys()
         {
             hotkey.Clear();
+            string fileName = System.Environment.CurrentDirectory + "\\hotkeys.xml";
+            if (!File.Exists(fileName))
+            {
+                MessageBox.Show("File 'hotkeys.xml' not found in program-directory, no hotkeys set!","Attention");
+                return;
+            }
+
             XmlReader r = XmlReader.Create("hotkeys.xml");
             while (r.Read())
             {
