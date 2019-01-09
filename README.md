@@ -6,6 +6,8 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
    
    
 ### New in version 1.2.3.x:
+* 1.2.3.2 Bugfix in Z-Value correction when applying height map
+* 1.2.3.1 Removed feedback-loop. Save last spindle speed setting from GUI
 * User definable [hotkeys](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
 * Surface Scan with [Z-Probing](https://github.com/svenhb/GRBL-Plotter/wiki/Surface-scan#Z-Value-from-DIY-Control-interface) value from DIY-Control interface
 * Restart paused job after program restart
