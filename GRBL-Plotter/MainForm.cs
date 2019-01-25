@@ -31,6 +31,8 @@
  *  2018-12-26	Commits from RasyidUFA via Github
  *  2019-01-01  Pass CustomButton command "($abc)" through DIY-Control "[abc]"
  *              Add variable hotkeys
+ *  2019-01-06  Remove feedback-loop at cBSpindle / cBCoolant, save last value for spindle-textbox
+ *  2019-01-16  line 922 || !_serial_form.isHeightProbing
  */
 
 using System;
@@ -247,7 +249,7 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();
             if (_diyControlPad != null)
             {   if (oldRaw != e.Raw)
-                {   _diyControlPad.sendFeedback(e.Raw);
+                {   _diyControlPad.sendFeedback(e.Raw);     //hand over original grbl text
                     oldRaw = e.Raw;
                 }
             }
@@ -918,7 +920,7 @@ namespace GRBL_Plotter
                     sendRealtimeCommand(e.RealTimeCommand);
             }
             else
-            {   if (!isStreaming || isStreamingPause)
+            {   if ((!isStreaming || isStreamingPause) && !_serial_form.isHeightProbing)    // only hand over DIY commands in normal mode
                     sendCommand(e.Command);
                 if (e.Command.StartsWith("(PRB:Z"))
                 {
@@ -1261,10 +1263,14 @@ namespace GRBL_Plotter
                     visuGCode.createImagePath();
                     pictureBox1.BackgroundImage = null;
                     pictureBox1.Invalidate();
+                    if (_diyControlPad != null)
+                    {   _diyControlPad.isHeightProbing = true; }
                 }
                 else
                 {
                     _serial_form.stopStreaming();
+                    if (_diyControlPad != null)
+                    {   _diyControlPad.isHeightProbing = false;}
                 }
                 isHeightMapApplied = false;
             }
@@ -1802,6 +1808,9 @@ namespace GRBL_Plotter
             {
                 commands = command.Split(';');
             }
+            if (_diyControlPad != null)
+            {   _diyControlPad.isHeightProbing = false; }
+
             foreach (string btncmd in commands)
             {   if (btncmd.StartsWith("($") && (_diyControlPad != null))
                 {   string tmp = btncmd.Replace("($", "[");

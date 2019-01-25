@@ -440,7 +440,7 @@ namespace GRBL_Plotter
             string svg_format1 = "image/x-inkscape-svg";
             string svg_format2 = "image/svg+xml";
             IDataObject iData = Clipboard.GetDataObject();
-            if (iData.GetDataPresent(DataFormats.Text))
+            if (iData.GetDataPresent(DataFormats.Text))             // not working anymore?
             {
                 string checkContent = (String)iData.GetData(DataFormats.Text);
                 string[] checkLines = checkContent.Split('\n');
