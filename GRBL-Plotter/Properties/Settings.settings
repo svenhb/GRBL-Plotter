@@ -788,5 +788,11 @@
     <Setting Name="textLineDistance" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
+    <Setting Name="spindleSpeed" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="importSVGDPI96" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

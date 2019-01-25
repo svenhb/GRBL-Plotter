@@ -3166,5 +3166,29 @@ namespace GRBL_Plotter.Properties {
                 this["textLineDistance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public string spindleSpeed {
+            get {
+                return ((string)(this["spindleSpeed"]));
+            }
+            set {
+                this["spindleSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importSVGDPI96 {
+            get {
+                return ((bool)(this["importSVGDPI96"]));
+            }
+            set {
+                this["importSVGDPI96"] = value;
+            }
+        }
     }
 }
