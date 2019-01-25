@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
     2018-07     importInMM = Properties.Settings.Default.importUnitmm;
     2018-11-04  Y-Offset Problem line 347: ...(svgHeightPx * scale)
                 Transform problem: overwrite old matrix[index] line 467: end if here
+    2019-01-23  Change order line 165
 */
 
 using System;
@@ -93,6 +94,13 @@ namespace GRBL_Plotter
         private static Matrix matrixElement = new Matrix();     // store finally applied matrix
         private static Matrix oldMatrixElement = new Matrix();     // store finally applied matrix
 
+        private static float factor_In2Px = 96;
+        private static float factor_Mm2Px = 96f / 25.4f;
+        private static float factor_Cm2Px = 96f / 2.54f;
+        private static float factor_Pt2Px = 96f / 72f;
+        private static float factor_Pc2Px = 12 * 96f / 72f;
+        private static float factor_Em2Px = 150;
+
         /// <summary>
         /// Entrypoint for conversion: apply file-path or file-URL
         /// </summary>
@@ -114,7 +122,7 @@ namespace GRBL_Plotter
         public static string convertFromFile(string file)
         {
             fromClipboard = false;
-            importInMM = Properties.Settings.Default.importUnitmm;
+            importInMM = Properties.Settings.Default.importUnitmm;          // Target units and display in setup
             if (file == "")
             { MessageBox.Show("Empty file name"); return ""; }
             if (file.Substring(0, 4) == "http")
@@ -161,10 +169,10 @@ namespace GRBL_Plotter
             gcode.setup();          // initialize GCode creation (get stored settings for export)
             finalString.Clear();
 
-            gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
+            gcode.PenUp(finalString, "- SVG Start -");
+            penIsDown = false;
             if (gcodeUseSpindle && !gcodeToolChange) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
-            gcode.PenUp(finalString, "SVG Start ");
-            startConvert(svgCode);
+            startConvert(svgCode);  // do all conversion
 
             if (svgToolSort)
             {
@@ -215,7 +223,7 @@ namespace GRBL_Plotter
             svgPauseElement = Properties.Settings.Default.importSVGPauseElement;
             svgPausePenDown = Properties.Settings.Default.importSVGPausePenDown;
             svgComments = Properties.Settings.Default.importSVGAddComments;
-            svgConvertToMM = Properties.Settings.Default.importUnitmm;
+            svgConvertToMM = Properties.Settings.Default.importUnitmm;              // Target units and display in setup
 
             gcodeReduce = Properties.Settings.Default.importSVGReduce;
             gcodeReduceVal = (float)Properties.Settings.Default.importSVGReduceLimit;
@@ -233,6 +241,16 @@ namespace GRBL_Plotter
 
             svgNodesOnly    = Properties.Settings.Default.importSVGNodesOnly;
 
+            if (Properties.Settings.Default.importSVGDPI96)
+                factor_In2Px = 96;                      // 90
+            else
+                factor_In2Px = 72;
+            factor_Mm2Px = factor_In2Px / 25.4f;    // 3.54
+            factor_Cm2Px = factor_Mm2Px * 10;       // 35.4
+            factor_Pt2Px = factor_In2Px / 72f;      // 1.25
+            factor_Pc2Px = 12 * factor_Pt2Px;       // 15
+            factor_Em2Px = 150;
+            ;
             gcodeOldToolNr = -1;
             amountOfTools = toolTable.init();
 
@@ -247,16 +265,16 @@ namespace GRBL_Plotter
             lastX = 0;
             lastY = 0;
 
-            matrixElement.SetIdentity();
-            oldMatrixElement.SetIdentity();
-            for (int i=0; i<matrixGroup.Length;i++)
+            matrixElement.SetIdentity();                // preset transform matrix
+            oldMatrixElement.SetIdentity();             // preset backup of transform matrix
+            for (int i=0; i<matrixGroup.Length;i++)     // preset sub transform matrixes
                 matrixGroup[i].SetIdentity(); 
 
-            parseGlobals(svgCode);
+            parseGlobals(svgCode);                      // parse main svg elements
             if (!svgNodesOnly)
                 parseBasicElements(svgCode,1);
-            parsePath(svgCode,1);
-            parseGroup(svgCode,1);
+            parsePath(svgCode,1);                       // 1st level paths
+            parseGroup(svgCode,1);                      // parse groups (recursive)
             return;
         }
 
@@ -281,71 +299,54 @@ namespace GRBL_Plotter
                 string viewbox = svgCode.Attribute("viewBox").Value;
                 viewbox = Regex.Replace(viewbox, @"\s+", " ").Replace(' ', '|');    // remove double space
                 var split = viewbox.Split('|');
-                vbOffX = -floatParse(split[0]);
-                vbOffY = -floatParse(split[1]);
-                vbWidth  = floatParse(split[2]);    
-                vbHeight = floatParse(split[3].TrimEnd(')'));
+                vbOffX = -convertToPixel(split[0]);
+                vbOffY = -convertToPixel(split[1]);
+                vbWidth  = convertToPixel(split[2]);    
+                vbHeight = convertToPixel(split[3].TrimEnd(')'));
                 tmp.M11 = 1; tmp.M22 = -1;      // flip Y
                 tmp.OffsetY = vbHeight;
                 if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG viewbox :" + viewbox+" )");
                 //MessageBox.Show(string.Format("{0} {1} {2} {3}",vbOffX,vbOffY,vbWidth,vbHeight));
             }
 
+            scale = 1;
+            if (svgConvertToMM)                 // convert back from px to mm 
+                scale = (1 / factor_Mm2Px);         
+            else                                // convert back from px to inch
+                scale = (1 / factor_In2Px);
+
+            if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG dpi :" + factor_In2Px.ToString() + " )");
             if (svgCode.Attribute("width") != null)
             {
                 tmpString = svgCode.Attribute("width").Value;
-                svgWidthPx = floatParse(tmpString);             // convert in px
-
-                if (importInMM)
-                {   if ((tmpString.IndexOf("mm") > 0) && (vbWidth>0))
-                        svgWidthPx = svgWidthPx / 3.543307f;
-                }
-                scale = 1;
-                if (svgConvertToMM && tmpString.IndexOf("in") > 0)
-                    scale = (1 / 3.543307f);    // 25.4f;
-                if (!svgConvertToMM && tmpString.IndexOf("mm") > 0)
-                    scale = (1 / 25.4f);
-                tmpString = removeUnit(tmpString);
-                float svgWidthUnit = floatParse(tmpString);//floatParse(svgCode.Attribute("width").Value.Replace("mm", ""));
+                svgWidthPx = convertToPixel(tmpString);             // convert in px
 
                 if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG width :" + svgCode.Attribute("width").Value + " )");
-                tmp.M11 = scale * svgWidthUnit / svgWidthPx; // get desired scale
+                tmp.M11 = scale; // get desired scale
                 if (fromClipboard)
-                    tmp.M11 = 1 / 3.543307;         // https://www.w3.org/TR/SVG/coords.html#Units
+                    tmp.M11 = 1 / factor_Mm2Px; // 3.543307;         // https://www.w3.org/TR/SVG/coords.html#Units
                 if (vbWidth > 0)
                 {   tmp.M11 = scale * svgWidthPx / vbWidth;
-                    tmp.OffsetX = vbOffX * svgWidthUnit / vbWidth;
+                    tmp.OffsetX = vbOffX * scale;   // svgWidthUnit / vbWidth;
                 }
             }
 
             if (svgCode.Attribute("height") != null)
             {
                 tmpString = svgCode.Attribute("height").Value;
-                svgHeightPx = floatParse(tmpString);
-
-                if (importInMM)
-                {   if ((tmpString.IndexOf("mm") > 0) && (vbHeight > 0))
-                        svgHeightPx = svgHeightPx / 3.543307f;
-                }
-                scale = 1;
-                if (svgConvertToMM && tmpString.IndexOf("in") > 0)
-                    scale = (1 / 3.543307f);    // 25.4f;
-                if (!svgConvertToMM && tmpString.IndexOf("mm") > 0)
-                    scale = (1 / 25.4f);
-                tmpString = removeUnit(tmpString);
-                float svgHeightUnit = floatParse(tmpString);// svgCode.Attribute("height").Value.Replace("mm", ""));
+                svgHeightPx = convertToPixel(tmpString);
 
                 if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG height :" + svgCode.Attribute("height").Value + " )");
-                tmp.M22 = -scale * svgHeightUnit / svgHeightPx;   // get desired scale and flip vertical
-                tmp.OffsetY = scale * svgHeightUnit ;
+                tmp.M22 = -scale;   // get desired scale and flip vertical
+                tmp.OffsetY = scale * svgHeightPx;  // svgHeightUnit;
 
                 if (fromClipboard)
-                {   tmp.M22 = -1 / 3.543307;
-                    tmp.OffsetY = svgHeightUnit / 3.543307;     // https://www.w3.org/TR/SVG/coords.html#Units
+                {   tmp.M22 = -1 / factor_Mm2Px;// 3.543307;
+                    tmp.OffsetY = svgHeightPx / factor_Mm2Px; // 3.543307;     // https://www.w3.org/TR/SVG/coords.html#Units
                 }
                 if (vbHeight > 0)
                 {   tmp.M22 = -scale * svgHeightPx / vbHeight;
-                    tmp.OffsetY = -vbOffY * svgHeightUnit / vbHeight + (svgHeightPx * scale);
+                    tmp.OffsetY = -vbOffY * svgHeightPx / vbHeight + (svgHeightPx * scale);
                 }
             }
 
@@ -356,9 +357,9 @@ namespace GRBL_Plotter
                 {   gcodeScale = svgMaxSize / Math.Max(newWidth, newHeight);        // calc. factor to get desired max. size
                     tmp.Scale((double)gcodeScale, (double)gcodeScale);
                     if (svgConvertToMM)                         // https://www.w3.org/TR/SVG/coords.html#Units
-                        tmp.Scale(3.543307, 3.543307);
+                        tmp.Scale(factor_Mm2Px, factor_Mm2Px);  // 3.543307, 3.543307);
                     else
-                        tmp.Scale(90, 90);
+                        tmp.Scale(factor_In2Px, factor_In2Px);
 
                     if (svgComments)
                         gcodeString[gcodeStringIndex].AppendFormat("( Scale to X={0} Y={1} f={2} )\r\n", newWidth * gcodeScale, newHeight * gcodeScale, gcodeScale);
@@ -417,9 +418,9 @@ namespace GRBL_Plotter
                         split = coord.Split(' ');
 
                     //MessageBox.Show(transform+"\r\n>"+coord + "< "+ split[0]);
-                    tmp.OffsetX = floatParse(split[0]);
+                    tmp.OffsetX = convertToPixel(split[0]);
                     if (split.Length > 1)
-                        tmp.OffsetY = floatParse(split[1].TrimEnd(')'));
+                        tmp.OffsetY = convertToPixel(split[1].TrimEnd(')'));
                     if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("( SVG-Translate {0} {1} )\r\n", tmp.OffsetX, tmp.OffsetY));
                 }
                 if ((transform != null) && (transform.IndexOf("scale") >= 0))
@@ -428,13 +429,13 @@ namespace GRBL_Plotter
                     var split = coord.Split(',');
                     if (coord.IndexOf(',') < 0)
                         split = coord.Split(' ');
-                    tmp.M11 = floatParse(split[0]);
+                    tmp.M11 = convertToPixel(split[0]);
                     if (split.Length > 1)
-                    {   tmp.M22 = floatParse(split[1]); }
+                    {   tmp.M22 = convertToPixel(split[1]); }
                     else
                     {
-                        tmp.M11 = floatParse(coord);
-                        tmp.M22 = floatParse(coord);
+                        tmp.M11 = convertToPixel(coord);
+                        tmp.M22 = convertToPixel(coord);
                     }
                     if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("( SVG-Scale {0} {1} )\r\n", tmp.M11, tmp.M22));
                 }
@@ -444,7 +445,7 @@ namespace GRBL_Plotter
                     var split = coord.Split(',');
                     if (coord.IndexOf(',') < 0)
                         split = coord.Split(' ');
-                    float angle = floatParse(split[0]) * (float)Math.PI / 180;
+                    float angle = convertToPixel(split[0]) * (float)Math.PI / 180;
                     tmp.M11 = Math.Cos(angle); tmp.M12 = Math.Sin(angle);
                     tmp.M21 = -Math.Sin(angle); tmp.M22 = Math.Cos(angle);
 
@@ -456,12 +457,12 @@ namespace GRBL_Plotter
                     var split = coord.Split(',');
                     if (coord.IndexOf(',') < 0)
                         split = coord.Split(' ');
-                    tmp.M11 = floatParse(split[0]);     // a    scale x         a c e
-                    tmp.M12 = floatParse(split[1]);     // b                    b d f
-                    tmp.M21 = floatParse(split[2]);     // c                    0 0 1
-                    tmp.M22 = floatParse(split[3]);     // d    scale y
-                    tmp.OffsetX = floatParse(split[4]); // e    offset x
-                    tmp.OffsetY = floatParse(split[5]); // f    offset y
+                    tmp.M11 = convertToPixel(split[0]);     // a    scale x         a c e
+                    tmp.M12 = convertToPixel(split[1]);     // b                    b d f
+                    tmp.M21 = convertToPixel(split[2]);     // c                    0 0 1
+                    tmp.M22 = convertToPixel(split[3]);     // d    scale y
+                    tmp.OffsetX = convertToPixel(split[4]); // e    offset x
+                    tmp.OffsetY = convertToPixel(split[5]); // f    offset y
                     if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("\r\n( SVG-Matrix {0} {1} {2} )\r\n", coord.Replace(',', '|'), level, isGroup));
                 }
         }
@@ -492,6 +493,7 @@ namespace GRBL_Plotter
           //  }
             return transf;
         }
+
         private static string getTextBetween(string source,string s1, string s2)
         {
             int start = source.IndexOf(s1) + s1.Length;
@@ -503,17 +505,17 @@ namespace GRBL_Plotter
             }
             return source.Substring(start,source.Length-start-1);
         }
-        private static float floatParse(string str, float ext=1)        // return value in px
+        private static float convertToPixel(string str, float ext=1)        // return value in px
         {       // https://www.w3.org/TR/SVG/coords.html#Units          // in=90 or 96 ???
             bool percent = false;
             float factor = 1;   // no unit = px
-            if (str.IndexOf("pt") > 0) { factor = 1.25f; }
-            if (str.IndexOf("pc") > 0) { factor = 15f; }
-            if (str.IndexOf("mm") > 0) { factor = 3.543307f; }
-            if (str.IndexOf("cm") > 0) { factor = 35.43307f; }
-            if (str.IndexOf("in") > 0) { factor = 90f; }            // 96?
-            if (str.IndexOf("em") > 0) { factor = 150f; }
-            if (str.IndexOf("%") > 0)  { percent = true; }
+            if (str.IndexOf("mm") > 0) { factor = factor_Mm2Px; }               // Millimeter
+            else if (str.IndexOf("cm") > 0) { factor = factor_Cm2Px; }          // Centimeter
+            else if (str.IndexOf("in") > 0) { factor = factor_In2Px; }          // Inch    72, 90 or 96?
+            else if (str.IndexOf("pt") > 0) { factor = factor_Pt2Px; }          // Point
+            else if (str.IndexOf("pc") > 0) { factor = factor_Pc2Px; }          // Pica
+            else if (str.IndexOf("em") > 0) { factor = factor_Em2Px; }          // Font size
+            else if (str.IndexOf("%") > 0)  { percent = true; }
             str = str.Replace("pt", "").Replace("pc", "").Replace("mm", "").Replace("cm", "").Replace("in", "").Replace("em ", "").Replace("%", "").Replace("px", "");
 
             if (str.Length > 0)
@@ -585,19 +587,19 @@ namespace GRBL_Plotter
 
                         float x=0, y=0, x1=0, y1=0, x2=0, y2=0, width=0, height=0, rx=0, ry=0,cx=0,cy=0,r=0;
                         string[] points= {""};
-                        if (pathElement.Attribute("x") !=null)      x = floatParse(pathElement.Attribute("x").Value);
-                        if (pathElement.Attribute("y") != null)     y = floatParse(pathElement.Attribute("y").Value);
-                        if (pathElement.Attribute("x1") != null)    x1 = floatParse(pathElement.Attribute("x1").Value);
-                        if (pathElement.Attribute("y1") != null)    y1 = floatParse(pathElement.Attribute("y1").Value);
-                        if (pathElement.Attribute("x2") != null)    x2 = floatParse(pathElement.Attribute("x2").Value);
-                        if (pathElement.Attribute("y2") != null)    y2 = floatParse(pathElement.Attribute("y2").Value);
-                        if (pathElement.Attribute("width") != null)  width =floatParse(pathElement.Attribute("width").Value,  svgWidthPx);
-                        if (pathElement.Attribute("height") != null) height=floatParse(pathElement.Attribute("height").Value, svgHeightPx);
-                        if (pathElement.Attribute("rx") != null)    rx=floatParse(pathElement.Attribute("rx").Value);
-                        if (pathElement.Attribute("ry") != null)    ry=floatParse(pathElement.Attribute("ry").Value);
-                        if (pathElement.Attribute("cx") != null)    cx=floatParse(pathElement.Attribute("cx").Value);
-                        if (pathElement.Attribute("cy") != null)    cy=floatParse(pathElement.Attribute("cy").Value);
-                        if (pathElement.Attribute("r") != null)     r=floatParse(pathElement.Attribute("r").Value);
+                        if (pathElement.Attribute("x") !=null)      x = convertToPixel(pathElement.Attribute("x").Value);
+                        if (pathElement.Attribute("y") != null)     y = convertToPixel(pathElement.Attribute("y").Value);
+                        if (pathElement.Attribute("x1") != null)    x1 = convertToPixel(pathElement.Attribute("x1").Value);
+                        if (pathElement.Attribute("y1") != null)    y1 = convertToPixel(pathElement.Attribute("y1").Value);
+                        if (pathElement.Attribute("x2") != null)    x2 = convertToPixel(pathElement.Attribute("x2").Value);
+                        if (pathElement.Attribute("y2") != null)    y2 = convertToPixel(pathElement.Attribute("y2").Value);
+                        if (pathElement.Attribute("width") != null)  width =convertToPixel(pathElement.Attribute("width").Value,  svgWidthPx);
+                        if (pathElement.Attribute("height") != null) height=convertToPixel(pathElement.Attribute("height").Value, svgHeightPx);
+                        if (pathElement.Attribute("rx") != null)    rx=convertToPixel(pathElement.Attribute("rx").Value);
+                        if (pathElement.Attribute("ry") != null)    ry=convertToPixel(pathElement.Attribute("ry").Value);
+                        if (pathElement.Attribute("cx") != null)    cx=convertToPixel(pathElement.Attribute("cx").Value);
+                        if (pathElement.Attribute("cy") != null)    cy=convertToPixel(pathElement.Attribute("cy").Value);
+                        if (pathElement.Attribute("r") != null)     r=convertToPixel(pathElement.Attribute("r").Value);
                         if (pathElement.Attribute("points") != null) points = pathElement.Attribute("points").Value.Split(' ');
 
                         if (svgPauseElement||svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before path"); }
@@ -662,7 +664,7 @@ namespace GRBL_Plotter
                             if (points[index].IndexOf(",") >= 0)
                             {
                                 string[] coord = points[index].Split(',');
-                                x = floatParse(coord[0]); y = floatParse(coord[1]);
+                                x = convertToPixel(coord[0]); y = convertToPixel(coord[1]);
                                 x1 = x; y1 = y;
                                 gcodeStartPath(x, y, form);
                                 isReduceOk = true;
@@ -671,7 +673,7 @@ namespace GRBL_Plotter
                                     if (points[i].Length > 3)
                                     {
                                         coord = points[i].Split(',');
-                                        x = floatParse(coord[0]); y = floatParse(coord[1]);
+                                        x = convertToPixel(coord[0]); y = convertToPixel(coord[1]);
                                         x += offsetX; y += offsetY;
                                         gcodeMoveTo(x, y, form);
                                     }
@@ -800,7 +802,7 @@ namespace GRBL_Plotter
                 .Split(remainingargs, argSeparators)
                 .Where(t => !string.IsNullOrEmpty(t));
 // get command coordinates
-            float[] floatArgs = splitArgs.Select(arg => floatParse(arg)).ToArray();
+            float[] floatArgs = splitArgs.Select(arg => convertToPixel(arg)).ToArray();
             int objCount = 0;
 
             switch (cmd)
@@ -1289,7 +1291,6 @@ namespace GRBL_Plotter
             gcodePenUp(cmt);
             gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
             if (svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before Pen Down"); }
-            penIsDown = false;
             isReduceOk = false;
         }
         /// <summary>
