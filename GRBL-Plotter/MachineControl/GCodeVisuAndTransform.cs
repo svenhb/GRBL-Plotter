@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,13 +23,14 @@
 */
 /* 2016-09-18 use gcode.frmtNum to control amount of decimal places
  * 2018-04-03 code clean up
+ * 2019-01-12 add some comments to getGCodeLine
+ * 2019-01-24 change lines 338, 345, 356, 363 to get xyz dimensions correctly
 */
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 using System.Drawing;
 
 namespace GRBL_Plotter
@@ -335,13 +336,14 @@ namespace GRBL_Plotter
             {   if (newLine.x != null)
                 {   if (newLine.isdistanceModeG90)  // absolute move
                     {   newLine.actualPos.X = (double)newLine.x;
-                        if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
+                        if(newLine.motionMode >=1 )//if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
                         {   xyzSize.setDimensionX(newLine.actualPos.X);
+                            //xyzSize.setDimensionX(oldLine.actualPos.X);
                         }
                     }
                     else
                     {   newLine.actualPos.X = oldLine.actualPos.X + (double)newLine.x;
-                        if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
+                        if (newLine.motionMode >= 1)//if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
                         {   xyzSize.setDimensionX(newLine.actualPos.X);// - toolPosX);
                         }
                     }
@@ -352,13 +354,14 @@ namespace GRBL_Plotter
                 if (newLine.y != null)
                 {   if (newLine.isdistanceModeG90)
                     {   newLine.actualPos.Y = (double)newLine.y;
-                        if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
+                        if (newLine.motionMode >= 1)//if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
                         {   xyzSize.setDimensionY(newLine.actualPos.Y);
+                           // xyzSize.setDimensionX(oldLine.actualPos.Y);
                         }
                     }
                     else
                     {   newLine.actualPos.Y = oldLine.actualPos.Y + (double)newLine.y;
-                        if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
+                        if (newLine.motionMode >= 1)//if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
                         {   xyzSize.setDimensionY(newLine.actualPos.Y);// - toolPosY);
                         }
                     }
@@ -398,18 +401,18 @@ namespace GRBL_Plotter
                 {
                     foreach (char c in line)
                     {
-                        if (c == ';')
+                        if (c == ';')                                   // comment?
                             break;
-                        if (c == '(')
+                        if (c == '(')                                   // comment starts
                             comment = true;
                         if (!comment)
                         {
-                            if (Char.IsLetter(c))
+                            if (Char.IsLetter(c))                       // if char is letter
                             {
-                                if (cmd != '\0')
+                                if (cmd != '\0')                        // and command is set
                                 {
                                     value = 0;
-                                    if (num.Length > 0)
+                                    if (num.Length > 0)                 // try to parse previous command and number
                                     {
                                         try { value = double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo); }
                                         catch { }
@@ -417,18 +420,18 @@ namespace GRBL_Plotter
                                     try { parseGCodeToken(cmd, value, parseLine); }
                                     catch { }
                                 }
-                                cmd = c;
+                                cmd = c;                                // char is a command
                                 num = "";
                             }
-                            else if (Char.IsNumber(c) || c == '.' || c == '-')
+                            else if (Char.IsNumber(c) || c == '.' || c == '-')  // char is not letter but number
                             {
                                 num += c;
                             }
                         }
-                        if (c == ')')
+                        if (c == ')')                                   // comment ends
                             comment = false;
                     }
-                    if (cmd != '\0')
+                    if (cmd != '\0')                                    // finally after for-each process final command and number
                     {
                         try { parseGCodeToken(cmd, double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo), parseLine); }
                         catch { }
@@ -839,9 +842,10 @@ namespace GRBL_Plotter
                     { tmpCode.AppendFormat(" X{0}", gcode.frmtNum((double)gcline.x)); getCoordinateXY = true; }
                     if (gcline.y != null)
                     { tmpCode.AppendFormat(" Y{0}", gcode.frmtNum((double)gcline.y)); getCoordinateXY = true; }
-                    if ((getCoordinateXY || (gcline.z != null)) && applyNewZ && (gcline.motionMode != 0) && (Map != null))  //if (getCoordinateXY && applyNewZ && (Map != null))
+                    if ((getCoordinateXY || (gcline.z != null)) && applyNewZ && (Map != null))  //(gcline.motionMode != 0) &&       if (getCoordinateXY && applyNewZ && (Map != null))
                     {   newZ = Map.InterpolateZ(gcline.actualPos.X, gcline.actualPos.Y);
-                        gcline.z = gcline.actualPos.Z + newZ;
+                        if ((gcline.motionMode != 0) || (newZ > 0))
+                            gcline.z = gcline.actualPos.Z + newZ;
                     }
 
                     if (gcline.z != null)

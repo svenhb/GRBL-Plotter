@@ -838,7 +838,7 @@
     <value>3, 150</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 182</value>
+    <value>160, 182</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -859,10 +859,10 @@
     <value>10</value>
   </data>
   <data name="btnOffset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 82</value>
+    <value>6, 82</value>
   </data>
   <data name="btnOffset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 20</value>
+    <value>150, 20</value>
   </data>
   <data name="btnOffset.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -886,7 +886,7 @@
     <value>0</value>
   </data>
   <data name="nUDProbeSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 58</value>
+    <value>106, 58</value>
   </data>
   <data name="nUDProbeSpeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 20</value>
@@ -937,7 +937,7 @@
     <value>2</value>
   </data>
   <data name="nUDProbeUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 36</value>
+    <value>96, 36</value>
   </data>
   <data name="nUDProbeUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -988,7 +988,7 @@
     <value>4</value>
   </data>
   <data name="nUDProbeDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 14</value>
+    <value>96, 14</value>
   </data>
   <data name="nUDProbeDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -1039,10 +1039,10 @@
     <value>6</value>
   </data>
   <data name="btnStartHeightScan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 282</value>
+    <value>9, 282</value>
   </data>
   <data name="btnStartHeightScan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 23</value>
+    <value>150, 23</value>
   </data>
   <data name="btnStartHeightScan.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1065,11 +1065,14 @@
   <data name="&gt;&gt;btnStartHeightScan.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="progressBar1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 256</value>
+    <value>9, 256</value>
   </data>
   <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 23</value>
+    <value>150, 23</value>
   </data>
   <data name="progressBar1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -1122,8 +1125,11 @@
   <data name="lblProgress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblProgress.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.5pt</value>
+  </data>
   <data name="lblProgress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 263</value>
+    <value>12, 261</value>
   </data>
   <data name="lblProgress.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 13</value>
@@ -1327,10 +1333,10 @@
     <value>False</value>
   </data>
   <data name="btnApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 307</value>
+    <value>9, 307</value>
   </data>
   <data name="btnApply.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 23</value>
+    <value>150, 23</value>
   </data>
   <data name="btnApply.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>

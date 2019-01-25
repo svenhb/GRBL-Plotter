@@ -34,6 +34,7 @@
  *  2018-04-05  Code clean up
  *  2018-07-27  change key-signs : variable: old:@, new:#   internal sign old:#, new:$
  *  2018-12-26	Commits from RasyidUFA via Github
+ *  2019-01-12  print last sent commands to grbl after error as info
 */
 
 //#define debuginfo 
@@ -65,6 +66,7 @@ namespace GRBL_Plotter
         public bool toolInSpindle { get; set; } = false;
         public bool isHeightProbing { get; set; } = false;      // automatic height probing -> less feedback
         public List<string> GRBLSettings = new List<string>();  // keep $$ settings
+        private Queue<string> lastSentToCOM = new Queue<string>();   // store last sent commands via COM
 
         private Dictionary<string, double> gcodeVariable = new Dictionary<string, double>();    // keep variables "PRBX" etc.
         public string parserStateGC = "";                  // keep parser state response [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
@@ -501,7 +503,8 @@ namespace GRBL_Plotter
             // Process feedback message with coordinates
             else if (((tmp = rxString.IndexOf('[')) >= 0) && (rxString.IndexOf(']') > tmp))
             {   handleRX_Feedback(rxString.Trim(charsToTrim).Split(':'));
-                addToLog(rxString);
+                if (!isHeightProbing || cbStatus.Checked)
+                    addToLog(rxString);
                 isDataProcessing = false;
                 return;
             }
@@ -522,19 +525,29 @@ namespace GRBL_Plotter
                 return;
             }
             else if (rxString.IndexOf("error") >= 0)
-            {   if (rxString != lastError)
+            {
+                string tmpMsg = "";
+                if (rxString != lastError)
                 {
                     addToLog("<\r\n< !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     addToLog(string.Format("< {0} \t{1}", rxString, grbl.getError(rxString)));
-                    lastError = rxString+" "+ grbl.getError(rxString);
+                    lastError = rxString+" "+ grbl.getError(rxString)+"\r\n";
                     this.WindowState = FormWindowState.Minimized;
                     this.Show();
                     this.WindowState = FormWindowState.Normal;
+                    addToLog(">>> Last sent commmands to grbl, oldest first:");
+                    lastError += ">>> Last sent commmands to grbl, oldest first:";
+                    foreach (string lastLine in lastSentToCOM)
+                    {   tmpMsg = ">>> " + lastLine;
+                        addToLog(tmpMsg);
+                        lastError += tmpMsg + "\r\n";
+                    }
                 }
                 grblStatus = grblStreaming.error;
                 if (isStreaming)
-                {
-                    addToLog(string.Format("< Error before code line {0} \r\n", gCodeLineNr[gCodeLinesSent]));
+                {   tmpMsg = string.Format("< Error before code line {0} \r\n", gCodeLineNr[gCodeLinesSent]);
+                    addToLog(tmpMsg);
+                    lastError += tmpMsg;
                     sendStreamEvent(gCodeLineNr[gCodeLinesSent], grblStatus);
                     stopStreaming();
                 }
@@ -999,6 +1012,8 @@ namespace GRBL_Plotter
                             //  rtbLog.AppendText(string.Format("!!!> {0} {1}\r\n", line, sendLinesSent));
                     if (serialPort.IsOpen)
                     {   sendLine(line);                         // now really send data to Arduino
+                        if (lastSentToCOM.Count > 10)
+                            lastSentToCOM.Dequeue();
                         grblBufferFree -= (line.Length + 1);
                         sendLinesSent++;
                     }
@@ -1100,6 +1115,8 @@ namespace GRBL_Plotter
         private void sendLine(string data)
         {   try
             {   serialPort.Write(data + "\r");
+                lastSentToCOM.Enqueue(data);
+
 #if (debuginfo)
                 rtbLog.AppendText(string.Format("< {0} {1} {2} {3} \r\n", data, sendLinesSent, sendLinesConfirmed, grblBufferFree));//if not in transfer log the txLine
 #endif
@@ -1187,6 +1204,7 @@ namespace GRBL_Plotter
         public void startStreaming(IList<string> gCodeList, int startAtLine, bool check = false)
         {
             lastError = "";
+            lastSentToCOM.Clear();
             toolTable.init();       // fill structure
             rtbLog.Clear();
             if (!check)

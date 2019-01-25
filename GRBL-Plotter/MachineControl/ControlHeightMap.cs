@@ -76,10 +76,15 @@ namespace GRBL_Plotter
                     lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
 
                     cntReceived++;
-                    progressBar1.Value = cntReceived;
                     elapsed = DateTime.UtcNow - timeInit;
-                    lblProgress.Text = string.Format("{0}% {1} of {2}  t={3}", (100 * cntReceived / progressBar1.Maximum), cntReceived, progressBar1.Maximum, elapsed.ToString(@"hh\:mm\:ss"));
-                    textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", actualPosWorld.X, actualPosWorld.Y, worldZ);
+                    TimeSpan diff = elapsed.Subtract(elapsedOld);
+                    if (diff.Milliseconds > 500)
+                    {
+                        progressBar1.Value = cntReceived;
+                        lblProgress.Text = string.Format("{0}% {1} / {2}  {3}", (100 * cntReceived / progressBar1.Maximum), cntReceived, progressBar1.Maximum, elapsed.ToString(@"hh\:mm\:ss"));
+                        textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", actualPosWorld.X, actualPosWorld.Y, worldZ);
+                        elapsedOld = elapsed;
+                    }
                     if (cntReceived == progressBar1.Maximum)
                     {
                         enableControls(true);
@@ -88,6 +93,9 @@ namespace GRBL_Plotter
                         showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
                         isMapOk = true;
                         enableControls(true);
+                        progressBar1.Value = cntReceived;
+                        lblProgress.Text = string.Format("{0}% {1} / {2}  {3}", (100 * cntReceived / progressBar1.Maximum), cntReceived, progressBar1.Maximum, elapsed.ToString(@"hh\:mm\:ss"));
+                        textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", actualPosWorld.X, actualPosWorld.Y, worldZ);
                     }
                 }
             }
@@ -371,7 +379,7 @@ namespace GRBL_Plotter
             lblYDim.Text = string.Format("Y Min:{0} Max:{1} Step:{2}", nUDY1.Value, nUDY2.Value, stepY);
         }
 
-        private TimeSpan elapsed;               //elapsed time from file burnin
+        private TimeSpan elapsed, elapsedOld;   //elapsed time from file burnin
         private DateTime timeInit;              //time start to burning file
         private void btnApply_Click(object sender, EventArgs e)
         { }
@@ -418,6 +426,7 @@ namespace GRBL_Plotter
                 isMapOk = false;
                 timeInit = DateTime.UtcNow;
                 elapsed = TimeSpan.Zero;
+                elapsedOld = elapsed;
                 btnStartHeightScan.Text = "STOP scanning Height Map";
                 decimal x1, x2, y1, y2;
                 x1 = Math.Min(nUDX1.Value, nUDX2.Value);

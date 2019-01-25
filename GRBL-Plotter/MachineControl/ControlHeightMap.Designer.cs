@@ -440,7 +440,7 @@
             // nUDProbeDown
             // 
             this.nUDProbeDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "heightMapProbeDepth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDProbeDown.DecimalPlaces = 2;
+            this.nUDProbeDown.DecimalPlaces = 3;
             resources.ApplyResources(this.nUDProbeDown, "nUDProbeDown");
             this.nUDProbeDown.Maximum = new decimal(new int[] {
             0,
@@ -482,6 +482,7 @@
             // lblProgress
             // 
             resources.ApplyResources(this.lblProgress, "lblProgress");
+            this.lblProgress.BackColor = System.Drawing.Color.Transparent;
             this.lblProgress.Name = "lblProgress";
             // 
             // btnSave

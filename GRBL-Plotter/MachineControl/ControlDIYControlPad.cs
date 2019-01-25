@@ -29,6 +29,7 @@ namespace GRBL_Plotter
     {
         private string rxString,rxTmpString;
         private byte rxChar;
+        public bool isHeightProbing = false;
 
         public ControlDIYControlPad()
         {   InitializeComponent();
@@ -137,12 +138,16 @@ namespace GRBL_Plotter
         {
             if ((rxChar > 0x7F) || (isRealTimeCmd.Contains(rxChar)))
             {   rtbLog.AppendText(string.Format("< 0x{0:X} {1}\r\n", rxChar, grbl.getRealtime(rxChar)));
+                rtbLog.ScrollToCaret();
                 OnRaiseCommandEvent(new CommandEventArgs(rxChar));
                 rxChar = 0;
             }
             else
             {   if (rxString.Length > 2)        // don't send single \n
-                {   rtbLog.AppendText(string.Format("< {0} \r\n", rxString));
+                {   if (cBFeedback.Checked|| !isHeightProbing)
+                    {   rtbLog.AppendText(string.Format("< {0} \r\n", rxString));
+                        rtbLog.ScrollToCaret();
+                    }
                     OnRaiseCommandEvent(new CommandEventArgs(rxString));
                 }
                 rxString = "";
@@ -159,6 +164,7 @@ namespace GRBL_Plotter
         {   sendLine(data);
             if (forceShow)
             {   rtbLog.AppendText(string.Format(">!!! {0} \r\n", data));
+                rtbLog.ScrollToCaret();
             }
         }
 
@@ -172,11 +178,15 @@ namespace GRBL_Plotter
                 {
                     serialPort.Write(data + "\r\n");
                     if (cBFeedback.Checked)
-                        rtbLog.AppendText(string.Format("> {0} \r\n", data));
+                    {   rtbLog.AppendText(string.Format("> {0} \r\n", data));
+                        rtbLog.ScrollToCaret();
+                    }
                 }
                 else {
                     if (cBFeedback.Checked)
-                        rtbLog.AppendText(string.Format(">| {0} \r\n", data));
+                    {   rtbLog.AppendText(string.Format(">| {0} \r\n", data));
+                        rtbLog.ScrollToCaret();
+                    }
                 }
 
             }
