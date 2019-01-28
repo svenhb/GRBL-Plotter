@@ -6,7 +6,7 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
    
    
 ### New in version 1.2.3.x:
-* 1.2.3.7 Bug fixes: wrong offset, caused by incomplete dimension calculation, svg import scaling (90,96,72 dpi); Add svg dpi selection in setup (96 or 72)
+* 1.2.3.8 Bug fixes: wrong offset, caused by incomplete dimension calculation, svg import scaling (96,72 dpi); Add svg dpi selection in setup (96 or 72)
 * 1.2.3.3 Z-adaption also for G0 (only to pos. values); add 3rd decimal to Surface scan, Max. depth
 * 1.2.3.2 Bugfix in Z-Value correction when applying height map
 * 1.2.3.1 Removed feedback-loop. Save last spindle speed setting from GUI
