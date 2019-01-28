@@ -5,6 +5,8 @@ Geschrieben in C# VisualStudio 2015.
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
 ### Neu in Version 1.2.3.x:
+* 1.2.3.8 Bug fixes: wrong offset, caused by incomplete dimension calculation, svg import scaling (96,72 dpi); Add svg dpi selection in setup (96 or 72)
+* 1.2.3.3 Z-adaption also for G0 (only to pos. values); add 3rd decimal to Surface scan, Max. depth
 * 1.2.3.2 Bugfix in Z-Wert Korrektur, wenn eine Heightmap verwendet wird
 * 1.2.3.1 Removed feedback-loop. Save last spindle speed setting from GUI
 * Benutzerdefinierbare [hotkeys](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
