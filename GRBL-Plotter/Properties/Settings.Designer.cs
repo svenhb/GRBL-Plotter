@@ -3190,5 +3190,53 @@ namespace GRBL_Plotter.Properties {
                 this["importSVGDPI96"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Btn 9|(-)")]
+        public string custom9 {
+            get {
+                return ((string)(this["custom9"]));
+            }
+            set {
+                this["custom9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Btn 10|(-)")]
+        public string custom10 {
+            get {
+                return ((string)(this["custom10"]));
+            }
+            set {
+                this["custom10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Btn 11|(-)")]
+        public string custom11 {
+            get {
+                return ((string)(this["custom11"]));
+            }
+            set {
+                this["custom11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Btn 12|(-)")]
+        public string custom12 {
+            get {
+                return ((string)(this["custom12"]));
+            }
+            set {
+                this["custom12"] = value;
+            }
+        }
     }
 }

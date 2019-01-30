@@ -794,5 +794,17 @@
     <Setting Name="importSVGDPI96" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="custom9" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Btn 9|(-)</Value>
+    </Setting>
+    <Setting Name="custom10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Btn 10|(-)</Value>
+    </Setting>
+    <Setting Name="custom11" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Btn 11|(-)</Value>
+    </Setting>
+    <Setting Name="custom12" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Btn 12|(-)</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
