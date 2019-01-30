@@ -134,6 +134,7 @@ namespace GRBL_Plotter
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnLimitExceed = new System.Windows.Forms.Button();
             this.btnOverrideSSGB = new System.Windows.Forms.GroupBox();
+            this.lblStatusSpeed = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblOverrideSSValue = new System.Windows.Forms.Label();
@@ -143,6 +144,7 @@ namespace GRBL_Plotter
             this.btnOverrideSS4 = new System.Windows.Forms.Button();
             this.btnOverrideSS3 = new System.Windows.Forms.Button();
             this.btnOverrideFRGB = new System.Windows.Forms.GroupBox();
+            this.lblStatusFeed = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblOverrideFRValue = new System.Windows.Forms.Label();
@@ -208,6 +210,10 @@ namespace GRBL_Plotter
             this.btnJogZeroX = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCustom12 = new System.Windows.Forms.Button();
+            this.btnCustom11 = new System.Windows.Forms.Button();
+            this.btnCustom10 = new System.Windows.Forms.Button();
+            this.btnCustom9 = new System.Windows.Forms.Button();
             this.btnCustom8 = new System.Windows.Forms.Button();
             this.btnCustom7 = new System.Windows.Forms.Button();
             this.btnCustom6 = new System.Windows.Forms.Button();
@@ -752,6 +758,7 @@ namespace GRBL_Plotter
             // 
             // btnOverrideSSGB
             // 
+            this.btnOverrideSSGB.Controls.Add(this.lblStatusSpeed);
             this.btnOverrideSSGB.Controls.Add(this.label8);
             this.btnOverrideSSGB.Controls.Add(this.label10);
             this.btnOverrideSSGB.Controls.Add(this.lblOverrideSSValue);
@@ -763,6 +770,12 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.btnOverrideSSGB, "btnOverrideSSGB");
             this.btnOverrideSSGB.Name = "btnOverrideSSGB";
             this.btnOverrideSSGB.TabStop = false;
+            // 
+            // lblStatusSpeed
+            // 
+            resources.ApplyResources(this.lblStatusSpeed, "lblStatusSpeed");
+            this.lblStatusSpeed.Name = "lblStatusSpeed";
+            this.toolTip1.SetToolTip(this.lblStatusSpeed, resources.GetString("lblStatusSpeed.ToolTip"));
             // 
             // label8
             // 
@@ -816,6 +829,7 @@ namespace GRBL_Plotter
             // 
             // btnOverrideFRGB
             // 
+            this.btnOverrideFRGB.Controls.Add(this.lblStatusFeed);
             this.btnOverrideFRGB.Controls.Add(this.label5);
             this.btnOverrideFRGB.Controls.Add(this.label7);
             this.btnOverrideFRGB.Controls.Add(this.lblOverrideFRValue);
@@ -827,6 +841,12 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.btnOverrideFRGB, "btnOverrideFRGB");
             this.btnOverrideFRGB.Name = "btnOverrideFRGB";
             this.btnOverrideFRGB.TabStop = false;
+            // 
+            // lblStatusFeed
+            // 
+            resources.ApplyResources(this.lblStatusFeed, "lblStatusFeed");
+            this.lblStatusFeed.Name = "lblStatusFeed";
+            this.toolTip1.SetToolTip(this.lblStatusFeed, resources.GetString("lblStatusFeed.ToolTip"));
             // 
             // label5
             // 
@@ -1273,6 +1293,10 @@ namespace GRBL_Plotter
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom12, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom11, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom10, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom9, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCustom8, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnCustom7, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnCustom6, 1, 1);
@@ -1282,6 +1306,34 @@ namespace GRBL_Plotter
             this.tableLayoutPanel1.Controls.Add(this.btnCustom3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnCustom4, 0, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // btnCustom12
+            // 
+            resources.ApplyResources(this.btnCustom12, "btnCustom12");
+            this.btnCustom12.Name = "btnCustom12";
+            this.btnCustom12.UseVisualStyleBackColor = true;
+            this.btnCustom12.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom11
+            // 
+            resources.ApplyResources(this.btnCustom11, "btnCustom11");
+            this.btnCustom11.Name = "btnCustom11";
+            this.btnCustom11.UseVisualStyleBackColor = true;
+            this.btnCustom11.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom10
+            // 
+            resources.ApplyResources(this.btnCustom10, "btnCustom10");
+            this.btnCustom10.Name = "btnCustom10";
+            this.btnCustom10.UseVisualStyleBackColor = true;
+            this.btnCustom10.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom9
+            // 
+            resources.ApplyResources(this.btnCustom9, "btnCustom9");
+            this.btnCustom9.Name = "btnCustom9";
+            this.btnCustom9.UseVisualStyleBackColor = true;
+            this.btnCustom9.Click += new System.EventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom8
             // 
@@ -1977,6 +2029,12 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBSendJogStop;
         private System.Windows.Forms.ToolStripMenuItem startStreamingAtLineToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStrip_tb_StreamLine;
+        private System.Windows.Forms.Button btnCustom12;
+        private System.Windows.Forms.Button btnCustom11;
+        private System.Windows.Forms.Button btnCustom10;
+        private System.Windows.Forms.Button btnCustom9;
+        private System.Windows.Forms.Label lblStatusSpeed;
+        private System.Windows.Forms.Label lblStatusFeed;
     }
 }
 

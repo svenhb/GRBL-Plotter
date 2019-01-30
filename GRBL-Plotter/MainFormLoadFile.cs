@@ -1,4 +1,22 @@
-﻿/* MainFormLoadFile
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* MainFormLoadFile
  * Methods to load data (nc, svg, dxf, pictures)
  * Load setups
  * */
@@ -445,7 +463,7 @@ namespace GRBL_Plotter
                 string checkContent = (String)iData.GetData(DataFormats.Text);
                 string[] checkLines = checkContent.Split('\n');
                 int posSVG = checkContent.IndexOf("<svg ");
-                if ((posSVG >= 0) && (posSVG < 2))
+                if ((posSVG >= 0) && (posSVG < 100))
                 {
                     MemoryStream stream = new MemoryStream();
                     stream = (MemoryStream)iData.GetData("text");
@@ -572,6 +590,10 @@ namespace GRBL_Plotter
                 setCustomButton(btnCustom6, Properties.Settings.Default.custom6, 6);
                 setCustomButton(btnCustom7, Properties.Settings.Default.custom7, 7);
                 setCustomButton(btnCustom8, Properties.Settings.Default.custom8, 8);
+                setCustomButton(btnCustom9, Properties.Settings.Default.custom9, 9);
+                setCustomButton(btnCustom10, Properties.Settings.Default.custom10, 10);
+                setCustomButton(btnCustom11, Properties.Settings.Default.custom11, 11);
+                setCustomButton(btnCustom12, Properties.Settings.Default.custom12, 12);
                 fCTBCode.BookmarkColor = Properties.Settings.Default.colorMarker; ;
                 pictureBox1.BackColor = Properties.Settings.Default.colorBackground;
                 //                visuGCode.setColors();
@@ -739,6 +761,10 @@ namespace GRBL_Plotter
             btnCustom6.Enabled = isConnected & !isStreaming | allowControl;
             btnCustom7.Enabled = isConnected & !isStreaming | allowControl;
             btnCustom8.Enabled = isConnected & !isStreaming | allowControl;
+            btnCustom9.Enabled = isConnected & !isStreaming | allowControl;
+            btnCustom10.Enabled = isConnected & !isStreaming | allowControl;
+            btnCustom11.Enabled = isConnected & !isStreaming | allowControl;
+            btnCustom12.Enabled = isConnected & !isStreaming | allowControl;
             btnHome.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroX.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroY.Enabled = isConnected & !isStreaming | allowControl;
@@ -811,7 +837,7 @@ namespace GRBL_Plotter
 
             if (action.StartsWith("CustomButton") && keyDown)
             {
-                string num = action.Substring(action.Length-1);
+                string num = action.Substring("CustomButton".Length);
                 int num1;
                 if (!int.TryParse(num, out num1))
                     MessageBox.Show("Unknown action: " + action, "Error with Hotkey.xml");

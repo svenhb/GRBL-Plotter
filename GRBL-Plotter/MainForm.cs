@@ -188,6 +188,15 @@ namespace GRBL_Plotter
             {
                 if (_streaming_form2 != null)
                     _streaming_form2.showActualValues(e.StatMsg.FS);
+                string[] value = e.StatMsg.FS.Split(',');
+                if (value.Length > 1)
+                {   lblStatusFeed.Text = value[0];// + " mm/min";
+                    lblStatusSpeed.Text = value[1];// + " RPM";
+                }
+                else
+                {   lblStatusFeed.Text = value[0];// + " mm/min";
+                    lblStatusSpeed.Text = "-";// + " RPM";
+                }
             }
             if (e.Status == grblState.probe)
             {
@@ -1516,12 +1525,12 @@ namespace GRBL_Plotter
             Cursor.Current = Cursors.Default;
         }
         // Setup Custom Buttons during loadSettings()
-        string[] btnCustomCommand = new string[9];
+        string[] btnCustomCommand = new string[13];
         private void setCustomButton(Button btn, string text, int cnt)
         {
             int index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length));
             string[] parts = text.Split('|');
-            if (parts.Length > 1)
+            if ((parts.Length > 1) && (text.Contains("|")))
             {
                 btn.Text = parts[0];
                 if (File.Exists(parts[1]))
@@ -1796,7 +1805,8 @@ namespace GRBL_Plotter
         { sendRealtimeCommand(157); }     // 0x9D : Decrease 1%   
 
         private void processCommands(string command)
-        {
+        {   if (command.Length <= 1)
+                return;
             string[] commands;
             if (File.Exists(command))
             {

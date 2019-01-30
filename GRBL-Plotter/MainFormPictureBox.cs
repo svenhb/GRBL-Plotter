@@ -1,9 +1,28 @@
-﻿/* MainFormPictureBox
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* MainFormPictureBox
  * Methods related to pictureBox1
  * pictureBox1_Click
  * pictureBox1_MouseMove
  * pictureBox1_Paint
  * pictureBox1_SizeChanged
+ * 2019-01-28 3 digitis for coordinates
  * */
 
 using System;
@@ -79,7 +98,7 @@ namespace GRBL_Plotter
                 {   e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
                     e.Graphics.FillRectangle(brushBackground, new Rectangle(3, 3, 140, 24));
                 }
-                e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
+                e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
                 e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}", 100 / zoomRange, unit), new Font("Lucida Console", 8), Brushes.Black, new Point(5, 5));
             }
         }
