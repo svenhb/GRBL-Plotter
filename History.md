@@ -2,6 +2,7 @@
 Needs to be read from the bottom up ;-)  
 
 ### 2019-01 version 1.2.3.x:
+* 1.2.3.9 Add 4 more custom buttons, status of feed rate and spindle speed in main GUI
 * 1.2.3.8 Bug fixes: wrong offset, caused by incomplete dimension calculation, svg import scaling (96,72 dpi); Add svg dpi selection in setup (96 or 72)
 * 1.2.3.3 Z-adaption also for G0 (only to pos. values); add 3rd decimal to Surface scan, Max. depth
 * 1.2.3.2 Bugfix in Z-Value correction when applying height map
