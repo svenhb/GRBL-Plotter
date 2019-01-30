@@ -25,6 +25,7 @@
  * 2018-04-03 code clean up
  * 2019-01-12 add some comments to getGCodeLine
  * 2019-01-24 change lines 338, 345, 356, 363 to get xyz dimensions correctly
+ * 2019-01-28 3 digits for dimension, line 1212
 */
 using System;
 using System.Collections.Generic;
@@ -333,12 +334,15 @@ namespace GRBL_Plotter
         private void calcAbsPosition(gcodeLine newLine, gcodeLine oldLine)
         {
             if (!newLine.ismachineCoordG53)         // only use world coordinates
-            {   if (newLine.x != null)
+            {   if ((newLine.motionMode >= 1) && (oldLine.motionMode == 0))     // take account of last G0 move
+                {   xyzSize.setDimensionX(oldLine.actualPos.X);
+                    xyzSize.setDimensionY(oldLine.actualPos.Y);
+                }
+                if (newLine.x != null)
                 {   if (newLine.isdistanceModeG90)  // absolute move
                     {   newLine.actualPos.X = (double)newLine.x;
                         if(newLine.motionMode >=1 )//if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
                         {   xyzSize.setDimensionX(newLine.actualPos.X);
-                            //xyzSize.setDimensionX(oldLine.actualPos.X);
                         }
                     }
                     else
@@ -356,7 +360,6 @@ namespace GRBL_Plotter
                     {   newLine.actualPos.Y = (double)newLine.y;
                         if (newLine.motionMode >= 1)//if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
                         {   xyzSize.setDimensionY(newLine.actualPos.Y);
-                           // xyzSize.setDimensionX(oldLine.actualPos.Y);
                         }
                     }
                     else
@@ -1206,9 +1209,9 @@ namespace GRBL_Plotter
         // return string with dimensions
         public String getMinMaxString()
         {   
-            string x = String.Format("X:{0,8:####0.00} |{1,8:####0.00}\r\n", minx, maxx);
-            string y = String.Format("Y:{0,8:####0.00} |{1,8:####0.00}\r\n", miny, maxy);
-            string z = String.Format("Z:{0,8:####0.00} |{1,8:####0.00}", minz, maxz);
+            string x = String.Format("X:{0,8:####0.000} |{1,8:####0.000}\r\n", minx, maxx);
+            string y = String.Format("Y:{0,8:####0.000} |{1,8:####0.000}\r\n", miny, maxy);
+            string z = String.Format("Z:{0,8:####0.000} |{1,8:####0.000}", minz, maxz);
             if ((minx == Double.MaxValue) || (maxx == Double.MinValue))
                 x = "X: unknown | unknown\r\n";
             if ((miny == Double.MaxValue) || (maxy == Double.MinValue))

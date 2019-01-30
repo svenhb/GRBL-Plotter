@@ -663,70 +663,67 @@
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="radioButton1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label69.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="radioButton1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="label69.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="radioButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 126</value>
+  <data name="label69.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 18</value>
   </data>
-  <data name="radioButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
+  <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
   </data>
-  <data name="radioButton1.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+  <data name="label69.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
   </data>
-  <data name="radioButton1.Text" xml:space="preserve">
-    <value>72 dpi</value>
+  <data name="label69.Text" xml:space="preserve">
+    <value>DPI Setting</value>
   </data>
-  <data name="radioButton1.ToolTip" xml:space="preserve">
-    <value>72 dpi is used by Adobe Illustrator</value>
+  <data name="&gt;&gt;label69.Name" xml:space="preserve">
+    <value>label69</value>
   </data>
-  <data name="&gt;&gt;radioButton1.Name" xml:space="preserve">
-    <value>radioButton1</value>
+  <data name="&gt;&gt;label69.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;radioButton1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioButton1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label69.Parent" xml:space="preserve">
     <value>groupBox14</value>
   </data>
-  <data name="&gt;&gt;radioButton1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label69.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cBImportSVG_DPI_96.AutoSize" type="System.Boolean, mscorlib">
+  <data name="cBImportSVG_DPI_72.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="cBImportSVG_DPI_96.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="cBImportSVG_DPI_72.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="cBImportSVG_DPI_96.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 126</value>
+  <data name="cBImportSVG_DPI_72.Location" type="System.Drawing.Point, System.Drawing">
+    <value>127, 16</value>
   </data>
-  <data name="cBImportSVG_DPI_96.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cBImportSVG_DPI_72.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 17</value>
   </data>
-  <data name="cBImportSVG_DPI_96.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+  <data name="cBImportSVG_DPI_72.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
   </data>
-  <data name="cBImportSVG_DPI_96.Text" xml:space="preserve">
-    <value>96 dpi</value>
+  <data name="cBImportSVG_DPI_72.Text" xml:space="preserve">
+    <value>72 dpi</value>
   </data>
-  <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
-    <value>96 dpi is the default scaling</value>
+  <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
+    <value>72 dpi is used by Adobe Illustrator</value>
   </data>
-  <data name="&gt;&gt;cBImportSVG_DPI_96.Name" xml:space="preserve">
-    <value>cBImportSVG_DPI_96</value>
+  <data name="&gt;&gt;cBImportSVG_DPI_72.Name" xml:space="preserve">
+    <value>cBImportSVG_DPI_72</value>
   </data>
-  <data name="&gt;&gt;cBImportSVG_DPI_96.Type" xml:space="preserve">
+  <data name="&gt;&gt;cBImportSVG_DPI_72.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cBImportSVG_DPI_96.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cBImportSVG_DPI_72.Parent" xml:space="preserve">
     <value>groupBox14</value>
   </data>
-  <data name="&gt;&gt;cBImportSVG_DPI_96.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cBImportSVG_DPI_72.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="cBImportSVGNodesOnly.AutoSize" type="System.Boolean, mscorlib">
@@ -736,7 +733,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGNodesOnly.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 100</value>
+    <value>6, 124</value>
   </data>
   <data name="cBImportSVGNodesOnly.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 17</value>
@@ -772,7 +769,7 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGSort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 54</value>
+    <value>6, 78</value>
   </data>
   <data name="cBImportSVGSort.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 17</value>
@@ -799,11 +796,44 @@ Note: don't use 'Compres G-Code' or 'Relative movements'</value>
   <data name="&gt;&gt;cBImportSVGSort.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="cBImportSVG_DPI_96.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 16</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 17</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.Text" xml:space="preserve">
+    <value>96 dpi</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
+    <value>96 dpi is the default scaling</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVG_DPI_96.Name" xml:space="preserve">
+    <value>cBImportSVG_DPI_96</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVG_DPI_96.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVG_DPI_96.Parent" xml:space="preserve">
+    <value>groupBox14</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVG_DPI_96.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="cBImportSVGResize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGResize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
+    <value>6, 40</value>
   </data>
   <data name="cBImportSVGResize.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 32</value>
@@ -828,10 +858,10 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox14</value>
   </data>
   <data name="&gt;&gt;cBImportSVGResize.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nUDSVGScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 23</value>
+    <value>195, 47</value>
   </data>
   <data name="nUDSVGScale.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -855,7 +885,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox14</value>
   </data>
   <data name="&gt;&gt;nUDSVGScale.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cBImportSVGPath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -894,7 +924,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox14</value>
   </data>
   <data name="&gt;&gt;cBImportSVGPath.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="cBImportSVGTool.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -903,7 +933,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 70</value>
+    <value>24, 94</value>
   </data>
   <data name="cBImportSVGTool.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 17</value>
@@ -927,7 +957,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox14</value>
   </data>
   <data name="&gt;&gt;cBImportSVGTool.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -936,7 +966,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 25</value>
+    <value>256, 49</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 13</value>
@@ -957,7 +987,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox14</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="groupBox14.Location" type="System.Drawing.Point, System.Drawing">
     <value>302, 6</value>
@@ -5761,7 +5791,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>6, 6</value>
   </data>
   <data name="dGVCustomBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>762, 202</value>
+    <value>762, 288</value>
   </data>
   <data name="dGVCustomBtn.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -5785,7 +5815,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>NoControl</value>
   </data>
   <data name="lblFilePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 266</value>
+    <value>8, 341</value>
   </data>
   <data name="lblFilePath.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 13</value>
@@ -5812,7 +5842,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>NoControl</value>
   </data>
   <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 222</value>
+    <value>8, 297</value>
   </data>
   <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
     <value>689, 44</value>
@@ -8591,6 +8621,63 @@ Setup window must be closed to use GamePad in GUI.
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="btnOpenHotkeys.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOpenHotkeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>581, 62</value>
+  </data>
+  <data name="btnOpenHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 23</value>
+  </data>
+  <data name="btnOpenHotkeys.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="btnOpenHotkeys.Text" xml:space="preserve">
+    <value>Open hotkeys.xml in notepad</value>
+  </data>
+  <data name="&gt;&gt;btnOpenHotkeys.Name" xml:space="preserve">
+    <value>btnOpenHotkeys</value>
+  </data>
+  <data name="&gt;&gt;btnOpenHotkeys.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOpenHotkeys.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;btnOpenHotkeys.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblPathHotkeys.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPathHotkeys.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPathHotkeys.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 72</value>
+  </data>
+  <data name="lblPathHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="lblPathHotkeys.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="lblPathHotkeys.Text" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="&gt;&gt;lblPathHotkeys.Name" xml:space="preserve">
+    <value>lblPathHotkeys</value>
+  </data>
+  <data name="&gt;&gt;lblPathHotkeys.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPathHotkeys.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;lblPathHotkeys.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
   </data>
@@ -8616,7 +8703,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>0</value>
   </data>
   <data name="groupBox26.Location" type="System.Drawing.Point, System.Drawing">
-    <value>463, 16</value>
+    <value>466, 188</value>
   </data>
   <data name="groupBox26.Size" type="System.Drawing.Size, System.Drawing">
     <value>302, 154</value>
@@ -8640,7 +8727,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;groupBox26.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnHotkeyRefresh.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -8667,7 +8754,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;btnHotkeyRefresh.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="label68.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8676,7 +8763,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>NoControl</value>
   </data>
   <data name="label68.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 72</value>
+    <value>6, 58</value>
   </data>
   <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
     <value>451, 13</value>
@@ -8697,7 +8784,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;label68.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="tBHotkeyList.Font" type="System.Drawing.Font, System.Drawing">
     <value>Lucida Console, 8.25pt</value>
@@ -8727,7 +8814,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;tBHotkeyList.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="label67.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8757,7 +8844,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;label67.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="tB_kP_Left1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 32</value>
@@ -8781,7 +8868,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;tB_kP_Left1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 6</value>
@@ -13588,9 +13675,6 @@ Setup window must be closed to use GamePad in GUI.
         ////////////////////////////////////////////////////////////////////////////////
         //8=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>

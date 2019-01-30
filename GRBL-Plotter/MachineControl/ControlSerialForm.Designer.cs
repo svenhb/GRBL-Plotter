@@ -81,8 +81,8 @@ namespace GRBL_Plotter
             this.cBCommand = new System.Windows.Forms.ComboBox();
             this.cbStatus = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.timerSerial = new System.Windows.Forms.Timer(this.components);
             this.btnCheckGRBLResult = new System.Windows.Forms.Button();
+            this.timerSerial = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -329,17 +329,17 @@ namespace GRBL_Plotter
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // timerSerial
-            // 
-            this.timerSerial.Interval = 500;
-            this.timerSerial.Tick += new System.EventHandler(this.timerSerial_Tick);
-            // 
             // btnCheckGRBLResult
             // 
             resources.ApplyResources(this.btnCheckGRBLResult, "btnCheckGRBLResult");
             this.btnCheckGRBLResult.Name = "btnCheckGRBLResult";
             this.btnCheckGRBLResult.UseVisualStyleBackColor = true;
             this.btnCheckGRBLResult.Click += new System.EventHandler(this.btnCheckGRBLResult_Click);
+            // 
+            // timerSerial
+            // 
+            this.timerSerial.Interval = 500;
+            this.timerSerial.Tick += new System.EventHandler(this.timerSerial_Tick);
             // 
             // ControlSerialForm
             // 

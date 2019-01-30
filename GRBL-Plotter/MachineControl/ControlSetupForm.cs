@@ -27,6 +27,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+//using System.Windows.Input;
 
 namespace GRBL_Plotter
 {
@@ -57,7 +58,7 @@ namespace GRBL_Plotter
             string[] parts;// = new string[] { "-", "(-)" };
             dGVCustomBtn.Rows.Clear();
             int row = 0;
-            for (int i = 1; i <= 8; i++)
+            for (int i = 1; i <= 12; i++)
             {
                 parts = new string[2];
                 text = Properties.Settings.Default["custom" + i.ToString()].ToString();
@@ -107,6 +108,11 @@ namespace GRBL_Plotter
             else
                 rBImportUnitInch.Checked = true;
 
+            if (Properties.Settings.Default.importSVGDPI96)
+                cBImportSVG_DPI_96.Checked = true;
+            else
+                cBImportSVG_DPI_72.Checked = true;
+
             lblFilePath.Text = System.Windows.Forms.Application.StartupPath;
 
             hsFilterScrollSetLabels();
@@ -125,7 +131,7 @@ namespace GRBL_Plotter
 
         private void saveSettings()
         {
-            for (int i = 1; i <= 8; i++)
+            for (int i = 1; i <= 12; i++)
             {
                 try { Properties.Settings.Default["custom" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value; }
                 catch { Properties.Settings.Default["custom" + i.ToString()] = " | "; }
@@ -671,7 +677,10 @@ namespace GRBL_Plotter
             }
             string tmp = File.ReadAllText(fileName); ;
             tBHotkeyList.Text = tmp;
+            lblPathHotkeys.Text = fileName;
         }
+        private void btnOpenHotkeys_Click(object sender, EventArgs e)
+        {   Process.Start("notepad.exe", lblPathHotkeys.Text);  }
 
         private void btnHotkeyRefresh_Click(object sender, EventArgs e)
         {   listHotkeys(); }

@@ -536,7 +536,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>Bf:</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
-    <value>Buffer State</value>
+    <value>Buffer State (needs to be enabled via $10=2)</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -566,7 +566,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>15,128</value>
   </data>
   <data name="lblSrBf.ToolTip" xml:space="preserve">
-    <value>Buffer State</value>
+    <value>Buffer State (needs to be enabled via $10=2)</value>
   </data>
   <data name="&gt;&gt;lblSrBf.Name" xml:space="preserve">
     <value>lblSrBf</value>
@@ -596,7 +596,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>FS:</value>
   </data>
   <data name="label4.ToolTip" xml:space="preserve">
-    <value>Current Feed and Speed</value>
+    <value>Current Feed (mm/min) and Speed (RPM)</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -626,7 +626,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>500,8000</value>
   </data>
   <data name="lblSrFS.ToolTip" xml:space="preserve">
-    <value>Current Feed and Speed</value>
+    <value>Current Feed (mm/min) and Speed (RPM)</value>
   </data>
   <data name="&gt;&gt;lblSrFS.Name" xml:space="preserve">
     <value>lblSrFS</value>
@@ -656,7 +656,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>XYZPDHRS</value>
   </data>
   <data name="lblSrPn.ToolTip" xml:space="preserve">
-    <value>Input Pin State</value>
+    <value>Input Pin State for XYZ, Probe, Door, Hold, soft-Reset, cycle-&amp;Start</value>
   </data>
   <data name="&gt;&gt;lblSrPn.Name" xml:space="preserve">
     <value>lblSrPn</value>
@@ -686,7 +686,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>Pn:</value>
   </data>
   <data name="label7.ToolTip" xml:space="preserve">
-    <value>Input Pin State</value>
+    <value>Input Pin State for XYZ, Probe, Door, Hold, soft-Reset, cycle-&amp;Start</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -716,7 +716,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>100,100,100</value>
   </data>
   <data name="lblSrOv.ToolTip" xml:space="preserve">
-    <value>Override Values</value>
+    <value>Override Values for feed, rapids and speed in %</value>
   </data>
   <data name="&gt;&gt;lblSrOv.Name" xml:space="preserve">
     <value>lblSrOv</value>
@@ -746,7 +746,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>Ov:</value>
   </data>
   <data name="label9.ToolTip" xml:space="preserve">
-    <value>Override Values</value>
+    <value>Override Values for feed, rapids and speed in %</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -776,7 +776,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>SFM</value>
   </data>
   <data name="lblSrA.ToolTip" xml:space="preserve">
-    <value>Accessory State</value>
+    <value>Accessory State S=spindle CW, C=spindle CCW, F=floot colant, M=mist coolant</value>
   </data>
   <data name="&gt;&gt;lblSrA.Name" xml:space="preserve">
     <value>lblSrA</value>
@@ -806,7 +806,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>A:</value>
   </data>
   <data name="label11.ToolTip" xml:space="preserve">
-    <value>Accessory State</value>
+    <value>Accessory State S=spindle CW, C=spindle CCW, F=floot colant, M=mist coolant</value>
   </data>
   <data name="&gt;&gt;label11.Name" xml:space="preserve">
     <value>label11</value>
@@ -836,7 +836,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>99999</value>
   </data>
   <data name="lblSrLn.ToolTip" xml:space="preserve">
-    <value>Line Number</value>
+    <value>Line Number (needs to be enabled in config.h)</value>
   </data>
   <data name="&gt;&gt;lblSrLn.Name" xml:space="preserve">
     <value>lblSrLn</value>
@@ -866,7 +866,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>Ln:</value>
   </data>
   <data name="label13.ToolTip" xml:space="preserve">
-    <value>Line Number</value>
+    <value>Line Number (needs to be enabled in config.h)</value>
   </data>
   <data name="&gt;&gt;label13.Name" xml:space="preserve">
     <value>label13</value>

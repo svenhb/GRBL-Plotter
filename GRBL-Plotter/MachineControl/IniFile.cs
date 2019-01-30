@@ -196,6 +196,10 @@ namespace GRBL_Plotter
             Write("Button6", setup.custom6.ToString(), section);
             Write("Button7", setup.custom7.ToString(), section);
             Write("Button8", setup.custom8.ToString(), section);
+            Write("Button9", setup.custom9.ToString(), section);
+            Write("Button10", setup.custom10.ToString(), section);
+            Write("Button11", setup.custom11.ToString(), section);
+            Write("Button12", setup.custom12.ToString(), section);
 
             section = "Joystick";
             Write("XY1 Step", setup.joyXYStep1.ToString(), section);
@@ -356,6 +360,10 @@ namespace GRBL_Plotter
             setup.custom6 = Read("Button6", section);
             setup.custom7 = Read("Button7", section);
             setup.custom8 = Read("Button8", section);
+            setup.custom9 = Read("Button9", section);
+            setup.custom10 = Read("Button10", section);
+            setup.custom11 = Read("Button11", section);
+            setup.custom12 = Read("Button12", section);
 
             section = "Joystick";
             setup.joyXYStep1    = myConvertToDecimal(Read("XY1 Step", section));

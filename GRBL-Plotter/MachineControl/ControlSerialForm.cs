@@ -776,7 +776,7 @@ namespace GRBL_Plotter
                     posMachine = posWorld + posWCO;
                 }
 
-                machineState.Clear(); lblSrPn.Text = ""; lblSrA.Text = "";
+                machineState.Clear(); lblSrPn.Text = ""; //lblSrA.Text = "";
                 if (dataField.Length > 2)
                 {
                     for (int i = 2; i < dataField.Length; i++)
@@ -798,7 +798,7 @@ namespace GRBL_Plotter
                         if (dataField[i].IndexOf("Pn:") >= 0)            // Input Pin State
                         { machineState.Pn=lblSrPn.Text = data[1]; continue; }
                         if (dataField[i].IndexOf("Ov:") >= 0)            // Override Values
-                        { machineState.Ov=lblSrOv.Text = data[1]; continue; }
+                        { machineState.Ov=lblSrOv.Text = data[1]; lblSrA.Text = ""; continue; }
                         if (dataField[i].IndexOf("A:") >= 0)             // Accessory State
                         { machineState.A=lblSrA.Text = data[1]; continue; }
                     }
@@ -1180,8 +1180,12 @@ namespace GRBL_Plotter
                 if (!xyzPoint.AlmostEqual(posPause, posWorld))
                 {
                     addToLog("[Restore Position]");
-                    requestSend(string.Format("G90 G0 X{0:0.0} Y{1:0.0}", posPause.X, posPause.Y).Replace(',', '.'));  // restore last position
-                    requestSend(string.Format("G1 Z{0:0.0}", posPause.Z).Replace(',', '.'));                      // restore last position
+                    requestSend(string.Format("G90 G0 X{0:0.000} Y{1:0.000}", posPause.X, posPause.Y).Replace(',', '.'));  // restore last position
+                    string noG = parserStateGC.Substring(parserStateGC.IndexOf("M")-1);
+                    addToLog("[Restore Settings: " + noG + " ]");
+                    requestSend(noG);           // restore actual GCode settings one by one
+                    requestSend("G4 P2");       // wait 2 seconds
+                    requestSend(string.Format("G1 Z{0:0.000}", posPause.Z).Replace(',', '.'));                      // restore last position
                 }
                 addToLog("[Start streaming - no echo]");
                 addToLog("[Restore Settings: "+ parserStateGC+" ]");
