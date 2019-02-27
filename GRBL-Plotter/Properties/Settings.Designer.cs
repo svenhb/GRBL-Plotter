@@ -313,7 +313,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-|(-)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Btn 8|(-)")]
         public string custom8 {
             get {
                 return ((string)(this["custom8"]));
@@ -3236,6 +3236,54 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["custom12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool toolTableShow {
+            get {
+                return ((bool)(this["toolTableShow"]));
+            }
+            set {
+                this["toolTableShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool backgroundShow {
+            get {
+                return ((bool)(this["backgroundShow"]));
+            }
+            set {
+                this["backgroundShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool machineLimitsFix {
+            get {
+                return ((bool)(this["machineLimitsFix"]));
+            }
+            set {
+                this["machineLimitsFix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importGCSpindleDelay {
+            get {
+                return ((decimal)(this["importGCSpindleDelay"]));
+            }
+            set {
+                this["importGCSpindleDelay"] = value;
             }
         }
     }

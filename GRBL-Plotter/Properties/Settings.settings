@@ -75,7 +75,7 @@
       <Value Profile="(Default)">Pen remove|_misc\script_pen2_remove.nc</Value>
     </Setting>
     <Setting Name="custom8" Type="System.String" Scope="User">
-      <Value Profile="(Default)">-|(-)</Value>
+      <Value Profile="(Default)">Btn 8|(-)</Value>
     </Setting>
     <Setting Name="cameraindex" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -805,6 +805,18 @@
     </Setting>
     <Setting Name="custom12" Type="System.String" Scope="User">
       <Value Profile="(Default)">Btn 12|(-)</Value>
+    </Setting>
+    <Setting Name="toolTableShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="backgroundShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="machineLimitsFix" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCSpindleDelay" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
