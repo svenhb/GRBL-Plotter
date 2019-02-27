@@ -142,6 +142,12 @@
   <data name="machineToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Maschine</value>
   </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ansicht</value>
+  </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
   </data>
@@ -149,7 +155,7 @@
     <value>Über...</value>
   </data>
   <data name="loadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Datei öffnen</value>
@@ -158,16 +164,16 @@
     <value>Öffne GCode oder SVG Datei</value>
   </data>
   <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="toolStripMenuItem2.Text" xml:space="preserve">
     <value>Zuletzt geöffnete Dateien</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 6</value>
+    <value>261, 6</value>
   </data>
   <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Speichere GCode</value>
@@ -176,19 +182,19 @@
     <value>Speichere  GCode aus dem Editor in eine Datei</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 6</value>
+    <value>261, 6</value>
   </data>
   <data name="setupToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 6</value>
+    <value>261, 6</value>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Exportiere Maschinen Einstellungen</value>
@@ -197,7 +203,7 @@
     <value>Exportiere Programmeinstellungen (Button Definitionen, Joystick Parameter) in eine INI-Datei</value>
   </data>
   <data name="loadMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Importiere Maschinen Einstellungen</value>
@@ -206,7 +212,7 @@
     <value>Importiere Programmeinstellungen (Button Definitionen, Joystick Parameter) aus einer INI-Datei</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="toolStripMenuItem3.Text" xml:space="preserve">
     <value>Spracheinstellung</value>
@@ -346,6 +352,12 @@
   <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
     <value>Ersetzte G2/3 durch Linien</value>
   </data>
+  <data name="removeAnyZMoveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="removeAnyZMoveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Entferne jede Z Bewegung</value>
+  </data>
   <data name="heightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 22</value>
   </data>
@@ -388,6 +400,49 @@
   <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Öffne serielles Fenster für DIY Steuerung</value>
   </data>
+  <data name="startStreamingAtLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Koordinatensysteme</value>
+  </data>
+  <data name="toolStripViewMachineFix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 22</value>
+  </data>
+  <data name="toolStripViewMachineFix.Text" xml:space="preserve">
+    <value>Machinenbereich fixiert</value>
+  </data>
+  <data name="toolStripViewMachineFix.ToolTipText" xml:space="preserve">
+    <value>Grenzen und Offset werden über 'Einstellungen' - 'Steuerung' -  'Maschinen Arbeitsbereich' gesetzt</value>
+  </data>
+  <data name="toolStripViewMachine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 22</value>
+  </data>
+  <data name="toolStripViewMachine.Text" xml:space="preserve">
+    <value>Maschinengrenze</value>
+  </data>
+  <data name="toolStripViewMachine.ToolTipText" xml:space="preserve">
+    <value>Grenzen und Offset werden über 'Einstellungen' - 'Steuerung' -  'Maschinen Arbeitsbereich' gesetzt</value>
+  </data>
+  <data name="toolStripViewTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 22</value>
+  </data>
+  <data name="toolStripViewTool.Text" xml:space="preserve">
+    <value>Werkzeugpositionen</value>
+  </data>
+  <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
+    <value>Grenzen und Offset werden über 'Einstellungen' - 'Werkzeugwechsel' -  'Werkzeugliste' gesetzt
+</value>
+  </data>
+  <data name="toolStripViewBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 22</value>
+  </data>
+  <data name="toolStripViewBackground.Text" xml:space="preserve">
+    <value>Hintergrund</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>G-Code Datei</value>
   </data>
@@ -421,38 +476,23 @@
   <data name="btnStreamStart.ToolTip" xml:space="preserve">
     <value>Sende den GCode aus dem Editor an GRBL</value>
   </data>
-  <data name="cmsCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 114</value>
-  </data>
-  <data name="cmsCodeSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
-  </data>
   <data name="cmsCodeSelect.Text" xml:space="preserve">
     <value>Alles auswählen</value>
-  </data>
-  <data name="cmsCodeCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
   </data>
   <data name="cmsCodeCopy.Text" xml:space="preserve">
     <value>Kopieren</value>
   </data>
-  <data name="cmsCodePaste.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
-  </data>
   <data name="cmsCodePaste.Text" xml:space="preserve">
     <value>Einfügen</value>
-  </data>
-  <data name="cmsCodeSendLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
   </data>
   <data name="cmsCodeSendLine.Text" xml:space="preserve">
     <value>Sende Codezeile</value>
   </data>
-  <data name="cmsCommentOut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 22</value>
-  </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Werkzeug Koordinaten (World / Machine)</value>
+    <value>Werkzeug Koordinaten (Work/Machine)</value>
+  </data>
+  <data name="lblCurrentG.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 0</value>
   </data>
   <data name="btnZeroA.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 23</value>
@@ -461,7 +501,7 @@
     <value>A nullen</value>
   </data>
   <data name="btnZeroA.ToolTip" xml:space="preserve">
-    <value>Setze World Koordinate auf Null
+    <value>Setze Work Koordinate auf Null
 </value>
   </data>
   <data name="btnZeroXYZ.Location" type="System.Drawing.Point, System.Drawing">
@@ -471,7 +511,7 @@
     <value>XYZ nullen</value>
   </data>
   <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
-    <value>Setze World Koordinate X,Y,Z auf Null
+    <value>Setze Work Koordinate X,Y,Z auf Null
 </value>
   </data>
   <data name="btnZeroXY.Location" type="System.Drawing.Point, System.Drawing">
@@ -481,7 +521,7 @@
     <value>XY nullen</value>
   </data>
   <data name="btnZeroXY.ToolTip" xml:space="preserve">
-    <value>Setze World Koordinate X,Y auf Null
+    <value>Setze Work Koordinate X,Y auf Null
 </value>
   </data>
   <data name="btnZeroZ.Size" type="System.Drawing.Size, System.Drawing">
@@ -491,7 +531,7 @@
     <value>Z nullen</value>
   </data>
   <data name="btnZeroZ.ToolTip" xml:space="preserve">
-    <value>Setze World Koordinate X auf Null</value>
+    <value>Setze Work Koordinate X auf Null</value>
   </data>
   <data name="btnZeroY.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 23</value>
@@ -500,7 +540,7 @@
     <value>Y nullen</value>
   </data>
   <data name="btnZeroY.ToolTip" xml:space="preserve">
-    <value>Setze World Koordinate Y auf Null
+    <value>Setze Work Koordinate Y auf Null
 </value>
   </data>
   <data name="btnZeroX.Size" type="System.Drawing.Size, System.Drawing">
@@ -510,7 +550,7 @@
     <value>X nullen</value>
   </data>
   <data name="btnZeroX.ToolTip" xml:space="preserve">
-    <value>Setze World Koordinate X auf Null</value>
+    <value>Setze Work Koordinate X auf Null</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Benutzerdefinierte Buttons</value>
@@ -676,55 +716,79 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
     <value>Paste GCode hier</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 198</value>
+    <value>312, 270</value>
+  </data>
+  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 22</value>
   </data>
   <data name="moveToMarkedPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>311, 22</value>
+  </data>
+  <data name="moveToMarkedPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fahre zur markierten Position G0</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 6</value>
+    <value>308, 6</value>
   </data>
   <data name="resetZoomingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>311, 22</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 6</value>
+    <value>308, 6</value>
   </data>
   <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>311, 22</value>
   </data>
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Einfügen aus Zwischenablage</value>
   </data>
   <data name="reloadFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>311, 22</value>
+  </data>
+  <data name="reloadFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Datei neu Laden</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>311, 22</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Markiere  Code (kein Löschen)</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>271, 6</value>
+    <value>308, 6</value>
   </data>
   <data name="deleteThisCodeLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>311, 22</value>
   </data>
   <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
     <value>Lösche diese Codezeile</value>
   </data>
   <data name="moveToFirstPosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>311, 22</value>
   </data>
   <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
-    <value>Gehe zur ersten Pos.</value>
+    <value>Markiere ersten Punkt des selektierten Pfades</value>
   </data>
   <data name="deletePathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 22</value>
+    <value>311, 22</value>
   </data>
   <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lösche zugehörigen Pfad</value>
+    <value>Lösche selektierten Pfad</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 6</value>
+  </data>
+  <data name="setGCodeAsBackgroundToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 22</value>
+  </data>
+  <data name="setGCodeAsBackgroundToolStripMenuItem.Text" xml:space="preserve">
+    <value>Setze GCode als Hintergrund</value>
+  </data>
+  <data name="clearBackgroundToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 22</value>
+  </data>
+  <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lösche Hintergrund</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

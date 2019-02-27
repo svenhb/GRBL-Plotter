@@ -33,14 +33,18 @@ using System.Globalization;
 
 namespace GRBL_Plotter
 {
-    public partial class MainForm
+    public partial class MainForm : Form
     {
+        private const string extensionDrill = ".drd,.drl,.dri";             //   else if ((ext == ".drd") || (ext == ".drl") || (ext == ".dri"))
+        private const string extensionPicture = ".bmp,.gif,.png,.jpg";      //   else if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
+        private const string extensionGCode = ".nc,.cnc,.gcode";            //   else if (ext == ".nc")
+
         #region MAIN-MENU FILE
         // open a file via dialog
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "gcode files (*.nc)|*.nc|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd, *.drl)|*.drd;*.drl|All files (*.*)|*.*";
+            openFileDialog1.Filter = "gcode files (*.nc, *.cnc, *.gcode)|*.nc;*.cnc;*.gcode|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 loadFile(openFileDialog1.FileName);
@@ -96,10 +100,14 @@ namespace GRBL_Plotter
 
         private void preset2DView()
         {
+#if (debuginfo)
+            log.Add("MainFormLoadFile preset2DView");
+#endif
             Cursor.Current = Cursors.WaitCursor;
             pictureBox1.BackgroundImage = null;
-            visuGCode.setPosMarker(new xyPoint(0, 0));
-            visuGCode.createMarkerPath(); ;
+            visuGCode.markSelectedFigure(0);
+            grbl.posMarker = new xyPoint(0, 0);
+            visuGCode.createMarkerPath();
             visuGCode.drawMachineLimit(toolTable.getToolCordinates());
         }
         private void loadFile(string fileName)
@@ -129,14 +137,14 @@ namespace GRBL_Plotter
             { startConvertSVG(fileName); }
             else if (ext == ".dxf")
             { startConvertDXF(fileName); }
-            else if ((ext == ".drd") || (ext == ".drl") || (ext == ".dri"))
+            else if (extensionDrill.Contains(ext))  //((ext == ".drd") || (ext == ".drl") || (ext == ".dri"))
             { startConvertDrill(fileName); }
-            else if (ext == ".nc")
+            else if (extensionGCode.Contains(ext))  //(ext == ".nc")
             {
                 tbFile.Text = fileName;
                 loadGcode();
             }
-            else if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
+            else if (extensionPicture.Contains(ext))  //((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
             {
                 if (_image_form == null)
                 {
@@ -152,7 +160,7 @@ namespace GRBL_Plotter
                 _image_form.loadExtern(fileName);
             }
             SaveRecentFile(fileName);
-            setLastLoadedFile("Data from file: " + fileName);
+            setLastLoadedFile("Data from file",fileName);
 
             if (ext == ".url")
             { getURL(fileName); }
@@ -160,9 +168,10 @@ namespace GRBL_Plotter
             pBoxTransform.Reset();
         }
 
-        private void setLastLoadedFile(string text)
+        private void setLastLoadedFile(string text, string file)
         {
-            lastLoadSource = text;
+            lastLoadSource = text; showPaths = true;
+            lastLoadFile = file;
             if (_setup_form != null)
             { _setup_form.setLastLoadedFile(lastLoadSource); }
         }
@@ -190,20 +199,20 @@ namespace GRBL_Plotter
         private void tBURL_TextChanged(object sender, EventArgs e)
         {
             var parts = tBURL.Text.Split('.');
-            string ext = parts[parts.Length - 1];   // get extension
-            if (ext.ToLower().IndexOf("svg") >= 0)
+            string ext = parts[parts.Length - 1].ToLower();   // get extension
+            if (ext.IndexOf("svg") >= 0)
             {
                 startConvertSVG(tBURL.Text);
-                setLastLoadedFile("Data from URL: " + tBURL.Text);
+                setLastLoadedFile("Data from URL",tBURL.Text);
                 tBURL.Text = "";
             }
-            else if (ext.ToLower().IndexOf("dxf") >= 0)
+            else if (ext.IndexOf("dxf") >= 0)
             {
                 startConvertDXF(tBURL.Text);
-                setLastLoadedFile("Data from URL: " + tBURL.Text);
+                setLastLoadedFile("Data from URL", tBURL.Text);
                 tBURL.Text = "";
             }
-            else if ((ext.ToLower().IndexOf("bmp") >= 0) || (ext.ToLower().IndexOf("gif") >= 0) || (ext.ToLower().IndexOf("png") >= 0) || (ext.ToLower().IndexOf("jpg") >= 0))
+            else if (extensionPicture.Contains(ext)) //((ext.ToLower().IndexOf("bmp") >= 0) || (ext.ToLower().IndexOf("gif") >= 0) || (ext.ToLower().IndexOf("png") >= 0) || (ext.ToLower().IndexOf("jpg") >= 0))
             {
                 if (_image_form == null)
                 {
@@ -217,7 +226,7 @@ namespace GRBL_Plotter
                 }
                 _image_form.Show(this);
                 _image_form.loadURL(tBURL.Text);
-                setLastLoadedFile("Data from URL: " + tBURL.Text);
+                setLastLoadedFile("Data from URL",tBURL.Text);
                 tBURL.Text = "";
             }
             else
@@ -231,9 +240,9 @@ namespace GRBL_Plotter
         }
         private void reloadFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            reStartConvertSVG(sender, e);
+            reStartConvertFile(sender, e);
         }
-        public void reStartConvertSVG(object sender, EventArgs e)   // event from setup form
+        public void reStartConvertFile(object sender, EventArgs e)   // event from setup form
         {
             if (!isStreaming)
             {
@@ -241,7 +250,7 @@ namespace GRBL_Plotter
                 if (lastLoadSource.IndexOf("Clipboard") >= 0)
                 { loadFromClipboard(); }
                 else
-                { loadFile(lastSource); }
+                { loadFile(lastLoadFile); }
                 this.Cursor = Cursors.Default;
             }
         }
@@ -250,10 +259,9 @@ namespace GRBL_Plotter
             sendCommand(_setup_form.commandToSend);
             _setup_form.commandToSend = "";
         }
-        private string lastSource = "";
+
         private void startConvertSVG(string source)
         {
-            lastSource = source;                        // store current file-path/name
             preset2DView();
             string gcode = GCodeFromSVG.convertFromFile(source);
             blockFCTB_Events = true;
@@ -271,7 +279,6 @@ namespace GRBL_Plotter
 
         private void startConvertDXF(string source)
         {
-            lastSource = source;                        // store current file-path/name
             preset2DView();
             string gcode = GCodeFromDXF.ConvertFromFile(source);
             blockFCTB_Events = true;
@@ -289,7 +296,6 @@ namespace GRBL_Plotter
 
         private void startConvertDrill(string source)
         {
-            lastSource = source;                        // store current file-path/name
             preset2DView();
             string gcode = GCodeFromDrill.ConvertFile(source);
             blockFCTB_Events = true;
@@ -314,7 +320,7 @@ namespace GRBL_Plotter
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCodeClickedLineNow = 0;
                 fCTBCodeClickedLineLast = 0;
-                visuGCode.setPosMarker(new xyPoint(0, 0));
+                grbl.posMarker = new xyPoint(0, 0);// visuGCode.setPosMarker(new xyPoint(0, 0));
                 blockFCTB_Events = true;
                 fCTBCode.OpenFile(tbFile.Text);
                 if (_serial_form.isLasermode && Properties.Settings.Default.ctrlReplaceEnable)
@@ -407,7 +413,7 @@ namespace GRBL_Plotter
             Properties.Settings.Default.language = "de-DE";
             MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich");
         }
-        #endregion
+#endregion
 
         // Ctrl-V to paste graphics
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -487,7 +493,7 @@ namespace GRBL_Plotter
                     }
                     this.Cursor = Cursors.Default;
                     updateControls();
-                    setLastLoadedFile("Data from Clipboard: SVG");
+                    setLastLoadedFile("Data from Clipboard: SVG","");
                 }
                 else if ((checkLines[0].Trim() == "0") && (checkLines[1].Trim() == "SECTION"))
                 {
@@ -508,14 +514,14 @@ namespace GRBL_Plotter
                     }
                     this.Cursor = Cursors.Default;
                     updateControls();
-                    setLastLoadedFile("Data from Clipboard: DXF");
+                    setLastLoadedFile("Data from Clipboard: DXF","");
                 }
                 else
                 {
                     fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                     redrawGCodePath();
-                    setLastLoadedFile("Data from Clipboard: Text");
+                    setLastLoadedFile("Data from Clipboard: Text","");
                 }
             }
             else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
@@ -540,7 +546,7 @@ namespace GRBL_Plotter
                 }
                 this.Cursor = Cursors.Default;
                 updateControls();
-                setLastLoadedFile("Data from Clipboard: SVG");
+                setLastLoadedFile("Data from Clipboard: SVG","");
             }
             else if (iData.GetDataPresent(DataFormats.Bitmap))
             {
@@ -556,7 +562,7 @@ namespace GRBL_Plotter
                 }
                 _image_form.Show(this);
                 _image_form.loadClipboard();
-                setLastLoadedFile("Data from Clipboard: Image");
+                setLastLoadedFile("Data from Clipboard: Image","");
             }
             else
             {
@@ -722,6 +728,10 @@ namespace GRBL_Plotter
                     virtualJoystickZ.Size = new Size(40, 180);
                     virtualJoystickZ.Location = new Point(186, 115);
                 }
+                toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
+                toolStripViewTool.Checked = Properties.Settings.Default.toolTableShow;
+                toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
+
                 gamePadTimer.Enabled = Properties.Settings.Default.gPEnable;
                 checkMachineLimit();
                 loadHotkeys();
@@ -984,9 +994,9 @@ namespace GRBL_Plotter
             w.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]);
 
             w.WriteStartElement("WPos");
-            w.WriteAttributeString("X", posWorld.X.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Y", posWorld.Y.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Z", posWorld.Z.ToString().Replace(',', '.'));
+            w.WriteAttributeString("X", grbl.posWork.X.ToString().Replace(',', '.'));
+            w.WriteAttributeString("Y", grbl.posWork.Y.ToString().Replace(',', '.'));
+            w.WriteAttributeString("Z", grbl.posWork.Z.ToString().Replace(',', '.'));
             w.WriteEndElement();
 
             w.WriteStartElement("Parser");

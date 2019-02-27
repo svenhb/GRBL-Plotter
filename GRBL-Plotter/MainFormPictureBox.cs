@@ -32,7 +32,7 @@ using System.Drawing.Drawing2D;
 
 namespace GRBL_Plotter
 {
-    public partial class MainForm
+    public partial class MainForm : Form
     {
         #region pictureBox
         // onPaint drawing
@@ -42,14 +42,15 @@ namespace GRBL_Plotter
         private Pen penRuler = new Pen(Color.Blue, 0.1F);
         private Pen penTool = new Pen(Color.Black, 0.5F);
         private Pen penMarker = new Pen(Color.DeepPink, 1F);
- //       SolidBrush machineLimit = new SolidBrush(Color.Red);
+        private Pen penLandMark = new Pen(Color.DarkGray, 1F);
+        //       SolidBrush machineLimit = new SolidBrush(Color.Red);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
         private SolidBrush brushBackground = new SolidBrush(Color.White);
-        private double picAbsPosX = 0;
-        private double picAbsPosY = 0;
+        private xyPoint picAbsPos = new xyPoint(0, 0);
         private Bitmap picBoxBackround;
         private bool showPicBoxBgImage = false;
         private bool showPathPenUp = true;
+        private bool showPaths = false;
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -59,6 +60,16 @@ namespace GRBL_Plotter
             double maxy = GCodeVisuAndTransform.drawingSize.maxY;
             double xRange = (maxx - minx);                                              // calculate new size
             double yRange = (maxy - miny);
+            if (Properties.Settings.Default.machineLimitsFix)
+            {   RectangleF tmp;
+                float offset = (float)Properties.Settings.Default.machineLimitsRangeX/40;       // view size
+                tmp = GCodeVisuAndTransform.pathMachineLimit.GetBounds();
+                minx = (float)Properties.Settings.Default.machineLimitsHomeX - (float)grbl.posWCO.X - offset;
+                miny = (float)Properties.Settings.Default.machineLimitsHomeY - (float)grbl.posWCO.Y - offset; 
+                xRange = (float)Properties.Settings.Default.machineLimitsRangeX + 2*offset;
+                yRange = (float)Properties.Settings.Default.machineLimitsRangeY + 2*offset;
+            }
+
             double picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
             string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
             if ((picScaling > 0.001) && (picScaling < 10000))
@@ -72,34 +83,37 @@ namespace GRBL_Plotter
                 else
                     relposX = relposX * ratioPic / ratioVisu;
 
-                picAbsPosX = relposX * xRange + minx;
-                picAbsPosY = yRange - relposY * yRange + miny;
+                picAbsPos.X = relposX * xRange + minx;
+                picAbsPos.Y = yRange - relposY * yRange + miny;
                 int offX = +5;
 
                 if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width - 100))
                 { offX = -75; }
 
                 Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y - 10);
- //               e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.00}\r\nY:{1,7:0.00}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
- //               e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}", 100 / zoomRange, unit), new Font("Lucida Console", 8), Brushes.Black, new Point(5, 5));
 
                 pBoxOrig = e.Graphics.Transform;
                 e.Graphics.Transform = pBoxTransform;
                 e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);           // apply scaling (flip Y)
                 e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
-                     
-                if (!showPicBoxBgImage)
-                    onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
-                e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
-                e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
 
-                e.Graphics.Transform = pBoxOrig;
-                if (Properties.Settings.Default.machineLimitsShow)
-                {   e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
-                    e.Graphics.FillRectangle(brushBackground, new Rectangle(3, 3, 140, 24));
+                if (showPaths)  // only show graphics path if something is loaded
+                {
+                    if (!showPicBoxBgImage)
+                        onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
+                    e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
+                    e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
+
+                    e.Graphics.Transform = pBoxOrig;
+                    if (Properties.Settings.Default.machineLimitsShow)
+                    {
+                        e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
+                        e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 50));
+                    }
+                    e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
+                    e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 / zoomRange, unit,
+                        grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
                 }
-                e.Graphics.DrawString(String.Format("Worl-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPosX, picAbsPosY), new Font("Lucida Console", 8), Brushes.Black, stringpos);
-                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}", 100 / zoomRange, unit), new Font("Lucida Console", 8), Brushes.Black, new Point(5, 5));
             }
         }
 
@@ -118,11 +132,12 @@ namespace GRBL_Plotter
         private void onPaint_drawToolPath(Graphics e)
         {
             if (Properties.Settings.Default.machineLimitsShow)
-            {   e.FillPath(brushMachineLimit, GCodeVisuAndTransform.pathMachineLimit);
-                e.DrawPath(penTool, GCodeVisuAndTransform.pathToolTable);
-            }
+                e.FillPath(brushMachineLimit, GCodeVisuAndTransform.pathMachineLimit); 
+            if (Properties.Settings.Default.toolTableShow)
+                e.DrawPath(penTool, GCodeVisuAndTransform.pathToolTable);           
+            if (Properties.Settings.Default.backgroundShow)
+                e.DrawPath(penLandMark, GCodeVisuAndTransform.pathBackground);
 
-                //e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathMachineLimit);
             if (!Properties.Settings.Default.importUnitmm)
             {   penDown.Width = 0.01F; penUp.Width = 0.01F; penRuler.Width = 0.01F; penHeightMap.Width = 0.01F;
                 penMarker.Width = 0.01F; penTool.Width = 0.01F;
@@ -130,6 +145,9 @@ namespace GRBL_Plotter
             e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathHeightMap);
             e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
             e.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
+
+            e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathMarkSelection);
+
             if (showPathPenUp)
                 e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
         }
@@ -166,14 +184,22 @@ namespace GRBL_Plotter
         private void pictureBox1_Click(object sender, EventArgs e)
         {   // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
             pictureBox1.Focus();
+#if (debuginfo)
+            log.Add("MainFormPictureBox event pictureBox1_Click start");
+#endif
             if (fCTBCode.LinesCount > 2)
             {
                 int line;
-                line = visuGCode.setPosMarkerNearBy(picAbsPosX, picAbsPosY);
+                line = visuGCode.setPosMarkerNearBy(picAbsPos);
+                blockFCTB_Events = true;
                 fCTBCode.Selection = fCTBCode.GetLine(line);
                 fCTBCodeClickedLineNow = line;
                 fCTBCodeMarkLine();
                 fCTBCode.DoCaretVisible();
+#if (debuginfo)
+                log.Add("MainFormPictureBox event pictureBox1_Click end, line: " + line.ToString());
+#endif
+                moveToMarkedPositionToolStripMenuItem.ToolTipText = "Work X: "+grbl.posMarker.X.ToString() + "   Y: "+ grbl.posMarker.Y.ToString();
             }
         }
 
@@ -224,7 +250,7 @@ namespace GRBL_Plotter
         { pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0; }
         private float transformMousePos(float old, float offset)
         { return old * zoomRange + offset; }
-        #endregion
+#endregion
 
     }
 }

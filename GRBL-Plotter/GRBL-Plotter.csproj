@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>9</ApplicationRevision>
-    <ApplicationVersion>1.2.3.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.2.4.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -154,6 +154,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GCodeCreation\GCodeFromImageOutline.cs" />
+    <Compile Include="MachineControl\ControlCoordSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\ControlCoordSystem.Designer.cs">
+      <DependentUpon>ControlCoordSystem.cs</DependentUpon>
+    </Compile>
     <Compile Include="MachineControl\ControlDIYControlPad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,7 @@
       <DependentUpon>ControlDIYControlPad.cs</DependentUpon>
     </Compile>
     <Compile Include="MachineControl\ControlPowerSaving.cs" />
+    <Compile Include="MachineControl\GCodeParser.cs" />
     <Compile Include="MachineControl\NativeMethods.cs" />
     <Compile Include="mainObjects.cs" />
     <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
@@ -265,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\Control2ndGRBL.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlCoordSystem.resx">
+      <DependentUpon>ControlCoordSystem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlDIYControlPad.resx">
       <DependentUpon>ControlDIYControlPad.cs</DependentUpon>

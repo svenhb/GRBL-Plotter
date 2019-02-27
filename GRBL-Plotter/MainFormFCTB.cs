@@ -34,7 +34,7 @@ using FastColoredTextBoxNS;
 
 namespace GRBL_Plotter
 {
-    public partial class MainForm
+    public partial class MainForm : Form
     {
         private bool commentOut;        // comment out unknown GCode to avoid errors from GRBL
 
@@ -52,6 +52,9 @@ namespace GRBL_Plotter
 
         private void fCTBCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
+#if (debuginfo)
+           log.Add("MainFormFCTB event fCTBCode_TextChanged");
+#endif
             e.ChangedRange.ClearStyle(StyleComment);
             e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleGWord, "(G\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -133,36 +136,29 @@ namespace GRBL_Plotter
             if ((key == 38) && (fCTBCodeClickedLineNow > 0))
             {
                 fCTBCodeClickedLineNow -= 1;
-  //              fCTBCode.Selection = fCTBCode.GetLine(fCTBCodeClickedLineNow);
                 fCTBCodeMarkLine();
             }
             if ((key == 40) && (fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))
             {
                 fCTBCodeClickedLineNow += 1;
-  //              fCTBCode.Selection = fCTBCode.GetLine(fCTBCodeClickedLineNow);
                 fCTBCodeMarkLine();
             }
         }
         private void fCTBCodeMarkLine()
         {
+#if (debuginfo)
+            log.Add("MainFormFCTB fCTBCodeMarkLine() now: "+ fCTBCodeClickedLineNow.ToString() + " last: "+ fCTBCodeClickedLineLast.ToString());
+#endif
             if ((fCTBCodeClickedLineNow <= fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
             {
                 if (fCTBCodeClickedLineNow != fCTBCodeClickedLineLast)
                 {
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                     fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);
-    //                Range selected = fCTBCode.GetLine(fCTBCodeClickedLineNow);
-   //                 fCTBCode.Selection = selected;
-   //                 fCTBCode.SelectionColor = Color.Orange;
                     fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
                     // Set marker in drawing
-                    //visuGCode.setMarkerOnDrawing(fCTBCode.SelectedText);
-                    visuGCode.setPosMarkerLine(fCTBCodeClickedLineNow);
+                    visuGCode.setPosMarkerLine(fCTBCodeClickedLineNow,!isStreaming);
                     pictureBox1.Invalidate(); // avoid too much events
-                    if (_camera_form != null)
-                    { _camera_form.setPosMarker(visuGCode.GetPosMarker());// X(), visuGCode.GetPosMarkerY());
-                        //MessageBox.Show("x "+visuGCode.GetPosMarkerX().ToString()+ "  y "+ visuGCode.GetPosMarkerY().ToString());
-                    }
                     toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
                 }
             }
@@ -196,127 +192,51 @@ namespace GRBL_Plotter
             }
         }
 
-        #endregion
+#endregion
                 
-        private int findEndOfPath(int startLine, bool toEnd)
-        {
-            int endVal = fCTBCode.LinesCount;
-            int lineNr = startLine;
-            int lastNr = lineNr;
-            string curLine;
-            if (endVal < 2) return -1;
-            if (toEnd)
-            { if (startLine > endVal) return -1; }
-            else
-            {
-                endVal = 0;
-                if (startLine < endVal) return -1;
-            }
-            do
-            {
-                curLine = fCTBCode.Lines[lineNr];
-                if ((curLine.IndexOf("X") >= 0) || (curLine.IndexOf("Y") >= 0))
-                { lastNr = lineNr; }
-                if ((curLine.IndexOf("Z") >= 0) || (curLine.IndexOf("G0") >= 0) || (curLine.IndexOf("M30") >= 0) || (curLine.IndexOf("F") >= 0))
-                {
-                    if (toEnd)
-                        lastNr++;
-                    return lastNr;
-                }
-                if (toEnd)
-                { lineNr++; }
-                else
-                { lineNr--; }
-            } while ((lineNr <= fCTBCode.LinesCount) || (lineNr > 0));
-            return -1;
-        }
-
         private void moveToFirstPosToolStripMenuItem_Click(object sender, EventArgs e)
-        {   // rotate coordinates until marked line first
-            int lineNr = fCTBCodeClickedLineNow;
-            Range mySelection = fCTBCode.Range;
-            Place selStart, selEnd;
-            selStart.iLine = fCTBCodeClickedLineNow;
-            selStart.iChar = 0;
-            mySelection.Start = selStart;
-            selEnd.iLine = lineNr;
-            selEnd.iChar = 0;
-            // select from marked line until end of this path - needs to be moved to front
-            lineNr = findEndOfPath(fCTBCodeClickedLineNow, true);            // find end
-            if (lineNr > 0)
+        {
+            int start = visuGCode.getLineOfFirstPointInFigure();
+            int end = visuGCode.getLineOfEndPointInFigure(start);
+            if ((start >=0) && (end > start))
             {
-                selEnd.iLine = lineNr;
+                Place selStart, selEnd;
+                selStart.iLine = start;
+                selStart.iChar = 0;
+                Range mySelection = fCTBCode.Range;
+                mySelection.Start = selStart;
+                selEnd.iLine = end;
                 selEnd.iChar = 0;
                 mySelection.End = selEnd;
                 fCTBCode.Selection = mySelection;
                 fCTBCode.SelectionColor = Color.Red;
-                // find current begin of path, to insert selected code
-                lineNr = findEndOfPath(fCTBCodeClickedLineNow, false);      // find start
-                if (lineNr > 0)
-                {
-                    if (deleteMarkedCode)
-                    {
-                        fCTBCode.Cut();
-                        selStart.iLine = lineNr;
-                        selStart.iChar = 0;
-                        selEnd.iLine = lineNr;
-                        selEnd.iChar = 0;
-                        mySelection.Start = selStart;
-                        mySelection.End = selEnd;
-                        fCTBCode.Selection = mySelection;
-                        fCTBCode.Paste();
-                        fCTBCodeClickedLineNow = lineNr;
-                        fCTBCodeMarkLine();
-                    }
-                    fCTBCode.DoCaretVisible();
-                    redrawGCodePath();
-                    return;
-                }
             }
-            MessageBox.Show("Path start / end could not be identified");
+            fCTBCodeClickedLineNow = start;
+            fCTBCodeMarkLine();
+            fCTBCode.DoCaretVisible();
+            return;
         }
 
         private void deletePathToolStripMenuItem_Click(object sender, EventArgs e)
-        {   // mark start to end of path and delete
-            int lineNr = fCTBCodeClickedLineNow;
-            Range mySelection = fCTBCode.Range;
+        {   int start = visuGCode.getLineOfFirstPointInFigure();
+            int end   = visuGCode.getLineOfEndPointInFigure(start);
+            if ((start < 0) || (end <= start))
+                return;
             Place selStart, selEnd;
-            selStart.iLine = fCTBCodeClickedLineNow;
+            selStart.iLine = start;
             selStart.iChar = 0;
+            Range mySelection = fCTBCode.Range;
             mySelection.Start = selStart;
-            selEnd.iLine = lineNr;
+            selEnd.iLine = end;
             selEnd.iChar = 0;
-            // find start of path
-            lineNr = findEndOfPath(fCTBCodeClickedLineNow, false);
-            if (lineNr > 0)
-            {
-                if (fCTBCode.Lines[lineNr].IndexOf("Z") >= 0) { lineNr--; }
-                selStart.iLine = lineNr;
-                selStart.iChar = 0;
-                mySelection.Start = selStart;
-                // find end of path
-                lineNr = findEndOfPath(fCTBCodeClickedLineNow, true);
-                if (lineNr > 0)
-                {
-                    if (fCTBCode.Lines[lineNr].IndexOf("Z") >= 0) { lineNr++; }
-                    selEnd.iLine = lineNr;
-                    selEnd.iChar = 0;
-                    mySelection.End = selEnd;
-                    fCTBCode.Selection = mySelection;
-                    fCTBCode.SelectionColor = Color.Red;
-                    fCTBCodeClickedLineNow = selStart.iLine;
-
-                    if (deleteMarkedCode)
-                    {
-                        fCTBCode.Cut();
-                        fCTBCodeMarkLine();
-                    }
-                    fCTBCode.DoCaretVisible();
-                    redrawGCodePath();
-                    return;
-                }
-            }
-            MessageBox.Show("Path start / end could not be identified");
+            mySelection.End = selEnd;
+            fCTBCode.Selection = mySelection;
+            fCTBCode.SelectionColor = Color.Red;
+            fCTBCodeClickedLineNow = start;
+            fCTBCode.InsertText("( Figure removed )\r\n");
+            fCTBCodeMarkLine();
+            fCTBCode.DoCaretVisible();
+            return;
         }
 
         private void deleteThisCodeLineToolStripMenuItem_Click(object sender, EventArgs e)

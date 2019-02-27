@@ -46,7 +46,6 @@ using System.Text;
 
 namespace GRBL_Plotter
 {
-
     public partial class MainForm : Form
     {
         ControlSerialForm _serial_form = null;
@@ -58,6 +57,8 @@ namespace GRBL_Plotter
         ControlSetupForm _setup_form = null;
         ControlHeightMapForm _heightmap_form = null;
         ControlDIYControlPad _diyControlPad = null;
+        ControlCoordSystem _coordSystem_form = null;
+
         GCodeFromText _text_form = null;
         GCodeFromImage _image_form = null;
         GCodeFromShape _shape_form = null;
@@ -65,8 +66,6 @@ namespace GRBL_Plotter
 
         private const string appName = "GRBL Plotter";
         private const string fileLastProcessed = "lastProcessed";
-        private xyzPoint posMachine = new xyzPoint(0, 0, 0);
-        private xyzPoint posWorld = new xyzPoint(0, 0, 0);
         private xyzPoint posProbe = new xyzPoint(0, 0, 0);
         private double? alternateZ = null;
         private grblState machineStatus;
@@ -79,7 +78,9 @@ namespace GRBL_Plotter
         private bool ctrl4thAxis = false;
         private string ctrl4thName = "A";
         private string lastLoadSource = "Nothing loaded";
+        private string lastLoadFile = "Nothing loaded";
         private int coordinateG = 54;
+        private string zeroCmd = "G10 L20 P0";      // "G92"
 
         public MainForm()
         {
@@ -114,7 +115,17 @@ namespace GRBL_Plotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
-            this.Text = appName + " Ver. " + System.Windows.Forms.Application.ProductVersion.ToString(); 
+            this.Text = appName + " Ver. " + System.Windows.Forms.Application.ProductVersion.ToString();
+
+            loadToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
+            saveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
+            loadMachineParametersToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.Control | Keys.O;
+            saveMachineParametersToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.Control | Keys.S;
+            cmsCodeCopy.ShortcutKeys  = Keys.Alt | Keys.Control | Keys.C;
+            cmsCodePaste.ShortcutKeys = Keys.Alt | Keys.Control | Keys.V;
+            cmsCodeSendLine.ShortcutKeys = Keys.Alt | Keys.Control | Keys.M;
+            moveToMarkedPositionToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.M;
+            pasteFromClipboardToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
 
             if (_serial_form == null)
             {
@@ -147,6 +158,8 @@ namespace GRBL_Plotter
             { loadFile(args[1]); }
 
             checkUpdate.CheckVersion();  // check update
+            grbl.init();
+            toolTable.init();       // fill structure
         }
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -161,6 +174,7 @@ namespace GRBL_Plotter
             if (_camera_form != null) _camera_form.Close();
             if (_streaming_form != null) _streaming_form.Close();
             if (_diyControlPad != null) _diyControlPad.Close();
+            if (_coordSystem_form != null) _coordSystem_form.Close();
             _serial_form.closePort();
             _serial_form.Close();
             ControlPowerSaving.EnableStandby();
@@ -169,8 +183,7 @@ namespace GRBL_Plotter
         // handle position events from serial form
         private void OnRaisePosEvent(object sender, PosEventArgs e)
         {
-            posWorld = e.PosWorld;
-            posMachine = e.PosMachine;
+            //log.Add("MainForm OnRaisePosEvent");
             machineStatus = e.Status;
             if (e.StatMsg.Ov.Length > 1)    // check and submit override values
             {
@@ -210,19 +223,16 @@ namespace GRBL_Plotter
                     _heightmap_form.setPosProbe = posProbe;
             }
 
-            label_mx.Text = string.Format("{0:0.000}", posMachine.X);
-            label_my.Text = string.Format("{0:0.000}", posMachine.Y);
-            label_mz.Text = string.Format("{0:0.000}", posMachine.Z);
-            label_ma.Text = string.Format("{0:0.000}", posMachine.A);
-            label_wx.Text = string.Format("{0:0.000}", posWorld.X);
-            label_wy.Text = string.Format("{0:0.000}", posWorld.Y);
-            label_wz.Text = string.Format("{0:0.000}", posWorld.Z);
-            label_wa.Text = string.Format("{0:0.000}", posWorld.A);
-            //          visuGCode.setPosTool(posWorld.X, posWorld.Y, posWorld.Z);
-            visuGCode.setPosTool(posWorld);
-            visuGCode.setPosMachine(posMachine);
+            label_mx.Text = string.Format("{0:0.000}", grbl.posMachine.X);
+            label_my.Text = string.Format("{0:0.000}", grbl.posMachine.Y);
+            label_mz.Text = string.Format("{0:0.000}", grbl.posMachine.Z);
+            label_ma.Text = string.Format("{0:0.000}", grbl.posMachine.A);
+            label_wx.Text = string.Format("{0:0.000}", grbl.posWork.X);
+            label_wy.Text = string.Format("{0:0.000}", grbl.posWork.Y);
+            label_wz.Text = string.Format("{0:0.000}", grbl.posWork.Z);
+            label_wa.Text = string.Format("{0:0.000}", grbl.posWork.A);
 
-            if (flagResetOffset)
+            if (flagResetOffset)            // Restore saved position after reset\r\nand set initial feed rate:
             {
                 double x = Properties.Settings.Default.lastOffsetX;
                 double y = Properties.Settings.Default.lastOffsetY;
@@ -234,34 +244,34 @@ namespace GRBL_Plotter
                 sendCommand(String.Format("G{0}", coordinateG));
 
                 if (ctrl4thAxis)
-                    sendCommand(String.Format("G92 X{0} Y{1} Z{2} {3}{4}F{5}", x, y, z, ctrl4thName, a, Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
+                    sendCommand(String.Format("{0} X{1} Y{2} Z{3} {4}{5}F{6}", zeroCmd, x, y, z, ctrl4thName, a, Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
                 else
-                    sendCommand(String.Format("G92 X{0} Y{1} Z{2} F{3}", x, y, z, Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
+                    sendCommand(String.Format("{0} X{1} Y{2} Z{3} F{4}", zeroCmd, x, y, z, Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
                 flagResetOffset = false;
                 updateControls();
             }
-            if (_camera_form != null)
-            {
-                _camera_form.setPosWorld = posWorld;
-                _camera_form.setPosMachine = posMachine;
+
+            processStatus();                    // grblState {idle, run, hold, home, alarm, check, door}
+            processParserState(e.parserState);  // parser state 
+            if (grbl.posChanged)
+            {   visuGCode.createMarkerPath();
+                visuGCode.updatePathPositions();
+                checkMachineLimit();
+                pictureBox1.Invalidate();
+                grbl.posChanged = false;
             }
-            if (_heightmap_form != null)
-            {
-                _heightmap_form.setPosWorld = posWorld;
-                _heightmap_form.setPosMachine = posMachine;
+            if (grbl.wcoChanged)
+            {   checkMachineLimit();
+                grbl.wcoChanged = false;
+//                MessageBox.Show("wco changed");
             }
-            processStatus();
-            processParserState(e.parserState);
-            visuGCode.createMarkerPath();
-            visuGCode.drawMachineLimit(toolTable.getToolCordinates());
-            checkMachineLimit();
-            pictureBox1.Invalidate();
             if (_diyControlPad != null)
             {   if (oldRaw != e.Raw)
                 {   _diyControlPad.sendFeedback(e.Raw);     //hand over original grbl text
                     oldRaw = e.Raw;
                 }
             }
+            
         }
         private string oldRaw = "";
         // handle status events from serial form
@@ -361,7 +371,11 @@ namespace GRBL_Plotter
                 lblCurrentG.BackColor = (cmd.coord_select == 54) ? Color.Lime : Color.Fuchsia;
                 if (_camera_form != null)
                     _camera_form.setCoordG = cmd.coord_select;
+                if (_coordSystem_form != null)
+                    _coordSystem_form.markBtn(lblCurrentG.Text);
+
             }
+            
         }
 
         // update drawing on Main form and enable / disable 
@@ -402,7 +416,11 @@ namespace GRBL_Plotter
         {
             if ((jogging) && (_serial_form.isGrblVers0 == false))
                 txt = "$J=" + txt;
-            _serial_form.requestSend(txt);
+            if (!_serial_form.requestSend(txt))     // check if COM is still open
+                updateControls();
+
+            if ((txt.Contains("G92") || txt.Contains("G10")) && (_coordSystem_form != null))
+                _coordSystem_form.refreshValues();
         }
 
         private void OnRaiseOverrideMessage(object sender, OverrideMsgArgs e)   // command from streaming_form2 - Override
@@ -482,24 +500,22 @@ namespace GRBL_Plotter
         #region MAIN-MENU GCode Transform
         private void mirrorXToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            blockFCTB_Events = true;
+            //blockFCTB_Events = true;
             Cursor.Current = Cursors.WaitCursor;
             pBoxTransform.Reset();
             fCTBCode.Text = visuGCode.transformGCodeMirror(GCodeVisuAndTransform.translate.MirrorX);
             Cursor.Current = Cursors.Default;
             updateGUI();
-    //        blockFCTB_Events = false;
         }
 
         private void mirrorYToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            blockFCTB_Events = true;
+            //blockFCTB_Events = true;
             Cursor.Current = Cursors.WaitCursor;
             pBoxTransform.Reset();
             fCTBCode.Text = visuGCode.transformGCodeMirror(GCodeVisuAndTransform.translate.MirrorY);
             Cursor.Current = Cursors.Default;
             updateGUI();
-   //         blockFCTB_Events = false;
         }
 
         private void rotate90ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -785,6 +801,15 @@ namespace GRBL_Plotter
             updateGUI();
         }
 
+        private void removeAnyZMoveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            pBoxTransform.Reset();
+            fCTBCode.Text = visuGCode.removeZ();
+            Cursor.Current = Cursors.Default;
+            updateGUI();
+        }
+
         private void updateGUI()
         {
             updateDrawing();
@@ -801,7 +826,7 @@ namespace GRBL_Plotter
         {
             if ((Properties.Settings.Default.machineLimitsShow) && (pictureBox1.BackgroundImage == null))
             {
-                if (!visuGCode.xyzSize.withinLimits(posMachine, posWorld))
+                if (!visuGCode.xyzSize.withinLimits(grbl.posMachine, grbl.posWork))
                 {
                     lbDimension.BackColor = Color.Fuchsia;
                     decimal minx = Properties.Settings.Default.machineLimitsHomeX;
@@ -893,7 +918,7 @@ namespace GRBL_Plotter
                 _camera_form = new ControlCameraForm();
                 _camera_form.FormClosed += formClosed_CameraForm;
                 _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
-                _camera_form.setPosMarker(visuGCode.GetPosMarker());
+ //               _camera_form.setPosMarker(grbl.posMarker);// visuGCode.GetPosMarker());
             }
             else
             {
@@ -945,6 +970,27 @@ namespace GRBL_Plotter
             }           
         }
 
+        // DIY ControlPad _diyControlPad
+        private void coordSystemopen(object sender, EventArgs e)
+        {
+            if (_coordSystem_form == null)
+            {
+                _coordSystem_form = new ControlCoordSystem();
+                _coordSystem_form.FormClosed += formClosed_CoordSystemForm;
+                _coordSystem_form.RaiseCmdEvent += OnRaiseCoordSystemEvent;
+            }
+            else
+            {
+                _coordSystem_form.Visible = false;
+            }
+            _coordSystem_form.Show(this);
+        }
+        private void formClosed_CoordSystemForm(object sender, FormClosedEventArgs e)
+        { _coordSystem_form = null; }
+        private void OnRaiseCoordSystemEvent(object sender, CmdEventArgs e)
+        {
+            sendCommand(e.Command);
+        }
         // Height Map
         private void heightMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -980,7 +1026,7 @@ namespace GRBL_Plotter
                 _setup_form = new ControlSetupForm();
                 _setup_form.FormClosed += formClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += loadSettings;
-                _setup_form.btnReloadFile.Click += reStartConvertSVG;
+                _setup_form.btnReloadFile.Click += reStartConvertFile;
                 _setup_form.btnMoveToolXY.Click += moveToPickup;
                 _setup_form.setLastLoadedFile(lastLoadSource);
                 gamePadTimer.Enabled = false;
@@ -1161,6 +1207,7 @@ namespace GRBL_Plotter
                     isStreamingPause = false;
                     isStreamingCheck = false;
                     isStreamingOk = true;
+                    visuGCode.markSelectedFigure(0);
                     if (startLine > 0)
                     {   btnStreamStart.Image = Properties.Resources.btn_pause;
                         isStreamingPause = true;
@@ -1333,8 +1380,10 @@ namespace GRBL_Plotter
                 showPicBoxBgImage = false;                 // don't show background image anymore
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _text_form.textGCode;
+                lastLoadSource = "from text"; showPaths = true;
                 redrawGCodePath();
                 updateControls();
+                visuGCode.markSelectedFigure(-1);
             }
             else
                 MessageBox.Show("Streaming is still active - press Stop and try again", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -1347,8 +1396,10 @@ namespace GRBL_Plotter
                 showPicBoxBgImage = false;                     // don't show background image anymore
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _shape_form.shapeGCode;
+                lastLoadSource = "from shape"; showPaths = true;
                 redrawGCodePath();
                 updateControls();
+                visuGCode.markSelectedFigure(-1);
             }
             else
                 MessageBox.Show("Streaming is still active - press Stop and try again");
@@ -1362,8 +1413,10 @@ namespace GRBL_Plotter
                 showPicBoxBgImage = false;                 // don't show background image anymore
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _image_form.imageGCode;
+                lastLoadSource = "from image"; showPaths = true;
                 redrawGCodePath();
                 updateControls();
+                visuGCode.markSelectedFigure(-1);
                 Cursor.Current = Cursors.Default;
             }
             else
@@ -1379,6 +1432,7 @@ namespace GRBL_Plotter
                 showPicBoxBgImage = false;                     // don't show background image anymore
                 pictureBox1.BackgroundImage = null;
                 fCTBCode.Text = _heightmap_form.scanCode.ToString().Replace(',', '.');
+                lastLoadSource = "from height map"; showPaths = true;
                 redrawGCodePath();
                 updateControls();
             }
@@ -1505,7 +1559,7 @@ namespace GRBL_Plotter
             {
  //*               blockFCTB_Events = true;
                 fCTBCode.Cursor = Cursors.WaitCursor;
-                visuGCode.getGCodeLines(fCTBCode.Lines);
+                visuGCode.getGCodeLines(fCTBCode.Lines,true);   // process subroutines
                 if (rBOrigin1.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset1); }
                 if (rBOrigin2.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset2); }
                 if (rBOrigin3.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset3); }
@@ -1591,15 +1645,15 @@ namespace GRBL_Plotter
             if (speed > 0)
             {   if (Properties.Settings.Default.machineLimitsAlarm && Properties.Settings.Default.machineLimitsShow)
                 {
-                    if (!visuGCode.xyzSize.withinLimits(posMachine, joystickXYStep[indexX] * dirX, joystickXYStep[indexY] * dirY))
+                    if (!visuGCode.xyzSize.withinLimits(grbl.posMachine, joystickXYStep[indexX] * dirX, joystickXYStep[indexY] * dirY))
                     {
                         decimal minx = Properties.Settings.Default.machineLimitsHomeX;
                         decimal maxx = minx + Properties.Settings.Default.machineLimitsRangeX;
                         decimal miny = Properties.Settings.Default.machineLimitsHomeY;
                         decimal maxy = miny + Properties.Settings.Default.machineLimitsRangeY;
 
-                        string tmp = string.Format("\r\nminX: {0:0.0} moveTo: {1:0.0} maxX: {2:0.0}",minx, (posMachine.X + joystickXYStep[indexX] * dirX), maxx);
-                        tmp += string.Format("\r\nminY: {0:0.0} moveTo: {1:0.0} maxY: {2:0.0}", miny, (posMachine.Y + joystickXYStep[indexY] * dirY), maxy);
+                        string tmp = string.Format("\r\nminX: {0:0.0} moveTo: {1:0.0} maxX: {2:0.0}",minx, (grbl.posMachine.X + joystickXYStep[indexX] * dirX), maxx);
+                        tmp += string.Format("\r\nminY: {0:0.0} moveTo: {1:0.0} maxY: {2:0.0}", miny, (grbl.posMachine.Y + joystickXYStep[indexY] * dirY), maxy);
                         System.Media.SystemSounds.Beep.Play();
                         DialogResult dialogResult = MessageBox.Show("Next move will exceed machine limits!"+tmp+"\r\n Press 'Ok' to move anyway", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (dialogResult == DialogResult.Cancel)
@@ -1690,17 +1744,17 @@ namespace GRBL_Plotter
         private void btnHome_Click(object sender, EventArgs e)
         { sendCommand("$H"); }
         private void btnZeroX_Click(object sender, EventArgs e)
-        { sendCommand("G92 X0");  }
+        { sendCommand(zeroCmd + " X0");  }
         private void btnZeroY_Click(object sender, EventArgs e)
-        { sendCommand("G92 Y0");  }
+        { sendCommand(zeroCmd + " Y0");  }
         private void btnZeroZ_Click(object sender, EventArgs e)
-        { sendCommand("G92 Z0");  }
+        { sendCommand(zeroCmd + " Z0");  }
         private void btnZeroA_Click(object sender, EventArgs e)
-        { sendCommand("G92 " + ctrl4thName + "0"); }
+        { sendCommand(zeroCmd + " " + ctrl4thName + "0"); }
         private void btnZeroXY_Click(object sender, EventArgs e)
-        { sendCommand("G92 X0 Y0");  }
+        { sendCommand(zeroCmd + " X0 Y0");  }
         private void btnZeroXYZ_Click(object sender, EventArgs e)
-        { sendCommand("G92 X0 Y0 Z0");  }
+        { sendCommand(zeroCmd + " X0 Y0 Z0");  }
 
         private void btnJogX_Click(object sender, EventArgs e)
         { sendCommand("G90 X0 F" + joystickXYSpeed[5].ToString(), true); }
@@ -1762,19 +1816,8 @@ namespace GRBL_Plotter
         public GCodeVisuAndTransform visuGCode = new GCodeVisuAndTransform();
         // Refresh drawing path in GCodeVisuAndTransform by applying no transform
         private void redrawGCodePath()
-        {
-            //System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
-            //MessageBox.Show("Methode B wurde von Methode " + s.GetFrame(1).GetMethod().Name + " aufgerufen");
-            visuGCode.getGCodeLines(fCTBCode.Lines);
+        {   visuGCode.getGCodeLines(fCTBCode.Lines);
             updateGUI();
-            /*           updateDrawing();
-                        lbDimension.Text = visuGCode.xyzSize.getMinMaxString(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
-                        lbDimension.Select(0, 0);
-                        toolStrip_tb_XY_X_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimx);
-                        toolStrip_tb_X_X_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimx);
-                        toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
-                        toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
-             */
         }
 
         private void cBTool_CheckedChanged(object sender, EventArgs e)
@@ -1983,17 +2026,15 @@ namespace GRBL_Plotter
         }
 
         private int gamePadGCodeFeed(int feed, int speed1, int speed2, string axis)
-        {
-            return (axis != "X") && (axis != "Y") ? speed2 : speed1;
-			/*if ((axis != "X") && (axis != "Y"))
-            { return speed2; }    // Math.Min(feed,speed2);}
-            return speed1;  // Math.Min(feed,speed1);*/
+        {   return (axis != "X") && (axis != "Y") ? speed2 : speed1;
         }
 
         private void moveToMarkedPositionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int clickedLine = fCTBCode.Selection.ToLine;
-            sendCommand(fCTBCode.Lines[clickedLine], false);
+        {   sendCommand(String.Format("G0 X{0} Y{1}", gcode.frmtNum(grbl.posMarker.X), gcode.frmtNum(grbl.posMarker.Y)).Replace(',', '.'));
+        }
+        private void zeroXYAtMarkedPositionG92ToolStripMenuItem_Click(object sender, EventArgs e)
+        {   xyPoint tmp = (xyPoint)(grbl.posWork) - grbl.posMarker;
+            sendCommand(String.Format(zeroCmd + " X{0} Y{1}", gcode.frmtNum(tmp.X), gcode.frmtNum(tmp.Y)).Replace(',', '.'));
         }
 
         private void MainForm_Activated(object sender, EventArgs e)
@@ -2024,6 +2065,29 @@ namespace GRBL_Plotter
                     toolStrip_tb_StreamLine.Text = "0";
                 }
             }
+        }
+
+        private void updateView(object sender, EventArgs e)
+        {   Properties.Settings.Default.machineLimitsShow = toolStripViewMachine.Checked;
+            Properties.Settings.Default.toolTableShow = toolStripViewTool.Checked;
+            Properties.Settings.Default.backgroundShow = toolStripViewBackground.Checked;
+            Properties.Settings.Default.machineLimitsFix = toolStripViewMachineFix.Checked;
+            zoomRange = 1f;
+            updateDrawing();
+        }
+
+        private void setGCodeAsBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {   visuGCode.setPathAsLandMark();
+            Properties.Settings.Default.backgroundShow = toolStripViewBackground.Checked = true;
+        }
+
+        private void clearBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {   visuGCode.setPathAsLandMark(true); }
+
+        private void logToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(log.get());
+            log.clear();
         }
     }
 }
