@@ -118,6 +118,34 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cBNoZUp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cBNoZUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 73</value>
+  </data>
+  <data name="cBNoZUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 17</value>
+  </data>
+  <data name="cBNoZUp.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>Avoid Z-up</value>
+  </data>
+  <data name="&gt;&gt;cBNoZUp.Name" xml:space="preserve">
+    <value>cBNoZUp</value>
+  </data>
+  <data name="&gt;&gt;cBNoZUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBNoZUp.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cBNoZUp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -125,7 +153,6 @@
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 15</value>
   </data>
@@ -148,7 +175,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBToolSet.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -178,7 +205,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBToolSet.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
     <value>44, 12</value>
@@ -199,7 +226,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="nUDToolOverlap.Location" type="System.Drawing.Point, System.Drawing">
     <value>240, 52</value>
@@ -217,7 +244,7 @@
     <value>17, 17</value>
   </metadata>
   <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
-    <value>Overlap of paths when making a pocket</value>
+    <value>Overlap of paths when making a pocket. 100% = tool diameter step width.</value>
   </data>
   <data name="&gt;&gt;nUDToolOverlap.Name" xml:space="preserve">
     <value>nUDToolOverlap</value>
@@ -229,7 +256,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDToolOverlap.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -241,13 +268,13 @@
     <value>237, 36</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
+    <value>55, 13</value>
   </data>
   <data name="label16.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>Overlap</value>
+    <value>Overlap %</value>
   </data>
   <data name="&gt;&gt;label16.Name" xml:space="preserve">
     <value>label16</value>
@@ -259,7 +286,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nUDToolSpindleSpeed.Location" type="System.Drawing.Point, System.Drawing">
     <value>305, 52</value>
@@ -286,7 +313,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDToolSpindleSpeed.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -316,7 +343,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="nUDToolFeedZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>175, 52</value>
@@ -343,7 +370,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDToolFeedZ.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -373,7 +400,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="nUDToolFeedXY.Location" type="System.Drawing.Point, System.Drawing">
     <value>110, 52</value>
@@ -400,7 +427,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDToolFeedXY.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -430,7 +457,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="nUDToolZStep.Location" type="System.Drawing.Point, System.Drawing">
     <value>58, 52</value>
@@ -457,7 +484,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDToolZStep.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -487,7 +514,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="nUDToolDiameter.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 52</value>
@@ -514,7 +541,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDToolDiameter.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -544,13 +571,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 4</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 77</value>
+    <value>376, 92</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -796,7 +823,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBShape2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 15</value>
+    <value>80, 14</value>
   </data>
   <data name="rBShape2.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 17</value>
@@ -826,7 +853,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBShape1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 15</value>
+    <value>6, 14</value>
   </data>
   <data name="rBShape1.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 17</value>
@@ -856,7 +883,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBShape3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 15</value>
+    <value>217, 14</value>
   </data>
   <data name="rBShape3.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 17</value>
@@ -880,10 +907,10 @@
     <value>10</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 84</value>
+    <value>4, 102</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 84</value>
+    <value>299, 78</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -910,7 +937,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBToolpath2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 38</value>
+    <value>6, 34</value>
   </data>
   <data name="rBToolpath2.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 17</value>
@@ -964,7 +991,7 @@
     <value>0</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 19</value>
+    <value>157, 13</value>
   </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 55</value>
@@ -994,7 +1021,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBToolpath3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 57</value>
+    <value>6, 51</value>
   </data>
   <data name="rBToolpath3.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 17</value>
@@ -1024,7 +1051,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBToolpath1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 18</value>
+    <value>6, 16</value>
   </data>
   <data name="rBToolpath1.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 17</value>
@@ -1048,10 +1075,10 @@
     <value>2</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 172</value>
+    <value>4, 186</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 87</value>
+    <value>376, 72</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -1075,7 +1102,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 265</value>
+    <value>260, 264</value>
   </data>
   <data name="btnApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 23</value>
@@ -1105,7 +1132,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 60</value>
+    <value>49, 56</value>
   </data>
   <data name="rBOrigin9.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1132,7 +1159,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 60</value>
+    <value>29, 56</value>
   </data>
   <data name="rBOrigin8.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1159,7 +1186,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 60</value>
+    <value>9, 56</value>
   </data>
   <data name="rBOrigin7.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1186,7 +1213,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 41</value>
+    <value>49, 37</value>
   </data>
   <data name="rBOrigin6.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1213,7 +1240,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 41</value>
+    <value>29, 37</value>
   </data>
   <data name="rBOrigin5.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1240,7 +1267,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 41</value>
+    <value>9, 37</value>
   </data>
   <data name="rBOrigin4.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1267,7 +1294,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 22</value>
+    <value>49, 18</value>
   </data>
   <data name="rBOrigin3.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1294,7 +1321,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 22</value>
+    <value>29, 18</value>
   </data>
   <data name="rBOrigin2.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1321,7 +1348,7 @@
     <value>NoControl</value>
   </data>
   <data name="rBOrigin1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 22</value>
+    <value>9, 18</value>
   </data>
   <data name="rBOrigin1.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1342,10 +1369,10 @@
     <value>8</value>
   </data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>309, 84</value>
+    <value>309, 102</value>
   </data>
   <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 84</value>
+    <value>71, 78</value>
   </data>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -1369,7 +1396,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>305, 265</value>
+    <value>305, 264</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -4414,7 +4441,7 @@
     <value>150, 400</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 330</value>
+    <value>400, 340</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>400, 330</value>

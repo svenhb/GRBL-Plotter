@@ -65,8 +65,8 @@ namespace GRBL_Plotter
         public static string[] defaultTool = { "1", "000000", "Default black", "0.0", "0.0", "0.0", "3.0", "500","1","100","10000","75" };
 
         public static toolPos[] getToolCordinates()
-        {   if (!Properties.Settings.Default.importGCTool || !init_done)
-            return null;
+        {   if (!init_done)        //|| !Properties.Settings.Default.importGCTool
+                return null;
             toolPos[] newpos = new toolPos[toolTableArray.Length];
             int index = 0;
             foreach (toolProp tool in toolTableArray)

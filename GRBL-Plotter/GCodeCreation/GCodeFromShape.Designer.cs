@@ -77,6 +77,7 @@
             this.rBOrigin1 = new System.Windows.Forms.RadioButton();
             this.btnCancel = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cBNoZUp = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolSpindleSpeed)).BeginInit();
@@ -96,6 +97,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cBNoZUp);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cBToolSet);
             this.groupBox1.Controls.Add(this.cBTool);
@@ -590,6 +592,12 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cBNoZUp
+            // 
+            resources.ApplyResources(this.cBNoZUp, "cBNoZUp");
+            this.cBNoZUp.Name = "cBNoZUp";
+            this.cBNoZUp.UseVisualStyleBackColor = true;
+            // 
             // GCodeFromShape
             // 
             resources.ApplyResources(this, "$this");
@@ -676,5 +684,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cBToolSet;
         private System.Windows.Forms.ComboBox cBTool;
+        private System.Windows.Forms.CheckBox cBNoZUp;
     }
 }

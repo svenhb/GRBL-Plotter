@@ -67,47 +67,60 @@ namespace GRBL_Plotter
             y = (float)nUDShapeY.Value;
             rShape = (float)nUDShapeR.Value;
             d = 2 * rShape;
-            dTool = (float)nUDToolDiameter.Value;          // tool diameter;
+            dTool = (float)nUDToolDiameter.Value;               // tool diameter;
             overlap = dTool * (float)nUDToolOverlap.Value/100;  // tool overlap
-            if (rBToolpath1.Checked) { dTool = 0; }        // engrave
-            if (rBToolpath3.Checked) { dTool = -dTool; }      // outside
-            rTool = dTool / 2;                                // tool radius
+            if (rBToolpath1.Checked) { dTool = 0; }             // engrave
+            if (rBToolpath3.Checked) { dTool = -dTool; }        // outside
+            rTool = dTool / 2;                                  // tool radius
 
             int counter=0,safety = 100;
+            int zStepCount = 0;
             float dx = 0, dy = 0, rDelta=0;
-            if (rBShape1.Checked)               // rectangle
+            if (rBShape1.Checked)                               // rectangle
             {   getOffset(x,y);
                 offsetX -= rTool; offsetY -= rTool;
-                x += dTool;y += dTool;
+                x += dTool;y += dTool;                          // width +/- tool diameter (outline / inline)
                 zStep = zStart;
                 while (zStep > (float)nUDImportGCZDown.Value)
                 {
                     zStep -= (float)nUDToolZStep.Value;
                     if (zStep < (float)nUDImportGCZDown.Value)
                         zStep = (float)nUDImportGCZDown.Value;
-                    gcode.PenUp(gcodeString);
+
+                    if ((overlap > x / 2) || (overlap > y / 2))
+                    {    overlap = (float)(Math.Min(x, y) / 2.1); }
+
+                    if ((zStepCount++==0) || !cBNoZUp.Checked)    // move up the 1st time 
+                            gcode.PenUp(gcodeString);
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + overlap, ""); 
                     else
                         gcode.MoveToRapid(gcodeString, offsetX, offsetY, "");
                     gcode.gcodeZDown = zStep;               // adapt Z-deepth
                     gcode.PenDown(gcodeString);
-                    if (cBToolpathPocket.Checked)
-                    {
-                        dx = overlap; dy = overlap;
-                        while (((dx < x/2) && (dy < y/2)) && (counter++ < safety))
+                    if (cBToolpathPocket.Checked)           // 1st pocket
+                    {   if ((x > Math.Abs(dTool)) && (y > Math.Abs(dTool)))      // wide enough for pocket
                         {
-                            makeRect(offsetX+dx, offsetY+dy, offsetX + x - dx, offsetY + y - dy, 0, false);  // rectangle clockwise
-                            dx += overlap; dy += overlap;
-                            if ((dx < x / 2) && (dy < y / 2))
-                                gcode.MoveTo(gcodeString, offsetX + dx, offsetY + dy, "");
+                            dx = overlap; dy = overlap;
+                            while (((dx < x / 2) && (dy < y / 2)) && (counter++ < safety))
+                            {
+                                makeRect(offsetX + dx, offsetY + dy, offsetX + x - dx, offsetY + y - dy, 0, false);  // rectangle clockwise
+                                dx += overlap; dy += overlap;
+                                if ((dx < x / 2) && (dy < y / 2))
+                                    gcode.MoveTo(gcodeString, offsetX + dx, offsetY + dy, "Pocket");
+                            }
+                            if (cBNoZUp.Checked)
+                                gcode.MoveTo(gcodeString, offsetX, offsetY, "Pocket finish");
+                            else
+                            {
+                                gcode.PenUp(gcodeString,"Pocket finish");
+                                gcode.MoveToRapid(gcodeString, offsetX, offsetY, "Pocket finish");
+                                gcode.PenDown(gcodeString);
+                            }
                         }
-                        gcode.PenUp(gcodeString);
-                        gcode.MoveToRapid(gcodeString, offsetX, offsetY, "");
-                        gcode.PenDown(gcodeString);
                     }
 
-                    makeRect(offsetX, offsetY, offsetX + x, offsetY + y, 0, true);  // rectangle clockwise
+                    makeRect(offsetX, offsetY, offsetX + x, offsetY + y, 0, true);  // final rectangle clockwise
                 }
                 gcode.PenUp(gcodeString);
             }
@@ -116,14 +129,20 @@ namespace GRBL_Plotter
                 getOffset(x, y);
                 offsetX -= rTool; offsetY -= rTool;
                 x += dTool; y += dTool;
- //                   gcode.Move(gcodeString, 0, offsetX, offsetY + r, false, "");
+
+                if ((overlap > x / 2) || (overlap > y / 2))
+                { overlap = (float)(Math.Min(x, y) / 2.1); }
+                //                   gcode.Move(gcodeString, 0, offsetX, offsetY + r, false, "");
                 zStep = zStart;
                 while (zStep > (float)nUDImportGCZDown.Value)
                 {
                     zStep -= (float)nUDToolZStep.Value;
                     if (zStep < (float)nUDImportGCZDown.Value)
                         zStep = (float)nUDImportGCZDown.Value;
-                    gcode.PenUp(gcodeString);
+
+                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
+                        gcode.PenUp(gcodeString);
+
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + rShape , "");
                     else
@@ -143,9 +162,14 @@ namespace GRBL_Plotter
                             if ((dx < x / 2) && (dy < y / 2))
                                 gcode.MoveTo(gcodeString, offsetX + dx, offsetY + dy + rDelta, "");
                         }
-                        gcode.PenUp(gcodeString);
-                        gcode.MoveToRapid(gcodeString, offsetX, offsetY + rShape, "");
-                        gcode.PenDown(gcodeString);
+                        if (cBNoZUp.Checked)
+                            gcode.MoveTo(gcodeString, offsetX, offsetY + rShape, "");
+                        else
+                        {
+                            gcode.PenUp(gcodeString);
+                            gcode.MoveToRapid(gcodeString, offsetX, offsetY + rShape, "");
+                            gcode.PenDown(gcodeString);
+                        }
                     }
                     makeRect(offsetX, offsetY, offsetX + x, offsetY + y, rShape, true);  // rectangle clockwise
                 }
@@ -157,10 +181,15 @@ namespace GRBL_Plotter
                 offsetX -= rTool; offsetY -= rTool;
                 rShape += rTool;                    // take care of tool diameter if set
 
+                if (overlap > rShape)
+                { overlap = (float)(rShape / 2.1); }
+
                 zStep = zStart;
                 while (zStep > (float)nUDImportGCZDown.Value)
                 {
-                    gcode.PenUp(gcodeString);
+                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
+                        gcode.PenUp(gcodeString);
+
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + rShape-overlap, offsetY + rShape, "");
                     else
@@ -172,7 +201,7 @@ namespace GRBL_Plotter
                     gcode.PenDown(gcodeString);
                     rDelta = overlap;
                     counter = 0;
-                    if (cBToolpathPocket.Checked)
+                    if ((cBToolpathPocket.Checked) && (rShape > 2*rTool))
                     {   while ((rDelta < rShape) && (counter++ < safety))
                         {
                             gcode.Arc(gcodeString, 2, offsetX + rShape - rDelta, offsetY + rShape, rDelta, 0, "");
@@ -186,6 +215,9 @@ namespace GRBL_Plotter
                 }
                 gcode.PenUp(gcodeString);
             }
+
+            if (Properties.Settings.Default.importGCZEnable)
+                gcode.SpindleOff(gcodeString, "Finish - Spindle off");
 
             string header = gcode.GetHeader("Simple Shape");
             string footer = gcode.GetFooter();

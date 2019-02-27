@@ -61,7 +61,7 @@ namespace GRBL_Plotter
         private static float svgMaxSize = 100;          // final GCode size (greater dimension) if scale is applied
         private static bool svgClosePathExtend = true;  // not working if true move to first and second point of path to get overlap
         private static bool svgToolSortNr = true;        // if true take tool nr. from nearest pallet entry
-        private static bool svgToolSort = true;         // if true sort objects by tool-nr. (to avoid back and forth pen change)
+        private static bool svgToolUse = true;         // if true sort objects by tool-nr. (to avoid back and forth pen change)
         private static int amountOfTools = 0;            // last index
 
         private static bool svgNodesOnly = true;        // if true only do pen-down -up on given coordinates
@@ -175,13 +175,14 @@ namespace GRBL_Plotter
 
             gcode.PenUp(finalString, "- SVG Start -");
             penIsDown = false;
-            if (gcodeUseSpindle && !gcodeToolChange) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
+//            if (gcodeUseSpindle && !svgToolUse) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
+//          already set in gcodeTool()
 
             startConvert(svgCode);  // do all conversion
             if (svgNodesOnly)
                 finalString.AppendLine("( !!! Draw nodes only !!! )");
 
-            if (svgToolSort)
+            if (svgToolUse)
             {
                 int toolnr;
                 if (svgToolSortNr)
@@ -202,7 +203,9 @@ namespace GRBL_Plotter
             }
             else
                 finalString.Append(gcodeString[0]);
+
             if (gcodeUseSpindle) gcode.SpindleOff(finalString, "Stop spindle - Option Z-Axis");
+
             string header = gcode.GetHeader("SVG import", info);
             string footer = gcode.GetFooter();
 
@@ -239,9 +242,9 @@ namespace GRBL_Plotter
             gcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
 
-            svgToolSort     = Properties.Settings.Default.importSVGToolUse;
-            svgToolSortNr   = Properties.Settings.Default.importSVGToolSort;
-            gcodeToolChange = Properties.Settings.Default.importGCTool;
+            svgToolUse      = Properties.Settings.Default.importSVGToolUse;     // SVG-Import tool change
+            svgToolSortNr   = Properties.Settings.Default.importSVGToolSort;    // SVG-Import sort by tool
+            gcodeToolChange = Properties.Settings.Default.importGCTool;         // Add tool change command
 
             svgNodesOnly    = Properties.Settings.Default.importSVGNodesOnly;
 
@@ -254,7 +257,7 @@ namespace GRBL_Plotter
             factor_Pt2Px = factor_In2Px / 72f;      // 1.25
             factor_Pc2Px = 12 * factor_Pt2Px;       // 15
             factor_Em2Px = 150;
-            }
+        }
         /// <summary>
         /// Set defaults and parse main element of SVG-XML
         /// </summary>
@@ -578,7 +581,7 @@ namespace GRBL_Plotter
                             myTool = toolTable.getToolNr(myColor, 0);
                         }
 
-                        if ((svgToolSort) && (myTool >= 0))
+                        if ((svgToolUse) && (myTool >= 0))
                             gcodeStringIndex = myTool;
 
                         if (svgComments)
@@ -795,7 +798,7 @@ namespace GRBL_Plotter
                         myTool = toolTable.getToolNr(myColor, 0);    // svgToolTable[myIndex].toolnr;
                     }
 
-                    if ((svgToolSort) && (myTool >= 0))
+                    if ((svgToolUse) && (myTool >= 0))
                     {   if(penIsDown) gcodePenUp("Start path");
                         gcodeStringIndex = myTool;
                     }
@@ -1445,7 +1448,7 @@ namespace GRBL_Plotter
                 if (gcodeOldToolNr != toolnr)       // if tool already in use, don't select again
                 {   gcodeOldToolNr = toolnr;
                     toolProp toolInfo = toolTable.getToolProperties(toolnr);
-                    if (!svgToolSort)               // if sort, insert tool command later
+                    if (!svgToolUse)               // if sort, insert tool command later
                     {   gcode.Tool(gcodeString[gcodeStringIndex], toolInfo.toolnr, toolInfo.name);      //toolnr, toolTable.getName());
                         gcodeOldToolNr = toolnr;
                     }

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,9 +21,11 @@
  *  
  *  Spline conversion is faulty if more than 4 point are given
  *  Not implemented by me up to now: 
- *      Text, Image
+ *      Image, Dimension
  *      Transform: rotation, scaling
-*/
+ *      
+ *  2019-02-06 bug fix block-offset for LWPolyline and Text
+ */
 
 using System;
 using System.Text;
@@ -55,6 +57,7 @@ namespace GRBL_Plotter //DXFImporter
         private static bool importUnitmm = true;        // convert units if needed
 
         private static bool gcodeToolChange = false;          // Apply tool exchange command
+        private static bool dxfImportToolNr = false;
 
         private static ArrayList drawingList;
         private static ArrayList objectIdentifier;
@@ -135,11 +138,15 @@ namespace GRBL_Plotter //DXFImporter
             dxfComments = Properties.Settings.Default.importSVGAddComments;
 
             gcodeToolChange = Properties.Settings.Default.importGCTool;
+            gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
+            gcodeToolChange = Properties.Settings.Default.importGCTool;         // Add tool change command
+            dxfImportToolNr = Properties.Settings.Default.importDXFToolIndex;
+
             dxfColor = -1;
             int dxfToolIndex = toolTable.init();
 
             gcode.setup();  // initialize GCode creation (get stored settings for export)
-            if (Properties.Settings.Default.importGCTool && !Properties.Settings.Default.importDXFToolIndex)
+            if (gcodeToolChange && !dxfImportToolNr)
             {
                 toolProp tmpTool = toolTable.getToolProperties((int)Properties.Settings.Default.importGCToolDefNr);
                 gcode.Tool(gcodeString[gcodeStringIndex], tmpTool.toolnr, tmpTool.name);
@@ -149,11 +156,10 @@ namespace GRBL_Plotter //DXFImporter
 
             string header = gcode.GetHeader("DXF import",txt);
             string footer = gcode.GetFooter();
-            gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
 
             finalString.Clear();
 
-            if (gcodeUseSpindle) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
+            if (gcodeUseSpindle && !gcodeToolChange) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
             finalString.Append(gcodeString[0]);     //.Replace(',', '.')
             if (gcodeUseSpindle) gcode.SpindleOff(finalString, "Stop spindle - Option Z-Axis");
 
@@ -300,7 +306,7 @@ namespace GRBL_Plotter //DXFImporter
                     x2 = x; y2 = y;
                 }
                 if (lp.Flags > 0)
-                    gcodeMoveTo((float)lp.Elements[0].Vertex.X, (float)lp.Elements[0].Vertex.Y, "End LWPolyLine");
+                    gcodeMoveTo((float)(lp.Elements[0].Vertex.X+offsetX), (float)(lp.Elements[0].Vertex.Y+offsetY), "End LWPolyLine");
                 gcodeStopPath();
             }
             #endregion
@@ -449,8 +455,8 @@ namespace GRBL_Plotter //DXFImporter
                     else if (entry.GroupCode == 40) { GCodeFromFont.gcHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Height "+entry.Value); }
                     else if (entry.GroupCode == 41) { GCodeFromFont.gcWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Width "+entry.Value); }
                     else if (entry.GroupCode == 71) { GCodeFromFont.gcAttachPoint = Convert.ToInt16(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Origin " + entry.Value); }
-                    else if (entry.GroupCode == 10) { GCodeFromFont.gcOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }
-                    else if (entry.GroupCode == 20) { GCodeFromFont.gcOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }
+                    else if (entry.GroupCode == 10) { GCodeFromFont.gcOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) + offsetX; } //Convert.ToDouble(entry.Value); }
+                    else if (entry.GroupCode == 20) { GCodeFromFont.gcOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) + offsetY; } //Convert.ToDouble(entry.Value); }
                     else if (entry.GroupCode == 50) { GCodeFromFont.gcAngle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Angle " + entry.Value); }
                     else if (entry.GroupCode == 44) { GCodeFromFont.gcSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }
                     else if (entry.GroupCode == 7) { GCodeFromFont.gcFontName = entry.Value.ToString(); }

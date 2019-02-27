@@ -51,7 +51,7 @@ namespace GRBL_Plotter
             }
 
             gcode.setup();      // initialize GCode creation (get stored settings for export)
-            gcodeToolChange = Properties.Settings.Default.importGCTool;
+            gcodeToolChange = Properties.Settings.Default.importGCTool;         // Add tool change command
             importComments = Properties.Settings.Default.importSVGAddComments;
             importUnitmm  = Properties.Settings.Default.importUnitmm;
 
@@ -106,7 +106,7 @@ namespace GRBL_Plotter
 
             finalString.Clear();
 
-            if (gcodeUseSpindle) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
+            if (gcodeUseSpindle && !gcodeToolChange) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
 
             finalString.Append(gcodeString);     
             if (gcodeUseSpindle) gcode.SpindleOff(finalString, "Stop spindle - Option Z-Axis");

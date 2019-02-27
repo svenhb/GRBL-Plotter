@@ -250,6 +250,9 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.importGCTTSSpeed) { cmt += " spindle speed from tool table"; }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
             gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeSpindleSpeed, cmt);
+            double delay = (double)Properties.Settings.Default.importGCSpindleDelay;
+            if (delay > 0)
+                gcodeString.AppendFormat("G{0} P{1} {2}\r\n", frmtCode(4), delay, "( Delay )");
             gcodeLines++;
         }
 
@@ -807,6 +810,8 @@ namespace GRBL_Plotter
 
                 if (gcodeZApply) gcode.SpindleOn(gcodeString, "Start spindle - Option Z-Axis");
             }
+            else
+                if (gcodeZApply) gcode.SpindleOn(gcodeString, "Start spindle - Option Z-Axis");
         }
 
         public static string GetHeader(string cmt,string source="")
