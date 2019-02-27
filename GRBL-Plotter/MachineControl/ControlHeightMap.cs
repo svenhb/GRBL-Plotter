@@ -18,7 +18,7 @@
 */
 
 /*  Thanks to martin2250  https://github.com/martin2250/OpenCNCPilot for his HeightMap class
-
+ *  2019-02-05  switch to global variables grbl.posWork
 */
 
 using System;
@@ -35,28 +35,20 @@ namespace GRBL_Plotter
 {
     public partial class ControlHeightMapForm : Form
     {
-        private xyzPoint actualPosWorld;
-        private xyzPoint actualPosMachine;
-        private xyzPoint actualPosProbe;
+        private xyzPoint posProbe;
         public StringBuilder scanCode;
         public HeightMap Map;
         private List<Point> MapIndex;
         private Bitmap heightMapBMP;
         private Bitmap heightLegendBMP;
         private bool isMapOk = false;
-        //        eventArgsTemplates _event = null;
-
-        public xyzPoint setPosWorld
-        { set { actualPosWorld = value; } }
-        public xyzPoint setPosMachine
-        { set { actualPosMachine = value; } }
 
         // get height information from main-GUI OnRaisePosEvent line 192
         public xyzPoint setPosProbe
         { set {
-                actualPosProbe = value;
-                double worldZ = actualPosProbe.Z - (actualPosMachine.Z - actualPosWorld.Z);
-                lblInfo.Text = "Last XYZ: X: " + actualPosProbe.Z + " Y: " + actualPosProbe.Y + " Zc: " + worldZ;
+                posProbe = value;
+                double worldZ = posProbe.Z - (grbl.posMachine.Z - grbl.posWork.Z);
+                lblInfo.Text = "Last XYZ: X: " + posProbe.Z + " Y: " + posProbe.Y + " Zc: " + worldZ;
                 if (scanStarted)
                 {   Map.AddPoint(MapIndex[cntReceived].X, MapIndex[cntReceived].Y, worldZ);
                     using (Graphics graph = Graphics.FromImage(heightMapBMP))
@@ -82,7 +74,7 @@ namespace GRBL_Plotter
                     {
                         progressBar1.Value = cntReceived;
                         lblProgress.Text = string.Format("{0}% {1} / {2}  {3}", (100 * cntReceived / progressBar1.Maximum), cntReceived, progressBar1.Maximum, elapsed.ToString(@"hh\:mm\:ss"));
-                        textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", actualPosWorld.X, actualPosWorld.Y, worldZ);
+                        textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", grbl.posWork.X, grbl.posWork.Y, worldZ);
                         elapsedOld = elapsed;
                     }
                     if (cntReceived == progressBar1.Maximum)
@@ -95,7 +87,7 @@ namespace GRBL_Plotter
                         enableControls(true);
                         progressBar1.Value = cntReceived;
                         lblProgress.Text = string.Format("{0}% {1} / {2}  {3}", (100 * cntReceived / progressBar1.Maximum), cntReceived, progressBar1.Maximum, elapsed.ToString(@"hh\:mm\:ss"));
-                        textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", actualPosWorld.X, actualPosWorld.Y, worldZ);
+                        textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", grbl.posWork.X, grbl.posWork.Y, worldZ);
                     }
                 }
             }
@@ -323,16 +315,16 @@ namespace GRBL_Plotter
 
         private void btnPosLL_Click(object sender, EventArgs e)
         {
-            nUDX1.Value = (decimal)actualPosWorld.X;
-            nUDY1.Value = (decimal)actualPosWorld.Y;
+            nUDX1.Value = (decimal)grbl.posWork.X;
+            nUDY1.Value = (decimal)grbl.posWork.Y;
             nUDX2.Value = nUDDeltaX.Value + nUDX1.Value;
             nUDY2.Value = nUDDeltaY.Value + nUDY1.Value;
         }
 
         private void btnPosUR_Click(object sender, EventArgs e)
         {
-            nUDX2.Value = (decimal)actualPosWorld.X;
-            nUDY2.Value = (decimal)actualPosWorld.Y;
+            nUDX2.Value = (decimal)grbl.posWork.X;
+            nUDY2.Value = (decimal)grbl.posWork.Y;
             nUDDeltaX.Value = nUDX2.Value - nUDX1.Value;
             nUDDeltaY.Value = nUDY2.Value - nUDY1.Value;
         }
@@ -402,7 +394,7 @@ namespace GRBL_Plotter
                 result = MessageBox.Show("Move to this position? " + posX.ToString() + " ; " + posY.ToString(), "Attention", MessageBoxButtons.YesNo);
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    if ((decimal)actualPosWorld.Z < nUDProbeUp.Value)
+                    if ((decimal)grbl.posWork.Z < nUDProbeUp.Value)
                         OnRaiseXYZEvent(new XYZEventArgs(null, null, (double)nUDProbeUp.Value, "G91"));
                     OnRaiseXYZEvent(new XYZEventArgs(posX, posY, "G91 G0"));   // move relative and fast
                 }
@@ -507,6 +499,7 @@ namespace GRBL_Plotter
                 scanCode.AppendFormat("G0 Z{0}\r\n", gcode.frmtNum((float)nUDProbeUp.Value));
                 tmp = Map.GetCoordinates(0, 0);
                 scanCode.AppendFormat("G0 X{0} Y{1}\r\n", gcode.frmtNum((float)tmp.X), gcode.frmtNum((float)tmp.Y));
+                scanCode.AppendLine("M30");     // finish
 
                 textBox1.Text += "Code sent\r\n"+ scanCode.ToString();
                 progressBar1.Maximum = cntSent;

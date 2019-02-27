@@ -656,7 +656,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>XYZPDHRS</value>
   </data>
   <data name="lblSrPn.ToolTip" xml:space="preserve">
-    <value>Input Pin State for XYZ, Probe, Door, Hold, soft-Reset, cycle-&amp;Start</value>
+    <value>Input Pin State for XYZ, Probe, Door, Hold, soft-Reset, cycle-Start</value>
   </data>
   <data name="&gt;&gt;lblSrPn.Name" xml:space="preserve">
     <value>lblSrPn</value>
@@ -686,7 +686,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>Pn:</value>
   </data>
   <data name="label7.ToolTip" xml:space="preserve">
-    <value>Input Pin State for XYZ, Probe, Door, Hold, soft-Reset, cycle-&amp;Start</value>
+    <value>Input Pin State for XYZ, Probe, Door, Hold, soft-Reset, cycle-Start</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>

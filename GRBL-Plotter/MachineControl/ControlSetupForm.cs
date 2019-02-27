@@ -686,8 +686,17 @@ namespace GRBL_Plotter
         {   listHotkeys(); }
 
         private void textBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            textBox1.Text = "X: " + e.X + "\r\nY: " + e.Y + "\r\nZ: ";
+        {    textBox1.Text = "X: " + e.X + "\r\nY: " + e.Y + "\r\nZ: ";
+        }
+
+        private void btnMachineRangeGet_Click(object sender, EventArgs e)
+        {   if (grbl.getSetting(130) < 0)
+                MessageBox.Show("No information available - please connect grbl-controller","Attention!");
+            else
+            {   nUDMachineRangeX.Value = (decimal)grbl.getSetting(130);
+                nUDMachineRangeY.Value = (decimal)grbl.getSetting(131);
+                nUDMachineRangeZ.Value = (decimal)grbl.getSetting(132);
+            }
         }
     }
 }

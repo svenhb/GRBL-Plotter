@@ -30,19 +30,29 @@ namespace GRBL_Plotter
 {
     public static class grbl
     {       // need to have global access to this data?
-            //        public static xyzPoint posWorld   = new xyzPoint(0, 0, 0);
-            //        public static xyzPoint posMachine = new xyzPoint(0, 0, 0);
-            //        public static pState parserState;
-            //        public static bool isVers0 = true;
+        public static xyzPoint posWCO     = new xyzPoint(0, 0, 0);
+        public static xyzPoint posWork    = new xyzPoint(0, 0, 0);
+        public static xyzPoint posMachine = new xyzPoint(0, 0, 0);
+        public static bool posChanged = true;
+        public static bool wcoChanged = true;
+        public static xyPoint posMarker   = new xyPoint(0, 0);
+        private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
+        private static Dictionary<string, xyzPoint> coordinates = new Dictionary<string, xyzPoint>();    // keep []-settings
+
+        // private mState machineState = new mState();     // Keep info about Bf, Ln, FS, Pn, Ov, A;
+        //  private pState mParserState = new pState();     // keep info about last M and G settings
+        //        public static pState parserState;
+        //        public static bool isVers0 = true;
+        //        public List<string> GRBLSettings = new List<string>();  // keep $$ settings
 
         public static double resolution = 0.000001;
 
         public static Dictionary<string, string> messageAlarmCodes = new Dictionary<string, string>();
         public static Dictionary<string, string> messageErrorCodes = new Dictionary<string, string>();
         public static Dictionary<string, string> messageSettingCodes = new Dictionary<string, string>();
-        private static sConvert[] statusConvert = new sConvert[12];
+        private static sConvert[] statusConvert = new sConvert[10];
 
-        static grbl()   // initialize lists
+        public static void init()   // initialize lists
         {
             setMessageString(ref messageAlarmCodes, Properties.Resources.alarm_codes_en_US);
             setMessageString(ref messageErrorCodes, Properties.Resources.error_codes_en_US);
@@ -63,6 +73,44 @@ namespace GRBL_Plotter
             statusConvert[7].msg = "Home";  statusConvert[7].state = grblState.home; statusConvert[7].color = Color.Magenta;
             statusConvert[8].msg = "Sleep"; statusConvert[8].state = grblState.sleep;statusConvert[8].color = Color.Yellow;
             statusConvert[9].msg = "Probe"; statusConvert[9].state = grblState.probe;statusConvert[9].color = Color.LightBlue;
+
+            settings.Clear();
+            coordinates.Clear();
+        }
+
+        public static void setSettings(int id, string value)
+        {   float tmp = 0;
+            if (float.TryParse(value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out tmp))
+            {   if (settings.ContainsKey(id))
+                    settings[id] = tmp;
+                else
+                    settings.Add(id, tmp);
+            }
+        }
+        public static float getSetting(int key)
+        {   if (settings.ContainsKey(key))
+                return settings[key];
+            else
+                return -1;
+        }
+        public static void setCoordinates(string id, string value)
+        {   xyzPoint tmp = new xyzPoint();
+            string allowed = "PRBG54G55G56G57G58G59G28G30G92";
+            if (allowed.Contains(id))
+            {
+                getPosition("abc:" + value, ref tmp);
+                if (coordinates.ContainsKey(id))
+                    coordinates[id] = tmp;
+                else
+                    coordinates.Add(id, tmp);
+            }
+        }
+        public static string displayCoord(string key)
+        {
+            if (coordinates.ContainsKey(key))
+                return String.Format("{0,8:###0.000} {1,8:###0.000} {2,8:###0.000}", coordinates[key].X, coordinates[key].Y, coordinates[key].Z);
+            else
+                return "no data";
         }
 
         private static void setMessageString(ref Dictionary<string, string> myDict, string resource)

@@ -98,20 +98,26 @@ namespace GRBL_Plotter
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.groupBox29 = new System.Windows.Forms.GroupBox();
+            this.groupBox34 = new System.Windows.Forms.GroupBox();
+            this.rBImportGCSpindleCmd2 = new System.Windows.Forms.RadioButton();
+            this.label71 = new System.Windows.Forms.Label();
+            this.rBImportGCSpindleCmd1 = new System.Windows.Forms.RadioButton();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nUDImportGCSpindleDelay = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCSSpeed = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGCTTSSpeed = new System.Windows.Forms.CheckBox();
             this.cBImportGCToolM0 = new System.Windows.Forms.CheckBox();
             this.cBImportGCTool = new System.Windows.Forms.CheckBox();
             this.cBImportGCComments = new System.Windows.Forms.CheckBox();
             this.cBImportGCTTXYFeed = new System.Windows.Forms.CheckBox();
-            this.cBImportGCTTSSpeed = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.tBImportGCHeader = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.nUDImportGCFeedXY = new System.Windows.Forms.NumericUpDown();
             this.tBImportGCFooter = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.nUDImportGCSSpeed = new System.Windows.Forms.NumericUpDown();
             this.nUDImportDecPlaces = new System.Windows.Forms.NumericUpDown();
             this.groupBox28 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -128,8 +134,7 @@ namespace GRBL_Plotter
             this.nUDImportGCZDown = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.rBImportGCSpindleCmd2 = new System.Windows.Forms.RadioButton();
-            this.rBImportGCSpindleCmd1 = new System.Windows.Forms.RadioButton();
+            this.label72 = new System.Windows.Forms.Label();
             this.cBImportGCUseSpindle = new System.Windows.Forms.CheckBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.label36 = new System.Windows.Forms.Label();
@@ -217,6 +222,7 @@ namespace GRBL_Plotter
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.cBBackgroundImage = new System.Windows.Forms.CheckBox();
             this.groupBox33 = new System.Windows.Forms.GroupBox();
+            this.btnMachineRangeGet = new System.Windows.Forms.Button();
             this.nUDMachineHomeZ = new System.Windows.Forms.NumericUpDown();
             this.label66 = new System.Windows.Forms.Label();
             this.nUDMachineHomeY = new System.Windows.Forms.NumericUpDown();
@@ -462,8 +468,10 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).BeginInit();
             this.tabPage10.SuspendLayout();
             this.groupBox29.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).BeginInit();
+            this.groupBox34.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSpindleDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportDecPlaces)).BeginInit();
             this.groupBox28.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -916,24 +924,111 @@ namespace GRBL_Plotter
             // 
             // groupBox29
             // 
+            this.groupBox29.Controls.Add(this.groupBox34);
             this.groupBox29.Controls.Add(this.cBImportGCToolM0);
             this.groupBox29.Controls.Add(this.cBImportGCTool);
             this.groupBox29.Controls.Add(this.cBImportGCComments);
             this.groupBox29.Controls.Add(this.cBImportGCTTXYFeed);
-            this.groupBox29.Controls.Add(this.cBImportGCTTSSpeed);
             this.groupBox29.Controls.Add(this.label19);
-            this.groupBox29.Controls.Add(this.label4);
             this.groupBox29.Controls.Add(this.tBImportGCHeader);
             this.groupBox29.Controls.Add(this.label11);
             this.groupBox29.Controls.Add(this.label12);
             this.groupBox29.Controls.Add(this.nUDImportGCFeedXY);
             this.groupBox29.Controls.Add(this.tBImportGCFooter);
             this.groupBox29.Controls.Add(this.label13);
-            this.groupBox29.Controls.Add(this.nUDImportGCSSpeed);
             this.groupBox29.Controls.Add(this.nUDImportDecPlaces);
             resources.ApplyResources(this.groupBox29, "groupBox29");
             this.groupBox29.Name = "groupBox29";
             this.groupBox29.TabStop = false;
+            // 
+            // groupBox34
+            // 
+            this.groupBox34.Controls.Add(this.rBImportGCSpindleCmd2);
+            this.groupBox34.Controls.Add(this.label71);
+            this.groupBox34.Controls.Add(this.rBImportGCSpindleCmd1);
+            this.groupBox34.Controls.Add(this.label70);
+            this.groupBox34.Controls.Add(this.label4);
+            this.groupBox34.Controls.Add(this.nUDImportGCSpindleDelay);
+            this.groupBox34.Controls.Add(this.nUDImportGCSSpeed);
+            this.groupBox34.Controls.Add(this.cBImportGCTTSSpeed);
+            resources.ApplyResources(this.groupBox34, "groupBox34");
+            this.groupBox34.Name = "groupBox34";
+            this.groupBox34.TabStop = false;
+            // 
+            // rBImportGCSpindleCmd2
+            // 
+            resources.ApplyResources(this.rBImportGCSpindleCmd2, "rBImportGCSpindleCmd2");
+            this.rBImportGCSpindleCmd2.Name = "rBImportGCSpindleCmd2";
+            this.toolTip1.SetToolTip(this.rBImportGCSpindleCmd2, resources.GetString("rBImportGCSpindleCmd2.ToolTip"));
+            this.rBImportGCSpindleCmd2.UseVisualStyleBackColor = true;
+            // 
+            // label71
+            // 
+            resources.ApplyResources(this.label71, "label71");
+            this.label71.Name = "label71";
+            // 
+            // rBImportGCSpindleCmd1
+            // 
+            resources.ApplyResources(this.rBImportGCSpindleCmd1, "rBImportGCSpindleCmd1");
+            this.rBImportGCSpindleCmd1.Checked = true;
+            this.rBImportGCSpindleCmd1.Name = "rBImportGCSpindleCmd1";
+            this.rBImportGCSpindleCmd1.TabStop = true;
+            this.toolTip1.SetToolTip(this.rBImportGCSpindleCmd1, resources.GetString("rBImportGCSpindleCmd1.ToolTip"));
+            this.rBImportGCSpindleCmd1.UseVisualStyleBackColor = true;
+            // 
+            // label70
+            // 
+            resources.ApplyResources(this.label70, "label70");
+            this.label70.Name = "label70";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
+            // 
+            // nUDImportGCSpindleDelay
+            // 
+            this.nUDImportGCSpindleDelay.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleDelay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCSpindleDelay.DecimalPlaces = 2;
+            this.nUDImportGCSpindleDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCSpindleDelay, "nUDImportGCSpindleDelay");
+            this.nUDImportGCSpindleDelay.Name = "nUDImportGCSpindleDelay";
+            this.toolTip1.SetToolTip(this.nUDImportGCSpindleDelay, resources.GetString("nUDImportGCSpindleDelay.ToolTip"));
+            this.nUDImportGCSpindleDelay.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleDelay;
+            // 
+            // nUDImportGCSSpeed
+            // 
+            this.nUDImportGCSSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCSSpeed.Increment = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCSSpeed, "nUDImportGCSSpeed");
+            this.nUDImportGCSSpeed.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nUDImportGCSSpeed.Name = "nUDImportGCSSpeed";
+            this.toolTip1.SetToolTip(this.nUDImportGCSSpeed, resources.GetString("nUDImportGCSSpeed.ToolTip"));
+            this.nUDImportGCSSpeed.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSSpeed;
+            // 
+            // cBImportGCTTSSpeed
+            // 
+            resources.ApplyResources(this.cBImportGCTTSSpeed, "cBImportGCTTSSpeed");
+            this.cBImportGCTTSSpeed.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTTSSpeed;
+            this.cBImportGCTTSSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTTSSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTTSSpeed.Name = "cBImportGCTTSSpeed";
+            this.toolTip1.SetToolTip(this.cBImportGCTTSSpeed, resources.GetString("cBImportGCTTSSpeed.ToolTip"));
+            this.cBImportGCTTSSpeed.UseVisualStyleBackColor = true;
+            this.cBImportGCTTSSpeed.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            this.cBImportGCTTSSpeed.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
             // 
             // cBImportGCToolM0
             // 
@@ -974,28 +1069,11 @@ namespace GRBL_Plotter
             this.cBImportGCTTXYFeed.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
             this.cBImportGCTTXYFeed.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
             // 
-            // cBImportGCTTSSpeed
-            // 
-            resources.ApplyResources(this.cBImportGCTTSSpeed, "cBImportGCTTSSpeed");
-            this.cBImportGCTTSSpeed.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTTSSpeed;
-            this.cBImportGCTTSSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTTSSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCTTSSpeed.Name = "cBImportGCTTSSpeed";
-            this.toolTip1.SetToolTip(this.cBImportGCTTSSpeed, resources.GetString("cBImportGCTTSSpeed.ToolTip"));
-            this.cBImportGCTTSSpeed.UseVisualStyleBackColor = true;
-            this.cBImportGCTTSSpeed.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            this.cBImportGCTTSSpeed.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            // 
             // label19
             // 
             resources.ApplyResources(this.label19, "label19");
             this.label19.Name = "label19";
             this.toolTip1.SetToolTip(this.label19, resources.GetString("label19.ToolTip"));
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
             // 
             // tBImportGCHeader
             // 
@@ -1051,24 +1129,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
-            // 
-            // nUDImportGCSSpeed
-            // 
-            this.nUDImportGCSSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCSSpeed.Increment = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCSSpeed, "nUDImportGCSSpeed");
-            this.nUDImportGCSSpeed.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.nUDImportGCSSpeed.Name = "nUDImportGCSSpeed";
-            this.toolTip1.SetToolTip(this.nUDImportGCSSpeed, resources.GetString("nUDImportGCSSpeed.ToolTip"));
-            this.nUDImportGCSSpeed.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSSpeed;
             // 
             // nUDImportDecPlaces
             // 
@@ -1274,29 +1334,17 @@ namespace GRBL_Plotter
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.rBImportGCSpindleCmd2);
-            this.groupBox6.Controls.Add(this.rBImportGCSpindleCmd1);
+            this.groupBox6.Controls.Add(this.label72);
             this.groupBox6.Controls.Add(this.cBImportGCUseSpindle);
             resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox6, resources.GetString("groupBox6.ToolTip"));
             // 
-            // rBImportGCSpindleCmd2
+            // label72
             // 
-            resources.ApplyResources(this.rBImportGCSpindleCmd2, "rBImportGCSpindleCmd2");
-            this.rBImportGCSpindleCmd2.Name = "rBImportGCSpindleCmd2";
-            this.toolTip1.SetToolTip(this.rBImportGCSpindleCmd2, resources.GetString("rBImportGCSpindleCmd2.ToolTip"));
-            this.rBImportGCSpindleCmd2.UseVisualStyleBackColor = true;
-            // 
-            // rBImportGCSpindleCmd1
-            // 
-            resources.ApplyResources(this.rBImportGCSpindleCmd1, "rBImportGCSpindleCmd1");
-            this.rBImportGCSpindleCmd1.Checked = true;
-            this.rBImportGCSpindleCmd1.Name = "rBImportGCSpindleCmd1";
-            this.rBImportGCSpindleCmd1.TabStop = true;
-            this.toolTip1.SetToolTip(this.rBImportGCSpindleCmd1, resources.GetString("rBImportGCSpindleCmd1.ToolTip"));
-            this.rBImportGCSpindleCmd1.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.label72, "label72");
+            this.label72.Name = "label72";
             // 
             // cBImportGCUseSpindle
             // 
@@ -2184,6 +2232,7 @@ namespace GRBL_Plotter
             // 
             // groupBox33
             // 
+            this.groupBox33.Controls.Add(this.btnMachineRangeGet);
             this.groupBox33.Controls.Add(this.nUDMachineHomeZ);
             this.groupBox33.Controls.Add(this.label66);
             this.groupBox33.Controls.Add(this.nUDMachineHomeY);
@@ -2202,6 +2251,13 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox33, "groupBox33");
             this.groupBox33.Name = "groupBox33";
             this.groupBox33.TabStop = false;
+            // 
+            // btnMachineRangeGet
+            // 
+            resources.ApplyResources(this.btnMachineRangeGet, "btnMachineRangeGet");
+            this.btnMachineRangeGet.Name = "btnMachineRangeGet";
+            this.btnMachineRangeGet.UseVisualStyleBackColor = true;
+            this.btnMachineRangeGet.Click += new System.EventHandler(this.btnMachineRangeGet_Click);
             // 
             // nUDMachineHomeZ
             // 
@@ -4376,8 +4432,11 @@ namespace GRBL_Plotter
             this.tabPage10.ResumeLayout(false);
             this.groupBox29.ResumeLayout(false);
             this.groupBox29.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).EndInit();
+            this.groupBox34.ResumeLayout(false);
+            this.groupBox34.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSpindleDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportDecPlaces)).EndInit();
             this.groupBox28.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -4907,5 +4966,11 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Button btnOpenHotkeys;
         private System.Windows.Forms.Label lblPathHotkeys;
+        private System.Windows.Forms.Button btnMachineRangeGet;
+        private System.Windows.Forms.NumericUpDown nUDImportGCSpindleDelay;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.GroupBox groupBox34;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Label label72;
     }
 }

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 */
 /*  2018-04-02  add shape recognition and code clean-up
  *  2017-01-01  check form-location and fix strange location
+ *  2019-02-05  switch to global variables grbl.posWork
 */
 
 using System;
@@ -63,20 +64,20 @@ namespace GRBL_Plotter
         private Brush brushText = Brushes.Lime;
         private Color colCross = Color.Yellow;
 
-        private xyzPoint actualPosWorld;
-        private xyzPoint actualPosMachine;
-        private xyPoint actualPosMarker;
+   //     private xyzPoint posWork;
+   //     private xyzPoint posMachine;
+   //     private xyPoint posMarker;
         private xyPoint teachPoint1;
         private xyPoint teachPoint2;
         private xyPoint teachPoint3;
         private int coordG = 54;
 
-        public xyzPoint setPosWorld
-        { set { actualPosWorld = value; } }
-        public xyzPoint setPosMachine
-        { set { actualPosMachine = value; } }
-        public void setPosMarker(xyPoint tmp)// double x, double y)
-        { actualPosMarker= tmp; }
+//        public xyzPoint setPosWorld1
+//        { set { posWork = value; } }
+//        public xyzPoint setPosMachine1
+//        { set { posMachine = value; } }
+//        public void setPosMarker1(xyPoint tmp)// double x, double y)
+//        { posMarker= tmp; }
         public int setCoordG
         {   set { coordG = value;
                 btnCamCoordTool.BackColor = SystemColors.Control;
@@ -275,7 +276,7 @@ namespace GRBL_Plotter
             if (diff == 0) diff = 1;
             double m = (cameraScalingTop - cameraScalingBot) / diff;
             double n = cameraScalingTop - m * cameraPosTop;
-            float actualScaling = (float)Math.Abs(actualPosMachine.Z * m + n);
+            float actualScaling = (float)Math.Abs(grbl.posMachine.Z * m + n);
             if (actualScaling < 1) actualScaling = 5;
 
             int gap = 5;
@@ -314,7 +315,7 @@ namespace GRBL_Plotter
             }
             else
             {
-                xyPoint absolute = (xyPoint)actualPosWorld + realPosition;
+                xyPoint absolute = (xyPoint)grbl.posWork + realPosition;
                 string txt = String.Format("Relative {0:0.00} ; {1:0.00}\r\nAbsolute {2:0.00} ; {3:0.00}", realPosition.X, realPosition.Y, absolute.X, absolute.Y);
                 showLabel(txt, stringpos, e.Graphics);
             }
@@ -325,8 +326,8 @@ namespace GRBL_Plotter
             }*/
             float scale = (float)(xmid / actualScaling * cameraZoom);
             e.Graphics.ScaleTransform(scale, -scale);
-            float offX = (float)(xmid / scale - actualPosWorld.X);
-            float offY = (float)(ymid / scale + actualPosWorld.Y);
+            float offX = (float)(xmid / scale - grbl.posWork.X);
+            float offY = (float)(ymid / scale + grbl.posWork.Y);
             e.Graphics.TranslateTransform(offX, -offY);       // apply offset
             // show drawing from MainForm (static members of class GCodeVisualization)
             if (showOverlay)
@@ -356,14 +357,14 @@ namespace GRBL_Plotter
                 teachingTop = false;
                 double radius = Math.Sqrt(relposx * relposx + relposy * relposy);
                 cameraScalingTop = cameraTeachRadiusTop / radius;
-                cameraPosTop = actualPosMachine.Z;
+                cameraPosTop = grbl.posMachine.Z;
             }
             else if (teachingBot)
             {
                 teachingBot = false;
                 double radius = Math.Sqrt(relposx * relposx + relposy * relposy);
                 cameraScalingBot = cameraTeachRadiusBot / radius;
-                cameraPosBot = actualPosMachine.Z;
+                cameraPosBot = grbl.posMachine.Z;
             }
             else if ((e.Button == MouseButtons.Left) && !measureAngle)
                 OnRaiseXYEvent(new XYEventArgs(0, 1, realPosition, "G91")); // move relative and slow
@@ -443,29 +444,29 @@ namespace GRBL_Plotter
         // send event to teach Marker offset
         private void btnSetOffsetMarker_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(0, 1, actualPosMarker, "G92"));        // set new coordinates
+            OnRaiseXYEvent(new XYEventArgs(0, 1, grbl.posMarker, "G92"));        // set new coordinates
         }
         // sent event to apply offset
         private void btnCamCoordTool_Click(object sender, EventArgs e)
         {   if (cBCamCoordMove.Checked)
-                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G54; G0G90"));  // switch coord system and move
+                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)grbl.posWork, "G54; G0G90"));  // switch coord system and move
             else
-                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G54"));         // only switch
+                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)grbl.posWork, "G54"));         // only switch
             btnCamCoordTool.BackColor = Color.Lime;
             btnCamCoordCam.BackColor = SystemColors.Control;
         }
         // sent event to apply offset
         private void btnCamCoordCam_Click(object sender, EventArgs e)
         {   if (cBCamCoordMove.Checked)
-                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G59; G0G90"));  // switch coord system and move
+                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)grbl.posWork, "G59; G0G90"));  // switch coord system and move
             else
-                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G59"));         // only switch
+                OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)grbl.posWork, "G59"));         // only switch
             btnCamCoordCam.BackColor = Color.Lime;
             btnCamCoordTool.BackColor = SystemColors.Control;
         }
         // show actual offset from tool position
         private void teachToolStripMenuItem_Click(object sender, EventArgs e)       // teach offset of G59 coord system
-        {   OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)actualPosWorld, "G10 L2 P6 "));   // move relative and fast
+        {   OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)grbl.posWork, "G10 L2 P6 "));   // move relative and fast
         }
 
         // measure angle 
@@ -719,7 +720,7 @@ namespace GRBL_Plotter
             if (diff == 0) diff = 1;
             double m = (cameraScalingTop - cameraScalingBot) / diff;
             double n = cameraScalingTop - m * cameraPosTop;
-            float actualScaling = (float)Math.Abs(actualPosMachine.Z * m + n);
+            float actualScaling = (float)Math.Abs(grbl.posMachine.Z * m + n);
             if (actualScaling < 1) actualScaling = 1;
             return actualScaling;
         }
@@ -758,20 +759,20 @@ namespace GRBL_Plotter
         }
 
         private void teachpoint1_process_Click(object sender, EventArgs e)
-        {   teachPoint1 = actualPosMarker;
+        {   teachPoint1 = grbl.posMarker;
             teachPoint2 = teachPoint1; teachPoint3 = teachPoint1;
             measureAngleStart = teachPoint1;
-            OnRaiseXYEvent(new XYEventArgs(0, 1, actualPosMarker, "G92"));        // set new coordinates
+            OnRaiseXYEvent(new XYEventArgs(0, 1, grbl.posMarker, "G92"));        // set new coordinates
             //teachTP1 = true;
         }
 
         private void teachpoint2_process_Click(object sender, EventArgs e)
         {
-            teachPoint2 = actualPosMarker;
+            teachPoint2 = grbl.posMarker;
             double angle1 = teachPoint1.AngleTo(teachPoint2);
             double dist1  = teachPoint1.DistanceTo(teachPoint2);
-            double angle2 = teachPoint1.AngleTo((xyPoint)actualPosWorld);
-            double dist2 = teachPoint1.DistanceTo((xyPoint)actualPosWorld);
+            double angle2 = teachPoint1.AngleTo((xyPoint)grbl.posWork);
+            double dist2 = teachPoint1.DistanceTo((xyPoint)grbl.posWork);
             double angle = angle1 - angle2;
             lblAngle.Text = String.Format("{0:0.00}°", angle);
 

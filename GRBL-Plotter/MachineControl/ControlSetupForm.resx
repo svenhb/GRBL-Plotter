@@ -1040,6 +1040,275 @@ to avoid problems when scaling down gcode.</value>
   <data name="&gt;&gt;tabPage9.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="rBImportGCSpindleCmd2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBImportGCSpindleCmd2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBImportGCSpindleCmd2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>164, 60</value>
+  </data>
+  <data name="rBImportGCSpindleCmd2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 17</value>
+  </data>
+  <data name="rBImportGCSpindleCmd2.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="rBImportGCSpindleCmd2.Text" xml:space="preserve">
+    <value>'M4' CCW</value>
+  </data>
+  <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
+    <value>Send 'M4' to switch on the spindle counter clock wise
+Dynamic Laser Power Mode in Laser Mode</value>
+  </data>
+  <data name="&gt;&gt;rBImportGCSpindleCmd2.Name" xml:space="preserve">
+    <value>rBImportGCSpindleCmd2</value>
+  </data>
+  <data name="&gt;&gt;rBImportGCSpindleCmd2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBImportGCSpindleCmd2.Parent" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;rBImportGCSpindleCmd2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label71.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label71.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 62</value>
+  </data>
+  <data name="label71.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="label71.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="&gt;&gt;label71.Name" xml:space="preserve">
+    <value>label71</value>
+  </data>
+  <data name="&gt;&gt;label71.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label71.Parent" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;label71.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rBImportGCSpindleCmd1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBImportGCSpindleCmd1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBImportGCSpindleCmd1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 60</value>
+  </data>
+  <data name="rBImportGCSpindleCmd1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
+  </data>
+  <data name="rBImportGCSpindleCmd1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="rBImportGCSpindleCmd1.Text" xml:space="preserve">
+    <value>'M3' CW</value>
+  </data>
+  <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
+    <value>Send 'M3' to switch on the spindle clock wise
+Constant Laser Power Mode in Laser Mode</value>
+  </data>
+  <data name="&gt;&gt;rBImportGCSpindleCmd1.Name" xml:space="preserve">
+    <value>rBImportGCSpindleCmd1</value>
+  </data>
+  <data name="&gt;&gt;rBImportGCSpindleCmd1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBImportGCSpindleCmd1.Parent" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;rBImportGCSpindleCmd1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label70.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label70.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label70.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 38</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="label70.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Delay after 'ON'</value>
+  </data>
+  <data name="&gt;&gt;label70.Name" xml:space="preserve">
+    <value>label70</value>
+  </data>
+  <data name="&gt;&gt;label70.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label70.Parent" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;label70.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Spindle Speed</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>Spindle speed for engraving </value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="nUDImportGCSpindleDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 36</value>
+  </data>
+  <data name="nUDImportGCSpindleDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="nUDImportGCSpindleDelay.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="nUDImportGCSpindleDelay.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDImportGCSpindleDelay.ToolTip" xml:space="preserve">
+    <value>Insert Delay in seconds  after spindle on (to have time for a reset if spindle-power is off)</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSpindleDelay.Name" xml:space="preserve">
+    <value>nUDImportGCSpindleDelay</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSpindleDelay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSpindleDelay.Parent" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSpindleDelay.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="nUDImportGCSSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>94, 12</value>
+  </data>
+  <data name="nUDImportGCSSpeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
+  </data>
+  <data name="nUDImportGCSSpeed.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="nUDImportGCSSpeed.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
+    <value>Spindle speed for engraving </value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSSpeed.Name" xml:space="preserve">
+    <value>nUDImportGCSSpeed</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSSpeed.Parent" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSSpeed.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="cBImportGCTTSSpeed.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGCTTSSpeed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGCTTSSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 13</value>
+  </data>
+  <data name="cBImportGCTTSSpeed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="cBImportGCTTSSpeed.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
+    <value>from tool table</value>
+  </data>
+  <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
+    <value>If 'Add Tool Change' and 'Perform Tool Change' are enabled, value will be taken from tool table during import</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTTSSpeed.Name" xml:space="preserve">
+    <value>cBImportGCTTSSpeed</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTTSSpeed.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTTSSpeed.Parent" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTTSSpeed.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="groupBox34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 108</value>
+  </data>
+  <data name="groupBox34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 86</value>
+  </data>
+  <data name="groupBox34.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="groupBox34.Text" xml:space="preserve">
+    <value>Spindle</value>
+  </data>
+  <data name="&gt;&gt;groupBox34.Name" xml:space="preserve">
+    <value>groupBox34</value>
+  </data>
+  <data name="&gt;&gt;groupBox34.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox34.Parent" xml:space="preserve">
+    <value>groupBox29</value>
+  </data>
+  <data name="&gt;&gt;groupBox34.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBImportGCToolM0.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1047,7 +1316,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCToolM0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 174</value>
+    <value>25, 222</value>
   </data>
   <data name="cBImportGCToolM0.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 17</value>
@@ -1071,7 +1340,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;cBImportGCToolM0.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBImportGCTool.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1080,7 +1349,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 158</value>
+    <value>6, 206</value>
   </data>
   <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 17</value>
@@ -1104,7 +1373,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;cBImportGCTool.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBImportGCComments.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1137,7 +1406,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;cBImportGCComments.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBImportGCTTXYFeed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1146,7 +1415,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCTTXYFeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 113</value>
+    <value>159, 85</value>
   </data>
   <data name="cBImportGCTTXYFeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 17</value>
@@ -1170,39 +1439,6 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;cBImportGCTTXYFeed.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="cBImportGCTTSSpeed.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBImportGCTTSSpeed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBImportGCTTSSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 87</value>
-  </data>
-  <data name="cBImportGCTTSSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 17</value>
-  </data>
-  <data name="cBImportGCTTSSpeed.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
-    <value>from tool table</value>
-  </data>
-  <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>If 'Add Tool Change' and 'Perform Tool Change' are enabled, value will be taken from tool table during import</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTTSSpeed.Name" xml:space="preserve">
-    <value>cBImportGCTTSSpeed</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTTSSpeed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTTSSpeed.Parent" xml:space="preserve">
-    <value>groupBox29</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTTSSpeed.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="label19.AutoSize" type="System.Boolean, mscorlib">
@@ -1238,39 +1474,6 @@ to avoid problems when scaling down gcode.</value>
   <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 88</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 13</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Spindle Speed</value>
-  </data>
-  <data name="label4.ToolTip" xml:space="preserve">
-    <value>Spindle speed for engraving </value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox29</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="tBImportGCHeader.Location" type="System.Drawing.Point, System.Drawing">
     <value>100, 37</value>
   </data>
@@ -1294,7 +1497,7 @@ No need to set this words</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;tBImportGCHeader.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1303,7 +1506,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 114</value>
+    <value>6, 86</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 13</value>
@@ -1327,7 +1530,7 @@ No need to set this words</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1361,10 +1564,10 @@ No need to set this words</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="nUDImportGCFeedXY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 112</value>
+    <value>100, 84</value>
   </data>
   <data name="nUDImportGCFeedXY.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -1388,7 +1591,7 @@ No need to set this words</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;nUDImportGCFeedXY.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="tBImportGCFooter.Location" type="System.Drawing.Point, System.Drawing">
     <value>100, 59</value>
@@ -1409,7 +1612,7 @@ No need to set this words</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;tBImportGCFooter.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1439,34 +1642,7 @@ No need to set this words</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="nUDImportGCSSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 86</value>
-  </data>
-  <data name="nUDImportGCSSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
-  </data>
-  <data name="nUDImportGCSSpeed.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="nUDImportGCSSpeed.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
-    <value>Spindle speed for engraving </value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCSSpeed.Name" xml:space="preserve">
-    <value>nUDImportGCSSpeed</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCSSpeed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCSSpeed.Parent" xml:space="preserve">
-    <value>groupBox29</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCSSpeed.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>11</value>
   </data>
   <data name="nUDImportDecPlaces.Location" type="System.Drawing.Point, System.Drawing">
     <value>100, 12</value>
@@ -1493,7 +1669,7 @@ No need to set this words</value>
     <value>groupBox29</value>
   </data>
   <data name="&gt;&gt;nUDImportDecPlaces.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>12</value>
   </data>
   <data name="groupBox29.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -1526,7 +1702,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCTTZDeepth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 73</value>
+    <value>157, 75</value>
   </data>
   <data name="cBImportGCTTZDeepth.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 17</value>
@@ -1559,7 +1735,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCTTZFeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 33</value>
+    <value>158, 35</value>
   </data>
   <data name="cBImportGCTTZFeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 17</value>
@@ -1924,73 +2100,32 @@ No need to set this words</value>
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="rBImportGCSpindleCmd2.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label72.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="rBImportGCSpindleCmd2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label72.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 16</value>
   </data>
-  <data name="rBImportGCSpindleCmd2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 13</value>
+  <data name="label72.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 13</value>
   </data>
-  <data name="rBImportGCSpindleCmd2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 17</value>
-  </data>
-  <data name="rBImportGCSpindleCmd2.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="rBImportGCSpindleCmd2.Text" xml:space="preserve">
-    <value>use 'M4'</value>
-  </data>
-  <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
-    <value>Send 'M4' to switch on the spindle
-Dynamic Laser Power Mode in Laser Mode</value>
-  </data>
-  <data name="&gt;&gt;rBImportGCSpindleCmd2.Name" xml:space="preserve">
-    <value>rBImportGCSpindleCmd2</value>
-  </data>
-  <data name="&gt;&gt;rBImportGCSpindleCmd2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBImportGCSpindleCmd2.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;rBImportGCSpindleCmd2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rBImportGCSpindleCmd1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rBImportGCSpindleCmd1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rBImportGCSpindleCmd1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 13</value>
-  </data>
-  <data name="rBImportGCSpindleCmd1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 17</value>
-  </data>
-  <data name="rBImportGCSpindleCmd1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="rBImportGCSpindleCmd1.Text" xml:space="preserve">
-    <value>use 'M3'</value>
-  </data>
-  <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
-    <value>Send 'M3' to switch on the spindle
-Constant Laser Power Mode in Laser Mode</value>
-  </data>
-  <data name="&gt;&gt;rBImportGCSpindleCmd1.Name" xml:space="preserve">
-    <value>rBImportGCSpindleCmd1</value>
-  </data>
-  <data name="&gt;&gt;rBImportGCSpindleCmd1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBImportGCSpindleCmd1.Parent" xml:space="preserve">
-    <value>groupBox6</value>
-  </data>
-  <data name="&gt;&gt;rBImportGCSpindleCmd1.ZOrder" xml:space="preserve">
+  <data name="label72.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>Check Spindle settings for M3 M4 selection and delay</value>
+  </data>
+  <data name="&gt;&gt;label72.Name" xml:space="preserve">
+    <value>label72</value>
+  </data>
+  <data name="&gt;&gt;label72.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label72.Parent" xml:space="preserve">
+    <value>groupBox6</value>
+  </data>
+  <data name="&gt;&gt;label72.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="cBImportGCUseSpindle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2023,7 +2158,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>groupBox6</value>
   </data>
   <data name="&gt;&gt;cBImportGCUseSpindle.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 158</value>
@@ -4349,8 +4484,35 @@ Saves CPU load, disables zooming during streaming</value>
   <data name="&gt;&gt;cBBackgroundImage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnMachineRangeGet.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnMachineRangeGet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 110</value>
+  </data>
+  <data name="btnMachineRangeGet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 23</value>
+  </data>
+  <data name="btnMachineRangeGet.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="btnMachineRangeGet.Text" xml:space="preserve">
+    <value>Get range from settings 130-132</value>
+  </data>
+  <data name="&gt;&gt;btnMachineRangeGet.Name" xml:space="preserve">
+    <value>btnMachineRangeGet</value>
+  </data>
+  <data name="&gt;&gt;btnMachineRangeGet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnMachineRangeGet.Parent" xml:space="preserve">
+    <value>groupBox33</value>
+  </data>
+  <data name="&gt;&gt;btnMachineRangeGet.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="nUDMachineHomeZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 216</value>
+    <value>59, 237</value>
   </data>
   <data name="nUDMachineHomeZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -4371,7 +4533,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;nUDMachineHomeZ.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label66.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4380,7 +4542,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>NoControl</value>
   </data>
   <data name="label66.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 218</value>
+    <value>6, 239</value>
   </data>
   <data name="label66.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 13</value>
@@ -4401,10 +4563,10 @@ Saves CPU load, disables zooming during streaming</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;label66.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="nUDMachineHomeY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 194</value>
+    <value>59, 217</value>
   </data>
   <data name="nUDMachineHomeY.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -4425,7 +4587,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;nUDMachineHomeY.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label65.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4434,7 +4596,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>NoControl</value>
   </data>
   <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 196</value>
+    <value>6, 219</value>
   </data>
   <data name="label65.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 13</value>
@@ -4455,7 +4617,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;label65.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label64.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4464,7 +4626,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>NoControl</value>
   </data>
   <data name="label64.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 127</value>
+    <value>6, 152</value>
   </data>
   <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 39</value>
@@ -4487,10 +4649,10 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;label64.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nUDMachineHomeX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 172</value>
+    <value>59, 197</value>
   </data>
   <data name="nUDMachineHomeX.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -4511,7 +4673,7 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;nUDMachineHomeX.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label63.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4520,7 +4682,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label63.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 174</value>
+    <value>6, 199</value>
   </data>
   <data name="label63.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 13</value>
@@ -4541,7 +4703,7 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;label63.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="cBMachineLimitsAlarm.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4550,7 +4712,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBMachineLimitsAlarm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 32</value>
+    <value>26, 32</value>
   </data>
   <data name="cBMachineLimitsAlarm.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 17</value>
@@ -4571,7 +4733,7 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;cBMachineLimitsAlarm.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cBMachineLimitsShow.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4580,7 +4742,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBMachineLimitsShow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 16</value>
+    <value>8, 16</value>
   </data>
   <data name="cBMachineLimitsShow.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 17</value>
@@ -4601,10 +4763,10 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;cBMachineLimitsShow.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="nUDMachineRangeZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 98</value>
+    <value>134, 90</value>
   </data>
   <data name="nUDMachineRangeZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -4625,10 +4787,10 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;nUDMachineRangeZ.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="nUDMachineRangeY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 76</value>
+    <value>134, 70</value>
   </data>
   <data name="nUDMachineRangeY.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -4649,10 +4811,10 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;nUDMachineRangeY.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="nUDMachineRangeX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 54</value>
+    <value>134, 50</value>
   </data>
   <data name="nUDMachineRangeX.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
@@ -4673,7 +4835,7 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;nUDMachineRangeX.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="label62.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4682,7 +4844,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label62.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 100</value>
+    <value>6, 92</value>
   </data>
   <data name="label62.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 13</value>
@@ -4703,7 +4865,7 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;label62.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="label37.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4712,7 +4874,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 78</value>
+    <value>6, 72</value>
   </data>
   <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 13</value>
@@ -4733,7 +4895,7 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;label37.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="label34.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4742,7 +4904,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 56</value>
+    <value>6, 52</value>
   </data>
   <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 13</value>
@@ -4763,7 +4925,7 @@ Note machine coordinates</value>
     <value>groupBox33</value>
   </data>
   <data name="&gt;&gt;label34.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="groupBox33.Location" type="System.Drawing.Point, System.Drawing">
     <value>258, 6</value>
@@ -4850,7 +5012,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cB4thUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 17</value>
+    <value>8, 16</value>
   </data>
   <data name="cB4thUse.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 17</value>
@@ -4895,7 +5057,7 @@ Note machine coordinates</value>
     <value>W</value>
   </data>
   <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 35</value>
+    <value>136, 34</value>
   </data>
   <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 21</value>
@@ -4922,7 +5084,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label38.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 38</value>
+    <value>22, 38</value>
   </data>
   <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 13</value>
@@ -4976,7 +5138,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 62</value>
+    <value>22, 61</value>
   </data>
   <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 13</value>
@@ -5003,7 +5165,7 @@ Note machine coordinates</value>
     <value>0</value>
   </data>
   <data name="tBRotarySetupOff.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 59</value>
+    <value>88, 58</value>
   </data>
   <data name="tBRotarySetupOff.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 20</value>
@@ -5033,7 +5195,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBRotarySetupApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 18</value>
+    <value>8, 16</value>
   </data>
   <data name="cBRotarySetupApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 17</value>
@@ -5060,7 +5222,7 @@ Note machine coordinates</value>
     <value>2</value>
   </data>
   <data name="tBRotarySetupOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 35</value>
+    <value>88, 36</value>
   </data>
   <data name="tBRotarySetupOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 20</value>
@@ -5090,7 +5252,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 38</value>
+    <value>22, 39</value>
   </data>
   <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 13</value>
@@ -5177,7 +5339,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 64</value>
+    <value>22, 60</value>
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
@@ -5204,7 +5366,7 @@ Note machine coordinates</value>
     <value>2</value>
   </data>
   <data name="nUDRotaryDiameter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 62</value>
+    <value>136, 58</value>
   </data>
   <data name="nUDRotaryDiameter.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 20</value>
@@ -5258,7 +5420,7 @@ Note machine coordinates</value>
     <value>4</value>
   </data>
   <data name="nUDRotaryScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 41</value>
+    <value>136, 36</value>
   </data>
   <data name="nUDRotaryScale.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
@@ -5291,7 +5453,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 43</value>
+    <value>22, 38</value>
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 13</value>
@@ -5321,7 +5483,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="rBRotaryY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 19</value>
+    <value>168, 14</value>
   </data>
   <data name="rBRotaryY.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 17</value>
@@ -5351,7 +5513,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="rBRotaryX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 19</value>
+    <value>136, 14</value>
   </data>
   <data name="rBRotaryX.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 17</value>
@@ -5381,7 +5543,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBRotarySubstitute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 21</value>
+    <value>8, 16</value>
   </data>
   <data name="cBRotarySubstitute.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 17</value>
