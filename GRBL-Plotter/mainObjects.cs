@@ -19,6 +19,7 @@
 
 using System;
 using System.Drawing;
+using System.Text;
 
 namespace GRBL_Plotter
 {
@@ -110,6 +111,14 @@ namespace GRBL_Plotter
             a.Y = b.Y + c.Y;
             return a;
         }
+        // Overload - operator 
+        public static xyPoint operator -(xyPoint b, xyPoint c)
+        {
+            xyPoint a = new xyPoint();
+            a.X = b.X - c.X;
+            a.Y = b.Y - c.Y;
+            return a;
+        }
         // Overload / operator 
         public static xyPoint operator /(xyPoint b, double c)
         {
@@ -119,6 +128,113 @@ namespace GRBL_Plotter
             return a;
         }
     };
+
+    /// <summary>
+    /// calculate overall dimensions of drawing
+    /// </summary>
+    public class Dimensions
+    {
+        public double minx, maxx, miny, maxy, minz, maxz;
+        public double dimx, dimy, dimz;
+
+        public Dimensions()
+        { resetDimension(); }
+        public void setDimensionXYZ(double? x, double? y, double? z)
+        {
+            if (x != null) { setDimensionX((double)x); }
+            if (y != null) { setDimensionY((double)y); }
+            if (z != null) { setDimensionZ((double)z); }
+        }
+        public void setDimensionXY(double? x, double? y)
+        {
+            if (x != null) { setDimensionX((double)x); }
+            if (y != null) { setDimensionY((double)y); }
+        }
+        public void setDimensionX(double value)
+        {
+            minx = Math.Min(minx, value);
+            maxx = Math.Max(maxx, value);
+            dimx = maxx - minx;
+        }
+        public void setDimensionY(double value)
+        {
+            miny = Math.Min(miny, value);
+            maxy = Math.Max(maxy, value);
+            dimy = maxy - miny;
+        }
+        public void setDimensionZ(double value)
+        {
+            minz = Math.Min(minz, value);
+            maxz = Math.Max(maxz, value);
+            dimz = maxz - minz;
+        }
+        // calculate min/max dimensions of a circle
+        public void setDimensionCircle(double x, double y, double radius, double start, double delta)
+        {
+            double end = start + delta;
+            if (delta > 0)
+            {
+                for (double i = start; i < end; i += 5)
+                {
+                    setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                    setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                }
+            }
+            else
+            {
+                for (double i = start; i > end; i -= 5)
+                {
+                    setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                    setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                }
+            }
+
+        }
+        public void resetDimension()
+        {
+            minx = Double.MaxValue;
+            miny = Double.MaxValue;
+            minz = Double.MaxValue;
+            maxx = Double.MinValue;
+            maxy = Double.MinValue;
+            maxz = Double.MinValue;
+            dimx = 0;
+            dimy = 0;
+            dimz = 0;
+        }
+        // return string with dimensions
+        public String getMinMaxString()
+        {
+            string x = String.Format("X:{0,8:####0.000} |{1,8:####0.000}\r\n", minx, maxx);
+            string y = String.Format("Y:{0,8:####0.000} |{1,8:####0.000}\r\n", miny, maxy);
+            string z = String.Format("Z:{0,8:####0.000} |{1,8:####0.000}", minz, maxz);
+            if ((minx == Double.MaxValue) || (maxx == Double.MinValue))
+                x = "X: unknown | unknown\r\n";
+            if ((miny == Double.MaxValue) || (maxy == Double.MinValue))
+                y = "Y: unknown | unknown\r\n";
+            if ((minz == Double.MaxValue) || (maxz == Double.MinValue))
+                z = "Z: unknown | unknown";
+            return "    Min.   | Max.\r\n" + x + y + z;
+        }
+        public bool withinLimits(xyzPoint actualMachine, xyzPoint actualWorld)
+        {
+            return (withinLimits(actualMachine, minx - actualWorld.X, miny - actualWorld.Y) && withinLimits(actualMachine, maxx - actualWorld.X, maxy - actualWorld.Y));
+        }
+        public bool withinLimits(xyzPoint actualMachine, double tstx, double tsty)
+        {
+            double minlx = (double)Properties.Settings.Default.machineLimitsHomeX;
+            double maxlx = minlx + (double)Properties.Settings.Default.machineLimitsRangeX;
+            double minly = (double)Properties.Settings.Default.machineLimitsHomeY;
+            double maxly = minly + (double)Properties.Settings.Default.machineLimitsRangeY;
+            tstx += actualMachine.X;
+            tsty += actualMachine.Y;
+            if ((tstx < minlx) || (tstx > maxlx))
+                return false;
+            if ((tsty < minly) || (tsty > maxly))
+                return false;
+            return true;
+        }
+    }
 
 
     /*   class eventArgsTemplates    // just copy and paste 
@@ -194,6 +310,16 @@ namespace GRBL_Plotter
         { get { return posZ; } }
         public string Command
         {   get { return command; } }
+    }
+
+    public static class log
+    {   public static StringBuilder logText = new StringBuilder();
+ //       public static void Add(string tmp)
+//        {   logText.AppendLine(tmp); }
+        public static string get()
+        {   return logText.ToString(); }
+        public static void clear()
+        { logText.Clear(); }
     }
 
 }
