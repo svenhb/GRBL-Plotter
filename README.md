@@ -16,37 +16,6 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
 * Replace G92 command by G10 L20 P0
 * Remove hotkey assignment with "Strg" via form-designer (Strg / Ctrl Problem)
 * Some code clean up
-   
-### New in version 1.2.3.x:
-* 1.2.3.9 Add 4 more custom buttons, status of feed rate and spindle speed in main GUI
-* 1.2.3.8 Bug fixes: wrong offset, caused by incomplete dimension calculation, svg import scaling (96,72 dpi); Add svg dpi selection in setup (96 or 72)
-* 1.2.3.3 Z-adaption also for G0 (only to pos. values); add 3rd decimal to Surface scan, Max. depth
-* 1.2.3.2 Bugfix in Z-Value correction when applying height map
-* 1.2.3.1 Removed feedback-loop. Save last spindle speed setting from GUI
-* User definable [hotkeys](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
-* Surface Scan with [Z-Probing](https://github.com/svenhb/GRBL-Plotter/wiki/Surface-scan#Z-Value-from-DIY-Control-interface) value from DIY-Control interface
-* Restart paused job after program restart
-* some bug fixes and improvements
-   
-### New in version 1.2.2.x:
-* Control via  [Keyboard](https://github.com/svenhb/GRBL-Plotter/wiki/keyboard-control)   
-* Improved import of images - check wiki
-  - smoothing of outline contour
-  - shrink contour to compensate pen width
-
-### New in version 1.2.1.x:
-* Improved import of images - check [wiki](https://github.com/svenhb/GRBL-Plotter/wiki/Image-import)
-  - New filters for easy color quantization
-  - Create outline contour to avoid wavy edges
-  
-### New in version 1.2.0.x:
-* Tool table instead of color palette (incl. tool exchange positions (water color pos.))  
-* [Drag tool compensation](https://github.com/svenhb/GRBL-Plotter/wiki/Drag-tool-compensation) (to compensate offset when drawing with a brush)   
-* automatic subroutine insertion (to refresh brush after drawing a certain distance - [Video](https://youtu.be/3LHnGV8jKIs))  
-* Show machine working area, alert on exceed  
-* Reduce CPU load by showing background picture instead of real object path during streaming   
-* Receive commands via serial port for [DIY control pad / pendant](https://github.com/svenhb/GRBL-Plotter/wiki/DIY-control)  
-  
   
 ### Check [History](https://github.com/svenhb/GRBL-Plotter/blob/master/History.md)  
       
