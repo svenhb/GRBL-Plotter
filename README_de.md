@@ -4,6 +4,18 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+### Neu in version 1.2.4.x:  
+* Neuer Menupunkt 'Ansicht'. Wechsle zwischen den Ansichten des gesamten Arbeitsbereiches oder des Codebereiches 
+* Hervorhebung des selektierten Pfaed (z.B. zum Löschen)
+* Kopiere den aktuellen Code in den Hintergrund um Orientierungspunkte zum Anfahren zu erhalten, an welchen neuer GCode ausgeführt werden soll (Kontextmenu 2D Ansicht)
+* Neues Fenster um mit Koordinatensystemen G54 zu arbeiten (Menu Machine - Koordinatensysteme)
+* Codeerzeugung mit Z-Achse und Spindle - Hinzufügen einer Zeitverzögerung nach Einschalten der Spindle (um sicher zu sein dass diese läuft)    
+* Zusätzliche Dateiendungen 'cnc', 'gcode' als mögliche GCode-Quellen 
+* Neuer Menupunkt 'Entferne jede Z Bewegung' in GCode transformieren  
+* Ersetzung vom G92 Befehl durch G10 L20 P0
+* Entfernung der HotKey Zuordnung "Strg" im Formdesigner (Strg / Ctrl Problem)
+* Some code clean up
+  
 ### Neu in Version 1.2.3.x:
 * 1.2.3.9 Add 4 more custom buttons, status of feed rate and spindle speed in main GUI
 * 1.2.3.8 Bug fixes: wrong offset, caused by incomplete dimension calculation, svg import scaling (96,72 dpi); Add svg dpi selection in setup (96 or 72)
