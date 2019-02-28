@@ -1,7 +1,7 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
-### New in version 1.2.4.x:  
+### 2019-02 version 1.2.4.x:  
 * New menu 'view'. E.g. switch between traditional object view or view to the complete machine area  
 * Highlight selected path (e.g. for deletion)
 * Copy gcode path to background as a landmark for positions applying new gcode (check context menu on 2D view)
