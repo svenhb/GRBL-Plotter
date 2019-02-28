@@ -1,6 +1,18 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### New in version 1.2.4.x:  
+* New menu 'view'. E.g. switch between traditional object view or view to the complete machine area  
+* Highlight selected path (e.g. for deletion)
+* Copy gcode path to background as a landmark for positions applying new gcode (check context menu on 2D view)
+* New window to handle coordinate systems G54, etc (Menu Machine control - Coordinate system)
+* Code creation with usage of Z and spindle - add variable delay after spindle start (to be sure spindle really started)    
+* Add extensions 'cnc', 'gcode' as possible gcode source
+* New menu item 'Remove any Z movement' in GCode Transform  
+* Replace G92 command by G10 L20 P0
+* Remove hotkey assignment with "Strg" via form-designer (Strg / Ctrl Problem)
+* Some code clean up
+  
 ### 2019-01 version 1.2.3.x:
 * 1.2.3.9 Add 4 more custom buttons, status of feed rate and spindle speed in main GUI
 * 1.2.3.8 Bug fixes: wrong offset, caused by incomplete dimension calculation, svg import scaling (96,72 dpi); Add svg dpi selection in setup (96 or 72)
