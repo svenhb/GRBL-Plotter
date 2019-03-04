@@ -314,8 +314,8 @@ namespace GRBL_Plotter
 
     public static class log
     {   public static StringBuilder logText = new StringBuilder();
- //       public static void Add(string tmp)
-//        {   logText.AppendLine(tmp); }
+        public static void Add(string tmp)
+        {   logText.AppendLine(tmp); }
         public static string get()
         {   return logText.ToString(); }
         public static void clear()

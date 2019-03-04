@@ -191,7 +191,7 @@ namespace GRBL_Plotter
             {
                 int line;
                 line = visuGCode.setPosMarkerNearBy(picAbsPos);
-                blockFCTB_Events = true;
+//                blockFCTB_Events = true;
                 fCTBCode.Selection = fCTBCode.GetLine(line);
                 fCTBCodeClickedLineNow = line;
                 fCTBCodeMarkLine();

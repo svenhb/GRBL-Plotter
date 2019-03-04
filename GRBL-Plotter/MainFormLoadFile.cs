@@ -21,6 +21,8 @@
  * Load setups
  * */
 
+//#define debuginfo
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -98,18 +100,39 @@ namespace GRBL_Plotter
             loadFile(sender.ToString());
         }
 
-        private void preset2DView()
+        private void newCodeStart()
         {
 #if (debuginfo)
-            log.Add("MainFormLoadFile preset2DView");
+            log.Add("MainFormLoadFile newCodeStart");
 #endif
+            fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+            fCTBCodeClickedLineNow = 0;
+            fCTBCodeClickedLineLast = 0;
             Cursor.Current = Cursors.WaitCursor;
+            showPicBoxBgImage = false;                  // don't show background image anymore
             pictureBox1.BackgroundImage = null;
-            visuGCode.markSelectedFigure(0);
+            visuGCode.markSelectedFigure(-1);           // hide highlight
             grbl.posMarker = new xyPoint(0, 0);
-            visuGCode.createMarkerPath();
-            visuGCode.drawMachineLimit(toolTable.getToolCordinates());
         }
+
+        private void newCodeEnd()
+        {
+#if (debuginfo)
+            log.Add("MainFormLoadFile newCodeEnd");
+#endif
+            if (commentOut)
+            { fCTB_CheckUnknownCode(); }                                // check code
+            visuGCode.getGCodeLines(fCTBCode.Lines);                    // get code path
+            visuGCode.calcDrawingArea();                                 // calc ruler dimension
+            visuGCode.drawMachineLimit(toolTable.getToolCordinates());
+            pictureBox1.Invalidate();                                   // resfresh view
+            update_GCode_Depending_Controls();                          // update GUI controls
+            updateControls();                                           // update control enable 
+            lbInfo.BackColor = SystemColors.Control;
+            this.Cursor = Cursors.Default;
+            showPaths = true;
+        }
+
         private void loadFile(string fileName)
         {
             if (isStreaming)
@@ -130,7 +153,7 @@ namespace GRBL_Plotter
                     return;
                 }
             }
-            preset2DView();
+//            preset2DView();
 
             String ext = Path.GetExtension(fileName).ToLower();
             if (ext == ".svg")
@@ -262,87 +285,64 @@ namespace GRBL_Plotter
 
         private void startConvertSVG(string source)
         {
-            preset2DView();
-            string gcode = GCodeFromSVG.convertFromFile(source);
-            blockFCTB_Events = true;
-            if (gcode.Length > 2)
-            {
-                fCTBCode.Text = gcode;
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                redrawGCodePath();
-                SaveRecentFile(source);
-                this.Text = appName + " | Source: " + source;
-            }
-            this.Cursor = Cursors.Default;
-            updateControls();
+#if (debuginfo)
+            log.Add("MainFormLoadFile startConvertSVG");
+#endif
+            newCodeStart();
+            fCTBCode.Text = GCodeFromSVG.convertFromFile(source);        // get code
+            newCodeEnd();
+            SaveRecentFile(source);
+            this.Text = appName + " | Source: " + source;
+            lbInfo.Text = "SVG-Code loaded";
         }
 
         private void startConvertDXF(string source)
         {
-            preset2DView();
-            string gcode = GCodeFromDXF.ConvertFromFile(source);
-            blockFCTB_Events = true;
-            if (gcode.Length > 2)
-            {
-                fCTBCode.Text = gcode;
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                redrawGCodePath();
-                SaveRecentFile(source);
-                this.Text = appName + " | Source: " + source;
-            }
-            this.Cursor = Cursors.Default;
-            updateControls();
+#if (debuginfo)
+            log.Add("MainFormLoadFile startConvertDXF");
+#endif
+            newCodeStart();
+            fCTBCode.Text = GCodeFromDXF.ConvertFromFile(source);
+            newCodeEnd();
+            SaveRecentFile(source);
+            this.Text = appName + " | Source: " + source;
+            lbInfo.Text = "DXF-Code loaded";
         }
 
         private void startConvertDrill(string source)
         {
-            preset2DView();
-            string gcode = GCodeFromDrill.ConvertFile(source);
-            blockFCTB_Events = true;
-            if (gcode.Length > 2)
-            {
-                fCTBCode.Text = gcode;
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                redrawGCodePath();
-                SaveRecentFile(source);
-                this.Text = appName + " | Source: " + source;
-            }
-            this.Cursor = Cursors.Default;
-            updateControls();
+#if (debuginfo)
+            log.Add("MainFormLoadFile startConvertDrill");
+#endif
+            newCodeStart();
+            fCTBCode.Text = GCodeFromDrill.ConvertFile(source);
+            newCodeEnd();
+            SaveRecentFile(source);
+            this.Text = appName + " | Source: " + source;
+            lbInfo.Text = "Drill-Code loaded";
         }
 
 
-        bool blockFCTB_Events = true;
+        //        bool blockFCTB_Events = true;
         private void loadGcode()
         {
             if (File.Exists(tbFile.Text))
             {
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                fCTBCodeClickedLineNow = 0;
-                fCTBCodeClickedLineLast = 0;
-                grbl.posMarker = new xyPoint(0, 0);// visuGCode.setPosMarker(new xyPoint(0, 0));
-                blockFCTB_Events = true;
+                newCodeStart();
                 fCTBCode.OpenFile(tbFile.Text);
                 if (_serial_form.isLasermode && Properties.Settings.Default.ctrlReplaceEnable)
                 {
                     if (Properties.Settings.Default.ctrlReplaceM3)
-                    {
-                        fCTBCode.Text = fCTBCode.Text.Replace("M3", "M4");
                         fCTBCode.Text = "(!!! Replaced M3 by M4 !!!)\r\n" + fCTBCode.Text.Replace("M03", "M04");
-                    }
                     else
-                    {
-                        fCTBCode.Text = fCTBCode.Text.Replace("M4", "M3");
                         fCTBCode.Text = "(!!! Replaced M4 by M3 !!!)\r\n" + fCTBCode.Text.Replace("M04", "M03");
-                    }
                 }
+                newCodeEnd();
 
-                redrawGCodePath();
-                //                blockFCTB_Events = false;
-                lbInfo.Text = "G-Code loaded";
-                lbInfo.BackColor = SystemColors.Control;
-                updateControls();
+                SaveRecentFile(tbFile.Text);
                 this.Text = appName + " | File: " + tbFile.Text;
+                lbInfo.Text = "G-Code loaded";
+
                 if (tbFile.Text.EndsWith(fileLastProcessed + ".nc"))
                 {   string fileInfo = Path.ChangeExtension(tbFile.Text, ".xml");
                     if (File.Exists(fileInfo))
@@ -460,7 +460,7 @@ namespace GRBL_Plotter
         // paste from clipboard SVG or image
         private void loadFromClipboard()
         {
-            preset2DView();
+            newCodeStart();
             string svg_format1 = "image/x-inkscape-svg";
             string svg_format2 = "image/svg+xml";
             IDataObject iData = Clipboard.GetDataObject();
@@ -481,19 +481,12 @@ namespace GRBL_Plotter
                     if (!(txt.IndexOf("xmlns") >= 0))
                         txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ");
 
-                    this.Cursor = Cursors.WaitCursor;
-                    //MessageBox.Show(txt);
-                    string gcode = GCodeFromSVG.convertFromText(txt.Trim((char)0x00), true);    // import as mm
-                    if (gcode.Length > 2)
-                    {
-                        fCTBCode.Text = gcode;
-                        fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                        redrawGCodePath();
-                        this.Text = appName + " | Source: from Clipboard";
-                    }
-                    this.Cursor = Cursors.Default;
-                    updateControls();
+                    newCodeStart();
+                    fCTBCode.Text = GCodeFromSVG.convertFromText(txt.Trim((char)0x00), true);    // import as mm
+                    newCodeEnd();
+                    this.Text = appName + " | Source: from Clipboard";
                     setLastLoadedFile("Data from Clipboard: SVG","");
+                    lbInfo.Text = "SVG from clipboard";
                 }
                 else if ((checkLines[0].Trim() == "0") && (checkLines[1].Trim() == "SECTION"))
                 {
@@ -502,26 +495,20 @@ namespace GRBL_Plotter
                     byte[] bytes = stream.ToArray();
                     string txt = System.Text.Encoding.Default.GetString(bytes);
 
-                    this.Cursor = Cursors.WaitCursor;
-                    //MessageBox.Show(txt);
-                    string gcode = GCodeFromDXF.convertFromText(txt);
-                    if (gcode.Length > 2)
-                    {
-                        fCTBCode.Text = gcode;
-                        fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                        redrawGCodePath();
-                        this.Text = appName + " | Source: from Clipboard";
-                    }
-                    this.Cursor = Cursors.Default;
-                    updateControls();
+                    newCodeStart();
+                    fCTBCode.Text = GCodeFromDXF.convertFromText(txt);
+                    newCodeEnd();
+                    this.Text = appName + " | Source: from Clipboard";
                     setLastLoadedFile("Data from Clipboard: DXF","");
+                    lbInfo.Text = "DXF from clipboard";
                 }
                 else
                 {
+                    newCodeStart();
                     fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
-                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                    redrawGCodePath();
+                    newCodeEnd();
                     setLastLoadedFile("Data from Clipboard: Text","");
+                    lbInfo.Text = "GCode from clipboard";
                 }
             }
             else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
@@ -534,19 +521,13 @@ namespace GRBL_Plotter
 
                 byte[] bytes = stream.ToArray();
                 string txt = System.Text.Encoding.Default.GetString(bytes);
-                this.Cursor = Cursors.WaitCursor;
 
-                string gcode = GCodeFromSVG.convertFromText(txt);
-                if (gcode.Length > 2)
-                {
-                    fCTBCode.Text = gcode;
-                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                    redrawGCodePath();
-                    this.Text = appName + " | Source: from Clipboard";
-                }
-                this.Cursor = Cursors.Default;
-                updateControls();
+                newCodeStart();
+                fCTBCode.Text = GCodeFromSVG.convertFromText(txt);
+                newCodeEnd();
+                this.Text = appName + " | Source: from Clipboard";
                 setLastLoadedFile("Data from Clipboard: SVG","");
+                lbInfo.Text = "SVG from clipboard";
             }
             else if (iData.GetDataPresent(DataFormats.Bitmap))
             {
@@ -579,6 +560,9 @@ namespace GRBL_Plotter
         // load settings
         public void loadSettings(object sender, EventArgs e)
         {
+#if (debuginfo)
+            log.Add("MainFormLoadFile loadSettings");
+#endif
             try
             {
                 if (Properties.Settings.Default.UpgradeRequired)
@@ -618,7 +602,7 @@ namespace GRBL_Plotter
                 brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.colorMachineLimit, Color.Transparent);
                 picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 commentOut = Properties.Settings.Default.ctrlCommentOut;
-                updateDrawing();
+ //               updateDrawing();
 
                 joystickXYStep[0] = 0;
                 joystickXYStep[1] = (double)Properties.Settings.Default.joyXYStep1;
@@ -701,6 +685,7 @@ namespace GRBL_Plotter
                 label_wa.Visible = ctrl4thAxis;
                 label_ma.Visible = ctrl4thAxis;
                 btnZeroA.Visible = ctrl4thAxis;
+                mirrorRotaryToolStripMenuItem.Visible = ctrl4thAxis;
                 btnZeroA.Text = "Zero " + ctrl4thName;
                 if (Properties.Settings.Default.language == "de-DE")
                     btnZeroA.Text = ctrl4thName + " nullen";
@@ -708,15 +693,14 @@ namespace GRBL_Plotter
                 virtualJoystickA.Visible = ctrl4thAxis;
                 btnJogZeroA.Visible = ctrl4thAxis;
                 btnJogZeroA.Text = ctrl4thName + "=0";
+
+                resizeJoystick();
                 if (ctrl4thAxis)
                 {
                     label_status0.Location = new Point(1, 128);
                     label_status.Location = new Point(1, 148);
                     btnHome.Location = new Point(122, 138);
                     btnHome.Size = new Size(117, 30);
-                    virtualJoystickXY.Size = new Size(160, 160);
-                    virtualJoystickZ.Size = new Size(30, 160);
-                    virtualJoystickZ.Location = new Point(166, 115);
                 }
                 else
                 {
@@ -724,9 +708,6 @@ namespace GRBL_Plotter
                     label_status.Location = new Point(1, 138);
                     btnHome.Location = new Point(122, 111);
                     btnHome.Size = new Size(117, 57);
-                    virtualJoystickXY.Size = new Size(180, 180);
-                    virtualJoystickZ.Size = new Size(40, 180);
-                    virtualJoystickZ.Location = new Point(186, 115);
                 }
                 toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
                 toolStripViewTool.Checked = Properties.Settings.Default.toolTableShow;

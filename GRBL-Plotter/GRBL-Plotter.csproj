@@ -27,7 +27,7 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.2.4.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -169,6 +169,9 @@
     <Compile Include="MachineControl\ControlPowerSaving.cs" />
     <Compile Include="MachineControl\GCodeParser.cs" />
     <Compile Include="MachineControl\NativeMethods.cs" />
+    <Compile Include="MainFormGetCodeTransform.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mainObjects.cs" />
     <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
     <Compile Include="MachineControl\ControlCameraForm.cs">
@@ -215,6 +218,12 @@
     </Compile>
     <Compile Include="MainFormPictureBox.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageForm.Designer.cs">
+      <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -311,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageForm.resx">
+      <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -495,6 +507,7 @@
     <Content Include="Recent.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\fctb_hotkeys.txt" />
     <Content Include="_misc\script_pen_pickup.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

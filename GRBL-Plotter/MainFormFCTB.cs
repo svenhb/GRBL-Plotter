@@ -27,6 +27,8 @@
  * 2018-01-04 no selection of text to highlight current line 136...
 */
 
+#define debuginfo
+
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -40,20 +42,22 @@ namespace GRBL_Plotter
 
         #region fCTB FastColoredTextBox related
         // highlight code in editor
-        Style StyleComment = new TextStyle(Brushes.Gray, null, FontStyle.Italic);
-        Style StyleGWord = new TextStyle(Brushes.Blue, null, FontStyle.Bold);
-        Style StyleMWord = new TextStyle(Brushes.SaddleBrown, null, FontStyle.Regular);
-        Style StyleFWord = new TextStyle(Brushes.Red, null, FontStyle.Regular);
-        Style StyleSWord = new TextStyle(Brushes.OrangeRed, null, FontStyle.Regular);
-        Style StyleTool = new TextStyle(Brushes.Black, null, FontStyle.Regular);
-        Style StyleXAxis = new TextStyle(Brushes.Green, null, FontStyle.Bold);
-        Style StyleYAxis = new TextStyle(Brushes.BlueViolet, null, FontStyle.Bold);
-        Style StyleZAxis = new TextStyle(Brushes.Red, null, FontStyle.Bold);
+        private Style StyleComment = new TextStyle(Brushes.Gray, null, FontStyle.Italic);
+        private Style StyleGWord = new TextStyle(Brushes.Blue, null, FontStyle.Bold);
+        private Style StyleMWord = new TextStyle(Brushes.SaddleBrown, null, FontStyle.Regular);
+        private Style StyleFWord = new TextStyle(Brushes.Red, null, FontStyle.Regular);
+        private Style StyleSWord = new TextStyle(Brushes.OrangeRed, null, FontStyle.Regular);
+        private Style StyleTool = new TextStyle(Brushes.Black, null, FontStyle.Regular);
+        private Style StyleLineN = new TextStyle(Brushes.DarkGray, null, FontStyle.Regular);
+        private Style StyleXAxis = new TextStyle(Brushes.Green, null, FontStyle.Bold);
+        private Style StyleYAxis = new TextStyle(Brushes.BlueViolet, null, FontStyle.Bold);
+        private Style StyleZAxis = new TextStyle(Brushes.Red, null, FontStyle.Bold);
+        private Style StyleAAxis = new TextStyle(Brushes.DarkCyan, null, FontStyle.Bold);
 
         private void fCTBCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
 #if (debuginfo)
-           log.Add("MainFormFCTB event fCTBCode_TextChanged");
+            log.Add("MainFormFCTB event fCTBCode_TextChanged");
 #endif
             e.ChangedRange.ClearStyle(StyleComment);
             e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -61,30 +65,17 @@ namespace GRBL_Plotter
             e.ChangedRange.SetStyle(StyleMWord, "(M\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleFWord, "(F\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleSWord, "(S\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
+            e.ChangedRange.SetStyle(StyleLineN, "(N\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleTool, "(T\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleXAxis, "[XIxi]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-        }
-
-        //bool showChangedMessage = true;     // show Message if TextChanged
-        private void fCTBCode_TextChangedDelayed(object sender, TextChangedEventArgs e)
-        {   //showChangedMessage = true;
-            if (fCTBCode.LinesCount > 2)            // only redraw if GCode is available, otherwise startup picture disappears
-            {   if (commentOut)
-                {   fCTB_CheckUnknownCode(); }
-                pictureBox1.BackgroundImage = null;
-                if (!blockFCTB_Events)
-                {   redrawGCodePath();
-     //               MessageBox.Show("textchangedelayed");
-                }
-                blockFCTB_Events = false;
-            }
+            e.ChangedRange.SetStyle(StyleAAxis, "[AaBbCcUuVvWw]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
         }
 
         private void fCTB_CheckUnknownCode()
         {   string curLine;
-            string allowed = "NGMFIJKLNPRSTUVWXYZOPLngmfijklnprstuvwxyzopl ";
+            string allowed = "ABCNGMFIJKLNPRSTUVWXYZOPLabcngmfijklnprstuvwxyzopl ";
             string number = " +-.0123456789";
             string cmt = "(;";
             string message = "";
@@ -168,32 +159,51 @@ namespace GRBL_Plotter
         private void cmsCode_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Name == "cmsCodeSelect")
-            {
                 fCTBCode.SelectAll();
-            }
-            if (e.ClickedItem.Name == "cmsCodeCopy")
+            else if (e.ClickedItem.Name == "cmsCodeCopy")
             {
                 if (fCTBCode.SelectedText.Length > 0)
                     fCTBCode.Copy();
             }
-            if (e.ClickedItem.Name == "cmsCodePaste")
-            {
+            else if (e.ClickedItem.Name == "cmsCodePaste")
                 fCTBCode.Paste();
-            }
-            if (e.ClickedItem.Name == "cmsCodeSendLine")
+            else if (e.ClickedItem.Name == "cmsCodeSendLine")
             {
                 int clickedLine = fCTBCode.Selection.ToLine;
                 sendCommand(fCTBCode.Lines[clickedLine], false);
-                //MessageBox.Show(fCTBCode.Lines[clickedLine]);
             }
-            if (e.ClickedItem.Name == "cmsCommentOut")
-            {
+            else if (e.ClickedItem.Name == "cmsCommentOut")
                 fCTB_CheckUnknownCode();
-            }
+            else if (e.ClickedItem.Name == "cmsUpdate2DView")
+                newCodeEnd();
+            else if (e.ClickedItem.Name == "cmsReplaceDialog")
+                fCTBCode.ShowReplaceDialog();
+            else if (e.ClickedItem.Name == "cmsFindDialog")
+                fCTBCode.ShowFindDialog();
+            else if (e.ClickedItem.Name == "cmsEditorHotkeys")
+            { showMessageForm(Properties.Resources.fctb_hotkeys); }
         }
 
-#endregion
-                
+        private void showMessageForm(string text)
+        {
+            if (_message_form == null)
+            {
+                _message_form = new MessageForm();
+                _message_form.FormClosed += formClosed_MessageForm;
+            }
+            else
+            {
+                _message_form.Visible = false;
+            }
+            _message_form.showMessage(text);
+            _message_form.Show(this);
+        }
+        private void formClosed_MessageForm(object sender, FormClosedEventArgs e)
+        { _message_form = null;  }
+
+
+        #endregion
+
         private void moveToFirstPosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int start = visuGCode.getLineOfFirstPointInFigure();
@@ -251,7 +261,7 @@ namespace GRBL_Plotter
                 fCTBCodeMarkLine();
             }
             fCTBCode.DoCaretVisible();
-            redrawGCodePath();
+            newCodeEnd();
             return;
         }
 
