@@ -722,7 +722,9 @@ namespace GRBL_Plotter
                     Move(gcodeString, 1, x, y, applyXYFeedRate, cmt);
 
                     if (moveLength >= (count*segmentLength))
-                    {   applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
+                    {
+                        if (gcodeInsertSubroutine)
+                            applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
                         count++;
                     }
                     if (cmt.Length > 1) cmt = "";
@@ -739,7 +741,9 @@ namespace GRBL_Plotter
                     Move(gcodeString, 1, x, y, applyXYFeedRate, cmt);
 
                     if (moveLength >= (count * segmentLength))
-                    {   applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
+                    {
+                        if (gcodeInsertSubroutine)
+                            applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
                         count++;
                     }
                     if (cmt.Length > 1) cmt = "";
@@ -747,7 +751,9 @@ namespace GRBL_Plotter
             }
             Move(gcodeString, 1, x2, y2, applyXYFeedRate, "End Arc conversion");
             if ((moveLength >= (count * segmentLength)) || equidistance)
-            {   applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
+            {
+                if (gcodeInsertSubroutine)
+                    applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
                 moveLength = 0;
             }
         }
