@@ -157,4 +157,10 @@
   <data name="setting_codes_en_US" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\setting_codes_en_US.csv;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="fctb_hotkeys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\fctb_hotkeys.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Properties.Resources</value>
+  </data>
 </root>

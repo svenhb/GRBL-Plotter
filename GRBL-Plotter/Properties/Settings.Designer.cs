@@ -3286,5 +3286,17 @@ namespace GRBL_Plotter.Properties {
                 this["importGCSpindleDelay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("180")]
+        public int joystickSize {
+            get {
+                return ((int)(this["joystickSize"]));
+            }
+            set {
+                this["joystickSize"] = value;
+            }
+        }
     }
 }

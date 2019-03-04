@@ -818,5 +818,8 @@
     <Setting Name="importGCSpindleDelay" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="joystickSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

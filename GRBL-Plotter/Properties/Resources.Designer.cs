@@ -118,6 +118,25 @@ namespace GRBL_Plotter.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fast Colored TextBox hotkeys
+        ///- Left, Right, Up, Down, Home, End, PageUp, PageDown - moves caret
+        ///- Shift+(Left, Right, Up, Down, Home, End, PageUp, PageDown) - moves caret with selection
+        ///- Ctrl+F, Ctrl+H - shows Find and Replace dialogs
+        ///- F3 - find next
+        ///- Ctrl+G - shows GoTo dialog
+        ///- Ctrl+(C, V, X) - standard clipboard operations
+        ///- Ctrl+A - selects all text
+        ///- Ctrl+Z, Alt+Backspace, Ctrl+R - Undo/Redo opertions
+        ///- Tab, Shift+Tab - increase/decrease left indent of selected range
+        ///- Ctrl+Home, Ctrl+End  [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        internal static string fctb_hotkeys {
+            get {
+                return ResourceManager.GetString("fctb_hotkeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap flip_horizontal {
@@ -178,6 +197,15 @@ namespace GRBL_Plotter.Properties {
         internal static string setting_codes_en_US {
             get {
                 return ResourceManager.GetString("setting_codes_en_US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Properties.Resources ähnelt.
+        /// </summary>
+        internal static string String {
+            get {
+                return ResourceManager.GetString("String", resourceCulture);
             }
         }
         
