@@ -127,6 +127,7 @@ namespace GRBL_Plotter
             dGVToolList.SortCompare += new DataGridViewSortCompareEventHandler(this.dGV_SortColor);
 
             listHotkeys();
+            lblJoystickSize.Text = hScrollBar1.Value.ToString();
         }
 
         private void saveSettings()
@@ -697,6 +698,10 @@ namespace GRBL_Plotter
                 nUDMachineRangeY.Value = (decimal)grbl.getSetting(131);
                 nUDMachineRangeZ.Value = (decimal)grbl.getSetting(132);
             }
+        }
+
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {   lblJoystickSize.Text = hScrollBar1.Value.ToString();
         }
     }
 }

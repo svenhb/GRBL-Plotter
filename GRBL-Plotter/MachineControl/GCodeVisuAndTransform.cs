@@ -31,6 +31,8 @@
  * 2019-02-27 createGCodeProg add output for A,B,C,U,V,W axis
 */
 
+//#define debuginfo 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,11 +40,12 @@ using System.Text;
 using System.Drawing.Drawing2D;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GRBL_Plotter
 {
     public class GCodeVisuAndTransform
-    {   public enum translate { None, ScaleX, ScaleY, Offset1, Offset2, Offset3, Offset4, Offset5, Offset6, Offset7, Offset8, Offset9, MirrorX, MirrorY };
+    {   public enum translate { None, ScaleX, ScaleY, Offset1, Offset2, Offset3, Offset4, Offset5, Offset6, Offset7, Offset8, Offset9, MirrorX, MirrorY, MirrorRotary };
         public Dimensions xyzSize = new Dimensions();
         public static drawingProperties drawingSize = new drawingProperties();
         public static GraphicsPath pathPenUp = new GraphicsPath();
@@ -170,9 +173,9 @@ namespace GRBL_Plotter
         {
             maxStep = (float)Map.GridX;
             getGCodeLines(oldCode,true);                // read gcode and process subroutines
-            IList<string> tmp=createGCodeProg(true,false,false).Split('\r').ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            IList<string> tmp=createGCodeProg(true,true,false,false).Split('\r').ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
             getGCodeLines(tmp, false);                  // reload code
-            return createGCodeProg(false, true, false, Map);        // apply new Z-value;
+            return createGCodeProg(false, false, true, false, Map);        // apply new Z-value;
         }
 
         /// <summary>
@@ -195,6 +198,10 @@ namespace GRBL_Plotter
         /// </summary>
         public void getGCodeLines(IList<string> oldCode, bool processSubs=false)
         {
+#if (debuginfo)
+            log.Add("   GCodeVisu getGCodeLines");
+            File.WriteAllText("logfile.txt", "");
+#endif
             string[] GCode = oldCode.ToArray<string>();
             string singleLine;
             modal = new modalGroup();               // clear
@@ -205,7 +212,7 @@ namespace GRBL_Plotter
             oldLine.resetAll(grbl.posWork);         // reset coordinates and parser modes, set initial pos
             newLine.resetAll();                     // reset coordinates and parser modes
             bool programEnd = false;
-            figureCount = 0;                        // will be inc. in createDrawingPathFromGCode
+            figureCount = 1;                        // will be inc. in createDrawingPathFromGCode
 
             for (int lineNr = 0; lineNr < GCode.Length; lineNr++)   // go through all gcode lines
             {
@@ -234,7 +241,9 @@ namespace GRBL_Plotter
                 oldLine = new gcodeByLine(newLine);                     // get copy of newLine      
                 gcodeList.Add(new gcodeByLine(newLine));                // add parsed line to list
                 coordList.Add(new coordByLine(lineNr, newLine.figureNumber, (xyPoint)newLine.actualPos));
-
+#if (debuginfo)
+                File.AppendAllText("logfile.txt",lineNr+"  "+ newLine.figureNumber+"  "+ newLine.actualPos.X+"  "+ newLine.actualPos.Y + "\r");
+#endif
                 if ((modal.mWord == 30) || (modal.mWord == 2)) { programEnd = true; }
                 if (modal.mWord == 98)
                 {   if (lastSubroutine[0] == modal.pWord)
@@ -376,7 +385,7 @@ namespace GRBL_Plotter
         public void setPosMarkerLine(int line, bool markFigure=true)
         {
 #if (debuginfo)
-            log.Add("GCodeVisu setPosMarkerLine line: " + line.ToString());
+            log.Add("   GCodeVisu setPosMarkerLine line: " + line.ToString());
 #endif
             int figureNr;
             try
@@ -423,7 +432,6 @@ namespace GRBL_Plotter
             foreach (coordByLine gcline in coordList)
             {   gcline.calcDistance(pos);       // calculate distance work coordinates
                 tmpList.Add(gcline);            // add to new list
-
             }
             if (Properties.Settings.Default.backgroundShow && (coordListLandMark.Count > 1))
             {   foreach (coordByLine gcline in coordListLandMark)
@@ -436,7 +444,7 @@ namespace GRBL_Plotter
             grbl.posMarker = (xyPoint)SortedList[line].actualPos;
             figureNr = SortedList[line].figureNumber;
 #if (debuginfo)
-            log.Add("GCodeVisu setPosMarkerNearBy found figure: " + figureNr.ToString() + " last: "+ lastFigureNumber.ToString());
+            log.Add("   GCodeVisu setPosMarkerNearBy found figure: " + figureNr.ToString() + " last: "+ lastFigureNumber.ToString());
 #endif
             createMarkerPath();
             if (figureNr != lastFigureNumber)
@@ -481,10 +489,11 @@ namespace GRBL_Plotter
         public void markSelectedFigure(int fnr)
         {
 #if (debuginfo)
-            log.Add("GCodeVisu markSelectedFigure fnr: " + fnr.ToString());
+            log.Add("   GCodeVisu markSelectedFigure fnr: " + fnr.ToString());
 #endif
             if (fnr <= 0)
             {   pathMarkSelection.Reset();
+                lastFigureNumber = -1;
                 return;
             }
             GraphicsPathIterator myPathIterator = new GraphicsPathIterator(pathPenDown);
@@ -496,7 +505,11 @@ namespace GRBL_Plotter
 
         public string transformGCodeMirror(translate shiftToZero = translate.MirrorX)
         {
+#if (debuginfo)
+            log.Add("   GCodeVisu transform Mirror");
+#endif
             if (gcodeList == null) return "";
+            pathMarkSelection.Reset(); lastFigureNumber = -1;
             double oldmaxx = xyzSize.maxx;
             double oldmaxy = xyzSize.maxy;
             oldLine.resetAll(grbl.posWork);         // reset coordinates and parser modes
@@ -534,19 +547,29 @@ namespace GRBL_Plotter
                         }
                         gcline.j = -gcline.j;
                     }
+                    if (shiftToZero == translate.MirrorRotary)           // mirror rotary
+                    {   string rotary = Properties.Settings.Default.ctrl4thName;
+                        if ((rotary == "A") && (gcline.a != null)) {   gcline.a = -gcline.a; }
+                        else if ((rotary == "B") && (gcline.b != null)) { gcline.b = -gcline.b; }
+                        else if ((rotary == "C") && (gcline.c != null)) { gcline.c = -gcline.c; }
+                    }
 
                     calcAbsPosition(gcline, oldLine);
                     oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
-            return createGCodeProg(false,false,false);  // createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            return createGCodeProg();  
         }
         /// <summary>
         /// rotate and scale arround offset
         /// </summary>
         public string transformGCodeRotate(double angle, double scale, xyPoint offset)
-        {   if (gcodeList == null) return "";
-
+        {
+#if (debuginfo)
+            log.Add("   GCodeVisu transform Rotate");
+#endif
+            if (gcodeList == null) return "";
+            pathMarkSelection.Reset(); lastFigureNumber = -1;
             double? newvalx, newvaly, newvali, newvalj;
             oldLine.resetAll(grbl.posWork);         // reset coordinates and parser modes
             clearDrawingnPath();                    // reset path, dimensions
@@ -583,14 +606,18 @@ namespace GRBL_Plotter
                     oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
-            return createGCodeProg(false,false, false); // createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            return createGCodeProg();
         }
         /// <summary>
         /// scale x and y seperatly in %
         /// </summary>
         public string transformGCodeScale(double scaleX, double scaleY)
         {
+#if (debuginfo)
+            log.Add("   GCodeVisu transform Scale");
+#endif
             if (gcodeList == null) return "";
+            pathMarkSelection.Reset(); lastFigureNumber = -1;
             double factor_x = scaleX / 100;
             double factor_y = scaleY / 100;
             oldLine.resetAll(grbl.posWork);         // reset coordinates and parser modes
@@ -612,11 +639,15 @@ namespace GRBL_Plotter
                     oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
-            return createGCodeProg(false, false, false);        // createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            return createGCodeProg();        
         }
         public string transformGCodeOffset(double x, double y, translate shiftToZero)
         {
+#if (debuginfo)
+            log.Add("   GCodeVisu transform Offset");
+#endif
             if (gcodeList == null) return "";
+            pathMarkSelection.Reset(); lastFigureNumber = -1;
             double offsetX = 0;
             double offsetY = 0;
             bool offsetApplied = false;
@@ -693,22 +724,28 @@ namespace GRBL_Plotter
                     oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
-            return createGCodeProg(false, false, false);   // createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            return createGCodeProg();   
         }
 
         public string replaceG23()
-        {   return createGCodeProg(true,false,false); }   // createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+        {   return createGCodeProg(true, false, false,false); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
 
         public string removeZ()
-        { return createGCodeProg(false, false, true); }   // createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+        { return createGCodeProg(false, false, false, true); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
 
         /// <summary>
         /// Generate GCode from given coordinates in GCodeList
         /// only replace lines with coordinate information
         /// </summary>
-        private string createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+        private string createGCodeProg()
+        {   return createGCodeProg(false,false,false,false); }
+        private string createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
         {
+#if (debuginfo)
+            log.Add("   GCodeVisu createGCodeProg");
+#endif
             if (gcodeList == null) return "";
+            pathMarkSelection.Reset(); lastFigureNumber = -1;
             StringBuilder newCode = new StringBuilder();
             StringBuilder tmpCode = new StringBuilder();
             //string infoCode;
@@ -733,6 +770,7 @@ namespace GRBL_Plotter
 
                 if ((!hide_code) && (replaceG23))                   // replace circles
                 {
+                    gcode.setup();
                     gcode.lastx = (float)lastActualX;
                     gcode.lasty = (float)lastActualY;
                     gcode.gcodeXYFeed = gcline.feedRate;
@@ -747,8 +785,10 @@ namespace GRBL_Plotter
                         gcode.splitArc(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)i, (float)j, true, gcline.codeLine);
                     }
                     else if (gcline.motionMode == 1)
-                    {   if ((gcline.x != null) || (gcline.y != null))
-                            gcode.splitLine(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, maxStep, true, gcline.codeLine);
+                    {   if (((gcline.x != null) || (gcline.y != null)) && splitMoves)
+                        {   
+                                gcode.splitLine(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, maxStep, true, gcline.codeLine);
+                        }
                         else
                         { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
                     }
@@ -823,12 +863,18 @@ namespace GRBL_Plotter
         public GCodeVisuAndTransform()
         {   xyzSize.resetDimension(); }
         private void clearDrawingnPath()
-        {   xyzSize.resetDimension();
+        {
+#if (debuginfo)
+            log.Add("   GCodeVisu clearDrawingPath");
+#endif
+            xyzSize.resetDimension();
             pathPenUp.Reset();
             pathPenDown.Reset();
             pathRuler.Reset();
             pathTool.Reset();
             pathMarker.Reset();
+            pathMarkSelection.Reset();
+            lastFigureNumber = -1;
             path = pathPenUp;
         }
 
@@ -858,8 +904,13 @@ namespace GRBL_Plotter
                 {   passLimit = true;
                     path.StartFigure();
                     if (path == pathPenDown)
-                    {   figureCount++;
-                        oldL.figureNumber = figureCount;
+                    {   if (pathPenDown.PointCount > 0)
+                        {   figureCount++;                  // only inc. if old figure was filled
+                            oldL.figureNumber = figureCount;
+                        }
+/*#if (debuginfo)
+                        File.AppendAllText("logfile.txt", ">>>>"+newL.codeLine + "  " + figureCount +"\r" );
+#endif*/
                     }
                 }
 
@@ -942,37 +993,39 @@ namespace GRBL_Plotter
         }
 
         // setup drawing area 
-        public void createImagePath()
+        public void calcDrawingArea()
         {
 #if (debuginfo)
-            log.Add("GCodeVisu createImagePath" );
+            log.Add("   GCodeVisu calcDrawinArea");
 #endif
             double extend = 1.01;                                                       // extend dimension a little bit
             double roundTo = 5;                                                         // round-up dimensions
             if (!Properties.Settings.Default.importUnitmm)
             { roundTo = 0.25; }
+
+            if ((xyzSize.miny == 0) && (xyzSize.maxy == 0))
+            { xyzSize.miny = -1; xyzSize.maxy = 1; }
+
             drawingSize.minX = Math.Floor(xyzSize.minx* extend / roundTo)* roundTo;                  // extend dimensions
             if (drawingSize.minX >= 0) { drawingSize.minX = -roundTo; }                                          // be sure to show 0;0 position
             drawingSize.maxX = Math.Ceiling(xyzSize.maxx* extend / roundTo) * roundTo;
             drawingSize.minY = Math.Floor(xyzSize.miny* extend / roundTo) * roundTo;
             if (drawingSize.minY >= 0) { drawingSize.minY = -roundTo; }
             drawingSize.maxY = Math.Ceiling(xyzSize.maxy* extend / roundTo) * roundTo;
-            double xRange = (drawingSize.maxX - drawingSize.minX);                                              // calculate new size
-            double yRange = (drawingSize.maxY - drawingSize.minY);
-            createRuler(drawingSize.maxX, drawingSize.maxY);
+            createRuler(drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
             createMarkerPath();
         }
 
         public void createMarkerPath()
         {
 #if (debuginfo)
-            log.Add("GCodeVisu createMarkerPath");
+            log.Add("   GCodeVisu createMarkerPath");
 #endif
             float msize = (float) Math.Max(xyzSize.dimx, xyzSize.dimy) / 50;
             createMarker(pathTool,   (float)grbl.posWork.X,   (float)grbl.posWork.Y, msize, 2);
             createMarker(pathMarker, (float)grbl.posMarker.X, (float)grbl.posMarker.Y, msize, 3);
         }
-        private void createRuler(double maxX, double maxY)
+        private void createRuler(double minX, double maxX, double minY, double maxY)
         {
             pathRuler.Reset();
             float unit = 1;
@@ -990,7 +1043,9 @@ namespace GRBL_Plotter
                 divider_short   = 4;
                 show_short      = 20*divider;
                 show_smallest   = 6*divider;
+                minX = minX * divider; // unit;
                 maxX = maxX * divider; // unit;
+                minY = minY * divider; // unit;
                 maxY = maxY * divider; // unit;
                 length1 = 0.05F; length2 = 0.1F; length3 = 0.15F; length5 = 0.25F;
             }
@@ -1009,6 +1064,22 @@ namespace GRBL_Plotter
                 else if (maxX < show_smallest)
                 { pathRuler.AddLine(x, 0, x, -length1); }  // 1
             }
+            for (int i = 0; i > minX; i--)          // horizontal ruler
+            {
+                pathRuler.StartFigure();
+                x = (float)i * unit / (float)divider;
+                if (i % divider_short == 0)
+                {
+                    if (i % divider_long == 0)
+                    { pathRuler.AddLine(x, 0, x, -length5); }  // 100                    
+                    else if ((i % divider_med == 0) && (Math.Abs(minX) < (2 * show_short)))
+                    { pathRuler.AddLine(x, 0, x, -length3); }  // 10                  
+                    else if (Math.Abs(minX) < show_short)
+                    { pathRuler.AddLine(x, 0, x, -length2); }  // 5
+                }
+                else if (Math.Abs(minX) < show_smallest)
+                { pathRuler.AddLine(x, 0, x, -length1); }  // 1
+            }
             for (int i = 0; i < maxY; i++)          // vertical ruler
             {   pathRuler.StartFigure();
                 y = (float)i*unit / (float)divider;
@@ -1021,6 +1092,22 @@ namespace GRBL_Plotter
                     { pathRuler.AddLine(0, y, -length2, y); } // 5
                 }
                 else if (maxY < show_smallest)
+                { pathRuler.AddLine(0, y, -length1, y); }     // 1
+            }
+            for (int i = 0; i > minY; i--)          // vertical ruler
+            {
+                pathRuler.StartFigure();
+                y = (float)i * unit / (float)divider;
+                if (i % divider_short == 0)
+                {
+                    if (i % divider_long == 0)
+                    { pathRuler.AddLine(0, y, -length5, y); } // 100                   
+                    else if ((i % divider_med == 0) && (Math.Abs(minY) < (2 * show_short)))
+                    { pathRuler.AddLine(0, y, -length3, y); } // 10           
+                    else if (Math.Abs(minY) < show_short)
+                    { pathRuler.AddLine(0, y, -length2, y); } // 5
+                }
+                else if (Math.Abs(minY) < show_smallest)
                 { pathRuler.AddLine(0, y, -length1, y); }     // 1
             }
         }

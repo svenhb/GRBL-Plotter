@@ -64,8 +64,8 @@ namespace GRBL_Plotter
         public bool isLasermode { get; private set; } = false;
         public bool toolInSpindle { get; set; } = false;
         public bool isHeightProbing { get; set; } = false;      // automatic height probing -> less feedback
-        public List<string> GRBLSettings = new List<string>();  // keep $$ settings
-        private Queue<string> lastSentToCOM = new Queue<string>();   // store last sent commands via COM
+        public List<string> GRBLSettings = new List<string>();          // keep $$ settings
+        private Queue<string> lastSentToCOM = new Queue<string>();      // store last sent commands via COM
 
         private Dictionary<string, double> gcodeVariable = new Dictionary<string, double>();    // keep variables "PRBX" etc.
         public string parserStateGC = "";                  // keep parser state response [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
@@ -892,6 +892,7 @@ namespace GRBL_Plotter
 
         /*  requestSend fill up send buffer, called by main-prog for single commands
          *  or called by preProcessStreaming to stream GCode data
+         *  requestSend -> processSend -> sendLine
          * */
         public bool requestSend(string data)
         {
@@ -899,14 +900,30 @@ namespace GRBL_Plotter
             {   addToLog("!!! Command blocked - wait for IDLE " + data); }
             else
             {   var tmp = cleanUpCodeLine(data);
-                if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
-                {   if (tmp == "$#") preventEvent = 5;
+                if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))    // trim lines and remove all empty lines and comment lines
+                {   if (tmp == "$#") preventEvent = 5;                  // no response echo for parser state
                     sendLines.Add(tmp);
                     sendLinesCount++;
                     processSend();
+                    feedBackSettings(tmp);
                 }
             }
             return serialPort.IsOpen;
+        }
+        private void feedBackSettings(string tmp)
+        {
+            if (!isStreaming || isStreamingPause)
+            {
+                tmp = tmp.Replace(" ", String.Empty);
+                if (tmp.Contains("$32"))
+                {
+                    if (tmp.Contains("$32=1")) isLasermode = true;
+                    if (tmp.Contains("$32=0")) isLasermode = false;
+                    OnRaiseStreamEvent(new StreamEventArgs(0, 0, 0, grblStreaming.lasermode));
+                }
+                if (tmp.IndexOf("$") >= 0)
+                { btnCheckGRBLResult.Enabled = false; btnCheckGRBLResult.BackColor = SystemColors.Control; }
+            }
         }
 
         private bool replaceFeedRate = false;
@@ -1042,7 +1059,7 @@ namespace GRBL_Plotter
                     if (serialPort.IsOpen)
                     {   sendLine(line);                         // now really send data to Arduino
                         if (lastSentToCOM.Count > 10)
-                            lastSentToCOM.Dequeue();
+                            lastSentToCOM.Dequeue();            // store last sent commands via COM for error analysis
                         grblBufferFree -= (line.Length + 1);
                         sendLinesSent++;
                     }
@@ -1129,9 +1146,8 @@ namespace GRBL_Plotter
             var dataArray = new byte[] { Convert.ToByte(cmd) };
             serialPort.Write(dataArray, 0, 1);
             addToLog("> '0x" + cmd.ToString("X") + "' " + grbl.getRealtime(cmd));
-            if ((cmd == 0x85) && !(isStreaming && !isStreamingPause))
-            {
-                sendLinesSent = 0;
+            if ((cmd == 0x85) && !(isStreaming && !isStreamingPause))                   //  Jog Cancel
+            {   sendLinesSent = 0;
                 sendLinesCount = 0;
                 sendLinesConfirmed = 0;
                 sendLines.Clear();
@@ -1144,8 +1160,7 @@ namespace GRBL_Plotter
         private void sendLine(string data)
         {   try
             {   serialPort.Write(data + "\r");
-                lastSentToCOM.Enqueue(data);
-
+                lastSentToCOM.Enqueue(data);        // store last sent commands via COM for error analysis
 #if (debuginfo)
                 rtbLog.AppendText(string.Format("< {0} {1} {2} {3} \r\n", data, sendLinesSent, sendLinesConfirmed, grblBufferFree));//if not in transfer log the txLine
 #endif
@@ -1533,8 +1548,7 @@ namespace GRBL_Plotter
         private void btnClear_Click(object sender, EventArgs e)
         { rtbLog.Clear(); }
         private void tbCommand_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar != (char)13) return;
+        {   if (e.KeyChar != (char)13) return;
             btnSend_Click(sender, e);
         }
         private void btnSend_Click(object sender, EventArgs e)
@@ -1545,14 +1559,6 @@ namespace GRBL_Plotter
                 cBCommand.Items.Insert(0, cmd);
                 requestSend(cmd);
                 cBCommand.Text = cmd;
-                if (cmd.IndexOf("$32") >= 0)
-                {
-                    if (cmd.IndexOf("=") >= 0) isLasermode = true;
-                    if (cmd.IndexOf("0") >= 0) isLasermode = false;
-                    OnRaiseStreamEvent(new StreamEventArgs(0, 0, 0, grblStreaming.lasermode));
-                }
-                if (cmd.IndexOf("$") >= 0)
-                { btnCheckGRBLResult.Enabled = false; btnCheckGRBLResult.BackColor = SystemColors.Control; }
             }
         }
         private void btnGRBLCommand0_Click(object sender, EventArgs e)
