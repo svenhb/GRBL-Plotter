@@ -16,8 +16,10 @@ namespace GRBL_Plotter
             InitializeComponent();
         }
 
-        public void showMessage(string text)
-        {   label1.Text = text;
+        public void showMessage(string headline, string text)
+        {
+            this.Text = headline;
+            label1.Text = text;
             this.Width = Math.Min(label1.Width + 5,200);
             this.Height = label1.Height + 45;
             btnClose.Top = label1.Height + 10;

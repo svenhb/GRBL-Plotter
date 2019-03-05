@@ -34,6 +34,7 @@
  *  2019-01-06  Remove feedback-loop at cBSpindle / cBCoolant, save last value for spindle-textbox
  *  2019-01-16  line 922 || !_serial_form.isHeightProbing
  *  2019-03-02  Swap code to MainFormGetCodeTransform
+ *  2019-03-05  Add SplitContainer for Editor, resize Joystick controls
  */
 
 //#define debuginfo
@@ -1179,7 +1180,6 @@ namespace GRBL_Plotter
             cBCoolant.CheckedChanged += cBSpindle_CheckedChanged;
             updateControls();
             ControlPowerSaving.EnableStandby();
-            virtualJoystickSize = 180;
         }
         private void btnFeedHold_Click(object sender, EventArgs e)
         {
@@ -1204,10 +1204,7 @@ namespace GRBL_Plotter
             lbInfo.Text = "";
             lbInfo.BackColor = SystemColors.Control;
             updateControls();
-
-            virtualJoystickSize = 250;
         }
-        private int virtualJoystickSize = 180;
         #endregion
 
         public GCodeVisuAndTransform visuGCode = new GCodeVisuAndTransform();
@@ -1486,15 +1483,17 @@ namespace GRBL_Plotter
             log.clear();
         }
 
-        private void MainForm_ResizeEnd(object sender, EventArgs e)
-        {   resizeJoystick();  }
-        private void resizeJoystick()
+        private void MainForm_Resize(object sender, EventArgs e)
         {
-            virtualJoystickSize = Properties.Settings.Default.joystickSize;
+            if (WindowState == FormWindowState.Normal)
+                resizeJoystick();
+        }
+        private void resizeJoystick()
+        {   int virtualJoystickSize = Properties.Settings.Default.joystickSize;
             int zRatio = 25;                    // 20% of xyJoystick width
             int zCount = 1;
             if (ctrl4thAxis) zCount = 2;
-            int spaceY = this.Height - 465;     // width is 120% or 140%
+            int spaceY = this.Height - 465;     // width is 125% or 150%
             int spaceX = this.Width - 670;      // heigth is 100%
             spaceX = Math.Max(spaceX, 235);     // minimum width is 235px
 
@@ -1524,7 +1523,20 @@ namespace GRBL_Plotter
             virtualJoystickXY.Size = new Size(xyWidth, xyWidth);
             virtualJoystickZ.Size = new Size(zWidth, xyWidth);
             virtualJoystickA.Size = new Size(aWidth, xyWidth);
-            lbDimension.Text = xyWidth.ToString()+"  "+spaceX.ToString();
+        }
+
+        // adapt size of controls
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {   int add = splitContainer1.Panel1.Width - 296;
+            pbFile.Width = 194 + add;
+            pbBuffer.Left = 219 + add;
+            btnOverrideFRGB.Width = 284 + add;
+            btnOverrideSSGB.Width = 284 + add;
+
+            lbInfo.Width = 280 + add;
+            lbDimension.Width = 130 + add;
+            btnLimitExceed.Left = 112 + add;
+            groupBox4.Left = 133 + add;
         }
     }
 }

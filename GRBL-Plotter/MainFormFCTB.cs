@@ -195,7 +195,7 @@ namespace GRBL_Plotter
             {
                 _message_form.Visible = false;
             }
-            _message_form.showMessage(text);
+            _message_form.showMessage("Information",text);
             _message_form.Show(this);
         }
         private void formClosed_MessageForm(object sender, FormClosedEventArgs e)

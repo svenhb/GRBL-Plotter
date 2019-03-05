@@ -602,7 +602,6 @@ namespace GRBL_Plotter
                 brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.colorMachineLimit, Color.Transparent);
                 picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 commentOut = Properties.Settings.Default.ctrlCommentOut;
- //               updateDrawing();
 
                 joystickXYStep[0] = 0;
                 joystickXYStep[1] = (double)Properties.Settings.Default.joyXYStep1;

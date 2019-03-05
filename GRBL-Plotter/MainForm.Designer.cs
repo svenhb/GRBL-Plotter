@@ -90,6 +90,7 @@ namespace GRBL_Plotter
             this.gCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mirrorXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mirrorYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mirrorRotaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.rotate90ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotate90ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -177,10 +178,8 @@ namespace GRBL_Plotter
             this.rBOrigin5 = new System.Windows.Forms.RadioButton();
             this.rBOrigin4 = new System.Windows.Forms.RadioButton();
             this.rBOrigin3 = new System.Windows.Forms.RadioButton();
-            this.btnOpenFile = new System.Windows.Forms.Button();
             this.rBOrigin2 = new System.Windows.Forms.RadioButton();
             this.rBOrigin1 = new System.Windows.Forms.RadioButton();
-            this.tbFile = new System.Windows.Forms.TextBox();
             this.lbDimension = new System.Windows.Forms.TextBox();
             this.pbBuffer = new System.Windows.Forms.ProgressBar();
             this.btnStreamStop = new System.Windows.Forms.Button();
@@ -191,6 +190,7 @@ namespace GRBL_Plotter
             this.lblElapsed = new System.Windows.Forms.Label();
             this.lblFileProgress = new System.Windows.Forms.Label();
             this.btnStreamStart = new System.Windows.Forms.Button();
+            this.tbFile = new System.Windows.Forms.TextBox();
             this.cmsCode = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsEditorHotkeys = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
@@ -270,7 +270,6 @@ namespace GRBL_Plotter
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.setGCodeAsBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tLPAussen = new System.Windows.Forms.TableLayoutPanel();
             this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
@@ -283,16 +282,16 @@ namespace GRBL_Plotter
             this.tBSpeed = new System.Windows.Forms.TextBox();
             this.cBCoolant = new System.Windows.Forms.CheckBox();
             this.cBSpindle = new System.Windows.Forms.CheckBox();
-            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
-            this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.mirrorRotaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
+            this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.btnOverrideSSGB.SuspendLayout();
@@ -305,7 +304,6 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmsPictureBox.SuspendLayout();
-            this.tLPAussen.SuspendLayout();
             this.tLPLinks.SuspendLayout();
             this.tLPRechts.SuspendLayout();
             this.tLPRechtsUnten.SuspendLayout();
@@ -313,12 +311,16 @@ namespace GRBL_Plotter
             this.gB_Jogging.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tLPRechtsUntenRechtsMitte.SuspendLayout();
-            this.tLPMitteUnten.SuspendLayout();
-            this.tLPRechtsOben.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tLPMitteUnten.SuspendLayout();
+            this.tLPRechtsOben.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -485,6 +487,12 @@ namespace GRBL_Plotter
             this.mirrorYToolStripMenuItem.Name = "mirrorYToolStripMenuItem";
             resources.ApplyResources(this.mirrorYToolStripMenuItem, "mirrorYToolStripMenuItem");
             this.mirrorYToolStripMenuItem.Click += new System.EventHandler(this.mirrorYToolStripMenuItem_Click);
+            // 
+            // mirrorRotaryToolStripMenuItem
+            // 
+            this.mirrorRotaryToolStripMenuItem.Name = "mirrorRotaryToolStripMenuItem";
+            resources.ApplyResources(this.mirrorRotaryToolStripMenuItem, "mirrorRotaryToolStripMenuItem");
+            this.mirrorRotaryToolStripMenuItem.Click += new System.EventHandler(this.mirrorRotaryToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
@@ -843,6 +851,7 @@ namespace GRBL_Plotter
             this.groupBox1.Controls.Add(this.lblElapsed);
             this.groupBox1.Controls.Add(this.lblFileProgress);
             this.groupBox1.Controls.Add(this.btnStreamStart);
+            this.groupBox1.Controls.Add(this.tbFile);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
@@ -1011,10 +1020,8 @@ namespace GRBL_Plotter
             this.groupBox4.Controls.Add(this.rBOrigin5);
             this.groupBox4.Controls.Add(this.rBOrigin4);
             this.groupBox4.Controls.Add(this.rBOrigin3);
-            this.groupBox4.Controls.Add(this.btnOpenFile);
             this.groupBox4.Controls.Add(this.rBOrigin2);
             this.groupBox4.Controls.Add(this.rBOrigin1);
-            this.groupBox4.Controls.Add(this.tbFile);
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
@@ -1090,14 +1097,6 @@ namespace GRBL_Plotter
             this.rBOrigin3.Name = "rBOrigin3";
             this.rBOrigin3.UseVisualStyleBackColor = true;
             // 
-            // btnOpenFile
-            // 
-            resources.ApplyResources(this.btnOpenFile, "btnOpenFile");
-            this.btnOpenFile.Name = "btnOpenFile";
-            this.toolTip1.SetToolTip(this.btnOpenFile, resources.GetString("btnOpenFile.ToolTip"));
-            this.btnOpenFile.UseVisualStyleBackColor = true;
-            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
-            // 
             // rBOrigin2
             // 
             resources.ApplyResources(this.rBOrigin2, "rBOrigin2");
@@ -1109,11 +1108,6 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.rBOrigin1, "rBOrigin1");
             this.rBOrigin1.Name = "rBOrigin1";
             this.rBOrigin1.UseVisualStyleBackColor = true;
-            // 
-            // tbFile
-            // 
-            resources.ApplyResources(this.tbFile, "tbFile");
-            this.tbFile.Name = "tbFile";
             // 
             // lbDimension
             // 
@@ -1177,6 +1171,11 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
             this.btnStreamStart.UseVisualStyleBackColor = true;
             this.btnStreamStart.Click += new System.EventHandler(this.btnStreamStart_Click);
+            // 
+            // tbFile
+            // 
+            resources.ApplyResources(this.tbFile, "tbFile");
+            this.tbFile.Name = "tbFile";
             // 
             // cmsCode
             // 
@@ -1824,13 +1823,6 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.clearBackgroundToolStripMenuItem, "clearBackgroundToolStripMenuItem");
             this.clearBackgroundToolStripMenuItem.Click += new System.EventHandler(this.clearBackgroundToolStripMenuItem_Click);
             // 
-            // tLPAussen
-            // 
-            resources.ApplyResources(this.tLPAussen, "tLPAussen");
-            this.tLPAussen.Controls.Add(this.tLPLinks, 0, 0);
-            this.tLPAussen.Controls.Add(this.tLPRechts, 1, 0);
-            this.tLPAussen.Name = "tLPAussen";
-            // 
             // tLPLinks
             // 
             resources.ApplyResources(this.tLPLinks, "tLPLinks");
@@ -1923,15 +1915,6 @@ namespace GRBL_Plotter
             this.cBSpindle.UseVisualStyleBackColor = true;
             this.cBSpindle.CheckedChanged += new System.EventHandler(this.cBSpindle_CheckedChanged);
             // 
-            // cBSendJogStop
-            // 
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
-            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
-            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSendJogStop.Name = "cBSendJogStop";
-            this.cBSendJogStop.UseVisualStyleBackColor = true;
-            // 
             // tLPRechtsUntenRechtsMitte
             // 
             resources.ApplyResources(this.tLPRechtsUntenRechtsMitte, "tLPRechtsUntenRechtsMitte");
@@ -1940,30 +1923,21 @@ namespace GRBL_Plotter
             this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickZ, 1, 0);
             this.tLPRechtsUntenRechtsMitte.Name = "tLPRechtsUntenRechtsMitte";
             // 
-            // tLPMitteUnten
-            // 
-            resources.ApplyResources(this.tLPMitteUnten, "tLPMitteUnten");
-            this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
-            this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 1);
-            this.tLPMitteUnten.Name = "tLPMitteUnten";
-            // 
-            // tLPRechtsOben
-            // 
-            resources.ApplyResources(this.tLPRechtsOben, "tLPRechtsOben");
-            this.tLPRechtsOben.Controls.Add(this.groupBox5, 1, 0);
-            this.tLPRechtsOben.Controls.Add(this.groupBox2, 0, 0);
-            this.tLPRechtsOben.Name = "tLPRechtsOben";
-            // 
-            // gamePadTimer
-            // 
-            this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
-            // 
             // tableLayoutPanel2
             // 
             resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
             this.tableLayoutPanel2.Controls.Add(this.cBSendJogStop, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            // 
+            // cBSendJogStop
+            // 
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
+            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
+            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSendJogStop.Name = "cBSendJogStop";
+            this.cBSendJogStop.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -1986,18 +1960,46 @@ namespace GRBL_Plotter
             this.tableLayoutPanel5.Controls.Add(this.btnReset, 0, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             // 
-            // mirrorRotaryToolStripMenuItem
+            // tLPMitteUnten
             // 
-            this.mirrorRotaryToolStripMenuItem.Name = "mirrorRotaryToolStripMenuItem";
-            resources.ApplyResources(this.mirrorRotaryToolStripMenuItem, "mirrorRotaryToolStripMenuItem");
-            this.mirrorRotaryToolStripMenuItem.Click += new System.EventHandler(this.mirrorRotaryToolStripMenuItem_Click);
+            resources.ApplyResources(this.tLPMitteUnten, "tLPMitteUnten");
+            this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
+            this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 1);
+            this.tLPMitteUnten.Name = "tLPMitteUnten";
+            // 
+            // tLPRechtsOben
+            // 
+            resources.ApplyResources(this.tLPRechtsOben, "tLPRechtsOben");
+            this.tLPRechtsOben.Controls.Add(this.groupBox5, 1, 0);
+            this.tLPRechtsOben.Controls.Add(this.groupBox2, 0, 0);
+            this.tLPRechtsOben.Name = "tLPRechtsOben";
+            // 
+            // gamePadTimer
+            // 
+            this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tLPLinks);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tLPRechts);
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // MainForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tLPAussen);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -2005,12 +2007,11 @@ namespace GRBL_Plotter
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.ResizeEnd += new System.EventHandler(this.MainForm_ResizeEnd);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
-            this.Resize += new System.EventHandler(this.MainForm_ResizeEnd);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -2029,7 +2030,6 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmsPictureBox.ResumeLayout(false);
-            this.tLPAussen.ResumeLayout(false);
             this.tLPLinks.ResumeLayout(false);
             this.tLPRechts.ResumeLayout(false);
             this.tLPRechtsUnten.ResumeLayout(false);
@@ -2039,14 +2039,18 @@ namespace GRBL_Plotter
             this.gB_Jogging.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.tLPRechtsUntenRechtsMitte.ResumeLayout(false);
-            this.tLPMitteUnten.ResumeLayout(false);
-            this.tLPMitteUnten.PerformLayout();
-            this.tLPRechtsOben.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.tLPMitteUnten.ResumeLayout(false);
+            this.tLPMitteUnten.PerformLayout();
+            this.tLPRechtsOben.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2069,7 +2073,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label lblFileProgress;
         private System.Windows.Forms.ProgressBar pbBuffer;
         private System.Windows.Forms.Button btnStreamStart;
-        private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.TextBox tbFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -2100,7 +2103,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem cmsCodeSendLine;
         private System.Windows.Forms.ToolStripMenuItem cmsCodePaste;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TableLayoutPanel tLPAussen;
         private System.Windows.Forms.TableLayoutPanel tLPLinks;
         private System.Windows.Forms.TableLayoutPanel tLPRechts;
         private System.Windows.Forms.TableLayoutPanel tLPRechtsUnten;
@@ -2278,6 +2280,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ToolStripMenuItem mirrorRotaryToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 
