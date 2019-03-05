@@ -29,7 +29,8 @@
  * 2019-02-06 add selection high-light
  * 2019-02-09 outsourcing of code for parsing
  * 2019-02-27 createGCodeProg add output for A,B,C,U,V,W axis
-*/
+ * 2019-03-05 Bug orgin-shift after mirroring
+ */
 
 //#define debuginfo 
 
@@ -510,8 +511,8 @@ namespace GRBL_Plotter
 #endif
             if (gcodeList == null) return "";
             pathMarkSelection.Reset(); lastFigureNumber = -1;
-            double oldmaxx = xyzSize.maxx;
-            double oldmaxy = xyzSize.maxy;
+//            double oldmaxx = xyzSize.maxx;
+//            double oldmaxy = xyzSize.maxy;
             oldLine.resetAll(grbl.posWork);         // reset coordinates and parser modes
             clearDrawingnPath();                    // reset path, dimensions
 
@@ -529,9 +530,9 @@ namespace GRBL_Plotter
                     {
                         if (gcline.x != null)
                         {
-                            if (gcline.isdistanceModeG90)
-                                gcline.x = oldmaxx - gcline.x;
-                            else
+//                            if (gcline.isdistanceModeG90)
+//                                gcline.x = oldmaxx - gcline.x;
+//                            else
                                 gcline.x = -gcline.x;
                         }
                         gcline.i = -gcline.i;
@@ -540,9 +541,9 @@ namespace GRBL_Plotter
                     {
                         if (gcline.y != null)
                         {
-                            if (gcline.isdistanceModeG90)
-                                gcline.y = oldmaxy - gcline.y;
-                            else
+//                            if (gcline.isdistanceModeG90)
+//                                gcline.y = oldmaxy - gcline.y;
+//                            else
                                 gcline.y = -gcline.y;
                         }
                         gcline.j = -gcline.j;
