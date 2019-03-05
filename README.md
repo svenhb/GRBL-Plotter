@@ -6,6 +6,10 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
    
    
 ### New in version 1.2.4.x:  
+* Resizeable Joystick control (Setup - Joystick)
+* Resizable editor
+* Ruler scale also for negative dimension
+* Mirroring of Rotary axis
 * New menu 'view'. E.g. switch between traditional object view or view to the complete machine area  
 * Highlight selected path (e.g. for deletion)
 * Copy gcode path to background as a landmark for positions applying new gcode (check context menu on 2D view)
