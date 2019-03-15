@@ -121,6 +121,9 @@ namespace GRBL_Plotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+            Size = Properties.Settings.Default.mainFormSize;
+            WindowState = Properties.Settings.Default.mainFormWinState;
+
             this.Text = appName + " Ver. " + System.Windows.Forms.Application.ProductVersion.ToString();
 
             loadToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
@@ -166,11 +169,17 @@ namespace GRBL_Plotter
             checkUpdate.CheckVersion();  // check update
             grbl.init();
             toolTable.init();       // fill structure
+            try { ControlGamePad.Initialize();}
+            catch {}
         }
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Properties.Settings.Default.mainFormWinState = WindowState;
+            WindowState = FormWindowState.Normal;
+            Properties.Settings.Default.mainFormSize = Size;
             Properties.Settings.Default.locationMForm = Location;
+
             saveSettings();
             _serial_form.stopStreaming();
             _serial_form.grblReset();// false);

@@ -256,6 +256,9 @@
   <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
     <value>Spiegeln Y (&amp;vertikal)</value>
   </data>
+  <data name="mirrorRotaryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 6</value>
   </data>
@@ -555,15 +558,6 @@
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Benutzerdefinierte Buttons</value>
   </data>
-  <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>! Feed Hold
-Setzt Grbl in einen Suspend- oder HOLD-Zustand. Bei Bewegung bewegt sich die Maschine bis zum Stillstand und wird dann ausgesetzt.
-Befehl wird ausgeführt, wenn Grbl in einem IDLE-, RUN- oder JOG-Zustand ist. Andernfalls wird er ignoriert.
-Beim Joggen wird die Jogbewegung abgebrochen und alle verbleibenden Jogbewegungen im Planerpuffer gelöscht. 
-Der Zustand kehrt von JOG zu IDLE oder DOOR zurück, wenn er während des aktiven Haltes als scharf erkannt wurde.
-'Feed Hold' deaktiviert die Spindel oder das Kühlmittel nicht. Nur Bewegung.
-Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
-  </data>
   <data name="btnReset.ToolTip" xml:space="preserve">
     <value>0x18 (ctrl-x): Soft-Reset
 Stoppt sofort und setzt GRBL zurück ohne die Stromversorgung unterbrechen zu müssen.
@@ -572,12 +566,13 @@ Beim Rücksetzen während der Fahrt wird Grbl einen Alarm auslösen, um anzuzeig
 Wenn das Rücksetzen nicht während der Bewegung erfolgt, wird die Position beibehalten und ein erneutes Referenzieren ist nicht erforderlich.
 Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
   </data>
-  <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>~ : Cycle Start / Resume (Zyklus Start / Fortsetzen)
-Fortsetzung bei den Zuständen 'Feed Hold',  Sicherheitstür- / Parkzustand (bei geschlossener Tür) und M0-Programmpause.
-Befehl wird sonst ignoriert.
-Wenn die Park-Option aktiviert ist und die Sicherheitstür wieder geschlossen ist, wird Grbl die Spindel und das Kühlmittel wieder freigeben, 
-sich zur Ausgangsposition bewegen und dann den Ablauf fortsetzen.
+  <data name="btnFeedHold.ToolTip" xml:space="preserve">
+    <value>! Feed Hold
+Setzt Grbl in einen Suspend- oder HOLD-Zustand. Bei Bewegung bewegt sich die Maschine bis zum Stillstand und wird dann ausgesetzt.
+Befehl wird ausgeführt, wenn Grbl in einem IDLE-, RUN- oder JOG-Zustand ist. Andernfalls wird er ignoriert.
+Beim Joggen wird die Jogbewegung abgebrochen und alle verbleibenden Jogbewegungen im Planerpuffer gelöscht. 
+Der Zustand kehrt von JOG zu IDLE oder DOOR zurück, wenn er während des aktiven Haltes als scharf erkannt wurde.
+'Feed Hold' deaktiviert die Spindel oder das Kühlmittel nicht. Nur Bewegung.
 Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
   </data>
   <data name="btnKillAlarm.ToolTip" xml:space="preserve">
@@ -594,105 +589,99 @@ und Grbl ist nicht dort wo Sie denken, dass es ist.
 Es wird empfohlen den G91 Inkremental-Modus zu wählen, um kleine Fahrbewegungen zu machen. 
 Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
   </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Abbruch der jetzigen Jogging-Bewegung</value>
-  </data>
-  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 A(or B,C)0</value>
-  </data>
-  <data name="virtualJoystickA.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
+        7sFRjnt3lNu3coWHnWxZLsBRjgt3lOMHPlq2M/fgKMe9O8rtW7nCw062LBfgKMeFO8rxAx8t25l7cJTj
+        3h3l9q1c4WEnW5YLcJTjwh3l+IGPlu3MPTjKce+OcvtWrvCwky3LBTjKceHOyr0l2qmjHPfgKMe9O8rt
+        u/0eedjJluUCHOW48HuTdcS9O8rtW7nCw062LBfgKMeF35usI+7dUW7fyhUedrJluQBHOS783mQdce+O
+        cvtWrvCwky3LBTjKceH3JuuIe3eU27dyhYedbFkuwFGOC783WUfcu6PcvpUrPOxky3IBjnJc+L3JOuLe
+        HeX2rVzhYSdblgtwlOPC703WEffuKLdv5QoPO9myXICjHBd+b7KOuHdHuX0rV3jYyZblAhzluPB7k3XE
+        vTvK7Vu5wsNOtiwX4CjHhd+brCPu3VFu38oVHnayZbkARzku/N5kHXHvjnL7Vq7wsJMtywU4ynHh9ybr
+        iHt3lNu3coWHnWxZLsBRjgu/N1lH3Luj3L6VKzzsZMtyAc5t2e8GddBRjnt3lNt325WHnWxZLmBksjfZ
+        t3KFh51sWS5gZLI32bdyhYedbFkuYGSyN9m3coWHnWxZLmBksjfZt3KFh51sWS5gZLI32bdyhYedbFku
+        YGSyN9m3coWHnWxZLmBksjfZt3KFh51sWS5gZLI32bdyhYedbFkuYGSyN9m3coWHnWxZLmBksjfZt3KF
+        h51sWS5gZLI32bdyhYedbFkuYGSyN9m3coWHnWxZLmBksjfZt3KFh51k2XEc6ryj3L7br8nDzpcuO74+
+        c0AjMgc0InNAIzIHNCJzQCMyBzQic0AjMgc0InNAIzIHNCJzQCMyBzQib3ZA437QG3duWR6O0ZkDGpE5
+        oBGZAxqROaARmQMakTmgEZkDGpE5oBGZAxqROaARmQMakTmgEflwQGN8mYfr/wEQxUwZah+JBgAAAABJ
+        RU5ErkJggg==
 </value>
   </data>
   <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAACQCAYAAAAfitsKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH9SURBVHhe7ZoxbsIwFIZzA8ZOSJ26VCpDJ27AwAkqpWMP
+        gLz2IEg+RndfoIfwTdz3grET4qpVE/8e+iN9UvL8zOeHkY2BTh6hEV0IAUsWuzwSI9fBd+EQ761clzov
+        Ibq64K0IhEEqDc4ImiRSI/HbjkuZiDuVCQe5xolHL6eJA8BVfLm5zKkAmeNSY00ohkExjCRuhI7iGcpE
+        7O1G1uuHS6O/jyvXRlauecelZLGIjBWi2Jk7WaslaYg/zTouJYuHwMM/FuPmuNBYE4phUAwjiRuhFb9B
+        yWK3SyMxrpy8Jkns7U7OTjuIVBmJt7IXH4ejy8G+FJPXJIv9VXaUjeI4SapBFmvFw81WdqNy8pokcamx
+        JhTDoBhGEjdCKz5DmYi9fZT1+jRLqkEW+1c5MQhw8RA4UVyNGzEOimFQDCOJG6EVf0LJYv8ev+XZy+fq
+        UZLrr0lyvBnFF5LEzvTBaVAGYOxHSvC2lzNVv6pU+YV4L3v0OZ6pcnwpP4v99fosG4i+I3PnJSTxbI5l
+        bvXlHSoexwtP8hey+LYximfxlfheXBmKYVAMg2IYFMOgGAbFMCiG0V7cCK14fniuCcUwKIZBMQyKYSRx
+        I7Ti8o+PtaAYBsUwKIZBMYwkboRWXP7jZi0ohkExDIphUAwjiRuhFWOhGAbFMCiGQTGMJMbThS8UP4D8
+        DX5bJgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
+    <value>Send G90 G0 A(or B,C)0</value>
+  </data>
+  <data name="btnJogStop.ToolTip" xml:space="preserve">
+    <value>Abbruch der jetzigen Jogging-Bewegung</value>
+  </data>
+  <data name="virtualJoystickA.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
-        VuJ9Tgv7jwAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAACQCAYAAAAfitsKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH9SURBVHhe7ZoxbsIwFIZzA8ZOSJ26VCpDJ27AwAkqpWMP
+        gLz2IEg+RndfoIfwTdz3grET4qpVE/8e+iN9UvL8zOeHkY2BTh6hEV0IAUsWuzwSI9fBd+EQ761clzov
+        Ibq64K0IhEEqDc4ImiRSI/HbjkuZiDuVCQe5xolHL6eJA8BVfLm5zKkAmeNSY00ohkExjCRuhI7iGcpE
+        7O1G1uuHS6O/jyvXRlauecelZLGIjBWi2Jk7WaslaYg/zTouJYuHwMM/FuPmuNBYE4phUAwjiRuhFb9B
+        yWK3SyMxrpy8Jkns7U7OTjuIVBmJt7IXH4ejy8G+FJPXJIv9VXaUjeI4SapBFmvFw81WdqNy8pokcamx
+        JhTDoBhGEjdCKz5DmYi9fZT1+jRLqkEW+1c5MQhw8RA4UVyNGzEOimFQDCOJG6EVf0LJYv8ev+XZy+fq
+        UZLrr0lyvBnFF5LEzvTBaVAGYOxHSvC2lzNVv6pU+YV4L3v0OZ6pcnwpP4v99fosG4i+I3PnJSTxbI5l
+        bvXlHSoexwtP8hey+LYximfxlfheXBmKYVAMg2IYFMOgGAbFMCiG0V7cCK14fniuCcUwKIZBMQyKYSRx
+        I7Ti8o+PtaAYBsUwKIZBMYwkboRWXP7jZi0ohkExDIphUAwjiRuhFWOhGAbFMCiGQTGMJMbThS8UP4D8
+        DX5bJgAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="btnResume.ToolTip" xml:space="preserve">
+    <value>~ : Cycle Start / Resume (Zyklus Start / Fortsetzen)
+Fortsetzung bei den Zuständen 'Feed Hold',  Sicherheitstür- / Parkzustand (bei geschlossener Tür) und M0-Programmpause.
+Befehl wird sonst ignoriert.
+Wenn die Park-Option aktiviert ist und die Sicherheitstür wieder geschlossen ist, wird Grbl die Spindel und das Kühlmittel wieder freigeben, 
+sich zur Ausgangsposition bewegen und dann den Ablauf fortsetzen.
+Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>137, 12</value>
+    <value>298, 12</value>
   </data>
   <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -713,7 +702,7 @@ Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
 </value>
   </data>
   <data name="fCTBCode.Text" xml:space="preserve">
-    <value>Paste GCode hier</value>
+    <value>(Paste GCode hier oder lade eine Datei)</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>312, 270</value>

@@ -45,6 +45,7 @@ namespace GRBL_Plotter
                 StyleYAxis.Dispose();
                 StyleZAxis.Dispose();
                 penDown.Dispose();
+                penRotary.Dispose();
                 penMarker.Dispose();
                 penRuler.Dispose();
                 penTool.Dispose();
@@ -69,6 +70,158 @@ namespace GRBL_Plotter
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
+            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.cmsCode = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsEditorHotkeys = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmsCodeSelect = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodePaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmsFindDialog = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsReplaceDialog = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmsCodeSendLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCommentOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmsUpdate2DView = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLimitExceed = new System.Windows.Forms.Button();
+            this.btnOverrideSSGB = new System.Windows.Forms.GroupBox();
+            this.lblStatusSpeed = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblOverrideSSValue = new System.Windows.Forms.Label();
+            this.btnOverrideSS2 = new System.Windows.Forms.Button();
+            this.btnOverrideSS0 = new System.Windows.Forms.Button();
+            this.btnOverrideSS1 = new System.Windows.Forms.Button();
+            this.btnOverrideSS4 = new System.Windows.Forms.Button();
+            this.btnOverrideSS3 = new System.Windows.Forms.Button();
+            this.btnOverrideFRGB = new System.Windows.Forms.GroupBox();
+            this.lblStatusFeed = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblOverrideFRValue = new System.Windows.Forms.Label();
+            this.btnOverrideFR1 = new System.Windows.Forms.Button();
+            this.btnOverrideFR2 = new System.Windows.Forms.Button();
+            this.btnOverrideFR0 = new System.Windows.Forms.Button();
+            this.btnOverrideFR4 = new System.Windows.Forms.Button();
+            this.btnOverrideFR3 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnOffsetApply = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbOffsetY = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbOffsetX = new System.Windows.Forms.TextBox();
+            this.rBOrigin9 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin8 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin7 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin6 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin5 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin4 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin3 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin2 = new System.Windows.Forms.RadioButton();
+            this.rBOrigin1 = new System.Windows.Forms.RadioButton();
+            this.lbDimension = new System.Windows.Forms.TextBox();
+            this.pbBuffer = new System.Windows.Forms.ProgressBar();
+            this.btnStreamStop = new System.Windows.Forms.Button();
+            this.btnStreamCheck = new System.Windows.Forms.Button();
+            this.lbInfo = new System.Windows.Forms.Label();
+            this.lblRemaining = new System.Windows.Forms.Label();
+            this.pbFile = new System.Windows.Forms.ProgressBar();
+            this.lblElapsed = new System.Windows.Forms.Label();
+            this.lblFileProgress = new System.Windows.Forms.Label();
+            this.btnStreamStart = new System.Windows.Forms.Button();
+            this.tbFile = new System.Windows.Forms.TextBox();
+            this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
+            this.gB_Jogging = new System.Windows.Forms.GroupBox();
+            this.btnJogStop = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnJogZeroA = new System.Windows.Forms.Button();
+            this.btnJogZeroX = new System.Windows.Forms.Button();
+            this.btnJogZeroXY = new System.Windows.Forms.Button();
+            this.btnJogZeroY = new System.Windows.Forms.Button();
+            this.btnJogZeroZ = new System.Windows.Forms.Button();
+            this.lblTool = new System.Windows.Forms.Label();
+            this.cBTool = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tBSpeed = new System.Windows.Forms.TextBox();
+            this.cBCoolant = new System.Windows.Forms.CheckBox();
+            this.cBSpindle = new System.Windows.Forms.CheckBox();
+            this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
+            this.virtualJoystickA = new virtualJoystick.virtualJoystick();
+            this.virtualJoystickXY = new virtualJoystick.virtualJoystick();
+            this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnResume = new System.Windows.Forms.Button();
+            this.btnFeedHold = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnKillAlarm = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.zeroXYAtMarkedPositionG92ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveToMarkedPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetZoomingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteThisCodeLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveToFirstPosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.setGCodeAsBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tBURL = new System.Windows.Forms.TextBox();
+            this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnCustom12 = new System.Windows.Forms.Button();
+            this.btnCustom11 = new System.Windows.Forms.Button();
+            this.btnCustom10 = new System.Windows.Forms.Button();
+            this.btnCustom9 = new System.Windows.Forms.Button();
+            this.btnCustom8 = new System.Windows.Forms.Button();
+            this.btnCustom7 = new System.Windows.Forms.Button();
+            this.btnCustom6 = new System.Windows.Forms.Button();
+            this.btnCustom5 = new System.Windows.Forms.Button();
+            this.btnCustom1 = new System.Windows.Forms.Button();
+            this.btnCustom2 = new System.Windows.Forms.Button();
+            this.btnCustom3 = new System.Windows.Forms.Button();
+            this.btnCustom4 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblCurrentG = new System.Windows.Forms.Label();
+            this.label_status0 = new System.Windows.Forms.Label();
+            this.label_a = new System.Windows.Forms.Label();
+            this.btnZeroA = new System.Windows.Forms.Button();
+            this.label_ma = new System.Windows.Forms.Label();
+            this.label_wa = new System.Windows.Forms.Label();
+            this.btnHome = new System.Windows.Forms.Button();
+            this.btnZeroXYZ = new System.Windows.Forms.Button();
+            this.btnZeroXY = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnZeroZ = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnZeroY = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnZeroX = new System.Windows.Forms.Button();
+            this.label_status = new System.Windows.Forms.Label();
+            this.label_mx = new System.Windows.Forms.Label();
+            this.label_my = new System.Windows.Forms.Label();
+            this.label_mz = new System.Windows.Forms.Label();
+            this.label_wz = new System.Windows.Forms.Label();
+            this.label_wx = new System.Windows.Forms.Label();
+            this.label_wy = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,175 +289,21 @@ namespace GRBL_Plotter
             this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label_mx = new System.Windows.Forms.Label();
-            this.label_my = new System.Windows.Forms.Label();
-            this.label_mz = new System.Windows.Forms.Label();
-            this.label_wx = new System.Windows.Forms.Label();
-            this.label_wy = new System.Windows.Forms.Label();
-            this.label_wz = new System.Windows.Forms.Label();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnLimitExceed = new System.Windows.Forms.Button();
-            this.btnOverrideSSGB = new System.Windows.Forms.GroupBox();
-            this.lblStatusSpeed = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblOverrideSSValue = new System.Windows.Forms.Label();
-            this.btnOverrideSS2 = new System.Windows.Forms.Button();
-            this.btnOverrideSS0 = new System.Windows.Forms.Button();
-            this.btnOverrideSS1 = new System.Windows.Forms.Button();
-            this.btnOverrideSS4 = new System.Windows.Forms.Button();
-            this.btnOverrideSS3 = new System.Windows.Forms.Button();
-            this.btnOverrideFRGB = new System.Windows.Forms.GroupBox();
-            this.lblStatusFeed = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblOverrideFRValue = new System.Windows.Forms.Label();
-            this.btnOverrideFR1 = new System.Windows.Forms.Button();
-            this.btnOverrideFR2 = new System.Windows.Forms.Button();
-            this.btnOverrideFR0 = new System.Windows.Forms.Button();
-            this.btnOverrideFR4 = new System.Windows.Forms.Button();
-            this.btnOverrideFR3 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnOffsetApply = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbOffsetY = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbOffsetX = new System.Windows.Forms.TextBox();
-            this.rBOrigin9 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin8 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin7 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin6 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin5 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin4 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin3 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin2 = new System.Windows.Forms.RadioButton();
-            this.rBOrigin1 = new System.Windows.Forms.RadioButton();
-            this.lbDimension = new System.Windows.Forms.TextBox();
-            this.pbBuffer = new System.Windows.Forms.ProgressBar();
-            this.btnStreamStop = new System.Windows.Forms.Button();
-            this.btnStreamCheck = new System.Windows.Forms.Button();
-            this.lbInfo = new System.Windows.Forms.Label();
-            this.lblRemaining = new System.Windows.Forms.Label();
-            this.pbFile = new System.Windows.Forms.ProgressBar();
-            this.lblElapsed = new System.Windows.Forms.Label();
-            this.lblFileProgress = new System.Windows.Forms.Label();
-            this.btnStreamStart = new System.Windows.Forms.Button();
-            this.tbFile = new System.Windows.Forms.TextBox();
-            this.cmsCode = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmsEditorHotkeys = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmsCodeSelect = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsCodeCopy = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsCodePaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmsFindDialog = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsReplaceDialog = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmsCodeSendLine = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsCommentOut = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmsUpdate2DView = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblCurrentG = new System.Windows.Forms.Label();
-            this.label_status0 = new System.Windows.Forms.Label();
-            this.label_a = new System.Windows.Forms.Label();
-            this.btnZeroA = new System.Windows.Forms.Button();
-            this.label_ma = new System.Windows.Forms.Label();
-            this.label_wa = new System.Windows.Forms.Label();
-            this.btnHome = new System.Windows.Forms.Button();
-            this.btnZeroXYZ = new System.Windows.Forms.Button();
-            this.btnZeroXY = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnZeroZ = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnZeroY = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnZeroX = new System.Windows.Forms.Button();
-            this.label_status = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCustom12 = new System.Windows.Forms.Button();
-            this.btnCustom11 = new System.Windows.Forms.Button();
-            this.btnCustom10 = new System.Windows.Forms.Button();
-            this.btnCustom9 = new System.Windows.Forms.Button();
-            this.btnCustom8 = new System.Windows.Forms.Button();
-            this.btnCustom7 = new System.Windows.Forms.Button();
-            this.btnCustom6 = new System.Windows.Forms.Button();
-            this.btnCustom5 = new System.Windows.Forms.Button();
-            this.btnCustom1 = new System.Windows.Forms.Button();
-            this.btnCustom2 = new System.Windows.Forms.Button();
-            this.btnCustom3 = new System.Windows.Forms.Button();
-            this.btnCustom4 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.tBURL = new System.Windows.Forms.TextBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnFeedHold = new System.Windows.Forms.Button();
-            this.btnKillAlarm = new System.Windows.Forms.Button();
-            this.virtualJoystickXY = new virtualJoystick.virtualJoystick();
-            this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
-            this.btnJogZeroZ = new System.Windows.Forms.Button();
-            this.btnJogZeroY = new System.Windows.Forms.Button();
-            this.btnJogZeroXY = new System.Windows.Forms.Button();
-            this.btnJogZeroX = new System.Windows.Forms.Button();
-            this.btnJogZeroA = new System.Windows.Forms.Button();
-            this.btnJogStop = new System.Windows.Forms.Button();
-            this.virtualJoystickA = new virtualJoystick.virtualJoystick();
-            this.btnResume = new System.Windows.Forms.Button();
-            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.zeroXYAtMarkedPositionG92ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveToMarkedPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.resetZoomingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteThisCodeLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveToFirstPosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletePathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.setGCodeAsBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
-            this.gB_Jogging = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lblTool = new System.Windows.Forms.Label();
-            this.cBTool = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tBSpeed = new System.Windows.Forms.TextBox();
-            this.cBCoolant = new System.Windows.Forms.CheckBox();
-            this.cBSpindle = new System.Windows.Forms.CheckBox();
-            this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
-            this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.tLPLinks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
+            this.cmsCode.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.btnOverrideSSGB.SuspendLayout();
             this.btnOverrideFRGB.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.cmsCode.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.cmsPictureBox.SuspendLayout();
-            this.tLPLinks.SuspendLayout();
             this.tLPRechts.SuspendLayout();
             this.tLPRechtsUnten.SuspendLayout();
             this.tLPRechtsUntenRechts.SuspendLayout();
@@ -316,12 +315,1197 @@ namespace GRBL_Plotter
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tLPMitteUnten.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.cmsPictureBox.SuspendLayout();
             this.tLPRechtsOben.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::GRBL_Plotter.Properties.Settings.Default, "mainFormSplitDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tLPLinks);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tLPRechts);
+            this.splitContainer1.SplitterDistance = global::GRBL_Plotter.Properties.Settings.Default.mainFormSplitDistance;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
+            // 
+            // tLPLinks
+            // 
+            resources.ApplyResources(this.tLPLinks, "tLPLinks");
+            this.tLPLinks.Controls.Add(this.fCTBCode, 0, 1);
+            this.tLPLinks.Controls.Add(this.groupBox1, 0, 0);
+            this.tLPLinks.Name = "tLPLinks";
+            // 
+            // fCTBCode
+            // 
+            this.fCTBCode.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.fCTBCode.AutoIndent = false;
+            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
+            resources.ApplyResources(this.fCTBCode, "fCTBCode");
+            this.fCTBCode.BackBrush = null;
+            this.fCTBCode.CharHeight = 12;
+            this.fCTBCode.CharWidth = 7;
+            this.fCTBCode.ContextMenuStrip = this.cmsCode;
+            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fCTBCode.IsReplaceMode = false;
+            this.fCTBCode.Name = "fCTBCode";
+            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
+            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
+            this.fCTBCode.ToolTip = null;
+            this.fCTBCode.Zoom = 100;
+            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
+            this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
+            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
+            this.fCTBCode.MouseHover += new System.EventHandler(this.fCTBCode_MouseHover);
+            // 
+            // cmsCode
+            // 
+            this.cmsCode.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsEditorHotkeys,
+            this.toolStripSeparator11,
+            this.cmsCodeSelect,
+            this.cmsCodeCopy,
+            this.cmsCodePaste,
+            this.toolStripSeparator14,
+            this.cmsFindDialog,
+            this.cmsReplaceDialog,
+            this.toolStripSeparator12,
+            this.cmsCodeSendLine,
+            this.cmsCommentOut,
+            this.toolStripSeparator13,
+            this.cmsUpdate2DView});
+            this.cmsCode.Name = "cmsCode";
+            this.cmsCode.ShowImageMargin = false;
+            resources.ApplyResources(this.cmsCode, "cmsCode");
+            this.cmsCode.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsCode_ItemClicked);
+            // 
+            // cmsEditorHotkeys
+            // 
+            this.cmsEditorHotkeys.Name = "cmsEditorHotkeys";
+            resources.ApplyResources(this.cmsEditorHotkeys, "cmsEditorHotkeys");
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
+            // 
+            // cmsCodeSelect
+            // 
+            this.cmsCodeSelect.Name = "cmsCodeSelect";
+            resources.ApplyResources(this.cmsCodeSelect, "cmsCodeSelect");
+            // 
+            // cmsCodeCopy
+            // 
+            this.cmsCodeCopy.Name = "cmsCodeCopy";
+            resources.ApplyResources(this.cmsCodeCopy, "cmsCodeCopy");
+            // 
+            // cmsCodePaste
+            // 
+            this.cmsCodePaste.Name = "cmsCodePaste";
+            resources.ApplyResources(this.cmsCodePaste, "cmsCodePaste");
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
+            // 
+            // cmsFindDialog
+            // 
+            this.cmsFindDialog.Name = "cmsFindDialog";
+            resources.ApplyResources(this.cmsFindDialog, "cmsFindDialog");
+            // 
+            // cmsReplaceDialog
+            // 
+            this.cmsReplaceDialog.Name = "cmsReplaceDialog";
+            resources.ApplyResources(this.cmsReplaceDialog, "cmsReplaceDialog");
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
+            // 
+            // cmsCodeSendLine
+            // 
+            this.cmsCodeSendLine.Name = "cmsCodeSendLine";
+            resources.ApplyResources(this.cmsCodeSendLine, "cmsCodeSendLine");
+            // 
+            // cmsCommentOut
+            // 
+            this.cmsCommentOut.Name = "cmsCommentOut";
+            resources.ApplyResources(this.cmsCommentOut, "cmsCommentOut");
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
+            // 
+            // cmsUpdate2DView
+            // 
+            this.cmsUpdate2DView.Name = "cmsUpdate2DView";
+            resources.ApplyResources(this.cmsUpdate2DView, "cmsUpdate2DView");
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnLimitExceed);
+            this.groupBox1.Controls.Add(this.btnOverrideSSGB);
+            this.groupBox1.Controls.Add(this.btnOverrideFRGB);
+            this.groupBox1.Controls.Add(this.groupBox4);
+            this.groupBox1.Controls.Add(this.lbDimension);
+            this.groupBox1.Controls.Add(this.pbBuffer);
+            this.groupBox1.Controls.Add(this.btnStreamStop);
+            this.groupBox1.Controls.Add(this.btnStreamCheck);
+            this.groupBox1.Controls.Add(this.lbInfo);
+            this.groupBox1.Controls.Add(this.lblRemaining);
+            this.groupBox1.Controls.Add(this.pbFile);
+            this.groupBox1.Controls.Add(this.lblElapsed);
+            this.groupBox1.Controls.Add(this.lblFileProgress);
+            this.groupBox1.Controls.Add(this.btnStreamStart);
+            this.groupBox1.Controls.Add(this.tbFile);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // btnLimitExceed
+            // 
+            this.btnLimitExceed.BackColor = System.Drawing.Color.Yellow;
+            resources.ApplyResources(this.btnLimitExceed, "btnLimitExceed");
+            this.btnLimitExceed.Name = "btnLimitExceed";
+            this.btnLimitExceed.UseVisualStyleBackColor = false;
+            this.btnLimitExceed.Click += new System.EventHandler(this.btnLimitExceed_Click);
+            // 
+            // btnOverrideSSGB
+            // 
+            this.btnOverrideSSGB.Controls.Add(this.lblStatusSpeed);
+            this.btnOverrideSSGB.Controls.Add(this.label8);
+            this.btnOverrideSSGB.Controls.Add(this.label10);
+            this.btnOverrideSSGB.Controls.Add(this.lblOverrideSSValue);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS2);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS0);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS1);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS4);
+            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS3);
+            resources.ApplyResources(this.btnOverrideSSGB, "btnOverrideSSGB");
+            this.btnOverrideSSGB.Name = "btnOverrideSSGB";
+            this.btnOverrideSSGB.TabStop = false;
+            // 
+            // lblStatusSpeed
+            // 
+            resources.ApplyResources(this.lblStatusSpeed, "lblStatusSpeed");
+            this.lblStatusSpeed.Name = "lblStatusSpeed";
+            this.toolTip1.SetToolTip(this.lblStatusSpeed, resources.GetString("lblStatusSpeed.ToolTip"));
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // lblOverrideSSValue
+            // 
+            resources.ApplyResources(this.lblOverrideSSValue, "lblOverrideSSValue");
+            this.lblOverrideSSValue.Name = "lblOverrideSSValue";
+            // 
+            // btnOverrideSS2
+            // 
+            resources.ApplyResources(this.btnOverrideSS2, "btnOverrideSS2");
+            this.btnOverrideSS2.Name = "btnOverrideSS2";
+            this.btnOverrideSS2.UseVisualStyleBackColor = true;
+            this.btnOverrideSS2.Click += new System.EventHandler(this.btnOverrideSS2_Click);
+            // 
+            // btnOverrideSS0
+            // 
+            resources.ApplyResources(this.btnOverrideSS0, "btnOverrideSS0");
+            this.btnOverrideSS0.Name = "btnOverrideSS0";
+            this.btnOverrideSS0.UseVisualStyleBackColor = true;
+            this.btnOverrideSS0.Click += new System.EventHandler(this.btnOverrideSS0_Click);
+            // 
+            // btnOverrideSS1
+            // 
+            resources.ApplyResources(this.btnOverrideSS1, "btnOverrideSS1");
+            this.btnOverrideSS1.Name = "btnOverrideSS1";
+            this.btnOverrideSS1.UseVisualStyleBackColor = true;
+            this.btnOverrideSS1.Click += new System.EventHandler(this.btnOverrideSS1_Click);
+            // 
+            // btnOverrideSS4
+            // 
+            resources.ApplyResources(this.btnOverrideSS4, "btnOverrideSS4");
+            this.btnOverrideSS4.Name = "btnOverrideSS4";
+            this.btnOverrideSS4.UseVisualStyleBackColor = true;
+            this.btnOverrideSS4.Click += new System.EventHandler(this.btnOverrideSS4_Click);
+            // 
+            // btnOverrideSS3
+            // 
+            resources.ApplyResources(this.btnOverrideSS3, "btnOverrideSS3");
+            this.btnOverrideSS3.Name = "btnOverrideSS3";
+            this.btnOverrideSS3.UseVisualStyleBackColor = true;
+            this.btnOverrideSS3.Click += new System.EventHandler(this.btnOverrideSS3_Click);
+            // 
+            // btnOverrideFRGB
+            // 
+            this.btnOverrideFRGB.Controls.Add(this.lblStatusFeed);
+            this.btnOverrideFRGB.Controls.Add(this.label5);
+            this.btnOverrideFRGB.Controls.Add(this.label7);
+            this.btnOverrideFRGB.Controls.Add(this.lblOverrideFRValue);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR1);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR2);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR0);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR4);
+            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR3);
+            resources.ApplyResources(this.btnOverrideFRGB, "btnOverrideFRGB");
+            this.btnOverrideFRGB.Name = "btnOverrideFRGB";
+            this.btnOverrideFRGB.TabStop = false;
+            // 
+            // lblStatusFeed
+            // 
+            resources.ApplyResources(this.lblStatusFeed, "lblStatusFeed");
+            this.lblStatusFeed.Name = "lblStatusFeed";
+            this.toolTip1.SetToolTip(this.lblStatusFeed, resources.GetString("lblStatusFeed.ToolTip"));
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // lblOverrideFRValue
+            // 
+            resources.ApplyResources(this.lblOverrideFRValue, "lblOverrideFRValue");
+            this.lblOverrideFRValue.Name = "lblOverrideFRValue";
+            // 
+            // btnOverrideFR1
+            // 
+            resources.ApplyResources(this.btnOverrideFR1, "btnOverrideFR1");
+            this.btnOverrideFR1.Name = "btnOverrideFR1";
+            this.btnOverrideFR1.UseVisualStyleBackColor = true;
+            this.btnOverrideFR1.Click += new System.EventHandler(this.btnOverrideFR1_Click);
+            // 
+            // btnOverrideFR2
+            // 
+            resources.ApplyResources(this.btnOverrideFR2, "btnOverrideFR2");
+            this.btnOverrideFR2.Name = "btnOverrideFR2";
+            this.btnOverrideFR2.UseVisualStyleBackColor = true;
+            this.btnOverrideFR2.Click += new System.EventHandler(this.btnOverrideFR2_Click);
+            // 
+            // btnOverrideFR0
+            // 
+            resources.ApplyResources(this.btnOverrideFR0, "btnOverrideFR0");
+            this.btnOverrideFR0.Name = "btnOverrideFR0";
+            this.btnOverrideFR0.UseVisualStyleBackColor = true;
+            this.btnOverrideFR0.Click += new System.EventHandler(this.btnOverrideFR0_Click);
+            // 
+            // btnOverrideFR4
+            // 
+            resources.ApplyResources(this.btnOverrideFR4, "btnOverrideFR4");
+            this.btnOverrideFR4.Name = "btnOverrideFR4";
+            this.btnOverrideFR4.UseVisualStyleBackColor = true;
+            this.btnOverrideFR4.Click += new System.EventHandler(this.btnOverrideFR4_Click);
+            // 
+            // btnOverrideFR3
+            // 
+            resources.ApplyResources(this.btnOverrideFR3, "btnOverrideFR3");
+            this.btnOverrideFR3.Name = "btnOverrideFR3";
+            this.btnOverrideFR3.UseVisualStyleBackColor = true;
+            this.btnOverrideFR3.Click += new System.EventHandler(this.btnOverrideFR3_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnOffsetApply);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.tbOffsetY);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.tbOffsetX);
+            this.groupBox4.Controls.Add(this.rBOrigin9);
+            this.groupBox4.Controls.Add(this.rBOrigin8);
+            this.groupBox4.Controls.Add(this.rBOrigin7);
+            this.groupBox4.Controls.Add(this.rBOrigin6);
+            this.groupBox4.Controls.Add(this.rBOrigin5);
+            this.groupBox4.Controls.Add(this.rBOrigin4);
+            this.groupBox4.Controls.Add(this.rBOrigin3);
+            this.groupBox4.Controls.Add(this.rBOrigin2);
+            this.groupBox4.Controls.Add(this.rBOrigin1);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // btnOffsetApply
+            // 
+            resources.ApplyResources(this.btnOffsetApply, "btnOffsetApply");
+            this.btnOffsetApply.Name = "btnOffsetApply";
+            this.btnOffsetApply.UseVisualStyleBackColor = true;
+            this.btnOffsetApply.Click += new System.EventHandler(this.btnOffsetApply_Click);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // tbOffsetY
+            // 
+            resources.ApplyResources(this.tbOffsetY, "tbOffsetY");
+            this.tbOffsetY.Name = "tbOffsetY";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // tbOffsetX
+            // 
+            resources.ApplyResources(this.tbOffsetX, "tbOffsetX");
+            this.tbOffsetX.Name = "tbOffsetX";
+            // 
+            // rBOrigin9
+            // 
+            resources.ApplyResources(this.rBOrigin9, "rBOrigin9");
+            this.rBOrigin9.Name = "rBOrigin9";
+            this.rBOrigin9.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin8
+            // 
+            resources.ApplyResources(this.rBOrigin8, "rBOrigin8");
+            this.rBOrigin8.Name = "rBOrigin8";
+            this.rBOrigin8.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin7
+            // 
+            resources.ApplyResources(this.rBOrigin7, "rBOrigin7");
+            this.rBOrigin7.Name = "rBOrigin7";
+            this.rBOrigin7.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin6
+            // 
+            resources.ApplyResources(this.rBOrigin6, "rBOrigin6");
+            this.rBOrigin6.Name = "rBOrigin6";
+            this.rBOrigin6.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin5
+            // 
+            resources.ApplyResources(this.rBOrigin5, "rBOrigin5");
+            this.rBOrigin5.Checked = true;
+            this.rBOrigin5.Name = "rBOrigin5";
+            this.rBOrigin5.TabStop = true;
+            this.rBOrigin5.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin4
+            // 
+            resources.ApplyResources(this.rBOrigin4, "rBOrigin4");
+            this.rBOrigin4.Name = "rBOrigin4";
+            this.rBOrigin4.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin3
+            // 
+            resources.ApplyResources(this.rBOrigin3, "rBOrigin3");
+            this.rBOrigin3.Name = "rBOrigin3";
+            this.rBOrigin3.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin2
+            // 
+            resources.ApplyResources(this.rBOrigin2, "rBOrigin2");
+            this.rBOrigin2.Name = "rBOrigin2";
+            this.rBOrigin2.UseVisualStyleBackColor = true;
+            // 
+            // rBOrigin1
+            // 
+            resources.ApplyResources(this.rBOrigin1, "rBOrigin1");
+            this.rBOrigin1.Name = "rBOrigin1";
+            this.rBOrigin1.UseVisualStyleBackColor = true;
+            // 
+            // lbDimension
+            // 
+            this.lbDimension.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            resources.ApplyResources(this.lbDimension, "lbDimension");
+            this.lbDimension.HideSelection = false;
+            this.lbDimension.Name = "lbDimension";
+            this.lbDimension.ReadOnly = true;
+            // 
+            // pbBuffer
+            // 
+            resources.ApplyResources(this.pbBuffer, "pbBuffer");
+            this.pbBuffer.Name = "pbBuffer";
+            // 
+            // btnStreamStop
+            // 
+            this.btnStreamStop.Image = global::GRBL_Plotter.Properties.Resources.btn_stop;
+            resources.ApplyResources(this.btnStreamStop, "btnStreamStop");
+            this.btnStreamStop.Name = "btnStreamStop";
+            this.toolTip1.SetToolTip(this.btnStreamStop, resources.GetString("btnStreamStop.ToolTip"));
+            this.btnStreamStop.UseVisualStyleBackColor = true;
+            this.btnStreamStop.Click += new System.EventHandler(this.btnStreamStop_Click);
+            // 
+            // btnStreamCheck
+            // 
+            resources.ApplyResources(this.btnStreamCheck, "btnStreamCheck");
+            this.btnStreamCheck.Name = "btnStreamCheck";
+            this.btnStreamCheck.UseVisualStyleBackColor = true;
+            this.btnStreamCheck.Click += new System.EventHandler(this.btnStreamCheck_Click);
+            // 
+            // lbInfo
+            // 
+            resources.ApplyResources(this.lbInfo, "lbInfo");
+            this.lbInfo.Name = "lbInfo";
+            // 
+            // lblRemaining
+            // 
+            resources.ApplyResources(this.lblRemaining, "lblRemaining");
+            this.lblRemaining.Name = "lblRemaining";
+            // 
+            // pbFile
+            // 
+            resources.ApplyResources(this.pbFile, "pbFile");
+            this.pbFile.Name = "pbFile";
+            // 
+            // lblElapsed
+            // 
+            resources.ApplyResources(this.lblElapsed, "lblElapsed");
+            this.lblElapsed.Name = "lblElapsed";
+            // 
+            // lblFileProgress
+            // 
+            resources.ApplyResources(this.lblFileProgress, "lblFileProgress");
+            this.lblFileProgress.Name = "lblFileProgress";
+            // 
+            // btnStreamStart
+            // 
+            this.btnStreamStart.Image = global::GRBL_Plotter.Properties.Resources.btn_play;
+            resources.ApplyResources(this.btnStreamStart, "btnStreamStart");
+            this.btnStreamStart.Name = "btnStreamStart";
+            this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
+            this.btnStreamStart.UseVisualStyleBackColor = true;
+            this.btnStreamStart.Click += new System.EventHandler(this.btnStreamStart_Click);
+            // 
+            // tbFile
+            // 
+            resources.ApplyResources(this.tbFile, "tbFile");
+            this.tbFile.Name = "tbFile";
+            // 
+            // tLPRechts
+            // 
+            resources.ApplyResources(this.tLPRechts, "tLPRechts");
+            this.tLPRechts.Controls.Add(this.tLPRechtsUnten, 0, 1);
+            this.tLPRechts.Controls.Add(this.tLPRechtsOben, 0, 0);
+            this.tLPRechts.Name = "tLPRechts";
+            // 
+            // tLPRechtsUnten
+            // 
+            resources.ApplyResources(this.tLPRechtsUnten, "tLPRechtsUnten");
+            this.tLPRechtsUnten.Controls.Add(this.tLPRechtsUntenRechts, 1, 0);
+            this.tLPRechtsUnten.Controls.Add(this.tLPMitteUnten, 0, 0);
+            this.tLPRechtsUnten.Name = "tLPRechtsUnten";
+            // 
+            // tLPRechtsUntenRechts
+            // 
+            resources.ApplyResources(this.tLPRechtsUntenRechts, "tLPRechtsUntenRechts");
+            this.tLPRechtsUntenRechts.Controls.Add(this.gB_Jogging, 0, 0);
+            this.tLPRechtsUntenRechts.Controls.Add(this.tLPRechtsUntenRechtsMitte, 0, 1);
+            this.tLPRechtsUntenRechts.Controls.Add(this.tableLayoutPanel2, 0, 2);
+            this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
+            // 
+            // gB_Jogging
+            // 
+            resources.ApplyResources(this.gB_Jogging, "gB_Jogging");
+            this.gB_Jogging.Controls.Add(this.btnJogStop);
+            this.gB_Jogging.Controls.Add(this.groupBox3);
+            this.gB_Jogging.Controls.Add(this.lblTool);
+            this.gB_Jogging.Controls.Add(this.cBTool);
+            this.gB_Jogging.Controls.Add(this.label9);
+            this.gB_Jogging.Controls.Add(this.tBSpeed);
+            this.gB_Jogging.Controls.Add(this.cBCoolant);
+            this.gB_Jogging.Controls.Add(this.cBSpindle);
+            this.gB_Jogging.Name = "gB_Jogging";
+            this.gB_Jogging.TabStop = false;
+            // 
+            // btnJogStop
+            // 
+            this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.btnJogStop, "btnJogStop");
+            this.btnJogStop.Name = "btnJogStop";
+            this.toolTip1.SetToolTip(this.btnJogStop, resources.GetString("btnJogStop.ToolTip"));
+            this.btnJogStop.UseVisualStyleBackColor = false;
+            this.btnJogStop.Click += new System.EventHandler(this.btnJogStop_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnJogZeroA);
+            this.groupBox3.Controls.Add(this.btnJogZeroX);
+            this.groupBox3.Controls.Add(this.btnJogZeroXY);
+            this.groupBox3.Controls.Add(this.btnJogZeroY);
+            this.groupBox3.Controls.Add(this.btnJogZeroZ);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // btnJogZeroA
+            // 
+            resources.ApplyResources(this.btnJogZeroA, "btnJogZeroA");
+            this.btnJogZeroA.Name = "btnJogZeroA";
+            this.toolTip1.SetToolTip(this.btnJogZeroA, resources.GetString("btnJogZeroA.ToolTip"));
+            this.btnJogZeroA.UseVisualStyleBackColor = true;
+            this.btnJogZeroA.Click += new System.EventHandler(this.btnJogZeroA_Click);
+            // 
+            // btnJogZeroX
+            // 
+            resources.ApplyResources(this.btnJogZeroX, "btnJogZeroX");
+            this.btnJogZeroX.Name = "btnJogZeroX";
+            this.toolTip1.SetToolTip(this.btnJogZeroX, resources.GetString("btnJogZeroX.ToolTip"));
+            this.btnJogZeroX.UseVisualStyleBackColor = true;
+            this.btnJogZeroX.Click += new System.EventHandler(this.btnJogX_Click);
+            // 
+            // btnJogZeroXY
+            // 
+            resources.ApplyResources(this.btnJogZeroXY, "btnJogZeroXY");
+            this.btnJogZeroXY.Name = "btnJogZeroXY";
+            this.toolTip1.SetToolTip(this.btnJogZeroXY, resources.GetString("btnJogZeroXY.ToolTip"));
+            this.btnJogZeroXY.UseVisualStyleBackColor = true;
+            this.btnJogZeroXY.Click += new System.EventHandler(this.btnJogXY_Click);
+            // 
+            // btnJogZeroY
+            // 
+            resources.ApplyResources(this.btnJogZeroY, "btnJogZeroY");
+            this.btnJogZeroY.Name = "btnJogZeroY";
+            this.toolTip1.SetToolTip(this.btnJogZeroY, resources.GetString("btnJogZeroY.ToolTip"));
+            this.btnJogZeroY.UseVisualStyleBackColor = true;
+            this.btnJogZeroY.Click += new System.EventHandler(this.btnJogY_Click);
+            // 
+            // btnJogZeroZ
+            // 
+            resources.ApplyResources(this.btnJogZeroZ, "btnJogZeroZ");
+            this.btnJogZeroZ.Name = "btnJogZeroZ";
+            this.toolTip1.SetToolTip(this.btnJogZeroZ, resources.GetString("btnJogZeroZ.ToolTip"));
+            this.btnJogZeroZ.UseVisualStyleBackColor = true;
+            this.btnJogZeroZ.Click += new System.EventHandler(this.btnJogZ_Click);
+            // 
+            // lblTool
+            // 
+            resources.ApplyResources(this.lblTool, "lblTool");
+            this.lblTool.Name = "lblTool";
+            // 
+            // cBTool
+            // 
+            resources.ApplyResources(this.cBTool, "cBTool");
+            this.cBTool.Name = "cBTool";
+            this.cBTool.UseVisualStyleBackColor = true;
+            this.cBTool.CheckedChanged += new System.EventHandler(this.cBTool_CheckedChanged);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // tBSpeed
+            // 
+            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "spindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBSpeed, "tBSpeed");
+            this.tBSpeed.Name = "tBSpeed";
+            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.spindleSpeed;
+            // 
+            // cBCoolant
+            // 
+            resources.ApplyResources(this.cBCoolant, "cBCoolant");
+            this.cBCoolant.Name = "cBCoolant";
+            this.cBCoolant.UseVisualStyleBackColor = true;
+            this.cBCoolant.CheckedChanged += new System.EventHandler(this.cBCoolant_CheckedChanged);
+            // 
+            // cBSpindle
+            // 
+            resources.ApplyResources(this.cBSpindle, "cBSpindle");
+            this.cBSpindle.Name = "cBSpindle";
+            this.cBSpindle.UseVisualStyleBackColor = true;
+            this.cBSpindle.CheckedChanged += new System.EventHandler(this.cBSpindle_CheckedChanged);
+            // 
+            // tLPRechtsUntenRechtsMitte
+            // 
+            resources.ApplyResources(this.tLPRechtsUntenRechtsMitte, "tLPRechtsUntenRechtsMitte");
+            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickA, 2, 0);
+            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickXY, 0, 0);
+            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickZ, 1, 0);
+            this.tLPRechtsUntenRechtsMitte.Name = "tLPRechtsUntenRechtsMitte";
+            // 
+            // virtualJoystickA
+            // 
+            resources.ApplyResources(this.virtualJoystickA, "virtualJoystickA");
+            this.virtualJoystickA.Joystick2Dimension = false;
+            this.virtualJoystickA.JoystickActive = System.Drawing.Color.Red;
+            this.virtualJoystickA.JoystickLabel = new double[] {
+        0.1D,
+        0.5D,
+        1D,
+        5D,
+        10D,
+        50D};
+            this.virtualJoystickA.JoystickRaster = 5;
+            this.virtualJoystickA.JoystickRasterMark = 0;
+            this.virtualJoystickA.JoystickStanby = System.Drawing.Color.Orange;
+            this.virtualJoystickA.Name = "virtualJoystickA";
+            this.virtualJoystickA.TabStop = false;
+            this.toolTip1.SetToolTip(this.virtualJoystickA, resources.GetString("virtualJoystickA.ToolTip"));
+            this.virtualJoystickA.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickA_JoyStickEvent);
+            this.virtualJoystickA.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
+            this.virtualJoystickA.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickA.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
+            this.virtualJoystickA.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
+            // 
+            // virtualJoystickXY
+            // 
+            resources.ApplyResources(this.virtualJoystickXY, "virtualJoystickXY");
+            this.virtualJoystickXY.Joystick2Dimension = true;
+            this.virtualJoystickXY.JoystickActive = System.Drawing.Color.Red;
+            this.virtualJoystickXY.JoystickLabel = new double[] {
+        0.1D,
+        0.5D,
+        1D,
+        5D,
+        10D,
+        50D};
+            this.virtualJoystickXY.JoystickRaster = 5;
+            this.virtualJoystickXY.JoystickRasterMark = 0;
+            this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
+            this.virtualJoystickXY.Name = "virtualJoystickXY";
+            this.virtualJoystickXY.TabStop = false;
+            this.toolTip1.SetToolTip(this.virtualJoystickXY, resources.GetString("virtualJoystickXY.ToolTip"));
+            this.virtualJoystickXY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickXY_JoyStickEvent);
+            this.virtualJoystickXY.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
+            this.virtualJoystickXY.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickXY.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
+            this.virtualJoystickXY.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
+            // 
+            // virtualJoystickZ
+            // 
+            resources.ApplyResources(this.virtualJoystickZ, "virtualJoystickZ");
+            this.virtualJoystickZ.Joystick2Dimension = false;
+            this.virtualJoystickZ.JoystickActive = System.Drawing.Color.Red;
+            this.virtualJoystickZ.JoystickLabel = new double[] {
+        0.1D,
+        0.5D,
+        1D,
+        5D,
+        10D,
+        50D};
+            this.virtualJoystickZ.JoystickRaster = 5;
+            this.virtualJoystickZ.JoystickRasterMark = 0;
+            this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
+            this.virtualJoystickZ.Name = "virtualJoystickZ";
+            this.virtualJoystickZ.TabStop = false;
+            this.toolTip1.SetToolTip(this.virtualJoystickZ, resources.GetString("virtualJoystickZ.ToolTip"));
+            this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickZ_JoyStickEvent);
+            this.virtualJoystickZ.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
+            this.virtualJoystickZ.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickZ.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
+            this.virtualJoystickZ.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
+            // 
+            // tableLayoutPanel2
+            // 
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
+            this.tableLayoutPanel2.Controls.Add(this.cBSendJogStop, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            // 
+            // cBSendJogStop
+            // 
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
+            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
+            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSendJogStop.Name = "cBSendJogStop";
+            this.cBSendJogStop.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            // 
+            // tableLayoutPanel4
+            // 
+            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
+            this.tableLayoutPanel4.Controls.Add(this.btnResume, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnFeedHold, 0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            // 
+            // btnResume
+            // 
+            resources.ApplyResources(this.btnResume, "btnResume");
+            this.btnResume.Name = "btnResume";
+            this.toolTip1.SetToolTip(this.btnResume, resources.GetString("btnResume.ToolTip"));
+            this.btnResume.UseVisualStyleBackColor = true;
+            this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
+            // 
+            // btnFeedHold
+            // 
+            resources.ApplyResources(this.btnFeedHold, "btnFeedHold");
+            this.btnFeedHold.Name = "btnFeedHold";
+            this.toolTip1.SetToolTip(this.btnFeedHold, resources.GetString("btnFeedHold.ToolTip"));
+            this.btnFeedHold.UseVisualStyleBackColor = true;
+            this.btnFeedHold.Click += new System.EventHandler(this.btnFeedHold_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
+            this.tableLayoutPanel5.Controls.Add(this.btnKillAlarm, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btnReset, 0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            // 
+            // btnKillAlarm
+            // 
+            resources.ApplyResources(this.btnKillAlarm, "btnKillAlarm");
+            this.btnKillAlarm.Name = "btnKillAlarm";
+            this.toolTip1.SetToolTip(this.btnKillAlarm, resources.GetString("btnKillAlarm.ToolTip"));
+            this.btnKillAlarm.UseVisualStyleBackColor = true;
+            this.btnKillAlarm.Click += new System.EventHandler(this.btnKillAlarm_Click);
+            // 
+            // btnReset
+            // 
+            resources.ApplyResources(this.btnReset, "btnReset");
+            this.btnReset.Name = "btnReset";
+            this.toolTip1.SetToolTip(this.btnReset, resources.GetString("btnReset.ToolTip"));
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // tLPMitteUnten
+            // 
+            resources.ApplyResources(this.tLPMitteUnten, "tLPMitteUnten");
+            this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
+            this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 1);
+            this.tLPMitteUnten.Name = "tLPMitteUnten";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox1.BackgroundImage = global::GRBL_Plotter.Properties.Resources.modell;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.ContextMenuStrip = this.cmsPictureBox;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseWheel);
+            // 
+            // cmsPictureBox
+            // 
+            this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zeroXYAtMarkedPositionG92ToolStripMenuItem,
+            this.moveToMarkedPositionToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.resetZoomingToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.pasteFromClipboardToolStripMenuItem,
+            this.reloadFileToolStripMenuItem,
+            this.deletenotMarkToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.deleteThisCodeLineToolStripMenuItem,
+            this.moveToFirstPosToolStripMenuItem,
+            this.deletePathToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.setGCodeAsBackgroundToolStripMenuItem,
+            this.clearBackgroundToolStripMenuItem});
+            this.cmsPictureBox.Name = "cmsPictureBox";
+            resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
+            // 
+            // zeroXYAtMarkedPositionG92ToolStripMenuItem
+            // 
+            this.zeroXYAtMarkedPositionG92ToolStripMenuItem.Name = "zeroXYAtMarkedPositionG92ToolStripMenuItem";
+            resources.ApplyResources(this.zeroXYAtMarkedPositionG92ToolStripMenuItem, "zeroXYAtMarkedPositionG92ToolStripMenuItem");
+            this.zeroXYAtMarkedPositionG92ToolStripMenuItem.Click += new System.EventHandler(this.zeroXYAtMarkedPositionG92ToolStripMenuItem_Click);
+            // 
+            // moveToMarkedPositionToolStripMenuItem
+            // 
+            this.moveToMarkedPositionToolStripMenuItem.Name = "moveToMarkedPositionToolStripMenuItem";
+            resources.ApplyResources(this.moveToMarkedPositionToolStripMenuItem, "moveToMarkedPositionToolStripMenuItem");
+            this.moveToMarkedPositionToolStripMenuItem.Click += new System.EventHandler(this.moveToMarkedPositionToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
+            // 
+            // resetZoomingToolStripMenuItem
+            // 
+            this.resetZoomingToolStripMenuItem.Name = "resetZoomingToolStripMenuItem";
+            resources.ApplyResources(this.resetZoomingToolStripMenuItem, "resetZoomingToolStripMenuItem");
+            this.resetZoomingToolStripMenuItem.Click += new System.EventHandler(this.resetZoomingToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
+            // 
+            // pasteFromClipboardToolStripMenuItem
+            // 
+            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
+            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
+            this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
+            // 
+            // reloadFileToolStripMenuItem
+            // 
+            this.reloadFileToolStripMenuItem.Name = "reloadFileToolStripMenuItem";
+            resources.ApplyResources(this.reloadFileToolStripMenuItem, "reloadFileToolStripMenuItem");
+            this.reloadFileToolStripMenuItem.Click += new System.EventHandler(this.reloadFileToolStripMenuItem_Click);
+            // 
+            // deletenotMarkToolStripMenuItem
+            // 
+            resources.ApplyResources(this.deletenotMarkToolStripMenuItem, "deletenotMarkToolStripMenuItem");
+            this.deletenotMarkToolStripMenuItem.Name = "deletenotMarkToolStripMenuItem";
+            this.deletenotMarkToolStripMenuItem.Click += new System.EventHandler(this.deletenotMarkToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // deleteThisCodeLineToolStripMenuItem
+            // 
+            this.deleteThisCodeLineToolStripMenuItem.Name = "deleteThisCodeLineToolStripMenuItem";
+            resources.ApplyResources(this.deleteThisCodeLineToolStripMenuItem, "deleteThisCodeLineToolStripMenuItem");
+            this.deleteThisCodeLineToolStripMenuItem.Click += new System.EventHandler(this.deleteThisCodeLineToolStripMenuItem_Click);
+            // 
+            // moveToFirstPosToolStripMenuItem
+            // 
+            this.moveToFirstPosToolStripMenuItem.Name = "moveToFirstPosToolStripMenuItem";
+            resources.ApplyResources(this.moveToFirstPosToolStripMenuItem, "moveToFirstPosToolStripMenuItem");
+            this.moveToFirstPosToolStripMenuItem.Click += new System.EventHandler(this.moveToFirstPosToolStripMenuItem_Click);
+            // 
+            // deletePathToolStripMenuItem
+            // 
+            this.deletePathToolStripMenuItem.Name = "deletePathToolStripMenuItem";
+            resources.ApplyResources(this.deletePathToolStripMenuItem, "deletePathToolStripMenuItem");
+            this.deletePathToolStripMenuItem.Click += new System.EventHandler(this.deletePathToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
+            // 
+            // setGCodeAsBackgroundToolStripMenuItem
+            // 
+            this.setGCodeAsBackgroundToolStripMenuItem.Name = "setGCodeAsBackgroundToolStripMenuItem";
+            resources.ApplyResources(this.setGCodeAsBackgroundToolStripMenuItem, "setGCodeAsBackgroundToolStripMenuItem");
+            this.setGCodeAsBackgroundToolStripMenuItem.Click += new System.EventHandler(this.setGCodeAsBackgroundToolStripMenuItem_Click);
+            // 
+            // clearBackgroundToolStripMenuItem
+            // 
+            this.clearBackgroundToolStripMenuItem.Name = "clearBackgroundToolStripMenuItem";
+            resources.ApplyResources(this.clearBackgroundToolStripMenuItem, "clearBackgroundToolStripMenuItem");
+            this.clearBackgroundToolStripMenuItem.Click += new System.EventHandler(this.clearBackgroundToolStripMenuItem_Click);
+            // 
+            // tBURL
+            // 
+            resources.ApplyResources(this.tBURL, "tBURL");
+            this.tBURL.Name = "tBURL";
+            this.toolTip1.SetToolTip(this.tBURL, resources.GetString("tBURL.ToolTip"));
+            this.tBURL.TextChanged += new System.EventHandler(this.tBURL_TextChanged);
+            // 
+            // tLPRechtsOben
+            // 
+            resources.ApplyResources(this.tLPRechtsOben, "tLPRechtsOben");
+            this.tLPRechtsOben.Controls.Add(this.groupBox5, 1, 0);
+            this.tLPRechtsOben.Controls.Add(this.groupBox2, 0, 0);
+            this.tLPRechtsOben.Name = "tLPRechtsOben";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.tableLayoutPanel1);
+            resources.ApplyResources(this.groupBox5, "groupBox5");
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.TabStop = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom12, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom11, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom10, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom9, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom8, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom7, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom6, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom5, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnCustom4, 0, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // btnCustom12
+            // 
+            resources.ApplyResources(this.btnCustom12, "btnCustom12");
+            this.btnCustom12.Name = "btnCustom12";
+            this.btnCustom12.UseVisualStyleBackColor = true;
+            this.btnCustom12.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom11
+            // 
+            resources.ApplyResources(this.btnCustom11, "btnCustom11");
+            this.btnCustom11.Name = "btnCustom11";
+            this.btnCustom11.UseVisualStyleBackColor = true;
+            this.btnCustom11.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom10
+            // 
+            resources.ApplyResources(this.btnCustom10, "btnCustom10");
+            this.btnCustom10.Name = "btnCustom10";
+            this.btnCustom10.UseVisualStyleBackColor = true;
+            this.btnCustom10.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom9
+            // 
+            resources.ApplyResources(this.btnCustom9, "btnCustom9");
+            this.btnCustom9.Name = "btnCustom9";
+            this.btnCustom9.UseVisualStyleBackColor = true;
+            this.btnCustom9.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom8
+            // 
+            resources.ApplyResources(this.btnCustom8, "btnCustom8");
+            this.btnCustom8.Name = "btnCustom8";
+            this.btnCustom8.UseVisualStyleBackColor = true;
+            this.btnCustom8.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom7
+            // 
+            resources.ApplyResources(this.btnCustom7, "btnCustom7");
+            this.btnCustom7.Name = "btnCustom7";
+            this.btnCustom7.UseVisualStyleBackColor = true;
+            this.btnCustom7.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom6
+            // 
+            resources.ApplyResources(this.btnCustom6, "btnCustom6");
+            this.btnCustom6.Name = "btnCustom6";
+            this.btnCustom6.UseVisualStyleBackColor = true;
+            this.btnCustom6.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom5
+            // 
+            resources.ApplyResources(this.btnCustom5, "btnCustom5");
+            this.btnCustom5.Name = "btnCustom5";
+            this.btnCustom5.UseVisualStyleBackColor = true;
+            this.btnCustom5.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom1
+            // 
+            resources.ApplyResources(this.btnCustom1, "btnCustom1");
+            this.btnCustom1.Name = "btnCustom1";
+            this.btnCustom1.UseVisualStyleBackColor = true;
+            this.btnCustom1.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom2
+            // 
+            resources.ApplyResources(this.btnCustom2, "btnCustom2");
+            this.btnCustom2.Name = "btnCustom2";
+            this.btnCustom2.UseVisualStyleBackColor = true;
+            this.btnCustom2.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom3
+            // 
+            resources.ApplyResources(this.btnCustom3, "btnCustom3");
+            this.btnCustom3.Name = "btnCustom3";
+            this.btnCustom3.UseVisualStyleBackColor = true;
+            this.btnCustom3.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom4
+            // 
+            resources.ApplyResources(this.btnCustom4, "btnCustom4");
+            this.btnCustom4.Name = "btnCustom4";
+            this.btnCustom4.UseVisualStyleBackColor = true;
+            this.btnCustom4.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblCurrentG);
+            this.groupBox2.Controls.Add(this.label_status0);
+            this.groupBox2.Controls.Add(this.label_a);
+            this.groupBox2.Controls.Add(this.btnZeroA);
+            this.groupBox2.Controls.Add(this.label_ma);
+            this.groupBox2.Controls.Add(this.label_wa);
+            this.groupBox2.Controls.Add(this.btnHome);
+            this.groupBox2.Controls.Add(this.btnZeroXYZ);
+            this.groupBox2.Controls.Add(this.btnZeroXY);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.btnZeroZ);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.btnZeroY);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.btnZeroX);
+            this.groupBox2.Controls.Add(this.label_status);
+            this.groupBox2.Controls.Add(this.label_mx);
+            this.groupBox2.Controls.Add(this.label_my);
+            this.groupBox2.Controls.Add(this.label_mz);
+            this.groupBox2.Controls.Add(this.label_wz);
+            this.groupBox2.Controls.Add(this.label_wx);
+            this.groupBox2.Controls.Add(this.label_wy);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // lblCurrentG
+            // 
+            resources.ApplyResources(this.lblCurrentG, "lblCurrentG");
+            this.lblCurrentG.Name = "lblCurrentG";
+            this.toolTip1.SetToolTip(this.lblCurrentG, resources.GetString("lblCurrentG.ToolTip"));
+            // 
+            // label_status0
+            // 
+            resources.ApplyResources(this.label_status0, "label_status0");
+            this.label_status0.Name = "label_status0";
+            // 
+            // label_a
+            // 
+            resources.ApplyResources(this.label_a, "label_a");
+            this.label_a.Name = "label_a";
+            // 
+            // btnZeroA
+            // 
+            resources.ApplyResources(this.btnZeroA, "btnZeroA");
+            this.btnZeroA.Name = "btnZeroA";
+            this.toolTip1.SetToolTip(this.btnZeroA, resources.GetString("btnZeroA.ToolTip"));
+            this.btnZeroA.UseVisualStyleBackColor = true;
+            this.btnZeroA.Click += new System.EventHandler(this.btnZeroA_Click);
+            // 
+            // label_ma
+            // 
+            resources.ApplyResources(this.label_ma, "label_ma");
+            this.label_ma.Name = "label_ma";
+            // 
+            // label_wa
+            // 
+            resources.ApplyResources(this.label_wa, "label_wa");
+            this.label_wa.Name = "label_wa";
+            // 
+            // btnHome
+            // 
+            resources.ApplyResources(this.btnHome, "btnHome");
+            this.btnHome.Name = "btnHome";
+            this.toolTip1.SetToolTip(this.btnHome, resources.GetString("btnHome.ToolTip"));
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // btnZeroXYZ
+            // 
+            resources.ApplyResources(this.btnZeroXYZ, "btnZeroXYZ");
+            this.btnZeroXYZ.Name = "btnZeroXYZ";
+            this.toolTip1.SetToolTip(this.btnZeroXYZ, resources.GetString("btnZeroXYZ.ToolTip"));
+            this.btnZeroXYZ.UseVisualStyleBackColor = true;
+            this.btnZeroXYZ.Click += new System.EventHandler(this.btnZeroXYZ_Click);
+            // 
+            // btnZeroXY
+            // 
+            resources.ApplyResources(this.btnZeroXY, "btnZeroXY");
+            this.btnZeroXY.Name = "btnZeroXY";
+            this.toolTip1.SetToolTip(this.btnZeroXY, resources.GetString("btnZeroXY.ToolTip"));
+            this.btnZeroXY.UseVisualStyleBackColor = true;
+            this.btnZeroXY.Click += new System.EventHandler(this.btnZeroXY_Click);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // btnZeroZ
+            // 
+            resources.ApplyResources(this.btnZeroZ, "btnZeroZ");
+            this.btnZeroZ.Name = "btnZeroZ";
+            this.toolTip1.SetToolTip(this.btnZeroZ, resources.GetString("btnZeroZ.ToolTip"));
+            this.btnZeroZ.UseVisualStyleBackColor = true;
+            this.btnZeroZ.Click += new System.EventHandler(this.btnZeroZ_Click);
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // btnZeroY
+            // 
+            resources.ApplyResources(this.btnZeroY, "btnZeroY");
+            this.btnZeroY.Name = "btnZeroY";
+            this.toolTip1.SetToolTip(this.btnZeroY, resources.GetString("btnZeroY.ToolTip"));
+            this.btnZeroY.UseVisualStyleBackColor = true;
+            this.btnZeroY.Click += new System.EventHandler(this.btnZeroY_Click);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // btnZeroX
+            // 
+            resources.ApplyResources(this.btnZeroX, "btnZeroX");
+            this.btnZeroX.Name = "btnZeroX";
+            this.toolTip1.SetToolTip(this.btnZeroX, resources.GetString("btnZeroX.ToolTip"));
+            this.btnZeroX.UseVisualStyleBackColor = true;
+            this.btnZeroX.Click += new System.EventHandler(this.btnZeroX_Click);
+            // 
+            // label_status
+            // 
+            resources.ApplyResources(this.label_status, "label_status");
+            this.label_status.Name = "label_status";
+            // 
+            // label_mx
+            // 
+            resources.ApplyResources(this.label_mx, "label_mx");
+            this.label_mx.Name = "label_mx";
+            // 
+            // label_my
+            // 
+            resources.ApplyResources(this.label_my, "label_my");
+            this.label_my.Name = "label_my";
+            // 
+            // label_mz
+            // 
+            resources.ApplyResources(this.label_mz, "label_mz");
+            this.label_mz.Name = "label_mz";
+            // 
+            // label_wz
+            // 
+            resources.ApplyResources(this.label_wz, "label_wz");
+            this.label_wz.Name = "label_wz";
+            // 
+            // label_wx
+            // 
+            resources.ApplyResources(this.label_wx, "label_wx");
+            this.label_wx.Name = "label_wx";
+            // 
+            // label_wy
+            // 
+            resources.ApplyResources(this.label_wy, "label_wy");
+            this.label_wy.Name = "label_wy";
             // 
             // menuStrip1
             // 
@@ -799,1200 +1983,19 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.logToolStripMenuItem, "logToolStripMenuItem");
             this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
             // 
-            // label_mx
-            // 
-            resources.ApplyResources(this.label_mx, "label_mx");
-            this.label_mx.Name = "label_mx";
-            // 
-            // label_my
-            // 
-            resources.ApplyResources(this.label_my, "label_my");
-            this.label_my.Name = "label_my";
-            // 
-            // label_mz
-            // 
-            resources.ApplyResources(this.label_mz, "label_mz");
-            this.label_mz.Name = "label_mz";
-            // 
-            // label_wx
-            // 
-            resources.ApplyResources(this.label_wx, "label_wx");
-            this.label_wx.Name = "label_wx";
-            // 
-            // label_wy
-            // 
-            resources.ApplyResources(this.label_wy, "label_wy");
-            this.label_wy.Name = "label_wy";
-            // 
-            // label_wz
-            // 
-            resources.ApplyResources(this.label_wz, "label_wz");
-            this.label_wz.Name = "label_wz";
-            // 
             // MainTimer
             // 
             this.MainTimer.Enabled = true;
             this.MainTimer.Interval = 500;
             this.MainTimer.Tick += new System.EventHandler(this.MainTimer_Tick);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnLimitExceed);
-            this.groupBox1.Controls.Add(this.btnOverrideSSGB);
-            this.groupBox1.Controls.Add(this.btnOverrideFRGB);
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Controls.Add(this.lbDimension);
-            this.groupBox1.Controls.Add(this.pbBuffer);
-            this.groupBox1.Controls.Add(this.btnStreamStop);
-            this.groupBox1.Controls.Add(this.btnStreamCheck);
-            this.groupBox1.Controls.Add(this.lbInfo);
-            this.groupBox1.Controls.Add(this.lblRemaining);
-            this.groupBox1.Controls.Add(this.pbFile);
-            this.groupBox1.Controls.Add(this.lblElapsed);
-            this.groupBox1.Controls.Add(this.lblFileProgress);
-            this.groupBox1.Controls.Add(this.btnStreamStart);
-            this.groupBox1.Controls.Add(this.tbFile);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
-            // btnLimitExceed
-            // 
-            this.btnLimitExceed.BackColor = System.Drawing.Color.Yellow;
-            resources.ApplyResources(this.btnLimitExceed, "btnLimitExceed");
-            this.btnLimitExceed.Name = "btnLimitExceed";
-            this.btnLimitExceed.UseVisualStyleBackColor = false;
-            this.btnLimitExceed.Click += new System.EventHandler(this.btnLimitExceed_Click);
-            // 
-            // btnOverrideSSGB
-            // 
-            this.btnOverrideSSGB.Controls.Add(this.lblStatusSpeed);
-            this.btnOverrideSSGB.Controls.Add(this.label8);
-            this.btnOverrideSSGB.Controls.Add(this.label10);
-            this.btnOverrideSSGB.Controls.Add(this.lblOverrideSSValue);
-            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS2);
-            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS0);
-            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS1);
-            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS4);
-            this.btnOverrideSSGB.Controls.Add(this.btnOverrideSS3);
-            resources.ApplyResources(this.btnOverrideSSGB, "btnOverrideSSGB");
-            this.btnOverrideSSGB.Name = "btnOverrideSSGB";
-            this.btnOverrideSSGB.TabStop = false;
-            // 
-            // lblStatusSpeed
-            // 
-            resources.ApplyResources(this.lblStatusSpeed, "lblStatusSpeed");
-            this.lblStatusSpeed.Name = "lblStatusSpeed";
-            this.toolTip1.SetToolTip(this.lblStatusSpeed, resources.GetString("lblStatusSpeed.ToolTip"));
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // lblOverrideSSValue
-            // 
-            resources.ApplyResources(this.lblOverrideSSValue, "lblOverrideSSValue");
-            this.lblOverrideSSValue.Name = "lblOverrideSSValue";
-            // 
-            // btnOverrideSS2
-            // 
-            resources.ApplyResources(this.btnOverrideSS2, "btnOverrideSS2");
-            this.btnOverrideSS2.Name = "btnOverrideSS2";
-            this.btnOverrideSS2.UseVisualStyleBackColor = true;
-            this.btnOverrideSS2.Click += new System.EventHandler(this.btnOverrideSS2_Click);
-            // 
-            // btnOverrideSS0
-            // 
-            resources.ApplyResources(this.btnOverrideSS0, "btnOverrideSS0");
-            this.btnOverrideSS0.Name = "btnOverrideSS0";
-            this.btnOverrideSS0.UseVisualStyleBackColor = true;
-            this.btnOverrideSS0.Click += new System.EventHandler(this.btnOverrideSS0_Click);
-            // 
-            // btnOverrideSS1
-            // 
-            resources.ApplyResources(this.btnOverrideSS1, "btnOverrideSS1");
-            this.btnOverrideSS1.Name = "btnOverrideSS1";
-            this.btnOverrideSS1.UseVisualStyleBackColor = true;
-            this.btnOverrideSS1.Click += new System.EventHandler(this.btnOverrideSS1_Click);
-            // 
-            // btnOverrideSS4
-            // 
-            resources.ApplyResources(this.btnOverrideSS4, "btnOverrideSS4");
-            this.btnOverrideSS4.Name = "btnOverrideSS4";
-            this.btnOverrideSS4.UseVisualStyleBackColor = true;
-            this.btnOverrideSS4.Click += new System.EventHandler(this.btnOverrideSS4_Click);
-            // 
-            // btnOverrideSS3
-            // 
-            resources.ApplyResources(this.btnOverrideSS3, "btnOverrideSS3");
-            this.btnOverrideSS3.Name = "btnOverrideSS3";
-            this.btnOverrideSS3.UseVisualStyleBackColor = true;
-            this.btnOverrideSS3.Click += new System.EventHandler(this.btnOverrideSS3_Click);
-            // 
-            // btnOverrideFRGB
-            // 
-            this.btnOverrideFRGB.Controls.Add(this.lblStatusFeed);
-            this.btnOverrideFRGB.Controls.Add(this.label5);
-            this.btnOverrideFRGB.Controls.Add(this.label7);
-            this.btnOverrideFRGB.Controls.Add(this.lblOverrideFRValue);
-            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR1);
-            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR2);
-            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR0);
-            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR4);
-            this.btnOverrideFRGB.Controls.Add(this.btnOverrideFR3);
-            resources.ApplyResources(this.btnOverrideFRGB, "btnOverrideFRGB");
-            this.btnOverrideFRGB.Name = "btnOverrideFRGB";
-            this.btnOverrideFRGB.TabStop = false;
-            // 
-            // lblStatusFeed
-            // 
-            resources.ApplyResources(this.lblStatusFeed, "lblStatusFeed");
-            this.lblStatusFeed.Name = "lblStatusFeed";
-            this.toolTip1.SetToolTip(this.lblStatusFeed, resources.GetString("lblStatusFeed.ToolTip"));
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // lblOverrideFRValue
-            // 
-            resources.ApplyResources(this.lblOverrideFRValue, "lblOverrideFRValue");
-            this.lblOverrideFRValue.Name = "lblOverrideFRValue";
-            // 
-            // btnOverrideFR1
-            // 
-            resources.ApplyResources(this.btnOverrideFR1, "btnOverrideFR1");
-            this.btnOverrideFR1.Name = "btnOverrideFR1";
-            this.btnOverrideFR1.UseVisualStyleBackColor = true;
-            this.btnOverrideFR1.Click += new System.EventHandler(this.btnOverrideFR1_Click);
-            // 
-            // btnOverrideFR2
-            // 
-            resources.ApplyResources(this.btnOverrideFR2, "btnOverrideFR2");
-            this.btnOverrideFR2.Name = "btnOverrideFR2";
-            this.btnOverrideFR2.UseVisualStyleBackColor = true;
-            this.btnOverrideFR2.Click += new System.EventHandler(this.btnOverrideFR2_Click);
-            // 
-            // btnOverrideFR0
-            // 
-            resources.ApplyResources(this.btnOverrideFR0, "btnOverrideFR0");
-            this.btnOverrideFR0.Name = "btnOverrideFR0";
-            this.btnOverrideFR0.UseVisualStyleBackColor = true;
-            this.btnOverrideFR0.Click += new System.EventHandler(this.btnOverrideFR0_Click);
-            // 
-            // btnOverrideFR4
-            // 
-            resources.ApplyResources(this.btnOverrideFR4, "btnOverrideFR4");
-            this.btnOverrideFR4.Name = "btnOverrideFR4";
-            this.btnOverrideFR4.UseVisualStyleBackColor = true;
-            this.btnOverrideFR4.Click += new System.EventHandler(this.btnOverrideFR4_Click);
-            // 
-            // btnOverrideFR3
-            // 
-            resources.ApplyResources(this.btnOverrideFR3, "btnOverrideFR3");
-            this.btnOverrideFR3.Name = "btnOverrideFR3";
-            this.btnOverrideFR3.UseVisualStyleBackColor = true;
-            this.btnOverrideFR3.Click += new System.EventHandler(this.btnOverrideFR3_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btnOffsetApply);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.tbOffsetY);
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.tbOffsetX);
-            this.groupBox4.Controls.Add(this.rBOrigin9);
-            this.groupBox4.Controls.Add(this.rBOrigin8);
-            this.groupBox4.Controls.Add(this.rBOrigin7);
-            this.groupBox4.Controls.Add(this.rBOrigin6);
-            this.groupBox4.Controls.Add(this.rBOrigin5);
-            this.groupBox4.Controls.Add(this.rBOrigin4);
-            this.groupBox4.Controls.Add(this.rBOrigin3);
-            this.groupBox4.Controls.Add(this.rBOrigin2);
-            this.groupBox4.Controls.Add(this.rBOrigin1);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
-            // btnOffsetApply
-            // 
-            resources.ApplyResources(this.btnOffsetApply, "btnOffsetApply");
-            this.btnOffsetApply.Name = "btnOffsetApply";
-            this.btnOffsetApply.UseVisualStyleBackColor = true;
-            this.btnOffsetApply.Click += new System.EventHandler(this.btnOffsetApply_Click);
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // tbOffsetY
-            // 
-            resources.ApplyResources(this.tbOffsetY, "tbOffsetY");
-            this.tbOffsetY.Name = "tbOffsetY";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // tbOffsetX
-            // 
-            resources.ApplyResources(this.tbOffsetX, "tbOffsetX");
-            this.tbOffsetX.Name = "tbOffsetX";
-            // 
-            // rBOrigin9
-            // 
-            resources.ApplyResources(this.rBOrigin9, "rBOrigin9");
-            this.rBOrigin9.Name = "rBOrigin9";
-            this.rBOrigin9.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin8
-            // 
-            resources.ApplyResources(this.rBOrigin8, "rBOrigin8");
-            this.rBOrigin8.Name = "rBOrigin8";
-            this.rBOrigin8.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin7
-            // 
-            resources.ApplyResources(this.rBOrigin7, "rBOrigin7");
-            this.rBOrigin7.Name = "rBOrigin7";
-            this.rBOrigin7.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin6
-            // 
-            resources.ApplyResources(this.rBOrigin6, "rBOrigin6");
-            this.rBOrigin6.Name = "rBOrigin6";
-            this.rBOrigin6.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin5
-            // 
-            resources.ApplyResources(this.rBOrigin5, "rBOrigin5");
-            this.rBOrigin5.Checked = true;
-            this.rBOrigin5.Name = "rBOrigin5";
-            this.rBOrigin5.TabStop = true;
-            this.rBOrigin5.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin4
-            // 
-            resources.ApplyResources(this.rBOrigin4, "rBOrigin4");
-            this.rBOrigin4.Name = "rBOrigin4";
-            this.rBOrigin4.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin3
-            // 
-            resources.ApplyResources(this.rBOrigin3, "rBOrigin3");
-            this.rBOrigin3.Name = "rBOrigin3";
-            this.rBOrigin3.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin2
-            // 
-            resources.ApplyResources(this.rBOrigin2, "rBOrigin2");
-            this.rBOrigin2.Name = "rBOrigin2";
-            this.rBOrigin2.UseVisualStyleBackColor = true;
-            // 
-            // rBOrigin1
-            // 
-            resources.ApplyResources(this.rBOrigin1, "rBOrigin1");
-            this.rBOrigin1.Name = "rBOrigin1";
-            this.rBOrigin1.UseVisualStyleBackColor = true;
-            // 
-            // lbDimension
-            // 
-            this.lbDimension.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            resources.ApplyResources(this.lbDimension, "lbDimension");
-            this.lbDimension.HideSelection = false;
-            this.lbDimension.Name = "lbDimension";
-            this.lbDimension.ReadOnly = true;
-            // 
-            // pbBuffer
-            // 
-            resources.ApplyResources(this.pbBuffer, "pbBuffer");
-            this.pbBuffer.Name = "pbBuffer";
-            // 
-            // btnStreamStop
-            // 
-            this.btnStreamStop.Image = global::GRBL_Plotter.Properties.Resources.btn_stop;
-            resources.ApplyResources(this.btnStreamStop, "btnStreamStop");
-            this.btnStreamStop.Name = "btnStreamStop";
-            this.toolTip1.SetToolTip(this.btnStreamStop, resources.GetString("btnStreamStop.ToolTip"));
-            this.btnStreamStop.UseVisualStyleBackColor = true;
-            this.btnStreamStop.Click += new System.EventHandler(this.btnStreamStop_Click);
-            // 
-            // btnStreamCheck
-            // 
-            resources.ApplyResources(this.btnStreamCheck, "btnStreamCheck");
-            this.btnStreamCheck.Name = "btnStreamCheck";
-            this.btnStreamCheck.UseVisualStyleBackColor = true;
-            this.btnStreamCheck.Click += new System.EventHandler(this.btnStreamCheck_Click);
-            // 
-            // lbInfo
-            // 
-            resources.ApplyResources(this.lbInfo, "lbInfo");
-            this.lbInfo.Name = "lbInfo";
-            // 
-            // lblRemaining
-            // 
-            resources.ApplyResources(this.lblRemaining, "lblRemaining");
-            this.lblRemaining.Name = "lblRemaining";
-            // 
-            // pbFile
-            // 
-            resources.ApplyResources(this.pbFile, "pbFile");
-            this.pbFile.Name = "pbFile";
-            // 
-            // lblElapsed
-            // 
-            resources.ApplyResources(this.lblElapsed, "lblElapsed");
-            this.lblElapsed.Name = "lblElapsed";
-            // 
-            // lblFileProgress
-            // 
-            resources.ApplyResources(this.lblFileProgress, "lblFileProgress");
-            this.lblFileProgress.Name = "lblFileProgress";
-            // 
-            // btnStreamStart
-            // 
-            this.btnStreamStart.Image = global::GRBL_Plotter.Properties.Resources.btn_play;
-            resources.ApplyResources(this.btnStreamStart, "btnStreamStart");
-            this.btnStreamStart.Name = "btnStreamStart";
-            this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
-            this.btnStreamStart.UseVisualStyleBackColor = true;
-            this.btnStreamStart.Click += new System.EventHandler(this.btnStreamStart_Click);
-            // 
-            // tbFile
-            // 
-            resources.ApplyResources(this.tbFile, "tbFile");
-            this.tbFile.Name = "tbFile";
-            // 
-            // cmsCode
-            // 
-            this.cmsCode.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmsEditorHotkeys,
-            this.toolStripSeparator11,
-            this.cmsCodeSelect,
-            this.cmsCodeCopy,
-            this.cmsCodePaste,
-            this.toolStripSeparator14,
-            this.cmsFindDialog,
-            this.cmsReplaceDialog,
-            this.toolStripSeparator12,
-            this.cmsCodeSendLine,
-            this.cmsCommentOut,
-            this.toolStripSeparator13,
-            this.cmsUpdate2DView});
-            this.cmsCode.Name = "cmsCode";
-            this.cmsCode.ShowImageMargin = false;
-            resources.ApplyResources(this.cmsCode, "cmsCode");
-            this.cmsCode.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsCode_ItemClicked);
-            // 
-            // cmsEditorHotkeys
-            // 
-            this.cmsEditorHotkeys.Name = "cmsEditorHotkeys";
-            resources.ApplyResources(this.cmsEditorHotkeys, "cmsEditorHotkeys");
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
-            // 
-            // cmsCodeSelect
-            // 
-            this.cmsCodeSelect.Name = "cmsCodeSelect";
-            resources.ApplyResources(this.cmsCodeSelect, "cmsCodeSelect");
-            // 
-            // cmsCodeCopy
-            // 
-            this.cmsCodeCopy.Name = "cmsCodeCopy";
-            resources.ApplyResources(this.cmsCodeCopy, "cmsCodeCopy");
-            // 
-            // cmsCodePaste
-            // 
-            this.cmsCodePaste.Name = "cmsCodePaste";
-            resources.ApplyResources(this.cmsCodePaste, "cmsCodePaste");
-            // 
-            // toolStripSeparator14
-            // 
-            this.toolStripSeparator14.Name = "toolStripSeparator14";
-            resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
-            // 
-            // cmsFindDialog
-            // 
-            this.cmsFindDialog.Name = "cmsFindDialog";
-            resources.ApplyResources(this.cmsFindDialog, "cmsFindDialog");
-            // 
-            // cmsReplaceDialog
-            // 
-            this.cmsReplaceDialog.Name = "cmsReplaceDialog";
-            resources.ApplyResources(this.cmsReplaceDialog, "cmsReplaceDialog");
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
-            // 
-            // cmsCodeSendLine
-            // 
-            this.cmsCodeSendLine.Name = "cmsCodeSendLine";
-            resources.ApplyResources(this.cmsCodeSendLine, "cmsCodeSendLine");
-            // 
-            // cmsCommentOut
-            // 
-            this.cmsCommentOut.Name = "cmsCommentOut";
-            resources.ApplyResources(this.cmsCommentOut, "cmsCommentOut");
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
-            // 
-            // cmsUpdate2DView
-            // 
-            this.cmsUpdate2DView.Name = "cmsUpdate2DView";
-            resources.ApplyResources(this.cmsUpdate2DView, "cmsUpdate2DView");
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.lblCurrentG);
-            this.groupBox2.Controls.Add(this.label_status0);
-            this.groupBox2.Controls.Add(this.label_a);
-            this.groupBox2.Controls.Add(this.btnZeroA);
-            this.groupBox2.Controls.Add(this.label_ma);
-            this.groupBox2.Controls.Add(this.label_wa);
-            this.groupBox2.Controls.Add(this.btnHome);
-            this.groupBox2.Controls.Add(this.btnZeroXYZ);
-            this.groupBox2.Controls.Add(this.btnZeroXY);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.btnZeroZ);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.btnZeroY);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.btnZeroX);
-            this.groupBox2.Controls.Add(this.label_status);
-            this.groupBox2.Controls.Add(this.label_mx);
-            this.groupBox2.Controls.Add(this.label_my);
-            this.groupBox2.Controls.Add(this.label_mz);
-            this.groupBox2.Controls.Add(this.label_wz);
-            this.groupBox2.Controls.Add(this.label_wx);
-            this.groupBox2.Controls.Add(this.label_wy);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
-            // 
-            // lblCurrentG
-            // 
-            resources.ApplyResources(this.lblCurrentG, "lblCurrentG");
-            this.lblCurrentG.Name = "lblCurrentG";
-            this.toolTip1.SetToolTip(this.lblCurrentG, resources.GetString("lblCurrentG.ToolTip"));
-            // 
-            // label_status0
-            // 
-            resources.ApplyResources(this.label_status0, "label_status0");
-            this.label_status0.Name = "label_status0";
-            // 
-            // label_a
-            // 
-            resources.ApplyResources(this.label_a, "label_a");
-            this.label_a.Name = "label_a";
-            // 
-            // btnZeroA
-            // 
-            resources.ApplyResources(this.btnZeroA, "btnZeroA");
-            this.btnZeroA.Name = "btnZeroA";
-            this.toolTip1.SetToolTip(this.btnZeroA, resources.GetString("btnZeroA.ToolTip"));
-            this.btnZeroA.UseVisualStyleBackColor = true;
-            this.btnZeroA.Click += new System.EventHandler(this.btnZeroA_Click);
-            // 
-            // label_ma
-            // 
-            resources.ApplyResources(this.label_ma, "label_ma");
-            this.label_ma.Name = "label_ma";
-            // 
-            // label_wa
-            // 
-            resources.ApplyResources(this.label_wa, "label_wa");
-            this.label_wa.Name = "label_wa";
-            // 
-            // btnHome
-            // 
-            resources.ApplyResources(this.btnHome, "btnHome");
-            this.btnHome.Name = "btnHome";
-            this.toolTip1.SetToolTip(this.btnHome, resources.GetString("btnHome.ToolTip"));
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
-            // btnZeroXYZ
-            // 
-            resources.ApplyResources(this.btnZeroXYZ, "btnZeroXYZ");
-            this.btnZeroXYZ.Name = "btnZeroXYZ";
-            this.toolTip1.SetToolTip(this.btnZeroXYZ, resources.GetString("btnZeroXYZ.ToolTip"));
-            this.btnZeroXYZ.UseVisualStyleBackColor = true;
-            this.btnZeroXYZ.Click += new System.EventHandler(this.btnZeroXYZ_Click);
-            // 
-            // btnZeroXY
-            // 
-            resources.ApplyResources(this.btnZeroXY, "btnZeroXY");
-            this.btnZeroXY.Name = "btnZeroXY";
-            this.toolTip1.SetToolTip(this.btnZeroXY, resources.GetString("btnZeroXY.ToolTip"));
-            this.btnZeroXY.UseVisualStyleBackColor = true;
-            this.btnZeroXY.Click += new System.EventHandler(this.btnZeroXY_Click);
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
-            // btnZeroZ
-            // 
-            resources.ApplyResources(this.btnZeroZ, "btnZeroZ");
-            this.btnZeroZ.Name = "btnZeroZ";
-            this.toolTip1.SetToolTip(this.btnZeroZ, resources.GetString("btnZeroZ.ToolTip"));
-            this.btnZeroZ.UseVisualStyleBackColor = true;
-            this.btnZeroZ.Click += new System.EventHandler(this.btnZeroZ_Click);
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // btnZeroY
-            // 
-            resources.ApplyResources(this.btnZeroY, "btnZeroY");
-            this.btnZeroY.Name = "btnZeroY";
-            this.toolTip1.SetToolTip(this.btnZeroY, resources.GetString("btnZeroY.ToolTip"));
-            this.btnZeroY.UseVisualStyleBackColor = true;
-            this.btnZeroY.Click += new System.EventHandler(this.btnZeroY_Click);
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // btnZeroX
-            // 
-            resources.ApplyResources(this.btnZeroX, "btnZeroX");
-            this.btnZeroX.Name = "btnZeroX";
-            this.toolTip1.SetToolTip(this.btnZeroX, resources.GetString("btnZeroX.ToolTip"));
-            this.btnZeroX.UseVisualStyleBackColor = true;
-            this.btnZeroX.Click += new System.EventHandler(this.btnZeroX_Click);
-            // 
-            // label_status
-            // 
-            resources.ApplyResources(this.label_status, "label_status");
-            this.label_status.Name = "label_status";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.tableLayoutPanel1);
-            resources.ApplyResources(this.groupBox5, "groupBox5");
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.TabStop = false;
-            // 
-            // tableLayoutPanel1
-            // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom12, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom11, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom10, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom9, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom8, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom7, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom6, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom5, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom4, 0, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            // 
-            // btnCustom12
-            // 
-            resources.ApplyResources(this.btnCustom12, "btnCustom12");
-            this.btnCustom12.Name = "btnCustom12";
-            this.btnCustom12.UseVisualStyleBackColor = true;
-            this.btnCustom12.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom11
-            // 
-            resources.ApplyResources(this.btnCustom11, "btnCustom11");
-            this.btnCustom11.Name = "btnCustom11";
-            this.btnCustom11.UseVisualStyleBackColor = true;
-            this.btnCustom11.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom10
-            // 
-            resources.ApplyResources(this.btnCustom10, "btnCustom10");
-            this.btnCustom10.Name = "btnCustom10";
-            this.btnCustom10.UseVisualStyleBackColor = true;
-            this.btnCustom10.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom9
-            // 
-            resources.ApplyResources(this.btnCustom9, "btnCustom9");
-            this.btnCustom9.Name = "btnCustom9";
-            this.btnCustom9.UseVisualStyleBackColor = true;
-            this.btnCustom9.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom8
-            // 
-            resources.ApplyResources(this.btnCustom8, "btnCustom8");
-            this.btnCustom8.Name = "btnCustom8";
-            this.btnCustom8.UseVisualStyleBackColor = true;
-            this.btnCustom8.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom7
-            // 
-            resources.ApplyResources(this.btnCustom7, "btnCustom7");
-            this.btnCustom7.Name = "btnCustom7";
-            this.btnCustom7.UseVisualStyleBackColor = true;
-            this.btnCustom7.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom6
-            // 
-            resources.ApplyResources(this.btnCustom6, "btnCustom6");
-            this.btnCustom6.Name = "btnCustom6";
-            this.btnCustom6.UseVisualStyleBackColor = true;
-            this.btnCustom6.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom5
-            // 
-            resources.ApplyResources(this.btnCustom5, "btnCustom5");
-            this.btnCustom5.Name = "btnCustom5";
-            this.btnCustom5.UseVisualStyleBackColor = true;
-            this.btnCustom5.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom1
-            // 
-            resources.ApplyResources(this.btnCustom1, "btnCustom1");
-            this.btnCustom1.Name = "btnCustom1";
-            this.btnCustom1.UseVisualStyleBackColor = true;
-            this.btnCustom1.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom2
-            // 
-            resources.ApplyResources(this.btnCustom2, "btnCustom2");
-            this.btnCustom2.Name = "btnCustom2";
-            this.btnCustom2.UseVisualStyleBackColor = true;
-            this.btnCustom2.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom3
-            // 
-            resources.ApplyResources(this.btnCustom3, "btnCustom3");
-            this.btnCustom3.Name = "btnCustom3";
-            this.btnCustom3.UseVisualStyleBackColor = true;
-            this.btnCustom3.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom4
-            // 
-            resources.ApplyResources(this.btnCustom4, "btnCustom4");
-            this.btnCustom4.Name = "btnCustom4";
-            this.btnCustom4.UseVisualStyleBackColor = true;
-            this.btnCustom4.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // tBURL
-            // 
-            resources.ApplyResources(this.tBURL, "tBURL");
-            this.tBURL.Name = "tBURL";
-            this.toolTip1.SetToolTip(this.tBURL, resources.GetString("tBURL.ToolTip"));
-            this.tBURL.TextChanged += new System.EventHandler(this.tBURL_TextChanged);
-            // 
-            // btnReset
-            // 
-            resources.ApplyResources(this.btnReset, "btnReset");
-            this.btnReset.Name = "btnReset";
-            this.toolTip1.SetToolTip(this.btnReset, resources.GetString("btnReset.ToolTip"));
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btnFeedHold
-            // 
-            resources.ApplyResources(this.btnFeedHold, "btnFeedHold");
-            this.btnFeedHold.Name = "btnFeedHold";
-            this.toolTip1.SetToolTip(this.btnFeedHold, resources.GetString("btnFeedHold.ToolTip"));
-            this.btnFeedHold.UseVisualStyleBackColor = true;
-            this.btnFeedHold.Click += new System.EventHandler(this.btnFeedHold_Click);
-            // 
-            // btnKillAlarm
-            // 
-            resources.ApplyResources(this.btnKillAlarm, "btnKillAlarm");
-            this.btnKillAlarm.Name = "btnKillAlarm";
-            this.toolTip1.SetToolTip(this.btnKillAlarm, resources.GetString("btnKillAlarm.ToolTip"));
-            this.btnKillAlarm.UseVisualStyleBackColor = true;
-            this.btnKillAlarm.Click += new System.EventHandler(this.btnKillAlarm_Click);
-            // 
-            // virtualJoystickXY
-            // 
-            resources.ApplyResources(this.virtualJoystickXY, "virtualJoystickXY");
-            this.virtualJoystickXY.Joystick2Dimension = true;
-            this.virtualJoystickXY.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickXY.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickXY.JoystickRaster = 5;
-            this.virtualJoystickXY.JoystickRasterMark = 0;
-            this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickXY.Name = "virtualJoystickXY";
-            this.virtualJoystickXY.TabStop = false;
-            this.toolTip1.SetToolTip(this.virtualJoystickXY, resources.GetString("virtualJoystickXY.ToolTip"));
-            this.virtualJoystickXY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickXY_JoyStickEvent);
-            this.virtualJoystickXY.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
-            this.virtualJoystickXY.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
-            this.virtualJoystickXY.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
-            this.virtualJoystickXY.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
-            // 
-            // virtualJoystickZ
-            // 
-            resources.ApplyResources(this.virtualJoystickZ, "virtualJoystickZ");
-            this.virtualJoystickZ.Joystick2Dimension = false;
-            this.virtualJoystickZ.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickZ.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickZ.JoystickRaster = 5;
-            this.virtualJoystickZ.JoystickRasterMark = 0;
-            this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickZ.Name = "virtualJoystickZ";
-            this.virtualJoystickZ.TabStop = false;
-            this.toolTip1.SetToolTip(this.virtualJoystickZ, resources.GetString("virtualJoystickZ.ToolTip"));
-            this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickZ_JoyStickEvent);
-            this.virtualJoystickZ.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
-            this.virtualJoystickZ.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
-            this.virtualJoystickZ.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
-            this.virtualJoystickZ.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
-            // 
-            // btnJogZeroZ
-            // 
-            resources.ApplyResources(this.btnJogZeroZ, "btnJogZeroZ");
-            this.btnJogZeroZ.Name = "btnJogZeroZ";
-            this.toolTip1.SetToolTip(this.btnJogZeroZ, resources.GetString("btnJogZeroZ.ToolTip"));
-            this.btnJogZeroZ.UseVisualStyleBackColor = true;
-            this.btnJogZeroZ.Click += new System.EventHandler(this.btnJogZ_Click);
-            // 
-            // btnJogZeroY
-            // 
-            resources.ApplyResources(this.btnJogZeroY, "btnJogZeroY");
-            this.btnJogZeroY.Name = "btnJogZeroY";
-            this.toolTip1.SetToolTip(this.btnJogZeroY, resources.GetString("btnJogZeroY.ToolTip"));
-            this.btnJogZeroY.UseVisualStyleBackColor = true;
-            this.btnJogZeroY.Click += new System.EventHandler(this.btnJogY_Click);
-            // 
-            // btnJogZeroXY
-            // 
-            resources.ApplyResources(this.btnJogZeroXY, "btnJogZeroXY");
-            this.btnJogZeroXY.Name = "btnJogZeroXY";
-            this.toolTip1.SetToolTip(this.btnJogZeroXY, resources.GetString("btnJogZeroXY.ToolTip"));
-            this.btnJogZeroXY.UseVisualStyleBackColor = true;
-            this.btnJogZeroXY.Click += new System.EventHandler(this.btnJogXY_Click);
-            // 
-            // btnJogZeroX
-            // 
-            resources.ApplyResources(this.btnJogZeroX, "btnJogZeroX");
-            this.btnJogZeroX.Name = "btnJogZeroX";
-            this.toolTip1.SetToolTip(this.btnJogZeroX, resources.GetString("btnJogZeroX.ToolTip"));
-            this.btnJogZeroX.UseVisualStyleBackColor = true;
-            this.btnJogZeroX.Click += new System.EventHandler(this.btnJogX_Click);
-            // 
-            // btnJogZeroA
-            // 
-            resources.ApplyResources(this.btnJogZeroA, "btnJogZeroA");
-            this.btnJogZeroA.Name = "btnJogZeroA";
-            this.toolTip1.SetToolTip(this.btnJogZeroA, resources.GetString("btnJogZeroA.ToolTip"));
-            this.btnJogZeroA.UseVisualStyleBackColor = true;
-            this.btnJogZeroA.Click += new System.EventHandler(this.btnJogZeroA_Click);
-            // 
-            // btnJogStop
-            // 
-            this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            resources.ApplyResources(this.btnJogStop, "btnJogStop");
-            this.btnJogStop.Name = "btnJogStop";
-            this.toolTip1.SetToolTip(this.btnJogStop, resources.GetString("btnJogStop.ToolTip"));
-            this.btnJogStop.UseVisualStyleBackColor = false;
-            this.btnJogStop.Click += new System.EventHandler(this.btnJogStop_Click);
-            // 
-            // virtualJoystickA
-            // 
-            resources.ApplyResources(this.virtualJoystickA, "virtualJoystickA");
-            this.virtualJoystickA.Joystick2Dimension = false;
-            this.virtualJoystickA.JoystickActive = System.Drawing.Color.Red;
-            this.virtualJoystickA.JoystickLabel = new double[] {
-        0.1D,
-        0.5D,
-        1D,
-        5D,
-        10D,
-        50D};
-            this.virtualJoystickA.JoystickRaster = 5;
-            this.virtualJoystickA.JoystickRasterMark = 0;
-            this.virtualJoystickA.JoystickStanby = System.Drawing.Color.Orange;
-            this.virtualJoystickA.Name = "virtualJoystickA";
-            this.virtualJoystickA.TabStop = false;
-            this.toolTip1.SetToolTip(this.virtualJoystickA, resources.GetString("virtualJoystickA.ToolTip"));
-            this.virtualJoystickA.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickA_JoyStickEvent);
-            this.virtualJoystickA.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
-            this.virtualJoystickA.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
-            this.virtualJoystickA.MouseUp += new System.Windows.Forms.MouseEventHandler(this.virtualJoystickXY_MouseUp);
-            this.virtualJoystickA.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.virtualJoystickXY_PreviewKeyDown);
-            // 
-            // btnResume
-            // 
-            resources.ApplyResources(this.btnResume, "btnResume");
-            this.btnResume.Name = "btnResume";
-            this.toolTip1.SetToolTip(this.btnResume, resources.GetString("btnResume.ToolTip"));
-            this.btnResume.UseVisualStyleBackColor = true;
-            this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
-            // 
-            // fCTBCode
-            // 
-            this.fCTBCode.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.fCTBCode.AutoIndent = false;
-            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
-            resources.ApplyResources(this.fCTBCode, "fCTBCode");
-            this.fCTBCode.BackBrush = null;
-            this.fCTBCode.CharHeight = 12;
-            this.fCTBCode.CharWidth = 7;
-            this.fCTBCode.ContextMenuStrip = this.cmsCode;
-            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fCTBCode.IsReplaceMode = false;
-            this.fCTBCode.Name = "fCTBCode";
-            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
-            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
-            this.fCTBCode.ToolTip = null;
-            this.fCTBCode.Zoom = 100;
-            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
-            this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
-            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
-            this.fCTBCode.MouseHover += new System.EventHandler(this.fCTBCode_MouseHover);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.BackgroundImage = global::GRBL_Plotter.Properties.Resources.modell;
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.ContextMenuStrip = this.cmsPictureBox;
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseWheel);
-            // 
-            // cmsPictureBox
-            // 
-            this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zeroXYAtMarkedPositionG92ToolStripMenuItem,
-            this.moveToMarkedPositionToolStripMenuItem,
-            this.toolStripSeparator9,
-            this.resetZoomingToolStripMenuItem,
-            this.toolStripSeparator8,
-            this.pasteFromClipboardToolStripMenuItem,
-            this.reloadFileToolStripMenuItem,
-            this.deletenotMarkToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.deleteThisCodeLineToolStripMenuItem,
-            this.moveToFirstPosToolStripMenuItem,
-            this.deletePathToolStripMenuItem,
-            this.toolStripSeparator10,
-            this.setGCodeAsBackgroundToolStripMenuItem,
-            this.clearBackgroundToolStripMenuItem});
-            this.cmsPictureBox.Name = "cmsPictureBox";
-            resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
-            // 
-            // zeroXYAtMarkedPositionG92ToolStripMenuItem
-            // 
-            this.zeroXYAtMarkedPositionG92ToolStripMenuItem.Name = "zeroXYAtMarkedPositionG92ToolStripMenuItem";
-            resources.ApplyResources(this.zeroXYAtMarkedPositionG92ToolStripMenuItem, "zeroXYAtMarkedPositionG92ToolStripMenuItem");
-            this.zeroXYAtMarkedPositionG92ToolStripMenuItem.Click += new System.EventHandler(this.zeroXYAtMarkedPositionG92ToolStripMenuItem_Click);
-            // 
-            // moveToMarkedPositionToolStripMenuItem
-            // 
-            this.moveToMarkedPositionToolStripMenuItem.Name = "moveToMarkedPositionToolStripMenuItem";
-            resources.ApplyResources(this.moveToMarkedPositionToolStripMenuItem, "moveToMarkedPositionToolStripMenuItem");
-            this.moveToMarkedPositionToolStripMenuItem.Click += new System.EventHandler(this.moveToMarkedPositionToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
-            // 
-            // resetZoomingToolStripMenuItem
-            // 
-            this.resetZoomingToolStripMenuItem.Name = "resetZoomingToolStripMenuItem";
-            resources.ApplyResources(this.resetZoomingToolStripMenuItem, "resetZoomingToolStripMenuItem");
-            this.resetZoomingToolStripMenuItem.Click += new System.EventHandler(this.resetZoomingToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
-            // 
-            // pasteFromClipboardToolStripMenuItem
-            // 
-            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
-            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
-            this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
-            // 
-            // reloadFileToolStripMenuItem
-            // 
-            this.reloadFileToolStripMenuItem.Name = "reloadFileToolStripMenuItem";
-            resources.ApplyResources(this.reloadFileToolStripMenuItem, "reloadFileToolStripMenuItem");
-            this.reloadFileToolStripMenuItem.Click += new System.EventHandler(this.reloadFileToolStripMenuItem_Click);
-            // 
-            // deletenotMarkToolStripMenuItem
-            // 
-            resources.ApplyResources(this.deletenotMarkToolStripMenuItem, "deletenotMarkToolStripMenuItem");
-            this.deletenotMarkToolStripMenuItem.Name = "deletenotMarkToolStripMenuItem";
-            this.deletenotMarkToolStripMenuItem.Click += new System.EventHandler(this.deletenotMarkToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
-            // 
-            // deleteThisCodeLineToolStripMenuItem
-            // 
-            this.deleteThisCodeLineToolStripMenuItem.Name = "deleteThisCodeLineToolStripMenuItem";
-            resources.ApplyResources(this.deleteThisCodeLineToolStripMenuItem, "deleteThisCodeLineToolStripMenuItem");
-            this.deleteThisCodeLineToolStripMenuItem.Click += new System.EventHandler(this.deleteThisCodeLineToolStripMenuItem_Click);
-            // 
-            // moveToFirstPosToolStripMenuItem
-            // 
-            this.moveToFirstPosToolStripMenuItem.Name = "moveToFirstPosToolStripMenuItem";
-            resources.ApplyResources(this.moveToFirstPosToolStripMenuItem, "moveToFirstPosToolStripMenuItem");
-            this.moveToFirstPosToolStripMenuItem.Click += new System.EventHandler(this.moveToFirstPosToolStripMenuItem_Click);
-            // 
-            // deletePathToolStripMenuItem
-            // 
-            this.deletePathToolStripMenuItem.Name = "deletePathToolStripMenuItem";
-            resources.ApplyResources(this.deletePathToolStripMenuItem, "deletePathToolStripMenuItem");
-            this.deletePathToolStripMenuItem.Click += new System.EventHandler(this.deletePathToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
-            // 
-            // setGCodeAsBackgroundToolStripMenuItem
-            // 
-            this.setGCodeAsBackgroundToolStripMenuItem.Name = "setGCodeAsBackgroundToolStripMenuItem";
-            resources.ApplyResources(this.setGCodeAsBackgroundToolStripMenuItem, "setGCodeAsBackgroundToolStripMenuItem");
-            this.setGCodeAsBackgroundToolStripMenuItem.Click += new System.EventHandler(this.setGCodeAsBackgroundToolStripMenuItem_Click);
-            // 
-            // clearBackgroundToolStripMenuItem
-            // 
-            this.clearBackgroundToolStripMenuItem.Name = "clearBackgroundToolStripMenuItem";
-            resources.ApplyResources(this.clearBackgroundToolStripMenuItem, "clearBackgroundToolStripMenuItem");
-            this.clearBackgroundToolStripMenuItem.Click += new System.EventHandler(this.clearBackgroundToolStripMenuItem_Click);
-            // 
-            // tLPLinks
-            // 
-            resources.ApplyResources(this.tLPLinks, "tLPLinks");
-            this.tLPLinks.Controls.Add(this.fCTBCode, 0, 1);
-            this.tLPLinks.Controls.Add(this.groupBox1, 0, 0);
-            this.tLPLinks.Name = "tLPLinks";
-            // 
-            // tLPRechts
-            // 
-            resources.ApplyResources(this.tLPRechts, "tLPRechts");
-            this.tLPRechts.Controls.Add(this.tLPRechtsUnten, 0, 1);
-            this.tLPRechts.Controls.Add(this.tLPRechtsOben, 0, 0);
-            this.tLPRechts.Name = "tLPRechts";
-            // 
-            // tLPRechtsUnten
-            // 
-            resources.ApplyResources(this.tLPRechtsUnten, "tLPRechtsUnten");
-            this.tLPRechtsUnten.Controls.Add(this.tLPRechtsUntenRechts, 1, 0);
-            this.tLPRechtsUnten.Controls.Add(this.tLPMitteUnten, 0, 0);
-            this.tLPRechtsUnten.Name = "tLPRechtsUnten";
-            // 
-            // tLPRechtsUntenRechts
-            // 
-            resources.ApplyResources(this.tLPRechtsUntenRechts, "tLPRechtsUntenRechts");
-            this.tLPRechtsUntenRechts.Controls.Add(this.gB_Jogging, 0, 0);
-            this.tLPRechtsUntenRechts.Controls.Add(this.tLPRechtsUntenRechtsMitte, 0, 1);
-            this.tLPRechtsUntenRechts.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
-            // 
-            // gB_Jogging
-            // 
-            resources.ApplyResources(this.gB_Jogging, "gB_Jogging");
-            this.gB_Jogging.Controls.Add(this.btnJogStop);
-            this.gB_Jogging.Controls.Add(this.groupBox3);
-            this.gB_Jogging.Controls.Add(this.lblTool);
-            this.gB_Jogging.Controls.Add(this.cBTool);
-            this.gB_Jogging.Controls.Add(this.label9);
-            this.gB_Jogging.Controls.Add(this.tBSpeed);
-            this.gB_Jogging.Controls.Add(this.cBCoolant);
-            this.gB_Jogging.Controls.Add(this.cBSpindle);
-            this.gB_Jogging.Name = "gB_Jogging";
-            this.gB_Jogging.TabStop = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnJogZeroA);
-            this.groupBox3.Controls.Add(this.btnJogZeroX);
-            this.groupBox3.Controls.Add(this.btnJogZeroXY);
-            this.groupBox3.Controls.Add(this.btnJogZeroY);
-            this.groupBox3.Controls.Add(this.btnJogZeroZ);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
-            // 
-            // lblTool
-            // 
-            resources.ApplyResources(this.lblTool, "lblTool");
-            this.lblTool.Name = "lblTool";
-            // 
-            // cBTool
-            // 
-            resources.ApplyResources(this.cBTool, "cBTool");
-            this.cBTool.Name = "cBTool";
-            this.cBTool.UseVisualStyleBackColor = true;
-            this.cBTool.CheckedChanged += new System.EventHandler(this.cBTool_CheckedChanged);
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // tBSpeed
-            // 
-            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "spindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBSpeed, "tBSpeed");
-            this.tBSpeed.Name = "tBSpeed";
-            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.spindleSpeed;
-            // 
-            // cBCoolant
-            // 
-            resources.ApplyResources(this.cBCoolant, "cBCoolant");
-            this.cBCoolant.Name = "cBCoolant";
-            this.cBCoolant.UseVisualStyleBackColor = true;
-            this.cBCoolant.CheckedChanged += new System.EventHandler(this.cBCoolant_CheckedChanged);
-            // 
-            // cBSpindle
-            // 
-            resources.ApplyResources(this.cBSpindle, "cBSpindle");
-            this.cBSpindle.Name = "cBSpindle";
-            this.cBSpindle.UseVisualStyleBackColor = true;
-            this.cBSpindle.CheckedChanged += new System.EventHandler(this.cBSpindle_CheckedChanged);
-            // 
-            // tLPRechtsUntenRechtsMitte
-            // 
-            resources.ApplyResources(this.tLPRechtsUntenRechtsMitte, "tLPRechtsUntenRechtsMitte");
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickA, 2, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickXY, 0, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickZ, 1, 0);
-            this.tLPRechtsUntenRechtsMitte.Name = "tLPRechtsUntenRechtsMitte";
-            // 
-            // tableLayoutPanel2
-            // 
-            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
-            this.tableLayoutPanel2.Controls.Add(this.cBSendJogStop, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            // 
-            // cBSendJogStop
-            // 
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
-            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
-            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSendJogStop.Name = "cBSendJogStop";
-            this.cBSendJogStop.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel3
-            // 
-            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            // 
-            // tableLayoutPanel4
-            // 
-            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
-            this.tableLayoutPanel4.Controls.Add(this.btnResume, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btnFeedHold, 0, 0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            // 
-            // tableLayoutPanel5
-            // 
-            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
-            this.tableLayoutPanel5.Controls.Add(this.btnKillAlarm, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btnReset, 0, 0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            // 
-            // tLPMitteUnten
-            // 
-            resources.ApplyResources(this.tLPMitteUnten, "tLPMitteUnten");
-            this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
-            this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 1);
-            this.tLPMitteUnten.Name = "tLPMitteUnten";
-            // 
-            // tLPRechtsOben
-            // 
-            resources.ApplyResources(this.tLPRechtsOben, "tLPRechtsOben");
-            this.tLPRechtsOben.Controls.Add(this.groupBox5, 1, 0);
-            this.tLPRechtsOben.Controls.Add(this.groupBox2, 0, 0);
-            this.tLPRechtsOben.Name = "tLPRechtsOben";
-            // 
             // gamePadTimer
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            resources.ApplyResources(this.splitContainer1, "splitContainer1");
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tLPLinks);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tLPRechts);
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // MainForm
             // 
@@ -2012,8 +2015,13 @@ namespace GRBL_Plotter
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.tLPLinks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
+            this.cmsCode.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.btnOverrideSSGB.ResumeLayout(false);
@@ -2022,15 +2030,6 @@ namespace GRBL_Plotter
             this.btnOverrideFRGB.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.cmsCode.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.cmsPictureBox.ResumeLayout(false);
-            this.tLPLinks.ResumeLayout(false);
             this.tLPRechts.ResumeLayout(false);
             this.tLPRechtsUnten.ResumeLayout(false);
             this.tLPRechtsUnten.PerformLayout();
@@ -2046,11 +2045,15 @@ namespace GRBL_Plotter
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tLPMitteUnten.ResumeLayout(false);
             this.tLPMitteUnten.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.cmsPictureBox.ResumeLayout(false);
             this.tLPRechtsOben.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

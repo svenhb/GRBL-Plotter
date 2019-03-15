@@ -589,6 +589,7 @@ namespace GRBL_Plotter
                 //                visuGCode.setColors();
                 penUp.Color = Properties.Settings.Default.colorPenUp;
                 penDown.Color = Properties.Settings.Default.colorPenDown;
+                penRotary.Color = Properties.Settings.Default.colorRotaryInfo;
                 penHeightMap.Color = Properties.Settings.Default.colorHeightMap;
                 penRuler.Color = Properties.Settings.Default.colorRuler;
                 penTool.Color = Properties.Settings.Default.colorTool;
@@ -597,6 +598,7 @@ namespace GRBL_Plotter
                 penRuler.Width = (float)Properties.Settings.Default.widthRuler;
                 penUp.Width = (float)Properties.Settings.Default.widthPenUp;
                 penDown.Width = (float)Properties.Settings.Default.widthPenDown;
+                penRotary.Width = (float)Properties.Settings.Default.widthRotaryInfo;
                 penTool.Width = (float)Properties.Settings.Default.widthTool;
                 penMarker.Width = (float)Properties.Settings.Default.widthMarker;
                 brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.colorMachineLimit, Color.Transparent);
@@ -715,6 +717,7 @@ namespace GRBL_Plotter
                 gamePadTimer.Enabled = Properties.Settings.Default.gPEnable;
                 checkMachineLimit();
                 loadHotkeys();
+                newCodeEnd();
             }
             catch (Exception a)
             {

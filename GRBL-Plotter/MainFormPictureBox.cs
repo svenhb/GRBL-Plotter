@@ -38,6 +38,7 @@ namespace GRBL_Plotter
         // onPaint drawing
         private Pen penUp = new Pen(Color.Green, 0.1F);
         private Pen penDown = new Pen(Color.Red, 0.4F);
+        private Pen penRotary = new Pen(Color.White, 0.4F);
         private Pen penHeightMap = new Pen(Color.Yellow, 1F);
         private Pen penRuler = new Pen(Color.Blue, 0.1F);
         private Pen penTool = new Pen(Color.Black, 0.5F);
@@ -139,12 +140,15 @@ namespace GRBL_Plotter
                 e.DrawPath(penLandMark, GCodeVisuAndTransform.pathBackground);
 
             if (!Properties.Settings.Default.importUnitmm)
-            {   penDown.Width = 0.01F; penUp.Width = 0.01F; penRuler.Width = 0.01F; penHeightMap.Width = 0.01F;
+            {   penDown.Width = 0.01F; penRotary.Width = 0.01F; penUp.Width = 0.01F; penRuler.Width = 0.01F; penHeightMap.Width = 0.01F;
                 penMarker.Width = 0.01F; penTool.Width = 0.01F;
             }
             e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathHeightMap);
             e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
             e.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
+
+            if (Properties.Settings.Default.ctrl4thUse)
+                e.DrawPath(penRotary, GCodeVisuAndTransform.pathRotaryInfo);
 
             e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathMarkSelection);
 
