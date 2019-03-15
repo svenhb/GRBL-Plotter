@@ -42,6 +42,16 @@ namespace GRBL_Plotter
         }
     }
 
+    public struct xyzabcuvwPoint
+    {
+        public double X, Y, Z, A,B,C,U,V,W;
+        public xyzabcuvwPoint(xyzPoint tmp)
+        { X = tmp.X; Y = tmp.Y; Z = tmp.Z;  A = tmp.A; B = 0;C = 0;U = 0;V = 0;W = 0; }
+
+        public static explicit operator xyPoint(xyzabcuvwPoint tmp)
+        { return new xyPoint(tmp.X,tmp.Y); }
+    }
+
     /// <summary>
     /// Hold parsed GCode line and absolute work coordinate for given linenumber of GCode program
     /// </summary>
@@ -59,9 +69,8 @@ namespace GRBL_Plotter
         public int spindleSpeed;        // actual spindle spped
         public int feedRate;            // actual feed rate
         public double? x, y, z, a, b, c, u, v, w, i, j; // current parameters
-        public xyzPoint actualPos;      // accumulates position
+        public xyzabcuvwPoint actualPos;      // accumulates position
         public double distance;         // distance to specific point
-
 
         public gcodeByLine()
         {   resetAll(); }
@@ -84,13 +93,15 @@ namespace GRBL_Plotter
         /// </summary>
         public void resetAll()
         {   motionMode = 0; isdistanceModeG90 = true; ismachineCoordG53 = false; isSubroutine = false;
-            actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; distance = -1;
+            actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
+            actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
+            distance = -1;
             spindleState = 5; coolantState = 9; figureNumber = 0;
             resetCoordinates();
         }
         public void resetAll(xyzPoint tmp)
         {   resetAll();
-            actualPos = tmp;
+            actualPos = new xyzabcuvwPoint( tmp);
         }
         /// <summary>
         /// Reset coordinates

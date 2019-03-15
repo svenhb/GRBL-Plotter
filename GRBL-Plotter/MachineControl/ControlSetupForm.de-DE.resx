@@ -117,12 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Grafik Import</value>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>Werkzeugwechsel</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Steuerung</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Benutzerdefinierte Buttons</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Joystick / Farben</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Formenerkennung</value>
+  </data>
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>Pfadimport</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cBImportDXFIndexToolNr.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 17</value>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
     <value>Werkzeugwechsel: Farbindex als Werkzugnr.</value>
+  </data>
+  <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
+    <value>Das DXF Format nutzt einen Farbindex von 0 bis 255, dieser Index wird als Werkzeugnummer verwendet</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Grafik Import</value>
   </data>
   <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
     <value>257, 164</value>
@@ -132,6 +159,9 @@
   </data>
   <data name="label58.Text" xml:space="preserve">
     <value>mal</value>
+  </data>
+  <data name="nUDImportRepeat.ToolTip" xml:space="preserve">
+    <value>Code mehrfach ausführen (z.B. damit schwache Laser dickeres Material schneiden können)</value>
   </data>
   <data name="cBImportSVGRepeat.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 17</value>
@@ -166,6 +196,9 @@
   <data name="cBImportSVGPauseE.Text" xml:space="preserve">
     <value>Pause (M0) vor jedem Pfad</value>
   </data>
+  <data name="nUDImportReduce.ToolTip" xml:space="preserve">
+    <value>Diese Option vermeidet kleinere als vorgegebene Strecken um die Codegröße zu minimieren</value>
+  </data>
   <data name="cBImportSVGReduce.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 17</value>
   </data>
@@ -181,6 +214,12 @@
   <data name="cBImportSVGComments.Text" xml:space="preserve">
     <value>Zusätzliche SVG Kommentare</value>
   </data>
+  <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
+    <value>Zusätzliche Kommentare in den Code einfügen</value>
+  </data>
+  <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
+    <value>Kurven werden als Liniensegmente gezeichnet, je mehr Segmente, desto genauer die Kurve.</value>
+  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 13</value>
   </data>
@@ -190,8 +229,8 @@
   <data name="label1.ToolTip" xml:space="preserve">
     <value>Kurven werden durch kurze Linienstücke erzeugt, je höher die Anzahl, desto genauer</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Grafik Import</value>
+  <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
+    <value>72 dpi wird von Adobe Illustrator genutzt</value>
   </data>
   <data name="cBImportSVGNodesOnly.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 17</value>
@@ -213,9 +252,12 @@ dann füge Knoten hinzu via 'Erweiterungen - Pfad modifizieren - Knoten hinzufü
     <value>Werkzegwechsel: Sortiere Objekte nach Farbe</value>
   </data>
   <data name="cBImportSVGSort.ToolTip" xml:space="preserve">
-    <value>Sortiere Pfadsegemnte nach Stiftindex - am häufigsten benutzter Stift zuerst. 
-Um die Anzahl der Werkzeugwechselbefehle (Tool change) zu veringern.
+    <value>Sortiere Pfadsegmente nach Stiftindex - am häufigsten benutzter Stift zuerst, 
+um die Anzahl der Werkzeugwechselbefehle (Tool change) zu veringern.
 Achtung: nicht mit 'Komprimiere GCode' oder 'Relative Bewegung' verwenden.</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
+    <value>96 dpi ist der Standardwert</value>
   </data>
   <data name="cBImportSVGResize.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 32</value>
@@ -224,6 +266,9 @@ Achtung: nicht mit 'Komprimiere GCode' oder 'Relative Bewegung' verwenden.</valu
     <value>Versuche die Grafik auf max. X oder Y Größe zu skalieren</value>
   </data>
   <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
+    <value>Es wird versucht die Grafik auf die gewünschte Größe zu skalieren</value>
+  </data>
+  <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>Es wird versucht die Grafik auf die gewünschte Größe zu skalieren</value>
   </data>
   <data name="cBImportSVGPath.Size" type="System.Drawing.Size, System.Drawing">
@@ -246,8 +291,11 @@ Diese Einstellung ist für Schneidmesser gedacht</value>
     <value>Sortiere Objekte aufsteigend nach zugewiesener Werkzeugnummer oder
 sortiere Objekte nach am häufigsten genutzer Werkzeugnummer (= Farbe)</value>
   </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>Pfadimport</value>
+  <data name="tabPage10.Text" xml:space="preserve">
+    <value>G-Code Erzeugung</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Allgemein</value>
   </data>
   <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
     <value>Sende 'M4' um Motor im Gegegnuhrzeigersinn einzuschalten
@@ -272,11 +320,21 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="label4.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="nUDImportGCSpindleDelay.ToolTip" xml:space="preserve">
+    <value>Zeitverzögerung in Sekunden nach dem Einschalten der Spindle 
+(um Zeit für einen Reset zu haben, falls die Spindle nicht startet)</value>
+  </data>
+  <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
+    <value>Drehzahl der Spindle zum gravieren</value>
+  </data>
   <data name="cBImportGCTTSSpeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 17</value>
   </data>
   <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
     <value>aus Werkzeugliste</value>
+  </data>
+  <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
+    <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
   </data>
   <data name="cBImportGCToolM0.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 17</value>
@@ -287,8 +345,11 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
     <value>Ersetze M06 (tool change) Befehl durch M0 (pause) für manuellen Werkzeugwechsel</value>
   </data>
+  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 17</value>
+  </data>
   <data name="cBImportGCTool.Text" xml:space="preserve">
-    <value>Füge Werkzeugwechsel Befehle ein</value>
+    <value>Füge Werkzeugwechselbefehle ein</value>
   </data>
   <data name="cBImportGCTool.ToolTip" xml:space="preserve">
     <value>Fügt Txx M06 Befehle ein</value>
@@ -308,6 +369,9 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="cBImportGCTTXYFeed.Text" xml:space="preserve">
     <value>aus Werkzeugliste</value>
   </data>
+  <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
+    <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
+  </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
   </data>
@@ -316,6 +380,10 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="label19.ToolTip" xml:space="preserve">
     <value>Nachkommastellen im Code</value>
+  </data>
+  <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
+    <value>GRBL-Status nach Reset: G0, G54, G17, G90, G94, G21, G40, G49, M0, M5, M9
+D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
   </data>
   <data name="label11.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit für G1,2,3 Befehle bei X oder Y Koordinaten</value>
@@ -329,14 +397,26 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="label12.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="nUDImportGCFeedXY.ToolTip" xml:space="preserve">
+    <value>Geschwindigkeit für G1,2,3 Befehle bei X oder Y Koordinaten</value>
+  </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 13</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>G-Code Fußzeile</value>
   </data>
-  <data name="groupBox29.Text" xml:space="preserve">
-    <value>Allgemein</value>
+  <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
+    <value>Nachkommastellen im Code </value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Stift hoch/runter Übersetzung</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Z-Achse</value>
+  </data>
+  <data name="groupBox5.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBImportGCTTZDeepth.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 17</value>
@@ -344,11 +424,17 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="cBImportGCTTZDeepth.Text" xml:space="preserve">
     <value>aus Wkzg.liste</value>
   </data>
+  <data name="cBImportGCTTZDeepth.ToolTip" xml:space="preserve">
+    <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
+  </data>
   <data name="cBImportGCTTZFeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 17</value>
   </data>
   <data name="cBImportGCTTZFeed.Text" xml:space="preserve">
     <value>aus Wkzg.liste</value>
+  </data>
+  <data name="cBImportGCTTZFeed.ToolTip" xml:space="preserve">
+    <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 13</value>
@@ -384,22 +470,22 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>Z-Höhe oben</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
-    <value>Stift hoch</value>
+    <value>Höhe des Werkzeugs beim Rumfahren</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Z-Höhe gravieren</value>
   </data>
   <data name="label3.ToolTip" xml:space="preserve">
-    <value>Stift runter</value>
+    <value>Tiefe der Werkzeugs im Material </value>
   </data>
   <data name="label5.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit der Z Achse für G1 Befehl</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Z-Achse</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Spindle On/Off mit Stift hoch/runter</value>
   </data>
-  <data name="groupBox5.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox6.ToolTip" xml:space="preserve">
+    <value>Schalte die Spindle 'aus' mit 'Stift-hoch' und 'ein' mit 'Stift-runter' Befehlen (für Laser engraver)</value>
   </data>
   <data name="label72.Size" type="System.Drawing.Size, System.Drawing">
     <value>286, 13</value>
@@ -410,11 +496,8 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
     <value>Schalte die Spindle 'aus' mit 'Stift-hoch' und 'ein' mit 'Stift-runter' Befehlen (für Laser engraver)</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Spindle On/Off mit Stift hoch/runter</value>
-  </data>
-  <data name="groupBox6.ToolTip" xml:space="preserve">
-    <value>Schalte die Spindle 'aus' mit 'Stift-hoch' und 'ein' mit 'Stift-runter' Befehlen (für Laser engraver)</value>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Individuelle Befehle für Stift hoch/runter</value>
   </data>
   <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
@@ -431,8 +514,11 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
     <value>Nutze individuelle Befehle (neue Zeile durch ';')</value>
   </data>
-  <data name="groupBox16.Text" xml:space="preserve">
-    <value>Individuelle Befehle für Stift hoch/runter</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Servo Steuerung</value>
+  </data>
+  <data name="groupBox4.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="cBImportGCUsePWM.Size" type="System.Drawing.Size, System.Drawing">
     <value>141, 17</value>
@@ -446,14 +532,26 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="nUDImportGCDlyDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 96</value>
   </data>
+  <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
+    <value>Pause G4 in Sek. nach 'Stift runter'</value>
+  </data>
   <data name="nUDImportGCDlyUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 56</value>
+  </data>
+  <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
+    <value>Pause G4 in Sek. nach 'Stift hoch'</value>
   </data>
   <data name="nUDImportGCPWMDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 76</value>
   </data>
+  <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
+    <value>PWM Wert (S) für 'Stift runter'</value>
+  </data>
   <data name="nUDImportGCPWMUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>84, 36</value>
+  </data>
+  <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
+    <value>PWM Wert (S) für 'Stift hoch'</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 13</value>
@@ -491,17 +589,21 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="label10.ToolTip" xml:space="preserve">
     <value>PWM Wert (S) für 'Stift hoch'</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Servo Steuerung</value>
+  <data name="tabPage11.Text" xml:space="preserve">
+    <value>G-Code Modifikation</value>
   </data>
-  <data name="groupBox4.ToolTip" xml:space="preserve">
-    <value />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="groupBox28.Text" xml:space="preserve">
-    <value>Stift hoch/runter Übersetzung</value>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 29</value>
   </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>G-Code Erzeugung</value>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Funktioniert möglicherweise nicht mit anderen Optionen</value>
+  </data>
+  <data name="cBImportGCRelative.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 64</value>
   </data>
   <data name="cBImportGCRelative.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 17</value>
@@ -513,6 +615,9 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>Berechne relative Bewegungen für G91 Mode
 Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
+  <data name="cBImportGCCompress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 48</value>
+  </data>
   <data name="cBImportGCCompress.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 17</value>
   </data>
@@ -523,17 +628,32 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <value>Entferne überflüssige Informationen
 Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>G-Code Erzeugung</value>
+  </data>
+  <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>Offset abhängig von Schnitttiefe Z in %</value>
+  </data>
+  <data name="cBImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>Offset abhängig von Schnitttiefe Z in %</value>
+  </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Schwenkwinkel</value>
   </data>
+  <data name="label17.ToolTip" xml:space="preserve">
+    <value>Max. Schwenkwinkel bevor eine Kreisbewegung eingefügt wird</value>
+  </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 13</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Offset von der Mitte</value>
+  </data>
+  <data name="label16.ToolTip" xml:space="preserve">
+    <value>Offset zum Drehpunkt. Bei Schleppmessern ca. 0,3 mm.</value>
   </data>
   <data name="nUDImportGCDragKnifeAngle.ToolTip" xml:space="preserve">
     <value>Nötige Winkeländerung zwischen zwei Strecken bevor ein Kreissegment eingefügt wird.</value>
@@ -550,8 +670,14 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
     <value>Kompensiere Offset bei Benutzung von Schleppmesser oder Pinsel </value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>G-Code Erzeugung</value>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>Original Bewegungen auftrennen</value>
+  </data>
+  <data name="cBImportGCSubFirst.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 17</value>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Unterprog. auch bei Pfadstart</value>
   </data>
   <data name="cBImportGCLineSegmentsEquidistant.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 17</value>
@@ -573,6 +699,12 @@ Max. Winkelabweichung</value>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
     <value>Ersetze G2/3 Befehle durch Liniensegmente</value>
   </data>
+  <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
+    <value>Pfad zur Datei mit Unterprogram</value>
+  </data>
+  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
+    <value>Winkelschrittweite</value>
+  </data>
   <data name="cBImportGCSubEnable.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 17</value>
   </data>
@@ -590,20 +722,11 @@ Segmente mit max. Länge</value>
     <value>Unterteile lange gerade Strecken in kürzere mit vorgegebener Länge.
 Don't use with "Relative movements"</value>
   </data>
-  <data name="groupBox30.Text" xml:space="preserve">
-    <value>Original Bewegungen auftrennen</value>
-  </data>
-  <data name="tabPage11.Text" xml:space="preserve">
-    <value>G-Code Modifikation</value>
-  </data>
   <data name="btnReloadFile.Text" xml:space="preserve">
     <value>SVG, DXF, Drill Datei neu laden</value>
   </data>
   <data name="btnReloadFile.ToolTip" xml:space="preserve">
     <value>Datei neu importieren um geänderte Einstellungen anzuwenden</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Grafik Import</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 50</value>
@@ -634,6 +757,15 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="label61.Text" xml:space="preserve">
     <value>Die Skripte werden in der vorgegebenen Reihenfolge ausgeführt. 'REMOVE' Skript wird nur ausgeführt, wenn ein Werkeug bereits geladen ist.</value>
+  </data>
+  <data name="gBToolTable.Text" xml:space="preserve">
+    <value>Positionen in Werkzeugliste sind Maschinenkoordinaten! Homing sollte ausgeführt werden!</value>
+  </data>
+  <data name="btnReNumberTools.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 23</value>
+  </data>
+  <data name="btnReNumberTools.Text" xml:space="preserve">
+    <value>Neu nummerieren</value>
   </data>
   <data name="btnMoveToolXY.Text" xml:space="preserve">
     <value>Fahre zur XY Position der markierten Zeile</value>
@@ -668,15 +800,18 @@ Don't use with "Relative movements"</value>
   <data name="cBToolChange.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="tabPage8.Text" xml:space="preserve">
-    <value>Werkzeugwechsel</value>
-  </data>
   <data name="cBBackgroundImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>331, 30</value>
   </data>
   <data name="cBBackgroundImage.Text" xml:space="preserve">
     <value>2D-Ansicht: verminderung der CPU-Last während des Streamens
 durch Anzeige einer Grafik statt des Echtzeitpfades</value>
+  </data>
+  <data name="groupBox33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 274</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Maschinen Arbeitsbereich</value>
   </data>
   <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 39</value>
@@ -716,8 +851,8 @@ Notiere die Maschinenkoordinaten</value>
   <data name="label34.Text" xml:space="preserve">
     <value>Verfahrweg X</value>
   </data>
-  <data name="groupBox33.Text" xml:space="preserve">
-    <value>Maschinen Arbeitsbereich</value>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>DIY Steuerung via seriellen Port</value>
   </data>
   <data name="cBSerialDIY.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 17</value>
@@ -725,26 +860,53 @@ Notiere die Maschinenkoordinaten</value>
   <data name="cBSerialDIY.Text" xml:space="preserve">
     <value>Öffne COM-Port bei Prog.-Start</value>
   </data>
-  <data name="groupBox27.Text" xml:space="preserve">
-    <value>DIY Steuerung via seriellen Port</value>
-  </data>
-  <data name="cB4thUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 17</value>
-  </data>
-  <data name="cB4thUse.Text" xml:space="preserve">
-    <value>Zeige Status und Steuerelemente</value>
-  </data>
-  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 35</value>
-  </data>
-  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 13</value>
-  </data>
-  <data name="label38.Text" xml:space="preserve">
-    <value>Name der 4ten Achse</value>
-  </data>
   <data name="groupBox17.Text" xml:space="preserve">
     <value>GRBL 4te Achse (spezielle Version)</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>Skalierung der 4ten Achse in der 2D Ansicht kann über den Dreh- achsendurchmesser angepasst werden (Menu GCode Transf.)</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 17</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Invert. 4te A. in 2D Anzeige</value>
+  </data>
+  <data name="radioButton2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>Anzeige 4te Achse auf Y</value>
+  </data>
+  <data name="radioButton1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>Anzeige 4te Achse auf X</value>
+  </data>
+  <data name="cB4thUse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 17</value>
+  </data>
+  <data name="cB4thUse.Text" xml:space="preserve">
+    <value>Zeige Status und Steuerung</value>
+  </data>
+  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>259, 12</value>
+  </data>
+  <data name="label38.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 15</value>
+  </data>
+  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 13</value>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Name  4te Achse</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Drehachsen Steuerung</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>GRBL Setup für ersetzte Achse</value>
   </data>
   <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 62</value>
@@ -758,6 +920,9 @@ Notiere die Maschinenkoordinaten</value>
   <data name="label31.ToolTip" xml:space="preserve">
     <value>Diese Einstellungen werden beim Deaktivieren der Achsenersetzung aktiviert</value>
   </data>
+  <data name="tBRotarySetupOff.ToolTip" xml:space="preserve">
+    <value>Diese Einstellungen werden beim Deaktivieren der Achsenersetzung aktiviert</value>
+  </data>
   <data name="cBRotarySetupApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 17</value>
   </data>
@@ -766,6 +931,9 @@ Notiere die Maschinenkoordinaten</value>
   </data>
   <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
     <value>Automatisches Anpassen der grbl Einstellungen wenn Achsenersetzung aktiviert oder deaktiviert wird</value>
+  </data>
+  <data name="tBRotarySetupOn.ToolTip" xml:space="preserve">
+    <value>Diese Einstellungen werden beim Aktivieren der Achsenersetzung aktiviert</value>
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 38</value>
@@ -778,9 +946,6 @@ Notiere die Maschinenkoordinaten</value>
   </data>
   <data name="label32.ToolTip" xml:space="preserve">
     <value>Diese Einstellungen werden beim Aktivieren der Achsenersetzung aktiviert</value>
-  </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>GRBL Setup für ersetzte Achse</value>
   </data>
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
@@ -821,8 +986,8 @@ Notiere die Maschinenkoordinaten</value>
   <data name="cBRotarySubstitute.Text" xml:space="preserve">
     <value>Achsen Ersetzung</value>
   </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Drehachsen Steuerung</value>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>GCode einlesen</value>
   </data>
   <data name="cBCtrlCommentOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 17</value>
@@ -833,6 +998,9 @@ Notiere die Maschinenkoordinaten</value>
   <data name="cBCtrlCommentOut.ToolTip" xml:space="preserve">
     <value>Verstecke unbekannten GCode durch auskommentieren (In Klammern setzen), 
 um Fehlermeldungen von GRBL zu vermeiden</value>
+  </data>
+  <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 78</value>
   </data>
   <data name="rBCtrlReplaceM4.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 17</value>
@@ -858,11 +1026,11 @@ M3 Constant Laser Power Mode
 oder
 M4 Dynamic Laser Power Mode</value>
   </data>
-  <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 78</value>
+  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 68</value>
   </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>GCode einlesen</value>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Serielle Verbindung</value>
   </data>
   <data name="cBSerial2.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 17</value>
@@ -883,23 +1051,16 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
   <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
     <value>Das serielle Fenster wird nach erfolgreicher Verbindung zum GRBL minimiert</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Serielle Verbindung</value>
-  </data>
   <data name="cBcheckupdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 17</value>
   </data>
   <data name="cBcheckupdate.Text" xml:space="preserve">
     <value>Überprüfe auf neue GRBL-Plotter Version auf GitHub</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Steuerung</value>
-  </data>
-  <data name="lblFilePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>236, 243</value>
-  </data>
-  <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
-    <value>236, 199</value>
+  <data name="cBcheckupdate.ToolTip" xml:space="preserve">
+    <value>Während jeden starts von GRBL-Plotter wird auf eine neue Version überprüft:
+Zuerst auf github.com/svenhb/GRBL-Plotter
+Zweiter Versuch auf svenhb.bplaced.net </value>
   </data>
   <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
     <value>462, 44</value>
@@ -909,8 +1070,8 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
 Oder gebe eine Datei an, welcher GCode enthält.
 Relativer Dateipfad beginnt hier:</value>
   </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Benutzerdefinierte Buttons</value>
+  <data name="gBGP.Text" xml:space="preserve">
+    <value>GamePad Tastenzuordnung</value>
   </data>
   <data name="cBGPEnable.Size" type="System.Drawing.Size, System.Drawing">
     <value>175, 17</value>
@@ -964,8 +1125,14 @@ Refresh interval = 500ms.
 Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
 </value>
   </data>
-  <data name="gBGP.Text" xml:space="preserve">
-    <value>GamePad Tastenzuordnung</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Farben der 2D Vorschau</value>
+  </data>
+  <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+  </data>
+  <data name="btnColorRotaryInfo.Text" xml:space="preserve">
+    <value>Drehachse Info</value>
   </data>
   <data name="btnColorMachineLimit.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 23</value>
@@ -985,6 +1152,9 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   <data name="nUDHeightMap.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 195</value>
   </data>
+  <data name="nUDHeightMap.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+  </data>
   <data name="btnColorHeightMap.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 23</value>
   </data>
@@ -993,6 +1163,9 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   </data>
   <data name="nUDMarker.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 166</value>
+  </data>
+  <data name="nUDMarker.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
   </data>
   <data name="btnColorMarker.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 23</value>
@@ -1003,11 +1176,20 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   <data name="nUDPenDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 108</value>
   </data>
+  <data name="nUDPenDown.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+  </data>
   <data name="nUDPenUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 79</value>
   </data>
+  <data name="nUDPenUp.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+  </data>
   <data name="nUDRuler.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 50</value>
+  </data>
+  <data name="nUDRuler.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
   </data>
   <data name="btnColorTool.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 23</value>
@@ -1039,11 +1221,8 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   <data name="btnColorBackground.Text" xml:space="preserve">
     <value>Hintergrund</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Farben der 2D Vorschau</value>
-  </data>
-  <data name="label74.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Joystick Einstellungen</value>
   </data>
   <data name="label74.Size" type="System.Drawing.Size, System.Drawing">
     <value>246, 13</value>
@@ -1051,29 +1230,26 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   <data name="label74.Text" xml:space="preserve">
     <value>Drücke 'Änderungen jetzt Übernehmen' für Update</value>
   </data>
-  <data name="lblJoystickSize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="label73.Size" type="System.Drawing.Size, System.Drawing">
     <value>206, 13</value>
   </data>
   <data name="label73.Text" xml:space="preserve">
     <value>Max. Größe des Joystick-Controls in Pixeln</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Joystick Einstellungen</value>
+  <data name="btnOpenHotkeys.Text" xml:space="preserve">
+    <value>Öffne hotkeys.xml in notepad</value>
   </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Joystick / Farben</value>
+  <data name="btnHotkeyRefresh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 20</value>
   </data>
   <data name="btnHotkeyRefresh.Text" xml:space="preserve">
     <value>hotkeys.xml neu Laden</value>
   </data>
   <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
-    <value>609, 13</value>
+    <value>426, 13</value>
   </data>
   <data name="label68.Text" xml:space="preserve">
-    <value>Inhalt von hotkeys.xml (muss manuell geändert werden, um Zuordnung zu übernehmen, drücke 'Änderungen jetzt übernehmen'):</value>
+    <value>Inhalt von hotkeys.xml (nach externer Änderung, drücke 'Änderungen jetzt übernehmen'):</value>
   </data>
   <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
     <value>298, 13</value>
@@ -1081,11 +1257,17 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   <data name="label67.Text" xml:space="preserve">
     <value>Teste Tastaturcodes hier (Ergebnis wird ins Clipboard kopiert):</value>
   </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Einstellungen für die Formenerkennung mit Kamera</value>
+  </data>
   <data name="label59.Size" type="System.Drawing.Size, System.Drawing">
     <value>321, 42</value>
   </data>
   <data name="label59.Text" xml:space="preserve">
     <value>Speichere Parameter-sets mit Namen um diese im Kamera Fenster aufzurufen. Damit ändert ich das Verhlaten der Formerkennung. Nach Umbenennung Kamerfenster schließen/öffnen.</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Farbfilter</value>
   </data>
   <data name="cBFilterOuside.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 17</value>
@@ -1108,8 +1290,8 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   <data name="label49.Text" xml:space="preserve">
     <value>Rot</value>
   </data>
-  <data name="groupBox15.Text" xml:space="preserve">
-    <value>Farbfilter</value>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Formenerkennung</value>
   </data>
   <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 13</value>
@@ -1141,23 +1323,14 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   <data name="cBShapeCircle.Text" xml:space="preserve">
     <value>Kreis</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>Formenerkennung</value>
-  </data>
-  <data name="groupBox21.Text" xml:space="preserve">
-    <value>Einstellungen für die Formenerkennung mit Kamera</value>
-  </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>Formenerkennung</value>
-  </data>
   <data name="groupBox19.Text" xml:space="preserve">
     <value>GRBL und GCode betreffend</value>
   </data>
-  <data name="label39.Text" xml:space="preserve">
-    <value>Achtung: drag and drop funktioniert nicht mit dem IE-Browser aber mit Google Chrome</value>
-  </data>
   <data name="groupBox18.Text" xml:space="preserve">
     <value>Freie SVG Grafik Quellen (mit drag and drop Möglichkeit)</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Achtung: drag and drop funktioniert nicht mit dem IE-Browser aber mit Google Chrome</value>
   </data>
   <data name="btnApplyChangings.Text" xml:space="preserve">
     <value>Änderungen jetzt übernehmen</value>

@@ -30,6 +30,7 @@
  * 2019-02-09 outsourcing of code for parsing
  * 2019-02-27 createGCodeProg add output for A,B,C,U,V,W axis
  * 2019-03-05 Bug orgin-shift after mirroring
+ * 2019-03-09 add pathRotaryInfo to show rotary over X or Y
  */
 
 //#define debuginfo 
@@ -59,6 +60,7 @@ namespace GRBL_Plotter
         public static GraphicsPath pathToolTable = new GraphicsPath();
         public static GraphicsPath pathBackground = new GraphicsPath();
         public static GraphicsPath pathMarkSelection = new GraphicsPath();
+        public static GraphicsPath pathRotaryInfo = new GraphicsPath();
         public static GraphicsPath path = pathPenUp;
 
         public bool containsG2G3Command()
@@ -377,6 +379,65 @@ namespace GRBL_Plotter
                 }
                 else
                     newLine.actualPos.Z = oldLine.actualPos.Z;
+
+                if (newLine.a != null)
+                {   if (newLine.isdistanceModeG90)  // absolute move
+                        newLine.actualPos.A = (double)newLine.a;
+                    else
+                        newLine.actualPos.A = oldLine.actualPos.A + (double)newLine.a;
+                }
+                else
+                    newLine.actualPos.A = oldLine.actualPos.A;
+
+                if (newLine.b != null)
+                {
+                    if (newLine.isdistanceModeG90)  // absolute move
+                        newLine.actualPos.B = (double)newLine.b;
+                    else
+                        newLine.actualPos.B = oldLine.actualPos.B + (double)newLine.b;
+                }
+                else
+                    newLine.actualPos.B = oldLine.actualPos.B;
+
+                if (newLine.c != null)
+                {
+                    if (newLine.isdistanceModeG90)  // absolute move
+                        newLine.actualPos.C = (double)newLine.c;
+                    else
+                        newLine.actualPos.C = oldLine.actualPos.C + (double)newLine.c;
+                }
+                else
+                    newLine.actualPos.C = oldLine.actualPos.C;
+
+                if (newLine.u != null)
+                {
+                    if (newLine.isdistanceModeG90)  // absolute move
+                        newLine.actualPos.U = (double)newLine.u;
+                    else
+                        newLine.actualPos.U = oldLine.actualPos.U + (double)newLine.u;
+                }
+                else
+                    newLine.actualPos.U = oldLine.actualPos.U;
+
+                if (newLine.v != null)
+                {
+                    if (newLine.isdistanceModeG90)  // absolute move
+                        newLine.actualPos.V = (double)newLine.v;
+                    else
+                        newLine.actualPos.V = oldLine.actualPos.V + (double)newLine.v;
+                }
+                else
+                    newLine.actualPos.V = oldLine.actualPos.V;
+
+                if (newLine.w != null)
+                {
+                    if (newLine.isdistanceModeG90)  // absolute move
+                        newLine.actualPos.W = (double)newLine.w;
+                    else
+                        newLine.actualPos.W = oldLine.actualPos.W + (double)newLine.w;
+                }
+                else
+                    newLine.actualPos.W = oldLine.actualPos.W;
             }
         }
 
@@ -871,6 +932,7 @@ namespace GRBL_Plotter
             xyzSize.resetDimension();
             pathPenUp.Reset();
             pathPenDown.Reset();
+            pathRotaryInfo.Reset();
             pathRuler.Reset();
             pathTool.Reset();
             pathMarker.Reset();
@@ -917,8 +979,34 @@ namespace GRBL_Plotter
 
                 if (newL.motionMode == 0 || newL.motionMode == 1)
                 {
-                    if ((newL.actualPos.X != oldL.actualPos.X) || (newL.actualPos.Y != oldL.actualPos.Y) || (oldL.motionMode == 2 || oldL.motionMode == 3))
+                    bool otherAxis = (newL.actualPos.A != oldL.actualPos.A) || (newL.actualPos.B != oldL.actualPos.B) || (newL.actualPos.C != oldL.actualPos.C);
+                    otherAxis = otherAxis || (newL.actualPos.U != oldL.actualPos.U) || (newL.actualPos.V != oldL.actualPos.V) || (newL.actualPos.W != oldL.actualPos.W);
+                    if ((newL.actualPos.X != oldL.actualPos.X) || (newL.actualPos.Y != oldL.actualPos.Y) || otherAxis || (oldL.motionMode == 2 || oldL.motionMode == 3))
                     {
+                        if ((Properties.Settings.Default.ctrl4thUse) && (path == pathPenDown))
+                        {   if (passLimit)
+                                pathRotaryInfo.StartFigure();
+                            float scale = (float)Properties.Settings.Default.rotarySubstitutionDiameter * (float)Math.PI/360;
+                            if (Properties.Settings.Default.ctrl4thInvert)
+                                scale = scale* -1;
+
+                            float newR = 0, oldR = 0;
+                            if (Properties.Settings.Default.ctrl4thName == "A") { oldR = (float)oldL.actualPos.A * scale; newR = (float)newL.actualPos.A * scale;}
+                            else if (Properties.Settings.Default.ctrl4thName == "B") { oldR = (float)oldL.actualPos.B * scale; newR = (float)newL.actualPos.B * scale; }
+                            else if (Properties.Settings.Default.ctrl4thName == "C") { oldR = (float)oldL.actualPos.C * scale; newR = (float)newL.actualPos.C * scale; }
+                            else if (Properties.Settings.Default.ctrl4thName == "U") { oldR = (float)oldL.actualPos.U * scale; newR = (float)newL.actualPos.U * scale; }
+                            else if (Properties.Settings.Default.ctrl4thName == "V") { oldR = (float)oldL.actualPos.V * scale; newR = (float)newL.actualPos.V * scale; }
+                            else if (Properties.Settings.Default.ctrl4thName == "W") { oldR = (float)oldL.actualPos.W * scale; newR = (float)newL.actualPos.W * scale; }
+
+                            if (Properties.Settings.Default.ctrl4thOverX)
+                            {   pathRotaryInfo.AddLine((float)oldL.actualPos.X, oldR, (float)newL.actualPos.X, newR); // rotary over X
+                                xyzSize.setDimensionY(newR);
+                            }
+                            else
+                            {   pathRotaryInfo.AddLine(oldR, (float)oldL.actualPos.Y, newR, (float)newL.actualPos.Y); // rotary over Y
+                                xyzSize.setDimensionX(newR);
+                            }
+                        }
                         path.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
                         onlyZ = 0;  // x or y has changed
                     }

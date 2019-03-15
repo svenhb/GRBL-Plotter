@@ -17,8 +17,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /*
- *  *  2017-01-01  check form-location and fix strange location
+ * 2017-01-01 check form-location and fix strange location
+ * 2019-03-09 add color, width, X/Y and invert for pathRotaryInfo to show rotary over X or Y
 */
+
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -158,6 +160,8 @@ namespace GRBL_Plotter
         { applyColor(btnColorPenUp, "colorPenUp"); }
         private void btnColorPenDown_Click(object sender, EventArgs e)
         { applyColor(btnColorPenDown, "colorPenDown"); }
+        private void btnColorRotaryInfo_Click(object sender, EventArgs e)
+        { applyColor(btnColorRotaryInfo, "colorRotaryInfo"); }
         private void btnColorTool_Click(object sender, EventArgs e)
         { applyColor(btnColorTool, "colorTool"); }
         private void btnColorMarker_Click(object sender, EventArgs e)
@@ -702,6 +706,13 @@ namespace GRBL_Plotter
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {   lblJoystickSize.Text = hScrollBar1.Value.ToString();
+        }
+
+        private void cBGPEnable_CheckedChanged(object sender, EventArgs e)
+        {   if (cBGPEnable.Checked)
+            {   try { ControlGamePad.Initialize(); }
+                catch { }
+            }
         }
     }
 }
