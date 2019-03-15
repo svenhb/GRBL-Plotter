@@ -821,26 +821,5 @@
     <Setting Name="joystickSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">180</Value>
     </Setting>
-    <Setting Name="ctrl4thOverX" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="ctrl4thInvert" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="colorRotaryInfo" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">0, 192, 192</Value>
-    </Setting>
-    <Setting Name="widthRotaryInfo" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.4</Value>
-    </Setting>
-    <Setting Name="mainFormWinState" Type="System.Windows.Forms.FormWindowState" Scope="User">
-      <Value Profile="(Default)">Normal</Value>
-    </Setting>
-    <Setting Name="mainFormSplitDistance" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">296</Value>
-    </Setting>
-    <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">900, 640</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

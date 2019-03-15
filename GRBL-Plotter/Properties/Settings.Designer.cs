@@ -3298,5 +3298,89 @@ namespace GRBL_Plotter.Properties {
                 this["joystickSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ctrl4thOverX {
+            get {
+                return ((bool)(this["ctrl4thOverX"]));
+            }
+            set {
+                this["ctrl4thOverX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrl4thInvert {
+            get {
+                return ((bool)(this["ctrl4thInvert"]));
+            }
+            set {
+                this["ctrl4thInvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 192, 192")]
+        public global::System.Drawing.Color colorRotaryInfo {
+            get {
+                return ((global::System.Drawing.Color)(this["colorRotaryInfo"]));
+            }
+            set {
+                this["colorRotaryInfo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
+        public decimal widthRotaryInfo {
+            get {
+                return ((decimal)(this["widthRotaryInfo"]));
+            }
+            set {
+                this["widthRotaryInfo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState mainFormWinState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["mainFormWinState"]));
+            }
+            set {
+                this["mainFormWinState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("296")]
+        public int mainFormSplitDistance {
+            get {
+                return ((int)(this["mainFormSplitDistance"]));
+            }
+            set {
+                this["mainFormSplitDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("900, 640")]
+        public global::System.Drawing.Size mainFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["mainFormSize"]));
+            }
+            set {
+                this["mainFormSize"] = value;
+            }
+        }
     }
 }
