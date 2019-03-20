@@ -66,6 +66,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
     
 #### GCode manipulation:  
 * Transformation of GCodes (scale, rotation, mirror, zero-Offset)  
+any A,B,C,U,V,W commands will stay in place.
 * Transformation via camera teaching
 * Axis Substitution for Rotary Axis
   
