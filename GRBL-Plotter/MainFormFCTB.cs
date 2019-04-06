@@ -71,6 +71,7 @@ namespace GRBL_Plotter
             e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleAAxis, "[AaBbCcUuVvWw]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
+            e.ChangedRange.SetFoldingMarkers("\\(<PD", "\\(</PD");
         }
 
         private void fCTB_CheckUnknownCode()
@@ -207,7 +208,7 @@ namespace GRBL_Plotter
         private void moveToFirstPosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int start = visuGCode.getLineOfFirstPointInFigure();
-            int end = visuGCode.getLineOfEndPointInFigure(start);
+            int end = visuGCode.getLineOfEndPointInFigure(start+1);
             if ((start >=0) && (end > start))
             {
                 Place selStart, selEnd;
@@ -229,7 +230,10 @@ namespace GRBL_Plotter
 
         private void deletePathToolStripMenuItem_Click(object sender, EventArgs e)
         {   int start = visuGCode.getLineOfFirstPointInFigure();
-            int end   = visuGCode.getLineOfEndPointInFigure(start);
+            int end   = visuGCode.getLineOfEndPointInFigure(start+1);
+            start = visuGCode.getLineOfFirstPointInFigureExtend(start); // look for tag (<PD
+            end   = visuGCode.getLineOfEndPointInFigureExtend(end)+1;     // look for tag (</PD
+
             if ((start < 0) || (end <= start))
                 return;
             Place selStart, selEnd;
@@ -246,6 +250,7 @@ namespace GRBL_Plotter
             fCTBCode.InsertText("( Figure removed )\r\n");
             fCTBCodeMarkLine();
             fCTBCode.DoCaretVisible();
+            transformEnd();
             return;
         }
 

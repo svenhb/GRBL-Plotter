@@ -200,6 +200,8 @@ namespace GRBL_Plotter
                 fCTBCodeClickedLineNow = line;
                 fCTBCodeMarkLine();
                 fCTBCode.DoCaretVisible();
+//                fCTBCode.Focus();
+//                fCTBCode.ShowFoldingLines = true;
 #if (debuginfo)
                 log.Add("MainFormPictureBox event pictureBox1_Click end, line: " + line.ToString());
 #endif

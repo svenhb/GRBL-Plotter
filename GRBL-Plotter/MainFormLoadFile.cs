@@ -19,7 +19,9 @@
 /* MainFormLoadFile
  * Methods to load data (nc, svg, dxf, pictures)
  * Load setups
- * */
+ * 2019-03-17  Add custom buttons 13-16, save dialog add *.cnc, *.gcode
+ *
+ */
 
 //#define debuginfo
 
@@ -55,9 +57,13 @@ namespace GRBL_Plotter
         }
         // handle MRU List
         private int MRUnumber = 20;
+        private string saveName = "";
+        private string savePath = "";
         private List<string> MRUlist = new List<string>();
         private void SaveRecentFile(string path)
         {
+            savePath = Path.GetDirectoryName(path) + "\\";
+            saveName = Path.GetFileNameWithoutExtension(path);
             //   recentToolStripMenuItem.DropDownItems.Clear();
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
@@ -370,7 +376,9 @@ namespace GRBL_Plotter
         private void btnSaveFile_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "GCode|*.nc";
+            sfd.InitialDirectory = Path.GetDirectoryName(savePath);
+            sfd.FileName = savePath+saveName + "_";
+            sfd.Filter = "GCode (*.nc)|*.nc|GCode (*.cnc)|*.cnc|GCode (*.gcode)|*.gcode|All files (*.*)|*.*";   // "GCode|*.nc";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 string txt = fCTBCode.Text;
@@ -563,7 +571,7 @@ namespace GRBL_Plotter
 #if (debuginfo)
             log.Add("MainFormLoadFile loadSettings");
 #endif
-            try
+           // try
             {
                 if (Properties.Settings.Default.UpgradeRequired)
                 {
@@ -572,6 +580,7 @@ namespace GRBL_Plotter
                     Properties.Settings.Default.Save();
                 }
                 tbFile.Text = Properties.Settings.Default.file;
+                int customButtonUse = 0;
                 setCustomButton(btnCustom1, Properties.Settings.Default.custom1, 1);
                 setCustomButton(btnCustom2, Properties.Settings.Default.custom2, 2);
                 setCustomButton(btnCustom3, Properties.Settings.Default.custom3, 3);
@@ -584,6 +593,25 @@ namespace GRBL_Plotter
                 setCustomButton(btnCustom10, Properties.Settings.Default.custom10, 10);
                 setCustomButton(btnCustom11, Properties.Settings.Default.custom11, 11);
                 setCustomButton(btnCustom12, Properties.Settings.Default.custom12, 12);
+
+                customButtonUse += setCustomButton(btnCustom13, Properties.Settings.Default.custom13, 13);
+                customButtonUse += setCustomButton(btnCustom14, Properties.Settings.Default.custom14, 14);
+                customButtonUse += setCustomButton(btnCustom15, Properties.Settings.Default.custom15, 15);
+                customButtonUse += setCustomButton(btnCustom16, Properties.Settings.Default.custom16, 16);
+
+                if (customButtonUse == 0)
+                {   tableLayoutPanel1.ColumnStyles[0].Width = 33.3f;
+                    tableLayoutPanel1.ColumnStyles[1].Width = 33.3f;
+                    tableLayoutPanel1.ColumnStyles[2].Width = 33.3f;
+                    tableLayoutPanel1.ColumnStyles[3].Width = 0f;
+                }
+                else
+                {   tableLayoutPanel1.ColumnStyles[0].Width = 25f;
+                    tableLayoutPanel1.ColumnStyles[1].Width = 25f;
+                    tableLayoutPanel1.ColumnStyles[2].Width = 25f;
+                    tableLayoutPanel1.ColumnStyles[3].Width = 25f;
+                }
+
                 fCTBCode.BookmarkColor = Properties.Settings.Default.colorMarker; ;
                 pictureBox1.BackColor = Properties.Settings.Default.colorBackground;
                 //                visuGCode.setColors();
@@ -611,27 +639,41 @@ namespace GRBL_Plotter
                 joystickXYStep[3] = (double)Properties.Settings.Default.joyXYStep3;
                 joystickXYStep[4] = (double)Properties.Settings.Default.joyXYStep4;
                 joystickXYStep[5] = (double)Properties.Settings.Default.joyXYStep5;
-                joystickZStep[0] = 0;
-                joystickZStep[1] = (double)Properties.Settings.Default.joyZStep1;
-                joystickZStep[2] = (double)Properties.Settings.Default.joyZStep2;
-                joystickZStep[3] = (double)Properties.Settings.Default.joyZStep3;
-                joystickZStep[4] = (double)Properties.Settings.Default.joyZStep4;
-                joystickZStep[5] = (double)Properties.Settings.Default.joyZStep5;
                 joystickXYSpeed[0] = 0.1;
                 joystickXYSpeed[1] = (double)Properties.Settings.Default.joyXYSpeed1;
                 joystickXYSpeed[2] = (double)Properties.Settings.Default.joyXYSpeed2;
                 joystickXYSpeed[3] = (double)Properties.Settings.Default.joyXYSpeed3;
                 joystickXYSpeed[4] = (double)Properties.Settings.Default.joyXYSpeed4;
                 joystickXYSpeed[5] = (double)Properties.Settings.Default.joyXYSpeed5;
+                joystickZStep[0] = 0;
+                joystickZStep[1] = (double)Properties.Settings.Default.joyZStep1;
+                joystickZStep[2] = (double)Properties.Settings.Default.joyZStep2;
+                joystickZStep[3] = (double)Properties.Settings.Default.joyZStep3;
+                joystickZStep[4] = (double)Properties.Settings.Default.joyZStep4;
+                joystickZStep[5] = (double)Properties.Settings.Default.joyZStep5;
                 joystickZSpeed[0] = 0.1;
                 joystickZSpeed[1] = (double)Properties.Settings.Default.joyZSpeed1;
                 joystickZSpeed[2] = (double)Properties.Settings.Default.joyZSpeed2;
                 joystickZSpeed[3] = (double)Properties.Settings.Default.joyZSpeed3;
                 joystickZSpeed[4] = (double)Properties.Settings.Default.joyZSpeed4;
                 joystickZSpeed[5] = (double)Properties.Settings.Default.joyZSpeed5;
+                joystickAStep[0] = 0;
+                joystickAStep[1] = (double)Properties.Settings.Default.joyAStep1;
+                joystickAStep[2] = (double)Properties.Settings.Default.joyAStep2;
+                joystickAStep[3] = (double)Properties.Settings.Default.joyAStep3;
+                joystickAStep[4] = (double)Properties.Settings.Default.joyAStep4;
+                joystickAStep[5] = (double)Properties.Settings.Default.joyAStep5;
+                joystickASpeed[0] = 0.1;
+                joystickASpeed[1] = (double)Properties.Settings.Default.joyASpeed1;
+                joystickASpeed[2] = (double)Properties.Settings.Default.joyASpeed2;
+                joystickASpeed[3] = (double)Properties.Settings.Default.joyASpeed3;
+                joystickASpeed[4] = (double)Properties.Settings.Default.joyASpeed4;
+                joystickASpeed[5] = (double)Properties.Settings.Default.joyASpeed5;
                 virtualJoystickXY.JoystickLabel = joystickXYStep;
                 virtualJoystickZ.JoystickLabel = joystickZStep;
-                virtualJoystickA.JoystickLabel = joystickZStep;
+                virtualJoystickA.JoystickLabel = joystickAStep;
+                virtualJoystickB.JoystickLabel = joystickAStep;
+                virtualJoystickC.JoystickLabel = joystickAStep;
                 skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
                 skaliereXAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
                 skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
@@ -679,37 +721,65 @@ namespace GRBL_Plotter
                         }
                 }
 
+                //grbl.axisA = true; grbl.axisB = true; grbl.axisC = true; // for test only
                 ctrl4thAxis = Properties.Settings.Default.ctrl4thUse;
                 ctrl4thName = Properties.Settings.Default.ctrl4thName;
-                label_a.Visible = ctrl4thAxis;
+                label_a.Visible = ctrl4thAxis || grbl.axisA;
                 label_a.Text = ctrl4thName;
-                label_wa.Visible = ctrl4thAxis;
-                label_ma.Visible = ctrl4thAxis;
-                btnZeroA.Visible = ctrl4thAxis;
+                label_wa.Visible = ctrl4thAxis || grbl.axisA;
+                label_ma.Visible = ctrl4thAxis || grbl.axisA;
+                btnZeroA.Visible = ctrl4thAxis || grbl.axisA;
                 mirrorRotaryToolStripMenuItem.Visible = ctrl4thAxis;
                 btnZeroA.Text = "Zero " + ctrl4thName;
                 if (Properties.Settings.Default.language == "de-DE")
                     btnZeroA.Text = ctrl4thName + " nullen";
 
-                virtualJoystickA.Visible = ctrl4thAxis;
-                btnJogZeroA.Visible = ctrl4thAxis;
+                virtualJoystickA.Visible |= ctrl4thAxis || grbl.axisA;
+                //virtualJoystickB.Visible = ctrl4thAxis;
+                //virtualJoystickC.Visible = ctrl4thAxis;
+                btnJogZeroA.Visible = ctrl4thAxis || grbl.axisA;
                 btnJogZeroA.Text = ctrl4thName + "=0";
 
                 resizeJoystick();
-                if (ctrl4thAxis)
+
+                if (grbl.axisB || grbl.axisC)
                 {
-                    label_status0.Location = new Point(1, 128);
-                    label_status.Location = new Point(1, 148);
-                    btnHome.Location = new Point(122, 138);
-                    btnHome.Size = new Size(117, 30);
+                    label_a.Location = new Point(230, 14);      // move A controls to upper right
+                    label_wa.Location = new Point(251, 14);
+                    label_ma.Location = new Point(263, 32);
+                    btnZeroA.Location = new Point(335, 14);
+                    label_status0.Location = new Point(1, 118); // keep home and status
+                    label_status.Location = new Point(1, 138);
+                    btnHome.Location = new Point(106, 111);
+                    btnHome.Size = new Size(122, 57);
+                    groupBoxCoordinates.Width = 394;            // extend width
+                    tLPRechtsOben.ColumnStyles[0].Width = 400;
                 }
                 else
                 {
-                    label_status0.Location = new Point(1, 118);
-                    label_status.Location = new Point(1, 138);
-                    btnHome.Location = new Point(122, 111);
-                    btnHome.Size = new Size(117, 57);
+                    label_a.Location = new Point(1, 110);      // move A controls to lower left
+                    label_wa.Location = new Point(22, 110);
+                    label_ma.Location = new Point(34, 128);
+                    btnZeroA.Location = new Point(106, 110);
+                    groupBoxCoordinates.Width = 230;
+                    tLPRechtsOben.ColumnStyles[0].Width = 236;
+
+                    if (ctrl4thAxis || grbl.axisA)
+                    {
+                        label_status0.Location = new Point(1, 128);
+                        label_status.Location = new Point(1, 148);
+                        btnHome.Location = new Point(106, 138);
+                        btnHome.Size = new Size(122, 30);
+                    }
+                    else
+                    {
+                        label_status0.Location = new Point(1, 118);
+                        label_status.Location = new Point(1, 138);
+                        btnHome.Location = new Point(106, 111);
+                        btnHome.Size = new Size(122, 57);
+                    }
                 }
+
                 toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
                 toolStripViewTool.Checked = Properties.Settings.Default.toolTableShow;
                 toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
@@ -719,23 +789,20 @@ namespace GRBL_Plotter
                 loadHotkeys();
                 newCodeEnd();
             }
-            catch (Exception a)
+  /*          catch (Exception a)
             {
                 MessageBox.Show("Load Settings: " + a);
                 //               logError("Loading settings", e);
-            }
+            }*/
         }
         // Save settings
         public void saveSettings()
-        {
-            try
-            {
-                Properties.Settings.Default.file = tbFile.Text;
+        {   try
+            {   Properties.Settings.Default.file = tbFile.Text;
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)
-            {
-                MessageBox.Show("Save Settings: " + e);
+            {   MessageBox.Show("Save Settings: " + e);
                 //               logError("Saving settings", e);
             }
         }
@@ -746,6 +813,8 @@ namespace GRBL_Plotter
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);
+            virtualJoystickB.Enabled = isConnected && (!isStreaming || allowControl);
+            virtualJoystickC.Enabled = isConnected && (!isStreaming || allowControl);
             btnCustom1.Enabled = isConnected && (!isStreaming || allowControl);
             btnCustom2.Enabled = isConnected & !isStreaming | allowControl;
             btnCustom3.Enabled = isConnected & !isStreaming | allowControl;
@@ -758,6 +827,10 @@ namespace GRBL_Plotter
             btnCustom10.Enabled = isConnected & !isStreaming | allowControl;
             btnCustom11.Enabled = isConnected & !isStreaming | allowControl;
             btnCustom12.Enabled = isConnected & !isStreaming | allowControl;
+            btnCustom13.Enabled = isConnected & !isStreaming | allowControl;
+            btnCustom14.Enabled = isConnected & !isStreaming | allowControl;
+            btnCustom15.Enabled = isConnected & !isStreaming | allowControl;
+            btnCustom16.Enabled = isConnected & !isStreaming | allowControl;
             btnHome.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroX.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroY.Enabled = isConnected & !isStreaming | allowControl;
@@ -787,8 +860,8 @@ namespace GRBL_Plotter
 
             btnJogStop.Visible = !_serial_form.isGrblVers0;
             btnJogStop.Enabled = isConnected & !isStreaming | allowControl;
-            btnOverrideFRGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
-            btnOverrideSSGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
+            gBOverrideFRGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
+            gBOverrideSSGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
         }
         // load hotkeys
         private Dictionary<string, string> hotkey = new Dictionary<string, string>();
@@ -841,7 +914,7 @@ namespace GRBL_Plotter
                 }
                 return true;
             }
-            if (action.StartsWith("JogAxis") && (virtualJoystickXY.Focused || virtualJoystickZ.Focused || virtualJoystickA.Focused))
+            if (action.StartsWith("JogAxis") && (virtualJoystickXY.Focused || virtualJoystickZ.Focused || virtualJoystickA.Focused || virtualJoystickB.Focused || virtualJoystickC.Focused))
             {
                 if (keyDown)
                 {
@@ -857,8 +930,8 @@ namespace GRBL_Plotter
                     }
                     if (action.Contains("ZDec")) { virtualJoystickZ_move(-virtualJoystickZ_lastIndex); return true; }
                     if (action.Contains("ZInc")) { virtualJoystickZ_move(virtualJoystickZ_lastIndex); return true; }
-                    if (action.Contains("ADec")) { virtualJoystickA_move(-virtualJoystickZ_lastIndex); return true; }
-                    if (action.Contains("AInc")) { virtualJoystickA_move(virtualJoystickZ_lastIndex); return true; }
+                    if (action.Contains("ADec")) { virtualJoystickA_move(-virtualJoystickZ_lastIndex,ctrl4thName); return true; }
+                    if (action.Contains("AInc")) { virtualJoystickA_move(virtualJoystickZ_lastIndex,ctrl4thName); return true; }
                 }
                 else
                 { if (!_serial_form.isGrblVers0 && cBSendJogStop.Checked) sendRealtimeCommand(133); return true; }

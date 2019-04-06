@@ -25,9 +25,9 @@ namespace GRBL_Plotter
 {
     public struct xyzPoint
     {
-        public double X, Y, Z, A;
+        public double X, Y, Z, A, B, C;
         public xyzPoint(double x, double y, double z, double a = 0)
-        { X = x; Y = y; Z = z; A = a; }
+        { X = x; Y = y; Z = z; A = a; B = 0; C = 0; }
         // Overload + operator 
         public static xyzPoint operator +(xyzPoint b, xyzPoint c)
         {
@@ -36,6 +36,8 @@ namespace GRBL_Plotter
             a.Y = b.Y + c.Y;
             a.Z = b.Z + c.Z;
             a.A = b.A + c.A;
+            a.B = b.B + c.B;
+            a.C = b.C + c.C;
             return a;
         }
         public static xyzPoint operator -(xyzPoint b, xyzPoint c)
@@ -45,6 +47,8 @@ namespace GRBL_Plotter
             a.Y = b.Y - c.Y;
             a.Z = b.Z - c.Z;
             a.A = b.A - c.A;
+            a.B = b.B - c.B;
+            a.C = b.C - c.C;
             return a;
         }
         public static bool AlmostEqual(xyzPoint b, xyzPoint c)
@@ -53,15 +57,21 @@ namespace GRBL_Plotter
         }
 
 
-        public string Print()
+        public string Print(bool full=false)
         {
             bool ctrl4thUse = Properties.Settings.Default.ctrl4thUse;
             string ctrl4thName = Properties.Settings.Default.ctrl4thName;
 
-            if (ctrl4thUse)
-                return string.Format("X={0:0.000} Y={1:0.000} Z={2:0.000} {3}={4:0.000}", X, Y, Z, ctrl4thName, A);
+            if (!full)
+            {
+                if (ctrl4thUse)
+                    return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}\r{3}={4,9:0.000}", X, Y, Z, ctrl4thName, A);
+                //    return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}\rA={4,9:0.000}   B={5,9:0.000}   C={6,9:0.000}", X, Y, Z, A, B, C);
+                else
+                    return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}", X, Y, Z);
+            }
             else
-                return string.Format("X={0:0.000} Y={1:0.000} Z={2:0.000}", X, Y, Z);
+                return string.Format("X={0,9:0.000}\rY={1,9:0.000}\rZ={2,9:0.000}\rA={2,9:0.000}\rB={2,9:0.000}\rC={2,9:0.000}", X, Y, Z, A, B ,C);
         }
 
     };

@@ -35,6 +35,7 @@
  *  2019-01-16  line 922 || !_serial_form.isHeightProbing
  *  2019-03-02  Swap code to MainFormGetCodeTransform
  *  2019-03-05  Add SplitContainer for Editor, resize Joystick controls
+ *  2019-03-17  Add custom buttons 13-16, save size of form
  */
 
 //#define debuginfo
@@ -75,9 +76,11 @@ namespace GRBL_Plotter
         private grblState machineStatus;
         public bool flagResetOffset = false;
         private double[] joystickXYStep = { 0, 1, 2, 3, 4, 5 };
-        private double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
+        private double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
+        private double[] joystickAStep = { 0, 1, 2, 3, 4, 5 };
+        private double[] joystickASpeed = { 0, 1, 2, 3, 4, 5 };
 
         private bool ctrl4thAxis = false;
         private string ctrl4thName = "A";
@@ -179,10 +182,11 @@ namespace GRBL_Plotter
             WindowState = FormWindowState.Normal;
             Properties.Settings.Default.mainFormSize = Size;
             Properties.Settings.Default.locationMForm = Location;
+            ControlPowerSaving.EnableStandby();
 
             saveSettings();
             _serial_form.stopStreaming();
-            _serial_form.grblReset();// false);
+            _serial_form.grblReset(false);
             if (_2ndGRBL_form != null) _2ndGRBL_form.Close();
             if (_heightmap_form != null) _heightmap_form.Close();
             if (_setup_form != null) _setup_form.Close();
@@ -190,9 +194,7 @@ namespace GRBL_Plotter
             if (_streaming_form != null) _streaming_form.Close();
             if (_diyControlPad != null) _diyControlPad.Close();
             if (_coordSystem_form != null) _coordSystem_form.Close();
-            _serial_form.closePort();
             _serial_form.Close();
-            ControlPowerSaving.EnableStandby();
         }
 
         // handle position events from serial form
@@ -241,11 +243,21 @@ namespace GRBL_Plotter
             label_mx.Text = string.Format("{0:0.000}", grbl.posMachine.X);
             label_my.Text = string.Format("{0:0.000}", grbl.posMachine.Y);
             label_mz.Text = string.Format("{0:0.000}", grbl.posMachine.Z);
-            label_ma.Text = string.Format("{0:0.000}", grbl.posMachine.A);
             label_wx.Text = string.Format("{0:0.000}", grbl.posWork.X);
             label_wy.Text = string.Format("{0:0.000}", grbl.posWork.Y);
             label_wz.Text = string.Format("{0:0.000}", grbl.posWork.Z);
-            label_wa.Text = string.Format("{0:0.000}", grbl.posWork.A);
+            if (grbl.axisA)
+            {   label_ma.Text = string.Format("{0:0.000}", grbl.posMachine.A);
+                label_wa.Text = string.Format("{0:0.000}", grbl.posWork.A);
+            }
+            if (grbl.axisB)
+            {   label_mb.Text = string.Format("{0:0.000}", grbl.posMachine.B);
+                label_wb.Text = string.Format("{0:0.000}", grbl.posWork.B);
+            }
+            if (grbl.axisC)
+            {   label_mc.Text = string.Format("{0:0.000}", grbl.posMachine.C);
+                label_wc.Text = string.Format("{0:0.000}", grbl.posWork.C);
+            }
 
             if (flagResetOffset)            // Restore saved position after reset\r\nand set initial feed rate:
             {
@@ -253,15 +265,29 @@ namespace GRBL_Plotter
                 double y = Properties.Settings.Default.lastOffsetY;
                 double z = Properties.Settings.Default.lastOffsetZ;
                 double a = Properties.Settings.Default.lastOffsetA;
+                double b = Properties.Settings.Default.lastOffsetB;
+                double c = Properties.Settings.Default.lastOffsetC;
 
                 coordinateG = Properties.Settings.Default.lastOffsetCoord;
                 _serial_form.addToLog("Restore saved position after reset\r\nand set initial feed rate:");
                 sendCommand(String.Format("G{0}", coordinateG));
 
-                if (ctrl4thAxis)
-                    sendCommand(String.Format("{0} X{1} Y{2} Z{3} {4}{5}F{6}", zeroCmd, x, y, z, ctrl4thName, a, Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
-                else
-                    sendCommand(String.Format("{0} X{1} Y{2} Z{3} F{4}", zeroCmd, x, y, z, Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
+                string setAxis = String.Format("{0} X{1} Y{2} Z{3} ", zeroCmd, x, y, z);
+
+                if (grbl.axisA)
+                {   if (ctrl4thAxis)
+                        setAxis += String.Format("{0}{1} ", ctrl4thName, a);
+                    else
+                        setAxis += String.Format("A{0} ", a);
+                }
+                if (grbl.axisB)
+                    setAxis += String.Format("B{0} ", b);
+                if (grbl.axisC)
+                    setAxis += String.Format("C{0} ", c);
+
+                setAxis += String.Format("F{0}", Properties.Settings.Default.importGCXYFeed).Replace(',', '.');
+                sendCommand(setAxis);
+
                 flagResetOffset = false;
                 updateControls();
             }
@@ -983,8 +1009,8 @@ namespace GRBL_Plotter
         #region GUI Objects
 
         // Setup Custom Buttons during loadSettings()
-        string[] btnCustomCommand = new string[13];
-        private void setCustomButton(Button btn, string text, int cnt)
+        string[] btnCustomCommand = new string[17];
+        private int setCustomButton(Button btn, string text, int cnt)
         {
             int index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length));
             string[] parts = text.Split('|');
@@ -996,9 +1022,11 @@ namespace GRBL_Plotter
                 else
                 { toolTip1.SetToolTip(btn, parts[0] + "\r\n" + parts[1]); }
                 btnCustomCommand[index] = parts[1];
+                return parts[0].Trim().Length + parts[1].Trim().Length;
             }
             else
                 btnCustomCommand[index] = "";
+            return 0;
         }
         private void btnCustomButton_Click(object sender, EventArgs e)
         {
@@ -1090,6 +1118,8 @@ namespace GRBL_Plotter
             virtualJoystickXY.JoystickRasterMark = 0;
             virtualJoystickZ.JoystickRasterMark = 0;
             virtualJoystickA.JoystickRasterMark = 0;
+            virtualJoystickB.JoystickRasterMark = 0;
+            virtualJoystickC.JoystickRasterMark = 0;
         }
         private void virtualJoystickZ_JoyStickEvent(object sender, JogEventArgs e)
         { virtualJoystickZ_move(e.JogPosY); }
@@ -1112,23 +1142,27 @@ namespace GRBL_Plotter
             }
         }
         private void virtualJoystickA_JoyStickEvent(object sender, JogEventArgs e)
-        { virtualJoystickA_move(e.JogPosY);  }
-        private void virtualJoystickA_move(int index_A)
+        { virtualJoystickA_move(e.JogPosY, ctrl4thName);  }
+        private void virtualJoystickA_move(int index_A, string name)
         {   int indexA = Math.Abs(index_A);
             int dirA = Math.Sign(index_A);
-            if (indexA > joystickZStep.Length)
-            { indexA = joystickZStep.Length; index_A = indexA; }
+            if (indexA > joystickAStep.Length)
+            { indexA = joystickAStep.Length; index_A = indexA; }
             if (indexA < 0)
             { indexA = 0; index_A = 0; }
 
-            int speed = (int)joystickZSpeed[indexA];
-            String strZ = gcode.frmtNum(joystickZStep[indexA] * dirA);
+            int speed = (int)joystickASpeed[indexA];
+            String strZ = gcode.frmtNum(joystickAStep[indexA] * dirA);
             if (speed > 0)
             {
-                String s = String.Format("G91 {0}{1} F{2}", ctrl4thName, strZ, speed).Replace(',', '.');
+                String s = String.Format("G91 {0}{1} F{2}", name, strZ, speed).Replace(',', '.');
                 sendCommand(s, true);
             }
         }
+        private void virtualJoystickB_JoyStickEvent(object sender, JogEventArgs e)
+        { virtualJoystickA_move(e.JogPosY, "B"); }
+        private void virtualJoystickC_JoyStickEvent(object sender, JogEventArgs e)
+        { virtualJoystickA_move(e.JogPosY, "C"); }
 
         // Spindle and coolant
         private void cBSpindle_CheckedChanged(object sender, EventArgs e)
@@ -1155,6 +1189,10 @@ namespace GRBL_Plotter
         { sendCommand(zeroCmd + " Z0");  }
         private void btnZeroA_Click(object sender, EventArgs e)
         { sendCommand(zeroCmd + " " + ctrl4thName + "0"); }
+        private void btnZeroB_Click(object sender, EventArgs e)
+        { sendCommand(zeroCmd + " B0"); }
+        private void btnZeroC_Click(object sender, EventArgs e)
+        { sendCommand(zeroCmd + " C0"); }
         private void btnZeroXY_Click(object sender, EventArgs e)
         { sendCommand(zeroCmd + " X0 Y0");  }
         private void btnZeroXYZ_Click(object sender, EventArgs e)
@@ -1381,11 +1419,16 @@ namespace GRBL_Plotter
                         if (cmd.Length > 4)
                             gamePadSendString = cmd + "F" + feed;
                     }
+
                     if (gamePadSendCmd && !stopJog && gamePadRepitition == 0)
                     {
                         if (gamePadSendString.Length > 0)
                             sendCommand(gamePadSendString, true);
                     }
+                }
+                else
+                {   try { ControlGamePad.Initialize(); gamePadTimer.Interval = 100; }
+                    catch { gamePadTimer.Interval = 5000; }
                 }
             }
             catch
@@ -1501,28 +1544,37 @@ namespace GRBL_Plotter
         {   int virtualJoystickSize = Properties.Settings.Default.joystickSize;
             int zRatio = 25;                    // 20% of xyJoystick width
             int zCount = 1;
-            if (ctrl4thAxis) zCount = 2;
+           // grbl.axisB = true;
+           // grbl.axisC = true;
+            if (ctrl4thAxis || grbl.axisA) zCount = 2;
+            if (grbl.axisB) { zCount = 3; zRatio = 25; }
+            if (grbl.axisC) { zCount = 4; zRatio = 25; }
             int spaceY = this.Height - 465;     // width is 125% or 150%
             int spaceX = this.Width - 670;      // heigth is 100%
             spaceX = Math.Max(spaceX, 235);     // minimum width is 235px
 
-            int aWidth = 0;
+            int aWidth = 0, bWidth = 0, cWidth = 0;
             int zWidth = (spaceX*zRatio/(100+zCount*zRatio));           // 
             zWidth = Math.Min(zWidth, virtualJoystickSize*zRatio/100);
             int xyWidth = spaceX - zCount*zWidth;
-            tLPRechtsUntenRechtsMitte.ColumnStyles[1].Width = zWidth;
-            tLPRechtsUntenRechtsMitte.ColumnStyles[2].Width = zWidth;
-            if (ctrl4thAxis)
-            {
-                aWidth = zWidth;
-                tLPRechtsUntenRechtsMitte.ColumnStyles[2].Width = aWidth;
+            tLPRechtsUntenRechtsMitte.ColumnStyles[1].Width = zWidth;       // Z
+            if (ctrl4thAxis || grbl.axisA)
+            {   aWidth = zWidth;
             }
-            else
-                tLPRechtsUntenRechtsMitte.ColumnStyles[2].Width = 0;
+            if (grbl.axisB)
+            {   aWidth = bWidth = zWidth;
+            }
+            if (grbl.axisC)
+            {   aWidth = bWidth = cWidth = zWidth;
+            }
+
+            tLPRechtsUntenRechtsMitte.ColumnStyles[2].Width = aWidth;       // A
+            tLPRechtsUntenRechtsMitte.ColumnStyles[3].Width = bWidth;       // B
+            tLPRechtsUntenRechtsMitte.ColumnStyles[4].Width = cWidth;       // C
 
             xyWidth = Math.Min(xyWidth, spaceY);
             xyWidth = Math.Min(xyWidth, virtualJoystickSize);
-            spaceX = Math.Min(xyWidth+zWidth+aWidth+10, spaceX);
+            spaceX = Math.Min(xyWidth+zWidth+aWidth + bWidth + cWidth + 10, spaceX);
             spaceX = Math.Max(spaceX, 235);
             tLPRechtsUntenRechts.Width = spaceX;
             tLPRechtsUntenRechtsMitte.Width = spaceX;
@@ -1532,6 +1584,8 @@ namespace GRBL_Plotter
             virtualJoystickXY.Size = new Size(xyWidth, xyWidth);
             virtualJoystickZ.Size = new Size(zWidth, xyWidth);
             virtualJoystickA.Size = new Size(aWidth, xyWidth);
+            virtualJoystickB.Size = new Size(bWidth, xyWidth);
+            virtualJoystickC.Size = new Size(cWidth, xyWidth);
         }
 
         // adapt size of controls
@@ -1539,8 +1593,8 @@ namespace GRBL_Plotter
         {   int add = splitContainer1.Panel1.Width - 296;
             pbFile.Width = 194 + add;
             pbBuffer.Left = 219 + add;
-            btnOverrideFRGB.Width = 284 + add;
-            btnOverrideSSGB.Width = 284 + add;
+            gBOverrideFRGB.Width = 284 + add;
+            gBOverrideSSGB.Width = 284 + add;
 
             lbInfo.Width = 280 + add;
             lbDimension.Width = 130 + add;

@@ -323,6 +323,7 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_rotate.Text = "0.0";
                 }
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -342,6 +343,7 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_XY_scale.Text = "100.00";
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
@@ -362,6 +364,7 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_XY_X_scale.Text = string.Format("{0:0.00}", sizeold);
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
@@ -382,11 +385,12 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.00}", sizeold);
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
 
-        private void toolStrip_tb_X_scale_KeyDown(object sender, KeyEventArgs e)
+        private void toolStrip_tb_X_scale_KeyDown(object sender, KeyEventArgs e)    // scale X in %
         {
             if (e.KeyValue == (char)13)
             {
@@ -402,11 +406,12 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_X_scale.Text = "100.00";
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
 
-        private void toolStrip_tb_X_X_scale_KeyDown(object sender, KeyEventArgs e)
+        private void toolStrip_tb_X_X_scale_KeyDown(object sender, KeyEventArgs e)      // scale X to given units
         {
             if (e.KeyValue == (char)13)
             {
@@ -414,7 +419,7 @@ namespace GRBL_Plotter
                 double sizeold = visuGCode.xyzSize.dimx;
                 if (Double.TryParse(toolStrip_tb_X_X_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
                 {
-                    if (Properties.Settings.Default.rotarySubstitutionEnable)
+                    if (Properties.Settings.Default.rotarySubstitutionEnable && Properties.Settings.Default.rotarySubstitutionX)
                     {
                         double length = (float)Properties.Settings.Default.rotarySubstitutionDiameter * Math.PI;
                         sizenew = (float)Properties.Settings.Default.rotarySubstitutionScale * sizenew / length;
@@ -427,15 +432,16 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_X_X_scale.Text = string.Format("{0:0.00}", sizeold);
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
 
-        private void toolStrip_tb_X_A_scale_KeyDown(object sender, KeyEventArgs e)
+        private void toolStrip_tb_X_A_scale_KeyDown(object sender, KeyEventArgs e)      // scale X to circumfence of given degree
         {
             if (e.KeyValue == (char)13)
             {
-                double sizenew;
+                double sizenew; // get degree
                 double sizeold = visuGCode.xyzSize.dimx;
                 if (Double.TryParse(toolStrip_tb_X_A_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
                 {
@@ -446,8 +452,9 @@ namespace GRBL_Plotter
                 else
                 {
                     MessageBox.Show("Not a valid number", "Attention");
-                    toolStrip_tb_X_A_scale.Text = string.Format("{0:0.00}", sizeold);
+                    toolStrip_tb_X_A_scale.Text = string.Format("{0:0.00}", 90);
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
@@ -468,6 +475,7 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_Y_scale.Text = "100.00";
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
@@ -480,7 +488,7 @@ namespace GRBL_Plotter
                 double sizeold = visuGCode.xyzSize.dimy;
                 if (Double.TryParse(toolStrip_tb_Y_Y_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out sizenew))
                 {
-                    if (Properties.Settings.Default.rotarySubstitutionEnable)
+                    if (Properties.Settings.Default.rotarySubstitutionEnable && !Properties.Settings.Default.rotarySubstitutionX)
                     {
                         double length = (float)Properties.Settings.Default.rotarySubstitutionDiameter * Math.PI;
                         sizenew = (float)Properties.Settings.Default.rotarySubstitutionScale * sizenew / length;
@@ -493,6 +501,7 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.00}", sizeold);
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
@@ -512,8 +521,9 @@ namespace GRBL_Plotter
                 else
                 {
                     MessageBox.Show("Not a valid number", "Attention");
-                    toolStrip_tb_Y_A_scale.Text = string.Format("{0:0.00}", sizeold);
+                    toolStrip_tb_Y_A_scale.Text = string.Format("{0:0.00}", 90);
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
         }
@@ -536,7 +546,9 @@ namespace GRBL_Plotter
                     MessageBox.Show("Not a valid number", "Attention");
                     toolStrip_tb_rotary_diameter.Text = string.Format("{0:0.00}", Properties.Settings.Default.rotarySubstitutionDiameter);
                 }
+                e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
+                transformEnd();
             }
         }
 
