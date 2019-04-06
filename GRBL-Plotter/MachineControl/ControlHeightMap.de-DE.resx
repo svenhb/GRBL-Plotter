@@ -124,6 +124,24 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Kantenlänge</value>
   </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDDeltaY.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDDeltaX.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDGridY.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDGridX.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btnPosUR.Text" xml:space="preserve">
     <value>Aktuelle Pos.</value>
   </data>
@@ -136,14 +154,41 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Oben rechts</value>
   </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDY2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDX2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 13</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Unten links</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDX1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDY1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Gebiet des Höhenprofils</value>
+  </data>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnOffset.Text" xml:space="preserve">
     <value>Setze max. Wert = 0</value>
@@ -151,14 +196,35 @@
   <data name="btnOffset.ToolTip" xml:space="preserve">
     <value>Entferne Offset von allen Z Werten</value>
   </data>
+  <data name="nUDProbeSpeed.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDProbeUp.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Sichere Höhe</value>
   </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDProbeDown.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Max. Tiefe</value>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="groupBox2.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
     <value>Scanne Höhenprofil</value>
@@ -166,11 +232,47 @@
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
     <value>Sende Befehle um Höhenprofil einzulesen</value>
   </data>
+  <data name="progressBar1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="textBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblProgress.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSave.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnLoad.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pictureBox1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pictureBox2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMin.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMax.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMid.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Höhenprofil anwenden</value>
   </data>
   <data name="btnApply.ToolTip" xml:space="preserve">
     <value>Auto leveling: Höhenprofil aud GCode anwenden</value>
+  </data>
+  <data name="lblXDim.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblYDim.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Lade Höhenprofil</value>
@@ -199,6 +301,9 @@
   <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
     <value>Speichere Höhenprofil als X3D</value>
   </data>
+  <data name="menuStrip1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 17</value>
   </data>
@@ -207,6 +312,9 @@
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Ergebnis</value>
+  </data>
+  <data name="groupBox3.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="btnOffsetZ.ToolTip" xml:space="preserve">
     <value>Addiere gegebenen Offset zu allen Z Werten</value>
@@ -232,6 +340,21 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
   </data>
   <data name="btnGCode.ToolTip" xml:space="preserve">
     <value>Generiere GCode um Höhenprofil abzufahren</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDZoomZ.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="nUDOffsetZ.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gB_Manipulation.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblInfo.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3241,5 +3364,8 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Höhenprofil einlesen</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

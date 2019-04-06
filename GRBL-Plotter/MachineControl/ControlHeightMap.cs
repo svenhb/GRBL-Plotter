@@ -18,7 +18,8 @@
 */
 
 /*  Thanks to martin2250  https://github.com/martin2250/OpenCNCPilot for his HeightMap class
- *  2019-02-05  switch to global variables grbl.posWork
+ *  2019-02-05 switch to global variables grbl.posWork
+ *  2019-04-06 limit digits to 3, bugfix x3d export '.'-','
 */
 
 using System;
@@ -790,6 +791,10 @@ namespace GRBL_Plotter
             return map;
         }
 
+        private static string formatNumber = "0.000";
+        private static string frmtNum(double number)     // convert float to string using format pattern
+        { return number.ToString(formatNumber); }
+
         // vertex coordinates must be positive-definite (nonnegative and nonzero) numbers. 
         // The StL file does not contain any scale information; the coordinates are in arbitrary units.
         public void SaveSTL(string path)
@@ -847,8 +852,8 @@ namespace GRBL_Plotter
                         if (first_val) { first_val = false; }
                         else { object_code.Append(","); color_code.Append(","); }
                         if (x == 0) { object_code.Append("\r\n      "); color_code.Append("\r\n         "); }
-                        object_code.Append(Points[x, y].Value.ToString());
-                        color_code.Append(getColorString(Points[x, y].Value));
+                        object_code.Append(frmtNum(Points[x, y].Value).Replace(',', '.'));
+                        color_code.Append(getColorString(Points[x, y].Value).Replace(',', '.'));
                     }
                 }
                 object_code.Append("'>\r\n");
@@ -882,8 +887,8 @@ namespace GRBL_Plotter
 
             //            file_head += navi + back + light + camera + plate + text + legend;
             file_foot += "</Scene>\r\n</X3D>\r\n";
-            string file_data = file_head + object_code.ToString() + file_foot;
-            File.WriteAllText(path, file_data.Replace(',', '.'));
+            string file_data = file_head.Replace(',', '.') + object_code.ToString() + file_foot;
+            File.WriteAllText(path, file_data);     // .Replace(',', '.')
         }
 
         public void Save(string path)
@@ -910,7 +915,7 @@ namespace GRBL_Plotter
                     w.WriteStartElement("point");
                     w.WriteAttributeString("X", x.ToString().Replace(',', '.'));
                     w.WriteAttributeString("Y", y.ToString().Replace(',', '.'));
-                    w.WriteString(Points[x, y].Value.ToString().Replace(',', '.'));
+                    w.WriteString(frmtNum(Points[x, y].Value).Replace(',', '.'));
                     w.WriteEndElement();
                 }
             }

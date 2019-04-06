@@ -5020,6 +5020,9 @@ Note machine coordinates</value>
   <data name="&gt;&gt;groupBox27.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="label75.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label75.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 34</value>
   </data>
@@ -6051,6 +6054,36 @@ M4 Dynamic Laser Power Mode</value>
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="label76.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label76.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label76.Location" type="System.Drawing.Point, System.Drawing">
+    <value>411, 297</value>
+  </data>
+  <data name="label76.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 13</value>
+  </data>
+  <data name="label76.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Buttons 13 to 16 will be hide if the fields are empty</value>
+  </data>
+  <data name="&gt;&gt;label76.Name" xml:space="preserve">
+    <value>label76</value>
+  </data>
+  <data name="&gt;&gt;label76.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label76.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label76.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="Column20.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -6094,7 +6127,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;dGVCustomBtn.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="lblFilePath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6124,7 +6157,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;lblFilePath.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label46.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6133,7 +6166,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>8, 297</value>
   </data>
   <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
-    <value>689, 44</value>
+    <value>376, 44</value>
   </data>
   <data name="label46.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -6153,7 +6186,7 @@ Relative file path starts from here:</value>
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label46.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -7737,7 +7770,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>172, 38</value>
   </data>
   <data name="label48.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 178</value>
+    <value>182, 207</value>
   </data>
   <data name="label48.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -8139,10 +8172,10 @@ Setup window must be closed to use GamePad in GUI.
     <value>17</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>382, 6</value>
+    <value>414, 6</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 285</value>
+    <value>360, 285</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -8161,6 +8194,276 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="label77.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label77.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label77.Location" type="System.Drawing.Point, System.Drawing">
+    <value>286, 16</value>
+  </data>
+  <data name="label77.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 13</value>
+  </data>
+  <data name="label77.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>A,B,C Step width+Spd</value>
+  </data>
+  <data name="&gt;&gt;label77.Name" xml:space="preserve">
+    <value>label77</value>
+  </data>
+  <data name="&gt;&gt;label77.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label77.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;label77.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nUDJoyASpeed5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 116</value>
+  </data>
+  <data name="nUDJoyASpeed5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="nUDJoyASpeed5.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="nUDJoyASpeed5.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed5.Name" xml:space="preserve">
+    <value>nUDJoyASpeed5</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed5.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed5.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDJoyASpeed4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 95</value>
+  </data>
+  <data name="nUDJoyASpeed4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="nUDJoyASpeed4.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="nUDJoyASpeed4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed4.Name" xml:space="preserve">
+    <value>nUDJoyASpeed4</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed4.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed4.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="nUDJoyASpeed3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 74</value>
+  </data>
+  <data name="nUDJoyASpeed3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="nUDJoyASpeed3.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="nUDJoyASpeed3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed3.Name" xml:space="preserve">
+    <value>nUDJoyASpeed3</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed3.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="nUDJoyASpeed2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 53</value>
+  </data>
+  <data name="nUDJoyASpeed2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="nUDJoyASpeed2.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="nUDJoyASpeed2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed2.Name" xml:space="preserve">
+    <value>nUDJoyASpeed2</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed2.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="nUDJoyASpeed1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>349, 32</value>
+  </data>
+  <data name="nUDJoyASpeed1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="nUDJoyASpeed1.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="nUDJoyASpeed1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed1.Name" xml:space="preserve">
+    <value>nUDJoyASpeed1</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed1.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyASpeed1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="nUDJoyAStep5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>286, 116</value>
+  </data>
+  <data name="nUDJoyAStep5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDJoyAStep5.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="nUDJoyAStep5.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep5.Name" xml:space="preserve">
+    <value>nUDJoyAStep5</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep5.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep5.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="nUDJoyAStep4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>286, 95</value>
+  </data>
+  <data name="nUDJoyAStep4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDJoyAStep4.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="nUDJoyAStep4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep4.Name" xml:space="preserve">
+    <value>nUDJoyAStep4</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep4.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep4.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="nUDJoyAStep3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>286, 74</value>
+  </data>
+  <data name="nUDJoyAStep3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDJoyAStep3.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="nUDJoyAStep3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep3.Name" xml:space="preserve">
+    <value>nUDJoyAStep3</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep3.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep3.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="nUDJoyAStep2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>286, 53</value>
+  </data>
+  <data name="nUDJoyAStep2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDJoyAStep2.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="nUDJoyAStep2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep2.Name" xml:space="preserve">
+    <value>nUDJoyAStep2</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep2.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep2.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="nUDJoyAStep1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>286, 32</value>
+  </data>
+  <data name="nUDJoyAStep1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDJoyAStep1.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="nUDJoyAStep1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep1.Name" xml:space="preserve">
+    <value>nUDJoyAStep1</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep1.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDJoyAStep1.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="label74.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8190,7 +8493,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label74.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>11</value>
   </data>
   <data name="lblJoystickSize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8220,7 +8523,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;lblJoystickSize.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>12</value>
   </data>
   <data name="label73.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8250,7 +8553,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label73.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>13</value>
   </data>
   <data name="hScrollBar1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -8274,7 +8577,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;hScrollBar1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>14</value>
   </data>
   <data name="btnJoyZCalc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -8304,7 +8607,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;btnJoyZCalc.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>15</value>
   </data>
   <data name="label28.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8322,7 +8625,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>28</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
-    <value>Z Step width &amp; Speed</value>
+    <value>Z Step width+Speed</value>
   </data>
   <data name="&gt;&gt;label28.Name" xml:space="preserve">
     <value>label28</value>
@@ -8334,7 +8637,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>16</value>
   </data>
   <data name="nUDJoyZSpeed5.Location" type="System.Drawing.Point, System.Drawing">
     <value>229, 116</value>
@@ -8358,7 +8661,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZSpeed5.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>17</value>
   </data>
   <data name="nUDJoyZSpeed4.Location" type="System.Drawing.Point, System.Drawing">
     <value>229, 95</value>
@@ -8382,7 +8685,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZSpeed4.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>18</value>
   </data>
   <data name="nUDJoyZSpeed3.Location" type="System.Drawing.Point, System.Drawing">
     <value>229, 74</value>
@@ -8406,7 +8709,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZSpeed3.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>19</value>
   </data>
   <data name="nUDJoyZSpeed2.Location" type="System.Drawing.Point, System.Drawing">
     <value>229, 53</value>
@@ -8430,7 +8733,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZSpeed2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>20</value>
   </data>
   <data name="nUDJoyZSpeed1.Location" type="System.Drawing.Point, System.Drawing">
     <value>229, 32</value>
@@ -8454,7 +8757,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZSpeed1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>21</value>
   </data>
   <data name="nUDJoyZStep5.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 116</value>
@@ -8478,7 +8781,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZStep5.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>22</value>
   </data>
   <data name="nUDJoyZStep4.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 95</value>
@@ -8502,7 +8805,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZStep4.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>23</value>
   </data>
   <data name="nUDJoyZStep3.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 74</value>
@@ -8526,7 +8829,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZStep3.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>24</value>
   </data>
   <data name="nUDJoyZStep2.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 53</value>
@@ -8550,7 +8853,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZStep2.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>25</value>
   </data>
   <data name="nUDJoyZStep1.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 32</value>
@@ -8574,7 +8877,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyZStep1.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>26</value>
   </data>
   <data name="label25.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8592,7 +8895,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>16</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
-    <value>XY Step width &amp; Speed</value>
+    <value>XY Step width+Speed</value>
   </data>
   <data name="&gt;&gt;label25.Name" xml:space="preserve">
     <value>label25</value>
@@ -8604,7 +8907,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>27</value>
   </data>
   <data name="label24.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8634,7 +8937,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>28</value>
   </data>
   <data name="label23.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8664,7 +8967,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>29</value>
   </data>
   <data name="label22.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8694,7 +8997,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>30</value>
   </data>
   <data name="label21.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8724,7 +9027,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>31</value>
   </data>
   <data name="label20.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8754,7 +9057,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>32</value>
   </data>
   <data name="btnJoyXYCalc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -8784,7 +9087,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;btnJoyXYCalc.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>33</value>
   </data>
   <data name="nUDJoyXYSpeed5.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 116</value>
@@ -8808,7 +9111,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYSpeed5.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>34</value>
   </data>
   <data name="nUDJoyXYSpeed4.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 95</value>
@@ -8832,7 +9135,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYSpeed4.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>35</value>
   </data>
   <data name="nUDJoyXYSpeed3.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 74</value>
@@ -8856,7 +9159,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYSpeed3.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>36</value>
   </data>
   <data name="nUDJoyXYSpeed2.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 53</value>
@@ -8880,7 +9183,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYSpeed2.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>37</value>
   </data>
   <data name="nUDJoyXYSpeed1.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 32</value>
@@ -8904,7 +9207,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYSpeed1.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>38</value>
   </data>
   <data name="nUDJoyXYStep5.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 116</value>
@@ -8928,7 +9231,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYStep5.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>39</value>
   </data>
   <data name="nUDJoyXYStep4.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 95</value>
@@ -8952,7 +9255,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYStep4.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>40</value>
   </data>
   <data name="nUDJoyXYStep3.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 74</value>
@@ -8976,7 +9279,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYStep3.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>41</value>
   </data>
   <data name="nUDJoyXYStep2.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 53</value>
@@ -9000,7 +9303,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYStep2.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>42</value>
   </data>
   <data name="nUDJoyXYStep1.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 32</value>
@@ -9024,13 +9327,13 @@ Setup window must be closed to use GamePad in GUI.
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDJoyXYStep1.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>43</value>
   </data>
   <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 6</value>
   </data>
   <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>373, 285</value>
+    <value>405, 285</value>
   </data>
   <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>

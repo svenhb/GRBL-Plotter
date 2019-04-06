@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cbPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 2</value>
+    <value>2, 1</value>
   </data>
   <data name="cbPort.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 21</value>
@@ -165,7 +165,7 @@
     <value>115200</value>
   </data>
   <data name="cbBaud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 2</value>
+    <value>70, 1</value>
   </data>
   <data name="cbBaud.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 21</value>
@@ -192,7 +192,7 @@
     <value>13</value>
   </data>
   <data name="btnOpenPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>135, 1</value>
+    <value>135, 0</value>
   </data>
   <data name="btnOpenPort.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 23</value>
@@ -219,7 +219,7 @@
     <value>12</value>
   </data>
   <data name="btnScanPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 1</value>
+    <value>207, 0</value>
   </data>
   <data name="btnScanPort.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 23</value>
@@ -494,16 +494,17 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="lblSrPos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 20</value>
+    <value>61, 16</value>
   </data>
   <data name="lblSrPos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 13</value>
+    <value>103, 26</value>
   </data>
   <data name="lblSrPos.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
   <data name="lblSrPos.Text" xml:space="preserve">
-    <value>0.000,-10.000,5.000</value>
+    <value>0.000,-10.000,5.000
+0.000</value>
   </data>
   <data name="lblSrPos.ToolTip" xml:space="preserve">
     <value>Work Position</value>
@@ -524,7 +525,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 37</value>
+    <value>2, 43</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 13</value>
@@ -554,7 +555,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="lblSrBf.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 37</value>
+    <value>23, 43</value>
   </data>
   <data name="lblSrBf.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 13</value>
@@ -584,7 +585,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 37</value>
+    <value>70, 43</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 13</value>
@@ -614,7 +615,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="lblSrFS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 37</value>
+    <value>94, 43</value>
   </data>
   <data name="lblSrFS.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 13</value>
@@ -644,7 +645,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="lblSrPn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 37</value>
+    <value>200, 43</value>
   </data>
   <data name="lblSrPn.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 13</value>
@@ -674,7 +675,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 37</value>
+    <value>174, 43</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 13</value>
@@ -704,7 +705,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="lblSrOv.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 50</value>
+    <value>94, 56</value>
   </data>
   <data name="lblSrOv.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -734,7 +735,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 50</value>
+    <value>70, 56</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 13</value>
@@ -764,7 +765,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="lblSrA.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 50</value>
+    <value>200, 56</value>
   </data>
   <data name="lblSrA.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 13</value>
@@ -794,7 +795,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 50</value>
+    <value>174, 56</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 13</value>
@@ -824,7 +825,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="lblSrLn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 50</value>
+    <value>23, 56</value>
   </data>
   <data name="lblSrLn.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 13</value>
@@ -854,7 +855,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>True</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 50</value>
+    <value>2, 56</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 13</value>
@@ -881,7 +882,7 @@ move their axes off their limit switches, for example, '$X' kill alarm lock will
     <value>8</value>
   </data>
   <data name="btnCheckGRBL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 64</value>
+    <value>177, 71</value>
   </data>
   <data name="btnCheckGRBL.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 20</value>
@@ -996,7 +997,7 @@ Not for GRBL Vers. &lt; 1.0</value>
     <value>True</value>
   </data>
   <data name="cbStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 66</value>
+    <value>5, 73</value>
   </data>
   <data name="cbStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 17</value>
@@ -1023,7 +1024,7 @@ Not for GRBL Vers. &lt; 1.0</value>
     <value>False</value>
   </data>
   <data name="btnCheckGRBLResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>254, 64</value>
+    <value>254, 71</value>
   </data>
   <data name="btnCheckGRBLResult.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
@@ -1047,10 +1048,10 @@ Not for GRBL Vers. &lt; 1.0</value>
     <value>0</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 27</value>
+    <value>4, 24</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>276, 90</value>
+    <value>276, 94</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>

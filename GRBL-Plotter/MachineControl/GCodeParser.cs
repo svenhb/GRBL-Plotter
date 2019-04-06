@@ -64,6 +64,8 @@ namespace GRBL_Plotter
         public bool isdistanceModeG90;  // G90,91
         public bool ismachineCoordG53;  // don't apply transform to machine coordinates
         public bool isSubroutine;
+        public bool isSetCoordinateSystem;  // don't process x,y,z if set coordinate system
+
         public byte spindleState;       // M3,4,5
         public byte coolantState;       // M7,8,9
         public int spindleSpeed;        // actual spindle spped
@@ -71,6 +73,7 @@ namespace GRBL_Plotter
         public double? x, y, z, a, b, c, u, v, w, i, j; // current parameters
         public xyzabcuvwPoint actualPos;      // accumulates position
         public double distance;         // distance to specific point
+        public string otherCode;
 
         public gcodeByLine()
         {   resetAll(); }
@@ -83,6 +86,7 @@ namespace GRBL_Plotter
             spindleSpeed = tmp.spindleSpeed; feedRate = tmp.feedRate;
             x = tmp.x; y = tmp.y; z = tmp.z; i = tmp.i; j = tmp.j; a = tmp.a; b = tmp.b; c = tmp.c; u = tmp.u; v = tmp.v; w = tmp.w;
             actualPos = tmp.actualPos; distance = tmp.distance;
+            isSetCoordinateSystem = tmp.isSetCoordinateSystem;  otherCode = tmp.otherCode;
         }
 
         public string listData()
@@ -97,6 +101,7 @@ namespace GRBL_Plotter
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
             distance = -1;
             spindleState = 5; coolantState = 9; figureNumber = 0;
+            isSetCoordinateSystem = false;
             resetCoordinates();
         }
         public void resetAll(xyzPoint tmp)
@@ -108,10 +113,11 @@ namespace GRBL_Plotter
         /// </summary>
         public void resetCoordinates()
         {   x = null; y = null; z = null; a = null; b = null; c = null; u = null; v = null; w = null; i = null; j = null;
-            ismachineCoordG53 = false; isSubroutine = false;
         }
         public void presetParsing(int lineNr, string line)
         {   resetCoordinates();
+            ismachineCoordG53 = false; isSubroutine = false;
+            otherCode = "";
             lineNumber = lineNr;
             codeLine = line;
         }
@@ -127,6 +133,7 @@ namespace GRBL_Plotter
             bool comment = false;
             double value = 0;
             line = line.ToUpper().Trim();
+            isSetCoordinateSystem = false;
 
             if (!(line.StartsWith("$") || line.StartsWith("("))) //do not parse grbl comments
             {
@@ -172,6 +179,8 @@ namespace GRBL_Plotter
                 }
                 catch { }
             }
+           if (isSetCoordinateSystem)
+                resetCoordinates();
         }
 
         /// <summary>
@@ -215,48 +224,60 @@ namespace GRBL_Plotter
                     j = value;
                     break;
                 case 'F':
-                    modalState.feedRate = (int)value;
+                    modalState.feedRate = feedRate = (int)value;
                     break;
                 case 'S':
-                    modalState.spindleSpeed = (int)value;
+                    modalState.spindleSpeed = spindleSpeed = (int)value;
                     break;
                 case 'G':
-                    if (value <= 3)                                 // Motion Mode
-                    {   modalState.motionMode = (byte)value;
+                    if (value <= 3)                                 // Motion Mode 0-3 c
+                    {   modalState.motionMode = motionMode = (byte)value;
                         if (value >= 2)
                             modalState.containsG2G3 = true;
                     }
-                    if (value == 53)                                // move in machine coord.
+                    else
+                    {   otherCode += "G"+((int)value).ToString()+" ";
+                    }
+
+                    if (value == 10)
+                    { isSetCoordinateSystem = true; }
+
+                    else if ((value == 20) || (value == 21))             // Units Mode
+                    { modalState.unitsMode = (byte)value; }
+
+                    else if (value == 53)                                // move in machine coord.
                     { ismachineCoordG53 = true; }
 
-                    if ((value >= 54) && (value <= 59))             // Coordinate System Select
+                    else if ((value >= 54) && (value <= 59))             // Coordinate System Select
                     { modalState.coordinateSystem = (byte)value; }
 
-                    if (value == 90)                                // Distance Mode
+                    else if (value == 90)                                // Distance Mode
                     { modalState.distanceMode = (byte)value; modalState.isdistanceModeG90 = true; }
-                    if (value == 91)
+                    else if (value == 91)
                     { modalState.distanceMode = (byte)value; modalState.isdistanceModeG90 = false;
                       modalState.containsG91 = true;
                     }
-                    if ((value == 93) || (value == 94))             // Feed Rate Mode
+                    else if ((value == 93) || (value == 94))             // Feed Rate Mode
                     { modalState.feedRateMode = (byte)value; }
-                    if ((value == 20) || (value == 21))             // Units Mode
-                    { modalState.unitsMode = (byte)value; }
                     break;
                 case 'M':
                     if ((value <= 3) || (value == 30))              // Program Mode
                     { modalState.programMode = (byte)value; }
-                    if (value >= 3 && value <= 5)                   // Spindle State
-                    { modalState.spindleState = (byte)value; }
-                    if (value >= 7 && value <= 9)                   // Coolant State
-                    { modalState.coolantState = (byte)value; }
+                    else if (value >= 3 && value <= 5)                   // Spindle State
+                    { modalState.spindleState = spindleState = (byte)value; }
+                    else if (value >= 7 && value <= 9)                   // Coolant State
+                    { modalState.coolantState = coolantState = (byte)value; }
                     modalState.mWord = (byte)value;
+                    if ((value < 3) || (value > 9))
+                        otherCode += "M" + ((int)value).ToString() + " ";
                     break;
                 case 'T':
                     modalState.tool = (byte)value;
+                    otherCode += "T" + ((int)value).ToString() + " ";
                     break;
                 case 'P':
                     modalState.pWord = (int)value;
+                    otherCode += "P" + value.ToString() + " ";
                     break;
                 case 'O':
                     modalState.oWord = (int)value;
@@ -265,11 +286,6 @@ namespace GRBL_Plotter
                     modalState.lWord = (int)value;
                     break;
             }
-            motionMode   = modalState.motionMode;
-            spindleState = modalState.spindleState;         
-            coolantState = modalState.coolantState;         
-            spindleSpeed = modalState.spindleSpeed;         
-            feedRate     = modalState.feedRate;
             isdistanceModeG90 = modalState.isdistanceModeG90;
         }
     };

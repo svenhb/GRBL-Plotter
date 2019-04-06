@@ -529,6 +529,15 @@ namespace GRBL_Plotter
             }
             return -1;
         }
+        public int getLineOfFirstPointInFigureExtend(int start)
+        {
+            int min = Math.Max(0, (start - 5));
+            for (int k = start; k > min; k--)
+            {   if (gcodeList[k].codeLine.StartsWith("(<PD"))
+                    return k;
+            }
+            return start;
+        }
 
         /// <summary>
         /// return GCode lineNr of last point in selected path (figure)
@@ -536,15 +545,29 @@ namespace GRBL_Plotter
         public int getLineOfEndPointInFigure(int start=0)
         {   if (start < 0)
                 return -1;
-            int figNr = coordList[start].figureNumber;
+            for (int k = 0; k < coordList.Count; k++)
+            {   if (coordList[k].lineNumber >= start)       // get index in coordlist
+                {   start = k;
+                    break;
+                }
+            }
+            int figNr = coordList[start].figureNumber;      // get figNr by index
             for (int i=start; i < coordList.Count(); i++)
-            {
-                if (coordList[i].figureNumber != figNr)
-                    return coordList[i].lineNumber;
+            {   if (coordList[i].figureNumber != figNr)
+                {   return coordList[i].lineNumber;
+                }
             }
             return -1;
         }
-
+        public int getLineOfEndPointInFigureExtend(int start = 0)
+        {
+            int max = Math.Min(coordList.Count - 1, (start + 5));
+            for (int k = start-1; k < max; k++)
+            {   if (gcodeList[k].codeLine.StartsWith("(</PD"))
+                    return k;
+            }
+            return start;
+        }
         /// <summary>
         /// create path of selected figure
         /// </summary>
@@ -810,10 +833,12 @@ namespace GRBL_Plotter
             pathMarkSelection.Reset(); lastFigureNumber = -1;
             StringBuilder newCode = new StringBuilder();
             StringBuilder tmpCode = new StringBuilder();
-            //string infoCode;
+            string infoCode;
             bool getCoordinateXY, getCoordinateZ;
             double feedRate = 0;
             double spindleSpeed=0;
+            byte spindleState = 5;
+            byte coolantState = 9;
             double lastActualX = 0, lastActualY = 0,i,j;
             double newZ = 0;
             int lastMotionMode = 0;
@@ -893,23 +918,34 @@ namespace GRBL_Plotter
                     { tmpCode.AppendFormat(" J{0}", gcode.frmtNum((double)gcline.j)); getCoordinateXY = true; }
                     if ((getCoordinateXY || getCoordinateZ) && (!gcline.ismachineCoordG53) && (!hide_code))
                     {   if ((gcline.motionMode > 0) && (feedRate != gcline.feedRate) && ((getCoordinateXY && !getCoordinateZ) || (!getCoordinateXY && getCoordinateZ)))
-                        { tmpCode.AppendFormat(" F{0,0}", gcline.feedRate); }
+                        { tmpCode.AppendFormat(" F{0,0}", gcline.feedRate); }       // feed
                         if (spindleSpeed != gcline.spindleSpeed)
-                        { tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed); }
-                        tmpCode.Replace(',', '.');
+                        { tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed); }   // speed
+                        if (spindleState != gcline.spindleState)
+                        { tmpCode.AppendFormat(" M{0,0}", gcline.spindleState); }   // state
+                        if (coolantState != gcline.coolantState)
+                        { tmpCode.AppendFormat(" M{0,0}", gcline.coolantState); }   // state
+
                         //infoCode = " ( " + gcline.ismachineCoordG53 +"  "+ gcline.isdistanceModeG90 + " ) ";
+                        infoCode = " ( " + gcline.figureNumber + " ) ";
                         if (gcline.codeLine.IndexOf("(Setup - GCode") > 1)  // ignore coordinates from setup footer
                             newCode.AppendLine(gcline.codeLine);
                         else
-                            newCode.AppendLine("G" + gcode.frmtCode(gcline.motionMode) + tmpCode.ToString());// + infoCode);
+                            newCode.AppendLine(gcline.otherCode + "G" + gcode.frmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
+                        tmpCode.Replace(',', '.');
                     }
+
                     else
-                    {   newCode.AppendLine(gcline.codeLine.Trim('\r','\n'));
+                    {   newCode.AppendLine(gcline.codeLine.Trim('\r','\n'));    // add orignal code-line
                     }
+//                    if (gcline.isSetCoordinateSystem)
+//                    { newCode.AppendLine(gcline.codeLine); }    // keep G10 command
                     lastMotionMode = gcline.motionMode;
                 }
                 feedRate = gcline.feedRate;
                 spindleSpeed = gcline.spindleSpeed;
+                spindleState = gcline.spindleState;
+                coolantState = gcline.coolantState;
                 lastActualX = gcline.actualPos.X; lastActualY = gcline.actualPos.Y;
 
                 if ((!hide_code) && (!gcline.ismachineCoordG53) && (gcline.codeLine.IndexOf("(Setup - GCode") < 1)) // ignore coordinates from setup footer
@@ -1113,6 +1149,19 @@ namespace GRBL_Plotter
             float msize = (float) Math.Max(xyzSize.dimx, xyzSize.dimy) / 50;
             createMarker(pathTool,   (float)grbl.posWork.X,   (float)grbl.posWork.Y, msize, 2);
             createMarker(pathMarker, (float)grbl.posMarker.X, (float)grbl.posMarker.Y, msize, 3);
+
+            if (Properties.Settings.Default.ctrl4thUse)
+            {   float scale = (float)Properties.Settings.Default.rotarySubstitutionDiameter * (float)Math.PI / 360;
+                if (Properties.Settings.Default.ctrl4thInvert)
+                    scale = scale * -1;
+
+                if (Properties.Settings.Default.ctrl4thOverX)
+                {   createMarker(pathTool, (float)grbl.posWork.X, (float)grbl.posWork.A*scale, msize, 2);
+                }
+                else
+                {   createMarker(pathTool, (float)grbl.posWork.A*scale, (float)grbl.posWork.Y, msize, 2);
+                }
+            }
         }
         private void createRuler(double minX, double maxX, double minY, double maxY)
         {

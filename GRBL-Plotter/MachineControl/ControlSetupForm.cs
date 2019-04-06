@@ -60,14 +60,14 @@ namespace GRBL_Plotter
             string[] parts;// = new string[] { "-", "(-)" };
             dGVCustomBtn.Rows.Clear();
             int row = 0;
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i <= 16; i++)
             {
                 parts = new string[2];
                 text = Properties.Settings.Default["custom" + i.ToString()].ToString();
                 if (text.IndexOf('|') > 0)
                 { parts = text.Split('|'); }
                 else
-                { parts[0] = "-";parts[1] = "(-)"; }
+                { parts[0] = " ";parts[1] = " "; }
                 dGVCustomBtn.Rows.Add();
                 dGVCustomBtn.Rows[row].Cells[0].Value = i.ToString();
                 dGVCustomBtn.Rows[row].Cells[1].Value = parts[0];
@@ -134,7 +134,7 @@ namespace GRBL_Plotter
 
         private void saveSettings()
         {
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i <= 16; i++)
             {
                 try { Properties.Settings.Default["custom" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value; }
                 catch { Properties.Settings.Default["custom" + i.ToString()] = " | "; }

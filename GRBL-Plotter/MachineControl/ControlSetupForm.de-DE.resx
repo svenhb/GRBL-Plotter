@@ -1062,6 +1062,12 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
 Zuerst auf github.com/svenhb/GRBL-Plotter
 Zweiter Versuch auf svenhb.bplaced.net </value>
   </data>
+  <data name="label76.Size" type="System.Drawing.Size, System.Drawing">
+    <value>322, 13</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Buttons 13 bis 16 werden nicht angezeigt wenn die Felder leer sind</value>
+  </data>
   <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
     <value>462, 44</value>
   </data>

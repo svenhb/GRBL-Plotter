@@ -135,20 +135,19 @@ namespace GRBL_Plotter
         }
         private bool mainformAskClosing = false;
         private void SerialForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            saveSettings();
-            if ((e.CloseReason.ToString() != "FormOwnerClosing") & !mainformAskClosing)
+        {   if ((e.CloseReason.ToString() != "FormOwnerClosing") & !mainformAskClosing)
             {
-                var window = MessageBox.Show("Serial Connection is needed.\r\nClose main window instead","Attention");
+                MessageBox.Show("Serial Connection is needed.\r\nClose main window instead","Attention");
                 e.Cancel = true;
                 return;
             }
             else
             {
-                closePort();
+                if (!mainformAskClosing)        // don't close twice
+                    closePort();
                 mainformAskClosing = true;
+                e.Cancel = false;
             }
-
         }
         private void SerialForm_Resize(object sender, EventArgs e)
         {
@@ -260,39 +259,35 @@ namespace GRBL_Plotter
             }
         }
         private void saveSettings()
-        {
-            try
-            {
-                if (iamSerial == 1)
-                {
-                    Properties.Settings.Default.locationSerForm1 = Location;
+        {   try
+            {   if (iamSerial == 1)
+                {   Properties.Settings.Default.locationSerForm1 = Location;
                     Properties.Settings.Default.ctrlLaserMode = isLasermode;
                     Properties.Settings.Default.serialPort1 = cbPort.Text;
                     Properties.Settings.Default.serialBaud1 = cbBaud.Text;
                     saveLastPos();
                 }
                 else
-                {
-                    Properties.Settings.Default.locationSerForm2 = Location;
+                {   Properties.Settings.Default.locationSerForm2 = Location;
                     Properties.Settings.Default.serialPort2 = cbPort.Text;
                     Properties.Settings.Default.serialBaud2 = cbBaud.Text;
                 }
-
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)
-            {
-                logError("Saving settings", e);
+            {   logError("Saving settings", e);
             }
         }
         private void saveLastPos()
         {
             if (iamSerial == 1)
-            {   rtbLog.AppendText("\rSave last pos.: "+posWork.Print()+"\n");
+            {   rtbLog.AppendText("\rSave last pos.: \r"+posWork.Print(true)+"\n");
                 Properties.Settings.Default.lastOffsetX = Math.Round(posWork.X, 3);
                 Properties.Settings.Default.lastOffsetY = Math.Round(posWork.Y, 3);
                 Properties.Settings.Default.lastOffsetZ = Math.Round(posWork.Z, 3);
                 Properties.Settings.Default.lastOffsetA = Math.Round(posWork.A, 3);
+                Properties.Settings.Default.lastOffsetB = Math.Round(posWork.B, 3);
+                Properties.Settings.Default.lastOffsetC = Math.Round(posWork.C, 3);
                 int gNr = mParserState.coord_select;
                 gNr = ((gNr >= 54) && (gNr <= 59)) ? gNr : 54;
                 Properties.Settings.Default.lastOffsetCoord = gNr;    //global.grblParserState.coord_select;
@@ -789,7 +784,7 @@ namespace GRBL_Plotter
             }
             else
             {
-                machineState.Clear(); lblSrPn.Text = ""; //lblSrA.Text = "";
+                machineState.Clear(); //lblSrPn.Text = ""; //lblSrA.Text = "";
                 if (dataField.Length > 2)
                 {
                     for (int i = 2; i < dataField.Length; i++)
@@ -810,7 +805,7 @@ namespace GRBL_Plotter
                         if (dataField[i].IndexOf("Pn:") >= 0)            // Input Pin State
                         { machineState.Pn=lblSrPn.Text = data[1]; continue; }
                         if (dataField[i].IndexOf("Ov:") >= 0)            // Override Values
-                        { machineState.Ov=lblSrOv.Text = data[1]; lblSrA.Text = ""; continue; }
+                        { machineState.Ov=lblSrOv.Text = data[1]; lblSrPn.Text = ""; lblSrA.Text = ""; continue; }
                         if (dataField[i].IndexOf("A:") >= 0)             // Accessory State
                         { machineState.A=lblSrA.Text = data[1]; continue; }
                     }
@@ -823,7 +818,9 @@ namespace GRBL_Plotter
                 {   grbl.getPosition(dataField[1], ref posWork);
                     posMachine = posWork + posWCO;
                 }
-                if (iamSerial == 1)
+            }
+
+            if (iamSerial == 1)
                 {   if (!grbl.posChanged)
                         grbl.posChanged = ! (xyzPoint.AlmostEqual(grbl.posWCO, posWCO) && xyzPoint.AlmostEqual(grbl.posMachine, posMachine));
                     if (!grbl.wcoChanged)
@@ -831,7 +828,6 @@ namespace GRBL_Plotter
                     grbl.posWCO = posWCO; grbl.posWork = posWork; grbl.posMachine = posMachine;
                 } // make it global
 
-            }
             gcodeVariable["MACX"] = posMachine.X; gcodeVariable["MACY"] = posMachine.Y; gcodeVariable["MACZ"] = posMachine.Z;
             gcodeVariable["WACX"] = posWork.X;   gcodeVariable["WACY"] = posWork.Y;   gcodeVariable["WACZ"] = posWork.Z;
             grblStateNow = grbl.parseStatus(status);
