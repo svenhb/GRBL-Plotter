@@ -3382,5 +3382,197 @@ namespace GRBL_Plotter.Properties {
                 this["mainFormSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string custom13 {
+            get {
+                return ((string)(this["custom13"]));
+            }
+            set {
+                this["custom13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string custom14 {
+            get {
+                return ((string)(this["custom14"]));
+            }
+            set {
+                this["custom14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string custom15 {
+            get {
+                return ((string)(this["custom15"]));
+            }
+            set {
+                this["custom15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string custom16 {
+            get {
+                return ((string)(this["custom16"]));
+            }
+            set {
+                this["custom16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double lastOffsetB {
+            get {
+                return ((double)(this["lastOffsetB"]));
+            }
+            set {
+                this["lastOffsetB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double lastOffsetC {
+            get {
+                return ((double)(this["lastOffsetC"]));
+            }
+            set {
+                this["lastOffsetC"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal joyAStep1 {
+            get {
+                return ((decimal)(this["joyAStep1"]));
+            }
+            set {
+                this["joyAStep1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal joyAStep2 {
+            get {
+                return ((decimal)(this["joyAStep2"]));
+            }
+            set {
+                this["joyAStep2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal joyAStep3 {
+            get {
+                return ((decimal)(this["joyAStep3"]));
+            }
+            set {
+                this["joyAStep3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("45")]
+        public decimal joyAStep4 {
+            get {
+                return ((decimal)(this["joyAStep4"]));
+            }
+            set {
+                this["joyAStep4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("180")]
+        public decimal joyAStep5 {
+            get {
+                return ((decimal)(this["joyAStep5"]));
+            }
+            set {
+                this["joyAStep5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal joyASpeed1 {
+            get {
+                return ((decimal)(this["joyASpeed1"]));
+            }
+            set {
+                this["joyASpeed1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal joyASpeed2 {
+            get {
+                return ((decimal)(this["joyASpeed2"]));
+            }
+            set {
+                this["joyASpeed2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal joyASpeed3 {
+            get {
+                return ((decimal)(this["joyASpeed3"]));
+            }
+            set {
+                this["joyASpeed3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public decimal joyASpeed4 {
+            get {
+                return ((decimal)(this["joyASpeed4"]));
+            }
+            set {
+                this["joyASpeed4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public decimal joyASpeed5 {
+            get {
+                return ((decimal)(this["joyASpeed5"]));
+            }
+            set {
+                this["joyASpeed5"] = value;
+            }
+        }
     }
 }

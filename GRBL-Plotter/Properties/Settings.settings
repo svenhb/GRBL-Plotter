@@ -842,5 +842,53 @@
     <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">900, 640</Value>
     </Setting>
+    <Setting Name="custom13" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="custom14" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="custom15" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="custom16" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="lastOffsetB" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="lastOffsetC" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="joyAStep1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="joyAStep2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="joyAStep3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="joyAStep4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+    <Setting Name="joyAStep5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
+    <Setting Name="joyASpeed1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="joyASpeed2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="joyASpeed3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="joyASpeed4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="joyASpeed5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
