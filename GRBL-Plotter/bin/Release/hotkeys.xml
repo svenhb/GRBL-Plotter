@@ -89,5 +89,9 @@
   <bind keydata="F10" action="CustomButton10" />
   <bind keydata="F11" action="CustomButton11" />
   <bind keydata="F12" action="CustomButton12" />
+  <bind keydata="F1, Control" action="CustomButton13" />
+  <bind keydata="F2, Control" action="CustomButton14" />
+  <bind keydata="F3, Control" action="CustomButton15" />
+  <bind keydata="F4, Control" action="CustomButton16" />
 
 </hotkeys>
