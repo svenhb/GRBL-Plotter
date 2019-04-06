@@ -65,6 +65,8 @@ namespace GRBL_Plotter //DXFImporter
         private static int dxfBezierAccuracy = 6;       // applied line segments at bezier curves
         private static int dxfColor = -1;
 
+        private static int entityCount = 0;
+
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
         /// </summary>
@@ -143,6 +145,8 @@ namespace GRBL_Plotter //DXFImporter
             dxfImportToolNr = Properties.Settings.Default.importDXFToolIndex;
 
             dxfColor = -1;
+            entityCount = 0;
+
             int dxfToolIndex = toolTable.init();
 
             gcode.setup();  // initialize GCode creation (get stored settings for export)
@@ -228,7 +232,9 @@ namespace GRBL_Plotter //DXFImporter
                     processEntities(dxfEntity);
             }
             if (askPenUp)   // retrieve missing pen up
-            { gcode.PenUp(gcodeString[gcodeStringIndex]); askPenUp = false; }
+            {   gcode.PenUp(gcodeString[gcodeStringIndex]); askPenUp = false;
+                gcode.Comment(gcodeString[gcodeStringIndex], "</PD " + entityCount + ">");
+            }
         }
 
         /// <summary>
@@ -288,7 +294,7 @@ namespace GRBL_Plotter //DXFImporter
                         gcodeStartPath(x, y, "Start LWPolyLine");
                         isReduceOk = true;
                     }
-                    else
+ //                   else
                     {
                         if (!roundcorner)
                             gcodeMoveTo(x, y, "");
@@ -584,6 +590,8 @@ namespace GRBL_Plotter //DXFImporter
         {   gcodeStartPath((float) x, (float) y,cmt); }
         private static void gcodeStartPath(float x, float y, string cmt="")
         {
+///            gcode.Comment(gcodeString[gcodeStringIndex], "<PD "+(++entityCount)+">");
+
             if (!dxfComments)
                 cmt = "";
             System.Windows.Point coord = translateXY(x, y);
@@ -594,11 +602,13 @@ namespace GRBL_Plotter //DXFImporter
             else
             {   if (askPenUp)   // retrieve missing pen up
                 {   gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
+                    gcode.Comment(gcodeString[gcodeStringIndex], "</PD " + entityCount + ">");
                     isPenDown = false;
                     askPenUp = false;
                 }
                 lastGCX = coord.X; lastGCY = coord.Y;
                 lastSetGCX = coord.X; lastSetGCY = coord.Y;
+                gcode.Comment(gcodeString[gcodeStringIndex], "<PD " + (++entityCount) + ">");
                 gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
             }
             if (!isPenDown)
@@ -616,7 +626,7 @@ namespace GRBL_Plotter //DXFImporter
             if (!dxfComments)
                 cmt = "";
             if (gcodeReduce)
-            { if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
+            {  if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
                 {
                     gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
                     lastSetGCX = lastGCX; lastSetGCY = lastGCY;
@@ -624,6 +634,7 @@ namespace GRBL_Plotter //DXFImporter
             }
             if (isPenDown)
             {   askPenUp = true; }//
+//            gcode.Comment(gcodeString[gcodeStringIndex], "</PD " + entityCount + ">");
         }
 
         /// <summary>

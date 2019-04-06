@@ -93,6 +93,7 @@ namespace GRBL_Plotter
         private static bool gcodeLineSegmentEquidistant;
         private static bool gcodeLineSegementSubroutine;
 
+ //       private static int pathCount = 0;
 
         private static Stopwatch stopwatch = new Stopwatch();
 
@@ -163,6 +164,9 @@ namespace GRBL_Plotter
             gcodePauseCounter = 0;      // counter for GCode pause M0 commands
             gcodeToolCounter = 0;
             gcodeToolText = "";
+
+    //        pathCount=0;
+
             lastx = -1; lasty = -1; lastz = 0;
 
             if (gcodeRelative)
@@ -265,6 +269,7 @@ namespace GRBL_Plotter
 
         public static void PenDown(StringBuilder gcodeString, string cmto = "")
         {
+  //          Comment(gcodeString, "<PD " + (++pathCount) + ">");
             string cmt = cmto;
             if (Properties.Settings.Default.importGCTTZFeed) { cmt += " Z feed from tool table"; }
             if (Properties.Settings.Default.importGCTTZDeepth) { cmt += " Z down from tool table"; }
@@ -357,6 +362,7 @@ namespace GRBL_Plotter
             }
             if (gcodeComments) gcodeString.Append("\r\n");
             dragCompi = 0; dragCompj = 0;
+   //         Comment(gcodeString, "</PD " + pathCount + ">");
         }
 
         public static float lastx, lasty, lastz, lastg, lastf;

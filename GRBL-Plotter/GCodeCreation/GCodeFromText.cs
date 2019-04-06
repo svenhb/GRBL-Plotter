@@ -41,20 +41,18 @@ namespace GRBL_Plotter
         }
 
         private string textgcode = "";
+        private static int pathCount = 0;
+
         public string textGCode
         { get { return textgcode; } }
 
-        //        private static float gcodeXYFeed = 2000;
         private static bool gcodeUseSpindle = false;
-        //        private static bool gcodePenIsUp = false;
         private void TextForm_Load(object sender, EventArgs e)
         {
             cBFont.Items.AddRange(GCodeFromFont.fontNames);
             cBFont.Items.AddRange(GCodeFromFont.fontFileName());
 
             cBFont.SelectedIndex = Properties.Settings.Default.textFontIndex;
-//            tBText.Text = Properties.Settings.Default.textFontText;
-//            nUDFontSize.Value = Properties.Settings.Default.textFontSize;
 
             Location = Properties.Settings.Default.locationTextForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;

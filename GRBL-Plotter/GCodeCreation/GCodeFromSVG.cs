@@ -102,6 +102,9 @@ namespace GRBL_Plotter
         private static float factor_Pc2Px = 12 * 96f / 72f;
         private static float factor_Em2Px = 150;
 
+        private static int pathCount = 0;
+
+
         /// <summary>
         /// Entrypoint for conversion: apply file-path or file-URL
         /// </summary>
@@ -247,6 +250,8 @@ namespace GRBL_Plotter
             gcodeToolChange = Properties.Settings.Default.importGCTool;         // Add tool change command
 
             svgNodesOnly    = Properties.Settings.Default.importSVGNodesOnly;
+
+            pathCount = 0;
 
             if (Properties.Settings.Default.importSVGDPI96)
                 factor_In2Px = 96;                      // 90
@@ -1354,6 +1359,7 @@ namespace GRBL_Plotter
             lastGCX = coord.X; lastGCY = coord.Y;
             lastSetGCX = coord.X; lastSetGCY = coord.Y;
             gcodePenUp(cmt);
+            gcode.Comment(gcodeString[gcodeStringIndex], "<PD " + (++pathCount) + ">");
             gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
             if (svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before Pen Down"); }
             isReduceOk = false;
@@ -1369,6 +1375,7 @@ namespace GRBL_Plotter
                     gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), "restore Point");
             }
             gcodePenUp(cmt);
+            gcode.Comment(gcodeString[gcodeStringIndex], "</PD " + pathCount + ">");
         }
 
         /// <summary>

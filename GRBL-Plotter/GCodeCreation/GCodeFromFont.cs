@@ -54,6 +54,7 @@ namespace GRBL_Plotter
         private static bool gcodePenIsUp = false;
         private static bool useLFF = false;
 
+        private static int pathCount = 0;
 
         #region Hershey Font
         public static string[] fontNames = { "Sans 1-stroke","Sans bold","Serif medium","Serif medium italic","Serif bold italic",
@@ -198,6 +199,7 @@ namespace GRBL_Plotter
             gcHeight = 0; gcWidth = 0; gcAngle = 0; gcSpacing = 1; gcOffX = 0; gcOffY = 0;
             gcPauseLine = false; gcPauseWord = false; gcPauseChar = false; gcodePenIsUp = false;
             useLFF = false; gcLineDistance = 1.5; gcFontDistance = 0;
+            pathCount = 0;
         }
 
         public static bool getCode(StringBuilder gcodeString)   
@@ -390,7 +392,11 @@ namespace GRBL_Plotter
                 {   if ((charX != charXOld) || (charY != charYOld))
                     {
                         gcodePenUp(gcodeString);
+                        if (pathCount>0)
+                            gcode.Comment(gcodeString, "</PD " + pathCount + ">");
+
                         //gcodeMove(gcodeString, 0, (float)(x + offX), (float)(y + offY));
+                        gcode.Comment(gcodeString, "<PD " + (++pathCount) + ">");
                         gcodeMove(gcodeString, 0, (float)x, (float)y);
                         gcodePenDown(gcodeString);
                     }
@@ -432,6 +438,10 @@ namespace GRBL_Plotter
             if (cmd == 'M')
             {
                 gcodePenUp(gcodeString);
+                if (pathCount > 0)
+                    gcode.Comment(gcodeString, "</PD " + pathCount + ">");
+
+                gcode.Comment(gcodeString, "<PD " + (++pathCount) + ">");
                 for (int i = 0; i < floatArgs.Length; i += 2)
                 { gcodeMove(gcodeString, 0, floatArgs[i] + (float)offX, (float)offY - floatArgs[i + 1]); }
                 gcodePenDown(gcodeString);
