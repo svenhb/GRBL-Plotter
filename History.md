@@ -2,6 +2,17 @@
 Needs to be read from the bottom up ;-)  
 
 ### 2019-02 version 1.2.4.x:  
+* 1.2.4.4 Add axis name to virtual joystick
+* 1.2.4.4 Automatic display of additional axis controls and read-outs for A,B,C (not tested with real hardware up to now)
+* 1.2.4.4 Save last position extended to A,B,C
+* 1.2.4.4 Bugfix creating height map (export x3d, hidden buttons)
+* 1.2.4.4 Bugfix support of grbl version 0.9
+* 1.2.4.3 2D view of rotary axis (mapped to X or Y axis)
+* 1.2.4.3 save and restore of form size
+* 1.2.4.2 Resizable editor
+* 1.2.4.1 Ruler scale also for negative dimension
+* 1.2.4.1 Resizeable Joystick control (Setup - Joystick)
+* 1.2.4.1 Mirror of Rotary axis
 * New menu 'view'. E.g. switch between traditional object view or view to the complete machine area  
 * Highlight selected path (e.g. for deletion)
 * Copy gcode path to background as a landmark for positions applying new gcode (check context menu on 2D view)
