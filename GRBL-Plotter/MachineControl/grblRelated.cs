@@ -39,6 +39,8 @@ namespace GRBL_Plotter
         public static bool axisA = false;
         public static bool axisB = false;
         public static bool axisC = false;
+        public static bool axisUpdate = false;
+        public static int axisCount = 0;
         public static xyPoint posMarker   = new xyPoint(0, 0);
         private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
         private static Dictionary<string, xyzPoint> coordinates = new Dictionary<string, xyzPoint>();    // keep []-settings
@@ -253,24 +255,26 @@ namespace GRBL_Plotter
         {
             string[] dataField = text.Split(':');
             string[] dataValue = dataField[1].Split(',');
-            axisA = false; axisB = false; axisC = false;
+            //            axisA = false; axisB = false; axisC = false;
+            axisCount = 0;
             if (dataValue.Length > 2)
             {
                 Double.TryParse(dataValue[0], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.X);
                 Double.TryParse(dataValue[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.Y);
                 Double.TryParse(dataValue[2], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.Z);
+                axisCount = 3;
             }
             if (dataValue.Length > 3)
             {   Double.TryParse(dataValue[3], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.A);
-                axisA = true;
+                axisA = true; axisCount++;
             }
             if (dataValue.Length > 4)
             {   Double.TryParse(dataValue[4], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.B);
-                axisB = true;
+                axisB = true; axisCount++;
             }
             if (dataValue.Length > 5)
             {   Double.TryParse(dataValue[5], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.C);
-                axisC = true;
+                axisC = true; axisCount++;
             }
             //axisA = true; axisB = true; axisC = true;     // for test only
         }

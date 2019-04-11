@@ -90,7 +90,7 @@ namespace GRBL_Plotter
             InitializeComponent();
  //           Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Application_UnhandledException);
+ //           currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Application_UnhandledException);
         }
         public void set2ndSerial(ControlSerialForm handle = null)
         {   _serial_form2 = handle;
@@ -281,7 +281,7 @@ namespace GRBL_Plotter
         private void saveLastPos()
         {
             if (iamSerial == 1)
-            {   rtbLog.AppendText("\rSave last pos.: \r"+posWork.Print(true)+"\n");
+            {   rtbLog.AppendText("\rSave last pos.: \r"+posWork.Print(true,true)+"\n");    // print in single lines
                 Properties.Settings.Default.lastOffsetX = Math.Round(posWork.X, 3);
                 Properties.Settings.Default.lastOffsetY = Math.Round(posWork.Y, 3);
                 Properties.Settings.Default.lastOffsetZ = Math.Round(posWork.Z, 3);
@@ -369,6 +369,7 @@ namespace GRBL_Plotter
                 rtbLog.AppendText("Open " + cbPort.Text + "\r\n");
                 btnOpenPort.Text = "Close";
                 isDataProcessing = true;
+                grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
                 grblReset(false);
                 updateControls();
                 if (Properties.Settings.Default.serialMinimize)
@@ -427,6 +428,7 @@ namespace GRBL_Plotter
                 serialPort.Write(dataArray, 0, 1);
             rtbLog.AppendText("[CTRL-X]\r\n");
             preventOutput = 0; preventEvent = 0;
+            grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
         }
 
         #region serial receive handling
@@ -477,6 +479,7 @@ namespace GRBL_Plotter
                 if (true)   // read grbl settings
                 {
                     addToLog("> Read grbl settings, hide response");
+                    grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
                     preventOutput = 10; preventEvent = 10;
                     requestSend("$$");  // get setup
                     requestSend("$#");  // get parameter
@@ -834,7 +837,7 @@ namespace GRBL_Plotter
             lblSrState.BackColor = grbl.grblStateColor(grblStateNow);
             lblSrState.Text = status;
 
-            lblSrPos.Text = posWork.Print();
+            lblSrPos.Text = posWork.Print(false, grbl.axisB || grbl.axisC); // show actual work position
             if (grblStateNow != grblStateLast) { grblStateChanged(); }
             OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));
 
