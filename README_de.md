@@ -76,7 +76,7 @@ Auskommentierung von unbekannten GCode
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.2.4.4](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-04-06    
+#### [GRBL-Plotter Vers. 1.2.4.5](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-04-11    
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
