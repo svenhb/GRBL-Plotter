@@ -200,6 +200,10 @@ namespace GRBL_Plotter
             Write("Button10", setup.custom10.ToString(), section);
             Write("Button11", setup.custom11.ToString(), section);
             Write("Button12", setup.custom12.ToString(), section);
+            Write("Button13", setup.custom13.ToString(), section);
+            Write("Button14", setup.custom14.ToString(), section);
+            Write("Button15", setup.custom15.ToString(), section);
+            Write("Button16", setup.custom16.ToString(), section);
 
             section = "Joystick";
             Write("XY1 Step", setup.joyXYStep1.ToString(), section);
@@ -222,6 +226,16 @@ namespace GRBL_Plotter
             Write("Z3 Speed", setup.joyZSpeed3.ToString(), section);
             Write("Z4 Speed", setup.joyZSpeed4.ToString(), section);
             Write("Z5 Speed", setup.joyZSpeed5.ToString(), section);
+            Write("JoyA1 Speed", setup.joyASpeed1.ToString(), section);
+            Write("JoyA2 Speed", setup.joyASpeed2.ToString(), section);
+            Write("JoyA3 Speed", setup.joyASpeed3.ToString(), section);
+            Write("JoyA4 Speed", setup.joyASpeed4.ToString(), section);
+            Write("JoyA5 Speed", setup.joyASpeed5.ToString(), section);
+            Write("JoyA1 Step", setup.joyAStep1.ToString(), section);
+            Write("JoyA2 Step", setup.joyAStep2.ToString(), section);
+            Write("JoyA3 Step", setup.joyAStep3.ToString(), section);
+            Write("JoyA4 Step", setup.joyAStep4.ToString(), section);
+            Write("JoyA5 Step", setup.joyAStep5.ToString(), section);
 
             section = "Camera";
             Write("Index", setup.cameraindex.ToString(), section);
@@ -364,6 +378,10 @@ namespace GRBL_Plotter
             setup.custom10 = Read("Button10", section);
             setup.custom11 = Read("Button11", section);
             setup.custom12 = Read("Button12", section);
+            setup.custom13 = Read("Button13", section);
+            setup.custom14 = Read("Button14", section);
+            setup.custom15 = Read("Button15", section);
+            setup.custom16 = Read("Button16", section);
 
             section = "Joystick";
             setup.joyXYStep1    = myConvertToDecimal(Read("XY1 Step", section));
@@ -386,6 +404,17 @@ namespace GRBL_Plotter
             setup.joyZSpeed3    = myConvertToDecimal(Read("Z3 Speed", section));
             setup.joyZSpeed4    = myConvertToDecimal(Read("Z4 Speed", section));
             setup.joyZSpeed5    = myConvertToDecimal(Read("Z5 Speed", section));
+            setup.joyAStep1 = myConvertToDecimal(Read("JoyA1 Step", section));
+            setup.joyAStep2 = myConvertToDecimal(Read("JoyA2 Step", section));
+            setup.joyAStep3 = myConvertToDecimal(Read("JoyA3 Step", section));
+            setup.joyAStep4 = myConvertToDecimal(Read("JoyA4 Step", section));
+            setup.joyAStep5 = myConvertToDecimal(Read("JoyA5 Step", section));
+            setup.joyASpeed1 = myConvertToDecimal(Read("JoyA1 Speed", section));
+            setup.joyASpeed2 = myConvertToDecimal(Read("JoyA2 Speed", section));
+            setup.joyASpeed3 = myConvertToDecimal(Read("JoyA3 Speed", section));
+            setup.joyASpeed4 = myConvertToDecimal(Read("JoyA4 Speed", section));
+            setup.joyASpeed5 = myConvertToDecimal(Read("JoyA5 Speed", section));
+
 
             section = "Camera";
             setup.cameraindex       = Convert.ToByte(Read("Index", section));
