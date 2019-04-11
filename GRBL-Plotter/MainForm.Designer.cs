@@ -206,7 +206,7 @@ namespace GRBL_Plotter
             this.btnCustom15 = new System.Windows.Forms.Button();
             this.btnCustom16 = new System.Windows.Forms.Button();
             this.groupBoxCoordinates = new System.Windows.Forms.GroupBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.label_c = new System.Windows.Forms.Label();
             this.btnZeroC = new System.Windows.Forms.Button();
             this.label_mc = new System.Windows.Forms.Label();
             this.label_wc = new System.Windows.Forms.Label();
@@ -1450,7 +1450,7 @@ namespace GRBL_Plotter
             // 
             // groupBoxCoordinates
             // 
-            this.groupBoxCoordinates.Controls.Add(this.label14);
+            this.groupBoxCoordinates.Controls.Add(this.label_c);
             this.groupBoxCoordinates.Controls.Add(this.btnZeroC);
             this.groupBoxCoordinates.Controls.Add(this.label_mc);
             this.groupBoxCoordinates.Controls.Add(this.label_wc);
@@ -1484,10 +1484,10 @@ namespace GRBL_Plotter
             this.groupBoxCoordinates.Name = "groupBoxCoordinates";
             this.groupBoxCoordinates.TabStop = false;
             // 
-            // label14
+            // label_c
             // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
+            resources.ApplyResources(this.label_c, "label_c");
+            this.label_c.Name = "label_c";
             // 
             // btnZeroC
             // 
@@ -2443,7 +2443,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ToolStripMenuItem mirrorRotaryToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label_c;
         private System.Windows.Forms.Button btnZeroC;
         private System.Windows.Forms.Label label_mc;
         private System.Windows.Forms.Label label_wc;

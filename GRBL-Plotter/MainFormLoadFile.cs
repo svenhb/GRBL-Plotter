@@ -754,6 +754,11 @@ namespace GRBL_Plotter
                     btnHome.Size = new Size(122, 57);
                     groupBoxCoordinates.Width = 394;            // extend width
                     tLPRechtsOben.ColumnStyles[0].Width = 400;
+
+                    label_c.Visible = grbl.axisC;
+                    label_wc.Visible = grbl.axisC;
+                    label_mc.Visible = grbl.axisC;
+                    btnZeroC.Visible = grbl.axisC;
                 }
                 else
                 {

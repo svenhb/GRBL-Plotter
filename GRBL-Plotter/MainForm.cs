@@ -939,6 +939,11 @@ namespace GRBL_Plotter
                 if ((signalPlay++ % 2) > 0) btnStreamStart.BackColor = Color.Yellow;
                 else btnStreamStart.BackColor = SystemColors.Control;
             }
+            if (!grbl.axisUpdate && (grbl.axisCount > 0))
+            {
+                grbl.axisUpdate = true;
+                loadSettings(sender,e);
+            }
         }
 
         // handle positon click event from camera form

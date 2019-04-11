@@ -57,21 +57,26 @@ namespace GRBL_Plotter
         }
 
 
-        public string Print(bool full=false)
+        public string Print(bool singleLines, bool full=false)
         {
             bool ctrl4thUse = Properties.Settings.Default.ctrl4thUse;
             string ctrl4thName = Properties.Settings.Default.ctrl4thName;
 
             if (!full)
             {
-                if (ctrl4thUse)
+                if (ctrl4thUse || grbl.axisA)
                     return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}\r{3}={4,9:0.000}", X, Y, Z, ctrl4thName, A);
                 //    return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}\rA={4,9:0.000}   B={5,9:0.000}   C={6,9:0.000}", X, Y, Z, A, B, C);
                 else
                     return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}", X, Y, Z);
             }
             else
-                return string.Format("X={0,9:0.000}\rY={1,9:0.000}\rZ={2,9:0.000}\rA={2,9:0.000}\rB={2,9:0.000}\rC={2,9:0.000}", X, Y, Z, A, B ,C);
+            {
+                if (singleLines)
+                    return string.Format("X={0,9:0.000}\rY={1,9:0.000}\rZ={2,9:0.000}\rA={3,9:0.000}\rB={4,9:0.000}\rC={5,9:0.000}", X, Y, Z, A, B, C);
+                else
+                    return string.Format("X={0,9:0.000} Y={1,9:0.000} Z={2,9:0.000}\rA={3,9:0.000} B={4,9:0.000} C={5,9:0.000}", X, Y, Z, A, B, C);
+            }
         }
 
     };
