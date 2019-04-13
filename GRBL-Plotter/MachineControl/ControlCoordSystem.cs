@@ -107,13 +107,13 @@ namespace GRBL_Plotter
 
         private void setCoord(int nr, xyPoint tmp)
         {   string cmd = String.Format("G10 L2 P{0} X{1:0.000} Y{2:0.000}", nr, tmp.X, tmp.Y);
-            sendCommandEvent(new CmdEventArgs(cmd));
+            sendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.')));
             refreshValues();
         }    
 
         private void setCoord(int nr, xyzPoint tmp=new xyzPoint())
         {   string cmd = String.Format("G10 L2 P{0} X{1:0.000} Y{2:0.000} Z{3:0.000}", nr, tmp.X, tmp.Y, tmp.Z);
-            sendCommandEvent(new CmdEventArgs(cmd));
+            sendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.')));
             refreshValues();
         }
 
