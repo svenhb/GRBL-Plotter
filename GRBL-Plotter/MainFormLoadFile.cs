@@ -18,8 +18,10 @@
 */
 /* MainFormLoadFile
  * Methods to load data (nc, svg, dxf, pictures)
+ * HotKeys
  * Load setups
  * 2019-03-17  Add custom buttons 13-16, save dialog add *.cnc, *.gcode
+ * 2019-04-23  Add virtualJoystickA_lastIndex line 990
  *
  */
 
@@ -136,7 +138,7 @@ namespace GRBL_Plotter
             updateControls();                                           // update control enable 
             lbInfo.BackColor = SystemColors.Control;
             this.Cursor = Cursors.Default;
-            showPaths = true;
+//            showPaths = true;
         }
 
         private void loadFile(string fileName)
@@ -186,6 +188,7 @@ namespace GRBL_Plotter
                     _image_form.Visible = false;
                 }
                 _image_form.Show(this);
+                _image_form.WindowState = FormWindowState.Normal;
                 _image_form.loadExtern(fileName);
             }
             SaveRecentFile(fileName);
@@ -254,6 +257,7 @@ namespace GRBL_Plotter
                     _image_form.Visible = false;
                 }
                 _image_form.Show(this);
+                _image_form.WindowState = FormWindowState.Normal;
                 _image_form.loadURL(tBURL.Text);
                 setLastLoadedFile("Data from URL",tBURL.Text);
                 tBURL.Text = "";
@@ -328,8 +332,6 @@ namespace GRBL_Plotter
             lbInfo.Text = "Drill-Code loaded";
         }
 
-
-        //        bool blockFCTB_Events = true;
         private void loadGcode()
         {
             if (File.Exists(tbFile.Text))
@@ -443,7 +445,9 @@ namespace GRBL_Plotter
                 virtualJoystickXY.Focus();
                 virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
                 virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
-                virtualJoystickA.JoystickRasterMark = virtualJoystickZ_lastIndex;
+                virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
+                virtualJoystickB.JoystickRasterMark = virtualJoystickA_lastIndex;
+                virtualJoystickC.JoystickRasterMark = virtualJoystickA_lastIndex;
                 e.SuppressKeyPress = true;
             }
             else if (fCTBCode.Focused)
@@ -550,6 +554,7 @@ namespace GRBL_Plotter
                     _image_form.Visible = false;
                 }
                 _image_form.Show(this);
+                _image_form.WindowState = FormWindowState.Normal;
                 _image_form.loadClipboard();
                 setLastLoadedFile("Data from Clipboard: Image","");
             }
@@ -622,13 +627,21 @@ namespace GRBL_Plotter
                 penRuler.Color = Properties.Settings.Default.colorRuler;
                 penTool.Color = Properties.Settings.Default.colorTool;
                 penMarker.Color = Properties.Settings.Default.colorMarker;
+
                 penHeightMap.Width = (float)Properties.Settings.Default.widthHeightMap;
                 penRuler.Width = (float)Properties.Settings.Default.widthRuler;
                 penUp.Width = (float)Properties.Settings.Default.widthPenUp;
+                penUp.LineJoin = LineJoin.Round;
                 penDown.Width = (float)Properties.Settings.Default.widthPenDown;
+                penDown.LineJoin = LineJoin.Round;
                 penRotary.Width = (float)Properties.Settings.Default.widthRotaryInfo;
+                penRotary.LineJoin = LineJoin.Round;
                 penTool.Width = (float)Properties.Settings.Default.widthTool;
+                penTool.LineJoin = LineJoin.Round;
                 penMarker.Width = (float)Properties.Settings.Default.widthMarker;
+                penMarker.LineJoin = LineJoin.Round;
+                penLandMark.LineJoin = LineJoin.Round;
+
                 brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.colorMachineLimit, Color.Transparent);
                 picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 commentOut = Properties.Settings.Default.ctrlCommentOut;
@@ -788,6 +801,15 @@ namespace GRBL_Plotter
                 toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
                 toolStripViewTool.Checked = Properties.Settings.Default.toolTableShow;
                 toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
+                splitContainer1_SplitterMoved(sender,null);
+
+                int[] interval = new int[] { 500, 250, 200, 125, 100 };
+                int index = Properties.Settings.Default.grblPollIntervalIndex;
+                if ((index >= 0) && (index < 5))
+                    grbl.pollInterval = interval[index];
+                if (!Properties.Settings.Default.grblBufferAutomatic)
+                    grbl.RX_BUFFER_SIZE = (int)Properties.Settings.Default.grblBufferSize;
+                _serial_form.updateGrblSettings();
 
                 gamePadTimer.Enabled = Properties.Settings.Default.gPEnable;
                 checkMachineLimit();
@@ -814,7 +836,7 @@ namespace GRBL_Plotter
         // update controls on Main form
         public void updateControls(bool allowControl = false)
         {
-            bool isConnected = _serial_form.serialPortOpen;
+            bool isConnected = _serial_form.serialPortOpen || grbl.grblSimulate;
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);
@@ -868,6 +890,8 @@ namespace GRBL_Plotter
             gBOverrideFRGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
             gBOverrideSSGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
         }
+
+        #region HotKeys
         // load hotkeys
         private Dictionary<string, string> hotkey = new Dictionary<string, string>();
         private void loadHotkeys()
@@ -914,7 +938,7 @@ namespace GRBL_Plotter
                     MessageBox.Show("Unknown action: " + action, "Error with Hotkey.xml");
                 else
                 {
-                    if (_serial_form.serialPortOpen && (!isStreaming || isStreamingPause))
+                    if (_serial_form.serialPortOpen && (!isStreaming || isStreamingPause) || grbl.grblSimulate)
                         processCommands(btnCustomCommand[num1]);
                 }
                 return true;
@@ -923,6 +947,7 @@ namespace GRBL_Plotter
             {
                 if (keyDown)
                 {
+                    bool cmdFound = false;
                     if (action.Contains("X") || action.Contains("Y"))
                     {
                         int moveX = 0, moveY = 0;
@@ -931,12 +956,20 @@ namespace GRBL_Plotter
                         if (action.Contains("YDec")) { moveY = -virtualJoystickXY_lastIndex; }
                         if (action.Contains("YInc")) { moveY = virtualJoystickXY_lastIndex; }
                         virtualJoystickXY_move(moveX, moveY);
+                        cmdFound = true;
+                    }
+                    if (action.Contains("ZDec")) { virtualJoystickZ_move(-virtualJoystickZ_lastIndex); cmdFound = true; }
+                    if (action.Contains("ZInc")) { virtualJoystickZ_move(virtualJoystickZ_lastIndex); cmdFound = true; }
+                    if (action.Contains("ADec")) { virtualJoystickA_move(-virtualJoystickA_lastIndex,ctrl4thName); cmdFound = true; }
+                    if (action.Contains("AInc")) { virtualJoystickA_move(virtualJoystickA_lastIndex,ctrl4thName); cmdFound = true; }
+                    if (cmdFound)
+                    {   virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
+                        virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
+                        virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
+                        virtualJoystickB.JoystickRasterMark = virtualJoystickA_lastIndex;
+                        virtualJoystickC.JoystickRasterMark = virtualJoystickA_lastIndex;
                         return true;
                     }
-                    if (action.Contains("ZDec")) { virtualJoystickZ_move(-virtualJoystickZ_lastIndex); return true; }
-                    if (action.Contains("ZInc")) { virtualJoystickZ_move(virtualJoystickZ_lastIndex); return true; }
-                    if (action.Contains("ADec")) { virtualJoystickA_move(-virtualJoystickZ_lastIndex,ctrl4thName); return true; }
-                    if (action.Contains("AInc")) { virtualJoystickA_move(virtualJoystickZ_lastIndex,ctrl4thName); return true; }
                 }
                 else
                 { if (!_serial_form.isGrblVers0 && cBSendJogStop.Checked) sendRealtimeCommand(133); return true; }
@@ -970,7 +1003,6 @@ namespace GRBL_Plotter
                     if (virtualJoystickZ_lastIndex > virtualJoystickZ.JoystickRaster) virtualJoystickZ_lastIndex = virtualJoystickZ.JoystickRaster;
                     if (virtualJoystickZ_lastIndex < 1) virtualJoystickZ_lastIndex = 1;
                     virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
-                    virtualJoystickA.JoystickRasterMark = virtualJoystickZ_lastIndex;
                     return true;
                 }
                 if (action == "JogSpeedZDec")
@@ -979,7 +1011,22 @@ namespace GRBL_Plotter
                     if (virtualJoystickZ_lastIndex > virtualJoystickZ.JoystickRaster) virtualJoystickZ_lastIndex = virtualJoystickZ.JoystickRaster;
                     if (virtualJoystickZ_lastIndex < 1) virtualJoystickZ_lastIndex = 1;
                     virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
-                    virtualJoystickA.JoystickRasterMark = virtualJoystickZ_lastIndex;
+                    return true;
+                }
+                if (action == "JogSpeedAInc")
+                {
+                    virtualJoystickA_lastIndex++;
+                    if (virtualJoystickA_lastIndex > virtualJoystickA.JoystickRaster) virtualJoystickA_lastIndex = virtualJoystickA.JoystickRaster;
+                    if (virtualJoystickA_lastIndex < 1) virtualJoystickA_lastIndex = 1;
+                    virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
+                    return true;
+                }
+                if (action == "JogSpeedADec")
+                {
+                    virtualJoystickA_lastIndex--;
+                    if (virtualJoystickA_lastIndex > virtualJoystickA.JoystickRaster) virtualJoystickA_lastIndex = virtualJoystickA.JoystickRaster;
+                    if (virtualJoystickA_lastIndex < 1) virtualJoystickA_lastIndex = 1;
+                    virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
                     return true;
                 }
 
@@ -1042,6 +1089,7 @@ namespace GRBL_Plotter
             }
             return false;
         }
+        #endregion
 
         private void saveStreamingStatus(int lineNr)
         {

@@ -43,6 +43,7 @@ namespace GRBL_Plotter
                 _text_form.Visible = false;
             }
             _text_form.Show(this);
+            _text_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_TextToGCode(object sender, FormClosedEventArgs e)
         { _text_form = null; }
@@ -60,6 +61,7 @@ namespace GRBL_Plotter
                 _image_form.Visible = false;
             }
             _image_form.Show(this);
+            _image_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_ImageToGCode(object sender, FormClosedEventArgs e)
         { _image_form = null; }
@@ -77,6 +79,7 @@ namespace GRBL_Plotter
                 _shape_form.Visible = false;
             }
             _shape_form.Show(this);
+            _shape_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_ShapeToGCode(object sender, FormClosedEventArgs e)
         { _shape_form = null; }
@@ -164,7 +167,8 @@ namespace GRBL_Plotter
             {
                 newCodeStart();
                 fCTBCode.Text = _text_form.textGCode;
-                lastLoadSource = "from text";
+                setLastLoadedFile("from text", "");
+ //               lastLoadSource = "from text";
                 newCodeEnd();
             }
             else
@@ -180,7 +184,8 @@ namespace GRBL_Plotter
             {
                 newCodeStart();
                 fCTBCode.Text = _shape_form.shapeGCode;
-                lastLoadSource = "from shape"; 
+                setLastLoadedFile("from shape", "");
+ //               lastLoadSource = "from shape"; 
                 newCodeEnd();
             }
             else
@@ -196,7 +201,9 @@ namespace GRBL_Plotter
             {
                 newCodeStart();
                 fCTBCode.Text = _image_form.imageGCode;
-                lastLoadSource = "from image"; 
+                penDown.Width = (float)Properties.Settings.Default.importImageReso;
+                setLastLoadedFile("from image", "");
+//                lastLoadSource = "from image"; 
                 newCodeEnd();
             }
             else
@@ -209,7 +216,8 @@ namespace GRBL_Plotter
             {   GCodeVisuAndTransform.clearHeightMap();
                 newCodeStart();
                 fCTBCode.Text = _heightmap_form.scanCode.ToString().Replace(',', '.');
-                lastLoadSource = "from height map"; 
+                setLastLoadedFile("from height map", "");
+//                lastLoadSource = "from height map"; 
                 newCodeEnd();
             }
         }
@@ -304,6 +312,12 @@ namespace GRBL_Plotter
         {
             transformStart();
             fCTBCode.Text = visuGCode.transformGCodeRotate(-90, 1, new xyPoint(0, 0));
+            transformEnd();
+        }
+        private void rotate180ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            transformStart();
+            fCTBCode.Text = visuGCode.transformGCodeRotate(180, 1, new xyPoint(0, 0));
             transformEnd();
         }
 
@@ -556,6 +570,13 @@ namespace GRBL_Plotter
         {
             transformStart();
             fCTBCode.Text = visuGCode.replaceG23();
+            transformEnd();
+        }
+
+        private void convertZToSspindleSpeedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            transformStart();
+            fCTBCode.Text = visuGCode.convertZ();
             transformEnd();
         }
 

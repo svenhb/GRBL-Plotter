@@ -65,10 +65,16 @@ namespace GRBL_Plotter
             if (!full)
             {
                 if (ctrl4thUse || grbl.axisA)
-                    return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}\r{3}={4,9:0.000}", X, Y, Z, ctrl4thName, A);
-                //    return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}\rA={4,9:0.000}   B={5,9:0.000}   C={6,9:0.000}", X, Y, Z, A, B, C);
+                    if (singleLines)
+                        return string.Format("X={0,9:0.000}\rY={1,9:0.000}\rZ={2,9:0.000}\r{3}={4,9:0.000}", X, Y, Z, ctrl4thName, A);
+                    else
+                        return string.Format("X={0,9:0.000}  Y={1,9:0.000}  Z={2,9:0.000}\r{3}={4,9:0.000}", X, Y, Z, ctrl4thName, A);
+
                 else
-                    return string.Format("X={0,9:0.000}   Y={1,9:0.000}   Z={2,9:0.000}", X, Y, Z);
+                    if (singleLines)
+                        return string.Format("X={0,9:0.000}\rY={1,9:0.000}\rZ={2,9:0.000}", X, Y, Z);
+                    else
+                        return string.Format("X={0,9:0.000} Y={1,9:0.000} Z={2,9:0.000}", X, Y, Z);
             }
             else
             {

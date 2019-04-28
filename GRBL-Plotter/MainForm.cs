@@ -36,6 +36,7 @@
  *  2019-03-02  Swap code to MainFormGetCodeTransform
  *  2019-03-05  Add SplitContainer for Editor, resize Joystick controls
  *  2019-03-17  Add custom buttons 13-16, save size of form
+ *  2019-04-23  use joyAStep in gamePadTimer_Tick and gamePadGCode line 1360, 1490
  */
 
 //#define debuginfo
@@ -48,6 +49,7 @@ using virtualJoystick;
 using System.Globalization;
 using System.Threading;
 using System.Text;
+using System.Diagnostics;
 
 namespace GRBL_Plotter
 {
@@ -107,15 +109,38 @@ namespace GRBL_Plotter
         private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             Exception ex = e.Exception;
-            MessageBox.Show(ex.Message, "Thread exception");
+            MessageBox.Show(ex.Message, "Main Form Thread exception\r"+ GetAllFootprints(ex));
+            if (MessageBox.Show("Quit GRBL-Plotter?", "Problem", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                Application.Exit();
         }
         private void Application_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             if (e.ExceptionObject != null)
             {
                 Exception ex = (Exception)e.ExceptionObject;
-                MessageBox.Show(ex.Message, "Application exception");
+                MessageBox.Show(ex.Message, "Main Form Application exception\r" + GetAllFootprints(ex));
+                if (MessageBox.Show("Quit GRBL-Plotter?","Problem", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    Application.Exit();
             }
+        }
+        public string GetAllFootprints(Exception x)
+        {
+            var st = new StackTrace(x, true);
+            var frames = st.GetFrames();
+            var traceString = new StringBuilder();
+
+            foreach (var frame in frames)
+            {
+                if (frame.GetFileLineNumber() < 1)
+                    continue;
+
+                traceString.Append("File: " + frame.GetFileName());
+                traceString.Append(", Method:" + frame.GetMethod().Name);
+                traceString.Append(", LineNumber: " + frame.GetFileLineNumber());
+                traceString.Append("  -->  ");
+            }
+
+            return traceString.ToString();
         }
 
         // initialize Main form
@@ -178,6 +203,10 @@ namespace GRBL_Plotter
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            _serial_form.stopStreaming();
+            _serial_form.grblReset(false);
+            _serial_form.closePort();
+
             Properties.Settings.Default.mainFormWinState = WindowState;
             WindowState = FormWindowState.Normal;
             Properties.Settings.Default.mainFormSize = Size;
@@ -185,8 +214,8 @@ namespace GRBL_Plotter
             ControlPowerSaving.EnableStandby();
 
             saveSettings();
-            _serial_form.stopStreaming();
-            _serial_form.grblReset(false);
+ //           _serial_form.stopStreaming();
+//            _serial_form.grblReset(false);
             if (_2ndGRBL_form != null) _2ndGRBL_form.Close();
             if (_heightmap_form != null) _heightmap_form.Close();
             if (_setup_form != null) _setup_form.Close();
@@ -194,7 +223,9 @@ namespace GRBL_Plotter
             if (_streaming_form != null) _streaming_form.Close();
             if (_diyControlPad != null) _diyControlPad.Close();
             if (_coordSystem_form != null) _coordSystem_form.Close();
-            _serial_form.Close();
+            try   { _serial_form.Close(); }
+            catch { }
+
         }
 
         // handle position events from serial form
@@ -268,26 +299,33 @@ namespace GRBL_Plotter
                 double b = Properties.Settings.Default.lastOffsetB;
                 double c = Properties.Settings.Default.lastOffsetC;
 
-                coordinateG = Properties.Settings.Default.lastOffsetCoord;
-                _serial_form.addToLog("Restore saved position after reset\r\nand set initial feed rate:");
-                sendCommand(String.Format("G{0}", coordinateG));
+                if (Properties.Settings.Default.restoreWorkCoordinates)
+                {
+                    coordinateG = Properties.Settings.Default.lastOffsetCoord;
+                    _serial_form.addToLog("* Restore last selected coordinate system:");
+                    sendCommand(String.Format("G{0}", coordinateG));
 
-                string setAxis = String.Format("{0} X{1} Y{2} Z{3} ", zeroCmd, x, y, z);
+                    _serial_form.addToLog("* Restore saved position after reset\r\n* and set initial feed rate:");
+                    string setAxis = String.Format("{0} X{1} Y{2} Z{3} ", zeroCmd, x, y, z);
 
-                if (grbl.axisA)
-                {   if (ctrl4thAxis)
-                        setAxis += String.Format("{0}{1} ", ctrl4thName, a);
-                    else
-                        setAxis += String.Format("A{0} ", a);
+                    if (grbl.axisA)
+                    {
+                        if (ctrl4thAxis)
+                            setAxis += String.Format("{0}{1} ", ctrl4thName, a);
+                        else
+                            setAxis += String.Format("A{0} ", a);
+                    }
+                    if (grbl.axisB)
+                        setAxis += String.Format("B{0} ", b);
+                    if (grbl.axisC)
+                        setAxis += String.Format("C{0} ", c);
+
+                    setAxis += String.Format("F{0}", Properties.Settings.Default.importGCXYFeed);
+
+                    sendCommand(setAxis.Replace(',', '.'));
                 }
-                if (grbl.axisB)
-                    setAxis += String.Format("B{0} ", b);
-                if (grbl.axisC)
-                    setAxis += String.Format("C{0} ", c);
-
-                setAxis += String.Format("F{0}", Properties.Settings.Default.importGCXYFeed).Replace(',', '.');
-                sendCommand(setAxis);
-
+ //               else
+ //                   sendCommand(String.Format("F{0}", Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
                 flagResetOffset = false;
                 updateControls();
             }
@@ -475,6 +513,8 @@ namespace GRBL_Plotter
                     _streaming_form.Visible = false;
                 }
                 _streaming_form.Show(this);
+                _streaming_form.WindowState = FormWindowState.Normal;
+
             }
             else
             {
@@ -490,6 +530,7 @@ namespace GRBL_Plotter
                     _streaming_form2.Visible = false;
                 }
                 _streaming_form2.Show(this);
+                _streaming_form2.WindowState = FormWindowState.Normal;
             }
         }
         private void control2ndGRBLToolStripMenuItem_Click(object sender, EventArgs e)
@@ -511,6 +552,7 @@ namespace GRBL_Plotter
                 _2ndGRBL_form.Visible = false;
             }
             _2ndGRBL_form.Show(this);
+            _2ndGRBL_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_2ndGRBLForm(object sender, FormClosedEventArgs e)
         { _2ndGRBL_form = null; }
@@ -529,6 +571,7 @@ namespace GRBL_Plotter
                 _camera_form.Visible = false;
             }
             _camera_form.Show(this);
+            _camera_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_CameraForm(object sender, FormClosedEventArgs e)
         { _camera_form = null; }
@@ -548,6 +591,7 @@ namespace GRBL_Plotter
                 _diyControlPad.Visible = false;
             }
             _diyControlPad.Show(this);
+            _diyControlPad.WindowState = FormWindowState.Normal;
         }
         private void formClosed_DIYControlForm(object sender, FormClosedEventArgs e)
         { _diyControlPad = null; }
@@ -588,6 +632,7 @@ namespace GRBL_Plotter
                 _coordSystem_form.Visible = false;
             }
             _coordSystem_form.Show(this);
+            _coordSystem_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_CoordSystemForm(object sender, FormClosedEventArgs e)
         { _coordSystem_form = null; }
@@ -614,6 +659,7 @@ namespace GRBL_Plotter
                 _heightmap_form.Visible = false;
             }
             _heightmap_form.Show(this);
+            _heightmap_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_HeightmapForm(object sender, FormClosedEventArgs e)
         {
@@ -640,6 +686,7 @@ namespace GRBL_Plotter
                 _setup_form.Visible = false;
             }
             _setup_form.Show(this);
+            _setup_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_SetupForm(object sender, FormClosedEventArgs e)
         {
@@ -678,10 +725,13 @@ namespace GRBL_Plotter
         private int signalResume = 0;   // blinking button
         private int signalLock = 0;     // blinking button
         private int signalPlay = 0;     // blinking button
+        private int delayedSend = 0;
+        private int streamingPauseFirstLine = 0;
         private bool isStreaming = false;
         private bool isStreamingPause = false;
         private bool isStreamingCheck = false;
         private bool isStreamingOk = true;
+        private bool isStreamingPauseFirst = false;
         private void OnRaiseStreamEvent(object sender, StreamEventArgs e)
         {
             int cPrgs = (int)Math.Max(0, Math.Min(100, e.CodeProgress));
@@ -776,9 +826,23 @@ namespace GRBL_Plotter
                     lbInfo.Text = "Pause streaming - press play (" + e.CodeLine.ToString() + ")";
                     signalPlay = 1;
                     lbInfo.BackColor = Color.Yellow;
-
+                    isStreamingPauseFirst = (streamingPauseFirstLine != e.CodeLine);
                     // save parser state on pause
                     saveStreamingStatus(e.CodeLine);
+                    streamingPauseFirstLine = e.CodeLine;
+
+                    if (isStreamingPauseFirst && Properties.Settings.Default.flowControlEnable) // send extra Pause-Code
+                        delayedSend = 2;
+
+                    if (isStreamingPauseFirst && fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("(T"))
+                    {   string msg = "Tool change needed:\r" + fCTBCode.Lines[fCTBCodeClickedLineNow] + "\rpress start to continue.";
+                        if (Properties.Settings.Default.language == "de-DE")
+                        {
+                            msg = "Werkzeugwechsel ausführen:\r" + fCTBCode.Lines[fCTBCodeClickedLineNow] + "\rdrücke Start um fortzufahren.";
+                            MessageBox.Show(msg, "Werkzeug-/ Stiftwechsel");
+                        }
+                        else MessageBox.Show(msg, "Tool / Pen change!");
+                    }
 
                     break;
                 case grblStreaming.toolchange:
@@ -791,6 +855,10 @@ namespace GRBL_Plotter
                 case grblStreaming.stop:
                     lbInfo.Text = " STOP streaming (" + e.CodeLine.ToString() + ")";
                     lbInfo.BackColor = Color.Fuchsia;
+
+                    if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code
+                        delayedSend = 2;
+
                     break;
                 default:
                     break;
@@ -812,6 +880,7 @@ namespace GRBL_Plotter
                     isStreamingPause = false;
                     isStreamingCheck = false;
                     isStreamingOk = true;
+                    streamingPauseFirstLine = 0;
                     visuGCode.markSelectedFigure(0);
                     if (startLine > 0)
                     {   btnStreamStart.Image = Properties.Resources.btn_pause;
@@ -942,7 +1011,26 @@ namespace GRBL_Plotter
             if (!grbl.axisUpdate && (grbl.axisCount > 0))
             {
                 grbl.axisUpdate = true;
-                loadSettings(sender,e);
+                if (Properties.Settings.Default.grblBufferAutomatic)
+                { if (grbl.axisCount > 3)
+                        grbl.RX_BUFFER_SIZE = 255;
+                    else
+                        grbl.RX_BUFFER_SIZE = 127;
+
+                    _serial_form.addToLog("* Assume buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
+                }
+                else
+                {  if (grbl.RX_BUFFER_SIZE != 127)
+                        _serial_form.addToLog("* Buffer size is not 127 but " + grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
+                }
+                loadSettings(sender, e);
+            }
+            if (delayedSend > 0)
+            {
+                if (delayedSend-- == 1)
+                {   _serial_form.addToLog("* Code from [Setup - Flow control]");
+                    processCommands(Properties.Settings.Default.flowControlText);
+                }
             }
         }
 
@@ -1018,11 +1106,10 @@ namespace GRBL_Plotter
         private int setCustomButton(Button btn, string text, int cnt)
         {
             int index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length));
-            string[] parts = text.Split('|');
-            if ((parts.Length > 1) && (text.Contains("|")))
-            {
+            if (text.Contains("|"))
+            {   string[] parts = text.Split('|');
                 btn.Text = parts[0];
-                if (File.Exists(parts[1]))
+                if ((parts[1].Length > 4) && File.Exists(parts[1]))
                 { toolTip1.SetToolTip(btn, parts[0] + "\r\nFile: " + parts[1] + "\r\n" + File.ReadAllText(parts[1])); }
                 else
                 { toolTip1.SetToolTip(btn, parts[0] + "\r\n" + parts[1]); }
@@ -1045,6 +1132,7 @@ namespace GRBL_Plotter
         // speed (units/min) = 2 * stepsize * 60 * factor (to compensate speed-ramps)
         private int virtualJoystickXY_lastIndex = 1;
         private int virtualJoystickZ_lastIndex = 1;
+        private int virtualJoystickA_lastIndex = 1;
         private void virtualJoystickXY_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
@@ -1156,6 +1244,7 @@ namespace GRBL_Plotter
             if (indexA < 0)
             { indexA = 0; index_A = 0; }
 
+            virtualJoystickA_lastIndex = indexA;
             int speed = (int)joystickASpeed[indexA];
             String strZ = gcode.frmtNum(joystickAStep[indexA] * dirA);
             if (speed > 0)
@@ -1294,7 +1383,7 @@ namespace GRBL_Plotter
             if (File.Exists(command))
             {
                 string fileCmd = File.ReadAllText(command);
-                _serial_form.addToLog("file: " + command);
+                _serial_form.addToLog("* File: " + command);
                 commands = fileCmd.Split('\n');
             }
             else
@@ -1329,6 +1418,8 @@ namespace GRBL_Plotter
             else if (command.ToLower().IndexOf("#s+1") >= 0) { sendRealtimeCommand(156); }
             else if (command.ToLower().IndexOf("#s-1") >= 0) { sendRealtimeCommand(157); }
         }
+
+
         private bool gamePadSendCmd = false;
         private string gamePadSendString = "";
         private int gamePadRepitition = 0;
@@ -1341,7 +1432,7 @@ namespace GRBL_Plotter
                 {
                     ControlGamePad.gamePad.Poll();
                     var datas = ControlGamePad.gamePad.GetBufferedData();
-                    int stepIndex = 0, feed = 10000, speed1 = 1, speed2 = 1;
+                    int stepIndex = 0, feed = 10000;
                     string cmdX = "", cmdY = "", cmdZ = "", cmdR = "", cmd = "";
                     bool stopJog = false;
                     var prop = Properties.Settings.Default;
@@ -1354,7 +1445,7 @@ namespace GRBL_Plotter
                         cmd = "G91";
                         foreach (var state in datas)
                         {
-                            string offset = state.Offset.ToString();
+                            string offset = state.Offset.ToString();        // execute gPButtonsx strings
                             int value = state.Value;
                             if ((value > 0) && (offset.IndexOf("Buttons") >= 0))
                             {
@@ -1370,7 +1461,7 @@ namespace GRBL_Plotter
 								{ }
                             }
 
-
+                            // execute analog joystick
                             if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
                             {
                                 if ((value > 28000) && (value < 36000))
@@ -1382,35 +1473,26 @@ namespace GRBL_Plotter
                                 else
                                 {
                                     stepIndex = gamePadIndex(value);// absVal) / 6500;
-                                    if (stepIndex > 0)
-                                    {
-                                        Int32.TryParse(prop["joyXYSpeed" + stepIndex.ToString()].ToString(), out speed1);
-                                        Int32.TryParse(prop["joyZSpeed" + stepIndex.ToString()].ToString(), out speed2);
-                                    }
 
                                     if (offset == "X")
                                     {
                                         gamePadSendCmd = true;
-                                        cmdX = gamePadGCode(value, stepIndex, prop.gPXAxis, prop.gPXInvert);    // refresh axis data
-                                        feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPXAxis);
+                                        cmdX = gamePadGCode(value, stepIndex, prop.gPXAxis, prop.gPXInvert, out feed);    // refresh axis data
                                     }
                                     if (offset == "Y")
                                     {
                                         gamePadSendCmd = true;
-                                        cmdY = gamePadGCode(value, stepIndex, prop.gPYAxis, prop.gPYInvert);    // refresh axis data
-                                        feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPYAxis);
+                                        cmdY = gamePadGCode(value, stepIndex, prop.gPYAxis, prop.gPYInvert, out feed);    // refresh axis data
                                     }
                                     if (offset == "Z")
                                     {
                                         gamePadSendCmd = true;
-                                        cmdZ = gamePadGCode(value, stepIndex, prop.gPZAxis, prop.gPZInvert);    // refresh axis data
-                                        feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPZAxis);
+                                        cmdZ = gamePadGCode(value, stepIndex, prop.gPZAxis, prop.gPZInvert, out feed);    // refresh axis data
                                     }
                                     if (offset == "RotationZ")
                                     {
                                         gamePadSendCmd = true;
-                                        cmdR = gamePadGCode(value, stepIndex, prop.gPRAxis, prop.gPRInvert);    // refresh axis data
-                                        feed = gamePadGCodeFeed(feed, speed1, speed2, prop.gPRAxis);
+                                        cmdR = gamePadGCode(value, stepIndex, prop.gPRAxis, prop.gPRInvert, out feed);    // refresh axis data
                                     }
                                 }
                             }
@@ -1428,7 +1510,7 @@ namespace GRBL_Plotter
                     if (gamePadSendCmd && !stopJog && gamePadRepitition == 0)
                     {
                         if (gamePadSendString.Length > 0)
-                            sendCommand(gamePadSendString, true);
+                            sendCommand(gamePadSendString.Replace(",","."), true);
                     }
                 }
                 else
@@ -1455,24 +1537,36 @@ namespace GRBL_Plotter
             return 0;
         }
 
-        private string gamePadGCode(int value, int stpIndex, string axis, bool invert)
+        private string gamePadGCode(int value, int stpIndex, string axis, bool invert, out int speed)
         {
+            //_serial_form.addToLog(value+"  "+stpIndex+"  "+axis);
             string sign = (((value < 32767) && (!invert)) || ((value > 32767) && (invert))) ? "-" : "";
             if (stpIndex > 0)
             {
-                string sstep = Properties.Settings.Default["joyXYStep" + stpIndex.ToString()].ToString();
-                if ((axis != "X") && (axis != "Y"))
-                {
-                    sstep = Properties.Settings.Default["joyZStep" + stpIndex.ToString()].ToString();
+                Int32.TryParse(Properties.Settings.Default["joyASpeed" + stpIndex.ToString()].ToString(), out speed);
+
+                string sstep = "1";
+                if ((axis == "X") || (axis == "Y"))
+                {   sstep = Properties.Settings.Default["joyXYStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.Settings.Default["joyXYSpeed" + stpIndex.ToString()].ToString(), out speed);
+                }
+                else if ((axis == "Z"))
+                {   sstep = Properties.Settings.Default["joyZStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.Settings.Default["joyZSpeed" + stpIndex.ToString()].ToString(), out speed);
+                }
+                else if ((axis == "A") || (axis == "B") || (axis == "C"))
+                {   sstep = Properties.Settings.Default["joyAStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.Settings.Default["joyASpeed" + stpIndex.ToString()].ToString(), out speed);
                 }
                 return string.Format("{0}{1}{2}", axis, sign, sstep);
             }
+            speed = 10;
             return "";
         }
 
-        private int gamePadGCodeFeed(int feed, int speed1, int speed2, string axis)
+   /*     private int gamePadGCodeFeed(int feed, int speed1, int speed2, string axis)
         {   return (axis != "X") && (axis != "Y") ? speed2 : speed1;
-        }
+        }*/
 
         private void moveToMarkedPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {   sendCommand(String.Format("G0 X{0} Y{1}", gcode.frmtNum(grbl.posMarker.X), gcode.frmtNum(grbl.posMarker.Y)).Replace(',', '.'));

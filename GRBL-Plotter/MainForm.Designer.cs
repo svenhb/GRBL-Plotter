@@ -261,6 +261,7 @@ namespace GRBL_Plotter
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.rotate90ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotate90ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.rotate180ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotateFreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_tb_rotate = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -285,7 +286,9 @@ namespace GRBL_Plotter
             this.toolStrip_tb_X_A_scale = new System.Windows.Forms.ToolStripTextBox();
             this.skaliereYAufDrehachseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_tb_Y_A_scale = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.ersetzteG23DurchLinienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertZToSspindleSpeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeAnyZMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -860,6 +863,8 @@ namespace GRBL_Plotter
             this.gB_Jogging.Controls.Add(this.cBSpindle);
             this.gB_Jogging.Name = "gB_Jogging";
             this.gB_Jogging.TabStop = false;
+            this.gB_Jogging.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
+            this.gB_Jogging.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
             // 
             // btnJogStop
             // 
@@ -968,6 +973,8 @@ namespace GRBL_Plotter
             this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickB, 3, 0);
             this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickC, 4, 0);
             this.tLPRechtsUntenRechtsMitte.Name = "tLPRechtsUntenRechtsMitte";
+            this.tLPRechtsUntenRechtsMitte.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
+            this.tLPRechtsUntenRechtsMitte.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
             // 
             // virtualJoystickA
             // 
@@ -1797,6 +1804,7 @@ namespace GRBL_Plotter
             this.toolStripSeparator4,
             this.rotate90ToolStripMenuItem,
             this.rotate90ToolStripMenuItem1,
+            this.rotate180ToolStripMenuItem,
             this.rotateFreeToolStripMenuItem,
             this.toolStripSeparator5,
             this.sToolStripMenuItem,
@@ -1810,7 +1818,9 @@ namespace GRBL_Plotter
             this.rotaryDimaeterToolStripMenuItem,
             this.skaliereXAufDrehachseToolStripMenuItem,
             this.skaliereYAufDrehachseToolStripMenuItem,
+            this.toolStripSeparator15,
             this.ersetzteG23DurchLinienToolStripMenuItem,
+            this.convertZToSspindleSpeedToolStripMenuItem,
             this.removeAnyZMoveToolStripMenuItem});
             this.gCodeToolStripMenuItem.Name = "gCodeToolStripMenuItem";
             resources.ApplyResources(this.gCodeToolStripMenuItem, "gCodeToolStripMenuItem");
@@ -1849,6 +1859,12 @@ namespace GRBL_Plotter
             this.rotate90ToolStripMenuItem1.Name = "rotate90ToolStripMenuItem1";
             resources.ApplyResources(this.rotate90ToolStripMenuItem1, "rotate90ToolStripMenuItem1");
             this.rotate90ToolStripMenuItem1.Click += new System.EventHandler(this.rotate90ToolStripMenuItem1_Click);
+            // 
+            // rotate180ToolStripMenuItem
+            // 
+            this.rotate180ToolStripMenuItem.Name = "rotate180ToolStripMenuItem";
+            resources.ApplyResources(this.rotate180ToolStripMenuItem, "rotate180ToolStripMenuItem");
+            this.rotate180ToolStripMenuItem.Click += new System.EventHandler(this.rotate180ToolStripMenuItem_Click);
             // 
             // rotateFreeToolStripMenuItem
             // 
@@ -2010,11 +2026,22 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.toolStrip_tb_Y_A_scale, "toolStrip_tb_Y_A_scale");
             this.toolStrip_tb_Y_A_scale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_Y_A_scale_KeyDown);
             // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
+            // 
             // ersetzteG23DurchLinienToolStripMenuItem
             // 
             this.ersetzteG23DurchLinienToolStripMenuItem.Name = "ersetzteG23DurchLinienToolStripMenuItem";
             resources.ApplyResources(this.ersetzteG23DurchLinienToolStripMenuItem, "ersetzteG23DurchLinienToolStripMenuItem");
             this.ersetzteG23DurchLinienToolStripMenuItem.Click += new System.EventHandler(this.ersetzteG23DurchLinienToolStripMenuItem_Click);
+            // 
+            // convertZToSspindleSpeedToolStripMenuItem
+            // 
+            this.convertZToSspindleSpeedToolStripMenuItem.Name = "convertZToSspindleSpeedToolStripMenuItem";
+            resources.ApplyResources(this.convertZToSspindleSpeedToolStripMenuItem, "convertZToSspindleSpeedToolStripMenuItem");
+            this.convertZToSspindleSpeedToolStripMenuItem.Click += new System.EventHandler(this.convertZToSspindleSpeedToolStripMenuItem_Click);
             // 
             // removeAnyZMoveToolStripMenuItem
             // 
@@ -2453,6 +2480,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label_wb;
         private virtualJoystick.virtualJoystick virtualJoystickB;
         private virtualJoystick.virtualJoystick virtualJoystickC;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripMenuItem convertZToSspindleSpeedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rotate180ToolStripMenuItem;
     }
 }
 

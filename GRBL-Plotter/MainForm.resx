@@ -4816,7 +4816,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>Alt+H</value>
   </data>
   <data name="mirrorXToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
     <value>Mirror X (&amp;horizontal)</value>
@@ -4825,13 +4825,13 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>Alt+V</value>
   </data>
   <data name="mirrorYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
     <value>Mirror Y (&amp;vertical)</value>
   </data>
   <data name="mirrorRotaryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
     <value>Mirror Rotary axis</value>
@@ -4840,19 +4840,25 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>False</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 6</value>
+    <value>229, 6</value>
   </data>
   <data name="rotate90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate +90° (ccw)</value>
   </data>
   <data name="rotate90ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Rotate -90° (cw)</value>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rotate 180°</value>
   </data>
   <data name="toolStrip_tb_rotate.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -4861,13 +4867,13 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>30</value>
   </data>
   <data name="rotateFreeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate by ...°</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 6</value>
+    <value>229, 6</value>
   </data>
   <data name="toolStrip_tb_XY_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -4876,7 +4882,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>100</value>
   </data>
   <data name="sToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="sToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale XY by ...%</value>
@@ -4888,7 +4894,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>50</value>
   </data>
   <data name="skalierenXYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale XY set X=... units</value>
@@ -4900,7 +4906,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>50</value>
   </data>
   <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale XY set Y=... units</value>
@@ -4912,7 +4918,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>100</value>
   </data>
   <data name="skaliereXUmToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale X by ...%</value>
@@ -4927,7 +4933,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>50</value>
   </data>
   <data name="skaliereAufXUnitsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale X set X=... units</value>
@@ -4942,7 +4948,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>100</value>
   </data>
   <data name="skaliereYUmToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale Y by ...%</value>
@@ -4957,7 +4963,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>50</value>
   </data>
   <data name="skaliereAufYUnitsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale Y set Y=... units</value>
@@ -4966,7 +4972,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>G2 / G3 are not supported</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 6</value>
+    <value>229, 6</value>
   </data>
   <data name="toolStrip_tb_rotary_diameter.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -4975,7 +4981,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>20</value>
   </data>
   <data name="rotaryDimaeterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotary diameter</value>
@@ -4990,7 +4996,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>90</value>
   </data>
   <data name="skaliereXAufDrehachseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale X to ...° (Rotary axis)</value>
@@ -5005,7 +5011,7 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
     <value>90</value>
   </data>
   <data name="skaliereYAufDrehachseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale Y to ...° (Rotary axis)</value>
@@ -5013,14 +5019,27 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="skaliereYAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>G2 / G3 are not supported</value>
   </data>
+  <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>229, 6</value>
+  </data>
   <data name="ersetzteG23DurchLinienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
     <value>Replace G2/3 by lines</value>
   </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Convert Z to S (spindle speed)</value>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Set maximum Spindle speed for minimum Z in 
+[Setup - Graphics import - G-Code modification]</value>
+  </data>
   <data name="removeAnyZMoveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 22</value>
+    <value>232, 22</value>
   </data>
   <data name="removeAnyZMoveToolStripMenuItem.Text" xml:space="preserve">
     <value>Remove any Z move</value>
@@ -8529,6 +8548,12 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="&gt;&gt;rotate90ToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;rotate180ToolStripMenuItem.Name" xml:space="preserve">
+    <value>rotate180ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;rotate180ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;rotateFreeToolStripMenuItem.Name" xml:space="preserve">
     <value>rotateFreeToolStripMenuItem</value>
   </data>
@@ -8673,10 +8698,22 @@ Add 'G54;' to GCode header to switch back automatically to G54 before streaming 
   <data name="&gt;&gt;toolStrip_tb_Y_A_scale.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator15.Name" xml:space="preserve">
+    <value>toolStripSeparator15</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;ersetzteG23DurchLinienToolStripMenuItem.Name" xml:space="preserve">
     <value>ersetzteG23DurchLinienToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ersetzteG23DurchLinienToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;convertZToSspindleSpeedToolStripMenuItem.Name" xml:space="preserve">
+    <value>convertZToSspindleSpeedToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;convertZToSspindleSpeedToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;removeAnyZMoveToolStripMenuItem.Name" xml:space="preserve">
