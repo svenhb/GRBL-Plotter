@@ -2,6 +2,12 @@
 Needs to be read from the bottom up ;-)  
 
 ### 2019-02 version 1.2.4.x:  
+* 1.2.4.7 Optional sending of code when pausing or stopping gcode-streaming
+* 1.2.4.7 Selectable polling frequency for digital read out
+* 1.2.4.7 Use 255 byte buffer for Mega2560
+* 1.2.4.6 Bug fix Control coordinate system (dot / comma)
+* 1.2.4.5 Add Arduino Uno/Nano hex vor servo support 
+* 1.2.4.5 Add Mega2560 hex vor 4th / 5th axis support 
 * 1.2.4.4 Add axis name to virtual joystick
 * 1.2.4.4 Automatic display of additional axis controls and read-outs for A,B,C (not tested with real hardware up to now)
 * 1.2.4.4 Save last position extended to A,B,C
