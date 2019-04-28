@@ -22,6 +22,7 @@
 /*  2018-04-02  add shape recognition and code clean-up
  *  2017-01-01  check form-location and fix strange location
  *  2019-02-05  switch to global variables grbl.posWork
+ *  2019-04-17  (rz) fixed cast in second camera selection
 */
 
 using System;
@@ -387,9 +388,9 @@ namespace GRBL_Plotter
         {
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
             ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[cameraIndex]).Checked = false;
-            cameraIndex = (byte)clickedItem.Tag;
+            cameraIndex = Convert.ToByte(clickedItem.Tag);
             clickedItem.Checked = true;
-            selectCameraSource(cameraIndex, cameraResolution);
+            selectCameraSource(Convert.ToInt16(cameraIndex), cameraResolution);
         }
         // change zooming
         private void nUDCameraZoom_ValueChanged(object sender, EventArgs e)
