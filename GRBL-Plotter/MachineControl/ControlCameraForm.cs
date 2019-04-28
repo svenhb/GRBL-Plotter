@@ -22,7 +22,7 @@
 /*  2018-04-02  add shape recognition and code clean-up
  *  2017-01-01  check form-location and fix strange location
  *  2019-02-05  switch to global variables grbl.posWork
- *  2019-04-17  (rz) fixed cast in second camera selection
+ *  2019-04-17  Line 391, 393 Convert.ToByte by Rob Zeilinga
 */
 
 using System;
@@ -388,9 +388,9 @@ namespace GRBL_Plotter
         {
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
             ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[cameraIndex]).Checked = false;
-            cameraIndex = Convert.ToByte(clickedItem.Tag);
+            cameraIndex = Convert.ToByte(clickedItem.Tag);     // (byte)clickedItem.Tag;
             clickedItem.Checked = true;
-            selectCameraSource(Convert.ToInt16(cameraIndex), cameraResolution);
+            selectCameraSource(Convert.ToByte(cameraIndex), cameraResolution);
         }
         // change zooming
         private void nUDCameraZoom_ValueChanged(object sender, EventArgs e)

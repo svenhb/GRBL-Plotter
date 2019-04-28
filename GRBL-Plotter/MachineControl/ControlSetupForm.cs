@@ -130,6 +130,8 @@ namespace GRBL_Plotter
 
             listHotkeys();
             lblJoystickSize.Text = hScrollBar1.Value.ToString();
+
+            cBoxPollInterval.SelectedIndex = Properties.Settings.Default.grblPollIntervalIndex;
         }
 
         private void saveSettings()
@@ -713,6 +715,18 @@ namespace GRBL_Plotter
             {   try { ControlGamePad.Initialize(); }
                 catch { }
             }
+        }
+
+        private void cBsimulation_CheckedChanged(object sender, EventArgs e)
+        {   grbl.grblSimulate = cBsimulation.Checked;
+            grbl.axisA = true;
+            grbl.axisB = true;
+            grbl.axisC = true;
+        }
+
+        private void cBoxPollInterval_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.grblPollIntervalIndex = cBoxPollInterval.SelectedIndex;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace GRBL_Plotter
             // If Joystick not found, throws an error
             if (joystickGuid == Guid.Empty)
             {
-                logstring+=("No joystick/Gamepad found.");
+                logstring += ("No joystick/Gamepad found.");
             }
 
             // Instantiate the joystick

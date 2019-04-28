@@ -187,7 +187,7 @@
     <value>NoControl</value>
   </data>
   <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
-    <value>257, 165</value>
+    <value>254, 165</value>
   </data>
   <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 13</value>
@@ -2710,6 +2710,219 @@ No need to set this words</value>
   <data name="&gt;&gt;tabPage10.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="numericUpDown5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 92</value>
+  </data>
+  <data name="numericUpDown5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="numericUpDown5.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="numericUpDown5.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown5.Name" xml:space="preserve">
+    <value>numericUpDown5</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown5.Parent" xml:space="preserve">
+    <value>groupBox35</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label81.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label81.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label81.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 94</value>
+  </data>
+  <data name="label81.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="label81.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>S at Z &gt; 0</value>
+  </data>
+  <data name="&gt;&gt;label81.Name" xml:space="preserve">
+    <value>label81</value>
+  </data>
+  <data name="&gt;&gt;label81.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label81.Parent" xml:space="preserve">
+    <value>groupBox35</value>
+  </data>
+  <data name="&gt;&gt;label81.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label80.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label80.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="label80.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 29</value>
+  </data>
+  <data name="label80.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>Settings for Menu GCode Transform, Convert Z to S</value>
+  </data>
+  <data name="&gt;&gt;label80.Name" xml:space="preserve">
+    <value>label80</value>
+  </data>
+  <data name="&gt;&gt;label80.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label80.Parent" xml:space="preserve">
+    <value>groupBox35</value>
+  </data>
+  <data name="&gt;&gt;label80.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="numericUpDown4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 70</value>
+  </data>
+  <data name="numericUpDown4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="numericUpDown4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="numericUpDown4.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown4.Name" xml:space="preserve">
+    <value>numericUpDown4</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown4.Parent" xml:space="preserve">
+    <value>groupBox35</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="numericUpDown3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 48</value>
+  </data>
+  <data name="numericUpDown3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="numericUpDown3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="numericUpDown3.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown3.Name" xml:space="preserve">
+    <value>numericUpDown3</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown3.Parent" xml:space="preserve">
+    <value>groupBox35</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown3.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label79.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label79.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label79.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 72</value>
+  </data>
+  <data name="label79.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 13</value>
+  </data>
+  <data name="label79.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Minimum S at maximum Z</value>
+  </data>
+  <data name="&gt;&gt;label79.Name" xml:space="preserve">
+    <value>label79</value>
+  </data>
+  <data name="&gt;&gt;label79.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label79.Parent" xml:space="preserve">
+    <value>groupBox35</value>
+  </data>
+  <data name="&gt;&gt;label79.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label78.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label78.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label78.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 50</value>
+  </data>
+  <data name="label78.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 13</value>
+  </data>
+  <data name="label78.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Maximum S at minimum Z</value>
+  </data>
+  <data name="&gt;&gt;label78.Name" xml:space="preserve">
+    <value>label78</value>
+  </data>
+  <data name="&gt;&gt;label78.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label78.Parent" xml:space="preserve">
+    <value>groupBox35</value>
+  </data>
+  <data name="&gt;&gt;label78.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="groupBox35.Location" type="System.Drawing.Point, System.Drawing">
+    <value>262, 6</value>
+  </data>
+  <data name="groupBox35.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 119</value>
+  </data>
+  <data name="groupBox35.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="groupBox35.Text" xml:space="preserve">
+    <value>Convert Z-Axis to Spindle speed S</value>
+  </data>
+  <data name="&gt;&gt;groupBox35.Name" xml:space="preserve">
+    <value>groupBox35</value>
+  </data>
+  <data name="&gt;&gt;groupBox35.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox35.Parent" xml:space="preserve">
+    <value>tabPage11</value>
+  </data>
+  <data name="&gt;&gt;groupBox35.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2809,10 +3022,10 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>2</value>
   </data>
   <data name="groupBox32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 6</value>
+    <value>557, 6</value>
   </data>
   <data name="groupBox32.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 140</value>
+    <value>200, 77</value>
   </data>
   <data name="groupBox32.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -2830,7 +3043,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tabPage11</value>
   </data>
   <data name="&gt;&gt;groupBox32.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="nUDImportGCDragKnifePercent.Location" type="System.Drawing.Point, System.Drawing">
     <value>165, 61</value>
@@ -3067,7 +3280,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tabPage11</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnFileDialogSubR.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3389,7 +3602,7 @@ Don't use with "Relative movements"</value>
     <value>tabPage11</value>
   </data>
   <data name="&gt;&gt;groupBox30.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tabPage11.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -4427,7 +4640,7 @@ Don't use with "Relative movements"</value>
     <value>4</value>
   </data>
   <data name="gBToolChange.Text" xml:space="preserve">
-    <value>Tool change</value>
+    <value>Tool change setup</value>
   </data>
   <data name="&gt;&gt;gBToolChange.Name" xml:space="preserve">
     <value>gBToolChange</value>
@@ -4454,7 +4667,7 @@ Don't use with "Relative movements"</value>
     <value>7</value>
   </data>
   <data name="tabPage8.Text" xml:space="preserve">
-    <value>Tool change setup</value>
+    <value>Tool change</value>
   </data>
   <data name="&gt;&gt;tabPage8.Name" xml:space="preserve">
     <value>tabPage8</value>
@@ -4468,51 +4681,435 @@ Don't use with "Relative movements"</value>
   <data name="&gt;&gt;tabPage8.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="cBBackgroundImage.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBBackgroundImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="cBrestoreCoordReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="cBBackgroundImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 287</value>
+  <data name="cBrestoreCoordReset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 14</value>
   </data>
-  <data name="cBBackgroundImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 30</value>
+  <data name="cBrestoreCoordReset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 30</value>
   </data>
-  <data name="cBBackgroundImage.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="cBrestoreCoordReset.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="cBBackgroundImage.Text" xml:space="preserve">
-    <value>Disable realtime path update during streaming
-Saves CPU load, disables zooming during streaming</value>
+  <data name="cBrestoreCoordReset.Text" xml:space="preserve">
+    <value>Restore Work coordinates after reset and set default feed rate</value>
   </data>
-  <data name="&gt;&gt;cBBackgroundImage.Name" xml:space="preserve">
-    <value>cBBackgroundImage</value>
+  <data name="&gt;&gt;cBrestoreCoordReset.Name" xml:space="preserve">
+    <value>cBrestoreCoordReset</value>
   </data>
-  <data name="&gt;&gt;cBBackgroundImage.Type" xml:space="preserve">
+  <data name="&gt;&gt;cBrestoreCoordReset.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cBBackgroundImage.Parent" xml:space="preserve">
-    <value>tabPage2</value>
+  <data name="&gt;&gt;cBrestoreCoordReset.Parent" xml:space="preserve">
+    <value>groupBox36</value>
   </data>
-  <data name="&gt;&gt;cBBackgroundImage.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cBrestoreCoordReset.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="groupBox36.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 218</value>
+  </data>
+  <data name="groupBox36.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 63</value>
+  </data>
+  <data name="groupBox36.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="groupBox36.Text" xml:space="preserve">
+    <value>Behavior after grbl RESET</value>
+  </data>
+  <data name="&gt;&gt;groupBox36.Name" xml:space="preserve">
+    <value>groupBox36</value>
+  </data>
+  <data name="&gt;&gt;groupBox36.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox36.Parent" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;groupBox36.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="numericUpDown6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 58</value>
+  </data>
+  <data name="numericUpDown6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 20</value>
+  </data>
+  <data name="numericUpDown6.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="numericUpDown6.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown6.Name" xml:space="preserve">
+    <value>numericUpDown6</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown6.Parent" xml:space="preserve">
+    <value>groupBox39</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown6.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label83.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label83.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="label83.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 40</value>
+  </data>
+  <data name="label83.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>Automatic detection asumes:
+Default (Arduino Uno/Nano) - 127 bytes
+More than 3 axes (Mega2560)- 255 bytes
+</value>
+  </data>
+  <data name="&gt;&gt;label83.Name" xml:space="preserve">
+    <value>label83</value>
+  </data>
+  <data name="&gt;&gt;label83.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label83.Parent" xml:space="preserve">
+    <value>groupBox39</value>
+  </data>
+  <data name="&gt;&gt;label83.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkBox3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 59</value>
+  </data>
+  <data name="checkBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 17</value>
+  </data>
+  <data name="checkBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="checkBox3.Text" xml:space="preserve">
+    <value>Detect automatically</value>
+  </data>
+  <data name="&gt;&gt;checkBox3.Name" xml:space="preserve">
+    <value>checkBox3</value>
+  </data>
+  <data name="&gt;&gt;checkBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox3.Parent" xml:space="preserve">
+    <value>groupBox39</value>
+  </data>
+  <data name="&gt;&gt;checkBox3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox39.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 112</value>
+  </data>
+  <data name="groupBox39.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 100</value>
+  </data>
+  <data name="groupBox39.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="groupBox39.Text" xml:space="preserve">
+    <value>grbl buffer size</value>
+  </data>
+  <data name="&gt;&gt;groupBox39.Name" xml:space="preserve">
+    <value>groupBox39</value>
+  </data>
+  <data name="&gt;&gt;groupBox39.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox39.Parent" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;groupBox39.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBpollIntervalReduce.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBpollIntervalReduce.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBpollIntervalReduce.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 75</value>
+  </data>
+  <data name="cBpollIntervalReduce.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 17</value>
+  </data>
+  <data name="cBpollIntervalReduce.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="cBpollIntervalReduce.Text" xml:space="preserve">
+    <value>Reduce freq. when streaming gcode</value>
+  </data>
+  <data name="&gt;&gt;cBpollIntervalReduce.Name" xml:space="preserve">
+    <value>cBpollIntervalReduce</value>
+  </data>
+  <data name="&gt;&gt;cBpollIntervalReduce.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBpollIntervalReduce.Parent" xml:space="preserve">
+    <value>groupBox38</value>
+  </data>
+  <data name="&gt;&gt;cBpollIntervalReduce.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label82.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label82.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="label82.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 29</value>
+  </data>
+  <data name="label82.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Set update frequency for grbl status report. As higher as more stress for the controller.</value>
+  </data>
+  <data name="&gt;&gt;label82.Name" xml:space="preserve">
+    <value>label82</value>
+  </data>
+  <data name="&gt;&gt;label82.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label82.Parent" xml:space="preserve">
+    <value>groupBox38</value>
+  </data>
+  <data name="&gt;&gt;label82.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBoxPollInterval.Items" xml:space="preserve">
+    <value>  2 Hz - slow</value>
+  </data>
+  <data name="cBoxPollInterval.Items1" xml:space="preserve">
+    <value>  4 Hz</value>
+  </data>
+  <data name="cBoxPollInterval.Items2" xml:space="preserve">
+    <value>  5 Hz - default</value>
+  </data>
+  <data name="cBoxPollInterval.Items3" xml:space="preserve">
+    <value>  8 Hz</value>
+  </data>
+  <data name="cBoxPollInterval.Items4" xml:space="preserve">
+    <value>10 Hz - maximum</value>
+  </data>
+  <data name="cBoxPollInterval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 48</value>
+  </data>
+  <data name="cBoxPollInterval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 21</value>
+  </data>
+  <data name="cBoxPollInterval.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;cBoxPollInterval.Name" xml:space="preserve">
+    <value>cBoxPollInterval</value>
+  </data>
+  <data name="&gt;&gt;cBoxPollInterval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBoxPollInterval.Parent" xml:space="preserve">
+    <value>groupBox38</value>
+  </data>
+  <data name="&gt;&gt;cBoxPollInterval.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox38.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 6</value>
+  </data>
+  <data name="groupBox38.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 100</value>
+  </data>
+  <data name="groupBox38.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="groupBox38.Text" xml:space="preserve">
+    <value>Status poll frequency</value>
+  </data>
+  <data name="&gt;&gt;groupBox38.Name" xml:space="preserve">
+    <value>groupBox38</value>
+  </data>
+  <data name="&gt;&gt;groupBox38.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox38.Parent" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;groupBox38.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBsimulation.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBsimulation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBsimulation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 337</value>
+  </data>
+  <data name="cBsimulation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 17</value>
+  </data>
+  <data name="cBsimulation.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="cBsimulation.Text" xml:space="preserve">
+    <value>Simulate connected grbl</value>
+  </data>
+  <data name="cBsimulation.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;cBsimulation.Name" xml:space="preserve">
+    <value>cBsimulation</value>
+  </data>
+  <data name="&gt;&gt;cBsimulation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBsimulation.Parent" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;cBsimulation.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tBflowControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 32</value>
+  </data>
+  <data name="tBflowControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 20</value>
+  </data>
+  <data name="tBflowControl.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Assign regular GCode, seperate code into different lines using ';' as seperator.
+Or assign a filename containing GCode. </value>
+  </data>
+  <data name="&gt;&gt;tBflowControl.Name" xml:space="preserve">
+    <value>tBflowControl</value>
+  </data>
+  <data name="&gt;&gt;tBflowControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBflowControl.Parent" xml:space="preserve">
+    <value>groupBox37</value>
+  </data>
+  <data name="&gt;&gt;tBflowControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBflowControl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBflowControl.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBflowControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="cBflowControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 17</value>
+  </data>
+  <data name="cBflowControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Send following gcode on pause or stop</value>
+  </data>
+  <data name="&gt;&gt;cBflowControl.Name" xml:space="preserve">
+    <value>cBflowControl</value>
+  </data>
+  <data name="&gt;&gt;cBflowControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBflowControl.Parent" xml:space="preserve">
+    <value>groupBox37</value>
+  </data>
+  <data name="&gt;&gt;cBflowControl.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox37.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 6</value>
+  </data>
+  <data name="groupBox37.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 100</value>
+  </data>
+  <data name="groupBox37.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="groupBox37.Text" xml:space="preserve">
+    <value>Flow control for streaming</value>
+  </data>
+  <data name="&gt;&gt;groupBox37.Name" xml:space="preserve">
+    <value>groupBox37</value>
+  </data>
+  <data name="&gt;&gt;groupBox37.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox37.Parent" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;groupBox37.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabPage13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage13.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>777, 360</value>
+  </data>
+  <data name="tabPage13.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="tabPage13.Text" xml:space="preserve">
+    <value>Flow control</value>
+  </data>
+  <data name="&gt;&gt;tabPage13.Name" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;tabPage13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage13.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage13.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="btnMachineRangeGet.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnMachineRangeGet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 110</value>
+    <value>6, 110</value>
   </data>
   <data name="btnMachineRangeGet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 23</value>
+    <value>189, 23</value>
   </data>
   <data name="btnMachineRangeGet.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
   <data name="btnMachineRangeGet.Text" xml:space="preserve">
-    <value>Get range from settings 130-132</value>
+    <value>Get range from settings $130-$132</value>
   </data>
   <data name="&gt;&gt;btnMachineRangeGet.Name" xml:space="preserve">
     <value>btnMachineRangeGet</value>
@@ -4727,7 +5324,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBMachineLimitsAlarm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 32</value>
+    <value>26, 30</value>
   </data>
   <data name="cBMachineLimitsAlarm.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 17</value>
@@ -4757,7 +5354,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBMachineLimitsShow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 14</value>
   </data>
   <data name="cBMachineLimitsShow.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 17</value>
@@ -4964,7 +5561,7 @@ Note machine coordinates</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox33.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="cBSerialDIY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4973,7 +5570,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBSerialDIY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 19</value>
+    <value>6, 14</value>
   </data>
   <data name="cBSerialDIY.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 17</value>
@@ -4997,10 +5594,10 @@ Note machine coordinates</value>
     <value>0</value>
   </data>
   <data name="groupBox27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 79</value>
+    <value>3, 66</value>
   </data>
   <data name="groupBox27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 71</value>
+    <value>236, 39</value>
   </data>
   <data name="groupBox27.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -5018,7 +5615,7 @@ Note machine coordinates</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox27.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="label75.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5054,7 +5651,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 73</value>
+    <value>6, 73</value>
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 17</value>
@@ -5084,7 +5681,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="radioButton2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 54</value>
+    <value>6, 54</value>
   </data>
   <data name="radioButton2.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 17</value>
@@ -5114,7 +5711,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="radioButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 39</value>
+    <value>6, 39</value>
   </data>
   <data name="radioButton1.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 17</value>
@@ -5144,7 +5741,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cB4thUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 14</value>
+    <value>6, 14</value>
   </data>
   <data name="cB4thUse.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 17</value>
@@ -5258,7 +5855,7 @@ Note machine coordinates</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox17.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="label31.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5324,7 +5921,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBRotarySetupApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 14</value>
   </data>
   <data name="cBRotarySetupApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 17</value>
@@ -5612,7 +6209,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="rBRotaryY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 14</value>
+    <value>168, 12</value>
   </data>
   <data name="rBRotaryY.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 17</value>
@@ -5642,7 +6239,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="rBRotaryX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 14</value>
+    <value>136, 12</value>
   </data>
   <data name="rBRotaryX.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 17</value>
@@ -5672,7 +6269,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBRotarySubstitute.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 14</value>
   </data>
   <data name="cBRotarySubstitute.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 17</value>
@@ -5717,7 +6314,7 @@ Note machine coordinates</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox12.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="cBCtrlCommentOut.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5879,7 +6476,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>1</value>
   </data>
   <data name="groupBox10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 156</value>
+    <value>3, 111</value>
   </data>
   <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 125</value>
@@ -5900,7 +6497,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="cBSerial2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5909,7 +6506,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>NoControl</value>
   </data>
   <data name="cBSerial2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 14</value>
   </data>
   <data name="cBSerial2.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 17</value>
@@ -5942,7 +6539,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>NoControl</value>
   </data>
   <data name="cBSerialMinimize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 36</value>
+    <value>6, 34</value>
   </data>
   <data name="cBSerialMinimize.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 17</value>
@@ -5972,7 +6569,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>3, 6</value>
   </data>
   <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 67</value>
+    <value>236, 56</value>
   </data>
   <data name="groupBox9.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -5990,6 +6587,37 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cBBackgroundImage.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBBackgroundImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBBackgroundImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 287</value>
+  </data>
+  <data name="cBBackgroundImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 30</value>
+  </data>
+  <data name="cBBackgroundImage.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="cBBackgroundImage.Text" xml:space="preserve">
+    <value>Disable realtime path update during streaming
+Saves CPU load, disables zooming during streaming</value>
+  </data>
+  <data name="&gt;&gt;cBBackgroundImage.Name" xml:space="preserve">
+    <value>cBBackgroundImage</value>
+  </data>
+  <data name="&gt;&gt;cBBackgroundImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBBackgroundImage.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;cBBackgroundImage.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="cBcheckupdate.AutoSize" type="System.Boolean, mscorlib">
@@ -6040,7 +6668,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>1</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>Control</value>
+    <value>Program control</value>
   </data>
   <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
     <value>tabPage2</value>
@@ -6052,7 +6680,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label76.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6064,13 +6692,13 @@ M4 Dynamic Laser Power Mode</value>
     <value>411, 297</value>
   </data>
   <data name="label76.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 13</value>
+    <value>282, 13</value>
   </data>
   <data name="label76.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="label76.Text" xml:space="preserve">
-    <value>Buttons 13 to 16 will be hide if the fields are empty</value>
+    <value>The buttons 13 to 16 are hidden when the fields are empty</value>
   </data>
   <data name="&gt;&gt;label76.Name" xml:space="preserve">
     <value>label76</value>
@@ -6172,7 +6800,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>8</value>
   </data>
   <data name="label46.Text" xml:space="preserve">
-    <value>Assign regular GCode, seperate code into diverent lines using ';' as seperator.
+    <value>Assign regular GCode, seperate code into different lines using ';' as seperator.
 Or assign a filename containing GCode. 
 Relative file path starts from here:</value>
   </data>
@@ -6213,7 +6841,7 @@ Relative file path starts from here:</value>
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cBGPEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7680,7 +8308,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage6.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nUDRotaryInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 138</value>
@@ -9378,7 +10006,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnOpenHotkeys.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -9678,7 +10306,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage12.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label59.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -11016,7 +11644,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage7.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="linkLabel8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11358,7 +11986,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>tabControl1</value>
   </data>
   <data name="&gt;&gt;tabPage5.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>

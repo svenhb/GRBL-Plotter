@@ -123,8 +123,11 @@
   <data name="tabPage8.Text" xml:space="preserve">
     <value>Werkzeugwechsel</value>
   </data>
+  <data name="tabPage13.Text" xml:space="preserve">
+    <value>Ablaufsteuerung</value>
+  </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>Steuerung</value>
+    <value>Prog. Steuerung</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Benutzerdefinierte Buttons</value>
@@ -592,6 +595,30 @@ D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
   <data name="tabPage11.Text" xml:space="preserve">
     <value>G-Code Modifikation</value>
   </data>
+  <data name="groupBox35.Text" xml:space="preserve">
+    <value>Konvertiere Z-Achse zu Spindle Speed S</value>
+  </data>
+  <data name="label81.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 13</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>S bei Z &gt; 0</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>Einstellung für den Menupunkt 'GCode transformieren, konvertiere Z zu S</value>
+  </data>
+  <data name="label79.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 13</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Minimum S bei maximum Z</value>
+  </data>
+  <data name="label78.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 13</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Maximum S bei minimum Z</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -800,12 +827,60 @@ Don't use with "Relative movements"</value>
   <data name="cBToolChange.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cBBackgroundImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 30</value>
+  <data name="groupBox36.Text" xml:space="preserve">
+    <value>Verhalten nach grbl RESET</value>
   </data>
-  <data name="cBBackgroundImage.Text" xml:space="preserve">
-    <value>2D-Ansicht: verminderung der CPU-Last während des Streamens
-durch Anzeige einer Grafik statt des Echtzeitpfades</value>
+  <data name="cBrestoreCoordReset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 17</value>
+  </data>
+  <data name="cBrestoreCoordReset.Text" xml:space="preserve">
+    <value>Wiederherstellen der Work-Koordinaten</value>
+  </data>
+  <data name="groupBox39.Text" xml:space="preserve">
+    <value>grbl Puffergröße</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>Annahme für die automatische Detektion:
+Default (Arduino Uno/Nano) - 127 bytes
+Mehr als 3 Achsen (Mega2560)- 255 bytes
+</value>
+  </data>
+  <data name="checkBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 17</value>
+  </data>
+  <data name="checkBox3.Text" xml:space="preserve">
+    <value>Automatisch detektieren</value>
+  </data>
+  <data name="groupBox38.Text" xml:space="preserve">
+    <value>Frequenz der Statusabfragen</value>
+  </data>
+  <data name="cBpollIntervalReduce.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 17</value>
+  </data>
+  <data name="cBpollIntervalReduce.Text" xml:space="preserve">
+    <value>Reduziere die Freq. während GCode-str.</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Frequenz der Statusreportabfrage. Je höher, desto mehr Stress für den Controller.</value>
+  </data>
+  <data name="cBsimulation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 17</value>
+  </data>
+  <data name="cBsimulation.Text" xml:space="preserve">
+    <value>Simuliere angeschlossenen grbl</value>
+  </data>
+  <data name="groupBox37.Text" xml:space="preserve">
+    <value>Ablaufsteuerung während des Streamens</value>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Zuordnung von regulärem GCode, trenne einzelne Zeilen durch ';'.
+Oder gebe eine Datei an, welcher GCode enthält.</value>
+  </data>
+  <data name="cBflowControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 17</value>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Sende folgenden GCode bei Pause oder Stop</value>
   </data>
   <data name="groupBox33.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 274</value>
@@ -1050,6 +1125,13 @@ Hilfreich für Werkzeugwechsler oder vierte Achse</value>
   </data>
   <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
     <value>Das serielle Fenster wird nach erfolgreicher Verbindung zum GRBL minimiert</value>
+  </data>
+  <data name="cBBackgroundImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>331, 30</value>
+  </data>
+  <data name="cBBackgroundImage.Text" xml:space="preserve">
+    <value>2D-Ansicht: verminderung der CPU-Last während des Streamens
+durch Anzeige einer Grafik statt des Echtzeitpfades</value>
   </data>
   <data name="cBcheckupdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 17</value>

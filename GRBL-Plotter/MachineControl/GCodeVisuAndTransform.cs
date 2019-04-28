@@ -63,6 +63,8 @@ namespace GRBL_Plotter
         public static GraphicsPath pathRotaryInfo = new GraphicsPath();
         public static GraphicsPath path = pathPenUp;
 
+        public enum convertMode { nothing, removeZ, convertZToS };
+
         public bool containsG2G3Command()
         { return modal.containsG2G3; }
         public bool containsG91Command()
@@ -176,9 +178,9 @@ namespace GRBL_Plotter
         {
             maxStep = (float)Map.GridX;
             getGCodeLines(oldCode,true);                // read gcode and process subroutines
-            IList<string> tmp=createGCodeProg(true,true,false,false).Split('\r').ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            IList<string> tmp=createGCodeProg(true,true,false, convertMode.nothing).Split('\r').ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
             getGCodeLines(tmp, false);                  // reload code
-            return createGCodeProg(false, false, true, false, Map);        // apply new Z-value;
+            return createGCodeProg(false, false, true, convertMode.nothing, Map);        // apply new Z-value;
         }
 
         /// <summary>
@@ -208,6 +210,7 @@ namespace GRBL_Plotter
             string[] GCode = oldCode.ToArray<string>();
             string singleLine;
             modal = new modalGroup();               // clear
+
             gcodeList = new List<gcodeByLine>();    //.Clear();
             coordList = new List<coordByLine>();    //.Clear();
             clearDrawingnPath();                    // reset path, dimensions
@@ -813,18 +816,20 @@ namespace GRBL_Plotter
         }
 
         public string replaceG23()
-        {   return createGCodeProg(true, false, false,false); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
+        {   return createGCodeProg(true, false, false, convertMode.nothing); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
 
+        public string convertZ()
+        { return createGCodeProg(false, false, false, convertMode.convertZToS); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
         public string removeZ()
-        { return createGCodeProg(false, false, false, true); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
+        { return createGCodeProg(false, false, false, convertMode.removeZ); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
 
         /// <summary>
         /// Generate GCode from given coordinates in GCodeList
         /// only replace lines with coordinate information
         /// </summary>
         private string createGCodeProg()
-        {   return createGCodeProg(false,false,false,false); }
-        private string createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
+        {   return createGCodeProg(false,false,false, convertMode.nothing); }
+        private string createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, convertMode specialCmd, HeightMap Map=null)
         {
 #if (debuginfo)
             log.Add("   GCodeVisu createGCodeProg");
@@ -833,28 +838,36 @@ namespace GRBL_Plotter
             pathMarkSelection.Reset(); lastFigureNumber = -1;
             StringBuilder newCode = new StringBuilder();
             StringBuilder tmpCode = new StringBuilder();
-            string infoCode;
-            bool getCoordinateXY, getCoordinateZ;
+            string infoCode="";
+            bool getCoordinateXY, getCoordinateZ, forceM;
             double feedRate = 0;
-            double spindleSpeed=0;
+            double spindleSpeed=-1; // force change
             byte spindleState = 5;
             byte coolantState = 9;
             double lastActualX = 0, lastActualY = 0,i,j;
             double newZ = 0;
             int lastMotionMode = 0;
-            xyzSize.resetDimension();
+            double convertMinZ = xyzSize.minz;          // 1st get last minimum
+            xyzSize.resetDimension();                   // then reset
             bool hide_code = false;
+            double convertMaxSpeed = (double)Properties.Settings.Default.convertZtoSMax;
+            double convertMinSpeed = (double)Properties.Settings.Default.convertZtoSMin;
+            double convertSpeedRange = Math.Abs(convertMaxSpeed - convertMinSpeed);
+            double convertOffSpeed = (double)Properties.Settings.Default.convertZtoSOff;
+
             for (int iCode=0; iCode < gcodeList.Count; iCode++)     // go through all code lines
             {   gcodeByLine gcline = gcodeList[iCode];
                 tmpCode.Clear();
                 getCoordinateXY = false;
                 getCoordinateZ = false;
+                forceM = false;
                 if (gcline.codeLine.Length == 0)
                     continue;
 
                 if (gcline.codeLine.IndexOf("%START_HIDECODE") >= 0) { hide_code = true; }
                 if (gcline.codeLine.IndexOf("%STOP_HIDECODE") >= 0) { hide_code = false; }
 
+                #region replace circle by lines
                 if ((!hide_code) && (replaceG23))                   // replace circles
                 {
                     gcode.setup();
@@ -883,6 +896,7 @@ namespace GRBL_Plotter
                     { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
 
                 }
+                #endregion
                 else
                 {
                     if (gcline.x != null)
@@ -895,9 +909,25 @@ namespace GRBL_Plotter
                             gcline.z = gcline.actualPos.Z + newZ;
                     }
 
+                    //infoCode = "(" + gcline.spindleState + "  " + gcline.coolantState + "  "+gcline.motionMode + "  " + gcline.feedRate + ")";// " ( " + gcline.figureNumber + " ) ";
+
+                    if (specialCmd == convertMode.convertZToS)
+                    {   gcline.spindleSpeed = 0;                //  reset old speed
+                        spindleSpeed = -1;                      // force output
+                        if (gcline.spindleState < 5)            // if spindle on
+                            forceM = true;
+                    }
+
                     if (gcline.z != null)
-                    {   if (!removeZ)
-                        { tmpCode.AppendFormat(" Z{0}", gcode.frmtNum((double)gcline.z)); }
+                    {   if (specialCmd == convertMode.nothing)               //  !removeZ
+                        {   tmpCode.AppendFormat(" Z{0}", gcode.frmtNum((double)gcline.z)); }
+                        else if ((specialCmd == convertMode.convertZToS) && (convertMinZ != 0))
+                        {   double convertTmp = (double)gcline.z * convertSpeedRange / convertMinZ + convertMinSpeed;
+                            if (gcline.z > 0)
+                                convertTmp = convertOffSpeed;
+                            gcline.spindleSpeed = (int)convertTmp;
+                            //tmpCode.AppendFormat(" S{0}", Math.Round(convertTmp));
+                        }
                         getCoordinateZ = true;
                     }
                     if (gcline.a != null)
@@ -917,26 +947,32 @@ namespace GRBL_Plotter
                     if (gcline.j != null)
                     { tmpCode.AppendFormat(" J{0}", gcode.frmtNum((double)gcline.j)); getCoordinateXY = true; }
                     if ((getCoordinateXY || getCoordinateZ) && (!gcline.ismachineCoordG53) && (!hide_code))
-                    {   if ((gcline.motionMode > 0) && (feedRate != gcline.feedRate) && ((getCoordinateXY && !getCoordinateZ) || (!getCoordinateXY && getCoordinateZ)))
+                    {
+                        if ((gcline.motionMode > 0) && (feedRate != gcline.feedRate) && (getCoordinateXY || getCoordinateZ)) //((getCoordinateXY && !getCoordinateZ) || (!getCoordinateXY && getCoordinateZ)))
                         { tmpCode.AppendFormat(" F{0,0}", gcline.feedRate); }       // feed
-                        if (spindleSpeed != gcline.spindleSpeed)
-                        { tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed); }   // speed
                         if (spindleState != gcline.spindleState)
                         { tmpCode.AppendFormat(" M{0,0}", gcline.spindleState); }   // state
+                        if (spindleSpeed != gcline.spindleSpeed)
+                        { tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed); }   // speed
                         if (coolantState != gcline.coolantState)
                         { tmpCode.AppendFormat(" M{0,0}", gcline.coolantState); }   // state
 
                         //infoCode = " ( " + gcline.ismachineCoordG53 +"  "+ gcline.isdistanceModeG90 + " ) ";
-                        infoCode = " ( " + gcline.figureNumber + " ) ";
+                        //infoCode = "("+ gcline.spindleState+")";// " ( " + gcline.figureNumber + " ) ";
+                        tmpCode.Replace(',', '.');
                         if (gcline.codeLine.IndexOf("(Setup - GCode") > 1)  // ignore coordinates from setup footer
                             newCode.AppendLine(gcline.codeLine);
                         else
                             newCode.AppendLine(gcline.otherCode + "G" + gcode.frmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
-                        tmpCode.Replace(',', '.');
                     }
-
                     else
-                    {   newCode.AppendLine(gcline.codeLine.Trim('\r','\n'));    // add orignal code-line
+                    {
+                        if (forceM && ((spindleState != gcline.spindleState)||(spindleSpeed != gcline.spindleSpeed)))
+                        {   tmpCode.AppendFormat("M{0,0} S{1,0}", gcode.frmtCode(gcline.spindleState), gcline.spindleSpeed);    // state
+                            newCode.AppendLine(tmpCode.ToString());
+                        }
+                        else
+                            newCode.AppendLine(gcline.codeLine.Trim('\r', '\n') + infoCode);    // add orignal code-line
                     }
 //                    if (gcline.isSetCoordinateSystem)
 //                    { newCode.AppendLine(gcline.codeLine); }    // keep G10 command

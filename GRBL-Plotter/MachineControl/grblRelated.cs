@@ -36,11 +36,16 @@ namespace GRBL_Plotter
         public static xyzPoint posMachine = new xyzPoint(0, 0, 0);
         public static bool posChanged = true;
         public static bool wcoChanged = true;
+
+        public static int axisCount = 0;
         public static bool axisA = false;
         public static bool axisB = false;
         public static bool axisC = false;
         public static bool axisUpdate = false;
-        public static int axisCount = 0;
+        public static int RX_BUFFER_SIZE = 127;
+        public static int pollInterval = 200;
+
+        public static bool grblSimulate = false;
         public static xyPoint posMarker   = new xyPoint(0, 0);
         private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
         private static Dictionary<string, xyzPoint> coordinates = new Dictionary<string, xyzPoint>();    // keep []-settings
@@ -63,12 +68,7 @@ namespace GRBL_Plotter
             setMessageString(ref messageAlarmCodes, Properties.Resources.alarm_codes_en_US);
             setMessageString(ref messageErrorCodes, Properties.Resources.error_codes_en_US);
             setMessageString(ref messageSettingCodes, Properties.Resources.setting_codes_en_US);
-/*            string fourthAxis = "A";    // Properties.Settings.Default.ctrl4thName;
-            messageSettingCodes.Add("103", fourthAxis + " -steps/deg");
-            messageSettingCodes.Add("113", fourthAxis + " -axis maximum rate, deg/min");
-            messageSettingCodes.Add("123", fourthAxis + " -axis acceleration, deg/sec^2");
-            messageSettingCodes.Add("133", fourthAxis + " -axis maximum travel, degrees");
-*/
+
             //    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, unknown };
             statusConvert[0].msg = "Idle";  statusConvert[0].state = grblState.idle; statusConvert[0].color = Color.Lime;
             statusConvert[1].msg = "Run";   statusConvert[1].state = grblState.run;  statusConvert[1].color = Color.Yellow;

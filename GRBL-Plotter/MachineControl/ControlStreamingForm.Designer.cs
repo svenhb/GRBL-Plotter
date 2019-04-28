@@ -262,6 +262,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "ControlStreamingForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlStreamingForm_FormClosing);
             this.Load += new System.EventHandler(this.StreamingForm_Load);

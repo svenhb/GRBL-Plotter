@@ -97,7 +97,7 @@
             this.rtbLog.Font = new System.Drawing.Font("Lucida Console", 8F);
             this.rtbLog.Location = new System.Drawing.Point(2, 48);
             this.rtbLog.Name = "rtbLog";
-            this.rtbLog.Size = new System.Drawing.Size(280, 208);
+            this.rtbLog.Size = new System.Drawing.Size(280, 210);
             this.rtbLog.TabIndex = 8;
             this.rtbLog.Text = "";
             this.rtbLog.WordWrap = false;

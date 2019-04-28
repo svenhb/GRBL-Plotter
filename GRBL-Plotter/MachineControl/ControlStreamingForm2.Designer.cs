@@ -360,7 +360,9 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(50, 200);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(320, 270);
             this.MinimumSize = new System.Drawing.Size(320, 270);
             this.Name = "ControlStreamingForm2";

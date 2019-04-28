@@ -96,12 +96,15 @@ namespace GRBL_Plotter
         /// Reset coordinates and set G90, M5, M9
         /// </summary>
         public void resetAll()
-        {   motionMode = 0; isdistanceModeG90 = true; ismachineCoordG53 = false; isSubroutine = false;
+        {
+            lineNumber = 0; figureNumber = 0; codeLine = "";
+            motionMode = 0; isdistanceModeG90 = true; ismachineCoordG53 = false; isSubroutine = false;
+            isSetCoordinateSystem = false; spindleState = 5; coolantState = 9; spindleSpeed = 0; feedRate = 0;
+
             actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
-            distance = -1;
-            spindleState = 5; coolantState = 9; figureNumber = 0;
-            isSetCoordinateSystem = false;
+            distance = -1; otherCode = "";
+                 
             resetCoordinates();
         }
         public void resetAll(xyzPoint tmp)
@@ -134,7 +137,7 @@ namespace GRBL_Plotter
             double value = 0;
             line = line.ToUpper().Trim();
             isSetCoordinateSystem = false;
-
+            #region parse
             if (!(line.StartsWith("$") || line.StartsWith("("))) //do not parse grbl comments
             {
                 try
@@ -179,7 +182,8 @@ namespace GRBL_Plotter
                 }
                 catch { }
             }
-           if (isSetCoordinateSystem)
+            #endregion
+            if (isSetCoordinateSystem)
                 resetCoordinates();
         }
 
@@ -261,12 +265,12 @@ namespace GRBL_Plotter
                     { modalState.feedRateMode = (byte)value; }
                     break;
                 case 'M':
-                    if ((value <= 3) || (value == 30))              // Program Mode
+                    if ((value < 3) || (value == 30))                   // Program Mode 0, 1 ,2 ,30
                     { modalState.programMode = (byte)value; }
                     else if (value >= 3 && value <= 5)                   // Spindle State
-                    { modalState.spindleState = spindleState = (byte)value; }
+                    {   modalState.spindleState = spindleState = (byte)value; }
                     else if (value >= 7 && value <= 9)                   // Coolant State
-                    { modalState.coolantState = coolantState = (byte)value; }
+                    {   modalState.coolantState = coolantState = (byte)value;                    }
                     modalState.mWord = (byte)value;
                     if ((value < 3) || (value > 9))
                         otherCode += "M" + ((int)value).ToString() + " ";

@@ -230,7 +230,7 @@ namespace GRBL_Plotter
 
         private void ControlDIYControlPad_Resize(object sender, EventArgs e)
         {   rtbLog.Width = this.Width - 20;
-            rtbLog.Height = this.Height - 70;
+            rtbLog.Height = this.Height - 90;
         }
     }
 
