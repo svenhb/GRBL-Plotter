@@ -17,7 +17,7 @@
   <bind keydata="NumPad3" 	action="JogAxisXIncYDec" />
 
   <bind keydata="Add" 		action="JogAxisZDec" />
-  <bind keydata="Substract"	action="JogAxisZInc" />
+  <bind keydata="Subtract"	action="JogAxisZInc" />
   <bind keydata="NumPad0" 	action="JogAxisADec" />
   <bind keydata="Decimal" 	action="JogAxisAInc" />
   <bind keydata="Insert" 	action="JogAxisADec" />
