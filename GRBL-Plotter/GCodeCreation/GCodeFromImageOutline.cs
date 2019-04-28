@@ -16,7 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-// 2018-11  new
+/* 2018-11  new
+ * 2019-04-22 improove function simplifyContour
+ * 
+ */
 
 // https://www.iis.sinica.edu.tw/papers/fchang/1362-F.pdf
 // http://www.imageprocessingplace.com/downloads_V3/root_downloads/tutorials/contour_tracing_Abeer_George_Ghuneim/alg.html
@@ -220,12 +223,13 @@ namespace GRBL_Plotter
 
         private static void simplifyContour(List<PointF> list, float error)
         {
-            if (list.Count < 10) return;    // too less points to simplify
+            if (list.Count < 5) return;    // too less points to simplify
             PointF delta1 = new PointF();
             PointF delta2 = new PointF();
             PointF p1 = new PointF();
+            int i, k, j, cnt;
             p1 = list[list.Count-1];
-            for (int i = list.Count - 2; i > 0; i--)
+            for (i = list.Count - 2; i > 0; i--)
             {   
                 delta1.X = list[i].X - p1.X;
                 delta1.Y = list[i].Y - p1.Y;
@@ -245,6 +249,66 @@ namespace GRBL_Plotter
                 }
                 p1 = list[i];// oder delta1 = delta2
             }
+
+            if (list.Count < 3) return;    // too less points to simplify
+            float aX, minX, maxX, aY, minY, maxY;
+            bool setMin, setMax;
+            for (i = list.Count - 1; i > 0; i--)        // scan for useless Y
+            {   cnt = 1; aX = list[i].X;
+                minY = maxY = list[i].Y;
+                for (k = i - 1; k >= 0; k--)            // find min / max Y for same X      
+                {   if (aX == list[k].X)                // same X?
+                    {   cnt++;
+                        minY = Math.Min(minY, list[k].Y);
+                        maxY = Math.Max(maxY, list[k].Y);
+                    }
+                    else
+                    { k++; break; }
+                }
+                if (cnt > 2)
+                {   setMin = false; setMax = false;
+                    int jend = i - cnt;
+                    for (j = i; j > jend; j--)              // sort out inbetween values   
+                    {   aY =  list[j].Y;
+                        if (!setMin && (aY == minY))        // keep 1st min
+                        { setMin = true; continue;      }
+                        else if (!setMax && (aY == maxY))   // keep 1st max
+                        { setMax = true; continue;      }
+                        list.RemoveAt(j);
+                        i--;
+                    }
+                }
+            }
+
+            for (i = list.Count - 1; i > 0; i--)        // scan for useless X
+            {
+                cnt = 1; aY = list[i].Y;
+                minX = maxX = list[i].X;
+                for (k = i - 1; k >= 0; k--)            // find min / max X for same Y      
+                {   if (aY == list[k].Y)                // same Y?
+                    {   cnt++;
+                        minX = Math.Min(minX, list[k].X);
+                        maxX = Math.Max(maxX, list[k].X);
+                    }
+                    else
+                    { k++; break; }
+                }
+                if (cnt > 2)
+                {   setMin = false; setMax = false;
+                    int jend = i - cnt;
+                    for (j = i; j > jend; j--)              // sort out inbetween values   
+                    {   aX = list[j].X;
+                        if (!setMin && (aX == minX))        // keep 1st min
+                        { setMin = true; continue; }
+                        else if (!setMax && (aX == maxX))   // keep 1st max
+                        { setMax = true; continue; }
+                        list.RemoveAt(j);
+                        i--;
+                    }
+                }
+            }
+
+
         }
         private static bool sameDirection(PointF p1, PointF p2, float delta)
         {

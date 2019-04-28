@@ -4441,7 +4441,7 @@
     <value>150, 400</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 340</value>
+    <value>400, 330</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>400, 330</value>

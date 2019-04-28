@@ -171,7 +171,7 @@ namespace GRBL_Plotter
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
                     gcode.Tool(finalString, toolNr, toolTable.indexName());  // + svgPalette.pixelCount());
                     gcode.reduceGCode = false;
-                    gcode.PenUp(finalString);
+                    gcode.PenUp(finalString," start ");
                     gcode.MoveToRapid(finalString, 0, 0);          // move to start pos
                     gcode.reduceGCode = true;
 
@@ -187,20 +187,22 @@ namespace GRBL_Plotter
                         float tmpY;
                         foreach (List<PointF> path in outlineList)
                         {
-                            cnt++;
-                            tmpP = path[0];
-                            tmpY = (adjustedImage.Height - 1) - tmpP.Y; // start point
-                            gcode.MoveToRapid(finalString, tmpP.X * resoOutline, tmpY * resoOutline);          // move to start pos
-                            gcode.PenDown(finalString," contour "+cnt);
-                            foreach (PointF aP in path)
-                            {
-                                tmpY = (adjustedImage.Height - 1) - aP.Y;
-                                gcode.MoveTo(finalString, aP.X * resoOutline, tmpY * resoOutline);
+                            if (path.Count > 0)
+                            {   cnt++;
+                                tmpP = path[0];
+                                tmpY = (adjustedImage.Height - 1) - tmpP.Y; // start point
+                                gcode.MoveToRapid(finalString, tmpP.X * resoOutline, tmpY * resoOutline, " contour " + cnt);          // move to start pos
+                                gcode.PenDown(finalString);// " contour "+cnt);
+                                foreach (PointF aP in path)
+                                {
+                                    tmpY = (adjustedImage.Height - 1) - aP.Y;
+                                    gcode.MoveTo(finalString, aP.X * resoOutline, tmpY * resoOutline);
+                                }
+                                tmpY = (adjustedImage.Height - 1) - tmpP.Y;
+                                gcode.PenUp(finalString," contour end");
                             }
-                            tmpY = (adjustedImage.Height - 1) - tmpP.Y;
-                            gcode.PenUp(finalString);
                         }
-                        shrink = 0.8f;          // shrink value in pixels!
+                        shrink = 0.4f;// 0.8f;          // shrink value in pixels!
                         if(cBGCodeOutlineShrink.Checked)
                             shrink = resoOutline*resoFactor*1.2f;   // mm/px * factor * 1,6
                         tmp += "\r\nTool Nr "+ key + " Points: "+cnt+" \r\n"+Vectorize.logList.ToString();
@@ -320,44 +322,13 @@ namespace GRBL_Plotter
                                 break;
                             }
                         }
-                    } 
+                    }
 
-/*
-                    for (int k = 0; k <= factor; k++)               // check pixel left and right in next line    
-                    {   // check recursive line by line for same color near by given x-value
-                        delta = k * Math.Sign(shrink);          // get last direction
-                        newIndex = nextLine.IndexOf(stop - delta);  // first check direction were I came from
-                        if (newIndex >= 0)                          // entry found
-                        {   drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
-                            end = false;
-                            break;
-                        }
-                        newIndex = nextLine.IndexOf(stop + delta);      // check if entry is available right
-                        if (newIndex >= 0)                          // entry found
-                        {   drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
-                            end = false;
-                            break;
-                        }
-                        newIndex = nextLine.IndexOf(start - delta);  // first check direction were I came from
-                        if (newIndex >= 0)                          // entry found
-                        {
-                            drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
-                            end = false;
-                            break;
-                        }
-                        newIndex = nextLine.IndexOf(start + delta);      // check if entry is available right
-                        if (newIndex >= 0)                          // entry found
-                        {
-                            drawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
-                            end = false;
-                            break;
-                        }
-                    }*/
                     if (end)
-                        gcode.PenUp(finalString);
+                    { gcode.PenUp(finalString, " end1 "); }
                 }
                 else
-                    gcode.PenUp(finalString);
+                    gcode.PenUp(finalString, " end2 ");
             }
         }
 

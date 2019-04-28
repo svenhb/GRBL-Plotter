@@ -41,7 +41,7 @@ namespace GRBL_Plotter
         }
 
         private string textgcode = "";
-        private static int pathCount = 0;
+ //       private static int pathCount = 0;
 
         public string textGCode
         { get { return textgcode; } }
@@ -142,6 +142,14 @@ namespace GRBL_Plotter
                 int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")));
                 Properties.Settings.Default.importGCToolDefNr = tnr;
             }
+        }
+
+        private void GCodeFromText_Resize(object sender, EventArgs e)
+        {
+            tBText.Width = this.Width - 24;
+            tBText.Height = this.Height - 205;
+            btnApply.Left = this.Width - 139;
+            btnApply.Top  = this.Height - 74;
         }
     }
 }

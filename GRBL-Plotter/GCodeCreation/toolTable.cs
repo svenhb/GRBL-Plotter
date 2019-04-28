@@ -103,8 +103,8 @@ namespace GRBL_Plotter
             {   if (index == tool.toolnr)
                 { tmpIndex = index; return tool; }
             }
-            tmpIndex = 2;
-            return toolTableArray[2]; // return 1st regular tool;
+            tmpIndex = toolTableArray.Length - 1;// 2;
+            return toolTableArray[tmpIndex]; // return 1st regular tool;
         }
 
         public static void setToolCodeSize(int index, int size)

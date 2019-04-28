@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCodeFromShape));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cBNoZUp = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cBToolSet = new System.Windows.Forms.CheckBox();
             this.cBTool = new System.Windows.Forms.ComboBox();
@@ -77,7 +78,6 @@
             this.rBOrigin1 = new System.Windows.Forms.RadioButton();
             this.btnCancel = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cBNoZUp = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolSpindleSpeed)).BeginInit();
@@ -116,6 +116,12 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // cBNoZUp
+            // 
+            resources.ApplyResources(this.cBNoZUp, "cBNoZUp");
+            this.cBNoZUp.Name = "cBNoZUp";
+            this.cBNoZUp.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -592,12 +598,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // cBNoZUp
-            // 
-            resources.ApplyResources(this.cBNoZUp, "cBNoZUp");
-            this.cBNoZUp.Name = "cBNoZUp";
-            this.cBNoZUp.UseVisualStyleBackColor = true;
-            // 
             // GCodeFromShape
             // 
             resources.ApplyResources(this, "$this");
@@ -608,6 +608,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "GCodeFromShape";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShapeToGCode_FormClosing);
             this.Load += new System.EventHandler(this.ShapeToGCode_Load);
