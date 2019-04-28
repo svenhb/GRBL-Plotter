@@ -890,5 +890,35 @@
     <Setting Name="joyASpeed5" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1000</Value>
     </Setting>
+    <Setting Name="convertZtoSMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="convertZtoSMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="convertZtoSOff" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="restoreWorkCoordinates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="flowControlEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="flowControlText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M5; M9</Value>
+    </Setting>
+    <Setting Name="grblPollIntervalIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="grblPollIntervalReduce" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="grblBufferAutomatic" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="grblBufferSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">127</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

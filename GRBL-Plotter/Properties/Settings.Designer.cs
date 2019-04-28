@@ -3574,5 +3574,125 @@ namespace GRBL_Plotter.Properties {
                 this["joyASpeed5"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public decimal convertZtoSMax {
+            get {
+                return ((decimal)(this["convertZtoSMax"]));
+            }
+            set {
+                this["convertZtoSMax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal convertZtoSMin {
+            get {
+                return ((decimal)(this["convertZtoSMin"]));
+            }
+            set {
+                this["convertZtoSMin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal convertZtoSOff {
+            get {
+                return ((decimal)(this["convertZtoSOff"]));
+            }
+            set {
+                this["convertZtoSOff"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool restoreWorkCoordinates {
+            get {
+                return ((bool)(this["restoreWorkCoordinates"]));
+            }
+            set {
+                this["restoreWorkCoordinates"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool flowControlEnable {
+            get {
+                return ((bool)(this["flowControlEnable"]));
+            }
+            set {
+                this["flowControlEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("M5; M9")]
+        public string flowControlText {
+            get {
+                return ((string)(this["flowControlText"]));
+            }
+            set {
+                this["flowControlText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int grblPollIntervalIndex {
+            get {
+                return ((int)(this["grblPollIntervalIndex"]));
+            }
+            set {
+                this["grblPollIntervalIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool grblPollIntervalReduce {
+            get {
+                return ((bool)(this["grblPollIntervalReduce"]));
+            }
+            set {
+                this["grblPollIntervalReduce"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool grblBufferAutomatic {
+            get {
+                return ((bool)(this["grblBufferAutomatic"]));
+            }
+            set {
+                this["grblBufferAutomatic"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127")]
+        public decimal grblBufferSize {
+            get {
+                return ((decimal)(this["grblBufferSize"]));
+            }
+            set {
+                this["grblBufferSize"] = value;
+            }
+        }
     }
 }
