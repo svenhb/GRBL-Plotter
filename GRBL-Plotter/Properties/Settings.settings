@@ -920,5 +920,8 @@
     <Setting Name="grblBufferSize" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">127</Value>
     </Setting>
+    <Setting Name="importGCSDirM3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

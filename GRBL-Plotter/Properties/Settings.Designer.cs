@@ -3694,5 +3694,17 @@ namespace GRBL_Plotter.Properties {
                 this["grblBufferSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCSDirM3 {
+            get {
+                return ((bool)(this["importGCSDirM3"]));
+            }
+            set {
+                this["importGCSDirM3"] = value;
+            }
+        }
     }
 }
