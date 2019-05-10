@@ -87,28 +87,19 @@ namespace GRBL_Plotter
             this.cmsCommentOut = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsUpdate2DView = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gBoxStream = new System.Windows.Forms.GroupBox();
+            this.lbInfo = new System.Windows.Forms.Label();
+            this.pbBuffer = new System.Windows.Forms.ProgressBar();
+            this.btnStreamStop = new System.Windows.Forms.Button();
+            this.btnStreamCheck = new System.Windows.Forms.Button();
+            this.lblRemaining = new System.Windows.Forms.Label();
+            this.pbFile = new System.Windows.Forms.ProgressBar();
+            this.lblElapsed = new System.Windows.Forms.Label();
+            this.lblFileProgress = new System.Windows.Forms.Label();
+            this.btnStreamStart = new System.Windows.Forms.Button();
+            this.tbFile = new System.Windows.Forms.TextBox();
+            this.gBoxDimension = new System.Windows.Forms.GroupBox();
             this.btnLimitExceed = new System.Windows.Forms.Button();
-            this.gBOverrideSSGB = new System.Windows.Forms.GroupBox();
-            this.lblStatusSpeed = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblOverrideSSValue = new System.Windows.Forms.Label();
-            this.btnOverrideSS2 = new System.Windows.Forms.Button();
-            this.btnOverrideSS0 = new System.Windows.Forms.Button();
-            this.btnOverrideSS1 = new System.Windows.Forms.Button();
-            this.btnOverrideSS4 = new System.Windows.Forms.Button();
-            this.btnOverrideSS3 = new System.Windows.Forms.Button();
-            this.gBOverrideFRGB = new System.Windows.Forms.GroupBox();
-            this.lblStatusFeed = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblOverrideFRValue = new System.Windows.Forms.Label();
-            this.btnOverrideFR1 = new System.Windows.Forms.Button();
-            this.btnOverrideFR2 = new System.Windows.Forms.Button();
-            this.btnOverrideFR0 = new System.Windows.Forms.Button();
-            this.btnOverrideFR4 = new System.Windows.Forms.Button();
-            this.btnOverrideFR3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnOffsetApply = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -125,16 +116,38 @@ namespace GRBL_Plotter
             this.rBOrigin2 = new System.Windows.Forms.RadioButton();
             this.rBOrigin1 = new System.Windows.Forms.RadioButton();
             this.lbDimension = new System.Windows.Forms.TextBox();
-            this.pbBuffer = new System.Windows.Forms.ProgressBar();
-            this.btnStreamStop = new System.Windows.Forms.Button();
-            this.btnStreamCheck = new System.Windows.Forms.Button();
-            this.lbInfo = new System.Windows.Forms.Label();
-            this.lblRemaining = new System.Windows.Forms.Label();
-            this.pbFile = new System.Windows.Forms.ProgressBar();
-            this.lblElapsed = new System.Windows.Forms.Label();
-            this.lblFileProgress = new System.Windows.Forms.Label();
-            this.btnStreamStart = new System.Windows.Forms.Button();
-            this.tbFile = new System.Windows.Forms.TextBox();
+            this.gBoxOverride = new System.Windows.Forms.GroupBox();
+            this.gBOverrideRGB = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnOverrideRapid0 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnOverrideRapid2 = new System.Windows.Forms.Button();
+            this.lblOverrideRapidValue = new System.Windows.Forms.Label();
+            this.btnOverrideRapid1 = new System.Windows.Forms.Button();
+            this.gBOverrideASGB = new System.Windows.Forms.GroupBox();
+            this.btnOverrideSpindle = new System.Windows.Forms.Button();
+            this.btnOverrideMist = new System.Windows.Forms.Button();
+            this.btnOverrideFlood = new System.Windows.Forms.Button();
+            this.gBOverrideFRGB = new System.Windows.Forms.GroupBox();
+            this.lblStatusFeed = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblOverrideFRValue = new System.Windows.Forms.Label();
+            this.btnOverrideFR1 = new System.Windows.Forms.Button();
+            this.btnOverrideFR2 = new System.Windows.Forms.Button();
+            this.btnOverrideFR0 = new System.Windows.Forms.Button();
+            this.btnOverrideFR4 = new System.Windows.Forms.Button();
+            this.btnOverrideFR3 = new System.Windows.Forms.Button();
+            this.gBOverrideSSGB = new System.Windows.Forms.GroupBox();
+            this.lblStatusSpeed = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblOverrideSSValue = new System.Windows.Forms.Label();
+            this.btnOverrideSS2 = new System.Windows.Forms.Button();
+            this.btnOverrideSS0 = new System.Windows.Forms.Button();
+            this.btnOverrideSS1 = new System.Windows.Forms.Button();
+            this.btnOverrideSS4 = new System.Windows.Forms.Button();
+            this.btnOverrideSS3 = new System.Windows.Forms.Button();
             this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
@@ -162,6 +175,7 @@ namespace GRBL_Plotter
             this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnOverrideDoor = new System.Windows.Forms.Button();
             this.btnResume = new System.Windows.Forms.Button();
             this.btnFeedHold = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -317,10 +331,14 @@ namespace GRBL_Plotter
             this.tLPLinks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             this.cmsCode.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.gBOverrideSSGB.SuspendLayout();
-            this.gBOverrideFRGB.SuspendLayout();
+            this.gBoxStream.SuspendLayout();
+            this.gBoxDimension.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.gBoxOverride.SuspendLayout();
+            this.gBOverrideRGB.SuspendLayout();
+            this.gBOverrideASGB.SuspendLayout();
+            this.gBOverrideFRGB.SuspendLayout();
+            this.gBOverrideSSGB.SuspendLayout();
             this.tLPRechts.SuspendLayout();
             this.tLPRechtsUnten.SuspendLayout();
             this.tLPRechtsUntenRechts.SuspendLayout();
@@ -362,8 +380,10 @@ namespace GRBL_Plotter
             // tLPLinks
             // 
             resources.ApplyResources(this.tLPLinks, "tLPLinks");
-            this.tLPLinks.Controls.Add(this.fCTBCode, 0, 1);
-            this.tLPLinks.Controls.Add(this.groupBox1, 0, 0);
+            this.tLPLinks.Controls.Add(this.fCTBCode, 0, 3);
+            this.tLPLinks.Controls.Add(this.gBoxStream, 0, 0);
+            this.tLPLinks.Controls.Add(this.gBoxDimension, 0, 2);
+            this.tLPLinks.Controls.Add(this.gBoxOverride, 0, 1);
             this.tLPLinks.Name = "tLPLinks";
             // 
             // fCTBCode
@@ -486,26 +506,90 @@ namespace GRBL_Plotter
             this.cmsUpdate2DView.Name = "cmsUpdate2DView";
             resources.ApplyResources(this.cmsUpdate2DView, "cmsUpdate2DView");
             // 
-            // groupBox1
+            // gBoxStream
             // 
-            this.groupBox1.Controls.Add(this.btnLimitExceed);
-            this.groupBox1.Controls.Add(this.gBOverrideSSGB);
-            this.groupBox1.Controls.Add(this.gBOverrideFRGB);
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Controls.Add(this.lbDimension);
-            this.groupBox1.Controls.Add(this.pbBuffer);
-            this.groupBox1.Controls.Add(this.btnStreamStop);
-            this.groupBox1.Controls.Add(this.btnStreamCheck);
-            this.groupBox1.Controls.Add(this.lbInfo);
-            this.groupBox1.Controls.Add(this.lblRemaining);
-            this.groupBox1.Controls.Add(this.pbFile);
-            this.groupBox1.Controls.Add(this.lblElapsed);
-            this.groupBox1.Controls.Add(this.lblFileProgress);
-            this.groupBox1.Controls.Add(this.btnStreamStart);
-            this.groupBox1.Controls.Add(this.tbFile);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            this.gBoxStream.Controls.Add(this.lbInfo);
+            this.gBoxStream.Controls.Add(this.pbBuffer);
+            this.gBoxStream.Controls.Add(this.btnStreamStop);
+            this.gBoxStream.Controls.Add(this.btnStreamCheck);
+            this.gBoxStream.Controls.Add(this.lblRemaining);
+            this.gBoxStream.Controls.Add(this.pbFile);
+            this.gBoxStream.Controls.Add(this.lblElapsed);
+            this.gBoxStream.Controls.Add(this.lblFileProgress);
+            this.gBoxStream.Controls.Add(this.btnStreamStart);
+            this.gBoxStream.Controls.Add(this.tbFile);
+            resources.ApplyResources(this.gBoxStream, "gBoxStream");
+            this.gBoxStream.Name = "gBoxStream";
+            this.gBoxStream.TabStop = false;
+            // 
+            // lbInfo
+            // 
+            resources.ApplyResources(this.lbInfo, "lbInfo");
+            this.lbInfo.Name = "lbInfo";
+            // 
+            // pbBuffer
+            // 
+            resources.ApplyResources(this.pbBuffer, "pbBuffer");
+            this.pbBuffer.Name = "pbBuffer";
+            // 
+            // btnStreamStop
+            // 
+            this.btnStreamStop.Image = global::GRBL_Plotter.Properties.Resources.btn_stop;
+            resources.ApplyResources(this.btnStreamStop, "btnStreamStop");
+            this.btnStreamStop.Name = "btnStreamStop";
+            this.toolTip1.SetToolTip(this.btnStreamStop, resources.GetString("btnStreamStop.ToolTip"));
+            this.btnStreamStop.UseVisualStyleBackColor = true;
+            this.btnStreamStop.Click += new System.EventHandler(this.btnStreamStop_Click);
+            // 
+            // btnStreamCheck
+            // 
+            resources.ApplyResources(this.btnStreamCheck, "btnStreamCheck");
+            this.btnStreamCheck.Name = "btnStreamCheck";
+            this.btnStreamCheck.UseVisualStyleBackColor = true;
+            this.btnStreamCheck.Click += new System.EventHandler(this.btnStreamCheck_Click);
+            // 
+            // lblRemaining
+            // 
+            resources.ApplyResources(this.lblRemaining, "lblRemaining");
+            this.lblRemaining.Name = "lblRemaining";
+            // 
+            // pbFile
+            // 
+            resources.ApplyResources(this.pbFile, "pbFile");
+            this.pbFile.Name = "pbFile";
+            // 
+            // lblElapsed
+            // 
+            resources.ApplyResources(this.lblElapsed, "lblElapsed");
+            this.lblElapsed.Name = "lblElapsed";
+            // 
+            // lblFileProgress
+            // 
+            resources.ApplyResources(this.lblFileProgress, "lblFileProgress");
+            this.lblFileProgress.Name = "lblFileProgress";
+            // 
+            // btnStreamStart
+            // 
+            this.btnStreamStart.Image = global::GRBL_Plotter.Properties.Resources.btn_play;
+            resources.ApplyResources(this.btnStreamStart, "btnStreamStart");
+            this.btnStreamStart.Name = "btnStreamStart";
+            this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
+            this.btnStreamStart.UseVisualStyleBackColor = true;
+            this.btnStreamStart.Click += new System.EventHandler(this.btnStreamStart_Click);
+            // 
+            // tbFile
+            // 
+            resources.ApplyResources(this.tbFile, "tbFile");
+            this.tbFile.Name = "tbFile";
+            // 
+            // gBoxDimension
+            // 
+            this.gBoxDimension.Controls.Add(this.btnLimitExceed);
+            this.gBoxDimension.Controls.Add(this.groupBox4);
+            this.gBoxDimension.Controls.Add(this.lbDimension);
+            resources.ApplyResources(this.gBoxDimension, "gBoxDimension");
+            this.gBoxDimension.Name = "gBoxDimension";
+            this.gBoxDimension.TabStop = false;
             // 
             // btnLimitExceed
             // 
@@ -514,148 +598,6 @@ namespace GRBL_Plotter
             this.btnLimitExceed.Name = "btnLimitExceed";
             this.btnLimitExceed.UseVisualStyleBackColor = false;
             this.btnLimitExceed.Click += new System.EventHandler(this.btnLimitExceed_Click);
-            // 
-            // gBOverrideSSGB
-            // 
-            this.gBOverrideSSGB.Controls.Add(this.lblStatusSpeed);
-            this.gBOverrideSSGB.Controls.Add(this.label8);
-            this.gBOverrideSSGB.Controls.Add(this.label10);
-            this.gBOverrideSSGB.Controls.Add(this.lblOverrideSSValue);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS2);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS0);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS1);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS4);
-            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS3);
-            resources.ApplyResources(this.gBOverrideSSGB, "gBOverrideSSGB");
-            this.gBOverrideSSGB.Name = "gBOverrideSSGB";
-            this.gBOverrideSSGB.TabStop = false;
-            // 
-            // lblStatusSpeed
-            // 
-            resources.ApplyResources(this.lblStatusSpeed, "lblStatusSpeed");
-            this.lblStatusSpeed.Name = "lblStatusSpeed";
-            this.toolTip1.SetToolTip(this.lblStatusSpeed, resources.GetString("lblStatusSpeed.ToolTip"));
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // lblOverrideSSValue
-            // 
-            resources.ApplyResources(this.lblOverrideSSValue, "lblOverrideSSValue");
-            this.lblOverrideSSValue.Name = "lblOverrideSSValue";
-            // 
-            // btnOverrideSS2
-            // 
-            resources.ApplyResources(this.btnOverrideSS2, "btnOverrideSS2");
-            this.btnOverrideSS2.Name = "btnOverrideSS2";
-            this.btnOverrideSS2.UseVisualStyleBackColor = true;
-            this.btnOverrideSS2.Click += new System.EventHandler(this.btnOverrideSS2_Click);
-            // 
-            // btnOverrideSS0
-            // 
-            resources.ApplyResources(this.btnOverrideSS0, "btnOverrideSS0");
-            this.btnOverrideSS0.Name = "btnOverrideSS0";
-            this.btnOverrideSS0.UseVisualStyleBackColor = true;
-            this.btnOverrideSS0.Click += new System.EventHandler(this.btnOverrideSS0_Click);
-            // 
-            // btnOverrideSS1
-            // 
-            resources.ApplyResources(this.btnOverrideSS1, "btnOverrideSS1");
-            this.btnOverrideSS1.Name = "btnOverrideSS1";
-            this.btnOverrideSS1.UseVisualStyleBackColor = true;
-            this.btnOverrideSS1.Click += new System.EventHandler(this.btnOverrideSS1_Click);
-            // 
-            // btnOverrideSS4
-            // 
-            resources.ApplyResources(this.btnOverrideSS4, "btnOverrideSS4");
-            this.btnOverrideSS4.Name = "btnOverrideSS4";
-            this.btnOverrideSS4.UseVisualStyleBackColor = true;
-            this.btnOverrideSS4.Click += new System.EventHandler(this.btnOverrideSS4_Click);
-            // 
-            // btnOverrideSS3
-            // 
-            resources.ApplyResources(this.btnOverrideSS3, "btnOverrideSS3");
-            this.btnOverrideSS3.Name = "btnOverrideSS3";
-            this.btnOverrideSS3.UseVisualStyleBackColor = true;
-            this.btnOverrideSS3.Click += new System.EventHandler(this.btnOverrideSS3_Click);
-            // 
-            // gBOverrideFRGB
-            // 
-            this.gBOverrideFRGB.Controls.Add(this.lblStatusFeed);
-            this.gBOverrideFRGB.Controls.Add(this.label5);
-            this.gBOverrideFRGB.Controls.Add(this.label7);
-            this.gBOverrideFRGB.Controls.Add(this.lblOverrideFRValue);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR1);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR2);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR0);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR4);
-            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR3);
-            resources.ApplyResources(this.gBOverrideFRGB, "gBOverrideFRGB");
-            this.gBOverrideFRGB.Name = "gBOverrideFRGB";
-            this.gBOverrideFRGB.TabStop = false;
-            // 
-            // lblStatusFeed
-            // 
-            resources.ApplyResources(this.lblStatusFeed, "lblStatusFeed");
-            this.lblStatusFeed.Name = "lblStatusFeed";
-            this.toolTip1.SetToolTip(this.lblStatusFeed, resources.GetString("lblStatusFeed.ToolTip"));
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // lblOverrideFRValue
-            // 
-            resources.ApplyResources(this.lblOverrideFRValue, "lblOverrideFRValue");
-            this.lblOverrideFRValue.Name = "lblOverrideFRValue";
-            // 
-            // btnOverrideFR1
-            // 
-            resources.ApplyResources(this.btnOverrideFR1, "btnOverrideFR1");
-            this.btnOverrideFR1.Name = "btnOverrideFR1";
-            this.btnOverrideFR1.UseVisualStyleBackColor = true;
-            this.btnOverrideFR1.Click += new System.EventHandler(this.btnOverrideFR1_Click);
-            // 
-            // btnOverrideFR2
-            // 
-            resources.ApplyResources(this.btnOverrideFR2, "btnOverrideFR2");
-            this.btnOverrideFR2.Name = "btnOverrideFR2";
-            this.btnOverrideFR2.UseVisualStyleBackColor = true;
-            this.btnOverrideFR2.Click += new System.EventHandler(this.btnOverrideFR2_Click);
-            // 
-            // btnOverrideFR0
-            // 
-            resources.ApplyResources(this.btnOverrideFR0, "btnOverrideFR0");
-            this.btnOverrideFR0.Name = "btnOverrideFR0";
-            this.btnOverrideFR0.UseVisualStyleBackColor = true;
-            this.btnOverrideFR0.Click += new System.EventHandler(this.btnOverrideFR0_Click);
-            // 
-            // btnOverrideFR4
-            // 
-            resources.ApplyResources(this.btnOverrideFR4, "btnOverrideFR4");
-            this.btnOverrideFR4.Name = "btnOverrideFR4";
-            this.btnOverrideFR4.UseVisualStyleBackColor = true;
-            this.btnOverrideFR4.Click += new System.EventHandler(this.btnOverrideFR4_Click);
-            // 
-            // btnOverrideFR3
-            // 
-            resources.ApplyResources(this.btnOverrideFR3, "btnOverrideFR3");
-            this.btnOverrideFR3.Name = "btnOverrideFR3";
-            this.btnOverrideFR3.UseVisualStyleBackColor = true;
-            this.btnOverrideFR3.Click += new System.EventHandler(this.btnOverrideFR3_Click);
             // 
             // groupBox4
             // 
@@ -768,65 +710,240 @@ namespace GRBL_Plotter
             this.lbDimension.Name = "lbDimension";
             this.lbDimension.ReadOnly = true;
             // 
-            // pbBuffer
+            // gBoxOverride
             // 
-            resources.ApplyResources(this.pbBuffer, "pbBuffer");
-            this.pbBuffer.Name = "pbBuffer";
+            this.gBoxOverride.Controls.Add(this.gBOverrideRGB);
+            this.gBoxOverride.Controls.Add(this.gBOverrideASGB);
+            this.gBoxOverride.Controls.Add(this.gBOverrideFRGB);
+            this.gBoxOverride.Controls.Add(this.gBOverrideSSGB);
+            resources.ApplyResources(this.gBoxOverride, "gBoxOverride");
+            this.gBoxOverride.Name = "gBoxOverride";
+            this.gBoxOverride.TabStop = false;
             // 
-            // btnStreamStop
+            // gBOverrideRGB
             // 
-            this.btnStreamStop.Image = global::GRBL_Plotter.Properties.Resources.btn_stop;
-            resources.ApplyResources(this.btnStreamStop, "btnStreamStop");
-            this.btnStreamStop.Name = "btnStreamStop";
-            this.toolTip1.SetToolTip(this.btnStreamStop, resources.GetString("btnStreamStop.ToolTip"));
-            this.btnStreamStop.UseVisualStyleBackColor = true;
-            this.btnStreamStop.Click += new System.EventHandler(this.btnStreamStop_Click);
+            this.gBOverrideRGB.Controls.Add(this.label12);
+            this.gBOverrideRGB.Controls.Add(this.btnOverrideRapid0);
+            this.gBOverrideRGB.Controls.Add(this.label13);
+            this.gBOverrideRGB.Controls.Add(this.btnOverrideRapid2);
+            this.gBOverrideRGB.Controls.Add(this.lblOverrideRapidValue);
+            this.gBOverrideRGB.Controls.Add(this.btnOverrideRapid1);
+            resources.ApplyResources(this.gBOverrideRGB, "gBOverrideRGB");
+            this.gBOverrideRGB.Name = "gBOverrideRGB";
+            this.gBOverrideRGB.TabStop = false;
             // 
-            // btnStreamCheck
+            // label12
             // 
-            resources.ApplyResources(this.btnStreamCheck, "btnStreamCheck");
-            this.btnStreamCheck.Name = "btnStreamCheck";
-            this.btnStreamCheck.UseVisualStyleBackColor = true;
-            this.btnStreamCheck.Click += new System.EventHandler(this.btnStreamCheck_Click);
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
             // 
-            // lbInfo
+            // btnOverrideRapid0
             // 
-            resources.ApplyResources(this.lbInfo, "lbInfo");
-            this.lbInfo.Name = "lbInfo";
+            resources.ApplyResources(this.btnOverrideRapid0, "btnOverrideRapid0");
+            this.btnOverrideRapid0.Name = "btnOverrideRapid0";
+            this.btnOverrideRapid0.UseVisualStyleBackColor = true;
+            this.btnOverrideRapid0.Click += new System.EventHandler(this.btnOverrideRapid0_Click);
             // 
-            // lblRemaining
+            // label13
             // 
-            resources.ApplyResources(this.lblRemaining, "lblRemaining");
-            this.lblRemaining.Name = "lblRemaining";
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
             // 
-            // pbFile
+            // btnOverrideRapid2
             // 
-            resources.ApplyResources(this.pbFile, "pbFile");
-            this.pbFile.Name = "pbFile";
+            resources.ApplyResources(this.btnOverrideRapid2, "btnOverrideRapid2");
+            this.btnOverrideRapid2.Name = "btnOverrideRapid2";
+            this.btnOverrideRapid2.UseVisualStyleBackColor = true;
+            this.btnOverrideRapid2.Click += new System.EventHandler(this.btnOverrideRapid2_Click);
             // 
-            // lblElapsed
+            // lblOverrideRapidValue
             // 
-            resources.ApplyResources(this.lblElapsed, "lblElapsed");
-            this.lblElapsed.Name = "lblElapsed";
+            resources.ApplyResources(this.lblOverrideRapidValue, "lblOverrideRapidValue");
+            this.lblOverrideRapidValue.Name = "lblOverrideRapidValue";
             // 
-            // lblFileProgress
+            // btnOverrideRapid1
             // 
-            resources.ApplyResources(this.lblFileProgress, "lblFileProgress");
-            this.lblFileProgress.Name = "lblFileProgress";
+            resources.ApplyResources(this.btnOverrideRapid1, "btnOverrideRapid1");
+            this.btnOverrideRapid1.Name = "btnOverrideRapid1";
+            this.btnOverrideRapid1.UseVisualStyleBackColor = true;
+            this.btnOverrideRapid1.Click += new System.EventHandler(this.btnOverrideRapid1_Click);
             // 
-            // btnStreamStart
+            // gBOverrideASGB
             // 
-            this.btnStreamStart.Image = global::GRBL_Plotter.Properties.Resources.btn_play;
-            resources.ApplyResources(this.btnStreamStart, "btnStreamStart");
-            this.btnStreamStart.Name = "btnStreamStart";
-            this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
-            this.btnStreamStart.UseVisualStyleBackColor = true;
-            this.btnStreamStart.Click += new System.EventHandler(this.btnStreamStart_Click);
+            this.gBOverrideASGB.Controls.Add(this.btnOverrideSpindle);
+            this.gBOverrideASGB.Controls.Add(this.btnOverrideMist);
+            this.gBOverrideASGB.Controls.Add(this.btnOverrideFlood);
+            resources.ApplyResources(this.gBOverrideASGB, "gBOverrideASGB");
+            this.gBOverrideASGB.Name = "gBOverrideASGB";
+            this.gBOverrideASGB.TabStop = false;
             // 
-            // tbFile
+            // btnOverrideSpindle
             // 
-            resources.ApplyResources(this.tbFile, "tbFile");
-            this.tbFile.Name = "tbFile";
+            resources.ApplyResources(this.btnOverrideSpindle, "btnOverrideSpindle");
+            this.btnOverrideSpindle.Image = global::GRBL_Plotter.Properties.Resources.led_off;
+            this.btnOverrideSpindle.Name = "btnOverrideSpindle";
+            this.toolTip1.SetToolTip(this.btnOverrideSpindle, resources.GetString("btnOverrideSpindle.ToolTip"));
+            this.btnOverrideSpindle.UseVisualStyleBackColor = true;
+            this.btnOverrideSpindle.Click += new System.EventHandler(this.btnOverrideSpindle_Click);
+            // 
+            // btnOverrideMist
+            // 
+            resources.ApplyResources(this.btnOverrideMist, "btnOverrideMist");
+            this.btnOverrideMist.Image = global::GRBL_Plotter.Properties.Resources.led_off;
+            this.btnOverrideMist.Name = "btnOverrideMist";
+            this.toolTip1.SetToolTip(this.btnOverrideMist, resources.GetString("btnOverrideMist.ToolTip"));
+            this.btnOverrideMist.UseVisualStyleBackColor = true;
+            this.btnOverrideMist.Click += new System.EventHandler(this.btnOverrideMist_Click);
+            // 
+            // btnOverrideFlood
+            // 
+            resources.ApplyResources(this.btnOverrideFlood, "btnOverrideFlood");
+            this.btnOverrideFlood.Image = global::GRBL_Plotter.Properties.Resources.led_off;
+            this.btnOverrideFlood.Name = "btnOverrideFlood";
+            this.btnOverrideFlood.UseVisualStyleBackColor = true;
+            this.btnOverrideFlood.Click += new System.EventHandler(this.btnOverrideFlood_Click);
+            // 
+            // gBOverrideFRGB
+            // 
+            this.gBOverrideFRGB.Controls.Add(this.lblStatusFeed);
+            this.gBOverrideFRGB.Controls.Add(this.label5);
+            this.gBOverrideFRGB.Controls.Add(this.label7);
+            this.gBOverrideFRGB.Controls.Add(this.lblOverrideFRValue);
+            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR1);
+            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR2);
+            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR0);
+            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR4);
+            this.gBOverrideFRGB.Controls.Add(this.btnOverrideFR3);
+            resources.ApplyResources(this.gBOverrideFRGB, "gBOverrideFRGB");
+            this.gBOverrideFRGB.Name = "gBOverrideFRGB";
+            this.gBOverrideFRGB.TabStop = false;
+            // 
+            // lblStatusFeed
+            // 
+            resources.ApplyResources(this.lblStatusFeed, "lblStatusFeed");
+            this.lblStatusFeed.Name = "lblStatusFeed";
+            this.toolTip1.SetToolTip(this.lblStatusFeed, resources.GetString("lblStatusFeed.ToolTip"));
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // lblOverrideFRValue
+            // 
+            resources.ApplyResources(this.lblOverrideFRValue, "lblOverrideFRValue");
+            this.lblOverrideFRValue.Name = "lblOverrideFRValue";
+            // 
+            // btnOverrideFR1
+            // 
+            resources.ApplyResources(this.btnOverrideFR1, "btnOverrideFR1");
+            this.btnOverrideFR1.Name = "btnOverrideFR1";
+            this.btnOverrideFR1.UseVisualStyleBackColor = true;
+            this.btnOverrideFR1.Click += new System.EventHandler(this.btnOverrideFR1_Click);
+            // 
+            // btnOverrideFR2
+            // 
+            resources.ApplyResources(this.btnOverrideFR2, "btnOverrideFR2");
+            this.btnOverrideFR2.Name = "btnOverrideFR2";
+            this.btnOverrideFR2.UseVisualStyleBackColor = true;
+            this.btnOverrideFR2.Click += new System.EventHandler(this.btnOverrideFR2_Click);
+            // 
+            // btnOverrideFR0
+            // 
+            resources.ApplyResources(this.btnOverrideFR0, "btnOverrideFR0");
+            this.btnOverrideFR0.Name = "btnOverrideFR0";
+            this.btnOverrideFR0.UseVisualStyleBackColor = true;
+            this.btnOverrideFR0.Click += new System.EventHandler(this.btnOverrideFR0_Click);
+            // 
+            // btnOverrideFR4
+            // 
+            resources.ApplyResources(this.btnOverrideFR4, "btnOverrideFR4");
+            this.btnOverrideFR4.Name = "btnOverrideFR4";
+            this.btnOverrideFR4.UseVisualStyleBackColor = true;
+            this.btnOverrideFR4.Click += new System.EventHandler(this.btnOverrideFR4_Click);
+            // 
+            // btnOverrideFR3
+            // 
+            resources.ApplyResources(this.btnOverrideFR3, "btnOverrideFR3");
+            this.btnOverrideFR3.Name = "btnOverrideFR3";
+            this.btnOverrideFR3.UseVisualStyleBackColor = true;
+            this.btnOverrideFR3.Click += new System.EventHandler(this.btnOverrideFR3_Click);
+            // 
+            // gBOverrideSSGB
+            // 
+            this.gBOverrideSSGB.Controls.Add(this.lblStatusSpeed);
+            this.gBOverrideSSGB.Controls.Add(this.label8);
+            this.gBOverrideSSGB.Controls.Add(this.label10);
+            this.gBOverrideSSGB.Controls.Add(this.lblOverrideSSValue);
+            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS2);
+            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS0);
+            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS1);
+            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS4);
+            this.gBOverrideSSGB.Controls.Add(this.btnOverrideSS3);
+            resources.ApplyResources(this.gBOverrideSSGB, "gBOverrideSSGB");
+            this.gBOverrideSSGB.Name = "gBOverrideSSGB";
+            this.gBOverrideSSGB.TabStop = false;
+            // 
+            // lblStatusSpeed
+            // 
+            resources.ApplyResources(this.lblStatusSpeed, "lblStatusSpeed");
+            this.lblStatusSpeed.Name = "lblStatusSpeed";
+            this.toolTip1.SetToolTip(this.lblStatusSpeed, resources.GetString("lblStatusSpeed.ToolTip"));
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // lblOverrideSSValue
+            // 
+            resources.ApplyResources(this.lblOverrideSSValue, "lblOverrideSSValue");
+            this.lblOverrideSSValue.Name = "lblOverrideSSValue";
+            // 
+            // btnOverrideSS2
+            // 
+            resources.ApplyResources(this.btnOverrideSS2, "btnOverrideSS2");
+            this.btnOverrideSS2.Name = "btnOverrideSS2";
+            this.btnOverrideSS2.UseVisualStyleBackColor = true;
+            this.btnOverrideSS2.Click += new System.EventHandler(this.btnOverrideSS2_Click);
+            // 
+            // btnOverrideSS0
+            // 
+            resources.ApplyResources(this.btnOverrideSS0, "btnOverrideSS0");
+            this.btnOverrideSS0.Name = "btnOverrideSS0";
+            this.btnOverrideSS0.UseVisualStyleBackColor = true;
+            this.btnOverrideSS0.Click += new System.EventHandler(this.btnOverrideSS0_Click);
+            // 
+            // btnOverrideSS1
+            // 
+            resources.ApplyResources(this.btnOverrideSS1, "btnOverrideSS1");
+            this.btnOverrideSS1.Name = "btnOverrideSS1";
+            this.btnOverrideSS1.UseVisualStyleBackColor = true;
+            this.btnOverrideSS1.Click += new System.EventHandler(this.btnOverrideSS1_Click);
+            // 
+            // btnOverrideSS4
+            // 
+            resources.ApplyResources(this.btnOverrideSS4, "btnOverrideSS4");
+            this.btnOverrideSS4.Name = "btnOverrideSS4";
+            this.btnOverrideSS4.UseVisualStyleBackColor = true;
+            this.btnOverrideSS4.Click += new System.EventHandler(this.btnOverrideSS4_Click);
+            // 
+            // btnOverrideSS3
+            // 
+            resources.ApplyResources(this.btnOverrideSS3, "btnOverrideSS3");
+            this.btnOverrideSS3.Name = "btnOverrideSS3";
+            this.btnOverrideSS3.UseVisualStyleBackColor = true;
+            this.btnOverrideSS3.Click += new System.EventHandler(this.btnOverrideSS3_Click);
             // 
             // tLPRechts
             // 
@@ -1127,9 +1244,18 @@ namespace GRBL_Plotter
             // tableLayoutPanel4
             // 
             resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
-            this.tableLayoutPanel4.Controls.Add(this.btnResume, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnOverrideDoor, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnResume, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.btnFeedHold, 0, 0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            // 
+            // btnOverrideDoor
+            // 
+            resources.ApplyResources(this.btnOverrideDoor, "btnOverrideDoor");
+            this.btnOverrideDoor.Name = "btnOverrideDoor";
+            this.toolTip1.SetToolTip(this.btnOverrideDoor, resources.GetString("btnOverrideDoor.ToolTip"));
+            this.btnOverrideDoor.UseVisualStyleBackColor = true;
+            this.btnOverrideDoor.Click += new System.EventHandler(this.btnOverrideDoor_Click);
             // 
             // btnResume
             // 
@@ -2204,14 +2330,20 @@ namespace GRBL_Plotter
             this.tLPLinks.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             this.cmsCode.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.gBOverrideSSGB.ResumeLayout(false);
-            this.gBOverrideSSGB.PerformLayout();
-            this.gBOverrideFRGB.ResumeLayout(false);
-            this.gBOverrideFRGB.PerformLayout();
+            this.gBoxStream.ResumeLayout(false);
+            this.gBoxStream.PerformLayout();
+            this.gBoxDimension.ResumeLayout(false);
+            this.gBoxDimension.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.gBoxOverride.ResumeLayout(false);
+            this.gBOverrideRGB.ResumeLayout(false);
+            this.gBOverrideRGB.PerformLayout();
+            this.gBOverrideASGB.ResumeLayout(false);
+            this.gBOverrideFRGB.ResumeLayout(false);
+            this.gBOverrideFRGB.PerformLayout();
+            this.gBOverrideSSGB.ResumeLayout(false);
+            this.gBOverrideSSGB.PerformLayout();
             this.tLPRechts.ResumeLayout(false);
             this.tLPRechtsUnten.ResumeLayout(false);
             this.tLPRechtsUnten.PerformLayout();
@@ -2252,7 +2384,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label_wz;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.Timer MainTimer;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gBoxStream;
         private System.Windows.Forms.ProgressBar pbFile;
         private System.Windows.Forms.Label lblElapsed;
         private System.Windows.Forms.Label lblFileProgress;
@@ -2483,6 +2615,20 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
         private System.Windows.Forms.ToolStripMenuItem convertZToSspindleSpeedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rotate180ToolStripMenuItem;
+        private System.Windows.Forms.GroupBox gBoxDimension;
+        private System.Windows.Forms.GroupBox gBoxOverride;
+        private System.Windows.Forms.Button btnOverrideSpindle;
+        private System.Windows.Forms.Button btnOverrideMist;
+        private System.Windows.Forms.Button btnOverrideFlood;
+        private System.Windows.Forms.GroupBox gBOverrideRGB;
+        private System.Windows.Forms.GroupBox gBOverrideASGB;
+        private System.Windows.Forms.Button btnOverrideDoor;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnOverrideRapid0;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnOverrideRapid2;
+        private System.Windows.Forms.Label lblOverrideRapidValue;
+        private System.Windows.Forms.Button btnOverrideRapid1;
     }
 }
 

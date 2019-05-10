@@ -803,6 +803,11 @@ namespace GRBL_Plotter
                 toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
                 splitContainer1_SplitterMoved(sender,null);
 
+                if (Properties.Settings.Default.importGCSDirM3)
+                    cBSpindle.Text = "Spindle CW";
+                else
+                    cBSpindle.Text = "Spindle CCW";
+
                 int[] interval = new int[] { 500, 250, 200, 125, 100 };
                 int index = Properties.Settings.Default.grblPollIntervalIndex;
                 if ((index >= 0) && (index < 5))
@@ -885,10 +890,22 @@ namespace GRBL_Plotter
             btnStreamStop.Enabled = isConnected; // & isFileLoaded;
             btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
 
-            btnJogStop.Visible = !_serial_form.isGrblVers0;
+            btnJogStop.Visible = !grbl.isVersion_0;
             btnJogStop.Enabled = isConnected & !isStreaming | allowControl;
-            gBOverrideFRGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
-            gBOverrideSSGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
+            //gBOverrideFRGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
+           // gBOverrideSSGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
+
+            gBoxOverride.Enabled = !grbl.isVersion_0 & isConnected;// & isStreaming | allowControl;
+            if (!grbl.isVersion_0)
+            {   tableLayoutPanel4.RowStyles[0].Height = 30f;
+                tableLayoutPanel4.RowStyles[1].Height = 30f;
+                tableLayoutPanel4.RowStyles[2].Height = 40f;
+            }
+            else
+            {   tableLayoutPanel4.RowStyles[0].Height = 40f;
+                tableLayoutPanel4.RowStyles[1].Height = 0f;
+                tableLayoutPanel4.RowStyles[2].Height = 60f;
+            }
         }
 
         #region HotKeys
@@ -972,9 +989,9 @@ namespace GRBL_Plotter
                     }
                 }
                 else
-                { if (!_serial_form.isGrblVers0 && cBSendJogStop.Checked) sendRealtimeCommand(133); return true; }
+                { if (!grbl.isVersion_0 && cBSendJogStop.Checked) sendRealtimeCommand(133); return true; }
 
-                if (action.Contains("Stop") && keyDown && !_serial_form.isGrblVers0) { sendRealtimeCommand(133); return true; }
+                if (action.Contains("Stop") && keyDown && !grbl.isVersion_0) { sendRealtimeCommand(133); return true; }
 
                 return false;
             }

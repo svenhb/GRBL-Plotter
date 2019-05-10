@@ -37,6 +37,7 @@
  *  2019-03-05  Add SplitContainer for Editor, resize Joystick controls
  *  2019-03-17  Add custom buttons 13-16, save size of form
  *  2019-04-23  use joyAStep in gamePadTimer_Tick and gamePadGCode line 1360, 1490
+ *  2019-05-10  extend override features
  */
 
 //#define debuginfo
@@ -179,6 +180,10 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.useSerialDIY)
             { DIYControlopen(sender, e); }
 
+            this.gBoxOverride.Click += gBoxOverride_Click;
+            gBoxOverride.Height = 15;
+            gBoxOverrideBig = false;
+
             lbDimension.Select(0, 0);
             loadSettings(sender, e);
             loadHotkeys();
@@ -240,8 +245,8 @@ namespace GRBL_Plotter
 
                 string[] value = e.StatMsg.Ov.Split(',');
                 if (value.Length > 2)
-                {
-                    lblOverrideFRValue.Text = value[0];
+                { lblOverrideFRValue.Text = value[0];
+                    lblOverrideRapidValue.Text = value[1];
                     lblOverrideSSValue.Text = value[2];
                 }
             }
@@ -251,13 +256,41 @@ namespace GRBL_Plotter
                     _streaming_form2.showActualValues(e.StatMsg.FS);
                 string[] value = e.StatMsg.FS.Split(',');
                 if (value.Length > 1)
-                {   lblStatusFeed.Text = value[0];// + " mm/min";
+                { lblStatusFeed.Text = value[0];// + " mm/min";
                     lblStatusSpeed.Text = value[1];// + " RPM";
                 }
                 else
-                {   lblStatusFeed.Text = value[0];// + " mm/min";
+                { lblStatusFeed.Text = value[0];// + " mm/min";
                     lblStatusSpeed.Text = "-";// + " RPM";
                 }
+            }
+
+            if (true)//e.StatMsg.A.Length > 0)
+            {
+                cBSpindle.CheckedChanged -= cBSpindle_CheckedChanged;
+                cBCoolant.CheckedChanged -= cBCoolant_CheckedChanged;
+
+                if (e.StatMsg.A.Contains("S"))
+                {   btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CW
+                    btnOverrideSpindle.Text = "Spindle CW";
+                    cBSpindle.Checked = true;
+                }
+                if (e.StatMsg.A.Contains("C"))
+                {   btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CCW
+                    btnOverrideSpindle.Text = "Spindle CCW";
+                    cBSpindle.Checked = true;
+                }
+                if (!e.StatMsg.A.Contains("S") && !e.StatMsg.A.Contains("C"))
+                    { btnOverrideSpindle.Image = Properties.Resources.led_off; cBSpindle.Checked = false; }  // Spindle off
+
+                if (e.StatMsg.A.Contains("F")) { btnOverrideFlood.Image = Properties.Resources.led_on; cBCoolant.Checked = true; }   // Flood on
+                else { btnOverrideFlood.Image = Properties.Resources.led_off; cBCoolant.Checked = false; }
+
+                if (e.StatMsg.A.Contains("M")) { btnOverrideMist.Image = Properties.Resources.led_on; } // Mist on
+                else { btnOverrideMist.Image = Properties.Resources.led_off; }
+
+                cBCoolant.CheckedChanged += cBCoolant_CheckedChanged;
+                cBSpindle.CheckedChanged += cBSpindle_CheckedChanged;
             }
             if (e.Status == grblState.probe)
             {
@@ -408,6 +441,11 @@ namespace GRBL_Plotter
                     case grblState.check:
                         break;
                     case grblState.door:
+                        btnResume.BackColor = Color.Yellow;
+                        lastInfoText = lbInfo.Text;
+                        lbInfo.Text = "Press 'Resume' to proceed";
+                        lbInfo.BackColor = Color.Yellow;
+                        if (signalResume == 0) { signalResume = 1; }
                         break;
                     case grblState.probe:
                         lastInfoText = lbInfo.Text;
@@ -435,13 +473,14 @@ namespace GRBL_Plotter
                 if (_streaming_form != null)
                     _streaming_form.show_value_SS(actualSS);
 
-                cBSpindle.CheckedChanged -= cBSpindle_CheckedChanged;
-                cBSpindle.Checked = (cmd.spindle <= 4) ? true : false;  // M3, M4 start, M5 stop
-                cBSpindle.CheckedChanged += cBSpindle_CheckedChanged;
-                cBCoolant.CheckedChanged -= cBSpindle_CheckedChanged;
-                cBCoolant.Checked = (cmd.coolant <= 8) ? true : false;  // M7, M8 on   M9 coolant off
-                cBCoolant.CheckedChanged += cBSpindle_CheckedChanged;
-
+                if (grbl.isVersion_0)
+                {   cBSpindle.CheckedChanged -= cBSpindle_CheckedChanged;
+                    cBSpindle.Checked = (cmd.spindle <= 4) ? true : false;  // M3, M4 start, M5 stop
+                    cBSpindle.CheckedChanged += cBSpindle_CheckedChanged;
+                    cBCoolant.CheckedChanged -= cBCoolant_CheckedChanged;
+                    cBCoolant.Checked = (cmd.coolant <= 8) ? true : false;  // M7, M8 on   M9 coolant off
+                    cBCoolant.CheckedChanged += cBCoolant_CheckedChanged;
+                }
                 if (cmd.toolchange)
                     lblTool.Text = cmd.tool.ToString();
 
@@ -463,7 +502,7 @@ namespace GRBL_Plotter
         // send command via serial form
         private void sendCommand(string txt, bool jogging = false)
         {
-            if ((jogging) && (_serial_form.isGrblVers0 == false))
+            if ((jogging) && (grbl.isVersion_0 == false))
                 txt = "$J=" + txt;
             if (!_serial_form.requestSend(txt))     // check if COM is still open
                 updateControls();
@@ -497,7 +536,7 @@ namespace GRBL_Plotter
         #region MAIN-MENU Machine control
         private void controlStreamingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_serial_form.isGrblVers0)
+            if (grbl.isVersion_0)
             {
                 if (_streaming_form2 != null)
                     _streaming_form2.Visible = false;
@@ -706,7 +745,7 @@ namespace GRBL_Plotter
 
         private void showLaserMode()
         {
-            if (!_serial_form.isGrblVers0 && _serial_form.isLasermode)
+            if (!grbl.isVersion_0 && _serial_form.isLasermode)
             {
                 lbInfo.Text = "Laser Mode active $32=1";
                 lbInfo.BackColor = Color.Fuchsia;
@@ -887,6 +926,11 @@ namespace GRBL_Plotter
                         isStreamingPause = true;
                     }
 
+                    if (!grbl.isVersion_0)
+                    {   gBoxOverride.Height = 175;
+                        gBoxOverrideBig = true;
+                    }
+
                     updateControls();
                     timeInit = DateTime.UtcNow;
                     elapsed = TimeSpan.Zero;
@@ -958,7 +1002,7 @@ namespace GRBL_Plotter
             _serial_form.stopStreaming();
             if (isStreaming || isStreamingCheck)
             {
-                lbInfo.Text = " STOP streaming (" + (fCTBCodeClickedLineNow + 1).ToString() + ")";
+                lbInfo.Text = " STOP streaming ( Line " + (fCTBCodeClickedLineNow + 1).ToString() + " )";
                 lbInfo.BackColor = Color.Fuchsia;
             }
             isStreaming = false;
@@ -1197,16 +1241,16 @@ namespace GRBL_Plotter
             }
         }
         private void virtualJoystickXY_MouseUp(object sender, MouseEventArgs e)
-        { if (!_serial_form.isGrblVers0 && cBSendJogStop.Checked) sendRealtimeCommand(133); }
+        { if (!grbl.isVersion_0 && cBSendJogStop.Checked) sendRealtimeCommand(133); }
         private void btnJogStop_Click(object sender, EventArgs e)
-        { if (!_serial_form.isGrblVers0) sendRealtimeCommand(133); }    //0x85
+        { if (!grbl.isVersion_0) sendRealtimeCommand(133); }    //0x85
 
         private void virtualJoystickXY_Enter(object sender, EventArgs e)
-        {   if (_serial_form.isGrblVers0) sendCommand("G91G1F100");
+        {   if (grbl.isVersion_0) sendCommand("G91G1F100");
             gB_Jogging.BackColor=Color.LightGreen;
         }
         private void virtualJoystickXY_Leave(object sender, EventArgs e)
-        {   if (_serial_form.isGrblVers0) sendCommand("G90");
+        {   if (grbl.isVersion_0) sendCommand("G90");
             gB_Jogging.BackColor = SystemColors.Control;
             virtualJoystickXY.JoystickRasterMark = 0;
             virtualJoystickZ.JoystickRasterMark = 0;
@@ -1261,8 +1305,14 @@ namespace GRBL_Plotter
         // Spindle and coolant
         private void cBSpindle_CheckedChanged(object sender, EventArgs e)
         {
+            string m = "M3";
+            if (Properties.Settings.Default.importGCSDirM3)
+                cBSpindle.Text = "Spindle CW";
+            else
+            {   cBSpindle.Text = "Spindle CCW"; m = "M4"; }
+
             if (cBSpindle.Checked)
-            { sendCommand("M3 S" + tBSpeed.Text); }
+            { sendCommand(m + " S" + tBSpeed.Text); }
             else
             { sendCommand("M5"); }
         }
@@ -1365,6 +1415,13 @@ namespace GRBL_Plotter
         private void btnOverrideFR3_Click(object sender, EventArgs e)
         { sendRealtimeCommand(148); }     // 0x94 : Decrease 1%   
 
+        private void btnOverrideRapid0_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(149); }     // 0x95 : Set to 100% full rapid rate.
+        private void btnOverrideRapid1_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(150); }     // 0x96 : Set to 50% of rapid rate.
+        private void btnOverrideRapid2_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(151); }     // 0x97 : Set to 25% of rapid rate.
+
         private void btnOverrideSS0_Click(object sender, EventArgs e)
         { sendRealtimeCommand(153); }     // 0x99 : Set 100% of programmed spindle speed    
         private void btnOverrideSS1_Click(object sender, EventArgs e)
@@ -1375,6 +1432,17 @@ namespace GRBL_Plotter
         { sendRealtimeCommand(156); }     // 0x9C : Increase 1%   
         private void btnOverrideSS3_Click(object sender, EventArgs e)
         { sendRealtimeCommand(157); }     // 0x9D : Decrease 1%   
+
+        private void btnOverrideSpindle_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(158); }     // 0x9E : Toggle Spindle Stop
+        private void btnOverrideFlood_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(160); }     // 0xA0 : Toggle Flood Coolant  
+        private void btnOverrideMist_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(161); }     // 0xA1 : Toggle Mist Coolant 
+
+        private void btnOverrideDoor_Click(object sender, EventArgs e)
+        { sendRealtimeCommand(132); }     // 0x84 : Safety Door  
+
 
         private void processCommands(string command)
         {   if (command.Length <= 1)
@@ -1694,12 +1762,25 @@ namespace GRBL_Plotter
             pbBuffer.Left = 219 + add;
             gBOverrideFRGB.Width = 284 + add;
             gBOverrideSSGB.Width = 284 + add;
+            gBOverrideASGB.Width = 284 + add;
+            gBOverrideRGB.Width = 284 + add;
 
             lbInfo.Width = 280 + add;
             lbDimension.Width = 130 + add;
             btnLimitExceed.Left = 112 + add;
             groupBox4.Left = 133 + add;
         }
+
+        private bool gBoxOverrideBig = false;
+        private void gBoxOverride_Click(object sender, EventArgs e)
+        {
+            if (gBoxOverrideBig)
+                gBoxOverride.Height = 15;
+            else
+                gBoxOverride.Height = 175;
+            gBoxOverrideBig = !gBoxOverrideBig;
+        }
+
     }
 }
 
