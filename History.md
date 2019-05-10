@@ -2,6 +2,8 @@
 Needs to be read from the bottom up ;-)  
 
 ### 2019-02 to 04 version 1.2.4.x:  
+* 1.2.4.8 Extend override buttons in GUI for grbl version 1.1
+* 1.2.4.8 Bug fix drag tool compensation: correct start point of first line in object
 * 1.2.4.7 Optional sending of code when pausing or stopping gcode-streaming
 * 1.2.4.7 Selectable polling frequency for digital read out
 * 1.2.4.7 Use 255 byte buffer for Mega2560
