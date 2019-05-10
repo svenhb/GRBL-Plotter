@@ -6,7 +6,8 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
    
    
 ### New in version 1.2.4.x:  
-* For 2D view: mapping rotary axis to X or Y axis
+* extend override buttons in GUI for grbl version 1.1
+* bug fix drag tool compensation: correct start point of first line in object* For 2D view: mapping rotary axis to X or Y axis
 * Resizeable Joystick control (Setup - Joystick)
 * Resizable editor
 * Ruler scale also for negative dimension
@@ -28,7 +29,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.2.4.7](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-04-28    
+#### [GRBL-Plotter Vers. 1.2.4.8](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-05-10    
 
 ### Requirements for compiling
 * VisualStudio 2015 
