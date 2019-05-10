@@ -703,6 +703,10 @@ namespace GRBL_Plotter
             { isGrblVers0 = true; isLasermode = false; }
             if (rxString.ToLower().IndexOf("grbl 1") >= 0)
             { isGrblVers0 = false; addToLog("* Version 1.x\r\n"); }
+
+            if (iamSerial == 1)
+                grbl.isVersion_0 = isGrblVers0;
+
             grblVers = rxString.Substring(0, rxString.IndexOf('['));
             if (lastError.Length > 2)
             {   addToLog("* last error: " + lastError);
@@ -815,7 +819,7 @@ namespace GRBL_Plotter
             }
             else
             {
-                machineState.Clear(); //lblSrPn.Text = ""; //lblSrA.Text = "";
+                //machineState.Clear(); //lblSrPn.Text = ""; //lblSrA.Text = "";
                 if (dataField.Length > 2)
                 {
                     for (int i = 2; i < dataField.Length; i++)
@@ -836,9 +840,14 @@ namespace GRBL_Plotter
                         if (dataField[i].IndexOf("Pn:") >= 0)            // Input Pin State - will not appear if No input pins are detected as triggered.
                         { machineState.Pn=lblSrPn.Text = data[1]; continue; }
                         if (dataField[i].IndexOf("Ov:") >= 0)            // Override Values - This data field will not appear if It is disabled in the config.h file
-                        { machineState.Ov=lblSrOv.Text = data[1]; lblSrPn.Text = ""; lblSrA.Text = ""; continue; }
-                        if (dataField[i].IndexOf("A:") >= 0)             // Accessory State
-                        { machineState.A=lblSrA.Text = data[1]; continue; }
+                        {   machineState.Ov=lblSrOv.Text = data[1]; lblSrPn.Text = "";
+
+                            if (dataField[dataField.Length-1].IndexOf("A:") >= 0)             // Accessory State
+                            {   machineState.A = lblSrA.Text = dataField[dataField.Length- 1].Split(':')[1]; }   
+                            else
+                            {   machineState.A = lblSrA.Text = ""; }
+                            continue;
+                        }
                     }
                 }
                 if (dataField[1].IndexOf("MPos") >= 0)

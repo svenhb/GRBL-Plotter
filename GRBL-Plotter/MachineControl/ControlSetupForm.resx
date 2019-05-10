@@ -15063,6 +15063,9 @@ Setup window must be closed to use GamePad in GUI.
         //8=
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>
   </data>

@@ -20,6 +20,7 @@
  * 2016-12-31   Add GRBL 1.1 information
  * 2018-04-07   reorder
  * 2018-01-01   edit parseStatus to identify also Hold:0
+ * 2019-05-10   move _serial_form.isGrblVers0 to here grbl.isVersion_0
  * https://github.com/fra589/grbl-Mega-5X
 */
 
@@ -37,12 +38,14 @@ namespace GRBL_Plotter
         public static bool posChanged = true;
         public static bool wcoChanged = true;
 
+        public static bool isVersion_0 = true;  // note if grbl version <=0.9 or >=1.1
+
         public static int axisCount = 0;
-        public static bool axisA = false;
-        public static bool axisB = false;
-        public static bool axisC = false;
-        public static bool axisUpdate = false;
-        public static int RX_BUFFER_SIZE = 127;
+        public static bool axisA = false;       // axis A available?
+        public static bool axisB = false;       // axis B available?
+        public static bool axisC = false;       // axis C available?
+        public static bool axisUpdate = false;  // update of GUI needed
+        public static int RX_BUFFER_SIZE = 127; // grbl buffer size inside Arduino
         public static int pollInterval = 200;
 
         public static bool grblSimulate = false;
@@ -322,13 +325,13 @@ namespace GRBL_Plotter
                 case 144:
                     return "Set 100% of programmed feed rate.";
                 case 145:
-                    return "Increase 10%";
+                    return "Feed Rate increase 10%";
                 case 146:
-                    return "Decrease 10%";
+                    return "Feed Rate decrease 10%";
                 case 147:
-                    return "Increase 1%";
+                    return "Feed Rate increase 1%";
                 case 148:
-                    return "Decrease 1%";
+                    return "Feed Rate decrease 1%";
                 case 149:
                     return "Set to 100% full rapid rate.";
                 case 150:
@@ -338,13 +341,13 @@ namespace GRBL_Plotter
                 case 153:
                     return "Set 100% of programmed spindle speed";
                 case 154:
-                    return "Increase 10%";
+                    return "Spindle Speed increase 10%";
                 case 155:
-                    return "Decrease 10%";
+                    return "Spindle Speed decrease 10%";
                 case 156:
-                    return "Increase 1%";
+                    return "Spindle Speed increase 1%";
                 case 157:
-                    return "Decrease 1%";
+                    return "Spindle Speed decrease 1%";
                 case 158:
                     return "Toggle Spindle Stop";
                 case 160:
