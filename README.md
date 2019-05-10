@@ -7,7 +7,8 @@ If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](htt
    
 ### New in version 1.2.4.x:  
 * extend override buttons in GUI for grbl version 1.1
-* bug fix drag tool compensation: correct start point of first line in object* For 2D view: mapping rotary axis to X or Y axis
+* bug fix drag tool compensation: correct start point of first line in object
+* For 2D view: mapping rotary axis to X or Y axis
 * Resizeable Joystick control (Setup - Joystick)
 * Resizable editor
 * Ruler scale also for negative dimension
