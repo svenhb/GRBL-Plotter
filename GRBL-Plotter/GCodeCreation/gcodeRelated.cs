@@ -19,6 +19,7 @@
 /*
 * 2018-07 add line segmentation and subroutine insertion
 * 2018-08 add drag tool compensation
+* 2019-05 line 398 correct start pos. for gcodeDragCompensation if lastMovewasG0
 */
 
 using System;
@@ -106,7 +107,8 @@ namespace GRBL_Plotter
             gcodeComments = Properties.Settings.Default.importGCAddComments;
             gcodeSpindleToggle = Properties.Settings.Default.importGCSpindleToggle;
             gcodeSpindleSpeed = (float)Properties.Settings.Default.importGCSSpeed;
-            if (Properties.Settings.Default.importGCSpindleCmd)
+
+            if (Properties.Settings.Default.importGCSDirM3) //Properties.Settings.Default.importGCSpindleCmd) 
                 gcodeSpindleCmd = "3";
             else
                 gcodeSpindleCmd = "4";
@@ -269,52 +271,55 @@ namespace GRBL_Plotter
 
         public static void PenDown(StringBuilder gcodeString, string cmto = "")
         {
-  //          Comment(gcodeString, "<PD " + (++pathCount) + ">");
+            //          Comment(gcodeString, "<PD " + (++pathCount) + ">");
+            StringBuilder tmpString = new StringBuilder(); ;
             string cmt = cmto;
             if (Properties.Settings.Default.importGCTTZFeed) { cmt += " Z feed from tool table"; }
             if (Properties.Settings.Default.importGCTTZDeepth) { cmt += " Z down from tool table"; }
             drag1stMove = true;
             origFinalX = lastx;
             origFinalY = lasty;
-            if (gcodeComments) { gcodeString.Append("\r\n"); }
+            if (gcodeComments) { tmpString.Append("\r\n"); }
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
             if (cmt.Length >0) { cmt = string.Format("({0})", cmt); }
 
             applyXYFeedRate = true;     // apply XY Feed Rate after each PenDown command (not just after Z-axis)
 
             if (gcodeSpindleToggle)
-            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Spindle-On");
-                SpindleOn(gcodeString, cmto);
+            {   if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Spindle-On");
+                SpindleOn(tmpString, cmto);
             }
             if (gcodeZApply)
-            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Z-Axis");
+            {   if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Z-Axis");
                 float z_relative = gcodeZDown - lastz;
                 if (gcodeRelative)
-                    gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(z_relative), gcodeZFeed, cmt);
+                    tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(z_relative), gcodeZFeed, cmt);
                 else
-                    gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZDown), gcodeZFeed, cmt);
+                    tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZDown), gcodeZFeed, cmt);
 
                 gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
                 gcodeLines++; lastg = 1; lastf = gcodeZFeed;
                 lastz = gcodeZDown;
             }
             if (gcodePWMEnable)
-            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Servo control");
-                gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMDown, cmt);
+            {   if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Servo control");
+                tmpString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMDown, cmt);
                 if (gcodePWMDlyDown>0)
-                    gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyDown));
+                    tmpString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyDown));
                 gcodeTime += gcodePWMDlyDown;
                 gcodeLines++;
             }
             if (gcodeIndividualTool)
-            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Individual Cmd");
+            {   if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Individual Cmd");
                 string[] commands = gcodeIndividualDown.Split(';');
                 foreach (string cmd in commands)
-                { gcodeString.AppendFormat("{0}\r\n", cmd.Trim()); }
+                { tmpString.AppendFormat("{0}\r\n", cmd.Trim()); }
             }
-            if (gcodeComments) gcodeString.Append("\r\n");
+            if (gcodeComments) tmpString.Append("\r\n");
 
             gcodeDownUp++;
+            lastCharCount = tmpString.Length;
+            gcodeString.Append(tmpString);
         }
 
         public static void PenUp(StringBuilder gcodeString, string cmto = "")
@@ -384,13 +389,28 @@ namespace GRBL_Plotter
 
         private static float remainingX = 10, remainingY = 10, remainingC = 10;
         private static float segFinalX = 0, segFinalY = 0, segLastFinalX = 0, segLastFinalY = 0;
+        private static int lastCharCount = 0;
         private static void MoveSplit(StringBuilder gcodeString, int gnr, float finalx, float finaly, float? z, bool applyFeed, string cmt)
         {
             segLastFinalX = segFinalX; segLastFinalY = segFinalY;
             segFinalX = finalx; segFinalY = finaly;
 
-            if (gcodeDragCompensation)  // start move with an arc and end with extended move
-            {   Point tmp = dragToolCompensation(gcodeString, finalx, finaly);
+            if (gcodeDragCompensation)  // start next move with an arc and end with extended move
+            {   if (lastMovewasG0)      // start this line earlier - fix coordinates
+                {   float dx = finalx - lastx;       // distance from old point
+                    float dy = finaly - lasty;       // lastXY is global
+                    float moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
+                    if (moveLength > 0)
+                    {
+                        float correctedStartx = lastx - gcodeDragRadius * dx / moveLength;    // calc corrected start pos
+                        float correctedStarty = lasty - gcodeDragRadius * dy / moveLength;
+                        StringBuilder tmpString = new StringBuilder(); ;
+                        Move(tmpString, 0, correctedStartx, correctedStarty, z, applyXYFeedRate, "correct start pos.");
+                        gcodeString.Insert(gcodeString.Length - lastCharCount,tmpString);
+                    }
+                } 
+
+                Point tmp = dragToolCompensation(gcodeString, finalx, finaly);
                 finalx = (float)tmp.X; finaly = (float)tmp.Y;   // get extended final position
             }
 

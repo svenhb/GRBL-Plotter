@@ -25,6 +25,7 @@
  *      Transform: rotation, scaling
  *      
  *  2019-02-06 bug fix block-offset for LWPolyline and Text
+ *  2019-05-10 reactivate else in line 298 to avoid double coordinates
  */
 
 using System;
@@ -294,8 +295,8 @@ namespace GRBL_Plotter //DXFImporter
                         gcodeStartPath(x, y, "Start LWPolyLine");
                         isReduceOk = true;
                     }
- //                   else
-                    {
+                    else
+                    {           // else reactivated 2019-05-10 - gcodeDragCompensation
                         if (!roundcorner)
                             gcodeMoveTo(x, y, "");
                         if (bulge != 0)
