@@ -22,7 +22,7 @@
  * Load setups
  * 2019-03-17  Add custom buttons 13-16, save dialog add *.cnc, *.gcode
  * 2019-04-23  Add virtualJoystickA_lastIndex line 990
- *
+ * 2019-05-12  tBURL - disable 2nd event in Line 272
  */
 
 //#define debuginfo
@@ -232,17 +232,17 @@ namespace GRBL_Plotter
         {
             var parts = tBURL.Text.Split('.');
             string ext = parts[parts.Length - 1].ToLower();   // get extension
+         //   String ext = Path.GetExtension(fileName).ToLower();
+            MessageBox.Show("-" + ext + "-");
             if (ext.IndexOf("svg") >= 0)
             {
                 startConvertSVG(tBURL.Text);
                 setLastLoadedFile("Data from URL",tBURL.Text);
-                tBURL.Text = "";
             }
             else if (ext.IndexOf("dxf") >= 0)
             {
                 startConvertDXF(tBURL.Text);
                 setLastLoadedFile("Data from URL", tBURL.Text);
-                tBURL.Text = "";
             }
             else if (extensionPicture.Contains(ext)) //((ext.ToLower().IndexOf("bmp") >= 0) || (ext.ToLower().IndexOf("gif") >= 0) || (ext.ToLower().IndexOf("png") >= 0) || (ext.ToLower().IndexOf("jpg") >= 0))
             {
@@ -260,7 +260,6 @@ namespace GRBL_Plotter
                 _image_form.WindowState = FormWindowState.Normal;
                 _image_form.loadURL(tBURL.Text);
                 setLastLoadedFile("Data from URL",tBURL.Text);
-                tBURL.Text = "";
             }
             else
             {
@@ -270,6 +269,9 @@ namespace GRBL_Plotter
                     startConvertSVG(tBURL.Text);
                 }
             }
+            tBURL.TextChanged -= tBURL_TextChanged;     // avoid further event
+            tBURL.Text = "";
+            tBURL.TextChanged += tBURL_TextChanged;
         }
         private void reloadFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
