@@ -33,6 +33,7 @@
                 Transform problem: overwrite old matrix[index] line 467: end if here
     2019-01-23  Change order line 165
     2019-01-28  Add DotOnly for Basic shapes
+    2019-05-12  change possible transformation depth from 10 to 100 - line 95
 */
 
 using System;
@@ -91,7 +92,7 @@ namespace GRBL_Plotter
 
         private static bool svgConvertToMM = true;
         private static float gcodeScale = 1;                    // finally scale with this factor if svgScaleApply and svgMaxSize
-        private static Matrix[] matrixGroup = new Matrix[10];   // store SVG-Group transformation matrixes
+        private static Matrix[] matrixGroup = new Matrix[100];   // store SVG-Group transformation matrixes
         private static Matrix matrixElement = new Matrix();     // store finally applied matrix
         private static Matrix oldMatrixElement = new Matrix();     // store finally applied matrix
 
