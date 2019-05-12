@@ -392,6 +392,10 @@ namespace GRBL_Plotter
         private static int lastCharCount = 0;
         private static void MoveSplit(StringBuilder gcodeString, int gnr, float finalx, float finaly, float? z, bool applyFeed, string cmt)
         {
+            if (lastMovewasG0)
+            {   if ((finalx == lastx) && (finaly == lasty)) // discard G1 without any move
+                { return; }
+            }
             segLastFinalX = segFinalX; segLastFinalY = segFinalY;
             segFinalX = finalx; segFinalY = finaly;
 
@@ -682,6 +686,24 @@ namespace GRBL_Plotter
             float x_relative = x - lastx;
             float y_relative = y - lasty;
 
+            if (gcodeDragCompensation && lastMovewasG0)  // start this line earlier - fix coordinates
+            {
+                float moveLength = (float)Math.Sqrt(i * i + j * j);
+                if (moveLength > 0)
+                {
+                    float tmpx = lastx, tmpy = lasty;
+                    float correctedStartx = lastx - gcodeDragRadius * j / moveLength;    // switch i/j for 90°
+                    float correctedStarty = lasty - gcodeDragRadius * i / moveLength;
+                    if (gnr==3)
+                        correctedStarty = lasty + gcodeDragRadius * i / moveLength;
+                    StringBuilder tmpString = new StringBuilder(); ;
+                    Move(tmpString, 0, correctedStartx, correctedStarty, applyXYFeedRate, "correct start pos.");
+                    gcodeString.Insert(gcodeString.Length - lastCharCount, tmpString);  // before pen down
+                    lastx = tmpx; lasty = tmpy;
+                    Move(gcodeString, 1, lastx, lasty, applyXYFeedRate, "correct start pos.");  // move to orig pos
+                }
+            }
+
             if (applyFeed)
             {   feed = string.Format("F{0}", gcodeXYFeed);
                 applyXYFeedRate = false;                        // don't set feed next time
@@ -701,7 +723,10 @@ namespace GRBL_Plotter
             }
             gcodeTime += fdistance(lastx, lasty, x, y) / gcodeXYFeed;
             lastx = x; lasty = y; lastf = gcodeXYFeed;
+            origFinalX = origLastX = lastx;
+            origFinalY = origLastY = lasty;
             gcodeLines++;
+            lastMovewasG0 = false;
         }
 
         public static void splitArc(StringBuilder gcodeString, int gnr, float x1, float y1, float x2, float y2, float i, float j, bool applyFeed, string cmt = "")

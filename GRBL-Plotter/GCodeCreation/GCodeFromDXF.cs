@@ -295,9 +295,9 @@ namespace GRBL_Plotter //DXFImporter
                         gcodeStartPath(x, y, "Start LWPolyLine");
                         isReduceOk = true;
                     }
-                    else
-                    {           // else reactivated 2019-05-10 - gcodeDragCompensation
-                        if (!roundcorner)
+     //               else
+                    {   
+                        if ((!roundcorner))
                             gcodeMoveTo(x, y, "");
                         if (bulge != 0)
                         {
