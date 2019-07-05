@@ -124,6 +124,9 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Zeichenhöhe</value>
   </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>Höhe der Buchstaben</value>
+  </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Erzeuge GCode</value>
   </data>
@@ -133,11 +136,20 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Zeilenabstand</value>
   </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>Abstand zwischen Zeilen</value>
+  </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 13</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Zeichenabstand</value>
+  </data>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value>Zusätzlicher Abstand zwischen Buchstaben</value>
+  </data>
+  <data name="cBConnectLetter.ToolTip" xml:space="preserve">
+    <value>Verbinde letzten Punkt eines Buchstabens mit ersten Punkt des nächsten Buchstabens, innerhalb eines Wortes</value>
   </data>
   <data name="cBPauseLine.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 17</value>

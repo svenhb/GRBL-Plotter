@@ -42,6 +42,7 @@ namespace GRBL_Plotter
         public float diameter;
         public float feedXY;
         public float feedZ;
+        public float finalZ;
         public float stepZ;
         public float spindleSpeed;
         public float overlap;
@@ -62,7 +63,7 @@ namespace GRBL_Plotter
         private static bool init_done = false;
 
         // defaultTool needed in Setup      ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
-        public static string[] defaultTool = { "1", "000000", "Default black", "0.0", "0.0", "0.0", "3.0", "500","1","100","10000","75" };
+        public static string[] defaultTool = { "1", "000000", "Default black", "0.0", "0.0", "0.0", "-3.0", "500","-2", "1", "100","10000","75" };
 
         public static toolPos[] getToolCordinates()
         {   if (!init_done)        //|| !Properties.Settings.Default.importGCTool
@@ -142,7 +143,7 @@ namespace GRBL_Plotter
         public static toolProp setDefault()
         {   toolProp tmp = new toolProp();
             tmp.X = 0; tmp.Y = 0; tmp.Z = 0; tmp.diameter=3; tmp.feedXY=100; tmp.feedZ=100;
-            tmp.stepZ=-1; tmp.spindleSpeed=1000;tmp.overlap=100;
+            tmp.finalZ = -1; tmp.stepZ= 1; tmp.spindleSpeed=1000;tmp.overlap=100;
             return tmp;
         }
         // set tool / color table
@@ -195,10 +196,11 @@ namespace GRBL_Plotter
                         toolTableArray[toolTableIndex].Z = float.Parse(col[5], System.Globalization.NumberFormatInfo.InvariantInfo);
                         toolTableArray[toolTableIndex].diameter = float.Parse(col[6], System.Globalization.NumberFormatInfo.InvariantInfo);
                         toolTableArray[toolTableIndex].feedXY   = float.Parse(col[7], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].stepZ    = float.Parse(col[8], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].feedZ    = float.Parse(col[9], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].spindleSpeed = float.Parse(col[10], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].overlap  = float.Parse(col[11], System.Globalization.NumberFormatInfo.InvariantInfo);
+                        toolTableArray[toolTableIndex].finalZ   = float.Parse(col[8], System.Globalization.NumberFormatInfo.InvariantInfo);
+                        toolTableArray[toolTableIndex].stepZ    = float.Parse(col[9], System.Globalization.NumberFormatInfo.InvariantInfo);
+                        toolTableArray[toolTableIndex].feedZ    = float.Parse(col[10], System.Globalization.NumberFormatInfo.InvariantInfo);
+                        toolTableArray[toolTableIndex].spindleSpeed = float.Parse(col[11], System.Globalization.NumberFormatInfo.InvariantInfo);
+                        toolTableArray[toolTableIndex].overlap  = float.Parse(col[12], System.Globalization.NumberFormatInfo.InvariantInfo);
                         //TryParse
                         if (toolTableIndex < toolTableMax - 1) toolTableIndex++;
                     }

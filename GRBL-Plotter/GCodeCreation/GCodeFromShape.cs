@@ -16,6 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*
+ * 2019-06-14 add code markers: xmlMarker.figureStart
+*/
 
 using System;
 using System.Text;
@@ -50,7 +53,7 @@ namespace GRBL_Plotter
         private void btnApply_Click(object sender, EventArgs e)
         {
             saveSettings();
-            gcode.setup();                  // load defaults from setup-tab
+            gcode.setup(false);                  // load defaults from setup-tab
             gcode.gcodeXYFeed = (float)nUDToolFeedXY.Value;    // override devault values
             gcode.gcodeZFeed  = (float)nUDToolFeedZ.Value;    // override devault values
             gcode.gcodeSpindleSpeed = (float)nUDToolSpindleSpeed.Value;    // override devault values
@@ -76,22 +79,36 @@ namespace GRBL_Plotter
             int counter=0,safety = 100;
             int zStepCount = 0;
             float dx = 0, dy = 0, rDelta=0;
+            int passCount = 0;
+            int figureCount = 1;
+            gcode.PenUp(gcodeString);
+
+            bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value);
+
+            gcode.Comment(gcodeString, xmlMarker.figureStart + figureCount.ToString() + " >");
             if (rBShape1.Checked)                               // rectangle
             {   getOffset(x,y);
                 offsetX -= rTool; offsetY -= rTool;
                 x += dTool;y += dTool;                          // width +/- tool diameter (outline / inline)
                 zStep = zStart;
-                while (zStep > (float)nUDImportGCZDown.Value)
+                while (zStep > (float)nUDImportGCZDown.Value)   // nUDImportGCZDown.Value e.g. -2
                 {
-                    zStep -= (float)nUDToolZStep.Value;
+                    zStep -= (float)nUDToolZStep.Value;         // nUDToolZStep.Value e.g.  0.5
                     if (zStep < (float)nUDImportGCZDown.Value)
                         zStep = (float)nUDImportGCZDown.Value;
 
                     if ((overlap > x / 2) || (overlap > y / 2))
                     {    overlap = (float)(Math.Min(x, y) / 2.1); }
 
-                    if ((zStepCount++==0) || !cBNoZUp.Checked)    // move up the 1st time 
-                            gcode.PenUp(gcodeString);
+                    //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
+                    if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
+                    {   gcode.PenUp(gcodeString);
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                    }
+                    passCount++;
+
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0}{1} {2:0.000} / {3:0.000} >",xmlMarker.passStart,passCount, zStep, nUDImportGCZDown.Value));
+
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + overlap, ""); 
                     else
@@ -123,6 +140,7 @@ namespace GRBL_Plotter
                     makeRect(offsetX, offsetY, offsetX + x, offsetY + y, 0, true);  // final rectangle clockwise
                 }
                 gcode.PenUp(gcodeString);
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
             }
             else if (rBShape2.Checked)           // rectangle with round edge
             {
@@ -140,8 +158,14 @@ namespace GRBL_Plotter
                     if (zStep < (float)nUDImportGCZDown.Value)
                         zStep = (float)nUDImportGCZDown.Value;
 
-                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
-                        gcode.PenUp(gcodeString);
+                    //                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
+                    if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
+                    {   gcode.PenUp(gcodeString);
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                    }
+                    passCount++;
+
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0}{1} {2:0.000} / {3:0.000} >", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + rShape , "");
@@ -174,6 +198,7 @@ namespace GRBL_Plotter
                     makeRect(offsetX, offsetY, offsetX + x, offsetY + y, rShape, true);  // rectangle clockwise
                 }
                 gcode.PenUp(gcodeString);
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
             }
             else if (rBShape3.Checked)           // circle
             {
@@ -187,8 +212,14 @@ namespace GRBL_Plotter
                 zStep = zStart;
                 while (zStep > (float)nUDImportGCZDown.Value)
                 {
-                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
-                        gcode.PenUp(gcodeString);
+                    //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
+                    if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
+                    {   gcode.PenUp(gcodeString);
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                    }
+                    passCount++;
+
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0}{1} {2:0.000} / {3:0.000} >", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + rShape-overlap, offsetY + rShape, "");
@@ -214,7 +245,9 @@ namespace GRBL_Plotter
                     gcode.Arc(gcodeString, 2, offsetX, offsetY + rShape, rShape, 0, "");
                 }
                 gcode.PenUp(gcodeString);
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
             }
+            gcode.Comment(gcodeString, xmlMarker.figureEnd + figureCount.ToString() + " >");
 
             if (Properties.Settings.Default.importGCZEnable)
                 gcode.SpindleOff(gcodeString, "Finish - Spindle off");
@@ -427,6 +460,7 @@ namespace GRBL_Plotter
                     tprop = toolTable.getToolProperties(tnr);
                     nUDToolDiameter.Value = (decimal)tprop.diameter;
                     nUDToolFeedXY.Value = (decimal)tprop.feedXY;
+                    nUDImportGCZDown.Value = (decimal)tprop.finalZ;
                     nUDToolZStep.Value = (decimal)Math.Abs(tprop.stepZ);
                     nUDToolFeedZ.Value = (decimal)tprop.feedZ;
                     nUDToolOverlap.Value = (decimal)tprop.overlap;

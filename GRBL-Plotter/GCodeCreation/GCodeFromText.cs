@@ -41,7 +41,6 @@ namespace GRBL_Plotter
         }
 
         private string textgcode = "";
- //       private static int pathCount = 0;
 
         public string textGCode
         { get { return textgcode; } }
@@ -49,7 +48,7 @@ namespace GRBL_Plotter
         private static bool gcodeUseSpindle = false;
         private void TextForm_Load(object sender, EventArgs e)
         {
-            cBFont.Items.AddRange(GCodeFromFont.fontNames);
+            cBFont.Items.AddRange(GCodeFromFont.getHersheyFontNames());
             cBFont.Items.AddRange(GCodeFromFont.fontFileName());
 
             cBFont.SelectedIndex = Properties.Settings.Default.textFontIndex;
@@ -80,7 +79,6 @@ namespace GRBL_Plotter
         }
         private void getSettings()
         {
-            //        gcodeXYFeed = (float)Properties.Settings.Default.importGCXYFeed;
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
         }
         private void TextForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -100,7 +98,6 @@ namespace GRBL_Plotter
             GCodeFromFont.reset();
 
             GCodeFromFont.gcText = tBText.Text;
-            GCodeFromFont.gcFont = GCodeFromFont.getFontIndex(cBFont.SelectedIndex);
             GCodeFromFont.gcFontName = cBFont.Items[cBFont.SelectedIndex].ToString();
             GCodeFromFont.gcHeight = (double)nUDFontSize.Value;
             GCodeFromFont.gcFontDistance = (double)nUDFontDistance.Value;
@@ -109,8 +106,8 @@ namespace GRBL_Plotter
             GCodeFromFont.gcPauseChar = cBPauseChar.Checked;
             GCodeFromFont.gcPauseWord = cBPauseWord.Checked;
             GCodeFromFont.gcPauseLine = cBPauseLine.Checked;
+            GCodeFromFont.gcConnectLetter = cBConnectLetter.Checked;
 
-            //           MessageBox.Show(cBFont.Items[cBFont.SelectedIndex].ToString());
             gcodeString.Clear();
             GCodeFromFont.getCode(gcodeString);
 
@@ -147,9 +144,9 @@ namespace GRBL_Plotter
         private void GCodeFromText_Resize(object sender, EventArgs e)
         {
             tBText.Width = this.Width - 24;
-            tBText.Height = this.Height - 205;
-            btnApply.Left = this.Width - 139;
-            btnApply.Top  = this.Height - 74;
+            tBText.Height = this.Height - 230;
+            btnApply.Left = this.Width - 138;
+            btnApply.Top  = this.Height - 70;
         }
     }
 }

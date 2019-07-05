@@ -26,6 +26,8 @@
  *      
  *  2019-02-06 bug fix block-offset for LWPolyline and Text
  *  2019-05-10 reactivate else in line 298 to avoid double coordinates
+ *  2019-06-10 define "<PD" as xmlMarker.figureStart
+ *  2019-07-04 fix sorting problem with <figure tag
  */
 
 using System;
@@ -45,6 +47,7 @@ namespace GRBL_Plotter //DXFImporter
         private static StringBuilder[] gcodeString = new StringBuilder[svgToolMax];
         private static int gcodeStringIndex = 0;
         private static StringBuilder finalString = new StringBuilder();
+
         private static bool gcodeUseSpindle = false; // Switch on/off spindle for Pen down/up (M3/M5)
         private static bool gcodeReduce = false;        // if true remove G1 commands if distance is < limit
         private static double gcodeReduceVal = .1;        // limit when to remove G1 commands
@@ -59,6 +62,8 @@ namespace GRBL_Plotter //DXFImporter
 
         private static bool gcodeToolChange = false;          // Apply tool exchange command
         private static bool dxfImportToolNr = false;
+        private static int toolNr = 1;
+        private static bool dxfToolUse = false;
 
         private static ArrayList drawingList;
         private static ArrayList objectIdentifier;
@@ -142,10 +147,11 @@ namespace GRBL_Plotter //DXFImporter
 
             gcodeToolChange = Properties.Settings.Default.importGCTool;
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
-            gcodeToolChange = Properties.Settings.Default.importGCTool;         // Add tool change command
             dxfImportToolNr = Properties.Settings.Default.importDXFToolIndex;
 
-            dxfColor = -1;
+            dxfToolUse = Properties.Settings.Default.importGCTool && Properties.Settings.Default.importDXFToolIndex;
+
+            dxfColor = 256;
             entityCount = 0;
 
             int dxfToolIndex = toolTable.init();
@@ -154,6 +160,7 @@ namespace GRBL_Plotter //DXFImporter
             if (gcodeToolChange && !dxfImportToolNr)
             {
                 toolProp tmpTool = toolTable.getToolProperties((int)Properties.Settings.Default.importGCToolDefNr);
+                toolNr = tmpTool.toolnr;
                 gcode.Tool(gcodeString[gcodeStringIndex], tmpTool.toolnr, tmpTool.name);
             }
 
@@ -232,10 +239,10 @@ namespace GRBL_Plotter //DXFImporter
                 else
                     processEntities(dxfEntity);
             }
-            if (askPenUp)   // retrieve missing pen up
-            {   gcode.PenUp(gcodeString[gcodeStringIndex]); askPenUp = false;
-                gcode.Comment(gcodeString[gcodeStringIndex], "</PD " + entityCount + ">");
-            }
+            if (isPenDown)
+                gcode.PenUp(gcodeString[gcodeStringIndex]); 
+       //     if (dxfToolUse)
+            gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + entityCount + ">");
         }
 
         /// <summary>
@@ -261,12 +268,14 @@ namespace GRBL_Plotter //DXFImporter
 
             if (dxfColor != entity.ColorNumber)
             {
-                if (Properties.Settings.Default.importGCTool && Properties.Settings.Default.importDXFToolIndex)
-                {
+                if (dxfToolUse)
+                {   gcodePenUp();
+                    gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + entityCount + ">");
                     gcode.Tool(gcodeString[gcodeStringIndex], entity.ColorNumber, entity.ColorNumber.ToString());
                 }
             }
             dxfColor = entity.ColorNumber;
+            if (dxfImportToolNr) toolNr = dxfColor;
 
             if (entity.GetType() == typeof(DXFPointEntity))
             {
@@ -284,36 +293,36 @@ namespace GRBL_Plotter //DXFImporter
                 index = 0; bulge = 0;
                 DXFLWPolyLine.Element coordinate;
                 bool roundcorner = false;
+                x = 0;y = 0;
                 for (int i = 0; i < lp.VertexCount; i++)
                 {
                     coordinate = lp.Elements[i];
                     bulge = coordinate.Bulge;
+                    x2 = x; y2 = y;
                     x = (double)coordinate.Vertex.X + (double)offsetX;
                     y = (double)coordinate.Vertex.Y + (double)offsetY;
                     if (i == 0)
                     {
-                        gcodeStartPath(x, y, "Start LWPolyLine");
+                        gcodeStartPath(x, y, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString());
                         isReduceOk = true;
                     }
-     //               else
-                    {   
-                        if ((!roundcorner))
-                            gcodeMoveTo(x, y, "");
-                        if (bulge != 0)
-                        {
-                            if (i < (lp.VertexCount - 1))
-                                AddRoundCorner(lp.Elements[i], lp.Elements[i + 1]);
-                            else
-                                AddRoundCorner(lp.Elements[i], lp.Elements[0]);
-                            roundcorner = true;
-                        }
+
+                    if ((!roundcorner))
+                        gcodeMoveTo(x, y, "");
+                    if (bulge != 0)
+                    {
+                        if (i < (lp.VertexCount - 1))
+                            AddRoundCorner(lp.Elements[i], lp.Elements[i + 1]);
                         else
-                            roundcorner = false;
+                            if (lp.Flags == DXFLWPolyLine.FlagsEnum.closed)
+                                AddRoundCorner(lp.Elements[i], lp.Elements[0]);
+                        roundcorner = true;
                     }
-                    x2 = x; y2 = y;
+                    else
+                        roundcorner = false;
                 }
-                if (lp.Flags > 0)
-                    gcodeMoveTo((float)(lp.Elements[0].Vertex.X+offsetX), (float)(lp.Elements[0].Vertex.Y+offsetY), "End LWPolyLine");
+                if ((lp.Flags > 0))// && (x2 != x) && (y2 != y))   // only move if prev pos is differnent
+                    gcodeMoveTo((float)(lp.Elements[0].Vertex.X+offsetX), (float)(lp.Elements[0].Vertex.Y+offsetY), "End LWPolyLine "+lp.Flags.ToString());
                 gcodeStopPath();
             }
             #endregion
@@ -547,10 +556,13 @@ namespace GRBL_Plotter //DXFImporter
 
             string cmt = "";
             if (dxfComments) { cmt = "Bulge " + bulge.ToString(); }
+
             if (bulge > 0)
                 gcode.Arc(gcodeString[gcodeStringIndex], 3, (float)p2x, (float)p2y, (float)(xc-p1x), (float)(yc-p1y), cmt);
             else
                 gcode.Arc(gcodeString[gcodeStringIndex], 2, (float)p2x, (float)p2y, (float)(xc-p1x), (float)(yc-p1y), cmt);
+            lastSetGCX = p2x; lastSetGCY = p2y;
+            lastGCX = p2x; lastGCY = p2y;
         }
 
         /// <summary>
@@ -591,25 +603,27 @@ namespace GRBL_Plotter //DXFImporter
         {   gcodeStartPath((float) x, (float) y,cmt); }
         private static void gcodeStartPath(float x, float y, string cmt="")
         {
-///            gcode.Comment(gcodeString[gcodeStringIndex], "<PD "+(++entityCount)+">");
-
             if (!dxfComments)
                 cmt = "";
             System.Windows.Point coord = translateXY(x, y);
             if (((float)lastGCX == coord.X) && ((float)lastGCY == coord.Y))    // no change in position, no need for pen-up -down
-            {   askPenUp = false;
-                gcode.Comment(gcodeString[gcodeStringIndex], cmt);
+            {   gcode.Comment(gcodeString[gcodeStringIndex], cmt);
             }
             else
-            {   if (askPenUp)   // retrieve missing pen up
-                {   gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
-                    gcode.Comment(gcodeString[gcodeStringIndex], "</PD " + entityCount + ">");
+            {   //if (askPenUp)   // retrieve missing pen up
+                {   
+                    if (isPenDown)
+                        gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
+                    if ((entityCount > 0) && !dxfToolUse)
+                            gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + entityCount + ">");
                     isPenDown = false;
-                    askPenUp = false;
+                    entityCount++;
                 }
                 lastGCX = coord.X; lastGCY = coord.Y;
                 lastSetGCX = coord.X; lastSetGCY = coord.Y;
-                gcode.Comment(gcodeString[gcodeStringIndex], "<PD " + (++entityCount) + ">");
+                string tmptoolnr = "";
+                if (gcodeToolChange)  tmptoolnr = string.Format("ToolNr={0}", toolNr);
+                gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureStart + (entityCount) + string.Format("> DXFcolor=#{0} {1}", dxfColor, tmptoolnr));
                 gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
             }
             if (!isPenDown)
@@ -620,7 +634,6 @@ namespace GRBL_Plotter //DXFImporter
             }
             isReduceOk = false;
         }
-        private static bool askPenUp = false;
         private static bool isPenDown = false;
         private static void gcodeStopPath(string cmt="")
         {
@@ -628,14 +641,10 @@ namespace GRBL_Plotter //DXFImporter
                 cmt = "";
             if (gcodeReduce)
             {  if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
-                {
-                    gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
+                {   gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
                     lastSetGCX = lastGCX; lastSetGCY = lastGCY;
                 }
             }
-            if (isPenDown)
-            {   askPenUp = true; }//
-//            gcode.Comment(gcodeString[gcodeStringIndex], "</PD " + entityCount + ">");
         }
 
         /// <summary>
@@ -665,6 +674,9 @@ namespace GRBL_Plotter //DXFImporter
             if (!dxfComments)
                 cmt = "";
             System.Windows.Point coord = translateXY(orig);
+            if (gcode.isEqual(lastSetGCX,coord.X) && gcode.isEqual(lastSetGCY,coord.Y))   // nothing to do
+                return;
+
             rejectPoint = false;
             if (gcodeReduce && isReduceOk)
             {   distance = Math.Sqrt(((coord.X - lastSetGCX)* (coord.X - lastSetGCX)) + ((coord.Y - lastSetGCY) * (coord.Y - lastSetGCY)));
@@ -681,7 +693,6 @@ namespace GRBL_Plotter //DXFImporter
             lastGCX = coord.X; lastGCY = coord.Y;
         }
 
-
         /// <summary>
         /// Insert G2/G3 gcode command
         /// </summary>
@@ -692,17 +703,19 @@ namespace GRBL_Plotter //DXFImporter
             if (gcodeReduce && isReduceOk)          // restore last skipped point for accurat G2/G3 use
             {
                 if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
-                    gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
+                {  gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
+                }
             }
             gcode.Arc(gcodeString[gcodeStringIndex], 3, coordxy, coordij, cmt);
+            lastSetGCX = coordxy.X; lastSetGCY = coordxy.Y;
+            lastGCX = coordxy.X; lastGCY = coordxy.Y;
         }
 
         /// <summary>
         /// Insert Pen-up gcode command
         /// </summary>
         private static void gcodePenUp(string cmt="")
-        {
-            gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
+        {   gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
             isPenDown = false;
         }
     }

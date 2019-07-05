@@ -34,6 +34,9 @@
     2019-01-23  Change order line 165
     2019-01-28  Add DotOnly for Basic shapes
     2019-05-12  change possible transformation depth from 10 to 100 - line 95
+    2019-06-10  xmlMarker.figureStart
+    2019-06-19  cmd="z" avoid final move if gcode.isEqual((float)firstX,lastX) line 929
+    2019-07-04  fix sorting problem with <figure tag
 */
 
 using System;
@@ -167,7 +170,7 @@ namespace GRBL_Plotter
         }
 
         private static string convertSVG(XElement svgCode, string info)
-        { gcodeStringIndex = 0;
+        {   gcodeStringIndex = 0;
             for (int i = 0; i < svgToolMax; i++)    // hold gcode snippes for later sorting
             {
                 gcodeString[i] = new StringBuilder();
@@ -179,8 +182,6 @@ namespace GRBL_Plotter
 
             gcode.PenUp(finalString, "- SVG Start -");
             penIsDown = false;
-//            if (gcodeUseSpindle && !svgToolUse) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
-//          already set in gcodeTool()
 
             startConvert(svgCode);  // do all conversion
             if (svgNodesOnly)
@@ -293,6 +294,8 @@ namespace GRBL_Plotter
             parseBasicElements(svgCode,1);
             parsePath(svgCode,1);                       // 1st level paths
             parseGroup(svgCode,1);                      // parse groups (recursive)
+            if (svgToolUse) 
+                gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + pathCount + ">");
             return;
         }
 
@@ -588,15 +591,16 @@ namespace GRBL_Plotter
                         }
 
                         if ((svgToolUse) && (myTool >= 0))
+                        {
+                            gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + pathCount + ">" );
                             gcodeStringIndex = myTool;
+                        }
 
                         if (svgComments)
                         {
                             if (pathElement.Attribute("id") != null)
                                 gcodeString[gcodeStringIndex].Append("\r\n( Basic shape level:" + level.ToString() + " id=" + pathElement.Attribute("id").Value + " )\r\n");
-                            gcodeString[gcodeStringIndex].AppendFormat("( SVG color=#{0})\r\n", myColor);
                         }
-                        gcodeTool(myTool);
 
                         if (startFirstElement)
                         { gcodePenUp("1st shape"); startFirstElement = false; }
@@ -806,6 +810,7 @@ namespace GRBL_Plotter
 
                     if ((svgToolUse) && (myTool >= 0))
                     {   if(penIsDown) gcodePenUp("Start path");
+                        gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + pathCount + ">");
                         gcodeStringIndex = myTool;
                     }
 
@@ -816,7 +821,6 @@ namespace GRBL_Plotter
                             gcodeString[gcodeStringIndex].Append("\r\n( Path level:" + level.ToString() + " id=" + pathElement.Attribute("id").Value + " )\r\n");
                         else
                             gcodeString[gcodeStringIndex].Append("\r\n( SVG path=" + id + " )\r\n");
-                        gcodeString[gcodeStringIndex].AppendFormat("\r\n(SVG color=#{0})\r\n", myColor);
                     }
 
                     if (pathElement.Attribute("id") != null)
@@ -825,7 +829,7 @@ namespace GRBL_Plotter
                     oldMatrixElement = matrixElement;
                     parseTransform(pathElement,false,level);        // transform will be applied in gcodeMove
 
-                    gcodeTool(myTool);
+     //               gcodeTool(myTool);
 
                     if (d.Length > 0)
                     {
@@ -857,6 +861,9 @@ namespace GRBL_Plotter
         private static float lastX, lastY;
         private static float cxMirror=0, cyMirror=0;
         private static StringBuilder secondMove = new StringBuilder();
+
+  //      private static bool isNearlyEqual(float a, float b)
+   //     {   return (Math.Abs(a - b) < 0.0001f); }
 
         /// <summary>
         /// Convert all Path commands, check: http://www.w3.org/TR/SVG/paths.html
@@ -921,7 +928,8 @@ namespace GRBL_Plotter
                     {
                         if (firstX == null) { firstX = currentX; }
                         if (firstY == null) { firstY = currentY; }
-                        gcodeMoveTo((float)firstX, (float)firstY, command.ToString());    // G1
+                        if (!gcode.isEqual((float)firstX,lastX) || !gcode.isEqual((float)firstY,lastY))
+                            gcodeMoveTo((float)firstX, (float)firstY, command.ToString());// (isNearlyEqual((float)firstX, lastX).ToString()+"  "+ firstX.ToString()+" "+lastX.ToString()+"  "+ firstY.ToString() + " " + lastY.ToString()));// 
                     }
                     lastX = (float)firstX; lastY = (float)firstY;
                     firstX = null; firstY = null;
@@ -1346,6 +1354,8 @@ namespace GRBL_Plotter
 
         private static void gcodeDotOnly(float x, float y, string cmt)
         {
+            if (!svgComments)
+                cmt = "";
             gcodeStartPath(x, y, cmt);
             gcodePenDown(cmt);
             gcodePenUp(cmt);
@@ -1356,11 +1366,17 @@ namespace GRBL_Plotter
         /// Insert G0 and Pen down gcode command
         /// </summary>
         private static void gcodeStartPath(float x, float y, string cmt)
-        {   Point coord = translateXY(x, y);
+        {
+            if (!svgComments)
+                cmt = "";
+            Point coord = translateXY(x, y);
             lastGCX = coord.X; lastGCY = coord.Y;
             lastSetGCX = coord.X; lastSetGCY = coord.Y;
             gcodePenUp(cmt);
-            gcode.Comment(gcodeString[gcodeStringIndex], "<PD " + (++pathCount) + ">");
+            string tmptoolnr = "";
+            if (svgToolUse) tmptoolnr = string.Format("ToolNr={0}", myTool);
+            gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureStart + (++pathCount) + string.Format("> SVGcolor=#{0} {1}", myColor, tmptoolnr));
+            gcodeTool(myTool);
             gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
             if (svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before Pen Down"); }
             isReduceOk = false;
@@ -1370,13 +1386,16 @@ namespace GRBL_Plotter
         /// </summary>
         private static void gcodeStopPath(string cmt)
         {
+            if (!svgComments)
+                cmt = "";
             if (gcodeReduce)
             {
                 if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY)) // restore last skipped point for accurat G2/G3 use
                     gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), "restore Point");
             }
             gcodePenUp(cmt);
-            gcode.Comment(gcodeString[gcodeStringIndex], "</PD " + pathCount + ">");
+            if (!svgToolUse)
+                gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + pathCount + ">");
         }
 
         /// <summary>
@@ -1386,6 +1405,8 @@ namespace GRBL_Plotter
         {
             Point coord = new Point(x, y);
             //Point coord = translateXY(x, y);
+            if (!svgComments)
+                cmt = "";
             gcodeMoveTo(coord, cmt);
         }
 
@@ -1436,12 +1457,18 @@ namespace GRBL_Plotter
         /// Insert Pen-up gcode command
         /// </summary>
         private static void gcodePenUp(string cmt)
-        {   if (penIsDown)
+        {
+            if (!svgComments)
+                cmt = "";
+            if (penIsDown)
                 gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
             penIsDown = false;
         }
         private static void gcodePenDown(string cmt)
-        {   if (!penIsDown)
+        {
+            if (!svgComments)
+                cmt = "";
+            if (!penIsDown)
                 gcode.PenDown(gcodeString[gcodeStringIndex], cmt);
             penIsDown = true;
         }
@@ -1469,7 +1496,9 @@ namespace GRBL_Plotter
                         if (Properties.Settings.Default.importGCTTZFeed)
                             gcode.gcodeZFeed = toolInfo.feedZ;
                         if (Properties.Settings.Default.importGCTTZDeepth)
-                            gcode.gcodeZDown = toolInfo.stepZ;
+                            gcode.gcodeZDown = toolInfo.finalZ;
+                        if (Properties.Settings.Default.importGCTTZIncrement)
+                            gcode.gcodeZInc = toolInfo.stepZ;
                         if (Properties.Settings.Default.importGCDragKnifePercentEnable)
                         {   gcode.gcodeDragRadius = Math.Abs(gcode.gcodeZDown * (float)Properties.Settings.Default.importGCDragKnifePercent / 100); }
                     }
