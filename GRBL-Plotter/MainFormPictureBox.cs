@@ -29,6 +29,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using FastColoredTextBoxNS;
 
 namespace GRBL_Plotter
 {
@@ -114,6 +115,8 @@ namespace GRBL_Plotter
                     e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
                     e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 / zoomRange, unit,
                         grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
+                    if (visuGCode.selectedFigureInfo.Length > 0)
+                        e.Graphics.DrawString(visuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
                 }
             }
         }
@@ -195,17 +198,15 @@ namespace GRBL_Plotter
             {
                 int line;
                 line = visuGCode.setPosMarkerNearBy(picAbsPos);
-//                blockFCTB_Events = true;
-                fCTBCode.Selection = fCTBCode.GetLine(line);
+                moveToMarkedPositionToolStripMenuItem.ToolTipText = "Work X: " + grbl.posMarker.X.ToString() + "   Y: " + grbl.posMarker.Y.ToString();
+
                 fCTBCodeClickedLineNow = line;
                 fCTBCodeMarkLine();
-                fCTBCode.DoCaretVisible();
-//                fCTBCode.Focus();
-//                fCTBCode.ShowFoldingLines = true;
+                fCTBBookmark.DoVisible();
+                findFigureMarkSelection(Color.OrangeRed);
 #if (debuginfo)
                 log.Add("MainFormPictureBox event pictureBox1_Click end, line: " + line.ToString());
 #endif
-                moveToMarkedPositionToolStripMenuItem.ToolTipText = "Work X: "+grbl.posMarker.X.ToString() + "   Y: "+ grbl.posMarker.Y.ToString();
             }
         }
 

@@ -27,12 +27,13 @@
  * 2018-01-04 no selection of text to highlight current line 136...
 */
 
-#define debuginfo
+//#define debuginfo
 
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 using FastColoredTextBoxNS;
+using System.Collections.Generic;
 
 namespace GRBL_Plotter
 {
@@ -53,6 +54,7 @@ namespace GRBL_Plotter
         private Style StyleYAxis = new TextStyle(Brushes.BlueViolet, null, FontStyle.Bold);
         private Style StyleZAxis = new TextStyle(Brushes.Red, null, FontStyle.Bold);
         private Style StyleAAxis = new TextStyle(Brushes.DarkCyan, null, FontStyle.Bold);
+        private Style StyleFail  = new TextStyle(Brushes.Black, Brushes.LightCyan, FontStyle.Bold);
 
         private void fCTBCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
@@ -71,7 +73,8 @@ namespace GRBL_Plotter
             e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleAAxis, "[AaBbCcUuVvWw]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetFoldingMarkers("\\(<PD", "\\(</PD");
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.figureStart, xmlMarker.figureEnd);
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.passStart, xmlMarker.passEnd);
         }
 
         private void fCTB_CheckUnknownCode()
@@ -136,6 +139,7 @@ namespace GRBL_Plotter
                 fCTBCodeMarkLine();
             }
         }
+        private Bookmark fCTBBookmark = null;
         private void fCTBCodeMarkLine()
         {
 #if (debuginfo)
@@ -143,6 +147,7 @@ namespace GRBL_Plotter
 #endif
             if ((fCTBCodeClickedLineNow <= fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
             {
+                fCTBBookmark = new Bookmark(fCTBCode, "marked", fCTBCodeClickedLineNow);
                 if (fCTBCodeClickedLineNow != fCTBCodeClickedLineLast)
                 {
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
@@ -185,7 +190,7 @@ namespace GRBL_Plotter
             { showMessageForm(Properties.Resources.fctb_hotkeys); }
         }
 
-        private void showMessageForm(string text)
+        public void showMessageForm(string text)
         {
             if (_message_form == null)
             {
@@ -208,9 +213,24 @@ namespace GRBL_Plotter
 
         private void moveToFirstPosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int start = findFigureMarkSelection(Color.Red);
+            fCTBCodeClickedLineNow = start;
+            fCTBCodeMarkLine();
+            fCTBCode.DoCaretVisible();
+            return;
+        }
+        private void cutOutSelectedPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            transformStart("Crop selection (Cut out)",false);
+            fCTBCode.Text = visuGCode.cutOutFigure();
+            transformEnd();
+        }
+
+        private int findFigureMarkSelection(Color selectionColor)
+        {
             int start = visuGCode.getLineOfFirstPointInFigure();
-            int end = visuGCode.getLineOfEndPointInFigure(start+1);
-            if ((start >=0) && (end > start))
+            int end = visuGCode.getLineOfEndPointInFigure(start + 1);
+            if ((start >= 0) && (end > start))
             {
                 Place selStart, selEnd;
                 selStart.iLine = start;
@@ -221,32 +241,16 @@ namespace GRBL_Plotter
                 selEnd.iChar = 0;
                 mySelection.End = selEnd;
                 fCTBCode.Selection = mySelection;
-                fCTBCode.SelectionColor = Color.Red;
+                fCTBCode.SelectionColor = selectionColor;
             }
-            fCTBCodeClickedLineNow = start;
-            fCTBCodeMarkLine();
-            fCTBCode.DoCaretVisible();
-            return;
+            return start;
         }
 
         private void deletePathToolStripMenuItem_Click(object sender, EventArgs e)
-        {   int start = visuGCode.getLineOfFirstPointInFigure();
-            int end   = visuGCode.getLineOfEndPointInFigure(start+1);
-            start = visuGCode.getLineOfFirstPointInFigureExtend(start); // look for tag (<PD
-            end   = visuGCode.getLineOfEndPointInFigureExtend(end)+1;     // look for tag (</PD
-
-            if ((start < 0) || (end <= start))
+        {
+            int start = findFigureMarkSelection(Color.Red);
+            if (start < 0)
                 return;
-            Place selStart, selEnd;
-            selStart.iLine = start;
-            selStart.iChar = 0;
-            Range mySelection = fCTBCode.Range;
-            mySelection.Start = selStart;
-            selEnd.iLine = end;
-            selEnd.iChar = 0;
-            mySelection.End = selEnd;
-            fCTBCode.Selection = mySelection;
-            fCTBCode.SelectionColor = Color.Red;
             fCTBCodeClickedLineNow = start;
             fCTBCode.InsertText("( Figure removed )\r\n");
             fCTBCodeMarkLine();

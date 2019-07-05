@@ -154,21 +154,6 @@
   <data name="cmsCodeSendLine.Text" xml:space="preserve">
     <value>Sende Codezeile</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>G-Code Datei</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Nullpunkt XY</value>
-  </data>
-  <data name="btnOffsetApply.Text" xml:space="preserve">
-    <value>Offset setzen</value>
-  </data>
-  <data name="lbDimension.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 58</value>
-  </data>
-  <data name="lbDimension.Text" xml:space="preserve">
-    <value>Abmessungen</value>
-  </data>
   <data name="btnStreamStop.ToolTip" xml:space="preserve">
     <value>Stoppt die Übertragung</value>
   </data>
@@ -186,6 +171,18 @@
   </data>
   <data name="btnStreamStart.ToolTip" xml:space="preserve">
     <value>Sende den GCode aus dem Editor an GRBL</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Nullpunkt XY</value>
+  </data>
+  <data name="btnOffsetApply.Text" xml:space="preserve">
+    <value>Offset setzen</value>
+  </data>
+  <data name="lbDimension.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 58</value>
+  </data>
+  <data name="lbDimension.Text" xml:space="preserve">
+    <value>Abmessungen</value>
   </data>
   <data name="btnJogStop.ToolTip" xml:space="preserve">
     <value>Abbruch der jetzigen Jogging-Bewegung</value>
@@ -346,11 +343,17 @@ Beim Rücksetzen während der Fahrt wird Grbl einen Alarm auslösen, um anzuzeig
 Wenn das Rücksetzen nicht während der Bewegung erfolgt, wird die Position beibehalten und ein erneutes Referenzieren ist nicht erforderlich.
 Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
   </data>
-  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 270</value>
+  <data name="unDo2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 22</value>
+  </data>
+  <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>308, 6</value>
   </data>
   <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>311, 22</value>
+  </data>
+  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Text" xml:space="preserve">
+    <value>XY an markierter Position nullen G10 L20</value>
   </data>
   <data name="moveToMarkedPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>311, 22</value>
@@ -363,6 +366,9 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
   </data>
   <data name="resetZoomingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>311, 22</value>
+  </data>
+  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zooming zurücksetzen</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 6</value>
@@ -404,7 +410,16 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
     <value>311, 22</value>
   </data>
   <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lösche selektierten Pfad</value>
+    <value>Selektierten Pfad löschen</value>
+  </data>
+  <data name="deletePathToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>lösche selektierten Pfad</value>
+  </data>
+  <data name="cutOutSelectedPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 22</value>
+  </data>
+  <data name="cutOutSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Selektierten Pfad freistellen</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 6</value>
@@ -420,6 +435,12 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
   </data>
   <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
     <value>Lösche Hintergrund</value>
+  </data>
+  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 22</value>
+  </data>
+  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 342</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Benutzerdefinierte Buttons</value>
@@ -581,6 +602,12 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
   <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
     <value>GCode &amp;transformieren</value>
   </data>
+  <data name="unDoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 6</value>
+  </data>
   <data name="mirrorXToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 22</value>
   </data>
@@ -610,6 +637,9 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
   </data>
   <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
     <value>Drehen um -90° (Uhrzeiger)</value>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
   </data>
   <data name="rotateFreeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 22</value>
@@ -688,6 +718,12 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 6</value>
+  </data>
+  <data name="toolStrip_RadiusComp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 22</value>
+  </data>
+  <data name="toolStrip_RadiusComp.Text" xml:space="preserve">
+    <value>Radiuskompensation</value>
   </data>
   <data name="ersetzteG23DurchLinienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 22</value>

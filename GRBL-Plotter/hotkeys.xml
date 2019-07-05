@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <hotkeys name="GRBL-Plotter default">
 
+  <!-- Individual gcode or scripts can be defined like this -->
+  <bind keydata="F1, Control, Alt" code="_misc/script_pen_remove.nc" />
+  <bind keydata="F2, Control, Alt" code="G90 X99" />
+  
   <!-- Jog commands will only be sent if any virtual joystick control is focused -->
   <bind keydata="Left" 		action="JogAxisXDec" />
   <bind keydata="NumPad4" 	action="JogAxisXDec" />

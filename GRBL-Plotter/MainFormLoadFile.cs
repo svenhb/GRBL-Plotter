@@ -43,14 +43,14 @@ namespace GRBL_Plotter
     {
         private const string extensionDrill = ".drd,.drl,.dri";             //   else if ((ext == ".drd") || (ext == ".drl") || (ext == ".dri"))
         private const string extensionPicture = ".bmp,.gif,.png,.jpg";      //   else if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
-        private const string extensionGCode = ".nc,.cnc,.gcode";            //   else if (ext == ".nc")
+        private const string extensionGCode = ".nc,.cnc,.ngc,.gcode";            //   else if (ext == ".nc")
 
         #region MAIN-MENU FILE
         // open a file via dialog
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "gcode files (*.nc, *.cnc, *.gcode)|*.nc;*.cnc;*.gcode|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|All files (*.*)|*.*";
+            openFileDialog1.Filter = "gcode files (*.nc, *.cnc, *.ngc, *.gcode)|*.nc;*.cnc;*.ngc;*.gcode|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 loadFile(openFileDialog1.FileName);
@@ -117,6 +117,7 @@ namespace GRBL_Plotter
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
             Cursor.Current = Cursors.WaitCursor;
+            pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0;
             showPicBoxBgImage = false;                  // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             visuGCode.markSelectedFigure(-1);           // hide highlight
@@ -143,6 +144,9 @@ namespace GRBL_Plotter
 
         private void loadFile(string fileName)
         {
+            if (unDoToolStripMenuItem.Enabled)
+                visuGCode.setPathAsLandMark(true);
+            setUndoText("");
             if (isStreaming)
             {
                 MessageBox.Show("Streaming must be stopped before loading new file","Attention");
@@ -382,7 +386,7 @@ namespace GRBL_Plotter
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.InitialDirectory = Path.GetDirectoryName(savePath);
             sfd.FileName = savePath+saveName + "_";
-            sfd.Filter = "GCode (*.nc)|*.nc|GCode (*.cnc)|*.cnc|GCode (*.gcode)|*.gcode|All files (*.*)|*.*";   // "GCode|*.nc";
+            sfd.Filter = "GCode (*.nc)|*.nc|GCode (*.cnc)|*.cnc||GCode (*.ngc)|*.ngc|GCode (*.gcode)|*.gcode|All files (*.*)|*.*";   // "GCode|*.nc";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 string txt = fCTBCode.Text;
@@ -631,6 +635,7 @@ namespace GRBL_Plotter
                 penMarker.Color = Properties.Settings.Default.colorMarker;
 
                 penHeightMap.Width = (float)Properties.Settings.Default.widthHeightMap;
+                penHeightMap.LineJoin = LineJoin.Round;
                 penRuler.Width = (float)Properties.Settings.Default.widthRuler;
                 penUp.Width = (float)Properties.Settings.Default.widthPenUp;
                 penUp.LineJoin = LineJoin.Round;
@@ -643,6 +648,7 @@ namespace GRBL_Plotter
                 penMarker.Width = (float)Properties.Settings.Default.widthMarker;
                 penMarker.LineJoin = LineJoin.Round;
                 penLandMark.LineJoin = LineJoin.Round;
+                penLandMark.Width = 2* (float)Properties.Settings.Default.widthPenDown;
 
                 brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.colorMachineLimit, Color.Transparent);
                 picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -913,9 +919,11 @@ namespace GRBL_Plotter
         #region HotKeys
         // load hotkeys
         private Dictionary<string, string> hotkey = new Dictionary<string, string>();
+        private Dictionary<string, string> hotkeyCode = new Dictionary<string, string>();
         private void loadHotkeys()
         {
             hotkey.Clear();
+            hotkeyCode.Clear();
             string fileName = System.Environment.CurrentDirectory + "\\hotkeys.xml";
             if (!File.Exists(fileName))
             {
@@ -934,10 +942,14 @@ namespace GRBL_Plotter
                     case "hotkeys":
                         break;
                     case "bind":
-                        if (r["keydata"].Length > 0)
-                        {
-                            if (!hotkey.ContainsKey(r["keydata"]))
+                        if ((r["keydata"].Length > 0) && (r["action"]!= null))
+                        {   if (!hotkey.ContainsKey(r["keydata"]))
                                 hotkey.Add(r["keydata"], r["action"]);
+                        }
+                        else if ((r["keydata"].Length > 0) && (r["code"]!=null))
+                        {
+                            if (!hotkeyCode.ContainsKey(r["keydata"]))
+                                hotkeyCode.Add(r["keydata"], r["code"]);
                         }
                         break;
                 }
@@ -945,165 +957,173 @@ namespace GRBL_Plotter
         }
         private bool processHotkeys(string keyData, bool keyDown)
         {
-            if (!hotkey.ContainsKey(keyData))
-                return false;
-            string action = hotkey[keyData];
+   //         if ((!hotkey.ContainsKey(keyData)) && (!hotkeyCode.ContainsKey(keyData)))
+  //              return false;
 
-            if (action.StartsWith("CustomButton") && keyDown)
+            string code="";
+            if (hotkeyCode.TryGetValue(keyData, out code)) // Returns true.
+            { processCommands(code); }
+
+            string action = "";//= hotkey[keyData];
+            if (hotkey.TryGetValue(keyData, out action)) // Returns true.
             {
-                string num = action.Substring("CustomButton".Length);
-                int num1;
-                if (!int.TryParse(num, out num1))
-                    MessageBox.Show("Unknown action: " + action, "Error with Hotkey.xml");
-                else
+                if (action.StartsWith("CustomButton") && keyDown)
                 {
-                    if (_serial_form.serialPortOpen && (!isStreaming || isStreamingPause) || grbl.grblSimulate)
-                        processCommands(btnCustomCommand[num1]);
+                    string num = action.Substring("CustomButton".Length);
+                    int num1;
+                    if (!int.TryParse(num, out num1))
+                        MessageBox.Show("Unknown action: " + action, "Error with Hotkey.xml");
+                    else
+                    {
+                        if (_serial_form.serialPortOpen && (!isStreaming || isStreamingPause) || grbl.grblSimulate)
+                            processCommands(btnCustomCommand[num1]);
+                    }
+                    return true;
                 }
-                return true;
-            }
-            if (action.StartsWith("JogAxis") && (virtualJoystickXY.Focused || virtualJoystickZ.Focused || virtualJoystickA.Focused || virtualJoystickB.Focused || virtualJoystickC.Focused))
-            {
+                if (action.StartsWith("JogAxis") && (virtualJoystickXY.Focused || virtualJoystickZ.Focused || virtualJoystickA.Focused || virtualJoystickB.Focused || virtualJoystickC.Focused))
+                {
+                    if (keyDown)
+                    {
+                        bool cmdFound = false;
+                        if (action.Contains("X") || action.Contains("Y"))
+                        {
+                            int moveX = 0, moveY = 0;
+                            if (action.Contains("XDec")) { moveX = -virtualJoystickXY_lastIndex; }
+                            if (action.Contains("XInc")) { moveX = virtualJoystickXY_lastIndex; }
+                            if (action.Contains("YDec")) { moveY = -virtualJoystickXY_lastIndex; }
+                            if (action.Contains("YInc")) { moveY = virtualJoystickXY_lastIndex; }
+                            virtualJoystickXY_move(moveX, moveY);
+                            cmdFound = true;
+                        }
+                        if (action.Contains("ZDec")) { virtualJoystickZ_move(-virtualJoystickZ_lastIndex); cmdFound = true; }
+                        if (action.Contains("ZInc")) { virtualJoystickZ_move(virtualJoystickZ_lastIndex); cmdFound = true; }
+                        if (action.Contains("ADec")) { virtualJoystickA_move(-virtualJoystickA_lastIndex, ctrl4thName); cmdFound = true; }
+                        if (action.Contains("AInc")) { virtualJoystickA_move(virtualJoystickA_lastIndex, ctrl4thName); cmdFound = true; }
+                        if (cmdFound)
+                        {
+                            virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
+                            virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
+                            virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
+                            virtualJoystickB.JoystickRasterMark = virtualJoystickA_lastIndex;
+                            virtualJoystickC.JoystickRasterMark = virtualJoystickA_lastIndex;
+                            return true;
+                        }
+                    }
+                    else
+                    { if (!grbl.isVersion_0 && cBSendJogStop.Checked) sendRealtimeCommand(133); return true; }
+
+                    if (action.Contains("Stop") && keyDown && !grbl.isVersion_0) { sendRealtimeCommand(133); return true; }
+
+                    return false;
+                }
+
                 if (keyDown)
                 {
-                    bool cmdFound = false;
-                    if (action.Contains("X") || action.Contains("Y"))
+                    if (action == "JogSpeedXYInc")
                     {
-                        int moveX = 0, moveY = 0;
-                        if (action.Contains("XDec")) { moveX = -virtualJoystickXY_lastIndex; }
-                        if (action.Contains("XInc")) { moveX = virtualJoystickXY_lastIndex; }
-                        if (action.Contains("YDec")) { moveY = -virtualJoystickXY_lastIndex; }
-                        if (action.Contains("YInc")) { moveY = virtualJoystickXY_lastIndex; }
-                        virtualJoystickXY_move(moveX, moveY);
-                        cmdFound = true;
-                    }
-                    if (action.Contains("ZDec")) { virtualJoystickZ_move(-virtualJoystickZ_lastIndex); cmdFound = true; }
-                    if (action.Contains("ZInc")) { virtualJoystickZ_move(virtualJoystickZ_lastIndex); cmdFound = true; }
-                    if (action.Contains("ADec")) { virtualJoystickA_move(-virtualJoystickA_lastIndex,ctrl4thName); cmdFound = true; }
-                    if (action.Contains("AInc")) { virtualJoystickA_move(virtualJoystickA_lastIndex,ctrl4thName); cmdFound = true; }
-                    if (cmdFound)
-                    {   virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
-                        virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
-                        virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
-                        virtualJoystickB.JoystickRasterMark = virtualJoystickA_lastIndex;
-                        virtualJoystickC.JoystickRasterMark = virtualJoystickA_lastIndex;
+                        virtualJoystickXY_lastIndex++;
+                        if (virtualJoystickXY_lastIndex > virtualJoystickXY.JoystickRaster) virtualJoystickXY_lastIndex = virtualJoystickXY.JoystickRaster;
+                        if (virtualJoystickXY_lastIndex < 1) virtualJoystickXY_lastIndex = 1;
+                        virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
                         return true;
                     }
-                }
-                else
-                { if (!grbl.isVersion_0 && cBSendJogStop.Checked) sendRealtimeCommand(133); return true; }
+                    if (action == "JogSpeedXYDec")
+                    {
+                        virtualJoystickXY_lastIndex--;
+                        if (virtualJoystickXY_lastIndex > virtualJoystickXY.JoystickRaster) virtualJoystickXY_lastIndex = virtualJoystickXY.JoystickRaster;
+                        if (virtualJoystickXY_lastIndex < 1) virtualJoystickXY_lastIndex = 1;
+                        virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
+                        return true;
+                    }
+                    if (action == "JogSpeedZInc")
+                    {
+                        virtualJoystickZ_lastIndex++;
+                        if (virtualJoystickZ_lastIndex > virtualJoystickZ.JoystickRaster) virtualJoystickZ_lastIndex = virtualJoystickZ.JoystickRaster;
+                        if (virtualJoystickZ_lastIndex < 1) virtualJoystickZ_lastIndex = 1;
+                        virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
+                        return true;
+                    }
+                    if (action == "JogSpeedZDec")
+                    {
+                        virtualJoystickZ_lastIndex--;
+                        if (virtualJoystickZ_lastIndex > virtualJoystickZ.JoystickRaster) virtualJoystickZ_lastIndex = virtualJoystickZ.JoystickRaster;
+                        if (virtualJoystickZ_lastIndex < 1) virtualJoystickZ_lastIndex = 1;
+                        virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
+                        return true;
+                    }
+                    if (action == "JogSpeedAInc")
+                    {
+                        virtualJoystickA_lastIndex++;
+                        if (virtualJoystickA_lastIndex > virtualJoystickA.JoystickRaster) virtualJoystickA_lastIndex = virtualJoystickA.JoystickRaster;
+                        if (virtualJoystickA_lastIndex < 1) virtualJoystickA_lastIndex = 1;
+                        virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
+                        return true;
+                    }
+                    if (action == "JogSpeedADec")
+                    {
+                        virtualJoystickA_lastIndex--;
+                        if (virtualJoystickA_lastIndex > virtualJoystickA.JoystickRaster) virtualJoystickA_lastIndex = virtualJoystickA.JoystickRaster;
+                        if (virtualJoystickA_lastIndex < 1) virtualJoystickA_lastIndex = 1;
+                        virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
+                        return true;
+                    }
 
-                if (action.Contains("Stop") && keyDown && !grbl.isVersion_0) { sendRealtimeCommand(133); return true; }
-
-                return false;
-            }
-
-            if (keyDown)
-            {
-                if (action == "JogSpeedXYInc")
-                {
-                    virtualJoystickXY_lastIndex++;
-                    if (virtualJoystickXY_lastIndex > virtualJoystickXY.JoystickRaster) virtualJoystickXY_lastIndex = virtualJoystickXY.JoystickRaster;
-                    if (virtualJoystickXY_lastIndex < 1) virtualJoystickXY_lastIndex = 1;
-                    virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
-                    return true;
-                }
-                if (action == "JogSpeedXYDec")
-                {
-                    virtualJoystickXY_lastIndex--;
-                    if (virtualJoystickXY_lastIndex > virtualJoystickXY.JoystickRaster) virtualJoystickXY_lastIndex = virtualJoystickXY.JoystickRaster;
-                    if (virtualJoystickXY_lastIndex < 1) virtualJoystickXY_lastIndex = 1;
-                    virtualJoystickXY.JoystickRasterMark = virtualJoystickXY_lastIndex;
-                    return true;
-                }
-                if (action == "JogSpeedZInc")
-                {
-                    virtualJoystickZ_lastIndex++;
-                    if (virtualJoystickZ_lastIndex > virtualJoystickZ.JoystickRaster) virtualJoystickZ_lastIndex = virtualJoystickZ.JoystickRaster;
-                    if (virtualJoystickZ_lastIndex < 1) virtualJoystickZ_lastIndex = 1;
-                    virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
-                    return true;
-                }
-                if (action == "JogSpeedZDec")
-                {
-                    virtualJoystickZ_lastIndex--;
-                    if (virtualJoystickZ_lastIndex > virtualJoystickZ.JoystickRaster) virtualJoystickZ_lastIndex = virtualJoystickZ.JoystickRaster;
-                    if (virtualJoystickZ_lastIndex < 1) virtualJoystickZ_lastIndex = 1;
-                    virtualJoystickZ.JoystickRasterMark = virtualJoystickZ_lastIndex;
-                    return true;
-                }
-                if (action == "JogSpeedAInc")
-                {
-                    virtualJoystickA_lastIndex++;
-                    if (virtualJoystickA_lastIndex > virtualJoystickA.JoystickRaster) virtualJoystickA_lastIndex = virtualJoystickA.JoystickRaster;
-                    if (virtualJoystickA_lastIndex < 1) virtualJoystickA_lastIndex = 1;
-                    virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
-                    return true;
-                }
-                if (action == "JogSpeedADec")
-                {
-                    virtualJoystickA_lastIndex--;
-                    if (virtualJoystickA_lastIndex > virtualJoystickA.JoystickRaster) virtualJoystickA_lastIndex = virtualJoystickA.JoystickRaster;
-                    if (virtualJoystickA_lastIndex < 1) virtualJoystickA_lastIndex = 1;
-                    virtualJoystickA.JoystickRasterMark = virtualJoystickA_lastIndex;
-                    return true;
-                }
-
-                if (action.StartsWith("Stream"))
-                {
-                    if (action.Contains("Start")) { btnStreamStart.PerformClick(); }
-                    if (action.Contains("Stop")) { btnStreamStop.PerformClick(); }
-                    if (action.Contains("Check")) { btnStreamCheck.PerformClick(); }
-                    return true;
-                }
-                if (action.StartsWith("Override"))
-                {
-                    if (action.Contains("FeedInc10")) { btnOverrideFR1.PerformClick(); }
-                    else if (action.Contains("FeedInc1")) { btnOverrideFR2.PerformClick(); }
-                    else if (action.Contains("FeedDec10")) { btnOverrideFR4.PerformClick(); }
-                    else if (action.Contains("FeedDec1")) { btnOverrideFR3.PerformClick(); }
-                    else if (action.Contains("FeedSet100")) { btnOverrideFR0.PerformClick(); }
-                    else if (action.Contains("SpindleInc10")) { btnOverrideSS1.PerformClick(); }
-                    else if (action.Contains("SpindleInc1")) { btnOverrideSS2.PerformClick(); }
-                    else if (action.Contains("SpindleDec10")) { btnOverrideSS4.PerformClick(); }
-                    else if (action.Contains("SpindleDec1")) { btnOverrideSS3.PerformClick(); }
-                    else if (action.Contains("SpindleSet100")) { btnOverrideSS0.PerformClick(); }
-                    return true;
-                }
-                if (action.StartsWith("Offset") && _serial_form.serialPortOpen && (!isStreaming || isStreamingPause))
-                {
-                    if (action.Contains("XYZ")) { btnZeroXYZ.PerformClick(); }
-                    else if (action.Contains("XY")) { btnZeroXY.PerformClick(); }
-                    else if (action.Contains("X")) { btnZeroX.PerformClick(); }
-                    else if (action.Contains("Y")) { btnZeroY.PerformClick(); }
-                    else if (action.Contains("Z")) { btnZeroZ.PerformClick(); }
-                    else if (action.Contains("A")) { btnZeroA.PerformClick(); }
-                    return true;
-                }
-                if (action.StartsWith("MoveZero") && _serial_form.serialPortOpen && (!isStreaming || isStreamingPause))
-                {
-                    if (action.Contains("XY")) { btnJogZeroXY.PerformClick(); }
-                    else if (action.Contains("X")) { btnJogZeroX.PerformClick(); }
-                    else if (action.Contains("Y")) { btnJogZeroY.PerformClick(); }
-                    else if (action.Contains("Z")) { btnJogZeroZ.PerformClick(); }
-                    else if (action.Contains("A")) { btnJogZeroA.PerformClick(); }
-                    return true;
-                }
-                if (action.StartsWith("grbl") && _serial_form.serialPortOpen)
-                {
-                    if (action.Contains("Home")) { btnHome.PerformClick(); }
-                    else if (action.Contains("FeedHold")) { btnFeedHold.PerformClick(); }
-                    else if (action.Contains("Reset")) { btnReset.PerformClick(); }
-                    else if (action.Contains("Resume")) { btnResume.PerformClick(); }
-                    else if (action.Contains("KillAlarm")) { btnKillAlarm.PerformClick(); }
-                    return true;
-                }
-                if (action.StartsWith("Toggle") && _serial_form.serialPortOpen)
-                {
-                    if (action.Contains("ToolInSpindle")) { cBTool.Checked = !cBTool.Checked; }     // order is important...
-                    else if(action.Contains("Spindle")) { cBSpindle.Checked = !cBSpindle.Checked; }
-                    else if (action.Contains("Coolant")) { cBCoolant.Checked = !cBCoolant.Checked; }
-                    return true;
+                    if (action.StartsWith("Stream"))
+                    {
+                        if (action.Contains("Start")) { btnStreamStart.PerformClick(); }
+                        if (action.Contains("Stop")) { btnStreamStop.PerformClick(); }
+                        if (action.Contains("Check")) { btnStreamCheck.PerformClick(); }
+                        return true;
+                    }
+                    if (action.StartsWith("Override"))
+                    {
+                        if (action.Contains("FeedInc10")) { btnOverrideFR1.PerformClick(); }
+                        else if (action.Contains("FeedInc1")) { btnOverrideFR2.PerformClick(); }
+                        else if (action.Contains("FeedDec10")) { btnOverrideFR4.PerformClick(); }
+                        else if (action.Contains("FeedDec1")) { btnOverrideFR3.PerformClick(); }
+                        else if (action.Contains("FeedSet100")) { btnOverrideFR0.PerformClick(); }
+                        else if (action.Contains("SpindleInc10")) { btnOverrideSS1.PerformClick(); }
+                        else if (action.Contains("SpindleInc1")) { btnOverrideSS2.PerformClick(); }
+                        else if (action.Contains("SpindleDec10")) { btnOverrideSS4.PerformClick(); }
+                        else if (action.Contains("SpindleDec1")) { btnOverrideSS3.PerformClick(); }
+                        else if (action.Contains("SpindleSet100")) { btnOverrideSS0.PerformClick(); }
+                        return true;
+                    }
+                    if (action.StartsWith("Offset") && _serial_form.serialPortOpen && (!isStreaming || isStreamingPause))
+                    {
+                        if (action.Contains("XYZ")) { btnZeroXYZ.PerformClick(); }
+                        else if (action.Contains("XY")) { btnZeroXY.PerformClick(); }
+                        else if (action.Contains("X")) { btnZeroX.PerformClick(); }
+                        else if (action.Contains("Y")) { btnZeroY.PerformClick(); }
+                        else if (action.Contains("Z")) { btnZeroZ.PerformClick(); }
+                        else if (action.Contains("A")) { btnZeroA.PerformClick(); }
+                        return true;
+                    }
+                    if (action.StartsWith("MoveZero") && _serial_form.serialPortOpen && (!isStreaming || isStreamingPause))
+                    {
+                        if (action.Contains("XY")) { btnJogZeroXY.PerformClick(); }
+                        else if (action.Contains("X")) { btnJogZeroX.PerformClick(); }
+                        else if (action.Contains("Y")) { btnJogZeroY.PerformClick(); }
+                        else if (action.Contains("Z")) { btnJogZeroZ.PerformClick(); }
+                        else if (action.Contains("A")) { btnJogZeroA.PerformClick(); }
+                        return true;
+                    }
+                    if (action.StartsWith("grbl") && _serial_form.serialPortOpen)
+                    {
+                        if (action.Contains("Home")) { btnHome.PerformClick(); }
+                        else if (action.Contains("FeedHold")) { btnFeedHold.PerformClick(); }
+                        else if (action.Contains("Reset")) { btnReset.PerformClick(); }
+                        else if (action.Contains("Resume")) { btnResume.PerformClick(); }
+                        else if (action.Contains("KillAlarm")) { btnKillAlarm.PerformClick(); }
+                        return true;
+                    }
+                    if (action.StartsWith("Toggle") && _serial_form.serialPortOpen)
+                    {
+                        if (action.Contains("ToolInSpindle")) { cBTool.Checked = !cBTool.Checked; }     // order is important...
+                        else if (action.Contains("Spindle")) { cBSpindle.Checked = !cBSpindle.Checked; }
+                        else if (action.Contains("Coolant")) { cBCoolant.Checked = !cBCoolant.Checked; }
+                        return true;
+                    }
                 }
             }
             return false;

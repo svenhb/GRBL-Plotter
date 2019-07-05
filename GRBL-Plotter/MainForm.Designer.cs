@@ -56,6 +56,8 @@ namespace GRBL_Plotter
                 brushBackground.Dispose();
                 pBoxOrig.Dispose();
                 penLandMark.Dispose();
+                StyleAAxis.Dispose();
+                StyleLineN.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -184,6 +186,8 @@ namespace GRBL_Plotter
             this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.unDo2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.zeroXYAtMarkedPositionG92ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToMarkedPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -196,9 +200,11 @@ namespace GRBL_Plotter
             this.deleteThisCodeLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveToFirstPosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutOutSelectedPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.setGCodeAsBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.radiusCorrectionOnSelectedPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tBURL = new System.Windows.Forms.TextBox();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -269,6 +275,8 @@ namespace GRBL_Plotter
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createSimpleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unDoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.mirrorXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mirrorYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mirrorRotaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -301,6 +309,8 @@ namespace GRBL_Plotter
             this.skaliereYAufDrehachseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_tb_Y_A_scale = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStrip_RadiusComp = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip_tBRadiusCompValue = new System.Windows.Forms.ToolStripTextBox();
             this.ersetzteG23DurchLinienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertZToSspindleSpeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeAnyZMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1323,6 +1333,8 @@ namespace GRBL_Plotter
             // cmsPictureBox
             // 
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unDo2ToolStripMenuItem,
+            this.toolStripSeparator17,
             this.zeroXYAtMarkedPositionG92ToolStripMenuItem,
             this.moveToMarkedPositionToolStripMenuItem,
             this.toolStripSeparator9,
@@ -1335,11 +1347,24 @@ namespace GRBL_Plotter
             this.deleteThisCodeLineToolStripMenuItem,
             this.moveToFirstPosToolStripMenuItem,
             this.deletePathToolStripMenuItem,
+            this.cutOutSelectedPathToolStripMenuItem,
             this.toolStripSeparator10,
             this.setGCodeAsBackgroundToolStripMenuItem,
-            this.clearBackgroundToolStripMenuItem});
+            this.clearBackgroundToolStripMenuItem,
+            this.radiusCorrectionOnSelectedPathToolStripMenuItem});
             this.cmsPictureBox.Name = "cmsPictureBox";
             resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
+            // 
+            // unDo2ToolStripMenuItem
+            // 
+            resources.ApplyResources(this.unDo2ToolStripMenuItem, "unDo2ToolStripMenuItem");
+            this.unDo2ToolStripMenuItem.Name = "unDo2ToolStripMenuItem";
+            this.unDo2ToolStripMenuItem.Click += new System.EventHandler(this.unDoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator17
+            // 
+            this.toolStripSeparator17.Name = "toolStripSeparator17";
+            resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             // 
             // zeroXYAtMarkedPositionG92ToolStripMenuItem
             // 
@@ -1410,6 +1435,12 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.deletePathToolStripMenuItem, "deletePathToolStripMenuItem");
             this.deletePathToolStripMenuItem.Click += new System.EventHandler(this.deletePathToolStripMenuItem_Click);
             // 
+            // cutOutSelectedPathToolStripMenuItem
+            // 
+            this.cutOutSelectedPathToolStripMenuItem.Name = "cutOutSelectedPathToolStripMenuItem";
+            resources.ApplyResources(this.cutOutSelectedPathToolStripMenuItem, "cutOutSelectedPathToolStripMenuItem");
+            this.cutOutSelectedPathToolStripMenuItem.Click += new System.EventHandler(this.cutOutSelectedPathToolStripMenuItem_Click);
+            // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
@@ -1426,6 +1457,11 @@ namespace GRBL_Plotter
             this.clearBackgroundToolStripMenuItem.Name = "clearBackgroundToolStripMenuItem";
             resources.ApplyResources(this.clearBackgroundToolStripMenuItem, "clearBackgroundToolStripMenuItem");
             this.clearBackgroundToolStripMenuItem.Click += new System.EventHandler(this.clearBackgroundToolStripMenuItem_Click);
+            // 
+            // radiusCorrectionOnSelectedPathToolStripMenuItem
+            // 
+            this.radiusCorrectionOnSelectedPathToolStripMenuItem.Name = "radiusCorrectionOnSelectedPathToolStripMenuItem";
+            resources.ApplyResources(this.radiusCorrectionOnSelectedPathToolStripMenuItem, "radiusCorrectionOnSelectedPathToolStripMenuItem");
             // 
             // tBURL
             // 
@@ -1924,6 +1960,8 @@ namespace GRBL_Plotter
             // gCodeToolStripMenuItem
             // 
             this.gCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unDoToolStripMenuItem,
+            this.toolStripSeparator16,
             this.mirrorXToolStripMenuItem,
             this.mirrorYToolStripMenuItem,
             this.mirrorRotaryToolStripMenuItem,
@@ -1945,11 +1983,23 @@ namespace GRBL_Plotter
             this.skaliereXAufDrehachseToolStripMenuItem,
             this.skaliereYAufDrehachseToolStripMenuItem,
             this.toolStripSeparator15,
+            this.toolStrip_RadiusComp,
             this.ersetzteG23DurchLinienToolStripMenuItem,
             this.convertZToSspindleSpeedToolStripMenuItem,
             this.removeAnyZMoveToolStripMenuItem});
             this.gCodeToolStripMenuItem.Name = "gCodeToolStripMenuItem";
             resources.ApplyResources(this.gCodeToolStripMenuItem, "gCodeToolStripMenuItem");
+            // 
+            // unDoToolStripMenuItem
+            // 
+            resources.ApplyResources(this.unDoToolStripMenuItem, "unDoToolStripMenuItem");
+            this.unDoToolStripMenuItem.Name = "unDoToolStripMenuItem";
+            this.unDoToolStripMenuItem.Click += new System.EventHandler(this.unDoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             // 
             // mirrorXToolStripMenuItem
             // 
@@ -2156,6 +2206,19 @@ namespace GRBL_Plotter
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
             resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
+            // 
+            // toolStrip_RadiusComp
+            // 
+            this.toolStrip_RadiusComp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_tBRadiusCompValue});
+            this.toolStrip_RadiusComp.Name = "toolStrip_RadiusComp";
+            resources.ApplyResources(this.toolStrip_RadiusComp, "toolStrip_RadiusComp");
+            // 
+            // toolStrip_tBRadiusCompValue
+            // 
+            this.toolStrip_tBRadiusCompValue.Name = "toolStrip_tBRadiusCompValue";
+            resources.ApplyResources(this.toolStrip_tBRadiusCompValue, "toolStrip_tBRadiusCompValue");
+            this.toolStrip_tBRadiusCompValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tBRadiusCompValue_KeyDown);
             // 
             // ersetzteG23DurchLinienToolStripMenuItem
             // 
@@ -2629,6 +2692,14 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnOverrideRapid2;
         private System.Windows.Forms.Label lblOverrideRapidValue;
         private System.Windows.Forms.Button btnOverrideRapid1;
+        private System.Windows.Forms.ToolStripMenuItem radiusCorrectionOnSelectedPathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cutOutSelectedPathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unDoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripMenuItem unDo2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
+        private System.Windows.Forms.ToolStripMenuItem toolStrip_RadiusComp;
+        private System.Windows.Forms.ToolStripTextBox toolStrip_tBRadiusCompValue;
     }
 }
 

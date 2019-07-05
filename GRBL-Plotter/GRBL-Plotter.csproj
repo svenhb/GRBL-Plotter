@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>9</ApplicationRevision>
-    <ApplicationVersion>1.2.4.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.2.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -149,6 +149,7 @@
     </Compile>
     <Compile Include="GCodeCreation\AForge_Imaging_Filter_HueShift.cs" />
     <Compile Include="GCodeCreation\AForge_Imaging_Filter_RemoveArtefact.cs" />
+    <Compile Include="GCodeCreation\GCodeFormFontHershey.cs" />
     <Compile Include="GCodeCreation\GCodeFromFont.cs" />
     <Compile Include="GCodeCreation\GCodeFromImageCreate.cs">
       <SubType>Form</SubType>
@@ -168,6 +169,7 @@
     </Compile>
     <Compile Include="MachineControl\ControlPowerSaving.cs" />
     <Compile Include="MachineControl\GCodeParser.cs" />
+    <Compile Include="MachineControl\GCodeTransform.cs" />
     <Compile Include="MachineControl\NativeMethods.cs" />
     <Compile Include="MainFormGetCodeTransform.cs">
       <SubType>Form</SubType>
@@ -556,6 +558,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="_misc\script_brush_select.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_misc\test_svg\Hershey_Fonts.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="_misc\tools.csv">

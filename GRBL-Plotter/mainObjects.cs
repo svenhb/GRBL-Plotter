@@ -18,6 +18,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
@@ -51,9 +52,10 @@ namespace GRBL_Plotter
             a.C = b.C - c.C;
             return a;
         }
-        public static bool AlmostEqual(xyzPoint b, xyzPoint c)
+        public static bool AlmostEqual(xyzPoint a, xyzPoint b)
         {
-            return (Math.Abs(b.X - c.X) <= grbl.resolution) && (Math.Abs(b.Y - c.Y) <= grbl.resolution) && (Math.Abs(b.Z - c.Z) <= grbl.resolution);
+       //     return (Math.Abs(a.X - b.X) <= grbl.resolution) && (Math.Abs(a.Y - b.Y) <= grbl.resolution) && (Math.Abs(a.Z - b.Z) <= grbl.resolution);
+            return (gcode.isEqual(a.X, b.X) && gcode.isEqual(a.Y, b.Y) && gcode.isEqual(a.Z, b.Z));
         }
 
 
@@ -101,6 +103,8 @@ namespace GRBL_Plotter
         { return new xyPoint(tmp); }
         public static explicit operator xyPoint(xyzPoint tmp)
         { return new xyPoint(tmp); }
+        public static explicit operator xyPoint(xyArcPoint tmp)
+        { return new xyPoint(tmp.X,tmp.Y); }
 
         public Point ToPoint()
         { return new Point((int)X, (int)Y); }
@@ -149,7 +153,43 @@ namespace GRBL_Plotter
             return a;
         }
     };
-
+    public struct xyArcPoint
+    {
+        public double X, Y, CX, CY;
+        public byte mode;
+        public xyArcPoint(double x, double y, double cx, double cy, byte m)
+        {
+            X = x; Y = y; CX = cx; CY = cy; mode = m;
+        }
+        public xyArcPoint(xyPoint tmp)
+        {
+            X = tmp.X; Y = tmp.Y; CX = 0; CY = 0; mode = 0;
+        }
+        public xyArcPoint(Point tmp)
+        {
+            X = tmp.X; Y = tmp.Y; CX = 0; CY = 0; mode = 0;
+        }
+        public xyArcPoint(xyzPoint tmp)
+        {
+            X = tmp.X; Y = tmp.Y; CX = 0; CY = 0; mode = 0;
+        }
+        public xyArcPoint(xyzabcuvwPoint tmp)
+        {
+            X = tmp.X; Y = tmp.Y; CX = 0; CY = 0; mode = 0;
+        }
+        public static explicit operator xyArcPoint(Point tmp)
+        {
+            return new xyArcPoint(tmp);
+        }
+        public static explicit operator xyArcPoint(xyzPoint tmp)
+        {
+            return new xyArcPoint(tmp);
+        }
+        public static explicit operator xyArcPoint(xyPoint tmp)
+        {
+            return new xyArcPoint(tmp);
+        }
+    }
     /// <summary>
     /// calculate overall dimensions of drawing
     /// </summary>
@@ -223,6 +263,13 @@ namespace GRBL_Plotter
             dimy = 0;
             dimz = 0;
         }
+
+        public xyPoint getCenter()
+        {   double cx = minx + ((maxx - minx) / 2);
+            double cy = miny + ((maxy - miny) / 2);
+            return new xyPoint(cx, cy);
+        }
+
         // return string with dimensions
         public String getMinMaxString()
         {
@@ -341,6 +388,24 @@ namespace GRBL_Plotter
         {   return logText.ToString(); }
         public static void clear()
         { logText.Clear(); }
+    }
+
+    public static class unDo
+    {
+        private static string unDoCode = "";
+        private static string unDoAction = "";
+        private static MainForm form;
+        public static void setCode(string code, string comment, MainForm mform)
+        {
+            unDoCode = code.ToString();
+            unDoAction = comment;
+            form = mform;
+            form.setUndoText("Undo '" + comment + "'");
+        }
+        public static string getCode()
+        {   form.setUndoText("");
+            return unDoCode;
+        }
     }
 
 }

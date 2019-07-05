@@ -226,13 +226,16 @@ namespace GRBL_Plotter
 
         #region MAIN-MENU GCode Transform
 
-        private void transformStart()
+        private void transformStart(string action, bool resetMark = true)
         {   Cursor.Current = Cursors.WaitCursor;
-            showPicBoxBgImage = false;                  // don't show background image anymore
+            unDo.setCode(fCTBCode.Text,action,this);
+            showPicBoxBgImage = false;                      // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             pBoxTransform.Reset();
-            visuGCode.markSelectedFigure(-1);           // hide highlight
-            grbl.posMarker = new xyPoint(0, 0);
+    /*        if (resetMark)
+            {   visuGCode.markSelectedFigure(-1);           // hide highlight
+                grbl.posMarker = new xyPoint(0, 0);
+            }*/
         }
 
         private void transformEnd()
@@ -260,7 +263,7 @@ namespace GRBL_Plotter
             }
             if (fCTBCode.Lines.Count > 1)
             {
-                transformStart();
+                transformStart("Apply Offset");
                 zoomRange = 1f;
                 if (rBOrigin1.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset1); }
                 if (rBOrigin2.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset2); }
@@ -279,44 +282,44 @@ namespace GRBL_Plotter
             Cursor.Current = Cursors.Default;
         }
 
-
         private void mirrorXToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Mirror X");
             fCTBCode.Text = visuGCode.transformGCodeMirror(GCodeVisuAndTransform.translate.MirrorX);
             transformEnd();
         }
 
         private void mirrorYToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Mirror Y");
             fCTBCode.Text = visuGCode.transformGCodeMirror(GCodeVisuAndTransform.translate.MirrorY);
             transformEnd();
         }
 
         private void mirrorRotaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Rotate");
             fCTBCode.Text = visuGCode.transformGCodeMirror(GCodeVisuAndTransform.translate.MirrorRotary);
             transformEnd();
         }
 
         private void rotate90ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Rotate 90");
             fCTBCode.Text = visuGCode.transformGCodeRotate(90, 1, new xyPoint(0, 0));
             transformEnd();
         }
 
         private void rotate90ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Rotate -90");
             fCTBCode.Text = visuGCode.transformGCodeRotate(-90, 1, new xyPoint(0, 0));
             transformEnd();
         }
+
         private void rotate180ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Rotate 180");
             fCTBCode.Text = visuGCode.transformGCodeRotate(180, 1, new xyPoint(0, 0));
             transformEnd();
         }
@@ -328,7 +331,7 @@ namespace GRBL_Plotter
                 double anglenew;
                 if (Double.TryParse(toolStrip_tb_rotate.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out anglenew))
                 {
-                    transformStart();
+                    transformStart(string.Format("Rotate {0:0.00}", anglenew));
                     fCTBCode.Text = visuGCode.transformGCodeRotate(anglenew, 1, new xyPoint(0, 0));
                     transformEnd();
                 }
@@ -348,7 +351,7 @@ namespace GRBL_Plotter
                 double size;
                 if (Double.TryParse(toolStrip_tb_XY_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out size))
                 {
-                    transformStart();
+                    transformStart("Scale");
                     fCTBCode.Text = visuGCode.transformGCodeScale(size, size);
                     transformEnd();
                 }
@@ -411,7 +414,7 @@ namespace GRBL_Plotter
                 double size;
                 if (Double.TryParse(toolStrip_tb_X_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out size))
                 {
-                    transformStart();
+                    transformStart("Scale");
                     fCTBCode.Text = visuGCode.transformGCodeScale(size, 100);
                     transformEnd();
                 }
@@ -480,7 +483,7 @@ namespace GRBL_Plotter
                 double size;
                 if (Double.TryParse(toolStrip_tb_Y_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out size))
                 {
-                    transformStart();
+                    transformStart("Scale");
                     fCTBCode.Text = visuGCode.transformGCodeScale(100, size);
                     transformEnd();
                 }
@@ -566,23 +569,56 @@ namespace GRBL_Plotter
             }
         }
 
+        private void toolStrip_tBRadiusCompValue_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)13)
+            {
+                double radius = Properties.Settings.Default.crcValue;
+                if (Double.TryParse(toolStrip_tBRadiusCompValue.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out radius))
+                {
+                    Properties.Settings.Default.crcValue = radius;
+                    Properties.Settings.Default.backgroundShow = toolStripViewBackground.Checked = true;
+                    {
+                        //transformStart();
+                        Cursor.Current = Cursors.WaitCursor;
+                        unDo.setCode(fCTBCode.Text, string.Format("Radius compensation {0:0.00}", radius), this);
+                        showPicBoxBgImage = false;                  // don't show background image anymore
+                        pictureBox1.BackgroundImage = null;
+                        pBoxTransform.Reset();
+                        grbl.posMarker = new xyPoint(0, 0);
+
+                        fCTBCode.Text = visuGCode.transformGCodeRadiusCorrection(radius);
+//                        showMessageForm(log.get());
+                        transformEnd();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Not a valid number", "Attention");
+                    toolStrip_tBRadiusCompValue.Text = string.Format("{0:0.000}", radius);
+                }
+                e.SuppressKeyPress = true;
+                gCodeToolStripMenuItem.HideDropDown();
+            }
+        }
+
         private void ersetzteG23DurchLinienToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Replace G2 / G3");
             fCTBCode.Text = visuGCode.replaceG23();
             transformEnd();
         }
 
         private void convertZToSspindleSpeedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Convert Z");
             fCTBCode.Text = visuGCode.convertZ();
             transformEnd();
         }
 
         private void removeAnyZMoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            transformStart();
+            transformStart("Remove any Z");
             fCTBCode.Text = visuGCode.removeZ();
             transformEnd();
         }
@@ -598,8 +634,9 @@ namespace GRBL_Plotter
             toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
             if (visuGCode.containsG2G3Command())                        // disable X/Y independend scaling if G2 or G3 GCode is in use
             {                                                           // because it's not possible to stretch (convert 1st to G1 GCode)                skaliereXUmToolStripMenuItem.Enabled = false;
-                skaliereAufXUnitsToolStripMenuItem.Enabled = false;
+                skaliereXUmToolStripMenuItem.Enabled = false;
                 skaliereYUmToolStripMenuItem.Enabled = false;
+                skaliereAufXUnitsToolStripMenuItem.Enabled = false;
                 skaliereAufYUnitsToolStripMenuItem.Enabled = false;
                 skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
                 skaliereYAufDrehachseToolStripMenuItem.Enabled = false;
@@ -608,8 +645,8 @@ namespace GRBL_Plotter
             else
             {
                 skaliereXUmToolStripMenuItem.Enabled = true;                // enable X/Y independend scaling because no G2 or G3 GCode
-                skaliereAufXUnitsToolStripMenuItem.Enabled = true;
                 skaliereYUmToolStripMenuItem.Enabled = true;
+                skaliereAufXUnitsToolStripMenuItem.Enabled = true;
                 skaliereAufYUnitsToolStripMenuItem.Enabled = true;
                 skaliereXAufDrehachseToolStripMenuItem.Enabled = true;
                 skaliereYAufDrehachseToolStripMenuItem.Enabled = true;
@@ -650,5 +687,10 @@ namespace GRBL_Plotter
 
         #endregion
 
+        private void unDoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fCTBCode.Text = unDo.getCode();
+            transformEnd();
+        }
     }
 }
