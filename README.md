@@ -5,6 +5,14 @@ Written in C# VisualStudio 2015.
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
    
+### New in Version 1.2.5.x:
+* Transform of all or selected code
+* ___simple___ cutter radius compensation
+* option for final Z depth in several passes
+* update Hershey fonts from evil mad scientist (before their new release)
+* New option for text creation: connect characters within a word
+* Hot keys: assign direct commands / scripts to keys    
+   
 ### New in version 1.2.4.x:  
 * extend override buttons in GUI for grbl version 1.1
 * bug fix drag tool compensation: correct start point of first line in object
@@ -30,7 +38,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.2.4.8](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-05-10    
+#### [GRBL-Plotter Vers. 1.2.5.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-07-05    
 
 ### Requirements for compiling
 * VisualStudio 2015 
