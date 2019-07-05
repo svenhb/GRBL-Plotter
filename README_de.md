@@ -5,7 +5,7 @@ Geschrieben in C# VisualStudio 2015.
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
 ## Neu in Version 1.2.5.0:
-* Transformierung der gesamten oder des selektierten Objekts
+* Transformierung aller Objekte (bisher) oder eines selektierten Objekts
 * ___einfache___ Fräserradiuskorrektur
 * Option für Z-Tiefe in mehreren Durchgängen
 * Update Hershey fonts von Evil Mad Scientist (vor ihrem neuen Release)
