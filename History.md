@@ -1,6 +1,14 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### 2019-07-05 version 1.2.5.x:
+* Transform of all or selected code
+* ___simple___ cutter radius compensation
+* option for final Z depth in several passes
+* update Hershey fonts from evil mad scientist (before their new release)
+* New option for text creation: connect characters within a word
+* Hot keys: assign direct commands / scripts to keys    
+
 ### 2019-02 to 04 version 1.2.4.x:  
 * 1.2.4.8 Extend override buttons in GUI for grbl version 1.1
 * 1.2.4.8 Bug fix drag tool compensation: correct start point of first line in object
