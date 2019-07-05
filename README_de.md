@@ -4,7 +4,15 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
-### Neu in version 1.2.4.x:  
+## Neu in Version 1.2.5.0:
+* Transformierung der gesamten oder des selektierten Objekts
+* ___einfache___ Fräserradiuskorrektur
+* Option für Z-Tiefe in mehreren Durchgängen
+* Update Hershey fonts von Evil Mad Scientist (vor ihrem neuen Release)
+* Neue Option für die Texterstellung: Verbinden einzelner Buchstaben eines Wortes
+* Hot keys: Zuordnung von Befehlen oder Skripten zu angegebenen Tasten    
+  
+### Neu in Version 1.2.4.x:  
 * Erweiterung der Override Funktionen für grbl version 1.1
 * Fehlerbehbung für drag tool compensation: Korrektur der Startposition des ersten Punktes eines Objekts
 * Abbildung einer Drehachse auf X oder Y Achse in der 2D Ansicht
@@ -78,7 +86,7 @@ Auskommentierung von unbekannten GCode
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.2.4.8](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-05-10    
+#### [GRBL-Plotter Vers. 1.2.5.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-07-05    
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
