@@ -297,6 +297,9 @@ sortiere Objekte nach am häufigsten genutzer Werkzeugnummer (= Farbe)</value>
   <data name="tabPage10.Text" xml:space="preserve">
     <value>G-Code Erzeugung</value>
   </data>
+  <data name="groupBox29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 285</value>
+  </data>
   <data name="groupBox29.Text" xml:space="preserve">
     <value>Allgemein</value>
   </data>
@@ -412,6 +415,12 @@ D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
   <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
     <value>Nachkommastellen im Code </value>
   </data>
+  <data name="groupBox28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>350, 6</value>
+  </data>
+  <data name="groupBox28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>505, 285</value>
+  </data>
   <data name="groupBox28.Text" xml:space="preserve">
     <value>Stift hoch/runter Übersetzung</value>
   </data>
@@ -420,6 +429,15 @@ D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
   </data>
   <data name="groupBox5.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="cBImportGCTTZIncrement.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 17</value>
+  </data>
+  <data name="cBImportGCTTZIncrement.Text" xml:space="preserve">
+    <value>aus Wkzg.liste</value>
+  </data>
+  <data name="cBImportGCTTZIncrement.ToolTip" xml:space="preserve">
+    <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
   </data>
   <data name="cBImportGCTTZDeepth.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 17</value>
@@ -440,10 +458,10 @@ D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
     <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 13</value>
+    <value>84, 13</value>
   </data>
   <data name="label33.Text" xml:space="preserve">
-    <value>Z-Höhen Zugabe</value>
+    <value>Tiefenzustellung</value>
   </data>
   <data name="label33.ToolTip" xml:space="preserve">
     <value>Zugabe (besser Abzug) zum Z-Wert pro Durchlauf</value>
@@ -455,7 +473,8 @@ D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
     <value>Wiederholungen</value>
   </data>
   <data name="checkBox2.ToolTip" xml:space="preserve">
-    <value>Wiederhole Pfad mit vergrößender Z Tiefe um Endtiefe zu erreichen</value>
+    <value>Wiederhole Pfad mit vergrößender Z Tiefe um Endtiefe zu erreichen
+Nicht mit anderen Stift hoch/runter Optionen nutzbar!</value>
   </data>
   <data name="cBImportGCUseZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 17</value>
@@ -479,7 +498,7 @@ D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
     <value>Z-Höhe gravieren</value>
   </data>
   <data name="label3.ToolTip" xml:space="preserve">
-    <value>Tiefe der Werkzeugs im Material </value>
+    <value>Finale Tiefe der Werkzeugs im Material </value>
   </data>
   <data name="label5.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit der Z Achse für G1 Befehl</value>
@@ -619,6 +638,9 @@ D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
   <data name="label78.Text" xml:space="preserve">
     <value>Maximum S bei minimum Z</value>
   </data>
+  <data name="groupBox32.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 119</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -755,6 +777,18 @@ Don't use with "Relative movements"</value>
   <data name="btnReloadFile.ToolTip" xml:space="preserve">
     <value>Datei neu importieren um geänderte Einstellungen anzuwenden</value>
   </data>
+  <data name="btnFileDialogTT4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>832, 69</value>
+  </data>
+  <data name="btnFileDialogTT3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>832, 49</value>
+  </data>
+  <data name="btnFileDialogTT2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>832, 29</value>
+  </data>
+  <data name="btnFileDialogTT1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>832, 9</value>
+  </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 50</value>
   </data>
@@ -804,10 +838,10 @@ Don't use with "Relative movements"</value>
     <value>Offset zur Wkzg.pos. in Wkzg.liste (X,Y,Z)</value>
   </data>
   <data name="btnToolImport.Text" xml:space="preserve">
-    <value>Import W.liste</value>
+    <value>Import Werkzeugliste</value>
   </data>
   <data name="btnToolExport.Text" xml:space="preserve">
-    <value>Export W.liste</value>
+    <value>Export Werkzeugliste</value>
   </data>
   <data name="Column2.HeaderText" xml:space="preserve">
     <value>Farbe</value>
@@ -817,6 +851,42 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="Column7.ToolTipText" xml:space="preserve">
     <value>Durchmesser des Werkzeugs</value>
+  </data>
+  <data name="lbl_4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>424, 72</value>
+  </data>
+  <data name="tBToolChangeScriptProbe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>589, 69</value>
+  </data>
+  <data name="tBToolChangeScriptProbe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 20</value>
+  </data>
+  <data name="lbl_2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>424, 32</value>
+  </data>
+  <data name="tBToolChangeScriptSelect.Location" type="System.Drawing.Point, System.Drawing">
+    <value>589, 29</value>
+  </data>
+  <data name="tBToolChangeScriptSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 20</value>
+  </data>
+  <data name="lbl_1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>424, 12</value>
+  </data>
+  <data name="tBToolChangeScriptPut.Location" type="System.Drawing.Point, System.Drawing">
+    <value>589, 9</value>
+  </data>
+  <data name="tBToolChangeScriptPut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 20</value>
+  </data>
+  <data name="lbl_3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>424, 52</value>
+  </data>
+  <data name="tBToolChangeScriptGet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>589, 49</value>
+  </data>
+  <data name="tBToolChangeScriptGet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 20</value>
   </data>
   <data name="cBToolChange.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 30</value>

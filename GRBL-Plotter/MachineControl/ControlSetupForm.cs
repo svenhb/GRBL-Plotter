@@ -402,7 +402,7 @@ namespace GRBL_Plotter
 
         private void ExportDgvToCSV(string file)
         {   //ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
-            string[] deflt = { "1", "000000", "not set", "0", "0", "0", "1", "100", "-1", "100", "1000", "100" };
+            string[] deflt = { "1", "000000", "not set", "0", "0", "0", "1", "100", "-1", "2", "100", "1000", "100" };
             var csv = new StringBuilder();
             foreach (DataGridViewRow dgvR in dGVToolList.Rows)
             {
@@ -434,12 +434,20 @@ namespace GRBL_Plotter
                 string[] readText = File.ReadAllLines(file);
                 string[] col;
                 string tmp;
-                int row = 0;
+                int row = 0,l;
                 foreach (string s in readText)
                 {
                     if (s.Length > 10)
                     {
                         col = s.Split(';');
+                        if (col.Length < 13)        // insert Z inc. value
+                        {   tmp = s+";0";
+                            col = tmp.Split(';');
+                            for (l = col.Length-1; l > 9; l--) 
+                            { col[l] = col[l - 1]; }
+                            col[l] = "99";
+                        }
+                        
                         dGVToolList.Rows.Add();
                         for (int j = 0; j < col.Length; ++j)
                         {   tmp = col[j].Trim();
@@ -593,6 +601,7 @@ namespace GRBL_Plotter
             nUDImportGCFeedXY.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTXYFeed.Checked);
             nUDImportGCFeedZ.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZFeed.Checked);
             nUDImportGCZDown.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZDeepth.Checked);
+            nUDImportGCZIncrement.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZIncrement.Checked);
         }
 
         private void btnFileDialogTT1_Click(object sender, EventArgs e)
@@ -691,10 +700,6 @@ namespace GRBL_Plotter
 
         private void btnHotkeyRefresh_Click(object sender, EventArgs e)
         {   listHotkeys(); }
-
-        private void textBox1_MouseMove(object sender, MouseEventArgs e)
-        {    textBox1.Text = "X: " + e.X + "\r\nY: " + e.Y + "\r\nZ: ";
-        }
 
         private void btnMachineRangeGet_Click(object sender, EventArgs e)
         {   if (grbl.getSetting(130) < 0)

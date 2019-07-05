@@ -18,6 +18,7 @@
 */
 
 using System;
+using System.Windows.Forms;
 
 namespace GRBL_Plotter
 {
@@ -29,12 +30,13 @@ namespace GRBL_Plotter
         public int figureNumber;
         public xyPoint actualPos;      // accumulates position
         public double distance;         // distance to specific point
+        public bool isArc;
 
-        public coordByLine(int line, int figure, xyPoint p)
-        { lineNumber = line; figureNumber = figure; actualPos = p; distance = -1; }
+        public coordByLine(int line, int figure, xyPoint p, bool isarc)
+        { lineNumber = line; figureNumber = figure; actualPos = p; distance = -1; isArc = isarc; }
 
         public coordByLine(int line, int figure, xyPoint p, double dist)
-        { lineNumber = line; figureNumber = figure; actualPos = p; distance = dist; }
+        { lineNumber = line; figureNumber = figure; actualPos = p; distance = dist; isArc = false; }
 
         public void calcDistance(xyPoint tmp)
         {   xyPoint delta = new xyPoint(tmp - actualPos);
@@ -50,6 +52,8 @@ namespace GRBL_Plotter
 
         public static explicit operator xyPoint(xyzabcuvwPoint tmp)
         { return new xyPoint(tmp.X,tmp.Y); }
+        public static explicit operator xyArcPoint(xyzabcuvwPoint tmp)
+        { return new xyArcPoint(tmp.X, tmp.Y,0 ,0 ,0); }
     }
 
     /// <summary>
@@ -74,6 +78,7 @@ namespace GRBL_Plotter
         public xyzabcuvwPoint actualPos;      // accumulates position
         public double distance;         // distance to specific point
         public string otherCode;
+        public string info;
 
         public gcodeByLine()
         {   resetAll(); }
@@ -103,7 +108,7 @@ namespace GRBL_Plotter
 
             actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
-            distance = -1; otherCode = "";
+            distance = -1; otherCode = ""; info = "";
                  
             resetCoordinates();
         }
@@ -154,14 +159,8 @@ namespace GRBL_Plotter
                             {
                                 if (cmd != '\0')                        // and command is set
                                 {
-                                    value = 0;
-                                    if (num.Length > 0)                 // try to parse previous command and number
-                                    {
-                                        try { value = double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo); }
-                                        catch { }
-                                    }
-                                    try { parseGCodeToken(cmd, value, ref modalState); }
-                                    catch { }
+                                    if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
+                                        parseGCodeToken(cmd, value, ref modalState);
                                 }
                                 cmd = c;                                // char is a command
                                 num = "";
@@ -176,8 +175,8 @@ namespace GRBL_Plotter
                     }
                     if (cmd != '\0')                                    // finally after for-each process final command and number
                     {
-                        try { parseGCodeToken(cmd, double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo), ref modalState); }
-                        catch { }
+                        if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
+                            parseGCodeToken(cmd, value, ref modalState);
                     }
                 }
                 catch { }
