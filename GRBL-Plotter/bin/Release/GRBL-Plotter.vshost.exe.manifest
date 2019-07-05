@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="GRBL-Plotter.exe" version="1.2.4.9" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="GRBL-Plotter.exe" version="1.2.5.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="GRBL-Plotter" version="1.2.4.9" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="GRBL-Plotter" version="1.2.5.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="GRBL-Plotter.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -127,26 +127,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GRBL-Plotter.exe" size="5373952">
-      <assemblyIdentity name="GRBL-Plotter" version="1.2.4.9" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GRBL-Plotter.exe" size="6723584">
+      <assemblyIdentity name="GRBL-Plotter" version="1.2.5.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Xy/CiPG699cSGUgvYGLQAF97gW0=</dsig:DigestValue>
+        <dsig:DigestValue>RpPCLd6MDMvrvBufhPnEGSsfdXw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="de-DE\GRBL-Plotter.resources.dll" size="1784832">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.2.4.9" language="de-DE" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="de-DE\GRBL-Plotter.resources.dll" size="1792512">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.2.5.0" language="de-DE" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>lMc6HxoZedL/nV5v1FKey3zZ5IA=</dsig:DigestValue>
+        <dsig:DigestValue>HeoqbV+Mfj9BxdvRQ+9hOINu1gA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -294,13 +294,13 @@
       <dsig:DigestValue>XWmmqJfwOtccDLW7SQh6naSU1PA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="_misc\Stabilo_power.csv" size="574">
+  <file name="_misc\Stabilo_power.csv" size="598">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>YHP20R0xY/GF8A1ATfejBS94MeQ=</dsig:DigestValue>
+      <dsig:DigestValue>yqya686Ttx5YbHMchK5IKY9M2q8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="_misc\test_dxf\Bunny.dxf" size="40451">
@@ -393,13 +393,22 @@
       <dsig:DigestValue>nb5c5noMfGmEd2/AhCRAwGZRWBQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="_misc\test_svg\grbl.svg" size="3450">
+  <file name="_misc\test_svg\grbl.svg" size="4270">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>Dd9Hla3Qbazwk0LEkm2v31qOS8k=</dsig:DigestValue>
+      <dsig:DigestValue>FzVGmT6DCo9eUnYjNYL5k98UcE8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="_misc\test_svg\Hershey_Fonts.svg" size="221716">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>/j+lWESfi8UDvZLe9IPe6oIubJQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="_misc\test_svg\Testbild.svg" size="62049">
@@ -411,22 +420,22 @@
       <dsig:DigestValue>UGGIqIgvuDE8h8Jsz8yWLVsXim4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="_misc\tools.csv" size="321">
+  <file name="_misc\tools.csv" size="335">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ctM01suOdAq2kRc2P9iJ/CDiBG0=</dsig:DigestValue>
+      <dsig:DigestValue>9iwJdhS8cfnj4TP7kRIobSbQMkI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="_misc\watercolor.csv" size="321">
+  <file name="_misc\watercolor.csv" size="335">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ctM01suOdAq2kRc2P9iJ/CDiBG0=</dsig:DigestValue>
+      <dsig:DigestValue>9iwJdhS8cfnj4TP7kRIobSbQMkI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="fonts\amiri-regular.lff" size="7380155">
@@ -843,22 +852,22 @@
       <dsig:DigestValue>CnvV6KL8Jn0vKmiMv0zMnss4Gd0=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="GRBL-Plotter.exe.config" size="34231">
+  <file name="GRBL-Plotter.exe.config" size="34445">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>79RsGrttxPGgbGuQ/i8cEIftAXs=</dsig:DigestValue>
+      <dsig:DigestValue>OY9Q08D5mZ4vWEY7e2bB531u6do=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="hotkeys.xml" size="4402" writeableType="applicationData">
+  <file name="hotkeys.xml" size="4598" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>FnODKyXeFAFpRF0LjnYcMv4tY5E=</dsig:DigestValue>
+      <dsig:DigestValue>A3sLga9aTjIYINbmsGeEgWPOWuY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Icon.ico" size="180062">
@@ -870,13 +879,13 @@
       <dsig:DigestValue>M6dzuBWlwHgd2fo+OPTDd9wAB50=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Recent.txt" size="115">
+  <file name="Recent.txt" size="149">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ciabVykX1so9SHI3EamvGu6Zov0=</dsig:DigestValue>
+      <dsig:DigestValue>dYrDDUTpglzAwwSI6LkJQomPx0U=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\fctb_hotkeys.txt" size="1643">
