@@ -104,6 +104,16 @@ namespace GRBL_Plotter.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap down {
+            get {
+                object obj = ResourceManager.GetObject("down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &quot;Error Code in v1.1+&quot;,&quot;Error Message in v1.0-&quot;,&quot;Error Description&quot;
         ///&quot;1&quot;,&quot;Expected command letter&quot;,&quot;G-code words consist of a letter and a value. Letter was not found.&quot;
         ///&quot;2&quot;,&quot;Bad number format&quot;,&quot;Missing the expected G-code word value or numeric value format is not valid.&quot;
@@ -245,6 +255,16 @@ namespace GRBL_Plotter.Properties {
         internal static System.Drawing.Bitmap turn_r {
             get {
                 object obj = ResourceManager.GetObject("turn_r", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap up {
+            get {
+                object obj = ResourceManager.GetObject("up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
