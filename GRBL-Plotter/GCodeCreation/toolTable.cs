@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 */
 /*
     2018-08 only use tool table for color palette
+    2019-09 add logger, change sub-path
 */
 
 using System;
@@ -31,7 +32,7 @@ namespace GRBL_Plotter
     {
         public short toolnr;
         public System.Drawing.Color color;
-        public String name;
+        public string name;
         public bool colorPresent;
         public bool toolSelected;
         public int codeSize;
@@ -42,10 +43,12 @@ namespace GRBL_Plotter
         public float diameter;
         public float feedXY;
         public float feedZ;
+        public float saveZ;
         public float finalZ;
         public float stepZ;
         public float spindleSpeed;
         public float overlap;
+        public string gcode;
     }
     public struct toolPos
     {
@@ -55,15 +58,24 @@ namespace GRBL_Plotter
     }
     public static class toolTable
     {
-        private static int toolTableMax = 100;            // max amount of tools
+        private static int toolTableMax = 260;            // max amount of tools
         private static toolProp[] toolTableArray = new toolProp[toolTableMax];   // load color palette into this array
         private static int toolTableIndex = 0;            // last index
         private static bool useException = false;
         private static int tmpIndex = 0;
         private static bool init_done = false;
+        public const string defaultFileName = "_current_.csv";
 
-        // defaultTool needed in Setup      ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
-        public static string[] defaultTool = { "1", "000000", "Default black", "0.0", "0.0", "0.0", "-3.0", "500","-2", "1", "100","10000","75" };
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        public enum toolSortOption
+        {   nosort = 0,
+            bytool = 1,
+            bysize = 2
+        }
+ // defaultTool needed in Setup   fields:   ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-speed,Z-save,Z-depth,Z-step, spindleSpeed, overlap, gcode
+        public static string[] defaultTool = { "1", "000000", "Default black", "0", "0", "0", "1", "999", "555", "3", "-1", "1", "1111", "100", "" };
 
         public static toolPos[] getToolCordinates()
         {   if (!init_done)        //|| !Properties.Settings.Default.importGCTool
@@ -74,8 +86,8 @@ namespace GRBL_Plotter
             {   if (tool.toolnr >= 0)
                 {   newpos[index].toolnr = tool.toolnr;
                     newpos[index].name = tool.name;
-                    newpos[index].X = tool.X + (float)Properties.Settings.Default.toolOffX;
-                    newpos[index].Y = tool.Y + (float)Properties.Settings.Default.toolOffY;
+                    newpos[index].X = tool.X + (float)Properties.Settings.Default.toolTableOffsetX;
+                    newpos[index].Y = tool.Y + (float)Properties.Settings.Default.toolTableOffsetY;
                     index++;
                 }
             }
@@ -96,7 +108,7 @@ namespace GRBL_Plotter
             {   if (toolTableArray[i].toolnr == toolNr)
                     return i;
             }
-            return 0;
+            return -1;
          }
 
         public static toolProp getToolProperties(int index)
@@ -108,6 +120,8 @@ namespace GRBL_Plotter
             return toolTableArray[tmpIndex]; // return 1st regular tool;
         }
 
+        public static void indexSetCodeSize(int size)
+        {   toolTableArray[tmpIndex].codeSize = size; }
         public static void setToolCodeSize(int index, int size)
         {
             Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));
@@ -120,7 +134,10 @@ namespace GRBL_Plotter
                 tmpIndex = index;
         }
         public static short indexToolNr()
-        {   return toolTableArray[tmpIndex].toolnr; }
+        {   if (tmpIndex < toolTableArray.Length)
+                return toolTableArray[tmpIndex].toolnr;
+            return -1;
+        }
         public static Color indexColor()
         { return toolTableArray[tmpIndex].color; }
         public static bool indexUse()
@@ -130,23 +147,38 @@ namespace GRBL_Plotter
         public static string indexName()
         { return toolTableArray[tmpIndex].name; }
 
-        public static void sortByToolNr()
-        {   Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
+        public static void sortByToolNr(bool invert)
+        {   if (invert)
+                Array.Sort<toolProp>(toolTableArray, (x, y) => y.toolnr.CompareTo(x.toolnr));
+            else
+                Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
         }
-        public static void sortByCodeSize()
-        {   Array.Sort<toolProp>(toolTableArray, (x, y) => y.codeSize.CompareTo(x.codeSize));    // sort by size
+        public static void sortByCodeSize(bool invert)
+        {
+            if (invert)
+                Array.Sort<toolProp>(toolTableArray, (x, y) => x.codeSize.CompareTo(y.codeSize));
+            else
+                Array.Sort<toolProp>(toolTableArray, (x, y) => y.codeSize.CompareTo(x.codeSize));    // sort by size
         }
-        public static void sortByPixelCount()
-        {   Array.Sort<toolProp>(toolTableArray, (x, y) => y.pixelCount.CompareTo(x.pixelCount));    // sort by size
+        public static void sortByPixelCount(bool invert)
+        {
+            if (invert)
+                Array.Sort<toolProp>(toolTableArray, (x, y) => x.pixelCount.CompareTo(y.pixelCount));
+            else
+                Array.Sort<toolProp>(toolTableArray, (x, y) => y.pixelCount.CompareTo(x.pixelCount));    // sort by size
         }
 
         public static toolProp setDefault()
         {   toolProp tmp = new toolProp();
-            tmp.X = 0; tmp.Y = 0; tmp.Z = 0; tmp.diameter=3; tmp.feedXY=100; tmp.feedZ=100;
-            tmp.finalZ = -1; tmp.stepZ= 1; tmp.spindleSpeed=1000;tmp.overlap=100;
+            tmp.X = 0; tmp.Y = 0; tmp.Z = 0; tmp.diameter=3; tmp.feedXY=1000; tmp.feedZ=500;
+            tmp.saveZ = 2; tmp.finalZ = -1; tmp.stepZ= 1; tmp.spindleSpeed=1000;tmp.overlap = 100; tmp.gcode = "";
             return tmp;
         }
-        // set tool / color table
+
+        /// <summary>
+        /// set tool/color table
+        /// get table size
+        /// </summary>
         public static int init()    // return number of entries
         {
             init_done = true;
@@ -172,41 +204,52 @@ namespace GRBL_Plotter
             toolTableArray[1].diff = int.MaxValue;
             toolTableArray[1].name = defaultTool[2];
 
-            string file = System.Windows.Forms.Application.StartupPath + "\\tools.csv";
+            string file = System.Windows.Forms.Application.StartupPath + datapath.tools + "\\" + defaultFileName;
             if (File.Exists(file))
             {
                 string[] readText = File.ReadAllLines(file);
                 string[] col;
                 toolTableIndex = 1;
                 foreach (string s in readText)
-                {   if (s.Length > 25)
-                    {   col = s.Split(';'); //ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
-                        clr = Convert.ToInt32(col[1], 16) | 0xff000000;
+                {
+                    if (s.StartsWith("#") || s.StartsWith("/"))     // jump over comments
+                        continue;
+                    if (s.Length > 25)
+                    {   col = s.Split(','); //ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
+
                         toolTableArray[toolTableIndex] = setDefault();
-                        toolTableArray[toolTableIndex].toolnr = Convert.ToInt16(col[0]);
-                        toolTableArray[toolTableIndex].color = System.Drawing.Color.FromArgb((int)clr);
                         toolTableArray[toolTableIndex].colorPresent = false;
                         toolTableArray[toolTableIndex].toolSelected = true;
                         toolTableArray[toolTableIndex].diff = int.MaxValue;
-                        toolTableArray[toolTableIndex].name = col[2];
                         toolTableArray[toolTableIndex].pixelCount = 0;
                         toolTableArray[toolTableIndex].colorPresent = false;
-                        toolTableArray[toolTableIndex].X = float.Parse(col[3], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].Y = float.Parse(col[4], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].Z = float.Parse(col[5], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].diameter = float.Parse(col[6], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].feedXY   = float.Parse(col[7], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].finalZ   = float.Parse(col[8], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].stepZ    = float.Parse(col[9], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].feedZ    = float.Parse(col[10], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].spindleSpeed = float.Parse(col[11], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        toolTableArray[toolTableIndex].overlap  = float.Parse(col[12], System.Globalization.NumberFormatInfo.InvariantInfo);
-                        //TryParse
-                        if (toolTableIndex < toolTableMax - 1) toolTableIndex++;
+
+                        try
+                        {
+                            toolTableArray[toolTableIndex].toolnr = Convert.ToInt16(col[0].Trim());
+                            clr = Convert.ToInt32(col[1].Trim(), 16) | 0xff000000;
+                            toolTableArray[toolTableIndex].color = System.Drawing.Color.FromArgb((int)clr);
+                            toolTableArray[toolTableIndex].name = col[2].Trim();
+                            if (col.Length >= 4) toolTableArray[toolTableIndex].X = float.Parse(col[3].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 5) toolTableArray[toolTableIndex].Y = float.Parse(col[4].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 6) toolTableArray[toolTableIndex].Z = float.Parse(col[5].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 7) toolTableArray[toolTableIndex].diameter = float.Parse(col[6].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 8) toolTableArray[toolTableIndex].feedXY = float.Parse(col[7].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 9) toolTableArray[toolTableIndex].feedZ = float.Parse(col[8].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 10) toolTableArray[toolTableIndex].saveZ = float.Parse(col[9].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 11) toolTableArray[toolTableIndex].finalZ = float.Parse(col[10].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 12) toolTableArray[toolTableIndex].stepZ = float.Parse(col[11].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 13) toolTableArray[toolTableIndex].spindleSpeed = float.Parse(col[12].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 14) toolTableArray[toolTableIndex].overlap = float.Parse(col[13].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 15) toolTableArray[toolTableIndex].gcode = col[14].Trim();
+                        }
+                        catch (Exception ex) { Logger.Debug(ex, "Error "); }
+                        if (toolTableIndex < (toolTableMax - 1)) toolTableIndex++;
                     }
                 }
             }
             Array.Resize(ref toolTableArray, toolTableIndex);
+            
             return toolTableIndex;
         }
         public static int clear()
@@ -266,6 +309,7 @@ namespace GRBL_Plotter
         // return tool nr of nearest color
         public static int getToolNr(String mycolor, int mode)
         {
+ //           Logger.Trace("getToolNr {0}",mycolor);
             if (mycolor == "")
                 return (int)Properties.Settings.Default.importGCToolDefNr;  // return default tool
             else if (OnlyHexInString(mycolor))
@@ -331,7 +375,10 @@ namespace GRBL_Plotter
         { toolTableArray[tmpIndex].toolSelected = use; }
 
         public static String getName()
-        { return toolTableArray[tmpIndex].name; }
+        {   if (tmpIndex < toolTableArray.Length)
+                return toolTableArray[tmpIndex].name;
+            return "no set";
+        }
 
         // http://stackoverflow.com/questions/27374550/how-to-compare-color-object-and-get-closest-color-in-an-color
         // distance between two hues:

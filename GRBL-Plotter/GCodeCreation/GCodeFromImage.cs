@@ -22,8 +22,10 @@
     This file is part of 3dpBurner Image2Gcode application. 
     Copyright (C) 2015  Adrian V. J. (villamany) contact: villamany@gmail.com
 */
-// 2018-11  split code into ...Create and ...Outline
-
+/*
+ * 2018-11  split code into ...Create and ...Outline
+ * 2019-08-15 add logger
+*/
 
 using System;
 using System.Collections.Generic;
@@ -54,15 +56,20 @@ namespace GRBL_Plotter
         public string imageGCode
         { get { return imagegcode; } }
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         //On form load
         private void GCodeFromImage_Load(object sender, EventArgs e)
         {
             lblStatus.Text = "Done";
             getSettings();
             autoZoomToolStripMenuItem_Click(this, null);//Set preview zoom mode
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
         }
         private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Logger.Trace("++++++ GCodeFromImage STOP ++++++");
             Properties.Settings.Default.locationImageForm = Location;
         }
         private void GCodeFromImage_KeyDown(object sender, KeyEventArgs e)
@@ -84,13 +91,13 @@ namespace GRBL_Plotter
 
         public GCodeFromImage(bool loadFile=false)
         {
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Logger.Trace("++++++ GCodeFromImage loadFile:{0} START ++++++", loadFile);
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
             loadFromFile = loadFile;
-            if (!rBImportSVGTool.Checked)
-                rBImportSVGTool2.Checked = true;
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
         }
 
 
@@ -168,9 +175,9 @@ namespace GRBL_Plotter
 
         decimal ratio; //Used to lock the aspect ratio when the option is selected
         private void processLoading()
-        {   rBImportSVGTool.Checked = Properties.Settings.Default.importSVGToolSort;
-            if (!rBImportSVGTool.Checked)
-                rBImportSVGTool2.Checked = true;
+        {   //rBImportSVGTool.Checked = Properties.Settings.Default.importSVGToolSort;
+  //          if (!rBImportSVGTool.Checked)
+  //              rBImportSVGTool2.Checked = true;
             lblStatus.Text = "Opening file...";
             adjustedImage = new Bitmap(originalImage);
             resultImage = new Bitmap(originalImage);
@@ -226,7 +233,7 @@ namespace GRBL_Plotter
         /// </summary>
         private void cLBTools_SelectedIndexChanged(object sender, EventArgs e)
         {
-            toolTable.sortByToolNr();
+            toolTable.sortByToolNr(false);
             int toolNr = 0;
             for (int i = 0; i < cLBTools.Items.Count; i++)      // index = unknown
             {
@@ -670,7 +677,7 @@ namespace GRBL_Plotter
         private void applyColorCorrections()
         {
             Cursor.Current = Cursors.WaitCursor;
-            useFullReso = cBGCodeOutline.Checked;
+            useFullReso = (cBGCodeOutline.Checked && rBProcessTool.Checked);
             updateLabels();
             lblStatus.Text = "Apply color corrections...";
 
@@ -742,9 +749,9 @@ namespace GRBL_Plotter
                     if (redoColorAdjust)        // 
                     {
                         redoColorAdjust = false;
-                        toolTable.sortByPixelCount();
+                        toolTable.sortByPixelCount(false);
                         int matchLimit = 0;
-                        toolTable.sortByToolNr();
+                        toolTable.sortByToolNr(false);
                         int tmpCount = pixelCount;                // keep original counter 
                         if (useFullReso)
                             tmpCount = originalImage.Width * originalImage.Height;
@@ -766,7 +773,7 @@ namespace GRBL_Plotter
 
                     if (cbExceptColor.Checked)
                         myPalette.Add(cbExceptColor.BackColor);
-                    toolTable.sortByPixelCount();                       // fill palette with colors in order of occurence
+                    toolTable.sortByPixelCount(false);                       // fill palette with colors in order of occurence
                     toolTable.setAllSelected(false);                                                    //        toolTable.clear();
                     for (int i = 0; i < (int)nUDMaxColors.Value; i++)   // add colors to AForge filter
                     {   toolTable.setIndex(i);
@@ -871,7 +878,7 @@ namespace GRBL_Plotter
                     b = pixelsAdjusted[index]; g = pixelsAdjusted[index + 1]; r = pixelsAdjusted[index + 2]; a = pixelsAdjusted[index + 3];
                     myColor = Color.FromArgb(a, r, g, b);
                     if (myColor.A == 0)                             // skip exception, removed: cbExceptAlpha.Checked
-                    { myToolNr = -1; toolTable.sortByToolNr(); toolTable.setIndex(0); }
+                    { myToolNr = -1; toolTable.sortByToolNr(false); toolTable.setIndex(0); }
                     else
                     {
                         if (lookUpToolNr.TryGetValue(myColor, out myToolNr))
@@ -945,7 +952,7 @@ namespace GRBL_Plotter
                     }
 
                     if (myColor.A == 0)                 // skip exception, removed: cbExceptAlpha.Checked
-                    {   newColor = backgroundColor; myToolNr = -1; toolTable.sortByToolNr(); toolTable.setIndex(0); }// usedColorName[0] = "Alpha = 0      " + myColor.ToString(); }
+                    {   newColor = backgroundColor; myToolNr = -1; toolTable.sortByToolNr(false); toolTable.setIndex(0); }// usedColorName[0] = "Alpha = 0      " + myColor.ToString(); }
                     else
                     {   
                         if ((myToolNr < 0) || (!toolTable.indexSelected()))  // -1 = alpha, -1 = exception color
@@ -1037,7 +1044,7 @@ namespace GRBL_Plotter
         {   string tmp1 = "", tmp2 ="";
             int skipToolNr = 1;
 
-            toolTable.sortByToolNr();
+            toolTable.sortByToolNr(false);
             toolTable.setIndex(0);
             int tmpCount = pixelCount;
             if (useFullReso)
@@ -1046,11 +1053,13 @@ namespace GRBL_Plotter
             if (cbExceptColor.Checked)
                 tmpCount -= toolTable.pixelCount();     // no color-except
 
-            if (!rBImportSVGTool.Checked)
-                toolTable.sortByPixelCount();           // sort by color area (max. first)
+
+    //        if (!rBImportSVGTool.Checked)
+                toolTable.sortByPixelCount(false);           // sort by color area (max. first)
 
             if (tmpCount == 0) { tmpCount = 100; }
-            if (!rBImportSVGTool.Checked) { tmp2 = "Tools sorted by pixel count.\r\n"; }
+
+            tmp2 = "Tools sorted by pixel count.\r\n"; 
             tmp2 += "Tool colors in use and pixel count:\r\n";
             String cIndex, cName, cCount, cPercent;
             int toolNr; 
@@ -1079,13 +1088,14 @@ namespace GRBL_Plotter
         public void btnGenerate_Click(object sender, EventArgs e)
         {   Cursor.Current = Cursors.WaitCursor;
             tabControl1.SelectedTab = tabPage5;
-            if (!showResultActive)
-            {   cBPreview.Checked = true;
-                showResultImage(true);      // generate and show result
-            }
 
             if (rBProcessTool.Checked)
-            {   if (rbEngravingPattern1.Checked)
+            {
+                if (!showResultActive)
+                {   cBPreview.Checked = true;
+                    showResultImage(true);      // generate and show result
+                }
+                if (rbEngravingPattern1.Checked)
                     generateGCodeHorizontal();
                 else
                     generateGCodeDiagonal();
@@ -1180,11 +1190,52 @@ namespace GRBL_Plotter
         /// </summary>
         private void rBProcessZ_CheckedChanged(object sender, EventArgs e)
         {   resetColorCorrection(); applyColorCorrections(); lblImageSource.Text = "original";
-            if (rBProcessZ.Checked)
-            {   cBPreview.Checked = false;
-                cbGrayscale.Checked = true;
-            }
+            bool useZ = rBProcessZ.Checked;
+            cBPreview.Checked = !useZ;
+            cbGrayscale.Checked = useZ;
+//            gBgcodeDirection.Enabled = !useZ;
+   //         gBgcodeSetup.Enabled = !useZ;
+            gBgcodeSelection.Enabled = !useZ;
         }
+
+
+        public string ReturnValue1 { get; set; }
+        private void btnLoad_Click_1(object sender, EventArgs e)
+        {
+            ReturnValue1 = "";
+            if (lBUseCase.Text == "")
+                return;
+            string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+            var MyIni = new IniFile(path);
+            Logger.Trace("Load use case: '{0}'", path);
+            MyIni.ReadAll();    // ReadImport();
+            Properties.Settings.Default.useCaseLastLoaded = lBUseCase.Text; ;
+            lblLastUseCase.Text = lBUseCase.Text;
+
+            bool laseruse = Properties.Settings.Default.importGCSpindleToggleLaser;
+            float lasermode = grbl.getSetting(32);
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+
+            if (lasermode >= 0)
+            {
+                if ((lasermode > 0) && !laseruse)
+                {
+                    DialogResult dialogResult = MessageBox.Show("grbl laser mode ($32) is activated, \r\nbut not recommended\r\n\r\n Press 'Yes' to fix this", "Attention", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                        ReturnValue1 = "$32=0 (laser mode off)";
+                }
+
+                if ((lasermode < 1) && laseruse)
+                {
+                    DialogResult dialogResult = MessageBox.Show("grbl laser mode ($32) is not activated, \r\nbut recommended if a laser will be used\r\n\r\n Press 'Yes' to fix this", "Attention", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                        ReturnValue1 = "$32=1 (laser mode on)";
+                }
+            }
+   //         this.DialogResult = DialogResult.OK;
+   //         this.Close();
+        }
+
         /// <summary>
         /// Calculate contrast color from given color
         /// </summary>
@@ -1196,6 +1247,22 @@ namespace GRBL_Plotter
             else
                 d = 255; // dark colors - white font
             return Color.FromArgb(d, d, d);
+        }
+
+
+        private void fillUseCaseFileList(string Root)
+        {
+            List<string> FileArray = new List<string>();
+            try
+            {   string[] Files = System.IO.Directory.GetFiles(Root);
+                lBUseCase.Items.Clear();
+                for (int i = 0; i < Files.Length; i++)
+                {   if (Files[i].ToLower().EndsWith("ini"))
+                        lBUseCase.Items.Add(Path.GetFileName(Files[i]));
+                }
+            }
+            catch (Exception Ex)
+            {   throw (Ex);  }
         }
 
     }

@@ -244,7 +244,7 @@
     <value>17, 17</value>
   </metadata>
   <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
-    <value>Overlap of paths when making a pocket. 100% = tool diameter step width.</value>
+    <value>Distance between two paths (when doing a pocket) as tool diameter. 100% = tool diameter step width.</value>
   </data>
   <data name="&gt;&gt;nUDToolOverlap.Name" xml:space="preserve">
     <value>nUDToolOverlap</value>
@@ -268,13 +268,16 @@
     <value>237, 36</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
+    <value>61, 13</value>
   </data>
   <data name="label16.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>Overlap %</value>
+    <value>Stepover %</value>
+  </data>
+  <data name="label16.ToolTip" xml:space="preserve">
+    <value>Distance between two paths (when doing a pocket) as tool diameter. 100% = tool diameter step width.</value>
   </data>
   <data name="&gt;&gt;label16.Name" xml:space="preserve">
     <value>label16</value>

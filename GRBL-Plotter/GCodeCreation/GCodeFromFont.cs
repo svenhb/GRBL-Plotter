@@ -18,8 +18,9 @@
 */
 /*
  * 2019-06-05 add new Hershey fonts from https://github.com/evil-mad/EggBot/tree/master/inkscape_driver
- * 2019-06-10 define "<PD" as xmlMarker.figureStart
- * 
+ * 2019-06-10 insert xmlMarker.figureStart tag
+ * 2019-07-08 add char-info to xmlMarker.figureStart tag
+ * 2019-08-15 add logger
 */
 
 using System;
@@ -63,9 +64,12 @@ namespace GRBL_Plotter
 
         private static int pathCount = 0;
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public static string[] fontFileName()
-        {   if (Directory.Exists("fonts"))
-                return Directory.GetFiles("fonts");
+        {   if (Directory.Exists(datapath.fonts))
+                return Directory.GetFiles(datapath.fonts);
             return new string[0];
         }
         public static void reset()
@@ -77,8 +81,10 @@ namespace GRBL_Plotter
             pathCount = 0;
         }
 
-        public static bool getCode(StringBuilder gcodeString)   
+        public static int getCode(StringBuilder gcodeString, int startCount, string cmt)   
         {
+            pathCount = startCount;
+            Logger.Trace("Create GCode, text length {0}, font {1}", gcText.Length, gcFontName);
             double scale = gcHeight / 21;
             string tmp1 = gcText.Replace('\r', '|');
             gcodeString.AppendFormat("( Text: {0} )\r\n", tmp1.Replace('\n', ' '));
@@ -88,8 +94,8 @@ namespace GRBL_Plotter
             if (gcFontName.IndexOf(@"fonts\") >= 0)
                 fileName = gcFontName;
             else
-                fileName = @"fonts\" + gcFontName + ".lff";
-            bool fontFound = false;
+                fileName = datapath.fonts +"\\" + gcFontName + ".lff";
+
             if (gcFontName != "")
             {   if (File.Exists(fileName))
                 {   fileContent = File.ReadAllLines(fileName);
@@ -97,7 +103,6 @@ namespace GRBL_Plotter
                     useLFF = true;
                     offsetY = 0;
                     gcLineDistance = 1.667 * gcSpacing;
-                    fontFound = true;
                     foreach (string line in fileContent)
                     {   if (line.IndexOf("LetterSpacing") >= 0)
                         {   string[] tmp = line.Split(':');
@@ -112,19 +117,19 @@ namespace GRBL_Plotter
                 }
                 else
                 {   gcodeString.AppendFormat("( Font '{0}' not found )\r\n", gcFontName);
-                    gcodeString.Append("( Using alternative font )\r\n");
+                    if (!hersheyFonts.ContainsKey(gcFontName))
+                    {
+                        Logger.Error("Font '{0}' or file '{1}' not found", gcFontName, fileName);
+                        return startCount;
+                    }
                 }
             }
-
-            if (Properties.Settings.Default.importGCTool)
-            {
-                toolProp tmpTool = toolTable.getToolProperties((int)Properties.Settings.Default.importGCToolDefNr);
-                gcode.Tool(gcodeString, tmpTool.toolnr, tmpTool.name);
-            }
+            bool centerLine = false;
+            bool rightLine = false;
             if ((gcAttachPoint == 2) || (gcAttachPoint == 5) || (gcAttachPoint == 8))
-                gcOffX -= gcWidth / 2;
+            { gcOffX -= gcWidth / 2; centerLine = true; }
             if ((gcAttachPoint == 3) || (gcAttachPoint == 6) || (gcAttachPoint == 9))
-                gcOffX -= gcWidth;
+            { gcOffX -= gcWidth; rightLine = true; }
             if ((gcAttachPoint == 4) || (gcAttachPoint == 5) || (gcAttachPoint == 6))
                 gcOffY -= gcHeight / 2;
             if ((gcAttachPoint == 1) || (gcAttachPoint == 2) || (gcAttachPoint == 3))
@@ -134,73 +139,85 @@ namespace GRBL_Plotter
             if (gcText.IndexOf("\\P") >= 0)
             {   gcText = gcText.Replace("\\P", "\n"); }
             lines = gcText.Split('\n');
+
+            int maxCharCount = 0;
+            foreach (string tmp in lines)
+            { maxCharCount = Math.Max(maxCharCount, tmp.Length); }
+            double charWidth = gcWidth / maxCharCount;
+
             offsetX = 0;
             offsetY = 9 * scale + ((double)lines.Length - 1) * gcHeight * gcLineDistance;// (double)nUDFontLine.Value;
             if (useLFF)
                 offsetY = ((double)lines.Length - 1) * gcHeight * gcLineDistance;// (double)nUDFontLine.Value;
 
             isSameWord = false;
-            for (int txtIndex = 0; txtIndex < gcText.Length; txtIndex++)
-            {
-                gcodePenUp(gcodeString);
-                int chrIndex = (int)gcText[txtIndex] - 32;
-                int chrIndexLFF = (int)gcText[txtIndex];
 
-                if (gcText[txtIndex] == '\n')                   // next line
+            for (int lineIndex = 0; lineIndex < lines.Length; lineIndex++)
+            {
+                if (lineIndex > 0)
                 {
-                    offsetX = 0;
                     offsetY -= gcHeight * gcLineDistance;
-                    isSameWord = false;
                     if (gcPauseLine)
-                    {
                         gcode.Pause(gcodeString, "Pause before line");
-                    }
+
                 }
-                else if (useLFF)
+                string actualLine = lines[lineIndex];
+                for (int txtIndex = 0; txtIndex < actualLine.Length; txtIndex++)
                 {
-                    if (chrIndexLFF > 32)
-                    {   gcode.Comment(gcodeString, xmlMarker.figureStart + (++pathCount) + ">");
-                        gcode.Comment(gcodeString, string.Format("Char: {0}", gcText[txtIndex]));
-                    }
-                    drawLetterLFF(gcodeString, ref fileContent, chrIndexLFF, scale);//, string.Format("Char: {0}", gcText[txtIndex])); // regular char
-                    gcodePenUp(gcodeString);
-                    if (chrIndexLFF > 32)
-                        gcode.Comment(gcodeString, xmlMarker.figureEnd + (pathCount) + ">");
-                }
-                else
-                {
-                    if ((chrIndex < 0) || (chrIndex > 95))     // no valid char
+                    char actualChar = actualLine[txtIndex];
+                    int chrIndex = (int)actualChar - 32;
+                    int chrIndexLFF = (int)actualChar;
+
+                    if (txtIndex==0)    //actualChar == '\n')                   // next line
                     {
-                        offsetX += 2 * gcSpacing;                   // apply space
+                        offsetX = 0;
+                        if (centerLine)
+                            offsetX = (gcWidth - (charWidth * actualLine.Length)) / 2;           //  center line
+                        else if (rightLine)
+                            offsetX = (gcWidth - (charWidth * actualLine.Length));
                         isSameWord = false;
-                        if (gcPauseWord)
-                        {
-                            gcode.Pause(gcodeString, "Pause before word");
-                        }
+                    }
+                    if (useLFF) // LFF Font (LibreCAD font file format)
+                    {
+                        if (chrIndexLFF > 32)
+                        { gcode.Comment(gcodeString, string.Format("{0} {1} Char=\"{2}\" {3}>", xmlMarker.figureStart, (++pathCount), actualChar, cmt)); }
+
+                        drawLetterLFF(gcodeString, ref fileContent, chrIndexLFF, scale);//, string.Format("Char: {0}", gcText[txtIndex])); // regular char
+                        gcodePenUp(gcodeString);
+                        if (chrIndexLFF > 32)
+                            gcode.Comment(gcodeString, Plotter.SetFigureEnd(pathCount));
                     }
                     else
                     {
-                        //gcodeString.AppendFormat("( Char: {0})\r\n", gcText[txtIndex]);                        
-                        if (gcPauseChar)
+                        if ((chrIndex < 0) || (chrIndex > 95))     // no valid char
                         {
-                            gcode.Pause(gcodeString, "Pause before char");
+                            offsetX += 2 * gcSpacing;                   // apply space
+                            isSameWord = false;
+                            if (gcPauseWord)
+                                gcode.Pause(gcodeString, "Pause before word");
                         }
-                        if (gcPauseChar && (gcText[txtIndex] == ' '))
+                        else
                         {
-                            gcode.Pause(gcodeString, "Pause before word");
+                            //gcodeString.AppendFormat("( Char: {0})\r\n", gcText[txtIndex]);                        
+                            if (gcPauseChar)
+                                gcode.Pause(gcodeString, "Pause before char");
+                            if (gcPauseChar && (actualChar == ' '))
+                                gcode.Pause(gcodeString, "Pause before word");
+                            drawLetter(gcodeString, hersheyFonts[gcFontName][chrIndex], scale, actualChar.ToString() + cmt); // regular char
                         }
-                        drawLetter(gcodeString, hersheyFonts[gcFontName][chrIndex], scale, string.Format("Char: {0}", gcText[txtIndex])); // regular char
                     }
                 }
             }
             if (!useLFF)
             {   gcode.PenUp(gcodeString);
-                gcode.Comment(gcodeString, xmlMarker.figureEnd + pathCount + ">");
+                gcode.Comment(gcodeString, Plotter.SetFigureEnd(pathCount));
             }
-            return fontFound;
+   //         startCount = pathCount;
+            return pathCount;
         }
 
         // http://forum.librecad.org/Some-questions-about-the-LFF-fonts-td5715159.html
+
         private static double drawLetterLFF(StringBuilder gcodeString, ref string[] txtFont, int index, double scale, bool isCopy=false)
         {
             int lineIndex = 0;
@@ -331,9 +348,8 @@ namespace GRBL_Plotter
             if (tnr == 1)
             {
                 if (pathCount > 0)
-                    gcode.Comment(gcodeString, xmlMarker.figureEnd + pathCount + ">");
-                gcode.Comment(gcodeString, xmlMarker.figureStart + (++pathCount) + ">");
-                gcode.Comment(gcodeString, comment);
+                    gcode.Comment(gcodeString, Plotter.SetFigureEnd(pathCount));
+                gcode.Comment(gcodeString, string.Format("{0} {1} char='{2}'>", xmlMarker.figureStart, (++pathCount), comment));
             }
             if (cmd == 'M')
             {   if (gcConnectLetter && isSameWord && (tnr == 1))

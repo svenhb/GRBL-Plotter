@@ -24,61 +24,55 @@
  *      Image, Dimension
  *      Transform: rotation, scaling
  *      
- *  2019-02-06 bug fix block-offset for LWPolyline and Text
- *  2019-05-10 reactivate else in line 298 to avoid double coordinates
- *  2019-06-10 define "<PD" as xmlMarker.figureStart
- *  2019-07-04 fix sorting problem with <figure tag
- */
+ * 2019-02-06 bug fix block-offset for LWPolyline and Text
+ * 2019-05-10 reactivate else in line 298 to avoid double coordinates
+ * 2019-06-10 define "<PD" as xmlMarker.figureStart
+ * 2019-07-04 fix sorting problem with <figure tag
+ * 2019-08-15 add logger
+ * 2019-08-25 get layer color
+ * 2019-09-06 swap code to new class 'plotter'
+ * 2019-10-02 add nodes only
+*/
 
 using System;
 using System.Text;
-using System.Collections;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.IO;
 using DXFLib;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace GRBL_Plotter //DXFImporter
 {
     class GCodeFromDXF
     {
-        private static int svgToolMax = 100;            // max amount of tools
-        private static StringBuilder[] gcodeString = new StringBuilder[svgToolMax];
-        private static int gcodeStringIndex = 0;
-        private static StringBuilder finalString = new StringBuilder();
-
-        private static bool gcodeUseSpindle = false; // Switch on/off spindle for Pen down/up (M3/M5)
-        private static bool gcodeReduce = false;        // if true remove G1 commands if distance is < limit
-        private static double gcodeReduceVal = .1;        // limit when to remove G1 commands
-
-        private static bool gcodeZIncEnable = false;
-        private static double gcodeZIncrement = 2;
-
-        private static bool dxfPauseElement = true;     // if true insert GCode pause M0 before each element
-        private static bool dxfPausePenDown = true;     // if true insert pause M0 before pen down
-        private static bool dxfComments = true;         // if true insert additional comments into GCode
-        private static bool importUnitmm = true;        // convert units if needed
-
-        private static bool gcodeToolChange = false;          // Apply tool exchange command
-        private static bool dxfImportToolNr = false;
+        private static bool gcodeReduce = false;            // if true remove G1 commands if distance is < limit
+        private static double gcodeReduceVal = .1;          // limit when to remove G1 commands
+        private static bool dxfComments = true;             // if true insert additional comments into GCode
+        private static bool dxfUseColorIndex = false;       // use DXF color index instead real color
         private static int toolNr = 1;
-        private static bool dxfToolUse = false;
+        private static int toolToUse = 1;
+        private static int dxfBezierAccuracy = 6;           // applied line segments at bezier curves
+        private static int dxfColorID = -1;
+        private static int dxfColorIDold = -1;
+        private static string dxfColorHex = "";
+        private static bool groupObjects = false;
+        private static bool nodesOnly = false;              // if true only do pen-down -up on given coordinates
 
-        private static ArrayList drawingList;
-        private static ArrayList objectIdentifier;
+        private static Dictionary<string, int> layerColor = new Dictionary<string, int>();
+        private static Dictionary<string, string> layerLType = new Dictionary<string, string>();
+        private static Dictionary<string, double[]> lineTypes = new Dictionary<string, double[]>();
 
-        private static int dxfBezierAccuracy = 6;       // applied line segments at bezier curves
-        private static int dxfColor = -1;
-
-        private static int entityCount = 0;
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
         /// </summary>
         /// <param name="file">String keeping file-name or URL</param>
         /// <returns>String with GCode of imported data</returns>
-        public static string convertFromText(string text)
+        public static string ConvertFromText(string text)
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(text);
             MemoryStream stream = new MemoryStream(byteArray);
@@ -125,68 +119,30 @@ namespace GRBL_Plotter //DXFImporter
             return convertDXF(file);
         }
 
+        /// <summary>
+        /// Convert DXF and create GCode
+        /// </summary>
         private static string convertDXF(string txt)
         {
-            drawingList = new ArrayList();
-            objectIdentifier = new ArrayList();
-            gcodeStringIndex = 0;
-            gcodeString[gcodeStringIndex] = new StringBuilder();
-            gcodeString[gcodeStringIndex].Clear();
-            importUnitmm = Properties.Settings.Default.importUnitmm;
+            Logger.Debug("convertDXF {0}", txt);
 
-            dxfBezierAccuracy = (int)Properties.Settings.Default.importSVGBezier;
-            gcodeReduce = Properties.Settings.Default.importSVGReduce;
-            gcodeReduceVal = (double)Properties.Settings.Default.importSVGReduceLimit;
-
-            gcodeZIncEnable = Properties.Settings.Default.importGCZIncEnable;
-            gcodeZIncrement = (double)Properties.Settings.Default.importGCZIncrement;
-
-            dxfPauseElement = Properties.Settings.Default.importSVGPauseElement;
-            dxfPausePenDown = Properties.Settings.Default.importSVGPausePenDown;
+            dxfBezierAccuracy = (int)Properties.Settings.Default.importBezierLineSegmentsCnt;
+            gcodeReduce = Properties.Settings.Default.importRemoveShortMovesEnable;
+            gcodeReduceVal = (double)Properties.Settings.Default.importRemoveShortMovesLimit;
             dxfComments = Properties.Settings.Default.importSVGAddComments;
+            dxfUseColorIndex = Properties.Settings.Default.importDXFToolIndex;       // use DXF color index instead real color
+            groupObjects = Properties.Settings.Default.importGroupObjects;           // DXF-Import group objects
+            nodesOnly = Properties.Settings.Default.importSVGNodesOnly;
 
-            gcodeToolChange = Properties.Settings.Default.importGCTool;
-            gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
-            dxfImportToolNr = Properties.Settings.Default.importDXFToolIndex;
+            dxfColorID = 259;
+            dxfColorIDold = dxfColorID;
+            toolToUse = toolNr = 1;
 
-            dxfToolUse = Properties.Settings.Default.importGCTool && Properties.Settings.Default.importDXFToolIndex;
-
-            dxfColor = 256;
-            entityCount = 0;
-
-            int dxfToolIndex = toolTable.init();
-
-            gcode.setup();  // initialize GCode creation (get stored settings for export)
-            if (gcodeToolChange && !dxfImportToolNr)
-            {
-                toolProp tmpTool = toolTable.getToolProperties((int)Properties.Settings.Default.importGCToolDefNr);
-                toolNr = tmpTool.toolnr;
-                gcode.Tool(gcodeString[gcodeStringIndex], tmpTool.toolnr, tmpTool.name);
-            }
-
-            GetVectorDXF();
-
-            string header = gcode.GetHeader("DXF import",txt);
-            string footer = gcode.GetFooter();
-
-            finalString.Clear();
-
-            if (gcodeUseSpindle && !gcodeToolChange) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
-            finalString.Append(gcodeString[0]);     //.Replace(',', '.')
-            if (gcodeUseSpindle) gcode.SpindleOff(finalString, "Stop spindle - Option Z-Axis");
-
-            string output = "";
-            if (Properties.Settings.Default.importSVGRepeatEnable)
-            {
-                for (int i = 0; i < Properties.Settings.Default.importSVGRepeat; i++)
-                    output += finalString.ToString().Replace(',', '.');
-
-                return header + output + footer;
-            }
-            else
-                return header + finalString.ToString().Replace(',', '.') + footer;
+            Plotter.StartCode();        // initalize variables
+            GetVectorDXF();             // convert graphics
+            Plotter.SortCode();         // sort objects
+            return Plotter.FinalGCode("DXF import", txt);
         }
-
 
         /// <summary>
         /// Load and parse DXF code
@@ -197,52 +153,69 @@ namespace GRBL_Plotter //DXFImporter
         private static void loadDXF(string filename)
         {   doc = new DXFDocument();
             doc.Load(filename);
-        //    GetVectorDXF();
         }
         private static void loadDXF(Stream content)
         {   doc = new DXFDocument();
             doc.Load(content);
-        //    GetVectorDXF();
         }
         private static void GetVectorDXF()
         {
-            gcodePenUp("DXF Start");
-            lastGCX = -1; lastGCY = -1; lastSetGCX = -1; lastSetGCY = -1;
-//            MessageBox.Show("unit "+ doc.Header.MeasurementUnits.Value.ToString());
+            Plotter.PenUp("DXF Start");
+            layerColor.Clear();
+            layerLType.Clear();
+            lineTypes.Clear();
+
+            List<DXFLayerRecord> tst = doc.Tables.Layers;
+            foreach (DXFLayerRecord rec in tst)
+            {
+                Plotter.AddToHeader(string.Format("Layer: {0} , color: {1} , line type: {2}", rec.LayerName, rec.Color, rec.LineType));
+                layerColor.Add(rec.LayerName, rec.Color);
+                layerLType.Add(rec.LayerName, rec.LineType);
+            }
+
+            List<DXFLineTypeRecord> ltypes = doc.Tables.LineTypes;
+            foreach (DXFLineTypeRecord lt in ltypes)
+            {
+                //  Plotter.AddToHeader(string.Format("Description: {0} , Name: {1} , length: {2}", lt.Description, lt.LineTypeName, lt.PatternLength));
+                string pattern = "";
+                if ((lt.PatternLength > 0)&&(lt.ElementCount > 0))
+                {   double[] tmp = new double[lt.ElementCount];
+                    for (int i = 0; i < lt.ElementCount; i++)
+                    {   if (lt.Elements[i].Length == 0)
+                            tmp[i] = 0.5;
+                        else
+                            tmp[i] = Math.Abs(lt.Elements[i].Length);
+                        pattern += string.Format(" {0} ", lt.Elements[i].Length);
+                    }
+                    lineTypes.Add(lt.LineTypeName,tmp);
+    //                Plotter.AddToHeader(string.Format("Name: {0} , length: {1}", lt.LineTypeName, pattern));
+                }
+            }
 
             foreach (DXFEntity dxfEntity in doc.Entities)
             {
-
                 if (dxfEntity.GetType() == typeof(DXFInsert))
                 {
                     DXFInsert ins = (DXFInsert)dxfEntity;
                     double ins_x = (double)ins.InsertionPoint.X;
                     double ins_y = (double)ins.InsertionPoint.Y;
-
+                    
                     foreach (DXFBlock block in doc.Blocks)
                     {
                         if (block.BlockName.ToString() == ins.BlockName)
-                        {   if (dxfComments)
-                            {
-                                gcode.Comment(gcodeString[gcodeStringIndex], "Color: " + block.ColorNumber.ToString());
-                                gcode.Comment(gcodeString[gcodeStringIndex], "Block: " + block.BlockName.ToString() + " at " + ins_x.ToString() + " " + ins_y.ToString());
-                            }
+                        {
+                            dxfColorID = block.ColorNumber;
+                            Plotter.PathName = "Block:"+block.BlockName;
+                            Plotter.AddToHeader("Block: " + block.BlockName);
                             foreach (DXFEntity blockEntity in block.Children)
-                            {
-                                processEntities(blockEntity, ins_x, ins_y);
-                            }
-                            if (dxfComments)
-                                gcode.Comment(gcodeString[gcodeStringIndex], "Block: " + block.BlockName.ToString() + " end");
+                            {   processEntities(blockEntity, ins_x, ins_y, false);   }
                         }
                     }
                 }
                 else
-                    processEntities(dxfEntity);
+                {   processEntities(dxfEntity); }
             }
-            if (isPenDown)
-                gcode.PenUp(gcodeString[gcodeStringIndex]); 
-       //     if (dxfToolUse)
-            gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + entityCount + ">");
+            Plotter.PenUp("");
         }
 
         /// <summary>
@@ -252,38 +225,83 @@ namespace GRBL_Plotter //DXFImporter
         /// <param name="offsetX">Offset to apply if called by block insertion</param>
         /// <returns></returns>                       
         private static System.Windows.Point[] points;
-        private static bool isReduceOk=false;
 
         /// <summary>
         /// Process entities
         /// </summary>
-        private static void processEntities(DXFEntity entity, double offsetX=0, double offsetY=0)
+        private static void processEntities(DXFEntity entity, double offsetX=0, double offsetY=0, bool updateColor=true)
         {
             int index = 0;
             double x, y, x2 = 0, y2 = 0, bulge;
-            if (dxfComments)
-            {   gcode.Comment(gcodeString[gcodeStringIndex], "Entity: " + entity.GetType().ToString());
-                gcode.Comment(gcodeString[gcodeStringIndex], "Color:  " + entity.ColorNumber.ToString());
+
+            if (updateColor)
+            {   dxfColorID = entity.ColorNumber;
+                Plotter.PathName = "Layer:"+entity.LayerName;
             }
 
-            if (dxfColor != entity.ColorNumber)
-            {
-                if (dxfToolUse)
-                {   gcodePenUp();
-                    gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + entityCount + ">");
-                    gcode.Tool(gcodeString[gcodeStringIndex], entity.ColorNumber, entity.ColorNumber.ToString());
+            Plotter.PathDashArray = new double[0];                  // default no dashes
+            if (entity.LineType == "ByLayer")
+            {   if (layerLType.ContainsKey(entity.LayerName))       // check if layer name is known
+                {   string dashType = layerLType[entity.LayerName]; // get name of pattern
+                    if (lineTypes.ContainsKey(dashType))            // check if pattern name is known
+                        Plotter.PathDashArray = lineTypes[dashType];// apply pattern
                 }
             }
-            dxfColor = entity.ColorNumber;
-            if (dxfImportToolNr) toolNr = dxfColor;
+            else
+            {   if (lineTypes.ContainsKey(entity.LineType))            // check if pattern name is known
+                     Plotter.PathDashArray = lineTypes[entity.LineType];// apply pattern
+            }
+
+            if (dxfColorID > 255)
+                if (layerColor.ContainsKey(entity.LayerName))
+                    dxfColorID = layerColor[entity.LayerName];
+
+            if (dxfColorID < 0) dxfColorID = 0;
+            if (dxfColorID >255) dxfColorID = 7;
+            if (Properties.Settings.Default.importDXFSwitchWhite && (dxfColorID == 7))
+                dxfColorID = 0;
+
+            dxfColorHex = getColorFromID(dxfColorID);
+            Plotter.PathColor = dxfColorHex;
+
+            if (dxfUseColorIndex)
+                toolNr = dxfColorID + 1;      // avoid ID=0 to start tool-table with index 1
+            else
+            {   toolNr = toolTable.getToolNr(dxfColorHex, 0);
+                //Logger.Trace("toolNr = {0}",toolNr);
+            }
+
+            Plotter.SetGroup(toolNr);       // set index if grouping and tool
+
+            if (dxfColorIDold != dxfColorID)
+            {   
+                Plotter.PenUp("");
+
+                toolToUse = toolNr;
+                if (Properties.Settings.Default.importGCToolTableUse && Properties.Settings.Default.importGCToolDefNrUse)
+                    toolToUse = (int)Properties.Settings.Default.importGCToolDefNr;
+
+                Plotter.PathToolNr = toolToUse;
+
+                if (!groupObjects)
+                {   if (dxfUseColorIndex)
+                        Plotter.ToolChange(toolToUse, dxfColorID.ToString());   // add tool change commands (if enabled) and set XYFeed etc.
+                    else
+                        Plotter.ToolChange(toolToUse, dxfColorHex);
+                }
+            }
+            dxfColorIDold = dxfColorID;
 
             if (entity.GetType() == typeof(DXFPointEntity))
             {
                 DXFPointEntity point = (DXFPointEntity)entity;
                 x = (float)point.Location.X + (float)offsetX;
                 y = (float)point.Location.Y + (float)offsetY;
-                gcodeStartPath(x, y, "Start Point");
-                gcodeStopPath();
+                if (!nodesOnly)
+                {   dxfStartPath(x, y, "Start Point");
+                    dxfStopPath();
+                }
+                else { gcodeDotOnly(x, y, "Start Point"); }
             }
 
             #region DXFLWPolyline
@@ -303,12 +321,16 @@ namespace GRBL_Plotter //DXFImporter
                     y = (double)coordinate.Vertex.Y + (double)offsetY;
                     if (i == 0)
                     {
-                        gcodeStartPath(x, y, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString());
-                        isReduceOk = true;
+                        if (!nodesOnly)
+                        {
+                            dxfStartPath(x, y, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString());
+                            Plotter.IsPathReduceOk = true;
+                        }
+                        else { gcodeDotOnly(x, y, "Start LWPolyLine"); }
                     }
 
                     if ((!roundcorner))
-                        gcodeMoveTo(x, y, "");
+                        dxfMoveTo(x, y, "");
                     if (bulge != 0)
                     {
                         if (i < (lp.VertexCount - 1))
@@ -322,8 +344,8 @@ namespace GRBL_Plotter //DXFImporter
                         roundcorner = false;
                 }
                 if ((lp.Flags > 0))// && (x2 != x) && (y2 != y))   // only move if prev pos is differnent
-                    gcodeMoveTo((float)(lp.Elements[0].Vertex.X+offsetX), (float)(lp.Elements[0].Vertex.Y+offsetY), "End LWPolyLine "+lp.Flags.ToString());
-                gcodeStopPath();
+                    dxfMoveTo((float)(lp.Elements[0].Vertex.X+offsetX), (float)(lp.Elements[0].Vertex.Y+offsetY), "End LWPolyLine "+lp.Flags.ToString());
+                dxfStopPath();
             }
             #endregion
             #region DXFPolyline
@@ -338,16 +360,17 @@ namespace GRBL_Plotter //DXFImporter
                         {
                             x = (float)coordinate.Location.X + (float)offsetX;
                             y = (float)coordinate.Location.Y + (float)offsetY;
-                            if (index == 0)
-                            {
-                                gcodeStartPath(x, y, "Start PolyLine");
+                            if (!nodesOnly)
+                            {   if (index == 0)
+                                    dxfStartPath(x, y, "Start PolyLine");                               
+                                else
+                                    dxfMoveTo(x, y, "");
                             }
-                            else
-                                gcodeMoveTo(x, y, "");
+                            else { gcodeDotOnly(x, y, "PolyLine"); }
                             index++;
                         }
                 }
-                gcodeStopPath();
+                dxfStopPath();
             }
             #endregion
             #region DXFLine
@@ -358,10 +381,17 @@ namespace GRBL_Plotter //DXFImporter
                 y = (float)line.Start.Y + (float)offsetY;
                 x2 = (float)line.End.X + (float)offsetX;
                 y2 = (float)line.End.Y + (float)offsetY;
-                isReduceOk = false;
-                gcodeStartPath(x, y, "Start Line");
-                gcodeMoveTo(x2, y2, "");
-                gcodeStopPath();
+                Plotter.IsPathReduceOk = false;
+                if (!nodesOnly)
+                {
+                    dxfStartPath(x, y, "Start Line");
+                    dxfMoveTo(x2, y2, "");
+                }
+                else {
+                    gcodeDotOnly(x, y, "Start Line");
+                    gcodeDotOnly(x2, y2, "End Line");
+                }
+                dxfStopPath();              
             }
             #endregion
             #region DXFSpline
@@ -373,8 +403,8 @@ namespace GRBL_Plotter //DXFImporter
                 lastX = (double)spline.ControlPoints[0].X + offsetX;
                 lastY = (double)spline.ControlPoints[0].Y + offsetY;
                 string cmt = "Start Spline " + spline.KnotValues.Count.ToString() + " " + spline.ControlPoints.Count.ToString() + " " + spline.FitPoints.Count.ToString();
-                gcodeStartPath(lastX, lastY, cmt);
-                isReduceOk = true;
+                dxfStartPath(lastX, lastY, cmt);
+                Plotter.IsPathReduceOk = true;
 
                 for (int rep = 0; rep < spline.ControlPointCount; rep += 4)
                 {
@@ -390,10 +420,15 @@ namespace GRBL_Plotter //DXFImporter
                     cxMirror = cx3 - (cx2 - cx3); cyMirror = cy3 - (cy2 - cy3);
                     lastX = cx3; lastY = cy3;
                     var b = GetBezierApproximation(points, dxfBezierAccuracy);
-                    for (int i = 1; i < b.Points.Count; i++)
-                        gcodeMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, "");
+                    if (!nodesOnly)
+                    {
+                        for (int i = 1; i < b.Points.Count; i++)
+                            dxfMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, "");
+                    }
+                    else
+                    { gcodeDotOnly(cx3, cy3, "Bezier"); }
                 }
-                gcodeStopPath();
+                dxfStopPath();
             }
             #endregion
             #region DXFCircle
@@ -402,16 +437,16 @@ namespace GRBL_Plotter //DXFImporter
                 DXFCircle circle = (DXFCircle)entity;
                 x = (float)circle.Center.X + (float)offsetX;
                 y = (float)circle.Center.Y + (float)offsetY;
-                gcodeStartPath(x + circle.Radius, y, "Start Circle");
-                gcode.Arc(gcodeString[gcodeStringIndex], 2, (float)x + (float)circle.Radius, (float)y, -(float)circle.Radius, 0, "");
-                gcodeStopPath();
+                dxfStartPath(x + circle.Radius, y, "Start Circle");
+                Plotter.Arc( 2, (float)x + (float)circle.Radius, (float)y, -(float)circle.Radius, 0, "");
+                dxfStopPath();
             }
             #endregion
 
             else if (entity.GetType() == typeof(DXFEllipse))
             {
                 DXFEllipse circle = (DXFEllipse)entity;
-                gcode.Comment(gcodeString[gcodeStringIndex], "Ellipse: " + circle.ColorNumber.ToString());
+                Plotter.Comment( "Ellipse: " + circle.ColorNumber.ToString());
             }
             #region DXFArc
             else if (entity.GetType() == typeof(DXFArc))
@@ -428,35 +463,39 @@ namespace GRBL_Plotter //DXFImporter
                 float StepAngle = (float)(Math.Asin(stepwidth / R) * 180 / Math.PI);// Settings.Default.page11arcMaxLengLine);
                 double currAngle = startAngle;
                 index = 0;
-                while (currAngle < endAngle)
+                if (!nodesOnly)
                 {
-                    double angle = currAngle * Math.PI / 180;
-                    double rx = (double)(X + R * Math.Cos(angle));
-                    double ry = (double)(Y + R * Math.Sin(angle));
-                    if (index == 0)
+                    while (currAngle < endAngle)
                     {
-                        gcodeStartPath(rx, ry, "Start Arc");
-                        isReduceOk = true;
-                    }
-                    else
-                        gcodeMoveTo(rx, ry, "");
-                    currAngle += StepAngle;
-                    if (currAngle > endAngle)
-                    {
-                        double angle2 = endAngle * Math.PI / 180;
-                        double rx2 = (double)(X + R * Math.Cos(angle2));
-                        double ry2 = (double)(Y + R * Math.Sin(angle2));
+                        double angle = currAngle * Math.PI / 180;
+                        double rx = (double)(X + R * Math.Cos(angle));
+                        double ry = (double)(Y + R * Math.Sin(angle));
 
                         if (index == 0)
                         {
-                            gcodeStartPath(rx2, ry2, "Start Arc");
+                            dxfStartPath(rx, ry, "Start Arc");
+                            Plotter.IsPathReduceOk = true;
                         }
                         else
-                            gcodeMoveTo(rx2, ry2, "");
+                            dxfMoveTo(rx, ry, "");
+                        currAngle += StepAngle;
+                        if (currAngle > endAngle)
+                        {
+                            double angle2 = endAngle * Math.PI / 180;
+                            double rx2 = (double)(X + R * Math.Cos(angle2));
+                            double ry2 = (double)(Y + R * Math.Sin(angle2));
+
+                            if (index == 0)
+                            {
+                                dxfStartPath(rx2, ry2, "Start Arc");
+                            }
+                            else
+                                dxfMoveTo(rx2, ry2, "");
+                        }
+                        index++;
                     }
-                    index++;
+                    dxfStopPath();
                 }
-                gcodeStopPath();
             }
             #endregion
             #region DXFMText
@@ -467,21 +506,23 @@ namespace GRBL_Plotter //DXFImporter
                 GCodeFromFont.reset();
 
                 foreach (var entry in txt.Entries)
-                {   if (entry.GroupCode == 1) { GCodeFromFont.gcText = entry.Value.ToString(); }
-                    else if (entry.GroupCode == 40) { GCodeFromFont.gcHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Height "+entry.Value); }
-                    else if (entry.GroupCode == 41) { GCodeFromFont.gcWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Width "+entry.Value); }
-                    else if (entry.GroupCode == 71) { GCodeFromFont.gcAttachPoint = Convert.ToInt16(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Origin " + entry.Value); }
-                    else if (entry.GroupCode == 10) { GCodeFromFont.gcOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) + offsetX; } //Convert.ToDouble(entry.Value); }
-                    else if (entry.GroupCode == 20) { GCodeFromFont.gcOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) + offsetY; } //Convert.ToDouble(entry.Value); }
-                    else if (entry.GroupCode == 50) { GCodeFromFont.gcAngle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }// gcode.Comment(gcodeString[gcodeStringIndex], "Angle " + entry.Value); }
-                    else if (entry.GroupCode == 44) { GCodeFromFont.gcSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } //Convert.ToDouble(entry.Value); }
-                    else if (entry.GroupCode == 7) { GCodeFromFont.gcFontName = entry.Value.ToString(); }
+                {        if (entry.GroupCode == 1)  { GCodeFromFont.gcText = entry.Value.ToString(); }
+                    else if (entry.GroupCode == 40) { GCodeFromFont.gcHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } 
+                    else if (entry.GroupCode == 41) { GCodeFromFont.gcWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } 
+                    else if (entry.GroupCode == 71) { GCodeFromFont.gcAttachPoint = Convert.ToInt16(entry.Value); }
+                    else if (entry.GroupCode == 10) { GCodeFromFont.gcOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) + offsetX; } 
+                    else if (entry.GroupCode == 20) { GCodeFromFont.gcOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) + offsetY; } 
+                    else if (entry.GroupCode == 50) { GCodeFromFont.gcAngle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } 
+                    else if (entry.GroupCode == 44) { GCodeFromFont.gcSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); } 
+                    else if (entry.GroupCode == 7)  { GCodeFromFont.gcFontName = entry.Value.ToString(); }
                 }
-                GCodeFromFont.getCode(gcodeString[gcodeStringIndex]);
+                string tmp = string.Format("Id=\"{0}\" Color=\"#{1}\" ToolNr=\"{2}\"", dxfColorID, dxfColorHex, toolToUse);
+                Plotter.InsertText(tmp);
+                Plotter.IsPathFigureEnd = true;
             }
             #endregion
             else
-                gcode.Comment(gcodeString[gcodeStringIndex], "Unknown: " + entity.GetType().ToString());
+                Plotter.Comment( "Unknown: " + entity.GetType().ToString());
         }
 
         private static PolyLineSegment GetBezierApproximation(System.Windows.Point[] controlPoints, int outputSegmentCount)
@@ -558,11 +599,9 @@ namespace GRBL_Plotter //DXFImporter
             if (dxfComments) { cmt = "Bulge " + bulge.ToString(); }
 
             if (bulge > 0)
-                gcode.Arc(gcodeString[gcodeStringIndex], 3, (float)p2x, (float)p2y, (float)(xc-p1x), (float)(yc-p1y), cmt);
+                Plotter.Arc( 3, (float)p2x, (float)p2y, (float)(xc-p1x), (float)(yc-p1y), cmt);
             else
-                gcode.Arc(gcodeString[gcodeStringIndex], 2, (float)p2x, (float)p2y, (float)(xc-p1x), (float)(yc-p1y), cmt);
-            lastSetGCX = p2x; lastSetGCY = p2y;
-            lastGCX = p2x; lastGCY = p2y;
+                Plotter.Arc( 2, (float)p2x, (float)p2y, (float)(xc-p1x), (float)(yc-p1y), cmt);
         }
 
         /// <summary>
@@ -576,8 +615,7 @@ namespace GRBL_Plotter //DXFImporter
             return translateXY(coord);
         }
         private static System.Windows.Point translateXY(System.Windows.Point pointStart)
-        {
-            return pointStart;// pointResult;
+        {   return pointStart;
         }
         /// <summary>
         /// Transform I,J coordinate using matrix and scale  
@@ -585,138 +623,94 @@ namespace GRBL_Plotter //DXFImporter
         /// <param name="pointStart">coordinate to transform</param>
         /// <returns>transformed coordinate</returns>
         private static System.Windows.Point translateIJ(float i, float j)
-        {
-            System.Windows.Point coord = new System.Windows.Point(i, j);
+        {   System.Windows.Point coord = new System.Windows.Point(i, j);
             return translateIJ(coord);
         }
         private static System.Windows.Point translateIJ(System.Windows.Point pointStart)
-        {
-            System.Windows.Point pointResult = pointStart;
+        {   System.Windows.Point pointResult = pointStart;
             double tmp_i = pointStart.X, tmp_j = pointStart.Y;
             return pointResult;
+        }
+
+        private static void gcodeDotOnly(double x, double y, string cmt)
+        {
+            if (!dxfComments)
+                cmt = "";
+            dxfStartPath(x, y, cmt);
+            Plotter.PenDown(cmt);
+            Plotter.PenUp(cmt, false);
         }
 
         /// <summary>
         /// Insert G0, Pen down gcode command
         /// </summary>
-        private static void gcodeStartPath(double x, double y, string cmt = "")
-        {   gcodeStartPath((float) x, (float) y,cmt); }
-        private static void gcodeStartPath(float x, float y, string cmt="")
-        {
-            if (!dxfComments)
-                cmt = "";
-            System.Windows.Point coord = translateXY(x, y);
-            if (((float)lastGCX == coord.X) && ((float)lastGCY == coord.Y))    // no change in position, no need for pen-up -down
-            {   gcode.Comment(gcodeString[gcodeStringIndex], cmt);
-            }
+        private static void dxfStartPath(double x, double y, string cmt = "")
+        {   Plotter.StartPath(translateXY((float)x, (float)y), cmt);  }
+
+        private static void dxfStopPath(string cmt="")
+        {   Plotter.StopPath(cmt);  }
+
+        /// <summary>
+        /// Insert G1 gcode command
+        /// </summary>
+        private static void dxfMoveTo(double x, double y, string cmt)
+        {   System.Windows.Point coord = new System.Windows.Point(x, y);
+            dxfMoveTo(coord, cmt);
+        }
+        /// <summary>
+        /// Insert G1 gcode command
+        /// </summary>
+        private static void dxfMoveTo(float x, float y, string cmt)
+        {   System.Windows.Point coord = new System.Windows.Point(x, y);
+            dxfMoveTo(coord, cmt);
+        }
+        /// <summary>
+        /// Insert G1 gcode command
+        /// </summary>
+        private static void dxfMoveTo(System.Windows.Point orig, string cmt)
+        {   System.Windows.Point coord = translateXY(orig);
+            if (!nodesOnly)
+                Plotter.MoveTo(coord, cmt);
             else
-            {   //if (askPenUp)   // retrieve missing pen up
-                {   
-                    if (isPenDown)
-                        gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
-                    if ((entityCount > 0) && !dxfToolUse)
-                            gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + entityCount + ">");
-                    isPenDown = false;
-                    entityCount++;
-                }
-                lastGCX = coord.X; lastGCY = coord.Y;
-                lastSetGCX = coord.X; lastSetGCY = coord.Y;
-                string tmptoolnr = "";
-                if (gcodeToolChange)  tmptoolnr = string.Format("ToolNr={0}", toolNr);
-                gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureStart + (entityCount) + string.Format("> DXFcolor=#{0} {1}", dxfColor, tmptoolnr));
-                gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
-            }
-            if (!isPenDown)
-            {
-                if (dxfPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], cmt); }
-                gcode.PenDown(gcodeString[gcodeStringIndex]);
-                isPenDown = true;
-            }
-            isReduceOk = false;
-        }
-        private static bool isPenDown = false;
-        private static void gcodeStopPath(string cmt="")
-        {
-            if (!dxfComments)
-                cmt = "";
-            if (gcodeReduce)
-            {  if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
-                {   gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
-                    lastSetGCX = lastGCX; lastSetGCY = lastGCY;
-                }
-            }
+                gcodeDotOnly(coord.X, coord.Y, ""); 
         }
 
-        /// <summary>
-        /// Insert G1 gcode command
-        /// </summary>
-        private static void gcodeMoveTo(double x, double y, string cmt)
-        {
-            System.Windows.Point coord = new System.Windows.Point(x, y);
-            gcodeMoveTo(coord, cmt);
-        }
-        /// <summary>
-        /// Insert G1 gcode command
-        /// </summary>
-        private static void gcodeMoveTo(float x, float y, string cmt)
-        {
-            System.Windows.Point coord = new System.Windows.Point(x, y);
-            gcodeMoveTo(coord, cmt);
-        }
-
-        private static bool rejectPoint = false;
-        private static double lastGCX =-1, lastGCY=-1, lastSetGCX = -1, lastSetGCY = -1, distance;
-        /// <summary>
-        /// Insert G1 gcode command
-        /// </summary>
-        private static void gcodeMoveTo(System.Windows.Point orig, string cmt)
-        {
-            if (!dxfComments)
-                cmt = "";
-            System.Windows.Point coord = translateXY(orig);
-            if (gcode.isEqual(lastSetGCX,coord.X) && gcode.isEqual(lastSetGCY,coord.Y))   // nothing to do
-                return;
-
-            rejectPoint = false;
-            if (gcodeReduce && isReduceOk)
-            {   distance = Math.Sqrt(((coord.X - lastSetGCX)* (coord.X - lastSetGCX)) + ((coord.Y - lastSetGCY) * (coord.Y - lastSetGCY)));
-                if (distance < gcodeReduceVal)      // discard actual G1 movement
-                { rejectPoint = true; }
-                else
-                { lastSetGCX = coord.X; lastSetGCY = coord.Y; }
-            }
-            if (!gcodeReduce || !rejectPoint)       // write GCode
-            {
-                gcode.MoveTo(gcodeString[gcodeStringIndex], coord, cmt);
-                lastSetGCX = coord.X; lastSetGCY = coord.Y;
-            }
-            lastGCX = coord.X; lastGCY = coord.Y;
-        }
-
-        /// <summary>
-        /// Insert G2/G3 gcode command
-        /// </summary>
-        private static void gcodeArcToCCW(float x, float y, float i, float j, string cmt)
-        {
-            System.Windows.Point coordxy = translateXY(x, y);
-            System.Windows.Point coordij = translateIJ(i, j);
-            if (gcodeReduce && isReduceOk)          // restore last skipped point for accurat G2/G3 use
-            {
-                if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
-                {  gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
-                }
-            }
-            gcode.Arc(gcodeString[gcodeStringIndex], 3, coordxy, coordij, cmt);
-            lastSetGCX = coordxy.X; lastSetGCY = coordxy.Y;
-            lastGCX = coordxy.X; lastGCY = coordxy.Y;
-        }
-
-        /// <summary>
-        /// Insert Pen-up gcode command
-        /// </summary>
-        private static void gcodePenUp(string cmt="")
-        {   gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
-            isPenDown = false;
+        private static string getColorFromID(int id)
+        {     string[] DXFcolors = {"000000","FF0000","FFFF00","00FF00","00FFFF","0000FF","FF00FF","FFFFFF",
+                                    "414141","808080","FF0000","FFAAAA","BD0000","BD7E7E","810000","815656",
+                                    "680000","684545","4F0000","4F3535","FF3F00","FFBFAA","BD2E00","BD8D7E",
+                                    "811F00","816056","681900","684E45","4F1300","4F3B35","FF7F00","FFD4AA",
+                                    "BD5E00","BD9D7E","814000","816B56","683400","685645","4F2700","4F4235",
+                                    "FFBF00","FFEAAA","BD8D00","BDAD7E","816000","817656","684E00","685F45",
+                                    "4F3B00","4F4935","FFFF00","FFFFAA","BDBD00","BDBD7E","818100","818156",
+                                    "686800","686845","4F4F00","4F4F35","BFFF00","EAFFAA","8DBD00","ADBD7E",
+                                    "608100","768156","4E6800","5F6845","3B4F00","494F35","7FFF00","D4FFAA",
+                                    "5EBD00","9DBD7E","408100","6B8156","346800","566845","274F00","424F35",
+                                    "3FFF00","BFFFAA","2EBD00","8DBD7E","1F8100","608156","196800","4E6845",
+                                    "134F00","3B4F35","00FF00","AAFFAA","00BD00","7EBD7E","008100","568156",
+                                    "006800","456845","004F00","354F35","00FF3F","AAFFBF","00BD2E","7EBD8D",
+                                    "00811F","568160","006819","45684E","004F13","354F3B","00FF7F","AAFFD4",
+                                    "00BD5E","7EBD9D","008140","56816B","006834","456856","004F27","354F42",
+                                    "00FFBF","AAFFEA","00BD8D","7EBDAD","008160","568176","00684E","45685F",
+                                    "004F3B","354F49","00FFFF","AAFFFF","00BDBD","7EBDBD","008181","568181",
+                                    "006868","456868","004F4F","354F4F","00BFFF","AAEAFF","008DBD","7EADBD",
+                                    "006081","567681","004E68","455F68","003B4F","35494F","007FFF","AAD4FF",
+                                    "005EBD","7E9DBD","004081","566B81","003468","455668","00274F","35424F",
+                                    "003FFF","AABFFF","002EBD","7E8DBD","001F81","566081","001968","454E68",
+                                    "00134F","353B4F","0000FF","AAAAFF","0000BD","7E7EBD","000081","565681",
+                                    "000068","454568","00004F","35354F","3F00FF","BFAAFF","2E00BD","8D7EBD",
+                                    "1F0081","605681","190068","4E4568","13004F","3B354F","7F00FF","D4AAFF",
+                                    "5E00BD","9D7EBD","400081","6B5681","340068","564568","27004F","42354F",
+                                    "BF00FF","EAAAFF","8D00BD","AD7EBD","600081","765681","4E0068","5F4568",
+                                    "3B004F","49354F","FF00FF","FFAAFF","BD00BD","BD7EBD","810081","815681",
+                                    "680068","684568","4F004F","4F354F","FF00BF","FFAAEA","BD008D","BD7EAD",
+                                    "810060","815676","68004E","68455F","4F003B","4F3549","FF007F","FFAAD4",
+                                    "BD005E","BD7E9D","810040","81566B","680034","684556","4F0027","4F3542",
+                                    "FF003F","FFAABF","BD002E","BD7E8D","81001F","815660","680019","68454E",
+                                    "4F0013","4F353B","333333","505050","696969","828282","BEBEBE","FFFFFF" };
+            if (id < 0) id = 0;
+            if (id > 255) id = 255;
+            return DXFcolors[id];
         }
     }
 }

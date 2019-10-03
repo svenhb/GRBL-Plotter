@@ -181,7 +181,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 270</value>
+    <value>281, 270</value>
   </data>
   <data name="btnApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 23</value>
@@ -399,6 +399,39 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="cBToolTable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBToolTable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBToolTable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 85</value>
+  </data>
+  <data name="cBToolTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 17</value>
+  </data>
+  <data name="cBToolTable.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="cBToolTable.Text" xml:space="preserve">
+    <value>Get values from tool table</value>
+  </data>
+  <data name="cBToolTable.ToolTip" xml:space="preserve">
+    <value>Within a word connect last point of letter with first point of next letter</value>
+  </data>
+  <data name="&gt;&gt;cBToolTable.Name" xml:space="preserve">
+    <value>cBToolTable</value>
+  </data>
+  <data name="&gt;&gt;cBToolTable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBToolTable.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cBToolTable.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBConnectLetter.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -430,10 +463,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBConnectLetter.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 85</value>
+    <value>42, 102</value>
   </data>
   <data name="cBTool.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 21</value>
@@ -451,7 +484,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -460,7 +493,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 88</value>
+    <value>6, 105</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 13</value>
@@ -481,7 +514,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBPauseLine.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -511,7 +544,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBPauseLine.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cBPauseWord.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -541,7 +574,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBPauseWord.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBPauseChar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -571,16 +604,19 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBPauseChar.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 107</value>
+    <value>6, 125</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 26</value>
+    <value>213, 13</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -598,13 +634,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>150, 4</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 144</value>
+    <value>251, 144</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -634,7 +670,7 @@
     <value>Both</value>
   </data>
   <data name="tBText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 110</value>
+    <value>397, 110</value>
   </data>
   <data name="tBText.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -661,7 +697,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>334, 301</value>
+    <value>404, 301</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3668,9 +3704,6 @@
         ////////////////////////////////////////////////////////////////////////////////
         //8=
 </value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>50, 300</value>

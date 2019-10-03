@@ -18,6 +18,7 @@
 */
 /*
  * 2019-06-14 add code markers: xmlMarker.figureStart
+ * 2019-08-15 add logger
 */
 
 using System;
@@ -37,18 +38,21 @@ namespace GRBL_Plotter
         private static StringBuilder gcodeString = new StringBuilder();
 
         public float offsetX = 0, offsetY = 0;
+
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public GCodeFromShape()
         {
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Logger.Trace("++++++ GCodeFromShape START ++++++");
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        {   this.Close();  }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
@@ -58,6 +62,8 @@ namespace GRBL_Plotter
             gcode.gcodeZFeed  = (float)nUDToolFeedZ.Value;    // override devault values
             gcode.gcodeSpindleSpeed = (float)nUDToolSpindleSpeed.Value;    // override devault values
             gcode.gcodeZDown = (float)nUDImportGCZDown.Value;
+
+            Logger.Debug("Create GCode {0}", gcode.getSettings());
 
             gcodeString.Clear();
 
@@ -81,11 +87,12 @@ namespace GRBL_Plotter
             float dx = 0, dy = 0, rDelta=0;
             int passCount = 0;
             int figureCount = 1;
-            gcode.PenUp(gcodeString);
+            gcode.jobStart(gcodeString, "StartJob");
+        //    gcode.PenUp(gcodeString);
 
             bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value);
 
-            gcode.Comment(gcodeString, xmlMarker.figureStart + figureCount.ToString() + " >");
+            gcode.Comment(gcodeString, xmlMarker.figureStart + " " + figureCount.ToString() + " >");
             if (rBShape1.Checked)                               // rectangle
             {   getOffset(x,y);
                 offsetX -= rTool; offsetY -= rTool;
@@ -103,11 +110,11 @@ namespace GRBL_Plotter
                     //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                     if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
                     {   gcode.PenUp(gcodeString);
-                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + "  " + passCount.ToString() + ">");
                     }
                     passCount++;
 
-                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0}{1} {2:0.000} / {3:0.000} >",xmlMarker.passStart,passCount, zStep, nUDImportGCZDown.Value));
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart,passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + overlap, ""); 
@@ -140,7 +147,7 @@ namespace GRBL_Plotter
                     makeRect(offsetX, offsetY, offsetX + x, offsetY + y, 0, true);  // final rectangle clockwise
                 }
                 gcode.PenUp(gcodeString);
-                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
             }
             else if (rBShape2.Checked)           // rectangle with round edge
             {
@@ -161,11 +168,11 @@ namespace GRBL_Plotter
                     //                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                     if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
                     {   gcode.PenUp(gcodeString);
-                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
                     }
                     passCount++;
 
-                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0}{1} {2:0.000} / {3:0.000} >", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + rShape , "");
@@ -198,7 +205,7 @@ namespace GRBL_Plotter
                     makeRect(offsetX, offsetY, offsetX + x, offsetY + y, rShape, true);  // rectangle clockwise
                 }
                 gcode.PenUp(gcodeString);
-                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
             }
             else if (rBShape3.Checked)           // circle
             {
@@ -215,11 +222,11 @@ namespace GRBL_Plotter
                     //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                     if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
                     {   gcode.PenUp(gcodeString);
-                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
                     }
                     passCount++;
 
-                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0}{1} {2:0.000} / {3:0.000} >", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + rShape-overlap, offsetY + rShape, "");
@@ -245,12 +252,13 @@ namespace GRBL_Plotter
                     gcode.Arc(gcodeString, 2, offsetX, offsetY + rShape, rShape, 0, "");
                 }
                 gcode.PenUp(gcodeString);
-                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
             }
-            gcode.Comment(gcodeString, xmlMarker.figureEnd + figureCount.ToString() + " >");
+            gcode.Comment(gcodeString, Plotter.SetFigureEnd(figureCount));
 
-            if (Properties.Settings.Default.importGCZEnable)
-                gcode.SpindleOff(gcodeString, "Finish - Spindle off");
+            gcode.jobEnd(gcodeString, "EndJob");      // Spindle / laser off
+        //    if (Properties.Settings.Default.importGCZEnable)
+       //         gcode.SpindleOff(gcodeString, "Finish - Spindle off");
 
             string header = gcode.GetHeader("Simple Shape");
             string footer = gcode.GetFooter();
@@ -303,16 +311,16 @@ namespace GRBL_Plotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
 
-            nUDToolDiameter.Value = Properties.Settings.Default.toolDiameter;
-            nUDToolZStep.Value = Properties.Settings.Default.toolZStep;
-            nUDToolFeedXY.Value = Properties.Settings.Default.toolFeedXY;
-            nUDToolFeedZ.Value = Properties.Settings.Default.toolFeedZ;
-            nUDToolOverlap.Value = Properties.Settings.Default.toolOverlap;
-            nUDToolSpindleSpeed.Value = Properties.Settings.Default.toolSpindleSpeed;
-            nUDShapeX.Value = Properties.Settings.Default.shapeX;
-            nUDShapeY.Value = Properties.Settings.Default.shapeY;
-            nUDShapeR.Value = Properties.Settings.Default.shapeR;
-            switch (Properties.Settings.Default.shapeType)
+            nUDToolDiameter.Value = Properties.Settings.Default.createShapeToolDiameter;
+            nUDToolZStep.Value = Properties.Settings.Default.createShapeToolZStep;
+            nUDToolFeedXY.Value = Properties.Settings.Default.createShapeToolFeedXY;
+            nUDToolFeedZ.Value = Properties.Settings.Default.createShapeToolFeedZ;
+            nUDToolOverlap.Value = Properties.Settings.Default.createShapeToolOverlap;
+            nUDToolSpindleSpeed.Value = Properties.Settings.Default.createShapeToolSpindleSpeed;
+            nUDShapeX.Value = Properties.Settings.Default.createShapeX;
+            nUDShapeY.Value = Properties.Settings.Default.createShapeY;
+            nUDShapeR.Value = Properties.Settings.Default.createShapeR;
+            switch (Properties.Settings.Default.createShapeType)
             {
                 case 2:
                     rBShape2.Checked = true;
@@ -325,7 +333,7 @@ namespace GRBL_Plotter
                     break;
             }
             nUDImportGCZDown.Value = Properties.Settings.Default.importGCZDown;
-            switch (Properties.Settings.Default.toolPath)
+            switch (Properties.Settings.Default.createShapeToolPath)
             {
                 case 2:
                     rBToolpath1.Checked = true;
@@ -337,7 +345,7 @@ namespace GRBL_Plotter
                     rBToolpath1.Checked = true;
                     break;
             }
-            switch (Properties.Settings.Default.shapeOrigin)
+            switch (Properties.Settings.Default.createShapeOrigin)
             {
                 case 1:
                     rBOrigin1.Checked = true;
@@ -386,40 +394,42 @@ namespace GRBL_Plotter
                 cBTool.SelectedIndex = 0;
             tprop = toolTable.getToolProperties(1);
             enableTool(!cBToolSet.Checked);
+            cBToolSet_CheckedChanged(sender, e);
         }
 
         private void ShapeToGCode_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Logger.Trace("++++++ GCodeFromShape STOP ++++++");
             Properties.Settings.Default.locationShapeForm = Location;
             saveSettings();
         }
         private void saveSettings()
         {
-            Properties.Settings.Default.toolDiameter = nUDToolDiameter.Value;
-            Properties.Settings.Default.toolZStep = nUDToolZStep.Value;
-            Properties.Settings.Default.toolFeedXY = nUDToolFeedXY.Value;
-            Properties.Settings.Default.toolFeedZ = nUDToolFeedZ.Value;
-            Properties.Settings.Default.toolOverlap = nUDToolOverlap.Value;
-            Properties.Settings.Default.toolSpindleSpeed = nUDToolSpindleSpeed.Value;
-            Properties.Settings.Default.shapeX = nUDShapeX.Value;
-            Properties.Settings.Default.shapeY = nUDShapeY.Value;
-            Properties.Settings.Default.shapeR = nUDShapeR.Value;
-            if (rBShape1.Checked) Properties.Settings.Default.shapeType = 1;
-            if (rBShape2.Checked) Properties.Settings.Default.shapeType = 2;
-            if (rBShape3.Checked) Properties.Settings.Default.shapeType = 3;
+            Properties.Settings.Default.createShapeToolDiameter = nUDToolDiameter.Value;
+            Properties.Settings.Default.createShapeToolZStep = nUDToolZStep.Value;
+            Properties.Settings.Default.createShapeToolFeedXY = nUDToolFeedXY.Value;
+            Properties.Settings.Default.createShapeToolFeedZ = nUDToolFeedZ.Value;
+            Properties.Settings.Default.createShapeToolOverlap = nUDToolOverlap.Value;
+            Properties.Settings.Default.createShapeToolSpindleSpeed = nUDToolSpindleSpeed.Value;
+            Properties.Settings.Default.createShapeX = nUDShapeX.Value;
+            Properties.Settings.Default.createShapeY = nUDShapeY.Value;
+            Properties.Settings.Default.createShapeR = nUDShapeR.Value;
+            if (rBShape1.Checked) Properties.Settings.Default.createShapeType = 1;
+            if (rBShape2.Checked) Properties.Settings.Default.createShapeType = 2;
+            if (rBShape3.Checked) Properties.Settings.Default.createShapeType = 3;
             Properties.Settings.Default.importGCZDown = nUDImportGCZDown.Value;
-            if (rBToolpath1.Checked) Properties.Settings.Default.toolPath = 1;
-            if (rBToolpath2.Checked) Properties.Settings.Default.toolPath = 2;
-            if (rBToolpath3.Checked) Properties.Settings.Default.toolPath = 3;
-            if (rBOrigin1.Checked) Properties.Settings.Default.shapeOrigin = 1;
-            if (rBOrigin2.Checked) Properties.Settings.Default.shapeOrigin = 2;
-            if (rBOrigin3.Checked) Properties.Settings.Default.shapeOrigin = 3;
-            if (rBOrigin4.Checked) Properties.Settings.Default.shapeOrigin = 4;
-            if (rBOrigin5.Checked) Properties.Settings.Default.shapeOrigin = 5;
-            if (rBOrigin6.Checked) Properties.Settings.Default.shapeOrigin = 6;
-            if (rBOrigin7.Checked) Properties.Settings.Default.shapeOrigin = 7;
-            if (rBOrigin8.Checked) Properties.Settings.Default.shapeOrigin = 8;
-            if (rBOrigin9.Checked) Properties.Settings.Default.shapeOrigin = 9;
+            if (rBToolpath1.Checked) Properties.Settings.Default.createShapeToolPath = 1;
+            if (rBToolpath2.Checked) Properties.Settings.Default.createShapeToolPath = 2;
+            if (rBToolpath3.Checked) Properties.Settings.Default.createShapeToolPath = 3;
+            if (rBOrigin1.Checked) Properties.Settings.Default.createShapeOrigin = 1;
+            if (rBOrigin2.Checked) Properties.Settings.Default.createShapeOrigin = 2;
+            if (rBOrigin3.Checked) Properties.Settings.Default.createShapeOrigin = 3;
+            if (rBOrigin4.Checked) Properties.Settings.Default.createShapeOrigin = 4;
+            if (rBOrigin5.Checked) Properties.Settings.Default.createShapeOrigin = 5;
+            if (rBOrigin6.Checked) Properties.Settings.Default.createShapeOrigin = 6;
+            if (rBOrigin7.Checked) Properties.Settings.Default.createShapeOrigin = 7;
+            if (rBOrigin8.Checked) Properties.Settings.Default.createShapeOrigin = 8;
+            if (rBOrigin9.Checked) Properties.Settings.Default.createShapeOrigin = 9;
             Properties.Settings.Default.Save();
         }
 
@@ -434,6 +444,9 @@ namespace GRBL_Plotter
 
         private void cBToolSet_CheckedChanged(object sender, EventArgs e)
         {
+            bool enabled = cBToolSet.Checked;
+            label1.Enabled = enabled;
+            cBTool.Enabled = enabled;
             enableTool(!cBToolSet.Checked);
             cBTool_SelectedIndexChanged(sender, e);
         }
@@ -458,14 +471,28 @@ namespace GRBL_Plotter
                 if (cBToolSet.Checked)
                 {
                     tprop = toolTable.getToolProperties(tnr);
-                    nUDToolDiameter.Value = (decimal)tprop.diameter;
-                    nUDToolFeedXY.Value = (decimal)tprop.feedXY;
-                    nUDImportGCZDown.Value = (decimal)tprop.finalZ;
-                    nUDToolZStep.Value = (decimal)Math.Abs(tprop.stepZ);
-                    nUDToolFeedZ.Value = (decimal)tprop.feedZ;
-                    nUDToolOverlap.Value = (decimal)tprop.overlap;
-                    nUDToolSpindleSpeed.Value = (decimal)tprop.spindleSpeed;
+                    Logger.Info("Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", tprop.diameter, tprop.feedXY, tprop.finalZ, tprop.stepZ, tprop.feedZ, tprop.overlap, tprop.spindleSpeed);
+                    try
+                    {
+                        checkSetValue(nUDToolDiameter, (decimal)tprop.diameter);
+                        checkSetValue(nUDToolFeedXY, (decimal)tprop.feedXY);
+                        checkSetValue(nUDImportGCZDown, (decimal)tprop.finalZ);
+                        checkSetValue(nUDToolZStep, (decimal)Math.Abs(tprop.stepZ));
+                        checkSetValue(nUDToolFeedZ, (decimal)tprop.feedZ);
+                        checkSetValue(nUDToolOverlap, (decimal)tprop.overlap);
+                        checkSetValue(nUDToolSpindleSpeed, (decimal)tprop.spindleSpeed);
+                    }
+                    catch (Exception err)
+                    { Logger.Error(err, "Set numeric Up Downs"); }
                 }
+            }
+        }
+        private void checkSetValue(NumericUpDown nUDcontrol, decimal val)
+        {   if ((val <= nUDcontrol.Maximum) && (val >= nUDcontrol.Minimum))
+            {   nUDcontrol.Value = val; }
+            else
+            {   Logger.Error("{0} Value:{1} out of range min:{2} max:{3}", nUDcontrol.Name, val, nUDcontrol.Minimum, nUDcontrol.Maximum);
+                nUDcontrol.Enabled = true;
             }
         }
 

@@ -21,6 +21,7 @@
 * 2018-08 add drag tool compensation
 * 2019-05 line 398 correct start pos. for gcodeDragCompensation if lastMovewasG0
 * 2019-06 add depth per pass for final Z depth
+* 2019-09 add toolInfo.gcode
 */
 
 using System;
@@ -56,6 +57,7 @@ namespace GRBL_Plotter
         private static int gcodeToolCounter = 0;       // counter for GCode Tools
         private static string gcodeToolText = "";       // counter for GCode Tools
 
+        private static bool useValueFromToolTable = false;
         public static float gcodeXYFeed = 1999;        // XY feed to apply for G1
         private static bool gcodeXYFeedToolTable=false;     // from Tool Table
         private static bool gcodeComments = true;       // if true insert additional comments into GCode
@@ -77,6 +79,7 @@ namespace GRBL_Plotter
         public static float gcodeSpindleSpeed = 999; // Spindle speed to apply
         private static string gcodeSpindleCmd = "3"; // Spindle Command M3 / M4
         private static bool gcodeSpindleToolTable = false;     // from Tool Table
+        private static bool gcodeUseLasermode = false;
 
         // Using Spindle-Speed als PWM output to control RC-Servo
         private static bool gcodePWMEnable = false;     // Change Spindle speed for Pen down/up
@@ -101,30 +104,50 @@ namespace GRBL_Plotter
         private static bool gcodeLineSegmentEquidistant;
         private static bool gcodeLineSegementSubroutine;
 
+        private static StringBuilder headerData = new StringBuilder();
+
         // depth per pass
         private static StringBuilder figureString = new StringBuilder();    // tool path for pen down path
         private static xyPoint figureStart;                                 // 1st point of figure to move via G0 before pen down
         private static bool repeatZ = false;                                // depth per pass enabled
+        private static bool repeatZStartZero = false;
         private static float finalZ = -2;                                   // final tool path depth
-  //      private static float gcodeZInc = 1;                                // depth per pass
 
         private static int decimalPlaces = 3;
 
-        //       private static int pathCount = 0;
-
         private static Stopwatch stopwatch = new Stopwatch();
+
+        public static string getSettings()
+        {   string tmp = "";
+            tmp += string.Format("XYFeed: {0}, ", gcodeXYFeed);
+            if (gcodeToolChange)
+                tmp += "ToolChange, ";
+            if (gcodeZApply)
+            {   tmp += string.Format("ZFeed: {0}, Up: {1}, Down: {2}, Spindle M{3} S{4}", gcodeZFeed, gcodeZUp, gcodeZDown, gcodeSpindleCmd, gcodeSpindleSpeed);
+                if (repeatZ)
+                    tmp += string.Format("ZStep: {0}, ", gcodeZInc);
+            }
+            if (gcodeSpindleToggle)
+                tmp += string.Format(" SpindleToggle M{0} S{1} ", gcodeSpindleCmd, gcodeSpindleSpeed);
+            if (gcodePWMEnable)
+                tmp += " PWM ";
+            return tmp; 
+        }
 
         public static void setup(bool convertGraphics=true)
         {
             decimalPlaces = (int)Properties.Settings.Default.importGCDecPlaces;
             setDecimalPlaces(decimalPlaces);
             gcodeXYFeed = (float)Properties.Settings.Default.importGCXYFeed;
-            gcodeXYFeedToolTable = Properties.Settings.Default.importGCTTXYFeed;
+
+            useValueFromToolTable = Properties.Settings.Default.importGCToolTableUse;
+            gcodeXYFeedToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTXYFeed;
 
             gcodeComments = Properties.Settings.Default.importGCAddComments;
             gcodeSpindleToggle = Properties.Settings.Default.importGCSpindleToggle;
             gcodeSpindleSpeed = (float)Properties.Settings.Default.importGCSSpeed;
-            gcodeSpindleToolTable = Properties.Settings.Default.importGCTTSSpeed;
+            gcodeSpindleToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTSSpeed;
+            gcodeUseLasermode = Properties.Settings.Default.importGCSpindleToggleLaser;
 
             if (Properties.Settings.Default.importGCSDirM3)
                 gcodeSpindleCmd = "3";
@@ -135,10 +158,11 @@ namespace GRBL_Plotter
             gcodeZUp = (float)Properties.Settings.Default.importGCZUp;
             gcodeZDown = (float)Properties.Settings.Default.importGCZDown;
             gcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
-            gcodeZFeedToolTable = Properties.Settings.Default.importGCTTZFeed;
+            gcodeZFeedToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTZAxis;
             gcodeZInc = (float)Properties.Settings.Default.importGCZIncrement;             // depth per pass
 
             repeatZ = convertGraphics && Properties.Settings.Default.importGCZIncEnable;    // do final Z in several passes?
+            repeatZStartZero = Properties.Settings.Default.importGCZIncStartZero;
             finalZ = (float)Properties.Settings.Default.importGCZDown;                      // final Z
 
 
@@ -152,8 +176,8 @@ namespace GRBL_Plotter
             gcodeIndividualUp = Properties.Settings.Default.importGCIndPenUp;
             gcodeIndividualDown = Properties.Settings.Default.importGCIndPenDown;
 
-            gcodeReduce = Properties.Settings.Default.importSVGReduce;
-            gcodeReduceVal = (float)Properties.Settings.Default.importSVGReduceLimit;
+            gcodeReduce = Properties.Settings.Default.importRemoveShortMovesEnable;
+            gcodeReduceVal = (float)Properties.Settings.Default.importRemoveShortMovesLimit;
 
             gcodeToolChange = Properties.Settings.Default.importGCTool;
             gcodeToolChangeM0 = Properties.Settings.Default.importGCToolM0;
@@ -195,6 +219,10 @@ namespace GRBL_Plotter
             gcodeFigureLines = 0;
             gcodeFigureDistance = 0;
 
+            docTitle = "";
+            docDescription = "";
+
+            headerData.Clear();
             figureString.Clear();                                                           // 
 
             lastx = -1; lasty = -1; lastz = 0;
@@ -204,7 +232,6 @@ namespace GRBL_Plotter
 
             stopwatch = new Stopwatch();
             stopwatch.Start();
-
         }
 
         public static bool reduceGCode
@@ -264,10 +291,13 @@ namespace GRBL_Plotter
 
         public static string frmtCode(int number)      // convert int to string using format pattern
         {   return number.ToString(formatCode); }
+
         public static string frmtNum(float number)     // convert float to string using format pattern
         {   return number.ToString(formatNumber); }
-        public static string frmtNum(double number)     // convert double to string using format pattern
+        public static string frmtNum(double number)    // convert double to string using format pattern
         {   return number.ToString(formatNumber); }
+        public static string frmtNum(decimal number)   // convert decimal to string using format pattern
+        { return number.ToString(formatNumber); }
 
         private static bool gcodeReduce = false;        // if true remove G1 commands if distance is < limit
         private static float gcodeReduceVal = 0.1f;     // limit when to remove G1 commands
@@ -277,48 +307,97 @@ namespace GRBL_Plotter
         public static void Pause(StringBuilder gcodeString, string cmt="")
         {
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-            gcodeString.AppendFormat("M{0:00} {1}\r\n",0,cmt);
+            gcodeString.AppendFormat("M{0} {1}\r\n",frmtCode(0),cmt);
             gcodeLines++;
             gcodePauseCounter++;
         }
 
-        public static void SpindleOn(StringBuilder gcodeString, string cmt="")
+        public static void SpindleOn(StringBuilder gcodeString, string cmt = "")
         {
-            if (gcodeSpindleToolTable) { cmt += " spindle speed from tool table"; }
+            if (gcodeSpindleToolTable && gcodeComments) { cmt += " spindle speed from tool table"; }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-            gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeSpindleSpeed, cmt);
-            gcodeLines++;
-            double delay = (double)Properties.Settings.Default.importGCSpindleDelay;
-            if (delay > 0)
-            {
-                gcodeString.AppendFormat("G{0} P{1} {2}\r\n", frmtCode(4), delay, "( Delay )");
+            if (gcodeUseLasermode)
+                gcodeString.AppendFormat("S{0} {1}\r\n", gcodeSpindleSpeed, cmt);
+            else
+            { 
+                gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodeSpindleSpeed, cmt);
                 gcodeLines++;
+                double delay = (double)Properties.Settings.Default.importGCSpindleDelay;
+                if (delay > 0)
+                {   string tmp = gcodeComments ? "( Delay )" : "";
+                    gcodeString.AppendFormat("G{0} P{1} {2}\r\n", frmtCode(4), delay, tmp);
+                    gcodeLines++;
+                }
             }
         }
 
         public static void SpindleOff(StringBuilder gcodeString, string cmt="")
         {
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-            gcodeString.AppendFormat("M{0} {1}\r\n", frmtCode(5), cmt);
+            if (gcodeUseLasermode)
+                gcodeString.AppendFormat("S{0} {1}\r\n", 0, cmt);
+            else
+                gcodeString.AppendFormat("M{0} {1}\r\n", frmtCode(5), cmt);
             gcodeLines++;
+        }
+
+        public static void jobStart(StringBuilder gcodeString, string cmto = "")
+        {
+            string cmt = cmto;
+            if (!gcodeComments) cmt = "";
+            if (gcodeZApply)    // pen up
+            {
+                if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
+                float tmpZUp = (float)Properties.Settings.Default.importGCZUp;
+                float z_relative = tmpZUp - lastz;
+                if (gcodeZFeedToolTable && gcodeComments) { cmt = cmto +" Z feed from tool table"; }
+                if (cmt.Length > 0) { cmt = " (" + cmt + ")"; }
+                if (gcodeRelative)
+                    gcodeString.AppendFormat("G{0} Z{1}{2}\r\n", frmtCode(0), frmtNum(z_relative), cmt); // use G0 without feedrate
+                else
+                    gcodeString.AppendFormat("G{0} Z{1}{2}\r\n", frmtCode(0), frmtNum(tmpZUp), cmt); // use G0 without feedrate
+                gcodeTime += Math.Abs((tmpZUp - gcodeZDown) / gcodeZFeed);
+                gcodeLines++;
+            }
+
+            if (gcodeZApply || gcodeSpindleToggle)
+            {
+                if (gcodeUseLasermode)
+                {   if (gcodeComments) cmt = " (" + cmto + " lasermode )";
+                    else cmt = "";
+                    gcodeString.AppendFormat("M{0} S{1}{2}\r\n", gcodeSpindleCmd, 0, cmt); // switch on laser with power=0
+                }
+                else
+                {
+                    if (!gcodeToolChange)   // spindle on if no tool change
+                    {   if (gcodeComments) cmt = " (" + cmto + " spindle )";
+                        else cmt = "";
+                        SpindleOn(gcodeString, cmt);
+                    }
+                }
+            }
+        }
+        public static void jobEnd(StringBuilder gcodeString, string cmt = "")
+        {   if (gcodeComments) cmt = " (" + cmt + ")";
+            else cmt = "";
+            if (gcodeZApply || gcodeSpindleToggle)
+                gcodeString.AppendFormat("M{0}{1}\r\n", frmtCode(5), cmt); 
         }
 
         public static void PenDown(StringBuilder gcodeString, string cmto = "")
         {
-            StringBuilder tmpString = new StringBuilder(); ;
+            StringBuilder tmpString = new StringBuilder();
             string cmt = cmto;
-            if (Properties.Settings.Default.importGCTTZFeed) { cmt += " Z feed from tool table"; }
-            if (Properties.Settings.Default.importGCTTZDeepth) { cmt += " Z down from tool table"; }
+            if (Properties.Settings.Default.importGCTTZAxis && gcodeComments && useValueFromToolTable) { cmt += " Z values from tool table"; }
             drag1stMove = true;
             origFinalX = lastx;
             origFinalY = lasty;
-            if (gcodeComments) { tmpString.Append("\r\n"); }
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
             if (cmt.Length >0) { cmt = string.Format("({0})", cmt); }
 
             applyXYFeedRate = true;     // apply XY Feed Rate after each PenDown command (not just after Z-axis)
 
-            if (gcodeSpindleToggle)
+            if (gcodeSpindleToggle && !gcodeUseLasermode)   // 1st spindel, then Z
             {   if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Spindle-On");
                 SpindleOn(tmpString, cmto);
             }
@@ -331,17 +410,22 @@ namespace GRBL_Plotter
                     gcodeFigureDistance = 0;
                 }
                 else
-                {
-                    float z_relative = gcodeZDown - lastz;
-                    if (gcodeRelative)
-                        tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(z_relative), gcodeZFeed, cmt);
-                    else
-                        tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZDown), gcodeZFeed, cmt);
-                    gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
-                    gcodeLines++;
+                {   float z_relative = gcodeZDown - lastz;
+                    if (Math.Abs(z_relative) > 0)
+                    {   if (gcodeRelative)
+                            tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(z_relative), gcodeZFeed, cmt);
+                        else
+                            tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZDown), gcodeZFeed, cmt);
+                        gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
+                        gcodeLines++;
+                    }
                 }
                 lastg = 1; lastf = gcodeZFeed;
                 lastz = gcodeZDown;
+            }
+            if (gcodeUseLasermode)  // 1st Z, then Laser
+            {   if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Laser-On");
+                SpindleOn(tmpString, cmto);
             }
             if (gcodePWMEnable)
             {   if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Servo control");
@@ -357,7 +441,6 @@ namespace GRBL_Plotter
                 foreach (string cmd in commands)
                 { tmpString.AppendFormat("{0}\r\n", cmd.Trim()); }
             }
-            if (gcodeComments) tmpString.Append("\r\n");
 
             gcodeDownUp++;
             lastCharCount = tmpString.Length;
@@ -367,12 +450,12 @@ namespace GRBL_Plotter
         public static void PenUp(StringBuilder gcodeString, string cmto = "")
         {
             string cmt = cmto;
+            string comment = "";
             drag1stMove = true;
             origFinalX = lastx;
             origFinalY = lasty;
-            if (gcodeComments) { gcodeString.Append("\r\n"); }
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
-            if (cmt.Length >0) { cmt = string.Format("({0})", cmt); }
+  //          if (cmt.Length >0) { cmt = string.Format("({0})", cmt); }
             //cmt = string.Format("({0} {1})", xmlMarker.penUp,cmt);
 
             if (gcodeIndividualTool)
@@ -384,42 +467,58 @@ namespace GRBL_Plotter
 
             if (gcodePWMEnable)
             {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Servo control");
-                gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMUp, cmt);
+                if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }
+                gcodeString.AppendFormat("M{0} S{1} {2}\r\n", gcodeSpindleCmd, gcodePWMUp, comment);
                 if (gcodePWMDlyUp>0)
                     gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(gcodePWMDlyUp));
                 gcodeTime += gcodePWMDlyUp;
                 gcodeLines++;
             }
 
+            if (gcodeUseLasermode)  // 1st Z, then Laser
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Laser-Off");
+                SpindleOff(gcodeString, cmto);
+            }
             if (gcodeZApply)
-            {   if (repeatZ && figureString.Length > 0)
-                    intermediateZ(gcodeString);      // figure finished, repeat code for several depth++ per pass
+            {   if (repeatZ)
+                {   if (figureString.Length > 0)
+                        intermediateZ(gcodeString);      // figure finished, repeat code for several depth++ per pass
+                    else
+                        drill(gcodeString);
+                }
                 else
                 {
                     if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
+
                     float z_relative = gcodeZUp - lastz;
-                    if (gcodeZFeedToolTable) { cmt += " Z feed from tool table"; }
-                    if (gcodeRelative)
-                        gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(z_relative), cmt); // use G0 without feedrate
-                    else
-                        gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), cmt); // use G0 without feedrate
-                    gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
-                    gcodeLines++;
+                    if (Math.Abs(z_relative) > 0)
+                    {
+                        if (gcodeZFeedToolTable && gcodeComments) { cmt += " Z feed from tool table"; }
+                        if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }
+
+                        if (gcodeRelative)
+                            gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(z_relative), comment); // use G0 without feedrate
+                        else
+                            gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), comment); // use G0 without feedrate
+                        gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
+                        gcodeLines++;
+                    }
                 }
                 lastg = 1; lastf = gcodeZFeed;
                 lastz = gcodeZUp;
             }
 
-            if (gcodeSpindleToggle)
+            if (gcodeSpindleToggle && !gcodeUseLasermode)
             {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Spindle-Off");
                 SpindleOff(gcodeString, cmto);
             }
-            if (gcodeComments) gcodeString.Append("\r\n");
             dragCompi = 0; dragCompj = 0;
         }
 
         public static float lastx, lasty, lastz, lastg, lastf;
         public static bool lastMovewasG0 = true;
+        public static void MoveTo(StringBuilder gcodeString, Point coord, string cmt, bool avoidFeed)
+        { applyXYFeedRate = false; MoveSplit(gcodeString, 1, (float)coord.X, (float)coord.Y, applyXYFeedRate, cmt); }
         public static void MoveTo(StringBuilder gcodeString, Point coord, string cmt = "")
         {   MoveSplit(gcodeString, 1, (float)coord.X, (float)coord.Y, applyXYFeedRate, cmt); }
         public static void MoveTo(StringBuilder gcodeString, float x, float y, string cmt = "")
@@ -677,7 +776,7 @@ namespace GRBL_Plotter
 
             if (applyFeed && (gnr > 0))
             {
-                if (gcodeXYFeedToolTable) { cmt += " XY feed from tool table"; }
+                if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool table"; }
                 feed = string.Format("F{0}", gcodeXYFeed);
                 applyXYFeedRate = false;                        // don't set feed next time
             }
@@ -713,7 +812,7 @@ namespace GRBL_Plotter
                         gcodeTmp.AppendFormat("F{0} ", gcodeXYFeed);
                         lastf = gcodeXYFeed;
                         isneeded = true;
-                        if (gcodeXYFeedToolTable) { cmt += " XY feed from tool table"; }
+                        if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool table"; }
                     }
                     gcodeTmp.AppendFormat("{0}\r\n", cmt);
                     if (isneeded)
@@ -937,50 +1036,78 @@ namespace GRBL_Plotter
             return ret;
         }
 
-        public static void Tool(StringBuilder gcodeString, int toolnr, string cmt="")
+        public static void Tool(StringBuilder gcodeString, int toolnr, string cmt = "")
         {
+            if (Properties.Settings.Default.importGCToolTableUse && Properties.Settings.Default.importGCToolDefNrUse)
+                toolnr = (int)Properties.Settings.Default.importGCToolDefNr;
+
             string toolCmd = "";
             if (gcodeToolChange)                // otherweise no command needed
             {
                 if (gcodeZApply) gcode.SpindleOff(gcodeString, "Stop spindle - Option Z-Axis");
-                if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-                toolCmd = string.Format("T{0:D2} M{1} {2}", toolnr, frmtCode(6), cmt);
+                string cmtx = "";
+                if (cmt.Length > 0) cmtx = string.Format("({0})", cmt);
+                toolCmd = string.Format("T{0:D2} M{1} {2}", toolnr, frmtCode(6), cmtx);
                 if (gcodeToolChangeM0)
-                {   gcodeString.AppendFormat("M0 ({0})\r\n", toolCmd); gcodeLines++; }
+                { gcodeString.AppendFormat("M0 ({0})\r\n", toolCmd); gcodeLines++; }
                 else
-                {   gcodeString.AppendFormat("{0}\r\n", toolCmd); gcodeLines++; }
+                { gcodeString.AppendFormat("{0}\r\n", toolCmd); gcodeLines++; }
                 gcodeToolCounter++;
                 gcodeLines++;
-                gcodeToolText += string.Format("( {0}) ToolNr: {1:D2}, Name: {2})\r\n", gcodeToolCounter, toolnr, cmt);
+                gcodeToolText += string.Format("( {0} ToolNr: {1:D2}, Name: {2})\r\n", gcodeToolCounter, toolnr, cmt);
 
                 remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;
 
-                toolProp toolInfo = toolTable.getToolProperties(toolnr);
+                if (gcodeZApply && !gcodeSpindleToggle) { gcode.SpindleOn(gcodeString, "Start spindle - Option Z-Axis"); gcodeLines++; }
+            }
+
+            // add gcode from tool table
+            toolProp toolInfo = toolTable.getToolProperties(toolnr);
+            getValuesFromToolTable(toolInfo);
+
+            if (Properties.Settings.Default.importGCToolTableUse)
+            {   if (toolInfo.gcode.Length > 1)
+                {   string[] commands = toolInfo.gcode.Split(';');
+                    string comment = "";
+                    if (gcodeComments) { comment = "(gcode from tool table)"; }
+                    foreach (string btncmd in commands)
+                    { gcodeString.AppendFormat("{0} {1}\r\n", btncmd.Trim(), comment); }
+
+                    if (gcodeZApply)
+                    { gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), "(after tool table gcode)"); }
+                }
+            }
+        }
+
+        public static void getValuesFromToolTable(toolProp toolInfo)
+        {   if (Properties.Settings.Default.importGCToolTableUse)
+            {
                 if (Properties.Settings.Default.importGCTTSSpeed)
                     gcodeSpindleSpeed = toolInfo.spindleSpeed;
                 if (Properties.Settings.Default.importGCTTXYFeed)
                     gcodeXYFeed = toolInfo.feedXY;
-                if (Properties.Settings.Default.importGCTTZFeed)
+                if (Properties.Settings.Default.importGCTTZAxis)
+                {
                     gcodeZFeed = toolInfo.feedZ;
-                if (Properties.Settings.Default.importGCTTZDeepth)
+                    gcodeZUp   = toolInfo.saveZ;
                     gcodeZDown = toolInfo.finalZ;   // stepZ;
-                if (Properties.Settings.Default.importGCTTZIncrement)
-                    gcodeZInc = Math.Abs(toolInfo.stepZ);
-
+                    gcodeZInc  = Math.Abs(toolInfo.stepZ);
+                }
                 if (Properties.Settings.Default.importGCDragKnifePercentEnable)
                 { gcodeDragRadius = Math.Abs(gcodeZDown * (float)Properties.Settings.Default.importGCDragKnifePercent / 100); }
-
-                if (gcodeZApply) { gcode.SpindleOn(gcodeString, "Start spindle - Option Z-Axis"); gcodeLines++; }
             }
-            else
-                if (gcodeZApply) { gcode.SpindleOn(gcodeString, "Start spindle - Option Z-Axis"); gcodeLines++; }
-            }
+        }
 
+        public static void AddToHeader(string cmt)
+        { headerData.AppendFormat("({0})\r\n", cmt); }
+
+        public static string docTitle = "";
+        public static string docDescription = "";
         public static string GetHeader(string cmt,string source="")
         {
             gcodeTime += gcodeDistance / gcodeXYFeed;
             string header = "( "+cmt+" by GRBL-Plotter )\r\n";
-            string header_end = "";
+            string header_end = headerData.ToString();
 
             string[] commands = Properties.Settings.Default.importGCHeader.Split(';');
             foreach (string cmd in commands)
@@ -1009,8 +1136,19 @@ namespace GRBL_Plotter
 
             if (source.Length>1)
                 header += string.Format("( Source: {0} )\r\n", source);
-            if (Properties.Settings.Default.importSVGRepeatEnable)
-                header += string.Format("( G-Code repetitions: {0:0} times)\r\n", Properties.Settings.Default.importSVGRepeat);
+
+            if (docTitle.Length>1)
+                header += string.Format("( Title : {0} )\r\n", docTitle);
+            if (docDescription.Length > 1)
+            {   string[] lines = docDescription.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                foreach (string line in lines)
+                {   if (line.Length > 1)
+                        header += string.Format("( Description : {0} )\r\n", line.Trim());
+                }
+            }
+
+            if (Properties.Settings.Default.importRepeatEnable)
+            header += string.Format("( G-Code repetitions: {0:0} times)\r\n", Properties.Settings.Default.importRepeatCnt);
 
             header += string.Format("( G-Code lines: {0} )\r\n", gcodeLines);
             header += string.Format("( Pen Down/Up : {0} times )\r\n", gcodeDownUp);
@@ -1021,6 +1159,15 @@ namespace GRBL_Plotter
 
             stopwatch.Stop();
             header += string.Format("( Conv. time  : {0} )\r\n", stopwatch.Elapsed);
+
+            if (Properties.Settings.Default.importGCToolTableUse)
+            {
+                header += "( Values from tool table: ";
+                if (Properties.Settings.Default.importGCTTSSpeed) { header += "spindle speed, "; }
+                if (Properties.Settings.Default.importGCTTXYFeed) { header += "XY feed, "; }
+                if (Properties.Settings.Default.importGCTTZAxis) { header += "Z Values "; }
+                header += ")\r\n";
+            }
 
             if (gcodeToolChange)
             {
@@ -1044,7 +1191,11 @@ namespace GRBL_Plotter
             if (gcodeToolChange && Properties.Settings.Default.ctrlToolChangeEmpty)
             {   footer += string.Format("T{0} M{1} (Remove tool)\r\n", frmtCode((int)Properties.Settings.Default.ctrlToolChangeEmptyNr), frmtCode(6)); }
 
-            footer += "M30 (Program end)\r\n";
+            if (gcodeComments)
+                footer += "M30 (Program end)\r\n";
+            else
+                footer += "M30\r\n";
+
             return footer + gcodeSubroutine;
         }
 
@@ -1053,6 +1204,40 @@ namespace GRBL_Plotter
                 gcodeString.AppendFormat("({0})\r\n", cmt);
         }
 
+        private static void drill(StringBuilder gcodeString)
+        {
+            float zStep = 0;
+            int passCount = 1;
+            finalZ = gcodeZDown;
+            string cmt = "";
+            bool fromTT = false;
+            if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
+            //     if (Properties.Settings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
+            if (gcodeZFeedToolTable) { cmt += " Z feed "; fromTT = true; }
+            if (fromTT && gcodeComments) { cmt = cmt + " from tool table"; }
+            cmt = cmt = "( " + cmt + " )";
+            if (repeatZStartZero)       // perfom 1st pass at zero
+                zStep = gcodeZInc;
+            while (zStep > finalZ)      // repeat, until finalZ reached
+            {
+                zStep -= gcodeZInc;     // reduce Z by inc
+                if (zStep < finalZ)
+                    zStep = finalZ;
+                gcodeZDown = zStep;
+                Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}' >", xmlMarker.passStart, passCount, zStep, finalZ));
+                if (passCount <= 1) { Move(gcodeString, 0, (float)figureStart.X, (float)figureStart.Y, false, ""); lastMovewasG0 = true; }
+                gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(zStep), gcodeZFeed, cmt);    // Router down
+                gcodeDownUp++;
+                gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), "");                  // Router up
+                Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + ">");
+                passCount++;
+
+                gcodeTime += gcodeFigureTime;
+                gcodeLines += gcodeFigureLines + 3;
+                gcodeDistance += gcodeFigureDistance;
+            }
+            figureString.Clear();
+        }
         private static void intermediateZ(StringBuilder gcodeString)
         {
             float zStep = 0;
@@ -1060,18 +1245,20 @@ namespace GRBL_Plotter
             finalZ = gcodeZDown;
             string cmt = "";
             bool fromTT = false;
-            if (Properties.Settings.Default.importGCTTZDeepth) { cmt += " Z final, "; fromTT = true; }
-            if (Properties.Settings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
+            if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
+       //     if (Properties.Settings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
             if (gcodeZFeedToolTable) { cmt += " Z feed "; fromTT = true; }
-            if (fromTT) {cmt = "( " + cmt + " from tool table )"; }
-
-            while (zStep > finalZ)
+            if (fromTT && gcodeComments) {cmt = cmt + " from tool table"; }
+            cmt = cmt = "( " + cmt + " )";
+            if (repeatZStartZero)       // perfom 1st pass at zero
+                zStep = gcodeZInc;
+            while (zStep > finalZ)      // repeat, until finalZ reached
             {
-                zStep -= gcodeZInc;
+                zStep -= gcodeZInc;     // reduce Z by inc
                 if (zStep < finalZ)
                     zStep = finalZ;
                 gcodeZDown = zStep;
-                Comment(gcodeString, string.Format("{0}{1} {2:0.000} / {3:0.000} >", xmlMarker.passStart, passCount, zStep, finalZ));
+                Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}' >", xmlMarker.passStart, passCount, zStep, finalZ));
                 Move(gcodeString, 0, (float)figureStart.X, (float)figureStart.Y, false, ""); lastMovewasG0 = true;
                 gcodeFigureLines--; // avoid double count
                 gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(zStep), gcodeZFeed, cmt);    // Router down
@@ -1080,7 +1267,7 @@ namespace GRBL_Plotter
                 gcodeString.Append(figureString.ToString());                                                        // draw figure
 
                 gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), "");                  // Router up
-                Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + " >");
+                Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + ">");
                 passCount++;
 
                 gcodeTime += gcodeFigureTime;
@@ -1094,15 +1281,5 @@ namespace GRBL_Plotter
         private static float fsqrt(float x) { return (float)Math.Sqrt(x); }
         private static float fvmag(float x, float y) { return fsqrt(x * x + y * y); }
         private static float fdistance(float x1, float y1, float x2, float y2) { return fvmag(x2 - x1, y2 - y1); }
-    }
-
-    public static class xmlMarker
-    {
-        public const string figureStart = "<figure ";
-        public const string figureEnd   = "</figure ";
-        public const string passStart = "<pass ";
-        public const string passEnd   = "</pass ";
-        public const string penUp   = "<pu>";
-        public const string penDown = "<pd>";
     }
 }

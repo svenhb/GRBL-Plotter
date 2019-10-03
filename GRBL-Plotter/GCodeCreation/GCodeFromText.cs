@@ -16,8 +16,12 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*
+ * 2019-08-15 add logger
+ * 2019-09-07 use plotter class
+*/
+
 using System;
-using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
@@ -29,12 +33,12 @@ namespace GRBL_Plotter
 {
     public partial class GCodeFromText : Form
     {
-
-        private static StringBuilder gcodeString = new StringBuilder();
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public GCodeFromText()
-        {
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+        {   Logger.Trace("++++++ GCodeFromText START ++++++");
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
@@ -45,18 +49,16 @@ namespace GRBL_Plotter
         public string textGCode
         { get { return textgcode; } }
 
-        private static bool gcodeUseSpindle = false;
         private void TextForm_Load(object sender, EventArgs e)
         {
             cBFont.Items.AddRange(GCodeFromFont.getHersheyFontNames());
             cBFont.Items.AddRange(GCodeFromFont.fontFileName());
 
-            cBFont.SelectedIndex = Properties.Settings.Default.textFontIndex;
+            cBFont.SelectedIndex = Properties.Settings.Default.createTextFontIndex;
 
             Location = Properties.Settings.Default.locationTextForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
-            getSettings();
 
             int toolCount = toolTable.init();
             toolProp tmpTool;
@@ -76,16 +78,13 @@ namespace GRBL_Plotter
             }
             if (!defaultToolFound)
                 cBTool.SelectedIndex = 0;
+            cBToolTable_CheckedChanged(sender, e);
         }
-        private void getSettings()
-        {
-            gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
-        }
+
         private void TextForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.textFontIndex = cBFont.SelectedIndex;
-//            Properties.Settings.Default.textFontSize = nUDFontSize.Value;
-//            Properties.Settings.Default.textFontText = tBText.Text;
+            Logger.Trace("++++++ GCodeFromText STOP ++++++");
+            Properties.Settings.Default.createTextFontIndex = cBFont.SelectedIndex;
             Properties.Settings.Default.locationTextForm = Location;
             Properties.Settings.Default.Save();
         }
@@ -93,10 +92,7 @@ namespace GRBL_Plotter
         // get text, break it into chars, get path, etc... This event needs to be assigned in MainForm to poll text
         private void btnApply_Click(object sender, EventArgs e)     // in MainForm:  _text_form.btnApply.Click += getGCodeFromText;
         {
-            getSettings();
-            gcode.setup();
             GCodeFromFont.reset();
-
             GCodeFromFont.gcText = tBText.Text;
             GCodeFromFont.gcFontName = cBFont.Items[cBFont.SelectedIndex].ToString();
             GCodeFromFont.gcHeight = (double)nUDFontSize.Value;
@@ -108,45 +104,41 @@ namespace GRBL_Plotter
             GCodeFromFont.gcPauseLine = cBPauseLine.Checked;
             GCodeFromFont.gcConnectLetter = cBConnectLetter.Checked;
 
-            gcodeString.Clear();
-            GCodeFromFont.getCode(gcodeString);
-
-            if (gcodeUseSpindle) gcode.SpindleOff(gcodeString, "End");
-            gcodeString.Replace(',', '.');
-            string header = gcode.GetHeader("Text import");
-            string footer = gcode.GetFooter();
-
-            textgcode = header + gcodeString.ToString() + footer;
+            bool groupObjects = Properties.Settings.Default.importGroupObjects;          
+            Plotter.StartCode();        // initalize variables
+            Plotter.InsertText("");
+            Plotter.IsPathFigureEnd = true;
+            Plotter.SortCode();         // sort objects
+            textgcode = Plotter.FinalGCode("Text import","");
+            Properties.Settings.Default.importGroupObjects = groupObjects;           
         }
-
 
         // adapt line distance depending on font size
         private void nUDFontSize_ValueChanged(object sender, EventArgs e)
-        {
-            nUDFontLine.Value = nUDFontSize.Value * (decimal)1.5;
-        }
+        {   nUDFontLine.Value = nUDFontSize.Value * (decimal)1.5;   }
 
         private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        {   this.Close();   }
 
         private void cBTool_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string tmp = cBTool.SelectedItem.ToString();
+        {   string tmp = cBTool.SelectedItem.ToString();
             if (tmp.IndexOf(")") > 0)
-            {
-                int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")));
+            {   int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")));
                 Properties.Settings.Default.importGCToolDefNr = tnr;
             }
         }
 
         private void GCodeFromText_Resize(object sender, EventArgs e)
-        {
-            tBText.Width = this.Width - 24;
+        {   tBText.Width = this.Width - 24;
             tBText.Height = this.Height - 230;
             btnApply.Left = this.Width - 138;
             btnApply.Top  = this.Height - 70;
+        }
+
+        private void cBToolTable_CheckedChanged(object sender, EventArgs e)
+        {   bool enabled = cBToolTable.Checked;
+            label3.Enabled = enabled;
+            cBTool.Enabled = enabled;
         }
     }
 }

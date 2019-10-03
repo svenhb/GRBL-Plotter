@@ -134,7 +134,7 @@
     <value>44, 14</value>
   </data>
   <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
-    <value>Überschneidung der Pfade in % (des Werkzeugdurchmessers) wenn Taschen gefräst werden</value>
+    <value>Abstand der Pfade in % (des Werkzeugdurchmessers) wenn Taschen gefräst werden</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
@@ -3282,7 +3282,7 @@
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Erzeuge GCode aus Formen</value>

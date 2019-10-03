@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2018-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,6 +15,9 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+ * 2019-08-15 add logger
 */
 using System;
 using System.IO;
@@ -38,6 +41,9 @@ namespace GRBL_Plotter
         private static double   infoFraction = 0.00001;         // default 1/100000
         private static string[] infoDrill = new string[20];
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
         /// </summary>
@@ -45,6 +51,7 @@ namespace GRBL_Plotter
         /// <returns>String with GCode of imported data</returns>
         public static string ConvertFile(string file)
         {
+            Logger.Debug("Create GCode from {0}",file);
             if (file == "")
             {   MessageBox.Show("Empty file name");
                 return "";
@@ -114,7 +121,6 @@ namespace GRBL_Plotter
             return header + finalString.ToString().Replace(',', '.') + footer;
         }
 
-
         private static void getDrillInfos(string[] drillInfo)
         {
             foreach (string line in drillInfo)
@@ -133,6 +139,7 @@ namespace GRBL_Plotter
 
         private static void convertDrill(string[] drillCode, string info)
         {
+            Logger.Debug("convertDrill {0}", info);
             gcodeString.Clear();
             if (importComments)
             {

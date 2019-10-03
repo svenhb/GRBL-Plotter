@@ -23,20 +23,25 @@
 
     GCode will be written to gcodeString[gcodeStringIndex] where gcodeStringIndex corresponds with color of element to draw
 */
-/*  2016-07-18  get stroke-color from shapes, use GIMP-palette information to find tool-nr related to stroke-color
-                add gcode for tool change
-    2018-01-02  Bugfix SVG rect transform (G3 in roundrect)
-                Bugfix SVG End GCode Path before next SVG subpath
-                Bugfix Scale to max dimension
-    2018-07     importInMM = Properties.Settings.Default.importUnitmm;
-    2018-11-04  Y-Offset Problem line 347: ...(svgHeightPx * scale)
-                Transform problem: overwrite old matrix[index] line 467: end if here
-    2019-01-23  Change order line 165
-    2019-01-28  Add DotOnly for Basic shapes
-    2019-05-12  change possible transformation depth from 10 to 100 - line 95
-    2019-06-10  xmlMarker.figureStart
-    2019-06-19  cmd="z" avoid final move if gcode.isEqual((float)firstX,lastX) line 929
-    2019-07-04  fix sorting problem with <figure tag
+/* 2016-07-18 get stroke-color from shapes, use GIMP-palette information to find tool-nr related to stroke-color
+              add gcode for tool change
+   2018-01-02 Bugfix SVG rect transform (G3 in roundrect)
+              Bugfix SVG End GCode Path before next SVG subpath
+              Bugfix Scale to max dimension
+   2018-07    importInMM = Properties.Settings.Default.importUnitmm;
+   2018-11-04 Y-Offset Problem line 347: ...(svgHeightPx * scale)
+              Transform problem: overwrite old matrix[index] line 467: end if here
+   2019-01-23 Change order line 165
+   2019-01-28 Add DotOnly for Basic shapes
+   2019-05-12 change possible transformation depth from 10 to 100 - line 95
+   2019-06-10 xmlMarker.figureStart
+   2019-06-19 cmd="z" avoid final move if gcode.isEqual((float)firstX,lastX) line 929
+   2019-07-04 fix sorting problem with <figure tag
+   2019-07-08 line 728 optimize 'polyline'
+   2019-08-15 add logger
+   2019-08-31 swap code to new class 'plotter'
+                to do line 995 check svgClosePathExtend
+   2019-09-19 add stroke-dasharray
 */
 
 using System;
@@ -54,50 +59,19 @@ namespace GRBL_Plotter
 {
     class GCodeFromSVG
     {
-        private static int svgToolMax = 100;            // max amount of tools
-        private static StringBuilder[] gcodeString = new StringBuilder[svgToolMax];
-        private static int gcodeStringIndex = 0;
-        private static StringBuilder finalString = new StringBuilder();
-
-        // following settings will be read from Properties.Settings.Default in startConvert()
         private static int svgBezierAccuracy = 6;       // applied line segments at bezier curves
         private static bool svgScaleApply = true;       // try to scale final GCode if true
         private static float svgMaxSize = 100;          // final GCode size (greater dimension) if scale is applied
         private static bool svgClosePathExtend = true;  // not working if true move to first and second point of path to get overlap
-        private static bool svgToolSortNr = true;        // if true take tool nr. from nearest pallet entry
-        private static bool svgToolUse = true;         // if true sort objects by tool-nr. (to avoid back and forth pen change)
-        private static int amountOfTools = 0;            // last index
-
+        private static bool svgGroupObjects = true;     // if true sort objects by tool-nr. (to avoid back and forth pen change)
         private static bool svgNodesOnly = true;        // if true only do pen-down -up on given coordinates
-
-        private static bool svgPauseElement = true;     // if true insert GCode pause M0 before each element
-        private static bool svgPausePenDown = true;     // if true insert pause M0 before pen down
         private static bool svgComments = true;         // if true insert additional comments into GCode
-
-        private static bool gcodeReduce = false;        // if true remove G1 commands if distance is < limit
-        private static float gcodeReduceVal = .1f;        // limit when to remove G1 commands
-
-        private static float gcodeXYFeed = 2000;        // XY feed to apply for G1
-
-        private static bool gcodeToolChange = false;          // Apply tool exchange command
-        private static int gcodeOldToolNr = -1;
-        private static int myTool = 1;
-        private static string myColor = "";
-
-        // Using Z-Axis for Pen up down
-        private static bool gcodeZApply = true;         // if true insert Z movements for Pen up/down
-        private static float gcodeZUp = 2;              // Z-up position
-        private static float gcodeZDown = -2;           // Z-down position
-        private static float gcodeZFeed = 500;          // Z feed to apply for G1
-
-        // Using Spindle pwr. to switch on/off laser
-        private static bool gcodeUseSpindle = false; // Switch on/off spindle for Pen down/up (M3/M5)
 
         private static bool svgConvertToMM = true;
         private static float gcodeScale = 1;                    // finally scale with this factor if svgScaleApply and svgMaxSize
-        private static Matrix[] matrixGroup = new Matrix[100];   // store SVG-Group transformation matrixes
+        private static Matrix[] matrixGroup = new Matrix[100];  // store SVG-Group transformation matrixes
         private static Matrix matrixElement = new Matrix();     // store finally applied matrix
-        private static Matrix oldMatrixElement = new Matrix();     // store finally applied matrix
+        private static Matrix oldMatrixElement = new Matrix();  // store finally applied matrix
 
         private static float factor_In2Px = 96;
         private static float factor_Mm2Px = 96f / 25.4f;
@@ -106,8 +80,9 @@ namespace GRBL_Plotter
         private static float factor_Pc2Px = 12 * 96f / 72f;
         private static float factor_Em2Px = 150;
 
-        private static int pathCount = 0;
-
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static string logSource = "";
 
         /// <summary>
         /// Entrypoint for conversion: apply file-path or file-URL
@@ -122,7 +97,6 @@ namespace GRBL_Plotter
             byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
             MemoryStream stream = new MemoryStream(byteArray);
             svgCode = XElement.Load(stream, LoadOptions.None);
-            //MessageBox.Show(svgCode.ToString());
             fromClipboard = true;
             if (svgText.IndexOf("Adobe") >= 0)
                 replaceUnitByPixel = false;
@@ -131,8 +105,9 @@ namespace GRBL_Plotter
         }
         public static string convertFromFile(string file)
         {
+            unitIsPixel = false;
             fromClipboard = false;
-            //importInMM = Properties.Settings.Default.importUnitmm;          // Target units and display in setup
+
             if (file == "")
             { MessageBox.Show("Empty file name"); return ""; }
             if (file.Substring(0, 4) == "http")
@@ -157,123 +132,56 @@ namespace GRBL_Plotter
             else
             {
                 if (File.Exists(file))
-                { try
-                    { svgCode = XElement.Load(file, LoadOptions.None);    // PreserveWhitespace);
+                {   try
+                    {   svgCode = XElement.Load(file, LoadOptions.None);    // PreserveWhitespace);
                         return convertSVG(svgCode, file);                   // startConvert(svgCode);
                     }
                     catch (Exception e)
-                    { MessageBox.Show("Error '" + e.ToString() + "' in XML file " + file + "\r\n\r\nTry to save file with other encoding e.g. UTF-8"); return ""; }
+                    {
+                        Logger.Error(e,"Error loading SVG-Code");
+                        MessageBox.Show("Error '" + e.ToString() + "' in XML file " + file + "\r\n\r\nTry to save file with other encoding e.g. UTF-8"); return "";
+                    }
                 }
                 else { MessageBox.Show("File does not exist: " + file); return ""; }
             }
             return "";
         }
 
-        private static string convertSVG(XElement svgCode, string info)
-        {   gcodeStringIndex = 0;
-            for (int i = 0; i < svgToolMax; i++)    // hold gcode snippes for later sorting
-            {
-                gcodeString[i] = new StringBuilder();
-                gcodeString[i].Clear();
-            }
-            gcode.setup();          // initialize GCode creation (get stored settings for export)
-            finalString.Clear();
-            getActualSettings();
-
-            gcode.PenUp(finalString, "- SVG Start -");
-            penIsDown = false;
-
-            startConvert(svgCode);  // do all conversion
-            if (svgNodesOnly)
-                finalString.AppendLine("( !!! Draw nodes only !!! )");
-
-            if (svgToolUse)
-            {
-                int toolnr;
-                if (svgToolSortNr)
-                    toolTable.sortByToolNr();
-                else
-                    toolTable.sortByCodeSize();
-                for (int i = 0; i < amountOfTools; i++)
-                {
-                    toolTable.setIndex(i);                 // set index in svgPalette
-                    toolnr = toolTable.indexToolNr();      // get value from set index
-                    if ((toolnr >= 0) && (gcodeString[toolnr].Length > 1))
-                    {
-                        finalString.Append("\r\n\r\n");
-                        gcode.Tool(finalString, toolnr, toolTable.indexName());
-                        finalString.Append(gcodeString[toolnr]);
-                    }
-                }
-            }
-            else
-                finalString.Append(gcodeString[0]);
-
-            if (gcodeUseSpindle) gcode.SpindleOff(finalString, "Stop spindle - Option Z-Axis");
-
-            string header = gcode.GetHeader("SVG import", info);
-            string footer = gcode.GetFooter();
-
-            string output = "";
-            if (Properties.Settings.Default.importSVGRepeatEnable)
-            {
-                for (int i = 0; i < Properties.Settings.Default.importSVGRepeat; i++)
-                    output += finalString.ToString().Replace(',', '.');
-
-                return header + output + footer;
-            }
-            else
-                return header + finalString.ToString().Replace(',', '.') + footer;
-        }
-
-        private static void getActualSettings()
+        private static string convertSVG(XElement svgCode, string txt)
         {
-            svgBezierAccuracy = (int)Properties.Settings.Default.importSVGBezier;
+            Logger.Debug("convertSVG {0}", txt);
+
+            svgBezierAccuracy = (int)Properties.Settings.Default.importBezierLineSegmentsCnt;
             svgScaleApply = Properties.Settings.Default.importSVGRezise;
             svgMaxSize = (float)Properties.Settings.Default.importSVGMaxSize;
             svgClosePathExtend = Properties.Settings.Default.importSVGPathExtend;
-            svgPauseElement = Properties.Settings.Default.importSVGPauseElement;
-            svgPausePenDown = Properties.Settings.Default.importSVGPausePenDown;
             svgComments = Properties.Settings.Default.importSVGAddComments;
-            svgConvertToMM = Properties.Settings.Default.importUnitmm;              // Target units and display in setup
+            svgConvertToMM = Properties.Settings.Default.importUnitmm;                  // Target units and display in setup
+            svgGroupObjects = Properties.Settings.Default.importGroupObjects;           // SVG-Import group objects
+            svgNodesOnly = Properties.Settings.Default.importSVGNodesOnly;
 
-            gcodeReduce = Properties.Settings.Default.importSVGReduce;
-            gcodeReduceVal = (float)Properties.Settings.Default.importSVGReduceLimit;
+            Plotter.StartCode();        // initalize variables
+            GetVectorSVG(svgCode);      // convert graphics
+            Plotter.SortCode();         // sort objects
+            return Plotter.FinalGCode("SVG import", txt);
+        }
 
-            gcodeXYFeed = (float)Properties.Settings.Default.importGCXYFeed;
-            gcodeZApply = Properties.Settings.Default.importGCZEnable;
-            gcodeZUp = (float)Properties.Settings.Default.importGCZUp;
-            gcodeZDown = (float)Properties.Settings.Default.importGCZDown;
-            gcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
-            gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
-
-            svgToolUse      = Properties.Settings.Default.importSVGToolUse;     // SVG-Import tool change
-            svgToolSortNr   = Properties.Settings.Default.importSVGToolSort;    // SVG-Import sort by tool
-            gcodeToolChange = Properties.Settings.Default.importGCTool;         // Add tool change command
-
-            svgNodesOnly    = Properties.Settings.Default.importSVGNodesOnly;
-
-            pathCount = 0;
-
+        /// <summary>
+        /// Set defaults and parse main element of SVG-XML
+        /// </summary>
+        private static void GetVectorSVG(XElement svgCode)
+        {
             if (Properties.Settings.Default.importSVGDPI96)
                 factor_In2Px = 96;                      // 90
             else
                 factor_In2Px = 72;
             factor_Mm2Px = factor_In2Px / 25.4f;    // 3.54
-            factor_Cm2Px = factor_Mm2Px* 10;       // 35.4
+            factor_Cm2Px = factor_Mm2Px * 10;       // 35.4
             factor_Pt2Px = factor_In2Px / 72f;      // 1.25
             factor_Pc2Px = 12 * factor_Pt2Px;       // 15
             factor_Em2Px = 150;
-        }
-        /// <summary>
-        /// Set defaults and parse main element of SVG-XML
-        /// </summary>
-        private static void startConvert(XElement svgCode)
-        {
-            gcodeOldToolNr = -1;
-            amountOfTools = toolTable.init();
 
-            countSubPath = 0;
+ //           countSubPath = 0;
             startFirstElement = true;
             gcodeScale = 1;
             svgWidthPx = 0; svgHeightPx = 0;
@@ -290,12 +198,17 @@ namespace GRBL_Plotter
                 matrixGroup[i].SetIdentity(); 
 
             parseGlobals(svgCode);                      // parse main svg elements
-            //if (!svgNodesOnly)
+
             parseBasicElements(svgCode,1);
             parsePath(svgCode,1);                       // 1st level paths
             parseGroup(svgCode,1);                      // parse groups (recursive)
-            if (svgToolUse) 
-                gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + pathCount + ">");
+            if (svgGroupObjects)
+            {   if (!Plotter.IsPathFigureEnd)
+                {   Plotter.Comment(xmlMarker.figureEnd + " ??? " + Plotter.PathCount + ">");
+                    Logger.Debug(" FigureEnd");
+                }
+                Plotter.IsPathFigureEnd = true;
+            }
             return;
         }
 
@@ -318,6 +231,7 @@ namespace GRBL_Plotter
             if (svgCode.Attribute("viewBox") != null)   // viewBox unit always in px
             {
                 string viewbox = svgCode.Attribute("viewBox").Value;
+                logSource = "viewBox "+ viewbox;
                 viewbox = Regex.Replace(viewbox, @"\s+", " ").Replace(' ', '|');    // remove double space
                 var split = viewbox.Split('|');
                 vbOffX = -convertToPixel(split[0]);
@@ -326,7 +240,7 @@ namespace GRBL_Plotter
                 vbHeight = convertToPixel(split[3].TrimEnd(')'));
                 tmp.M11 = 1; tmp.M22 = -1;      // flip Y
                 tmp.OffsetY = vbHeight;
-                if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG viewbox :" + viewbox+" )");
+                if (svgComments) Plotter.AddToHeader(" SVG viewbox :" + viewbox);
                 //MessageBox.Show(string.Format("{0} {1} {2} {3}",vbOffX,vbOffY,vbWidth,vbHeight));
             }
 
@@ -336,17 +250,18 @@ namespace GRBL_Plotter
             else                                // convert back from px to inch
                 scale = (1 / factor_In2Px);
 
-            if (unitIsPixel)                     // got scg-text from clipboard perhaps from maker.js
+            if (unitIsPixel)                    // got svg-text from clipboard perhaps from maker.js
             {   scale = 1;
             }
 
-            if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG dpi :" + factor_In2Px.ToString() + " )");
+            if (svgComments) Plotter.AddToHeader(" SVG dpi :" + factor_In2Px.ToString());
             if (svgCode.Attribute("width") != null)
             {
                 tmpString = svgCode.Attribute("width").Value;
+                logSource = "width " + tmpString;
                 svgWidthPx = convertToPixel(tmpString);             // convert in px
 
-                if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG width :" + svgCode.Attribute("width").Value + " )");
+                if (svgComments) Plotter.AddToHeader(" SVG width :" + svgCode.Attribute("width").Value);
                 tmp.M11 = scale; // get desired scale
                 if (fromClipboard)
                     tmp.M11 = 1 / factor_Mm2Px; // 3.543307;         // https://www.w3.org/TR/SVG/coords.html#Units
@@ -359,9 +274,10 @@ namespace GRBL_Plotter
             if (svgCode.Attribute("height") != null)
             {
                 tmpString = svgCode.Attribute("height").Value;
+                logSource = "height " + tmpString;
                 svgHeightPx = convertToPixel(tmpString);
 
-                if (svgComments) gcodeString[gcodeStringIndex].AppendLine("( SVG height :" + svgCode.Attribute("height").Value + " )");
+                if (svgComments) Plotter.AddToHeader(" SVG height :" + svgCode.Attribute("height").Value);
                 tmp.M22 = -scale;   // get desired scale and flip vertical
                 tmp.OffsetY = scale * svgHeightPx;  // svgHeightUnit;
 
@@ -387,17 +303,32 @@ namespace GRBL_Plotter
                         tmp.Scale(factor_In2Px, factor_In2Px);
 
                     if (svgComments)
-                        gcodeString[gcodeStringIndex].AppendFormat("( Scale to X={0} Y={1} f={2} )\r\n", newWidth * gcodeScale, newHeight * gcodeScale, gcodeScale);
+                        Plotter.AddToHeader(string.Format(" Scale to X={0} Y={1} f={2} ", newWidth * gcodeScale, newHeight * gcodeScale, gcodeScale));
                 }
             }
             else
-                if (svgComments) gcodeString[gcodeStringIndex].Append("( SVG Dimension not given )\r\n");
+                if (svgComments) Plotter.AddToHeader(" SVG Dimension not given ");
 
             for (int i = 0; i < matrixGroup.Length; i++)
             { matrixGroup[i] = tmp; }
             matrixElement = tmp;
-            if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( Inital Matrix {0} )\r\n", tmp.ToString());
 
+            var element = svgCode.Element(nspace + "title");
+            if (element != null)
+                Plotter.DocTitle = element.Value;
+
+            var xtmp = svgCode.Element(nspace + "metadata");
+            if ((xtmp) != null)
+            {   XNamespace ccspace = "http://creativecommons.org/ns#";
+                XNamespace rdfspace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+                XNamespace dcspace = "http://purl.org/dc/elements/1.1/";
+                if ((xtmp = xtmp.Element(rdfspace + "RDF")) != null)
+                {   if ((xtmp = xtmp.Element(ccspace + "Work")) != null)
+                    {   if ((xtmp = xtmp.Element(dcspace + "description")) != null)
+                            Plotter.DocDescription = xtmp.Value;
+                    }
+                }
+            }
             return;
         }
 
@@ -407,20 +338,44 @@ namespace GRBL_Plotter
         private static void parseGroup(XElement svgCode, int level)
         {   foreach (XElement groupElement in svgCode.Elements(nspace + "g"))
             {
-                if (svgComments)
-                    if (groupElement.Attribute("id") != null)
-                        gcodeString[gcodeStringIndex].Append("\r\n( Group level:"+level.ToString()+" id=" + groupElement.Attribute("id").Value + " )\r\n");
+                if (groupElement.Attribute("id") != null)
+                    Plotter.PathId = groupElement.Attribute("id").Value;
+
+                Plotter.PathId = "";
+                Plotter.PathDashArray = new double[0];      // reset dash pattern
+
                 parseTransform(groupElement,true, level);   // transform will be applied in gcodeMove
-                //if (!svgNodesOnly)
+                parseAttributs(groupElement);               // process color and stroke-dasharray
                 parseBasicElements(groupElement, level);
-                if (groupElement.Attribute("stroke") != null)
-                {   myColor = groupElement.Attribute("stroke").Value; //getColor(groupElement);
-                    myTool = toolTable.getToolNr(myColor, 0);
-                }
                 parsePath(groupElement, level);
                 parseGroup(groupElement, level+1);
             }
             return;
+        }
+
+        /// <summary>
+        /// Parse stroke attributes
+        /// </summary>
+        private static void parseAttributs(XElement element)
+        {
+            if (element.Attribute("style") != null)
+            {   //if (svgComments) Plotter.Comment(string.Format(" style '{0}'", element.Attribute("style").Value));
+                string pathColor = getStyleProperty(element, "stroke");
+                if (pathColor.Length > 1)
+                    Plotter.PathColor = pathColor.Substring(1);       //getColor(pathElement);
+                Plotter.PathToolNr = toolTable.getToolNr(Plotter.PathColor, 0);
+                setDashPattern(getStyleProperty(element, "stroke-dasharray"));
+            }
+            if (element.Attribute("stroke") != null)
+            {   //if (svgComments) Plotter.Comment(string.Format(" stroke '{0}'", element.Attribute("stroke").Value));
+                string pathColor = element.Attribute("stroke").Value;
+                Plotter.PathColor = pathColor.StartsWith("#") ? pathColor.Substring(1) : pathColor;
+                Plotter.PathToolNr = toolTable.getToolNr(Plotter.PathColor, 0);
+            }
+            if (element.Attribute("stroke-dasharray") != null)
+            {   //if (svgComments) Plotter.Comment(string.Format(" stroke-dasharray '{0}'", element.Attribute("stroke-dasharray").Value));
+                setDashPattern(element.Attribute("stroke-dasharray").Value);
+            }
         }
 
         /// <summary>
@@ -435,6 +390,7 @@ namespace GRBL_Plotter
             {
                 transf = true;
                 string transform = element.Attribute("transform").Value;
+                logSource = "transform " + transform;
                 if ((transform != null) && (transform.IndexOf("translate") >= 0))
                 {
                     var coord = getTextBetween(transform, "translate(", ")");
@@ -442,11 +398,10 @@ namespace GRBL_Plotter
                     if (coord.IndexOf(',') < 0)
                         split = coord.Split(' ');
 
-                    //MessageBox.Show(transform+"\r\n>"+coord + "< "+ split[0]);
                     tmp.OffsetX = convertToPixel(split[0]);
                     if (split.Length > 1)
                         tmp.OffsetY = convertToPixel(split[1].TrimEnd(')'));
-                    if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("( SVG-Translate {0} {1} )\r\n", tmp.OffsetX, tmp.OffsetY));
+                    if (svgComments) Plotter.Comment(string.Format(" SVG-Translate {0} {1} ", tmp.OffsetX, tmp.OffsetY));
                 }
                 if ((transform != null) && (transform.IndexOf("scale") >= 0))
                 {
@@ -462,7 +417,7 @@ namespace GRBL_Plotter
                         tmp.M11 = convertToPixel(coord);
                         tmp.M22 = convertToPixel(coord);
                     }
-                    if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("( SVG-Scale {0} {1} )\r\n", tmp.M11, tmp.M22));
+                    if (svgComments) Plotter.Comment(string.Format(" SVG-Scale {0} {1} ", tmp.M11, tmp.M22));
                 }
                 if ((transform != null) && (transform.IndexOf("rotate") >= 0))
                 {
@@ -474,7 +429,7 @@ namespace GRBL_Plotter
                     tmp.M11 = Math.Cos(angle); tmp.M12 = Math.Sin(angle);
                     tmp.M21 = -Math.Sin(angle); tmp.M22 = Math.Cos(angle);
 
-                    if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("( SVG-Rotate {0} )\r\n", angle));
+                    if (svgComments) Plotter.Comment(string.Format(" SVG-Rotate {0} ", angle));
                 }
                 if ((transform != null) && (transform.IndexOf("matrix") >= 0))
                 {
@@ -488,34 +443,24 @@ namespace GRBL_Plotter
                     tmp.M22 = convertToPixel(split[3]);     // d    scale y
                     tmp.OffsetX = convertToPixel(split[4]); // e    offset x
                     tmp.OffsetY = convertToPixel(split[5]); // f    offset y
-                    if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("\r\n( SVG-Matrix {0} {1} {2} )\r\n", coord.Replace(',', '|'), level, isGroup));
+                    if (svgComments) Plotter.Comment(string.Format(" SVG-Matrix {0} {1} {2} ", coord.Replace(',', '|'), level, isGroup));
                 }
-        }
-                if (isGroup)
+            }
+            if (isGroup)
+            {
+                matrixGroup[level].SetIdentity();
+                if (level > 0)
                 {
-                    matrixGroup[level].SetIdentity();
-                    if (level > 0)
-                    {
-                        for (int i = level; i < matrixGroup.Length; i++)
-                        { matrixGroup[i] = Matrix.Multiply(tmp, matrixGroup[level - 1]); }
-                    }
-                    else
-                    { matrixGroup[level] = tmp; }
-                    matrixElement = matrixGroup[level];
+                    for (int i = level; i < matrixGroup.Length; i++)
+                    { matrixGroup[i] = Matrix.Multiply(tmp, matrixGroup[level - 1]); }
                 }
                 else
-                {   matrixElement = Matrix.Multiply(tmp, matrixGroup[level]);
-                }
-
-                if (svgComments && transf)
-                {
-                    for (int i = 0; i <= level; i++)
-                        gcodeString[gcodeStringIndex].AppendFormat("( gc-Matrix level[{0}] {1} )\r\n", i, matrixGroup[i].ToString());
-
-                    if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( gc-Scale {0} {1} )\r\n", matrixElement.M11, matrixElement.M22);
-                    if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( gc-Offset {0} {1} )\r\n", matrixElement.OffsetX, matrixElement.OffsetY);
-                }
-          //  }
+                { matrixGroup[level] = tmp; }
+                matrixElement = matrixGroup[level];
+            }
+            else
+            {   matrixElement = Matrix.Multiply(tmp, matrixGroup[level]);
+            }
             return transf;
         }
 
@@ -533,6 +478,7 @@ namespace GRBL_Plotter
         private static float convertToPixel(string str, float ext=1)        // return value in px
         {       // https://www.w3.org/TR/SVG/coords.html#Units          // in=90 or 96 ???
             bool percent = false;
+     //       Logger.Trace("convert to pixel in {0}", str);
             float factor = 1;   // no unit = px
             if (str.IndexOf("mm") > 0) { factor = factor_Mm2Px; }               // Millimeter
             else if (str.IndexOf("cm") > 0) { factor = factor_Cm2Px; }          // Centimeter
@@ -542,42 +488,64 @@ namespace GRBL_Plotter
             else if (str.IndexOf("em") > 0) { factor = factor_Em2Px; }          // Font size
             else if (str.IndexOf("%") > 0)  { percent = true; }
             str = str.Replace("pt", "").Replace("pc", "").Replace("mm", "").Replace("cm", "").Replace("in", "").Replace("em ", "").Replace("%", "").Replace("px", "");
-
+            float test;
             if (str.Length > 0)
-            {
-                if (percent)
-                    return float.Parse(str, CultureInfo.InvariantCulture.NumberFormat) * ext / 100;
+            {   if (percent)
+                {   if (float.TryParse(str, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out test))
+                    { return (test * ext / 100); }
+                }
                 else
-                    return float.Parse(str, CultureInfo.InvariantCulture.NumberFormat) * factor;
+                {   if (float.TryParse(str, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out test))
+                    { return (test * factor); }
+                }
             }
-            else return 0f;
+            Logger.Error("convertToPixel source '{0}' ", logSource);
+            Logger.Error("convertToPixel TryParse failed '{0}' ",str);
+            Plotter.AddToHeader(string.Format(" !!! Error: convert to float, string is: '{0}'",str));
+            return 0f;
         }
         private static string removeUnit(string str)
         {   return str.Replace("pt", "").Replace("pc", "").Replace("mm", "").Replace("cm", "").Replace("in", "").Replace("em ", "").Replace("%", "").Replace("px", ""); }
 
-        private static string getColor(XElement pathElement)
-        {
-            string style = "";
-            string stroke_color = "000000";        // default=black
-            int start, end;
-            if (pathElement.Attribute("style") != null)
-            {
-                style = pathElement.Attribute("style").Value;
-                start = style.IndexOf("stroke:#");
-                if (start >= 0)
-                {   end = style.IndexOf(';', start);
-                    if (end > start)
-                        stroke_color = style.Substring(start + 8, end - start - 8);
+        private static string getStyleProperty(XElement pathElement, string property)
+        {   if (pathElement.Attribute("style") != null)
+            {   string style = pathElement.Attribute("style").Value;
+                string[] prop = style.Split(';');
+                foreach (string propitem in prop)
+                {   string[] keyval = propitem.Split(':');
+                    if ((keyval.Length >1) && (keyval[0].Contains(property)))
+                        return keyval[1];
                 }
-                return stroke_color;
             }
             return "";
         }
+        private static void setDashPattern(string dasharray)
+        {   try
+            {   if (dasharray.Length > 2)
+                {   if (dasharray.Contains("none"))
+                    {   Plotter.PathDashArray = new double[0]; }
+                    else
+                    {
+                        string[] pattern;
+                        if (dasharray.Contains(',')) { pattern = dasharray.Split(','); }
+                        else { pattern = dasharray.Split(' '); }
+                        //  float[] dash = Array.ConvertAll(pattern, float.Parse);
+                        double tmp;
+                        double[] dash = Array.ConvertAll(pattern,
+                               s => double.TryParse(s, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out tmp) ? (tmp * (double)gcodeScale) : 0);
+                        Plotter.PathDashArray = dash;
+                    }
+                }
+            }
+            catch (Exception er)
+            { Logger.Error(er,"dasharray: {0}",dasharray); }
+        }
 
-        /// <summary>
-        /// Convert Basic shapes (up to now: line, rect, circle) check: http://www.w3.org/TR/SVG/shapes.html
-        /// </summary>
-        private static void parseBasicElements(XElement svgCode, int level)
+
+    /// <summary>
+    /// Convert Basic shapes (up to now: line, rect, circle) check: http://www.w3.org/TR/SVG/shapes.html
+    /// </summary>
+    private static void parseBasicElements(XElement svgCode, int level)
         {   string[] forms = { "rect", "circle", "ellipse", "line", "polyline", "polygon", "text", "image" };
             foreach (var form in forms)
             {
@@ -585,30 +553,21 @@ namespace GRBL_Plotter
                 {
                     if (pathElement != null)
                     {
-                        if (pathElement.Attribute("style") != null)
-                        {   myColor = getColor(pathElement);
-                            myTool = toolTable.getToolNr(myColor, 0);
-                        }
+                        parseAttributs(pathElement);   // process color and stroke-dasharray
+                        logSource = "Basic element " + form;
 
-                        if ((svgToolUse) && (myTool >= 0))
-                        {
-                            gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + pathCount + ">" );
-                            gcodeStringIndex = myTool;
-                        }
+                        Plotter.SetGroup(Plotter.PathToolNr);
 
-                        if (svgComments)
-                        {
-                            if (pathElement.Attribute("id") != null)
-                                gcodeString[gcodeStringIndex].Append("\r\n( Basic shape level:" + level.ToString() + " id=" + pathElement.Attribute("id").Value + " )\r\n");
-                        }
+                        if (pathElement.Attribute("id") != null)
+                            Plotter.PathId = pathElement.Attribute("id").Value;
 
                         if (startFirstElement)
-                        { gcodePenUp("1st shape"); startFirstElement = false; }
+                        { Plotter.PenUp("1st shape"); startFirstElement = false; }
 
                         offsetX = 0; offsetY = 0;
 
                         oldMatrixElement = matrixElement;
-                        bool avoidG23 = false;
+
                         parseTransform(pathElement, false, level);  // transform will be applied in gcodeMove
 
                         float x=0, y=0, x1=0, y1=0, x2=0, y2=0, width=0, height=0, rx=0, ry=0,cx=0,cy=0,r=0;
@@ -628,28 +587,27 @@ namespace GRBL_Plotter
                         if (pathElement.Attribute("r") != null)     r=convertToPixel(pathElement.Attribute("r").Value);
                         if (pathElement.Attribute("points") != null) points = pathElement.Attribute("points").Value.Split(' ');
 
-                        if (svgPauseElement||svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before path"); }
                         if (form == "rect")
                         {
                             if (ry == 0) { ry = rx; }
                             else if (rx == 0) { rx = ry; }
                             else if (rx != ry) { rx = Math.Min(rx,ry); ry = rx; }   // only same r for x and y are possible
-                            if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( SVG-Rect x:{0} y:{1} width:{2} height:{3} rx:{4} ry:{5})\r\n", x, y, width, height, rx, ry);
+                            if (svgComments) Plotter.Comment(string.Format(" SVG-Rect x:{0} y:{1} width:{2} height:{3} rx:{4} ry:{5}", x, y, width, height, rx, ry));
                             x += offsetX; y += offsetY;
                             if (!svgNodesOnly)
                             {
-                                gcodeStartPath(x + rx, y + height, form);
-                                gcodeMoveTo(x + width - rx, y + height, form + " a1");
-                                if (rx > 0) gcodeArcToCCW(x + width, y + height - ry, 0, -ry, form, avoidG23);  // +ry
-                                gcodeMoveTo(x + width, y + ry, form + " b1");                        // upper right
-                                if (rx > 0) gcodeArcToCCW(x + width - rx, y, -rx, 0, form, avoidG23);
-                                gcodeMoveTo(x + rx, y, form + " a2");                                // upper left
-                                if (rx > 0) gcodeArcToCCW(x, y + ry, 0, ry, form, avoidG23);                    // -ry
-                                gcodeMoveTo(x, y + height - ry, form + " b2");                       // lower left
+                                svgStartPath(x + rx, y + height, form);
+                                svgMoveTo(x + width - rx, y + height, form + " a1");
+                                if (rx > 0) svgArcToCCW(x + width, y + height - ry, 0, -ry, form);  // +ry
+                                svgMoveTo(x + width, y + ry, form + " b1");                        // upper right
+                                if (rx > 0) svgArcToCCW(x + width - rx, y, -rx, 0, form);
+                                svgMoveTo(x + rx, y, form + " a2");                                // upper left
+                                if (rx > 0) svgArcToCCW(x, y + ry, 0, ry, form);                    // -ry
+                                svgMoveTo(x, y + height - ry, form + " b2");                       // lower left
                                 if (rx > 0)
                                 {
-                                    gcodeArcToCCW(x + rx, y + height, rx, 0, form, avoidG23);
-                                    gcodeMoveTo(x + rx, y + height, form);  // repeat first point to avoid back draw after last G3
+                                    svgArcToCCW(x + rx, y + height, rx, 0, form);
+                                    svgMoveTo(x + rx, y + height, form);  // repeat first point to avoid back draw after last G3
                                 }
                             }
                             else
@@ -664,114 +622,107 @@ namespace GRBL_Plotter
                                 gcodeDotOnly(x, y + height - ry, form + " b2");                       // lower left
                                 if (rx > 0) gcodeDotOnly(x + rx, y + height, form);
                             }
-                            gcodeStopPath(form);
+                            Plotter.StopPath(form);
                         }
                         else if (form == "circle")
                         {
-                            if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( circle cx:{0} cy:{1} r:{2} )\r\n", cx, cy, r);
+                            if (svgComments) Plotter.Comment(string.Format(" circle cx:{0} cy:{1} r:{2} ", cx, cy, r));
                             cx += offsetX; cy += offsetY;
                             if (!svgNodesOnly)
                             {
-                                gcodeStartPath(cx + r, cy, form);
-                                gcodeArcToCCW(cx + r, cy, -r, 0, form, avoidG23);
+                                svgStartPath(cx + r, cy, form);
+                                svgArcToCCW(cx + r, cy, -r, 0, form);
                             }
                             else
                             {
                                 gcodeDotOnly(cx + r, cy, form);
                                 gcodeDotOnly(cx + r, cy, form);
                             }
-                            gcodeStopPath(form);
+                            Plotter.StopPath(form);
                         }
                         else if (form == "ellipse")
                         {
-                            if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( ellipse cx:{0} cy:{1} rx:{2}  ry:{2})\r\n", cx, cy, rx, ry);
+                            if (svgComments) Plotter.Comment(string.Format(" ellipse cx:{0} cy:{1} rx:{2}  ry:{3}", cx, cy, rx, ry));
                             cx += offsetX; cy += offsetY;
                             if (!svgNodesOnly)
                             {
-                                gcodeStartPath(cx + rx, cy, form);
-                                isReduceOk = true;
+                                svgStartPath(cx + rx, cy, form);
+                                Plotter.IsPathReduceOk = true;
                                 calcArc(cx + rx, cy, rx, ry, 0, 1, 1, cx - rx, cy);
                                 calcArc(cx - rx, cy, rx, ry, 0, 1, 1, cx + rx, cy);
                             }
                             else
                             {
                                 gcodeDotOnly(cx + rx, cy, form);
-                                isReduceOk = true;
+                                Plotter.IsPathReduceOk = true;
                             }
-                            gcodeStopPath(form);
+                            Plotter.StopPath(form);
                         }
                         else if (form == "line")
                         {
-                            if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( SVG-Line x1:{0} y1:{1} x2:{2} y2:{3} )\r\n", x1, y1, x2, y2);
+                            if (svgComments) Plotter.Comment(string.Format(" SVG-Line x1:{0} y1:{1} x2:{2} y2:{3} ", x1, y1, x2, y2));
                             x1 += offsetX; y1 += offsetY;
                             if (!svgNodesOnly)
                             {
-                                gcodeStartPath(x1, y1, form);
-                                gcodeMoveTo(x2, y2, form);
+                                svgStartPath(x1, y1, form);
+                                svgMoveTo(x2, y2, form);
                             }
                             else
                             {
                                 gcodeDotOnly(x1, y1, form);
                                 gcodeDotOnly(x2, y2, form);
                             }
-                            gcodeStopPath(form);
+                            Plotter.StopPath(form);
                         }
                         else if ((form == "polyline") || (form == "polygon"))
                         {
                             offsetX = 0;// (float)matrixElement.OffsetX;
                             offsetY = 0;// (float)matrixElement.OffsetY;
-                            if (svgComments) gcodeString[gcodeStringIndex].AppendFormat("( SVG-Polyline )\r\n");
+                            x1 = -1;y1 = -1;
+                            if (svgComments) Plotter.Comment(" SVG-Polyline ");
                             int index = 0;
                             for (index = 0; index < points.Length; index++)
-                            {   if (points[index].Length > 0)
-                                    break;
-                            }
-                            if (points[index].IndexOf(",") >= 0)
-                            {
-                                string[] coord = points[index].Split(',');
-                                x = convertToPixel(coord[0]); y = convertToPixel(coord[1]);
-                                x1 = x; y1 = y;
-                                if (!svgNodesOnly)
-                                    gcodeStartPath(x, y, form);
-                                else
-                                    gcodeDotOnly(x, y, form); 
-                                isReduceOk = true;
-                                for (int i = index + 1; i < points.Length; i++)
+                            {   if (points[index].IndexOf(",") >= 0)
                                 {
-                                    if (points[i].Length > 3)
-                                    {
-                                        coord = points[i].Split(',');
-                                        x = convertToPixel(coord[0]); y = convertToPixel(coord[1]);
-                                        x += offsetX; y += offsetY;
+                                    string[] coord = points[index].Split(',');
+                                    x = convertToPixel(coord[0]); y = convertToPixel(coord[1]);
+                                    if (index == 0)
+                                    {   x1 = x; y1 = y;
                                         if (!svgNodesOnly)
-                                            gcodeMoveTo(x, y, form);
+                                            svgStartPath(x, y, form);     // move to
                                         else
                                             gcodeDotOnly(x, y, form);
                                     }
-                                }
-                                if (form == "polygon")
-                                {   if (!svgNodesOnly)
-                                        gcodeMoveTo(x1, y1, form);
+                                    Plotter.IsPathReduceOk = true;
+
+                                    if (!svgNodesOnly)
+                                        svgMoveTo(x, y, form);            // line to
                                     else
-                                        gcodeDotOnly(x1, y1, form);
+                                        gcodeDotOnly(x, y, form);
                                 }
-                                gcodeStopPath(form);
                             }
-                            else
-                                gcodeString[gcodeStringIndex].AppendLine("( polygon coordinates - missing ',')");
+                            if (form == "polygon")
+                            {
+                                if (!svgNodesOnly)
+                                    svgMoveTo(x1, y1, form);              // close path
+                                else
+                                    gcodeDotOnly(x1, y1, form);
+                            }
+                            Plotter.StopPath(form);
                         }
                         else if ((form == "text") || (form == "image"))
                         {
-                            gcodeString[gcodeStringIndex].AppendLine("( +++++++++++++++++++++++++++++++++ )");
-                            gcodeString[gcodeStringIndex].AppendLine("( ++++++ " + form + " is not supported ++++ )");
+                            Plotter.Comment(" +++++++++++++++++++++++++++++++++ ");
+                            Plotter.Comment(" ++++++ " + form + " is not supported ++++ ");
                             if (form == "text")
                             {
-                                gcodeString[gcodeStringIndex].AppendLine("( ++ Convert Object to Path first + )");                           
-                            } 
-                            gcodeString[gcodeStringIndex].AppendLine("( +++++++++++++++++++++++++++++++++ )");
+                                Plotter.Comment(" ++ Convert Object to Path first + ");
+                                Plotter.AddToHeader(" !!!!!!!!!!!!!!!!!!!! SVG Text is not supported, convert text to path in inkscape first");
+                            }
+                            Plotter.Comment(" +++++++++++++++++++++++++++++++++ ");
                         }
                         else
-                        { if (svgComments) gcodeString[gcodeStringIndex].Append("( ++++++ Unknown Shape: " + form + " )"); }
+                        { if (svgComments) Plotter.Comment(" ++++++ Unknown Shape: " + form ); }
 
                         matrixElement = oldMatrixElement;
                     }
@@ -803,55 +754,42 @@ namespace GRBL_Plotter
                     if (id.Length > 20)
                         id = id.Substring(0, 20);
 
-                    if (pathElement.Attribute("style") != null)
-                    {   myColor = getColor(pathElement);
-                        myTool = toolTable.getToolNr(myColor, 0);    // svgToolTable[myIndex].toolnr;
-                    }
+                    parseAttributs(pathElement);   // process color and stroke-dasharray
 
-                    if ((svgToolUse) && (myTool >= 0))
-                    {   if(penIsDown) gcodePenUp("Start path");
-                        gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + pathCount + ">");
-                        gcodeStringIndex = myTool;
-                    }
-
-                    // gcodeString[gcodeStringIndex].Append("( Start path )\r\n");
-                    if (svgComments)
-                    {
-                        if (pathElement.Attribute("id") != null)
-                            gcodeString[gcodeStringIndex].Append("\r\n( Path level:" + level.ToString() + " id=" + pathElement.Attribute("id").Value + " )\r\n");
-                        else
-                            gcodeString[gcodeStringIndex].Append("\r\n( SVG path=" + id + " )\r\n");
-                    }
+                    Plotter.SetGroup(Plotter.PathToolNr); 
 
                     if (pathElement.Attribute("id") != null)
-                        id = pathElement.Attribute("id").Value;
+                        Plotter.PathId = pathElement.Attribute("id").Value;
+
+                    if (svgComments)
+                    {   if (pathElement.Attribute("id") != null)
+                            Plotter.Comment(" Path level:" + level.ToString() + " id=" + pathElement.Attribute("id").Value );
+                        else
+                            Plotter.Comment(" SVG path=" + id );
+                    }
 
                     oldMatrixElement = matrixElement;
                     parseTransform(pathElement,false,level);        // transform will be applied in gcodeMove
 
-     //               gcodeTool(myTool);
-
                     if (d.Length > 0)
                     {
-        // split complete path in to command-tokens
-                        if (svgPauseElement||svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before path"); }
+                        // split complete path in to command-tokens
+                //        Logger.Trace("d {0}", d);
                         string separators = @"(?=[A-Za-z-[e]])";            
                         var tokens = Regex.Split(d, separators).Where(t => !string.IsNullOrEmpty(t));
                         int objCount = 0;
                         foreach (string token in tokens)
                             objCount += parsePathCommand(token);
                     }
-                    gcodePenUp("End path");
 
+                    Plotter.PenUp("");
                     matrixElement = oldMatrixElement;
                 }
             }
             return;
         }
 
-        private static bool penIsDown = true;
         private static bool startSubPath = true;
-        private static int countSubPath = 0;
         private static bool startPath = true;
         private static bool startFirstElement = true;
         private static float svgWidthPx, svgHeightPx;
@@ -862,9 +800,6 @@ namespace GRBL_Plotter
         private static float cxMirror=0, cyMirror=0;
         private static StringBuilder secondMove = new StringBuilder();
 
-  //      private static bool isNearlyEqual(float a, float b)
-   //     {   return (Math.Abs(a - b) < 0.0001f); }
-
         /// <summary>
         /// Convert all Path commands, check: http://www.w3.org/TR/SVG/paths.html
         /// Convert command tokens
@@ -872,6 +807,7 @@ namespace GRBL_Plotter
         private static int parsePathCommand(string svgPath)
         {
             var command = svgPath.Take(1).Single();
+            logSource = "path " + svgPath;
             char cmd = char.ToUpper(command);
             bool absolute = (cmd==command);
             string remainingargs = svgPath.Substring(1);
@@ -888,21 +824,23 @@ namespace GRBL_Plotter
                 case 'M':       // Start a new sub-path at the given (x,y) coordinate
                     for (int i = 0; i < floatArgs.Length; i += 2)
                     {
+                        if (floatArgs.Length < (i+2))
+                        {   Logger.Error("Move to command needs 2 arguments '{0}'", svgPath);
+                            Plotter.AddToHeader(" !!! Error: Move to command needs 2 arguments '" + svgPath+"'");
+                            break;
+                        }
                         objCount++;
                         if (absolute || startPath)
                         { currentX = floatArgs[i] + offsetX; currentY = floatArgs[i + 1] + offsetY; }
                         else
                         { currentX = floatArgs[i] + lastX;   currentY = floatArgs[i + 1] + lastY; }
                         if (startSubPath)
-                        {   if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( Start new subpath at {0} {1} )\r\n", floatArgs[i], floatArgs[i+1]); }
-//                            pathCount = 0;
-                            if (countSubPath++ > 0)
-                                gcodeStopPath("Stop Path");
+                        {   if (svgComments) { Plotter.Comment(string.Format(" Start new subpath at {0} {1} ", floatArgs[i], floatArgs[i+1])); }
                             if (svgNodesOnly)
                                 gcodeDotOnly(currentX, currentY, (command.ToString()));
                             else
-                                gcodeStartPath(currentX, currentY, command.ToString());
-                            isReduceOk = true;
+                                svgStartPath(currentX, currentY, command.ToString());
+                            Plotter.IsPathReduceOk = true;
                             firstX = currentX; firstY = currentY;
                             startPath = false;
                             startSubPath = false;
@@ -912,9 +850,9 @@ namespace GRBL_Plotter
                             if (svgNodesOnly)
                                 gcodeDotOnly(currentX, currentY, command.ToString());
                             else if (i<=1) // amount of coordinates
-                            {   gcodeStartPath(currentX, currentY, command.ToString()); }//gcodeMoveTo(currentX, currentY, command.ToString());  // G1
+                            {   svgStartPath(currentX, currentY, command.ToString()); }//gcodeMoveTo(currentX, currentY, command.ToString());  // G1
                             else
-                                gcodeMoveTo(currentX, currentY, command.ToString());  // G1
+                                svgMoveTo(currentX, currentY, command.ToString());  // G1
                         }
                         if (firstX == null) { firstX = currentX; }
                         if (firstY == null) { firstY = currentY; }
@@ -929,19 +867,22 @@ namespace GRBL_Plotter
                         if (firstX == null) { firstX = currentX; }
                         if (firstY == null) { firstY = currentY; }
                         if (!gcode.isEqual((float)firstX,lastX) || !gcode.isEqual((float)firstY,lastY))
-                            gcodeMoveTo((float)firstX, (float)firstY, command.ToString());// (isNearlyEqual((float)firstX, lastX).ToString()+"  "+ firstX.ToString()+" "+lastX.ToString()+"  "+ firstY.ToString() + " " + lastY.ToString()));// 
+                            svgMoveTo((float)firstX, (float)firstY, command.ToString());// (isNearlyEqual((float)firstX, lastX).ToString()+"  "+ firstX.ToString()+" "+lastX.ToString()+"  "+ firstY.ToString() + " " + lastY.ToString()));// 
                     }
                     lastX = (float)firstX; lastY = (float)firstY;
                     firstX = null; firstY = null;
                     startSubPath = true;
-                    if ((svgClosePathExtend) && (!svgNodesOnly))
-                    {   gcodeString[gcodeStringIndex].Append(secondMove); }
-                    gcodeStopPath("Z");
+                    Plotter.StopPath("Z");
                     break;
 
                 case 'L':       // Draw a line from the current point to the given (x,y) coordinate
                     for (int i = 0; i < floatArgs.Length; i += 2)
                     {
+                        if (floatArgs.Length < (i + 2))
+                        {   Logger.Error("Line to command needs 2 arguments '{0}'", svgPath);
+                            Plotter.AddToHeader(" !!! Error: Line to command needs 2 arguments '" + svgPath + "'");
+                            break;
+                        }
                         objCount++;
                         if (absolute)
                         { currentX = floatArgs[i] + offsetX; currentY = floatArgs[i + 1] + offsetY; }
@@ -950,7 +891,7 @@ namespace GRBL_Plotter
                         if (svgNodesOnly)
                             gcodeDotOnly(currentX, currentY, command.ToString());
                         else
-                            gcodeMoveTo(currentX, currentY, command.ToString());
+                            svgMoveTo(currentX, currentY, command.ToString());
                         lastX = currentX; lastY = currentY;
                         cxMirror = currentX; cyMirror = currentY;
                     }
@@ -968,7 +909,7 @@ namespace GRBL_Plotter
                         if (svgNodesOnly)
                             gcodeDotOnly(currentX, currentY, command.ToString());
                         else
-                            gcodeMoveTo(currentX, currentY, command.ToString());
+                            svgMoveTo(currentX, currentY, command.ToString());
                         lastX = currentX; lastY = currentY;
                         cxMirror = currentX; cyMirror = currentY;
                     }
@@ -986,7 +927,7 @@ namespace GRBL_Plotter
                         if (svgNodesOnly)
                             gcodeDotOnly(currentX, currentY, command.ToString());
                         else
-                            gcodeMoveTo(currentX, currentY, command.ToString());
+                            svgMoveTo(currentX, currentY, command.ToString());
                         lastX = currentX; lastY = currentY;
                         cxMirror = currentX; cyMirror = currentY;
                     }
@@ -994,11 +935,17 @@ namespace GRBL_Plotter
                     break;
 
                 case 'A':       // Draws an elliptical arc from the current point to (x, y)
-                    if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( Command {0} {1} )\r\n", command.ToString(), ((absolute == true) ? "absolute" : "relative")); }
+                    if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 7)
                     {
+                        if (floatArgs.Length < (rep+7))
+                        {   Logger.Error("Elliptical arc curve command needs 7 arguments '{0}'", svgPath);
+                            Plotter.AddToHeader(" !!! Error: Elliptical arc curve command needs 7 arguments '" + svgPath + "'");
+                            break;
+                        }
+
                         objCount++;
-                        if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( draw arc nr. {0} )\r\n", (1 + rep / 6)); }
+                        if (svgComments) { Plotter.Comment(string.Format(" draw arc nr. {0} ", (1 + rep / 6))); }
                         float rx,ry,rot,large,sweep,nx,ny;
                         rx = floatArgs[rep] ;     ry = floatArgs[rep + 1] ;
                         rot = floatArgs[rep + 2];
@@ -1022,11 +969,16 @@ namespace GRBL_Plotter
                     break;
 
                 case 'C':       // Draws a cubic Bézier curve from the current point to (x,y)
-                    if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( Command {0} {1} )\r\n", command.ToString(), ((absolute == true) ? "absolute" : "relative")); }
+                    if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 6)
                     {
+                        if (floatArgs.Length < (rep + 6))
+                        {   Logger.Error("Cubic Bézier curve command needs 6 arguments '{0}'", svgPath);
+                            Plotter.AddToHeader(" !!! Error: Cubic Bézier curve command needs 6 arguments '" + svgPath + "'");
+                            break;
+                        }
                         objCount++;
-                        if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( draw curve nr. {0} )\r\n", (1 + rep / 6)); }
+                        if (svgComments) { Plotter.Comment(string.Format(" draw curve nr. {0} ", (1 + rep / 6))); }
                         if ((rep + 5) < floatArgs.Length)
                         {
                             float cx1, cy1, cx2, cy2, cx3, cy3;
@@ -1055,23 +1007,28 @@ namespace GRBL_Plotter
                             else
                             {
                                 for (int i = 1; i < b.Points.Count; i++)
-                                    gcodeMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
+                                    svgMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
                             }
                             cxMirror = cx3 - (cx2 - cx3); cyMirror = cy3 - (cy2 - cy3);
                             lastX = cx3; lastY = cy3;
                         }
                         else
-                        { gcodeString[gcodeStringIndex].AppendFormat("( Missing argument after {0} )\r\n", rep); }
+                        { Plotter.Comment(string.Format(" Missing argument after {0} ", rep)); }
                     }
                     startSubPath = true;
                     break;
 
                 case 'S':       // Draws a cubic Bézier curve from the current point to (x,y)
-                    if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( Command {0} {1} )\r\n", command.ToString(), ((absolute == true) ? "absolute" : "relative")); }
+                    if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 4)
                     {
+                        if (floatArgs.Length < (rep + 4))
+                        {   Logger.Error("Smooth curveto command needs 4 arguments '{0}'", svgPath);
+                            Plotter.AddToHeader(" !!! Error: smooth curveto command needs 4 arguments '" + svgPath + "'");
+                            break;
+                        }
                         objCount++;
-                        if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( draw curve nr. {0} )\r\n", (1 + rep / 4)); }
+                        if (svgComments) { Plotter.Comment(string.Format(" draw curve nr. {0} ", (1 + rep / 4))); }
                         float cx2, cy2, cx3, cy3;
                         if (absolute)
                         {
@@ -1096,7 +1053,7 @@ namespace GRBL_Plotter
                         else
                         {
                             for (int i = 1; i < b.Points.Count; i++)
-                                gcodeMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
+                                svgMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
                         }
                         cxMirror = cx3 - (cx2 - cx3); cyMirror = cy3 - (cy2 - cy3);
                         lastX = cx3; lastY = cy3;
@@ -1105,11 +1062,16 @@ namespace GRBL_Plotter
                     break;
 
                 case 'Q':       // Draws a quadratic Bézier curve from the current point to (x,y)
-                    if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( Command {0} {1} )\r\n", command.ToString(), ((absolute == true) ? "absolute" : "relative")); }
+                    if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 4)
                     {
+                        if (floatArgs.Length < (rep + 4))
+                        {   Logger.Error("Quadratic Bézier curveto command needs 4 arguments '{0}'", svgPath);
+                            Plotter.AddToHeader(" !!! Error: Quadratic Bézier curveto command needs 4 arguments '" + svgPath + "'");
+                            break;
+                        }
                         objCount++;
-                        if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( draw curve nr. {0} )\r\n", (1 + rep / 4)); }
+                        if (svgComments) { Plotter.Comment(string.Format(" draw curve nr. {0} ", (1 + rep / 4))); }
                         float cx2, cy2, cx3, cy3;
                         if (absolute)
                         {
@@ -1141,18 +1103,23 @@ namespace GRBL_Plotter
                         else
                         {
                             for (int i = 1; i < b.Points.Count; i++)
-                                gcodeMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
+                                svgMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
                         }
                     }
                     startSubPath = true;
                     break;
 
                 case 'T':       // Draws a quadratic Bézier curve from the current point to (x,y)
-                    if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( Command {0} {1} )\r\n", command.ToString(), ((absolute == true) ? "absolute" : "relative")); }
+                    if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 2)
                     {
+                        if (floatArgs.Length < (rep + 2))
+                        {   Logger.Error("Smooth quadratic Bézier curveto command needs 2 arguments '{0}'", svgPath);
+                            Plotter.AddToHeader(" !!! Error: Smooth quadratic Bézier curveto command needs 2 arguments '" + svgPath + "'");
+                            break;
+                        }
                         objCount++;
-                        if (svgComments) { gcodeString[gcodeStringIndex].AppendFormat("( draw curve nr. {0} )\r\n", (1 + rep / 2)); }
+                        if (svgComments) { Plotter.Comment(string.Format(" draw curve nr. {0} ", (1 + rep / 2))); }
                         float cx3, cy3;
                         if (absolute)
                         {
@@ -1182,14 +1149,14 @@ namespace GRBL_Plotter
                         else
                         {
                             for (int i = 1; i < b.Points.Count; i++)
-                                gcodeMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
+                                svgMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
                         }
                     }
                     startSubPath = true;
                     break;
 
                 default:
-                    if (svgComments) gcodeString[gcodeStringIndex].Append("( *********** unknown: " + command.ToString()+ " ***** )\r\n");
+                    if (svgComments) Plotter.Comment(" *********** unknown: " + command.ToString()+ " ***** ");
                     break;
             }
             return objCount;
@@ -1270,7 +1237,7 @@ namespace GRBL_Plotter
                 points[3] = new Point(endpointX, endpointY);
                 var b = GetBezierApproximation(points, svgBezierAccuracy);
                 for (int k = 1; k < b.Points.Count; k++)
-                    gcodeMoveTo(b.Points[k], "arc");
+                    svgMoveTo(b.Points[k], "arc");
 
                 theta1 = theta2;
                 startX = (float)endpointX;
@@ -1323,13 +1290,11 @@ namespace GRBL_Plotter
         /// <param name="pointStart">coordinate to transform</param>
         /// <returns>transformed coordinate</returns>
         private static Point translateXY(float x, float y)
-        {
-            Point coord = new Point(x,y);
+        {   Point coord = new Point(x,y);
             return translateXY(coord);
         }
         private static Point translateXY(Point pointStart)
-        {
-            Point pointResult = matrixElement.Transform(pointStart);
+        {   Point pointResult = matrixElement.Transform(pointStart);
             return pointResult;
         }
         /// <summary>
@@ -1338,172 +1303,61 @@ namespace GRBL_Plotter
         /// <param name="pointStart">coordinate to transform</param>
         /// <returns>transformed coordinate</returns>
         private static Point translateIJ(float i, float j)
-        {
-            Point coord = new Point(i,j);
+        {   Point coord = new Point(i,j);
             return translateIJ(coord);
         }
         private static Point translateIJ(Point pointStart)
-        {
-            Point pointResult = pointStart;
+        {   Point pointResult = pointStart;
             double tmp_i = pointStart.X, tmp_j = pointStart.Y;
             pointResult.X = tmp_i * matrixElement.M11 + tmp_j * matrixElement.M21;  // - tmp
             pointResult.Y = tmp_i * matrixElement.M12 + tmp_j * matrixElement.M22; // tmp_i*-matrix     // i,j are relative - no offset needed, but perhaps rotation
             return pointResult;
         }
 
-
         private static void gcodeDotOnly(float x, float y, string cmt)
         {
             if (!svgComments)
                 cmt = "";
-            gcodeStartPath(x, y, cmt);
-            gcodePenDown(cmt);
-            gcodePenUp(cmt);
+            svgStartPath(x, y, cmt);
+            Plotter.PenDown(cmt);
+            Plotter.PenUp(cmt,false);
         }
-
 
         /// <summary>
         /// Insert G0 and Pen down gcode command
         /// </summary>
-        private static void gcodeStartPath(float x, float y, string cmt)
-        {
-            if (!svgComments)
-                cmt = "";
-            Point coord = translateXY(x, y);
-            lastGCX = coord.X; lastGCY = coord.Y;
-            lastSetGCX = coord.X; lastSetGCY = coord.Y;
-            gcodePenUp(cmt);
-            string tmptoolnr = "";
-            if (svgToolUse) tmptoolnr = string.Format("ToolNr={0}", myTool);
-            gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureStart + (++pathCount) + string.Format("> SVGcolor=#{0} {1}", myColor, tmptoolnr));
-            gcodeTool(myTool);
-            gcode.MoveToRapid(gcodeString[gcodeStringIndex], coord, cmt);
-            if (svgPausePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before Pen Down"); }
-            isReduceOk = false;
-        }
-        /// <summary>
-        /// Insert Pen-up gcode command
-        /// </summary>
-        private static void gcodeStopPath(string cmt)
-        {
-            if (!svgComments)
-                cmt = "";
-            if (gcodeReduce)
-            {
-                if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY)) // restore last skipped point for accurat G2/G3 use
-                    gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), "restore Point");
-            }
-            gcodePenUp(cmt);
-            if (!svgToolUse)
-                gcode.Comment(gcodeString[gcodeStringIndex], xmlMarker.figureEnd + pathCount + ">");
+        private static void svgStartPath(float x, float y, string cmt)
+        {   Point tmp = translateXY(x, y);  // convert from SVG-Units to GCode-Units
+            Plotter.StartPath(tmp, cmt);  
         }
 
         /// <summary>
         /// Insert G1 gcode command
         /// </summary>
-        private static void gcodeMoveTo(float x, float y, string cmt)
+        private static void svgMoveTo(float x, float y, string cmt)
         {
-            Point coord = new Point(x, y);
-            //Point coord = translateXY(x, y);
             if (!svgComments)
                 cmt = "";
-            gcodeMoveTo(coord, cmt);
+            svgMoveTo(new Point(x, y), cmt);
         }
 
-        private static bool isReduceOk = false;
-        private static bool rejectPoint = false;
-        private static double lastGCX = 0, lastGCY = 0, lastSetGCX = 0, lastSetGCY = 0, distance;
         /// <summary>
         /// Insert G1 gcode command
         /// </summary>
-        private static void gcodeMoveTo(Point orig, string cmt)
-        {
-            Point coord = translateXY(orig);
-            rejectPoint = false;
-            gcodePenDown(cmt);
-            if (gcodeReduce && isReduceOk)
-            {   distance = Math.Sqrt(((coord.X - lastSetGCX) * (coord.X - lastSetGCX)) + ((coord.Y - lastSetGCY) * (coord.Y - lastSetGCY)));
-                if (distance < gcodeReduceVal)      // discard actual G1 movement
-                { rejectPoint = true;
-                }
-                else
-                { lastSetGCX = coord.X; lastSetGCY = coord.Y;
-                }
-            }
-            if (!gcodeReduce || !rejectPoint)       // write GCode
-            {
-                gcode.MoveTo(gcodeString[gcodeStringIndex], coord, cmt);
-            }
-            lastGCX = coord.X; lastGCY = coord.Y;
+        private static void svgMoveTo(Point orig, string cmt)
+        {   
+            Point tmp = translateXY(orig);
+            Plotter.MoveTo(tmp, cmt);
         }
 
         /// <summary>
         /// Insert G2/G3 gcode command
         /// </summary>
-        private static void gcodeArcToCCW(float x, float y, float i, float j, string cmt, bool avoidG23=false)
-        {
+        private static void svgArcToCCW(float x, float y, float i, float j, string cmt)
+        {   
             Point coordxy = translateXY(x, y);
             Point coordij = translateIJ(i, j);
-            gcodePenDown(cmt);
-            if (gcodeReduce && isReduceOk)      // restore last skipped point for accurat G2/G3 use
-            {
-                if ((lastSetGCX != lastGCX) || (lastSetGCY != lastGCY))
-                    gcode.MoveTo(gcodeString[gcodeStringIndex], new System.Windows.Point(lastGCX, lastGCY), cmt);
-            }
-            gcode.Arc(gcodeString[gcodeStringIndex], 3, coordxy, coordij, cmt, avoidG23);
-        }
-
-        /// <summary>
-        /// Insert Pen-up gcode command
-        /// </summary>
-        private static void gcodePenUp(string cmt)
-        {
-            if (!svgComments)
-                cmt = "";
-            if (penIsDown)
-                gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
-            penIsDown = false;
-        }
-        private static void gcodePenDown(string cmt)
-        {
-            if (!svgComments)
-                cmt = "";
-            if (!penIsDown)
-                gcode.PenDown(gcodeString[gcodeStringIndex], cmt);
-            penIsDown = true;
-        }
-
-        /// <summary>
-        /// Insert tool change gcode command
-        /// </summary>
-        private static void gcodeTool(int toolnr)
-        {
-            if (toolnr >= 0)
-            {
-                if (gcodeOldToolNr != toolnr)       // if tool already in use, don't select again
-                {   gcodeOldToolNr = toolnr;
-                    toolProp toolInfo = toolTable.getToolProperties(toolnr);
-                    if (!svgToolUse)               // if sort, insert tool command later
-                    {   gcode.Tool(gcodeString[gcodeStringIndex], toolInfo.toolnr, toolInfo.name);      //toolnr, toolTable.getName());
-                        gcodeOldToolNr = toolnr;
-                    }
-                    else
-                    {   // set now values from tool table, because gcode.Tool will be called after sorting objects
-                        if (Properties.Settings.Default.importGCTTSSpeed)
-                            gcode.gcodeSpindleSpeed = toolInfo.spindleSpeed;
-                        if (Properties.Settings.Default.importGCTTXYFeed)
-                            gcode.gcodeXYFeed = toolInfo.feedXY;
-                        if (Properties.Settings.Default.importGCTTZFeed)
-                            gcode.gcodeZFeed = toolInfo.feedZ;
-                        if (Properties.Settings.Default.importGCTTZDeepth)
-                            gcode.gcodeZDown = toolInfo.finalZ;
-                        if (Properties.Settings.Default.importGCTTZIncrement)
-                            gcode.gcodeZInc = toolInfo.stepZ;
-                        if (Properties.Settings.Default.importGCDragKnifePercentEnable)
-                        {   gcode.gcodeDragRadius = Math.Abs(gcode.gcodeZDown * (float)Properties.Settings.Default.importGCDragKnifePercent / 100); }
-                    }
-                }
-            }
+            Plotter.ArcToCCW(coordxy, coordij, cmt);
         }
     }
 }
