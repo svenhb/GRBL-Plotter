@@ -23,18 +23,22 @@
 
     This project was my starting point
 */
-/*  2016-07-xx add 2nd serial port for tool changer
- *  2016-09-17  improve performance by removing already sent lines from sendLines[] and gCodeLines[]
- *              Remove unknown G-Codes in preProcessStreaming() (list in grblRelated)
- *  2016-09-25  Implement override function
- *  2016-09-26  reduce  grblBufferSize to 100 during $C check gcode to reduce fake errors
- *  2016-12-31  add GRBL 1.1 compatiblity, clean-up
- *  2017-01-01  check form-location and fix strange location
- *  2018-01-02  Bugfix route errors during streaming from serialform to gui
- *  2018-04-05  Code clean up
- *  2018-07-27  change key-signs : variable: old:@, new:#   internal sign old:#, new:$
- *  2018-12-26	Commits from RasyidUFA via Github
- *  2019-01-12  print last sent commands to grbl after error as info
+/* 2016-07-xx add 2nd serial port for tool changer
+ * 2016-09-17 improve performance by removing already sent lines from sendLines[] and gCodeLines[]
+ *            Remove unknown G-Codes in preProcessStreaming() (list in grblRelated)
+ * 2016-09-25 Implement override function
+ * 2016-09-26 reduce  grblBufferSize to 100 during $C check gcode to reduce fake errors
+ * 2016-12-31 add GRBL 1.1 compatiblity, clean-up
+ * 2017-01-01 check form-location and fix strange location
+ * 2018-01-02 Bugfix route errors during streaming from serialform to gui
+ * 2018-04-05 Code clean up
+ * 2018-07-27 change key-signs : variable: old:@, new:#   internal sign old:#, new:$
+ * 2018-12-26 Commits from RasyidUFA via Github
+ * 2019-01-12 print last sent commands to grbl after error as info
+ * 2019-08-13 line 833 check array length
+ * 2019-08-15 add logger
+ *            line 528 replace .Invoke by .BeginInvoke to avoid deadlock
+ * 2019-09-24 line 410 add serialPort.DtrEnable = true;serialPort.DtrEnable = false; sequence - thanks to ivahru
 */
 
 //#define debuginfo 
@@ -76,12 +80,16 @@ namespace GRBL_Plotter
         private bool useSerial2 = false;
         private int iamSerial = 1;
         private string formTitle = "";
+//        private System.Net.Sockets.TcpClient sock;
+
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public ControlSerialForm(string txt, int nr, ControlSerialForm handle = null)
         {
+            Logger.Trace("++++++ SerialForm {0} START ++++++", iamSerial);
             mParserState.reset();
-
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             formTitle = txt;
@@ -89,9 +97,9 @@ namespace GRBL_Plotter
             iamSerial = nr;
             set2ndSerial(handle);
             InitializeComponent();
- //           Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+   //         Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain currentDomain = AppDomain.CurrentDomain;
- //           currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Application_UnhandledException);
+   //         currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Application_UnhandledException);
         }
         public void set2ndSerial(ControlSerialForm handle = null)
         {   _serial_form2 = handle;
@@ -102,17 +110,19 @@ namespace GRBL_Plotter
         //Unhandled exception
         private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
-            closePort();
             Exception ex = e.Exception;
+            Logger.Error(ex, "Application_ThreadException");
             MessageBox.Show(ex.Message, "Serial Form Thread exception");
+            closePort();
         }
         private void Application_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             if (e.ExceptionObject != null)
             {
-                closePort();
                 Exception ex = (Exception)e.ExceptionObject;
+                Logger.Error(ex, "Application_ThreadException");
                 MessageBox.Show(ex.Message, "Serial Form Application exception");
+                closePort();
             }
         }
 
@@ -120,10 +130,10 @@ namespace GRBL_Plotter
         {
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             SerialForm_Resize(sender, e);
-            refreshPorts();
-            updateControls();
-            loadSettings();
-            openPort();
+            refreshPorts();         // scan for COMs
+            updateControls();       // disable controls
+            loadSettings();         // set last COM and Baud
+            openPort();             // open COM
             machineState.Clear();
             if (iamSerial == 1)
             {   Location = Properties.Settings.Default.locationSerForm1;}
@@ -134,20 +144,25 @@ namespace GRBL_Plotter
             isLasermode = Properties.Settings.Default.ctrlLaserMode;
             resetVariables(true);
         }
-        private bool mainformAskClosing = false;
+ //       private bool mainformAskClosing = false;
         private void SerialForm_FormClosing(object sender, FormClosingEventArgs e)
-        {   if ((e.CloseReason.ToString() != "FormOwnerClosing") & !mainformAskClosing)
+        {
+            Logger.Trace("Try closing SerialForm {0} {1}", iamSerial, e.CloseReason);
+            if (e.CloseReason.ToString() != "FormOwnerClosing")
             {
                 MessageBox.Show("Serial Connection is needed.\r\nClose main window instead","Attention");
                 e.Cancel = true;
+                Logger.Trace("Closing SerialForm {0} canceled", iamSerial);
                 return;
             }
             else
             {
-                if (!mainformAskClosing)        // don't close twice
-                    closePort();
-                mainformAskClosing = true;
+                serialPort.DataReceived -= (this.serialPort1_DataReceived); // stop receiving data
+                stopStreaming();
+                grblReset(false);
+                closePort();
                 e.Cancel = false;
+                Logger.Trace("++++++ SerialForm {0} STOP ++++++", iamSerial);
             }
         }
         private void SerialForm_Resize(object sender, EventArgs e)
@@ -160,9 +175,12 @@ namespace GRBL_Plotter
             btnGRBLCommand0.Location = new Point(btnGRBLCommand0.Location.X, this.Height - 62);
             btnGRBLCommand1.Location = new Point(btnGRBLCommand1.Location.X, this.Height - 62);
             btnGRBLCommand2.Location = new Point(btnGRBLCommand2.Location.X, this.Height - 62);
+            btnGRBLCmndParser.Location = new Point(btnGRBLCmndParser.Location.X, this.Height - 62);
+            btnGRBLCmndBuild.Location = new Point(btnGRBLCmndBuild.Location.X, this.Height - 62);
             btnGRBLCommand3.Location = new Point(btnGRBLCommand3.Location.X, this.Height - 62);
             btnGRBLCommand4.Location = new Point(btnGRBLCommand4.Location.X, this.Height - 62);
             btnGRBLReset.Location = new Point(btnGRBLReset.Location.X, this.Height - 62);
+            btnGRBLHardReset.Location = new Point(btnGRBLHardReset.Location.X, this.Height - 62);
         }
 
         public void updateGrblSettings()
@@ -194,7 +212,9 @@ namespace GRBL_Plotter
                     serialPort.Write(dataArray, 0, 1);                        
                 }
                 catch (Exception er)
-                {   logError("! Retrieving GRBL status", er);
+                {
+                    Logger.Error(er, "GRBL status not received");
+                    logError("! Retrieving GRBL status", er);
                     serialPort.Close();
                 }
             }
@@ -269,6 +289,7 @@ namespace GRBL_Plotter
             }
             catch (Exception e)
             {
+                Logger.Error(e, "-loadSettings-");
                 logError("! Loading settings", e);
             }
         }
@@ -289,22 +310,25 @@ namespace GRBL_Plotter
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)
-            {   logError("! Saving settings", e);
+            {
+                Logger.Error(e, "-saveSettings-");
+                logError("! Saving settings", e);
             }
         }
         private void saveLastPos()
         {
             if (iamSerial == 1)
-            {   rtbLog.AppendText("\r* Save last pos.: \r"+posWork.Print(true,(grbl.axisCount>3))+"\n");    // print in single lines
-                Properties.Settings.Default.lastOffsetX = Math.Round(posWork.X, 3);
-                Properties.Settings.Default.lastOffsetY = Math.Round(posWork.Y, 3);
-                Properties.Settings.Default.lastOffsetZ = Math.Round(posWork.Z, 3);
-                Properties.Settings.Default.lastOffsetA = Math.Round(posWork.A, 3);
-                Properties.Settings.Default.lastOffsetB = Math.Round(posWork.B, 3);
-                Properties.Settings.Default.lastOffsetC = Math.Round(posWork.C, 3);
+            {
+                addToLog("\r* Save last pos.: \r"+posWork.Print(true,(grbl.axisCount>3))+"\n");    // print in single lines
+                Properties.Settings.Default.grblLastOffsetX = Math.Round(posWork.X, 3);
+                Properties.Settings.Default.grblLastOffsetY = Math.Round(posWork.Y, 3);
+                Properties.Settings.Default.grblLastOffsetZ = Math.Round(posWork.Z, 3);
+                Properties.Settings.Default.grblLastOffsetA = Math.Round(posWork.A, 3);
+                Properties.Settings.Default.grblLastOffsetB = Math.Round(posWork.B, 3);
+                Properties.Settings.Default.grblLastOffsetC = Math.Round(posWork.C, 3);
                 int gNr = mParserState.coord_select;
                 gNr = ((gNr >= 54) && (gNr <= 59)) ? gNr : 54;
-                Properties.Settings.Default.lastOffsetCoord = gNr;    //global.grblParserState.coord_select;
+                Properties.Settings.Default.grblLastOffsetCoord = gNr;    //global.grblParserState.coord_select;
                 Properties.Settings.Default.Save();
             }
         }
@@ -323,6 +347,8 @@ namespace GRBL_Plotter
             btnGRBLCommand0.Enabled = isConnected && (!isStreaming || isStreamingPause);
             btnGRBLCommand1.Enabled = isConnected && (!isStreaming || isStreamingPause);
             btnGRBLCommand2.Enabled = isConnected && (!isStreaming || isStreamingPause);
+            btnGRBLCmndParser.Enabled = isConnected && (!isStreaming || isStreamingPause);
+            btnGRBLCmndBuild.Enabled = isConnected && (!isStreaming || isStreamingPause);
             btnGRBLCommand3.Enabled = isConnected && (!isStreaming || isStreamingPause);
             btnGRBLCommand4.Enabled = isConnected && (!isStreaming || isStreamingPause);
             btnCheckGRBL.Enabled = isConnected &&    (!isStreaming || isStreamingPause);// && !isGrblVers0;
@@ -334,12 +360,11 @@ namespace GRBL_Plotter
             string textmsg = "\r\n[ERROR]: " + message + ". ";
             if (error != null) textmsg += error.Message;
             textmsg += "\r\n";
-            rtbLog.AppendText(textmsg);
-            rtbLog.ScrollToCaret();
+            addToLog(textmsg);
         }
         public void logErrorThr(object sender, EventArgs e)
         {
-            logError(mens, err);
+            logError(logMessage, logErr);
             updateControls();
         }
         public void addToLog(string text)
@@ -350,7 +375,7 @@ namespace GRBL_Plotter
 
         private void btnScanPort_Click(object sender, EventArgs e)
         { refreshPorts(); }
-        private void refreshPorts()
+        private bool refreshPorts()
         {
             List<String> tList = new List<String>();
             cbPort.Items.Clear();
@@ -361,6 +386,7 @@ namespace GRBL_Plotter
                 tList.Sort();
                 cbPort.Items.AddRange(tList.ToArray());
             }
+            return tList.Contains(cbPort.Text);
         }
         private void btnOpenPort_Click(object sender, EventArgs e)
         {
@@ -371,37 +397,49 @@ namespace GRBL_Plotter
             updateControls();
         }
         private int minimizeCount = 0;
-        private bool openPort()
+        private void openPort()
         {
             try
             {
+                Logger.Info("Form {0}, openPort {1} {2}", iamSerial, cbPort.Text, cbBaud.Text);
                 serialPort.PortName = cbPort.Text;
                 serialPort.BaudRate = Convert.ToInt32(cbBaud.Text);
-                serialPort.Open();
                 rtbLog.Clear();
-                rtbLog.AppendText("* Open " + cbPort.Text + "\r\n");
-                btnOpenPort.Text = "Close";
-                isDataProcessing = true;
-                grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
-                grblReset(false);
-                updateControls();
-                if (Properties.Settings.Default.serialMinimize)
-                    minimizeCount = 10;                         // minimize window after 10 timer ticks
-                timerSerial.Interval = grbl.pollInterval;       // timerReload;
-                preventOutput = 0; preventEvent = 0;
-                isHeightProbing = false;
-                if (grbl.grblSimulate)
-                {   grbl.grblSimulate = false;
-                    rtbLog.AppendText("* Stop simulation\r\n");
+                if (refreshPorts())
+                {
+                    serialPort.Open();
+                    serialPort.DtrEnable = true;
+                    serialPort.DtrEnable = false;
+
+                    addToLog("* Open " + cbPort.Text + "\r\n");
+                    btnOpenPort.Text = "Close";
+                    isDataProcessing = true;
+                    grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
+                    grblReset(false);
+                    if (Properties.Settings.Default.serialMinimize)
+                        minimizeCount = 10;                         // minimize window after 10 timer ticks
+                    timerSerial.Interval = grbl.pollInterval;       // timerReload;
+                    preventOutput = 0; preventEvent = 0;
+                    isHeightProbing = false;
+                    if (grbl.grblSimulate)
+                    {
+                        grbl.grblSimulate = false;
+                        addToLog("* Stop simulation\r\n");
+                    }
                 }
-                return (true);
+                else
+                {
+                    addToLog("* " + cbPort.Text + " not available\r\n");
+                    Logger.Warn("Form {0}, Port {1} not available", iamSerial, cbPort.Text);
+                }
+                updateControls();
             }
             catch (Exception err)
             {
+                Logger.Error(err, "-openPort-");
                 minimizeCount = 0;
                 logError("! Opening port", err);
                 updateControls();
-                return (false);
             }
         }
         public bool closePort()
@@ -409,9 +447,11 @@ namespace GRBL_Plotter
             try
             {
                 if (serialPort.IsOpen)
-                {   serialPort.Close();
+                {
+                    Logger.Info("Form {0}, closePort {1}", iamSerial, serialPort.PortName);
+                    serialPort.Close();
                 }
-                rtbLog.AppendText("\r* Close " + cbPort.Text + "\r");
+                addToLog("\r* Close " + cbPort.Text + "\r");
                 btnOpenPort.Text = "Open";
                 saveSettings();
                 updateControls();
@@ -420,6 +460,7 @@ namespace GRBL_Plotter
             }
             catch (Exception err)
             {
+                Logger.Error(err, "-closePort-");
                 logError("! Closing port", err);
                 updateControls();
                 timerSerial.Enabled = false;
@@ -430,6 +471,7 @@ namespace GRBL_Plotter
         //Send reset sentence
         public void grblReset(bool savePos = true)      //Stop/reset button
         {
+            rtbLog.Clear();
             if (savePos)
             { saveLastPos(); }
             resetVariables();
@@ -443,12 +485,24 @@ namespace GRBL_Plotter
             var dataArray = new byte[] { 24 };//Ctrl-X
             if (serialPort.IsOpen)
                 serialPort.Write(dataArray, 0, 1);
-            rtbLog.AppendText("> [CTRL-X] reset\r\n");
+            addToLog("> [CTRL-X] reset");
             preventOutput = 0; preventEvent = 0;
             grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
         }
 
+        private void btnGRBLHardReset_Click(object sender, EventArgs e)
+        {
+            rtbLog.Clear();
+            grblHardReset();
+        }
 
+        public void grblHardReset(bool savePos = true)      //Stop/reset button
+        {   serialPort.DtrEnable = true;
+            serialPort.RtsEnable = true;
+            addToLog("> DTR/RTS reset");
+            serialPort.DtrEnable = false;
+            serialPort.RtsEnable = false;
+        }
 
 
         #region serial receive handling
@@ -458,8 +512,9 @@ namespace GRBL_Plotter
          *  3) updateStreaming() process 'ok'
          *  4) processSend() -> replace varaibles, fill up grbl buffer
          * */
-        string mens;
-        Exception err;
+        string logMessage;
+        Exception logErr;
+        //https://stackoverflow.com/questions/10871339/terminating-a-form-while-com-datareceived-event-keeps-fireing-c-sharp
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             while ((serialPort.IsOpen) && (serialPort.BytesToRead > 0))
@@ -471,13 +526,12 @@ namespace GRBL_Plotter
                     while ((serialPort.IsOpen) && (isDataProcessing))   //wait previous data line processed done
 					{}
                 }
-                catch (Exception errort)
+                catch (Exception err)
                 {
-                    //MessageBox.Show(errort.ToString());
-                    //serialPort.Close();
-                    mens = "Error reading line from serial port";
-                    err = errort;
-                    this.Invoke(new EventHandler(logErrorThr));
+                    Logger.Error(err, "-DataReceived-");
+                    logErr = err;
+                    logMessage = "Error reading line from serial port";
+                    this.BeginInvoke(new EventHandler(logErrorThr));
                 }
             }
         }
@@ -521,12 +575,9 @@ namespace GRBL_Plotter
                 timerSerial.Enabled = true;
                 lastError = "";
                 if (true)   // read grbl settings
-                {
-                    addToLog("* Read grbl settings, hide response");
+                {   addToLog("* Read grbl settings, hide response");
                     grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
-                    preventOutput = 10; preventEvent = 10;
-                    requestSend("$$");  // get setup
-                    requestSend("$#");  // get parameter
+                    readSettings();
                 }
                 isDataProcessing = false;                   // unlock serialPort1_DataReceived
                 return;
@@ -552,6 +603,7 @@ namespace GRBL_Plotter
                 isHeightProbing = false;
                 grblStateNow = grblState.alarm;
                 OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+                mParserState.changed = false;
                 this.WindowState = FormWindowState.Minimized;
                 this.Show();
                 this.WindowState = FormWindowState.Normal;
@@ -563,6 +615,7 @@ namespace GRBL_Plotter
                 string tmpMsg = "";
                 if (rxString != lastError)
                 {
+                    Logger.Warn("grbl error {0} {1}", rxString, grbl.getError(rxString));
                     addToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     addToLog(string.Format("< {0} \t{1}", rxString, grbl.getError(rxString)));
                     lastError = rxString+" "+ grbl.getError(rxString)+"\r\n";
@@ -621,6 +674,11 @@ namespace GRBL_Plotter
                     sendLinesConfirmed--;
                     sendLinesSent--;
                     sendLinesCount--;
+                }
+                if (mParserState.changed)
+                {
+                    OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+                    mParserState.changed = false;
                 }
             }
             // check if buffer is empty and system = IDLE 
@@ -702,7 +760,7 @@ namespace GRBL_Plotter
             if (rxString.ToLower().IndexOf("grbl 0") >= 0)
             { isGrblVers0 = true; isLasermode = false; }
             if (rxString.ToLower().IndexOf("grbl 1") >= 0)
-            { isGrblVers0 = false; addToLog("* Version 1.x\r\n"); }
+            { isGrblVers0 = false; addToLog("* Version 1.x"); }
 
             if (iamSerial == 1)
                 grbl.isVersion_0 = isGrblVers0;
@@ -734,16 +792,21 @@ namespace GRBL_Plotter
                     parserStateGC = parserStateGC.Replace("M0 ", "");
                 posPause = posWork;
                 getParserState = false;
+                OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+                mParserState.changed = false;
             }
             else if (dataField[0].IndexOf("PRB") >= 0)                // Probe message with coordinates // [PRB:-155.000,-160.000,-28.208:1]
-            {
-                grblStateNow = grblState.probe;
+            {   if (preventEvent==0)
+                    grblStateNow = grblState.probe;
                 posProbeOld = posProbe;
                 grbl.getPosition("PRB:" + dataField[1], ref posProbe);  // get numbers from string
                 gcodeVariable["PRBX"] = posProbe.X; gcodeVariable["PRBY"] = posProbe.Y; gcodeVariable["PRBZ"] = posProbe.Z;
                 gcodeVariable["PRDX"] = posProbe.X - posProbeOld.X; gcodeVariable["PRDY"] = posProbe.Y - posProbeOld.Y; gcodeVariable["PRDZ"] = posProbe.Z - posProbeOld.Z;
                 if (preventEvent == 0)
+                {
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+                    mParserState.changed = false;
+                }
             }
             else if (dataField[0].IndexOf("MSG") >= 0) //[MSG:Pgm End]
             {   if (dataField[1].IndexOf("Pgm End") >= 0)
@@ -765,7 +828,7 @@ namespace GRBL_Plotter
                 }
             }
             if (iamSerial == 1)
-                grbl.setCoordinates(dataField[0], dataField[1]);
+                grbl.setCoordinates(dataField[0], dataField[1]);    // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
         }
 
         private void handleRX_Setup(string rxString)
@@ -813,8 +876,11 @@ namespace GRBL_Plotter
             string[] dataField = text.Split(splitAt);
             string status = dataField[0].Trim(' ');
             if (isGrblVers0)
-            {   grbl.getPosition(dataField[1] + "," + dataField[2] + "," + dataField[3]+" ", ref posMachine);
-                grbl.getPosition(dataField[4] + "," + dataField[5] + "," + dataField[6]+" ", ref posWork);
+            {
+                if (dataField.Length > 3)
+                    grbl.getPosition(dataField[1] + "," + dataField[2] + "," + dataField[3]+" ", ref posMachine);
+                if (dataField.Length > 6)
+                    grbl.getPosition(dataField[4] + "," + dataField[5] + "," + dataField[6]+" ", ref posWork);
                 posWCO = posMachine - posWork;
             }
             else
@@ -877,6 +943,7 @@ namespace GRBL_Plotter
             lblSrPos.Text = posWork.Print(false, grbl.axisB || grbl.axisC); // show actual work position
             if (grblStateNow != grblStateLast) { grblStateChanged(); }
             OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));
+            mParserState.changed = false;
 
             if ((grblStateNow == grblState.idle) || (grblStateNow == grblState.check))
             {   if (useSerial2 && _serial_form2.serialPortOpen)
@@ -891,7 +958,8 @@ namespace GRBL_Plotter
                 if (externalProbe)
                 {   posProbe = posMachine;
                     externalProbe = false;
-                    OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblState.probe, machineState, mParserState, "($PROBE)"));              
+                    OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblState.probe, machineState, mParserState, "($PROBE)"));
+                    mParserState.changed = false;
                 }
                 processSend();
             }
@@ -923,12 +991,12 @@ namespace GRBL_Plotter
          *  or called by preProcessStreaming to stream GCode data
          *  requestSend -> processSend -> sendLine
          * */
-        public bool requestSend(string data)
+        public bool requestSend(string data, bool keepComments=false)
         {
             if (isStreamingRequestPause)
             {   addToLog("!!! Command blocked - wait for IDLE " + data); }
             else
-            {   var tmp = cleanUpCodeLine(data);
+            {   var tmp = cleanUpCodeLine(data, keepComments);
                 if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))    // trim lines and remove all empty lines and comment lines
                 {   if (tmp == "$#") preventEvent = 5;                  // no response echo for parser state
                     sendLines.Add(tmp);
@@ -1007,21 +1075,22 @@ namespace GRBL_Plotter
 
         /*  cleanUpCodeLine remove unneccessary char but keep keywords
         */
-        private string cleanUpCodeLine(string data)
+        private string cleanUpCodeLine(string data, bool keepComments = false)
         {
             var line = data.Replace("\r", "");  //remove CR
             line = line.Replace("\n", "");      //remove LF
-            var orig = line;
-            int start = orig.IndexOf('(');
-            int end = orig.LastIndexOf(')');
-            if (start >= 0) line = orig.Substring(0, start);
-            if (end >= 0) line += orig.Substring(end + 1);
-
-            // extract GCode for 2nd COM Port
-            if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
-            {   var cmt = orig.Substring(start, end - start + 1);
-                if ((cmt.IndexOf("(^2") >= 0) || (cmt.IndexOf("($") == 0))
-                {   line += cmt;                // keep 2nd COM port data for further use
+            if (!keepComments)
+            {   var orig = line;
+                int start = orig.IndexOf('(');
+                int end = orig.LastIndexOf(')');
+                if (start >= 0) line = orig.Substring(0, start);
+                if (end >= 0) line += orig.Substring(end + 1);
+                // extract GCode for 2nd COM Port
+                if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
+                {   var cmt = orig.Substring(start, end - start + 1);
+                    if ((cmt.IndexOf("(^2") >= 0) || (cmt.IndexOf("($") == 0))
+                    {   line += cmt;                // keep 2nd COM port data for further use
+                    }
                 }
             }
 
@@ -1036,8 +1105,9 @@ namespace GRBL_Plotter
          * */
         private bool waitForIdle = false;
         private bool externalProbe = false;
+        // https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#eeprom-issues
         private string[] eeprom1 = { "G54", "G55", "G56", "G57", "G58", "G59"};
-        private string[] eeprom2 = { "G10", "G28", "G30", "G28" };
+        private string[] eeprom2 = { "G10", "G28", "G30"};
         public void processSend()
         {   while ((sendLinesSent < sendLinesCount) && (grblBufferFree >= sendLines[sendLinesSent].Length + 1))
             {
@@ -1201,12 +1271,16 @@ namespace GRBL_Plotter
                 rtbLog.AppendText(string.Format("< {0} {1} {2} {3} \r\n", data, sendLinesSent, sendLinesConfirmed, grblBufferFree));//if not in transfer log the txLine
 #endif
                 if (!isHeightProbing && (!(isStreaming && !isStreamingPause)) || (cbStatus.Checked))
-                {   rtbLog.AppendText(string.Format("> {0} \r\n", data));//if not in transfer log the txLine
-                    rtbLog.ScrollToCaret();
+                {
+                    addToLog(string.Format("> {0}", data));//if not in transfer log the txLine
                 }
             }
             catch (Exception err)
-            {   if(!grbl.grblSimulate)
+            {
+                Logger.Error(err, "-sendLine-");
+                logErr = err;
+                logMessage = "Error reading line from serial port";
+                if (!grbl.grblSimulate)
                     logError("! Sending line", err);
                 updateControls();
             }
@@ -1523,9 +1597,9 @@ namespace GRBL_Plotter
             {   // get new values
 //                addToLog("\r[set tool coordinates "+ cmdTNr.ToString() + "]");
                 gcodeVariable["TOAN"] = cmdTNr;
-                gcodeVariable["TOAX"] = (double)toolInfo.X + (double)Properties.Settings.Default.toolOffX;
-                gcodeVariable["TOAY"] = (double)toolInfo.Y + (double)Properties.Settings.Default.toolOffY;
-                gcodeVariable["TOAZ"] = (double)toolInfo.Z + (double)Properties.Settings.Default.toolOffZ;
+                gcodeVariable["TOAX"] = (double)toolInfo.X + (double)Properties.Settings.Default.toolTableOffsetX;
+                gcodeVariable["TOAY"] = (double)toolInfo.Y + (double)Properties.Settings.Default.toolTableOffsetY;
+                gcodeVariable["TOAZ"] = (double)toolInfo.Z + (double)Properties.Settings.Default.toolTableOffsetZ;
             }
         }
 
@@ -1542,7 +1616,7 @@ namespace GRBL_Plotter
             if (File.Exists(file))
             {
                 string fileCmd = File.ReadAllText(file);
-                string[] commands = fileCmd.Split('\n');
+                string[] commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 string tmp;
                 foreach (string cmd in commands)
                 {
@@ -1598,7 +1672,7 @@ namespace GRBL_Plotter
         private void btnSend_Click(object sender, EventArgs e)
         {   if (!isStreaming || isStreamingPause)
             {
-                string cmd = cBCommand.Text;
+                string cmd = cBCommand.Text.ToUpper();
                 cBCommand.Items.Remove(cBCommand.SelectedItem);
                 cBCommand.Items.Insert(0, cmd);
                 requestSend(cmd);
@@ -1673,11 +1747,22 @@ namespace GRBL_Plotter
         { requestSend("$$"); GRBLSettings.Clear(); }
         private void btnGRBLCommand2_Click(object sender, EventArgs e)
         { requestSend("$#"); }
+        private void btnGRBLCmndParser_Click(object sender, EventArgs e)
+        { requestSend("$G"); }
+        private void btnGRBLCmndBuild_Click(object sender, EventArgs e)
+        { requestSend("$I"); }
         private void btnGRBLCommand3_Click(object sender, EventArgs e)
         { requestSend("$N"); }
         private void btnGRBLCommand4_Click(object sender, EventArgs e)
         { requestSend("$X"); }
         private void btnGRBLReset_Click(object sender, EventArgs e)
         { grblReset(); }
+
+        public void readSettings()
+        {
+            preventOutput = 10; preventEvent = 10;
+            requestSend("$$");  // get setup
+            requestSend("$#");  // get parameter
+        }
     }
 }

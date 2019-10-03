@@ -18,8 +18,9 @@
 */
 
 /*  Thanks to martin2250  https://github.com/martin2250/OpenCNCPilot for his HeightMap class
- *  2019-02-05 switch to global variables grbl.posWork
- *  2019-04-06 limit digits to 3, bugfix x3d export '.'-','
+ * 2019-02-05 switch to global variables grbl.posWork
+ * 2019-04-06 limit digits to 3, bugfix x3d export '.'-','
+ * 2019-08-15 add logger
 */
 
 using System;
@@ -43,6 +44,9 @@ namespace GRBL_Plotter
         private Bitmap heightMapBMP;
         private Bitmap heightLegendBMP;
         private bool isMapOk = false;
+
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         // get height information from main-GUI OnRaisePosEvent line 192
         public xyzPoint setPosProbe
@@ -147,6 +151,7 @@ namespace GRBL_Plotter
                 sfd.Filter = "Bitmap|*.bmp";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
+                    Logger.Info("Save Bitmap {0}", sfd.FileName);
                     tmpBMP.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
                 }
                 tmpBMP.Dispose();
@@ -252,6 +257,7 @@ namespace GRBL_Plotter
 
         public ControlHeightMapForm()
         {
+            Logger.Trace("++++++ ControlHeightMapForm START ++++++");
             InitializeComponent();
         }
 
@@ -260,10 +266,12 @@ namespace GRBL_Plotter
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = Application.StartupPath + datapath.examples;
             Cursor.Current = Cursors.WaitCursor;
             sfd.Filter = "HeightMap|*.map";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                Logger.Info("Save Height map {0}", sfd.FileName);
                 Map.Save(sfd.FileName);
             }
             Cursor.Current = Cursors.Default;
@@ -272,10 +280,12 @@ namespace GRBL_Plotter
         private void btnSaveSTL_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = Application.StartupPath + datapath.examples;
             Cursor.Current = Cursors.WaitCursor;
             sfd.Filter = "StereoLithography|*.stl";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                Logger.Info("Save STL {0}", sfd.FileName);
                 Map.SaveSTL(sfd.FileName);
             }
             Cursor.Current = Cursors.Default;
@@ -284,10 +294,12 @@ namespace GRBL_Plotter
         private void btnSaveX3D_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = Application.StartupPath + datapath.examples;
             Cursor.Current = Cursors.WaitCursor;
             sfd.Filter = "X3D|*.x3d";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                Logger.Info("Save X3D {0}", sfd.FileName);
                 Map.SaveX3D(sfd.FileName);
             }
             Cursor.Current = Cursors.Default;
@@ -298,19 +310,23 @@ namespace GRBL_Plotter
         private void btnLoad_Click(object sender, EventArgs e)
         {
             OpenFileDialog sfd = new OpenFileDialog();
+            sfd.InitialDirectory = Application.StartupPath + datapath.examples;
             sfd.Filter = "HeightMap|*.map";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 cntReceived = 0; cntSent = 0;
-                Map = HeightMap.Load(sfd.FileName);
-                lblXDim.Text = string.Format("X Min:{0} Max:{1} Step:{2}", Map.Min.X, Map.Max.X, Map.SizeX);
-                lblYDim.Text = string.Format("Y Min:{0} Max:{1} Step:{2}", Map.Min.Y, Map.Max.Y, Map.SizeY);
-                BMPsizeX = 240;
-                BMPsizeY = Map.SizeY * BMPsizeX / Map.SizeX;
-                heightMapBMP = new Bitmap(BMPsizeX, BMPsizeY);
-                showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
-                isMapOk = true;
-                enableControls(true);
+                if (File.Exists(sfd.FileName))
+                {
+                    Map = HeightMap.Load(sfd.FileName);
+                    lblXDim.Text = string.Format("X Min:{0} Max:{1} Step:{2}", Map.Min.X, Map.Max.X, Map.SizeX);
+                    lblYDim.Text = string.Format("Y Min:{0} Max:{1} Step:{2}", Map.Min.Y, Map.Max.Y, Map.SizeY);
+                    BMPsizeX = 240;
+                    BMPsizeY = Map.SizeY * BMPsizeX / Map.SizeX;
+                    heightMapBMP = new Bitmap(BMPsizeX, BMPsizeY);
+                    showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                    isMapOk = true;
+                    enableControls(true);
+                }
             }
         }
 
@@ -378,7 +394,9 @@ namespace GRBL_Plotter
         { }
 
         private void ControlHeightMapForm_FormClosing(object sender, FormClosingEventArgs e)
-        { Properties.Settings.Default.heightMapX2 = nUDX2.Value;
+        {
+            Logger.Trace("++++++ ControlHeightMapForm Stop ++++++");
+            Properties.Settings.Default.heightMapX2 = nUDX2.Value;
             Properties.Settings.Default.heightMapY2 = nUDY2.Value;
             Properties.Settings.Default.locationImageForm = Location;
         }
@@ -416,6 +434,7 @@ namespace GRBL_Plotter
             enableControls(scanStarted);
             if (!scanStarted)
             {
+                Logger.Info("Generate Code");
                 isMapOk = false;
                 timeInit = DateTime.UtcNow;
                 elapsed = TimeSpan.Zero;
@@ -562,7 +581,7 @@ namespace GRBL_Plotter
             tmpCode.AppendFormat("X{0} Y{1} Z{2}\r\n", gcode.frmtNum((float)tmp.X), gcode.frmtNum((float)tmp.Y), gcode.frmtNum((float)z));
         }
 
-    public void stopScan()
+        public void stopScan()
         {   scanStarted = false;
             btnStartHeightScan.Text = "Generate Height Map";
             progressBar1.Maximum = 100;

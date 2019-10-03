@@ -51,6 +51,7 @@ namespace GRBL_Plotter
         /// </summary>
         public string transformGCodeMirror(translate shiftToZero = translate.MirrorX)
         {
+            Logger.Debug("Mirror {0}", shiftToZero);
 #if (debuginfo)
             log.Add("   GCodeVisu transform Mirror");
 #endif
@@ -126,6 +127,7 @@ namespace GRBL_Plotter
 
         public string transformGCodeRadiusCorrection(double radius)
         {
+            Logger.Debug("Radius correction r: {0}", radius);
 #if (debuginfo)
             log.clear();
             log.Add("### GCodeVisu radius correction ###");

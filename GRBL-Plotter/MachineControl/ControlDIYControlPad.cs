@@ -16,7 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*  2018-12-26	Commits from RasyidUFA via Github
+/* 
+ * 2018-12-26 Commits from RasyidUFA via Github
+ * 2019-08-15 add logger, line 120 replace .Invoke by .BeginInvoke
 */
 using System;
 using System.Collections.Generic;
@@ -31,8 +33,13 @@ namespace GRBL_Plotter
         private byte rxChar;
         public bool isHeightProbing = false;
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public ControlDIYControlPad()
-        {   InitializeComponent();
+        {
+            Logger.Trace("++++++ ControlDIYControlPad START ++++++");
+            InitializeComponent();
         }
 
         private void btnOpenPort_Click(object sender, EventArgs e)
@@ -59,7 +66,9 @@ namespace GRBL_Plotter
 
         private bool openPort()
         {   try
-            {   serialPort.PortName = cbPort.Text;
+            {
+                Logger.Info("closePort {0}", serialPort.PortName);
+                serialPort.PortName = cbPort.Text;
                 serialPort.BaudRate = Convert.ToInt32(cbBaud.Text);
                 serialPort.Encoding = Encoding.GetEncoding(28591);
                 serialPort.Open();
@@ -70,6 +79,7 @@ namespace GRBL_Plotter
             }
             catch (Exception err)
             {
+                Logger.Error(err, "-closePort-");
                 logError("Opening port", err);
                 return (false);
             }
@@ -77,13 +87,18 @@ namespace GRBL_Plotter
         public bool closePort()
         {   try
             {   if (serialPort.IsOpen)
-                {   serialPort.Close(); }
+                {
+                    Logger.Info("closePort {0}", serialPort.PortName);
+                    serialPort.Close();
+                }
                 rtbLog.AppendText("Close " + cbPort.Text + "\r\n");
                 btnOpenPort.Text = "Open";
                 return (true);
             }
             catch (Exception err)
-            {   logError("Closing port", err);
+            {
+                Logger.Error(err, "-closePort-");
+                logError("Closing port", err);
                 return (false);
             }
         }
@@ -110,7 +125,7 @@ namespace GRBL_Plotter
                         rxTmpChar = rxTmpChart;
                         if ((rxTmpChar > 0x7F) || (isRealTimeCmd.Contains(rxTmpChar)))  // is real time cmd ?
                         {   rxChar = rxTmpChar;
-                            this.Invoke(new EventHandler(handleRxData));
+                            this.BeginInvoke(new EventHandler(handleRxData));
                         }
                         else
                         {   rxTmpString += (char)rxTmpChar;
@@ -119,7 +134,7 @@ namespace GRBL_Plotter
                                 {
                                     rxChar = 0;
                                     rxString = rxTmpString.Trim();
-                                    this.Invoke(new EventHandler(handleRxData));
+                                    this.BeginInvoke(new EventHandler(handleRxData));
                                 }
                                 rxTmpString = "";
                             }
@@ -127,9 +142,11 @@ namespace GRBL_Plotter
                         lastChar = rxTmpChar;
                     }
                 }
-                catch (Exception errort)
-                {   serialPort.Close();
-                    logError("Error reading line from serial port", errort);
+                catch (Exception err)
+                {
+                    Logger.Error(err, "-DataReceived-");
+                    serialPort.Close();
+                    logError("Error reading line from serial port", err);
                 }
             }
         }
@@ -182,16 +199,18 @@ namespace GRBL_Plotter
                         rtbLog.ScrollToCaret();
                     }
                 }
-                else {
+                else
+                {
                     if (cBFeedback.Checked)
                     {   rtbLog.AppendText(string.Format(">| {0} \r\n", data));
                         rtbLog.ScrollToCaret();
                     }
                 }
-
             }
-            catch (Exception)
-            {   if (cBFeedback.Checked)
+            catch (Exception err)
+            {
+                Logger.Error(err, "-sendLine-");
+                if (cBFeedback.Checked)
                     rtbLog.AppendText(string.Format(">| {0} \r\n", data));
             }
             while (rtbLog.Lines.Length > 99)
@@ -224,7 +243,9 @@ namespace GRBL_Plotter
         }
 
         private void ControlDIYControlPad_FormClosing(object sender, FormClosingEventArgs e)
-        {   Properties.Settings.Default.serialPortDIY = cbPort.Text;
+        {
+            Logger.Trace("++++++ ControlDIYControlPad Stop ++++++");
+            Properties.Settings.Default.serialPortDIY = cbPort.Text;
             Properties.Settings.Default.serialBaudDIY = cbBaud.Text;
         }
 

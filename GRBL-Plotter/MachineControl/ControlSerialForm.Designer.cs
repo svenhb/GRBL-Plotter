@@ -77,12 +77,17 @@ namespace GRBL_Plotter
             this.label13 = new System.Windows.Forms.Label();
             this.btnCheckGRBL = new System.Windows.Forms.Button();
             this.btnGRBLReset = new System.Windows.Forms.Button();
+            this.btnGRBLHardReset = new System.Windows.Forms.Button();
+            this.btnGRBLCmndParser = new System.Windows.Forms.Button();
+            this.btnGRBLCmndBuild = new System.Windows.Forms.Button();
             this.lblSrState = new System.Windows.Forms.Label();
             this.cBCommand = new System.Windows.Forms.ComboBox();
             this.cbStatus = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tBURL = new System.Windows.Forms.TextBox();
             this.btnCheckGRBLResult = new System.Windows.Forms.Button();
             this.timerSerial = new System.Windows.Forms.Timer(this.components);
+            this.cBTelnet = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -281,8 +286,33 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnGRBLReset, "btnGRBLReset");
             this.btnGRBLReset.Name = "btnGRBLReset";
+            this.toolTipSerial.SetToolTip(this.btnGRBLReset, resources.GetString("btnGRBLReset.ToolTip"));
             this.btnGRBLReset.UseVisualStyleBackColor = true;
             this.btnGRBLReset.Click += new System.EventHandler(this.btnGRBLReset_Click);
+            // 
+            // btnGRBLHardReset
+            // 
+            resources.ApplyResources(this.btnGRBLHardReset, "btnGRBLHardReset");
+            this.btnGRBLHardReset.Name = "btnGRBLHardReset";
+            this.toolTipSerial.SetToolTip(this.btnGRBLHardReset, resources.GetString("btnGRBLHardReset.ToolTip"));
+            this.btnGRBLHardReset.UseVisualStyleBackColor = true;
+            this.btnGRBLHardReset.Click += new System.EventHandler(this.btnGRBLHardReset_Click);
+            // 
+            // btnGRBLCmndParser
+            // 
+            resources.ApplyResources(this.btnGRBLCmndParser, "btnGRBLCmndParser");
+            this.btnGRBLCmndParser.Name = "btnGRBLCmndParser";
+            this.toolTipSerial.SetToolTip(this.btnGRBLCmndParser, resources.GetString("btnGRBLCmndParser.ToolTip"));
+            this.btnGRBLCmndParser.UseVisualStyleBackColor = true;
+            this.btnGRBLCmndParser.Click += new System.EventHandler(this.btnGRBLCmndParser_Click);
+            // 
+            // btnGRBLCmndBuild
+            // 
+            resources.ApplyResources(this.btnGRBLCmndBuild, "btnGRBLCmndBuild");
+            this.btnGRBLCmndBuild.Name = "btnGRBLCmndBuild";
+            this.toolTipSerial.SetToolTip(this.btnGRBLCmndBuild, resources.GetString("btnGRBLCmndBuild.ToolTip"));
+            this.btnGRBLCmndBuild.UseVisualStyleBackColor = true;
+            this.btnGRBLCmndBuild.Click += new System.EventHandler(this.btnGRBLCmndBuild_Click);
             // 
             // lblSrState
             // 
@@ -308,6 +338,7 @@ namespace GRBL_Plotter
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tBURL);
             this.groupBox1.Controls.Add(this.btnCheckGRBLResult);
             this.groupBox1.Controls.Add(this.btnCheckGRBL);
             this.groupBox1.Controls.Add(this.cbStatus);
@@ -329,6 +360,11 @@ namespace GRBL_Plotter
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
+            // tBURL
+            // 
+            resources.ApplyResources(this.tBURL, "tBURL");
+            this.tBURL.Name = "tBURL";
+            // 
             // btnCheckGRBLResult
             // 
             resources.ApplyResources(this.btnCheckGRBLResult, "btnCheckGRBLResult");
@@ -341,10 +377,19 @@ namespace GRBL_Plotter
             this.timerSerial.Interval = 500;
             this.timerSerial.Tick += new System.EventHandler(this.timerSerial_Tick);
             // 
+            // cBTelnet
+            // 
+            resources.ApplyResources(this.cBTelnet, "cBTelnet");
+            this.cBTelnet.Name = "cBTelnet";
+            // 
             // ControlSerialForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cBTelnet);
+            this.Controls.Add(this.btnGRBLCmndBuild);
+            this.Controls.Add(this.btnGRBLCmndParser);
+            this.Controls.Add(this.btnGRBLHardReset);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cBCommand);
             this.Controls.Add(this.btnGRBLReset);
@@ -408,5 +453,10 @@ namespace GRBL_Plotter
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCheckGRBL;
         private System.Windows.Forms.Button btnCheckGRBLResult;
+        private System.Windows.Forms.Button btnGRBLHardReset;
+        private System.Windows.Forms.Button btnGRBLCmndParser;
+        private System.Windows.Forms.Button btnGRBLCmndBuild;
+        private System.Windows.Forms.CheckBox cBTelnet;
+        private System.Windows.Forms.TextBox tBURL;
     }
 }

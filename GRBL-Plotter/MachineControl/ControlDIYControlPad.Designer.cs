@@ -110,9 +110,9 @@
             // cBFeedback
             // 
             this.cBFeedback.AutoSize = true;
-            this.cBFeedback.Checked = global::GRBL_Plotter.Properties.Settings.Default.feedbackDIY;
+            this.cBFeedback.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlDIYShowFeedback;
             this.cBFeedback.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBFeedback.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "feedbackDIY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBFeedback.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlDIYShowFeedback", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBFeedback.Location = new System.Drawing.Point(2, 25);
             this.cBFeedback.Name = "cBFeedback";
             this.cBFeedback.Size = new System.Drawing.Size(164, 17);

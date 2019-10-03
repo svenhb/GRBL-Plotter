@@ -22,11 +22,13 @@
  * 2018-01-01   edit parseStatus to identify also Hold:0
  * 2019-05-10   move _serial_form.isGrblVers0 to here grbl.isVersion_0
  * https://github.com/fra589/grbl-Mega-5X
+ * 2019-08-13   add PRB, TLO status
 */
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace GRBL_Plotter
 {
@@ -88,6 +90,7 @@ namespace GRBL_Plotter
             coordinates.Clear();
         }
 
+        // store grbl settings https://github.com/gnea/grbl/wiki/Grbl-v1.1-Configuration#grbl-settings
         public static void setSettings(int id, string value)
         {   float tmp = 0;
             if (float.TryParse(value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out tmp))
@@ -103,28 +106,43 @@ namespace GRBL_Plotter
             else
                 return -1;
         }
+
+        // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
         public static void setCoordinates(string id, string value)
         {   xyzPoint tmp = new xyzPoint();
-            string allowed = "PRBG54G55G56G57G58G59G28G30G92";
+            string allowed = "PRBG54G55G56G57G58G59G28G30G92TLO";
             if (allowed.Contains(id))
-            {
-                getPosition("abc:" + value, ref tmp);
+            {   getPosition("abc:" + value, ref tmp);
                 if (coordinates.ContainsKey(id))
                     coordinates[id] = tmp;
                 else
                     coordinates.Add(id, tmp);
             }
         }
+
         public static string displayCoord(string key)
-        {
-            if (coordinates.ContainsKey(key))
-                return String.Format("{0,8:###0.000} {1,8:###0.000} {2,8:###0.000}", coordinates[key].X, coordinates[key].Y, coordinates[key].Z);
+        {   if (coordinates.ContainsKey(key))
+            {   if (key == "TLO")
+                    return String.Format("                  {0,8:###0.000}", coordinates[key].Z);
+                else
+                {   string coordString = String.Format("{0,8:###0.000} {1,8:###0.000} {2,8:###0.000}", coordinates[key].X, coordinates[key].Y, coordinates[key].Z);
+                    if (axisA) coordString = String.Format("{0} {1,8:###0.000}", coordString, coordinates[key].A);
+                    if (axisB) coordString = String.Format("{0} {1,8:###0.000}", coordString, coordinates[key].B);
+                    if (axisC) coordString = String.Format("{0} {1,8:###0.000}", coordString, coordinates[key].C);
+                    return coordString;
+                }
+            }
             else
                 return "no data";
         }
+        public static bool getPRBStatus()
+        {   if (coordinates.ContainsKey("PRB"))
+            {   return (coordinates["PRB"].A==0.0)? false:true;    }
+            return false;
+        }
 
         private static void setMessageString(ref Dictionary<string, string> myDict, string resource)
-        {   string[] tmp = resource.Split('\n');
+        {   string[] tmp = resource.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             foreach (string s in tmp)
             {   string[] col = s.Split(',');
                 string message = col[col.Length - 1].Trim('"');
@@ -135,12 +153,15 @@ namespace GRBL_Plotter
         /// <summary>
         /// parse single gcode line to set parser state
         /// </summary>
+        private static bool getTLO = false;
         public static void updateParserState(string line, ref pState myParserState)
         {
             char cmd = '\0';
             string num = "";
             bool comment = false;
             double value = 0;
+            getTLO = false;
+            myParserState.changed = false;
 
             if (!(line.StartsWith("$") || line.StartsWith("("))) //do not parse grbl commands
             {   try
@@ -183,7 +204,7 @@ namespace GRBL_Plotter
         /// </summary>
         private static void setParserState(char cmd, double value, ref pState myParserState)
         {
-            myParserState.changed = false;
+//            myParserState.changed = false;
             switch (Char.ToUpper(cmd))
             {   case 'G':
                     if (value <= 3)
@@ -192,24 +213,29 @@ namespace GRBL_Plotter
                     }
                     if ((value >= 17) && (value <= 19))
                         myParserState.plane_select = (byte)value;
-                    if ((value == 20) || (value == 21))
+                    else if ((value == 20) || (value == 21))
                         myParserState.units = (byte)value;
-                    if ((value >= 54) && (value <= 59))
+                    else if ((value >= 43) && (value < 44))
+                    { myParserState.TLOactive = true; getTLO = true; }
+                    else if (value == 49)
+                        myParserState.TLOactive = false;
+                    else if ((value >= 54) && (value <= 59))
                         myParserState.coord_select = (byte)value;
-                    if ((value == 90) || (value == 91))
+                    else if ((value == 90) || (value == 91))
                         myParserState.distance = (byte)value;
-                    if ((value == 93) || (value == 94))
+                    else if ((value == 93) || (value == 94))
                         myParserState.feed_rate = (byte)value;
                     myParserState.changed = true;
+//                    MessageBox.Show("set parser state "+cmd + "  " + value.ToString()+ "  "+ myParserState.TLOactive.ToString());
                     break;
                 case 'M':
                     if ((value <= 2) || (value == 30))
                         myParserState.program_flow = (byte)value;    // M0, M1 pause, M2, M30 stop
-                    if ((value >= 3) && (value <= 5))
+                    else if ((value >= 3) && (value <= 5))
                         myParserState.spindle = (byte)value;    // M3, M4 start, M5 stop
-                    if ((value >= 7) && (value <= 9))
+                    else if ((value >= 7) && (value <= 9))
                         myParserState.coolant = (byte)value;    // M7, M8 on   M9 coolant off
-                    if (value == 6)
+                    else if (value == 6)
                         myParserState.toolchange = true;
                     myParserState.changed = true;
                     break;
@@ -224,6 +250,10 @@ namespace GRBL_Plotter
                 case 'T':
                     myParserState.tool = (byte)value;
                     myParserState.changed = true;
+                    break;
+                case 'Z':
+                    if (getTLO)
+                        myParserState.tool_length = value;
                     break;
             }
         }
@@ -260,6 +290,12 @@ namespace GRBL_Plotter
             string[] dataValue = dataField[1].Split(',');
             //            axisA = false; axisB = false; axisC = false;
             axisCount = 0;
+            if (dataValue.Length == 1)
+            {
+                Double.TryParse(dataValue[0], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.Z);
+                position.X = 0;
+                position.Y = 0;
+            }
             if (dataValue.Length > 2)
             {
                 Double.TryParse(dataValue[0], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.X);
@@ -292,7 +328,8 @@ namespace GRBL_Plotter
         {   string[] tmp = rxString.Split(':');
             string msg = " no information found '" + tmp[1] + "'";
             try {   msg = grbl.messageErrorCodes[tmp[1].Trim()];
-                    if (Convert.ToInt16(tmp[1].Trim()) >= 32)
+                    int errnr = Convert.ToInt16(tmp[1].Trim());
+                    if ((errnr >= 32) && (errnr <= 34))
                         msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";
                 }
             catch { }
@@ -372,17 +409,17 @@ namespace GRBL_Plotter
 
     public class pState
     {
-        public bool changed=true;
+        public bool changed=false;
         public int motion=0;           // {G0,G1,G2,G3,G38.2,G80} 
         public int feed_rate=94;       // {G93,G94} 
         public int units=21;           // {G20,G21} 
         public int distance=90;        // {G90,G91} 
-                                    // uint8_t distance_arc; // {G91.1} NOTE: Don't track. Only default supported. 
+                                        // uint8_t distance_arc; // {G91.1} NOTE: Don't track. Only default supported. 
         public int plane_select=17;    // {G17,G18,G19} 
-                                    // uint8_t cutter_comp;  // {G40} NOTE: Don't track. Only default supported. 
-                                    //        int tool_length;     // {G43.1,G49} 
+                                        // uint8_t cutter_comp;  // {G40} NOTE: Don't track. Only default supported. 
+        public double tool_length=0;       // {G43.1,G49} 
         public int coord_select=54;    // {G54,G55,G56,G57,G58,G59} 
-                                    // uint8_t control;      // {G61} NOTE: Don't track. Only default supported. 
+                                        // uint8_t control;      // {G61} NOTE: Don't track. Only default supported. 
         public int program_flow=0;    // {M0,M1,M2,M30} 
         public int coolant=9;         // {M7,M8,M9} 
         public int spindle=5;         // {M3,M4,M5} 
@@ -390,6 +427,7 @@ namespace GRBL_Plotter
         public int tool=0;            // tool number
         public double FR=0;           // feedrate
         public double SS=0;           // spindle speed
+        public bool TLOactive = false;// Tool length offset
 
         public void reset()
         {
@@ -397,7 +435,8 @@ namespace GRBL_Plotter
             coord_select = 54; distance = 90; feed_rate = 94;
             program_flow = 0; coolant = 9; spindle = 5;
             toolchange = false; tool = 0; FR = 0; SS = 0;
-            changed = true;
+            TLOactive = false; tool_length = 0;
+            changed = false;
         }
 
     };
@@ -433,6 +472,16 @@ namespace GRBL_Plotter
         public grblStreaming Status
         { get { return status; } }
     }
+/*
+    public class RxEventArgs : EventArgs
+    {
+        private string rxdat;
+        public RxEventArgs(string rx)
+        { rxdat = rx; }
+        public string rxData
+        { get { return rxdat; } }
+    }
+    */
     public class PosEventArgs : EventArgs
     {
         private xyzPoint posWorld, posMachine;

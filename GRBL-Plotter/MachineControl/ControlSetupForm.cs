@@ -19,6 +19,7 @@
 /*
  * 2017-01-01 check form-location and fix strange location
  * 2019-03-09 add color, width, X/Y and invert for pathRotaryInfo to show rotary over X or Y
+ * 2019-08-15 add logger
 */
 
 using System;
@@ -29,15 +30,21 @@ using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 //using System.Windows.Input;
 
 namespace GRBL_Plotter
 {
     public partial class ControlSetupForm : Form
     {
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+  //      private const string toolTableDefaultName = "current.csv";
+
         public ControlSetupForm()
         {
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Logger.Trace("++++++ ControlSetupForm START ++++++");
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
@@ -49,12 +56,15 @@ namespace GRBL_Plotter
         private string defaultToolList = "tools.csv";
         private void SetupForm_Load(object sender, EventArgs e)
         {
-            defaultToolList = System.Windows.Forms.Application.StartupPath + "\\tools.csv";
+            defaultToolList = System.Windows.Forms.Application.StartupPath + datapath.tools + "\\" + toolTable.defaultFileName;
             if ((!ImportCSVToDgv(defaultToolList)) || (dGVToolList.Rows.Count == 1))
             {
                 string[] tmp = toolTable.defaultTool;  // { "1", "000000", "Black", "0.0", "0.0", "0.0", "3.0", "500" };
                 dGVToolList.Rows.Add(tmp);
             }
+            fillToolTableFileList(Application.StartupPath + datapath.tools);
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+            lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
 
             string text;
             string[] parts;// = new string[] { "-", "(-)" };
@@ -63,7 +73,7 @@ namespace GRBL_Plotter
             for (int i = 1; i <= 16; i++)
             {
                 parts = new string[2];
-                text = Properties.Settings.Default["custom" + i.ToString()].ToString();
+                text = Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString();
                 if (text.IndexOf('|') > 0)
                 { parts = text.Split('|'); }
                 else
@@ -76,19 +86,25 @@ namespace GRBL_Plotter
              }
 
          //   lvCustomButtons.Items[0].Selected = true;
-            setButtonColors(btnColorBackground, Properties.Settings.Default.colorBackground);
-            setButtonColors(btnColorRuler, Properties.Settings.Default.colorRuler);
-            setButtonColors(btnColorPenUp, Properties.Settings.Default.colorPenUp);
-            setButtonColors(btnColorPenDown, Properties.Settings.Default.colorPenDown);
-            setButtonColors(btnColorTool, Properties.Settings.Default.colorTool);
-            setButtonColors(btnColorMarker, Properties.Settings.Default.colorMarker);
-            setButtonColors(btnColorHeightMap, Properties.Settings.Default.colorHeightMap);
-            setButtonColors(btnColorMachineLimit, Properties.Settings.Default.colorMachineLimit);
+            setButtonColors(btnColorBackground, Properties.Settings.Default.gui2DColorBackground);
+            setButtonColors(btnColorRuler, Properties.Settings.Default.gui2DColorRuler);
+            setButtonColors(btnColorPenUp, Properties.Settings.Default.gui2DColorPenUp);
+            setButtonColors(btnColorPenDown, Properties.Settings.Default.gui2DColorPenDown);
+            setButtonColors(btnColorTool, Properties.Settings.Default.gui2DColorTool);
+            setButtonColors(btnColorMarker, Properties.Settings.Default.gui2DColorMarker);
+            setButtonColors(btnColorHeightMap, Properties.Settings.Default.gui2DColorHeightMap);
+            setButtonColors(btnColorMachineLimit, Properties.Settings.Default.gui2DColorMachineLimit);
             nUDImportDecPlaces.Value = Properties.Settings.Default.importGCDecPlaces;
 
             Location = Properties.Settings.Default.locationSetForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+
+            //if (cBImportSVGSort0.Checked)
+            int sort = Properties.Settings.Default.importGroupSort;
+            rBImportSVGSort0.Checked = (sort == 0);
+            rBImportSVGSort1.Checked = (sort == 1);
+            rBImportSVGSort2.Checked = (sort == 2);
 
             if (Properties.Settings.Default.importGCSpindleCmd)
                 rBImportGCSpindleCmd1.Checked = true;
@@ -132,14 +148,24 @@ namespace GRBL_Plotter
             lblJoystickSize.Text = hScrollBar1.Value.ToString();
 
             cBoxPollInterval.SelectedIndex = Properties.Settings.Default.grblPollIntervalIndex;
+
+            checkVisibility();
+            cBImportSVGGroup_CheckedChanged(sender, e);
+            cBToolTableUse_CheckedChanged(sender, e);
+            cBImportSVGResize_CheckedChanged(sender, e);
+            cBImportGCUsePWM_CheckedChanged(sender, e);
+            cBImportGCUseIndividual_CheckedChanged(sender, e);
+            cBImportGCDragKnife_CheckedChanged(sender, e);
+            cBImportGCLineSegments_CheckedChanged(sender, e);
+            cBImportGCNoArcs_CheckedChanged(sender, e);
         }
 
         private void saveSettings()
         {
             for (int i = 1; i <= 16; i++)
             {
-                try { Properties.Settings.Default["custom" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value; }
-                catch { Properties.Settings.Default["custom" + i.ToString()] = " | "; }
+                try { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value; }
+                catch { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = " | "; }
             }
             Properties.Settings.Default.importGCDecPlaces = nUDImportDecPlaces.Value;
             Properties.Settings.Default.importGCSpindleCmd = rBImportGCSpindleCmd1.Checked;
@@ -206,6 +232,7 @@ namespace GRBL_Plotter
 
         private void SetupForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Logger.Trace("++++++ ControlSetupForm STOP ++++++");
             Properties.Settings.Default.locationSetForm = Location;
             saveSettings();
         }
@@ -238,29 +265,10 @@ namespace GRBL_Plotter
             nUDJoyZSpeed5.Value = (decimal)((double)nUDJoyZStep5.Value / time * 60 * correct);
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://openclipart.org/tags/svg"); }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://publicdomainvectors.org/"); }
-
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://simplemaps.com/"); }
-
-        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"http://www.cliparts101.com/"); }
-
-        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"http://www.clker.com/"); }
-
-        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://free.clipartof.com/"); }
-
-        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"https://github.com/gnea/grbl/wiki"); }
-
-        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        { Process.Start(@"http://linuxcnc.org/docs/html/gcode.html"); }
+        private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {   LinkLabel clickedLink = sender as LinkLabel;
+            Process.Start(clickedLink.Tag.ToString()); }
 
         private void tabPage6_Enter(object sender, EventArgs e)
         { timer1.Enabled = true; }
@@ -399,11 +407,13 @@ namespace GRBL_Plotter
             if (lblSetIndex == 4) { tBShapeSet4.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
         }
 
-
         private void ExportDgvToCSV(string file)
-        {   //ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
-            string[] deflt = { "1", "000000", "not set", "0", "0", "0", "1", "100", "-1", "2", "100", "1000", "100" };
+        {
+// fields: ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z - speed,Z - save,Z - depth,Z - step, spindleSpeed, overlap, gcode
+            int[] cellWidth  = {3,7,-20,5,5,5,4,4,5,4,4,5,6,4,1,1,1 };
+            string format = "{0,2}";
             var csv = new StringBuilder();
+            csv.AppendLine("# T-Nr; Color; T-Name; ExPosX; ExPosY; ExPosZ; T-Diameter; XY-Feed; Z-Feed; Z-Save; Z-Deepth; Z-Step; Spindle-Spd; Step-over %, GCode");
             foreach (DataGridViewRow dgvR in dGVToolList.Rows)
             {
                 bool firstColumn = true;
@@ -411,50 +421,56 @@ namespace GRBL_Plotter
                 {   for (int j = 0; j < dGVToolList.Columns.Count; ++j)
                     {   object val = dgvR.Cells[j].Value;
                         if (!firstColumn)
-                            csv.Append(';');
+                            csv.Append(',');                            // csv delimiter
                         if (val == null)
-                            csv.Append(deflt[j]);   // fill with default value
+                            csv.Append(toolTable.defaultTool[j]);       // fill with default value
                         else
-                            csv.AppendFormat("{0}",val);
+                        {
+                            format = "{0," + cellWidth[j].ToString() + "}";
+                            string valstr = string.Format(format, val).Replace(",", ".");  // remove any false delimiter
+                            csv.AppendFormat("{0}", valstr);
+                        }
                         firstColumn = false;
                     }
                     csv.Append("\r\n");
                 }
             }
+            Logger.Trace("Save Tool Table {0}", file);
             File.WriteAllText(file, csv.ToString());
             dGVToolList.DefaultCellStyle.NullValue = dGVToolList.Columns.Count;
-
+            fillToolTableFileList(Application.StartupPath + datapath.tools);
         }
 
         private bool ImportCSVToDgv(string file)
         {
             if (File.Exists(file))
             {
+                Logger.Trace("Load Tool Table {0}", file);
                 dGVToolList.Rows.Clear();
                 string[] readText = File.ReadAllLines(file);
                 string[] col;
                 string tmp;
-                int row = 0,l;
+                int row = 0;
                 foreach (string s in readText)
                 {
+                    if (s.StartsWith("#") || s.StartsWith("/"))     // jump over comments
+                        continue;
+
                     if (s.Length > 10)
                     {
-                        col = s.Split(';');
-                        if (col.Length < 13)        // insert Z inc. value
-                        {   tmp = s+";0";
-                            col = tmp.Split(';');
-                            for (l = col.Length-1; l > 9; l--) 
-                            { col[l] = col[l - 1]; }
-                            col[l] = "99";
-                        }
-                        
+                        col = s.Split(',');
                         dGVToolList.Rows.Add();
-                        for (int j = 0; j < col.Length; ++j)
-                        {   tmp = col[j].Trim();
-                            dGVToolList.Rows[row].Cells[j].Value = tmp.Length == 0? "0":tmp;  // fill up empty cells
+                        for (int j = 0; j < toolTable.defaultTool.Length; ++j)
+                        {   if (j < col.Length)
+                            {
+                                tmp = col[j].Trim();
+                                dGVToolList.Rows[row].Cells[j].Value = tmp;  // fill up empty cells
+                            }
+                            else
+                                dGVToolList.Rows[row].Cells[j].Value = toolTable.defaultTool[j];
                         }
                         try
-                        {   long clr = Convert.ToInt32(col[1].Substring(0,6), 16) | 0xff000000;
+                        {   long clr = Convert.ToInt32(col[1].Trim().Substring(0,6), 16) | 0xff000000;
                             dGVToolList.Rows[row].DefaultCellStyle.BackColor = Color.FromArgb((int)clr);
                             dGVToolList.Rows[row].DefaultCellStyle.ForeColor = ContrastColor(Color.FromArgb((int)clr));
                         }
@@ -488,15 +504,62 @@ namespace GRBL_Plotter
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
-            if (dGVToolList.Rows.Count > 1)
-                ExportDgvToCSV(defaultToolList);
+    //        if (dGVToolList.Rows.Count > 1)
+   //             ExportDgvToCSV(defaultToolList);
 
+            Properties.Settings.Default.toolTableOriginal = false;
+            lblToolListChanged.Text = "Changed List should be saved \r\nvia 'Save tool table'";
+            lblToolListChanged.BackColor = Color.Yellow;
         }
         private void btnReNumberTools_Click(object sender, EventArgs e)
         {   int number = 1;
             foreach (DataGridViewRow dgvR in dGVToolList.Rows)
             {   dgvR.Cells[0].Value = number++;
             }
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dGVToolList;
+            try
+            {
+                int totalRows = dgv.Rows.Count;
+                // get index of the row for the selected cell
+                int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
+                if (rowIndex == 0)
+                    return;
+                // get index of the column for the selected cell
+                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+                DataGridViewRow selectedRow = dgv.Rows[rowIndex];
+                dgv.Rows.Remove(selectedRow);
+                dgv.Rows.Insert(rowIndex - 1, selectedRow);
+                dgv.ClearSelection();
+//                dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
+                dgv.Rows[rowIndex - 1].Selected = true;
+            }
+            catch { }
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dGVToolList;
+            try
+            {
+                int totalRows = dgv.Rows.Count;
+                // get index of the row for the selected cell
+                int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
+                if (rowIndex == totalRows - 1)
+                    return;
+                // get index of the column for the selected cell
+                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+                DataGridViewRow selectedRow = dgv.Rows[rowIndex];
+                dgv.Rows.Remove(selectedRow);
+                dgv.Rows.Insert(rowIndex + 1, selectedRow);
+                dgv.ClearSelection();
+  //              dgv.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
+                dgv.Rows[rowIndex + 1].Selected = true;
+            }
+            catch { }
         }
 
         private void dGV_SortColor(object sender, DataGridViewSortCompareEventArgs e)
@@ -515,6 +578,7 @@ namespace GRBL_Plotter
         {
             // Displays a SaveFileDialog so the user can save the List
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = importPath;
             saveFileDialog1.Filter = "CSV File|*.csv";
             saveFileDialog1.Title = "Save Tool List as CSV";
             saveFileDialog1.ShowDialog();
@@ -523,9 +587,10 @@ namespace GRBL_Plotter
             {
                 ExportDgvToCSV(saveFileDialog1.FileName);
             }
+            fillToolTableFileList(Application.StartupPath + datapath.tools);
         }
 
-        private static string importPath = Application.StartupPath+"\\_misc";
+        private static string importPath = Application.StartupPath + datapath.tools;
         private void btnToolImport_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -534,10 +599,39 @@ namespace GRBL_Plotter
             openFileDialog1.Title = "Load Tool List";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                ImportCSVToDgv(openFileDialog1.FileName);
-                ExportDgvToCSV(defaultToolList);
-                importPath = openFileDialog1.FileName;
+                loadToolList(openFileDialog1.FileName);
+     //           ImportCSVToDgv(openFileDialog1.FileName);
+      //          ExportDgvToCSV(defaultToolList);
+         //       importPath = openFileDialog1.FileName;
             }
+        }
+        private void loadToolList(string filename)
+        {   
+            ImportCSVToDgv(filename);
+            Properties.Settings.Default.toolTableOriginal = true;
+            Properties.Settings.Default.toolTableLastLoaded = Path.GetFileName(filename);
+            lblToolListLoaded.Text = Path.GetFileName(filename);
+            lblToolListChanged.Text = "orginal";
+            lblToolListChanged.BackColor = Color.Transparent;
+            ExportDgvToCSV(defaultToolList);
+        }
+        private void btnLoadToolTable_Click(object sender, EventArgs e)
+        {
+            if (lbFiles.Text == "")
+            {
+                MessageBox.Show("No file selected...", "Attention");
+                return;
+            }
+            string path = Application.StartupPath + datapath.tools + "\\" + lbFiles.Text;
+            if (path.StartsWith("laser"))
+                cBToolLaser.Checked = true;
+            //           MessageBox.Show(path);
+            loadToolList(path);
+        }
+        private void btnDeleteToolTable_Click(object sender, EventArgs e)
+        {
+            File.Delete(Application.StartupPath + datapath.tools + "\\" + lbFiles.Text);
+            fillToolTableFileList(Application.StartupPath + datapath.tools);
         }
 
         public string commandToSend = "";
@@ -597,11 +691,12 @@ namespace GRBL_Plotter
 
         private void cBImportGCTool_CheckedChanged(object sender, EventArgs e)
         {
-            nUDImportGCSSpeed.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTSSpeed.Checked);
-            nUDImportGCFeedXY.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTXYFeed.Checked);
-            nUDImportGCFeedZ.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZFeed.Checked);
-            nUDImportGCZDown.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZDeepth.Checked);
-            nUDImportGCZIncrement.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZIncrement.Checked);
+            /*         nUDImportGCSSpeed.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTSSpeed.Checked);
+                     nUDImportGCFeedXY.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTXYFeed.Checked);
+                     nUDImportGCFeedZ.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZFeed.Checked);
+                     nUDImportGCZDown.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZDeepth.Checked);
+                     nUDImportGCZIncrement.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZIncrement.Checked);*/
+            checkVisibility();
         }
 
         private void btnFileDialogTT1_Click(object sender, EventArgs e)
@@ -686,9 +781,10 @@ namespace GRBL_Plotter
 
         private void listHotkeys()
         {   tBHotkeyList.Clear();
-            string fileName = System.Environment.CurrentDirectory + "\\hotkeys.xml";
+            string fileName = Application.StartupPath + datapath.hotkeys;
             if (!File.Exists(fileName))
-            {   tBHotkeyList.Text = "File 'hotkeys.xml' not found in program-directory, no hotkeys set!";
+            {   tBHotkeyList.Text = "File 'hotkeys.xml' not found, no hotkeys set!";
+                Logger.Error("File 'hotkeys.xml' not found in ", fileName);
                 return;
             }
             string tmp = File.ReadAllText(fileName); ;
@@ -732,6 +828,257 @@ namespace GRBL_Plotter
         private void cBoxPollInterval_SelectedIndexChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.grblPollIntervalIndex = cBoxPollInterval.SelectedIndex;
+        }
+
+        private void btnCheckSpindle_Click(object sender, EventArgs e)
+        {
+            if (grbl.getSetting(30) < 0)
+                MessageBox.Show("No information available - please connect grbl-controller", "Attention!");
+            else
+            {
+                string tmp = "";
+                tmp += string.Format("Current grbl Settings:\rMax spindle speed:\t$30={0}\rMin spindle speed:\t$31={1}\rLaser Mode:\t\t$32={2}", grbl.getSetting(30), grbl.getSetting(31), grbl.getSetting(32));
+                MessageBox.Show(tmp,"Information");
+            }
+        }
+
+        private void rBImportSVGSort0_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rBImportSVGSort0.Checked)
+                Properties.Settings.Default.importGroupSort = 0;
+            if (rBImportSVGSort1.Checked)
+                Properties.Settings.Default.importGroupSort = 1;
+            if (rBImportSVGSort2.Checked)
+                Properties.Settings.Default.importGroupSort = 2;
+        }
+
+        private void dGVToolList_SelectionChanged(object sender, EventArgs e)
+        {
+            bool enabled = (dGVToolList.SelectedRows.Count > 0);
+            btnUp.Visible = enabled;
+            btnDown.Visible = enabled;
+        }
+
+        private void fillToolTableFileList(string Root)
+        {
+            List<string> FileArray = new List<string>();
+            try
+            {
+                string[] Files = System.IO.Directory.GetFiles(Root);
+                string[] Folders = System.IO.Directory.GetDirectories(Root);
+
+                lbFiles.Items.Clear();
+                for (int i = 0; i < Files.Length; i++)
+                {
+                    if (Files[i].ToLower().EndsWith("csv"))
+                    {   string name = Path.GetFileName(Files[i]);
+                        if (name != toolTable.defaultFileName)
+                            lbFiles.Items.Add(name);
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                throw (Ex);
+            }
+        }
+
+
+
+        private void cBToolLaser_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enabled = !cBToolLaser.Checked;
+            lblToolOffset.Visible = enabled;
+            nUDToolOffsetX.Visible = enabled;
+            nUDToolOffsetY.Visible = enabled;
+            nUDToolOffsetZ.Visible = enabled;
+            btnMoveToolXY.Visible = enabled;
+            //ToolNr,color,name,X,Y,Z,diameter,XYspeed,Zdeepth, Zinc, Zspeed, spindleSpeed, stepover
+            dGVToolList.Columns[1].Visible = enabled;
+            dGVToolList.Columns[3].Visible = enabled;
+            dGVToolList.Columns[4].Visible = enabled;
+            dGVToolList.Columns[5].Visible = enabled;
+            dGVToolList.Columns[6].Visible = enabled;
+            dGVToolList.Columns[8].Visible = enabled;
+            dGVToolList.Columns[9].Visible = enabled;
+            dGVToolList.Columns[10].Visible = enabled;
+            dGVToolList.Columns[12].Visible = enabled;
+            dGVToolList.Columns[13].Visible = enabled;
+        }
+
+        private void cBImportSVGGroup_CheckedChanged(object sender, EventArgs e)
+        {   bool enable = cBImportSVGGroup.Checked;
+            rBImportSVGSort0.Enabled = enable;
+            rBImportSVGSort1.Enabled = enable;
+            rBImportSVGSort2.Enabled = enable;
+            cBImportSVGSortInvert.Enabled = enable;
+        }
+
+        private void cBToolTableUse_CheckedChanged(object sender, EventArgs e)
+        {   bool enable = cBToolTableUse.Checked;
+            cBImportGCTTSSpeed.Enabled = enable;
+            cBImportGCTTXYFeed.Enabled = enable;
+     //       cBImportGCTTZDeepth.Enabled = (enable && cBImportGCUseZ.Checked);
+            cBImportGCTTZAxis.Enabled = (enable && cBImportGCUseZ.Checked);
+      //      cBImportGCTTZIncrement.Enabled = (enable && cBImportGCUseZ.Checked && cBImportGCZIncEnable.Checked);
+            checkVisibility();
+        }
+
+        private void cBImportSVGResize_CheckedChanged(object sender, EventArgs e)
+        {   bool enable = cBImportSVGResize.Checked;
+            nUDSVGScale.Enabled = enable;
+            lblSVGScale.Enabled = enable;
+        }
+
+        private void checkVisibility()
+        {   bool optionUseZ = cBImportGCUseZ.Checked;
+            bool optionUseTTVal = cBToolTableUse.Checked;
+
+            bool enable = cBToolTableUse.Checked;
+            cBImportGCTTSSpeed.Enabled = enable;
+            cBImportGCTTXYFeed.Enabled = enable;
+     //       cBImportGCTTZDeepth.Enabled = (enable && cBImportGCUseZ.Checked);
+            cBImportGCTTZAxis.Enabled = (enable && cBImportGCUseZ.Checked);
+     //       cBImportGCTTZIncrement.Enabled = (enable && cBImportGCUseZ.Checked && cBImportGCZIncEnable.Checked);
+            cBToolTableDefault.Enabled = enable;
+            numericUpDown2.Enabled = cBToolTableDefault.Checked && enable;
+
+            // Use Z Group
+            lblZUse1.Enabled = optionUseZ;
+            lblZUse2.Enabled = optionUseZ;
+            lblZUse3.Enabled = optionUseZ;
+            nUDImportGCFeedZ.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
+            nUDImportGCZUp.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
+            nUDImportGCZDown.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
+            cBImportGCZIncEnable.Enabled = optionUseZ;
+            lblZUse4.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked );
+            cBImportGCZIncStartZero.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked);
+            nUDImportGCZIncrement.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled) && cBImportGCZIncEnable.Checked);
+
+            nUDImportGCFeedXY.Enabled = !(cBImportGCTTXYFeed.Checked && cBImportGCTTXYFeed.Enabled);
+            nUDImportGCSSpeed.Enabled = !(cBImportGCTTSSpeed.Checked && cBImportGCTTSSpeed.Enabled);
+        }
+
+        private void cBImportGCUsePWM_CheckedChanged(object sender, EventArgs e)
+        {   bool enable = cBImportGCUsePWM.Checked;
+            lblPWM1.Enabled = enable;
+            lblPWM2.Enabled = enable;
+            lblPWM3.Enabled = enable;
+            lblPWM4.Enabled = enable;
+            nUDImportGCPWMUp.Enabled = enable;
+            nUDImportGCDlyUp.Enabled = enable;
+            nUDImportGCPWMDown.Enabled = enable;
+            nUDImportGCDlyDown.Enabled = enable;
+        }
+
+        private void cBImportGCUseIndividual_CheckedChanged(object sender, EventArgs e)
+        {   bool enable = cBImportGCUseIndividual.Checked;
+            lblUseInd1.Enabled = enable;
+            lblUseInd2.Enabled = enable;
+            tBImportGCIPU.Enabled = enable;
+            tBImportGCIPD.Enabled = enable;
+        }
+
+        private void cBImportGCDragKnife_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGCDragKnife.Checked;
+            nUDImportGCDragKnifeLength.Enabled = enable;
+            nUDImportGCDragKnifePercent.Enabled = enable;
+            nUDImportGCDragKnifeAngle.Enabled = enable;
+            cBImportGCDragKnifePercent.Enabled = enable;
+            lblDrag1.Enabled = enable;
+            lblDrag2.Enabled = enable;
+        }
+
+        private void cBImportGCLineSegments_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGCLineSegments.Checked;
+            nUDImportGCLineSegment.Enabled = enable;
+            cBImportGCLineSegmentsEquidistant.Enabled = enable;
+            cBImportGCSubEnable.Enabled = enable;
+            btnShowScriptSub.Enabled = enable;
+            btnFileDialogSubR.Enabled = enable;
+            cBImportGCSubFirst.Enabled = enable;
+            tBImportGCSubroutine.Enabled = enable;
+        }
+
+        private void cBImportGCNoArcs_CheckedChanged(object sender, EventArgs e)
+        {
+            nUDImportGCSegment.Enabled = cBImportGCNoArcs.Checked;
+        }
+
+        private void fillUseCaseFileList(string Root)
+        {
+            List<string> FileArray = new List<string>();
+            try
+            {
+                string[] Files = System.IO.Directory.GetFiles(Root);
+                string[] Folders = System.IO.Directory.GetDirectories(Root);
+
+                lBUseCase.Items.Clear();
+                for (int i = 0; i < Files.Length; i++)
+                {
+                    if (Files[i].ToLower().EndsWith("ini"))
+                        lBUseCase.Items.Add(Path.GetFileName(Files[i]));
+                }
+            }
+            catch (Exception Ex)
+            {
+                throw (Ex);
+            }
+        }
+
+        
+        private void btnLoadUseCase_Click(object sender, EventArgs e)
+        {
+            if (lBUseCase.Text != "")
+            {   string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+                var MyIni = new IniFile(path);
+                Logger.Trace("Load Use Case   {0}", path);
+
+                MyIni.ReadAll();   // ReadImport();
+                fillUseCaseFileList(Application.StartupPath + datapath.usecases );
+                Properties.Settings.Default.useCaseLastLoaded = lBUseCase.Text;
+                lblLastUseCase.Text = lBUseCase.Text;
+
+                dGVToolList.CellEndEdit -= new DataGridViewCellEventHandler(dGVToolList_CellLeave);
+                dGVToolList.CellLeave   -= new DataGridViewCellEventHandler(dGVToolList_CellLeave);
+                ImportCSVToDgv(defaultToolList);
+                dGVToolList.CellEndEdit += new DataGridViewCellEventHandler(dGVToolList_CellLeave);
+                dGVToolList.CellLeave   += new DataGridViewCellEventHandler(dGVToolList_CellLeave);
+
+                lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
+                if (Properties.Settings.Default.toolTableOriginal)
+                {   lblToolListChanged.Text = "orginal";
+                    lblToolListChanged.BackColor = Color.Transparent;
+                }
+            }
+        }
+
+        private void btnUseCaseSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = Application.StartupPath + datapath.usecases;
+            sfd.Filter = "Use cases (*.ini)|*.ini";
+            sfd.FileName = "new_use_case.ini";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                var MyIni = new IniFile(sfd.FileName);
+                MyIni.WriteImport();
+            }
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {   File.Delete(Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text);
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+        }
+
+        private void lBUseCase_SelectedIndexChanged(object sender, EventArgs e)
+        {   string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+            var MyIni = new IniFile(path);
+            tBUseCaseSetting2.Text = MyIni.ReadUseCaseInfo();
+            tBUseCaseSetting1.Text = MyIni.showIniSettings(); ;
         }
     }
 }

@@ -19,8 +19,10 @@
 /*
 * Thanks to http://stackoverflow.com/questions/217902/reading-writing-an-ini-file
 */
-/*  2018-12-26	Commits from RasyidUFA via Github
- */
+/* 2018-12-26 Commits from RasyidUFA via Github
+ * 2019-08-15 add logger
+ * 2019-09-17 update settings
+*/
 
 using System;
 using System.Collections.Generic;
@@ -37,9 +39,12 @@ namespace GRBL_Plotter
         readonly string Path;
         readonly string ExeName = Assembly.GetExecutingAssembly().GetName().Name;
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public IniFile(string IniPath = null)
         {
+            //Logger.Trace("++++++ IniFile START ++++++");
             Path = new FileInfo(IniPath ?? ExeName + ".ini").FullName.ToString();
         }
 
@@ -78,85 +83,153 @@ namespace GRBL_Plotter
             return Read(Key, Section).Length > 0;
         }
 
-        public void WriteAll(List<string> GRBLSettings)
-        {
+        public void WriteImport()
+        { 
             var setup = Properties.Settings.Default;
             string section = "Info";
             DateTime localDate = DateTime.Now;
             Write("Date", localDate.ToString(), section);
+            Write("Use case info", setup.importUseCaseInfo.ToString().Replace("\r","\\r").Replace("\n", "\\n"), section);
 
             section = "Graphics Import";
             Write("Graph Units mm", setup.importUnitmm.ToString(), section);
-            Write("Graph Units GCode", setup.importUnitGCode.ToString(), section);
-            Write("Bezier Segment count", setup.importSVGBezier.ToString(), section);
-            Write("Remove Moves enable", setup.importSVGReduce.ToString(), section);
-            Write("Remove Moves units", setup.importSVGReduceLimit.ToString(), section);
-            Write("Pause before Path", setup.importSVGPauseElement.ToString(), section);
-            Write("Pause before Pen", setup.importSVGPausePenDown.ToString(), section);
-            Write("Add Comments", setup.importSVGAddComments.ToString(), section);
+            if (setup.importUnitGCode) { Write("Graph Units GCode", setup.importUnitGCode.ToString(), section); }
+            Write("Bezier Segment count", setup.importBezierLineSegmentsCnt.ToString(), section);
+            if (setup.importRemoveShortMovesEnable)
+            {   Write("Remove Moves enable", setup.importRemoveShortMovesEnable.ToString(), section);
+                Write("Remove Moves units", setup.importRemoveShortMovesLimit.ToString(), section);
+            }
+            if (setup.importLineDashPattern) { Write("Process Dashed Lines", setup.importLineDashPattern.ToString(), section); }
+            if (setup.importPauseElement) { Write("Pause before Path", setup.importPauseElement.ToString(), section); }
+            if (setup.importPausePenDown) { Write("Pause before Pen", setup.importPausePenDown.ToString(), section); }
+            if (setup.importRepeatEnable)
+            {   Write("Repeat Code enable", setup.importRepeatEnable.ToString(), section);
+                Write("Repeat Code count", setup.importRepeatCnt.ToString(), section);
+            }
+            Write("Fold blocks", setup.importCodeFold.ToString(), section);
+            if (setup.importSVGAddComments) { Write("Add Comments", setup.importSVGAddComments.ToString(), section); }
 
-            Write("Repeat Code enable", setup.importSVGRepeatEnable.ToString(), section);
-            Write("Repeat Code count", setup.importSVGRepeat.ToString(), section);
-            Write("SVG resize enable", setup.importSVGRezise.ToString(), section);
-            Write("SVG resize units", setup.importSVGMaxSize.ToString(), section);
-            Write("SVG Tool sort by nr", setup.importSVGToolUse.ToString(), section);
-            Write("SVG Tool sort", setup.importSVGToolSort.ToString(), section);
-            Write("SVG Process nodes only", setup.importSVGNodesOnly.ToString(), section);
+            Write("SVG DPI 96 enable", setup.importSVGDPI96.ToString(), section);
+            if (setup.importSVGRezise)
+            {   Write("SVG resize enable", setup.importSVGRezise.ToString(), section);
+                Write("SVG resize units", setup.importSVGMaxSize.ToString(), section);
+            }
+            if (setup.importSVGNodesOnly) { Write("SVG Process nodes only", setup.importSVGNodesOnly.ToString(), section); }
 
+            if (setup.importDXFToolIndex) { Write("DXF use color index", setup.importDXFToolIndex.ToString(), section); }
+            if (setup.importDXFSwitchWhite) { Write("DXF handle white as black", setup.importDXFSwitchWhite.ToString(), section); }
+
+            if (setup.importGroupObjects)
+            {   Write("Grouping enable", setup.importGroupObjects.ToString(), section);
+                Write("Grouping sort option", setup.importGroupSort.ToString(), section);
+                Write("Grouping sort invert", setup.importGroupSortInvert.ToString(), section);
+            }
+
+            if (setup.importGCToolTableUse)
+            {   Write("Tool table enable", setup.importGCToolTableUse.ToString(), section);
+                if (setup.importGCToolDefNrUse)
+                {   Write("Tool table default enable", setup.importGCToolDefNrUse.ToString(), section);
+                    Write("Tool table default number", setup.importGCToolDefNr.ToString(), section);
+                }
+                Write("XY Feedrate from TT", setup.importGCTTXYFeed.ToString(), "GCode generation");
+                Write("Spindle Speed from TT", setup.importGCTTSSpeed.ToString(), "GCode generation");
+                Write("Z Values from TT", setup.importGCTTZAxis.ToString(), "GCode generation");
+     //           Write("Z Down Pos from TT", setup.importGCTTZDeepth.ToString(), section);
+     //           Write("Z Increment from TT", setup.importGCTTZIncrement.ToString(), section);
+            }
 
             section = "GCode generation";
             Write("Dec Places", setup.importGCDecPlaces.ToString(), section);
             Write("Header Code", setup.importGCHeader.ToString(), section);
             Write("Footer Code", setup.importGCFooter.ToString(), section);
-            Write("Convert G23 enable", setup.importGCNoArcs.ToString(), section);
-            Write("Convert G23 step", setup.importGCSegment.ToString(), section);
-            Write("Line segmentation enable", setup.importGCLineSegmentation.ToString(), section);
-            Write("Line segmentation length", setup.importGCLineSegmentLength.ToString(), section);
-            Write("Line segmentation equidistant", setup.importGCLineSegmentEquidistant.ToString(), section);
-            Write("Insert subroutine enable", setup.importGCSubEnable.ToString(), section);
-            Write("Insert subroutine file", setup.importGCSubroutine.ToString(), section);
-            Write("Drag tool enable", setup.importGCDragKnifeEnable.ToString(), section);
-            Write("Drag tool offset", setup.importGCDragKnifeLength.ToString(), section);
-            Write("Drag tool angle", setup.importGCDragKnifeAngle.ToString(), section);
+
+            Write("XY Feedrate", setup.importGCXYFeed.ToString(), section);
+
+            Write("Spindle Speed", setup.importGCSSpeed.ToString(), section);
+            Write("Spindle Use Laser", setup.importGCSpindleToggleLaser.ToString(), section);
+            Write("Spindle Direction M3", setup.importGCSDirM3.ToString(), section);
+            Write("Spindle Delay", setup.importGCSpindleDelay.ToString(), section);
 
             Write("Add Tool Cmd", setup.importGCTool.ToString(), section);
             Write("Add Tool M0", setup.importGCToolM0.ToString(), section);
-
-            Write("Compress", setup.importGCCompress.ToString(), section);
-            Write("Relative", setup.importGCRelative.ToString(), section);
             Write("Add Comments", setup.importGCAddComments.ToString(), section);
 
-            Write("XY Feedrate", setup.importGCXYFeed.ToString(), section);
-            Write("Spindle Speed", setup.importGCSSpeed.ToString(), section);
-
             Write("Z Enable", setup.importGCZEnable.ToString(), section);
-            Write("Z Up Pos", setup.importGCZUp.ToString(), section);
-            Write("Z Down Pos", setup.importGCZDown.ToString(), section);
-            Write("Z Feedrate", setup.importGCZFeed.ToString(), section);
-            Write("Z Inc Enable", setup.importGCZIncEnable.ToString(), section);
-            Write("Z Increment", setup.importGCZIncrement.ToString(), section);
-
-            Write("PWM Enable", setup.importGCPWMEnable.ToString(), section);
-            Write("PWM Up Val", setup.importGCPWMUp.ToString(), section);
-            Write("PWM Up Dly", setup.importGCPWMDlyUp.ToString(), section);
-            Write("PWM Down Val", setup.importGCPWMDown.ToString(), section);
-            Write("PWM Down Dly", setup.importGCPWMDlyDown.ToString(), section);
+            if (setup.importGCZEnable)
+            {   Write("Z Feedrate", setup.importGCZFeed.ToString(), section);
+                Write("Z Up Pos", setup.importGCZUp.ToString(), section);
+                Write("Z Down Pos", setup.importGCZDown.ToString(), section);
+                Write("Z Inc Enable", setup.importGCZIncEnable.ToString(), section);
+                Write("Z Increment at zero", setup.importGCZIncStartZero.ToString(), section);
+                Write("Z Increment", setup.importGCZIncrement.ToString(), section);
+            }
 
             Write("Spindle Toggle", setup.importGCSpindleToggle.ToString(), section);
-            Write("Spindle use M3", setup.importGCSpindleCmd.ToString(), section);
 
-            Write("Individual enable", setup.importGCIndEnable.ToString(), section);
-            Write("Individual PenUp", setup.importGCIndPenUp.ToString(), section);
-            Write("Individual PenDown", setup.importGCIndPenDown.ToString(), section);
+            if (setup.importGCPWMEnable)
+            {   Write("PWM Enable", setup.importGCPWMEnable.ToString(), section);
+                Write("PWM Up Val", setup.importGCPWMUp.ToString(), section);
+                Write("PWM Up Dly", setup.importGCPWMDlyUp.ToString(), section);
+                Write("PWM Down Val", setup.importGCPWMDown.ToString(), section);
+                Write("PWM Down Dly", setup.importGCPWMDlyDown.ToString(), section);
+            }
+
+            if (setup.importGCIndEnable)
+            {   Write("Individual enable", setup.importGCIndEnable.ToString(), section);
+                Write("Individual PenUp", setup.importGCIndPenUp.ToString(), section);
+                Write("Individual PenDown", setup.importGCIndPenDown.ToString(), section);
+            }
+
+
+            section = "GCode modification";
+            if (setup.importGCNoArcs)
+            {   Write("Convert G23 enable", setup.importGCNoArcs.ToString(), section);
+                Write("Convert G23 step", setup.importGCSegment.ToString(), section);
+            }
+
+            if (setup.importGCLineSegmentation)
+            {   Write("Line segmentation enable", setup.importGCLineSegmentation.ToString(), section);
+                Write("Line segmentation length", setup.importGCLineSegmentLength.ToString(), section);
+                Write("Line segmentation equidistant", setup.importGCLineSegmentEquidistant.ToString(), section);
+                Write("Insert subroutine enable", setup.importGCSubEnable.ToString(), section);
+                Write("Insert subroutine file", setup.importGCSubroutine.ToString(), section);
+                Write("Insert subroutine at beginn", setup.importGCSubFirst.ToString(), section);
+            }
+
+            if (setup.importGCDragKnifeEnable)
+            {   Write("Drag tool enable", setup.importGCDragKnifeEnable.ToString(), section);
+                Write("Drag tool offset", setup.importGCDragKnifeLength.ToString(), section);
+                Write("Drag tool percent", setup.importGCDragKnifePercent.ToString(), section);
+                Write("Drag tool percent enable", setup.importGCDragKnifePercentEnable.ToString(), section);
+                Write("Drag tool angle", setup.importGCDragKnifeAngle.ToString(), section);
+            }
+
+            if (setup.importGCCompress) { Write("Compress", setup.importGCCompress.ToString(), section); }
+            if (setup.importGCRelative) { Write("Relative", setup.importGCRelative.ToString(), section); }
+//            Write("Spindle use M3", setup.importGCSpindleCmd.ToString(), section);
 
             section = "Tool change";
-            Write("Tool remove", setup.ctrlToolScriptPut.ToString(), section);
-            Write("Tool select", setup.ctrlToolScriptSelect.ToString(), section);
-            Write("Tool pick up", setup.ctrlToolScriptGet.ToString(), section);
-            Write("Tool probe", setup.ctrlToolScriptProbe.ToString(), section);
-            Write("Tool empty", setup.ctrlToolChangeEmpty.ToString(), section);
-            Write("Tool empty Nr", setup.ctrlToolChangeEmptyNr.ToString(), section);
+            Write("Tool change enable", setup.ctrlToolChange.ToString(), section);
+            if (setup.ctrlToolChange)
+            {   Write("Tool remove", setup.ctrlToolScriptPut.ToString(), section);
+                Write("Tool select", setup.ctrlToolScriptSelect.ToString(), section);
+                Write("Tool pick up", setup.ctrlToolScriptGet.ToString(), section);
+                Write("Tool probe", setup.ctrlToolScriptProbe.ToString(), section);
+                Write("Tool empty", setup.ctrlToolChangeEmpty.ToString(), section);
+                Write("Tool empty Nr", setup.ctrlToolChangeEmptyNr.ToString(), section);
+                Write("Tool table offset X", setup.toolTableOffsetX.ToString(), section);
+                Write("Tool table offset Y", setup.toolTableOffsetX.ToString(), section);
+                Write("Tool table offset Z", setup.toolTableOffsetX.ToString(), section);
+            }
             // Tool table: load csv and write "Tool Nr "+i
+            if (setup.importGCToolTableUse || setup.ctrlToolChange)
+                Write ("Tool table loaded",setup.toolTableLastLoaded.ToString(), section);
+        }
+        public void WriteAll(List<string> GRBLSettings)
+        {
+            WriteImport();
+            var setup = Properties.Settings.Default;
+            string section = "Info";
 
             section = "Machine Limits";
             Write("Limit show", setup.machineLimitsShow.ToString(), section);
@@ -180,72 +253,72 @@ namespace GRBL_Plotter
             Write("SetupOff", setup.rotarySubstitutionSetupOff, section);
 
             section = "Tool";
-            Write("Diameter", setup.toolDiameter.ToString(), section);
-            Write("Z Step", setup.toolZStep.ToString(), section);
-            Write("XY Feedrate", setup.toolFeedXY.ToString(), section);
-            Write("Z Feedrate", setup.toolFeedZ.ToString(), section);
-            Write("Overlap", setup.toolOverlap.ToString(), section);
-            Write("Spindle Speed", setup.toolSpindleSpeed.ToString(), section);
+            Write("Diameter", setup.createShapeToolDiameter.ToString(), section);
+            Write("Z Step", setup.createShapeToolZStep.ToString(), section);
+            Write("XY Feedrate", setup.createShapeToolFeedXY.ToString(), section);
+            Write("Z Feedrate", setup.createShapeToolFeedZ.ToString(), section);
+            Write("Overlap", setup.createShapeToolOverlap.ToString(), section);
+            Write("Spindle Speed", setup.createShapeToolSpindleSpeed.ToString(), section);
 
             section = "Buttons";
-            Write("Button1", setup.custom1.ToString(), section);
-            Write("Button2", setup.custom2.ToString(), section);
-            Write("Button3", setup.custom3.ToString(), section);
-            Write("Button4", setup.custom4.ToString(), section);
-            Write("Button5", setup.custom5.ToString(), section);
-            Write("Button6", setup.custom6.ToString(), section);
-            Write("Button7", setup.custom7.ToString(), section);
-            Write("Button8", setup.custom8.ToString(), section);
-            Write("Button9", setup.custom9.ToString(), section);
-            Write("Button10", setup.custom10.ToString(), section);
-            Write("Button11", setup.custom11.ToString(), section);
-            Write("Button12", setup.custom12.ToString(), section);
-            Write("Button13", setup.custom13.ToString(), section);
-            Write("Button14", setup.custom14.ToString(), section);
-            Write("Button15", setup.custom15.ToString(), section);
-            Write("Button16", setup.custom16.ToString(), section);
+            Write("Button1", setup.guiCustomBtn1.ToString(), section);
+            Write("Button2", setup.guiCustomBtn2.ToString(), section);
+            Write("Button3", setup.guiCustomBtn3.ToString(), section);
+            Write("Button4", setup.guiCustomBtn4.ToString(), section);
+            Write("Button5", setup.guiCustomBtn5.ToString(), section);
+            Write("Button6", setup.guiCustomBtn6.ToString(), section);
+            Write("Button7", setup.guiCustomBtn7.ToString(), section);
+            Write("Button8", setup.guiCustomBtn8.ToString(), section);
+            Write("Button9", setup.guiCustomBtn9.ToString(), section);
+            Write("Button10", setup.guiCustomBtn10.ToString(), section);
+            Write("Button11", setup.guiCustomBtn11.ToString(), section);
+            Write("Button12", setup.guiCustomBtn12.ToString(), section);
+            Write("Button13", setup.guiCustomBtn13.ToString(), section);
+            Write("Button14", setup.guiCustomBtn14.ToString(), section);
+            Write("Button15", setup.guiCustomBtn15.ToString(), section);
+            Write("Button16", setup.guiCustomBtn16.ToString(), section);
 
             section = "Joystick";
-            Write("XY1 Step", setup.joyXYStep1.ToString(), section);
-            Write("XY2 Step", setup.joyXYStep2.ToString(), section);
-            Write("XY3 Step", setup.joyXYStep3.ToString(), section);
-            Write("XY4 Step", setup.joyXYStep4.ToString(), section);
-            Write("XY5 Step", setup.joyXYStep5.ToString(), section);
-            Write("Z1 Step", setup.joyZStep1.ToString(), section);
-            Write("Z2 Step", setup.joyZStep2.ToString(), section);
-            Write("Z3 Step", setup.joyZStep3.ToString(), section);
-            Write("Z4 Step", setup.joyZStep4.ToString(), section);
-            Write("Z5 Step", setup.joyZStep5.ToString(), section);
-            Write("XY1 Speed", setup.joyXYSpeed1.ToString(), section);
-            Write("XY2 Speed", setup.joyXYSpeed2.ToString(), section);
-            Write("XY3 Speed", setup.joyXYSpeed3.ToString(), section);
-            Write("XY4 Speed", setup.joyXYSpeed4.ToString(), section);
-            Write("XY5 Speed", setup.joyXYSpeed5.ToString(), section);
-            Write("Z1 Speed", setup.joyZSpeed1.ToString(), section);
-            Write("Z2 Speed", setup.joyZSpeed2.ToString(), section);
-            Write("Z3 Speed", setup.joyZSpeed3.ToString(), section);
-            Write("Z4 Speed", setup.joyZSpeed4.ToString(), section);
-            Write("Z5 Speed", setup.joyZSpeed5.ToString(), section);
-            Write("JoyA1 Speed", setup.joyASpeed1.ToString(), section);
-            Write("JoyA2 Speed", setup.joyASpeed2.ToString(), section);
-            Write("JoyA3 Speed", setup.joyASpeed3.ToString(), section);
-            Write("JoyA4 Speed", setup.joyASpeed4.ToString(), section);
-            Write("JoyA5 Speed", setup.joyASpeed5.ToString(), section);
-            Write("JoyA1 Step", setup.joyAStep1.ToString(), section);
-            Write("JoyA2 Step", setup.joyAStep2.ToString(), section);
-            Write("JoyA3 Step", setup.joyAStep3.ToString(), section);
-            Write("JoyA4 Step", setup.joyAStep4.ToString(), section);
-            Write("JoyA5 Step", setup.joyAStep5.ToString(), section);
+            Write("XY1 Step", setup.guiJoystickXYStep1.ToString(), section);
+            Write("XY2 Step", setup.guiJoystickXYStep2.ToString(), section);
+            Write("XY3 Step", setup.guiJoystickXYStep3.ToString(), section);
+            Write("XY4 Step", setup.guiJoystickXYStep4.ToString(), section);
+            Write("XY5 Step", setup.guiJoystickXYStep5.ToString(), section);
+            Write("Z1 Step", setup.guiJoystickZStep1.ToString(), section);
+            Write("Z2 Step", setup.guiJoystickZStep2.ToString(), section);
+            Write("Z3 Step", setup.guiJoystickZStep3.ToString(), section);
+            Write("Z4 Step", setup.guiJoystickZStep4.ToString(), section);
+            Write("Z5 Step", setup.guiJoystickZStep5.ToString(), section);
+            Write("XY1 Speed", setup.guiJoystickXYSpeed1.ToString(), section);
+            Write("XY2 Speed", setup.guiJoystickXYSpeed2.ToString(), section);
+            Write("XY3 Speed", setup.guiJoystickXYSpeed3.ToString(), section);
+            Write("XY4 Speed", setup.guiJoystickXYSpeed4.ToString(), section);
+            Write("XY5 Speed", setup.guiJoystickXYSpeed5.ToString(), section);
+            Write("Z1 Speed", setup.guiJoystickZSpeed1.ToString(), section);
+            Write("Z2 Speed", setup.guiJoystickZSpeed2.ToString(), section);
+            Write("Z3 Speed", setup.guiJoystickZSpeed3.ToString(), section);
+            Write("Z4 Speed", setup.guiJoystickZSpeed4.ToString(), section);
+            Write("Z5 Speed", setup.guiJoystickZSpeed5.ToString(), section);
+            Write("A1 Speed", setup.guiJoystickASpeed1.ToString(), section);
+            Write("A2 Speed", setup.guiJoystickASpeed2.ToString(), section);
+            Write("A3 Speed", setup.guiJoystickASpeed3.ToString(), section);
+            Write("A4 Speed", setup.guiJoystickASpeed4.ToString(), section);
+            Write("A5 Speed", setup.guiJoystickASpeed5.ToString(), section);
+            Write("A1 Step", setup.guiJoystickAStep1.ToString(), section);
+            Write("A2 Step", setup.guiJoystickAStep2.ToString(), section);
+            Write("A3 Step", setup.guiJoystickAStep3.ToString(), section);
+            Write("A4 Step", setup.guiJoystickAStep4.ToString(), section);
+            Write("A5 Step", setup.guiJoystickAStep5.ToString(), section);
 
             section = "Camera";
-            Write("Index", setup.cameraindex.ToString(), section);
-            Write("Rotation", setup.camerarotation.ToString(), section);
+            Write("Index", setup.cameraIndex.ToString(), section);
+            Write("Rotation", setup.cameraRotation.ToString(), section);
             Write("Top Pos", setup.cameraPosTop.ToString(), section);
             Write("Top Radius", setup.cameraTeachRadiusTop.ToString(), section);
-            Write("Top Scaling", setup.camerascalingTop.ToString(), section);
+            Write("Top Scaling", setup.cameraScalingTop.ToString(), section);
             Write("Bottom Pos", setup.cameraPosBot.ToString(), section);
             Write("Bottom Radius", setup.cameraTeachRadiusBot.ToString(), section);
-            Write("Bottom Scaling", setup.camerascalingBot.ToString(), section);
+            Write("Bottom Scaling", setup.cameraScalingBot.ToString(), section);
             Write("X Tool Offset", setup.cameraToolOffsetX.ToString(), section);
             Write("Y Tool Offset", setup.cameraToolOffsetY.ToString(), section);
 
@@ -258,181 +331,388 @@ namespace GRBL_Plotter
                 }
             }
         }
-        public void ReadAll()
+
+        public string ReadUseCaseInfo()
+        {   return Read("Use case info", "Info").Replace("\\r", "\r").Replace("\\n", "\n"); }
+
+        private void setDefaults()
+        {   var setup = Properties.Settings.Default;
+            setup.importUnitGCode = false;
+            setup.importRemoveShortMovesEnable = false;
+            setup.importLineDashPattern = false;
+            setup.importPauseElement = false;
+            setup.importPausePenDown = false;
+            setup.importRepeatEnable = false;
+            setup.importSVGAddComments = false;
+            setup.importSVGRezise = false;
+            setup.importSVGNodesOnly = false;
+            setup.importDXFToolIndex = false;
+            setup.importDXFSwitchWhite = false;
+            setup.importGroupObjects = false;
+            setup.importGroupSortInvert = false;
+            setup.importGCToolTableUse = false;
+            setup.importGCToolDefNrUse = false;
+
+            setup.importGCSpindleToggleLaser = false;
+            setup.importGCTool = false;
+            setup.importGCZEnable = false;
+            setup.importGCPWMEnable = false;
+
+            setup.importGCTTSSpeed = false;
+            setup.importGCTTXYFeed = false;
+            setup.importGCTTZAxis = false;
+
+            setup.importGCPWMEnable = false;
+            setup.importGCIndEnable = false;
+            setup.importGCNoArcs = false;
+            setup.importGCLineSegmentation = false;
+            setup.importGCLineSegmentEquidistant = false;
+            setup.importGCSubEnable = false;
+            setup.importGCSubFirst = false;
+
+            setup.importGCDragKnifeEnable = false;
+            setup.importGCDragKnifePercentEnable = false;
+            setup.importGCCompress = false;
+            setup.importGCRelative = false;
+        }
+        public void ReadImport()
         {
+            setDefaults();
             var setup = Properties.Settings.Default;
             string section = "GCode generation";
+            bool tmpbool = false;
+            decimal tmpdeci = 0;
+            int tmpint = 0;
+            string tmpstr = "";
+            section = "Info";
+            setup.importUseCaseInfo = Read("Use case info", section).Replace("\\r","\r").Replace("\\n","\n");
+            Logger.Trace("Load Inifile");
 
             section = "Graphics Import";
-            setup.importUnitmm          = Convert.ToBoolean(Read("Graph Units mm", section));
-            setup.importUnitGCode       = Convert.ToBoolean(Read("Graph Units GCode", section));
-            setup.importSVGBezier       = myConvertToDecimal(Read("Bezier Segment count", section));
-            setup.importSVGReduce       = Convert.ToBoolean(Read("Remove Moves enable", section));
-            setup.importSVGReduceLimit  = myConvertToDecimal(Read("Remove Moves units", section));
-            setup.importSVGPauseElement = Convert.ToBoolean(Read("Pause before Path", section));
-            setup.importSVGPausePenDown = Convert.ToBoolean(Read("Pause before Pen", section));
-            setup.importSVGAddComments  = Convert.ToBoolean(Read("Add Comments", section));
+            if (setVariable(ref tmpbool, section, "Graph Units mm"))            { setup.importUnitmm = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Graph Units GCode"))         { setup.importUnitGCode = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Bezier Segment count"))      { setup.importBezierLineSegmentsCnt = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Process Dashed Lines"))      { setup.importLineDashPattern = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Remove Moves enable"))       { setup.importRemoveShortMovesEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Remove Moves units"))        { setup.importRemoveShortMovesLimit = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Pause before Path"))         { setup.importPauseElement = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Pause before Pen"))          { setup.importPausePenDown = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Repeat Code enable"))        { setup.importRepeatEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Repeat Code count"))         { setup.importRepeatCnt = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Fold blocks"))               { setup.importCodeFold = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Add Comments"))              { setup.importSVGAddComments = tmpbool; }
 
-            setup.importSVGRepeatEnable = Convert.ToBoolean(Read("Repeat Code enable", section));
-            setup.importSVGRepeat       = myConvertToDecimal(Read("Repeat Code count", section));
-            setup.importSVGRezise       = Convert.ToBoolean(Read("SVG resize enable", section));
-            setup.importSVGMaxSize      = myConvertToDecimal(Read("SVG resize units", section));
-            setup.importSVGToolUse      = Convert.ToBoolean(Read("SVG Tool sort by nr", section));
-            setup.importSVGToolSort     = Convert.ToBoolean(Read("SVG Tool sort", section));
-            setup.importSVGNodesOnly    = Convert.ToBoolean(Read("SVG Process nodes only", section));
+            if (setVariable(ref tmpbool, section, "SVG DPI 96 enable"))         { setup.importSVGDPI96 = tmpbool; }
+            if (setVariable(ref tmpbool, section, "SVG resize enable"))         { setup.importSVGRezise = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "SVG resize units"))          { setup.importSVGMaxSize = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "SVG Process nodes only"))    { setup.importSVGNodesOnly = tmpbool; }
+
+            if (setVariable(ref tmpbool, section, "DXF use color index"))       { setup.importDXFToolIndex = tmpbool; }
+            if (setVariable(ref tmpbool, section, "DXF handle white as black")) { setup.importDXFSwitchWhite= tmpbool; }
+
+            if (setVariable(ref tmpbool, section, "Grouping enable"))           { setup.importGroupObjects= tmpbool; }
+            if (setVariable(ref tmpint, section, "Grouping sort option"))       { setup.importGroupSort= tmpint; }
+            if (setVariable(ref tmpbool, section, "Grouping sort invert"))      { setup.importGroupSortInvert= tmpbool; }
+
+            if (setVariable(ref tmpbool, section, "Tool table enable"))         { setup.importGCToolTableUse = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Tool table default enable")) { setup.importGCToolDefNrUse= tmpbool; }
+            if (setVariable(ref tmpbool, section, "Tool table default number")) { setup.importGCToolDefNr= tmpdeci; }
 
             section = "GCode generation";
-            setup.importGCDecPlaces = myConvertToDecimal(Read("Dec Places", section));
-            setup.importGCHeader = Read("Header Code", section);
-            setup.importGCFooter = Read("Footer Code", section);
-            setup.importGCNoArcs    = Convert.ToBoolean(Read("Convert G23 enable", section));
-            setup.importGCSegment   = myConvertToDecimal(Read("Convert G23 step", section));
+            if (setVariable(ref tmpdeci, section, "Dec Places"))            { setup.importGCDecPlaces= tmpdeci; }
+            if (setVariable(ref tmpstr, section, "Header Code"))           { setup.importGCHeader= tmpstr; }
+            if (setVariable(ref tmpstr, section, "Footer Code"))           { setup.importGCFooter= tmpstr; }
 
-            setup.importGCLineSegmentation  = Convert.ToBoolean(Read("Line segmentation enable", section));
-            setup.importGCLineSegmentLength = myConvertToDecimal(Read("Line segmentation length", section));
-            setup.importGCLineSegmentEquidistant = Convert.ToBoolean(Read("Line segmentation equidistant", section));
-            setup.importGCSubEnable         = Convert.ToBoolean(Read("Insert subroutine enable", section));
-            setup.importGCSubroutine = Read("Insert subroutine file", section);
-            setup.importGCDragKnifeEnable   = Convert.ToBoolean(Read("Drag tool enable", section));
-            setup.importGCDragKnifeLength   = myConvertToDecimal(Read("Drag tool offset", section));
-            setup.importGCDragKnifeAngle    = myConvertToDecimal(Read("Drag tool angle", section));
+            if (setVariable(ref tmpdeci, section, "XY Feedrate"))           { setup.importGCXYFeed= tmpdeci; }
+            if (setVariable(ref tmpbool, section, "XY Feedrate from TT"))   { setup.importGCTTXYFeed= tmpbool; }
 
-            setup.importGCTool      = Convert.ToBoolean(Read("Add Tool Cmd", section));
-            setup.importGCToolM0    = Convert.ToBoolean(Read("Add Tool M0", section));
+            if (setVariable(ref tmpdeci, section, "Spindle Speed"))         { setup.importGCSSpeed= tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Spindle Speed from TT")) { setup.importGCTTSSpeed= tmpbool; }
+            if (setVariable(ref tmpbool, section, "Spindle Use Laser"))     { setup.importGCSpindleToggleLaser= tmpbool; }
 
-            setup.importGCCompress = Convert.ToBoolean(Read("Compress", section));
-            setup.importGCRelative = Convert.ToBoolean(Read("Relative", section));
-            setup.importGCAddComments = Convert.ToBoolean(Read("Add Comments", section));
+            if (setVariable(ref tmpbool, section, "Spindle Direction M3"))  { setup.importGCSDirM3 = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Spindle Delay"))         { setup.importGCSpindleDelay= tmpdeci; }
 
-            setup.importGCXYFeed = myConvertToDecimal(Read("XY Feedrate", section));
-            setup.importGCSSpeed = myConvertToDecimal(Read("Spindle Speed", section));
+            if (setVariable(ref tmpbool, section, "Add Tool Cmd"))      { setup.importGCTool = tmpbool; }
 
-            setup.importGCZEnable   = Convert.ToBoolean(Read("Z Enable", section));
-            setup.importGCZUp       = myConvertToDecimal(Read("Z Up Pos", section));
-            setup.importGCZDown     = myConvertToDecimal(Read("Z Down Pos", section));
-            setup.importGCZFeed     = myConvertToDecimal(Read("Z Feedrate", section));
-            setup.importGCZIncEnable = Convert.ToBoolean(Read("Z Inc Enable", section));
-            setup.importGCZIncrement = myConvertToDecimal(Read("Z Increment", section));
+            if (setVariable(ref tmpbool, section, "Add Tool M0"))       { setup.importGCToolM0 = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Add Comments"))      { setup.importGCAddComments = tmpbool; }
 
-            setup.importGCSpindleToggle = Convert.ToBoolean(Read("Spindle Toggle", section));
-            setup.importGCPWMEnable     = Convert.ToBoolean(Read("PWM Enable", section));
-            setup.importGCPWMUp         = myConvertToDecimal(Read("PWM Up Val", section));
-            setup.importGCPWMDlyUp      = myConvertToDecimal(Read("PWM Up Dly", section));
-            setup.importGCPWMDown       = myConvertToDecimal(Read("PWM Down Val", section));
-            setup.importGCPWMDlyDown    = myConvertToDecimal(Read("PWM Down Dly", section));
+            if (setVariable(ref tmpbool, section, "Z Enable"))          { setup.importGCZEnable = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Z Values from TT")) { setup.importGCTTZAxis = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Z Feedrate"))        { setup.importGCZFeed = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z Up Pos"))          { setup.importGCZUp = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z Down Pos"))        { setup.importGCZDown = tmpdeci; }
+   //         if (setVariable(ref tmpbool, section, "Z Down Pos from TT")){ setup.importGCTTZDeepth = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Z Inc Enable"))      { setup.importGCZIncEnable = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Z Increment at zero")){ setup.importGCZIncStartZero = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Z Increment"))        { setup.importGCZIncrement = tmpdeci; }
+   //         if (setVariable(ref tmpbool, section, "Z Increment from TT")){ setup.importGCTTZIncrement = tmpbool; }
 
-            setup.importGCSpindleToggle = Convert.ToBoolean(Read("Spindle Toggle", section));
-            setup.importGCSpindleCmd = Convert.ToBoolean(Read("Spindle use M3", section));
+            if (setVariable(ref tmpbool, section, "Spindle Toggle"))     { setup.importGCSpindleToggle = tmpbool; }
+            //          setup.importGCSpindleCmd = Convert.ToBoolean(Read("Spindle use M3", section));
 
-            setup.importGCIndEnable = Convert.ToBoolean(Read("Individual enable", section));
-            setup.importGCIndPenUp = Read("Individual PenUp", section);
-            setup.importGCIndPenDown = Read("Individual PenDown", section);
+            if (setVariable(ref tmpbool, section, "PWM Enable")) { setup.importGCPWMEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "PWM Up Val")) { setup.importGCPWMUp = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "PWM Up Dly")) { setup.importGCPWMDlyUp = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "PWM Down Val")) { setup.importGCPWMDown = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "PWM Down Dly")) { setup.importGCPWMDlyDown = tmpdeci; }
 
-            section = "Tool change";
-            setup.ctrlToolScriptPut     = Read("Tool remove", section);
-            setup.ctrlToolScriptSelect  = Read("Tool select", section);
-            setup.ctrlToolScriptGet     = Read("Tool pick up", section);
-            setup.ctrlToolScriptProbe   = Read("Tool probe", section);
-            setup.ctrlToolChangeEmpty   = Convert.ToBoolean(Read("Tool empty", section));
-            setup.ctrlToolChangeEmptyNr = myConvertToDecimal(Read("Tool empty Nr", section));
+            if (setVariable(ref tmpbool, section, "Individual enable")) { setup.importGCIndEnable = tmpbool; }
+            if (setVariable(ref tmpstr, section, "Individual PenUp")) { setup.importGCIndPenUp = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Individual PenDown")) { setup.importGCIndPenDown = tmpstr; }
+
+            section = "GCode modification";
+            if (setVariable(ref tmpbool, section, "Convert G23 enable")) { setup.importGCNoArcs = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Convert G23 step")) { setup.importGCSegment = tmpdeci; }
+
+            if (setVariable(ref tmpbool, section, "Line segmentation enable")) { setup.importGCLineSegmentation = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Line segmentation length")) { setup.importGCLineSegmentLength = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Line segmentation equidistant")) { setup.importGCLineSegmentEquidistant = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Insert subroutine enable")) { setup.importGCSubEnable = tmpbool; }
+            if (setVariable(ref tmpstr, section, "Insert subroutine file")) { setup.importGCSubroutine = tmpstr; } 
+            if (setVariable(ref tmpbool, section, "Insert subroutine at beginn")) { setup.importGCSubFirst = tmpbool; }
+
+            if (setVariable(ref tmpbool, section, "Drag tool enable"))          { setup.importGCDragKnifeEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Drag tool offset"))          { setup.importGCDragKnifeLength = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Drag tool percent"))         { setup.importGCDragKnifePercent = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Drag tool percent enable"))  { setup.importGCDragKnifePercentEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Drag tool angle"))           { setup.importGCDragKnifeAngle = tmpdeci; }
+
+            if (setVariable(ref tmpbool, section, "Compress")) { setup.importGCCompress = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Relative")) { setup.importGCRelative = tmpbool; }
+
+             section = "Tool change";
+            if (setVariable(ref tmpbool, section, "Tool change enable")) { setup.ctrlToolChange = tmpbool; }
+            if (setVariable(ref tmpstr, section, "Tool remove")) { setup.ctrlToolScriptPut = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Tool select")) { setup.ctrlToolScriptSelect = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Tool pick up")) { setup.ctrlToolScriptGet = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Tool probe")) { setup.ctrlToolScriptProbe = tmpstr; }
+            if (setVariable(ref tmpbool, section, "Tool empty")) { setup.ctrlToolChangeEmpty = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Tool empty Nr")) { setup.ctrlToolChangeEmptyNr = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Tool table offset X")) { setup.toolTableOffsetX = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Tool table offset Y")) { setup.toolTableOffsetY = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Tool table offset Z")) { setup.toolTableOffsetZ = tmpdeci; }
+
+            if (setVariable(ref tmpstr, section, "Tool table loaded"))
+            {   setup.toolTableLastLoaded = tmpstr;
+                Logger.Trace("Copy Tool table {0} to {1}", tmpstr, toolTable.defaultFileName);
+                string fpath = Application.StartupPath + datapath.tools + "\\" + tmpstr;
+                if (File.Exists(fpath))
+                {
+                    File.Copy(Application.StartupPath + datapath.tools + "\\" + toolTable.defaultFileName, Application.StartupPath + datapath.tools + "\\_beforeUseCase.csv", true);
+                    File.Copy(Application.StartupPath + datapath.tools + "\\" + tmpstr, Application.StartupPath + datapath.tools + "\\" + toolTable.defaultFileName, true);
+                    setup.toolTableOriginal = true;
+                }
+                else
+                {
+                    Logger.Error("File does not exist {0}", tmpstr);
+                    MessageBox.Show("Tool table not found: " + fpath, "Attention");
+                }
+            }
+            setup.Save();
+        }
+
+        public void ReadAll()
+        {
+            ReadImport();
+            var setup = Properties.Settings.Default;
+            string section = "GCode generation";
+            bool tmpbool = false;
+            decimal tmpdeci = 0;
+            double tmpdouble = 0;
+            int tmpint = 0;
+            string tmpstr = "";
 
             section = "Machine Limits";
-            setup.machineLimitsShow =   Convert.ToBoolean(Read("Limit show", section));
-            setup.machineLimitsAlarm =  Convert.ToBoolean(Read("Limit alarm", section));
-            setup.machineLimitsRangeX = myConvertToDecimal(Read("Range X", section));
-            setup.machineLimitsRangeY = myConvertToDecimal(Read("Range Y", section));
-            setup.machineLimitsRangeZ = myConvertToDecimal(Read("Range Z", section));
-            setup.machineLimitsHomeX =  myConvertToDecimal(Read("Home X", section));
-            setup.machineLimitsHomeY =  myConvertToDecimal(Read("Home Y", section));
-            setup.machineLimitsHomeZ =  myConvertToDecimal(Read("Home Z", section));
+            if (setVariable(ref tmpbool, section, "Limit show")) { setup.machineLimitsShow = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Limit alarm")) { setup.machineLimitsAlarm = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Range X")) { setup.machineLimitsRangeX = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Range Y")) { setup.machineLimitsRangeY = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Range Z")) { setup.machineLimitsRangeZ = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Home X")) { setup.machineLimitsHomeX = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Home Y")) { setup.machineLimitsHomeY = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Home Z")) { setup.machineLimitsHomeZ = tmpdeci; }
 
-            section = "4th axis";
+   //         section = "4th axis";
 
             section = "Rotary axis";
-            setup.rotarySubstitutionEnable  = Convert.ToBoolean(Read("Enable", section));
-            setup.rotarySubstitutionScale   = myConvertToDecimal(Read("Scale", section));
-            setup.rotarySubstitutionX       = Convert.ToBoolean(Read("AxisX", section));
-            setup.rotarySubstitutionDiameter = myConvertToDecimal(Read("Diameter", section));
-            setup.rotarySubstitutionSetupEnable = Convert.ToBoolean(Read("SetupEnable", section));
-            setup.rotarySubstitutionSetupOn  = (Read("SetupOn", section));
-            setup.rotarySubstitutionSetupOff = (Read("SetupOff", section));
+            if (setVariable(ref tmpbool, section, "Enable")) { setup.rotarySubstitutionEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Scale")) { setup.rotarySubstitutionScale = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "AxisX")) { setup.rotarySubstitutionX = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Diameter")) { setup.rotarySubstitutionDiameter = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "SetupEnable")) { setup.rotarySubstitutionSetupEnable = tmpbool; }
+            if (setVariable(ref tmpstr, section, "SetupOn"))  { setup.rotarySubstitutionSetupOn = tmpstr; }
+            if (setVariable(ref tmpstr, section, "SetupOff")) { setup.rotarySubstitutionSetupOff= tmpstr; }
 
             section = "Tool";
-            setup.toolDiameter  = myConvertToDecimal(Read("Diameter", section));
-            setup.toolZStep     = myConvertToDecimal(Read("Z Step", section));
-            setup.toolFeedXY    = myConvertToDecimal(Read("XY Feedrate", section));
-            setup.toolFeedZ     = myConvertToDecimal(Read("Z Feedrate", section));
-            setup.toolOverlap   = myConvertToDecimal(Read("Overlap", section));
-            setup.toolSpindleSpeed = myConvertToDecimal(Read("Spindle Speed", section));
+            if (setVariable(ref tmpdeci, section, "Diameter")) { setup.createShapeToolDiameter = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z Step")) { setup.createShapeToolZStep = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY Feedrate")) { setup.createShapeToolFeedXY = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z Feedrate")) { setup.createShapeToolFeedZ = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Overlap")) { setup.createShapeToolOverlap = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Spindle Speed")) { setup.createShapeToolSpindleSpeed = tmpdeci; }
 
             section = "Buttons";
-            setup.custom1 = Read("Button1", section);
-            setup.custom2 = Read("Button2", section);
-            setup.custom3 = Read("Button3", section);
-            setup.custom4 = Read("Button4", section);
-            setup.custom5 = Read("Button5", section);
-            setup.custom6 = Read("Button6", section);
-            setup.custom7 = Read("Button7", section);
-            setup.custom8 = Read("Button8", section);
-            setup.custom9 = Read("Button9", section);
-            setup.custom10 = Read("Button10", section);
-            setup.custom11 = Read("Button11", section);
-            setup.custom12 = Read("Button12", section);
-            setup.custom13 = Read("Button13", section);
-            setup.custom14 = Read("Button14", section);
-            setup.custom15 = Read("Button15", section);
-            setup.custom16 = Read("Button16", section);
+            if (setVariable(ref tmpstr, section, "Button1")) { setup.guiCustomBtn1 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button2")) { setup.guiCustomBtn2 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button3")) { setup.guiCustomBtn3 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button4")) { setup.guiCustomBtn4 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button5")) { setup.guiCustomBtn5 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button6")) { setup.guiCustomBtn6 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button7")) { setup.guiCustomBtn7 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button8")) { setup.guiCustomBtn8 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button9")) { setup.guiCustomBtn9 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button10")) { setup.guiCustomBtn10 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button11")) { setup.guiCustomBtn11 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button12")) { setup.guiCustomBtn12 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button13")) { setup.guiCustomBtn13 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button14")) { setup.guiCustomBtn14 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button15")) { setup.guiCustomBtn15 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button16")) { setup.guiCustomBtn16 = tmpstr; }
 
             section = "Joystick";
-            setup.joyXYStep1    = myConvertToDecimal(Read("XY1 Step", section));
-            setup.joyXYStep2    = myConvertToDecimal(Read("XY2 Step", section));
-            setup.joyXYStep3    = myConvertToDecimal(Read("XY3 Step", section));
-            setup.joyXYStep4    = myConvertToDecimal(Read("XY4 Step", section));
-            setup.joyXYStep5    = myConvertToDecimal(Read("XY5 Step", section));
-            setup.joyZStep1     = myConvertToDecimal(Read("Z1 Step", section));
-            setup.joyZStep2     = myConvertToDecimal(Read("Z2 Step", section));
-            setup.joyZStep3     = myConvertToDecimal(Read("Z3 Step", section));
-            setup.joyZStep4     = myConvertToDecimal(Read("Z4 Step", section));
-            setup.joyZStep5     = myConvertToDecimal(Read("Z5 Step", section));
-            setup.joyXYSpeed1   = myConvertToDecimal(Read("XY1 Speed", section));
-            setup.joyXYSpeed2   = myConvertToDecimal(Read("XY2 Speed", section));
-            setup.joyXYSpeed3   = myConvertToDecimal(Read("XY3 Speed", section));
-            setup.joyXYSpeed4   = myConvertToDecimal(Read("XY4 Speed", section));
-            setup.joyXYSpeed5   = myConvertToDecimal(Read("XY5 Speed", section));
-            setup.joyZSpeed1    = myConvertToDecimal(Read("Z1 Speed", section));
-            setup.joyZSpeed2    = myConvertToDecimal(Read("Z2 Speed", section));
-            setup.joyZSpeed3    = myConvertToDecimal(Read("Z3 Speed", section));
-            setup.joyZSpeed4    = myConvertToDecimal(Read("Z4 Speed", section));
-            setup.joyZSpeed5    = myConvertToDecimal(Read("Z5 Speed", section));
-            setup.joyAStep1 = myConvertToDecimal(Read("JoyA1 Step", section));
-            setup.joyAStep2 = myConvertToDecimal(Read("JoyA2 Step", section));
-            setup.joyAStep3 = myConvertToDecimal(Read("JoyA3 Step", section));
-            setup.joyAStep4 = myConvertToDecimal(Read("JoyA4 Step", section));
-            setup.joyAStep5 = myConvertToDecimal(Read("JoyA5 Step", section));
-            setup.joyASpeed1 = myConvertToDecimal(Read("JoyA1 Speed", section));
-            setup.joyASpeed2 = myConvertToDecimal(Read("JoyA2 Speed", section));
-            setup.joyASpeed3 = myConvertToDecimal(Read("JoyA3 Speed", section));
-            setup.joyASpeed4 = myConvertToDecimal(Read("JoyA4 Speed", section));
-            setup.joyASpeed5 = myConvertToDecimal(Read("JoyA5 Speed", section));
-
+            if (setVariable(ref tmpdeci, section, "XY1 Step")) { setup.guiJoystickXYStep1 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY2 Step")) { setup.guiJoystickXYStep2 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY3 Step")) { setup.guiJoystickXYStep3 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY4 Step")) { setup.guiJoystickXYStep4 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY5 Step")) { setup.guiJoystickXYStep5 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z1 Step")) { setup.guiJoystickZStep1 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z2 Step")) { setup.guiJoystickZStep2 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z3 Step")) { setup.guiJoystickZStep3 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z4 Step")) { setup.guiJoystickZStep4 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z5 Step")) { setup.guiJoystickZStep5 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY1 Speed")) { setup.guiJoystickXYSpeed1 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY2 Speed")) { setup.guiJoystickXYSpeed2 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY3 Speed")) { setup.guiJoystickXYSpeed3 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY4 Speed")) { setup.guiJoystickXYSpeed4 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "XY5 Speed")) { setup.guiJoystickXYSpeed5 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z1 Speed")) { setup.guiJoystickZSpeed1 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z2 Speed")) { setup.guiJoystickZSpeed2 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z3 Speed")) { setup.guiJoystickZSpeed3 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z4 Speed")) { setup.guiJoystickZSpeed4 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Z5 Speed")) { setup.guiJoystickZSpeed5 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A1 Step")) { setup.guiJoystickAStep1 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A2 Step")) { setup.guiJoystickAStep2 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A3 Step")) { setup.guiJoystickAStep3 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A4 Step")) { setup.guiJoystickAStep4 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A5 Step")) { setup.guiJoystickAStep5 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A1 Speed")) { setup.guiJoystickASpeed1 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A2 Speed")) { setup.guiJoystickASpeed2 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A3 Speed")) { setup.guiJoystickASpeed3 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A4 Speed")) { setup.guiJoystickASpeed4 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "A5 Speed")) { setup.guiJoystickASpeed5 = tmpdeci; }
 
             section = "Camera";
-            setup.cameraindex       = Convert.ToByte(Read("Index", section));
-            setup.camerarotation    = myConvertToDouble(Read("Rotation", section));
-            setup.cameraPosTop      = myConvertToDouble(Read("Top Pos", section));
-            setup.cameraTeachRadiusTop = myConvertToDouble(Read("Top Radius", section));
-            setup.camerascalingTop  = myConvertToDouble(Read("Top Scaling", section));
-            setup.cameraPosBot      = myConvertToDouble(Read("Bottom Pos", section));
-            setup.cameraTeachRadiusBot = myConvertToDouble(Read("Bottom Radius", section));
-            setup.camerascalingBot  = myConvertToDouble(Read("Bottom Scaling", section));
-            setup.cameraToolOffsetX = myConvertToDouble(Read("X Tool Offset", section));
-            setup.cameraToolOffsetY = myConvertToDouble(Read("Y Tool Offset", section));
+            if (setVariable(ref tmpint, section, "Index"))              { setup.cameraIndex = Convert.ToByte(tmpint); }
+            if (setVariable(ref tmpdouble, section, "Rotation"))        { setup.cameraRotation = tmpdouble; }
+            if (setVariable(ref tmpdouble, section, "Top Pos"))         { setup.cameraPosTop = tmpdouble; }
+            if (setVariable(ref tmpdouble, section, "Top Radius"))      { setup.cameraTeachRadiusTop = tmpdouble; }
+            if (setVariable(ref tmpdouble, section, "Top Scaling"))     { setup.cameraScalingTop = tmpdouble; }
+            if (setVariable(ref tmpdouble, section, "Bottom Pos"))      { setup.cameraPosBot = tmpdouble; }
+            if (setVariable(ref tmpdouble, section, "Bottom Radius"))   { setup.cameraTeachRadiusBot = tmpdouble; }
+            if (setVariable(ref tmpdouble, section, "Bottom Scaling"))  { setup.cameraScalingBot = tmpdouble; }
+            if (setVariable(ref tmpdouble, section, "X Tool Offset"))   { setup.cameraToolOffsetX = tmpdouble; }
+            if (setVariable(ref tmpdouble, section, "Y Tool Offset"))   { setup.cameraToolOffsetY = tmpdouble; }
+
+            setup.Save();
+        }
+
+        public string showIniSettings()
+        {
+            StringBuilder tmp = new StringBuilder();
+            bool fromTTZ  = false;  setVariable(ref fromTTZ, "GCode generation", "Z Values from TT");
+            bool fromTTXY = false; setVariable(ref fromTTXY, "GCode generation", "XY Feedrate from TT");
+            bool fromTTSS = false; setVariable(ref fromTTSS, "GCode generation", "Spindle Speed from TT"); 
+            bool ZEnable  = false; setVariable(ref ZEnable, "GCode generation", "Z Enable");
+            bool TTImport = false; setVariable(ref TTImport, "Graphics Import", "Tool table enable");
+
+ //           string state;
+            addInfo(tmp,"Process dashed: {0}\r\n", Read("Process Dashed Lines", "Graphics Import"));
+            addInfo(tmp,"Laser mode    : {0}\r\n", Read("Spindle Use Laser", "GCode generation"));
+            if (!(TTImport && fromTTZ))
+                tmp.AppendFormat("XY Feedrate   : {0}\r\n", Read("XY Feedrate", "GCode generation"));
+            else
+                tmp.AppendFormat("XY Feedrate   : from tool table!\r\n");
+
+            if (!(TTImport && fromTTSS))
+                tmp.AppendFormat("Spindle Speed : {0}\r\n", Read("Spindle Speed", "GCode generation"));
+            else
+                tmp.AppendFormat("Spindle Speed : from tool table!\r\n");
+
+            tmp.AppendFormat("Z Enable      : {0}\r\n", ZEnable.ToString());
+            if (ZEnable)
+            {   if (!(TTImport && fromTTZ))
+                {   tmp.AppendFormat("  Z Feedrate  : {0}\r\n", Read("Z Feedrate", "GCode generation"));
+                    tmp.AppendFormat("  Z Save      : {0}\r\n", Read("Z Up Pos", "GCode generation"));
+                    tmp.AppendFormat("  Z Down Pos  : {0}\r\n", Read("Z Down Pos", "GCode generation"));
+                    tmp.AppendFormat("  Z in passes : {0}\r\n", Read("Z Inc Enable", "GCode generation"));
+                    tmp.AppendFormat("  Z step/pass : {0}\r\n", Read("Z Increment", "GCode generation"));
+                }
+                else
+                {   tmp.AppendFormat("  Z values    : from tool table!\r\n"); }
+            }
+            addInfo(tmp, "Spindle Toggle: {0}\r\n", Read("Spindle Toggle", "GCode generation"));
+            addInfo(tmp, "PWM RC-Servo  : {0}\r\n", Read("PWM Enable", "GCode generation"));
+            tmp.AppendLine();
+            addInfo(tmp,"Tool table enable : {0}\r\n", Read("Tool table enable", "Graphics Import"));
+            addInfo(tmp,"Tool table apply  : {0}\r\n", Read("Tool table loaded", "Tool change"));
+            addInfo(tmp,"Tool change enable: {0}\r\n", Read("Tool change enable", "Tool change"));
+            return tmp.ToString();
+        }
+        private void addInfo(StringBuilder tmp, string key, string value)
+        {   if (value.Length > 0)
+                tmp.AppendFormat(key, value);
         }
 
         private double myConvertToDouble(string tmp)
         {   return double.Parse(tmp.Replace(',','.'), CultureInfo.InvariantCulture.NumberFormat); }
         private decimal myConvertToDecimal(string tmp)
         { return decimal.Parse(tmp.Replace(',', '.'), CultureInfo.InvariantCulture.NumberFormat); }
+
+        private bool setVariable(ref string variable, string section, string key)
+        {
+            string valString = Read(key, section);
+            if (valString == "") return false;
+            variable = valString;
+            return true;
+        }
+        private bool setVariable(ref bool variable, string section, string key)
+        {
+            string valString = Read(key, section);
+            if (valString == "") return false;
+            bool tmp;
+            if (bool.TryParse(valString, out tmp))
+            { variable = tmp; return true; }
+            return false;
+        }
+        private bool setVariable(ref int variable, string section, string key)
+        {
+            string valString = Read(key, section);
+            if (valString == "") return false;
+            int tmp;
+            if (int.TryParse(valString, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out tmp))
+            { variable = tmp; return true; }
+            return false;
+        }
+        private bool setVariable(ref decimal variable, string section, string key)
+        {
+            string valString = Read(key, section);
+            if (valString == "") return false;
+            decimal tmp;
+            if (decimal.TryParse(valString, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out tmp))
+            { variable = tmp; return true; }
+            return false;
+        }
+        private bool setVariable(ref double variable, string section, string key)
+        {
+            string valString = Read(key, section);
+            if (valString == "") return false;
+            double tmp;
+            if (double.TryParse(valString, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out tmp))
+            { variable = tmp; return true; }
+            return false;
+        }
 
     }
     /*    internal static class NativeMethods

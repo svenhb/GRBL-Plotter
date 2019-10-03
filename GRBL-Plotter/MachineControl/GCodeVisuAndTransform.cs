@@ -33,6 +33,7 @@
  * 2019-03-09 add pathRotaryInfo to show rotary over X or Y
  * 2019-05-24 add cutter radius compensation
  * 2019-06-05 edit marker-view, show end-point and center of arc
+ * 2019-08-15 add logger
  */
 
 //#define debuginfo 
@@ -66,6 +67,9 @@ namespace GRBL_Plotter
         public static GraphicsPath path = pathPenUp;
 
         public enum convertMode { nothing, removeZ, convertZToS };
+
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public bool containsG2G3Command()
         { return modal.containsG2G3; }
@@ -138,14 +142,18 @@ namespace GRBL_Plotter
                 foreach (toolPos tpos in toolTable)
                 {
                     wx = tpos.X - offsetX; wy = tpos.Y - offsetY;
-                    if ((tpos.name.Length > 1) && (tpos.toolnr >= 0))
+                    try
                     {
-                        pathToolTable.StartFigure();
-                        pathToolTable.AddEllipse(wx - 4, wy - 4, 8, 8);
-                        pathToolTable.Transform(matrix);
-                        pathToolTable.AddString(tpos.toolnr.ToString() + ") " + tpos.name, new FontFamily("Arial"), (int)FontStyle.Regular, 4, new Point((int)wx - 12, -(int)wy + 4), StringFormat.GenericDefault);
-                        pathToolTable.Transform(matrix);
+                        if ((tpos.name != null) && (tpos.name.Length > 1) && (tpos.toolnr >= 0))
+                        {
+                            pathToolTable.StartFigure();
+                            pathToolTable.AddEllipse(wx - 4, wy - 4, 8, 8);
+                            pathToolTable.Transform(matrix);
+                            pathToolTable.AddString(tpos.toolnr.ToString() + ") " + tpos.name, new FontFamily("Arial"), (int)FontStyle.Regular, 4, new Point((int)wx - 12, -(int)wy + 4), StringFormat.GenericDefault);
+                            pathToolTable.Transform(matrix);
+                        }
                     }
+                    catch { }
                 }
             }
             origWCOMachineLimit = (xyPoint)grbl.posWCO;
@@ -183,7 +191,7 @@ namespace GRBL_Plotter
         {
             maxStep = (float)Map.GridX;
             getGCodeLines(oldCode,true);                // read gcode and process subroutines
-            IList<string> tmp=createGCodeProg(true,true,false, convertMode.nothing).Split('\r').ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            IList<string> tmp=createGCodeProg(true,true,false, convertMode.nothing).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
             getGCodeLines(tmp, false);                  // reload code
             return createGCodeProg(false, false, true, convertMode.nothing, Map);        // apply new Z-value;
         }
@@ -204,7 +212,7 @@ namespace GRBL_Plotter
 
         private modalGroup modal = new modalGroup();        // keep modal states and helper variables
         private int figureMarkerCount;
-
+        private Dictionary<int, int> figureCountNr = new Dictionary<int, int>();
         /// <summary>
         /// Entrypoint for generating drawing path from given gcode
         /// </summary>
@@ -232,6 +240,7 @@ namespace GRBL_Plotter
             figureCount = 1;                        // will be inc. in createDrawingPathFromGCode
             bool isArc = false;
             bool upDateFigure = false;
+            figureCountNr.Clear();
 
             for (int lineNr = 0; lineNr < GCode.Length; lineNr++)   // go through all gcode lines
             {
@@ -506,6 +515,7 @@ namespace GRBL_Plotter
                         createMarkerPath(showCenter,center, coordList[line-1].actualPos);
 
                         figureNr = coordList[line].figureNumber;
+               //         Logger.Trace(string.Format("1 Line:{0} Figure:{1} code:{2}",line,figureNr, gcodeList[line].codeLine));
                         if ((figureNr != lastFigureNumber) && (markFigure))
                             markSelectedFigure(figureNr);
                         lastFigureNumber = figureNr;
@@ -517,6 +527,7 @@ namespace GRBL_Plotter
                         {
                             if (line == gcline.lineNumber)
                             {
+                                line--; // FCTB line 1-x = index 0 - x
                                 grbl.posMarker = (xyPoint)gcline.actualPos;
                                 if (gcline.isArc)
                                 {   foreach (coordByLine point in centerList)
@@ -527,6 +538,7 @@ namespace GRBL_Plotter
                                 createMarkerPath(showCenter, center, last);
 
                                 figureNr = coordList[line].figureNumber;
+                   //             Logger.Trace(string.Format("2 Line:{0} Figure:{1} code:{2}", line, figureNr, gcodeList[line].codeLine));
                                 if ((figureNr != lastFigureNumber) && (markFigure))
                                     markSelectedFigure(figureNr);
                                 lastFigureNumber = figureNr;
@@ -553,7 +565,7 @@ namespace GRBL_Plotter
             {   gcline.calcDistance(pos);       // calculate distance work coordinates
                 tmpList.Add(gcline);            // add to new list
             }
-            if (Properties.Settings.Default.backgroundShow && (coordListLandMark.Count > 1))
+            if (Properties.Settings.Default.guiBackgroundShow && (coordListLandMark.Count > 1))
             {   foreach (coordByLine gcline in coordListLandMark)
                 {   gcline.calcDistance(pos+(xyPoint)grbl.posWCO);      // calculate distance machine coordinates
                     tmpList.Add(new coordByLine(0, gcline.figureNumber, gcline.actualPos - (xyPoint)grbl.posWCO, gcline.distance)); // add as work coord.
@@ -632,6 +644,39 @@ namespace GRBL_Plotter
             return start;
         }
 
+        public void markSelectedGroup(int start = 0)
+        {   List<int> figures = new List<int>();
+            int figNr = 0;
+
+            pathMarkSelection.Reset();
+            GraphicsPath tmpPath = new GraphicsPath();
+            tmpPath.Reset();
+
+            GraphicsPathIterator myPathIterator = new GraphicsPathIterator(pathPenDown);
+            myPathIterator.Rewind();
+
+            for (int line = start; line < gcodeList.Count; line++)
+            {   if (gcodeList[line].codeLine.Contains(xmlMarker.groupEnd))
+                    break;
+                figNr = gcodeList[line].figureNumber;
+                if (!figures.Contains(figNr) && (figNr > 0))
+                {
+                    figures.Add(figNr);
+                    myPathIterator.Rewind();
+                    for (int i = 1; i <= figNr; i++)
+                        myPathIterator.NextMarker(tmpPath);
+                    pathMarkSelection.AddPath(tmpPath, false);
+//                    Logger.Trace("copied " + figNr.ToString());
+//                    tmpPath.Reset();
+                }
+            }
+
+            RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            float centerX = selectionBounds.X + selectionBounds.Width / 2;
+            float centerY = selectionBounds.Y + selectionBounds.Height / 2;
+    //        selectedFigureInfo = string.Format("Selection: {0}\r\nWidth : {1:0.000}\r\nHeight: {2:0.000}\r\nCenter: X {3:0.000} Y {4:0.000}", figureNr, selectionBounds.Width, selectionBounds.Height, centerX, centerY);
+        }
+
         public string selectedFigureInfo = "";
         /// <summary>
         /// create path of selected figure
@@ -660,7 +705,7 @@ namespace GRBL_Plotter
             pathMarkSelection.Reset();
             GraphicsPathIterator myPathIterator = new GraphicsPathIterator(pathPenDown);
             myPathIterator.Rewind();
-            for (int i = 0; i < figureNr; i++)
+            for (int i = 1; i <= figureNr; i++)
                 myPathIterator.NextMarker(pathMarkSelection);
 
             RectangleF selectionBounds = pathMarkSelection.GetBounds();
@@ -675,6 +720,7 @@ namespace GRBL_Plotter
         /// </summary>
         public string transformGCodeRotate(double angle, double scale, xyPoint offset)
         {
+            Logger.Debug("Rotate angle: {0}", angle);
 #if (debuginfo)
             log.Add("   GCodeVisu transform Rotate");
 #endif
@@ -732,6 +778,7 @@ namespace GRBL_Plotter
         /// </summary>
         public string transformGCodeScale(double scaleX, double scaleY)
         {
+            Logger.Debug("Scale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
 #if (debuginfo)
             log.Add("   GCodeVisu transform Scale");
 #endif
@@ -769,6 +816,7 @@ namespace GRBL_Plotter
         }
         public string transformGCodeOffset(double x, double y, translate shiftToZero)
         {
+            Logger.Debug("Transform X: {0}, Y: {1}, Offset: {2}", x, y, shiftToZero);
 #if (debuginfo)
             log.Add("   GCodeVisu transform Offset");
 #endif
@@ -869,6 +917,7 @@ namespace GRBL_Plotter
         {   return createGCodeProg(false,false,false, convertMode.nothing); }
         private string createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, convertMode specialCmd, HeightMap Map=null)
         {
+            Logger.Debug("createGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}", replaceG23, splitMoves, applyNewZ, specialCmd);
 #if (debuginfo)
             log.Add("   GCodeVisu createGCodeProg");
 #endif
@@ -986,7 +1035,7 @@ namespace GRBL_Plotter
                     if (gcline.j != null)
                     { tmpCode.AppendFormat(" J{0}", gcode.frmtNum((double)gcline.j)); getCoordinateXY = true; }
 
-                    //               infoCode = "( Fig-Nr.:"+gcline.figureNumber.ToString()+" )";
+     //                              infoCode = "( Fig-Nr.:"+gcline.figureNumber.ToString()+" )";
     //                if (gcline.info.Length > 0)
      //                   infoCode = "( " + gcline.info + " )";
      //               else

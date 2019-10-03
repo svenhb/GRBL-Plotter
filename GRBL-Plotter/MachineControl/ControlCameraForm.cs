@@ -19,10 +19,11 @@
 /*
     Thanks to http://code-bude.net/2011/06/02/webcam-benutzen-in-csharp/
 */
-/*  2018-04-02  add shape recognition and code clean-up
- *  2017-01-01  check form-location and fix strange location
- *  2019-02-05  switch to global variables grbl.posWork
- *  2019-04-17  Line 391, 393 Convert.ToByte by Rob Zeilinga
+/* 2018-04-02 add shape recognition and code clean-up
+ * 2017-01-01 check form-location and fix strange location
+ * 2019-02-05 switch to global variables grbl.posWork
+ * 2019-04-17 Line 391, 393 Convert.ToByte by Rob Zeilinga
+ * 2019-08-15 add logger
 */
 
 using System;
@@ -59,26 +60,19 @@ namespace GRBL_Plotter
         private bool teachingTop = false;
         private bool teachingBot = false;
         private bool showOverlay = true;
-        //private bool teachTP1 = false;
 
         private Color colText = Color.Lime;
         private Brush brushText = Brushes.Lime;
         private Color colCross = Color.Yellow;
 
-   //     private xyzPoint posWork;
-   //     private xyzPoint posMachine;
-   //     private xyPoint posMarker;
         private xyPoint teachPoint1;
         private xyPoint teachPoint2;
         private xyPoint teachPoint3;
         private int coordG = 54;
 
-//        public xyzPoint setPosWorld1
-//        { set { posWork = value; } }
-//        public xyzPoint setPosMachine1
-//        { set { posMachine = value; } }
-//        public void setPosMarker1(xyPoint tmp)// double x, double y)
-//        { posMarker= tmp; }
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public int setCoordG
         {   set { coordG = value;
                 btnCamCoordTool.BackColor = SystemColors.Control;
@@ -88,10 +82,10 @@ namespace GRBL_Plotter
             }
         }
 
-
         public ControlCameraForm()
         {
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Logger.Trace("++++++ ControlCameraForm START ++++++");
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
@@ -102,8 +96,8 @@ namespace GRBL_Plotter
         // load settings, get list of video-sources, set video-source
         private void camera_form_Load(object sender, EventArgs e)
         {
-            cameraIndex = Properties.Settings.Default.cameraindex;
-            cameraRotation = Properties.Settings.Default.camerarotation;
+            cameraIndex = Properties.Settings.Default.cameraIndex;
+            cameraRotation = Properties.Settings.Default.cameraRotation;
             if (cameraRotation > 360)
                 cameraRotation = 0;
             toolStripTextBox1.Text = String.Format("{0}", cameraRotation);
@@ -111,8 +105,8 @@ namespace GRBL_Plotter
             cameraTeachRadiusBot = Properties.Settings.Default.cameraTeachRadiusBot;
             toolStripTextBox2.Text = String.Format("{0}", cameraTeachRadiusTop);
             toolStripTextBox3.Text = String.Format("{0}", cameraTeachRadiusBot);
-            cameraScalingTop = Properties.Settings.Default.camerascalingTop;
-            cameraScalingBot = Properties.Settings.Default.camerascalingBot;
+            cameraScalingTop = Properties.Settings.Default.cameraScalingTop;
+            cameraScalingBot = Properties.Settings.Default.cameraScalingBot;
             cameraPosTop = Properties.Settings.Default.cameraPosTop;
             cameraPosBot = Properties.Settings.Default.cameraPosBot;
 
@@ -124,16 +118,16 @@ namespace GRBL_Plotter
             setButtonColors(crossHairsToolStripMenuItem, colCross);
             pen1 = new Pen(colCross, 1f);
 
-            penUp.Color = Properties.Settings.Default.colorPenUp;
-            penDown.Color = Properties.Settings.Default.colorPenDown;
-            penRuler.Color = Properties.Settings.Default.colorRuler;
-            penTool.Color = Properties.Settings.Default.colorTool;
-            penMarker.Color = Properties.Settings.Default.colorMarker;
-            penRuler.Width = (float)Properties.Settings.Default.widthRuler;
-            penUp.Width = (float)Properties.Settings.Default.widthPenUp;
-            penDown.Width = (float)Properties.Settings.Default.widthPenDown;
-            penTool.Width = (float)Properties.Settings.Default.widthTool;
-            penMarker.Width = (float)Properties.Settings.Default.widthMarker;
+            penUp.Color = Properties.Settings.Default.gui2DColorPenUp;
+            penDown.Color = Properties.Settings.Default.gui2DColorPenDown;
+            penRuler.Color = Properties.Settings.Default.gui2DColorRuler;
+            penTool.Color = Properties.Settings.Default.gui2DColorTool;
+            penMarker.Color = Properties.Settings.Default.gui2DColorMarker;
+            penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler;
+            penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp;
+            penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
+            penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool;
+            penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker;
 
             videosources = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             if (videosources != null)
@@ -180,17 +174,16 @@ namespace GRBL_Plotter
         private void camera_form_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.locationCamForm = Location;
-            Properties.Settings.Default.cameraindex = cameraIndex;
-            Properties.Settings.Default.camerarotation = cameraRotation;
-            Properties.Settings.Default.camerascalingTop = cameraScalingTop;
-            Properties.Settings.Default.camerascalingBot = cameraScalingBot;
+            Properties.Settings.Default.cameraIndex = cameraIndex;
+            Properties.Settings.Default.cameraRotation = cameraRotation;
+            Properties.Settings.Default.cameraScalingTop = cameraScalingTop;
+            Properties.Settings.Default.cameraScalingBot = cameraScalingBot;
             Properties.Settings.Default.cameraTeachRadiusTop = cameraTeachRadiusTop;
             Properties.Settings.Default.cameraTeachRadiusBot = cameraTeachRadiusBot;
             Properties.Settings.Default.cameraPosTop = cameraPosTop;
             Properties.Settings.Default.cameraPosBot = cameraPosBot;
-  //          Properties.Settings.Default.cameraToolOffsetX = cameraToolOffsetX;
-  //          Properties.Settings.Default.cameraToolOffsetY = cameraToolOffsetY;
             Properties.Settings.Default.Save();
+            Logger.Trace("++++++ ControlCameraForm Stop ++++++");
         }
         // try to set video-source, set event-handler
         private void selectCameraSource(int index, int resolution)
@@ -357,15 +350,23 @@ namespace GRBL_Plotter
             {
                 teachingTop = false;
                 double radius = Math.Sqrt(relposx * relposx + relposy * relposy);
-                cameraScalingTop = cameraTeachRadiusTop / radius;
+                if (radius > 0)
+                { cameraScalingTop = cameraTeachRadiusTop / radius; }
+                else
+                    MessageBox.Show("Radius is '0', no update for scaling of upper position","Attention");
                 cameraPosTop = grbl.posMachine.Z;
+                Logger.Trace("Teach top X:{0} Y:{1} r:{2} scaling:{3} pos-top:{4}", relposx, relposy, radius, cameraScalingTop, cameraPosTop);
             }
             else if (teachingBot)
             {
                 teachingBot = false;
                 double radius = Math.Sqrt(relposx * relposx + relposy * relposy);
-                cameraScalingBot = cameraTeachRadiusBot / radius;
+                if (radius > 0)
+                { cameraScalingBot = cameraTeachRadiusBot / radius; }
+                else
+                    MessageBox.Show("Radius is '0', no update for scaling of lower position", "Attention");
                 cameraPosBot = grbl.posMachine.Z;
+                Logger.Trace("Teach bottom X:{0} Y:{1} r:{2} scaling:{3} pos-bot:{4}", relposx, relposy, radius, cameraScalingBot, cameraPosBot);
             }
             else if ((e.Button == MouseButtons.Left) && !measureAngle)
                 OnRaiseXYEvent(new XYEventArgs(0, 1, realPosition, "G91")); // move relative and slow
@@ -672,13 +673,7 @@ namespace GRBL_Plotter
             redPen.Dispose();
             greenPen.Dispose();
             g.Dispose();
-
-            // put new image to clipboard
-            //           Clipboard.SetDataObject(bitmap);
-            // and to picture box
             pictureBoxVideo.BackgroundImage = bitmap;
-            //UpdatePictureBoxPosition();
-
         }
         // Convert list of AForge.NET's points to array of .NET points
         private System.Drawing.Point[] ToPointsArray(List<IntPoint> points)
@@ -764,7 +759,6 @@ namespace GRBL_Plotter
             teachPoint2 = teachPoint1; teachPoint3 = teachPoint1;
             measureAngleStart = teachPoint1;
             OnRaiseXYEvent(new XYEventArgs(0, 1, grbl.posMarker, "G92"));        // set new coordinates
-            //teachTP1 = true;
         }
 
         private void teachpoint2_process_Click(object sender, EventArgs e)
@@ -778,7 +772,6 @@ namespace GRBL_Plotter
             lblAngle.Text = String.Format("{0:0.00}°", angle);
 
             OnRaiseXYEvent(new XYEventArgs(angle, dist2/dist1, teachPoint1, "a"));       // rotate arround TP1
-            //teachTP1 = false;
         }
 
         private void ControlCameraForm_KeyDown(object sender, KeyEventArgs e)
