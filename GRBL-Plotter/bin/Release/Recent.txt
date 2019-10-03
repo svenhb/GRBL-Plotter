@@ -1,5 +1,9 @@
-_misc\test_svg\grbl.svg
-_misc\test_gcode\test_subroutine.nc
-_misc\test_gcode\scale.nc
-_misc\test_dxf\Bunny.dxf
-_misc\test_svg\Hershey_Fonts.svg
+data\examples\graphic_grbl_popup.svg
+D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\Grafik\Cent.map
+lastProcessed.nc
+data\examples\image_flying_devil.png
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\34685-blue-bunny-vector.svg
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\LaserWeb_Svg_problem.svg
+data\examples\graphic_bunny_string_art.svg
+data\examples\graphic_grbl.svg
+data\examples\graphic_bunny.dxf
