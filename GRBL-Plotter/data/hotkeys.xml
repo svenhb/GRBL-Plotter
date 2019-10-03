@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<hotkeys name="GRBL-Plotter default">
+
+  <!-- Individual gcode or scripts can be defined like this -->
+  <bind keydata="F1, Control, Alt" code="_misc/script_pen_remove.nc" />
+  <bind keydata="F2, Control, Alt" code="G90 X99" />
+  
+  <!-- Jog commands will only be sent if any virtual joystick control is focused -->
+  <bind keydata="Left" 		action="JogAxisXDec" />
+  <bind keydata="NumPad4" 	action="JogAxisXDec" />
+  <bind keydata="Right" 	action="JogAxisXInc" />
+  <bind keydata="NumPad6" 	action="JogAxisXInc" />
+  <bind keydata="Down" 		action="JogAxisYDec" />
+  <bind keydata="NumPad2" 	action="JogAxisYDec" />
+  <bind keydata="Up" 		action="JogAxisYInc" />
+  <bind keydata="NumPad8" 	action="JogAxisYInc" />
+
+  <bind keydata="NumPad1" 	action="JogAxisXDecYDec" />
+  <bind keydata="NumPad7" 	action="JogAxisXDecYInc" />
+  <bind keydata="NumPad9" 	action="JogAxisXIncYInc" />
+  <bind keydata="NumPad3" 	action="JogAxisXIncYDec" />
+
+  <bind keydata="Add" 		action="JogAxisZDec" />
+  <bind keydata="Subtract"	action="JogAxisZInc" />
+  <bind keydata="NumPad0" 	action="JogAxisADec" />
+  <bind keydata="Decimal" 	action="JogAxisAInc" />
+  <bind keydata="Insert" 	action="JogAxisADec" />
+  <bind keydata="Delete" 	action="JogAxisAInc" />
+
+  <bind keydata="NumPad5" 	action="JogAxisStop" />
+
+  <bind keydata="Home" 		action="JogSpeedXYInc" />
+  <bind keydata="End" 		action="JogSpeedXYDec" />
+  <bind keydata="PageUp" 	action="JogSpeedZInc" />
+  <bind keydata="PageDown"	action="JogSpeedZDec" />
+
+  <!-- Buttons on GUI-->
+  <bind keydata="A, Control, Alt"	action="StreamStartPause" />
+  <bind keydata="Space, Control, Alt"	action="StreamStop" />
+  <bind keydata="S, Control, Alt"	action="StreamCheck" />
+
+  <bind keydata="F10, Control"	    action="ToggleSpindle" />
+  <bind keydata="F11, Control"	    action="ToggleCoolant" />
+  <bind keydata="F12, Control"	    action="ToggleToolInSpindle" />
+
+  <bind keydata="D1, Control"	action="OverrideFeedDec10" />
+  <bind keydata="D2, Control"	action="OverrideFeedDec1" />
+  <bind keydata="D3, Control"	action="OverrideFeedSet100" />
+  <bind keydata="D4, Control"	action="OverrideFeedInc1" />
+  <bind keydata="D5, Control"	action="OverrideFeedInc10" />
+
+  <bind keydata="D1, Control, Alt"	action="OverrideSpindleDec10" />
+  <bind keydata="D2, Control, Alt"	action="OverrideSpindleDec1" />
+  <bind keydata="D3, Control, Alt"	action="OverrideSpindleSet100" />
+  <bind keydata="D4, Control, Alt"	action="OverrideSpindleInc1" />
+  <bind keydata="D5, Control, Alt"	action="OverrideSpindleInc10" />
+
+  <!-- Set coordinates to zero -->
+  <bind keydata="Q, Control, Alt"	action="OffsetX" />
+  <bind keydata="W, Control, Alt"	action="OffsetY" />
+  <bind keydata="E, Control, Alt"	action="OffsetZ" />
+  <bind keydata="R, Control, Alt"	action="OffsetA" />
+  <bind keydata="T, Control, Alt"	action="OffsetXY" />
+  <!-- Keyboard DE -->
+  <bind keydata="Z, Control, Alt"	action="OffsetXYZ" />
+  <!-- Keyboard US -->
+  <bind keydata="Y, Control, Alt"	action="OffsetXYZ" />
+
+  <!-- Move to zero -->
+  <bind keydata="Q, Control"	action="MoveZeroX" />
+  <bind keydata="W, Control"	action="MoveZeroY" />
+  <bind keydata="E, Control"	action="MoveZeroZ" />
+  <bind keydata="R, Control"	action="MoveZeroA" />
+  <bind keydata="T, Control"	action="MoveZeroXY" />
+
+  <!-- grbl specific -->
+  <bind keydata="H, Control, Alt"	action="grblHome" />
+  <bind keydata="F, Control, Alt"	action="grblFeedHold" />
+  <bind keydata="R, Control, Alt"	action="grblReset" />
+  <bind keydata="G, Control, Alt"	action="grblResume" />
+  <bind keydata="X, Control, Alt"	action="grblKillAlarm" />
+
+  <!-- Custom Button commands will only be sent if buttons are enabled -->
+  <bind keydata="F1" action="CustomButton1" />
+  <bind keydata="F2" action="CustomButton2" />
+  <bind keydata="F3" action="CustomButton3" />
+  <bind keydata="F4" action="CustomButton4" />
+  <bind keydata="F5" action="CustomButton5" />
+  <bind keydata="F6" action="CustomButton6" />
+  <bind keydata="F7" action="CustomButton7" />
+  <bind keydata="F8" action="CustomButton8" />
+  <bind keydata="F9" action="CustomButton9" />
+  <bind keydata="F10" action="CustomButton10" />
+  <bind keydata="F11" action="CustomButton11" />
+  <bind keydata="F12" action="CustomButton12" />
+  <bind keydata="F1, Control" action="CustomButton13" />
+  <bind keydata="F2, Control" action="CustomButton14" />
+  <bind keydata="F3, Control" action="CustomButton15" />
+  <bind keydata="F4, Control" action="CustomButton16" />
+
+</hotkeys>
