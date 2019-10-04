@@ -4,6 +4,24 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.  
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
+### New in Version 1.3.0.x
+#### New feature 'use cases':
+* select a 'use-case' when importing DXF or SVG
+* preset import options, pen up/down definitions, Z deepth, etc.
+* use it for machine-selection, material-selection or tool-selection
+* example [Using a pen and laser together](https://youtu.be/Ebe2kFlE058)
+#### Improoved 'grouping'
+* Paths from imports by DXF or SVG can be grouped (by color or layer)
+* Groups can be selected, transformed, deleted
+#### Misc
+* process dashed lines from DXF or SVG
+* Add a logger
+* extend error handling on SVG import
+* Laser tools to optimize parameters e.g.  [Scan Z to find laser focus](https://youtu.be/blhaZ8rb2ec)
+
+#### Attentions: some incompatibilities:  
+* new file format for csv tool table now ',' comma separated instead of ';' semicolon  
+* new file locations for examples, fonts, scripts, tools
    
 ### New in Version 1.2.5.x:
 * Transform of all or selected code
@@ -38,7 +56,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.2.5.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-07-05    
+#### [GRBL-Plotter Vers. 1.3.0.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-10-03    
 
 ### Requirements for compiling
 * VisualStudio 2015 
