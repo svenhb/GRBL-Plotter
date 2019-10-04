@@ -4,6 +4,26 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+  
+### Neu in Version 1.3.0.x
+#### Neue Funktion 'Anwendungfall':
+* Selektiere einen 'Anwendungsfall' beim Import von DXF oder SVG Grafiken
+* Voreinstellen von Importoptionen, Stift hoch/runter Definitionen, Z Tiefe, usw.
+* Nutze es für Geräteauswahl, Materialauswahl oder Werkzeugauswahl
+* Beispiel [Gleichzeitige Nutzung von Laser und Stift](https://youtu.be/Ebe2kFlE058)
+#### Verbesserte Gruppierung
+* Pfade von DXF oder SVG Importen können nach Farben oder Layern gruppiert werden
+* Gruppen können selektiert, transformiert oder gelöscht werden
+#### Verschiedenes
+* Verarbeitung von gestrichelten Linien (nur Geraden, keine Kurven) in DXF oder SVG
+* Einführung eines Loggers
+* Erweiterte Fehlererkennung beim SVG Import
+* Laser-Tools um Laserparameter zu finden:  [Scan Z to find laser focus](https://youtu.be/blhaZ8rb2ec)
+
+#### Achtung - Inkompatibilitäten:  
+* Neues Dateiformat für CSV in Werkzeugliste - jetzt ',' Kommaseperator, statt ';' Semikolon  
+* Neue Dateipfade für examples, fonts, scripts, tools  
+  
 ### Neu in Version 1.2.5.0:
 * Transformierung aller Objekte (bisher) oder eines selektierten Objekts
 * ___einfache___ Fräserradiuskorrektur
