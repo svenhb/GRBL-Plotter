@@ -44,6 +44,8 @@ namespace GRBL_Plotter
                 StyleXAxis.Dispose();
                 StyleYAxis.Dispose();
                 StyleZAxis.Dispose();
+                StyleCommentxml.Dispose();
+                StyleFail.Dispose();
                 penDown.Dispose();
                 penRotary.Dispose();
                 penMarker.Dispose();
@@ -77,10 +79,16 @@ namespace GRBL_Plotter
             this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
             this.cmsCode = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsEditorHotkeys = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldBlocksToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldCodeBlocks2ndLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldCodeBlocks3rdLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandCodeBlocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsCodeSelect = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodePaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodePasteSpecial1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodePasteSpecial2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsFindDialog = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsReplaceDialog = new System.Windows.Forms.ToolStripMenuItem();
@@ -316,13 +324,14 @@ namespace GRBL_Plotter
             this.removeAnyZMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.laserToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coordinateSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.startStreamingAtLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_tb_StreamLine = new System.Windows.Forms.ToolStripTextBox();
-            this.coordinateSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachineFix = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachine = new System.Windows.Forms.ToolStripMenuItem();
@@ -372,7 +381,6 @@ namespace GRBL_Plotter
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer1.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::GRBL_Plotter.Properties.Settings.Default, "mainFormSplitDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.splitContainer1, "splitContainer1");
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Name = "splitContainer1";
@@ -384,7 +392,6 @@ namespace GRBL_Plotter
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tLPRechts);
-            this.splitContainer1.SplitterDistance = global::GRBL_Plotter.Properties.Settings.Default.mainFormSplitDistance;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // tLPLinks
@@ -434,10 +441,16 @@ namespace GRBL_Plotter
             // 
             this.cmsCode.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmsEditorHotkeys,
+            this.foldBlocksToolStripMenuItem1,
+            this.foldCodeBlocks2ndLevelToolStripMenuItem,
+            this.foldCodeBlocks3rdLevelToolStripMenuItem,
+            this.expandCodeBlocksToolStripMenuItem,
             this.toolStripSeparator11,
             this.cmsCodeSelect,
             this.cmsCodeCopy,
             this.cmsCodePaste,
+            this.cmsCodePasteSpecial1,
+            this.cmsCodePasteSpecial2,
             this.toolStripSeparator14,
             this.cmsFindDialog,
             this.cmsReplaceDialog,
@@ -455,6 +468,30 @@ namespace GRBL_Plotter
             // 
             this.cmsEditorHotkeys.Name = "cmsEditorHotkeys";
             resources.ApplyResources(this.cmsEditorHotkeys, "cmsEditorHotkeys");
+            // 
+            // foldBlocksToolStripMenuItem1
+            // 
+            this.foldBlocksToolStripMenuItem1.Name = "foldBlocksToolStripMenuItem1";
+            resources.ApplyResources(this.foldBlocksToolStripMenuItem1, "foldBlocksToolStripMenuItem1");
+            this.foldBlocksToolStripMenuItem1.Click += new System.EventHandler(this.foldBlocksToolStripMenuItem1_Click);
+            // 
+            // foldCodeBlocks2ndLevelToolStripMenuItem
+            // 
+            this.foldCodeBlocks2ndLevelToolStripMenuItem.Name = "foldCodeBlocks2ndLevelToolStripMenuItem";
+            resources.ApplyResources(this.foldCodeBlocks2ndLevelToolStripMenuItem, "foldCodeBlocks2ndLevelToolStripMenuItem");
+            this.foldCodeBlocks2ndLevelToolStripMenuItem.Click += new System.EventHandler(this.foldBlocks2ndToolStripMenuItem1_Click);
+            // 
+            // foldCodeBlocks3rdLevelToolStripMenuItem
+            // 
+            this.foldCodeBlocks3rdLevelToolStripMenuItem.Name = "foldCodeBlocks3rdLevelToolStripMenuItem";
+            resources.ApplyResources(this.foldCodeBlocks3rdLevelToolStripMenuItem, "foldCodeBlocks3rdLevelToolStripMenuItem");
+            this.foldCodeBlocks3rdLevelToolStripMenuItem.Click += new System.EventHandler(this.foldBlocks3rdToolStripMenuItem1_Click);
+            // 
+            // expandCodeBlocksToolStripMenuItem
+            // 
+            this.expandCodeBlocksToolStripMenuItem.Name = "expandCodeBlocksToolStripMenuItem";
+            resources.ApplyResources(this.expandCodeBlocksToolStripMenuItem, "expandCodeBlocksToolStripMenuItem");
+            this.expandCodeBlocksToolStripMenuItem.Click += new System.EventHandler(this.expandCodeBlocksToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -475,6 +512,16 @@ namespace GRBL_Plotter
             // 
             this.cmsCodePaste.Name = "cmsCodePaste";
             resources.ApplyResources(this.cmsCodePaste, "cmsCodePaste");
+            // 
+            // cmsCodePasteSpecial1
+            // 
+            this.cmsCodePasteSpecial1.Name = "cmsCodePasteSpecial1";
+            resources.ApplyResources(this.cmsCodePasteSpecial1, "cmsCodePasteSpecial1");
+            // 
+            // cmsCodePasteSpecial2
+            // 
+            this.cmsCodePasteSpecial2.Name = "cmsCodePasteSpecial2";
+            resources.ApplyResources(this.cmsCodePasteSpecial2, "cmsCodePasteSpecial2");
             // 
             // toolStripSeparator14
             // 
@@ -1072,10 +1119,10 @@ namespace GRBL_Plotter
             // 
             // tBSpeed
             // 
-            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "spindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "guiSpindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBSpeed, "tBSpeed");
             this.tBSpeed.Name = "tBSpeed";
-            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.spindleSpeed;
+            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.guiSpindleSpeed;
             // 
             // cBCoolant
             // 
@@ -2242,12 +2289,13 @@ namespace GRBL_Plotter
             // 
             this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.heightMapToolStripMenuItem,
-            this.controlStreamingToolStripMenuItem,
-            this.control2ndGRBLToolStripMenuItem,
-            this.toolStripMenuItem1,
+            this.laserToolsToolStripMenuItem,
+            this.coordinateSystemsToolStripMenuItem,
             this.setupToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.startStreamingAtLineToolStripMenuItem,
-            this.coordinateSystemsToolStripMenuItem});
+            this.controlStreamingToolStripMenuItem,
+            this.control2ndGRBLToolStripMenuItem});
             this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
             resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
             // 
@@ -2257,29 +2305,29 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.heightMapToolStripMenuItem, "heightMapToolStripMenuItem");
             this.heightMapToolStripMenuItem.Click += new System.EventHandler(this.heightMapToolStripMenuItem_Click);
             // 
-            // controlStreamingToolStripMenuItem
+            // laserToolsToolStripMenuItem
             // 
-            this.controlStreamingToolStripMenuItem.Name = "controlStreamingToolStripMenuItem";
-            resources.ApplyResources(this.controlStreamingToolStripMenuItem, "controlStreamingToolStripMenuItem");
-            this.controlStreamingToolStripMenuItem.Click += new System.EventHandler(this.controlStreamingToolStripMenuItem_Click);
+            this.laserToolsToolStripMenuItem.Name = "laserToolsToolStripMenuItem";
+            resources.ApplyResources(this.laserToolsToolStripMenuItem, "laserToolsToolStripMenuItem");
+            this.laserToolsToolStripMenuItem.Click += new System.EventHandler(this.laseropen);
             // 
-            // control2ndGRBLToolStripMenuItem
+            // coordinateSystemsToolStripMenuItem
             // 
-            this.control2ndGRBLToolStripMenuItem.Name = "control2ndGRBLToolStripMenuItem";
-            resources.ApplyResources(this.control2ndGRBLToolStripMenuItem, "control2ndGRBLToolStripMenuItem");
-            this.control2ndGRBLToolStripMenuItem.Click += new System.EventHandler(this.control2ndGRBLToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
+            this.coordinateSystemsToolStripMenuItem.Name = "coordinateSystemsToolStripMenuItem";
+            resources.ApplyResources(this.coordinateSystemsToolStripMenuItem, "coordinateSystemsToolStripMenuItem");
+            this.coordinateSystemsToolStripMenuItem.Click += new System.EventHandler(this.coordSystemopen);
             // 
             // setupToolStripMenuItem
             // 
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
             resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
             this.setupToolStripMenuItem.Click += new System.EventHandler(this.DIYControlopen);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
             // 
             // startStreamingAtLineToolStripMenuItem
             // 
@@ -2294,11 +2342,17 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.toolStrip_tb_StreamLine, "toolStrip_tb_StreamLine");
             this.toolStrip_tb_StreamLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_tb_StreamLine_KeyDown);
             // 
-            // coordinateSystemsToolStripMenuItem
+            // controlStreamingToolStripMenuItem
             // 
-            this.coordinateSystemsToolStripMenuItem.Name = "coordinateSystemsToolStripMenuItem";
-            resources.ApplyResources(this.coordinateSystemsToolStripMenuItem, "coordinateSystemsToolStripMenuItem");
-            this.coordinateSystemsToolStripMenuItem.Click += new System.EventHandler(this.coordSystemopen);
+            this.controlStreamingToolStripMenuItem.Name = "controlStreamingToolStripMenuItem";
+            resources.ApplyResources(this.controlStreamingToolStripMenuItem, "controlStreamingToolStripMenuItem");
+            this.controlStreamingToolStripMenuItem.Click += new System.EventHandler(this.controlStreamingToolStripMenuItem_Click);
+            // 
+            // control2ndGRBLToolStripMenuItem
+            // 
+            this.control2ndGRBLToolStripMenuItem.Name = "control2ndGRBLToolStripMenuItem";
+            resources.ApplyResources(this.control2ndGRBLToolStripMenuItem, "control2ndGRBLToolStripMenuItem");
+            this.control2ndGRBLToolStripMenuItem.Click += new System.EventHandler(this.control2ndGRBLToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -2328,7 +2382,7 @@ namespace GRBL_Plotter
             // 
             // toolStripViewTool
             // 
-            this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.toolTableShow;
+            this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DToolTableShow;
             this.toolStripViewTool.CheckOnClick = true;
             this.toolStripViewTool.Name = "toolStripViewTool";
             resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
@@ -2336,7 +2390,7 @@ namespace GRBL_Plotter
             // 
             // toolStripViewBackground
             // 
-            this.toolStripViewBackground.Checked = global::GRBL_Plotter.Properties.Settings.Default.backgroundShow;
+            this.toolStripViewBackground.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundShow;
             this.toolStripViewBackground.CheckOnClick = true;
             this.toolStripViewBackground.Name = "toolStripViewBackground";
             resources.ApplyResources(this.toolStripViewBackground, "toolStripViewBackground");
@@ -2378,6 +2432,7 @@ namespace GRBL_Plotter
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -2700,6 +2755,13 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
         private System.Windows.Forms.ToolStripMenuItem toolStrip_RadiusComp;
         private System.Windows.Forms.ToolStripTextBox toolStrip_tBRadiusCompValue;
+        private System.Windows.Forms.ToolStripMenuItem foldBlocksToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem expandCodeBlocksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks2ndLevelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem laserToolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks3rdLevelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodePasteSpecial1;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodePasteSpecial2;
     }
 }
 

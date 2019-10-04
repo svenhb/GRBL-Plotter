@@ -16,11 +16,11 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+/*
+ * 2019-07-08 add foldCode() to text and image import 
+*/
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -168,8 +168,8 @@ namespace GRBL_Plotter
                 newCodeStart();
                 fCTBCode.Text = _text_form.textGCode;
                 setLastLoadedFile("from text", "");
- //               lastLoadSource = "from text";
                 newCodeEnd();
+                foldCode();
             }
             else
                 MessageBox.Show("Streaming is still active - press Stop and try again", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -185,7 +185,6 @@ namespace GRBL_Plotter
                 newCodeStart();
                 fCTBCode.Text = _shape_form.shapeGCode;
                 setLastLoadedFile("from shape", "");
- //               lastLoadSource = "from shape"; 
                 newCodeEnd();
             }
             else
@@ -201,10 +200,13 @@ namespace GRBL_Plotter
             {
                 newCodeStart();
                 fCTBCode.Text = _image_form.imageGCode;
-                penDown.Width = (float)Properties.Settings.Default.importImageReso;
+                if(Properties.Settings.Default.importImageResoApply)
+                    penDown.Width = (float)Properties.Settings.Default.importImageReso;
+                else
+                    penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
                 setLastLoadedFile("from image", "");
-//                lastLoadSource = "from image"; 
                 newCodeEnd();
+                foldCode();
             }
             else
                 MessageBox.Show("Streaming is still active - press Stop and try again");
@@ -577,7 +579,7 @@ namespace GRBL_Plotter
                 if (Double.TryParse(toolStrip_tBRadiusCompValue.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out radius))
                 {
                     Properties.Settings.Default.crcValue = radius;
-                    Properties.Settings.Default.backgroundShow = toolStripViewBackground.Checked = true;
+                    Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked = true;
                     {
                         //transformStart();
                         Cursor.Current = Cursors.WaitCursor;

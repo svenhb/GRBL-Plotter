@@ -24,6 +24,16 @@ using System.Text;
 
 namespace GRBL_Plotter
 {
+    public static class datapath
+    {
+        public const string fonts    = "data\\fonts";
+        public const string tools    = "\\data\\tools";
+        public const string scripts  = "\\data\\scripts";
+        public const string usecases = "\\data\\usecases";
+        public const string hotkeys = "\\data\\hotkeys.xml";
+        public const string examples = "\\data\\examples";
+    }
+
     public struct xyzPoint
     {
         public double X, Y, Z, A, B, C;
@@ -281,7 +291,7 @@ namespace GRBL_Plotter
             if ((miny == Double.MaxValue) || (maxy == Double.MinValue))
                 y = "Y: unknown | unknown\r\n";
             if ((minz == Double.MaxValue) || (maxz == Double.MinValue))
-                z = "Z: unknown | unknown";
+                z = "";// z = "Z: unknown | unknown";
             return "    Min.   | Max.\r\n" + x + y + z;
         }
         public bool withinLimits(xyzPoint actualMachine, xyzPoint actualWorld)
@@ -318,6 +328,17 @@ namespace GRBL_Plotter
            }
        }
        */
+
+    public class CmdEventArgs : EventArgs
+    {
+        string command;
+        public CmdEventArgs(string cmd)
+        {
+            command = cmd;
+        }
+        public string Command
+        { get { return command; } }
+    }
 
     public class XYEventArgs : EventArgs
     {

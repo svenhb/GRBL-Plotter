@@ -34,6 +34,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using FastColoredTextBoxNS;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace GRBL_Plotter
 {
@@ -44,6 +46,7 @@ namespace GRBL_Plotter
         #region fCTB FastColoredTextBox related
         // highlight code in editor
         private Style StyleComment = new TextStyle(Brushes.Gray, null, FontStyle.Italic);
+        private Style StyleCommentxml = new TextStyle(Brushes.DarkGray, null, FontStyle.Regular);
         private Style StyleGWord = new TextStyle(Brushes.Blue, null, FontStyle.Bold);
         private Style StyleMWord = new TextStyle(Brushes.SaddleBrown, null, FontStyle.Regular);
         private Style StyleFWord = new TextStyle(Brushes.Red, null, FontStyle.Regular);
@@ -63,6 +66,7 @@ namespace GRBL_Plotter
 #endif
             e.ChangedRange.ClearStyle(StyleComment);
             e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
+            e.ChangedRange.SetStyle(StyleCommentxml, "(\\(<.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleGWord, "(G\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleMWord, "(M\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleFWord, "(F\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -73,8 +77,15 @@ namespace GRBL_Plotter
             e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleAAxis, "[AaBbCcUuVvWw]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetFoldingMarkers(xmlMarker.figureStart, xmlMarker.figureEnd);
+
+            e.ChangedRange.ClearFoldingMarkers();
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.fillStart, xmlMarker.fillEnd);
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.contourStart, xmlMarker.contourEnd);
             e.ChangedRange.SetFoldingMarkers(xmlMarker.passStart, xmlMarker.passEnd);
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.figureStart, xmlMarker.figureEnd);
+            if (Properties.Settings.Default.importGCZIncEnable)
+                 fCTBCode.CollapseAllFoldingBlocks();
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.groupStart, xmlMarker.groupEnd);
         }
 
         private void fCTB_CheckUnknownCode()
@@ -153,8 +164,16 @@ namespace GRBL_Plotter
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                     fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);
                     fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
+
                     // Set marker in drawing
+                    Place tst = fCTBCode.Selection.Start;
+         //           Logger.Trace(string.Format("clicked:{0} code:{1} first:{2}", fCTBCodeClickedLineNow, fCTBCode.Lines[tst.iLine], tst.iLine));
                     visuGCode.setPosMarkerLine(fCTBCodeClickedLineNow,!isStreaming);
+
+                    //                 MessageBox.Show(fCTBCode.Lines[tst.iLine]);
+                    if (fCTBCode.Lines[tst.iLine].Contains(xmlMarker.groupStart))
+                        visuGCode.markSelectedGroup(tst.iLine);
+
                     pictureBox1.Invalidate(); // avoid too much events
                     toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
                 }
@@ -173,6 +192,58 @@ namespace GRBL_Plotter
             }
             else if (e.ClickedItem.Name == "cmsCodePaste")
                 fCTBCode.Paste();
+            else if (e.ClickedItem.Name == "cmsCodePasteSpecial1")
+            {
+                Place selStart, selEnd;
+                Range mySelection = fCTBCode.Range;
+                selStart.iLine = fCTBCodeClickedLineNow + 1;
+                selStart.iChar = 0;
+                selEnd.iLine = fCTBCodeClickedLineNow + 2;
+                selEnd.iChar = 0;
+                gcode.setup();
+                StringBuilder gcodeString = new StringBuilder();
+                gcodeString.Append("\r\n");
+                gcode.PenUp(gcodeString, "pasted");
+                string tmp = fCTBCode.Lines[fCTBCodeClickedLineNow+1];
+                if (tmp.Contains("G01"))
+                {
+                    mySelection.Start = selStart;
+                    mySelection.End = selEnd;
+                    fCTBCode.Selection = mySelection;
+                    fCTBCode.SelectedText=(tmp.Replace("G01", "G00"))+"\r\n";
+                }
+                else
+                    gcodeString.Append("G00\r\n");
+                Clipboard.SetText(gcodeString.ToString());
+                // restore old cursor pos. to insert code
+                selStart.iLine = fCTBCodeClickedLineNow + 1;
+                selEnd.iLine = fCTBCodeClickedLineNow + 1;
+                mySelection.Start = selStart;
+                mySelection.End = selEnd;
+                fCTBCode.Selection = mySelection;
+                fCTBCode.Paste();
+                // set new cursor pos. for assumed PenDown command
+                fCTBCodeClickedLineNow+= gcodeString.ToString().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length; // 
+                selStart.iLine = fCTBCodeClickedLineNow + 1;
+                selEnd.iLine = fCTBCodeClickedLineNow + 1;
+                mySelection.Start = selStart;
+                mySelection.End = selEnd;
+                fCTBCode.Selection = mySelection;
+                fCTBCodeMarkLine();
+            }
+            else if (e.ClickedItem.Name == "cmsCodePasteSpecial2")
+            {
+                gcode.setup();
+                StringBuilder gcodeString = new StringBuilder();
+                gcode.PenDown(gcodeString,"pasted");
+                string tmp = fCTBCode.Lines[fCTBCodeClickedLineNow + 1];
+                if (!tmp.Contains("G01"))
+                    gcodeString.Append("G01\r\n");
+                gcodeString.Append("\r\n");
+                Clipboard.SetText(gcodeString.ToString());
+                fCTBCode.Paste();
+                newCodeEnd();       // redraw 2D view
+            }
             else if (e.ClickedItem.Name == "cmsCodeSendLine")
             {
                 int clickedLine = fCTBCode.Selection.ToLine;
@@ -290,5 +361,30 @@ namespace GRBL_Plotter
             }
         }
 
+        private void foldBlocksToolStripMenuItem1_Click(object sender, EventArgs e)
+        {   fCTBCode.CollapseAllFoldingBlocks();  }
+
+        private void foldBlocks2ndToolStripMenuItem1_Click(object sender, EventArgs e)
+        {   string tmp;
+            fCTBCode.ExpandAllFoldingBlocks();
+            for (int i = 0; i < fCTBCode.LinesCount; i++)
+            {   tmp = fCTBCode.GetLine(i).Text;
+                if (tmp.Contains(xmlMarker.figureStart) || tmp.Contains(xmlMarker.contourStart)|| tmp.Contains(xmlMarker.fillStart)|| tmp.Contains(xmlMarker.passStart))
+                {    fCTBCode.CollapseFoldingBlock(i);  }
+            }
+        }
+        private void foldBlocks3rdToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string tmp;
+            fCTBCode.ExpandAllFoldingBlocks();
+            for (int i = 0; i < fCTBCode.LinesCount; i++)
+            {
+                tmp = fCTBCode.GetLine(i).Text;
+                if (tmp.Contains(xmlMarker.contourStart) || tmp.Contains(xmlMarker.fillStart) || tmp.Contains(xmlMarker.passStart))
+                { fCTBCode.CollapseFoldingBlock(i); }
+            }
+        }
+        private void expandCodeBlocksToolStripMenuItem_Click(object sender, EventArgs e)
+        {   fCTBCode.ExpandAllFoldingBlocks();   }
     }
 }

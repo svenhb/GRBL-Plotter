@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.2.5.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -88,8 +88,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="AForge">
       <HintPath>DLLs\AForge.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Imaging">
@@ -98,33 +97,37 @@
     <Reference Include="AForge.Math">
       <HintPath>DLLs\AForge.Math.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="AForge.Video">
       <HintPath>DLLs\AForge.Video.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="AForge.Video.DirectShow">
       <HintPath>DLLs\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="DXFLib">
+    <Reference Include="DXFLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>DLLs\DXFLib.dll</HintPath>
     </Reference>
     <Reference Include="FastColoredTextBox, Version=2.16.11.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLLs\FastColoredTextBox.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SharpDX">
       <HintPath>DLLs\SharpDX.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.DirectInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="SharpDX.DirectInput">
       <HintPath>DLLs\SharpDX.DirectInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -134,7 +137,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="virtualJoystick, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="virtualJoystick, Version=0.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLLs\virtualJoystick.dll</HintPath>
     </Reference>
@@ -155,6 +158,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GCodeCreation\GCodeFromImageOutline.cs" />
+    <Compile Include="GCodeCreation\plotterRelated.cs" />
     <Compile Include="MachineControl\ControlCoordSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,7 +171,19 @@
     <Compile Include="MachineControl\ControlDIYControlPad.Designer.cs">
       <DependentUpon>ControlDIYControlPad.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineControl\ControlLaser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\ControlLaser.Designer.cs">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </Compile>
     <Compile Include="MachineControl\ControlPowerSaving.cs" />
+    <Compile Include="MachineControl\ControlSetupUseCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\ControlSetupUseCase.Designer.cs">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+    </Compile>
     <Compile Include="MachineControl\GCodeParser.cs" />
     <Compile Include="MachineControl\GCodeTransform.cs" />
     <Compile Include="MachineControl\NativeMethods.cs" />
@@ -296,11 +312,23 @@
     <EmbeddedResource Include="MachineControl\ControlHeightMap.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.de-DE.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.de-DE.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupForm.de-DE.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.de-DE.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlStreamingForm.de-DE.resx">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
@@ -354,144 +382,163 @@
     <EmbeddedResource Include="GCodeCreation\GCodeFromShape.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="fonts\amiri-regular.lff">
+    <Content Include="data\examples\graphic_bunny_string_art.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\azomix.lff">
+    <Content Include="data\examples\image_flying_devil.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\azomix_i.lff">
+    <Content Include="data\examples\image_fry.png" />
+    <Content Include="data\examples\graphic_grbl_popup.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\cursive.lff">
+    <Content Include="data\fonts\amiri-regular.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\cyrillic_ii.lff">
+    <Content Include="data\fonts\azomix.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\gothgbt.lff">
+    <Content Include="data\fonts\azomix_i.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\gothgrt.lff">
+    <Content Include="data\fonts\cursive.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\gothitt.lff">
+    <Content Include="data\fonts\cyrillic_ii.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\greekc.lff">
+    <Content Include="data\fonts\gothgbt.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\greekcs.lff">
+    <Content Include="data\fonts\gothgrt.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\greekp.lff">
+    <Content Include="data\fonts\gothitt.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\greeks.lff">
+    <Content Include="data\fonts\greekc.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\greek_ol.lff">
+    <Content Include="data\fonts\greekcs.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\iso.lff">
+    <Content Include="data\fonts\greekp.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\iso3098.lff">
+    <Content Include="data\fonts\greeks.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\iso3098_i.lff">
+    <Content Include="data\fonts\greek_ol.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\italicc.lff">
+    <Content Include="data\fonts\iso.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\italiccs.lff">
+    <Content Include="data\fonts\iso3098.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\italict.lff">
+    <Content Include="data\fonts\iso3098_i.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\kochigothic.lff">
+    <Content Include="data\fonts\italicc.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\kochimincho.lff">
+    <Content Include="data\fonts\italiccs.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\kst32b.lff">
+    <Content Include="data\fonts\italict.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\lc_opengost-ar.lff">
+    <Content Include="data\fonts\kochigothic.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\lc_opengost-br.lff">
+    <Content Include="data\fonts\kochimincho.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\OpenGostTypeA-Regular.lff">
+    <Content Include="data\fonts\kst32b.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\OpenGostTypeB-Regular.lff">
+    <Content Include="data\fonts\lc_opengost-ar.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\romanc.lff">
+    <Content Include="data\fonts\lc_opengost-br.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\romancs.lff">
+    <Content Include="data\fonts\OpenGostTypeA-Regular.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\romand.lff">
+    <Content Include="data\fonts\OpenGostTypeB-Regular.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\romanp.lff">
+    <Content Include="data\fonts\romanc.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\romans.lff">
+    <Content Include="data\fonts\romancs.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\romansi.lff">
+    <Content Include="data\fonts\romand.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\romant.lff">
+    <Content Include="data\fonts\romanp.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\scriptc.lff">
+    <Content Include="data\fonts\romans.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\scripts.lff">
+    <Content Include="data\fonts\romansi.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\simplex.lff">
+    <Content Include="data\fonts\romant.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\standard.lff">
+    <Content Include="data\fonts\scriptc.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\syastro.lff">
+    <Content Include="data\fonts\scripts.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\symap.lff">
+    <Content Include="data\fonts\simplex.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\symath.lff">
+    <Content Include="data\fonts\standard.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\symbol.lff">
+    <Content Include="data\fonts\syastro.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\symbol_misc1.lff">
+    <Content Include="data\fonts\symap.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\symbol_misc2.lff">
+    <Content Include="data\fonts\symath.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\symeteo.lff">
+    <Content Include="data\fonts\symbol.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\symusic.lff">
+    <Content Include="data\fonts\symbol_misc1.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\unicode.lff">
+    <Content Include="data\fonts\symbol_misc2.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\fonts\symeteo.lff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\fonts\symusic.lff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\fonts\unicode.lff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\example_plotter_pen_changer.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\example_plotter.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -503,82 +550,100 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="hotkeys.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="data\hotkeys.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Recent.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\fctb_hotkeys.txt" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\fctb_hotkeys.txt" />
     <None Include="Resources\led_on.png" />
     <None Include="Resources\led_off.png" />
-    <Content Include="_misc\script_pen_pickup.nc">
+    <None Include="Resources\up.png" />
+    <Content Include="data\scripts\script_pen_pickup.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_pen_remove.nc">
+    <Content Include="data\scripts\script_pen_remove.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_pen_select.nc">
+    <Content Include="data\scripts\script_pen_select.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_probing_gripper.nc">
+    <Content Include="data\scripts\script_probing_gripper.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_probing_tool.nc">
+    <Content Include="data\scripts\script_probing_tool.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\test_dxf\Bunny.dxf">
+    <Content Include="data\examples\graphic_bunny.dxf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\test_gcode\scale.nc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="data\examples\gcode_scale.nc" />
+    <Content Include="data\examples\gcode_absolute_and_relative.nc" />
+    <Content Include="data\examples\gcode_relative.nc" />
+    <Content Include="data\examples\gcode_subroutine.nc" />
+    <Content Include="data\examples\heightmap_cent.map" />
+    <Content Include="data\examples\heightmap_lens.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\test_gcode\test_absolute_and_relative.nc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="_misc\test_gcode\test_relative.nc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="_misc\test_gcode\test_subroutine.nc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="_misc\test_map\cent.map" />
-    <Content Include="_misc\test_map\lens.map" />
-    <Content Include="_misc\Test_Pen_change.nc">
+    <Content Include="data\scripts\Test_Pen_change.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\alarm_codes_en_US.csv" />
     <None Include="Resources\error_codes_en_US.csv" />
     <None Include="Resources\setting_codes_en_US.csv" />
-    <Content Include="_misc\test_map\pfennig_1.map" />
-    <Content Include="_misc\script_brush_clean.nc">
+    <Content Include="data\examples\heightmap_pfennig.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_brush_refresh.nc">
+    <Content Include="data\scripts\script_brush_clean.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_brush_select.nc">
+    <Content Include="data\scripts\script_brush_refresh.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\test_svg\Hershey_Fonts.svg">
+    <Content Include="data\scripts\script_brush_select.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\tools.csv">
+    <Content Include="data\examples\graphic_Hershey_Fonts.svg" />
+    <Content Include="data\tools\router_tools.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_down_up.nc">
+    <Content Include="data\scripts\script_down_up.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_pen2_remove.nc">
+    <Content Include="data\scripts\script_pen2_remove.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\script_pen2_select.nc">
+    <Content Include="data\scripts\script_pen2_select.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\Stabilo_power.csv">
+    <Content Include="data\tools\paint_Stabilopower.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\watercolor.csv">
+    <Content Include="data\tools\paint_watercolor.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\laser_popup.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\example_laser.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\_current_.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\laser_and_pen.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\example_laser_and_pen.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\example_laser_and_Z_axis.ini" />
+    <Content Include="data\usecases\example_router_just_drill.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\example_eggbot.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -606,19 +671,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
-    <Content Include="_misc\modell.png" />
-    <Content Include="_misc\test_map\cent.bmp" />
-    <Content Include="_misc\test_svg\grbl.svg">
+    <Content Include="data\examples\image_modell.png" />
+    <Content Include="data\examples\image_cent.bmp" />
+    <Content Include="data\examples\graphic_grbl.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="_misc\test_svg\Testbild.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="data\examples\graphic_Testbild.svg" />
     <None Include="Resources\inv2.png" />
     <None Include="Resources\turn_r.png" />
     <None Include="Resources\turn_l.png" />
     <None Include="Resources\flip_vertical.png" />
     <None Include="Resources\flip_horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="data\hotkeys.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,6 +23,7 @@
  * 2019-03-17  Add custom buttons 13-16, save dialog add *.cnc, *.gcode
  * 2019-04-23  Add virtualJoystickA_lastIndex line 990
  * 2019-05-12  tBURL - disable 2nd event in Line 272
+ * 2019-09-28  insert usecase dialog
  */
 
 //#define debuginfo
@@ -82,7 +83,7 @@ namespace GRBL_Plotter
                 toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
             }
             StreamWriter stringToWrite =
-            new StreamWriter(System.Environment.CurrentDirectory + "\\Recent.txt");
+            new StreamWriter(Application.StartupPath + "\\Recent.txt"); //System.Environment.CurrentDirectory
             foreach (string item in MRUlist)
             { stringToWrite.WriteLine(item); }
             stringToWrite.Flush(); //write stream to file
@@ -94,7 +95,7 @@ namespace GRBL_Plotter
             try
             {
                 StreamReader listToRead =
-                new StreamReader(System.Environment.CurrentDirectory + "\\Recent.txt");
+                new StreamReader(Application.StartupPath + "\\Recent.txt");
                 string line;
                 MRUlist.Clear();
                 while ((line = listToRead.ReadLine()) != null) //read each line until end of file
@@ -144,6 +145,7 @@ namespace GRBL_Plotter
 
         private void loadFile(string fileName)
         {
+            Logger.Info("Load file {0}", fileName);
             if (unDoToolStripMenuItem.Enabled)
                 visuGCode.setPathAsLandMark(true);
             setUndoText("");
@@ -304,12 +306,14 @@ namespace GRBL_Plotter
 #if (debuginfo)
             log.Add("MainFormLoadFile startConvertSVG");
 #endif
+            UseCaseDialog();
             newCodeStart();
             fCTBCode.Text = GCodeFromSVG.convertFromFile(source);        // get code
             newCodeEnd();
             SaveRecentFile(source);
             this.Text = appName + " | Source: " + source;
             lbInfo.Text = "SVG-Code loaded";
+            foldCode();
         }
 
         private void startConvertDXF(string source)
@@ -317,12 +321,23 @@ namespace GRBL_Plotter
 #if (debuginfo)
             log.Add("MainFormLoadFile startConvertDXF");
 #endif
+            UseCaseDialog();
             newCodeStart();
             fCTBCode.Text = GCodeFromDXF.ConvertFromFile(source);
             newCodeEnd();
             SaveRecentFile(source);
             this.Text = appName + " | Source: " + source;
             lbInfo.Text = "DXF-Code loaded";
+            foldCode();
+        }
+        private void foldCode()
+        {
+            if (Properties.Settings.Default.importCodeFold)
+            {   if (Properties.Settings.Default.importGCZIncEnable)
+                { }
+                else
+                    fCTBCode.CollapseAllFoldingBlocks();
+            }
         }
 
         private void startConvertDrill(string source)
@@ -421,12 +436,12 @@ namespace GRBL_Plotter
         // switch language
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.language = "en";
+            Properties.Settings.Default.guiLanguage = "en";
             MessageBox.Show("Restart of GRBL-Plotter is needed");
         }
         private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.language = "de-DE";
+            Properties.Settings.Default.guiLanguage = "de-DE";
             MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich");
         }
 #endregion
@@ -485,7 +500,7 @@ namespace GRBL_Plotter
             if (iData.GetDataPresent(DataFormats.Text))             // not working anymore?
             {
                 string checkContent = (String)iData.GetData(DataFormats.Text);
-                string[] checkLines = checkContent.Split('\n');
+                string[] checkLines = checkContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 int posSVG = checkContent.IndexOf("<svg ");
                 if ((posSVG >= 0) && (posSVG < 100))
                 {
@@ -499,6 +514,7 @@ namespace GRBL_Plotter
                     if (!(txt.IndexOf("xmlns") >= 0))
                         txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ");
 
+                    UseCaseDialog();
                     newCodeStart();
                     fCTBCode.Text = GCodeFromSVG.convertFromText(txt.Trim((char)0x00), true);    // import as mm
                     newCodeEnd();
@@ -513,8 +529,9 @@ namespace GRBL_Plotter
                     byte[] bytes = stream.ToArray();
                     string txt = System.Text.Encoding.Default.GetString(bytes);
 
+                    UseCaseDialog();
                     newCodeStart();
-                    fCTBCode.Text = GCodeFromDXF.convertFromText(txt);
+                    fCTBCode.Text = GCodeFromDXF.ConvertFromText(txt);
                     newCodeEnd();
                     this.Text = appName + " | Source: from Clipboard";
                     setLastLoadedFile("Data from Clipboard: DXF","");
@@ -540,6 +557,7 @@ namespace GRBL_Plotter
                 byte[] bytes = stream.ToArray();
                 string txt = System.Text.Encoding.Default.GetString(bytes);
 
+                UseCaseDialog();
                 newCodeStart();
                 fCTBCode.Text = GCodeFromSVG.convertFromText(txt);
                 newCodeEnd();
@@ -584,31 +602,31 @@ namespace GRBL_Plotter
 #endif
            // try
             {
-                if (Properties.Settings.Default.UpgradeRequired)
+                if (Properties.Settings.Default.ctrlUpgradeRequired)
                 {
                     Properties.Settings.Default.Upgrade();
-                    Properties.Settings.Default.UpgradeRequired = false;
+                    Properties.Settings.Default.ctrlUpgradeRequired = false;
                     Properties.Settings.Default.Save();
                 }
-                tbFile.Text = Properties.Settings.Default.file;
+                tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
                 int customButtonUse = 0;
-                setCustomButton(btnCustom1, Properties.Settings.Default.custom1, 1);
-                setCustomButton(btnCustom2, Properties.Settings.Default.custom2, 2);
-                setCustomButton(btnCustom3, Properties.Settings.Default.custom3, 3);
-                setCustomButton(btnCustom4, Properties.Settings.Default.custom4, 4);
-                setCustomButton(btnCustom5, Properties.Settings.Default.custom5, 5);
-                setCustomButton(btnCustom6, Properties.Settings.Default.custom6, 6);
-                setCustomButton(btnCustom7, Properties.Settings.Default.custom7, 7);
-                setCustomButton(btnCustom8, Properties.Settings.Default.custom8, 8);
-                setCustomButton(btnCustom9, Properties.Settings.Default.custom9, 9);
-                setCustomButton(btnCustom10, Properties.Settings.Default.custom10, 10);
-                setCustomButton(btnCustom11, Properties.Settings.Default.custom11, 11);
-                setCustomButton(btnCustom12, Properties.Settings.Default.custom12, 12);
+                setCustomButton(btnCustom1, Properties.Settings.Default.guiCustomBtn1, 1);
+                setCustomButton(btnCustom2, Properties.Settings.Default.guiCustomBtn2, 2);
+                setCustomButton(btnCustom3, Properties.Settings.Default.guiCustomBtn3, 3);
+                setCustomButton(btnCustom4, Properties.Settings.Default.guiCustomBtn4, 4);
+                setCustomButton(btnCustom5, Properties.Settings.Default.guiCustomBtn5, 5);
+                setCustomButton(btnCustom6, Properties.Settings.Default.guiCustomBtn6, 6);
+                setCustomButton(btnCustom7, Properties.Settings.Default.guiCustomBtn7, 7);
+                setCustomButton(btnCustom8, Properties.Settings.Default.guiCustomBtn8, 8);
+                setCustomButton(btnCustom9, Properties.Settings.Default.guiCustomBtn9, 9);
+                setCustomButton(btnCustom10, Properties.Settings.Default.guiCustomBtn10, 10);
+                setCustomButton(btnCustom11, Properties.Settings.Default.guiCustomBtn11, 11);
+                setCustomButton(btnCustom12, Properties.Settings.Default.guiCustomBtn12, 12);
 
-                customButtonUse += setCustomButton(btnCustom13, Properties.Settings.Default.custom13, 13);
-                customButtonUse += setCustomButton(btnCustom14, Properties.Settings.Default.custom14, 14);
-                customButtonUse += setCustomButton(btnCustom15, Properties.Settings.Default.custom15, 15);
-                customButtonUse += setCustomButton(btnCustom16, Properties.Settings.Default.custom16, 16);
+                customButtonUse += setCustomButton(btnCustom13, Properties.Settings.Default.guiCustomBtn13, 13);
+                customButtonUse += setCustomButton(btnCustom14, Properties.Settings.Default.guiCustomBtn14, 14);
+                customButtonUse += setCustomButton(btnCustom15, Properties.Settings.Default.guiCustomBtn15, 15);
+                customButtonUse += setCustomButton(btnCustom16, Properties.Settings.Default.guiCustomBtn16, 16);
 
                 if (customButtonUse == 0)
                 {   tableLayoutPanel1.ColumnStyles[0].Width = 33.3f;
@@ -623,73 +641,73 @@ namespace GRBL_Plotter
                     tableLayoutPanel1.ColumnStyles[3].Width = 25f;
                 }
 
-                fCTBCode.BookmarkColor = Properties.Settings.Default.colorMarker; ;
-                pictureBox1.BackColor = Properties.Settings.Default.colorBackground;
+                fCTBCode.BookmarkColor = Properties.Settings.Default.gui2DColorMarker; ;
+                pictureBox1.BackColor = Properties.Settings.Default.gui2DColorBackground;
                 //                visuGCode.setColors();
-                penUp.Color = Properties.Settings.Default.colorPenUp;
-                penDown.Color = Properties.Settings.Default.colorPenDown;
-                penRotary.Color = Properties.Settings.Default.colorRotaryInfo;
-                penHeightMap.Color = Properties.Settings.Default.colorHeightMap;
-                penRuler.Color = Properties.Settings.Default.colorRuler;
-                penTool.Color = Properties.Settings.Default.colorTool;
-                penMarker.Color = Properties.Settings.Default.colorMarker;
+                penUp.Color = Properties.Settings.Default.gui2DColorPenUp;
+                penDown.Color = Properties.Settings.Default.gui2DColorPenDown;
+                penRotary.Color = Properties.Settings.Default.gui2DColorRotaryInfo;
+                penHeightMap.Color = Properties.Settings.Default.gui2DColorHeightMap;
+                penRuler.Color = Properties.Settings.Default.gui2DColorRuler;
+                penTool.Color = Properties.Settings.Default.gui2DColorTool;
+                penMarker.Color = Properties.Settings.Default.gui2DColorMarker;
 
-                penHeightMap.Width = (float)Properties.Settings.Default.widthHeightMap;
+                penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap;
                 penHeightMap.LineJoin = LineJoin.Round;
-                penRuler.Width = (float)Properties.Settings.Default.widthRuler;
-                penUp.Width = (float)Properties.Settings.Default.widthPenUp;
+                penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler;
+                penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp;
                 penUp.LineJoin = LineJoin.Round;
-                penDown.Width = (float)Properties.Settings.Default.widthPenDown;
+                penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
                 penDown.LineJoin = LineJoin.Round;
-                penRotary.Width = (float)Properties.Settings.Default.widthRotaryInfo;
+                penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo;
                 penRotary.LineJoin = LineJoin.Round;
-                penTool.Width = (float)Properties.Settings.Default.widthTool;
+                penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool;
                 penTool.LineJoin = LineJoin.Round;
-                penMarker.Width = (float)Properties.Settings.Default.widthMarker;
+                penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker;
                 penMarker.LineJoin = LineJoin.Round;
                 penLandMark.LineJoin = LineJoin.Round;
-                penLandMark.Width = 2* (float)Properties.Settings.Default.widthPenDown;
+                penLandMark.Width = 2* (float)Properties.Settings.Default.gui2DWidthPenDown;
 
-                brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.colorMachineLimit, Color.Transparent);
+                brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.gui2DColorMachineLimit, Color.Transparent);
                 picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 commentOut = Properties.Settings.Default.ctrlCommentOut;
 
                 joystickXYStep[0] = 0;
-                joystickXYStep[1] = (double)Properties.Settings.Default.joyXYStep1;
-                joystickXYStep[2] = (double)Properties.Settings.Default.joyXYStep2;
-                joystickXYStep[3] = (double)Properties.Settings.Default.joyXYStep3;
-                joystickXYStep[4] = (double)Properties.Settings.Default.joyXYStep4;
-                joystickXYStep[5] = (double)Properties.Settings.Default.joyXYStep5;
+                joystickXYStep[1] = (double)Properties.Settings.Default.guiJoystickXYStep1;
+                joystickXYStep[2] = (double)Properties.Settings.Default.guiJoystickXYStep2;
+                joystickXYStep[3] = (double)Properties.Settings.Default.guiJoystickXYStep3;
+                joystickXYStep[4] = (double)Properties.Settings.Default.guiJoystickXYStep4;
+                joystickXYStep[5] = (double)Properties.Settings.Default.guiJoystickXYStep5;
                 joystickXYSpeed[0] = 0.1;
-                joystickXYSpeed[1] = (double)Properties.Settings.Default.joyXYSpeed1;
-                joystickXYSpeed[2] = (double)Properties.Settings.Default.joyXYSpeed2;
-                joystickXYSpeed[3] = (double)Properties.Settings.Default.joyXYSpeed3;
-                joystickXYSpeed[4] = (double)Properties.Settings.Default.joyXYSpeed4;
-                joystickXYSpeed[5] = (double)Properties.Settings.Default.joyXYSpeed5;
+                joystickXYSpeed[1] = (double)Properties.Settings.Default.guiJoystickXYSpeed1;
+                joystickXYSpeed[2] = (double)Properties.Settings.Default.guiJoystickXYSpeed2;
+                joystickXYSpeed[3] = (double)Properties.Settings.Default.guiJoystickXYSpeed3;
+                joystickXYSpeed[4] = (double)Properties.Settings.Default.guiJoystickXYSpeed4;
+                joystickXYSpeed[5] = (double)Properties.Settings.Default.guiJoystickXYSpeed5;
                 joystickZStep[0] = 0;
-                joystickZStep[1] = (double)Properties.Settings.Default.joyZStep1;
-                joystickZStep[2] = (double)Properties.Settings.Default.joyZStep2;
-                joystickZStep[3] = (double)Properties.Settings.Default.joyZStep3;
-                joystickZStep[4] = (double)Properties.Settings.Default.joyZStep4;
-                joystickZStep[5] = (double)Properties.Settings.Default.joyZStep5;
+                joystickZStep[1] = (double)Properties.Settings.Default.guiJoystickZStep1;
+                joystickZStep[2] = (double)Properties.Settings.Default.guiJoystickZStep2;
+                joystickZStep[3] = (double)Properties.Settings.Default.guiJoystickZStep3;
+                joystickZStep[4] = (double)Properties.Settings.Default.guiJoystickZStep4;
+                joystickZStep[5] = (double)Properties.Settings.Default.guiJoystickZStep5;
                 joystickZSpeed[0] = 0.1;
-                joystickZSpeed[1] = (double)Properties.Settings.Default.joyZSpeed1;
-                joystickZSpeed[2] = (double)Properties.Settings.Default.joyZSpeed2;
-                joystickZSpeed[3] = (double)Properties.Settings.Default.joyZSpeed3;
-                joystickZSpeed[4] = (double)Properties.Settings.Default.joyZSpeed4;
-                joystickZSpeed[5] = (double)Properties.Settings.Default.joyZSpeed5;
+                joystickZSpeed[1] = (double)Properties.Settings.Default.guiJoystickZSpeed1;
+                joystickZSpeed[2] = (double)Properties.Settings.Default.guiJoystickZSpeed2;
+                joystickZSpeed[3] = (double)Properties.Settings.Default.guiJoystickZSpeed3;
+                joystickZSpeed[4] = (double)Properties.Settings.Default.guiJoystickZSpeed4;
+                joystickZSpeed[5] = (double)Properties.Settings.Default.guiJoystickZSpeed5;
                 joystickAStep[0] = 0;
-                joystickAStep[1] = (double)Properties.Settings.Default.joyAStep1;
-                joystickAStep[2] = (double)Properties.Settings.Default.joyAStep2;
-                joystickAStep[3] = (double)Properties.Settings.Default.joyAStep3;
-                joystickAStep[4] = (double)Properties.Settings.Default.joyAStep4;
-                joystickAStep[5] = (double)Properties.Settings.Default.joyAStep5;
+                joystickAStep[1] = (double)Properties.Settings.Default.guiJoystickAStep1;
+                joystickAStep[2] = (double)Properties.Settings.Default.guiJoystickAStep2;
+                joystickAStep[3] = (double)Properties.Settings.Default.guiJoystickAStep3;
+                joystickAStep[4] = (double)Properties.Settings.Default.guiJoystickAStep4;
+                joystickAStep[5] = (double)Properties.Settings.Default.guiJoystickAStep5;
                 joystickASpeed[0] = 0.1;
-                joystickASpeed[1] = (double)Properties.Settings.Default.joyASpeed1;
-                joystickASpeed[2] = (double)Properties.Settings.Default.joyASpeed2;
-                joystickASpeed[3] = (double)Properties.Settings.Default.joyASpeed3;
-                joystickASpeed[4] = (double)Properties.Settings.Default.joyASpeed4;
-                joystickASpeed[5] = (double)Properties.Settings.Default.joyASpeed5;
+                joystickASpeed[1] = (double)Properties.Settings.Default.guiJoystickASpeed1;
+                joystickASpeed[2] = (double)Properties.Settings.Default.guiJoystickASpeed2;
+                joystickASpeed[3] = (double)Properties.Settings.Default.guiJoystickASpeed3;
+                joystickASpeed[4] = (double)Properties.Settings.Default.guiJoystickASpeed4;
+                joystickASpeed[5] = (double)Properties.Settings.Default.guiJoystickASpeed5;
                 virtualJoystickXY.JoystickLabel = joystickXYStep;
                 virtualJoystickZ.JoystickLabel = joystickZStep;
                 virtualJoystickA.JoystickLabel = joystickAStep;
@@ -734,6 +752,7 @@ namespace GRBL_Plotter
                     { commands = Properties.Settings.Default.rotarySubstitutionSetupOn.Split(';'); }
                     else
                     { commands = Properties.Settings.Default.rotarySubstitutionSetupOff.Split(';'); }
+                    Logger.Info("rotarySubstitutionSetupEnable {0} [Setup - Program control - Rotary axis control]", string.Join(";",commands));
                     if (_serial_form.serialPortOpen)
                         foreach (string cmd in commands)
                         {
@@ -752,7 +771,7 @@ namespace GRBL_Plotter
                 btnZeroA.Visible = ctrl4thAxis || grbl.axisA;
                 mirrorRotaryToolStripMenuItem.Visible = ctrl4thAxis;
                 btnZeroA.Text = "Zero " + ctrl4thName;
-                if (Properties.Settings.Default.language == "de-DE")
+                if (Properties.Settings.Default.guiLanguage == "de-DE")
                     btnZeroA.Text = ctrl4thName + " nullen";
 
                 virtualJoystickA.Visible |= ctrl4thAxis || grbl.axisA;
@@ -807,7 +826,7 @@ namespace GRBL_Plotter
                 }
 
                 toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
-                toolStripViewTool.Checked = Properties.Settings.Default.toolTableShow;
+                toolStripViewTool.Checked = Properties.Settings.Default.gui2DToolTableShow;
                 toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
                 splitContainer1_SplitterMoved(sender,null);
 
@@ -824,7 +843,7 @@ namespace GRBL_Plotter
                     grbl.RX_BUFFER_SIZE = (int)Properties.Settings.Default.grblBufferSize;
                 _serial_form.updateGrblSettings();
 
-                gamePadTimer.Enabled = Properties.Settings.Default.gPEnable;
+                gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
                 checkMachineLimit();
                 loadHotkeys();
                 newCodeEnd();
@@ -838,7 +857,7 @@ namespace GRBL_Plotter
         // Save settings
         public void saveSettings()
         {   try
-            {   Properties.Settings.Default.file = tbFile.Text;
+            {   Properties.Settings.Default.guiLastFileLoaded = tbFile.Text;
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)
@@ -847,6 +866,8 @@ namespace GRBL_Plotter
             }
         }
         // update controls on Main form
+  /*      public void updateControlsEvent(object sender, EventArgs e)//(bool allowControl = false)
+        { updateControls(); }*/
         public void updateControls(bool allowControl = false)
         {
             bool isConnected = _serial_form.serialPortOpen || grbl.grblSimulate;
@@ -924,14 +945,15 @@ namespace GRBL_Plotter
         {
             hotkey.Clear();
             hotkeyCode.Clear();
-            string fileName = System.Environment.CurrentDirectory + "\\hotkeys.xml";
+            string fileName = Application.StartupPath + datapath.hotkeys;
             if (!File.Exists(fileName))
             {
-                MessageBox.Show("File 'hotkeys.xml' not found in program-directory, no hotkeys set!","Attention");
+                MessageBox.Show("File 'hotkeys.xml' not found, no hotkeys set!","Attention");
+                Logger.Error("File 'hotkeys.xml' not found in ",fileName);
                 return;
             }
 
-            XmlReader r = XmlReader.Create("hotkeys.xml");
+            XmlReader r = XmlReader.Create(fileName);   // "hotkeys.xml");
             while (r.Read())
             {
                 if (!r.IsStartElement())
@@ -1132,7 +1154,7 @@ namespace GRBL_Plotter
 
         private void saveStreamingStatus(int lineNr)
         {
-            string fileName = System.Environment.CurrentDirectory + "\\" + fileLastProcessed + ".xml";
+            string fileName = Application.StartupPath + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
             XmlWriterSettings set = new XmlWriterSettings();
             set.Indent = true;
             XmlWriter w = XmlWriter.Create(fileName, set);
@@ -1157,7 +1179,7 @@ namespace GRBL_Plotter
 
         private int loadStreamingStatus(bool setPause=false)
         {
-            string fileName = System.Environment.CurrentDirectory + "\\" + fileLastProcessed + ".xml";
+            string fileName = Application.StartupPath + "\\" + fileLastProcessed + ".xml";
             XmlReader r = XmlReader.Create(fileName);
 
             xyzPoint tmp = new xyzPoint(0, 0, 0);
@@ -1195,7 +1217,17 @@ namespace GRBL_Plotter
             return codeLine;
         }
 
-
+        private void UseCaseDialog()
+        {   if (Properties.Settings.Default.importShowUseCaseDialog)
+            {   using (ControlSetupUseCase f = new ControlSetupUseCase())
+                {   var result = f.ShowDialog(this);
+                    if (result == DialogResult.OK)
+                    {   _serial_form.requestSend(f.ReturnValue1,true);
+                        _serial_form.readSettings();
+                    }
+                }
+            }
+        }
     }
 
 }

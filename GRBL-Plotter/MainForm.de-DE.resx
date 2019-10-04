@@ -121,6 +121,9 @@
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
     <value>298, 12</value>
   </data>
+  <data name="cmsCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 358</value>
+  </data>
   <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdGYXN0Q29sb3JlZFRleHRCb3gsIFZlcnNpb249Mi4xNi4xMS4w
@@ -142,17 +145,104 @@
   <data name="fCTBCode.Text" xml:space="preserve">
     <value>(Paste GCode hier oder lade eine Datei)</value>
   </data>
+  <data name="cmsEditorHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="foldBlocksToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="foldBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Codeblöcke einklappen 1. Stufe</value>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Codeblöcke einklappen 2. Stufe</value>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Codeblöcke einklappen 3. Stufe</value>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Codeblöcke ausklappen</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 6</value>
+  </data>
+  <data name="cmsCodeSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
   <data name="cmsCodeSelect.Text" xml:space="preserve">
     <value>Alles auswählen</value>
+  </data>
+  <data name="cmsCodeCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
   </data>
   <data name="cmsCodeCopy.Text" xml:space="preserve">
     <value>Kopieren</value>
   </data>
+  <data name="cmsCodePaste.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
   <data name="cmsCodePaste.Text" xml:space="preserve">
     <value>Einfügen</value>
   </data>
+  <data name="cmsCodePasteSpecial1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
+    <value>Einfügen 'PenUp'</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
+    <value>Einfügen 'PenDown'</value>
+  </data>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 6</value>
+  </data>
+  <data name="cmsFindDialog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="cmsFindDialog.Text" xml:space="preserve">
+    <value>'Finden' Dialog</value>
+  </data>
+  <data name="cmsReplaceDialog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="cmsReplaceDialog.Text" xml:space="preserve">
+    <value>'Ersetzen' Dialog</value>
+  </data>
+  <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 6</value>
+  </data>
+  <data name="cmsCodeSendLine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
   <data name="cmsCodeSendLine.Text" xml:space="preserve">
     <value>Sende Codezeile</value>
+  </data>
+  <data name="cmsCommentOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="cmsCommentOut.Text" xml:space="preserve">
+    <value>Auskommentieren von unbekannten GCode</value>
+  </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 6</value>
+  </data>
+  <data name="cmsUpdate2DView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>282, 22</value>
+  </data>
+  <data name="cmsUpdate2DView.Text" xml:space="preserve">
+    <value>Update 2D Ansicht</value>
   </data>
   <data name="btnStreamStop.ToolTip" xml:space="preserve">
     <value>Stoppt die Übertragung</value>
@@ -343,6 +433,9 @@ Beim Rücksetzen während der Fahrt wird Grbl einen Alarm auslösen, um anzuzeig
 Wenn das Rücksetzen nicht während der Bewegung erfolgt, wird die Position beibehalten und ein erneutes Referenzieren ist nicht erforderlich.
 Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
   </data>
+  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 342</value>
+  </data>
   <data name="unDo2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>311, 22</value>
   </data>
@@ -439,8 +532,8 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
   <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>311, 22</value>
   </data>
-  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 342</value>
+  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Radiuskompensation</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Benutzerdefinierte Buttons</value>
@@ -759,6 +852,36 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
   <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Höhenprofil aufnehmen</value>
   </data>
+  <data name="laserToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Koordinatensysteme</value>
+  </data>
+  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>DIY Steuerung</value>
+  </data>
+  <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Öffne serielles Fenster für DIY Steuerung</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
+    <value>Zeigt das Kamerabild einer angeschlossenen WebCam</value>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 22</value>
+  </data>
   <data name="controlStreamingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 22</value>
   </data>
@@ -777,33 +900,6 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
   <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Öffnet eine einfaches Fenster zur Steuerung eines zweiten GRBL-Controllers</value>
   </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 22</value>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>Kamera</value>
-  </data>
-  <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
-    <value>Zeigt das Kamerabild einer angeschlossenen WebCam</value>
-  </data>
-  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 22</value>
-  </data>
-  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>DIY Steuerung</value>
-  </data>
-  <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Öffne serielles Fenster für DIY Steuerung</value>
-  </data>
-  <data name="startStreamingAtLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 22</value>
-  </data>
-  <data name="coordinateSystemsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 22</value>
-  </data>
-  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Koordinatensysteme</value>
-  </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
   </data>
@@ -811,7 +907,7 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
     <value>Ansicht</value>
   </data>
   <data name="toolStripViewMachineFix.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>199, 22</value>
   </data>
   <data name="toolStripViewMachineFix.Text" xml:space="preserve">
     <value>Machinenbereich fixiert</value>
@@ -820,7 +916,7 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
     <value>Grenzen und Offset werden über 'Einstellungen' - 'Steuerung' -  'Maschinen Arbeitsbereich' gesetzt</value>
   </data>
   <data name="toolStripViewMachine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>199, 22</value>
   </data>
   <data name="toolStripViewMachine.Text" xml:space="preserve">
     <value>Maschinengrenze</value>
@@ -829,7 +925,7 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
     <value>Grenzen und Offset werden über 'Einstellungen' - 'Steuerung' -  'Maschinen Arbeitsbereich' gesetzt</value>
   </data>
   <data name="toolStripViewTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>199, 22</value>
   </data>
   <data name="toolStripViewTool.Text" xml:space="preserve">
     <value>Werkzeugpositionen</value>
@@ -839,7 +935,7 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
 </value>
   </data>
   <data name="toolStripViewBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 22</value>
+    <value>199, 22</value>
   </data>
   <data name="toolStripViewBackground.Text" xml:space="preserve">
     <value>Hintergrund</value>

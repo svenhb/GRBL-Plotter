@@ -137,9 +137,9 @@ namespace GRBL_Plotter
         {
             if (Properties.Settings.Default.machineLimitsShow)
                 e.FillPath(brushMachineLimit, GCodeVisuAndTransform.pathMachineLimit); 
-            if (Properties.Settings.Default.toolTableShow)
+            if (Properties.Settings.Default.gui2DToolTableShow)
                 e.DrawPath(penTool, GCodeVisuAndTransform.pathToolTable);           
-            if (Properties.Settings.Default.backgroundShow)
+            if (Properties.Settings.Default.guiBackgroundShow)
                 e.DrawPath(penLandMark, GCodeVisuAndTransform.pathBackground);
 
             if (!Properties.Settings.Default.importUnitmm)
