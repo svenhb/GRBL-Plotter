@@ -61,11 +61,11 @@ namespace GRBL_Plotter
         // handle MRU List
         private int MRUnumber = 20;
         private string saveName = "";
-        private string savePath = "";
+        private string savePath = Application.StartupPath;
         private List<string> MRUlist = new List<string>();
         private void SaveRecentFile(string path)
         {
-            savePath = Path.GetDirectoryName(path) + "\\";
+            savePath = Path.GetDirectoryName(path);// + "\\";
             saveName = Path.GetFileNameWithoutExtension(path);
             //   recentToolStripMenuItem.DropDownItems.Clear();
             toolStripMenuItem2.DropDownItems.Clear();
@@ -400,8 +400,8 @@ namespace GRBL_Plotter
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.InitialDirectory = Path.GetDirectoryName(savePath);
-            sfd.FileName = savePath+saveName + "_";
-            sfd.Filter = "GCode (*.nc)|*.nc|GCode (*.cnc)|*.cnc||GCode (*.ngc)|*.ngc|GCode (*.gcode)|*.gcode|All files (*.*)|*.*";   // "GCode|*.nc";
+            sfd.FileName = saveName + "_";
+            sfd.Filter = "GCode (*.nc)|*.nc|GCode (*.cnc)|*.cnc|GCode (*.ngc)|*.ngc|GCode (*.gcode)|*.gcode|All files (*.*)|*.*";   // "GCode|*.nc";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 string txt = fCTBCode.Text;

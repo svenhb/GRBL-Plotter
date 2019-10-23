@@ -120,7 +120,7 @@ namespace GRBL_Plotter
             Logger.Error(ex, "Application_ThreadException");
             MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex), "Main Form Thread exception");
             if (MessageBox.Show("Quit GRBL-Plotter?", "Problem", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                Application.Exit();
+            { Application.Exit(); }
         }
         private void Application_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
@@ -129,8 +129,8 @@ namespace GRBL_Plotter
                 Exception ex = (Exception)e.ExceptionObject;
                 Logger.Error(ex, "UnhandledException");
                 MessageBox.Show(ex.Message+"\r\n\r\n"+ GetAllFootprints(ex), "Main Form Application exception");
-                if (MessageBox.Show("Quit GRBL-Plotter?","Problem", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    Application.Exit();
+                if (MessageBox.Show("Quit GRBL-Plotter?", "Problem", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                { Application.Exit(); }
             }
         }
         public string GetAllFootprints(Exception x)
