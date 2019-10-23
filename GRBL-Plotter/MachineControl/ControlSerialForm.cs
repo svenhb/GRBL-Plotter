@@ -148,14 +148,7 @@ namespace GRBL_Plotter
         private void SerialForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Logger.Trace("Try closing SerialForm {0} {1}", iamSerial, e.CloseReason);
-            if (e.CloseReason.ToString() != "FormOwnerClosing")
-            {
-                MessageBox.Show("Serial Connection is needed.\r\nClose main window instead","Attention");
-                e.Cancel = true;
-                Logger.Trace("Closing SerialForm {0} canceled", iamSerial);
-                return;
-            }
-            else
+            if ((e.CloseReason.ToString() == "ApplicationExitCall") || (e.CloseReason.ToString() == "FormOwnerClosing"))
             {
                 serialPort.DataReceived -= (this.serialPort1_DataReceived); // stop receiving data
                 stopStreaming();
@@ -163,6 +156,13 @@ namespace GRBL_Plotter
                 closePort();
                 e.Cancel = false;
                 Logger.Trace("++++++ SerialForm {0} STOP ++++++", iamSerial);
+            }
+            else
+            {
+                MessageBox.Show("Serial Connection is needed.\r\nClose main window instead","Attention");
+                e.Cancel = true;
+                Logger.Trace("Closing SerialForm {0} canceled", iamSerial);
+                return;
             }
         }
         private void SerialForm_Resize(object sender, EventArgs e)
