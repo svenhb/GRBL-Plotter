@@ -902,192 +902,192 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#Start (Start streaming)")]
-        public string gamePadBtn0 {
+        public string gamePadButtons0 {
             get {
-                return ((string)(this["gamePadBtn0"]));
+                return ((string)(this["gamePadButtons0"]));
             }
             set {
-                this["gamePadBtn0"] = value;
+                this["gamePadButtons0"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#F+10 (Feedrate +10%)")]
-        public string gamePadBtn1 {
+        public string gamePadButtons1 {
             get {
-                return ((string)(this["gamePadBtn1"]));
+                return ((string)(this["gamePadButtons1"]));
             }
             set {
-                this["gamePadBtn1"] = value;
+                this["gamePadButtons1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("G92 X0 Y0 (Zero X and Y)")]
-        public string gamePadBtn10 {
+        public string gamePadButtons10 {
             get {
-                return ((string)(this["gamePadBtn10"]));
+                return ((string)(this["gamePadButtons10"]));
             }
             set {
-                this["gamePadBtn10"] = value;
+                this["gamePadButtons10"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string gamePadBtn11 {
+        public string gamePadButtons11 {
             get {
-                return ((string)(this["gamePadBtn11"]));
+                return ((string)(this["gamePadButtons11"]));
             }
             set {
-                this["gamePadBtn11"] = value;
+                this["gamePadButtons11"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string gamePadBtn12 {
+        public string gamePadButtons12 {
             get {
-                return ((string)(this["gamePadBtn12"]));
+                return ((string)(this["gamePadButtons12"]));
             }
             set {
-                this["gamePadBtn12"] = value;
+                this["gamePadButtons12"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string gamePadBtn13 {
+        public string gamePadButtons13 {
             get {
-                return ((string)(this["gamePadBtn13"]));
+                return ((string)(this["gamePadButtons13"]));
             }
             set {
-                this["gamePadBtn13"] = value;
+                this["gamePadButtons13"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string gamePadBtn14 {
+        public string gamePadButtons14 {
             get {
-                return ((string)(this["gamePadBtn14"]));
+                return ((string)(this["gamePadButtons14"]));
             }
             set {
-                this["gamePadBtn14"] = value;
+                this["gamePadButtons14"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string gamePadBtn15 {
+        public string gamePadButtons15 {
             get {
-                return ((string)(this["gamePadBtn15"]));
+                return ((string)(this["gamePadButtons15"]));
             }
             set {
-                this["gamePadBtn15"] = value;
+                this["gamePadButtons15"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#F100 (Feedrate =100%)")]
-        public string gamePadBtn2 {
+        public string gamePadButtons2 {
             get {
-                return ((string)(this["gamePadBtn2"]));
+                return ((string)(this["gamePadButtons2"]));
             }
             set {
-                this["gamePadBtn2"] = value;
+                this["gamePadButtons2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#F-10 (Feedrate -10%)")]
-        public string gamePadBtn3 {
+        public string gamePadButtons3 {
             get {
-                return ((string)(this["gamePadBtn3"]));
+                return ((string)(this["gamePadButtons3"]));
             }
             set {
-                this["gamePadBtn3"] = value;
+                this["gamePadButtons3"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("G92 X0 (Zero X)")]
-        public string gamePadBtn4 {
+        public string gamePadButtons4 {
             get {
-                return ((string)(this["gamePadBtn4"]));
+                return ((string)(this["gamePadButtons4"]));
             }
             set {
-                this["gamePadBtn4"] = value;
+                this["gamePadButtons4"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("G92 Z0 (Zero Z)")]
-        public string gamePadBtn5 {
+        public string gamePadButtons5 {
             get {
-                return ((string)(this["gamePadBtn5"]));
+                return ((string)(this["gamePadButtons5"]));
             }
             set {
-                this["gamePadBtn5"] = value;
+                this["gamePadButtons5"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("G92 Y0 (Zero Y)")]
-        public string gamePadBtn6 {
+        public string gamePadButtons6 {
             get {
-                return ((string)(this["gamePadBtn6"]));
+                return ((string)(this["gamePadButtons6"]));
             }
             set {
-                this["gamePadBtn6"] = value;
+                this["gamePadButtons6"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("G92 X0 Y0 Z0 (Zero all)")]
-        public string gamePadBtn7 {
+        public string gamePadButtons7 {
             get {
-                return ((string)(this["gamePadBtn7"]));
+                return ((string)(this["gamePadButtons7"]));
             }
             set {
-                this["gamePadBtn7"] = value;
+                this["gamePadButtons7"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("$H (Homing)")]
-        public string gamePadBtn8 {
+        public string gamePadButtons8 {
             get {
-                return ((string)(this["gamePadBtn8"]));
+                return ((string)(this["gamePadButtons8"]));
             }
             set {
-                this["gamePadBtn8"] = value;
+                this["gamePadButtons8"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#Start (Start streaming)")]
-        public string gamePadBtn9 {
+        public string gamePadButtons9 {
             get {
-                return ((string)(this["gamePadBtn9"]));
+                return ((string)(this["gamePadButtons9"]));
             }
             set {
-                this["gamePadBtn9"] = value;
+                this["gamePadButtons9"] = value;
             }
         }
         

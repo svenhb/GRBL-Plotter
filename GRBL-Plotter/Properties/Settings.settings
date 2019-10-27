@@ -221,52 +221,52 @@
     <Setting Name="flowControlText" Type="System.String" Scope="User">
       <Value Profile="(Default)">M5; M9</Value>
     </Setting>
-    <Setting Name="gamePadBtn0" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons0" Type="System.String" Scope="User">
       <Value Profile="(Default)">#Start (Start streaming)</Value>
     </Setting>
-    <Setting Name="gamePadBtn1" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons1" Type="System.String" Scope="User">
       <Value Profile="(Default)">#F+10 (Feedrate +10%)</Value>
     </Setting>
-    <Setting Name="gamePadBtn10" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons10" Type="System.String" Scope="User">
       <Value Profile="(Default)">G92 X0 Y0 (Zero X and Y)</Value>
     </Setting>
-    <Setting Name="gamePadBtn11" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons11" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="gamePadBtn12" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons12" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="gamePadBtn13" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons13" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="gamePadBtn14" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons14" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="gamePadBtn15" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons15" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="gamePadBtn2" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons2" Type="System.String" Scope="User">
       <Value Profile="(Default)">#F100 (Feedrate =100%)</Value>
     </Setting>
-    <Setting Name="gamePadBtn3" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons3" Type="System.String" Scope="User">
       <Value Profile="(Default)">#F-10 (Feedrate -10%)</Value>
     </Setting>
-    <Setting Name="gamePadBtn4" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons4" Type="System.String" Scope="User">
       <Value Profile="(Default)">G92 X0 (Zero X)</Value>
     </Setting>
-    <Setting Name="gamePadBtn5" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons5" Type="System.String" Scope="User">
       <Value Profile="(Default)">G92 Z0 (Zero Z)</Value>
     </Setting>
-    <Setting Name="gamePadBtn6" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons6" Type="System.String" Scope="User">
       <Value Profile="(Default)">G92 Y0 (Zero Y)</Value>
     </Setting>
-    <Setting Name="gamePadBtn7" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons7" Type="System.String" Scope="User">
       <Value Profile="(Default)">G92 X0 Y0 Z0 (Zero all)</Value>
     </Setting>
-    <Setting Name="gamePadBtn8" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons8" Type="System.String" Scope="User">
       <Value Profile="(Default)">$H (Homing)</Value>
     </Setting>
-    <Setting Name="gamePadBtn9" Type="System.String" Scope="User">
+    <Setting Name="gamePadButtons9" Type="System.String" Scope="User">
       <Value Profile="(Default)">#Start (Start streaming)</Value>
     </Setting>
     <Setting Name="gamePadEnable" Type="System.Boolean" Scope="User">
