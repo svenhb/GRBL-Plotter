@@ -38,6 +38,7 @@
  *  2019-03-17  Add custom buttons 13-16, save size of form
  *  2019-04-23  use joyAStep in gamePadTimer_Tick and gamePadGCode line 1360, 1490
  *  2019-05-10  extend override features
+ *  2019-10-27  localization of strings
  */
 
 //#define debuginfo
@@ -101,6 +102,7 @@ namespace GRBL_Plotter
         { 
             Logger.Info("++++++ GRBL-Plotter Ver. {0} START ++++++", Application.ProductVersion);
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
+            Localization.UpdateLanguage(Properties.Settings.Default.guiLanguage);
             Logger.Info("Language: {0}",ci);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
@@ -119,7 +121,7 @@ namespace GRBL_Plotter
             Exception ex = e.Exception;
             Logger.Error(ex, "Application_ThreadException");
             MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex), "Main Form Thread exception");
-            if (MessageBox.Show("Quit GRBL-Plotter?", "Problem", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(Localization.getString("mainQuit"), Localization.getString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             { Application.Exit(); }
         }
         private void Application_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -129,7 +131,7 @@ namespace GRBL_Plotter
                 Exception ex = (Exception)e.ExceptionObject;
                 Logger.Error(ex, "UnhandledException");
                 MessageBox.Show(ex.Message+"\r\n\r\n"+ GetAllFootprints(ex), "Main Form Application exception");
-                if (MessageBox.Show("Quit GRBL-Plotter?", "Problem", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(Localization.getString("mainQuit"), Localization.getString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                 { Application.Exit(); }
             }
         }
@@ -157,6 +159,7 @@ namespace GRBL_Plotter
         private void MainForm_Load(object sender, EventArgs e)
         {
             Logger.Trace("MainForm_Load start");
+            this.Icon = Properties.Resources.Icon;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
@@ -912,25 +915,20 @@ namespace GRBL_Plotter
                         delayedSend = 2;
 
                     if (isStreamingPauseFirst && fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("(T"))
-                    {   string msg = "Tool change needed:\r" + fCTBCode.Lines[fCTBCodeClickedLineNow] + "\rpress start to continue.";
-                        if (Properties.Settings.Default.guiLanguage == "de-DE")
-                        {
-                            msg = "Werkzeugwechsel ausführen:\r" + fCTBCode.Lines[fCTBCodeClickedLineNow] + "\rdrücke Start um fortzufahren.";
-                            MessageBox.Show(msg, "Werkzeug-/ Stiftwechsel");
-                        }
-                        else MessageBox.Show(msg, "Tool / Pen change!");
+                    {   string msg = Localization.getString("mainToolChange1") + fCTBCode.Lines[fCTBCodeClickedLineNow] + Localization.getString("mainToolChange2");
+                        MessageBox.Show(msg, Localization.getString("mainToolChange"));
                     }
 
                     break;
                 case grblStreaming.toolchange:
                     updateControls();
                     btnStreamStart.Image = Properties.Resources.btn_play;
-                    lbInfo.Text = "Tool change...";
+                    lbInfo.Text = Localization.getString("mainInfoToolChange");
                     lbInfo.BackColor = Color.Yellow;
                     cBTool.Checked = _serial_form.toolInSpindle;
                     break;
                 case grblStreaming.stop:
-                    lbInfo.Text = " STOP streaming (" + e.CodeLine.ToString() + ")";
+                    lbInfo.Text = Localization.getString("mainInfoStopStream") + e.CodeLine.ToString() + ")";
                     lbInfo.BackColor = Color.Fuchsia;
 
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code
@@ -973,7 +971,7 @@ namespace GRBL_Plotter
                     updateControls();
                     timeInit = DateTime.UtcNow;
                     elapsed = TimeSpan.Zero;
-                    lbInfo.Text = "Send G-Code";
+                    lbInfo.Text = Localization.getString("mainInfoSendCode");// "Send G-Code";
                     lbInfo.BackColor = Color.Lime;
                     for (int i = 0; i < fCTBCode.LinesCount; i++)
                         fCTBCode.UnbookmarkLine(i);
@@ -1023,7 +1021,7 @@ namespace GRBL_Plotter
                 updateControls();
                 timeInit = DateTime.UtcNow;
                 elapsed = TimeSpan.Zero;
-                lbInfo.Text = "Check G-Code";
+                lbInfo.Text = Localization.getString("mainInfoCheckCode");// "Check G-Code";
                 lbInfo.BackColor = SystemColors.Control;
                 for (int i = 0; i < fCTBCode.LinesCount; i++)
                     fCTBCode.UnbookmarkLine(i);
@@ -1044,7 +1042,7 @@ namespace GRBL_Plotter
             _serial_form.stopStreaming();
             if (isStreaming || isStreamingCheck)
             {
-                lbInfo.Text = " STOP streaming ( Line " + (fCTBCodeClickedLineNow + 1).ToString() + " )";
+                lbInfo.Text = Localization.getString("mainInfoStopStream2") + (fCTBCodeClickedLineNow + 1).ToString() + " )";
                 lbInfo.BackColor = Color.Fuchsia;
             }
             isStreaming = false;
@@ -1264,10 +1262,10 @@ namespace GRBL_Plotter
                         decimal miny = Properties.Settings.Default.machineLimitsHomeY;
                         decimal maxy = miny + Properties.Settings.Default.machineLimitsRangeY;
 
-                        string tmp = string.Format("\r\nminX: {0:0.0} moveTo: {1:0.0} maxX: {2:0.0}",minx, (grbl.posMachine.X + joystickXYStep[indexX] * dirX), maxx);
+                        string tmp = string.Format("minX: {0:0.0} moveTo: {1:0.0} maxX: {2:0.0}",minx, (grbl.posMachine.X + joystickXYStep[indexX] * dirX), maxx);
                         tmp += string.Format("\r\nminY: {0:0.0} moveTo: {1:0.0} maxY: {2:0.0}", miny, (grbl.posMachine.Y + joystickXYStep[indexY] * dirY), maxy);
                         System.Media.SystemSounds.Beep.Play();
-                        DialogResult dialogResult = MessageBox.Show("Next move will exceed machine limits!"+tmp+"\r\n Press 'Ok' to move anyway", "Attention", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                        DialogResult dialogResult = MessageBox.Show(Localization.getString("mainLimits1") + tmp+ Localization.getString("mainLimits2"), Localization.getString("mainAttention"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (dialogResult == DialogResult.Cancel)
                             return;
                     }
@@ -1558,11 +1556,11 @@ namespace GRBL_Plotter
                         {
                             string offset = state.Offset.ToString();        // execute gPButtonsx strings
                             int value = state.Value;
-                            if ((value > 0) && (offset.IndexOf("Buttons") >= 0))
+                            if ((value > 0) && (offset.IndexOf("Buttons") >= 0))        // Buttons
                             {
                                 try
                                 {
-                                    command = Properties.Settings.Default["gP" + offset].ToString();
+                                    command = Properties.Settings.Default["gamePad" + offset].ToString();        // gP
                                     if (command.IndexOf('#') >= 0)
                                     { processSpecialCommands(command); }
                                     else
@@ -1654,20 +1652,20 @@ namespace GRBL_Plotter
             string sign = (((value < 32767) && (!invert)) || ((value > 32767) && (invert))) ? "-" : "";
             if (stpIndex > 0)
             {
-                Int32.TryParse(Properties.Settings.Default["joyASpeed" + stpIndex.ToString()].ToString(), out speed);
+                Int32.TryParse(Properties.Settings.Default["guiJoystickASpeed" + stpIndex.ToString()].ToString(), out speed);
 
                 string sstep = "1";
                 if ((axis == "X") || (axis == "Y"))
-                {   sstep = Properties.Settings.Default["joyXYStep" + stpIndex.ToString()].ToString();
-                    Int32.TryParse(Properties.Settings.Default["joyXYSpeed" + stpIndex.ToString()].ToString(), out speed);
+                {   sstep = Properties.Settings.Default["guiJoystickXYStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.Settings.Default["guiJoystickXYSpeed" + stpIndex.ToString()].ToString(), out speed);
                 }
                 else if ((axis == "Z"))
-                {   sstep = Properties.Settings.Default["joyZStep" + stpIndex.ToString()].ToString();
-                    Int32.TryParse(Properties.Settings.Default["joyZSpeed" + stpIndex.ToString()].ToString(), out speed);
+                {   sstep = Properties.Settings.Default["guiJoystickZStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.Settings.Default["guiJoystickZSpeed" + stpIndex.ToString()].ToString(), out speed);
                 }
                 else if ((axis == "A") || (axis == "B") || (axis == "C"))
-                {   sstep = Properties.Settings.Default["joyAStep" + stpIndex.ToString()].ToString();
-                    Int32.TryParse(Properties.Settings.Default["joyASpeed" + stpIndex.ToString()].ToString(), out speed);
+                {   sstep = Properties.Settings.Default["guiJoystickAStep" + stpIndex.ToString()].ToString();
+                    Int32.TryParse(Properties.Settings.Default["guiJoystickASpeed" + stpIndex.ToString()].ToString(), out speed);
                 }
                 return string.Format("{0}{1}{2}", axis, sign, sstep);
             }
@@ -1711,7 +1709,7 @@ namespace GRBL_Plotter
                 {   startStreaming(lineNr);      // 1142
                 }
                 else
-                {   MessageBox.Show("Not a valid number, set line to 0", "Attention");
+                {   MessageBox.Show(Localization.getString("mainParseError1"), Localization.getString("mainAttention"));
                     toolStrip_tb_StreamLine.Text = "0";
                 }
             }
@@ -1835,12 +1833,13 @@ namespace GRBL_Plotter
             }
             else
             {
-                unDoToolStripMenuItem.Text = "Undo last action";
+                unDoToolStripMenuItem.Text = Localization.getString("mainInfoUndo");    // "Undo last action";
                 unDoToolStripMenuItem.Enabled = false;
-                unDo2ToolStripMenuItem.Text = "Undo last action";
+                unDo2ToolStripMenuItem.Text = Localization.getString("mainInfoUndo");    //"Undo last action";
                 unDo2ToolStripMenuItem.Enabled = false;
             }
         }
+
     }
 }
 

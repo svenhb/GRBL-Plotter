@@ -21,6 +21,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Globalization;
+using System.Threading;
+using System.Resources;
+using System.Reflection;
+using GRBL_Plotter.Resources;
 
 namespace GRBL_Plotter
 {
@@ -429,4 +434,41 @@ namespace GRBL_Plotter
         }
     }
 
+    sealed class Localization
+    {   // https://www.mycsharp.de/wbb2/thread.php?threadid=61039
+
+        private static ResourceManager resMgr;
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        public static void UpdateLanguage(string langID)
+        {
+            try
+            {
+                //Set Language  
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(langID);
+  
+                // Init ResourceManager  
+                resMgr = new ResourceManager("ResStrings", Assembly.GetExecutingAssembly());
+  
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Set culture info");
+            }
+        }
+  
+        public static string getString(String pattern)
+        {
+            //return resMgr.GetString(pattern);
+            string tmp = " #not found# ";
+            try { tmp = ResStrings.ResourceManager.GetString(pattern).Replace("\\r", Environment.NewLine); }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "String not found '{0}'",pattern);
+            }
+
+            return tmp.Replace("\\n","");
+        }
+  
+    }
 }

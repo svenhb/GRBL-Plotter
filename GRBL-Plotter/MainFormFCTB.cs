@@ -123,7 +123,7 @@ namespace GRBL_Plotter
                 }
             }
             if (message.Length > 0)
-                MessageBox.Show("Fixed some unknown GCode:\r\n" + message);
+                MessageBox.Show(Localization.getString("mainUnknownCode") + message);
         }
 
         // mark clicked line in editor

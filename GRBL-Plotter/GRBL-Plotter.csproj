@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.3.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -285,8 +285,49 @@
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </Compile>
     <Compile Include="checkUpdate.cs" />
+    <Compile Include="Resources\ResStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResStrings.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.es.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.fr.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.ru.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.zh-CN.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.es.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.fr.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.ru.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.zh-CN.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromText.es.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromText.fr.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromText.ru.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\GCodeFromText.zh-CN.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\Control2ndGRBL.de-DE.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
@@ -294,11 +335,23 @@
     <EmbeddedResource Include="MachineControl\ControlCameraForm.de-DE.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.es.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.fr.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlCameraForm.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\Control2ndGRBL.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.ru.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.zh-CN.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlCoordSystem.resx">
       <DependentUpon>ControlCoordSystem.cs</DependentUpon>
@@ -309,25 +362,85 @@
     <EmbeddedResource Include="MachineControl\ControlHeightMap.de-DE.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.es.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.fr.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlHeightMap.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.ru.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.zh-CN.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.de-DE.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.es.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.fr.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.ru.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.zh-CN.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.de-DE.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.es.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.fr.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.ru.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.zh-CN.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupForm.de-DE.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.es.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.fr.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.ru.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.zh-CN.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.de-DE.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.es.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.fr.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.ru.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.zh-CN.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlStreamingForm.de-DE.resx">
@@ -348,7 +461,19 @@
     <EmbeddedResource Include="MainForm.de-DE.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.fr.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.ru.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.zh-CN.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageForm.resx">
@@ -536,6 +661,15 @@
     <Content Include="data\usecases\example_plotter.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Resources\ResStrings.de-DE.resx" />
+    <EmbeddedResource Include="Resources\ResStrings.es.resx" />
+    <EmbeddedResource Include="Resources\ResStrings.fr.resx" />
+    <EmbeddedResource Include="Resources\ResStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ResStrings.ru.resx" />
+    <EmbeddedResource Include="Resources\ResStrings.zh-CN.resx" />
     <None Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

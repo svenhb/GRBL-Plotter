@@ -172,7 +172,7 @@ namespace GRBL_Plotter
                 foldCode();
             }
             else
-                MessageBox.Show("Streaming is still active - press Stop and try again", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(Localization.getString("mainStreamingActive"), Localization.getString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
         // handle event from create Shape
         private void getGCodeFromShape(object sender, EventArgs e)
@@ -188,7 +188,7 @@ namespace GRBL_Plotter
                 newCodeEnd();
             }
             else
-                MessageBox.Show("Streaming is still active - press Stop and try again");
+                MessageBox.Show(Localization.getString("mainStreamingActive"));
         }
         // handle event from create Image form
         private void getGCodeFromImage(object sender, EventArgs e)
@@ -209,7 +209,7 @@ namespace GRBL_Plotter
                 foldCode();
             }
             else
-                MessageBox.Show("Streaming is still active - press Stop and try again");
+                MessageBox.Show(Localization.getString("mainStreamingActive"));
         }
 
         private void getGCodeFromHeightMap(object sender, EventArgs e)
@@ -255,12 +255,12 @@ namespace GRBL_Plotter
             double offsetx = 0, offsety = 0;
             if (!Double.TryParse(tbOffsetX.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out offsetx))
             {
-                MessageBox.Show("Not a valid number", "Attention");
+                MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                 tbOffsetX.Text = string.Format("{0:0.00}", offsetx);
             }
             if (!Double.TryParse(tbOffsetY.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out offsety))
             {
-                MessageBox.Show("Not a valid number", "Attention");
+                MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                 tbOffsetY.Text = string.Format("{0:0.00}", offsety);
             }
             if (fCTBCode.Lines.Count > 1)
@@ -339,7 +339,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_rotate.Text = "0.0";
                 }
                 e.SuppressKeyPress = true;
@@ -359,7 +359,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_XY_scale.Text = "100.00";
                 }
                 e.SuppressKeyPress = true;
@@ -380,7 +380,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_XY_X_scale.Text = string.Format("{0:0.00}", sizeold);
                 }
                 e.SuppressKeyPress = true;
@@ -401,7 +401,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.00}", sizeold);
                 }
                 e.SuppressKeyPress = true;
@@ -422,7 +422,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_X_scale.Text = "100.00";
                 }
                 e.SuppressKeyPress = true;
@@ -448,7 +448,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_X_X_scale.Text = string.Format("{0:0.00}", sizeold);
                 }
                 e.SuppressKeyPress = true;
@@ -470,7 +470,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_X_A_scale.Text = string.Format("{0:0.00}", 90);
                 }
                 e.SuppressKeyPress = true;
@@ -491,7 +491,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_Y_scale.Text = "100.00";
                 }
                 e.SuppressKeyPress = true;
@@ -517,7 +517,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.00}", sizeold);
                 }
                 e.SuppressKeyPress = true;
@@ -539,7 +539,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_Y_A_scale.Text = string.Format("{0:0.00}", 90);
                 }
                 e.SuppressKeyPress = true;
@@ -562,7 +562,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tb_rotary_diameter.Text = string.Format("{0:0.00}", Properties.Settings.Default.rotarySubstitutionDiameter);
                 }
                 e.SuppressKeyPress = true;
@@ -596,7 +596,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid number", "Attention");
+                    MessageBox.Show(Localization.getString("mainParseError"), Localization.getString("mainAttention"));
                     toolStrip_tBRadiusCompValue.Text = string.Format("{0:0.000}", radius);
                 }
                 e.SuppressKeyPress = true;
@@ -684,7 +684,8 @@ namespace GRBL_Plotter
         }
         private void btnLimitExceed_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Graphics dimension exceeds machine dimension!\r\nTransformation is recommended to avoid damaging the machine! ", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //MessageBox.Show("Graphics dimension exceeds machine dimension!\r\nTransformation is recommended to avoid damaging the machine! ", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(Localization.getString("mainLimits3"), Localization.getString("mainAttention"));
         }
 
         #endregion

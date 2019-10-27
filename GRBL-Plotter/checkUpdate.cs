@@ -1,4 +1,26 @@
-﻿using System;
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+ * 2019-10-27 add logger
+*/
+
+using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
@@ -7,6 +29,9 @@ namespace GRBL_Plotter
     class checkUpdate
     {
         private static bool showAny = false;
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public static void CheckVersion(bool showAnyResult=false)
         {
             showAny = showAnyResult;
@@ -22,8 +47,8 @@ namespace GRBL_Plotter
             {
                 try
                 { CheckSite2(@"http://svenhb.bplaced.net/GRBL-Plotter.php"); }  // get Version-Nr and count individual ip to get an idea of amount of users
-                catch
-                { }
+                catch (Exception ex)
+                { Logger.Error(ex,"AsyncCheckVersion - CheckSite2"); }
             }
         }
 
@@ -33,11 +58,15 @@ namespace GRBL_Plotter
         private static void CheckSite2(string site)
         {
            using (System.Net.WebClient wc = new System.Net.WebClient())
-            {
-                string vers = wc.DownloadString(site);
-                Version current = typeof(checkUpdate).Assembly.GetName().Version; 
-                Version latest = new Version(vers);
-                showResult(current, latest);
+            {   try
+                {
+                    string vers = wc.DownloadString(site);
+                    Version current = typeof(checkUpdate).Assembly.GetName().Version;
+                    Version latest = new Version(vers);
+                    showResult(current, latest);
+                } catch (Exception ex)
+                { Logger.Error(ex,"CheckSite2"); }
+
             }
         }
 

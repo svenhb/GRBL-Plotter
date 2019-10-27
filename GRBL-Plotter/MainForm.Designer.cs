@@ -278,6 +278,10 @@ namespace GRBL_Plotter
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deutschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pусскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.franzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chinesischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createGCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1959,9 +1963,14 @@ namespace GRBL_Plotter
             // 
             // toolStripMenuItem3
             // 
+            this.toolStripMenuItem3.AutoToolTip = true;
             this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.englishToolStripMenuItem,
-            this.deutschToolStripMenuItem});
+            this.deutschToolStripMenuItem,
+            this.pусскийToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.franzToolStripMenuItem,
+            this.chinesischToolStripMenuItem});
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             // 
@@ -1976,6 +1985,30 @@ namespace GRBL_Plotter
             this.deutschToolStripMenuItem.Name = "deutschToolStripMenuItem";
             resources.ApplyResources(this.deutschToolStripMenuItem, "deutschToolStripMenuItem");
             this.deutschToolStripMenuItem.Click += new System.EventHandler(this.deutschToolStripMenuItem_Click);
+            // 
+            // pусскийToolStripMenuItem
+            // 
+            this.pусскийToolStripMenuItem.Name = "pусскийToolStripMenuItem";
+            resources.ApplyResources(this.pусскийToolStripMenuItem, "pусскийToolStripMenuItem");
+            this.pусскийToolStripMenuItem.Click += new System.EventHandler(this.russianToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.spanToolStripMenuItem_Click);
+            // 
+            // franzToolStripMenuItem
+            // 
+            this.franzToolStripMenuItem.Name = "franzToolStripMenuItem";
+            resources.ApplyResources(this.franzToolStripMenuItem, "franzToolStripMenuItem");
+            this.franzToolStripMenuItem.Click += new System.EventHandler(this.franzToolStripMenuItem_Click);
+            // 
+            // chinesischToolStripMenuItem
+            // 
+            this.chinesischToolStripMenuItem.Name = "chinesischToolStripMenuItem";
+            resources.ApplyResources(this.chinesischToolStripMenuItem, "chinesischToolStripMenuItem");
+            this.chinesischToolStripMenuItem.Click += new System.EventHandler(this.chinesischToolStripMenuItem_Click);
             // 
             // createGCodeToolStripMenuItem
             // 
@@ -2762,6 +2795,10 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks3rdLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmsCodePasteSpecial1;
         private System.Windows.Forms.ToolStripMenuItem cmsCodePasteSpecial2;
+        private System.Windows.Forms.ToolStripMenuItem pусскийToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem franzToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chinesischToolStripMenuItem;
     }
 }
 

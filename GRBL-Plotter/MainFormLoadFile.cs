@@ -65,7 +65,7 @@ namespace GRBL_Plotter
         private List<string> MRUlist = new List<string>();
         private void SaveRecentFile(string path)
         {
-            savePath = Path.GetDirectoryName(path);// + "\\";
+        //    savePath = Path.GetDirectoryName(path);// + "\\";
             saveName = Path.GetFileNameWithoutExtension(path);
             //   recentToolStripMenuItem.DropDownItems.Clear();
             toolStripMenuItem2.DropDownItems.Clear();
@@ -151,7 +151,7 @@ namespace GRBL_Plotter
             setUndoText("");
             if (isStreaming)
             {
-                MessageBox.Show("Streaming must be stopped before loading new file","Attention");
+                MessageBox.Show(Localization.getString("mainLoadError"), Localization.getString("mainAttention"));
                 return;
             }
             if (fileName.IndexOf("http") >= 0)
@@ -163,7 +163,7 @@ namespace GRBL_Plotter
             {
                 if (!File.Exists(fileName))
                 {
-                    MessageBox.Show("File not found: '" + fileName + "'");
+                    MessageBox.Show(Localization.getString("mainLoadError1") + fileName + "'");
                     return;
                 }
             }
@@ -271,7 +271,7 @@ namespace GRBL_Plotter
             {
                 if (tBURL.Text.Length > 5)
                 {
-                    MessageBox.Show("URL extension is not 'svg' or 'dxf'\r\nTry SVG import anyway, but without setting 'Recent File' list.");
+                    MessageBox.Show(Localization.getString("mainLoadError2"));
                     startConvertSVG(tBURL.Text);
                 }
             }
@@ -377,14 +377,14 @@ namespace GRBL_Plotter
                     if (File.Exists(fileInfo))
                     {
                         int lineNr = loadStreamingStatus();
-                        DialogResult dialogResult = MessageBox.Show("The last job was paused at line "+lineNr+" of "+ fCTBCode.LinesCount + ",\r\ndo you want to continue the job?","Attention", MessageBoxButtons.YesNo);
+                        DialogResult dialogResult = MessageBox.Show(Localization.getString("mainPauseStream1") + lineNr+" / "+ fCTBCode.LinesCount + Localization.getString("mainPauseStream2"), Localization.getString("mainAttention"), MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
                             loadStreamingStatus(true);                            //do something
                             updateControls(true);
                             btnStreamStart.Image = Properties.Resources.btn_play;
                             isStreamingPause = true;
-                            lbInfo.Text = "Pause streaming - press play ";
+                            lbInfo.Text = Localization.getString("mainPauseStream");    // "Pause streaming - press play ";
                             signalPlay = 1;
                             lbInfo.BackColor = Color.Yellow;
                         }
@@ -406,6 +406,7 @@ namespace GRBL_Plotter
             {
                 string txt = fCTBCode.Text;
                 File.WriteAllText(sfd.FileName, txt);
+                Logger.Info("Save GCode as {0}", sfd.FileName);
             }
         }
         // save Properties.Settings.Default... to text-file
@@ -418,6 +419,7 @@ namespace GRBL_Plotter
             {
                 var MyIni = new IniFile(sfd.FileName);
                 MyIni.WriteAll(_serial_form.GRBLSettings);
+                Logger.Info("Save machine parameters as {0}", sfd.FileName);
             }
         }
         // load Properties.Settings.Default... from text-file
@@ -430,6 +432,7 @@ namespace GRBL_Plotter
                 var MyIni = new IniFile(openFileDialog1.FileName);
                 MyIni.ReadAll();
                 loadSettings(sender, e);
+                Logger.Info("Save machine parameters as {0}", openFileDialog1.FileName);
             }
         }
 
@@ -437,14 +440,36 @@ namespace GRBL_Plotter
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.guiLanguage = "en";
-            MessageBox.Show("Restart of GRBL-Plotter is needed");
+            MessageBox.Show("Restart of GRBL-Plotter is needed", "Attention");
         }
         private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.guiLanguage = "de-DE";
-            MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich");
+            MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich", "Achtung");
         }
-#endregion
+        private void russianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.guiLanguage = "ru";
+            MessageBox.Show("Требуется перезапуск плоттера GRBL", "Внимание");
+        }
+        private void spanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.guiLanguage = "es";
+            MessageBox.Show("Se requiere reiniciar el trazador GRBL", "Atención");
+        }
+        private void franzToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.guiLanguage = "fr";
+            MessageBox.Show("Un redémarrage du traceur GRBL est requis", "Attention");
+        }
+        private void chinesischToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.guiLanguage = "zh-CN";
+            MessageBox.Show("需要重启GRBL绘图仪", "注意");
+        }
+
+
+        #endregion
 
         // Ctrl-V to paste graphics
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -948,7 +973,7 @@ namespace GRBL_Plotter
             string fileName = Application.StartupPath + datapath.hotkeys;
             if (!File.Exists(fileName))
             {
-                MessageBox.Show("File 'hotkeys.xml' not found, no hotkeys set!","Attention");
+                MessageBox.Show(Localization.getString("mainHotkeyError"), Localization.getString("mainAttention"));
                 Logger.Error("File 'hotkeys.xml' not found in ",fileName);
                 return;
             }
@@ -994,7 +1019,7 @@ namespace GRBL_Plotter
                     string num = action.Substring("CustomButton".Length);
                     int num1;
                     if (!int.TryParse(num, out num1))
-                        MessageBox.Show("Unknown action: " + action, "Error with Hotkey.xml");
+                        MessageBox.Show(Localization.getString("mainHotkeyError1") + action, Localization.getString("mainHotkeyError2"));
                     else
                     {
                         if (_serial_form.serialPortOpen && (!isStreaming || isStreamingPause) || grbl.grblSimulate)
