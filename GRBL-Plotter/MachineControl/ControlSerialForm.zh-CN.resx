@@ -117,174 +117,128 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
+  <data name="cbPort.ToolTip" xml:space="preserve">
+    <value>选择一个可用的串行端口</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Kantenlänge</value>
+  <data name="cbBaud.ToolTip" xml:space="preserve">
+    <value>选择速度</value>
   </data>
-  <data name="btnPosUR.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
+  <data name="btnOpenPort.Text" xml:space="preserve">
+    <value>打开</value>
   </data>
-  <data name="btnPosUR.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten oben rechts ein</value>
-    <comment>ToolTip</comment>
+  <data name="btnOpenPort.ToolTip" xml:space="preserve">
+    <value>以选定的速度打开选定的COM端口。 或关闭打开的COM端口</value>
   </data>
-  <data name="btnPosLL.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
+  <data name="btnScanPort.Text" xml:space="preserve">
+    <value>扫描端口</value>
   </data>
-  <data name="btnPosLL.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten links unten ein</value>
-    <comment>ToolTip</comment>
+  <data name="btnScanPort.ToolTip" xml:space="preserve">
+    <value>扫描空闲端口</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>清除日志</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Oben rechts</value>
+  <data name="btnClear.ToolTip" xml:space="preserve">
+    <value>删除记录</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>发送</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Unten links</value>
+  <data name="btnSend.ToolTip" xml:space="preserve">
+    <value>按下即可发送命令</value>
+  </data>
+  <data name="btnGRBLCommand0.ToolTip" xml:space="preserve">
+    <value>帮助：获取所有GRBL命令的列表</value>
+  </data>
+  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
+    <value>查看Grbl设置</value>
+  </data>
+  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
+    <value>杀死警报锁</value>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>附件状态
+S =主轴CW，
+C =主轴CCW，
+F =防洪线，
+M =冷却液</value>
+  </data>
+  <data name="btnCheckGRBL.Text" xml:space="preserve">
+    <value>检查GRBL</value>
+  </data>
+  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
+    <value>检查GRBL设置的最大和最小限制
+不适用于GRBL Vers。 &lt;1.0</value>
+  </data>
+  <data name="btnGRBLReset.ToolTip" xml:space="preserve">
+    <value>通过CTRL-X进行软重置</value>
+  </data>
+  <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
+    <value>尝试通过DTR / RTS进行硬重置
+成功取决于所使用的硬件（DTR，RTS有线？）</value>
+  </data>
+  <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
+    <value>查看g代码解析器状态</value>
+  </data>
+  <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
+    <value>查看版本信息</value>
+  </data>
+  <data name="cbStatus.Text" xml:space="preserve">
+    <value>显示实时状态报告</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Gebiet des Höhenprofils</value>
-    <comment>GroupBox</comment>
+    <value>实时状态报告</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondieren</value>
-    <comment>GroupBox</comment>
+  <data name="cbStatus.ToolTip" xml:space="preserve">
+    <value>显示原始收到的GRBL状态报告</value>
   </data>
-  <data name="btnOffset.Text" xml:space="preserve">
-    <value>Setze max. Wert = 0</value>
-    <comment>Button</comment>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>缓冲区状态（需要通过$ 10 = 2启用）</value>
   </data>
-  <data name="btnOffset.ToolTip" xml:space="preserve">
-    <value>Entferne Offset von allen Z Werten</value>
-    <comment>ToolTip</comment>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>当前进给（mm / min）和速度（RPM）</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>XYZ，探针，门，保持，软复位，循环启动的输入引脚状态</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Sichere Höhe</value>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>进给，急流和速度的替代值，以％为单位</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Max. Tiefe</value>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>行号（需要在config.h中启用）</value>
   </data>
-  <data name="btnStartHeightScan.Text" xml:space="preserve">
-    <value>Scanne Höhenprofil</value>
-    <comment>Button</comment>
+  <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
+    <value>查看g代码参数</value>
   </data>
-  <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
-    <value>Sende Befehle um Höhenprofil einzulesen</value>
-    <comment>ToolTip</comment>
+  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
+    <value>查看启动块</value>
   </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Höhenprofil speichern</value>
-    <comment>Button</comment>
+  <data name="lblSrPos.ToolTip" xml:space="preserve">
+    <value>工作岗位</value>
   </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Höhenprofil laden</value>
-    <comment>Button</comment>
+  <data name="lblSrBf.ToolTip" xml:space="preserve">
+    <value>缓冲区状态（需要通过$ 10 = 2启用）</value>
   </data>
-  <data name="btnApply.Text" xml:space="preserve">
-    <value>Höhenprofil anwenden</value>
-    <comment>Button</comment>
+  <data name="lblSrFS.ToolTip" xml:space="preserve">
+    <value>当前进给（mm / min）和速度（RPM）</value>
   </data>
-  <data name="btnApply.ToolTip" xml:space="preserve">
-    <value>Auto leveling: Höhenprofil auf G-Code anwenden</value>
-    <comment>ToolTip</comment>
+  <data name="lblSrPn.ToolTip" xml:space="preserve">
+    <value>XYZ，探针，门，保持，软复位，循环启动的输入引脚状态</value>
   </data>
-  <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lade Höhenprofil</value>
-    <comment>Menu</comment>
+  <data name="lblSrOv.ToolTip" xml:space="preserve">
+    <value>进给，急流和速度的替代值，以％为单位</value>
   </data>
-  <data name="saveHeightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
+  <data name="lblSrA.ToolTip" xml:space="preserve">
+    <value>附件状态
+S =主轴CW，
+C =主轴CCW，
+F =防洪线，
+M =冷却液</value>
   </data>
-  <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil</value>
-    <comment>Menu</comment>
+  <data name="lblSrLn.ToolTip" xml:space="preserve">
+    <value>行号（需要在config.h中启用）</value>
   </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Bild als BMP</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als STL</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als X3D</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ergebnis</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
-  </data>
-  <data name="cBGray.Text" xml:space="preserve">
-    <value>Grauwert</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBGray.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie das Ergebnisbild in Graustufen an, um es als Höhenkartenbild zu verwenden</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnOffsetZ.ToolTip" xml:space="preserve">
-    <value>Addiere gegebenen Offset zu allen Z Werten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnZoomZ.ToolTip" xml:space="preserve">
-    <value>Multipliziere alle Z Werte mit gegebenen Wert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnInvertZ.Text" xml:space="preserve">
-    <value>Invertiere Z</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnInvertZ.ToolTip" xml:space="preserve">
-    <value>Invertiere Z Werte (Vorzeichen wird von '+' auf '-' geändert und umgekehrt)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnCutOffZ.Text" xml:space="preserve">
-    <value>Z Cut off</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnCutOffZ.ToolTip" xml:space="preserve">
-    <value>Setze alle Z Werte kleiner dem gegeben Wert auf diesen Wert. 
-Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnGCode.Text" xml:space="preserve">
-    <value>Generiere G-Code</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnGCode.ToolTip" xml:space="preserve">
-    <value>Generiere G-Code um Höhenprofil abzufahren</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Höhenprofil einlesen</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Gittergröße X und Y</value>
+  <data name="lblSrState.Text" xml:space="preserve">
+    <value>状态</value>
   </data>
 </root>

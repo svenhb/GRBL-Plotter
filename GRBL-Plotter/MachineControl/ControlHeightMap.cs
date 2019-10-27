@@ -258,6 +258,7 @@ namespace GRBL_Plotter
         public ControlHeightMapForm()
         {
             Logger.Trace("++++++ ControlHeightMapForm START ++++++");
+            this.Icon = Properties.Resources.Icon;
             InitializeComponent();
         }
 

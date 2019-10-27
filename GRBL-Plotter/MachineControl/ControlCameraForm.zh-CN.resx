@@ -117,174 +117,155 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
+  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>将当前位置设置为标记位置。</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Kantenlänge</value>
+  <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>补偿角度和比例</value>
   </data>
-  <data name="btnPosUR.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
+  <data name="showOverlayGraphicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>显示叠加图形</value>
   </data>
-  <data name="btnPosUR.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten oben rechts ein</value>
-    <comment>ToolTip</comment>
+  <data name="label3.Text" xml:space="preserve">
+    <value>放大</value>
   </data>
-  <data name="btnPosLL.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>视讯来源</value>
   </data>
-  <data name="btnPosLL.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten links unten ein</value>
-    <comment>ToolTip</comment>
+  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>选择摄像机源。</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>图片旋转</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Oben rechts</value>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>设置示教半径顶部</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>教低位</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Unten links</value>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>示教相机视图</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>设定示教半径底</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>缩放教学</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1）家用绘图仪
+2）将相机移到较高位置
+3）点击图片以示最大半径的距离
+4）将相机移至较低位置
+5）点击图片以示下半径的距离</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>示教偏移</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1）切换到“工具坐标”。 （G54）
+2）X，Y位置为零
+3）用工具在工件上标记工具位置（在X = 0，Y = 0处）
+4）将标记移至相机视图中心下方
+5）示教实际位置作为偏移量
+6）切换到“凸轮坐标”。 （G59）-现在显示X = 0，Y = 0</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>十字线</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>色彩</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>设定</value>
+  </data>
+  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>设置XY =标记位置</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
+    <value>设置坐标系偏移</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将相机坐标设为零</value>
+  </data>
+  <data name="btnApplyAngle.Text" xml:space="preserve">
+    <value>将角度应用于GCode</value>
+  </data>
+  <data name="btnApplyAngle.ToolTip" xml:space="preserve">
+    <value>使用鼠标右键测量角度。
+按下按钮以测量角度转换G-Code。</value>
+  </data>
+  <data name="btnCamCoordTool.ToolTip" xml:space="preserve">
+    <value>将当前工具位置移到摄像头下方</value>
+  </data>
+  <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
+    <value>将相机偏移量应用于图形</value>
+  </data>
+  <data name="lblAngle.ToolTip" xml:space="preserve">
+    <value>测量角度</value>
+  </data>
+  <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
+    <value>将当前相机位置移到工具下方</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Gebiet des Höhenprofils</value>
-    <comment>GroupBox</comment>
+    <value>相机</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondieren</value>
-    <comment>GroupBox</comment>
+    <value>相机偏移/移动</value>
   </data>
-  <data name="btnOffset.Text" xml:space="preserve">
-    <value>Setze max. Wert = 0</value>
-    <comment>Button</comment>
+  <data name="lblCenterPos.Text" xml:space="preserve">
+    <value>找不到形状</value>
   </data>
-  <data name="btnOffset.ToolTip" xml:space="preserve">
-    <value>Entferne Offset von allen Z Werten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Sichere Höhe</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Max. Tiefe</value>
-  </data>
-  <data name="btnStartHeightScan.Text" xml:space="preserve">
-    <value>Scanne Höhenprofil</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
-    <value>Sende Befehle um Höhenprofil einzulesen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Höhenprofil speichern</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Höhenprofil laden</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnApply.Text" xml:space="preserve">
-    <value>Höhenprofil anwenden</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnApply.ToolTip" xml:space="preserve">
-    <value>Auto leveling: Höhenprofil auf G-Code anwenden</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lade Höhenprofil</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveHeightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
-  </data>
-  <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Bild als BMP</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als STL</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als X3D</value>
-    <comment>Menu</comment>
+  <data name="label1.Text" xml:space="preserve">
+    <value>角</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ergebnis</value>
-    <comment>GroupBox</comment>
+    <value>措施</value>
   </data>
-  <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
+  <data name="cBShapeDetection.Text" xml:space="preserve">
+    <value>形状识别</value>
   </data>
-  <data name="cBGray.Text" xml:space="preserve">
-    <value>Grauwert</value>
-    <comment>CheckBox</comment>
+  <data name="label2.Text" xml:space="preserve">
+    <value>选择过滤器组</value>
   </data>
-  <data name="cBGray.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie das Ergebnisbild in Graustufen an, um es als Höhenkartenbild zu verwenden</value>
-    <comment>ToolTip</comment>
+  <data name="btnAutoCenter.Text" xml:space="preserve">
+    <value>中心红色圆圈</value>
   </data>
-  <data name="btnOffsetZ.ToolTip" xml:space="preserve">
-    <value>Addiere gegebenen Offset zu allen Z Werten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnZoomZ.ToolTip" xml:space="preserve">
-    <value>Multipliziere alle Z Werte mit gegebenen Wert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnInvertZ.Text" xml:space="preserve">
-    <value>Invertiere Z</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnInvertZ.ToolTip" xml:space="preserve">
-    <value>Invertiere Z Werte (Vorzeichen wird von '+' auf '-' geändert und umgekehrt)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnCutOffZ.Text" xml:space="preserve">
-    <value>Z Cut off</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnCutOffZ.ToolTip" xml:space="preserve">
-    <value>Setze alle Z Werte kleiner dem gegeben Wert auf diesen Wert. 
-Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnGCode.Text" xml:space="preserve">
-    <value>Generiere G-Code</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnGCode.ToolTip" xml:space="preserve">
-    <value>Generiere G-Code um Höhenprofil abzufahren</value>
-    <comment>ToolTip</comment>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>自动对齐</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Höhenprofil einlesen</value>
+    <value>相机</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Gittergröße X und Y</value>
+  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>旋转视频图像-输入角度</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>示教上位</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>示教相机视图</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>示教相机偏移</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1）X，Y位置为零
+2）标记刀具位置（在X = 0，Y = 0处）
+3）移动直到标记位于相机视图的中心
+4）教实际位置作为偏移</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>旋转视频图像-输入角度</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>以GRBL单位（毫米或英寸）</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>以GRBL单位（毫米或英寸）</value>
+  </data>
+  <data name="teachZeroPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>设置XY = 0;用鼠标指针设置0并单击鼠标左键</value>
   </data>
 </root>

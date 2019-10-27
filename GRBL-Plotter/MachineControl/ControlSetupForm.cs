@@ -20,6 +20,7 @@
  * 2017-01-01 check form-location and fix strange location
  * 2019-03-09 add color, width, X/Y and invert for pathRotaryInfo to show rotary over X or Y
  * 2019-08-15 add logger
+ * 2019-10-25 remove icon to reduce resx size, load icon on run-time
 */
 
 using System;
@@ -44,6 +45,7 @@ namespace GRBL_Plotter
         public ControlSetupForm()
         {
             Logger.Trace("++++++ ControlSetupForm START ++++++");
+            this.Icon = Properties.Resources.Icon;
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;

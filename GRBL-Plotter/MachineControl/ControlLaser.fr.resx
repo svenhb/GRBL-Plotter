@@ -117,174 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Kantenlänge</value>
-  </data>
-  <data name="btnPosUR.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnPosUR.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten oben rechts ein</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnPosLL.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnPosLL.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten links unten ein</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Oben rechts</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Unten links</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Gebiet des Höhenprofils</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondieren</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="btnOffset.Text" xml:space="preserve">
-    <value>Setze max. Wert = 0</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnOffset.ToolTip" xml:space="preserve">
-    <value>Entferne Offset von allen Z Werten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
+  <data name="label15.Text" xml:space="preserve">
+    <value>seconde. chez S</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Sichere Höhe</value>
+    <value>Avant de commencer, retarder</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Max. Tiefe</value>
+  <data name="label9.Text" xml:space="preserve">
+    <value>déplacez Y par</value>
   </data>
-  <data name="btnStartHeightScan.Text" xml:space="preserve">
-    <value>Scanne Höhenprofil</value>
-    <comment>Button</comment>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Déplacer X de 0 à</value>
   </data>
-  <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
-    <value>Sende Befehle um Höhenprofil einzulesen</value>
-    <comment>ToolTip</comment>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Mouvement pendant le scan</value>
   </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Höhenprofil speichern</value>
-    <comment>Button</comment>
+  <data name="lblText.Text" xml:space="preserve">
+    <value>Setup: définissez une valeur de 30 $ qui correspond à une puissance laser de 100% lors du réglage de S100.</value>
   </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Höhenprofil laden</value>
-    <comment>Button</comment>
+  <data name="label12.Text" xml:space="preserve">
+    <value>au taux d'alimentation F</value>
   </data>
-  <data name="btnApply.Text" xml:space="preserve">
-    <value>Höhenprofil anwenden</value>
-    <comment>Button</comment>
+  <data name="label8.Text" xml:space="preserve">
+    <value>à la puissance laser S</value>
   </data>
-  <data name="btnApply.ToolTip" xml:space="preserve">
-    <value>Auto leveling: Höhenprofil auf G-Code anwenden</value>
-    <comment>ToolTip</comment>
+  <data name="btnScanZ.Text" xml:space="preserve">
+    <value>Lancer l'analyse</value>
   </data>
-  <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lade Höhenprofil</value>
-    <comment>Menu</comment>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Z du plus au moins</value>
   </data>
-  <data name="saveHeightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Scannez Z pour vous concentrer sur une vitesse et une puissance constantes</value>
   </data>
-  <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil</value>
-    <comment>Menu</comment>
+  <data name="label13.Text" xml:space="preserve">
+    <value>étape</value>
   </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
+  <data name="btnScanSpeed.Text" xml:space="preserve">
+    <value>Lancer l'analyse</value>
   </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Bild als BMP</value>
-    <comment>Menu</comment>
+  <data name="label10.Text" xml:space="preserve">
+    <value>à la puissance laser S</value>
   </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>à F</value>
   </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als STL</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als X3D</value>
-    <comment>Menu</comment>
+  <data name="label3.Text" xml:space="preserve">
+    <value>De F</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ergebnis</value>
-    <comment>GroupBox</comment>
+    <value>Balayage de la vitesse X à puissance constante (sans axe Z)</value>
   </data>
-  <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
+  <data name="label14.Text" xml:space="preserve">
+    <value>étape</value>
   </data>
-  <data name="cBGray.Text" xml:space="preserve">
-    <value>Grauwert</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBGray.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie das Ergebnisbild in Graustufen an, um es als Höhenkartenbild zu verwenden</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnOffsetZ.ToolTip" xml:space="preserve">
-    <value>Addiere gegebenen Offset zu allen Z Werten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnZoomZ.ToolTip" xml:space="preserve">
-    <value>Multipliziere alle Z Werte mit gegebenen Wert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnInvertZ.Text" xml:space="preserve">
-    <value>Invertiere Z</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnInvertZ.ToolTip" xml:space="preserve">
-    <value>Invertiere Z Werte (Vorzeichen wird von '+' auf '-' geändert und umgekehrt)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnCutOffZ.Text" xml:space="preserve">
-    <value>Z Cut off</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnCutOffZ.ToolTip" xml:space="preserve">
-    <value>Setze alle Z Werte kleiner dem gegeben Wert auf diesen Wert. 
-Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnGCode.Text" xml:space="preserve">
-    <value>Generiere G-Code</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnGCode.ToolTip" xml:space="preserve">
-    <value>Generiere G-Code um Höhenprofil abzufahren</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Höhenprofil einlesen</value>
+  <data name="label11.Text" xml:space="preserve">
+    <value>au taux d'alimentation F</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Gittergröße X und Y</value>
+    <value>a S</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>De S</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Balayage de la puissance laser à vitesse constante (sans axe Z)</value>
+  </data>
+  <data name="btnScanPower.Text" xml:space="preserve">
+    <value>Lancer l'analyse</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Paramètres laser à utiliser ci-dessous</value>
+  </data>
+  <data name="btnToolUpdate.Text" xml:space="preserve">
+    <value>Mettre à jour la table d'outil</value>
+  </data>
+  <data name="lblToolProp.Text" xml:space="preserve">
+    <value>Alimentation XY (F) et l puissance (S) de tt</value>
+  </data>
+  <data name="btnScanTool.Text" xml:space="preserve">
+    <value>Lancer l'analyse</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Используйте значения из таблицы инструментов</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Alignement laser</value>
   </data>
 </root>

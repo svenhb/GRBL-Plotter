@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlCoordSystem));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSelect6 = new System.Windows.Forms.Button();
             this.btnSelect5 = new System.Windows.Forms.Button();
@@ -692,7 +691,6 @@
             this.Controls.Add(this.gB_offset);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(680, 470);
             this.MinimumSize = new System.Drawing.Size(470, 470);

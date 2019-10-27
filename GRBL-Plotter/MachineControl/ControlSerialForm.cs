@@ -39,6 +39,8 @@
  * 2019-08-15 add logger
  *            line 528 replace .Invoke by .BeginInvoke to avoid deadlock
  * 2019-09-24 line 410 add serialPort.DtrEnable = true;serialPort.DtrEnable = false; sequence - thanks to ivahru
+ * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+ * 2019-10-27 localization of strings
 */
 
 //#define debuginfo 
@@ -88,6 +90,7 @@ namespace GRBL_Plotter
         public ControlSerialForm(string txt, int nr, ControlSerialForm handle = null)
         {
             Logger.Trace("++++++ SerialForm {0} START ++++++", iamSerial);
+            this.Icon = Properties.Resources.Icon;
             mParserState.reset();
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
@@ -159,7 +162,7 @@ namespace GRBL_Plotter
             }
             else
             {
-                MessageBox.Show("Serial Connection is needed.\r\nClose main window instead","Attention");
+                MessageBox.Show(Localization.getString("serialCloseError"), Localization.getString("mainAttention"));    //"Serial Connection is needed.\r\nClose main window instead","Attention");
                 e.Cancel = true;
                 Logger.Trace("Closing SerialForm {0} canceled", iamSerial);
                 return;

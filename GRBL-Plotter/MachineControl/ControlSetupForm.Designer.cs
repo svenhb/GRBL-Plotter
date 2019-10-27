@@ -3665,108 +3665,108 @@ namespace GRBL_Plotter
             // 
             // tBGP15
             // 
-            this.tBGP15.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn15", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP15.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons15", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP15, "tBGP15");
             this.tBGP15.Name = "tBGP15";
-            this.tBGP15.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn15;
+            this.tBGP15.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons15;
             // 
             // tBGP14
             // 
-            this.tBGP14.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn14", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP14.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons14", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP14, "tBGP14");
             this.tBGP14.Name = "tBGP14";
-            this.tBGP14.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn14;
+            this.tBGP14.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons14;
             // 
             // tBGP13
             // 
-            this.tBGP13.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn13", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP13.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons13", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP13, "tBGP13");
             this.tBGP13.Name = "tBGP13";
-            this.tBGP13.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn13;
+            this.tBGP13.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons13;
             // 
             // tBGP12
             // 
-            this.tBGP12.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn12", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP12.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons12", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP12, "tBGP12");
             this.tBGP12.Name = "tBGP12";
-            this.tBGP12.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn12;
+            this.tBGP12.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons12;
             // 
             // tBGP11
             // 
-            this.tBGP11.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP11.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP11, "tBGP11");
             this.tBGP11.Name = "tBGP11";
-            this.tBGP11.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn11;
+            this.tBGP11.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons11;
             // 
             // tBGP10
             // 
-            this.tBGP10.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn10", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP10.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons10", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP10, "tBGP10");
             this.tBGP10.Name = "tBGP10";
-            this.tBGP10.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn10;
+            this.tBGP10.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons10;
             // 
             // tBGP9
             // 
-            this.tBGP9.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn9", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP9.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons9", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP9, "tBGP9");
             this.tBGP9.Name = "tBGP9";
-            this.tBGP9.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn9;
+            this.tBGP9.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons9;
             // 
             // tBGP8
             // 
-            this.tBGP8.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn8", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP8.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons8", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP8, "tBGP8");
             this.tBGP8.Name = "tBGP8";
-            this.tBGP8.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn8;
+            this.tBGP8.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons8;
             // 
             // tBGP7
             // 
-            this.tBGP7.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn7", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP7.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons7", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP7, "tBGP7");
             this.tBGP7.Name = "tBGP7";
-            this.tBGP7.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn7;
+            this.tBGP7.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons7;
             // 
             // tBGP6
             // 
-            this.tBGP6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn6", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons6", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP6, "tBGP6");
             this.tBGP6.Name = "tBGP6";
-            this.tBGP6.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn6;
+            this.tBGP6.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons6;
             // 
             // tBGP5
             // 
-            this.tBGP5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP5, "tBGP5");
             this.tBGP5.Name = "tBGP5";
-            this.tBGP5.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn5;
+            this.tBGP5.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons5;
             // 
             // tBGP4
             // 
-            this.tBGP4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP4, "tBGP4");
             this.tBGP4.Name = "tBGP4";
-            this.tBGP4.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn4;
+            this.tBGP4.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons4;
             // 
             // tBGP3
             // 
-            this.tBGP3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP3, "tBGP3");
             this.tBGP3.Name = "tBGP3";
-            this.tBGP3.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn3;
+            this.tBGP3.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons3;
             // 
             // tBGP2
             // 
-            this.tBGP2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP2, "tBGP2");
             this.tBGP2.Name = "tBGP2";
-            this.tBGP2.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn2;
+            this.tBGP2.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons2;
             // 
             // tBGP1
             // 
-            this.tBGP1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP1, "tBGP1");
             this.tBGP1.Name = "tBGP1";
-            this.tBGP1.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn1;
+            this.tBGP1.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons1;
             // 
             // lblgp
             // 
@@ -3842,10 +3842,10 @@ namespace GRBL_Plotter
             // 
             // tBGP0
             // 
-            this.tBGP0.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadBtn0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP0.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP0, "tBGP0");
             this.tBGP0.Name = "tBGP0";
-            this.tBGP0.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadBtn0;
+            this.tBGP0.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons0;
             // 
             // lblButtons13
             // 

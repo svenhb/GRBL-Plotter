@@ -18,6 +18,7 @@
 */
 /*
  * 2019-10-03 new
+ * 2019-10-25 remove icon to reduce resx size, load icon on run-time
 */
 
 using System;
@@ -35,6 +36,7 @@ namespace GRBL_Plotter
         public ControlLaser()
         {
             Logger.Trace("++++++ ControlLaser START ++++++");
+            this.Icon = Properties.Resources.Icon;
             InitializeComponent();
         }
 

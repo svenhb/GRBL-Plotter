@@ -19,6 +19,7 @@
 /*
  * 2019-08-13 add PRB, TLO status
  * 2019-08-15 add logger
+ * 2019-10-25 remove icon to reduce resx size, load icon on run-time
 */
 
 using System;
@@ -35,6 +36,7 @@ namespace GRBL_Plotter
         public ControlCoordSystem()
         {
             Logger.Trace("++++++ ControlCoordSystem START ++++++");
+            this.Icon = Properties.Resources.Icon;
             InitializeComponent();
         }
         private void ControlCoordSystem_Load(object sender, EventArgs e)

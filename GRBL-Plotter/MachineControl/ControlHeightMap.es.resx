@@ -117,174 +117,152 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
-  </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Kantenlänge</value>
-  </data>
-  <data name="btnPosUR.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
+    <value>Longitud de la arista</value>
   </data>
   <data name="btnPosUR.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten oben rechts ein</value>
+    <value>Obtenga la posición real de la máquina y configure las coordenadas superiores derecha</value>
     <comment>ToolTip</comment>
-  </data>
-  <data name="btnPosLL.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
   </data>
   <data name="btnPosLL.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten links unten ein</value>
+    <value>Obtenga la posición real de la máquina y configure las coordenadas inferiores izquierdas</value>
     <comment>ToolTip</comment>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Oben rechts</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Unten links</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Gebiet des Höhenprofils</value>
+    <value>Perfil de área de altitud</value>
     <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondieren</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="btnOffset.Text" xml:space="preserve">
-    <value>Setze max. Wert = 0</value>
-    <comment>Button</comment>
   </data>
   <data name="btnOffset.ToolTip" xml:space="preserve">
-    <value>Entferne Offset von allen Z Werten</value>
+    <value>Eliminar desplazamiento de todos los valores Z</value>
     <comment>ToolTip</comment>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
-  </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Sichere Höhe</value>
+    <value>Guardar altura</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Max. Tiefe</value>
+    <value>máxima profundidad</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Sondeo</value>
+    <comment>GroupBox</comment>
   </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
-    <value>Scanne Höhenprofil</value>
+    <value>Generar mapa de altura</value>
     <comment>Button</comment>
   </data>
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
-    <value>Sende Befehle um Höhenprofil einzulesen</value>
+    <value>Enviar comandos de escaneo de mapas de altura</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnSave.Text" xml:space="preserve">
-    <value>Höhenprofil speichern</value>
+    <value>Guardar mapa de altura</value>
     <comment>Button</comment>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
-    <value>Höhenprofil laden</value>
+    <value>Mapa de altura de carga</value>
     <comment>Button</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
-    <value>Höhenprofil anwenden</value>
+    <value>Aplicar mapa de altura</value>
     <comment>Button</comment>
   </data>
   <data name="btnApply.ToolTip" xml:space="preserve">
-    <value>Auto leveling: Höhenprofil auf G-Code anwenden</value>
+    <value>Nivelación automática: aplique el perfil de altitud al código G</value>
     <comment>ToolTip</comment>
   </data>
   <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lade Höhenprofil</value>
+    <value>Perfil de altura abierta</value>
     <comment>Menu</comment>
-  </data>
-  <data name="saveHeightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
   </data>
   <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil</value>
+    <value>Guardar perfil de altura</value>
     <comment>Menu</comment>
-  </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
   </data>
   <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Bild als BMP</value>
+    <value>Guardar como BMP</value>
     <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
   </data>
   <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als STL</value>
+    <value>Guardar como STL</value>
     <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
   </data>
   <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als X3D</value>
+    <value>Guardar como X3D</value>
     <comment>Menu</comment>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ergebnis</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
+  <data name="savePictureAsBWBMPToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exportar</value>
+    <comment>Menu</comment>
   </data>
   <data name="cBGray.Text" xml:space="preserve">
-    <value>Grauwert</value>
+    <value>Escala de grises</value>
     <comment>CheckBox</comment>
   </data>
   <data name="cBGray.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie das Ergebnisbild in Graustufen an, um es als Höhenkartenbild zu verwenden</value>
+    <value>Muestra la imagen del resultado en escala de grises para su uso posterior como imagen del mapa de altura</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Resultado</value>
+    <comment>GroupBox</comment>
+  </data>
   <data name="btnOffsetZ.ToolTip" xml:space="preserve">
-    <value>Addiere gegebenen Offset zu allen Z Werten</value>
+    <value>Agregar un desplazamiento dado a todos los valores Z</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnZoomZ.ToolTip" xml:space="preserve">
-    <value>Multipliziere alle Z Werte mit gegebenen Wert</value>
+    <value>Multiplica todos los valores Z con el valor dado</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnInvertZ.Text" xml:space="preserve">
-    <value>Invertiere Z</value>
+    <value>Invertir Z</value>
     <comment>Button</comment>
   </data>
   <data name="btnInvertZ.ToolTip" xml:space="preserve">
-    <value>Invertiere Z Werte (Vorzeichen wird von '+' auf '-' geändert und umgekehrt)</value>
+    <value>Cambiar signo de valores Z</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnCutOffZ.Text" xml:space="preserve">
-    <value>Z Cut off</value>
+    <value>Z ¡Corta!</value>
     <comment>Button</comment>
   </data>
   <data name="btnCutOffZ.ToolTip" xml:space="preserve">
-    <value>Setze alle Z Werte kleiner dem gegeben Wert auf diesen Wert. 
-Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
+    <value>Corte los valores Z por debajo del valor dado. Mejor guardar datos antes de usar cortar!</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnGCode.Text" xml:space="preserve">
-    <value>Generiere G-Code</value>
+    <value>Generar código G</value>
     <comment>Button</comment>
   </data>
   <data name="btnGCode.ToolTip" xml:space="preserve">
-    <value>Generiere G-Code um Höhenprofil abzufahren</value>
+    <value>Generar código G para volver sobre el mapa de altura</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="gB_Manipulation.Text" xml:space="preserve">
+    <value>Manipulación</value>
+    <comment>GroupBox</comment>
+  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Höhenprofil einlesen</value>
+    <value>Leer perfil de altura</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Gittergröße X und Y</value>
+    <value>Tamaño de cuadrícula X e Y</value>
+  </data>
+  <data name="btnPosUR.Text" xml:space="preserve">
+    <value>Usar pos.</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnPosLL.Text" xml:space="preserve">
+    <value>Usar pos.</value>
+    <comment>Button</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Arriba a la derecha</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Abajo a la izquierda</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Velocidad de sondeo Z</value>
   </data>
 </root>

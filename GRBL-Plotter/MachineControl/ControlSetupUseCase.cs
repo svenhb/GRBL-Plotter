@@ -1,4 +1,27 @@
-﻿using System;
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+ * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -14,7 +37,9 @@ namespace GRBL_Plotter
         public string ReturnValue1 { get; set; }
 
         public ControlSetupUseCase()
-        {   InitializeComponent();  }
+        {   InitializeComponent();
+            this.Icon = Properties.Resources.Icon;
+        }
 
         private void ControlSetupUseCase_Load(object sender, EventArgs e)
         {   fillUseCaseFileList(Application.StartupPath + datapath.usecases);

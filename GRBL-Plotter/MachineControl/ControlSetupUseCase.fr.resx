@@ -117,101 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cbPort.ToolTip" xml:space="preserve">
-    <value>Wählen Sie eine freie serielle Schnittstelle</value>
+  <data name="tBUseCaseInfo.Text" xml:space="preserve">
+    <value>Les paramètres sélectionnés sont appliqués immédiatement,
+lors du chargement d'un cas d'utilisation.</value>
   </data>
-  <data name="cbBaud.ToolTip" xml:space="preserve">
-    <value>Geschwindigkeit auswählen</value>
+  <data name="btnLoad.Text" xml:space="preserve">
+    <value>Charger et appliquer les paramètres, fermer la boîte de dialogue</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>Öffnen</value>
+  <data name="btnOk.Text" xml:space="preserve">
+    <value>Fermer la boîte de dialogue sans modifications</value>
   </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>Öffne den ausgewählten COM Port mit ausgewählter Geschwindigkeit
-Oder schließt den offenen COM Port</value>
+  <data name="tBSetup.Text" xml:space="preserve">
+    <value>Sélectionnez le cas d'utilisation pour voir les paramètres</value>
   </data>
-  <data name="btnScanPort.ToolTip" xml:space="preserve">
-    <value>Suche nach freien COM Ports</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Dernier chargé:</value>
   </data>
-  <data name="btnClear.ToolTip" xml:space="preserve">
-    <value>Lösche Historie</value>
+  <data name="cBshowImportDialog.AccessibleDescription" xml:space="preserve">
+    <value>Cette option peut être réactivée dans Configuration - Importation graphique</value>
   </data>
-  <data name="btnSend.ToolTip" xml:space="preserve">
-    <value>Sende Befehl (geht auch mit 'Enter')</value>
+  <data name="cBshowImportDialog.Text" xml:space="preserve">
+    <value>Afficher cette boîte de dialogue sur l'importation de graphiques</value>
   </data>
-  <data name="btnGRBLCommand0.ToolTip" xml:space="preserve">
-    <value>Listet alle GRBL Befehle</value>
-  </data>
-  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
-    <value>Listet die Grbl Settings</value>
-  </data>
-  <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
-    <value>Anzeigen von G-code-Parametern</value>
-  </data>
-  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
-    <value>Listet die Startup Blocks</value>
-  </data>
-  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
-    <value>Alarmsperre aufheben</value>
-  </data>
-  <data name="lblSrPos.ToolTip" xml:space="preserve">
-    <value>Koordinaten der 'Work Position'</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>Pufferstatus (muss über $ 10 = 2 aktiviert werden)</value>
-  </data>
-  <data name="lblSrBf.ToolTip" xml:space="preserve">
-    <value>Pufferstatus (muss über $ 10 = 2 aktiviert werden)</value>
-  </data>
-  <data name="label4.ToolTip" xml:space="preserve">
-    <value>Aktueller Vorschub (mm / min) und Geschwindigkeit (U / min)</value>
-  </data>
-  <data name="lblSrFS.ToolTip" xml:space="preserve">
-    <value>Aktueller Vorschub (mm / min) und Geschwindigkeit (U / min)</value>
-  </data>
-  <data name="lblSrPn.ToolTip" xml:space="preserve">
-    <value>Eingangs-Pin-Status für XYZ, Sonde, Tür, Halten, Soft-Reset, Zyklusstart</value>
-  </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Eingangs-Pin-Status für XYZ, Sonde, Tür, Halten, Soft-Reset, Zyklusstart</value>
-  </data>
-  <data name="lblSrOv.ToolTip" xml:space="preserve">
-    <value>Werte für Vorschub und Geschwindigkeit in % überschreiben</value>
-  </data>
-  <data name="label9.ToolTip" xml:space="preserve">
-    <value>Werte für Vorschub und Geschwindigkeit in % überschreiben</value>
-  </data>
-  <data name="lblSrLn.ToolTip" xml:space="preserve">
-    <value>Zeilennummer (muss in config.h aktiviert sein)</value>
-  </data>
-  <data name="label13.ToolTip" xml:space="preserve">
-    <value>Zeilennummer (muss in config.h aktiviert sein)</value>
-  </data>
-  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
-    <value>Überprüfen Sie das GRBL-Setup auf Höchst- und Mindestwerte
-Nicht für GRBL Vers. &lt;1,0</value>
-  </data>
-  <data name="btnGRBLReset.ToolTip" xml:space="preserve">
-    <value>Soft Reset über STRG-X</value>
-  </data>
-  <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
-    <value>Versuchen Sie es mit einem harten Reset über DTR / RTS
-Erfolg hängt von der Hardware ab (DTR, RTS verkabelt?)</value>
-  </data>
-  <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie den Status des G-code-Parsers an</value>
-  </data>
-  <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
-    <value>Build-Informationen anzeigen</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cbStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 17</value>
-  </data>
-  <data name="cbStatus.Text" xml:space="preserve">
-    <value>Zeige den Echtzeit Status Report</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Echtzeit Status Report</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Sélectionnez le cas d'utilisation</value>
   </data>
 </root>

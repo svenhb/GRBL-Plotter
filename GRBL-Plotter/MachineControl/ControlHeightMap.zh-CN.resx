@@ -117,174 +117,152 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
-  </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Kantenlänge</value>
-  </data>
-  <data name="btnPosUR.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
+    <value>边缘长度</value>
   </data>
   <data name="btnPosUR.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten oben rechts ein</value>
+    <value>获取实际机器位置并设置右上角坐标</value>
     <comment>ToolTip</comment>
-  </data>
-  <data name="btnPosLL.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
   </data>
   <data name="btnPosLL.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten links unten ein</value>
+    <value>获取实际机器位置并设置左下角坐标</value>
     <comment>ToolTip</comment>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Oben rechts</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Unten links</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Gebiet des Höhenprofils</value>
+    <value>高度剖面面积</value>
     <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondieren</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="btnOffset.Text" xml:space="preserve">
-    <value>Setze max. Wert = 0</value>
-    <comment>Button</comment>
   </data>
   <data name="btnOffset.ToolTip" xml:space="preserve">
-    <value>Entferne Offset von allen Z Werten</value>
+    <value>从所有Z值中删除偏移</value>
     <comment>ToolTip</comment>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
-  </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Sichere Höhe</value>
+    <value>节省身高</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Max. Tiefe</value>
+    <value>最大深度</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>探测</value>
+    <comment>GroupBox</comment>
   </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
-    <value>Scanne Höhenprofil</value>
+    <value>生成高度图</value>
     <comment>Button</comment>
   </data>
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
-    <value>Sende Befehle um Höhenprofil einzulesen</value>
+    <value>发送高度图扫描命令</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnSave.Text" xml:space="preserve">
-    <value>Höhenprofil speichern</value>
+    <value>保存高度图</value>
     <comment>Button</comment>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
-    <value>Höhenprofil laden</value>
+    <value>装载高度图</value>
     <comment>Button</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
-    <value>Höhenprofil anwenden</value>
+    <value>套用高度图</value>
     <comment>Button</comment>
   </data>
   <data name="btnApply.ToolTip" xml:space="preserve">
-    <value>Auto leveling: Höhenprofil auf G-Code anwenden</value>
+    <value>自动调平：将海拔剖面应用于G代码</value>
     <comment>ToolTip</comment>
   </data>
   <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lade Höhenprofil</value>
+    <value>打开高度轮廓</value>
     <comment>Menu</comment>
-  </data>
-  <data name="saveHeightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
   </data>
   <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil</value>
+    <value>保存高度轮廓</value>
     <comment>Menu</comment>
-  </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
   </data>
   <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Bild als BMP</value>
+    <value>另存为BMP</value>
     <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
   </data>
   <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als STL</value>
+    <value>另存为STL</value>
     <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
   </data>
   <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als X3D</value>
+    <value>另存为X3D</value>
     <comment>Menu</comment>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ergebnis</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
+  <data name="savePictureAsBWBMPToolStripMenuItem.Text" xml:space="preserve">
+    <value>出口</value>
+    <comment>Menu</comment>
   </data>
   <data name="cBGray.Text" xml:space="preserve">
-    <value>Grauwert</value>
+    <value>灰阶</value>
     <comment>CheckBox</comment>
   </data>
   <data name="cBGray.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie das Ergebnisbild in Graustufen an, um es als Höhenkartenbild zu verwenden</value>
+    <value>以灰度显示结果图片，以进一步用作高度图图像</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>结果</value>
+    <comment>GroupBox</comment>
+  </data>
   <data name="btnOffsetZ.ToolTip" xml:space="preserve">
-    <value>Addiere gegebenen Offset zu allen Z Werten</value>
+    <value>给定偏移量到所有Z值</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnZoomZ.ToolTip" xml:space="preserve">
-    <value>Multipliziere alle Z Werte mit gegebenen Wert</value>
+    <value>将所有Z值与给定值相乘</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnInvertZ.Text" xml:space="preserve">
-    <value>Invertiere Z</value>
+    <value>反转Z</value>
     <comment>Button</comment>
   </data>
   <data name="btnInvertZ.ToolTip" xml:space="preserve">
-    <value>Invertiere Z Werte (Vorzeichen wird von '+' auf '-' geändert und umgekehrt)</value>
+    <value>切换Z值的符号</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnCutOffZ.Text" xml:space="preserve">
-    <value>Z Cut off</value>
+    <value>Z切断</value>
     <comment>Button</comment>
   </data>
   <data name="btnCutOffZ.ToolTip" xml:space="preserve">
-    <value>Setze alle Z Werte kleiner dem gegeben Wert auf diesen Wert. 
-Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
+    <value>切断低于给定值的Z值。 使用切断功能之前，最好保存数据！</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnGCode.Text" xml:space="preserve">
-    <value>Generiere G-Code</value>
+    <value>生成G代码</value>
     <comment>Button</comment>
   </data>
   <data name="btnGCode.ToolTip" xml:space="preserve">
-    <value>Generiere G-Code um Höhenprofil abzufahren</value>
+    <value>生成G代码以回溯高度图</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="gB_Manipulation.Text" xml:space="preserve">
+    <value>操作</value>
+    <comment>GroupBox</comment>
+  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Höhenprofil einlesen</value>
+    <value>读取身高档案</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Gittergröße X und Y</value>
+    <value>网格尺寸X和Y（混搭宽度）</value>
+  </data>
+  <data name="btnPosUR.Text" xml:space="preserve">
+    <value>使用实际的位置。</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnPosLL.Text" xml:space="preserve">
+    <value>使用实际的位置。</value>
+    <comment>Button</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>右上方</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>左下</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>探测速度Z</value>
   </data>
 </root>

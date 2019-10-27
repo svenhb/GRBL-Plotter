@@ -117,174 +117,152 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
+  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Définir la position actuelle comme marqueur pos.</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Kantenlänge</value>
+  <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Compenser l'angle et l'échelle</value>
   </data>
-  <data name="btnPosUR.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
+  <data name="showOverlayGraphicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Afficher les graphiques de superposition</value>
   </data>
-  <data name="btnPosUR.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten oben rechts ein</value>
-    <comment>ToolTip</comment>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Source vidéo</value>
   </data>
-  <data name="btnPosLL.Text" xml:space="preserve">
-    <value>Aktuelle Pos.</value>
-    <comment>Button</comment>
+  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Sélectionnez la source de la caméra.</value>
   </data>
-  <data name="btnPosLL.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten links unten ein</value>
-    <comment>ToolTip</comment>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rotation d'image</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Définir le rayon d'apprentissage en haut</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Oben rechts</value>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enseigner Position Basse</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Enseigner la vue caméra</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Unten links</value>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Définir le rayon d'apprentissage en bas</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enseigner la mise à l'échelle</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Accueil Traceur
+2) déplace la caméra en position haute
+3) cliquez dans l'image pour enseigner la distance du rayon supérieur
+4) déplacez la caméra en position basse
+5) cliquez dans l'image pour enseigner la distance du rayon inférieur</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enseigner Offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) basculez sur 'Outil coord.' (G54)
+2) Zéro X, Y position
+3) Marquer la position de l'outil (à X = 0, Y = 0) avec l'outil sur la pièce
+4) Déplacer le marqueur sous le centre de la vue de la caméra
+5) Enseigner la position réelle en décalage
+6) basculez sur 'Cam coord.' (G59) - montre maintenant X = 0, Y = 0</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>ligne de mire</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Couleurs</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set XY = Position du marqueur</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
+    <value>Définir le décalage du système de coordonnées</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Définir la coordonnée zéro avec le décalage de la caméra</value>
+  </data>
+  <data name="btnApplyAngle.Text" xml:space="preserve">
+    <value>Appliquer l'angle à GCode</value>
+  </data>
+  <data name="btnApplyAngle.ToolTip" xml:space="preserve">
+    <value>Utilisez le bouton droit de la souris pour mesurer l'angle.
+Appuyez sur le bouton pour transformer le G-Code en angle mesuré.</value>
+  </data>
+  <data name="btnCamCoordTool.ToolTip" xml:space="preserve">
+    <value>Déplacer la position actuelle de l'outil sous la caméra</value>
+  </data>
+  <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
+    <value>Appliquer un décalage de la caméra aux graphiques</value>
+  </data>
+  <data name="lblAngle.ToolTip" xml:space="preserve">
+    <value>Angle mesuré</value>
+  </data>
+  <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
+    <value>Déplacer la position actuelle de la caméra sous l'outil</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Gebiet des Höhenprofils</value>
-    <comment>GroupBox</comment>
+    <value>Caméra</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondieren</value>
-    <comment>GroupBox</comment>
+    <value>Décalage de la caméra / mouvement</value>
   </data>
-  <data name="btnOffset.Text" xml:space="preserve">
-    <value>Setze max. Wert = 0</value>
-    <comment>Button</comment>
+  <data name="lblCenterPos.Text" xml:space="preserve">
+    <value>Aucune forme trouvée</value>
   </data>
-  <data name="btnOffset.ToolTip" xml:space="preserve">
-    <value>Entferne Offset von allen Z Werten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Sichere Höhe</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Max. Tiefe</value>
-  </data>
-  <data name="btnStartHeightScan.Text" xml:space="preserve">
-    <value>Scanne Höhenprofil</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
-    <value>Sende Befehle um Höhenprofil einzulesen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Höhenprofil speichern</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Höhenprofil laden</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnApply.Text" xml:space="preserve">
-    <value>Höhenprofil anwenden</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnApply.ToolTip" xml:space="preserve">
-    <value>Auto leveling: Höhenprofil auf G-Code anwenden</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lade Höhenprofil</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveHeightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
-  </data>
-  <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Bild als BMP</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als STL</value>
-    <comment>Menu</comment>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 22</value>
-  </data>
-  <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichere Höhenprofil als X3D</value>
-    <comment>Menu</comment>
+  <data name="label1.Text" xml:space="preserve">
+    <value>angle</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Ergebnis</value>
-    <comment>GroupBox</comment>
+    <value>mesure</value>
   </data>
-  <data name="cBGray.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
+  <data name="cBShapeDetection.Text" xml:space="preserve">
+    <value>Reconnaissance de forme</value>
   </data>
-  <data name="cBGray.Text" xml:space="preserve">
-    <value>Grauwert</value>
-    <comment>CheckBox</comment>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Sélectionner le jeu de filtres</value>
   </data>
-  <data name="cBGray.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie das Ergebnisbild in Graustufen an, um es als Höhenkartenbild zu verwenden</value>
-    <comment>ToolTip</comment>
+  <data name="btnAutoCenter.Text" xml:space="preserve">
+    <value>Centre cercle rouge</value>
   </data>
-  <data name="btnOffsetZ.ToolTip" xml:space="preserve">
-    <value>Addiere gegebenen Offset zu allen Z Werten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnZoomZ.ToolTip" xml:space="preserve">
-    <value>Multipliziere alle Z Werte mit gegebenen Wert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnInvertZ.Text" xml:space="preserve">
-    <value>Invertiere Z</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnInvertZ.ToolTip" xml:space="preserve">
-    <value>Invertiere Z Werte (Vorzeichen wird von '+' auf '-' geändert und umgekehrt)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnCutOffZ.Text" xml:space="preserve">
-    <value>Z Cut off</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnCutOffZ.ToolTip" xml:space="preserve">
-    <value>Setze alle Z Werte kleiner dem gegeben Wert auf diesen Wert. 
-Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnGCode.Text" xml:space="preserve">
-    <value>Generiere G-Code</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnGCode.ToolTip" xml:space="preserve">
-    <value>Generiere G-Code um Höhenprofil abzufahren</value>
-    <comment>ToolTip</comment>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Alignement automatique</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Höhenprofil einlesen</value>
+    <value>Caméra</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Gittergröße X und Y</value>
+  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Faire pivoter l'image vidéo - saisir un angle</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enseigner la position supérieure</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Enseigner la vue caméra</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enseigner le décalage de la caméra</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Zéro X, Y position
+2) Marquer la position de l’outil (à X = 0, Y = 0)
+3) Déplacez-vous jusqu'à ce que le marqueur se trouve au centre de la vue de la caméra
+4) Enseigner la position réelle en décalage</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>Faire pivoter l'image vidéo - saisir un angle</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>en unités GRBL (mm ou inch)</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>en unités GRBL (mm ou inch)</value>
+  </data>
+  <data name="teachZeroPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Définissez XY = 0; 0 avec le pointeur de la souris et un clic gauche</value>
   </data>
 </root>
