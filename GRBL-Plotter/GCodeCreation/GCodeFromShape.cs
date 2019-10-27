@@ -19,6 +19,7 @@
 /*
  * 2019-06-14 add code markers: xmlMarker.figureStart
  * 2019-08-15 add logger
+ * 2019-10-25 remove icon to reduce resx size, load icon on run-time
 */
 
 using System;
@@ -45,6 +46,7 @@ namespace GRBL_Plotter
         public GCodeFromShape()
         {
             Logger.Trace("++++++ GCodeFromShape START ++++++");
+            this.Icon = Properties.Resources.Icon;
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;

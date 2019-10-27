@@ -163,12 +163,12 @@
             this.cBGCodeFill = new System.Windows.Forms.CheckBox();
             this.cBGCodeOutline = new System.Windows.Forms.CheckBox();
             this.cBGCodeOutlineSmooth = new System.Windows.Forms.CheckBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label24 = new System.Windows.Forms.Label();
             this.lBUseCase = new System.Windows.Forms.ListBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.lblLastUseCase = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDReso)).BeginInit();
@@ -1404,12 +1404,6 @@
             this.toolTip1.SetToolTip(this.cBGCodeOutlineSmooth, resources.GetString("cBGCodeOutlineSmooth.ToolTip"));
             this.cBGCodeOutlineSmooth.UseVisualStyleBackColor = true;
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 200;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // label24
             // 
             resources.ApplyResources(this.label24, "label24");
@@ -1444,6 +1438,12 @@
             this.lblLastUseCase.Name = "lblLastUseCase";
             this.lblLastUseCase.Text = global::GRBL_Plotter.Properties.Settings.Default.useCaseLastLoaded;
             this.toolTip1.SetToolTip(this.lblLastUseCase, resources.GetString("lblLastUseCase.ToolTip"));
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 200;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // GCodeFromImage
             // 

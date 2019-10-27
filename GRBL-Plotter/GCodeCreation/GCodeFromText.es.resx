@@ -117,167 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 17</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Altura de la letra</value>
   </data>
-  <data name="cBToolSet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 16</value>
-  </data>
-  <data name="cBToolSet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 17</value>
-  </data>
-  <data name="cBToolSet.Text" xml:space="preserve">
-    <value>Übernehme Werte aus Werkzeugliste</value>
-  </data>
-  <data name="cBTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 14</value>
-  </data>
-  <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
-    <value>Abstand der Pfade in % (des Werkzeugdurchmessers) wenn Taschen gefräst werden</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Überlappung</value>
-  </data>
-  <data name="label16.ToolTip" xml:space="preserve">
-    <value>Abstand der Pfade in % (des Werkzeugdurchmessers) wenn Taschen gefräst werden</value>
-  </data>
-  <data name="nUDToolFeedZ.ToolTip" xml:space="preserve">
-    <value>Fahrgeschwindigkeit auf der Z Achse</value>
-  </data>
-  <data name="nUDToolFeedXY.ToolTip" xml:space="preserve">
-    <value>Fahrgeschwindigkeit auf der XY Achse</value>
-  </data>
-  <data name="nUDToolZStep.ToolTip" xml:space="preserve">
-    <value>Maximale Tiefenzustellung der Z-Achse pro Durchgang (nicht endgültige Tiefe)</value>
-  </data>
-  <data name="nUDToolDiameter.ToolTip" xml:space="preserve">
-    <value>Werkzeugdurchmesser (Fräser, Laser, Stift) um Pfad-Offset berechnen zu können</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Durchmesser</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Werkzeug</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Form</value>
-  </data>
-  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
-    <value>Endgültige Tiefe der Form</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Tiefe (Z)</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 13</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Höhe (Y)</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Breite (X)</value>
-  </data>
-  <data name="rBShape2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 17</value>
-  </data>
-  <data name="rBShape2.Text" xml:space="preserve">
-    <value>Rechteck, runde Ecken</value>
-  </data>
-  <data name="rBShape1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 17</value>
-  </data>
-  <data name="rBShape1.Text" xml:space="preserve">
-    <value>Rechteck</value>
-  </data>
-  <data name="rBShape3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 19</value>
-  </data>
-  <data name="rBShape3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 17</value>
-  </data>
-  <data name="rBShape3.Text" xml:space="preserve">
-    <value>Kreis</value>
-  </data>
-  <data name="rBToolpath2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 17</value>
-  </data>
-  <data name="rBToolpath2.Text" xml:space="preserve">
-    <value>Ausserhalb der Kontur</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Werkzeugpfad</value>
-  </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 74</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Tasche</value>
-  </data>
-  <data name="cBToolpathPocket.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 17</value>
-  </data>
-  <data name="cBToolpathPocket.Text" xml:space="preserve">
-    <value>Tasche erzeugen</value>
-  </data>
-  <data name="rBToolpath3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 17</value>
-  </data>
-  <data name="rBToolpath3.Text" xml:space="preserve">
-    <value>Innerhalb der Kontur</value>
-  </data>
-  <data name="rBToolpath1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 17</value>
-  </data>
-  <data name="rBToolpath1.Text" xml:space="preserve">
-    <value>Auf der Kontur (Gravieren)</value>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>Altura de las letras</value>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
-    <value>Erzeuge G-Code</value>
+    <value>Crear G-Code</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Nullpunkt</value>
+  <data name="label11.Text" xml:space="preserve">
+    <value>interlineado</value>
   </data>
-  <data name="rBOrigin9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 59</value>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>Distancia entre lineas</value>
   </data>
-  <data name="rBOrigin8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 59</value>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Distancia de la carta</value>
   </data>
-  <data name="rBOrigin7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 59</value>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value>Espacio adicional entre letras</value>
   </data>
-  <data name="rBOrigin6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 40</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Fuente</value>
   </data>
-  <data name="rBOrigin5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 40</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cerrar</value>
   </data>
-  <data name="rBOrigin4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 40</value>
+  <data name="cBToolTable.Text" xml:space="preserve">
+    <value>Obtener valores de la tabla de herramientas</value>
   </data>
-  <data name="rBOrigin3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 21</value>
+  <data name="cBToolTable.ToolTip" xml:space="preserve">
+    <value>Dentro de una palabra, conecte el último punto de la letra con el primer punto de la siguiente letra</value>
   </data>
-  <data name="rBOrigin2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 21</value>
+  <data name="cBConnectLetter.Text" xml:space="preserve">
+    <value>Conectar letras (solo hershey)</value>
   </data>
-  <data name="rBOrigin1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 21</value>
+  <data name="cBConnectLetter.ToolTip" xml:space="preserve">
+    <value>Dentro de una palabra, conecte el último punto de la letra con el primer punto de la siguiente letra</value>
+  </data>
+  <data name="cBPauseLine.Text" xml:space="preserve">
+    <value>Agregar pausa antes de línea</value>
+  </data>
+  <data name="cBPauseWord.Text" xml:space="preserve">
+    <value>Agregar pausa antes de la palabra</value>
+  </data>
+  <data name="cBPauseChar.Text" xml:space="preserve">
+    <value>Agregar pausa antes de la carta</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Otras configuraciones de código G en Configuración SVG-Importar</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Erzeuge G-Code aus Formen</value>
+    <value>Crear G-Code a partir del texto</value>
   </data>
 </root>

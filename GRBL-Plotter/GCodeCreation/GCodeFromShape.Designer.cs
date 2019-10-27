@@ -97,6 +97,7 @@
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.cBNoZUp);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cBToolSet);
@@ -113,20 +114,22 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.nUDToolDiameter);
             this.groupBox1.Controls.Add(this.label3);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
             // 
             // cBNoZUp
             // 
             resources.ApplyResources(this.cBNoZUp, "cBNoZUp");
             this.cBNoZUp.Name = "cBNoZUp";
+            this.toolTip1.SetToolTip(this.cBNoZUp, resources.GetString("cBNoZUp.ToolTip"));
             this.cBNoZUp.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
+            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // cBToolSet
             // 
@@ -134,24 +137,26 @@
             this.cBToolSet.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolUseRouter;
             this.cBToolSet.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolUseRouter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBToolSet.Name = "cBToolSet";
+            this.toolTip1.SetToolTip(this.cBToolSet, resources.GetString("cBToolSet.ToolTip"));
             this.cBToolSet.UseVisualStyleBackColor = true;
             this.cBToolSet.CheckedChanged += new System.EventHandler(this.cBToolSet_CheckedChanged);
             // 
             // cBTool
             // 
-            this.cBTool.FormattingEnabled = true;
             resources.ApplyResources(this.cBTool, "cBTool");
+            this.cBTool.FormattingEnabled = true;
             this.cBTool.Name = "cBTool";
+            this.toolTip1.SetToolTip(this.cBTool, resources.GetString("cBTool.ToolTip"));
             this.cBTool.SelectedIndexChanged += new System.EventHandler(this.cBTool_SelectedIndexChanged);
             // 
             // nUDToolOverlap
             // 
+            resources.ApplyResources(this.nUDToolOverlap, "nUDToolOverlap");
             this.nUDToolOverlap.Increment = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            resources.ApplyResources(this.nUDToolOverlap, "nUDToolOverlap");
             this.nUDToolOverlap.Minimum = new decimal(new int[] {
             1,
             0,
@@ -173,12 +178,12 @@
             // 
             // nUDToolSpindleSpeed
             // 
+            resources.ApplyResources(this.nUDToolSpindleSpeed, "nUDToolSpindleSpeed");
             this.nUDToolSpindleSpeed.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            resources.ApplyResources(this.nUDToolSpindleSpeed, "nUDToolSpindleSpeed");
             this.nUDToolSpindleSpeed.Maximum = new decimal(new int[] {
             500000,
             0,
@@ -201,15 +206,16 @@
             // 
             resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
+            this.toolTip1.SetToolTip(this.label15, resources.GetString("label15.ToolTip"));
             // 
             // nUDToolFeedZ
             // 
+            resources.ApplyResources(this.nUDToolFeedZ, "nUDToolFeedZ");
             this.nUDToolFeedZ.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            resources.ApplyResources(this.nUDToolFeedZ, "nUDToolFeedZ");
             this.nUDToolFeedZ.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -232,15 +238,16 @@
             // 
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
+            this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
             // 
             // nUDToolFeedXY
             // 
+            resources.ApplyResources(this.nUDToolFeedXY, "nUDToolFeedXY");
             this.nUDToolFeedXY.Increment = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            resources.ApplyResources(this.nUDToolFeedXY, "nUDToolFeedXY");
             this.nUDToolFeedXY.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -263,16 +270,17 @@
             // 
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
+            this.toolTip1.SetToolTip(this.label10, resources.GetString("label10.ToolTip"));
             // 
             // nUDToolZStep
             // 
+            resources.ApplyResources(this.nUDToolZStep, "nUDToolZStep");
             this.nUDToolZStep.DecimalPlaces = 1;
             this.nUDToolZStep.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDToolZStep, "nUDToolZStep");
             this.nUDToolZStep.Minimum = new decimal(new int[] {
             1,
             0,
@@ -290,16 +298,17 @@
             // 
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
+            this.toolTip1.SetToolTip(this.label9, resources.GetString("label9.ToolTip"));
             // 
             // nUDToolDiameter
             // 
+            resources.ApplyResources(this.nUDToolDiameter, "nUDToolDiameter");
             this.nUDToolDiameter.DecimalPlaces = 1;
             this.nUDToolDiameter.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDToolDiameter, "nUDToolDiameter");
             this.nUDToolDiameter.Minimum = new decimal(new int[] {
             1,
             0,
@@ -317,9 +326,11 @@
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
+            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.nUDImportGCZDown);
             this.groupBox2.Controls.Add(this.label20);
             this.groupBox2.Controls.Add(this.nUDShapeY);
@@ -331,19 +342,19 @@
             this.groupBox2.Controls.Add(this.rBShape2);
             this.groupBox2.Controls.Add(this.rBShape1);
             this.groupBox2.Controls.Add(this.rBShape3);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
             // 
             // nUDImportGCZDown
             // 
+            resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
             this.nUDImportGCZDown.DecimalPlaces = 1;
             this.nUDImportGCZDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
             this.nUDImportGCZDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -366,11 +377,12 @@
             // 
             resources.ApplyResources(this.label20, "label20");
             this.label20.Name = "label20";
+            this.toolTip1.SetToolTip(this.label20, resources.GetString("label20.ToolTip"));
             // 
             // nUDShapeY
             // 
-            this.nUDShapeY.DecimalPlaces = 2;
             resources.ApplyResources(this.nUDShapeY, "nUDShapeY");
+            this.nUDShapeY.DecimalPlaces = 2;
             this.nUDShapeY.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -382,6 +394,7 @@
             0,
             65536});
             this.nUDShapeY.Name = "nUDShapeY";
+            this.toolTip1.SetToolTip(this.nUDShapeY, resources.GetString("nUDShapeY.ToolTip"));
             this.nUDShapeY.Value = new decimal(new int[] {
             10,
             0,
@@ -393,11 +406,12 @@
             // 
             resources.ApplyResources(this.label19, "label19");
             this.label19.Name = "label19";
+            this.toolTip1.SetToolTip(this.label19, resources.GetString("label19.ToolTip"));
             // 
             // nUDShapeX
             // 
-            this.nUDShapeX.DecimalPlaces = 2;
             resources.ApplyResources(this.nUDShapeX, "nUDShapeX");
+            this.nUDShapeX.DecimalPlaces = 2;
             this.nUDShapeX.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -409,6 +423,7 @@
             0,
             65536});
             this.nUDShapeX.Name = "nUDShapeX";
+            this.toolTip1.SetToolTip(this.nUDShapeX, resources.GetString("nUDShapeX.ToolTip"));
             this.nUDShapeX.Value = new decimal(new int[] {
             10,
             0,
@@ -420,11 +435,12 @@
             // 
             resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
+            this.toolTip1.SetToolTip(this.label18, resources.GetString("label18.ToolTip"));
             // 
             // nUDShapeR
             // 
-            this.nUDShapeR.DecimalPlaces = 2;
             resources.ApplyResources(this.nUDShapeR, "nUDShapeR");
+            this.nUDShapeR.DecimalPlaces = 2;
             this.nUDShapeR.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -436,6 +452,7 @@
             0,
             65536});
             this.nUDShapeR.Name = "nUDShapeR";
+            this.toolTip1.SetToolTip(this.nUDShapeR, resources.GetString("nUDShapeR.ToolTip"));
             this.nUDShapeR.Value = new decimal(new int[] {
             3,
             0,
@@ -447,11 +464,13 @@
             // 
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
+            this.toolTip1.SetToolTip(this.label17, resources.GetString("label17.ToolTip"));
             // 
             // rBShape2
             // 
             resources.ApplyResources(this.rBShape2, "rBShape2");
             this.rBShape2.Name = "rBShape2";
+            this.toolTip1.SetToolTip(this.rBShape2, resources.GetString("rBShape2.ToolTip"));
             this.rBShape2.UseVisualStyleBackColor = true;
             this.rBShape2.CheckedChanged += new System.EventHandler(this.nUDShapeR_ValueChanged);
             // 
@@ -461,6 +480,7 @@
             this.rBShape1.Checked = true;
             this.rBShape1.Name = "rBShape1";
             this.rBShape1.TabStop = true;
+            this.toolTip1.SetToolTip(this.rBShape1, resources.GetString("rBShape1.ToolTip"));
             this.rBShape1.UseVisualStyleBackColor = true;
             this.rBShape1.CheckedChanged += new System.EventHandler(this.nUDShapeR_ValueChanged);
             // 
@@ -468,6 +488,7 @@
             // 
             resources.ApplyResources(this.rBShape3, "rBShape3");
             this.rBShape3.Name = "rBShape3";
+            this.toolTip1.SetToolTip(this.rBShape3, resources.GetString("rBShape3.ToolTip"));
             this.rBShape3.UseVisualStyleBackColor = true;
             this.rBShape3.CheckedChanged += new System.EventHandler(this.nUDShapeR_ValueChanged);
             // 
@@ -475,35 +496,40 @@
             // 
             resources.ApplyResources(this.rBToolpath2, "rBToolpath2");
             this.rBToolpath2.Name = "rBToolpath2";
+            this.toolTip1.SetToolTip(this.rBToolpath2, resources.GetString("rBToolpath2.ToolTip"));
             this.rBToolpath2.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Controls.Add(this.rBToolpath3);
             this.groupBox3.Controls.Add(this.rBToolpath1);
             this.groupBox3.Controls.Add(this.rBToolpath2);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.cBToolpathPocket);
             resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Controls.Add(this.cBToolpathPocket);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox4, resources.GetString("groupBox4.ToolTip"));
             // 
             // cBToolpathPocket
             // 
             resources.ApplyResources(this.cBToolpathPocket, "cBToolpathPocket");
             this.cBToolpathPocket.Name = "cBToolpathPocket";
+            this.toolTip1.SetToolTip(this.cBToolpathPocket, resources.GetString("cBToolpathPocket.ToolTip"));
             this.cBToolpathPocket.UseVisualStyleBackColor = true;
             // 
             // rBToolpath3
             // 
             resources.ApplyResources(this.rBToolpath3, "rBToolpath3");
             this.rBToolpath3.Name = "rBToolpath3";
+            this.toolTip1.SetToolTip(this.rBToolpath3, resources.GetString("rBToolpath3.ToolTip"));
             this.rBToolpath3.UseVisualStyleBackColor = true;
             // 
             // rBToolpath1
@@ -512,17 +538,20 @@
             this.rBToolpath1.Checked = true;
             this.rBToolpath1.Name = "rBToolpath1";
             this.rBToolpath1.TabStop = true;
+            this.toolTip1.SetToolTip(this.rBToolpath1, resources.GetString("rBToolpath1.ToolTip"));
             this.rBToolpath1.UseVisualStyleBackColor = true;
             // 
             // btnApply
             // 
             resources.ApplyResources(this.btnApply, "btnApply");
             this.btnApply.Name = "btnApply";
+            this.toolTip1.SetToolTip(this.btnApply, resources.GetString("btnApply.ToolTip"));
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // groupBox5
             // 
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Controls.Add(this.rBOrigin9);
             this.groupBox5.Controls.Add(this.rBOrigin8);
             this.groupBox5.Controls.Add(this.rBOrigin7);
@@ -532,32 +561,36 @@
             this.groupBox5.Controls.Add(this.rBOrigin3);
             this.groupBox5.Controls.Add(this.rBOrigin2);
             this.groupBox5.Controls.Add(this.rBOrigin1);
-            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox5, resources.GetString("groupBox5.ToolTip"));
             // 
             // rBOrigin9
             // 
             resources.ApplyResources(this.rBOrigin9, "rBOrigin9");
             this.rBOrigin9.Name = "rBOrigin9";
+            this.toolTip1.SetToolTip(this.rBOrigin9, resources.GetString("rBOrigin9.ToolTip"));
             this.rBOrigin9.UseVisualStyleBackColor = true;
             // 
             // rBOrigin8
             // 
             resources.ApplyResources(this.rBOrigin8, "rBOrigin8");
             this.rBOrigin8.Name = "rBOrigin8";
+            this.toolTip1.SetToolTip(this.rBOrigin8, resources.GetString("rBOrigin8.ToolTip"));
             this.rBOrigin8.UseVisualStyleBackColor = true;
             // 
             // rBOrigin7
             // 
             resources.ApplyResources(this.rBOrigin7, "rBOrigin7");
             this.rBOrigin7.Name = "rBOrigin7";
+            this.toolTip1.SetToolTip(this.rBOrigin7, resources.GetString("rBOrigin7.ToolTip"));
             this.rBOrigin7.UseVisualStyleBackColor = true;
             // 
             // rBOrigin6
             // 
             resources.ApplyResources(this.rBOrigin6, "rBOrigin6");
             this.rBOrigin6.Name = "rBOrigin6";
+            this.toolTip1.SetToolTip(this.rBOrigin6, resources.GetString("rBOrigin6.ToolTip"));
             this.rBOrigin6.UseVisualStyleBackColor = true;
             // 
             // rBOrigin5
@@ -566,36 +599,42 @@
             this.rBOrigin5.Checked = true;
             this.rBOrigin5.Name = "rBOrigin5";
             this.rBOrigin5.TabStop = true;
+            this.toolTip1.SetToolTip(this.rBOrigin5, resources.GetString("rBOrigin5.ToolTip"));
             this.rBOrigin5.UseVisualStyleBackColor = true;
             // 
             // rBOrigin4
             // 
             resources.ApplyResources(this.rBOrigin4, "rBOrigin4");
             this.rBOrigin4.Name = "rBOrigin4";
+            this.toolTip1.SetToolTip(this.rBOrigin4, resources.GetString("rBOrigin4.ToolTip"));
             this.rBOrigin4.UseVisualStyleBackColor = true;
             // 
             // rBOrigin3
             // 
             resources.ApplyResources(this.rBOrigin3, "rBOrigin3");
             this.rBOrigin3.Name = "rBOrigin3";
+            this.toolTip1.SetToolTip(this.rBOrigin3, resources.GetString("rBOrigin3.ToolTip"));
             this.rBOrigin3.UseVisualStyleBackColor = true;
             // 
             // rBOrigin2
             // 
             resources.ApplyResources(this.rBOrigin2, "rBOrigin2");
             this.rBOrigin2.Name = "rBOrigin2";
+            this.toolTip1.SetToolTip(this.rBOrigin2, resources.GetString("rBOrigin2.ToolTip"));
             this.rBOrigin2.UseVisualStyleBackColor = true;
             // 
             // rBOrigin1
             // 
             resources.ApplyResources(this.rBOrigin1, "rBOrigin1");
             this.rBOrigin1.Name = "rBOrigin1";
+            this.toolTip1.SetToolTip(this.rBOrigin1, resources.GetString("rBOrigin1.ToolTip"));
             this.rBOrigin1.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
             resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
+            this.toolTip1.SetToolTip(this.btnCancel, resources.GetString("btnCancel.ToolTip"));
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -611,6 +650,7 @@
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "GCodeFromShape";
+            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShapeToGCode_FormClosing);
             this.Load += new System.EventHandler(this.ShapeToGCode_Load);
             this.groupBox1.ResumeLayout(false);

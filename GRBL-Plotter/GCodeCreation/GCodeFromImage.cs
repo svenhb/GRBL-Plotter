@@ -25,6 +25,7 @@
 /*
  * 2018-11  split code into ...Create and ...Outline
  * 2019-08-15 add logger
+ * 2019-10-25 remove icon to reduce resx size, load icon on run-time
 */
 
 using System;
@@ -62,6 +63,7 @@ namespace GRBL_Plotter
         //On form load
         private void GCodeFromImage_Load(object sender, EventArgs e)
         {
+            this.Icon = Properties.Resources.Icon;
             lblStatus.Text = "Done";
             getSettings();
             autoZoomToolStripMenuItem_Click(this, null);//Set preview zoom mode

@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnKeepSizeReso.Text" xml:space="preserve">
+    <value>Gardez orig. taille px, calc. Résolution</value>
+  </data>
+  <data name="btnKeepSizeWidth.Text" xml:space="preserve">
+    <value>Gardez orig. taille px, calc. Largeur</value>
+  </data>
+  <data name="btnInvert.ToolTip" xml:space="preserve">
+    <value>Inverser les couleurs</value>
+  </data>
+  <data name="btnHorizMirror.ToolTip" xml:space="preserve">
+    <value>Image miroir sur l'axe des ordonnées</value>
+  </data>
+  <data name="btnVertMirror.ToolTip" xml:space="preserve">
+    <value>Image miroir sur l'axe X</value>
+  </data>
+  <data name="btnRotateRight.ToolTip" xml:space="preserve">
+    <value>Faire pivoter l'image de 90 ° dans le sens des aiguilles d'une montre</value>
+  </data>
+  <data name="btnRotateLeft.ToolTip" xml:space="preserve">
+    <value>Tourner l'image de 90 ° dans le sens antihoraire</value>
+  </data>
+  <data name="btnGenerate.Text" xml:space="preserve">
+    <value>Créer un G-Code</value>
+  </data>
+  <data name="cbExceptColor.Text" xml:space="preserve">
+    <value>Couleur d'exception</value>
+  </data>
+  <data name="cbExceptColor.ToolTip" xml:space="preserve">
+    <value>Clic gauche dans l'image pour sélectionner la couleur à ne pas exporter</value>
+  </data>
+  <data name="btnTest.Text" xml:space="preserve">
+    <value>Aperçu</value>
+  </data>
+  <data name="btnTest.ToolTip" xml:space="preserve">
+    <value>Maintenez le bouton enfoncé pour vérifier l'image avec les couleurs de la table d'outils</value>
+  </data>
+  <data name="btnPresetCorrection3.Text" xml:space="preserve">
+    <value>Comic - peu de couleurs</value>
+  </data>
+  <data name="btnPresetCorrection3.ToolTip" xml:space="preserve">
+    <value>Essayez d'utiliser le moins de couleurs possible en éliminant les couleurs inférieures à un certain pourcentage.</value>
+  </data>
+  <data name="btnShowSettings.Text" xml:space="preserve">
+    <value>Afficher paramètres</value>
+  </data>
+  <data name="btnShowSettings.ToolTip" xml:space="preserve">
+    <value>Afficher les valeurs de correction appliquées</value>
+  </data>
+  <data name="btnShowOrig.Text" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="btnShowOrig.ToolTip" xml:space="preserve">
+    <value>Appuyez sur pour voir l'image originale non modifiée</value>
+  </data>
+  <data name="btnPresetCorrection4.Text" xml:space="preserve">
+    <value>Contour (pas de retour)</value>
+  </data>
+  <data name="btnPresetCorrection2.Text" xml:space="preserve">
+    <value>Graphique - beaucoup de couleurs</value>
+  </data>
+  <data name="btnResetCorrection.Text" xml:space="preserve">
+    <value>RESET valeurs</value>
+  </data>
+  <data name="btnPresetCorrection1.Text" xml:space="preserve">
+    <value>Image - fond sombre</value>
+  </data>
+  <data name="cBFilterEdge.Text" xml:space="preserve">
+    <value>Filtre de bord</value>
+  </data>
+  <data name="btnLoad.Text" xml:space="preserve">
+    <value>Charger et utiliser les paramètres</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Créer un G-Code à partir d'une image</value>
+  </data>
+  <data name="cbLockRatio.Text" xml:space="preserve">
+    <value>conserver le taux</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Taille de sortie en unités</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Contraste</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Luminosité</value>
+  </data>
+  <data name="cbGrayscale.Text" xml:space="preserve">
+    <value>Niveaux de gris</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Mode de conversion</value>
+  </data>
+  <data name="gBgcodeDirection.Text" xml:space="preserve">
+    <value>Direction de la parcelle</value>
+  </data>
+  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copie</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Changement de teinte</value>
+  </data>
+  <data name="cbSkipToolOrder.Text" xml:space="preserve">
+    <value>Numéros d'outil continus</value>
+  </data>
+  <data name="cbSkipToolOrder.ToolTip" xml:space="preserve">
+    <value>Au lieu de trouver le numéro de plume (= numéro d’outil) dans la palette, les plumes sont comptées dans l’ordre de zéro (0,1,2 ...)</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>Le filtre filtre les canaux de couleur en effaçant les valeurs (définies en noir) situées à l'intérieur ou à l'extérieur de la plage de la valeur spécifiée.</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Le filtre permet de remplir certaines plages de canaux de couleur RVB avec une valeur spécifiée.</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Le filtre filtre les canaux de couleur en effaçant les valeurs (définies en noir) situées à l'intérieur ou à l'extérieur de la plage de la valeur spécifiée.</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Le filtre filtre les canaux de couleur en effaçant les valeurs (définies en noir) situées à l'intérieur ou à l'extérieur de la plage de la valeur spécifiée.</value>
+  </data>
+  <data name="cBGCodeOutlineShrink.Text" xml:space="preserve">
+    <value>Chemin de rétrécissement</value>
+  </data>
+  <data name="cBGCodeOutlineShrink.ToolTip" xml:space="preserve">
+    <value>Rétrécir le chemin pour compenser la largeur du stylo</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Mode de remplacement de couleur</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Valeur grise en Z (profondeur) ou vitesse de la broche</value>
+  </data>
+  <data name="cBPreview.Text" xml:space="preserve">
+    <value>Aperçu avec les couleurs de la table d'outils</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
+    <value>Réduire les couleurs</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Réduction de la couleur</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Liste d'outils</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Assistant de conversion</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Saturation</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
+    <value>Supprimer les pixels simples</value>
+  </data>
+  <data name="cBFilterHistogram.Text" xml:space="preserve">
+    <value>Égalisation d'histogramme</value>
+  </data>
+  <data name="cBPosterize.Text" xml:space="preserve">
+    <value>Postérisation</value>
+  </data>
+  <data name="cBResolutionPenWidth.Text" xml:space="preserve">
+    <value>Utiliser la largeur du stylo également en vue 2D</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Traitement de la couleur</value>
+  </data>
+  <data name="cBGCodeFill.Text" xml:space="preserve">
+    <value>Remplir des zones</value>
+  </data>
+  <data name="cBGCodeOutline.Text" xml:space="preserve">
+    <value>Tracer une bordure</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
+    <value>lisse</value>
+  </data>
+  <data name="gBgcodeSelection.Text" xml:space="preserve">
+    <value>Dessiner la sélection</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Dernier chargé:</value>
+  </data>
+  <data name="nUDReso.ToolTip" xml:space="preserve">
+    <value>Distance entre deux lignes en unités (mm ou pouces)</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Largeur</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Résolution</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>la taille</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Gamma</value>
+  </data>
+  <data name="rbEngravingPattern2.Text" xml:space="preserve">
+    <value>diagonal</value>
+  </data>
+  <data name="rbEngravingPattern1.Text" xml:space="preserve">
+    <value>horizontal</value>
+  </data>
+  <data name="nUDColorPercent.ToolTip" xml:space="preserve">
+    <value>Occurrence minimale d'une couleur en pourcentage</value>
+  </data>
+  <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
+    <value>Cycles de lissage</value>
+  </data>
+  <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
+    <value>Charger une image</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Coller du presse-papier</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Désélectionne les couleurs si nécessaire</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Charger les paramètres pour l'application</value>
+  </data>
+  <data name="rbModeDither.Text" xml:space="preserve">
+    <value>Tramage</value>
+  </data>
+  <data name="rbModeGray.Text" xml:space="preserve">
+    <value>Niveaux de gris</value>
+  </data>
+  <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Définir comme original</value>
+  </data>
+  <data name="tBarHueShift.ToolTip" xml:space="preserve">
+    <value>Dans la gamme de couleurs HSV, ajoutez de la valeur à HUE</value>
+  </data>
+  <data name="tBRMin.ToolTip" xml:space="preserve">
+    <value>Les valeurs rouges en dessous de celle-ci seront mises à zéro</value>
+  </data>
+  <data name="tBRMax.ToolTip" xml:space="preserve">
+    <value>Les valeurs rouges ci-dessus, seront mises à zéro</value>
+  </data>
+  <data name="tBGMax.ToolTip" xml:space="preserve">
+    <value>Les valeurs vertes au-dessus de cette valeur seront définies sur zéro</value>
+  </data>
+  <data name="tBGMin.ToolTip" xml:space="preserve">
+    <value>Les valeurs vertes en dessous de celle-ci seront mises à zéro</value>
+  </data>
+  <data name="tBBMax.ToolTip" xml:space="preserve">
+    <value>Les valeurs bleues au-dessus de cette valeur seront mises à zéro</value>
+  </data>
+  <data name="tBBMin.ToolTip" xml:space="preserve">
+    <value>Les valeurs bleues en dessous de celle-ci seront mises à zéro</value>
+  </data>
+  <data name="rBMode0.Text" xml:space="preserve">
+    <value>Distance dans l'espace RVB</value>
+  </data>
+  <data name="rBMode1.Text" xml:space="preserve">
+    <value>Distance en teinte de couleur (0 ° -360 °)</value>
+  </data>
+  <data name="rBMode1.ToolTip" xml:space="preserve">
+    <value>Distance en teinte de couleur (0 ° -360 °)</value>
+  </data>
+  <data name="rBMode2.Text" xml:space="preserve">
+    <value>Distance en teinte, teinte, saturation, luminosité</value>
+  </data>
+  <data name="rBMode2.ToolTip" xml:space="preserve">
+    <value>Distance en nuance de couleur (0 ° à 360 °) + saturation en couleur + luminosité en couleur</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>Méthode pour trouver la couleur la plus adaptée
+0: espace dans l'espace RVB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G ) + (c1.B - c2.B) * (c1.B - c2.B)); }
+1: distance dans l'espace colorimétrique (0 ° à 360 °)
+2: distance dans l'espace colorimétrique (0 ° à 360 °) + saturation + luminosité</value>
+  </data>
+  <data name="rBProcessTool.Text" xml:space="preserve">
+    <value>La couleur détermine le numéro de l'outil</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Préréglé</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Correction d'image</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Effets de couleur</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Remplacement de la couleur</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>Génération de G-Code</value>
+  </data>
+</root>
