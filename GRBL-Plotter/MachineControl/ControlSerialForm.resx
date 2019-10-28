@@ -140,7 +140,7 @@
     <value>67, 21</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnGRBLCmndParser.TabIndex" type="System.Int32, mscorlib">
@@ -195,7 +195,7 @@
     <value>100,100,100</value>
   </data>
   <data name="&gt;&gt;btnScanPort.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>0</value>
   </data>
   <data name="btnCheckGRBL.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 20</value>
@@ -214,13 +214,13 @@
     <value>16</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand4.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lblSrLn.ToolTip" xml:space="preserve">
     <value>Line Number (needs to be enabled in config.h)</value>
   </data>
   <data name="&gt;&gt;btnGRBLHardReset.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="lblSrLn.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 56</value>
@@ -253,7 +253,7 @@
     <value>System.IO.Ports.SerialPort, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnGRBLCmndParser.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnOpenPort.Text" xml:space="preserve">
     <value>Open</value>
@@ -271,10 +271,10 @@
     <value>40, 13</value>
   </data>
   <data name="&gt;&gt;btnGRBLReset.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;rtbLog.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;btnGRBLCmndBuild.Name" xml:space="preserve">
     <value>btnGRBLCmndBuild</value>
@@ -316,10 +316,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnGRBLCmndBuild.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>COM C</value>
@@ -361,7 +361,7 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand3.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;lblSrState.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -394,7 +394,7 @@
     <value>RESET</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand0.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 13</value>
@@ -412,7 +412,7 @@
     <value>2</value>
   </data>
   <data name="&gt;&gt;btnClear.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;label11.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -424,7 +424,7 @@
     <value>btnGRBLReset</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="btnCheckGRBLResult.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -478,7 +478,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBTelnet.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>17, 13</value>
@@ -677,7 +677,7 @@
     <value>84, 56</value>
   </data>
   <data name="&gt;&gt;btnSend.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;label11.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -962,7 +962,7 @@
     <value>103, 26</value>
   </data>
   <data name="&gt;&gt;cBCommand.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnScanPort.Location" type="System.Drawing.Point, System.Drawing">
     <value>207, 0</value>

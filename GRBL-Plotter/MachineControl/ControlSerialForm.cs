@@ -415,7 +415,7 @@ namespace GRBL_Plotter
                     serialPort.DtrEnable = false;
 
                     addToLog("* Open " + cbPort.Text + "\r\n");
-                    btnOpenPort.Text = "Close";
+                    btnOpenPort.Text = Localization.getString("serialClose");  // "Close";
                     isDataProcessing = true;
                     grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
                     grblReset(false);
@@ -455,7 +455,7 @@ namespace GRBL_Plotter
                     serialPort.Close();
                 }
                 addToLog("\r* Close " + cbPort.Text + "\r");
-                btnOpenPort.Text = "Open";
+                btnOpenPort.Text = Localization.getString("serialOpen");  // "Open";
                 saveSettings();
                 updateControls();
                 timerSerial.Interval = 1000;
