@@ -3693,7 +3693,7 @@ namespace GRBL_Plotter
             // 
             // tBGP11
             // 
-            this.tBGP11.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBGP11.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons11", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBGP11, "tBGP11");
             this.tBGP11.Name = "tBGP11";
             this.tBGP11.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons11;
