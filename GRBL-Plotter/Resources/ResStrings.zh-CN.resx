@@ -204,4 +204,37 @@
   <data name="mainUnknownCode" xml:space="preserve">
     <value>未知的G-Code注释掉：\r\n</value>
   </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>行前错误</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>完成检查G代码</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>完成发送G代码</value>
+  </data>
+  <data name="mainInfoKill" xml:space="preserve">
+    <value>按“杀死警报”继续</value>
+  </data>
+  <data name="mainInfoLaserModeOff" xml:space="preserve">
+    <value>激光模式无效$32 = 0</value>
+  </data>
+  <data name="mainInfoLaserModeOn" xml:space="preserve">
+    <value>启用激光模式$32 = 1</value>
+  </data>
+  <data name="mainInfoPause" xml:space="preserve">
+    <value>暂停流媒体-按播放（</value>
+  </data>
+  <data name="mainInfoProbing" xml:space="preserve">
+    <value>探测</value>
+  </data>
+  <data name="mainInfoResume" xml:space="preserve">
+    <value>按“继续”继续</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>等待IDLE，然后暂停（</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>进展</value>
+  </data>
 </root>

@@ -106,6 +106,87 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error before line ähnelt.
+        /// </summary>
+        public static string mainInfoErrorLine {
+            get {
+                return ResourceManager.GetString("mainInfoErrorLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Finish checking G-Code ähnelt.
+        /// </summary>
+        public static string mainInfoFinishCheck {
+            get {
+                return ResourceManager.GetString("mainInfoFinishCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Finish sending G-Code ähnelt.
+        /// </summary>
+        public static string mainInfoFinishSend {
+            get {
+                return ResourceManager.GetString("mainInfoFinishSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press &apos;Kill Alarm&apos; to proceed ähnelt.
+        /// </summary>
+        public static string mainInfoKill {
+            get {
+                return ResourceManager.GetString("mainInfoKill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Laser Mode not active $32=0 ähnelt.
+        /// </summary>
+        public static string mainInfoLaserModeOff {
+            get {
+                return ResourceManager.GetString("mainInfoLaserModeOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Laser Mode active $32=1 ähnelt.
+        /// </summary>
+        public static string mainInfoLaserModeOn {
+            get {
+                return ResourceManager.GetString("mainInfoLaserModeOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pause streaming - press play ( ähnelt.
+        /// </summary>
+        public static string mainInfoPause {
+            get {
+                return ResourceManager.GetString("mainInfoPause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Probing ähnelt.
+        /// </summary>
+        public static string mainInfoProbing {
+            get {
+                return ResourceManager.GetString("mainInfoProbing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press &apos;Resume&apos; to proceed ähnelt.
+        /// </summary>
+        public static string mainInfoResume {
+            get {
+                return ResourceManager.GetString("mainInfoResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Send G-Code ähnelt.
         /// </summary>
         public static string mainInfoSendCode {
@@ -147,6 +228,15 @@ namespace GRBL_Plotter.Resources {
         public static string mainInfoUndo {
             get {
                 return ResourceManager.GetString("mainInfoUndo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wait for IDLE, then pause ( ähnelt.
+        /// </summary>
+        public static string mainInfoWaitIdle {
+            get {
+                return ResourceManager.GetString("mainInfoWaitIdle", resourceCulture);
             }
         }
         
@@ -196,7 +286,7 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die &quot;URL extension is not &apos;svg&apos; or &apos;dxf&apos;\r\nTry SVG import anyway, but without setting &apos;Recent File&apos; list.&quot; ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die URL extension is not &apos;svg&apos; or &apos;dxf&apos;\r\nTry SVG import anyway, but without setting &apos;Recent File&apos; list. ähnelt.
         /// </summary>
         public static string mainLoadError2 {
             get {
@@ -259,6 +349,15 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Progress ähnelt.
+        /// </summary>
+        public static string mainProgress {
+            get {
+                return ResourceManager.GetString("mainProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Quit GRBL-Plotter? ähnelt.
         /// </summary>
         public static string mainQuit {
@@ -304,11 +403,20 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fixed some unknown GCode:\r\n ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fixed some unknown G-Code:\r\n ähnelt.
         /// </summary>
         public static string mainUnknownCode {
             get {
                 return ResourceManager.GetString("mainUnknownCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
+        /// </summary>
+        public static string serialClose {
+            get {
+                return ResourceManager.GetString("serialClose", resourceCulture);
             }
         }
         
@@ -318,6 +426,15 @@ namespace GRBL_Plotter.Resources {
         public static string serialCloseError {
             get {
                 return ResourceManager.GetString("serialCloseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open ähnelt.
+        /// </summary>
+        public static string serialOpen {
+            get {
+                return ResourceManager.GetString("serialOpen", resourceCulture);
             }
         }
     }

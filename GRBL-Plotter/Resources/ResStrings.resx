@@ -132,6 +132,33 @@
   <data name="mainInfoCheckCode" xml:space="preserve">
     <value>Check G-Code</value>
   </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>Error before line</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>Finish checking G-Code</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>Finish sending G-Code</value>
+  </data>
+  <data name="mainInfoKill" xml:space="preserve">
+    <value>Press 'Kill Alarm' to proceed</value>
+  </data>
+  <data name="mainInfoLaserModeOff" xml:space="preserve">
+    <value>Laser Mode not active $32=0</value>
+  </data>
+  <data name="mainInfoLaserModeOn" xml:space="preserve">
+    <value>Laser Mode active $32=1</value>
+  </data>
+  <data name="mainInfoPause" xml:space="preserve">
+    <value>Pause streaming - press play (</value>
+  </data>
+  <data name="mainInfoProbing" xml:space="preserve">
+    <value>Probing</value>
+  </data>
+  <data name="mainInfoResume" xml:space="preserve">
+    <value>Press 'Resume' to proceed</value>
+  </data>
   <data name="mainInfoSendCode" xml:space="preserve">
     <value>Send G-Code</value>
   </data>
@@ -146,6 +173,9 @@
   </data>
   <data name="mainInfoUndo" xml:space="preserve">
     <value>Undo last action</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>Wait for IDLE, then pause (</value>
   </data>
   <data name="mainLimits1" xml:space="preserve">
     <value>Next move will exceed machine limits!\r</value>
@@ -183,6 +213,9 @@
   <data name="mainProblem" xml:space="preserve">
     <value>Problem</value>
   </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
   <data name="mainQuit" xml:space="preserve">
     <value>Quit GRBL-Plotter?</value>
   </data>
@@ -201,7 +234,13 @@
   <data name="mainUnknownCode" xml:space="preserve">
     <value>Fixed some unknown G-Code:\r\n</value>
   </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="serialCloseError" xml:space="preserve">
     <value>Serial Connection is needed.\r\nClose main window instead</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>Open</value>
   </data>
 </root>

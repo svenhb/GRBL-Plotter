@@ -204,4 +204,43 @@
   <data name="mainUnknownCode" xml:space="preserve">
     <value>Неизвестный G-Code закомментирован: \r\n</value>
   </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>Ошибка перед строкой</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>Завершить проверку G-кода</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>Завершить отправку G-кода</value>
+  </data>
+  <data name="mainInfoKill" xml:space="preserve">
+    <value>Нажмите «Kill Alarm», чтобы продолжить</value>
+  </data>
+  <data name="mainInfoLaserModeOff" xml:space="preserve">
+    <value>Лазерный режим не активен $32 = 0</value>
+  </data>
+  <data name="mainInfoLaserModeOn" xml:space="preserve">
+    <value>Лазерный режим активен $32 = 1</value>
+  </data>
+  <data name="mainInfoPause" xml:space="preserve">
+    <value>Пауза потоковой передачи - нажмите кнопку воспроизведения (</value>
+  </data>
+  <data name="mainInfoProbing" xml:space="preserve">
+    <value>прощупывание</value>
+  </data>
+  <data name="mainInfoResume" xml:space="preserve">
+    <value>Нажмите «Продолжить», чтобы продолжить</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>Жди бездействия, потом пауза (</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>Прогресс</value>
+  </data>
 </root>

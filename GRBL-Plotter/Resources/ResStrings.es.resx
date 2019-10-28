@@ -204,4 +204,37 @@
   <data name="mainUnknownCode" xml:space="preserve">
     <value>G-Code desconocido comentado: \r\n</value>
   </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>Error antes de la línea</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>Termine de verificar el código G</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>Terminer l'envoi du code G</value>
+  </data>
+  <data name="mainInfoKill" xml:space="preserve">
+    <value>Presione 'Kill Alarm' para continuar</value>
+  </data>
+  <data name="mainInfoLaserModeOff" xml:space="preserve">
+    <value>Modo láser no activo $32 = 0</value>
+  </data>
+  <data name="mainInfoLaserModeOn" xml:space="preserve">
+    <value>Modo láser activo $32 = 1</value>
+  </data>
+  <data name="mainInfoPause" xml:space="preserve">
+    <value>Pausar transmisión - presione play (</value>
+  </data>
+  <data name="mainInfoProbing" xml:space="preserve">
+    <value>Sondeo</value>
+  </data>
+  <data name="mainInfoResume" xml:space="preserve">
+    <value>Presione 'Reanudar' para continuar</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>Espere IDLE, luego pause (</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>Progreso</value>
+  </data>
 </root>
