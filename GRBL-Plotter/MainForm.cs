@@ -432,7 +432,7 @@ namespace GRBL_Plotter
                     case grblState.hold:
                         btnResume.BackColor = Color.Yellow;
                         lastInfoText = lbInfo.Text;
-                        lbInfo.Text = "Press 'Resume' to proceed";
+                        lbInfo.Text = Localization.getString("mainInfoResume");     //"Press 'Resume' to proceed";
                         lbInfo.BackColor = Color.Yellow;
                         if (signalResume == 0) { signalResume = 1; }
                         break;
@@ -441,7 +441,7 @@ namespace GRBL_Plotter
                     case grblState.alarm:
                         signalLock = 1;
                         btnKillAlarm.BackColor = Color.Yellow;
-                        lbInfo.Text = "Press 'Kill Alarm' to proceed";
+                        lbInfo.Text = Localization.getString("mainInfoKill");     //"Press 'Kill Alarm' to proceed";
                         lbInfo.BackColor = Color.Yellow;
                         if (_heightmap_form != null)
                             _heightmap_form.stopScan();
@@ -451,13 +451,13 @@ namespace GRBL_Plotter
                     case grblState.door:
                         btnResume.BackColor = Color.Yellow;
                         lastInfoText = lbInfo.Text;
-                        lbInfo.Text = "Press 'Resume' to proceed";
+                        lbInfo.Text = Localization.getString("mainInfoResume");     //"Press 'Resume' to proceed";
                         lbInfo.BackColor = Color.Yellow;
                         if (signalResume == 0) { signalResume = 1; }
                         break;
                     case grblState.probe:
                         lastInfoText = lbInfo.Text;
-                        lbInfo.Text = string.Format("Probing: Z={0:0.000}", posProbe.Z);
+                        lbInfo.Text = string.Format("{0}: Z={1:0.000}", Localization.getString("mainInfoProbing"),posProbe.Z);
                         lbInfo.BackColor = Color.Yellow;
                         break;
                     default:
@@ -553,6 +553,7 @@ namespace GRBL_Plotter
                 if (_streaming_form == null)
                 {
                     _streaming_form = new ControlStreamingForm();
+                    _streaming_form.FormClosed += formClosed_StreamingForm;
                     _streaming_form.RaiseOverrideEvent += OnRaiseOverrideEvent;      // assign  event
                     _streaming_form.show_value_FR(actualFR);
                     _streaming_form.show_value_SS(actualSS);
@@ -572,6 +573,7 @@ namespace GRBL_Plotter
                 if (_streaming_form2 == null)
                 {
                     _streaming_form2 = new ControlStreamingForm2();
+                    _streaming_form2.FormClosed += formClosed_StreamingForm;
                     _streaming_form2.RaiseOverrideEvent += OnRaiseOverrideMessage;      // assign  event
                 }
                 else
@@ -582,6 +584,9 @@ namespace GRBL_Plotter
                 _streaming_form2.WindowState = FormWindowState.Normal;
             }
         }
+        private void formClosed_StreamingForm(object sender, FormClosedEventArgs e)
+        { _streaming_form = null; _streaming_form2 = null; }
+
         private void control2ndGRBLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_2ndGRBL_form == null)
@@ -783,12 +788,12 @@ namespace GRBL_Plotter
         {
             if (!grbl.isVersion_0 && _serial_form.isLasermode)
             {
-                lbInfo.Text = "Laser Mode active $32=1";
+                lbInfo.Text = Localization.getString("mainInfoLaserModeOn"); // "Laser Mode active $32=1";
                 lbInfo.BackColor = Color.Fuchsia;
             }
             else
             {
-                lbInfo.Text = "Laser Mode not active $32=0";
+                lbInfo.Text = Localization.getString("mainInfoLaserModeOff");  //"Laser Mode not active $32=0";
                 lbInfo.BackColor = Color.Lime;
             }
         }
@@ -853,7 +858,7 @@ namespace GRBL_Plotter
                     isStreaming = false;
                     isStreamingCheck = false;
                     pbFile.ForeColor = Color.Red;
-                    lbInfo.Text = "Error before line " + e.CodeLine.ToString();
+                    lbInfo.Text = Localization.getString("mainInfoErrorLine") + e.CodeLine.ToString();
                     lbInfo.BackColor = Color.Fuchsia;
                     fCTBCode.BookmarkLine(e.CodeLine - 1);
                     fCTBCode.DoSelectionVisible();
@@ -864,7 +869,7 @@ namespace GRBL_Plotter
                     if (!isStreamingCheck)
                     {
                         updateControls();
-                        lbInfo.Text = "Send G-Code (" + e.CodeLine.ToString() + ")";
+                        lbInfo.Text = Localization.getString("mainInfoSendCode") + "(" + e.CodeLine.ToString() + ")";
                         lbInfo.BackColor = Color.Lime;
                         signalPlay = 0;
                         btnStreamStart.BackColor = SystemColors.Control;
@@ -876,9 +881,9 @@ namespace GRBL_Plotter
                     if (isStreamingOk)
                     {
                         if (isStreamingCheck)
-                        { lbInfo.Text = "Finish checking G-Code"; }
+                        { lbInfo.Text = Localization.getString("mainInfoFinishCheck"); }   // "Finish checking G-Code"; }
                         else
-                        { lbInfo.Text = "Finish sending G-Code"; }
+                        { lbInfo.Text = Localization.getString("mainInfoFinishSend"); }   // "Finish sending G-Code"; }
                         lbInfo.BackColor = Color.Lime;
                         pbFile.Value = 0;
                         pbBuffer.Value = 0;
@@ -896,14 +901,14 @@ namespace GRBL_Plotter
                     updateControls(true);
                     btnStreamStart.Image = Properties.Resources.btn_play;
                     isStreamingPause = true;
-                    lbInfo.Text = "Wait for IDLE, then pause (" + e.CodeLine.ToString() + ")";
+                    lbInfo.Text = Localization.getString("mainInfoWaitIdle") + e.CodeLine.ToString() + ")";
                     lbInfo.BackColor = Color.Yellow;
                     break;
                 case grblStreaming.pause:
                     updateControls(true);
                     btnStreamStart.Image = Properties.Resources.btn_play;
                     isStreamingPause = true;
-                    lbInfo.Text = "Pause streaming - press play (" + e.CodeLine.ToString() + ")";
+                    lbInfo.Text = Localization.getString("mainInfoPause") + e.CodeLine.ToString() + ")";
                     signalPlay = 1;
                     lbInfo.BackColor = Color.Yellow;
                     isStreamingPauseFirst = (streamingPauseFirstLine != e.CodeLine);

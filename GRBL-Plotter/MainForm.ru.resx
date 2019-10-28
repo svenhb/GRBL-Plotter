@@ -118,6 +118,252 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
+    <value>277, 12</value>
+  </data>
+  <data name="cmsEditorHotkeys.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsEditorHotkeys.Text" xml:space="preserve">
+    <value>Показать редактор горячих клавиш</value>
+  </data>
+  <data name="foldBlocksToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="foldBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Сложите кодовые блоки 1-го уровня</value>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сложите кодовые блоки 2-го уровня</value>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сложите кодовые блоки 3-го уровня</value>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Развернуть блоки кода</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 6</value>
+  </data>
+  <data name="cmsCodeSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsCodeSelect.Text" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="cmsCodeCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsCodeCopy.Text" xml:space="preserve">
+    <value>Скопировать в буфер обмена</value>
+  </data>
+  <data name="cmsCodePaste.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsCodePaste.Text" xml:space="preserve">
+    <value>Вставить из буфера обмена</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
+    <value>Вставьте PenUp</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
+    <value>Вставьте «PenDown»</value>
+  </data>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 6</value>
+  </data>
+  <data name="cmsFindDialog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsFindDialog.Text" xml:space="preserve">
+    <value>Найти диалог</value>
+  </data>
+  <data name="cmsReplaceDialog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsReplaceDialog.Text" xml:space="preserve">
+    <value>Заменить диалог</value>
+  </data>
+  <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 6</value>
+  </data>
+  <data name="cmsCodeSendLine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsCodeSendLine.Text" xml:space="preserve">
+    <value>Отправить отмеченную линию в сторону GRBL</value>
+  </data>
+  <data name="cmsCommentOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsCommentOut.Text" xml:space="preserve">
+    <value>Комментарий за неизвестный G-Code</value>
+  </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 6</value>
+  </data>
+  <data name="cmsUpdate2DView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 22</value>
+  </data>
+  <data name="cmsUpdate2DView.Text" xml:space="preserve">
+    <value>Обновить 2D вид</value>
+  </data>
+  <data name="cmsCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 358</value>
+  </data>
+  <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdGYXN0Q29sb3JlZFRleHRCb3gsIFZlcnNpb249Mi4xNi4xMS4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWZiOGFhMTJiOTk0ZWY2MWIMAwAAAFFTeXN0
+        ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2Vu
+        PWIwM2Y1ZjdmMTFkNTBhM2EFAQAAACJGYXN0Q29sb3JlZFRleHRCb3hOUy5TZXJ2aWNlQ29sb3JzBgAA
+        ACg8Q29sbGFwc2VNYXJrZXJGb3JlQ29sb3I+a19fQmFja2luZ0ZpZWxkKDxDb2xsYXBzZU1hcmtlckJh
+        Y2tDb2xvcj5rX19CYWNraW5nRmllbGQqPENvbGxhcHNlTWFya2VyQm9yZGVyQ29sb3I+a19fQmFja2lu
+        Z0ZpZWxkJjxFeHBhbmRNYXJrZXJGb3JlQ29sb3I+a19fQmFja2luZ0ZpZWxkJjxFeHBhbmRNYXJrZXJC
+        YWNrQ29sb3I+a19fQmFja2luZ0ZpZWxkKDxFeHBhbmRNYXJrZXJCb3JkZXJDb2xvcj5rX19CYWNraW5n
+        RmllbGQEBAQEBAQUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkNvbG9yAwAA
+        ABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5E
+        cmF3aW5nLkNvbG9yAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAACAAAABfz///8UU3lzdGVtLkRy
+        YXdpbmcuQ29sb3IEAAAABG5hbWUFdmFsdWUKa25vd25Db2xvcgVzdGF0ZQEAAAAJBwcDAAAACgAAAAAA
+        AAAAlgABAAH7/////P///woAAAAAAAAAAKQAAQAB+v////z///8KAAAAAAAAAACWAAEAAfn////8////
+        CgAAAAAAAAAAjQABAAH4/////P///woAAAAAAAAAAKQAAQAB9/////z///8KAAAAAAAAAACWAAEACw==
+</value>
+  </data>
+  <data name="fCTBCode.Text" xml:space="preserve">
+    <value>(Вставьте G-Code или загрузите файл)</value>
+  </data>
+  <data name="lbInfo.Text" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="btnStreamStop.ToolTip" xml:space="preserve">
+    <value>Прекратить отправку кода в GRBL</value>
+  </data>
+  <data name="btnStreamCheck.Text" xml:space="preserve">
+    <value>Проверьте код</value>
+  </data>
+  <data name="lblElapsed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 13</value>
+  </data>
+  <data name="lblElapsed.Text" xml:space="preserve">
+    <value>продолжительность</value>
+  </data>
+  <data name="lblFileProgress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="lblFileProgress.Text" xml:space="preserve">
+    <value>прогресс</value>
+  </data>
+  <data name="btnStreamStart.ToolTip" xml:space="preserve">
+    <value>Отправить код из текстового редактора в GRBL</value>
+  </data>
+  <data name="gBoxStream.Text" xml:space="preserve">
+    <value>G-код потоковой передачи</value>
+  </data>
+  <data name="btnOffsetApply.Text" xml:space="preserve">
+    <value>Применить смещение</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Смещ. Y</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Смещ. X</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Нулевая точка XY</value>
+  </data>
+  <data name="lbDimension.Text" xml:space="preserve">
+    <value>Размеры</value>
+  </data>
+  <data name="gBoxDimension.Text" xml:space="preserve">
+    <value>Размер G-кода</value>
+  </data>
+  <data name="gBOverrideRGB.Text" xml:space="preserve">
+    <value>быстрое</value>
+  </data>
+  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
+    <value>Работает только в состоянии HOLD</value>
+  </data>
+  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
+    <value>M7 может не включен в grbl</value>
+  </data>
+  <data name="gBOverrideASGB.Text" xml:space="preserve">
+    <value>переключать вспомогательные состояния</value>
+  </data>
+  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
+    <value>Фактическая скорость подачи в мм / мин или дюйм / мин (в зависимости от $ 13)</value>
+  </data>
+  <data name="gBOverrideFRGB.Text" xml:space="preserve">
+    <value>скорость подачи</value>
+  </data>
+  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
+    <value>Фактическая скорость шпинделя в об / мин</value>
+  </data>
+  <data name="gBOverrideSSGB.Text" xml:space="preserve">
+    <value>скорость вращения шпинделя</value>
+  </data>
+  <data name="gBoxOverride.Text" xml:space="preserve">
+    <value>Переопределения (только для grbl 1.1) - нажмите, чтобы увеличить / уменьшить</value>
+  </data>
+  <data name="btnJogStop.Text" xml:space="preserve">
+    <value>Остановить перемещение</value>
+  </data>
+  <data name="btnJogStop.ToolTip" xml:space="preserve">
+    <value>Остановить текущее беговое движение</value>
+  </data>
+  <data name="btnJogZeroXY.Text" xml:space="preserve">
+    <value>XY=0</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Переместить в</value>
+  </data>
+  <data name="lblTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>175, 37</value>
+  </data>
+  <data name="lblTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 13</value>
+  </data>
+  <data name="cBTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 17</value>
+  </data>
+  <data name="cBTool.Text" xml:space="preserve">
+    <value>Инструмент в шпинделе</value>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>Скорость</value>
+  </data>
+  <data name="cBCoolant.ToolTip" xml:space="preserve">
+    <value>Охладитель</value>
+  </data>
+  <data name="cBSpindle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 17</value>
+  </data>
+  <data name="cBSpindle.Text" xml:space="preserve">
+    <value>Шпиндель</value>
+  </data>
+  <data name="gB_Jogging.Text" xml:space="preserve">
+    <value>Контроль/Перемещение</value>
+  </data>
   <data name="virtualJoystickA.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAACQCAYAAAAfitsKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -134,6 +380,9 @@
         Hx/3QsUwVAxDxTBUDCOLB8ER9/9xcy9UDEPFMFQMQ8UwsngQHDEWFcNQMQwVw1AxjCzGc5r/Aa5qDGeg
         CaUBAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
+    <value>Бег трусцой 4-й оси</value>
   </data>
   <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -183,6 +432,9 @@
         BU1uXdDk1gVNbl3Q5F4vaJnVh9v/APxdAZ5rqLINAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
+    <value>Jog X и Y ось</value>
+  </data>
   <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAACQCAYAAAAfitsKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -216,6 +468,9 @@
         VrL8jy1HYBIVJlFhEhUmUZElHcBK2mESFSZRYRIVJlGRJW05zZ+0OOt21Srk1gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
+    <value>Бег трусцой 4-й оси</value>
+  </data>
   <data name="virtualJoystickC.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAACQCAYAAAD9VsBzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -232,85 +487,17 @@
         SkSoRMQsqcth/AH3XfkGMmqSNgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="foldBlocksToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Сложите кодовые блоки 1-го уровня</value>
-    <comment>Menu2</comment>
+  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
+    <value>Бег трусцой 4-й оси</value>
   </data>
-  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сложите кодовые блоки 2-го уровня</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сложите кодовые блоки 3-го уровня</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="expandCodeBlocksToolStripMenuItem.Text" xml:space="preserve">
-    <value>Развернуть блоки кода</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsCodeSelect.Text" xml:space="preserve">
-    <value>Выбрать все</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsCodeCopy.Text" xml:space="preserve">
-    <value>Скопировать в буфер обмена</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsCodePaste.Text" xml:space="preserve">
-    <value>Вставить из буфера обмена</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
-    <value>Вставьте PenUp</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
-    <value>Вставьте «PenDown»</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsFindDialog.Text" xml:space="preserve">
-    <value>Найти диалог</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsReplaceDialog.Text" xml:space="preserve">
-    <value>Заменить диалог</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsCodeSendLine.Text" xml:space="preserve">
-    <value>Отправить отмеченную линию в сторону GRBL</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsCommentOut.Text" xml:space="preserve">
-    <value>Комментарий за неизвестный G-Code</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="cmsUpdate2DView.Text" xml:space="preserve">
-    <value>Обновить 2D вид</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="btnStreamStop.ToolTip" xml:space="preserve">
-    <value>Прекратить отправку кода в GRBL</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnStreamStart.ToolTip" xml:space="preserve">
-    <value>Отправить код из текстового редактора в GRBL</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
-    <value>Работает только в состоянии HOLD</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
-    <value>M7 может не включен в grbl</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Остановить текущее беговое движение</value>
-    <comment>ToolTip</comment>
+  <data name="cBSendJogStop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 17</value>
   </data>
   <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>СТОП Бег на мышь вверх</value>
-    <comment>CheckBox</comment>
+    <value>Оставока при отажатии кнопки</value>
+  </data>
+  <data name="btnOverrideDoor.Text" xml:space="preserve">
+    <value>Дверь</value>
   </data>
   <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
     <value>Хотя эта команда обычно подключается к входному контакту для обнаружения открытия защитной двери, эта команда позволяет графическому интерфейсу пользователя управлять поведением защитной двери с помощью этой команды.
@@ -322,10 +509,16 @@
 При пробежке защитная дверь отменит пробежку и все движения в очереди в буфере планировщика. Когда защитная дверь будет закрыта и возобновлена, Grbl вернется в состояние ожидания.
 Входной контакт доступен для подключения кнопки или переключателя, если он включен с опцией времени компиляции.</value>
   </data>
+  <data name="btnResume.Text" xml:space="preserve">
+    <value>Резюме</value>
+  </data>
   <data name="btnResume.ToolTip" xml:space="preserve">
     <value>Команда запуска или возобновления цикла '~' может быть введена в любое время, так как это команда реального времени.
 Когда Grbl поставит в очередь движения в своем буфере и готов к работе, команда ~ цикл запуска
 начать выполнение буфера, и Grbl начнет движение осей.</value>
+  </data>
+  <data name="btnFeedHold.Text" xml:space="preserve">
+    <value>Остановить подачу</value>
   </data>
   <data name="btnFeedHold.ToolTip" xml:space="preserve">
     <value>Команда удержания подачи '!' остановит активный цикл с помощью управляемого замедления, чтобы не потерять позицию.
@@ -334,7 +527,9 @@
 Если вам нужно остановить среднюю программу цикла и вы не можете позволить себе потерять позицию, выполните удержание подачи, чтобы Grbl принес
 все до контролируемой остановки. После завершения вы можете выполнить сброс. Всегда пытайтесь выполнить удержание подачи всякий раз, когда
 машина работает до сброса, за исключением, конечно, чрезвычайной ситуации.</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="btnKillAlarm.Text" xml:space="preserve">
+    <value>Снять тревогу</value>
   </data>
   <data name="btnKillAlarm.ToolTip" xml:space="preserve">
     <value>Режим тревоги Grbl - это состояние, когда что-то пошло не так,
@@ -344,7 +539,10 @@
 Команды G-кода до тех пор, пока не будет выполнен цикл возврата $ H. Или если пользователю нужно
 переопределить блокировку сигнализации, чтобы переместить их оси от концевых выключателей, например, '$ X' kill lock alarm
 переопределит блокировки и позволит функциям G-кода снова работать.</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="btnReset.Text" xml:space="preserve">
+    <value>Перезагрузка 
+контроллера</value>
   </data>
   <data name="btnReset.ToolTip" xml:space="preserve">
     <value>Это команда мягкого сброса Grbl 'Ctrl-x'. Это в режиме реального времени и может быть отправлено в любое время.
@@ -356,564 +554,587 @@
 насколько это потеряно (это проблема со степперами в целом). В противном случае, Grbl просто переинициализируется,
   запустить линии запуска и продолжить свой веселый путь.</value>
   </data>
-  <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>Очистить фон</value>
+  <data name="unDo2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
-  <data name="btnZeroC.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату C на ноль</value>
-    <comment>ToolTip</comment>
+  <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Отменить последнее действие</value>
   </data>
-  <data name="btnZeroB.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату B на ноль</value>
-    <comment>ToolTip</comment>
+  <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 6</value>
   </data>
-  <data name="btnZeroA.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату на ноль</value>
-    <comment>ToolTip</comment>
+  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
-  <data name="btnHome.ToolTip" xml:space="preserve">
-    <value>Запустите Homing (если включен в GRBL)</value>
-    <comment>ToolTip</comment>
+  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ноль XY в отмеченной позиции G10 L20</value>
   </data>
-  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
-    <value>Установить координаты X, Y, Z на ноль</value>
-    <comment>ToolTip</comment>
+  <data name="moveToMarkedPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
-  <data name="btnZeroXY.ToolTip" xml:space="preserve">
-    <value>Установить координаты X, Y на ноль</value>
-    <comment>ToolTip</comment>
+  <data name="moveToMarkedPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Переместиться в отмеченную позицию G0</value>
   </data>
-  <data name="btnZeroZ.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату Z на ноль</value>
-    <comment>ToolTip</comment>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 6</value>
   </data>
-  <data name="btnZeroY.ToolTip" xml:space="preserve">
-    <value>Установить координату Y работы на ноль</value>
-    <comment>ToolTip</comment>
+  <data name="resetZoomingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
-  <data name="btnZeroX.ToolTip" xml:space="preserve">
-    <value>Установить рабочую координату X на ноль</value>
-    <comment>ToolTip</comment>
+  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сброс масштабирования</value>
   </data>
-  <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Контроль потоковой передачи</value>
-    <comment>Menu142</comment>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 6</value>
   </data>
-  <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Отменить скорость подачи и скорость шпинделя</value>
-    <comment>ToolTip</comment>
+  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
-  <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Контрольная 2-я ГРБЛ</value>
-    <comment>Menu142</comment>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Вставить из буфера обмена</value>
   </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>Около</value>
-    <comment>Menu16</comment>
+  <data name="reloadFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
-  <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Открывает простое окно для управления вторым контроллером GRBL</value>
-    <comment>ToolTip</comment>
+  <data name="reloadFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Дата Ной Ладен</value>
   </data>
-  <data name="cmsEditorHotkeys.Text" xml:space="preserve">
-    <value>Показать редактор горячих клавиш</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="fCTBCode.Text" xml:space="preserve">
-    <value>(Вставьте G-Code или загрузите файл)</value>
-  </data>
-  <data name="lbInfo.Text" xml:space="preserve">
-    <value>Сообщение</value>
-  </data>
-  <data name="lblElapsed.Text" xml:space="preserve">
-    <value>продолжительность</value>
-  </data>
-  <data name="lblFileProgress.Text" xml:space="preserve">
-    <value>прогресс</value>
-  </data>
-  <data name="gBoxStream.Text" xml:space="preserve">
-    <value>G-Code Streaming</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="lbDimension.Text" xml:space="preserve">
-    <value>Размеры</value>
-  </data>
-  <data name="gBoxDimension.Text" xml:space="preserve">
-    <value>Размер G-кода</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
-    <value>Фактическая скорость подачи в мм / мин или дюйм / мин (в зависимости от $ 13)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
-    <value>Фактическая скорость шпинделя в об / мин</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Контроль / Бег</value>
-    <comment>GroupBox</comment>
+  <data name="deletenotMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Отметить код (без удаления)</value>
-    <comment>Menu3</comment>
   </data>
   <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Нажмите, чтобы переключиться</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 6</value>
+  </data>
+  <data name="deleteThisCodeLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
   <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
     <value>Удалить эту строку кода</value>
-    <comment>Menu3</comment>
   </data>
   <data name="deleteThisCodeLineToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Удалить / пометить строку кода</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="moveToFirstPosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
   <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
     <value>Отметить первую точку выбранного пути</value>
-    <comment>Menu2</comment>
+  </data>
+  <data name="deletePathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
   <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
     <value>Удалить выбранный путь</value>
-    <comment>Menu3</comment>
   </data>
   <data name="deletePathToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Удалить выбранный путь</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="cutOutSelectedPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
   </data>
   <data name="cutOutSelectedPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Découper le chemin sélectionné</value>
-    <comment>Menu3</comment>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 6</value>
+  </data>
+  <data name="setGCodeAsBackgroundToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
+  </data>
+  <data name="setGCodeAsBackgroundToolStripMenuItem.Text" xml:space="preserve">
+    <value>Установить G-Code в качестве фона</value>
+  </data>
+  <data name="clearBackgroundToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
+  </data>
+  <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
+    <value>Очистить фон</value>
+  </data>
+  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 22</value>
+  </data>
+  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Радиус компенсации</value>
+  </data>
+  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Положительное значение вызывает коррекцию в левой части направления движения,
+отрицательное значение на правой стороне.</value>
+  </data>
+  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 342</value>
+  </data>
+  <data name="tBURL.Text" xml:space="preserve">
+    <value>Вставьте URL файла SVG / DXF сюда</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Пользовательские кнопки</value>
-    <comment>GroupBox</comment>
+  </data>
+  <data name="btnZeroC.Text" xml:space="preserve">
+    <value>Ноль C</value>
+  </data>
+  <data name="btnZeroC.ToolTip" xml:space="preserve">
+    <value>Установить рабочую координату C на ноль</value>
+  </data>
+  <data name="btnZeroB.Text" xml:space="preserve">
+    <value>Ноль B</value>
+  </data>
+  <data name="btnZeroB.ToolTip" xml:space="preserve">
+    <value>Установить рабочую координату B на ноль</value>
   </data>
   <data name="lblCurrentG.ToolTip" xml:space="preserve">
     <value>Система координат по умолчанию = G54
 Система координат камеры = G59
 Добавьте «G54;» в заголовок G-Code для автоматического переключения на G54 перед потоковой передачей G-Code</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="label_status0.Text" xml:space="preserve">
     <value>Статус</value>
+  </data>
+  <data name="btnZeroA.Text" xml:space="preserve">
+    <value>Ноль A</value>
+  </data>
+  <data name="btnZeroA.ToolTip" xml:space="preserve">
+    <value>Установить рабочую координату на ноль</value>
+  </data>
+  <data name="btnHome.Text" xml:space="preserve">
+    <value>Дом (аппаратный 0)</value>
+  </data>
+  <data name="btnHome.ToolTip" xml:space="preserve">
+    <value>Запустите Homing (если включен в GRBL)</value>
+  </data>
+  <data name="btnZeroXYZ.Text" xml:space="preserve">
+    <value>Ноль XYZ</value>
+  </data>
+  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
+    <value>Установить координаты X, Y, Z на ноль</value>
+  </data>
+  <data name="btnZeroXY.Text" xml:space="preserve">
+    <value>Ноль XY</value>
+  </data>
+  <data name="btnZeroXY.ToolTip" xml:space="preserve">
+    <value>Установить координаты X, Y на ноль</value>
+  </data>
+  <data name="btnZeroZ.Text" xml:space="preserve">
+    <value>Ноль Z</value>
+  </data>
+  <data name="btnZeroZ.ToolTip" xml:space="preserve">
+    <value>Установить рабочую координату Z на ноль</value>
+  </data>
+  <data name="btnZeroY.Text" xml:space="preserve">
+    <value>Ноль Y</value>
+  </data>
+  <data name="btnZeroY.ToolTip" xml:space="preserve">
+    <value>Установить координату Y работы на ноль</value>
+  </data>
+  <data name="btnZeroX.Text" xml:space="preserve">
+    <value>Ноль X</value>
+  </data>
+  <data name="btnZeroX.ToolTip" xml:space="preserve">
+    <value>Установить рабочую координату X на ноль</value>
   </data>
   <data name="label_status.Text" xml:space="preserve">
     <value>Статус</value>
   </data>
   <data name="groupBoxCoordinates.Text" xml:space="preserve">
     <value>Координаты инструмента (работа / станок)</value>
-    <comment>GroupBox</comment>
+  </data>
+  <data name="loadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
     <value>Открыть файл</value>
-    <comment>Menu111</comment>
   </data>
   <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Откройте файл G-Code или SVG</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>Открыть недавний файл</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 6</value>
+  </data>
+  <data name="saveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сохранить G-Code</value>
+  </data>
+  <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Сохранить отображаемый G-Code в файл</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 6</value>
+  </data>
+  <data name="setupToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Настроить</value>
+  </data>
+  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 6</value>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Экспорт настроек машины</value>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Экспорт настроек программы (определения кнопок, параметр джойстика) в INI-файл</value>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
   </data>
   <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
     <value>Импорт настроек машины</value>
-    <comment>Menu116</comment>
   </data>
   <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Импорт настроек GUI (определения кнопок, параметры джойстика) из INI-файла</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="toolStripMenuItem3.Text" xml:space="preserve">
+    <value>язык</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>файл</value>
-    <comment>Menu11</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
+  </data>
+  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Создать текст</value>
+  </data>
+  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Простой копирайтинг с использованием шрифтов Hershey</value>
+  </data>
+  <data name="imageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
   </data>
   <data name="imageToolStripMenuItem.Text" xml:space="preserve">
     <value>Конвертировать изображение</value>
-    <comment>Menu122</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 22</value>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
     <value>Создать простые фигуры</value>
-    <comment>Menu123</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Круг или прямоугольник, опционально с закругленными углами, опционально как сумка</value>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 20</value>
   </data>
   <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Создать G-Code</value>
-    <comment>Menu12</comment>
+  </data>
+  <data name="unDoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Отменить последнее действие</value>
+  </data>
+  <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 6</value>
+  </data>
+  <data name="mirrorXToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
   </data>
   <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
     <value>Зеркало X (горизонтальное)</value>
-    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
   </data>
   <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
     <value>Зеркало Y (вертикальное)</value>
-    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorRotaryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
   </data>
   <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
     <value>Поворотная ось зеркала</value>
-    <comment>Menu131</comment>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 6</value>
+  </data>
+  <data name="rotate90ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Повернуть на + 90 ° (против часовой стрелки)</value>
+  </data>
+  <data name="rotate90ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Поворот на -90 ° (по часовой стрелке)</value>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Повернуть на 180 °</value>
+  </data>
+  <data name="rotateFreeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Повернуть на ... °</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 6</value>
+  </data>
+  <data name="sToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="sToolStripMenuItem.Text" xml:space="preserve">
+    <value>Масштаб XY на ...%</value>
+  </data>
+  <data name="skalierenXYToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Шкала XY установлена X = ... единиц</value>
+  </data>
+  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
+    <value>Шкала XY установлена Y = ... единиц</value>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>Масштаб X на ...%</value>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 не поддерживаются</value>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Шкала X установлена X = ... единиц</value>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 не поддерживаются</value>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>Масштаб Y на ...%</value>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 не поддерживаются</value>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Шкала Y установлена Y = ... единиц</value>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 не поддерживаются</value>
+  </data>
+  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 6</value>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Диаметр вращения</value>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Задать диаметр детали для круговой оси</value>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Шкала от Х до ... ° (круговая ось)</value>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 не поддерживаются</value>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Шкала от Y до ... ° (круговая ось)</value>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 не поддерживаются</value>
+  </data>
+  <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 6</value>
+  </data>
+  <data name="toolStrip_RadiusComp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
+  </data>
+  <data name="toolStrip_RadiusComp.Text" xml:space="preserve">
+    <value>Compensation de rayon</value>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
   </data>
   <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
     <value>Заменить G2 / 3 на линии</value>
-    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
   </data>
   <data name="convertZToSspindleSpeedToolStripMenuItem.Text" xml:space="preserve">
     <value>Конвертировать Z в S (скорость шпинделя)</value>
-    <comment>Menu134</comment>
   </data>
   <data name="convertZToSspindleSpeedToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Установите максимальную скорость шпинделя для минимального Z в
 [Настройка - Импорт графики - Модификация G-кода]</value>
-    <comment>ToolTip</comment>
   </data>
-  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сканирование поверхности</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Системы координат</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Круг или прямоугольник, опционально с закругленными углами, опционально как сумка</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="moveToMarkedPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Переместиться в отмеченную позицию G0</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сброс масштабирования</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Вставить из буфера обмена</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="reloadFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Дата Ной Ладен</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="setGCodeAsBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>Установить G-Code в качестве фона</value>
-    <comment>Menu3</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Радиус компенсации</value>
-    <comment>Menu134</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Положительное значение вызывает коррекцию в левой части направления движения,
-отрицательное значение на правой стороне.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сохранить G-Code</value>
-    <comment>Menu113</comment>
-  </data>
-  <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Сохранить отображаемый G-Code в файл</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Настроить</value>
-    <comment>Menu114</comment>
-  </data>
-  <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Экспорт настроек машины</value>
-    <comment>Menu115</comment>
-  </data>
-  <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Экспорт настроек программы (определения кнопок, параметр джойстика) в INI-файл</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Повернуть на + 90 ° (против часовой стрелки)</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Поворот на -90 ° (по часовой стрелке)</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Повернуть на 180 °</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Повернуть на ... °</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Диаметр вращения</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Задать диаметр детали для круговой оси</value>
-    <comment>ToolTip</comment>
+  <data name="removeAnyZMoveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 22</value>
   </data>
   <data name="removeAnyZMoveToolStripMenuItem.Text" xml:space="preserve">
     <value>Удалить любое движение Z</value>
-    <comment>Menu134</comment>
+  </data>
+  <data name="gCodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 20</value>
+  </data>
+  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Преобразование кода</value>
+  </data>
+  <data name="heightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сканирование поверхности</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Лазерные инструменты</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Системы координат</value>
+  </data>
+  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
   </data>
   <data name="setupToolStripMenuItem.Text" xml:space="preserve">
     <value>DIY контроль</value>
-    <comment>Menu141</comment>
   </data>
   <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Настройка графического интерфейса и параметров импорта</value>
-    <comment>ToolTip</comment>
   </data>
-  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Управление машиной</value>
-    <comment>Menu14</comment>
-  </data>
-  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
-    <value>Бег трусцой 4-й оси</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
-    <value>Jog X и Y ось</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
-    <value>Jog Z axis</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
-    <value>Бег трусцой 4-й оси</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
-    <value>Бег трусцой 4-й оси</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Отменить последнее действие</value>
-    <comment>Menu131</comment>
-  </data>
-  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ноль XY в отмеченной позиции G10 L20</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="tBURL.Text" xml:space="preserve">
-    <value>Вставьте URL файла SVG / DXF сюда</value>
-  </data>
-  <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>Открыть недавний файл</value>
-    <comment>Menu112</comment>
-  </data>
-  <data name="toolStripMenuItem3.ToolTipText" xml:space="preserve">
-    <value>Language
-Sprache
-язык
-Idioma
-Langue
-语言</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Создать текст</value>
-    <comment>Menu121</comment>
-  </data>
-  <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Отменить последнее действие</value>
-    <comment>Menu2</comment>
-  </data>
-  <data name="sToolStripMenuItem.Text" xml:space="preserve">
-    <value>Масштаб XY на ...%</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Шкала XY установлена X = ... единиц</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
-    <value>Шкала XY установлена Y = ... единиц</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
-    <value>Масштаб X на ...%</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereXUmToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 не поддерживаются</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Шкала X установлена X = ... единиц</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereAufXUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 не поддерживаются</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
-    <value>Масштаб Y на ...%</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereYUmToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 не поддерживаются</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Шкала Y установлена Y = ... единиц</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereAufYUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 не поддерживаются</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Шкала от Х до ... ° (круговая ось)</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereXAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 не поддерживаются</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Шкала от Y до ... ° (круговая ось)</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereYAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 не поддерживаются</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="toolStrip_RadiusComp.Text" xml:space="preserve">
-    <value>Compensation de rayon</value>
-    <comment>Menu133</comment>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
   </data>
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
     <value>Показать камеру</value>
-    <comment>Menu141</comment>
   </data>
   <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
     <value>Показывает изображение с камеры подключенной веб-камеры</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="toolStrip_tb_StreamLine.ToolTipText" xml:space="preserve">
     <value>Отмеченная линия</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
   </data>
   <data name="startStreamingAtLineToolStripMenuItem.Text" xml:space="preserve">
     <value>Начать потоковую передачу на линии</value>
   </data>
   <data name="startStreamingAtLineToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Установите начальную строку здесь, если G-Code не должен начинаться со строки 0</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Контроль потоковой передачи</value>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Отменить скорость подачи и скорость шпинделя</value>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 22</value>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Контрольная 2-я ГРБЛ</value>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Открывает простое окно для управления вторым контроллером GRBL</value>
+  </data>
+  <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 20</value>
+  </data>
+  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Управление машиной</value>
+  </data>
+  <data name="toolStripViewMachineFix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 22</value>
   </data>
   <data name="toolStripViewMachineFix.Text" xml:space="preserve">
     <value>Фиксированная площадь машины</value>
-    <comment>Menu151</comment>
   </data>
   <data name="toolStripViewMachineFix.ToolTipText" xml:space="preserve">
     <value>Предел и смещение могут быть установлены с помощью «Setup» - «Control» - «Maschine area»</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="toolStripViewMachine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 22</value>
   </data>
   <data name="toolStripViewMachine.Text" xml:space="preserve">
     <value>Пределы машины</value>
-    <comment>Menu151</comment>
   </data>
   <data name="toolStripViewMachine.ToolTipText" xml:space="preserve">
     <value>Предел и смещение могут быть установлены с помощью «Setup» - «Control» - «Maschine area»</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="toolStripViewTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 22</value>
   </data>
   <data name="toolStripViewTool.Text" xml:space="preserve">
     <value>Стол для инструментов</value>
-    <comment>Menu151</comment>
   </data>
   <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
     <value>Предел и смещение могут быть установлены через «Настройка» - «Настройка смены инструмента» - «Таблица инструментов»</value>
-    <comment>ToolTip</comment>
+  </data>
+  <data name="toolStripViewBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 22</value>
   </data>
   <data name="toolStripViewBackground.Text" xml:space="preserve">
     <value>Фон</value>
-    <comment>Menu151</comment>
+  </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 20</value>
   </data>
   <data name="viewToolStripMenuItem.Text" xml:space="preserve">
     <value>вид</value>
-    <comment>Menu15</comment>
   </data>
-  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Простой копирайтинг с использованием шрифтов Hershey</value>
-    <comment>ToolTip</comment>
+  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
   </data>
-  <data name="btnStreamCheck.Text" xml:space="preserve">
-    <value>Проверьте код</value>
-  </data>
-  <data name="btnOffsetApply.Text" xml:space="preserve">
-    <value>Применить смещение</value>
-    <comment>Button</comment>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Décalage Y</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Décalage X</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Нулевая точка XY</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="gBOverrideRGB.Text" xml:space="preserve">
-    <value>быстрое</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="gBoxOverride.Text" xml:space="preserve">
-    <value>Переопределения (только для grbl 1.1) - нажмите, чтобы увеличить / уменьшить</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>СТОП Бег трусцой</value>
-    <comment>Button</comment>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Переместить в</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="btnOverrideDoor.Text" xml:space="preserve">
-    <value>Дверь</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZeroC.Text" xml:space="preserve">
-    <value>Ноль C</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZeroB.Text" xml:space="preserve">
-    <value>Ноль B</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZeroA.Text" xml:space="preserve">
-    <value>Ноль A</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZeroXYZ.Text" xml:space="preserve">
-    <value>Ноль XYZ</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZeroXY.Text" xml:space="preserve">
-    <value>Ноль XY</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZeroZ.Text" xml:space="preserve">
-    <value>Ноль Z</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZeroY.Text" xml:space="preserve">
-    <value>Ноль Y</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZeroX.Text" xml:space="preserve">
-    <value>Ноль X</value>
-    <comment>Button</comment>
-  </data>
-  <data name="toolStripMenuItem3.Text" xml:space="preserve">
-    <value>язык</value>
-    <comment>Menu117</comment>
-  </data>
-  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Преобразование кода</value>
-    <comment>Menu13</comment>
-  </data>
-  <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Лазерные инструменты</value>
-    <comment>Menu141</comment>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Спарвка</value>
   </data>
 </root>
