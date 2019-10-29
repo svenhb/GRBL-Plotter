@@ -117,6 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Импорт графики</value>
+  </data>
+  <data name="tabPage14.Text" xml:space="preserve">
+    <value>Стол для инструментов</value>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>Смена инструмента</value>
+  </data>
+  <data name="tabPage13.Text" xml:space="preserve">
+    <value>Управление потоком</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Управление программой</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Пользовательские кнопки</value>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>Геймпад</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Джойстик / Цвета</value>
+  </data>
+  <data name="tabPage12.Text" xml:space="preserve">
+    <value>Горячие клавиши</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Распознавание формы</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>WWW ссылки</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cBshowImportDialog.Size" type="System.Drawing.Size, System.Drawing">
     <value>354, 17</value>
@@ -124,20 +157,17 @@
   <data name="cBshowImportDialog.Text" xml:space="preserve">
     <value>Показать выбор варианта использования при импорте графики</value>
   </data>
-  <data name="cBshowImportDialog.ToolTip" xml:space="preserve">
-    <value />
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>Импорт пути</value>
   </data>
-  <data name="numericUpDown2.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Стол для инструментов</value>
   </data>
   <data name="cBToolTableDefault.Size" type="System.Drawing.Size, System.Drawing">
     <value>271, 17</value>
   </data>
   <data name="cBToolTableDefault.Text" xml:space="preserve">
     <value>использовать только инструмент по умолчанию</value>
-  </data>
-  <data name="cBToolTableDefault.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBToolTableUse.Size" type="System.Drawing.Size, System.Drawing">
     <value>347, 30</value>
@@ -146,14 +176,8 @@
     <value>Установите XY-Feed и т. Д. Из таблицы инструментов,
 выберите пункты на следующей странице «Генерация G-кода»</value>
   </data>
-  <data name="cBToolTableUse.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox41.Text" xml:space="preserve">
-    <value>Стол для инструментов</value>
-  </data>
-  <data name="groupBox41.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Группировка и сортировка объектов</value>
   </data>
   <data name="cBImportSVGSortInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 17</value>
@@ -161,17 +185,11 @@
   <data name="cBImportSVGSortInvert.Text" xml:space="preserve">
     <value>отменить порядок сортировки</value>
   </data>
-  <data name="cBImportSVGSortInvert.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="rBImportSVGSort1.Size" type="System.Drawing.Size, System.Drawing">
     <value>295, 17</value>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
     <value>сортировать группы по инструменту по возрастанию</value>
-  </data>
-  <data name="rBImportSVGSort1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="rBImportSVGSort2.Size" type="System.Drawing.Size, System.Drawing">
     <value>291, 17</value>
@@ -179,17 +197,11 @@
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
     <value>сортировать группы по размеру кода - по убыванию</value>
   </data>
-  <data name="rBImportSVGSort2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="rBImportSVGSort0.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 17</value>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
     <value>нет сортировки</value>
-  </data>
-  <data name="rBImportSVGSort0.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBImportSVGGroup.Size" type="System.Drawing.Size, System.Drawing">
     <value>356, 17</value>
@@ -200,11 +212,8 @@
   <data name="cBImportSVGGroup.ToolTip" xml:space="preserve">
     <value>Групповой объект того же цвета = № инструмента.</value>
   </data>
-  <data name="groupBox26.Text" xml:space="preserve">
-    <value>Группировка и сортировка объектов</value>
-  </data>
-  <data name="groupBox26.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>DXF Импорт</value>
   </data>
   <data name="cBImportDXFSwitchWhite.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 17</value>
@@ -224,11 +233,8 @@
   <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
     <value>Формат DXF использует индекс цвета от 0 до 255. Этот индекс + 1 будет использоваться как номер инструмента.</value>
   </data>
-  <data name="groupBox31.Text" xml:space="preserve">
-    <value>DXF Импорт</value>
-  </data>
-  <data name="groupBox31.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Графика Импорт общего</value>
   </data>
   <data name="checkBox6.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
@@ -270,9 +276,6 @@
   <data name="checkBox4.ToolTip" xml:space="preserve">
     <value>Добавить графические комментарии к G-Code</value>
   </data>
-  <data name="label58.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="nUDImportRepeat.ToolTip" xml:space="preserve">
     <value>Повторите сгенерированный код n раз (например, для слабых лазеров, чтобы резать более толстый материал)</value>
   </data>
@@ -306,26 +309,17 @@
   <data name="cBImportSVGPauseP.Text" xml:space="preserve">
     <value>Пауза (M0) перед каждой ручкой вниз</value>
   </data>
-  <data name="cBImportSVGPauseP.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cBImportSVGPauseE.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 17</value>
   </data>
   <data name="cBImportSVGPauseE.Text" xml:space="preserve">
     <value>Пауза (M0) перед каждым путем</value>
   </data>
-  <data name="cBImportSVGPauseE.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>единицы</value>
-  </data>
-  <data name="label14.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="nUDImportReduce.ToolTip" xml:space="preserve">
     <value>Эта опция пропускает перемещения меньше заданного значения, чтобы минимизировать размер g-code.</value>
@@ -360,20 +354,14 @@
   <data name="label1.ToolTip" xml:space="preserve">
     <value>Кривые будут нарисованы отрезками. Чем больше сегментов, тем больше прецизионных кривых.</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Графика Импорт общего</value>
-  </data>
-  <data name="groupBox3.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>SVG импорт</value>
   </data>
   <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
   </data>
   <data name="label69.Text" xml:space="preserve">
     <value>Настройка DPI</value>
-  </data>
-  <data name="label69.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
     <value>72 т / д используется Adobe Illustrator</value>
@@ -400,32 +388,20 @@
   <data name="cBImportSVGPath.ToolTip" xml:space="preserve">
     <value>Наконец, переместитесь к 1-й и 2-й точке пути, чтобы получить перекрытие (для фрезы)</value>
   </data>
-  <data name="lblSVGScale.ToolTip" xml:space="preserve">
-    <value />
+  <data name="tabPage10.Text" xml:space="preserve">
+    <value>Генерация G кода</value>
   </data>
-  <data name="groupBox14.Text" xml:space="preserve">
-    <value>SVG импорт</value>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>в целом</value>
   </data>
-  <data name="groupBox14.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>Импорт пути</value>
-  </data>
-  <data name="tabPage9.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox34.Text" xml:space="preserve">
+    <value>Шпиндель / лазер</value>
   </data>
   <data name="checkBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>388, 17</value>
   </data>
   <data name="checkBox2.Text" xml:space="preserve">
     <value>Лазерный режим (используйте S0 вместо M5 для выключения лазера)</value>
-  </data>
-  <data name="checkBox2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnCheckSpindle.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
     <value>Отправьте «M4», чтобы включить счетчик шпинделя по часовой стрелке
@@ -437,9 +413,6 @@
   <data name="label71.Text" xml:space="preserve">
     <value>Направление / Лазерный режим</value>
   </data>
-  <data name="label71.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
     <value>Отправьте «M3» для включения вращения шпинделя по часовой стрелке
 Режим постоянной мощности лазера в режиме лазера</value>
@@ -449,9 +422,6 @@
   </data>
   <data name="label70.Text" xml:space="preserve">
     <value>Время разгона Шпинделя</value>
-  </data>
-  <data name="label70.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 13</value>
@@ -476,12 +446,6 @@
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
     <value>Если «Добавить изменение инструмента» и «Выполнить изменение инструмента» включены, значение будет взято из таблицы инструментов во время импорта</value>
-  </data>
-  <data name="groupBox34.Text" xml:space="preserve">
-    <value>Шпиндель / лазер</value>
-  </data>
-  <data name="groupBox34.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBImportGCToolM0.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 17</value>
@@ -566,14 +530,8 @@
   <data name="tBImportGCFooter.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 59</value>
   </data>
-  <data name="tBImportGCFooter.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label13.Text" xml:space="preserve">
     <value>G-code Конец</value>
-  </data>
-  <data name="label13.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="nUDImportDecPlaces.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 12</value>
@@ -581,11 +539,11 @@
   <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
     <value>Десятичные знаки для координат в G-Code..</value>
   </data>
-  <data name="groupBox29.Text" xml:space="preserve">
-    <value>в целом</value>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Перо вверх / вниз перевод</value>
   </data>
-  <data name="groupBox29.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox5.ToolTip" xml:space="preserve">
+    <value>Вставить Z-оси движется в G-код</value>
   </data>
   <data name="cBImportGCZIncStartZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 17</value>
@@ -604,9 +562,6 @@
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
     <value>Если «Добавить изменение инструмента» и «Выполнить изменение инструмента» включены, значение будет взято из таблицы инструментов во время импорта</value>
-  </data>
-  <data name="nUDImportGCZIncrement.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="lblZUse4.ToolTip" xml:space="preserve">
     <value>Максимум. приращение значения Z</value>
@@ -675,17 +630,17 @@
   <data name="lblZUse1.ToolTip" xml:space="preserve">
     <value>Скорость при движении в заготовке</value>
   </data>
-  <data name="groupBox5.ToolTip" xml:space="preserve">
-    <value>Вставить Z-оси движется в G-код</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Включение / выключение шпинделя с помощью ручки вниз / вверх (для лазера)</value>
+  </data>
+  <data name="groupBox6.ToolTip" xml:space="preserve">
+    <value>Выключите шпиндель с помощью «Pen up» и «on» с помощью команды «Pen down» (для лазерного гравера)</value>
   </data>
   <data name="label72.Size" type="System.Drawing.Size, System.Drawing">
     <value>331, 13</value>
   </data>
   <data name="label72.Text" xml:space="preserve">
     <value>Проверьте настройки шпинделя для выбора M3 M4 и задержки</value>
-  </data>
-  <data name="label72.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBImportGCUseSpindle.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 17</value>
@@ -696,23 +651,8 @@
   <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
     <value>Выключите шпиндель с помощью «Pen up» и «on» с помощью команды «Pen down» (для лазерного гравера)</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Включение / выключение шпинделя с помощью ручки вниз / вверх (для лазера)</value>
-  </data>
-  <data name="groupBox6.ToolTip" xml:space="preserve">
-    <value>Выключите шпиндель с помощью «Pen up» и «on» с помощью команды «Pen down» (для лазерного гравера)</value>
-  </data>
-  <data name="lblUseInd2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBImportGCIPD.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblUseInd1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBImportGCIPU.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Отдельные команды для Pen Down / Up</value>
   </data>
   <data name="cBImportGCUseIndividual.Size" type="System.Drawing.Size, System.Drawing">
     <value>343, 17</value>
@@ -720,14 +660,11 @@
   <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
     <value>Используйте отдельные команды (отдельные строки через ';')</value>
   </data>
-  <data name="cBImportGCUseIndividual.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Сервоуправление</value>
   </data>
-  <data name="groupBox16.Text" xml:space="preserve">
-    <value>Отдельные команды для Pen Down / Up</value>
-  </data>
-  <data name="groupBox16.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox4.ToolTip" xml:space="preserve">
+    <value>Управление RC-сервоприводом через скорость вращения шпинделя (требуется специальная GRBL-версия для генерации выходных сигналов от 1 до 2 мс)</value>
   </data>
   <data name="cBImportGCUsePWM.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 17</value>
@@ -762,62 +699,23 @@
   <data name="lblPWM1.ToolTip" xml:space="preserve">
     <value>Скорость вращения шпинделя</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Сервоуправление</value>
-  </data>
-  <data name="groupBox4.ToolTip" xml:space="preserve">
-    <value>Управление RC-сервоприводом через скорость вращения шпинделя (требуется специальная GRBL-версия для генерации выходных сигналов от 1 до 2 мс)</value>
-  </data>
-  <data name="groupBox28.Text" xml:space="preserve">
-    <value>Перо вверх / вниз перевод</value>
-  </data>
-  <data name="groupBox28.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>Генерация G кода</value>
-  </data>
-  <data name="tabPage10.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label81.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label80.Text" xml:space="preserve">
-    <value>Настройки для меню G-Code Transform, конвертировать Z в S</value>
-  </data>
-  <data name="label80.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label79.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label78.ToolTip" xml:space="preserve">
-    <value />
+  <data name="tabPage11.Text" xml:space="preserve">
+    <value>Модификация G-кода</value>
   </data>
   <data name="groupBox35.Text" xml:space="preserve">
     <value>Перевести ось Z в скорость шпинделя S</value>
   </data>
-  <data name="groupBox35.ToolTip" xml:space="preserve">
-    <value />
+  <data name="label80.Text" xml:space="preserve">
+    <value>Настройки для меню G-Code Transform, конвертировать Z в S</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>экспериментальный</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>231, 13</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Может не работать с другими параметрами</value>
-  </data>
-  <data name="label18.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBImportGCRelative.ToolTip" xml:space="preserve">
     <value>Рассчитать относительные перемещения для G91
@@ -833,11 +731,8 @@
     <value>Удалить ненужную информацию
 Внимание: не используйте с «Сортировать объекты по номеру контакта»</value>
   </data>
-  <data name="groupBox32.Text" xml:space="preserve">
-    <value>экспериментальный</value>
-  </data>
-  <data name="groupBox32.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Компенсация перетаскивания инструмента</value>
   </data>
   <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
     <value>Рассчитать смещение в зависимости от глубины Z</value>
@@ -878,23 +773,14 @@
   <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
     <value>Компенсировать смещение при использовании перетаскивающего ножа или кисти</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Компенсация перетаскивания инструмента</value>
-  </data>
-  <data name="groupBox2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnFileDialogSubR.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>Сплит оригинальные ходы</value>
   </data>
   <data name="cBImportGCSubFirst.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 17</value>
   </data>
   <data name="cBImportGCSubFirst.Text" xml:space="preserve">
     <value>Вставить также в начале пути</value>
-  </data>
-  <data name="cBImportGCSubFirst.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnShowScriptSub.Text" xml:space="preserve">
     <value>шоу</value>
@@ -922,9 +808,6 @@
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
     <value>Преобразование окружностей и дуг в отрезки - необходимо, если нужны разные масштабы X и Y</value>
   </data>
-  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
     <value>Путь к файлу с подпрограммой</value>
   </data>
@@ -945,20 +828,11 @@
     <value>Разрезать длинные прямые движения на короткие движения с макс. заданная длина.
 Не используйте с «Относительными движениями»</value>
   </data>
-  <data name="groupBox30.Text" xml:space="preserve">
-    <value>Сплит оригинальные ходы</value>
+  <data name="tabPage15.Text" xml:space="preserve">
+    <value>Случаи использования</value>
   </data>
-  <data name="groupBox30.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage11.Text" xml:space="preserve">
-    <value>Модификация G-кода</value>
-  </data>
-  <data name="tabPage11.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblLastUseCase.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>Сохранить настройки импорта как «вариант использования»</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 13</value>
@@ -966,26 +840,14 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Последняя загрузка:</value>
   </data>
-  <data name="label9.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBUseCaseSetting2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="tBUseCaseSetting1.Text" xml:space="preserve">
     <value>Выберите вариант использования, чтобы увидеть настройки</value>
-  </data>
-  <data name="tBUseCaseSetting1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>223, 13</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Напишите информацию об использовании</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnDelete.Text" xml:space="preserve">
     <value>Удалить выбранное</value>
@@ -1005,41 +867,14 @@
   <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
     <value>Загрузить настройки выбранного варианта использования</value>
   </data>
-  <data name="tBUseCaseInfo.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lBUseCase.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox43.Text" xml:space="preserve">
-    <value>Сохранить настройки импорта как «вариант использования»</value>
-  </data>
-  <data name="groupBox43.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage15.Text" xml:space="preserve">
-    <value>Случаи использования</value>
-  </data>
-  <data name="tabPage15.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabControl2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnReloadFile.Text" xml:space="preserve">
     <value>Перезагрузка SVG, DXF, Drill file</value>
   </data>
   <data name="btnReloadFile.ToolTip" xml:space="preserve">
     <value>Перезагрузите данные, чтобы применить новые настройки во время импорта</value>
   </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Импорт графики</value>
-  </data>
-  <data name="tabPage3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblToolListChanged.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Столы для инструментов</value>
   </data>
   <data name="btnDeleteToolTable.Text" xml:space="preserve">
     <value>Удалить список</value>
@@ -1047,20 +882,11 @@
   <data name="btnDeleteToolTable.ToolTip" xml:space="preserve">
     <value>Удалить выбранную таблицу инструментов</value>
   </data>
-  <data name="lblToolListLoaded.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>253, 13</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Последняя загруженная таблица инструментов:</value>
-  </data>
-  <data name="label5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lbFiles.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnLoadToolTable.Text" xml:space="preserve">
     <value>открытый</value>
@@ -1074,11 +900,8 @@
   <data name="btnToolExport.ToolTip" xml:space="preserve">
     <value>Сохранить текущую таблицу инструментов в CSV-файл</value>
   </data>
-  <data name="groupBox40.Text" xml:space="preserve">
-    <value>Столы для инструментов</value>
-  </data>
-  <data name="groupBox40.ToolTip" xml:space="preserve">
-    <value />
+  <data name="gBToolTable.Text" xml:space="preserve">
+    <value>Таблица инструментов - позиции в станочных координатах! Самонаведение рекомендуется перед использованием.</value>
   </data>
   <data name="cBToolLaser.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 17</value>
@@ -1089,35 +912,11 @@
   <data name="cBToolLaser.ToolTip" xml:space="preserve">
     <value>Уменьшить видимые столбцы</value>
   </data>
-  <data name="btnDown.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnUp.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnReNumberTools.Text" xml:space="preserve">
     <value>перенумеровать</value>
   </data>
-  <data name="btnReNumberTools.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnMoveToolXY.Text" xml:space="preserve">
     <value>Переместиться в положение XY отмеченного ряда</value>
-  </data>
-  <data name="btnMoveToolXY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblToolOffset.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDToolOffsetZ.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDToolOffsetX.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDToolOffsetY.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="Column1.ToolTipText" xml:space="preserve">
     <value>Номер инструмента</value>
@@ -1164,32 +963,8 @@
   <data name="Column14.ToolTipText" xml:space="preserve">
     <value>Код, применяемый после команды смены инструмента</value>
   </data>
-  <data name="dGVToolList.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="gBToolTable.Text" xml:space="preserve">
-    <value>Таблица инструментов - позиции в станочных координатах! Самонаведение рекомендуется перед использованием.</value>
-  </data>
-  <data name="gBToolTable.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage14.Text" xml:space="preserve">
-    <value>Стол для инструментов</value>
-  </data>
-  <data name="tabPage14.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnFileDialogTT4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnFileDialogTT3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnFileDialogTT2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnFileDialogTT1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="gBToolChange.Text" xml:space="preserve">
+    <value>Настройка смены инструмента</value>
   </data>
   <data name="nUDToolChangeEmpty.ToolTip" xml:space="preserve">
     <value>Используйте инструмент №. который не указан в таблице инструментов.</value>
@@ -1216,9 +991,6 @@ GCode с командами Tx M6 для смены инструмента.
 Вставьте скрипт-код «ЗОНД»
 Скопируйте фактические координаты инструмента (TOAX, Y, Z в последнюю координату. TOLX, Y, Z)
 Удалите 'M6' из очереди отправки, потому что grbl не может обработать эту команду.</value>
-  </data>
-  <data name="label61.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="lbl_4.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 13</value>
@@ -1277,40 +1049,19 @@ GCode с командами Tx M6 для смены инструмента.
   <data name="cBToolChange.ToolTip" xml:space="preserve">
     <value>Выполните следующие сценарии для команд Tx M06</value>
   </data>
-  <data name="gBToolChange.Text" xml:space="preserve">
-    <value>Настройка смены инструмента</value>
-  </data>
-  <data name="gBToolChange.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage8.Text" xml:space="preserve">
-    <value>Смена инструмента</value>
-  </data>
-  <data name="tabPage8.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox36.Text" xml:space="preserve">
+    <value>Поведение после ГРБЛ RESET</value>
   </data>
   <data name="cBrestoreCoordReset.Text" xml:space="preserve">
     <value>Восстановите рабочие координаты после сброса и установите скорость подачи по умолчанию</value>
   </data>
-  <data name="cBrestoreCoordReset.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox36.Text" xml:space="preserve">
-    <value>Поведение после ГРБЛ RESET</value>
-  </data>
-  <data name="groupBox36.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown6.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox39.Text" xml:space="preserve">
+    <value>размер буфера grbl</value>
   </data>
   <data name="label83.Text" xml:space="preserve">
     <value>Автоматическое обнаружение asumes:
 По умолчанию (Arduino Uno / Nano) - 127 байт
 Более 3 осей (Mega2560) - 255 байт</value>
-  </data>
-  <data name="label83.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="checkBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 17</value>
@@ -1318,14 +1069,8 @@ GCode с командами Tx M6 для смены инструмента.
   <data name="checkBox3.Text" xml:space="preserve">
     <value>Определить автоматически</value>
   </data>
-  <data name="checkBox3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox39.Text" xml:space="preserve">
-    <value>размер буфера grbl</value>
-  </data>
-  <data name="groupBox39.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox38.Text" xml:space="preserve">
+    <value>Частота запросов статуса</value>
   </data>
   <data name="cBpollIntervalReduce.Size" type="System.Drawing.Size, System.Drawing">
     <value>289, 17</value>
@@ -1333,23 +1078,8 @@ GCode с командами Tx M6 для смены инструмента.
   <data name="cBpollIntervalReduce.Text" xml:space="preserve">
     <value>Уменьшить частоту при потоковой передаче g-code</value>
   </data>
-  <data name="cBpollIntervalReduce.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label82.Text" xml:space="preserve">
     <value>Установите частоту обновления для отчета о состоянии grbl. Как выше, так и больше стресса для контроллера.</value>
-  </data>
-  <data name="label82.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cBoxPollInterval.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox38.Text" xml:space="preserve">
-    <value>Частота запросов статуса</value>
-  </data>
-  <data name="groupBox38.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBsimulation.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 17</value>
@@ -1357,8 +1087,8 @@ GCode с командами Tx M6 для смены инструмента.
   <data name="cBsimulation.Text" xml:space="preserve">
     <value>Имитация подключенного ГРБЛ</value>
   </data>
-  <data name="cBsimulation.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox37.Text" xml:space="preserve">
+    <value>Контроль потока для потоковой передачи</value>
   </data>
   <data name="tBflowControl.ToolTip" xml:space="preserve">
     <value>Назначьте обычный G-Code, разделите код на разные строки, используя ';' в качестве разделителя.
@@ -1370,47 +1100,14 @@ GCode с командами Tx M6 для смены инструмента.
   <data name="cBflowControl.Text" xml:space="preserve">
     <value>Отправить следующий код на паузу или остановить</value>
   </data>
-  <data name="cBflowControl.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox37.Text" xml:space="preserve">
-    <value>Контроль потока для потоковой передачи</value>
-  </data>
-  <data name="groupBox37.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage13.Text" xml:space="preserve">
-    <value>Управление потоком</value>
-  </data>
-  <data name="tabPage13.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBPasteSpecial.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="groupBox42.Text" xml:space="preserve">
     <value>Вставить Специальный контент</value>
   </data>
-  <data name="groupBox42.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Машинная площадь</value>
   </data>
   <data name="btnMachineRangeGet.Text" xml:space="preserve">
     <value>Чтение от $130 до $132</value>
-  </data>
-  <data name="btnMachineRangeGet.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDMachineHomeZ.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label66.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDMachineHomeY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label65.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 39</value>
@@ -1420,23 +1117,11 @@ GCode с командами Tx M6 для смены инструмента.
 min X, min Y и max Z.
 Записать координаты машины</value>
   </data>
-  <data name="label64.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDMachineHomeX.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label63.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cBMachineLimitsAlarm.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 17</value>
   </data>
   <data name="cBMachineLimitsAlarm.Text" xml:space="preserve">
     <value>Превышен предел тревоги (X и Y)</value>
-  </data>
-  <data name="cBMachineLimitsAlarm.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBMachineLimitsShow.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 17</value>
@@ -1444,26 +1129,11 @@ min X, min Y и max Z.
   <data name="cBMachineLimitsShow.Text" xml:space="preserve">
     <value>Показать ограничения машины</value>
   </data>
-  <data name="cBMachineLimitsShow.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDMachineRangeZ.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDMachineRangeY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDMachineRangeX.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label62.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
   </data>
   <data name="label62.Text" xml:space="preserve">
     <value>путешествия Z</value>
-  </data>
-  <data name="label62.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
@@ -1471,23 +1141,14 @@ min X, min Y и max Z.
   <data name="label37.Text" xml:space="preserve">
     <value>путешествия Y</value>
   </data>
-  <data name="label37.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 13</value>
   </data>
   <data name="label34.Text" xml:space="preserve">
     <value>путешествия X</value>
   </data>
-  <data name="label34.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox33.Text" xml:space="preserve">
-    <value>Машинная площадь</value>
-  </data>
-  <data name="groupBox33.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>DIY панель управления через последовательное соединение</value>
   </data>
   <data name="cBSerialDIY.Size" type="System.Drawing.Size, System.Drawing">
     <value>290, 17</value>
@@ -1495,20 +1156,11 @@ min X, min Y и max Z.
   <data name="cBSerialDIY.Text" xml:space="preserve">
     <value>Откройте последовательный порт на проге. Начало</value>
   </data>
-  <data name="cBSerialDIY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox27.Text" xml:space="preserve">
-    <value>DIY панель управления через последовательное соединение</value>
-  </data>
-  <data name="groupBox27.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>GRBL 4-я ось (специальное издание)</value>
   </data>
   <data name="label75.Text" xml:space="preserve">
     <value>Размер 4-й оси в 2D-виде можно изменить с помощью поворотного диаметра в меню преобразования g-code</value>
-  </data>
-  <data name="label75.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 17</value>
@@ -1516,17 +1168,11 @@ min X, min Y и max Z.
   <data name="checkBox1.Text" xml:space="preserve">
     <value>Инвертировать 4-ую ось в 2D-виде</value>
   </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="radioButton2.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 17</value>
   </data>
   <data name="radioButton2.Text" xml:space="preserve">
     <value>показать 4-ую ось над Y</value>
-  </data>
-  <data name="radioButton2.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="radioButton1.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 17</value>
@@ -1534,29 +1180,17 @@ min X, min Y и max Z.
   <data name="radioButton1.Text" xml:space="preserve">
     <value>показать 4-ую ось над X</value>
   </data>
-  <data name="radioButton1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cB4thUse.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="comboBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 13</value>
   </data>
   <data name="label38.Text" xml:space="preserve">
     <value>Наименование 4-й оси</value>
   </data>
-  <data name="label38.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Управление поворотной осью (вместо оси X или Y)</value>
   </data>
-  <data name="groupBox17.Text" xml:space="preserve">
-    <value>GRBL 4-я ось (специальное издание)</value>
-  </data>
-  <data name="groupBox17.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>Настройка GRBL для заменяемой оси</value>
   </data>
   <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 13</value>
@@ -1591,20 +1225,11 @@ min X, min Y и max Z.
   <data name="label32.ToolTip" xml:space="preserve">
     <value>Эти настройки активируются при активации замены оси</value>
   </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>Настройка GRBL для заменяемой оси</value>
-  </data>
-  <data name="groupBox13.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
   </data>
   <data name="label30.Text" xml:space="preserve">
     <value>единицы</value>
-  </data>
-  <data name="label30.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 13</value>
@@ -1615,20 +1240,11 @@ min X, min Y и max Z.
   <data name="label29.ToolTip" xml:space="preserve">
     <value>Требуется для расчета окружности для отношения расстояния &lt;=&gt; угол</value>
   </data>
-  <data name="nUDRotaryDiameter.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>единицы</value>
-  </data>
-  <data name="label27.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDRotaryScale.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 13</value>
@@ -1636,29 +1252,14 @@ min X, min Y и max Z.
   <data name="label26.Text" xml:space="preserve">
     <value>360 ° соответствует</value>
   </data>
-  <data name="label26.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBRotaryY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rBRotaryX.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cBRotarySubstitute.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 17</value>
   </data>
   <data name="cBRotarySubstitute.Text" xml:space="preserve">
     <value>Использовать подстановку оси</value>
   </data>
-  <data name="cBRotarySubstitute.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Управление поворотной осью (вместо оси X или Y)</value>
-  </data>
-  <data name="groupBox12.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Читать G-Code</value>
   </data>
   <data name="cBCtrlCommentOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 17</value>
@@ -1699,14 +1300,8 @@ min X, min Y и max Z.
 или же
 M4 Dynamic Laser Power Mode</value>
   </data>
-  <data name="groupBox11.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Читать G-Code</value>
-  </data>
-  <data name="groupBox10.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Последовательное соединение</value>
   </data>
   <data name="cBSerial2.Size" type="System.Drawing.Size, System.Drawing">
     <value>308, 17</value>
@@ -1726,21 +1321,12 @@ M4 Dynamic Laser Power Mode</value>
   <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
     <value>Минимизирует последовательные окна после успешного подключения</value>
   </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Последовательное соединение</value>
-  </data>
-  <data name="groupBox9.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cBBackgroundImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>510, 30</value>
   </data>
   <data name="cBBackgroundImage.Text" xml:space="preserve">
     <value>Отключить обновление пути в реальном времени во время потоковой передачи.
 Сохраняет нагрузку на процессор, отключает масштабирование во время потоковой передачи</value>
-  </data>
-  <data name="cBBackgroundImage.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBcheckupdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 17</value>
@@ -1753,40 +1339,19 @@ M4 Dynamic Laser Power Mode</value>
 1-я попытка на github.com/svenhb/GRBL-Plotter
 2-я попытка на svenhb.bplaced.net</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Управление программой</value>
-  </data>
-  <data name="tabPage2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label76.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 13</value>
   </data>
   <data name="label76.Text" xml:space="preserve">
     <value>Кнопки с 13 по 16 скрыты, когда поля пусты</value>
   </data>
-  <data name="label76.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="dGVCustomBtn.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblFilePath.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label46.Text" xml:space="preserve">
     <value>Назначьте обычный G-Code, разделите код на разные строки, используя ';' в качестве разделителя.
 Или назначьте имя файла, содержащее G-Code.
 Относительный путь к файлу начинается здесь:</value>
   </data>
-  <data name="label46.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Пользовательские кнопки</value>
-  </data>
-  <data name="tabPage1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="gBGP.Text" xml:space="preserve">
+    <value>Назначение кнопок игровой площадки</value>
   </data>
   <data name="cBGPEnable.Size" type="System.Drawing.Size, System.Drawing">
     <value>331, 17</value>
@@ -1794,17 +1359,11 @@ M4 Dynamic Laser Power Mode</value>
   <data name="cBGPEnable.Text" xml:space="preserve">
     <value>Включить управление GamePad в графическом интерфейсе</value>
   </data>
-  <data name="cBGPEnable.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cBRInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 17</value>
   </data>
   <data name="cBRInvert.Text" xml:space="preserve">
     <value>обратное направление</value>
-  </data>
-  <data name="cBRInvert.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBZInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 17</value>
@@ -1812,38 +1371,17 @@ M4 Dynamic Laser Power Mode</value>
   <data name="cBZInvert.Text" xml:space="preserve">
     <value>обратное направление</value>
   </data>
-  <data name="cBZInvert.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cBYInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 17</value>
   </data>
   <data name="cBYInvert.Text" xml:space="preserve">
     <value>обратное направление</value>
   </data>
-  <data name="cBYInvert.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cBXInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 17</value>
   </data>
   <data name="cBXInvert.Text" xml:space="preserve">
     <value>обратное направление</value>
-  </data>
-  <data name="cBXInvert.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBRAxis.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBZAxis.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBYAxis.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBXAxis.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label45.Text" xml:space="preserve">
     <value>按下游戏手柄上的按钮以检查按钮分配。
@@ -1865,146 +1403,11 @@ M4 Dynamic Laser Power Mode</value>
 
 必须关闭设置窗口才能在GUI中使用Game-Pad。</value>
   </data>
-  <data name="label45.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP15.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP14.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP13.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP12.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP11.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP10.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP9.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="lblgp.Text" xml:space="preserve">
     <value>Сообщение от Game Pad</value>
   </data>
-  <data name="lblgp.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label44.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="trackBarR.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label43.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="trackBarZ.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label42.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label41.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="trackBarY.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="trackBarX.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons15.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons0.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons14.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBGP0.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons13.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons12.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons11.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons10.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons9.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblButtons7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="gBGP.Text" xml:space="preserve">
-    <value>Назначение кнопок игровой площадки</value>
-  </data>
-  <data name="gBGP.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage6.Text" xml:space="preserve">
-    <value>Геймпад</value>
-  </data>
-  <data name="tabPage6.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Цвета 2D-превью</value>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
     <value>Ширина пера</value>
@@ -2012,20 +1415,11 @@ M4 Dynamic Laser Power Mode</value>
   <data name="btnColorRotaryInfo.Text" xml:space="preserve">
     <value>Ротационная Информация</value>
   </data>
-  <data name="btnColorRotaryInfo.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnColorMachineLimit.Text" xml:space="preserve">
     <value>Предел машины</value>
   </data>
-  <data name="btnColorMachineLimit.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label48.Text" xml:space="preserve">
     <value>Ширина пера указана для мм. При переключении на дюйм ширина будет адаптирована.</value>
-  </data>
-  <data name="label48.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 13</value>
@@ -2033,26 +1427,17 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label47.Text" xml:space="preserve">
     <value>Ширина пера</value>
   </data>
-  <data name="label47.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="nUDHeightMap.ToolTip" xml:space="preserve">
     <value>Ширина пера</value>
   </data>
   <data name="btnColorHeightMap.Text" xml:space="preserve">
     <value>высота профиля</value>
   </data>
-  <data name="btnColorHeightMap.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="nUDMarker.ToolTip" xml:space="preserve">
     <value>Ширина пера</value>
   </data>
   <data name="btnColorMarker.Text" xml:space="preserve">
     <value>маркер</value>
-  </data>
-  <data name="btnColorMarker.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="nUDTool.ToolTip" xml:space="preserve">
     <value>Ширина пера</value>
@@ -2069,71 +1454,20 @@ M4 Dynamic Laser Power Mode</value>
   <data name="btnColorTool.Text" xml:space="preserve">
     <value>Орудие труда</value>
   </data>
-  <data name="btnColorTool.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnColorPenDown.Text" xml:space="preserve">
     <value>Закрепить</value>
-  </data>
-  <data name="btnColorPenDown.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnColorPenUp.Text" xml:space="preserve">
     <value>Прикалывать</value>
   </data>
-  <data name="btnColorPenUp.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnColorRuler.Text" xml:space="preserve">
     <value>Правитель</value>
-  </data>
-  <data name="btnColorRuler.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnColorBackground.Text" xml:space="preserve">
     <value>Фон</value>
   </data>
-  <data name="btnColorBackground.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Цвета 2D-превью</value>
-  </data>
-  <data name="groupBox1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label77.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyASpeed5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyASpeed4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyASpeed3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyASpeed2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyASpeed1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyAStep5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyAStep4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyAStep3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyAStep2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyAStep1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Настройки джойстика</value>
   </data>
   <data name="label74.Size" type="System.Drawing.Size, System.Drawing">
     <value>380, 13</value>
@@ -2141,128 +1475,20 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label74.Text" xml:space="preserve">
     <value>Нажмите «Применить изменения», чтобы изменить размеры джойстика</value>
   </data>
-  <data name="label74.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblJoystickSize.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label73.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 13</value>
   </data>
   <data name="label73.Text" xml:space="preserve">
     <value>Максимум. размер джойстика в пикселях</value>
   </data>
-  <data name="label73.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hScrollBar1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
     <value>Рассчитать скорость, чтобы достичь ширины шага в пределах частоты повторения 0,5 секунд</value>
-  </data>
-  <data name="label28.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZSpeed5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZSpeed4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZSpeed3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZSpeed2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZSpeed1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZStep5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZStep4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZStep3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZStep2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyZStep1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label25.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label24.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label23.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label22.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label21.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label20.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
     <value>Рассчитать скорость, чтобы достичь ширины шага в пределах частоты повторения 0,5 секунд</value>
   </data>
-  <data name="nUDJoyXYSpeed5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYSpeed4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYSpeed3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYSpeed2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYSpeed1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYStep5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYStep4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYStep3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYStep2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDJoyXYStep1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Настройки джойстика</value>
-  </data>
-  <data name="groupBox8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Джойстик / Цвета</value>
-  </data>
-  <data name="tabPage4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnOpenHotkeys.Text" xml:space="preserve">
     <value>Откройте hotkeys.xml в блокноте</value>
-  </data>
-  <data name="btnOpenHotkeys.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="lblPathHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 13</value>
@@ -2270,14 +1496,8 @@ M4 Dynamic Laser Power Mode</value>
   <data name="lblPathHotkeys.Text" xml:space="preserve">
     <value>Дорожка</value>
   </data>
-  <data name="lblPathHotkeys.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnHotkeyRefresh.Text" xml:space="preserve">
     <value>Перезагрузить hotkey.xml</value>
-  </data>
-  <data name="btnHotkeyRefresh.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
     <value>645, 13</value>
@@ -2285,113 +1505,44 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label68.Text" xml:space="preserve">
     <value>Содержимое hotkeys.xml (необходимо редактировать извне, нажмите «Применить изменения», чтобы обновить назначение):</value>
   </data>
-  <data name="label68.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBHotkeyList.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
     <value>384, 13</value>
   </data>
   <data name="label67.Text" xml:space="preserve">
     <value>Проверьте ключевые данные здесь (будут скопированы в буфер обмена):</value>
   </data>
-  <data name="label67.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tB_kP_Left1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage12.Text" xml:space="preserve">
-    <value>Горячие клавиши</value>
-  </data>
-  <data name="tabPage12.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Настройки для распознавания формы</value>
   </data>
   <data name="label59.Text" xml:space="preserve">
     <value>Сохраните настройки в именованных наборах параметров и вызовите их в окне камеры, чтобы изменить поведение распознавания формы. Закрыть / открыть окно камеры после смены имени.</value>
   </data>
-  <data name="label59.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBShapeSet4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnShapeSetSave4.Text" xml:space="preserve">
     <value>экономить</value>
-  </data>
-  <data name="btnShapeSetSave4.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnShapeSetLoad4.Text" xml:space="preserve">
     <value>открытый</value>
   </data>
-  <data name="btnShapeSetLoad4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox25.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBShapeSet3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnShapeSetSave3.Text" xml:space="preserve">
     <value>экономить</value>
-  </data>
-  <data name="btnShapeSetSave3.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnShapeSetLoad3.Text" xml:space="preserve">
     <value>открытый</value>
   </data>
-  <data name="btnShapeSetLoad3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox24.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBShapeSet2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnShapeSetSave2.Text" xml:space="preserve">
     <value>экономить</value>
-  </data>
-  <data name="btnShapeSetSave2.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnShapeSetLoad2.Text" xml:space="preserve">
     <value>открытый</value>
   </data>
-  <data name="btnShapeSetLoad2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox23.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="textBox3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tBShapeSet1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnShapeSetSave1.Text" xml:space="preserve">
     <value>экономить</value>
-  </data>
-  <data name="btnShapeSetSave1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="btnShapeSetLoad1.Text" xml:space="preserve">
     <value>открытый</value>
   </data>
-  <data name="btnShapeSetLoad1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox22.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Цветовой фильтр</value>
   </data>
   <data name="cBFilterOuside.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 17</value>
@@ -2399,44 +1550,11 @@ M4 Dynamic Laser Power Mode</value>
   <data name="cBFilterOuside.Text" xml:space="preserve">
     <value>Пиксель за пределами указанных цветовых диапазонов</value>
   </data>
-  <data name="cBFilterOuside.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblFilterBlue2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblFilterGreen2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblFilterRed2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblFilterBlue1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblFilterGreen1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblFilterRed1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hSFilterBlue2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label51.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 13</value>
   </data>
   <data name="label51.Text" xml:space="preserve">
     <value>синий</value>
-  </data>
-  <data name="label51.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hSFilterBlue1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hSFilterGreen2.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
@@ -2444,41 +1562,14 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label50.Text" xml:space="preserve">
     <value>зеленый</value>
   </data>
-  <data name="label50.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hSFilterGreen1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hSFilterRed2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 13</value>
   </data>
   <data name="label49.Text" xml:space="preserve">
     <value>красный</value>
   </data>
-  <data name="label49.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hSFilterRed1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox15.Text" xml:space="preserve">
-    <value>Цветовой фильтр</value>
-  </data>
-  <data name="groupBox15.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDShapeSizeMax.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDShapeDistMax.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label57.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Распознавание формы</value>
   </data>
   <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 13</value>
@@ -2486,17 +1577,11 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label56.Text" xml:space="preserve">
     <value>Допустимое искажение макс.</value>
   </data>
-  <data name="label56.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 13</value>
   </data>
   <data name="label55.Text" xml:space="preserve">
     <value>пиксель</value>
-  </data>
-  <data name="label55.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label54.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 13</value>
@@ -2504,23 +1589,11 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label54.Text" xml:space="preserve">
     <value>пиксель</value>
   </data>
-  <data name="label54.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label53.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 13</value>
   </data>
   <data name="label53.Text" xml:space="preserve">
     <value>Допустимое искажение мин.</value>
-  </data>
-  <data name="label53.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDShapeDistMin.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDShapeSizeMin.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 13</value>
@@ -2528,17 +1601,11 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label52.Text" xml:space="preserve">
     <value>Минимум Максимум. размер формы</value>
   </data>
-  <data name="label52.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cBShapeRect.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 17</value>
   </data>
   <data name="cBShapeRect.Text" xml:space="preserve">
     <value>Прямоугольник</value>
-  </data>
-  <data name="cBShapeRect.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="cBShapeCircle.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 17</value>
@@ -2546,26 +1613,8 @@ M4 Dynamic Laser Power Mode</value>
   <data name="cBShapeCircle.Text" xml:space="preserve">
     <value>Круг</value>
   </data>
-  <data name="cBShapeCircle.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>Распознавание формы</value>
-  </data>
-  <data name="groupBox20.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox21.Text" xml:space="preserve">
-    <value>Настройки для распознавания формы</value>
-  </data>
-  <data name="groupBox21.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>Распознавание формы</value>
-  </data>
-  <data name="tabPage7.ToolTip" xml:space="preserve">
-    <value />
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>SVG создание, модификация</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 13</value>
@@ -2573,20 +1622,11 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label8.Text" xml:space="preserve">
     <value>Описание о плагине EggBot Inkscape</value>
   </data>
-  <data name="label8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel14.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Полезные расширения для Inkscape</value>
-  </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 13</value>
@@ -2594,95 +1634,20 @@ M4 Dynamic Laser Power Mode</value>
   <data name="label6.Text" xml:space="preserve">
     <value>Графическая программа</value>
   </data>
-  <data name="label6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel13.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel12.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupBox47.Text" xml:space="preserve">
-    <value>SVG создание, модификация</value>
-  </data>
-  <data name="groupBox47.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel11.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel10.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="groupBox45.Text" xml:space="preserve">
     <value>Создавайте рисунки SVG онлайн</value>
-  </data>
-  <data name="groupBox45.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel9.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="groupBox44.Text" xml:space="preserve">
     <value>Бесплатные шрифты, например для трафарета или всплывающего окна</value>
   </data>
-  <data name="groupBox44.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel8.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel7.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="groupBox19.Text" xml:space="preserve">
     <value>GRBL и G-Code связаны</value>
-  </data>
-  <data name="groupBox19.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label39.Text" xml:space="preserve">
-    <value>Примечание: перетаскивание не работает с браузером IE, но с Google Chrome</value>
-  </data>
-  <data name="label39.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel6.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel4.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel3.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="linkLabel1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="groupBox18.Text" xml:space="preserve">
     <value>Бесплатные графические источники SVG (с возможностью перетаскивания)</value>
   </data>
-  <data name="groupBox18.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>WWW ссылки</value>
-  </data>
-  <data name="tabPage5.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="tabControl1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="label39.Text" xml:space="preserve">
+    <value>Примечание: перетаскивание не работает с браузером IE, но с Google Chrome</value>
   </data>
   <data name="btnApplyChangings.Text" xml:space="preserve">
     <value>Применить изменения</value>
@@ -2692,8 +1657,5 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>расстановок</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>

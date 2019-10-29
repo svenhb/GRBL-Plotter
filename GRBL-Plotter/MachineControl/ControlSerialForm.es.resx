@@ -124,7 +124,7 @@
     <value>Seleccionar velocidad</value>
   </data>
   <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>Abierto</value>
+    <value>Conectar</value>
   </data>
   <data name="btnOpenPort.ToolTip" xml:space="preserve">
     <value>Abra el puerto COM seleccionado con la velocidad seleccionada. O cierre el puerto COM abierto</value>
@@ -184,7 +184,7 @@ El éxito depende del hardware (¿DTR, RTS cableado?)</value>
     <value>Ver información de compilación</value>
   </data>
   <data name="cbStatus.Text" xml:space="preserve">
-    <value>Mostrar informe de estado en tiempo real</value>
+    <value>Mostrar informe de estado</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Informe de estado en tiempo real</value>
