@@ -194,7 +194,7 @@
     <comment>ToolTip</comment>
   </data>
   <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>DETENER trotar con el mouse hacia arriba</value>
+    <value>Parar al soltar el ratón</value>
     <comment>CheckBox</comment>
   </data>
   <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
@@ -289,7 +289,7 @@ a cuánto perdió (este es el problema con los steppers en general). De lo contr
     <comment>ToolTip</comment>
   </data>
   <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Control 2nd GRBL</value>
+    <value>Control 2º GRBL</value>
     <comment>Menu142</comment>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
@@ -317,14 +317,14 @@ a cuánto perdió (este es el problema con los steppers en general). De lo contr
     <value>Progreso</value>
   </data>
   <data name="gBoxStream.Text" xml:space="preserve">
-    <value>Transmisión de código G</value>
+    <value>Transmisión de G-Code</value>
     <comment>GroupBox</comment>
   </data>
   <data name="lbDimension.Text" xml:space="preserve">
     <value>Dimensiones</value>
   </data>
   <data name="gBoxDimension.Text" xml:space="preserve">
-    <value>Dimensión del código G</value>
+    <value>Dimensiones G-Code</value>
     <comment>GroupBox</comment>
   </data>
   <data name="lblStatusFeed.ToolTip" xml:space="preserve">
@@ -336,7 +336,7 @@ a cuánto perdió (este es el problema con los steppers en general). De lo contr
     <comment>ToolTip</comment>
   </data>
   <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Control / trotar</value>
+    <value>Control / Mover</value>
     <comment>GroupBox</comment>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
@@ -388,11 +388,11 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
     <value>Estado</value>
   </data>
   <data name="groupBoxCoordinates.Text" xml:space="preserve">
-    <value>Coordenadas de herramientas (trabajo / máquina)</value>
+    <value>Coordenadas (Trabajo/Máquina)</value>
     <comment>GroupBox</comment>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Abrir documento</value>
+    <value>Abrir archivo</value>
     <comment>Menu111</comment>
   </data>
   <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -408,7 +408,7 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
     <comment>ToolTip</comment>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Expediente</value>
+    <value>Archivo</value>
     <comment>Menu11</comment>
   </data>
   <data name="imageToolStripMenuItem.Text" xml:space="preserve">
@@ -453,7 +453,7 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
     <comment>Menu141</comment>
   </data>
   <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sistemas coordinados</value>
+    <value>Sistema de coordenadas</value>
     <comment>Menu141</comment>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -498,7 +498,7 @@ valor negativo en el lado derecho.</value>
     <comment>ToolTip</comment>
   </data>
   <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Preparar</value>
+    <value>Ajustes</value>
     <comment>Menu114</comment>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
@@ -514,7 +514,7 @@ valor negativo en el lado derecho.</value>
     <comment>Menu132</comment>
   </data>
   <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Gire por -90 ° (en sentido horario)</value>
+    <value>Girar -90 ° (en sentido horario)</value>
     <comment>Menu132</comment>
   </data>
   <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
@@ -522,11 +522,11 @@ valor negativo en el lado derecho.</value>
     <comment>Menu132</comment>
   </data>
   <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rotar por ... °</value>
+    <value>Rotar ... °</value>
     <comment>Menu132</comment>
   </data>
   <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Diámetro rotativo</value>
+    <value>Diámetro eje rotativo</value>
     <comment>Menu132</comment>
   </data>
   <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -538,7 +538,7 @@ valor negativo en el lado derecho.</value>
     <comment>Menu134</comment>
   </data>
   <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Control de bricolaje</value>
+    <value>Control DIY</value>
     <comment>Menu141</comment>
   </data>
   <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -581,7 +581,7 @@ valor negativo en el lado derecho.</value>
     <value>Pegue la URL del archivo SVG / DXF aquí</value>
   </data>
   <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>Ouvrir un fichier récent</value>
+    <value>Abrir archivo reciente</value>
     <comment>Menu112</comment>
   </data>
   <data name="toolStripMenuItem3.ToolTipText" xml:space="preserve">
@@ -685,7 +685,7 @@ Langue
     <comment>ToolTip</comment>
   </data>
   <data name="toolStripViewMachineFix.Text" xml:space="preserve">
-    <value>Área fija de la máquina</value>
+    <value>Área de la máquina</value>
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewMachineFix.ToolTipText" xml:space="preserve">
@@ -701,7 +701,7 @@ Langue
     <comment>ToolTip</comment>
   </data>
   <data name="toolStripViewTool.Text" xml:space="preserve">
-    <value>Mesa de herramientas</value>
+    <value>Tabla de herramientas</value>
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
@@ -794,11 +794,23 @@ Langue
     <comment>Menu117</comment>
   </data>
   <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Transformación de código</value>
+    <value>Modificación G-Code</value>
     <comment>Menu13</comment>
   </data>
   <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
     <value>Herramientas láser</value>
     <comment>Menu141</comment>
+  </data>
+  <data name="btnResume.Text" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="cBCoolant.Text" xml:space="preserve">
+    <value>Refrigerante</value>
+  </data>
+  <data name="btnFeedHold.Text" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="cBTool.Text" xml:space="preserve">
+    <value>Herr. en husillo</value>
   </data>
 </root>

@@ -16,8 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*
+ * 2019-10-29 localization of strings
+*/
+
+
 using System;
 using System.Diagnostics;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GRBL_Plotter
@@ -26,6 +33,9 @@ namespace GRBL_Plotter
     {
         public AboutForm()
         {
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
             linkLabel2.Text = System.Windows.Forms.Application.StartupPath;
             toolTip1.SetToolTip(linkLabel2, "Open file explorer and visit '"+ System.Windows.Forms.Application.StartupPath + "'");
