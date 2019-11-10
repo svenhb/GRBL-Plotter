@@ -412,6 +412,87 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Probing canceled ähnelt.
+        /// </summary>
+        public static string probingCancel1 {
+            get {
+                return ResourceManager.GetString("probingCancel1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Process last command ähnelt.
+        /// </summary>
+        public static string probingCancel2 {
+            get {
+                return ResourceManager.GetString("probingCancel2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Move to center ähnelt.
+        /// </summary>
+        public static string probingCenter {
+            get {
+                return ResourceManager.GetString("probingCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fail: no contact ähnelt.
+        /// </summary>
+        public static string probingFail1 {
+            get {
+                return ResourceManager.GetString("probingFail1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel probing ähnelt.
+        /// </summary>
+        public static string probingFail2 {
+            get {
+                return ResourceManager.GetString("probingFail2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Finish ähnelt.
+        /// </summary>
+        public static string probingFinish {
+            get {
+                return ResourceManager.GetString("probingFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Probing on ähnelt.
+        /// </summary>
+        public static string probingProbingOn {
+            get {
+                return ResourceManager.GetString("probingProbingOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set center  ähnelt.
+        /// </summary>
+        public static string probingSetCenter {
+            get {
+                return ResourceManager.GetString("probingSetCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Time out ähnelt.
+        /// </summary>
+        public static string probingTimeOut {
+            get {
+                return ResourceManager.GetString("probingTimeOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
         /// </summary>
         public static string serialClose {

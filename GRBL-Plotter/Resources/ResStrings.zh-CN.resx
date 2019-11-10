@@ -237,4 +237,34 @@
   <data name="mainProgress" xml:space="preserve">
     <value>进展</value>
   </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>采样中止</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>处理最后一条命令</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>在上探测</value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>移到中心</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>失败：没有联系</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>取消探测</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>完</value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>设置中心</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>暂停</value>
+  </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>关</value>
+  </data>
 </root>

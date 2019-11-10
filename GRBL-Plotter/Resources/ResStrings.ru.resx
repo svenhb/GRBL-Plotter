@@ -243,4 +243,31 @@
   <data name="mainProgress" xml:space="preserve">
     <value>Прогресс</value>
   </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>Выборка прервана</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>Обработать последнюю команду</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>Зондирование на </value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>Переместить в центр</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>Ошибка: нет контакта</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>Отменить зондирование</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>Конец</value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>Установить центр</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>Время вышло</value>
+  </data>
 </root>
