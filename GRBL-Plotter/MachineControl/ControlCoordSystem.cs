@@ -20,6 +20,7 @@
  * 2019-08-13 add PRB, TLO status
  * 2019-08-15 add logger
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+ * 2019-11-10 add .Replace(',', '.')
 */
 
 using System;
@@ -78,7 +79,9 @@ namespace GRBL_Plotter
         }
 
         public void showValues()
-        {   lblOffset1.Text = grbl.displayCoord("G54");
+        {
+            Logger.Info("Update values");
+            lblOffset1.Text = grbl.displayCoord("G54");
             lblOffset2.Text = grbl.displayCoord("G55");
             lblOffset3.Text = grbl.displayCoord("G56");
             lblOffset4.Text = grbl.displayCoord("G57");
@@ -107,7 +110,7 @@ namespace GRBL_Plotter
 
         private void sendCmd(string cmd)
         {   markActiveCoordSystem(cmd);
-            sendCommandEvent(new CmdEventArgs(cmd)); 
+            sendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.'))); 
         }
         private void btnSet1_Click(object sender, EventArgs e) { setCoord(1,grbl.posWork); }
         private void btnSet2_Click(object sender, EventArgs e) { setCoord(2,grbl.posWork); }
@@ -137,7 +140,7 @@ namespace GRBL_Plotter
         private void btnG92Off_Click(object sender, EventArgs e) { sendCommandEvent(new CmdEventArgs("G92.1")); refreshValues(); }
         private void btnG43_Click(object sender, EventArgs e)
         {   lblTLO.BackColor = Color.Lime;
-            sendCommandEvent(new CmdEventArgs(string.Format("G43.1 Z{0:0.000}", grbl.posWork.Z))); refreshValues();
+            sendCommandEvent(new CmdEventArgs((string.Format("G43.1 Z{0:0.000}", grbl.posWork.Z).Replace(',', '.')))); refreshValues();
         }
         private void btnG49_Click(object sender, EventArgs e)
         {   lblTLO.BackColor = SystemColors.Control;
@@ -162,7 +165,9 @@ namespace GRBL_Plotter
         }
 
         public void refreshValues(bool init=false)
-        {   sendCommandEvent(new CmdEventArgs("$#"));
+        {
+            Logger.Info("Ask refresh");
+            sendCommandEvent(new CmdEventArgs("$#"));
             delay = 5;
             timer1.Enabled = true;
             timer1.Start();

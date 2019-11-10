@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlDIYControlPad));
             this.btnScanPort = new System.Windows.Forms.Button();
             this.btnOpenPort = new System.Windows.Forms.Button();
             this.cbBaud = new System.Windows.Forms.ComboBox();
@@ -153,7 +152,6 @@
             this.Controls.Add(this.btnOpenPort);
             this.Controls.Add(this.cbBaud);
             this.Controls.Add(this.cbPort);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "ControlDIYControlPad";

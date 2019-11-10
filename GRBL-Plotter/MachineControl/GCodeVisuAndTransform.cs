@@ -52,6 +52,7 @@ namespace GRBL_Plotter
     public partial class GCodeVisuAndTransform
     {   public enum translate { None, ScaleX, ScaleY, Offset1, Offset2, Offset3, Offset4, Offset5, Offset6, Offset7, Offset8, Offset9, MirrorX, MirrorY, MirrorRotary };
         public Dimensions xyzSize = new Dimensions();
+        public Dimensions G0Size = new Dimensions();
         public static drawingProperties drawingSize = new drawingProperties();
         public static GraphicsPath pathPenUp = new GraphicsPath();
         public static GraphicsPath pathPenDown = new GraphicsPath();
@@ -274,6 +275,7 @@ namespace GRBL_Plotter
 
                 if (!programEnd)
                     upDateFigure = createDrawingPathFromGCode(newLine, oldLine);        // add data to drawing path
+//                Logger.Info("g {0} x {1} y {2}",newLine.motionMode,newLine.actualPos.X,newLine.actualPos.Y);
 
                 if (figureMarkerCount > 0)
                     if (figureActive)
@@ -377,6 +379,10 @@ namespace GRBL_Plotter
             {   if ((newLine.motionMode >= 1) && (oldLine.motionMode == 0))     // take account of last G0 move
                 {   xyzSize.setDimensionX(oldLine.actualPos.X);
                     xyzSize.setDimensionY(oldLine.actualPos.Y);
+                }
+                else
+                {   G0Size.setDimensionX(newLine.actualPos.X);
+                    G0Size.setDimensionY(newLine.actualPos.Y);
                 }
                 if (newLine.x != null)
                 {   if (newLine.isdistanceModeG90)  // absolute move
@@ -1098,6 +1104,7 @@ namespace GRBL_Plotter
             log.Add("   GCodeVisu clearDrawingPath");
 #endif
             xyzSize.resetDimension();
+            G0Size.resetDimension();
             pathPenUp.Reset();
             pathPenDown.Reset();
             pathRotaryInfo.Reset();
@@ -1284,8 +1291,14 @@ namespace GRBL_Plotter
             if (!Properties.Settings.Default.importUnitmm)
             { roundTo = 0.25; }
 
+            if ((xyzSize.dimx == 0) && (xyzSize.dimy == 0))
+            {   xyzSize.setDimensionXY(G0Size.minx, G0Size.miny);
+                xyzSize.setDimensionXY(G0Size.maxx, G0Size.maxy);
+                Logger.Info("xyz-Dimension=0, use G0-Dimension dim-x {0} dim-y {1}", G0Size.dimx, G0Size.dimy);
+            }
+
             if ((xyzSize.miny == 0) && (xyzSize.maxy == 0))
-            { xyzSize.miny = -1; xyzSize.maxy = 1; }
+            {   xyzSize.miny = -1; xyzSize.maxy = 1; }
 
             drawingSize.minX = Math.Floor(xyzSize.minx* extend / roundTo)* roundTo;                  // extend dimensions
             if (drawingSize.minX >= 0) { drawingSize.minX = -roundTo; }                                          // be sure to show 0;0 position
@@ -1293,7 +1306,9 @@ namespace GRBL_Plotter
             drawingSize.minY = Math.Floor(xyzSize.miny* extend / roundTo) * roundTo;
             if (drawingSize.minY >= 0) { drawingSize.minY = -roundTo; }
             drawingSize.maxY = Math.Ceiling(xyzSize.maxy* extend / roundTo) * roundTo;
+
             createRuler(drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
+
             createMarkerPath();
         }
 

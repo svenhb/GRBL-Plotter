@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2019-10-03 new
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+ * 2019-11-10 add .Replace(',', '.')
 */
 
 using System;
@@ -43,8 +44,8 @@ namespace GRBL_Plotter
         private void runDelay()
         {   if (nUDMotionDelay.Value > 0)
             {   sendCommandEvent(new CmdEventArgs("(++++++++++ Delay)"));
-                sendCommandEvent(new CmdEventArgs(string.Format("G1 M3 S{0} F100", nUDMotionDelayPower.Value)));
-                sendCommandEvent(new CmdEventArgs(string.Format("G4 P{0}", nUDMotionDelay.Value)));
+                sendCommandEvent(new CmdEventArgs((string.Format("G1 M3 S{0} F100", nUDMotionDelayPower.Value).Replace(',', '.'))));
+                sendCommandEvent(new CmdEventArgs((string.Format("G4 P{0}", nUDMotionDelay.Value).Replace(',', '.'))));
             }
         }
 
@@ -57,7 +58,7 @@ namespace GRBL_Plotter
                 sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 M5")));
 
             if (nUDMotionY.Value != 0)
-            {   sendCommandEvent(new CmdEventArgs(string.Format("G91 G0 Y{0}", nUDMotionY.Value)));
+            {   sendCommandEvent(new CmdEventArgs((string.Format("G91 G0 Y{0}", nUDMotionY.Value).Replace(',', '.'))));
                 sendCommandEvent(new CmdEventArgs("G90"));
             }
         }
@@ -67,9 +68,9 @@ namespace GRBL_Plotter
             sendCommandEvent(new CmdEventArgs("(++++++++++ Scan Z)"));
             sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0")));
             runDelay();
-            sendCommandEvent(new CmdEventArgs(string.Format("G0 Z{0} M{1} S0", nUDMotionZ.Value, m)));
-            sendCommandEvent(new CmdEventArgs(string.Format("S{0}", nUDMotionPower.Value)));
-            sendCommandEvent(new CmdEventArgs(string.Format("G1 X{0} Z{1} F{2}", nUDMotionX.Value, -nUDMotionZ.Value, nUDMotionSpeed.Value)));
+            sendCommandEvent(new CmdEventArgs((string.Format("G0 Z{0} M{1} S0", nUDMotionZ.Value, m).Replace(',', '.'))));
+            sendCommandEvent(new CmdEventArgs((string.Format("S{0}", nUDMotionPower.Value).Replace(',', '.'))));
+            sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} Z{1} F{2}", nUDMotionX.Value, -nUDMotionZ.Value, nUDMotionSpeed.Value).Replace(',', '.'))));
             finish(true);
         }
 
@@ -85,16 +86,16 @@ namespace GRBL_Plotter
             sendCommandEvent(new CmdEventArgs("(++++++++++ Scan Speed)"));
             sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
             runDelay();
-            sendCommandEvent(new CmdEventArgs(string.Format("G91 M{0} S{1}", m, nUDSpeedPower.Value)));
+            sendCommandEvent(new CmdEventArgs((string.Format("G91 M{0} S{1}", m, nUDSpeedPower.Value).Replace(',', '.'))));
             if (rangeSpeed > 0)     // bottom - up
             {
                 for (decimal actSpeed = nUDSpeedMin.Value; actSpeed <= nUDSpeedMax.Value; actSpeed += nUDSpeedStep.Value)   // bottom - up
-                    sendCommandEvent(new CmdEventArgs(string.Format("G1 X{0} F{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actSpeed)));
+                    sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actSpeed).Replace(',', '.'))));
             }
             else
             {
                 for (decimal actSpeed = nUDSpeedMin.Value; actSpeed >= nUDSpeedMax.Value; actSpeed -= nUDSpeedStep.Value)   // top - down
-                    sendCommandEvent(new CmdEventArgs(string.Format("G1 X{0} F{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actSpeed)));
+                    sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actSpeed).Replace(',', '.'))));
             }
             finish();
         }
@@ -115,12 +116,12 @@ namespace GRBL_Plotter
             if (rangePower > 0)     // bottom - up
             {
                 for (decimal actPower = nUDPowerMin.Value; actPower <= nUDPowerMax.Value; actPower += nUDPowerStep.Value)   // bottom - up
-                    sendCommandEvent(new CmdEventArgs(string.Format("G1 X{0} S{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actPower)));
+                    sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} S{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actPower).Replace(',', '.'))));
             }
             else
             {
                 for (decimal actPower = nUDPowerMin.Value; actPower >= nUDPowerMax.Value; actPower -= nUDPowerStep.Value)   // top - down
-                    sendCommandEvent(new CmdEventArgs(string.Format("G1 X{0} S{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actPower)));
+                    sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} S{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actPower).Replace(',', '.'))));
             }
 
             finish();
@@ -132,9 +133,9 @@ namespace GRBL_Plotter
             sendCommandEvent(new CmdEventArgs("(++++++++++ Try Tool )"));
             sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
             runDelay();
-            sendCommandEvent(new CmdEventArgs(string.Format("G0 M{0} S0", m)));
-            sendCommandEvent(new CmdEventArgs(string.Format("S{0}", tool_spindle)));
-            sendCommandEvent(new CmdEventArgs(string.Format("G1 X{0} F{1}", nUDMotionX.Value, tool_xyfeed)));
+            sendCommandEvent(new CmdEventArgs((string.Format("G0 M{0} S0", m).Replace(',', '.'))));
+            sendCommandEvent(new CmdEventArgs((string.Format("S{0}", tool_spindle).Replace(',', '.'))));
+            sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", nUDMotionX.Value, tool_xyfeed).Replace(',', '.'))));
             finish();
         }
 

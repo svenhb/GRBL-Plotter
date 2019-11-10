@@ -277,6 +277,22 @@ namespace GRBL_Plotter
             Write("Button14", setup.guiCustomBtn14.ToString(), section);
             Write("Button15", setup.guiCustomBtn15.ToString(), section);
             Write("Button16", setup.guiCustomBtn16.ToString(), section);
+            Write("Button17", setup.guiCustomBtn17.ToString(), section);
+            Write("Button18", setup.guiCustomBtn18.ToString(), section);
+            Write("Button19", setup.guiCustomBtn19.ToString(), section);
+            Write("Button20", setup.guiCustomBtn20.ToString(), section);
+            Write("Button21", setup.guiCustomBtn21.ToString(), section);
+            Write("Button22", setup.guiCustomBtn22.ToString(), section);
+            Write("Button23", setup.guiCustomBtn23.ToString(), section);
+            Write("Button24", setup.guiCustomBtn24.ToString(), section);
+            Write("Button25", setup.guiCustomBtn25.ToString(), section);
+            Write("Button26", setup.guiCustomBtn26.ToString(), section);
+            Write("Button27", setup.guiCustomBtn27.ToString(), section);
+            Write("Button28", setup.guiCustomBtn28.ToString(), section);
+            Write("Button29", setup.guiCustomBtn29.ToString(), section);
+            Write("Button30", setup.guiCustomBtn30.ToString(), section);
+            Write("Button31", setup.guiCustomBtn31.ToString(), section);
+            Write("Button32", setup.guiCustomBtn32.ToString(), section);
 
             section = "Joystick";
             Write("XY1 Step", setup.guiJoystickXYStep1.ToString(), section);
@@ -570,6 +586,22 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpstr, section, "Button14")) { setup.guiCustomBtn14 = tmpstr; }
             if (setVariable(ref tmpstr, section, "Button15")) { setup.guiCustomBtn15 = tmpstr; }
             if (setVariable(ref tmpstr, section, "Button16")) { setup.guiCustomBtn16 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button17")) { setup.guiCustomBtn17 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button18")) { setup.guiCustomBtn18 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button19")) { setup.guiCustomBtn19 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button20")) { setup.guiCustomBtn20 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button21")) { setup.guiCustomBtn21 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button22")) { setup.guiCustomBtn22 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button23")) { setup.guiCustomBtn23 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button24")) { setup.guiCustomBtn24 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button25")) { setup.guiCustomBtn25 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button26")) { setup.guiCustomBtn26 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button27")) { setup.guiCustomBtn27 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button28")) { setup.guiCustomBtn28 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button29")) { setup.guiCustomBtn29 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button30")) { setup.guiCustomBtn30 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button31")) { setup.guiCustomBtn31 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "Button32")) { setup.guiCustomBtn32 = tmpstr; }
 
             section = "Joystick";
             if (setVariable(ref tmpdeci, section, "XY1 Step")) { setup.guiJoystickXYStep1 = tmpdeci; }

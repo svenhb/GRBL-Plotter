@@ -19,6 +19,7 @@
 /* 
  * 2018-12-26 Commits from RasyidUFA via Github
  * 2019-08-15 add logger, line 120 replace .Invoke by .BeginInvoke
+ * 2019-10-31 add SerialPortFixer http://zachsaw.blogspot.com/2010/07/serialport-ioexception-workaround-in-c.html
 */
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace GRBL_Plotter
         public ControlDIYControlPad()
         {
             Logger.Trace("++++++ ControlDIYControlPad START ++++++");
+            this.Icon = Properties.Resources.Icon;
             InitializeComponent();
         }
 
@@ -71,6 +73,7 @@ namespace GRBL_Plotter
                 serialPort.PortName = cbPort.Text;
                 serialPort.BaudRate = Convert.ToInt32(cbBaud.Text);
                 serialPort.Encoding = Encoding.GetEncoding(28591);
+                SerialPortFixer.Execute(cbPort.Text);
                 serialPort.Open();
                 rtbLog.Clear();
                 rtbLog.AppendText("Open " + cbPort.Text + "\r\n");

@@ -72,7 +72,7 @@ namespace GRBL_Plotter
             string[] parts;// = new string[] { "-", "(-)" };
             dGVCustomBtn.Rows.Clear();
             int row = 0;
-            for (int i = 1; i <= 16; i++)
+            for (int i = 1; i <= 32; i++)
             {
                 parts = new string[2];
                 text = Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString();
@@ -164,7 +164,7 @@ namespace GRBL_Plotter
 
         private void saveSettings()
         {
-            for (int i = 1; i <= 16; i++)
+            for (int i = 1; i <= 32; i++)
             {
                 try { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value; }
                 catch { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = " | "; }

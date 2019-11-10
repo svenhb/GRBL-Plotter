@@ -41,9 +41,13 @@
  * 2019-09-24 line 410 add serialPort.DtrEnable = true;serialPort.DtrEnable = false; sequence - thanks to ivahru
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-10-27 localization of strings
+ * 2019-10-31 add SerialPortFixer http://zachsaw.blogspot.com/2010/07/serialport-ioexception-workaround-in-c.html
 */
 
 //#define debuginfo 
+// OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
+// OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+
 
 using System;
 using System.Collections.Generic;
@@ -410,6 +414,7 @@ namespace GRBL_Plotter
                 rtbLog.Clear();
                 if (refreshPorts())
                 {
+                    SerialPortFixer.Execute(cbPort.Text);
                     serialPort.Open();
                     serialPort.DtrEnable = true;
                     serialPort.DtrEnable = false;
@@ -668,6 +673,8 @@ namespace GRBL_Plotter
             {
                 grbl.updateParserState(sendLines[sendLinesConfirmed], ref mParserState);
                 grblBufferFree += (sendLines[sendLinesConfirmed].Length + 1);   //update bytes supose to be free on grbl rx bufer
+                if (cbStatus.Checked)
+                { addToLog("< ok ( "+sendLines[sendLinesConfirmed]+" )"); }
                 sendLinesConfirmed++;                                           // line processed
 
                 // Remove already sent lines to release memory
@@ -678,9 +685,10 @@ namespace GRBL_Plotter
                     sendLinesSent--;
                     sendLinesCount--;
                 }
-                if (mParserState.changed)
+                if ((mParserState.changed) && (grblStateNow != grblState.probe))    // probe will be send later
                 {
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+                    //Logger.Info("OnRaisePosEvent 688 updateStreaming() ");
                     mParserState.changed = false;
                 }
             }
@@ -787,6 +795,12 @@ namespace GRBL_Plotter
 
         private void handleRX_Feedback(string[] dataField)  // dataField = rxString.Trim(charsToTrim).Split(':')
         {
+            if (iamSerial == 1)
+            {   string info = "";
+                if (dataField.Length > 2)
+                    info = dataField[2];
+                grbl.setCoordinates(dataField[0], dataField[1], info);    // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
+            }
             if (dataField[0].IndexOf("GC") >= 0)            // handle G-Code parser state [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
             {
                 parserStateGC = dataField[1];
@@ -796,6 +810,7 @@ namespace GRBL_Plotter
                 posPause = posWork;
                 getParserState = false;
                 OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+                //Logger.Info("OnRaisePosEvent 803 IndexOf(GC) ");
                 mParserState.changed = false;
             }
             else if (dataField[0].IndexOf("PRB") >= 0)                // Probe message with coordinates // [PRB:-155.000,-160.000,-28.208:1]
@@ -808,9 +823,18 @@ namespace GRBL_Plotter
                 if (preventEvent == 0)
                 {
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+                     //Logger.Info("OnRaisePosEvent 820 IndexOf(PRB) ");
                     mParserState.changed = false;
                 }
+     /*           if (iamSerial == 1)
+                {
+                    string info = "";
+                    if (dataField.Length > 2)
+                        info = dataField[2];
+                    grbl.setCoordinates(dataField[0], dataField[1], info);    // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
+                }*/
             }
+
             else if (dataField[0].IndexOf("MSG") >= 0) //[MSG:Pgm End]
             {   if (dataField[1].IndexOf("Pgm End") >= 0)
                 {   if ((isStreaming) || (isHeightProbing))
@@ -830,8 +854,13 @@ namespace GRBL_Plotter
                     }
                 }
             }
-            if (iamSerial == 1)
-                grbl.setCoordinates(dataField[0], dataField[1]);    // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
+          /*  if (iamSerial == 1)
+            {
+                string info = "";
+                if (dataField.Length > 2)
+                    info = dataField[2];
+                grbl.setCoordinates(dataField[0], dataField[1], info);    // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
+            }*/
         }
 
         private void handleRX_Setup(string rxString)

@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>切刀直径</value>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>探针或刀头直径以计算零位</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>最高 探测距离</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>查找边缘的最大移动距离</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>进给速度</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>探测偏移</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>由触摸板或铝箔引起的偏移到探测的零位置</value>
+  </data>
+  <data name="cBZProbing.Text" xml:space="preserve">
+    <value>探针Z也</value>
+  </data>
+  <data name="nUDDiameter.ToolTip" xml:space="preserve">
+    <value>探针或刀头直径以计算零位</value>
+  </data>
+  <data name="nUDOffsetX.ToolTip" xml:space="preserve">
+    <value>由触摸板或铝箔引起的偏移到探测的零位置</value>
+  </data>
+  <data name="nUDOffsetY.ToolTip" xml:space="preserve">
+    <value>由触摸板或铝箔引起的偏移到探测的零位置</value>
+  </data>
+  <data name="nUDOffsetZ.ToolTip" xml:space="preserve">
+    <value>由触摸板或铝箔引起的偏移到探测的零位置</value>
+  </data>
+  <data name="gBHardware.Text" xml:space="preserve">
+    <value>硬件尺寸</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>安全距离</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>成功扫描后，向后行驶此距离</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>探测后的最终位置</value>
+  </data>
+  <data name="label18.ToolTip" xml:space="preserve">
+    <value>探测后的最终位置</value>
+  </data>
+  <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
+    <value>探测后的最终位置</value>
+  </data>
+  <data name="nUDProbeFinalY.ToolTip" xml:space="preserve">
+    <value>探测后的最终位置</value>
+  </data>
+  <data name="nUDProbeFinalX.ToolTip" xml:space="preserve">
+    <value>探测后的最终位置</value>
+  </data>
+  <data name="nUDProbeSaveZ.ToolTip" xml:space="preserve">
+    <value>成功扫描后，向后行驶此距离</value>
+  </data>
+  <data name="nUDProbeSaveY.ToolTip" xml:space="preserve">
+    <value>成功扫描后，向后行驶此距离</value>
+  </data>
+  <data name="nUDProbeSaveX.ToolTip" xml:space="preserve">
+    <value>成功扫描后，向后行驶此距离</value>
+  </data>
+  <data name="nUDProbeTravelZ.ToolTip" xml:space="preserve">
+    <value>查找边缘的最大移动距离</value>
+  </data>
+  <data name="nUDProbeTravelY.ToolTip" xml:space="preserve">
+    <value>查找边缘的最大移动距离</value>
+  </data>
+  <data name="nUDProbeTravelX.ToolTip" xml:space="preserve">
+    <value>查找边缘的最大移动距离</value>
+  </data>
+  <data name="gBMovement.Text" xml:space="preserve">
+    <value>测头运动</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>选择要识别的边缘或角。
+将工具提示移到边缘的前面。
+在角落，首先检查X，然后检查Y。
+Z最后检查。</value>
+  </data>
+  <data name="lblEFProgressInfo.Text" xml:space="preserve">
+    <value>进展</value>
+  </data>
+  <data name="btnStartEF.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="lblEFProgress.Text" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="btnCancelEF.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="rB5.Text" xml:space="preserve">
+    <value>只有Z</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>坎特·芬顿</value>
+  </data>
+  <data name="lblCFProgressInfo.Text" xml:space="preserve">
+    <value>进展</value>
+  </data>
+  <data name="btnStartCF.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="lblCFProgress.Text" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="btnCancelCF.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>中心取景器</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>工具长度</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>内部轮廓：
+将刀尖放在工件的孔中，几乎居中。
+Z将不会移动。
+
+外轮廓：
+将刀尖放在工件的左侧，以进行边缘检测</value>
+  </data>
+  <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
+    <value>工件直径以确定探测距离</value>
+  </data>
+  <data name="lblProbeFinal.ToolTip" xml:space="preserve">
+    <value>探测后的最终位置</value>
+  </data>
+  <data name="rBCF2.ToolTip" xml:space="preserve">
+    <value>查找中心并设置0; 0
+Z up = Z start + Z探测
+最终移到中心</value>
+  </data>
+  <data name="rBCF1.ToolTip" xml:space="preserve">
+    <value>查找中心并设置0; 0
+最终移到中心</value>
+  </data>
+  <data name="btnGetAngleEF.Text" xml:space="preserve">
+    <value>按角度旋转G代码</value>
+  </data>
+  <data name="btnGetAngleEF.ToolTip" xml:space="preserve">
+    <value>通过工件的垂直（X探测）或水平边缘（Y探测）计算校正角</value>
+  </data>
+  <data name="tBAngle.ToolTip" xml:space="preserve">
+    <value>通过工件的垂直（X探测）或水平边缘（Y探测）计算校正角</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>实测校正角：</value>
+  </data>
+  <data name="btnSaveTL.Text" xml:space="preserve">
+    <value>将Z驱动到安全位置</value>
+  </data>
+  <data name="btnSaveTL.ToolTip" xml:space="preserve">
+    <value>使用G90绝对坐标</value>
+  </data>
+  <data name="cBSetCoordTL.Text" xml:space="preserve">
+    <value>将G92 Z坐标用于第一个工具</value>
+  </data>
+  <data name="cBSetCoordTL.ToolTip" xml:space="preserve">
+    <value>套装G92 Z</value>
+  </data>
+  <data name="btnClearTL.Text" xml:space="preserve">
+    <value>清除刀具长度偏移</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>1.获取第一个刀具的刀具长度
+2.用G92设定Z为零
+3.换刀后，只需再次测量刀具长度，即可校正Z坐标。
+
+刀具长度探测后：
+Z将移回起始位置</value>
+  </data>
+  <data name="lblTLProgressInfo.Text" xml:space="preserve">
+    <value>进展</value>
+  </data>
+  <data name="btnStartTL.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="lblTLProgress.Text" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="gBCoordinates.Text" xml:space="preserve">
+    <value>座标</value>
+  </data>
+  <data name="rBProbeCoord1.Text" xml:space="preserve">
+    <value>使用G10 L2 P0-设置坐标。 （G54-G59）</value>
+  </data>
+  <data name="rBProbeCoord2.Text" xml:space="preserve">
+    <value>使用G92</value>
+  </data>
+  <data name="btnProbeCoordClear.Text" xml:space="preserve">
+    <value>清除G92</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>探测和刀具长度偏移</value>
+  </data>
+</root>

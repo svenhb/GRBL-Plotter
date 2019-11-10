@@ -55,6 +55,9 @@ namespace GRBL_Plotter
         private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
         private static Dictionary<string, xyzPoint> coordinates = new Dictionary<string, xyzPoint>();    // keep []-settings
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+   //     private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         // private mState machineState = new mState();     // Keep info about Bf, Ln, FS, Pn, Ov, A;
         //  private pState mParserState = new pState();     // keep info about last M and G settings
         //        public static pState parserState;
@@ -108,20 +111,29 @@ namespace GRBL_Plotter
         }
 
         // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
-        public static void setCoordinates(string id, string value)
+        public static void setCoordinates(string id, string value, string info)
         {   xyzPoint tmp = new xyzPoint();
             string allowed = "PRBG54G55G56G57G58G59G28G30G92TLO";
             if (allowed.Contains(id))
-            {   getPosition("abc:" + value, ref tmp);
+            {   getPosition("abc:" + value, ref tmp);   // parse string [PRB:-155.000,-160.000,-28.208:1]
                 if (coordinates.ContainsKey(id))
                     coordinates[id] = tmp;
                 else
                     coordinates.Add(id, tmp);
+
+                if ((info.Length > 0) && (id == "PRB"))
+                {   xyzPoint tmp2 = new xyzPoint();
+                    tmp2 = coordinates["PRB"];
+                    tmp2.A = info == "1" ? 1 : 0;
+                    coordinates["PRB"] = tmp2;
+                }
             }
         }
 
         public static string displayCoord(string key)
-        {   if (coordinates.ContainsKey(key))
+        {
+            //Logger.Info("displayCoord {0}",key);
+            if (coordinates.ContainsKey(key))
             {   if (key == "TLO")
                     return String.Format("                  {0,8:###0.000}", coordinates[key].Z);
                 else
@@ -135,6 +147,12 @@ namespace GRBL_Plotter
             else
                 return "no data";
         }
+        public static xyzPoint getCoord(string key)
+        {   if (coordinates.ContainsKey(key))
+                return coordinates[key];
+            return new xyzPoint();
+        }
+
         public static bool getPRBStatus()
         {   if (coordinates.ContainsKey("PRB"))
             {   return (coordinates["PRB"].A==0.0)? false:true;    }
