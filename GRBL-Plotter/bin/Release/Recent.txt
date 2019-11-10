@@ -1,6 +1,5 @@
 data\examples\graphic_grbl.svg
 data\examples\graphic_grbl_popup.svg
-lastProcessed.nc
 data\examples\graphic_bunny.dxf
 data\examples\graphic_bunny_string_art.svg
 data\examples\image_flying_devil.png
