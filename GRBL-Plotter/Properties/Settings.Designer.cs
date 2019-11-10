@@ -1765,6 +1765,198 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn17 {
+            get {
+                return ((string)(this["guiCustomBtn17"]));
+            }
+            set {
+                this["guiCustomBtn17"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn18 {
+            get {
+                return ((string)(this["guiCustomBtn18"]));
+            }
+            set {
+                this["guiCustomBtn18"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn19 {
+            get {
+                return ((string)(this["guiCustomBtn19"]));
+            }
+            set {
+                this["guiCustomBtn19"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn20 {
+            get {
+                return ((string)(this["guiCustomBtn20"]));
+            }
+            set {
+                this["guiCustomBtn20"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn21 {
+            get {
+                return ((string)(this["guiCustomBtn21"]));
+            }
+            set {
+                this["guiCustomBtn21"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn22 {
+            get {
+                return ((string)(this["guiCustomBtn22"]));
+            }
+            set {
+                this["guiCustomBtn22"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn23 {
+            get {
+                return ((string)(this["guiCustomBtn23"]));
+            }
+            set {
+                this["guiCustomBtn23"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn24 {
+            get {
+                return ((string)(this["guiCustomBtn24"]));
+            }
+            set {
+                this["guiCustomBtn24"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn25 {
+            get {
+                return ((string)(this["guiCustomBtn25"]));
+            }
+            set {
+                this["guiCustomBtn25"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn26 {
+            get {
+                return ((string)(this["guiCustomBtn26"]));
+            }
+            set {
+                this["guiCustomBtn26"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn27 {
+            get {
+                return ((string)(this["guiCustomBtn27"]));
+            }
+            set {
+                this["guiCustomBtn27"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn28 {
+            get {
+                return ((string)(this["guiCustomBtn28"]));
+            }
+            set {
+                this["guiCustomBtn28"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn29 {
+            get {
+                return ((string)(this["guiCustomBtn29"]));
+            }
+            set {
+                this["guiCustomBtn29"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn30 {
+            get {
+                return ((string)(this["guiCustomBtn30"]));
+            }
+            set {
+                this["guiCustomBtn30"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn31 {
+            get {
+                return ((string)(this["guiCustomBtn31"]));
+            }
+            set {
+                this["guiCustomBtn31"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        public string guiCustomBtn32 {
+            get {
+                return ((string)(this["guiCustomBtn32"]));
+            }
+            set {
+                this["guiCustomBtn32"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public decimal guiJoystickASpeed1 {
             get {
@@ -4064,6 +4256,198 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["importUseCaseInfo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal probingToolDiameter {
+            get {
+                return ((decimal)(this["probingToolDiameter"]));
+            }
+            set {
+                this["probingToolDiameter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal probingOffsetX {
+            get {
+                return ((decimal)(this["probingOffsetX"]));
+            }
+            set {
+                this["probingOffsetX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal probingOffsetY {
+            get {
+                return ((decimal)(this["probingOffsetY"]));
+            }
+            set {
+                this["probingOffsetY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal probingOffsetZ {
+            get {
+                return ((decimal)(this["probingOffsetZ"]));
+            }
+            set {
+                this["probingOffsetZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal probingFeed {
+            get {
+                return ((decimal)(this["probingFeed"]));
+            }
+            set {
+                this["probingFeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public decimal probingTravelX {
+            get {
+                return ((decimal)(this["probingTravelX"]));
+            }
+            set {
+                this["probingTravelX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public decimal probingTravelY {
+            get {
+                return ((decimal)(this["probingTravelY"]));
+            }
+            set {
+                this["probingTravelY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public decimal probingTravelZ {
+            get {
+                return ((decimal)(this["probingTravelZ"]));
+            }
+            set {
+                this["probingTravelZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal probingSaveX {
+            get {
+                return ((decimal)(this["probingSaveX"]));
+            }
+            set {
+                this["probingSaveX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal probingSaveY {
+            get {
+                return ((decimal)(this["probingSaveY"]));
+            }
+            set {
+                this["probingSaveY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal probingSaveZ {
+            get {
+                return ((decimal)(this["probingSaveZ"]));
+            }
+            set {
+                this["probingSaveZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal probingFinalX {
+            get {
+                return ((decimal)(this["probingFinalX"]));
+            }
+            set {
+                this["probingFinalX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal probingFinalY {
+            get {
+                return ((decimal)(this["probingFinalY"]));
+            }
+            set {
+                this["probingFinalY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal probingFinalZ {
+            get {
+                return ((decimal)(this["probingFinalZ"]));
+            }
+            set {
+                this["probingFinalZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point locationProbingForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationProbingForm"]));
+            }
+            set {
+                this["locationProbingForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public decimal probingWorkpieceDiameter {
+            get {
+                return ((decimal)(this["probingWorkpieceDiameter"]));
+            }
+            set {
+                this["probingWorkpieceDiameter"] = value;
             }
         }
     }

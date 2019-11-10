@@ -437,6 +437,54 @@
     <Setting Name="guiCustomBtn9" Type="System.String" Scope="User">
       <Value Profile="(Default)">Btn 9|(-)</Value>
     </Setting>
+    <Setting Name="guiCustomBtn17" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn18" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn19" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn20" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn21" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn22" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn23" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn24" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn25" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn26" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn27" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn28" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn29" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn30" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn31" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn32" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
     <Setting Name="guiJoystickASpeed1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
@@ -1012,6 +1060,54 @@
     </Setting>
     <Setting Name="importUseCaseInfo" Type="System.String" Scope="User">
       <Value Profile="(Default)">Information about current use case</Value>
+    </Setting>
+    <Setting Name="probingToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="probingOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingOffsetZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="probingTravelX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingTravelY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingTravelZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingSaveX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingSaveY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingSaveZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingFinalX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingFinalY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingFinalZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="locationProbingForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="probingWorkpieceDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
     </Setting>
   </Settings>
 </SettingsFile>
