@@ -4,7 +4,13 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
-  
+### Neu in Version 1.3.2.x   
+* Neues Fenster für Probing - Kantenfinder, Mittenfinder, Werkzeuglängenkorrektur
+* Anzahl der benutzerdefinierten Buttons auf 32 erhöht
+* Grobe Übersetzung für die Sprachen Spanisch, Französisch, Russisch und Chinesisch hinzugefügt. Die Übersetzung wurde mit dem google Translator gemacht, also möglicherweise nicht ganz korrekt und leider in vielen Fällen zu lang für die Steuerelemente.
+* Bug fix G-Code Speicherung
+* Bug fix Game pad support
+    
 ### Neu in Version 1.3.0.x
 #### Neue Funktion 'Anwendungfall':
 * Selektiere einen 'Anwendungsfall' beim Import von DXF oder SVG Grafiken
@@ -106,7 +112,7 @@ Auskommentierung von unbekannten GCode
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.2.5.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-07-05    
+#### [GRBL-Plotter Vers. 1.3.2.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-11-10    
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
