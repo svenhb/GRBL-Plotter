@@ -1,6 +1,35 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### 2019-11-10 version 1.3.2.0
+* Add probing window with edge / corner finder, center finder and tool length correction
+* Increased number of custom buttons to 32
+
+### 2019-10-29 version 1.3.1.0
+* Add a rough localization for spanish, french, russian and chinese language
+The translation was done with google translator, so maybe not quite right. In addition, the texts are sometimes too long and do not fit into the controls.
+* Bug fix saving G-Code
+* Bug fix Game pad support
+
+### 2019- version 1.3.0.0
+#### New feature 'use cases':
+* select a 'use-case' when importing DXF or SVG
+* preset import options, pen up/down definitions, Z deepth, etc.
+* use it for machine-selection, material-selection or tool-selection
+* example [Using a pen and laser together](https://youtu.be/Ebe2kFlE058)
+#### Improoved 'grouping'
+* Paths from imports by DXF or SVG can be grouped (by color or layer)
+* Groups can be selected, transformed, deleted
+#### Misc
+* process dashed lines from DXF or SVG
+* Add a logger
+* extend error handling on SVG import
+* Laser tools to optimize parameters e.g.  [Scan Z to find laser focus](https://youtu.be/blhaZ8rb2ec)
+
+#### Attention: some incompatibilities:  
+* new file format for csv tool table now ',' comma separated instead of ';' semicolon  
+* new file locations for examples, fonts, scripts, tools
+
 ### 2019-07-05 version 1.2.5.x:
 * Transform of all or selected code
 * ___simple___ cutter radius compensation
