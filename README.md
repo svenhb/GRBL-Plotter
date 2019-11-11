@@ -4,6 +4,14 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.  
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
+### New in Version 1.3.2.x   
+* Add probing window with edge / corner finder, center finder and tool length correction
+* Increased number of custom buttons to 32
+* Add a rough localization for spanish, french, russian and chinese language
+The translation was done with google translator, so maybe not quite right. In addition, the texts are sometimes too long and do not fit into the controls.
+* Bug fix saving G-Code
+* Bug fix Game pad support
+   
 ### New in Version 1.3.0.x
 #### New feature 'use cases':
 * select a 'use-case' when importing DXF or SVG
@@ -56,7 +64,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.3.0.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-10-03    
+#### [GRBL-Plotter Vers. 1.3.2.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-11-10    
 
 ### Requirements for compiling
 * VisualStudio 2015 
