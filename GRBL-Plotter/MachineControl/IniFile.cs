@@ -22,6 +22,7 @@
 /* 2018-12-26 Commits from RasyidUFA via Github
  * 2019-08-15 add logger
  * 2019-09-17 update settings
+ * 2019-11-16 add gamepad
 */
 
 using System;
@@ -338,6 +339,33 @@ namespace GRBL_Plotter
             Write("X Tool Offset", setup.cameraToolOffsetX.ToString(), section);
             Write("Y Tool Offset", setup.cameraToolOffsetY.ToString(), section);
 
+            section = "GamePad";
+            Write("gamePadButtons0", setup.gamePadButtons0.ToString(), section);
+            Write("gamePadButtons1", setup.gamePadButtons1.ToString(), section);
+            Write("gamePadButtons2", setup.gamePadButtons2.ToString(), section);
+            Write("gamePadButtons3", setup.gamePadButtons3.ToString(), section);
+            Write("gamePadButtons4", setup.gamePadButtons4.ToString(), section);
+            Write("gamePadButtons5", setup.gamePadButtons5.ToString(), section);
+            Write("gamePadButtons6", setup.gamePadButtons6.ToString(), section);
+            Write("gamePadButtons7", setup.gamePadButtons7.ToString(), section);
+            Write("gamePadButtons8", setup.gamePadButtons8.ToString(), section);
+            Write("gamePadButtons9", setup.gamePadButtons9.ToString(), section);
+            Write("gamePadButtons10", setup.gamePadButtons10.ToString(), section);
+            Write("gamePadButtons11", setup.gamePadButtons11.ToString(), section);
+            Write("gamePadButtons12", setup.gamePadButtons12.ToString(), section);
+            Write("gamePadButtons13", setup.gamePadButtons13.ToString(), section);
+            Write("gamePadButtons14", setup.gamePadButtons14.ToString(), section);
+            Write("gamePadButtons15", setup.gamePadButtons15.ToString(), section);
+            Write("gamePadXAxis", setup.gamePadXAxis.ToString(), section);
+            Write("gamePadYAxis", setup.gamePadYAxis.ToString(), section);
+            Write("gamePadZAxis", setup.gamePadZAxis.ToString(), section);
+            Write("gamePadRAxis", setup.gamePadRAxis.ToString(), section);
+            Write("gamePadXInvert", setup.gamePadXInvert.ToString(), section);
+            Write("gamePadYInvert", setup.gamePadYInvert.ToString(), section);
+            Write("gamePadZInvert", setup.gamePadZInvert.ToString(), section);
+            Write("gamePadRInvert", setup.gamePadRInvert.ToString(), section);
+            Write("gamePadEnable", setup.gamePadEnable.ToString(), section);
+
             section = "GRBL Settings";
             if (GRBLSettings.Count > 0)
             {   foreach (string setting in GRBLSettings)
@@ -646,6 +674,33 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpdouble, section, "Bottom Scaling"))  { setup.cameraScalingBot = tmpdouble; }
             if (setVariable(ref tmpdouble, section, "X Tool Offset"))   { setup.cameraToolOffsetX = tmpdouble; }
             if (setVariable(ref tmpdouble, section, "Y Tool Offset"))   { setup.cameraToolOffsetY = tmpdouble; }
+
+            section = "GamePad";
+            if (setVariable(ref tmpstr, section, "gamePadButtons0")) { setup.gamePadButtons0 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons1")) { setup.gamePadButtons1 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons2")) { setup.gamePadButtons2 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons3")) { setup.gamePadButtons3 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons4")) { setup.gamePadButtons4 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons5")) { setup.gamePadButtons5 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons6")) { setup.gamePadButtons6 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons7")) { setup.gamePadButtons7 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons8")) { setup.gamePadButtons8= tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons9")) { setup.gamePadButtons9 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons10")) { setup.gamePadButtons10 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons11")) { setup.gamePadButtons11 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons12")) { setup.gamePadButtons12 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons13")) { setup.gamePadButtons13 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons14")) { setup.gamePadButtons14 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadButtons15")) { setup.gamePadButtons15 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadXAxis")) { setup.gamePadXAxis = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadYAxis")) { setup.gamePadYAxis = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadZAxis")) { setup.gamePadZAxis = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadRAxis")) { setup.gamePadRAxis = tmpstr; }
+            if (setVariable(ref tmpbool, section, "gamePadXInvert")) { setup.gamePadXInvert = tmpbool; }
+            if (setVariable(ref tmpbool, section, "gamePadYInvert")) { setup.gamePadYInvert = tmpbool; }
+            if (setVariable(ref tmpbool, section, "gamePadZInvert")) { setup.gamePadZInvert = tmpbool; }
+            if (setVariable(ref tmpbool, section, "gamePadRInvert")) { setup.gamePadRInvert = tmpbool; }
+            if (setVariable(ref tmpbool, section, "gamePadEnable")) { setup.gamePadEnable = tmpbool; }
 
             setup.Save();
         }

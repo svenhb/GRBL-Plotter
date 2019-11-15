@@ -414,7 +414,11 @@ namespace GRBL_Plotter
                 rtbLog.Clear();
                 if (refreshPorts())
                 {
-                    SerialPortFixer.Execute(cbPort.Text);
+                    try
+                    { SerialPortFixer.Execute(cbPort.Text); }
+                    catch (Exception err)
+                    { Logger.Error(err, "-SerialPortFixer-"); }
+
                     serialPort.Open();
                     serialPort.DtrEnable = true;
                     serialPort.DtrEnable = false;
