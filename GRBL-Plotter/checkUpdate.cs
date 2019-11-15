@@ -23,6 +23,7 @@
 using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace GRBL_Plotter
 {
@@ -42,13 +43,21 @@ namespace GRBL_Plotter
         private static void AsyncCheckVersion(object foo)
         {
             try
-            { CheckSite1(@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest"); } //official https
+            {   CheckSite1(@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest"); } //official https
             catch
             {
                 try
-                { CheckSite2(@"http://svenhb.bplaced.net/GRBL-Plotter.php"); }  // get Version-Nr and count individual ip to get an idea of amount of users
+                {
+                    CultureInfo ci = CultureInfo.InstalledUICulture;
+                    ci = CultureInfo.CurrentUICulture;
+                    string get = "";
+                    get += "?vers=" + Application.ProductVersion;
+                    get += "&langset=" + Properties.Settings.Default.guiLanguage; // add next get with &
+                    get += "&langori=" + ci.Name;
+                    CheckSite2(@"http://svenhb.bplaced.net/GRBL-Plotter.php"+get);   // get Version-Nr and count individual ip to get an idea of amount of users
+                }
                 catch (Exception ex)
-                { Logger.Error(ex,"AsyncCheckVersion - CheckSite2"); }
+                { Logger.Error(ex, "AsyncCheckVersion - CheckSite2"); }
             }
         }
 

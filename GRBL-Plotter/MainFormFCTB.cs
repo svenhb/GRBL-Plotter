@@ -191,7 +191,14 @@ namespace GRBL_Plotter
                     fCTBCode.Copy();
             }
             else if (e.ClickedItem.Name == "cmsCodePaste")
-                fCTBCode.Paste();
+            {       //fCTBCode.Paste();
+                IDataObject iData = Clipboard.GetDataObject();
+                newCodeStart();
+                fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
+                newCodeEnd();
+                setLastLoadedFile("Data from Clipboard: Text", "");
+                lbInfo.Text = "GCode from clipboard";
+            }
             else if (e.ClickedItem.Name == "cmsCodePasteSpecial1")
             {
                 Place selStart, selEnd;
@@ -204,13 +211,13 @@ namespace GRBL_Plotter
                 StringBuilder gcodeString = new StringBuilder();
                 gcodeString.Append("\r\n");
                 gcode.PenUp(gcodeString, "pasted");
-                string tmp = fCTBCode.Lines[fCTBCodeClickedLineNow+1];
+                string tmp = fCTBCode.Lines[fCTBCodeClickedLineNow + 1];
                 if (tmp.Contains("G01"))
                 {
                     mySelection.Start = selStart;
                     mySelection.End = selEnd;
                     fCTBCode.Selection = mySelection;
-                    fCTBCode.SelectedText=(tmp.Replace("G01", "G00"))+"\r\n";
+                    fCTBCode.SelectedText = (tmp.Replace("G01", "G00")) + "\r\n";
                 }
                 else
                     gcodeString.Append("G00\r\n");
@@ -223,7 +230,7 @@ namespace GRBL_Plotter
                 fCTBCode.Selection = mySelection;
                 fCTBCode.Paste();
                 // set new cursor pos. for assumed PenDown command
-                fCTBCodeClickedLineNow+= gcodeString.ToString().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length; // 
+                fCTBCodeClickedLineNow += gcodeString.ToString().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length; // 
                 selStart.iLine = fCTBCodeClickedLineNow + 1;
                 selEnd.iLine = fCTBCodeClickedLineNow + 1;
                 mySelection.Start = selStart;
@@ -235,7 +242,7 @@ namespace GRBL_Plotter
             {
                 gcode.setup();
                 StringBuilder gcodeString = new StringBuilder();
-                gcode.PenDown(gcodeString,"pasted");
+                gcode.PenDown(gcodeString, "pasted");
                 string tmp = fCTBCode.Lines[fCTBCodeClickedLineNow + 1];
                 if (!tmp.Contains("G01"))
                     gcodeString.Append("G01\r\n");

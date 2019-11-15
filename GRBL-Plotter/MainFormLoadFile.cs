@@ -478,6 +478,8 @@ namespace GRBL_Plotter
             {
                 loadFromClipboard();
                 e.SuppressKeyPress = true;
+                e.Handled = true;
+                return;
             }
             else if ((e.KeyCode == Keys.Space) && (pictureBox1.Focused))    // space = hide pen-up path
             {
@@ -627,12 +629,12 @@ namespace GRBL_Plotter
 #endif
            // try
             {
-                if (Properties.Settings.Default.ctrlUpgradeRequired)
+         /*       if (Properties.Settings.Default.ctrlUpgradeRequired)
                 {
                     Properties.Settings.Default.Upgrade();
                     Properties.Settings.Default.ctrlUpgradeRequired = false;
                     Properties.Settings.Default.Save();
-                }
+                }*/
                 tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
                 int customButtonUse = 0;
                 setCustomButton(btnCustom1, Properties.Settings.Default.guiCustomBtn1, 1);
@@ -654,16 +656,38 @@ namespace GRBL_Plotter
                 customButtonUse += setCustomButton(btnCustom16, Properties.Settings.Default.guiCustomBtn16, 16);
 
                 if (customButtonUse == 0)
-                {   tableLayoutPanel1.ColumnStyles[0].Width = 33.3f;
-                    tableLayoutPanel1.ColumnStyles[1].Width = 33.3f;
-                    tableLayoutPanel1.ColumnStyles[2].Width = 33.3f;
-                    tableLayoutPanel1.ColumnStyles[3].Width = 0f;
+                {
+                    tLPCustomButton2.ColumnStyles[0].Width = 33.3f;
+                    tLPCustomButton2.ColumnStyles[1].Width = 33.3f;
+                    tLPCustomButton2.ColumnStyles[2].Width = 33.3f;
+                    tLPCustomButton2.ColumnStyles[3].Width = 0f;
+                    tLPCustomButton1.ColumnStyles[0].Width = 100f;
+                    tLPCustomButton1.ColumnStyles[1].Width = 0f;
                 }
                 else
-                {   tableLayoutPanel1.ColumnStyles[0].Width = 25f;
-                    tableLayoutPanel1.ColumnStyles[1].Width = 25f;
-                    tableLayoutPanel1.ColumnStyles[2].Width = 25f;
-                    tableLayoutPanel1.ColumnStyles[3].Width = 25f;
+                {
+                    tLPCustomButton2.ColumnStyles[0].Width = 25f;
+                    tLPCustomButton2.ColumnStyles[1].Width = 25f;
+                    tLPCustomButton2.ColumnStyles[2].Width = 25f;
+                    tLPCustomButton2.ColumnStyles[3].Width = 25f;
+                    tLPCustomButton1.ColumnStyles[0].Width = 100f;
+                    tLPCustomButton1.ColumnStyles[1].Width = 0f;
+
+
+                    if (Properties.Settings.Default.guiCustomBtn17.ToString().Length > 2)
+                    {
+                        tLPCustomButton1.ColumnStyles[0].Width = 80f;
+                        tLPCustomButton1.ColumnStyles[1].Width = 20f;
+
+                        for (int i = 17; i <= 32; i++)
+                        {   if (CustomButtons17.ContainsKey(i))
+                            {   Button b = CustomButtons17[i];
+                                b.Width = btnCustom1.Width - 24;
+                                b.Height = btnCustom1.Height;
+                                setCustomButton(b, Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString(), i);
+                            }
+                        }
+                    }
                 }
 
                 fCTBCode.BookmarkColor = Properties.Settings.Default.gui2DColorMarker; ;
@@ -871,7 +895,7 @@ namespace GRBL_Plotter
                 gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
                 checkMachineLimit();
                 loadHotkeys();
-                newCodeEnd();
+    //            newCodeEnd();
             }
   /*          catch (Exception a)
             {
@@ -917,6 +941,11 @@ namespace GRBL_Plotter
             btnCustom14.Enabled = isConnected & !isStreaming | allowControl;
             btnCustom15.Enabled = isConnected & !isStreaming | allowControl;
             btnCustom16.Enabled = isConnected & !isStreaming | allowControl;
+            for (int i = 17; i <= 32; i++)
+            {   if (CustomButtons17.ContainsKey(i))
+                {   CustomButtons17[i].Enabled = isConnected & !isStreaming | allowControl;  }
+            }
+
             btnHome.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroX.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroY.Enabled = isConnected & !isStreaming | allowControl;
