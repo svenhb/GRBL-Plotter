@@ -216,7 +216,8 @@ namespace GRBL_Plotter
             this.tBURL = new System.Windows.Forms.TextBox();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPCustomButton1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tLPCustomButton2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCustom1 = new System.Windows.Forms.Button();
             this.btnCustom2 = new System.Windows.Forms.Button();
             this.btnCustom3 = new System.Windows.Forms.Button();
@@ -233,6 +234,7 @@ namespace GRBL_Plotter
             this.btnCustom14 = new System.Windows.Forms.Button();
             this.btnCustom15 = new System.Windows.Forms.Button();
             this.btnCustom16 = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBoxCoordinates = new System.Windows.Forms.GroupBox();
             this.label_c = new System.Windows.Forms.Label();
             this.btnZeroC = new System.Windows.Forms.Button();
@@ -327,6 +329,7 @@ namespace GRBL_Plotter
             this.convertZToSspindleSpeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeAnyZMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.edgeFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.laserToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coordinateSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -347,6 +350,9 @@ namespace GRBL_Plotter
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
+            this.workpieceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.probingToolLengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.surfaceScanHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -377,7 +383,8 @@ namespace GRBL_Plotter
             this.cmsPictureBox.SuspendLayout();
             this.tLPRechtsOben.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tLPCustomButton1.SuspendLayout();
+            this.tLPCustomButton2.SuspendLayout();
             this.groupBoxCoordinates.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1532,31 +1539,38 @@ namespace GRBL_Plotter
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox5.Controls.Add(this.tLPCustomButton1);
             resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
             // 
-            // tableLayoutPanel1
+            // tLPCustomButton1
             // 
-            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom8, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom7, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom6, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom5, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom12, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom11, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom10, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom9, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom13, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom14, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom15, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustom16, 3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            resources.ApplyResources(this.tLPCustomButton1, "tLPCustomButton1");
+            this.tLPCustomButton1.Controls.Add(this.tLPCustomButton2, 0, 0);
+            this.tLPCustomButton1.Controls.Add(this.flowLayoutPanel1, 1, 0);
+            this.tLPCustomButton1.Name = "tLPCustomButton1";
+            // 
+            // tLPCustomButton2
+            // 
+            resources.ApplyResources(this.tLPCustomButton2, "tLPCustomButton2");
+            this.tLPCustomButton2.Controls.Add(this.btnCustom1, 0, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom2, 0, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom3, 0, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom4, 0, 3);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom8, 1, 3);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom7, 1, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom6, 1, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom5, 1, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom12, 2, 3);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom11, 2, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom10, 2, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom9, 2, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom13, 3, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom14, 3, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom15, 3, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom16, 3, 3);
+            this.tLPCustomButton2.Name = "tLPCustomButton2";
             // 
             // btnCustom1
             // 
@@ -1669,6 +1683,11 @@ namespace GRBL_Plotter
             this.btnCustom16.Name = "btnCustom16";
             this.btnCustom16.UseVisualStyleBackColor = true;
             this.btnCustom16.Click += new System.EventHandler(this.btnCustomButton_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // groupBoxCoordinates
             // 
@@ -1890,6 +1909,7 @@ namespace GRBL_Plotter
             this.fileToolStripMenuItem,
             this.createGCodeToolStripMenuItem,
             this.gCodeToolStripMenuItem,
+            this.workpieceToolStripMenuItem,
             this.machineToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.aboutToolStripMenuItem,
@@ -2323,6 +2343,7 @@ namespace GRBL_Plotter
             // machineToolStripMenuItem
             // 
             this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.edgeFinderToolStripMenuItem,
             this.heightMapToolStripMenuItem,
             this.laserToolsToolStripMenuItem,
             this.coordinateSystemsToolStripMenuItem,
@@ -2333,6 +2354,12 @@ namespace GRBL_Plotter
             this.control2ndGRBLToolStripMenuItem});
             this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
             resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
+            // 
+            // edgeFinderToolStripMenuItem
+            // 
+            this.edgeFinderToolStripMenuItem.Name = "edgeFinderToolStripMenuItem";
+            resources.ApplyResources(this.edgeFinderToolStripMenuItem, "edgeFinderToolStripMenuItem");
+            this.edgeFinderToolStripMenuItem.Click += new System.EventHandler(this.edgeFinderopen);
             // 
             // heightMapToolStripMenuItem
             // 
@@ -2457,6 +2484,26 @@ namespace GRBL_Plotter
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
             // 
+            // workpieceToolStripMenuItem
+            // 
+            this.workpieceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.probingToolLengthToolStripMenuItem,
+            this.surfaceScanHeightMapToolStripMenuItem});
+            this.workpieceToolStripMenuItem.Name = "workpieceToolStripMenuItem";
+            resources.ApplyResources(this.workpieceToolStripMenuItem, "workpieceToolStripMenuItem");
+            // 
+            // probingToolLengthToolStripMenuItem
+            // 
+            this.probingToolLengthToolStripMenuItem.Name = "probingToolLengthToolStripMenuItem";
+            resources.ApplyResources(this.probingToolLengthToolStripMenuItem, "probingToolLengthToolStripMenuItem");
+            this.probingToolLengthToolStripMenuItem.Click += new System.EventHandler(this.edgeFinderopen);
+            // 
+            // surfaceScanHeightMapToolStripMenuItem
+            // 
+            this.surfaceScanHeightMapToolStripMenuItem.Name = "surfaceScanHeightMapToolStripMenuItem";
+            resources.ApplyResources(this.surfaceScanHeightMapToolStripMenuItem, "surfaceScanHeightMapToolStripMenuItem");
+            this.surfaceScanHeightMapToolStripMenuItem.Click += new System.EventHandler(this.heightMapToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2516,7 +2563,8 @@ namespace GRBL_Plotter
             this.cmsPictureBox.ResumeLayout(false);
             this.tLPRechtsOben.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tLPCustomButton1.ResumeLayout(false);
+            this.tLPCustomButton2.ResumeLayout(false);
             this.groupBoxCoordinates.ResumeLayout(false);
             this.groupBoxCoordinates.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -2572,7 +2620,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnCustom11;
         private System.Windows.Forms.Button btnCustom12;
         private System.Windows.Forms.Button btnCustom13;
-        private System.Windows.Forms.Button btnCustom14;
         private System.Windows.Forms.Button btnCustom15;
         private System.Windows.Forms.Button btnCustom16;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -2588,7 +2635,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.TableLayoutPanel tLPRechtsUnten;
         private System.Windows.Forms.TableLayoutPanel tLPRechtsOben;
         private FastColoredTextBoxNS.FastColoredTextBox fCTBCode;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tLPCustomButton2;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tLPMitteUnten;
@@ -2801,6 +2848,13 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem franzToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chinesischToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tLPCustomButton1;
+        private System.Windows.Forms.Button btnCustom14;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ToolStripMenuItem edgeFinderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem workpieceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem probingToolLengthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem surfaceScanHeightMapToolStripMenuItem;
     }
 }
 

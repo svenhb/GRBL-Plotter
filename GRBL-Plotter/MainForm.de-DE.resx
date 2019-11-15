@@ -1183,4 +1183,16 @@ negativer Wert auf der rechten Seite.</value>
     <value>Tür</value>
     <comment>Button</comment>
   </data>
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Abtasten / Werkzeuglänge</value>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Oberflächenscan / Höhenprofil</value>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Werkstück</value>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Abtasten</value>
+  </data>
 </root>

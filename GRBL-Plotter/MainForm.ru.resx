@@ -1137,4 +1137,17 @@
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>Спарвка</value>
   </data>
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Зондирование / Длина инструмента</value>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сканирование поверхности / Карта высот</value>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>заготовки</value>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>прощупывание</value>
+  </data>
+
 </root>

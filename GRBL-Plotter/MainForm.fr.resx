@@ -936,4 +936,16 @@ Langue
     <value>Outils laser</value>
     <comment>Menu141</comment>
   </data>
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Palpage / Longueur de l'outil</value>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Scan de surface / carte de hauteur</value>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pièce</value>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sondage</value>
+  </data>
 </root>

@@ -813,4 +813,16 @@ Langue
   <data name="cBTool.Text" xml:space="preserve">
     <value>Herr. en husillo</value>
   </data>
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sondeo / longitud de herramienta</value>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Escaneo de superficie / Mapa de altura</value>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pieza de trabajo</value>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sondeo</value>
+  </data>
 </root>

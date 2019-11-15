@@ -65,6 +65,7 @@ namespace GRBL_Plotter
         ControlStreamingForm2 _streaming_form2 = null;
         ControlCameraForm _camera_form = null;
         ControlSetupForm _setup_form = null;
+        ControlProbing _probing_form = null;
         ControlHeightMapForm _heightmap_form = null;
         ControlDIYControlPad _diyControlPad = null;
         ControlCoordSystem _coordSystem_form = null;
@@ -156,9 +157,16 @@ namespace GRBL_Plotter
         }
 
         // initialize Main form
+        Dictionary<int, Button> CustomButtons17 = new Dictionary<int,Button>();
         private void MainForm_Load(object sender, EventArgs e)
         {
             Logger.Trace("MainForm_Load start");
+            if (Properties.Settings.Default.ctrlUpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.ctrlUpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
             this.Icon = Properties.Resources.Icon;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             Location = Properties.Settings.Default.locationMForm;
@@ -201,6 +209,20 @@ namespace GRBL_Plotter
             gBoxOverrideBig = false;
 
             lbDimension.Select(0, 0);
+
+            CustomButtons17.Clear();
+            for (int i = 17; i <= 32; i++)
+            {
+                Button b = new Button();
+                b.Text = "b" + i;
+                b.Name = "btnCustom" + i.ToString();
+                b.Width = btnCustom1.Width - 20;
+                b.Click += btnCustomButton_Click;
+                CustomButtons17.Add(i, b);
+                setCustomButton(b, Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString(), i);
+                flowLayoutPanel1.Controls.Add(b);
+            }
+
             loadSettings(sender, e);
             loadHotkeys();
             updateControls();
@@ -309,6 +331,11 @@ namespace GRBL_Plotter
                 }
                 if (_heightmap_form != null)
                     _heightmap_form.setPosProbe = posProbe;
+
+                if (_probing_form != null)
+                {   _probing_form.setPosProbe = grbl.getCoord("PRB");
+                    Logger.Info("Update Probing {0}",grbl.displayCoord("PRB"));
+                }
             }
 
             label_mx.Text = string.Format("{0:0.000}", grbl.posMachine.X);
@@ -419,6 +446,7 @@ namespace GRBL_Plotter
                         { btnKillAlarm.BackColor = SystemColors.Control; signalLock = 0; }
                         if (!isStreaming)                       // update drawing if G91 is used
                             updateDrawingPath = true;
+
                         break;
                     case grblState.run:
                         if (lastMachineStatus == grblState.hold)
@@ -457,12 +485,17 @@ namespace GRBL_Plotter
                         break;
                     case grblState.probe:
                         lastInfoText = lbInfo.Text;
-                        lbInfo.Text = string.Format("{0}: Z={1:0.000}", Localization.getString("mainInfoProbing"),posProbe.Z);
+                        lbInfo.Text = string.Format("{0}: X:{1:0.00} Y:{2:0.00} Z:{3:0.00}", Localization.getString("mainInfoProbing"), posProbe.X, posProbe.Y, posProbe.Z);
                         lbInfo.BackColor = Color.Yellow;
                         break;
                     default:
                         break;
                 }
+                if (_probing_form != null)
+                {
+                    _probing_form.setGrblSaState = machineStatus;
+                }
+
             }
             lastMachineStatus = machineStatus;
         }
@@ -517,7 +550,7 @@ namespace GRBL_Plotter
             if (!_serial_form.requestSend(txt))     // check if COM is still open
                 updateControls();
 
-            if ((txt.Contains("G92") || txt.Contains("G10")) && (_coordSystem_form != null))
+            if ((txt.Contains("G92") || txt.Contains("G10") || txt.Contains("G43")) && (_coordSystem_form != null))
                 _coordSystem_form.refreshValues();
         }
 
@@ -717,8 +750,50 @@ namespace GRBL_Plotter
         {
             if (!_serial_form.requestSend(e.Command,true))     // check if COM is still open
                 updateControls();
-
         }
+
+        // edge finder / Probing
+        private void edgeFinderopen(object sender, EventArgs e)
+        {
+            if (_probing_form == null)
+            {
+                _probing_form = new ControlProbing();
+                _probing_form.FormClosed += formClosed_ProbingForm;
+                _probing_form.RaiseCmdEvent += OnRaiseProbingEvent;
+                _probing_form.btnGetAngleEF.Click += btnGetAngleEF_Click;
+            }
+            else
+            {
+                _probing_form.Visible = false;
+            }
+            _probing_form.Show(this);
+            _probing_form.WindowState = FormWindowState.Normal;
+        }
+        private void formClosed_ProbingForm(object sender, FormClosedEventArgs e)
+        {   _probing_form = null;  }
+        private void btnGetAngleEF_Click(object sender, EventArgs e)
+        {
+            if ((visuGCode.xyzSize.dimx > 0) && (visuGCode.xyzSize.dimy > 0))
+            {
+                transformStart("Rotate");
+                fCTBCode.Text = visuGCode.transformGCodeRotate(_probing_form.getAngle, 1, new xyPoint(0, 0));
+                transformEnd();
+            }
+        }
+        private void OnRaiseProbingEvent(object sender, CmdEventArgs e)
+        {
+            string[] commands;
+            commands = e.Command.Split(';');
+            if (!_serial_form.serialPortOpen)
+                return;
+            foreach (string btncmd in commands)
+            {
+               sendCommand(btncmd.Trim());
+            }
+
+            updateControls();
+        }
+
 
         // Height Map
         private void heightMapToolStripMenuItem_Click(object sender, EventArgs e)
@@ -732,7 +807,6 @@ namespace GRBL_Plotter
                 _heightmap_form.btnApply.Click += applyHeightMap;
                 _heightmap_form.RaiseXYZEvent += OnRaisePositionClickEvent;
                 _heightmap_form.btnGCode.Click += getGCodeFromHeightMap;      // assign btn-click event
-
             }
             else
             {
@@ -819,7 +893,10 @@ namespace GRBL_Plotter
             pbFile.Value = cPrgs;
             pbBuffer.Value = bPrgs;
             lblFileProgress.Text = string.Format("Progress {0:0.0}%", e.CodeProgress);
-            fCTBCode.Selection = fCTBCode.GetLine(e.CodeLine);
+            int actualCodeLine = e.CodeLine;
+            if (e.CodeLine > fCTBCode.LinesCount)
+                actualCodeLine = fCTBCode.LinesCount - 1;
+            fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine);
             fCTBCodeClickedLineNow = e.CodeLine - 1;
             fCTBCodeMarkLine();
             fCTBCode.DoCaretVisible();
@@ -860,7 +937,7 @@ namespace GRBL_Plotter
                     pbFile.ForeColor = Color.Red;
                     lbInfo.Text = Localization.getString("mainInfoErrorLine") + e.CodeLine.ToString();
                     lbInfo.BackColor = Color.Fuchsia;
-                    fCTBCode.BookmarkLine(e.CodeLine - 1);
+                    fCTBCode.BookmarkLine(actualCodeLine - 1);
                     fCTBCode.DoSelectionVisible();
                     fCTBCode.CurrentLineColor = Color.Red;
                     isStreamingOk = false;
@@ -1192,7 +1269,7 @@ namespace GRBL_Plotter
         #region GUI Objects
 
         // Setup Custom Buttons during loadSettings()
-        string[] btnCustomCommand = new string[17];
+        string[] btnCustomCommand = new string[33];
         private int setCustomButton(Button btn, string text, int cnt)
         {
             int index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length));
@@ -1752,6 +1829,13 @@ namespace GRBL_Plotter
         {
             if (WindowState == FormWindowState.Normal)
                 resizeJoystick();
+            for (int i = 17; i <= 32; i++)
+            {   if (CustomButtons17.ContainsKey(i))
+                {   Button b = CustomButtons17[i];
+                    b.Width = btnCustom1.Width - 24;
+                    b.Height = btnCustom1.Height;
+                }
+            }
         }
         private void resizeJoystick()
         {   int virtualJoystickSize = Properties.Settings.Default.guiJoystickSize;
@@ -1844,7 +1928,6 @@ namespace GRBL_Plotter
                 unDo2ToolStripMenuItem.Enabled = false;
             }
         }
-
     }
 }
 

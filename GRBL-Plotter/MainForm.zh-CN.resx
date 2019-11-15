@@ -801,4 +801,17 @@ Langue
     <value>激光工具</value>
     <comment>Menu141</comment>
   </data>
+    <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>探测/刀具长度</value>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>表面扫描/高度图</value>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>工件</value>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>探测</value>
+  </data>
+
 </root>
