@@ -1152,7 +1152,7 @@ namespace GRBL_Plotter
 
             header += string.Format("( G-Code lines: {0} )\r\n", gcodeLines);
             header += string.Format("( Pen Down/Up : {0} times )\r\n", gcodeDownUp);
-            header += string.Format("( Path length : {0:0.0} units )\r\n", gcodeDistance);
+ //           header += string.Format("( Path length : {0:0.0} units )\r\n", gcodeDistance);
             header += string.Format("( Duration ca.: {0:0.0} min. )\r\n", gcodeTime);
             if (gcodeSubroutineCount > 0)
                 header += string.Format("( Call to subs.: {0} )\r\n", gcodeSubroutineCount);
