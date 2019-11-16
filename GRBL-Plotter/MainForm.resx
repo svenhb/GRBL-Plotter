@@ -6503,6 +6503,24 @@ Langue
   <data name="&gt;&gt;removeAnyZMoveToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;workpieceToolStripMenuItem.Name" xml:space="preserve">
+    <value>workpieceToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;workpieceToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;probingToolLengthToolStripMenuItem.Name" xml:space="preserve">
+    <value>probingToolLengthToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;probingToolLengthToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;surfaceScanHeightMapToolStripMenuItem.Name" xml:space="preserve">
+    <value>surfaceScanHeightMapToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;surfaceScanHeightMapToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;machineToolStripMenuItem.Name" xml:space="preserve">
     <value>machineToolStripMenuItem</value>
   </data>
@@ -6634,24 +6652,6 @@ Langue
   </data>
   <data name="&gt;&gt;gamePadTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;workpieceToolStripMenuItem.Name" xml:space="preserve">
-    <value>workpieceToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;workpieceToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;probingToolLengthToolStripMenuItem.Name" xml:space="preserve">
-    <value>probingToolLengthToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;probingToolLengthToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;surfaceScanHeightMapToolStripMenuItem.Name" xml:space="preserve">
-    <value>surfaceScanHeightMapToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;surfaceScanHeightMapToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

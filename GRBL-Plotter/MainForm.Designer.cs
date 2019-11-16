@@ -328,6 +328,9 @@ namespace GRBL_Plotter
             this.ersetzteG23DurchLinienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertZToSspindleSpeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeAnyZMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workpieceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.probingToolLengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.surfaceScanHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edgeFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -350,9 +353,6 @@ namespace GRBL_Plotter
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
-            this.workpieceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.probingToolLengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.surfaceScanHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2340,6 +2340,26 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.removeAnyZMoveToolStripMenuItem, "removeAnyZMoveToolStripMenuItem");
             this.removeAnyZMoveToolStripMenuItem.Click += new System.EventHandler(this.removeAnyZMoveToolStripMenuItem_Click);
             // 
+            // workpieceToolStripMenuItem
+            // 
+            this.workpieceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.probingToolLengthToolStripMenuItem,
+            this.surfaceScanHeightMapToolStripMenuItem});
+            this.workpieceToolStripMenuItem.Name = "workpieceToolStripMenuItem";
+            resources.ApplyResources(this.workpieceToolStripMenuItem, "workpieceToolStripMenuItem");
+            // 
+            // probingToolLengthToolStripMenuItem
+            // 
+            this.probingToolLengthToolStripMenuItem.Name = "probingToolLengthToolStripMenuItem";
+            resources.ApplyResources(this.probingToolLengthToolStripMenuItem, "probingToolLengthToolStripMenuItem");
+            this.probingToolLengthToolStripMenuItem.Click += new System.EventHandler(this.edgeFinderopen);
+            // 
+            // surfaceScanHeightMapToolStripMenuItem
+            // 
+            this.surfaceScanHeightMapToolStripMenuItem.Name = "surfaceScanHeightMapToolStripMenuItem";
+            resources.ApplyResources(this.surfaceScanHeightMapToolStripMenuItem, "surfaceScanHeightMapToolStripMenuItem");
+            this.surfaceScanHeightMapToolStripMenuItem.Click += new System.EventHandler(this.heightMapToolStripMenuItem_Click);
+            // 
             // machineToolStripMenuItem
             // 
             this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2483,26 +2503,6 @@ namespace GRBL_Plotter
             // gamePadTimer
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
-            // 
-            // workpieceToolStripMenuItem
-            // 
-            this.workpieceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.probingToolLengthToolStripMenuItem,
-            this.surfaceScanHeightMapToolStripMenuItem});
-            this.workpieceToolStripMenuItem.Name = "workpieceToolStripMenuItem";
-            resources.ApplyResources(this.workpieceToolStripMenuItem, "workpieceToolStripMenuItem");
-            // 
-            // probingToolLengthToolStripMenuItem
-            // 
-            this.probingToolLengthToolStripMenuItem.Name = "probingToolLengthToolStripMenuItem";
-            resources.ApplyResources(this.probingToolLengthToolStripMenuItem, "probingToolLengthToolStripMenuItem");
-            this.probingToolLengthToolStripMenuItem.Click += new System.EventHandler(this.edgeFinderopen);
-            // 
-            // surfaceScanHeightMapToolStripMenuItem
-            // 
-            this.surfaceScanHeightMapToolStripMenuItem.Name = "surfaceScanHeightMapToolStripMenuItem";
-            resources.ApplyResources(this.surfaceScanHeightMapToolStripMenuItem, "surfaceScanHeightMapToolStripMenuItem");
-            this.surfaceScanHeightMapToolStripMenuItem.Click += new System.EventHandler(this.heightMapToolStripMenuItem_Click);
             // 
             // MainForm
             // 
