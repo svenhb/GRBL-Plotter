@@ -325,4 +325,14 @@ Z将移回起始位置</value>
   <data name="$this.Text" xml:space="preserve">
     <value>探测和刀具长度偏移</value>
   </data>
+  <data name="cBZProbing.ToolTip" xml:space="preserve">
+    <value>在成功进行边缘或角部探测之后，最终探测Z</value>
+  </data>
+  <data name="cBSetCenterZero.Text" xml:space="preserve">
+    <value>将工具中心设为零</value>
+  </data>
+  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
+    <value>如果选中，则工具（探针/刀具）中心定义为零位置。
+通常，工具（探针/刀具）的边界用于定义零。</value>
+  </data>
 </root>

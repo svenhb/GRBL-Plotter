@@ -104,12 +104,13 @@
             this.btnStartTL = new System.Windows.Forms.Button();
             this.lblTLProgress = new System.Windows.Forms.Label();
             this.progressBarTL = new System.Windows.Forms.ProgressBar();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancelTL = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gBCoordinates = new System.Windows.Forms.GroupBox();
             this.btnProbeCoordClear = new System.Windows.Forms.Button();
             this.rBProbeCoord2 = new System.Windows.Forms.RadioButton();
             this.rBProbeCoord1 = new System.Windows.Forms.RadioButton();
+            this.cBSetCenterZero = new System.Windows.Forms.CheckBox();
             this.gBHardware.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).BeginInit();
@@ -531,6 +532,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cBSetCenterZero);
             this.tabPage1.Controls.Add(this.btnGetAngleEF);
             this.tabPage1.Controls.Add(this.tBAngle);
             this.tabPage1.Controls.Add(this.label20);
@@ -744,7 +746,7 @@
             this.tabPage3.Controls.Add(this.btnStartTL);
             this.tabPage3.Controls.Add(this.lblTLProgress);
             this.tabPage3.Controls.Add(this.progressBarTL);
-            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.btnCancelTL);
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -794,11 +796,12 @@
             resources.ApplyResources(this.progressBarTL, "progressBarTL");
             this.progressBarTL.Name = "progressBarTL";
             // 
-            // button2
+            // btnCancelTL
             // 
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnCancelTL, "btnCancelTL");
+            this.btnCancelTL.Name = "btnCancelTL";
+            this.btnCancelTL.UseVisualStyleBackColor = true;
+            this.btnCancelTL.Click += new System.EventHandler(this.btnCancelTL_Click);
             // 
             // timer1
             // 
@@ -836,6 +839,13 @@
             this.rBProbeCoord1.TabStop = true;
             this.rBProbeCoord1.UseVisualStyleBackColor = true;
             this.rBProbeCoord1.CheckedChanged += new System.EventHandler(this.rBProbeCoord1_CheckedChanged);
+            // 
+            // cBSetCenterZero
+            // 
+            resources.ApplyResources(this.cBSetCenterZero, "cBSetCenterZero");
+            this.cBSetCenterZero.Name = "cBSetCenterZero";
+            this.toolTip1.SetToolTip(this.cBSetCenterZero, resources.GetString("cBSetCenterZero.ToolTip"));
+            this.cBSetCenterZero.UseVisualStyleBackColor = true;
             // 
             // ControlProbing
             // 
@@ -956,7 +966,7 @@
         private System.Windows.Forms.Button btnStartTL;
         private System.Windows.Forms.Label lblTLProgress;
         private System.Windows.Forms.ProgressBar progressBarTL;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancelTL;
         private System.Windows.Forms.PictureBox pBTL;
         private System.Windows.Forms.Button btnClearTL;
         private System.Windows.Forms.GroupBox gBCoordinates;
@@ -965,5 +975,6 @@
         private System.Windows.Forms.Button btnProbeCoordClear;
         private System.Windows.Forms.CheckBox cBSetCoordTL;
         private System.Windows.Forms.Button btnSaveTL;
+        private System.Windows.Forms.CheckBox cBSetCenterZero;
     }
 }

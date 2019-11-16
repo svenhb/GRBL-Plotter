@@ -326,4 +326,11 @@ Setzen Sie die Werkzeugspitze wie bei der Kantenerkennung auf die linke Seite de
   <data name="$this.Text" xml:space="preserve">
     <value>Abtastung und Werkzeuglängenkorrektur</value>
   </data>
+  <data name="cBSetCenterZero.Text" xml:space="preserve">
+    <value>Wkzg.mitte auf Null setzen</value>
+  </data>
+  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
+    <value>Wenn aktiviert, definiert die Werkzeugmitte (Messtaster / Fräser) die Nullposition.
+Normalerweise wird der Rand des Werkzeugs (Messtaster / Fräser) zum Definieren von Null verwendet.</value>
+  </data>
 </root>

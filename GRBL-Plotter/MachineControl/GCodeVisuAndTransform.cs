@@ -34,6 +34,7 @@
  * 2019-05-24 add cutter radius compensation
  * 2019-06-05 edit marker-view, show end-point and center of arc
  * 2019-08-15 add logger
+ * 2019-11-16 add calculation of process time
  */
 
 //#define debuginfo 
@@ -69,8 +70,23 @@ namespace GRBL_Plotter
 
         public enum convertMode { nothing, removeZ, convertZToS };
 
+        public static double gcodeMinutes = 0;
+        public static double gcodeDistance = 0;
+        private static double feedXmax = 5000;
+        private static double feedYmax = 5000;
+        private static double feedZmax = 5000;
+        private static double feedAmax = 5000;
+        private static double feedBmax = 5000;
+        private static double feedCmax = 5000;
+
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        public string getProcessingTime()
+        {
+            TimeSpan t = TimeSpan.FromSeconds(gcodeMinutes*60);
+            return string.Format("Est. time: {0:D2}:{1:D2}:{2:D2}", t.Hours,t.Minutes,t.Seconds);
+        }
 
         public bool containsG2G3Command()
         { return modal.containsG2G3; }
@@ -234,6 +250,14 @@ namespace GRBL_Plotter
             figureMarkerCount = 0;
 //            int figureMarkerLine = 0;
             bool figureActive = false;
+            gcodeMinutes = 0;
+            gcodeDistance = 0;
+            feedXmax = (grbl.getSetting(110) > 0) ? grbl.getSetting(110) : 10000;
+            feedYmax = (grbl.getSetting(111) > 0) ? grbl.getSetting(111) : 10000;
+            feedZmax = (grbl.getSetting(112) > 0) ? grbl.getSetting(112) : 10000;
+            feedAmax = (grbl.getSetting(113) > 0) ? grbl.getSetting(113) : 10000;
+            feedBmax = (grbl.getSetting(114) > 0) ? grbl.getSetting(114) : 10000;
+            feedCmax = (grbl.getSetting(115) > 0) ? grbl.getSetting(115) : 10000;
 
             oldLine.resetAll(grbl.posWork);         // reset coordinates and parser modes, set initial pos
             newLine.resetAll();                     // reset coordinates and parser modes
@@ -274,15 +298,17 @@ namespace GRBL_Plotter
                 }
 
                 if (!programEnd)
+                {
                     upDateFigure = createDrawingPathFromGCode(newLine, oldLine);        // add data to drawing path
-//                Logger.Info("g {0} x {1} y {2}",newLine.motionMode,newLine.actualPos.X,newLine.actualPos.Y);
-
+                    calculateProcessTime(newLine, oldLine);
+  //                Logger.Info("g {0} x {1} y {2}",newLine.motionMode,newLine.actualPos.X,newLine.actualPos.Y);
+                }
                 if (figureMarkerCount > 0)
-                    if (figureActive)
+                {   if (figureActive)
                         newLine.figureNumber = figureMarkerCount;
                     else
                         newLine.figureNumber = -1;
-
+                }
                 isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
                 oldLine = new gcodeByLine(newLine);                     // get copy of newLine      
                 gcodeList.Add(new gcodeByLine(newLine));                // add parsed line to list
@@ -1254,6 +1280,7 @@ namespace GRBL_Plotter
                 if (newL.motionMode == 3) { da=-(360 + a2 - a1); }
                 if (da > 360) { da -= 360; }
                 if (da < -360) { da += 360; }
+                newL.distance = Math.Abs( 2 * radius * Math.PI * da / 360);
                 if (newL.motionMode == 2)
                 {   path.AddArc(x1, y1, 2 * radius, 2 * radius, a1, da);
                     if (!newL.ismachineCoordG53)
@@ -1271,6 +1298,35 @@ namespace GRBL_Plotter
                 newL.figureNumber = -1;
 
             return figureStart;
+        }
+
+        private void calculateProcessTime(gcodeByLine newL, gcodeByLine oldL)
+        {         
+            double feed = Math.Min(feedXmax, feedYmax);         // feed in mm/min
+            if (newL.z != null)
+                feed = Math.Min(feed, feedZmax);                // max feed defines final speed
+            if (newL.a != null)
+                feed = Math.Min(feed, feedAmax);                // max feed defines final speed
+            if (newL.b != null)
+                feed = Math.Min(feed, feedBmax);                // max feed defines final speed
+            if (newL.c != null)
+                feed = Math.Min(feed, feedCmax);                // max feed defines final speed
+
+            double distanceX = Math.Abs(newL.actualPos.X - oldL.actualPos.X);
+            double distanceY = Math.Abs(newL.actualPos.Y - oldL.actualPos.Y);
+            double distanceXY = Math.Max(distanceX, distanceY);
+            double distanceZ = Math.Abs(newL.actualPos.Z - oldL.actualPos.Z);
+
+            if (newL.motionMode > 1)
+                distanceXY = newL.distance;     // Arc is calc in createDrawingPathFromGCode
+
+            double distanceAll = Math.Max(distanceXY, distanceZ);
+
+            if (newL.motionMode > 0)
+                feed = Math.Min(feed, newL.feedRate);           // if G1,2,3 use set feed
+
+            gcodeDistance += distanceAll;
+            gcodeMinutes += distanceAll / feed;
         }
 
         private void markPath(GraphicsPath path, float x, float y, int type)

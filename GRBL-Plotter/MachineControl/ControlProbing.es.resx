@@ -325,4 +325,14 @@ Z retrocederá a la posición inicial</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Sondeo y desplazamiento de la longitud de la herramienta</value>
   </data>
+  <data name="cBZProbing.ToolTip" xml:space="preserve">
+    <value>Sonda Z finalmente, después de una prueba exitosa de borde o esquina</value>
+  </data>
+  <data name="cBSetCenterZero.Text" xml:space="preserve">
+    <value>Establecer el centro de herramientas como cero</value>
+  </data>
+  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
+    <value>Si se marca, el centro de la herramienta (sonda / cortador) define la posición cero.
+Por lo general, el borde de la herramienta (sonda / cortador) se utiliza para definir cero.</value>
+  </data>
 </root>

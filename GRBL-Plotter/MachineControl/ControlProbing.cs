@@ -168,9 +168,8 @@ namespace GRBL_Plotter
                 if (probingAxisIndex == 1) { tmpProbePos = probePos.Y - (double)probingOffset[1]; tmpEF = string.Format("Ok Y:{0}", probePos.Y); }
                 if (probingAxisIndex == 2) { tmpProbePos = probePos.Z - (double)probingOffset[2]; tmpEF = string.Format("Ok Z:{0}", probePos.Z); }
 
-                    if (useG92)
-                {
-                    tmpProbePos = (grbl.posMachine.X - probePos.X) + (double)probingOffset[0];
+                if (useG92)
+                {   tmpProbePos = (grbl.posMachine.X - probePos.X) + (double)probingOffset[0];
                     if (probingAxisIndex == 1) tmpProbePos = (grbl.posMachine.Y - probePos.Y) + (double)probingOffset[1];
                     if (probingAxisIndex == 2) tmpProbePos = (grbl.posMachine.Z - probePos.Z) + (double)probingOffset[2];
                 }
@@ -178,8 +177,7 @@ namespace GRBL_Plotter
                 if (probingAction == probingMode.edgeFinder)
                 {
                     if ((probingAxisIndex >= 0) && (probingAxisIndex <= 2))
-                    {
-                        sendCommandEvent(new CmdEventArgs((string.Format("{0} {1}{2}", CoordCommand, probingAxis[probingAxisIndex], tmpProbePos).Replace(',', '.'))));
+                    {   sendCommandEvent(new CmdEventArgs((string.Format("{0} {1}{2}", CoordCommand, probingAxis[probingAxisIndex], tmpProbePos).Replace(',', '.'))));
                         probingMoveSave = string.Format("G90 G00 {0}{1} (move to save pos.)", probingAxis[probingAxisIndex], probingSave[probingAxisIndex]);
                         lblEFProgress.Text = tmpEF;
                     }
@@ -267,6 +265,7 @@ namespace GRBL_Plotter
                     {
                         lblTLProgress.Text = Localization.getString("probingTimeOut");// "Time out";
                         updateProgress = false;
+                        probingFinishTL();
                     }
                 }
             }
@@ -485,12 +484,13 @@ namespace GRBL_Plotter
         }
 
         private void cBZProbing_CheckedChanged(object sender, EventArgs e)
-        {
-            setNudEnable(2, (cBZProbing.Checked || cBnow.Name == "rB5"));
-            if ((cBZProbing.Checked) && (cBnow != null))
-                setText(cBnow, "Z");
-            else
-                setText(cBnow, "");
+        {   if (cBnow != null)
+            {   setNudEnable(2, (cBZProbing.Checked || cBnow.Name == "rB5"));
+                if (cBZProbing.Checked) 
+                    setText(cBnow, "Z");
+                else
+                    setText(cBnow, "");
+            }
         }
 
         private void setText(RadioButton tmp, string txt)
@@ -577,28 +577,36 @@ namespace GRBL_Plotter
         }
 
         private string ProbeToward_E()    // probe towards direction east
-        {
-            probingOffset[0] = -nUDOffsetX.Value;
-            probingSave[0] = -nUDProbeSaveX.Value;
+        {   decimal addon = 0;
+            if (cBSetCenterZero.Checked) { addon = -nUDDiameter.Value / 2; }
+
+            probingOffset[0] = -nUDOffsetX.Value +addon;
+            probingSave[0] = -nUDProbeSaveX.Value+addon;
             return string.Format("{0} X{1} F{2};", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeed.Value);
         }
         private string ProbeToward_W()    // probe towards direction west
-        {
-            probingOffset[0] = nUDOffsetX.Value;
-            probingSave[0] = nUDProbeSaveX.Value;
+        {   decimal addon = 0;
+            if (cBSetCenterZero.Checked) { addon = nUDDiameter.Value / 2; }
+
+            probingOffset[0] = nUDOffsetX.Value +addon;
+            probingSave[0] = nUDProbeSaveX.Value+addon;
             return string.Format("{0} X-{1} F{2};", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeed.Value);
         }
 
         private string ProbeToward_N()    // probe towards direction north
-        {
-            probingOffset[1] = -nUDOffsetY.Value;
-            probingSave[1] = -nUDProbeSaveY.Value;
+        {   decimal addon = 0;
+            if (cBSetCenterZero.Checked) { addon = -nUDDiameter.Value / 2; }
+
+            probingOffset[1] = -nUDOffsetY.Value +addon;
+            probingSave[1] = -nUDProbeSaveY.Value+addon;
             return string.Format("{0} Y{1} F{2};", ProbeCommand, nUDProbeTravelY.Value, nUDProbeFeed.Value);
         }
         private string ProbeToward_S()    // probe towards direction south
-        {
-            probingOffset[1] = nUDOffsetY.Value;
-            probingSave[1] = nUDProbeSaveY.Value;
+        {   decimal addon = 0;
+            if (cBSetCenterZero.Checked) { addon = nUDDiameter.Value / 2; }
+
+            probingOffset[1] = nUDOffsetY.Value +addon;
+            probingSave[1] = nUDProbeSaveY.Value+addon;
             return string.Format("{0} Y-{1} F{2};", ProbeCommand, nUDProbeTravelY.Value, nUDProbeFeed.Value);
         }
 
@@ -644,6 +652,7 @@ namespace GRBL_Plotter
             if (tmp != null)
                 tmp.Enabled = true;
             cBZProbing.Enabled = en;
+            cBSetCenterZero.Enabled = en;
             gBHardware.Enabled = en;
             gBMovement.Enabled = en;
         }
@@ -775,7 +784,7 @@ namespace GRBL_Plotter
             probeX = false; probeY = false;
             probingCount = 1;
             probingAction = probingMode.noProbing;
-            setRBEnable(cBnow, true);
+//            setRBEnable(cBnow, true);
         }
 
         private void setProgressTL(decimal maxTravel)
@@ -789,6 +798,13 @@ namespace GRBL_Plotter
         }
         private void btnClearTL_Click(object sender, EventArgs e)
         {   sendCommandEvent(new CmdEventArgs("G49"));   }
+
+        private void btnCancelTL_Click(object sender, EventArgs e)
+        {   probingFinishTL();
+            lblTLProgressInfo.Text = Localization.getString("probingCancel1"); //"Probing canceled";
+            if (!isIdle)
+                lblTLProgress.Text = Localization.getString("probingCancel2"); //"Process last command";
+        }
 
         #endregion
 
@@ -827,6 +843,7 @@ namespace GRBL_Plotter
 
         private void btnSaveTL_Click(object sender, EventArgs e)
         {   sendCommandEvent(new CmdEventArgs(string.Format("G90 G00 Z{0}",nUDProbeSaveZ.Value).Replace(',', '.'))); }
+
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {

@@ -325,4 +325,14 @@ Z вернется в исходное положение</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Зондирование и смещение длины инструмента</value>
   </data>
+  <data name="cBZProbing.ToolTip" xml:space="preserve">
+    <value>Зонд Z, наконец, после успешного прохождения края или угла</value>
+  </data>
+  <data name="cBSetCenterZero.Text" xml:space="preserve">
+    <value>Установить центр инструмента на ноль</value>
+  </data>
+  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
+    <value>Если флажок установлен, центр инструмента (щуп / резак) определяет нулевое положение.
+Обычно граница инструмента (зонд / резак) используется для определения нуля.</value>
+  </data>
 </root>

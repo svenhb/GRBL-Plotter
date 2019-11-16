@@ -325,4 +325,14 @@ Z reviendra à la position de départ</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Palpage et décalage de longueur d'outil</value>
   </data>
+  <data name="cBZProbing.ToolTip" xml:space="preserve">
+    <value>La sonde Z enfin, après avoir réussi à sonder le bord ou le coin</value>
+  </data>
+  <data name="cBSetCenterZero.Text" xml:space="preserve">
+    <value>Définir le centre de l'outil à zéro</value>
+  </data>
+  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
+    <value>Si cette case est cochée, le centre de l'outil (palpeur / couteau) définit la position zéro.
+Habituellement, la bordure de l'outil (palpeur / couteau) est utilisée pour définir le zéro.</value>
+  </data>
 </root>
