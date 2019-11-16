@@ -4450,5 +4450,17 @@ namespace GRBL_Plotter.Properties {
                 this["probingWorkpieceDiameter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ctrlUseSerialPortFixer {
+            get {
+                return ((bool)(this["ctrlUseSerialPortFixer"]));
+            }
+            set {
+                this["ctrlUseSerialPortFixer"] = value;
+            }
+        }
     }
 }

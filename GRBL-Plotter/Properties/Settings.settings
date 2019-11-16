@@ -1109,5 +1109,8 @@
     <Setting Name="probingWorkpieceDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
+    <Setting Name="ctrlUseSerialPortFixer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
