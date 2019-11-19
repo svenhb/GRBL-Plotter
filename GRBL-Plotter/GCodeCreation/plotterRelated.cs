@@ -371,6 +371,7 @@ namespace GRBL_Plotter
         public static void SortCode()
         {
             gcode.jobStart(finalGcodeString, "StartJob");
+            Logger.Trace("SortCode() group:{0}", groupObjects);
 
             #region sort
             if (groupObjects)
@@ -468,6 +469,7 @@ namespace GRBL_Plotter
         /// </summary>
         public static string FinalGCode(string titel, string file)
         {
+            Logger.Trace("FinalGCode() ");
             gcode.docTitle = DocTitle;
             gcode.docDescription = DocDescription;
             string header = gcode.GetHeader(titel, file);

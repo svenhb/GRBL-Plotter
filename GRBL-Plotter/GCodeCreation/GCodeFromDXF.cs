@@ -204,6 +204,7 @@ namespace GRBL_Plotter //DXFImporter
                     {
                         if (block.BlockName.ToString() == ins.BlockName)
                         {
+                            Logger.Trace("Block: {0}", block.BlockName);
                             dxfColorID = block.ColorNumber;
                             Plotter.PathName = "Block:"+block.BlockName;
                             Plotter.AddToHeader("Block: " + block.BlockName);
@@ -240,7 +241,7 @@ namespace GRBL_Plotter //DXFImporter
             }
 
             Plotter.PathDashArray = new double[0];                  // default no dashes
-            if (entity.LineType == "ByLayer")
+            if ((entity.LineType==null) || (entity.LineType == "ByLayer"))
             {   if (layerLType.ContainsKey(entity.LayerName))       // check if layer name is known
                 {   string dashType = layerLType[entity.LayerName]; // get name of pattern
                     if (lineTypes.ContainsKey(dashType))            // check if pattern name is known
@@ -292,6 +293,8 @@ namespace GRBL_Plotter //DXFImporter
             }
             dxfColorIDold = dxfColorID;
 
+            Logger.Trace("  Entity: {0}", entity.GetType().ToString());
+
             if (entity.GetType() == typeof(DXFPointEntity))
             {
                 DXFPointEntity point = (DXFPointEntity)entity;
@@ -302,6 +305,7 @@ namespace GRBL_Plotter //DXFImporter
                     dxfStopPath();
                 }
                 else { gcodeDotOnly(x, y, "Start Point"); }
+                Logger.Trace("    Point: {0};{1} ", x, y);
             }
 
             #region DXFLWPolyline
@@ -319,6 +323,8 @@ namespace GRBL_Plotter //DXFImporter
                     x2 = x; y2 = y;
                     x = (double)coordinate.Vertex.X + (double)offsetX;
                     y = (double)coordinate.Vertex.Y + (double)offsetY;
+  //                  Logger.Trace("    Vertex: {0};{1} ", x, y);
+
                     if (i == 0)
                     {
                         if (!nodesOnly)
@@ -360,6 +366,7 @@ namespace GRBL_Plotter //DXFImporter
                         {
                             x = (float)coordinate.Location.X + (float)offsetX;
                             y = (float)coordinate.Location.Y + (float)offsetY;
+      //                      Logger.Trace("    Vertex: {0};{1} ", x, y);
                             if (!nodesOnly)
                             {   if (index == 0)
                                     dxfStartPath(x, y, "Start PolyLine");                               
@@ -391,7 +398,8 @@ namespace GRBL_Plotter //DXFImporter
                     gcodeDotOnly(x, y, "Start Line");
                     gcodeDotOnly(x2, y2, "End Line");
                 }
-                dxfStopPath();              
+                dxfStopPath();
+                Logger.Trace("    From: {0};{1}  To: {2};{3}", x,y,x2,y2);
             }
             #endregion
             #region DXFSpline
@@ -405,13 +413,20 @@ namespace GRBL_Plotter //DXFImporter
                 string cmt = "Start Spline " + spline.KnotValues.Count.ToString() + " " + spline.ControlPoints.Count.ToString() + " " + spline.FitPoints.Count.ToString();
                 dxfStartPath(lastX, lastY, cmt);
                 Plotter.IsPathReduceOk = true;
+                Logger.Trace("    start: {0};{1} count:{2}", lastX, lastY, spline.ControlPointCount);
 
                 for (int rep = 0; rep < spline.ControlPointCount; rep += 4)
                 {
+                    if ((rep + 3) >= spline.ControlPointCount)
+                    {   Logger.Error("    DXFSpline - missing points: rep: {0}, max: {1}", rep, spline.ControlPointCount);
+                        break;
+                    }
                     cx0 = (double)spline.ControlPoints[rep].X + offsetX; cy0 = (double)spline.ControlPoints[rep].Y + offsetY;
                     cx1 = (double)spline.ControlPoints[rep + 1].X + offsetX; cy1 = (double)spline.ControlPoints[rep + 1].Y + offsetY;
                     cx2 = (double)spline.ControlPoints[rep + 2].X + offsetX; cy2 = (double)spline.ControlPoints[rep + 2].Y + offsetY;
                     cx3 = (double)spline.ControlPoints[rep + 3].X + offsetX; cy3 = (double)spline.ControlPoints[rep + 3].Y + offsetY;
+//                    Logger.Trace("    ControlPoints: {0:0};{1:0} {2:0};{3:0} {4:0};{5:0} {6:0};{7:0}", cx0, cy0, cx1, cy1, cx2, cy2, cx3, cy3);
+
                     points = new System.Windows.Point[4];
                     points[0] = new System.Windows.Point(cx0, cy0); //(qpx1, qpy1);
                     points[1] = new System.Windows.Point(cx1, cy1); //(qpx1, qpy1);
@@ -429,6 +444,7 @@ namespace GRBL_Plotter //DXFImporter
                     { gcodeDotOnly(cx3, cy3, "Bezier"); }
                 }
                 dxfStopPath();
+                Logger.Trace("    end  : {0};{1}", lastX, lastY);
             }
             #endregion
             #region DXFCircle
@@ -440,13 +456,24 @@ namespace GRBL_Plotter //DXFImporter
                 dxfStartPath(x + circle.Radius, y, "Start Circle");
                 Plotter.Arc( 2, (float)x + (float)circle.Radius, (float)y, -(float)circle.Radius, 0, "");
                 dxfStopPath();
+                Logger.Trace("    Center: {0};{1}  R: {2}", x, y, circle.Radius);
             }
             #endregion
 
             else if (entity.GetType() == typeof(DXFEllipse))
             {
                 DXFEllipse circle = (DXFEllipse)entity;
-                Plotter.Comment( "Ellipse: " + circle.ColorNumber.ToString());
+                x = (float)circle.Center.X + (float)offsetX;
+                y = (float)circle.Center.Y + (float)offsetY;
+                double ratio = circle.AxisRatio;
+                double? ax = circle.MainAxis.X;
+                double? ay = circle.MainAxis.Y;
+                dxfStartPath(x , y, "Start Ellipse");
+                if ((ax != null) && (ay != null)) Plotter.MoveTo(new System.Windows.Point((double)ax,(double)ay),"Ellipse");
+              //  Plotter.Arc(2, (float)x + (float)circle.Radius, (float)y, -(float)circle.Radius, 0, "");
+                dxfStopPath();
+                Logger.Trace("    MainAxis: {0};{1} ", ax, ay);
+                Logger.Trace("    Center: {0};{1}  Ratio: {2}", x, y, circle.AxisRatio);
             }
             #region DXFArc
             else if (entity.GetType() == typeof(DXFArc))
@@ -495,6 +522,7 @@ namespace GRBL_Plotter //DXFImporter
                         index++;
                     }
                     dxfStopPath();
+                    Logger.Trace("    Center: {0};{1}  R: {2}", X, Y, R);
                 }
             }
             #endregion
@@ -519,6 +547,7 @@ namespace GRBL_Plotter //DXFImporter
                 string tmp = string.Format("Id=\"{0}\" Color=\"#{1}\" ToolNr=\"{2}\"", dxfColorID, dxfColorHex, toolToUse);
                 Plotter.InsertText(tmp);
                 Plotter.IsPathFigureEnd = true;
+                Logger.Trace("    Text: {0}", GCodeFromFont.gcText);
             }
             #endregion
             else
@@ -533,6 +562,7 @@ namespace GRBL_Plotter //DXFImporter
                 double t = (double)i / outputSegmentCount;
                 points[i] = GetBezierPoint(t, controlPoints, 0, controlPoints.Length);
             }
+//            Logger.Trace("  GetBezierApproximation {0}", outputSegmentCount);
             return new PolyLineSegment(points, true);
         }
         private static System.Windows.Point GetBezierPoint(double t, System.Windows.Point[] controlPoints, int index, int count)
