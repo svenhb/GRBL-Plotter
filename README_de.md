@@ -7,10 +7,15 @@ Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Don
 ### Neu in Version 1.3.2.x   
 * Neues Fenster für Probing - Kantenfinder, Mittenfinder, Werkzeuglängenkorrektur
 * Anzahl der benutzerdefinierten Buttons auf 32 erhöht
-* Grobe Übersetzung für die Sprachen Spanisch, Französisch, Russisch und Chinesisch hinzugefügt. Die Übersetzung wurde mit dem google Translator gemacht, also möglicherweise nicht ganz korrekt und leider in vielen Fällen zu lang für die Steuerelemente.
-* Bug fix G-Code Speicherung
-* Bug fix Game pad support
     
+    
+### Neu in Version 1.3.1.x
+* Grobe Sprachunterstützung für Spanisch, Französisch, Russisch und Chinesisch.
+Die Übersetzungen wurden mit google Translator gemacht, also möglichwerweise nicht ganz korrekt. Ausserdem sind die Texte manchmal zu lang für die entsprechenden Steuerelemente.
+* Bug fix saving G-Code
+* Bug fix Game pad support
+
+
 ### Neu in Version 1.3.0.x
 #### Neue Funktion 'Anwendungfall':
 * Selektiere einen 'Anwendungsfall' beim Import von DXF oder SVG Grafiken
