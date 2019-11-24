@@ -1,6 +1,13 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### 2019-11-24 version 1.3.2.3
+* Bug fix DXF Import - Ellipse:
+Fix DXFLib.dll, Add Ellipse support
+* Bug fix DXF Import - Spline
+Adapt import-code from Inkscape
+* Probing window: add storage of checkbox states
+ 
 ### 2019-11-10 version 1.3.2.0
 * Add probing window with edge / corner finder, center finder and tool length correction
 * Increased number of custom buttons to 32
