@@ -1,9 +1,17 @@
 ----- Possible levels: Trace, Debug, Info, Warn, Error, Fatal ----|
 
-2019-11-10 23:09:48.9168 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter Ver. 1.3.2.0 START ++++++
-2019-11-10 23:09:49.1199 | Info  | GRBL_Plotter.MainForm          | Language: es
-2019-11-10 23:09:50.0886 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, openPort COM3 115200
-2019-11-10 23:09:52.2004 | Info  | GRBL_Plotter.MainForm          | Assume buffer size of 127 [Setup - Flow control - grbl buffer size]
-2019-11-10 23:10:00.1455 | Info  | GRBL_Plotter.MainForm          | Update Probing    5,075    0,000    0,000
-2019-11-10 23:10:18.5351 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, closePort COM3
-2019-11-10 23:10:18.9882 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter STOP ++++++
+2019-11-24 12:08:01.4306 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter Ver. 1.3.2.2 START ++++++
+2019-11-24 12:08:01.6235 | Info  | GRBL_Plotter.MainForm          | Language: en
+2019-11-24 12:08:02.3209 | Trace | GRBL_Plotter.MainForm          | MainForm_Load start
+2019-11-24 12:08:02.4772 | Trace | GRBL_Plotter.ControlSerialForm | ++++++ SerialForm 1 START ++++++
+2019-11-24 12:08:02.5709 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, openPort COM3 115200
+2019-11-24 12:08:02.5865 | Warn  | GRBL_Plotter.ControlSerialForm | Form 1, Port COM3 not available
+2019-11-24 12:08:03.1178 | Trace | GRBL_Plotter.MainForm          | MainForm_Load stop
+2019-11-24 12:08:13.5800 | Trace | GRBL_Plotter.ControlProbing    | ++++++ ControlProbing START ++++++
+2019-11-24 12:08:20.9149 | Trace | GRBL_Plotter.ControlProbing    | ++++++ ControlProbing START ++++++
+2019-11-24 12:08:28.2744 | Trace | GRBL_Plotter.ControlProbing    | ++++++ ControlProbing START ++++++
+2019-11-24 12:08:36.8365 | Trace | GRBL_Plotter.ControlProbing    | ++++++ ControlProbing START ++++++
+2019-11-24 12:08:40.9455 | Trace | GRBL_Plotter.ControlSerialForm | Try closing SerialForm 1 FormOwnerClosing
+2019-11-24 12:08:41.2580 | Trace | GRBL_Plotter.ControlSerialForm | ++++++ SerialForm 1 STOP ++++++
+2019-11-24 12:08:41.2580 | Trace | GRBL_Plotter.MainForm          | FormClosing
+2019-11-24 12:08:41.4767 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter STOP ++++++

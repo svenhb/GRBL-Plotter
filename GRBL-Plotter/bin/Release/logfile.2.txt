@@ -1,9 +1,13 @@
 ----- Possible levels: Trace, Debug, Info, Warn, Error, Fatal ----|
 
-2019-11-10 23:06:31.5927 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter Ver. 1.3.2.0 START ++++++
-2019-11-10 23:06:31.8271 | Info  | GRBL_Plotter.MainForm          | Language: en
-2019-11-10 23:06:33.3292 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, openPort COM3 115200
-2019-11-10 23:06:35.2087 | Info  | GRBL_Plotter.MainForm          | Assume buffer size of 127 [Setup - Flow control - grbl buffer size]
-2019-11-10 23:06:57.4372 | Info  | GRBL_Plotter.MainForm          | Update Probing   15.879    1.000   -5.000
-2019-11-10 23:07:04.0623 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, closePort COM3
-2019-11-10 23:07:04.5289 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter STOP ++++++
+2019-11-24 12:07:25.9188 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter Ver. 1.3.2.2 START ++++++
+2019-11-24 12:07:26.2098 | Info  | GRBL_Plotter.MainForm          | Language: en
+2019-11-24 12:07:27.5002 | Trace | GRBL_Plotter.MainForm          | MainForm_Load start
+2019-11-24 12:07:28.2522 | Trace | GRBL_Plotter.ControlSerialForm | ++++++ SerialForm 1 START ++++++
+2019-11-24 12:07:28.4622 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, openPort COM3 115200
+2019-11-24 12:07:28.4622 | Warn  | GRBL_Plotter.ControlSerialForm | Form 1, Port COM3 not available
+2019-11-24 12:07:29.4651 | Trace | GRBL_Plotter.MainForm          | MainForm_Load stop
+2019-11-24 12:07:34.8702 | Trace | GRBL_Plotter.ControlSerialForm | Try closing SerialForm 1 FormOwnerClosing
+2019-11-24 12:07:35.3279 | Trace | GRBL_Plotter.ControlSerialForm | ++++++ SerialForm 1 STOP ++++++
+2019-11-24 12:07:35.3929 | Trace | GRBL_Plotter.MainForm          | FormClosing
+2019-11-24 12:07:35.6958 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter STOP ++++++
