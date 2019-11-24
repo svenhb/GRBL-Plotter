@@ -18,7 +18,7 @@ The translation was done with google translator, so maybe not quite right. In ad
 * Bug fix saving G-Code
 * Bug fix Game pad support
 
-### 2019- version 1.3.0.0
+### 2019-10-03 version 1.3.0.0
 #### New feature 'use cases':
 * select a 'use-case' when importing DXF or SVG
 * preset import options, pen up/down definitions, Z deepth, etc.
