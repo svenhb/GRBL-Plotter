@@ -5,6 +5,11 @@ Written in C# VisualStudio 2015.
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
 ### New in Version 1.3.2.x   
+* Bug fix DXF Import - Ellipse:
+Fix DXFLib.dll, Add Ellipse support
+* Bug fix DXF Import - Spline
+Adapt import-code from Inkscape
+* Probing window: add storage of checkbox states
 * Add probing window with edge / corner finder, center finder and tool length correction
 * Increased number of custom buttons to 32
 * Add a rough localization for spanish, french, russian and chinese language
@@ -64,7 +69,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.3.2.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-11-10    
+#### [GRBL-Plotter Vers. 1.3.2.3](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-11-24    
 
 ### Requirements for compiling
 * VisualStudio 2015 
