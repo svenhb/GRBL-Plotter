@@ -172,7 +172,6 @@ namespace GRBL_Plotter
             this.lblTool = new System.Windows.Forms.Label();
             this.cBTool = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.tBSpeed = new System.Windows.Forms.TextBox();
             this.cBCoolant = new System.Windows.Forms.CheckBox();
             this.cBSpindle = new System.Windows.Forms.CheckBox();
             this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
@@ -182,7 +181,6 @@ namespace GRBL_Plotter
             this.virtualJoystickB = new virtualJoystick.virtualJoystick();
             this.virtualJoystickC = new virtualJoystick.virtualJoystick();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOverrideDoor = new System.Windows.Forms.Button();
@@ -345,14 +343,16 @@ namespace GRBL_Plotter
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachineFix = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachine = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewTool = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
+            this.tBSpeed = new System.Windows.Forms.TextBox();
+            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
+            this.toolStripViewTool = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -1130,13 +1130,6 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
             // 
-            // tBSpeed
-            // 
-            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "guiSpindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBSpeed, "tBSpeed");
-            this.tBSpeed.Name = "tBSpeed";
-            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.guiSpindleSpeed;
-            // 
             // cBCoolant
             // 
             resources.ApplyResources(this.cBCoolant, "cBCoolant");
@@ -1294,15 +1287,6 @@ namespace GRBL_Plotter
             this.tableLayoutPanel2.Controls.Add(this.cBSendJogStop, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            // 
-            // cBSendJogStop
-            // 
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
-            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
-            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSendJogStop.Name = "cBSendJogStop";
-            this.cBSendJogStop.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -2462,22 +2446,6 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.toolStripViewMachine, "toolStripViewMachine");
             this.toolStripViewMachine.Click += new System.EventHandler(this.updateView);
             // 
-            // toolStripViewTool
-            // 
-            this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DToolTableShow;
-            this.toolStripViewTool.CheckOnClick = true;
-            this.toolStripViewTool.Name = "toolStripViewTool";
-            resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
-            this.toolStripViewTool.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewBackground
-            // 
-            this.toolStripViewBackground.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundShow;
-            this.toolStripViewBackground.CheckOnClick = true;
-            this.toolStripViewBackground.Name = "toolStripViewBackground";
-            resources.ApplyResources(this.toolStripViewBackground, "toolStripViewBackground");
-            this.toolStripViewBackground.Click += new System.EventHandler(this.updateView);
-            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -2503,6 +2471,38 @@ namespace GRBL_Plotter
             // gamePadTimer
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
+            // 
+            // tBSpeed
+            // 
+            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "guiSpindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBSpeed, "tBSpeed");
+            this.tBSpeed.Name = "tBSpeed";
+            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.guiSpindleSpeed;
+            // 
+            // cBSendJogStop
+            // 
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
+            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
+            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSendJogStop.Name = "cBSendJogStop";
+            this.cBSendJogStop.UseVisualStyleBackColor = true;
+            // 
+            // toolStripViewTool
+            // 
+            this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DToolTableShow;
+            this.toolStripViewTool.CheckOnClick = true;
+            this.toolStripViewTool.Name = "toolStripViewTool";
+            resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
+            this.toolStripViewTool.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewBackground
+            // 
+            this.toolStripViewBackground.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundShow;
+            this.toolStripViewBackground.CheckOnClick = true;
+            this.toolStripViewBackground.Name = "toolStripViewBackground";
+            resources.ApplyResources(this.toolStripViewBackground, "toolStripViewBackground");
+            this.toolStripViewBackground.Click += new System.EventHandler(this.updateView);
             // 
             // MainForm
             // 

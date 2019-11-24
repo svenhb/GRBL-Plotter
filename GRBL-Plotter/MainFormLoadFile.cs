@@ -239,7 +239,7 @@ namespace GRBL_Plotter
             var parts = tBURL.Text.Split('.');
             string ext = parts[parts.Length - 1].ToLower();   // get extension
          //   String ext = Path.GetExtension(fileName).ToLower();
-            MessageBox.Show("-" + ext + "-");
+         //   MessageBox.Show("-" + ext + "-");
             if (ext.IndexOf("svg") >= 0)
             {
                 startConvertSVG(tBURL.Text);
