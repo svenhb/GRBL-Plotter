@@ -18,7 +18,7 @@
 */
 
 /* 2019-11-10 new
- * 
+ * 2019-11-24 save 'checked' properties for edge-Z, edge-center, coordinate G10
 */
 
 using System;
@@ -108,6 +108,9 @@ namespace GRBL_Plotter
             rBCF1.Image = Properties.Resources.cfOff1;
             rBCF2.Image = Properties.Resources.cfOff2;
             pBTL.Image = Properties.Resources.tlOn;
+
+            if (!Properties.Settings.Default.probingCoordG10)
+                rBProbeCoord2.Checked = true;
         }
 
         public grblState setGrblSaState

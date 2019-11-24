@@ -62,6 +62,7 @@
             this.tBAngle = new System.Windows.Forms.TextBox();
             this.cBSetCoordTL = new System.Windows.Forms.CheckBox();
             this.btnSaveTL = new System.Windows.Forms.Button();
+            this.cBSetCenterZero = new System.Windows.Forms.CheckBox();
             this.gBMovement = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -110,7 +111,6 @@
             this.btnProbeCoordClear = new System.Windows.Forms.Button();
             this.rBProbeCoord2 = new System.Windows.Forms.RadioButton();
             this.rBProbeCoord1 = new System.Windows.Forms.RadioButton();
-            this.cBSetCenterZero = new System.Windows.Forms.CheckBox();
             this.gBHardware.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).BeginInit();
@@ -162,6 +162,8 @@
             // cBZProbing
             // 
             resources.ApplyResources(this.cBZProbing, "cBZProbing");
+            this.cBZProbing.Checked = global::GRBL_Plotter.Properties.Settings.Default.probingEdgeZ;
+            this.cBZProbing.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "probingEdgeZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBZProbing.Name = "cBZProbing";
             this.toolTip1.SetToolTip(this.cBZProbing, resources.GetString("cBZProbing.ToolTip"));
             this.cBZProbing.UseVisualStyleBackColor = true;
@@ -457,6 +459,15 @@
             this.toolTip1.SetToolTip(this.btnSaveTL, resources.GetString("btnSaveTL.ToolTip"));
             this.btnSaveTL.UseVisualStyleBackColor = true;
             this.btnSaveTL.Click += new System.EventHandler(this.btnSaveTL_Click);
+            // 
+            // cBSetCenterZero
+            // 
+            resources.ApplyResources(this.cBSetCenterZero, "cBSetCenterZero");
+            this.cBSetCenterZero.Checked = global::GRBL_Plotter.Properties.Settings.Default.probingEdgeCenter;
+            this.cBSetCenterZero.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "probingEdgeCenter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSetCenterZero.Name = "cBSetCenterZero";
+            this.toolTip1.SetToolTip(this.cBSetCenterZero, resources.GetString("cBSetCenterZero.ToolTip"));
+            this.cBSetCenterZero.UseVisualStyleBackColor = true;
             // 
             // gBMovement
             // 
@@ -834,18 +845,12 @@
             // rBProbeCoord1
             // 
             resources.ApplyResources(this.rBProbeCoord1, "rBProbeCoord1");
-            this.rBProbeCoord1.Checked = true;
+            this.rBProbeCoord1.Checked = global::GRBL_Plotter.Properties.Settings.Default.probingCoordG10;
+            this.rBProbeCoord1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "probingCoordG10", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rBProbeCoord1.Name = "rBProbeCoord1";
             this.rBProbeCoord1.TabStop = true;
             this.rBProbeCoord1.UseVisualStyleBackColor = true;
             this.rBProbeCoord1.CheckedChanged += new System.EventHandler(this.rBProbeCoord1_CheckedChanged);
-            // 
-            // cBSetCenterZero
-            // 
-            resources.ApplyResources(this.cBSetCenterZero, "cBSetCenterZero");
-            this.cBSetCenterZero.Name = "cBSetCenterZero";
-            this.toolTip1.SetToolTip(this.cBSetCenterZero, resources.GetString("cBSetCenterZero.ToolTip"));
-            this.cBSetCenterZero.UseVisualStyleBackColor = true;
             // 
             // ControlProbing
             // 
