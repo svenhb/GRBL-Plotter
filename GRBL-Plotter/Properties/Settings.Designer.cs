@@ -4462,5 +4462,41 @@ namespace GRBL_Plotter.Properties {
                 this["ctrlUseSerialPortFixer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool probingEdgeCenter {
+            get {
+                return ((bool)(this["probingEdgeCenter"]));
+            }
+            set {
+                this["probingEdgeCenter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool probingEdgeZ {
+            get {
+                return ((bool)(this["probingEdgeZ"]));
+            }
+            set {
+                this["probingEdgeZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool probingCoordG10 {
+            get {
+                return ((bool)(this["probingCoordG10"]));
+            }
+            set {
+                this["probingCoordG10"] = value;
+            }
+        }
     }
 }
