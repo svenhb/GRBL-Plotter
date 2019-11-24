@@ -5,6 +5,11 @@ Geschrieben in C# VisualStudio 2015.
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
 ### Neu in Version 1.3.2.x   
+* Bug fix DXF Import - Ellipse:
+Fix DXFLib.dll, Add Ellipse support
+* Bug fix DXF Import - Spline
+Adapt import-code from Inkscape
+* Probing window: add storage of checkbox states
 * Neues Fenster für Probing - Kantenfinder, Mittenfinder, Werkzeuglängenkorrektur
 * Anzahl der benutzerdefinierten Buttons auf 32 erhöht
     
@@ -117,7 +122,7 @@ Auskommentierung von unbekannten GCode
 
 ### Das Programm ist umsonst und kann auf eigene Gefahr genutzt werden, verständlicherweise gibt es keine Garantie.
 Die Zip-Datei enthält die ClickOnce Setupdatei. Falls keine Installation gewünscht ist: alle nötigen Dateien liegen im Ordner GRBL-Plotter/bin/release.  
-#### [GRBL-Plotter Vers. 1.3.2.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-11-10    
+#### [GRBL-Plotter Vers. 1.3.2.3](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-11-24    
   
 ### Voraussetzung für das Kompilieren
 * VisualStudio 2015 
