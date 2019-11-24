@@ -32,6 +32,7 @@
  * 2019-08-25 get layer color
  * 2019-09-06 swap code to new class 'plotter'
  * 2019-10-02 add nodes only
+ * 2019-11-24 fix DXFLib.dll for ellipse support, fix spline support, Code outsourcing to importMath.cs
 */
 
 using System;
@@ -42,6 +43,7 @@ using System.IO;
 using DXFLib;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace GRBL_Plotter //DXFImporter
 {
@@ -233,7 +235,7 @@ namespace GRBL_Plotter //DXFImporter
         private static void processEntities(DXFEntity entity, double offsetX=0, double offsetY=0, bool updateColor=true)
         {
             int index = 0;
-            double x, y, x2 = 0, y2 = 0, bulge;
+            double x, y;//, x2 = 0, y2 = 0, bulge;
 
             if (updateColor)
             {   dxfColorID = entity.ColorNumber;
@@ -312,7 +314,8 @@ namespace GRBL_Plotter //DXFImporter
             else if (entity.GetType() == typeof(DXFLWPolyLine))
             {
                 DXFLWPolyLine lp = (DXFLWPolyLine)entity;
-                index = 0; bulge = 0;
+                index = 0;
+                double bulge = 0;
                 DXFLWPolyLine.Element coordinate;
                 bool roundcorner = false;
                 x = 0;y = 0;
@@ -320,7 +323,7 @@ namespace GRBL_Plotter //DXFImporter
                 {
                     coordinate = lp.Elements[i];
                     bulge = coordinate.Bulge;
-                    x2 = x; y2 = y;
+        //            x2 = x; y2 = y;
                     x = (double)coordinate.Vertex.X + (double)offsetX;
                     y = (double)coordinate.Vertex.Y + (double)offsetY;
   //                  Logger.Trace("    Vertex: {0};{1} ", x, y);
@@ -384,10 +387,10 @@ namespace GRBL_Plotter //DXFImporter
             else if (entity.GetType() == typeof(DXFLine))
             {
                 DXFLine line = (DXFLine)entity;
-                x = (float)line.Start.X + (float)offsetX;
-                y = (float)line.Start.Y + (float)offsetY;
-                x2 = (float)line.End.X + (float)offsetX;
-                y2 = (float)line.End.Y + (float)offsetY;
+                x = (double)line.Start.X + offsetX;
+                y = (double)line.Start.Y + offsetY;
+                double x2 = (double)line.End.X + offsetX;
+                double y2 = (double)line.End.Y + offsetY;
                 Plotter.IsPathReduceOk = false;
                 if (!nodesOnly)
                 {
@@ -404,47 +407,90 @@ namespace GRBL_Plotter //DXFImporter
             #endregion
             #region DXFSpline
             else if (entity.GetType() == typeof(DXFSpline))
-            {
+            {   // from Inkscape DXF import - modified
+                // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L106
                 DXFSpline spline = (DXFSpline)entity;
                 index = 0;
-                double cx0, cy0, cx1, cy1, cx2, cy2, cx3, cy3, cxMirror, cyMirror, lastX, lastY;
-                lastX = (double)spline.ControlPoints[0].X + offsetX;
-                lastY = (double)spline.ControlPoints[0].Y + offsetY;
+
+                Point offset = new Point(offsetX, offsetY);
+                double lastX = (double)spline.ControlPoints[0].X + offsetX;
+                double lastY = (double)spline.ControlPoints[0].Y + offsetY;
+
                 string cmt = "Start Spline " + spline.KnotValues.Count.ToString() + " " + spline.ControlPoints.Count.ToString() + " " + spline.FitPoints.Count.ToString();
-                dxfStartPath(lastX, lastY, cmt);
                 Plotter.IsPathReduceOk = true;
-                Logger.Trace("    start: {0};{1} count:{2}", lastX, lastY, spline.ControlPointCount);
 
-                for (int rep = 0; rep < spline.ControlPointCount; rep += 4)
-                {
-                    if ((rep + 3) >= spline.ControlPointCount)
-                    {   Logger.Error("    DXFSpline - missing points: rep: {0}, max: {1}", rep, spline.ControlPointCount);
-                        break;
+                int knots = spline.KnotCount;
+                int ctrls = spline.ControlPointCount;
+                Logger.Trace("    Spline  ControlPointCnt: {0} KnotsCount: {1}", ctrls, knots);
+
+                if ((ctrls > 3) && (knots == ctrls + 4))    //  # cubic
+                {   if (ctrls > 4)
+                    {   for (int i = (knots - 5); i > 3; i--)
+                        {   if ((spline.KnotValues[i] != spline.KnotValues[i - 1]) && (spline.KnotValues[i] != spline.KnotValues[i + 1]))
+                            {   double a0 = (spline.KnotValues[i] - spline.KnotValues[i - 2]) / (spline.KnotValues[i + 1] - spline.KnotValues[i - 2]);
+                                double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
+                                DXFPoint tmp = new DXFPoint();
+                                tmp.X = (double)((1.0 - a1) * spline.ControlPoints[i - 2].X + a1 * spline.ControlPoints[i - 1].X);
+                                tmp.Y = (double)((1.0 - a1) * spline.ControlPoints[i - 2].Y + a1 * spline.ControlPoints[i - 1].Y);
+                                spline.ControlPoints.Insert(i - 1, tmp);
+                                spline.ControlPoints[i - 2].X = (1.0 - a0) * spline.ControlPoints[i - 3].X + a0 * spline.ControlPoints[i - 2].X;
+                                spline.ControlPoints[i - 2].Y = (1.0 - a0) * spline.ControlPoints[i - 3].Y + a0 * spline.ControlPoints[i - 2].Y;
+                                spline.KnotValues.Insert(i, spline.KnotValues[i]);
+                            }
+                        }
+                        knots = spline.KnotValues.Count;
+                        for (int i=(knots - 6); i> 3; i-=2)
+                        {   if ((spline.KnotValues[i] != spline.KnotValues[i - 2]) && (spline.KnotValues[i-1] != spline.KnotValues[i + 1]) && (spline.KnotValues[i - 2] != spline.KnotValues[i]))
+                            {   double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
+                                DXFPoint tmp = new DXFPoint();
+                                tmp.X = (double)((1.0 - a1) * spline.ControlPoints[i - 2].X + a1 * spline.ControlPoints[i - 1].X);
+                                tmp.Y = (double)((1.0 - a1) * spline.ControlPoints[i - 2].Y + a1 * spline.ControlPoints[i - 1].Y);
+                                spline.ControlPoints.Insert(i - 1, tmp);
+                            }
+                        }        
                     }
-                    cx0 = (double)spline.ControlPoints[rep].X + offsetX; cy0 = (double)spline.ControlPoints[rep].Y + offsetY;
-                    cx1 = (double)spline.ControlPoints[rep + 1].X + offsetX; cy1 = (double)spline.ControlPoints[rep + 1].Y + offsetY;
-                    cx2 = (double)spline.ControlPoints[rep + 2].X + offsetX; cy2 = (double)spline.ControlPoints[rep + 2].Y + offsetY;
-                    cx3 = (double)spline.ControlPoints[rep + 3].X + offsetX; cy3 = (double)spline.ControlPoints[rep + 3].Y + offsetY;
-//                    Logger.Trace("    ControlPoints: {0:0};{1:0} {2:0};{3:0} {4:0};{5:0} {6:0};{7:0}", cx0, cy0, cx1, cy1, cx2, cy2, cx3, cy3);
-
-                    points = new System.Windows.Point[4];
-                    points[0] = new System.Windows.Point(cx0, cy0); //(qpx1, qpy1);
-                    points[1] = new System.Windows.Point(cx1, cy1); //(qpx1, qpy1);
-                    points[2] = new System.Windows.Point(cx2, cy2); //(qpx2, qpy2);
-                    points[3] = new System.Windows.Point(cx3, cy3);
-                    cxMirror = cx3 - (cx2 - cx3); cyMirror = cy3 - (cy2 - cy3);
-                    lastX = cx3; lastY = cy3;
-                    var b = GetBezierApproximation(points, dxfBezierAccuracy);
-                    if (!nodesOnly)
+                    ctrls = spline.ControlPoints.Count;
+                    dxfStartPath(lastX, lastY, cmt);
+                    for (int i = 0; i < Math.Floor((ctrls - 1) / 3d); i++)     // for i in range(0, (ctrls - 1) // 3):
                     {
-                        for (int i = 1; i < b.Points.Count; i++)
-                            dxfMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, "");
+                        if (!nodesOnly)
+                            importMath.calcCubicBezier(new Point(lastX, lastY), toPoint(spline.ControlPoints[3 * i + 1], offset), toPoint(spline.ControlPoints[3 * i + 2], offset), toPoint(spline.ControlPoints[3 * i + 3], offset), dxfMoveTo, "C");
+                        else
+                        {   gcodeDotOnly(lastX, lastY, "");
+                            gcodeDotOnly(toPoint(spline.ControlPoints[3 * i + 3], offset), "");
+                        }
+                        lastX = (float)(spline.ControlPoints[3 * i + 3].X + offsetX);
+                        lastY = (float)(spline.ControlPoints[3 * i + 3].Y + offsetY);
+                        //  path += ' C %f,%f %f,%f %f,%f' % (vals[groups['10']][3 * i + 1], vals[groups['20']][3 * i + 1], vals[groups['10']][3 * i + 2], vals[groups['20']][3 * i + 2], vals[groups['10']][3 * i + 3], vals[groups['20']][3 * i + 3])
+                    }
+                    dxfStopPath();
+                }
+                if ((ctrls == 3) && (knots == 6))           //  # quadratic
+                {   //  path = 'M %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2])
+                    if (!nodesOnly)
+                    {   dxfStartPath(lastX, lastY, cmt);
+                        importMath.calcQuadraticBezier(toPoint(spline.ControlPoints[0], offset), toPoint(spline.ControlPoints[1], offset), toPoint(spline.ControlPoints[2], offset), dxfMoveTo, "Q");
                     }
                     else
-                    { gcodeDotOnly(cx3, cy3, "Bezier"); }
+                    {   gcodeDotOnly(lastX, lastY, "");
+                        gcodeDotOnly(toPoint(spline.ControlPoints[2], offset), "");
+                    }
+                    dxfStopPath();
                 }
-                dxfStopPath();
-                Logger.Trace("    end  : {0};{1}", lastX, lastY);
+                if ((ctrls == 5) && (knots == 8))           //  # spliced quadratic
+                {   //  path = 'M %f,%f Q %f,%f %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2], vals[groups['10']][3], vals[groups['20']][3], vals[groups['10']][4], vals[groups['20']][4])
+                    if (!nodesOnly)
+                    {   dxfStartPath(lastX, lastY, cmt);
+                        importMath.calcQuadraticBezier(toPoint(spline.ControlPoints[0], offset), toPoint(spline.ControlPoints[1], offset), toPoint(spline.ControlPoints[2], offset), dxfMoveTo, "SQ");
+                        importMath.calcQuadraticBezier(toPoint(spline.ControlPoints[3], offset), toPoint(spline.ControlPoints[4], offset), toPoint(spline.ControlPoints[5], offset), dxfMoveTo, "SQ");
+                    }
+                    else
+                    {   gcodeDotOnly(lastX, lastY, "");
+                        gcodeDotOnly(toPoint(spline.ControlPoints[2], offset), "");
+                        gcodeDotOnly(toPoint(spline.ControlPoints[5], offset), "");
+                    }
+                    dxfStopPath();
+                }
             }
             #endregion
             #region DXFCircle
@@ -459,22 +505,51 @@ namespace GRBL_Plotter //DXFImporter
                 Logger.Trace("    Center: {0};{1}  R: {2}", x, y, circle.Radius);
             }
             #endregion
-
+            #region DXFEllipse
             else if (entity.GetType() == typeof(DXFEllipse))
-            {
-                DXFEllipse circle = (DXFEllipse)entity;
-                x = (float)circle.Center.X + (float)offsetX;
-                y = (float)circle.Center.Y + (float)offsetY;
-                double ratio = circle.AxisRatio;
-                double? ax = circle.MainAxis.X;
-                double? ay = circle.MainAxis.Y;
-                dxfStartPath(x , y, "Start Ellipse");
-                if ((ax != null) && (ay != null)) Plotter.MoveTo(new System.Windows.Point((double)ax,(double)ay),"Ellipse");
-              //  Plotter.Arc(2, (float)x + (float)circle.Radius, (float)y, -(float)circle.Radius, 0, "");
+            {   // from Inkscape DXF import - modified
+                // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L341
+                DXFEllipse ellipse = (DXFEllipse)entity;
+                float xc = (float)ellipse.Center.X + (float)offsetX;
+                float yc = (float)ellipse.Center.Y + (float)offsetY;
+                float xm = (float)ellipse.MainAxis.X;
+                float ym = (float)ellipse.MainAxis.Y;
+                float w = (float)ellipse.AxisRatio;
+                double a2 = -ellipse.StartParam;
+                double a1 = -ellipse.EndParam;
+
+                float rm = (float)Math.Sqrt(xm * xm + ym * ym);
+                double a = Math.Atan2(-ym, xm);
+                float diff = (float)((a2 - a1 + 2 * Math.PI) % (2 * Math.PI));
+
+                if ((Math.Abs(diff) > 0.0001) && (Math.Abs(diff - 2 * Math.PI) > 0.0001))
+                {
+                    int large = 0;
+                    if (diff > Math.PI)
+                        large = 1;
+                    float xt = rm * (float)Math.Cos(a1);
+                    float yt = w * rm * (float)Math.Sin(a1);
+                    float x1 = (float)(xt * Math.Cos(a) - yt * Math.Sin(a));
+                    float y1 = (float)(xt * Math.Sin(a) + yt * Math.Cos(a));
+                    xt = rm * (float)Math.Cos(a2);
+                    yt = w * rm * (float)Math.Sin(a2);
+                    float x2 = (float)(xt * Math.Cos(a) - yt * Math.Sin(a));
+                    float y2 = (float)(xt * Math.Sin(a) + yt * Math.Cos(a));
+                    dxfStartPath(xc + x1, yc - y1, "Start Ellipse 1");
+                    importMath.calcArc(xc + x1, yc - y1, rm, w * rm, (float)(-180.0 * a / Math.PI), large, 0, (xc + x2), (yc - y2), dxfMoveTo);
+                    //  path = 'M %f,%f A %f,%f %f %d 0 %f,%f' % (xc + x1, yc - y1, rm, w* rm, -180.0 * a / math.pi, large, xc + x2, yc - y2)
+                }
+                else
+                {
+                    dxfStartPath(xc + xm, yc + ym, "Start Ellipse 2");
+                    importMath.calcArc(xc + xm, yc + ym, rm, w * rm, (float)(-180.0 * a / Math.PI), 1, 0, xc - xm, yc - ym, dxfMoveTo);
+                    importMath.calcArc(xc - xm, yc - ym, rm, w * rm, (float)(-180.0 * a / Math.PI), 1, 0, xc + xm, yc + ym, dxfMoveTo);
+                    //    path = 'M %f,%f A %f,%f %f 1 0 %f,%f %f,%f %f 1 0 %f,%f z' % (xc + xm, yc - ym, rm, w* rm, -180.0 * a / math.pi, xc - xm, yc + ym, rm, w* rm, -180.0 * a / math.pi, xc + xm, yc - ym)
+                }
                 dxfStopPath();
-                Logger.Trace("    MainAxis: {0};{1} ", ax, ay);
-                Logger.Trace("    Center: {0};{1}  Ratio: {2}", x, y, circle.AxisRatio);
+                Logger.Trace("    Center: {0};{1}  R1: {2} R2: {3} Start: {4} End: {5}", xc, yc, rm, w*rm, ellipse.StartParam, ellipse.EndParam);
             }
+            #endregion
             #region DXFArc
             else if (entity.GetType() == typeof(DXFArc))
             {
@@ -486,8 +561,8 @@ namespace GRBL_Plotter //DXFImporter
                 double startAngle = arc.StartAngle;
                 double endAngle = arc.EndAngle;
                 if (startAngle > endAngle) endAngle += 360;
-                double stepwidth = (double)Properties.Settings.Default.importGCSegment;
-                float StepAngle = (float)(Math.Asin(stepwidth / R) * 180 / Math.PI);// Settings.Default.page11arcMaxLengLine);
+                double stepwidth = (double)Properties.Settings.Default.importGCSegment; // from setup-GCode modification-Avoid G2/3 commands...
+                float StepAngle = (float)(Math.Asin(stepwidth / R) * 180 / Math.PI);
                 double currAngle = startAngle;
                 index = 0;
                 if (!nodesOnly)
@@ -553,6 +628,9 @@ namespace GRBL_Plotter //DXFImporter
             else
                 Plotter.Comment( "Unknown: " + entity.GetType().ToString());
         }
+
+        private static Point toPoint(DXFPoint tmp, Point Off)
+        { return new Point((double)tmp.X + Off.X,(double)tmp.Y + Off.Y); }
 
         private static PolyLineSegment GetBezierApproximation(System.Windows.Point[] controlPoints, int outputSegmentCount)
         {
@@ -662,6 +740,8 @@ namespace GRBL_Plotter //DXFImporter
             return pointResult;
         }
 
+        private static void gcodeDotOnly(Point tmp, string cmt)
+        { gcodeDotOnly(tmp.X, tmp.Y, cmt); }
         private static void gcodeDotOnly(double x, double y, string cmt)
         {
             if (!dxfComments)
@@ -702,7 +782,8 @@ namespace GRBL_Plotter //DXFImporter
             if (!nodesOnly)
                 Plotter.MoveTo(coord, cmt);
             else
-                gcodeDotOnly(coord.X, coord.Y, ""); 
+                gcodeDotOnly(coord.X, coord.Y, "");
+   //         Logger.Trace("      dxfMoveTo {0} {1}", coord.X, coord.Y);
         }
 
         private static string getColorFromID(int id)

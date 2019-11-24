@@ -42,6 +42,7 @@
    2019-08-31 swap code to new class 'plotter'
                 to do line 995 check svgClosePathExtend
    2019-09-19 add stroke-dasharray
+   2019-11-24 Code outsourcing to importMath.cs
 */
 
 using System;
@@ -648,8 +649,8 @@ namespace GRBL_Plotter
                             {
                                 svgStartPath(cx + rx, cy, form);
                                 Plotter.IsPathReduceOk = true;
-                                calcArc(cx + rx, cy, rx, ry, 0, 1, 1, cx - rx, cy);
-                                calcArc(cx - rx, cy, rx, ry, 0, 1, 1, cx + rx, cy);
+                                importMath.calcArc(cx + rx, cy, rx, ry, 0, 1, 1, cx - rx, cy, svgMoveTo);
+                                importMath.calcArc(cx - rx, cy, rx, ry, 0, 1, 1, cx + rx, cy, svgMoveTo);
                             }
                             else
                             {
@@ -798,6 +799,7 @@ namespace GRBL_Plotter
         private static float? firstX, firstY;
         private static float lastX, lastY;
         private static float cxMirror=0, cyMirror=0;
+        private static Vector cMirror = new Vector();
         private static StringBuilder secondMove = new StringBuilder();
 
         /// <summary>
@@ -822,6 +824,7 @@ namespace GRBL_Plotter
             switch (cmd)
             {
                 case 'M':       // Start a new sub-path at the given (x,y) coordinate
+                    #region Move
                     for (int i = 0; i < floatArgs.Length; i += 2)
                     {
                         if (floatArgs.Length < (i+2))
@@ -860,8 +863,9 @@ namespace GRBL_Plotter
                     }
                     cxMirror = currentX; cyMirror = currentY;
                     break;
-
+                #endregion
                 case 'Z':       // Close the current subpath
+                    #region ZClose
                     if (!svgNodesOnly)
                     {
                         if (firstX == null) { firstX = currentX; }
@@ -874,8 +878,9 @@ namespace GRBL_Plotter
                     startSubPath = true;
                     Plotter.StopPath("Z");
                     break;
-
+                #endregion
                 case 'L':       // Draw a line from the current point to the given (x,y) coordinate
+                    #region Line
                     for (int i = 0; i < floatArgs.Length; i += 2)
                     {
                         if (floatArgs.Length < (i + 2))
@@ -897,8 +902,9 @@ namespace GRBL_Plotter
                     }
                     startSubPath = true;
                     break;
-
+                #endregion
                 case 'H':       // Draws a horizontal line from the current point (cpx, cpy) to (x, cpy)
+                    #region Horizontal
                     for (int i = 0; i < floatArgs.Length; i ++)
                     {
                         objCount++;
@@ -915,8 +921,9 @@ namespace GRBL_Plotter
                     }
                     startSubPath = true;
                     break;
-
+                #endregion
                 case 'V':       // Draws a vertical line from the current point (cpx, cpy) to (cpx, y)
+                    #region Vertical
                     for (int i = 0; i < floatArgs.Length; i++)
                     {
                         objCount++;
@@ -933,8 +940,9 @@ namespace GRBL_Plotter
                     }
                     startSubPath = true;
                     break;
-
+                #endregion
                 case 'A':       // Draws an elliptical arc from the current point to (x, y)
+                    #region Arc
                     if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 7)
                     {
@@ -952,23 +960,20 @@ namespace GRBL_Plotter
                         large = floatArgs[rep + 3];
                         sweep = floatArgs[rep + 4];
                         if (absolute)
-                        {
-                            nx = floatArgs[rep + 5] + offsetX   ; ny = floatArgs[rep + 6] + offsetY;
-                        }
+                        {   nx = floatArgs[rep + 5] + offsetX   ; ny = floatArgs[rep + 6] + offsetY;   }
                         else
-                        {
-                            nx = floatArgs[rep + 5] + lastX     ; ny = floatArgs[rep + 6] + lastY;
-                        }
+                        {   nx = floatArgs[rep + 5] + lastX     ; ny = floatArgs[rep + 6] + lastY;     }
                         if (svgNodesOnly)
                             gcodeDotOnly(currentX, currentY, command.ToString());
                         else
-                            calcArc(lastX, lastY, rx, ry, rot, large, sweep, nx, ny);
+                            importMath.calcArc(lastX, lastY, rx, ry, rot, large, sweep, nx, ny, svgMoveTo);
                         lastX = nx; lastY = ny;
                     }
                     startSubPath = true;
                     break;
-
+#endregion
                 case 'C':       // Draws a cubic Bézier curve from the current point to (x,y)
+                    #region Cubic
                     if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 6)
                     {
@@ -979,8 +984,12 @@ namespace GRBL_Plotter
                         }
                         objCount++;
                         if (svgComments) { Plotter.Comment(string.Format(" draw curve nr. {0} ", (1 + rep / 6))); }
+
+
                         if ((rep + 5) < floatArgs.Length)
                         {
+
+                            /*
                             float cx1, cy1, cx2, cy2, cx3, cy3;
                             if (absolute)
                             {
@@ -994,12 +1003,13 @@ namespace GRBL_Plotter
                                 cx2 = lastX + floatArgs[rep + 2]; cy2 = lastY + floatArgs[rep + 3];
                                 cx3 = lastX + floatArgs[rep + 4]; cy3 = lastY + floatArgs[rep + 5];
                             }
-                            points = new Point[4];
+
+                            Point[] points = new Point[4];
                             points[0] = new Point(lastX, lastY);
                             points[1] = new Point(cx1, cy1);
                             points[2] = new Point(cx2, cy2);
                             points[3] = new Point(cx3, cy3);
-                            var b = GetBezierApproximation(points, svgBezierAccuracy);
+                            var b = importMath.GetBezierApproximation(points, svgBezierAccuracy);
                             if (svgNodesOnly)
                             {
                                 gcodeDotOnly(cx3, cy3, command.ToString());
@@ -1011,14 +1021,32 @@ namespace GRBL_Plotter
                             }
                             cxMirror = cx3 - (cx2 - cx3); cyMirror = cy3 - (cy2 - cy3);
                             lastX = cx3; lastY = cy3;
+                            */
+                            Point Off = new Point(offsetX, offsetY);
+                            if (!absolute)
+                                Off = new Point(lastX, lastY);
+                            Vector c1 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
+                            Vector c2 = new Vector(floatArgs[rep + 2], floatArgs[rep + 3]) + (Vector)Off;
+                            Vector c3 = new Vector(floatArgs[rep + 4], floatArgs[rep + 5]) + (Vector)Off;
+                            if (svgNodesOnly)
+                                gcodeDotOnly((float)c3.X, (float)c3.Y, command.ToString());
+                            else
+                                importMath.calcCubicBezier(new Point(lastX, lastY), (Point)c1, (Point)c2, (Point)c3, svgMoveTo, command.ToString());
+
+                            lastX = (float)c3.X; lastY = (float)c3.Y;
+                            cxMirror = (float)(2 * c3.X - c2.X); cyMirror = (float)(2 * c3.Y - c2.Y);
+                            cMirror = c3 * 2 - c2;
+
+
                         }
                         else
                         { Plotter.Comment(string.Format(" Missing argument after {0} ", rep)); }
                     }
                     startSubPath = true;
                     break;
-
+                #endregion
                 case 'S':       // Draws a cubic Bézier curve from the current point to (x,y)
+                    #region Small Cubic
                     if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 4)
                     {
@@ -1029,6 +1057,8 @@ namespace GRBL_Plotter
                         }
                         objCount++;
                         if (svgComments) { Plotter.Comment(string.Format(" draw curve nr. {0} ", (1 + rep / 4))); }
+                        
+                        /*
                         float cx2, cy2, cx3, cy3;
                         if (absolute)
                         {
@@ -1040,12 +1070,12 @@ namespace GRBL_Plotter
                             cx2 = lastX + floatArgs[rep];       cy2 = lastY + floatArgs[rep + 1];
                             cx3 = lastX + floatArgs[rep + 2];   cy3 = lastY + floatArgs[rep + 3];
                         }
-                        points = new Point[4];
+                        Point[] points = new Point[4];
                         points[0] = new Point(lastX, lastY);
                         points[1] = new Point(cxMirror, cyMirror);
                         points[2] = new Point(cx2, cy2);
                         points[3] = new Point(cx3, cy3);
-                        var b = GetBezierApproximation(points, svgBezierAccuracy);
+                        var b = importMath.GetBezierApproximation(points, svgBezierAccuracy);
                         if (svgNodesOnly)
                         {
                             gcodeDotOnly(cx3, cy3, command.ToString());
@@ -1057,11 +1087,28 @@ namespace GRBL_Plotter
                         }
                         cxMirror = cx3 - (cx2 - cx3); cyMirror = cy3 - (cy2 - cy3);
                         lastX = cx3; lastY = cy3;
+                        */
+                        Point Off = new Point(offsetX, offsetY);
+                        if (!absolute)
+                            Off = new Point(lastX, lastY);
+                        Vector c2 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
+                        Vector c3 = new Vector(floatArgs[rep + 2], floatArgs[rep + 3]) + (Vector)Off;
+                        if (svgNodesOnly)
+                            gcodeDotOnly((float)c3.X, (float)c3.Y, command.ToString());
+                        else
+                            importMath.calcCubicBezier(new Point(lastX, lastY), (Point)cMirror, (Point)c2, (Point)c3, svgMoveTo, command.ToString());
+
+                        lastX = (float)c3.X; lastY = (float)c3.Y;
+                        cxMirror = (float)(2 * c3.X - c2.X); cyMirror = (float)(2 * c3.Y - c2.Y);
+                        cMirror = c3 * 2 - c2;
+
+
                     }
                     startSubPath = true;
                     break;
-
+                #endregion
                 case 'Q':       // Draws a quadratic Bézier curve from the current point to (x,y)
+                    #region Quadratic
                     if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 4)
                     {
@@ -1072,44 +1119,26 @@ namespace GRBL_Plotter
                         }
                         objCount++;
                         if (svgComments) { Plotter.Comment(string.Format(" draw curve nr. {0} ", (1 + rep / 4))); }
-                        float cx2, cy2, cx3, cy3;
-                        if (absolute)
-                        {
-                            cx2 = floatArgs[rep] + offsetX; cy2 = floatArgs[rep + 1] + offsetY;
-                            cx3 = floatArgs[rep + 2] + offsetX; cy3 = floatArgs[rep + 3] + offsetY;
-                        }
-                        else
-                        {
-                            cx2 = lastX + floatArgs[rep]; cy2 = lastY + floatArgs[rep + 1];
-                            cx3 = lastX + floatArgs[rep + 2]; cy3 = lastY + floatArgs[rep + 3];
-                        }
-
-                        float qpx1 = (cx2 - lastX) * 2 / 3 + lastX;     // shorten control points to 2/3 length to use 
-                        float qpy1 = (cy2 - lastY) * 2 / 3 + lastY;     // qubic function
-                        float qpx2 = (cx2 - cx3) * 2 / 3 + cx3;
-                        float qpy2 = (cy2 - cy3) * 2 / 3 + cy3;
-                        points = new Point[4];
-                        points[0] = new Point(lastX, lastY);
-                        points[1] = new Point(qpx1, qpy1);   
-                        points[2] = new Point(qpx2, qpy2);  
-                        points[3] = new Point(cx3, cy3);
-                        cxMirror = cx3 - (cx2 - cx3); cyMirror = cy3 - (cy2 - cy3);
-                        lastX = cx3; lastY = cy3;
-                        var b = GetBezierApproximation(points, svgBezierAccuracy);
+                                            
+                        Point Off = new Point(offsetX, offsetY);
+                        if (!absolute)
+                            Off = new Point(lastX, lastY);
+                        Vector c2 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
+                        Vector c3 = new Vector(floatArgs[rep + 2], floatArgs[rep + 3]) + (Vector)Off;
                         if (svgNodesOnly)
-                        {
-                            gcodeDotOnly(cx3, cy3, command.ToString());
-                        }
+                            gcodeDotOnly((float)c3.X, (float)c3.Y, command.ToString());
                         else
-                        {
-                            for (int i = 1; i < b.Points.Count; i++)
-                                svgMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
-                        }
+                            importMath.calcQuadraticBezier(new Point(lastX, lastY), (Point)c2, (Point)c3, svgMoveTo, command.ToString());
+
+                        lastX = (float)c3.X; lastY = (float)c3.Y;
+                        cxMirror = (float)(2 * c3.X - c2.X); cyMirror = (float)(2 * c3.Y - c2.Y);
+                        cMirror = c3 * 2 - c2;
                     }
                     startSubPath = true;
                     break;
-
+                #endregion
                 case 'T':       // Draws a quadratic Bézier curve from the current point to (x,y)
+                    #region TQuadratic
                     if (svgComments) { Plotter.Comment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
                     for (int rep = 0; rep < floatArgs.Length; rep += 2)
                     {
@@ -1120,168 +1149,29 @@ namespace GRBL_Plotter
                         }
                         objCount++;
                         if (svgComments) { Plotter.Comment(string.Format(" draw curve nr. {0} ", (1 + rep / 2))); }
-                        float cx3, cy3;
-                        if (absolute)
-                        {
-                            cx3 = floatArgs[rep] + offsetX; cy3 = floatArgs[rep + 1] + offsetY;
-                        }
-                        else
-                        {
-                            cx3 = lastX + floatArgs[rep]; cy3 = lastY + floatArgs[rep + 1];
-                        }
 
-                        float qpx1 = (cxMirror - lastX) * 2 / 3 + lastX;     // shorten control points to 2/3 length to use 
-                        float qpy1 = (cyMirror - lastY) * 2 / 3 + lastY;     // qubic function
-                        float qpx2 = (cxMirror - cx3) * 2 / 3 + cx3;
-                        float qpy2 = (cyMirror - cy3) * 2 / 3 + cy3;
-                        points = new Point[4];
-                        points[0] = new Point(lastX, lastY);
-                        points[1] = new Point(qpx1, qpy1);
-                        points[2] = new Point(qpx2, qpy2);
-                        points[3] = new Point(cx3, cy3);
-                        cxMirror = cx3; cyMirror = cy3;
-                        lastX = cx3; lastY = cy3;
-                        var b = GetBezierApproximation(points, svgBezierAccuracy);
+                        Point Off = new Point(offsetX, offsetY);
+                        if (!absolute)
+                            Off = new Point(lastX, lastY);
+                        Vector c3 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
                         if (svgNodesOnly)
-                        {
-                            gcodeDotOnly(cx3, cy3, command.ToString());
-                        }
+                            gcodeDotOnly((float)c3.X, (float)c3.Y, command.ToString());
                         else
-                        {
-                            for (int i = 1; i < b.Points.Count; i++)
-                                svgMoveTo((float)b.Points[i].X, (float)b.Points[i].Y, command.ToString());
-                        }
+                            importMath.calcQuadraticBezier(new Point(lastX, lastY), (Point)cMirror, (Point)c3, svgMoveTo, command.ToString());
+
+                        lastX = (float)c3.X; lastY = (float)c3.Y;
+                        cxMirror = (float)c3.X; cyMirror = (float)c3.Y;
+                        cMirror = c3;
                     }
                     startSubPath = true;
                     break;
-
+                #endregion
                 default:
                     if (svgComments) Plotter.Comment(" *********** unknown: " + command.ToString()+ " ***** ");
                     break;
             }
             return objCount;
         }
-
-        /// <summary>
-        /// Calculate Path-Arc-Command - Code from https://github.com/vvvv/SVG/blob/master/Source/Paths/SvgArcSegment.cs
-        /// </summary>
-        private static void calcArc(float StartX, float StartY, float RadiusX, float RadiusY,float Angle, float Size,  float Sweep, float EndX, float EndY)
-        {
-            if (RadiusX == 0.0f && RadiusY == 0.0f)
-            {
-  //              graphicsPath.AddLine(this.Start, this.End);
-                return;
-            }
-            double sinPhi = Math.Sin(Angle * Math.PI / 180.0);
-            double cosPhi = Math.Cos(Angle * Math.PI / 180.0);
-            double x1dash = cosPhi * (StartX - EndX) / 2.0 + sinPhi * (StartY - EndY) / 2.0;
-            double y1dash = -sinPhi * (StartX - EndX) / 2.0 + cosPhi * (StartY - EndY) / 2.0;
-            double root;
-            double numerator = RadiusX * RadiusX * RadiusY * RadiusY - RadiusX * RadiusX * y1dash * y1dash - RadiusY * RadiusY * x1dash * x1dash;
-            float rx = RadiusX;
-            float ry = RadiusY;
-            if (numerator < 0.0)
-            {
-                float s = (float)Math.Sqrt(1.0 - numerator / (RadiusX * RadiusX * RadiusY * RadiusY));
-
-                rx *= s;
-                ry *= s;
-                root = 0.0;
-            }
-            else
-            {
-                root = ((Size == 1 && Sweep == 1) || (Size == 0 && Sweep == 0) ? -1.0 : 1.0) * Math.Sqrt(numerator / (RadiusX * RadiusX * y1dash * y1dash + RadiusY * RadiusY * x1dash * x1dash));
-            }
-            double cxdash = root * rx * y1dash / ry;
-            double cydash = -root * ry * x1dash / rx;
-            double cx = cosPhi * cxdash - sinPhi * cydash + (StartX + EndX) / 2.0;
-            double cy = sinPhi * cxdash + cosPhi * cydash + (StartY + EndY) / 2.0;
-            double theta1 = CalculateVectorAngle(1.0, 0.0, (x1dash - cxdash) / rx, (y1dash - cydash) / ry);
-            double dtheta = CalculateVectorAngle((x1dash - cxdash) / rx, (y1dash - cydash) / ry, (-x1dash - cxdash) / rx, (-y1dash - cydash) / ry);
-            if (Sweep == 0 && dtheta > 0)
-            {
-                dtheta -= 2.0 * Math.PI;
-            }
-            else if (Sweep == 1 && dtheta < 0)
-            {
-                dtheta += 2.0 * Math.PI;
-            }
-            int segments = (int)Math.Ceiling((double)Math.Abs(dtheta / (Math.PI / 2.0)));
-            double delta = dtheta / segments;
-            double t = 8.0 / 3.0 * Math.Sin(delta / 4.0) * Math.Sin(delta / 4.0) / Math.Sin(delta / 2.0);
-
-            double startX = StartX;
-            double startY = StartY;
-
-            for (int i = 0; i < segments; ++i)
-            {
-                double cosTheta1 = Math.Cos(theta1);
-                double sinTheta1 = Math.Sin(theta1);
-                double theta2 = theta1 + delta;
-                double cosTheta2 = Math.Cos(theta2);
-                double sinTheta2 = Math.Sin(theta2);
-
-                double endpointX = cosPhi * rx * cosTheta2 - sinPhi * ry * sinTheta2 + cx;
-                double endpointY = sinPhi * rx * cosTheta2 + cosPhi * ry * sinTheta2 + cy;
-
-                double dx1 = t * (-cosPhi * rx * sinTheta1 - sinPhi * ry * cosTheta1);
-                double dy1 = t * (-sinPhi * rx * sinTheta1 + cosPhi * ry * cosTheta1);
-
-                double dxe = t * (cosPhi * rx * sinTheta2 + sinPhi * ry * cosTheta2);
-                double dye = t * (sinPhi * rx * sinTheta2 - cosPhi * ry * cosTheta2);
-
-                points = new Point[4];
-                points[0] = new Point(startX, startY);
-                points[1] = new Point((startX + dx1), (startY + dy1));
-                points[2] = new Point((endpointX + dxe), (endpointY + dye));
-                points[3] = new Point(endpointX, endpointY);
-                var b = GetBezierApproximation(points, svgBezierAccuracy);
-                for (int k = 1; k < b.Points.Count; k++)
-                    svgMoveTo(b.Points[k], "arc");
-
-                theta1 = theta2;
-                startX = (float)endpointX;
-                startY = (float)endpointY;
-            }
-        }
-        private static double CalculateVectorAngle(double ux, double uy, double vx, double vy)
-        {
-            double ta = Math.Atan2(uy, ux);
-            double tb = Math.Atan2(vy, vx);
-            if (tb >= ta)
-            {    return tb - ta;  }
-            return Math.PI * 2 - (ta - tb);
-        }
-        // helper functions
-        private static float fsqrt(float x) { return (float)Math.Sqrt(x); }
-        private static float fvmag(float x, float y) { return fsqrt(x * x + y * y); }
-        private static float fdistance(float x1, float y1, float x2, float y2) { return fvmag(x2-x1,y2-y1); }
-
-        /// <summary>
-        /// Calculate Bezier line segments
-        /// from http://stackoverflow.com/questions/13940983/how-to-draw-bezier-curve-by-several-points
-        /// </summary>
-        private static Point[] points;
-        private static PolyLineSegment GetBezierApproximation( Point[] controlPoints, int outputSegmentCount)
-        {
-            Point[] points = new Point[outputSegmentCount + 1];
-            for (int i = 0; i <= outputSegmentCount; i++)
-            {
-                double t = (double)i / outputSegmentCount;
-                points[i] = GetBezierPoint(t, controlPoints, 0, controlPoints.Length);
-            }
-            return new PolyLineSegment(points, true);
-        }
-        private static Point GetBezierPoint(double t, Point[] controlPoints, int index, int count)
-        {
-            if (count == 1)
-                return controlPoints[index];
-            var P0 = GetBezierPoint(t, controlPoints, index, count - 1);
-            var P1 = GetBezierPoint(t, controlPoints, index + 1, count - 1);
-            double x= (1 - t) * P0.X + t * P1.X;
-            return new Point(x, (1 - t) * P0.Y + t * P1.Y);
-        }
-
 // Prepare G-Code
 
         /// <summary>
