@@ -195,6 +195,9 @@
   <data name="mainLoadError2" xml:space="preserve">
     <value>URL extension is not 'svg' or 'dxf'\r\nTry SVG import anyway, but without setting 'Recent File' list.</value>
   </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>File extension not supported '</value>
+  </data>
   <data name="mainParseError" xml:space="preserve">
     <value>Not a valid number</value>
   </data>

@@ -295,6 +295,15 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File extension not supported &apos; ähnelt.
+        /// </summary>
+        public static string mainLoadError3 {
+            get {
+                return ResourceManager.GetString("mainLoadError3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Not a valid number ähnelt.
         /// </summary>
         public static string mainParseError {

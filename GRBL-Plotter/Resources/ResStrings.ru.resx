@@ -270,4 +270,7 @@
   <data name="probingTimeOut" xml:space="preserve">
     <value>Время вышло</value>
   </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Расширение файла не поддерживается</value>
+  </data>
 </root>

@@ -270,4 +270,7 @@
   <data name="probingTimeOut" xml:space="preserve">
     <value>Se acabó el tiempo</value>
   </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Extensión de archivo no compatible '</value>
+  </data>
 </root>

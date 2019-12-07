@@ -267,4 +267,10 @@
   <data name="serialClose" xml:space="preserve">
     <value>Proche</value>
   </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Extension de fichier non prise en charge "</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
 </root>

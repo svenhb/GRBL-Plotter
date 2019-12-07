@@ -228,4 +228,19 @@
   <data name="serialClose" xml:space="preserve">
     <value>Schließen</value>
   </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>Fehler vor Zeile</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>Check G-Code beendet</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>Senden G-Code beendet</value>
+  </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Dateierweiterung nicht unterstützt '</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
 </root>

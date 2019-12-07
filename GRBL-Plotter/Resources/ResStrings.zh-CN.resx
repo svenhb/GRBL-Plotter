@@ -267,4 +267,10 @@
   <data name="serialClose" xml:space="preserve">
     <value>关</value>
   </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>不支持文件扩展名</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>打开</value>
+  </data>
 </root>
