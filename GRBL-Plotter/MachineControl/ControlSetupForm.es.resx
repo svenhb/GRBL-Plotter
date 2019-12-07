@@ -1193,7 +1193,7 @@ Más de 3 ejes (Mega2560) - 255 bytes</value>
     <comment>ToolTip</comment>
   </data>
   <data name="lblPWM3.ToolTip" xml:space="preserve">
-    <value>Insertar G4: retraso en segundos antes del siguiente comando</value>
+    <value>Valor PWM (S) para 'pluma hacia abajo'</value>
     <comment>ToolTip</comment>
   </data>
   <data name="lblPWM1.ToolTip" xml:space="preserve">
@@ -1526,5 +1526,13 @@ O asigne un nombre de archivo que contenga G-Code.</value>
   <data name="btnLoadToolTable.Text" xml:space="preserve">
     <value>abrir</value>
     <comment>Button</comment>
+  </data>
+  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
+    <value>Ancho de paso en la circunferencia del arco</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Ancho de paso en la circunferencia del arco</value>
+    <comment>ToolTip</comment>
   </data>
 </root>

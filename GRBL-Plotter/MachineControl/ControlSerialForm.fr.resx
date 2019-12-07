@@ -241,4 +241,13 @@ M = agent de refroidissement par brouillard</value>
   <data name="lblSrState.Text" xml:space="preserve">
     <value>Statut</value>
   </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>Afficher le rapport d'état en temps réel</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>Afficher les rapports d'état GRBL originaux reçus</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>Afficher les commandes envoyées et traitées pendant la diffusion</value>
+  </data>
 </root>

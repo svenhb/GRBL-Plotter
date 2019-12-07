@@ -241,4 +241,13 @@ M = refrigerante por neblina</value>
   <data name="lblSrState.Text" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>Mostrar informe de estado</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>Mostrar los informes de estado GRBL recibidos originales</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>Mostrar comandos enviados y procesados durante la transmisión</value>
+  </data>
 </root>

@@ -35,6 +35,7 @@
  * 2019-06-05 edit marker-view, show end-point and center of arc
  * 2019-08-15 add logger
  * 2019-11-16 add calculation of process time
+ * 2019-11-30 new line 913 offset via mouse move 
  */
 
 //#define debuginfo 
@@ -83,9 +84,12 @@ namespace GRBL_Plotter
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public string getProcessingTime()
-        {
-            TimeSpan t = TimeSpan.FromSeconds(gcodeMinutes*60);
-            return string.Format("Est. time: {0:D2}:{1:D2}:{2:D2}", t.Hours,t.Minutes,t.Seconds);
+        {   try
+            {   TimeSpan t = TimeSpan.FromSeconds(gcodeMinutes * 60);
+                return string.Format("Est. time: {0:D2}:{1:D2}:{2:D2}", t.Hours, t.Minutes, t.Seconds);
+            }
+            catch
+            {   return "Est. time: ?"; }
         }
 
         public bool containsG2G3Command()
@@ -229,7 +233,10 @@ namespace GRBL_Plotter
 
         private modalGroup modal = new modalGroup();        // keep modal states and helper variables
         private int figureMarkerCount;
-        private Dictionary<int, int> figureCountNr = new Dictionary<int, int>();
+
+        public bool codeBlocksAvailable()
+        { return (figureMarkerCount > 0); }
+//        private Dictionary<int, int> figureCountNr = new Dictionary<int, int>();
         /// <summary>
         /// Entrypoint for generating drawing path from given gcode
         /// </summary>
@@ -248,7 +255,8 @@ namespace GRBL_Plotter
             centerList = new List<coordByLine>();    //.Clear();
             clearDrawingnPath();                    // reset path, dimensions
             figureMarkerCount = 0;
-//            int figureMarkerLine = 0;
+            lastFigureNumber = -1;
+            //            int figureMarkerLine = 0;
             bool figureActive = false;
             gcodeMinutes = 0;
             gcodeDistance = 0;
@@ -265,7 +273,7 @@ namespace GRBL_Plotter
             figureCount = 1;                        // will be inc. in createDrawingPathFromGCode
             bool isArc = false;
             bool upDateFigure = false;
-            figureCountNr.Clear();
+//            figureCountNr.Clear();
 
             for (int lineNr = 0; lineNr < GCode.Length; lineNr++)   // go through all gcode lines
             {
@@ -625,14 +633,26 @@ namespace GRBL_Plotter
         }
         private int lastFigureNumber = -1;
 
+        public int getFigureNumber(int line)
+        {   foreach (coordByLine gcline in coordList)           // start search at beginning
+            {   if (gcline.lineNumber == line)    // 1st occurance = hit
+                {   return gcline.figureNumber;
+                }
+            }
+            return -1;
+        }
         /// <summary>
         /// return GCode lineNr of first point in selected path (figure)
         /// </summary>
-        public int getLineOfFirstPointInFigure()
-        {   if (lastFigureNumber < 0)
+        public int getLineOfFirstPointInFigure(int lineNr=0)
+        {
+            int figureToFind = lastFigureNumber;
+            if (lineNr > 0)
+                figureToFind = getFigureNumber(lineNr);
+            if ((figureToFind) < 0)
                 return -1;
             foreach (coordByLine gcline in coordList)           // start search at beginning
-            {   if (gcline.figureNumber == lastFigureNumber)    // 1st occurance = hit
+            {   if (gcline.figureNumber == (figureToFind))    // 1st occurance = hit
                 {   return gcline.lineNumber;
                 }
             }
@@ -853,7 +873,8 @@ namespace GRBL_Plotter
             log.Add("   GCodeVisu transform Offset");
 #endif
             if (gcodeList == null) return "";
-            pathMarkSelection.Reset(); lastFigureNumber = -1;
+            if ((lastFigureNumber <= 0) || (!(shiftToZero == translate.None)))
+            { pathMarkSelection.Reset(); lastFigureNumber = -1; }
             double offsetX = 0;
             double offsetY = 0;
             bool offsetApplied = false;
@@ -868,6 +889,7 @@ namespace GRBL_Plotter
             if (shiftToZero == translate.Offset7) { offsetX = x + xyzSize.minx;                     offsetY = y + xyzSize.miny; }
             if (shiftToZero == translate.Offset8) { offsetX = x + xyzSize.minx + xyzSize.dimx / 2;  offsetY = y + xyzSize.miny; }
             if (shiftToZero == translate.Offset9) { offsetX = x + xyzSize.minx + xyzSize.dimx;      offsetY = y + xyzSize.miny; }
+            if (shiftToZero == translate.None)    { offsetX = x; offsetY = y; }
 
             if (modal.containsG91)    // relative move: insert rapid movement before pen down, to be able applying offset
             {
@@ -908,6 +930,9 @@ namespace GRBL_Plotter
                 if (gcline.codeLine.IndexOf("%STOP_HIDECODE") >= 0)  { hide_code = false; }
                 if ((!hide_code) && (!gcline.isSubroutine) && (!gcline.ismachineCoordG53) && (gcline.codeLine.IndexOf("(Setup - GCode") < 1)) // ignore coordinates from setup footer
                 {
+                    if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))    // 2019-11-30
+                    { continue; }
+
                     if (gcline.isdistanceModeG90)           // absolute move: apply offset to any XY position
                     {
                         if (gcline.x != null)

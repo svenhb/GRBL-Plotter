@@ -532,7 +532,8 @@ M4动态激光功率模式</value>
     <comment>CheckBox</comment>
   </data>
   <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
-    <value>在生成g代码之前，尝试将图形缩放到给定的单位，</value>
+    <value>在生成g代码之前，尝试将图形缩放到给定的单位，
+以避免在缩小g代码时出现问题。</value>
     <comment>ToolTip</comment>
   </data>
   <data name="cBImportSVGPath.Text" xml:space="preserve">
@@ -1205,7 +1206,7 @@ M4动态激光功率模式</value>
     <comment>ToolTip</comment>
   </data>
   <data name="lblPWM3.ToolTip" xml:space="preserve">
-    <value>插入G4：下一条命令之前的延迟（以秒为单位）</value>
+    <value>``下降''的PWM值（S）</value>
     <comment>ToolTip</comment>
   </data>
   <data name="lblPWM1.Text" xml:space="preserve">
@@ -1541,7 +1542,12 @@ M4动态激光功率模式</value>
     <value>开放</value>
     <comment>Button</comment>
   </data>
-  <data name="comboBox1.Items3" xml:space="preserve">
-    <value>以避免在缩小g代码时出现问题。</value>
+  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
+    <value>弧长的步长</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>弧长的步长</value>
+    <comment>ToolTip</comment>
   </data>
 </root>

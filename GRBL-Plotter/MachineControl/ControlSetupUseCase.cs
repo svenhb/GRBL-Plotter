@@ -18,6 +18,7 @@
 */
 /*
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+ * 2019-12-07 show current settings on start up MyIni.showIniSettings(true)
 */
 
 
@@ -44,7 +45,11 @@ namespace GRBL_Plotter
         private void ControlSetupUseCase_Load(object sender, EventArgs e)
         {   fillUseCaseFileList(Application.StartupPath + datapath.usecases);
             tBUseCaseInfo.Text += "\r\n\r\nLast loaded: " + Properties.Settings.Default.useCaseLastLoaded;
-            tBSetup.Text = "Last loaded: "+ Properties.Settings.Default.useCaseLastLoaded;
+            tBSetup.Text = "Last loaded: "+ Properties.Settings.Default.useCaseLastLoaded+"\r\n";
+            string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+            var MyIni = new IniFile(path);
+            tBSetup.Text += "Actually Set:\r\n" + MyIni.showIniSettings(true);
+            tBSetup.Select(0, 0);
         }
         private void btnLoad_Click(object sender, EventArgs e)
         {

@@ -439,6 +439,93 @@ select items on next page 'G-Code generation'</value>
   <data name="&gt;&gt;groupBox26.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 54</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>units</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>groupBox31</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 54</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 13</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Step width on circumference of Arc</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
+  </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>groupBox31</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDImportDXFStepWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 52</value>
+  </data>
+  <data name="nUDImportDXFStepWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="nUDImportDXFStepWidth.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="nUDImportDXFStepWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
+    <value>Step width on circumference of Arc</value>
+  </data>
+  <data name="&gt;&gt;nUDImportDXFStepWidth.Name" xml:space="preserve">
+    <value>nUDImportDXFStepWidth</value>
+  </data>
+  <data name="&gt;&gt;nUDImportDXFStepWidth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDImportDXFStepWidth.Parent" xml:space="preserve">
+    <value>groupBox31</value>
+  </data>
+  <data name="&gt;&gt;nUDImportDXFStepWidth.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="cBImportDXFSwitchWhite.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -470,7 +557,7 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox31</value>
   </data>
   <data name="&gt;&gt;cBImportDXFSwitchWhite.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="cBImportDXFIndexToolNr.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -503,13 +590,13 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox31</value>
   </data>
   <data name="&gt;&gt;cBImportDXFIndexToolNr.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="groupBox31.Location" type="System.Drawing.Point, System.Drawing">
-    <value>302, 112</value>
+    <value>302, 98</value>
   </data>
   <data name="groupBox31.Size" type="System.Drawing.Size, System.Drawing">
-    <value>290, 50</value>
+    <value>290, 77</value>
   </data>
   <data name="groupBox31.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1101,13 +1188,13 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>4, 69</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 13</value>
+    <value>207, 13</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Number of line segments in arcs</value>
+    <value>Number of line segments in curves, splines</value>
   </data>
   <data name="label1.ToolTip" xml:space="preserve">
     <value>Curves will be drawn by line segments. As more segments as more prezice the curve is.</value>
@@ -3704,6 +3791,33 @@ Note: Don't use 'Sort objects by pen index'</value>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="nUDImportGCSegment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 21</value>
+  </data>
+  <data name="nUDImportGCSegment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="nUDImportGCSegment.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="nUDImportGCSegment.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
+    <value>Step width on circumference of Arc</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSegment.Name" xml:space="preserve">
+    <value>nUDImportGCSegment</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSegment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSegment.Parent" xml:space="preserve">
+    <value>groupBox30</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCSegment.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="btnFileDialogSubR.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -3729,7 +3843,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>groupBox30</value>
   </data>
   <data name="&gt;&gt;btnFileDialogSubR.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBImportGCSubFirst.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3759,7 +3873,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>groupBox30</value>
   </data>
   <data name="&gt;&gt;cBImportGCSubFirst.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnShowScriptSub.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3789,7 +3903,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>groupBox30</value>
   </data>
   <data name="&gt;&gt;btnShowScriptSub.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBImportGCLineSegmentsEquidistant.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3823,7 +3937,7 @@ Unchecked: last linesegment is shorter, all other exact given length</value>
     <value>groupBox30</value>
   </data>
   <data name="&gt;&gt;cBImportGCLineSegmentsEquidistant.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cBImportGCNoArcs.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3835,14 +3949,14 @@ Unchecked: last linesegment is shorter, all other exact given length</value>
     <value>6, 15</value>
   </data>
   <data name="cBImportGCNoArcs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 30</value>
+    <value>161, 30</value>
   </data>
   <data name="cBImportGCNoArcs.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
     <value>Avoid G2/3 commands
-Angle step width in degrees</value>
+Step width on circumference</value>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
     <value>Convert circles and arcs to line segments - needed if different X and Y scale is needed</value>
@@ -3857,7 +3971,7 @@ Angle step width in degrees</value>
     <value>groupBox30</value>
   </data>
   <data name="&gt;&gt;cBImportGCNoArcs.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nUDImportGCLineSegment.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 52</value>
@@ -3881,7 +3995,7 @@ Angle step width in degrees</value>
     <value>groupBox30</value>
   </data>
   <data name="&gt;&gt;nUDImportGCLineSegment.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tBImportGCSubroutine.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 109</value>
@@ -3905,33 +4019,6 @@ Angle step width in degrees</value>
     <value>groupBox30</value>
   </data>
   <data name="&gt;&gt;tBImportGCSubroutine.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="nUDImportGCSegment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 21</value>
-  </data>
-  <data name="nUDImportGCSegment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
-  </data>
-  <data name="nUDImportGCSegment.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="nUDImportGCSegment.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
-    <value>Angle step width</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCSegment.Name" xml:space="preserve">
-    <value>nUDImportGCSegment</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCSegment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCSegment.Parent" xml:space="preserve">
-    <value>groupBox30</value>
-  </data>
-  <data name="&gt;&gt;nUDImportGCSegment.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="cBImportGCSubEnable.AutoSize" type="System.Boolean, mscorlib">
@@ -5702,6 +5789,61 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   <data name="&gt;&gt;tabPage8.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="cBresetSendCode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBresetSendCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBresetSendCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 50</value>
+  </data>
+  <data name="cBresetSendCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 17</value>
+  </data>
+  <data name="cBresetSendCode.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cBresetSendCode.Text" xml:space="preserve">
+    <value>Send following gcode after reset</value>
+  </data>
+  <data name="&gt;&gt;cBresetSendCode.Name" xml:space="preserve">
+    <value>cBresetSendCode</value>
+  </data>
+  <data name="&gt;&gt;cBresetSendCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBresetSendCode.Parent" xml:space="preserve">
+    <value>groupBox36</value>
+  </data>
+  <data name="&gt;&gt;cBresetSendCode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tBresetSendCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 73</value>
+  </data>
+  <data name="tBresetSendCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 20</value>
+  </data>
+  <data name="tBresetSendCode.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tBresetSendCode.ToolTip" xml:space="preserve">
+    <value>Assign regular GCode, seperate code into different lines using ';' as seperator.
+Or assign a filename containing GCode. </value>
+  </data>
+  <data name="&gt;&gt;tBresetSendCode.Name" xml:space="preserve">
+    <value>tBresetSendCode</value>
+  </data>
+  <data name="&gt;&gt;tBresetSendCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBresetSendCode.Parent" xml:space="preserve">
+    <value>groupBox36</value>
+  </data>
+  <data name="&gt;&gt;tBresetSendCode.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="cBrestoreCoordReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -5727,13 +5869,13 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>groupBox36</value>
   </data>
   <data name="&gt;&gt;cBrestoreCoordReset.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="groupBox36.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 218</value>
+    <value>239, 6</value>
   </data>
   <data name="groupBox36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 63</value>
+    <value>250, 100</value>
   </data>
   <data name="groupBox36.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -6012,7 +6154,7 @@ More than 3 axes (Mega2560)- 255 bytes
     <value>3</value>
   </data>
   <data name="tBflowControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 32</value>
+    <value>6, 39</value>
   </data>
   <data name="tBflowControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 20</value>
@@ -6067,7 +6209,7 @@ Or assign a filename containing GCode. </value>
     <value>1</value>
   </data>
   <data name="groupBox37.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 6</value>
+    <value>239, 112</value>
   </data>
   <data name="groupBox37.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 100</value>
@@ -6117,8 +6259,41 @@ Or assign a filename containing GCode. </value>
   <data name="&gt;&gt;tabPage13.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="cBExtendedLogging.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBExtendedLogging.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBExtendedLogging.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 278</value>
+  </data>
+  <data name="cBExtendedLogging.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 17</value>
+  </data>
+  <data name="cBExtendedLogging.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="cBExtendedLogging.Text" xml:space="preserve">
+    <value>Enable extended logging</value>
+  </data>
+  <data name="&gt;&gt;cBExtendedLogging.Name" xml:space="preserve">
+    <value>cBExtendedLogging</value>
+  </data>
+  <data name="&gt;&gt;cBExtendedLogging.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBExtendedLogging.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;cBExtendedLogging.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBSerialPortFixer.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="cBSerialPortFixer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cBSerialPortFixer.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 6</value>
@@ -6145,7 +6320,7 @@ Or assign a filename containing GCode. </value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;cBSerialPortFixer.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="tBPasteSpecial.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 19</value>
@@ -6169,7 +6344,7 @@ Or assign a filename containing GCode. </value>
     <value>0</value>
   </data>
   <data name="groupBox42.Location" type="System.Drawing.Point, System.Drawing">
-    <value>446, 287</value>
+    <value>367, 287</value>
   </data>
   <data name="groupBox42.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 53</value>
@@ -6193,7 +6368,7 @@ Or assign a filename containing GCode. </value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox42.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnMachineRangeGet.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6660,7 +6835,7 @@ Note machine coordinates</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox33.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBSerialDIY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6714,7 +6889,7 @@ Note machine coordinates</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox27.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label75.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6954,7 +7129,7 @@ Note machine coordinates</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox17.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label31.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7413,7 +7588,7 @@ Note machine coordinates</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox12.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cBCtrlCommentOut.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7422,7 +7597,7 @@ Note machine coordinates</value>
     <value>NoControl</value>
   </data>
   <data name="cBCtrlCommentOut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 19</value>
+    <value>6, 19</value>
   </data>
   <data name="cBCtrlCommentOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>171, 17</value>
@@ -7575,7 +7750,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>1</value>
   </data>
   <data name="groupBox10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 156</value>
+    <value>3, 136</value>
   </data>
   <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 125</value>
@@ -7596,7 +7771,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="cBSerial2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7686,7 +7861,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cBBackgroundImage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7695,7 +7870,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>NoControl</value>
   </data>
   <data name="cBBackgroundImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 301</value>
+    <value>9, 301</value>
   </data>
   <data name="cBBackgroundImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 30</value>
@@ -7717,7 +7892,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;cBBackgroundImage.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="cBcheckupdate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7726,7 +7901,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>NoControl</value>
   </data>
   <data name="cBcheckupdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 337</value>
+    <value>9, 337</value>
   </data>
   <data name="cBcheckupdate.Size" type="System.Drawing.Size, System.Drawing">
     <value>248, 17</value>
@@ -7752,7 +7927,7 @@ Saves CPU load, disables zooming during streaming</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;cBcheckupdate.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -8198,7 +8373,7 @@ Relative file path starts from here:</value>
     <value>603, 16</value>
   </data>
   <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 292</value>
+    <value>262, 333</value>
   </data>
   <data name="label45.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -8213,8 +8388,11 @@ Special functions (starts with #):
 #Stop (Stop streaming)
 #F-10 (-1, 100, +1, +10  Feedr. override)
 #S-10 (-1, 100, +1, +10  Spindle spd o.)
-
-
+#FEEDHOLD
+#RESUME
+#KILLALARM
+#RST  (soft reset via CTRL-X)
+#HRST (hardware reset via DTR/RTS)
 
 Analog Joystick will be used for jogging.
 Uses same settings as for virtual Joystick

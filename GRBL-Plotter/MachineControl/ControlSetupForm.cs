@@ -21,6 +21,7 @@
  * 2019-03-09 add color, width, X/Y and invert for pathRotaryInfo to show rotary over X or Y
  * 2019-08-15 add logger
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+ * 2019-12-07 add extended logging enable
 */
 
 using System;

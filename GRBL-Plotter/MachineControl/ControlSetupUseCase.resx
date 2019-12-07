@@ -117,64 +117,174 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cBshowImportDialog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblLastUseCase.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cBshowImportDialog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 17</value>
+  <data name="tBUseCaseInfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
   </data>
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 336</value>
+  <data name="tBUseCaseInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 288</value>
   </data>
-  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tBUseCaseInfo.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Load and apply settings, close dialog</value>
-  </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 400</value>
-  </data>
-  <data name="&gt;&gt;lblLastUseCase.Name" xml:space="preserve">
-    <value>lblLastUseCase</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tBUseCaseInfo.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Both</value>
   </data>
   <data name="tBUseCaseInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>576, 119</value>
   </data>
-  <data name="btnLoad.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="tBUseCaseInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="tBUseCaseInfo.Text" xml:space="preserve">
+    <value>The selected settings are applied immediately, 
+when loading a use case.</value>
   </data>
-  <data name="btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;tBUseCaseInfo.Name" xml:space="preserve">
+    <value>tBUseCaseInfo</value>
+  </data>
+  <data name="&gt;&gt;tBUseCaseInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tBUseCaseInfo.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="&gt;&gt;tBUseCaseInfo.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;cBshowImportDialog.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="lBUseCase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>409, 6</value>
+  </data>
+  <data name="lBUseCase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 277</value>
+  </data>
+  <data name="lBUseCase.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="&gt;&gt;lBUseCase.Name" xml:space="preserve">
+    <value>lBUseCase</value>
+  </data>
+  <data name="&gt;&gt;lBUseCase.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lBUseCase.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lBUseCase.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnLoad.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLoad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 410</value>
+  </data>
+  <data name="btnLoad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 23</value>
+  </data>
+  <data name="btnLoad.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="btnLoad.Text" xml:space="preserve">
+    <value>Load and apply settings, close dialog</value>
+  </data>
+  <data name="&gt;&gt;btnLoad.Name" xml:space="preserve">
+    <value>btnLoad</value>
   </data>
   <data name="&gt;&gt;btnLoad.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tBUseCaseInfo.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+  <data name="&gt;&gt;btnLoad.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnLoad.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 436</value>
+  </data>
+  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 23</value>
+  </data>
+  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="btnOk.Text" xml:space="preserve">
+    <value>Close Dialog without changes</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
+    <value>btnOk</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tBSetup.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Lucida Console, 7.5pt</value>
+  </data>
+  <data name="tBSetup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 6</value>
+  </data>
+  <data name="tBSetup.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tBSetup.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Both</value>
   </data>
-  <data name="cBshowImportDialog.Text" xml:space="preserve">
-    <value>Show this dialog on graphics import</value>
+  <data name="tBSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>400, 277</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="tBSetup.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tBSetup.Text" xml:space="preserve">
+    <value>Select use case to see settings</value>
+  </data>
+  <data name="&gt;&gt;tBSetup.Name" xml:space="preserve">
+    <value>tBSetup</value>
+  </data>
+  <data name="&gt;&gt;tBSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBSetup.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tBSetup.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 441</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Last loaded:</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -182,94 +292,53 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="btnLoad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 23</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="&gt;&gt;lBUseCase.Name" xml:space="preserve">
-    <value>lBUseCase</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 13</value>
-  </data>
-  <data name="tBSetup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 173</value>
-  </data>
-  <data name="tBSetup.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Both</value>
-  </data>
-  <data name="tBSetup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 6</value>
-  </data>
   <data name="lblLastUseCase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;tBUseCaseInfo.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="lblLastUseCase.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="tBSetup.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lblLastUseCase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 441</value>
   </data>
-  <data name="tBUseCaseInfo.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+  <data name="lblLastUseCase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 13</value>
   </data>
-  <data name="tBUseCaseInfo.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="lblLastUseCase.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="&gt;&gt;lblLastUseCase.Name" xml:space="preserve">
+    <value>lblLastUseCase</value>
   </data>
   <data name="&gt;&gt;lblLastUseCase.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="&gt;&gt;lblLastUseCase.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblLastUseCase.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBshowImportDialog.AccessibleDescription" xml:space="preserve">
+    <value>This option can be enabled again in Setup - Graphics import</value>
+  </data>
+  <data name="cBshowImportDialog.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBshowImportDialog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="cBshowImportDialog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 414</value>
+  </data>
+  <data name="cBshowImportDialog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 17</value>
   </data>
   <data name="cBshowImportDialog.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
   </data>
-  <data name="lblLastUseCase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 341</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ControlSetupUseCase</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lBUseCase.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblLastUseCase.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="tBUseCaseInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="&gt;&gt;tBUseCaseInfo.Name" xml:space="preserve">
-    <value>tBUseCaseInfo</value>
-  </data>
-  <data name="&gt;&gt;tBSetup.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tBUseCaseInfo.Text" xml:space="preserve">
-    <value>The selected settings are applied immediately, 
-when loading a use case.</value>
-  </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 400</value>
-  </data>
-  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnLoad.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 310</value>
-  </data>
-  <data name="lBUseCase.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="lblLastUseCase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>13, 13</value>
+  <data name="cBshowImportDialog.Text" xml:space="preserve">
+    <value>Show this dialog on graphics import</value>
   </data>
   <data name="&gt;&gt;cBshowImportDialog.Name" xml:space="preserve">
     <value>cBshowImportDialog</value>
@@ -277,106 +346,37 @@ when loading a use case.</value>
   <data name="&gt;&gt;cBshowImportDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lBUseCase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="&gt;&gt;lblLastUseCase.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tBSetup.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lBUseCase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>409, 6</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Name" xml:space="preserve">
-    <value>btnLoad</value>
-  </data>
-  <data name="btnOk.Text" xml:space="preserve">
-    <value>Close Dialog without changes</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="tBSetup.Text" xml:space="preserve">
-    <value>Select use case to see settings</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 341</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Select Use Case</value>
-  </data>
-  <data name="&gt;&gt;tBSetup.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lBUseCase.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="cBshowImportDialog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 314</value>
-  </data>
   <data name="&gt;&gt;cBshowImportDialog.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;tBUseCaseInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tBSetup.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 23</value>
-  </data>
-  <data name="lBUseCase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 173</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
-    <value>btnOk</value>
-  </data>
-  <data name="tBSetup.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Lucida Console, 7.5pt</value>
-  </data>
-  <data name="cBshowImportDialog.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btnLoad.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>584, 361</value>
-  </data>
-  <data name="tBUseCaseInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 188</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cBshowImportDialog.AccessibleDescription" xml:space="preserve">
-    <value>This option can be enabled again in Setup - Graphics import</value>
-  </data>
-  <data name="&gt;&gt;tBSetup.Name" xml:space="preserve">
-    <value>tBSetup</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Last loaded:</value>
-  </data>
-  <data name="lblLastUseCase.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;cBshowImportDialog.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>584, 461</value>
+  </data>
+  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>600, 500</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>600, 500</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Select Use Case</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ControlSetupUseCase</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

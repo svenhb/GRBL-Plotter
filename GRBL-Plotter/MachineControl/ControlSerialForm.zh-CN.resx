@@ -241,4 +241,13 @@ M =冷却液</value>
   <data name="lblSrState.Text" xml:space="preserve">
     <value>状态</value>
   </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>显示实时状态报告</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>显示原始收到的GRBL状态报告</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>在流式传输期间显示已发送和已处理的命令</value>
+  </data>
 </root>

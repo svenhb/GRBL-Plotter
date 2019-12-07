@@ -23,6 +23,7 @@
  * 2019-08-15 add logger
  * 2019-09-17 update settings
  * 2019-11-16 add gamepad
+ * 2019-12-07 showIniSettings -> selection between actual (Properties.Settings.Default.x) and ini-file values
 */
 
 using System;
@@ -705,7 +706,7 @@ namespace GRBL_Plotter
             setup.Save();
         }
 
-        public string showIniSettings()
+        public string showIniSettings(bool fromSettings = false)
         {
             StringBuilder tmp = new StringBuilder();
             bool fromTTZ  = false;  setVariable(ref fromTTZ, "GCode generation", "Z Values from TT");
@@ -713,38 +714,44 @@ namespace GRBL_Plotter
             bool fromTTSS = false; setVariable(ref fromTTSS, "GCode generation", "Spindle Speed from TT"); 
             bool ZEnable  = false; setVariable(ref ZEnable, "GCode generation", "Z Enable");
             bool TTImport = false; setVariable(ref TTImport, "Graphics Import", "Tool table enable");
-
+            if (fromSettings)
+            {   fromTTZ = Properties.Settings.Default.importGCTTZAxis;
+                fromTTXY = Properties.Settings.Default.importGCTTXYFeed;
+                fromTTSS = Properties.Settings.Default.importGCTTSSpeed;
+                ZEnable = Properties.Settings.Default.importGCZEnable;
+                TTImport = Properties.Settings.Default.importGCToolTableUse;
+            }
  //           string state;
-            addInfo(tmp,"Process dashed: {0}\r\n", Read("Process Dashed Lines", "Graphics Import"));
-            addInfo(tmp,"Laser mode    : {0}\r\n", Read("Spindle Use Laser", "GCode generation"));
+            addInfo(tmp,"Process dashed: {0}\r\n", fromSettings? Properties.Settings.Default.importLineDashPattern.ToString() : Read("Process Dashed Lines", "Graphics Import"));
+            addInfo(tmp,"Laser mode    : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCSpindleToggleLaser.ToString() : Read("Spindle Use Laser", "GCode generation"));
             if (!(TTImport && fromTTZ))
-                tmp.AppendFormat("XY Feedrate   : {0}\r\n", Read("XY Feedrate", "GCode generation"));
+                tmp.AppendFormat("XY Feedrate   : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCXYFeed.ToString() : Read("XY Feedrate", "GCode generation"));
             else
                 tmp.AppendFormat("XY Feedrate   : from tool table!\r\n");
 
             if (!(TTImport && fromTTSS))
-                tmp.AppendFormat("Spindle Speed : {0}\r\n", Read("Spindle Speed", "GCode generation"));
+                tmp.AppendFormat("Spindle Speed : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCSSpeed.ToString() : Read("Spindle Speed", "GCode generation"));
             else
                 tmp.AppendFormat("Spindle Speed : from tool table!\r\n");
 
             tmp.AppendFormat("Z Enable      : {0}\r\n", ZEnable.ToString());
             if (ZEnable)
             {   if (!(TTImport && fromTTZ))
-                {   tmp.AppendFormat("  Z Feedrate  : {0}\r\n", Read("Z Feedrate", "GCode generation"));
-                    tmp.AppendFormat("  Z Save      : {0}\r\n", Read("Z Up Pos", "GCode generation"));
-                    tmp.AppendFormat("  Z Down Pos  : {0}\r\n", Read("Z Down Pos", "GCode generation"));
-                    tmp.AppendFormat("  Z in passes : {0}\r\n", Read("Z Inc Enable", "GCode generation"));
-                    tmp.AppendFormat("  Z step/pass : {0}\r\n", Read("Z Increment", "GCode generation"));
+                {   tmp.AppendFormat("  Z Feedrate  : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCZFeed.ToString() : Read("Z Feedrate", "GCode generation"));
+                    tmp.AppendFormat("  Z Save      : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCZUp.ToString() : Read("Z Up Pos", "GCode generation"));
+                    tmp.AppendFormat("  Z Down Pos  : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCZDown.ToString() : Read("Z Down Pos", "GCode generation"));
+                    tmp.AppendFormat("  Z in passes : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCZIncEnable.ToString() : Read("Z Inc Enable", "GCode generation"));
+                    tmp.AppendFormat("  Z step/pass : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCZIncrement.ToString() : Read("Z Increment", "GCode generation"));
                 }
                 else
                 {   tmp.AppendFormat("  Z values    : from tool table!\r\n"); }
             }
-            addInfo(tmp, "Spindle Toggle: {0}\r\n", Read("Spindle Toggle", "GCode generation"));
-            addInfo(tmp, "PWM RC-Servo  : {0}\r\n", Read("PWM Enable", "GCode generation"));
+            addInfo(tmp, "Spindle Toggle: {0}\r\n", fromSettings ? Properties.Settings.Default.importGCSpindleToggle.ToString() : Read("Spindle Toggle", "GCode generation"));
+            addInfo(tmp, "PWM RC-Servo  : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCPWMEnable.ToString() : Read("PWM Enable", "GCode generation"));
             tmp.AppendLine();
-            addInfo(tmp,"Tool table enable : {0}\r\n", Read("Tool table enable", "Graphics Import"));
-            addInfo(tmp,"Tool table apply  : {0}\r\n", Read("Tool table loaded", "Tool change"));
-            addInfo(tmp,"Tool change enable: {0}\r\n", Read("Tool change enable", "Tool change"));
+            addInfo(tmp,"Tool table enable : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCToolTableUse.ToString() : Read("Tool table enable", "Graphics Import"));
+            addInfo(tmp,"Tool table apply  : {0}\r\n", fromSettings ? Properties.Settings.Default.toolTableLastLoaded.ToString() : Read("Tool table loaded", "Tool change"));
+            addInfo(tmp,"Tool change enable: {0}\r\n", fromSettings ? Properties.Settings.Default.ctrlToolChange.ToString() : Read("Tool change enable", "Tool change"));
             return tmp.ToString();
         }
         private void addInfo(StringBuilder tmp, string key, string value)

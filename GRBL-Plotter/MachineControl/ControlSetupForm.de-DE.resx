@@ -1992,4 +1992,12 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
+    <value>Schrittweite am Umfang des Bogens</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Schrittweite am Umfang des Bogens</value>
+    <comment>ToolTip</comment>
+  </data>
 </root>

@@ -76,6 +76,8 @@ namespace GRBL_Plotter
             this.rBImportSVGSort2 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGSort0 = new System.Windows.Forms.RadioButton();
             this.groupBox31 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label58 = new System.Windows.Forms.Label();
             this.rBImportUnitInch = new System.Windows.Forms.RadioButton();
@@ -368,6 +370,7 @@ namespace GRBL_Plotter
             this.cBToolTableUse = new System.Windows.Forms.CheckBox();
             this.cBImportSVGSortInvert = new System.Windows.Forms.CheckBox();
             this.cBImportSVGGroup = new System.Windows.Forms.CheckBox();
+            this.nUDImportDXFStepWidth = new System.Windows.Forms.NumericUpDown();
             this.cBImportDXFSwitchWhite = new System.Windows.Forms.CheckBox();
             this.cBImportDXFIndexToolNr = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
@@ -427,12 +430,12 @@ namespace GRBL_Plotter
             this.nUDImportGCDragKnifeAngle = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCDragKnifeLength = new System.Windows.Forms.NumericUpDown();
             this.cBImportGCDragKnife = new System.Windows.Forms.CheckBox();
+            this.nUDImportGCSegment = new System.Windows.Forms.NumericUpDown();
             this.cBImportGCSubFirst = new System.Windows.Forms.CheckBox();
             this.cBImportGCLineSegmentsEquidistant = new System.Windows.Forms.CheckBox();
             this.cBImportGCNoArcs = new System.Windows.Forms.CheckBox();
             this.nUDImportGCLineSegment = new System.Windows.Forms.NumericUpDown();
             this.tBImportGCSubroutine = new System.Windows.Forms.TextBox();
-            this.nUDImportGCSegment = new System.Windows.Forms.NumericUpDown();
             this.cBImportGCSubEnable = new System.Windows.Forms.CheckBox();
             this.cBImportGCLineSegments = new System.Windows.Forms.CheckBox();
             this.lblLastUseCase = new System.Windows.Forms.Label();
@@ -447,12 +450,15 @@ namespace GRBL_Plotter
             this.tBToolChangeScriptPut = new System.Windows.Forms.TextBox();
             this.tBToolChangeScriptGet = new System.Windows.Forms.TextBox();
             this.cBToolChange = new System.Windows.Forms.CheckBox();
+            this.cBresetSendCode = new System.Windows.Forms.CheckBox();
+            this.tBresetSendCode = new System.Windows.Forms.TextBox();
             this.cBrestoreCoordReset = new System.Windows.Forms.CheckBox();
             this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.cBpollIntervalReduce = new System.Windows.Forms.CheckBox();
             this.tBflowControl = new System.Windows.Forms.TextBox();
             this.cBflowControl = new System.Windows.Forms.CheckBox();
+            this.cBSerialPortFixer = new System.Windows.Forms.CheckBox();
             this.nUDMachineHomeZ = new System.Windows.Forms.NumericUpDown();
             this.nUDMachineHomeY = new System.Windows.Forms.NumericUpDown();
             this.nUDMachineHomeX = new System.Windows.Forms.NumericUpDown();
@@ -554,7 +560,7 @@ namespace GRBL_Plotter
             this.nUDShapeSizeMin = new System.Windows.Forms.NumericUpDown();
             this.cBShapeRect = new System.Windows.Forms.CheckBox();
             this.cBShapeCircle = new System.Windows.Forms.CheckBox();
-            this.cBSerialPortFixer = new System.Windows.Forms.CheckBox();
+            this.cBExtendedLogging = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -629,6 +635,7 @@ namespace GRBL_Plotter
             this.groupBox19.SuspendLayout();
             this.groupBox18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportDXFStepWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportRepeat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportSVGSegemnts)).BeginInit();
@@ -650,8 +657,8 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifePercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeLength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSegment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).BeginInit();
@@ -800,11 +807,24 @@ namespace GRBL_Plotter
             // 
             // groupBox31
             // 
+            this.groupBox31.Controls.Add(this.label15);
+            this.groupBox31.Controls.Add(this.label10);
+            this.groupBox31.Controls.Add(this.nUDImportDXFStepWidth);
             this.groupBox31.Controls.Add(this.cBImportDXFSwitchWhite);
             this.groupBox31.Controls.Add(this.cBImportDXFIndexToolNr);
             resources.ApplyResources(this.groupBox31, "groupBox31");
             this.groupBox31.Name = "groupBox31";
             this.groupBox31.TabStop = false;
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
             // 
             // groupBox3
             // 
@@ -1216,6 +1236,7 @@ namespace GRBL_Plotter
             // 
             // groupBox30
             // 
+            this.groupBox30.Controls.Add(this.nUDImportGCSegment);
             this.groupBox30.Controls.Add(this.btnFileDialogSubR);
             this.groupBox30.Controls.Add(this.cBImportGCSubFirst);
             this.groupBox30.Controls.Add(this.btnShowScriptSub);
@@ -1223,7 +1244,6 @@ namespace GRBL_Plotter
             this.groupBox30.Controls.Add(this.cBImportGCNoArcs);
             this.groupBox30.Controls.Add(this.nUDImportGCLineSegment);
             this.groupBox30.Controls.Add(this.tBImportGCSubroutine);
-            this.groupBox30.Controls.Add(this.nUDImportGCSegment);
             this.groupBox30.Controls.Add(this.cBImportGCSubEnable);
             this.groupBox30.Controls.Add(this.cBImportGCLineSegments);
             resources.ApplyResources(this.groupBox30, "groupBox30");
@@ -1731,6 +1751,8 @@ namespace GRBL_Plotter
             // 
             // groupBox36
             // 
+            this.groupBox36.Controls.Add(this.cBresetSendCode);
+            this.groupBox36.Controls.Add(this.tBresetSendCode);
             this.groupBox36.Controls.Add(this.cBrestoreCoordReset);
             resources.ApplyResources(this.groupBox36, "groupBox36");
             this.groupBox36.Name = "groupBox36";
@@ -1793,6 +1815,7 @@ namespace GRBL_Plotter
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cBExtendedLogging);
             this.tabPage2.Controls.Add(this.cBSerialPortFixer);
             this.tabPage2.Controls.Add(this.groupBox42);
             this.tabPage2.Controls.Add(this.groupBox33);
@@ -3141,6 +3164,25 @@ namespace GRBL_Plotter
             this.cBImportSVGGroup.UseVisualStyleBackColor = true;
             this.cBImportSVGGroup.CheckedChanged += new System.EventHandler(this.cBImportSVGGroup_CheckedChanged);
             // 
+            // nUDImportDXFStepWidth
+            // 
+            this.nUDImportDXFStepWidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importDXFStepWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportDXFStepWidth.DecimalPlaces = 2;
+            this.nUDImportDXFStepWidth.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportDXFStepWidth, "nUDImportDXFStepWidth");
+            this.nUDImportDXFStepWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDImportDXFStepWidth.Name = "nUDImportDXFStepWidth";
+            this.toolTip1.SetToolTip(this.nUDImportDXFStepWidth, resources.GetString("nUDImportDXFStepWidth.ToolTip"));
+            this.nUDImportDXFStepWidth.Value = global::GRBL_Plotter.Properties.Settings.Default.importDXFStepWidth;
+            // 
             // cBImportDXFSwitchWhite
             // 
             resources.ApplyResources(this.cBImportDXFSwitchWhite, "cBImportDXFSwitchWhite");
@@ -3871,6 +3913,25 @@ namespace GRBL_Plotter
             this.cBImportGCDragKnife.UseVisualStyleBackColor = true;
             this.cBImportGCDragKnife.CheckedChanged += new System.EventHandler(this.cBImportGCDragKnife_CheckedChanged);
             // 
+            // nUDImportGCSegment
+            // 
+            this.nUDImportGCSegment.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSegment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCSegment.DecimalPlaces = 2;
+            this.nUDImportGCSegment.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCSegment, "nUDImportGCSegment");
+            this.nUDImportGCSegment.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDImportGCSegment.Name = "nUDImportGCSegment";
+            this.toolTip1.SetToolTip(this.nUDImportGCSegment, resources.GetString("nUDImportGCSegment.ToolTip"));
+            this.nUDImportGCSegment.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSegment;
+            // 
             // cBImportGCSubFirst
             // 
             resources.ApplyResources(this.cBImportGCSubFirst, "cBImportGCSubFirst");
@@ -3928,25 +3989,6 @@ namespace GRBL_Plotter
             this.tBImportGCSubroutine.Name = "tBImportGCSubroutine";
             this.tBImportGCSubroutine.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCSubroutine;
             this.toolTip1.SetToolTip(this.tBImportGCSubroutine, resources.GetString("tBImportGCSubroutine.ToolTip"));
-            // 
-            // nUDImportGCSegment
-            // 
-            this.nUDImportGCSegment.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSegment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCSegment.DecimalPlaces = 2;
-            this.nUDImportGCSegment.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCSegment, "nUDImportGCSegment");
-            this.nUDImportGCSegment.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDImportGCSegment.Name = "nUDImportGCSegment";
-            this.toolTip1.SetToolTip(this.nUDImportGCSegment, resources.GetString("nUDImportGCSegment.ToolTip"));
-            this.nUDImportGCSegment.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSegment;
             // 
             // cBImportGCSubEnable
             // 
@@ -4115,10 +4157,27 @@ namespace GRBL_Plotter
             this.cBToolChange.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
             this.cBToolChange.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
             // 
+            // cBresetSendCode
+            // 
+            resources.ApplyResources(this.cBresetSendCode, "cBresetSendCode");
+            this.cBresetSendCode.Checked = global::GRBL_Plotter.Properties.Settings.Default.resetSendCodeEnable;
+            this.cBresetSendCode.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBresetSendCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "resetSendCodeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBresetSendCode.Name = "cBresetSendCode";
+            this.cBresetSendCode.UseVisualStyleBackColor = true;
+            // 
+            // tBresetSendCode
+            // 
+            this.tBresetSendCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "resetSendCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBresetSendCode, "tBresetSendCode");
+            this.tBresetSendCode.Name = "tBresetSendCode";
+            this.tBresetSendCode.Text = global::GRBL_Plotter.Properties.Settings.Default.resetSendCode;
+            this.toolTip1.SetToolTip(this.tBresetSendCode, resources.GetString("tBresetSendCode.ToolTip"));
+            // 
             // cBrestoreCoordReset
             // 
-            this.cBrestoreCoordReset.Checked = global::GRBL_Plotter.Properties.Settings.Default.restoreWorkCoordinates;
-            this.cBrestoreCoordReset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "restoreWorkCoordinates", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBrestoreCoordReset.Checked = global::GRBL_Plotter.Properties.Settings.Default.resetRestoreWorkCoordinates;
+            this.cBrestoreCoordReset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "resetRestoreWorkCoordinates", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.cBrestoreCoordReset, "cBrestoreCoordReset");
             this.cBrestoreCoordReset.Name = "cBrestoreCoordReset";
             this.cBrestoreCoordReset.UseVisualStyleBackColor = true;
@@ -4174,9 +4233,20 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.cBflowControl, "cBflowControl");
             this.cBflowControl.Checked = global::GRBL_Plotter.Properties.Settings.Default.flowControlEnable;
+            this.cBflowControl.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBflowControl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "flowControlEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBflowControl.Name = "cBflowControl";
             this.cBflowControl.UseVisualStyleBackColor = true;
+            // 
+            // cBSerialPortFixer
+            // 
+            resources.ApplyResources(this.cBSerialPortFixer, "cBSerialPortFixer");
+            this.cBSerialPortFixer.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerialPortFixer;
+            this.cBSerialPortFixer.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSerialPortFixer.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerialPortFixer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSerialPortFixer.Name = "cBSerialPortFixer";
+            this.toolTip1.SetToolTip(this.cBSerialPortFixer, resources.GetString("cBSerialPortFixer.ToolTip"));
+            this.cBSerialPortFixer.UseVisualStyleBackColor = true;
             // 
             // nUDMachineHomeZ
             // 
@@ -5475,15 +5545,13 @@ namespace GRBL_Plotter
             this.cBShapeCircle.Name = "cBShapeCircle";
             this.cBShapeCircle.UseVisualStyleBackColor = true;
             // 
-            // cBSerialPortFixer
+            // cBExtendedLogging
             // 
-            resources.ApplyResources(this.cBSerialPortFixer, "cBSerialPortFixer");
-            this.cBSerialPortFixer.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerialPortFixer;
-            this.cBSerialPortFixer.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSerialPortFixer.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerialPortFixer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSerialPortFixer.Name = "cBSerialPortFixer";
-            this.toolTip1.SetToolTip(this.cBSerialPortFixer, resources.GetString("cBSerialPortFixer.ToolTip"));
-            this.cBSerialPortFixer.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.cBExtendedLogging, "cBExtendedLogging");
+            this.cBExtendedLogging.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiExtendedLoggingEnabled;
+            this.cBExtendedLogging.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiExtendedLoggingEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBExtendedLogging.Name = "cBExtendedLogging";
+            this.cBExtendedLogging.UseVisualStyleBackColor = true;
             // 
             // ControlSetupForm
             // 
@@ -5549,6 +5617,7 @@ namespace GRBL_Plotter
             this.tabPage13.ResumeLayout(false);
             this.tabPage13.PerformLayout();
             this.groupBox36.ResumeLayout(false);
+            this.groupBox36.PerformLayout();
             this.groupBox39.ResumeLayout(false);
             this.groupBox39.PerformLayout();
             this.groupBox38.ResumeLayout(false);
@@ -5620,6 +5689,7 @@ namespace GRBL_Plotter
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportDXFStepWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportRepeat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportSVGSegemnts)).EndInit();
@@ -5641,8 +5711,8 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifePercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeLength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSegment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).EndInit();
@@ -6192,5 +6262,11 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label lblLastUseCase;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox cBSerialPortFixer;
+        private System.Windows.Forms.NumericUpDown nUDImportDXFStepWidth;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox cBresetSendCode;
+        private System.Windows.Forms.TextBox tBresetSendCode;
+        private System.Windows.Forms.CheckBox cBExtendedLogging;
     }
 }

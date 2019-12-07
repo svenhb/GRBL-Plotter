@@ -1193,7 +1193,7 @@ Plus de 3 axes (Mega2560) - 255 octets</value>
     <comment>ToolTip</comment>
   </data>
   <data name="lblPWM3.ToolTip" xml:space="preserve">
-    <value>Spindle speed for pen down</value>
+    <value>Valeur PWM (S) pour 'Pen Down'</value>
     <comment>ToolTip</comment>
   </data>
   <data name="lblPWM1.ToolTip" xml:space="preserve">
@@ -1526,5 +1526,13 @@ Ou assignez un nom de fichier contenant G-Code.</value>
   <data name="btnLoadToolTable.Text" xml:space="preserve">
     <value>ouvrir</value>
     <comment>Button</comment>
+  </data>
+  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
+    <value>Pas largeur sur la circonférence de l'arc</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Pas largeur sur la circonférence de l'arc</value>
+    <comment>ToolTip</comment>
   </data>
 </root>

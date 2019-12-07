@@ -263,4 +263,13 @@ M = туманная охлаждающая жидкость</value>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Отчет о состоянии в реальном времени</value>
   </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>Текущее состояние</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>Показать оригинальные полученные отчеты о состоянии GRBL</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>Показать отправленные и обработанные команды во время потоковой передачи</value>
+  </data>
 </root>

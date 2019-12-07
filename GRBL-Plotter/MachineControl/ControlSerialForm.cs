@@ -42,6 +42,7 @@
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-10-27 localization of strings
  * 2019-10-31 add SerialPortFixer http://zachsaw.blogspot.com/2010/07/serialport-ioexception-workaround-in-c.html
+ * 2019-12-07 add additional log-info during streamning cBStatus1
 */
 
 //#define debuginfo 
@@ -515,6 +516,18 @@ namespace GRBL_Plotter
             addToLog("> DTR/RTS reset");
             serialPort.DtrEnable = false;
             serialPort.RtsEnable = false;
+            if (savePos)
+            { saveLastPos(); }
+            resetVariables();
+            mParserState.reset();
+            isStreaming = false;
+            isStreamingPause = false;
+            isHeightProbing = false;
+            toolInSpindle = false;
+            waitForIdle = false;
+            externalProbe = false;
+            preventOutput = 0; preventEvent = 0;
+            grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
         }
 
 
@@ -564,7 +577,7 @@ namespace GRBL_Plotter
             {   updateStreaming();                                   // process all other messages
                 rxString = "";                                      // clear if simulation is on
                 if (!isStreaming || isStreamingPause)
-                {   if (!isHeightProbing || cbStatus.Checked)
+                {   if (!isHeightProbing || cBStatus.Checked)
                         addToLog("< ok");   // string.Format("< {0}", rxString)); // < ok
                 }
                 isDataProcessing = false;                   // unlock serialPort1_DataReceived
@@ -574,7 +587,7 @@ namespace GRBL_Plotter
             // Process status message with coordinates
             else if (((tmp = rxString.IndexOf('<')) >= 0) && (rxString.IndexOf('>') > tmp))
             {
-                if (cbStatus.Checked)
+                if (cBStatus.Checked)
                     addToLog(rxString);
                 handleRX_Status(rxString.Trim(charsToTrim));            // Process status message with coordinates
                 isDataProcessing = false;                   // unlock serialPort1_DataReceived
@@ -599,7 +612,7 @@ namespace GRBL_Plotter
             // Process feedback message with coordinates
             else if (((tmp = rxString.IndexOf('[')) >= 0) && (rxString.IndexOf(']') > tmp))
             {   handleRX_Feedback(rxString.Trim(charsToTrim).Split(':'));
-                if (!isHeightProbing || cbStatus.Checked)
+                if (!isHeightProbing || cBStatus.Checked)
                 {  if (preventOutput == 0)
                         addToLog(rxString);
                 }
@@ -678,7 +691,7 @@ namespace GRBL_Plotter
             {
                 grbl.updateParserState(sendLines[sendLinesConfirmed], ref mParserState);
                 grblBufferFree += (sendLines[sendLinesConfirmed].Length + 1);   //update bytes supose to be free on grbl rx bufer
-                if (cbStatus.Checked)
+                if (cBStatus1.Checked || cBStatus.Checked)
                 { addToLog("< ok ( "+sendLines[sendLinesConfirmed]+" )"); }
                 sendLinesConfirmed++;                                           // line processed
 
@@ -1307,7 +1320,7 @@ namespace GRBL_Plotter
 #if (debuginfo)
                 rtbLog.AppendText(string.Format("< {0} {1} {2} {3} \r\n", data, sendLinesSent, sendLinesConfirmed, grblBufferFree));//if not in transfer log the txLine
 #endif
-                if (!isHeightProbing && (!(isStreaming && !isStreamingPause)) || (cbStatus.Checked))
+                if (!isHeightProbing && (!(isStreaming && !isStreamingPause)) || (cBStatus1.Checked || cBStatus.Checked))
                 {
                     addToLog(string.Format("> {0}", data));//if not in transfer log the txLine
                 }

@@ -214,4 +214,13 @@ Erfolg hängt von der Hardware ab (DTR, RTS verkabelt?)</value>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Echtzeit Status Report</value>
   </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>Zeige den Echtzeit Status Report</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>Zeige die original empfangenen GRBL Status Reports</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>Gesendete und verarbeitete Befehle beim Streaming anzeigen</value>
+  </data>
 </root>

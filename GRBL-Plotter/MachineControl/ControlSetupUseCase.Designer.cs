@@ -47,8 +47,8 @@
             // 
             // lBUseCase
             // 
-            resources.ApplyResources(this.lBUseCase, "lBUseCase");
             this.lBUseCase.FormattingEnabled = true;
+            resources.ApplyResources(this.lBUseCase, "lBUseCase");
             this.lBUseCase.Name = "lBUseCase";
             this.lBUseCase.SelectedIndexChanged += new System.EventHandler(this.lBUseCase_SelectedIndexChanged);
             // 
@@ -61,8 +61,8 @@
             // 
             // btnOk
             // 
-            resources.ApplyResources(this.btnOk, "btnOk");
             this.btnOk.BackColor = System.Drawing.Color.Yellow;
+            resources.ApplyResources(this.btnOk, "btnOk");
             this.btnOk.Name = "btnOk";
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
