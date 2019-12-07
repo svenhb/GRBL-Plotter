@@ -1,20 +1,20 @@
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\Spline.dxf
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\ellipse_neu0.dxf
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\Spline ellipse.dxf
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\DXF_crc.dxf
+lastProcessed.nc
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Drill_RS485_smd1.drd
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\DXF_Absperrklappe.dxf
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Drill_RS485_error.png
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Flying_Devil.mp4
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\dasharray_test.svg
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Drill_RS485_smd1.dri
 C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\ellipse.dxf
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\ellipse_neu.dxf
-https://www.w3.org/TR/SVG/images/paths/arcs02.svg
-D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\Grafik\test_svg\Example arcs02 - arc options in paths.url
-https://www.w3.org/TR/SVG/images/paths/cubic01.svg
-D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\Grafik\test_svg\Example cubic01- cubic Bézier commands in path data.url
-https://www.w3.org/TR/SVG/images/paths/cubic02.svg
-D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\Grafik\test_svg\Example cubic02 - cubic Bézier commands in path data.url
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\ellipse_neu0.dxf
 https://www.w3.org/TR/SVG/images/paths/quad01.svg
 D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\Grafik\test_svg\Example quad01 - quadratic Bézier commands in path data.url
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\laser_berlin.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\laser_london.svg
-F:\laser_rom.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\Rocher_Tannenbaum2.svg
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\ellipse_neu.dxf
+https://www.w3.org/TR/SVG/images/paths/arcs02.svg
+D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\data\examples\graphic_grbl.svg
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\Spline.dxf
 C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\Rocher_Elch.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\Karte.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\eoxll8go.svg
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\Padlock Silent spindle for cutting in 2 parts 0.125 EM 4.gcode
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\Spline ellipse.dxf
+D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\Grafik\test_svg\Example arcs02 - arc options in paths.url
