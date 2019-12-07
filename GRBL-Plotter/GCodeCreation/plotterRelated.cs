@@ -18,6 +18,8 @@
 */
 /*
  * 2019-09-06 new class for high level commands
+ * 2019-11-28 add penup in line 180
+ * 2019-11-30 add line 381- Arc added code - for DXF circle multiple pass 
 */
 
 using System;
@@ -28,6 +30,8 @@ namespace GRBL_Plotter
 {
     public static class Plotter
     {
+        private static bool loggerTrace = false;    //true;
+
         private const int gcodeStringMax = 260;                 // max amount of tools
         private static int gcodeStringIndex = 0;                // index for stringBuilder-Array
         private static int gcodeStringIndexOld = 0;             // detect change in index
@@ -130,6 +134,8 @@ namespace GRBL_Plotter
         {
             if (!comments) { cmt = ""; }
 
+            if (loggerTrace) Logger.Trace(" StartPath X{0:0.000} Y{1:0.000} {2}", coordxy.X, coordxy.Y,cmt);
+
             if ((gcodeStringIndex == gcodeStringIndexOld) && (lastGC == coordxy))    // no change in position, no need for pen-up -down
             {
                 //Comment( cmt +" same pos");
@@ -165,10 +171,14 @@ namespace GRBL_Plotter
         /// </summary>
         public static void StopPath(string cmt)
         {
+            if (loggerTrace) Logger.Trace(" StopPath {0}",cmt);
+
             if (gcodeReduce)
             {   if ((lastSetGC.X != lastGC.X) || (lastSetGC.Y != lastGC.Y)) // restore last skipped point for accurat G2/G3 use
                     MoveToDashed(lastGC, cmt); //gcode.MoveTo(gcodeString[gcodeStringIndex], lastGC, "restore Point");
             }
+
+            PenUp(cmt);     // PenUp -> SVG Clipboard-Code
         }
 
 
@@ -177,6 +187,8 @@ namespace GRBL_Plotter
         /// </summary>
         public static void MoveTo(Point coordxy, string cmt)
         {
+            if (loggerTrace) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000}", coordxy.X, coordxy.Y);
+
             bool rejectPoint = false;
             PenDown(cmt + " moveto");
             if (gcodeReduce && IsPathReduceOk)
@@ -194,6 +206,8 @@ namespace GRBL_Plotter
         }
         private static void MoveToDashed(Point coordxy, string cmt)
         {
+            if (loggerTrace) Logger.Trace(" MoveToDashed X{0:0.000} Y{1:0.000}", coordxy.X, coordxy.Y);
+
             bool showDashInfo = false;
             string dashInfo = "";
 
@@ -350,6 +364,8 @@ namespace GRBL_Plotter
         /// </summary>
         public static void ArcToCCW(Point coordxy, Point coordij, string cmt)
         {
+            if (loggerTrace) Logger.Trace(" ArcTo X{0:0.000} Y{1:0.000}", coordxy.X, coordxy.Y);
+
             PenDown(cmt);
             if (gcodeReduce && IsPathReduceOk)      // restore last skipped point for accurat G2/G3 use
             {
@@ -360,6 +376,14 @@ namespace GRBL_Plotter
         }
         public static void Arc(int gnr, float x, float y, float i, float j, string cmt = "", bool avoidG23 = false)
         {
+            if (loggerTrace) Logger.Trace(" Arc X{0:0.000} Y{1:0.000}", x, y);
+
+            PenDown(cmt);   // added for DXF circle multiple pass
+            if (gcodeReduce && IsPathReduceOk)      // restore last skipped point for accurat G2/G3 use
+            {   if ((lastSetGC.X != lastGC.X) || (lastSetGC.Y != lastGC.Y))
+                    MoveToDashed(lastGC, cmt); 
+            }
+
             gcode.Arc(gcodeString[gcodeStringIndex], gnr, x, y, i, j, cmt, avoidG23);
             lastSetGC.X = x; lastSetGC.Y = y;
             lastGC.X = x; lastGC.Y = y;
@@ -515,6 +539,7 @@ namespace GRBL_Plotter
             if (penIsDown)
                 gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
             penIsDown = false;
+            if (loggerTrace) Logger.Trace(" PenUp pen was down {0}", penWasDown);
 
             if (endFigure)
             {   if ((Plotter.PathCount > 0) && !Plotter.IsPathFigureEnd)
@@ -532,6 +557,8 @@ namespace GRBL_Plotter
         {
             if (!comments)
                 cmt = "";
+            if (loggerTrace) Logger.Trace(" PenDown pen was down {0}", penIsDown);
+
             if (!penIsDown)
             {   if (pauseBeforePenDown) { gcode.Pause(gcodeString[gcodeStringIndex], "Pause before pen down"); }
                 gcode.PenDown(gcodeString[gcodeStringIndex], cmt);

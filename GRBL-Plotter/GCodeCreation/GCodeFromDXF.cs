@@ -33,6 +33,8 @@
  * 2019-09-06 swap code to new class 'plotter'
  * 2019-10-02 add nodes only
  * 2019-11-24 fix DXFLib.dll for ellipse support, fix spline support, Code outsourcing to importMath.cs
+ * 2019-11-26 add try/catch for dxf.load
+ * 2019-12-07 add extended log
 */
 
 using System;
@@ -49,6 +51,7 @@ namespace GRBL_Plotter //DXFImporter
 {
     class GCodeFromDXF
     {
+//        private static bool loggerTrace = false;    //true;
         private static bool gcodeReduce = false;            // if true remove G1 commands if distance is < limit
         private static double gcodeReduceVal = .1;          // limit when to remove G1 commands
         private static bool dxfComments = true;             // if true insert additional comments into GCode
@@ -98,7 +101,8 @@ namespace GRBL_Plotter //DXFImporter
                     {
                         byte[] byteArray = Encoding.UTF8.GetBytes(content);
                         MemoryStream stream = new MemoryStream(byteArray);
-                        loadDXF(stream);
+                        if (!loadDXF(stream))
+                            return "(File could not be loaded)";
                     }
                     catch (Exception e)
                     { MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + file); }
@@ -111,7 +115,8 @@ namespace GRBL_Plotter //DXFImporter
                 if (File.Exists(file))
                 {
                     try
-                    {   loadDXF(file);
+                    {   if (!loadDXF(file))
+                            return "(File could not be loaded)";
                     }
                     catch (Exception e)
                     { MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + file); return ""; }
@@ -152,13 +157,25 @@ namespace GRBL_Plotter //DXFImporter
         /// <param name="filename">String keeping file-name</param>
         /// <returns></returns>
         private static DXFDocument doc;
-        private static void loadDXF(string filename)
+        private static bool loadDXF(string filename)
         {   doc = new DXFDocument();
-            doc.Load(filename);
+            try { doc.Load(filename); }
+            catch (Exception er)
+            {   Logger.Error(er, "loading the file failed ");
+                MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + er.ToString());
+                return false;
+            }
+            return true;
         }
-        private static void loadDXF(Stream content)
+        private static bool loadDXF(Stream content)
         {   doc = new DXFDocument();
-            doc.Load(content);
+            try { doc.Load(content); }
+            catch (Exception er)
+            {   Logger.Error(er, "loading the file failed ");
+                MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + er.ToString());
+                return false;
+            }
+            return true;
         }
         private static void GetVectorDXF()
         {
@@ -206,7 +223,7 @@ namespace GRBL_Plotter //DXFImporter
                     {
                         if (block.BlockName.ToString() == ins.BlockName)
                         {
-                            Logger.Trace("Block: {0}", block.BlockName);
+                            if (gcode.loggerTrace) Logger.Trace("Block: {0}", block.BlockName);
                             dxfColorID = block.ColorNumber;
                             Plotter.PathName = "Block:"+block.BlockName;
                             Plotter.AddToHeader("Block: " + block.BlockName);
@@ -227,11 +244,6 @@ namespace GRBL_Plotter //DXFImporter
         /// <param name="entity">Entity to convert</param>
         /// <param name="offsetX">Offset to apply if called by block insertion</param>
         /// <returns></returns>                       
-        private static System.Windows.Point[] points;
-
-        /// <summary>
-        /// Process entities
-        /// </summary>
         private static void processEntities(DXFEntity entity, double offsetX=0, double offsetY=0, bool updateColor=true)
         {
             int index = 0;
@@ -295,7 +307,7 @@ namespace GRBL_Plotter //DXFImporter
             }
             dxfColorIDold = dxfColorID;
 
-            Logger.Trace("  Entity: {0}", entity.GetType().ToString());
+            if (gcode.loggerTrace) Logger.Trace("  Entity: {0}", entity.GetType().ToString());
 
             if (entity.GetType() == typeof(DXFPointEntity))
             {
@@ -307,7 +319,7 @@ namespace GRBL_Plotter //DXFImporter
                     dxfStopPath();
                 }
                 else { gcodeDotOnly(x, y, "Start Point"); }
-                Logger.Trace("    Point: {0};{1} ", x, y);
+                if (gcode.loggerTrace) Logger.Trace("    Point: {0};{1} ", x, y);
             }
 
             #region DXFLWPolyline
@@ -402,7 +414,7 @@ namespace GRBL_Plotter //DXFImporter
                     gcodeDotOnly(x2, y2, "End Line");
                 }
                 dxfStopPath();
-                Logger.Trace("    From: {0};{1}  To: {2};{3}", x,y,x2,y2);
+                if (gcode.loggerTrace) Logger.Trace("    From: {0};{1}  To: {2};{3}", x,y,x2,y2);
             }
             #endregion
             #region DXFSpline
@@ -421,7 +433,7 @@ namespace GRBL_Plotter //DXFImporter
 
                 int knots = spline.KnotCount;
                 int ctrls = spline.ControlPointCount;
-                Logger.Trace("    Spline  ControlPointCnt: {0} KnotsCount: {1}", ctrls, knots);
+                if (gcode.loggerTrace) Logger.Trace("    Spline  ControlPointCnt: {0} KnotsCount: {1}", ctrls, knots);
 
                 if ((ctrls > 3) && (knots == ctrls + 4))    //  # cubic
                 {   if (ctrls > 4)
@@ -502,7 +514,7 @@ namespace GRBL_Plotter //DXFImporter
                 dxfStartPath(x + circle.Radius, y, "Start Circle");
                 Plotter.Arc( 2, (float)x + (float)circle.Radius, (float)y, -(float)circle.Radius, 0, "");
                 dxfStopPath();
-                Logger.Trace("    Center: {0};{1}  R: {2}", x, y, circle.Radius);
+                if (gcode.loggerTrace) Logger.Trace("    Center: {0};{1}  R: {2}", x, y, circle.Radius);
             }
             #endregion
             #region DXFEllipse
@@ -547,7 +559,7 @@ namespace GRBL_Plotter //DXFImporter
                     //    path = 'M %f,%f A %f,%f %f 1 0 %f,%f %f,%f %f 1 0 %f,%f z' % (xc + xm, yc - ym, rm, w* rm, -180.0 * a / math.pi, xc - xm, yc + ym, rm, w* rm, -180.0 * a / math.pi, xc + xm, yc - ym)
                 }
                 dxfStopPath();
-                Logger.Trace("    Center: {0};{1}  R1: {2} R2: {3} Start: {4} End: {5}", xc, yc, rm, w*rm, ellipse.StartParam, ellipse.EndParam);
+                if (gcode.loggerTrace) Logger.Trace("    Center: {0};{1}  R1: {2} R2: {3} Start: {4} End: {5}", xc, yc, rm, w*rm, ellipse.StartParam, ellipse.EndParam);
             }
             #endregion
             #region DXFArc
@@ -561,7 +573,7 @@ namespace GRBL_Plotter //DXFImporter
                 double startAngle = arc.StartAngle;
                 double endAngle = arc.EndAngle;
                 if (startAngle > endAngle) endAngle += 360;
-                double stepwidth = (double)Properties.Settings.Default.importGCSegment; // from setup-GCode modification-Avoid G2/3 commands...
+                double stepwidth = (double)Properties.Settings.Default.importDXFStepWidth; 
                 float StepAngle = (float)(Math.Asin(stepwidth / R) * 180 / Math.PI);
                 double currAngle = startAngle;
                 index = 0;
@@ -597,7 +609,7 @@ namespace GRBL_Plotter //DXFImporter
                         index++;
                     }
                     dxfStopPath();
-                    Logger.Trace("    Center: {0};{1}  R: {2}", X, Y, R);
+                    if (gcode.loggerTrace) Logger.Trace("    Center: {0};{1}  R: {2}", X, Y, R);
                 }
             }
             #endregion
@@ -622,7 +634,7 @@ namespace GRBL_Plotter //DXFImporter
                 string tmp = string.Format("Id=\"{0}\" Color=\"#{1}\" ToolNr=\"{2}\"", dxfColorID, dxfColorHex, toolToUse);
                 Plotter.InsertText(tmp);
                 Plotter.IsPathFigureEnd = true;
-                Logger.Trace("    Text: {0}", GCodeFromFont.gcText);
+                if (gcode.loggerTrace) Logger.Trace("    Text: {0}", GCodeFromFont.gcText);
             }
             #endregion
             else

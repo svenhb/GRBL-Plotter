@@ -43,6 +43,7 @@
                 to do line 995 check svgClosePathExtend
    2019-09-19 add stroke-dasharray
    2019-11-24 Code outsourcing to importMath.cs
+   2019-12-07 add extended log
 */
 
 using System;
@@ -60,6 +61,7 @@ namespace GRBL_Plotter
 {
     class GCodeFromSVG
     {
+//        private static bool loggerTrace = false;    //true;
         private static int svgBezierAccuracy = 6;       // applied line segments at bezier curves
         private static bool svgScaleApply = true;       // try to scale final GCode if true
         private static float svgMaxSize = 100;          // final GCode size (greater dimension) if scale is applied
@@ -205,7 +207,7 @@ namespace GRBL_Plotter
             parseGroup(svgCode,1);                      // parse groups (recursive)
             if (svgGroupObjects)
             {   if (!Plotter.IsPathFigureEnd)
-                {   Plotter.Comment(xmlMarker.figureEnd + " ??? " + Plotter.PathCount + ">");
+                {   Plotter.Comment(xmlMarker.figureEnd + Plotter.PathCount + ">");     // reached if SVG code via copy & paste was converted
                     Logger.Debug(" FigureEnd");
                 }
                 Plotter.IsPathFigureEnd = true;
@@ -554,6 +556,8 @@ namespace GRBL_Plotter
                 {
                     if (pathElement != null)
                     {
+                        if (gcode.loggerTrace) Logger.Trace("parseBasicElements: {0} Level: {1}", form,level);
+
                         parseAttributs(pathElement);   // process color and stroke-dasharray
                         logSource = "Basic element " + form;
 
@@ -594,6 +598,7 @@ namespace GRBL_Plotter
                             else if (rx == 0) { rx = ry; }
                             else if (rx != ry) { rx = Math.Min(rx,ry); ry = rx; }   // only same r for x and y are possible
                             if (svgComments) Plotter.Comment(string.Format(" SVG-Rect x:{0} y:{1} width:{2} height:{3} rx:{4} ry:{5}", x, y, width, height, rx, ry));
+                            if (gcode.loggerTrace) Logger.Trace(" SVG-Rect x:{0} y:{1} width:{2} height:{3} rx:{4} ry:{5}", x, y, width, height, rx, ry);
                             x += offsetX; y += offsetY;
                             if (!svgNodesOnly)
                             {
@@ -628,6 +633,7 @@ namespace GRBL_Plotter
                         else if (form == "circle")
                         {
                             if (svgComments) Plotter.Comment(string.Format(" circle cx:{0} cy:{1} r:{2} ", cx, cy, r));
+                            if (gcode.loggerTrace) Logger.Trace(" circle cx:{0} cy:{1} r:{2} ", cx, cy, r);
                             cx += offsetX; cy += offsetY;
                             if (!svgNodesOnly)
                             {
@@ -644,6 +650,7 @@ namespace GRBL_Plotter
                         else if (form == "ellipse")
                         {
                             if (svgComments) Plotter.Comment(string.Format(" ellipse cx:{0} cy:{1} rx:{2}  ry:{3}", cx, cy, rx, ry));
+                            if (gcode.loggerTrace) Logger.Trace(" ellipse cx:{0} cy:{1} rx:{2}  ry:{3}", cx, cy, rx, ry);
                             cx += offsetX; cy += offsetY;
                             if (!svgNodesOnly)
                             {
@@ -662,6 +669,7 @@ namespace GRBL_Plotter
                         else if (form == "line")
                         {
                             if (svgComments) Plotter.Comment(string.Format(" SVG-Line x1:{0} y1:{1} x2:{2} y2:{3} ", x1, y1, x2, y2));
+                            if (gcode.loggerTrace) Logger.Trace(" SVG-Line x1:{0} y1:{1} x2:{2} y2:{3} ", x1, y1, x2, y2);
                             x1 += offsetX; y1 += offsetY;
                             if (!svgNodesOnly)
                             {
@@ -775,7 +783,7 @@ namespace GRBL_Plotter
                     if (d.Length > 0)
                     {
                         // split complete path in to command-tokens
-                //        Logger.Trace("d {0}", d);
+                        if (gcode.loggerTrace) Logger.Trace("  Path d {0}", d);
                         string separators = @"(?=[A-Za-z-[e]])";            
                         var tokens = Regex.Split(d, separators).Where(t => !string.IsNullOrEmpty(t));
                         int objCount = 0;

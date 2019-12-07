@@ -181,6 +181,7 @@ namespace GRBL_Plotter
         /// </summary>
         public static int init()    // return number of entries
         {
+            Logger.Debug("Init tool table");
             init_done = true;
             useException=false;
             Array.Resize(ref toolTableArray, toolTableMax);
