@@ -162,7 +162,7 @@ namespace GRBL_Plotter
         {
             Logger.Trace("MainForm_Load start");
             if (Properties.Settings.Default.ctrlUpgradeRequired)
-            {
+            {   Logger.Trace("Properties.Settings.Default.UpgradeRequired");
                 Properties.Settings.Default.Upgrade();
                 Properties.Settings.Default.ctrlUpgradeRequired = false;
                 Properties.Settings.Default.Save();
@@ -223,15 +223,21 @@ namespace GRBL_Plotter
                 flowLayoutPanel1.Controls.Add(b);
             }
 
-            loadSettings(sender, e);
-            loadHotkeys();
+            loadSettings(sender, e);    // includes loadHotkeys();
+//           loadHotkeys();
             updateControls();
             LoadRecentList();
             foreach (string item in MRUlist)
-            {
-                ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);  //create new menu for each item in list
+            {   ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);  //create new menu for each item in list
                 toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
             }
+
+            checkUpdate.CheckVersion();     // check update
+            grbl.init();                    // load and set grbl messages
+            toolTable.init();               // fill structure
+            try { ControlGamePad.Initialize();}
+            catch {}
+            Logger.Trace("MainForm_Load finish");
 
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length > 1)
@@ -239,12 +245,6 @@ namespace GRBL_Plotter
                 loadFile(args[1]);
             }
 
-            checkUpdate.CheckVersion();  // check update
-            grbl.init();
-            toolTable.init();       // fill structure
-            try { ControlGamePad.Initialize();}
-            catch {}
-            Logger.Trace("MainForm_Load stop");
         }
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -366,7 +366,7 @@ namespace GRBL_Plotter
                 double b = Properties.Settings.Default.grblLastOffsetB;
                 double c = Properties.Settings.Default.grblLastOffsetC;
 
-                if (Properties.Settings.Default.restoreWorkCoordinates)
+                if (Properties.Settings.Default.resetRestoreWorkCoordinates)
                 {
                     Logger.Info("restoreWorkCoordinates [Setup - Flow control - Behavior after grbl reset]");
                     coordinateG = Properties.Settings.Default.grblLastOffsetCoord;
@@ -392,8 +392,12 @@ namespace GRBL_Plotter
 
                     sendCommand(setAxis.Replace(',', '.'));
                 }
- //               else
- //                   sendCommand(String.Format("F{0}", Properties.Settings.Default.importGCXYFeed).Replace(',', '.'));
+                if (Properties.Settings.Default.resetSendCodeEnable)
+                {   _serial_form.addToLog("* Code from [Setup - Flow control]");
+                    _serial_form.addToLog("* Code after reset: "+ Properties.Settings.Default.resetSendCode);
+                    processCommands(Properties.Settings.Default.resetSendCode);
+                }
+
                 flagResetOffset = false;
                 updateControls();
             }
@@ -543,6 +547,14 @@ namespace GRBL_Plotter
         { _serial_form.realtimeCommand(cmd); }
 
         // send command via serial form
+        private void sendCommand2(string txt)
+        {
+            if (!_serial_form.requestSend(txt,true))     // check if COM is still open
+                updateControls();
+
+            if ((txt.Contains("G92") || txt.Contains("G10") || txt.Contains("G43")) && (_coordSystem_form != null))
+                _coordSystem_form.refreshValues();
+        }
         private void sendCommand(string txt, bool jogging = false)
         {
             if ((jogging) && (grbl.isVersion_0 == false))
@@ -1196,6 +1208,7 @@ namespace GRBL_Plotter
             {
                 if (delayedSend-- == 1)
                 {   _serial_form.addToLog("* Code from [Setup - Flow control]");
+                    _serial_form.addToLog("* Code after pause/stop: " + Properties.Settings.Default.flowControlText);
                     processCommands(Properties.Settings.Default.flowControlText);
                 }
             }
@@ -1496,14 +1509,18 @@ namespace GRBL_Plotter
             ControlPowerSaving.EnableStandby();
         }
         private void btnFeedHold_Click(object sender, EventArgs e)
-        {
-            sendRealtimeCommand('!');
+        {   grblFeedHold(); }
+        private void grblFeedHold()
+        {   sendRealtimeCommand('!');
+            Logger.Trace("FeedHold");
             signalResume = 1;
             updateControls(true);
         }
         private void btnResume_Click(object sender, EventArgs e)
-        {
-            sendRealtimeCommand('~');
+        {   grblResume(); }
+        private void grblResume()
+        {   sendRealtimeCommand('~');
+            Logger.Trace("Resume");
             btnResume.BackColor = SystemColors.Control;
             signalResume = 0;
             lbInfo.Text = "";
@@ -1511,8 +1528,10 @@ namespace GRBL_Plotter
             updateControls();
         }
         private void btnKillAlarm_Click(object sender, EventArgs e)
-        {
-            sendCommand("$X");
+        {   grblKillAlarm(); }
+        private void grblKillAlarm()
+        {   sendCommand("$X");
+            Logger.Trace("KillAlarm");
             signalLock = 0;
             btnKillAlarm.BackColor = SystemColors.Control;
             lbInfo.Text = "";
@@ -1571,43 +1590,55 @@ namespace GRBL_Plotter
         {   if (command.Length <= 1)
                 return;
             string[] commands;
-            if (File.Exists(command))
+//            Logger.Trace("processCommands");
+            if (!command.StartsWith("(") && File.Exists(command))
             {
                 string fileCmd = File.ReadAllText(command);
                 _serial_form.addToLog("* File: " + command);
                 commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             }
             else
-            {
-                commands = command.Split(';');
+            {    commands = command.Split(';');
             }
             if (_diyControlPad != null)
             {   _diyControlPad.isHeightProbing = false; }
 
             foreach (string btncmd in commands)
             {   if (btncmd.StartsWith("($") && (_diyControlPad != null))
-                {   string tmp = btncmd.Replace("($", "[");
+                {
+                    string tmp = btncmd.Replace("($", "[");
                     tmp = tmp.Replace(")", "]");
                     _diyControlPad.sendFeedback(tmp);
                 }
                 else
-                    sendCommand(btncmd.Trim());
+                {   if (!processSpecialCommands(command))
+                    sendCommand(btncmd.Trim());    
+                }
             }
         }
-        private void processSpecialCommands(string command)
+        private bool processSpecialCommands(string command)
         {
-            if (command.ToLower().IndexOf("#start") >= 0) { btnStreamStart_Click(this, EventArgs.Empty); }
-            else if (command.ToLower().IndexOf("#stop") >= 0) { btnStreamStop_Click(this, EventArgs.Empty); }
-            else if (command.ToLower().IndexOf("#f100") >= 0) { sendRealtimeCommand(144); }
-            else if (command.ToLower().IndexOf("#f+10") >= 0) { sendRealtimeCommand(145); }
-            else if (command.ToLower().IndexOf("#f-10") >= 0) { sendRealtimeCommand(146); }
-            else if (command.ToLower().IndexOf("#f+1") >= 0) { sendRealtimeCommand(147); }
-            else if (command.ToLower().IndexOf("#f-1") >= 0) { sendRealtimeCommand(148); }
-            else if (command.ToLower().IndexOf("#s100") >= 0) { sendRealtimeCommand(153); }
-            else if (command.ToLower().IndexOf("#s+10") >= 0) { sendRealtimeCommand(154); }
-            else if (command.ToLower().IndexOf("#s-10") >= 0) { sendRealtimeCommand(155); }
-            else if (command.ToLower().IndexOf("#s+1") >= 0) { sendRealtimeCommand(156); }
-            else if (command.ToLower().IndexOf("#s-1") >= 0) { sendRealtimeCommand(157); }
+//            Logger.Trace("processSpecialCommands");
+            bool commandFound = false;
+            if (command.ToLower().IndexOf("#start") >= 0) { btnStreamStart_Click(this, EventArgs.Empty); commandFound = true; }
+            else if (command.ToLower().IndexOf("#stop") >= 0) { btnStreamStop_Click(this, EventArgs.Empty); commandFound = true; }
+            else if (command.ToLower().IndexOf("#f100") >= 0) { sendRealtimeCommand(144); commandFound = true; }
+            else if (command.ToLower().IndexOf("#f+10") >= 0) { sendRealtimeCommand(145); commandFound = true; }
+            else if (command.ToLower().IndexOf("#f-10") >= 0) { sendRealtimeCommand(146); commandFound = true; }
+            else if (command.ToLower().IndexOf("#f+1")  >= 0) { sendRealtimeCommand(147); commandFound = true; }
+            else if (command.ToLower().IndexOf("#f-1")  >= 0) { sendRealtimeCommand(148); commandFound = true; }
+            else if (command.ToLower().IndexOf("#s100") >= 0) { sendRealtimeCommand(153); commandFound = true; }
+            else if (command.ToLower().IndexOf("#s+10") >= 0) { sendRealtimeCommand(154); commandFound = true; }
+            else if (command.ToLower().IndexOf("#s-10") >= 0) { sendRealtimeCommand(155); commandFound = true; }
+            else if (command.ToLower().IndexOf("#s+1")  >= 0) { sendRealtimeCommand(156); commandFound = true; }
+            else if (command.ToLower().IndexOf("#s-1")  >= 0) { sendRealtimeCommand(157); commandFound = true; }
+            else if (command.ToLower().IndexOf("#hrst") >= 0) { _serial_form.grblHardReset(); commandFound = true; }
+            else if (command.ToLower().IndexOf("#rst")  >= 0) { _serial_form.grblReset(); commandFound = true; }
+            else if (command.ToLower().IndexOf("#feedhold")  >= 0) { grblFeedHold(); commandFound = true; }
+            else if (command.ToLower().IndexOf("#resume")    >= 0) { grblResume(); commandFound = true; }
+            else if (command.ToLower().IndexOf("#killalarm") >= 0) { grblKillAlarm(); commandFound = true; }
+
+            return commandFound;
         }
 
 
@@ -1802,6 +1833,9 @@ namespace GRBL_Plotter
 #if (debuginfo)
             log.Add("MainForm updateView");
 #endif
+            Properties.Settings.Default.gui2DRulerShow = toolStripViewRuler.Checked;
+            Properties.Settings.Default.gui2DInfoShow = toolStripViewInfo.Checked;
+            Properties.Settings.Default.gui2DPenUpShow = toolStripViewPenUp.Checked;
             Properties.Settings.Default.machineLimitsShow = toolStripViewMachine.Checked;
             Properties.Settings.Default.gui2DToolTableShow = toolStripViewTool.Checked;
             Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked;

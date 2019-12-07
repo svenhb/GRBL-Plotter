@@ -144,29 +144,62 @@
   <data name="cmsEditorHotkeys.Text" xml:space="preserve">
     <value>Show Editor hotkeys</value>
   </data>
-  <data name="foldBlocksToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
+  <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 6</value>
   </data>
-  <data name="foldBlocksToolStripMenuItem1.Text" xml:space="preserve">
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
     <value>Fold code blocks 1st level</value>
   </data>
-  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
   </data>
-  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem1.Text" xml:space="preserve">
     <value>Fold code blocks 2nd level</value>
   </data>
-  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 22</value>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
   </data>
-  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem1.Text" xml:space="preserve">
     <value>Fold code blocks 3rd level</value>
   </data>
-  <data name="expandCodeBlocksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="expandCodeBlocksToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Expand code blocks</value>
+  </data>
+  <data name="toolStripSeparator20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 6</value>
+  </data>
+  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Move selected code block up</value>
+  </data>
+  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 22</value>
+  </data>
+  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Move selected code block down</value>
+  </data>
+  <data name="codeBlocksToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="codeBlocksToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 22</value>
   </data>
-  <data name="expandCodeBlocksToolStripMenuItem.Text" xml:space="preserve">
-    <value>Expand code blocks</value>
+  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Code Blocks</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 6</value>
@@ -241,7 +274,7 @@
     <value>Update 2D view</value>
   </data>
   <data name="cmsCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 358</value>
+    <value>222, 298</value>
   </data>
   <data name="&gt;&gt;cmsCode.Name" xml:space="preserve">
     <value>cmsCode</value>
@@ -679,7 +712,7 @@
     <value>Offset Y</value>
   </data>
   <data name="label6.ToolTip" xml:space="preserve">
-    <value>Смещение Y</value>
+    <value>Offset Y</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -745,7 +778,7 @@
     <value>Offset X</value>
   </data>
   <data name="label1.ToolTip" xml:space="preserve">
-    <value>Смещение X</value>
+    <value>Offset X</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -3318,6 +3351,12 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cutOutSelectedPathToolStripMenuItem.Text" xml:space="preserve">
     <value>Cut out selected path</value>
   </data>
+  <data name="moveSelectedPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 22</value>
+  </data>
+  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Move selected path</value>
+  </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 6</value>
   </data>
@@ -3347,7 +3386,7 @@ negative value on right side.</value>
     <value>False</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 342</value>
+    <value>262, 364</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
@@ -5798,6 +5837,24 @@ Langue
   <data name="machineToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Machine control</value>
   </data>
+  <data name="toolStripViewRuler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="toolStripViewRuler.Text" xml:space="preserve">
+    <value>Ruler</value>
+  </data>
+  <data name="toolStripViewInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="toolStripViewInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="toolStripViewPenUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 22</value>
+  </data>
+  <data name="toolStripViewPenUp.Text" xml:space="preserve">
+    <value>Pen-Up path</value>
+  </data>
   <data name="toolStripViewMachineFix.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 22</value>
   </data>
@@ -5915,28 +5972,58 @@ Langue
   <data name="&gt;&gt;cmsEditorHotkeys.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;foldBlocksToolStripMenuItem1.Name" xml:space="preserve">
-    <value>foldBlocksToolStripMenuItem1</value>
+  <data name="&gt;&gt;toolStripSeparator19.Name" xml:space="preserve">
+    <value>toolStripSeparator19</value>
   </data>
-  <data name="&gt;&gt;foldBlocksToolStripMenuItem1.Type" xml:space="preserve">
+  <data name="&gt;&gt;toolStripSeparator19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;codeBlocksToolStripMenuItem.Name" xml:space="preserve">
+    <value>codeBlocksToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;codeBlocksToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;foldCodeBlocks2ndLevelToolStripMenuItem.Name" xml:space="preserve">
-    <value>foldCodeBlocks2ndLevelToolStripMenuItem</value>
+  <data name="&gt;&gt;foldCodeBlocks1stLevelToolStripMenuItem.Name" xml:space="preserve">
+    <value>foldCodeBlocks1stLevelToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;foldCodeBlocks2ndLevelToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;foldCodeBlocks1stLevelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;foldCodeBlocks3rdLevelToolStripMenuItem.Name" xml:space="preserve">
-    <value>foldCodeBlocks3rdLevelToolStripMenuItem</value>
+  <data name="&gt;&gt;foldCodeBlocks2ndLevelToolStripMenuItem1.Name" xml:space="preserve">
+    <value>foldCodeBlocks2ndLevelToolStripMenuItem1</value>
   </data>
-  <data name="&gt;&gt;foldCodeBlocks3rdLevelToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;foldCodeBlocks2ndLevelToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;expandCodeBlocksToolStripMenuItem.Name" xml:space="preserve">
-    <value>expandCodeBlocksToolStripMenuItem</value>
+  <data name="&gt;&gt;foldCodeBlocks3rdLevelToolStripMenuItem1.Name" xml:space="preserve">
+    <value>foldCodeBlocks3rdLevelToolStripMenuItem1</value>
   </data>
-  <data name="&gt;&gt;expandCodeBlocksToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;foldCodeBlocks3rdLevelToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;expandCodeBlocksToolStripMenuItem1.Name" xml:space="preserve">
+    <value>expandCodeBlocksToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;expandCodeBlocksToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator20.Name" xml:space="preserve">
+    <value>toolStripSeparator20</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moveSelectedCodeBlockUpToolStripMenuItem1.Name" xml:space="preserve">
+    <value>moveSelectedCodeBlockUpToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;moveSelectedCodeBlockUpToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moveSelectedCodeBlockDownToolStripMenuItem1.Name" xml:space="preserve">
+    <value>moveSelectedCodeBlockDownToolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;moveSelectedCodeBlockDownToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator11.Name" xml:space="preserve">
@@ -6111,6 +6198,12 @@ Langue
     <value>cutOutSelectedPathToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;cutOutSelectedPathToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moveSelectedPathToolStripMenuItem.Name" xml:space="preserve">
+    <value>moveSelectedPathToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;moveSelectedPathToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">
@@ -6593,6 +6686,24 @@ Langue
   <data name="&gt;&gt;viewToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripViewRuler.Name" xml:space="preserve">
+    <value>toolStripViewRuler</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewRuler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewInfo.Name" xml:space="preserve">
+    <value>toolStripViewInfo</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewPenUp.Name" xml:space="preserve">
+    <value>toolStripViewPenUp</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewPenUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripViewMachineFix.Name" xml:space="preserve">
     <value>toolStripViewMachineFix</value>
   </data>
@@ -6603,6 +6714,18 @@ Langue
     <value>toolStripViewMachine</value>
   </data>
   <data name="&gt;&gt;toolStripViewMachine.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewTool.Name" xml:space="preserve">
+    <value>toolStripViewTool</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewBackground.Name" xml:space="preserve">
+    <value>toolStripViewBackground</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewBackground.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
@@ -6640,18 +6763,6 @@ Langue
   </data>
   <data name="&gt;&gt;gamePadTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewTool.Name" xml:space="preserve">
-    <value>toolStripViewTool</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewBackground.Name" xml:space="preserve">
-    <value>toolStripViewBackground</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewBackground.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

@@ -23,6 +23,7 @@
  * pictureBox1_Paint
  * pictureBox1_SizeChanged
  * 2019-01-28 3 digitis for coordinates
+ * 2019-12-07 enable/disable show of ruler, info, pen-up
  * */
 
 using System;
@@ -53,6 +54,10 @@ namespace GRBL_Plotter
         private bool showPicBoxBgImage = false;
         private bool showPathPenUp = true;
         private bool showPaths = false;
+        private xyPoint posMoveStart = new xyPoint(0, 0);
+        private xyPoint posMoveTmp = new xyPoint(0, 0);
+        private xyPoint posMoveEnd = new xyPoint(0, 0);
+        private bool posIsMoving = false;
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
@@ -87,6 +92,7 @@ namespace GRBL_Plotter
 
                 picAbsPos.X = relposX * xRange + minx;
                 picAbsPos.Y = yRange - relposY * yRange + miny;
+                posMoveEnd = picAbsPos;
                 int offX = +5;
 
                 if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width - 100))
@@ -112,11 +118,14 @@ namespace GRBL_Plotter
                         e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
                         e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 50));
                     }
-                    e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
-                    e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 / zoomRange, unit,
-                        grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
-                    if (visuGCode.selectedFigureInfo.Length > 0)
-                        e.Graphics.DrawString(visuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
+                    if (Properties.Settings.Default.gui2DInfoShow)
+                    {
+                        e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
+                        e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 / zoomRange, unit,
+                            grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
+                        if (visuGCode.selectedFigureInfo.Length > 0)
+                            e.Graphics.DrawString(visuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
+                    }
                 }
             }
         }
@@ -147,15 +156,21 @@ namespace GRBL_Plotter
                 penMarker.Width = 0.01F; penTool.Width = 0.01F;
             }
             e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathHeightMap);
-            e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
+
+            if (Properties.Settings.Default.gui2DRulerShow)
+                e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
+
             e.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
 
             if (Properties.Settings.Default.ctrl4thUse)
                 e.DrawPath(penRotary, GCodeVisuAndTransform.pathRotaryInfo);
 
-            e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathMarkSelection);
+            if (posIsMoving)
+                e.DrawPath(penLandMark, GCodeVisuAndTransform.pathMarkSelection);
+            else
+                e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathMarkSelection);
 
-            if (showPathPenUp)
+            if (!(showPathPenUp ^ Properties.Settings.Default.gui2DPenUpShow))
                 e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
         }
 
@@ -183,8 +198,27 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
+        {            
+            if (e.Button == MouseButtons.Middle)
+            {   if (GCodeVisuAndTransform.pathMarkSelection != null)
+                {
+                    Matrix tmp = new Matrix();
+                    xyPoint diff = new xyPoint(0, 0);
+                    diff = posMoveEnd - posMoveTmp;
+                    tmp.Translate((float)diff.X, (float)diff.Y);
+                    GCodeVisuAndTransform.pathMarkSelection.Transform(tmp);
+                    posMoveTmp = posMoveEnd;
+                    posIsMoving = true;
+                }
+                else
+                    posIsMoving = false;
+            }
             pictureBox1.Invalidate();
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            posIsMoving = false;
         }
 
         // find closest coordinate in GCode and mark
@@ -194,16 +228,21 @@ namespace GRBL_Plotter
 #if (debuginfo)
             log.Add("MainFormPictureBox event pictureBox1_Click start");
 #endif
-            if (fCTBCode.LinesCount > 2)
+            if ((fCTBCode.LinesCount > 2) && !posIsMoving)
             {
-                int line;
-                line = visuGCode.setPosMarkerNearBy(picAbsPos);
+                int line = visuGCode.setPosMarkerNearBy(picAbsPos);
+                posMoveStart = picAbsPos;
+                posMoveTmp = posMoveStart;
+                posMoveEnd = posMoveStart;
+
                 moveToMarkedPositionToolStripMenuItem.ToolTipText = "Work X: " + grbl.posMarker.X.ToString() + "   Y: " + grbl.posMarker.Y.ToString();
 
                 fCTBCodeClickedLineNow = line;
                 fCTBCodeMarkLine();
                 fCTBBookmark.DoVisible();
                 findFigureMarkSelection(Color.OrangeRed);
+                posIsMoving = false;
+
 #if (debuginfo)
                 log.Add("MainFormPictureBox event pictureBox1_Click end, line: " + line.ToString());
 #endif
@@ -225,7 +264,7 @@ namespace GRBL_Plotter
         }
         private void ZoomScroll(Point location, bool zoomIn)
         {
-            if (showPicBoxBgImage)              // don't zoom if background image is shown
+            if (showPicBoxBgImage || posIsMoving)              // don't zoom if background image is shown
                 return;
             float locX = -location.X;
             float locY = -location.Y;

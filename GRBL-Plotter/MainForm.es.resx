@@ -825,4 +825,44 @@ Langue
   <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
     <value>Sondeo</value>
   </data>
+  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bloques de código</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Doblar bloques de código 1er nivel</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Bloques de código plegado 2do nivel</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Bloques de código plegado 3er nivel</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Expandir bloques de código</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Mover el bloque de código seleccionado hacia arriba</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Mover el bloque de código seleccionado hacia abajo</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mover ruta seleccionada</value>
+  </data>
+  <data name="toolStripViewRuler.Text" xml:space="preserve">
+    <value>Gobernante</value>
+  </data>
+  <data name="toolStripViewInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="toolStripViewPenUp.Text" xml:space="preserve">
+    <value>Ruta de Pen-Up</value>
+  </data>
 </root>

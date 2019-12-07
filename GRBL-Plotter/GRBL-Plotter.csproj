@@ -27,7 +27,7 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.3.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -125,6 +125,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
@@ -738,9 +739,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResStrings.ru.resx" />
     <EmbeddedResource Include="Resources\ResStrings.zh-CN.resx" />
-    <None Include="NLog.config">
+    <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

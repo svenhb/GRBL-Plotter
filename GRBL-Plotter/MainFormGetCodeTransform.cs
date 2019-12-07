@@ -696,5 +696,14 @@ namespace GRBL_Plotter
             fCTBCode.Text = unDo.getCode();
             transformEnd();
         }
+
+        private void moveSelectedPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {   transformStart("Apply Offset");
+            zoomRange = 1f;
+            fCTBCode.Text = visuGCode.transformGCodeOffset(-(posMoveEnd.X-posMoveStart.X), -(posMoveEnd.Y - posMoveStart.Y), GCodeVisuAndTransform.translate.None);
+            fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
+            fCTBCodeClickedLineLast = 0;
+            transformEnd();
+        }
     }
 }

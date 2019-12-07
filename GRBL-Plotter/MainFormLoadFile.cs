@@ -20,10 +20,11 @@
  * Methods to load data (nc, svg, dxf, pictures)
  * HotKeys
  * Load setups
- * 2019-03-17  Add custom buttons 13-16, save dialog add *.cnc, *.gcode
- * 2019-04-23  Add virtualJoystickA_lastIndex line 990
- * 2019-05-12  tBURL - disable 2nd event in Line 272
- * 2019-09-28  insert usecase dialog
+ * 2019-03-17 Add custom buttons 13-16, save dialog add *.cnc, *.gcode
+ * 2019-04-23 Add virtualJoystickA_lastIndex line 990
+ * 2019-05-12 tBURL - disable 2nd event in Line 272
+ * 2019-09-28 insert usecase dialog
+ * 2019-12-07 Line 221, message on unknown file extension
  */
 
 //#define debuginfo
@@ -63,7 +64,7 @@ namespace GRBL_Plotter
         private string saveName = "";
         private string savePath = Application.StartupPath;
         private List<string> MRUlist = new List<string>();
-        private void SaveRecentFile(string path)
+        private void SaveRecentFile(string path, bool addPath=true)
         {
         //    savePath = Path.GetDirectoryName(path);// + "\\";
             saveName = Path.GetFileNameWithoutExtension(path);
@@ -72,7 +73,9 @@ namespace GRBL_Plotter
             LoadRecentList(); //load list from file
             if (MRUlist.Contains(path)) //prevent duplication on recent list
                 MRUlist.Remove(path);
-            MRUlist.Insert(0, path);    //insert given path into list on top
+
+            if (addPath)
+                MRUlist.Insert(0, path);    //insert given path into list on top
                                         //keep list number not exceeded the given value
             while (MRUlist.Count > MRUnumber)
             { MRUlist.RemoveAt(MRUlist.Count - 1); }
@@ -91,6 +94,7 @@ namespace GRBL_Plotter
         }
         private void LoadRecentList()
         {
+            Logger.Trace("LoadRecentList");
             MRUlist.Clear();
             try
             {
@@ -106,7 +110,8 @@ namespace GRBL_Plotter
         }
         private void RecentFile_click(object sender, EventArgs e)
         {
-            loadFile(sender.ToString());
+            if (!loadFile(sender.ToString()))
+                SaveRecentFile(sender.ToString(), false);   // remove nonexisting file-path
         }
 
         private void newCodeStart()
@@ -143,43 +148,46 @@ namespace GRBL_Plotter
 //            showPaths = true;
         }
 
-        private void loadFile(string fileName)
+        private bool loadFile(string fileName)
         {
             Logger.Info("Load file {0}", fileName);
+            bool fileLoaded = false;
+
             if (unDoToolStripMenuItem.Enabled)
                 visuGCode.setPathAsLandMark(true);
             setUndoText("");
             if (isStreaming)
             {
+                Logger.Error(" loadFile not allowed during streaming {0} ", fileName);
                 MessageBox.Show(Localization.getString("mainLoadError"), Localization.getString("mainAttention"));
-                return;
+                return false;
             }
             if (fileName.IndexOf("http") >= 0)
             {
                 tBURL.Text = fileName;
-                return;
+                return true;
             }
             else
             {
                 if (!File.Exists(fileName))
                 {
-                    MessageBox.Show(Localization.getString("mainLoadError1") + fileName + "'");
-                    return;
+                    Logger.Error(" file not found {0}", fileName);
+                    MessageBox.Show(Localization.getString("mainLoadError1") + fileName + "'", Localization.getString("mainAttention"));
+                    return false;
                 }
             }
-//            preset2DView();
-
             String ext = Path.GetExtension(fileName).ToLower();
             if (ext == ".svg")
-            { startConvertSVG(fileName); }
+            { startConvertSVG(fileName); fileLoaded = true; }
             else if (ext == ".dxf")
-            { startConvertDXF(fileName); }
+            { startConvertDXF(fileName); fileLoaded = true; }
             else if (extensionDrill.Contains(ext))  //((ext == ".drd") || (ext == ".drl") || (ext == ".dri"))
-            { startConvertDrill(fileName); }
+            { startConvertDrill(fileName); fileLoaded = true; }
             else if (extensionGCode.Contains(ext))  //(ext == ".nc")
             {
                 tbFile.Text = fileName;
                 loadGcode();
+                fileLoaded = true;
             }
             else if (extensionPicture.Contains(ext))  //((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
             {
@@ -196,14 +204,24 @@ namespace GRBL_Plotter
                 _image_form.Show(this);
                 _image_form.WindowState = FormWindowState.Normal;
                 _image_form.loadExtern(fileName);
+                fileLoaded = true;
             }
-            SaveRecentFile(fileName);
-            setLastLoadedFile("Data from file",fileName);
-
             if (ext == ".url")
-            { getURL(fileName); }
-            Cursor.Current = Cursors.Default;
-            pBoxTransform.Reset();
+            { getURL(fileName); fileLoaded = true; }
+
+            if (fileLoaded)
+            {   SaveRecentFile(fileName);
+                setLastLoadedFile("Data from file", fileName);
+                Cursor.Current = Cursors.Default;
+                pBoxTransform.Reset();
+                codeBlocksToolStripMenuItem.Enabled = visuGCode.codeBlocksAvailable();
+                return true;
+            }
+            else
+            {   Logger.Error("!!! File could not be converted - unsupported format '{0}'",ext);
+                MessageBox.Show(Localization.getString("mainLoadError3") + ext + "'", Localization.getString("mainAttention"));
+                return false;
+            }
         }
 
         private void setLastLoadedFile(string text, string file)
@@ -624,17 +642,18 @@ namespace GRBL_Plotter
         // load settings
         public void loadSettings(object sender, EventArgs e)
         {
+            Logger.Trace("loadSettings");
 #if (debuginfo)
             log.Add("MainFormLoadFile loadSettings");
 #endif
-           // try
+            // try
             {
-         /*       if (Properties.Settings.Default.ctrlUpgradeRequired)
-                {
-                    Properties.Settings.Default.Upgrade();
-                    Properties.Settings.Default.ctrlUpgradeRequired = false;
-                    Properties.Settings.Default.Save();
-                }*/
+                gcode.loggerTrace = Properties.Settings.Default.guiExtendedLoggingEnabled;
+                if (gcode.loggerTrace)
+                {   foreach (var rule in NLog.LogManager.Configuration.LoggingRules)
+                    {   rule.EnableLoggingForLevel(NLog.LogLevel.Trace);  }
+                    NLog.LogManager.ReconfigExistingLoggers();
+                }
                 tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
                 int customButtonUse = 0;
                 setCustomButton(btnCustom1, Properties.Settings.Default.guiCustomBtn1, 1);
@@ -895,13 +914,7 @@ namespace GRBL_Plotter
                 gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
                 checkMachineLimit();
                 loadHotkeys();
-    //            newCodeEnd();
             }
-  /*          catch (Exception a)
-            {
-                MessageBox.Show("Load Settings: " + a);
-                //               logError("Loading settings", e);
-            }*/
         }
         // Save settings
         public void saveSettings()
@@ -911,14 +924,13 @@ namespace GRBL_Plotter
             }
             catch (Exception e)
             {   MessageBox.Show("Save Settings: " + e);
-                //               logError("Saving settings", e);
+                Logger.Error(e, "saveSettings() ");
             }
         }
         // update controls on Main form
-  /*      public void updateControlsEvent(object sender, EventArgs e)//(bool allowControl = false)
-        { updateControls(); }*/
         public void updateControls(bool allowControl = false)
         {
+            Logger.Trace("updateControls {0}", allowControl);
             bool isConnected = _serial_form.serialPortOpen || grbl.grblSimulate;
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
@@ -997,6 +1009,7 @@ namespace GRBL_Plotter
         private Dictionary<string, string> hotkeyCode = new Dictionary<string, string>();
         private void loadHotkeys()
         {
+            Logger.Trace("loadHotkeys");
             hotkey.Clear();
             hotkeyCode.Clear();
             string fileName = Application.StartupPath + datapath.hotkeys;
@@ -1033,15 +1046,14 @@ namespace GRBL_Plotter
         }
         private bool processHotkeys(string keyData, bool keyDown)
         {
-   //         if ((!hotkey.ContainsKey(keyData)) && (!hotkeyCode.ContainsKey(keyData)))
-  //              return false;
-
             string code="";
-            if (hotkeyCode.TryGetValue(keyData, out code)) // Returns true.
-            { processCommands(code); }
-
             string action = "";//= hotkey[keyData];
-            if (hotkey.TryGetValue(keyData, out action)) // Returns true.
+            if (gcode.loggerTrace) Logger.Trace("processHotkeys {0} {1}", keyData, keyDown);
+
+            if (hotkeyCode.TryGetValue(keyData, out code)) // Returns true.
+            {   if (!keyDown) processCommands(code); }
+
+            else if (hotkey.TryGetValue(keyData, out action)) // Returns true.
             {
                 if (action.StartsWith("CustomButton") && keyDown)
                 {

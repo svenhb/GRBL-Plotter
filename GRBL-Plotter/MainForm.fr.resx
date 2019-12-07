@@ -948,4 +948,44 @@ Langue
   <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
     <value>Sondage</value>
   </data>
+  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Blocs de code</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Plier les blocs de code 1er niveau</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Plier les blocs de code 2e niveau</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Le code de pliage bloque le 3e niveau</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Développer les blocs de code</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Déplacer le bloc de code sélectionné vers le haut</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Déplacer le bloc de code sélectionné vers le bas</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Déplacer le chemin sélectionné</value>
+  </data>
+  <data name="toolStripViewRuler.Text" xml:space="preserve">
+    <value>Règle</value>
+  </data>
+  <data name="toolStripViewInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="toolStripViewPenUp.Text" xml:space="preserve">
+    <value>Chemin Pen-Up</value>
+  </data>
 </root>

@@ -801,7 +801,7 @@ Langue
     <value>激光工具</value>
     <comment>Menu141</comment>
   </data>
-    <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
     <value>探测/刀具长度</value>
   </data>
   <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
@@ -813,5 +813,32 @@ Langue
   <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
     <value>探测</value>
   </data>
-
+  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
+    <value>代码块</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>折叠码块1级</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem1.Text" xml:space="preserve">
+    <value>折叠码块2级</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem1.Text" xml:space="preserve">
+    <value>折叠代码块3级</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>扩展代码块</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>向上移动所选代码块</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
+    <value>下移所选代码块</value>
+    <comment>Menu2</comment>
+  </data>
 </root>

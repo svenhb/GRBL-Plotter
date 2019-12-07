@@ -1195,4 +1195,44 @@ negativer Wert auf der rechten Seite.</value>
   <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
     <value>Abtasten</value>
   </data>
+  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
+    <value>Codeblöcke</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Codeblock auf erster Ebene einklappen</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Codeblock auf zweiter Ebene einklappen</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Codeblock auf dritter Ebene einklappen</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Alle Codeblöcke aufklappen</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Markierten Codeblock nach oben schieben</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Markierten Codeblock nach unten schieben</value>
+    <comment>Menu2</comment>
+  </data>
+  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad verschieben</value>
+  </data>
+  <data name="toolStripViewRuler.Text" xml:space="preserve">
+    <value>Lineal</value>
+  </data>
+  <data name="toolStripViewInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="toolStripViewPenUp.Text" xml:space="preserve">
+    <value>Stift-Oben Pfad</value>
+  </data>
 </root>

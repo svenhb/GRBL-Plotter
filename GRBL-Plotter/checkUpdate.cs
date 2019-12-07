@@ -18,12 +18,15 @@
 */
 /*
  * 2019-10-27 add logger
+ * 2019-12-07 send some user info in line 56
 */
 
 using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Management;
+using System.Linq;
 
 namespace GRBL_Plotter
 {
@@ -52,6 +55,7 @@ namespace GRBL_Plotter
                     ci = CultureInfo.CurrentUICulture;
                     string get = "";
                     get += "?vers=" + Application.ProductVersion;
+                    get += "&hwid=" + getID();
                     get += "&langset=" + Properties.Settings.Default.guiLanguage; // add next get with &
                     get += "&langori=" + ci.Name;
                     CheckSite2(@"http://svenhb.bplaced.net/GRBL-Plotter.php"+get);   // get Version-Nr and count individual ip to get an idea of amount of users
@@ -125,6 +129,27 @@ namespace GRBL_Plotter
                     System.Diagnostics.Process.Start(@"https://github.com/svenhb/GRBL-Plotter/releases");
                 }
             }
+        }
+
+        private static string getID()
+        {
+            string cpuInfo = string.Empty;
+            ManagementClass mc = new ManagementClass("win32_processor");
+            ManagementObjectCollection moc = mc.GetInstances();
+            try
+            {   foreach (ManagementObject mo in moc)
+                {   if (cpuInfo == "")
+                    {   //Get only the first CPU's ID
+                        cpuInfo = mo.Properties["processorID"].Value.ToString();
+                        break;
+                    }
+                }
+                // Encrypt for anonymization
+                var hash = new System.Security.Cryptography.SHA1Managed().ComputeHash(System.Text.Encoding.UTF8.GetBytes(cpuInfo));
+                return string.Concat(hash.Select(b => b.ToString("x2")));
+//                return cpuInfo;
+            }
+            catch { return "no-id"; }
         }
 
     }
