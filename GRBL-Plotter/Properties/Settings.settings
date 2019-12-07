@@ -216,7 +216,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="flowControlEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="flowControlText" Type="System.String" Scope="User">
       <Value Profile="(Default)">M5; M9</Value>
@@ -396,10 +396,10 @@
       <Value Profile="(Default)">Btn 10|(-)</Value>
     </Setting>
     <Setting Name="guiCustomBtn11" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Btn 11|(-)</Value>
+      <Value Profile="(Default)">Soft RESET|#RST</Value>
     </Setting>
     <Setting Name="guiCustomBtn12" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Btn 12|(-)</Value>
+      <Value Profile="(Default)">Hard RESET|#HRST</Value>
     </Setting>
     <Setting Name="guiCustomBtn13" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -995,7 +995,7 @@
     <Setting Name="overrideSSValue" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5000</Value>
     </Setting>
-    <Setting Name="restoreWorkCoordinates" Type="System.Boolean" Scope="User">
+    <Setting Name="resetRestoreWorkCoordinates" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="rotarySubstitutionDiameter" Type="System.Decimal" Scope="User">
@@ -1120,6 +1120,27 @@
     </Setting>
     <Setting Name="probingCoordG10" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importDXFStepWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="resetSendCodeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="resetSendCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G10 L20 P0 X0 Y0 Z0</Value>
+    </Setting>
+    <Setting Name="gui2DPenUpShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DRulerShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DInfoShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiExtendedLoggingEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

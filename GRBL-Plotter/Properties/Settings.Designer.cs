@@ -877,7 +877,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool flowControlEnable {
             get {
                 return ((bool)(this["flowControlEnable"]));
@@ -1597,7 +1597,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Btn 11|(-)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Soft RESET|#RST")]
         public string guiCustomBtn11 {
             get {
                 return ((string)(this["guiCustomBtn11"]));
@@ -1609,7 +1609,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Btn 12|(-)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Hard RESET|#HRST")]
         public string guiCustomBtn12 {
             get {
                 return ((string)(this["guiCustomBtn12"]));
@@ -3998,12 +3998,12 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool restoreWorkCoordinates {
+        public bool resetRestoreWorkCoordinates {
             get {
-                return ((bool)(this["restoreWorkCoordinates"]));
+                return ((bool)(this["resetRestoreWorkCoordinates"]));
             }
             set {
-                this["restoreWorkCoordinates"] = value;
+                this["resetRestoreWorkCoordinates"] = value;
             }
         }
         
@@ -4496,6 +4496,90 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["probingCoordG10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importDXFStepWidth {
+            get {
+                return ((decimal)(this["importDXFStepWidth"]));
+            }
+            set {
+                this["importDXFStepWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool resetSendCodeEnable {
+            get {
+                return ((bool)(this["resetSendCodeEnable"]));
+            }
+            set {
+                this["resetSendCodeEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G10 L20 P0 X0 Y0 Z0")]
+        public string resetSendCode {
+            get {
+                return ((string)(this["resetSendCode"]));
+            }
+            set {
+                this["resetSendCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DPenUpShow {
+            get {
+                return ((bool)(this["gui2DPenUpShow"]));
+            }
+            set {
+                this["gui2DPenUpShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DRulerShow {
+            get {
+                return ((bool)(this["gui2DRulerShow"]));
+            }
+            set {
+                this["gui2DRulerShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DInfoShow {
+            get {
+                return ((bool)(this["gui2DInfoShow"]));
+            }
+            set {
+                this["gui2DInfoShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool guiExtendedLoggingEnabled {
+            get {
+                return ((bool)(this["guiExtendedLoggingEnabled"]));
+            }
+            set {
+                this["guiExtendedLoggingEnabled"] = value;
             }
         }
     }
