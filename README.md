@@ -5,6 +5,17 @@ Written in C# VisualStudio 2015.
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
 ### New in Version 1.3.2.x   
+* Update
+  - #84 add setting to DXF-Import
+  - #85 offset marked figure by moving in 2d view, while middle mouse button is pressed (after moving, confirm translation via menu)
+  - #88 marked figure can be moved up/down in GCode editor to change order
+  - enable/disable 2D-view of ruler, info, Pen-up-path
+  - Run GCode or script after Reset (Setup - Flow Control - Behavior after Reset)
+  - Add key-words for custom-buttons, hot-keys, Game-pad: #FEEDHOLD, #RESUME, #KILLALARM, #RST, #HRST
+* Bug fixes 
+  - #85 try to load from locked file 
+  - #89 multiple passes and laser 
+  - misc 
 * Bug fix DXF Import - Ellipse:
 Fix DXFLib.dll, Add Ellipse support
 * Bug fix DXF Import - Spline
@@ -69,7 +80,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.3.2.3](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-11-24    
+#### [GRBL-Plotter Vers. 1.3.2.4](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-12-07     
 
 ### Requirements for compiling
 * VisualStudio 2015 
