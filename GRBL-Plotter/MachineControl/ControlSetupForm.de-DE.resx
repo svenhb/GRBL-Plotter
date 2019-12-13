@@ -117,133 +117,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cBshowImportDialog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 17</value>
-  </data>
   <data name="cBshowImportDialog.Text" xml:space="preserve">
     <value>Zeige 'Use Case'-Auswahl beim Grafikimport</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1</comment>
   </data>
-  <data name="numericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>180, 51</value>
+  <data name="btnReloadFile.Text" xml:space="preserve">
+    <value>SVG, DXF, Drill Datei neu laden</value>
+    <comment>TabPage1</comment>
   </data>
-  <data name="cBToolTableDefault.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 17</value>
+  <data name="btnReloadFile.ToolTip" xml:space="preserve">
+    <value>Datei neu importieren um geänderte Einstellungen anzuwenden</value>
+    <comment>TabPage1</comment>
   </data>
   <data name="cBToolTableDefault.Text" xml:space="preserve">
     <value>Standardwkzg. verwenden</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBToolTableUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 30</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBToolTableUse.Text" xml:space="preserve">
     <value>Setze XY-Feedrate usw. aus Werkzeugliste,
 wähle Eigenschaften auf dem nächsten Tab.</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="groupBox41.Text" xml:space="preserve">
-    <value>Werkzeugliste</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBImportSVGSortInvert.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGSortInvert.Text" xml:space="preserve">
     <value>Sortierreihenfolge umkehren</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="rBImportSVGSort1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>265, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
     <value>sortiere Gruppen nach Wkzg.nummer - aufsteigend</value>
-  </data>
-  <data name="rBImportSVGSort2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
     <value>sortiere Gruppen nach Codegröße  - absteigend</value>
-  </data>
-  <data name="rBImportSVGSort0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
     <value>keine Sortierung</value>
-  </data>
-  <data name="cBImportSVGGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>285, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGGroup.Text" xml:space="preserve">
     <value>Gruppiere Objekte gleicher Farbe = gleiches Werkzeug</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGGroup.ToolTip" xml:space="preserve">
     <value>Gruppiere Objekte gleicher Farbe = gleiches Werkzeug</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_1</comment>
   </data>
-  <data name="groupBox26.Text" xml:space="preserve">
-    <value>Gruppieren und sortieren von Objekten</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBImportDXFSwitchWhite.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 17</value>
+  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
+    <value>Schrittweite am Umfang des Bogens</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
     <value>Weiß als Schwarz verarbeiten</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
     <value>In LibreCAD wird standardmäßig mit weißem Stift auf schwarzen Grund gezeichnet.
 Beim Plotten soll es aber ein schwarzer Stift sein...</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportDXFIndexToolNr.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
     <value>Werkzeugwechsel: Farbindex als Werkzugnr.</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
     <value>Das DXF Format nutzt einen Farbindex von 0 bis 255, 
 dieser Index wird als Werkzeugnummer verwendet.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox31.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 50</value>
-  </data>
-  <data name="checkBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
     <value>G0 bei Stift hoch</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>Standard ist G1 für eine gleichmäßige Bewegung,
 weniger Stress für die Mechanik</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="checkBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="checkBox5.Text" xml:space="preserve">
     <value>Gestrichelte Linien verarbeiten</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="checkBox5.ToolTip" xml:space="preserve">
     <value>Konvertiere gestrichelte Linien in echte Stift hoch/runter Befehle
 </value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportSVGNodesOnly.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
     <value>Nur Pfadknoten verarbeiten</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
     <value>Es werden nur Knoten (z.B. Linien Start- und Endpunkt) für Stift runter / hoch berücksichtigt.
@@ -251,858 +212,507 @@ Diese Option ist für Fadenbilder gedacht um die Nagelpositionen vorzubohren.
 In Inkscape müssen Objekte zuerst in Pfade konvertiert werden 'Pfad - Objekt zu Pfad',
 dann füge Knoten hinzu via 'Erweiterungen - Pfad modifizieren - Knoten hinzufügen...'
 </value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="checkBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="checkBox4.Text" xml:space="preserve">
     <value>Codeblöcke einklappen</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="checkBox4.ToolTip" xml:space="preserve">
     <value>Fügt dem G-Code Kommentare zu Grafiken hinzu</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
-    <value>254, 204</value>
-  </data>
-  <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 13</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="label58.Text" xml:space="preserve">
     <value>mal</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="nUDImportRepeat.ToolTip" xml:space="preserve">
     <value>Code mehrfach ausführen (z.B. damit schwache Laser dickeres Material schneiden können)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportSVGRepeat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGRepeat.Text" xml:space="preserve">
     <value>Gesamten Code wiederholen (Laser)</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGRepeat.ToolTip" xml:space="preserve">
     <value>Code mehrfach ausführen (z.B. damit schwache Laser dickeres Material schneiden können)</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportUnitGCode.ToolTip" xml:space="preserve">
     <value>G20 / G21 Befehle im G-Code einfügen</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportUnitInch.ToolTip" xml:space="preserve">
     <value>G20 Befehl</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 33</value>
-  </data>
-  <data name="label40.Text" xml:space="preserve">
-    <value>Zieleinheit und Display</value>
-  </data>
-  <data name="label40.ToolTip" xml:space="preserve">
-    <value>Falls in der Importdatei Einheiten angegeben sind, wird versucht die Zahlen auf die Zieleinheit umzurechnen</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportUnitmm.ToolTip" xml:space="preserve">
     <value>G21 Befehl</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportSVGPauseP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGPauseP.Text" xml:space="preserve">
     <value>Pause (M0) vor 'Pen down'</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBImportSVGPauseE.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGPauseE.Text" xml:space="preserve">
     <value>Pause (M0) vor jedem Pfad</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="nUDImportReduce.ToolTip" xml:space="preserve">
     <value>Diese Option vermeidet kleinere als vorgegebene Strecken um die Codegröße zu minimieren</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportSVGReduce.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGReduce.Text" xml:space="preserve">
     <value>Sehr kleine Bewegungen auslassen &lt;</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGReduce.ToolTip" xml:space="preserve">
     <value>Kurze Fahrbefehle werden übersprungen um den Code zu verkleinern</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportSVGComments.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGComments.Text" xml:space="preserve">
     <value>Zusätzliche SVG Kommentare</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
     <value>Zusätzliche Kommentare in den Code einfügen</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
     <value>Kurven werden als Liniensegmente gezeichnet, je mehr Segmente, desto genauer die Kurve.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Anzahl der Liniensegmente in Bögen</value>
-  </data>
-  <data name="label1.ToolTip" xml:space="preserve">
-    <value>Kurven werden durch kurze Linienstücke erzeugt, je höher die Anzahl, desto genauer</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Grafik Import</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
     <value>72 dpi wird von Adobe Illustrator genutzt</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
     <value>96 dpi ist der Standardwert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportSVGResize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 32</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGResize.Text" xml:space="preserve">
     <value>Versuche die Grafik auf max. X oder Y Größe zu skalieren</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
     <value>Es wird versucht die Grafik auf die gewünschte Größe zu skalieren</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>Es wird versucht die Grafik auf die gewünschte Größe zu skalieren</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportSVGPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 17</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGPath.Text" xml:space="preserve">
     <value>Pfad Überlappung</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGPath.ToolTip" xml:space="preserve">
     <value>Nach Abschluß des Pfades (anfahren der ersten Koordinate) wird auch noch die zweite Koordinate angefahren
 Diese Einstellung ist für Schneidmesser gedacht</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 87</value>
+    <comment>TabPage1_1</comment>
   </data>
   <data name="tabPage9.Text" xml:space="preserve">
     <value>Pfadimport</value>
     <comment>TabPage</comment>
   </data>
-  <data name="checkBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>317, 17</value>
-  </data>
   <data name="checkBox2.Text" xml:space="preserve">
     <value>Lasermode (benutzt S0 statt M5 um den Laser auszuschalten)</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
     <value>Sende 'M4' um Motor im Gegegnuhrzeigersinn einzuschalten
 Dynamic Laser Power Mode in Laser Mode</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label71.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="label71.Text" xml:space="preserve">
-    <value>Drehrichtung</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
     <value>Sende 'M3' um Motor im Uhrzeigersinn einzuschalten
 Constant Laser Power Mode in Laser Mode</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 13</value>
-  </data>
-  <data name="label70.Text" xml:space="preserve">
-    <value>Delay nach 'EIN'</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCSpindleDelay.ToolTip" xml:space="preserve">
     <value>Zeitverzögerung in Sekunden nach dem Einschalten der Spindle 
 (um Zeit für einen Reset zu haben, falls die Spindle nicht startet)</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
     <value>Drehzahl der Spindle zum gravieren</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCTTSSpeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
     <value>aus Werkzeugliste</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
     <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCToolM0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
     <value>Füge Pause (M0) statt Tx M06 ein</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
     <value>Ersetze M06 (tool change) Befehl durch M0 (pause) für manuellen Werkzeugwechsel</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTool.Text" xml:space="preserve">
     <value>Füge Werkzeugwechselbefehle ein</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTool.ToolTip" xml:space="preserve">
     <value>Fügt Txx M06 Befehle ein</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCComments.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCComments.Text" xml:space="preserve">
     <value>G-Code Kommentare</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCComments.ToolTip" xml:space="preserve">
     <value>Zusätzliche Kommentare im G-Code ausgeben</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCTTXYFeed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.Text" xml:space="preserve">
     <value>aus Werkzeugliste</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
     <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 13</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Dezimalstellen</value>
-  </data>
-  <data name="label19.ToolTip" xml:space="preserve">
-    <value>Nachkommastellen im Code</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
     <value>GRBL-Status nach Reset: G0, G54, G17, G90, G94, G21, G40, G49, M0, M5, M9
 D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>Geschwindigkeit für G1,2,3 Befehle bei X oder Y Koordinaten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 13</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>G-Code Kopfzeile</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCFeedXY.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit für G1,2,3 Befehle bei X oder Y Koordinaten</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 13</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>G-Code Fußzeile</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
     <value>Nachkommastellen im Code </value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 285</value>
-  </data>
-  <data name="groupBox29.Text" xml:space="preserve">
-    <value>Allgemein</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBImportGCZIncStartZero.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncStartZero.Text" xml:space="preserve">
     <value>Starte bei Z=0</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncStartZero.ToolTip" xml:space="preserve">
     <value>Nutze Z=0 für ersten Durchgang</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCTTZAxis.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
     <value>aus Wkzg.liste</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
     <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="lblZUse4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
-  </data>
-  <data name="lblZUse4.Text" xml:space="preserve">
-    <value>Tiefenzustellung</value>
-  </data>
-  <data name="cBImportGCZIncEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
     <value>Mehrere Durchgänge</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncEnable.ToolTip" xml:space="preserve">
     <value>Wiederhole den Pfad mit schrittweiser Z Zustellung um die Endtiefe zu erreichen.
 Nicht mit anderen Stift hoch/runter Optionen nutzbar.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCUseZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseZ.Text" xml:space="preserve">
     <value>Z-Achse und Spindle</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseZ.ToolTip" xml:space="preserve">
     <value>Nutze die Z-Achse für Stift hoch/runter</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCZUp.ToolTip" xml:space="preserve">
     <value>Höhe über der Werkstückoberfläche - muss positiv sein</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit beim Einfahren in das Werkstück für G1-Befehl</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
     <value>Endtiefe unter der Werkstückoberfläche - muss negativ sein</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Z-Achse</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox5.ToolTip" xml:space="preserve">
-    <value>Bewegung der Z-Achse in G-Code einfügen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label72.Size" type="System.Drawing.Size, System.Drawing">
-    <value>286, 13</value>
-  </data>
-  <data name="label72.Text" xml:space="preserve">
-    <value>Siehe Spindle Einstellungen für M3, M4 Auswahl und Delay</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
     <value>Schalte die Spindle 'aus' mit 'Stift-hoch' und 'ein' mit 'Stift-runter' Befehlen (für Laser engraver)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Spindle On/Off mit Stift hoch/runter</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox6.ToolTip" xml:space="preserve">
-    <value>Schalte die Spindle 'aus' mit 'Stift-hoch' und 'ein' mit 'Stift-runter' Befehlen (für Laser engraver)</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
     <value>Nutze individuelle Befehle (neue Zeile durch ';')</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="groupBox16.Text" xml:space="preserve">
-    <value>Individuelle Befehle für Stift hoch/runter</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBImportGCUsePWM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUsePWM.Text" xml:space="preserve">
     <value>Spindle Speed als PWM</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUsePWM.ToolTip" xml:space="preserve">
     <value>Steuere RC-Servo mit Spindle speed Befehlen (es ist eine besondere GRBL version nötig, welche 1ms bis 2ms PWM ausgeben kann)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="nUDImportGCDlyDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 96</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
     <value>Pause G4 in Sek. nach 'Stift runter'</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="nUDImportGCDlyUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 56</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
     <value>Pause G4 in Sek. nach 'Stift hoch'</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="nUDImportGCPWMDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 76</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
     <value>PWM Wert (S) für 'Stift runter'</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="nUDImportGCPWMUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>84, 36</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
     <value>PWM Wert (S) für 'Stift hoch'</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Servo Steuerung</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox4.ToolTip" xml:space="preserve">
-    <value>RC-Servo über Spindeldrehzahl steuern (spezielle GRBL-Version zur Erzeugung von 1ms - 2ms PWM erforderlich)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox28.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 6</value>
-  </data>
-  <data name="groupBox28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>505, 285</value>
-  </data>
-  <data name="groupBox28.Text" xml:space="preserve">
-    <value>Stift hoch/runter Übersetzung</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="tabPage10.Text" xml:space="preserve">
     <value>G-Code Erzeugung</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="label81.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
-  </data>
-  <data name="label81.Text" xml:space="preserve">
-    <value>S bei Z &gt; 0</value>
-  </data>
-  <data name="label80.Text" xml:space="preserve">
-    <value>Einstellung für den Menupunkt 'G-Code transformieren, konvertiere Z zu S</value>
-  </data>
-  <data name="label79.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 13</value>
-  </data>
-  <data name="label79.Text" xml:space="preserve">
-    <value>Minimum S bei maximum Z</value>
-  </data>
-  <data name="label78.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 13</value>
-  </data>
-  <data name="label78.Text" xml:space="preserve">
-    <value>Maximum S bei minimum Z</value>
-  </data>
-  <data name="groupBox35.Text" xml:space="preserve">
-    <value>Konvertiere Z-Achse zu Spindle Speed S</value>
-    <comment>GroupBox</comment>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 29</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Funktioniert möglicherweise nicht mit anderen Optionen</value>
-  </data>
-  <data name="cBImportGCRelative.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 64</value>
-  </data>
-  <data name="cBImportGCRelative.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
+    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCRelative.Text" xml:space="preserve">
     <value>Relative Bewegung</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCRelative.ToolTip" xml:space="preserve">
     <value>Berechne relative Bewegungen für G91 Mode
 Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCCompress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 48</value>
-  </data>
-  <data name="cBImportGCCompress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCCompress.Text" xml:space="preserve">
     <value>Komprimiere G-Code</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCCompress.ToolTip" xml:space="preserve">
     <value>Entferne überflüssige Informationen
 Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox32.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 119</value>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
     <value>Offset abhängig von Schnitttiefe Z in %</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCDragKnifePercent.ToolTip" xml:space="preserve">
     <value>Offset abhängig von Schnitttiefe Z in %</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="nUDImportGCDragKnifeAngle.ToolTip" xml:space="preserve">
     <value>Nötige Winkeländerung zwischen zwei Strecken bevor ein Kreissegment eingefügt wird.</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="nUDImportGCDragKnifeLength.ToolTip" xml:space="preserve">
     <value>Offset zum Drehpunkt. Bei Schleppmessern ca. 0,3 mm.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCDragKnife.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 17</value>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCDragKnife.Text" xml:space="preserve">
     <value>Schleppwerkzeug Kompensation</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
     <value>Kompensiere Offset bei Benutzung von Schleppmesser oder Pinsel </value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_3</comment>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Drag tool compensation</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBImportGCSubFirst.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 17</value>
+  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
+    <value>Winkelschrittweite</value>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCSubFirst.Text" xml:space="preserve">
     <value>Unterprog. auch bei Pfadstart</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="btnShowScriptSub.Text" xml:space="preserve">
     <value>anzeigen</value>
-    <comment>Button</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="btnShowScriptSub.ToolTip" xml:space="preserve">
     <value>Klicken Sie hier, um den Dateiinhalt anzuzeigen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCLineSegmentsEquidistant.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 17</value>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
     <value>Segmente gleicher Länge</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
     <value>Checked: Eine Strecke wird in gleich lange Segmente unterteilt - ( &lt;= der vorgegebenen Länge)
 Unchecked: Das letzte Segment ist kürzer, alle anderen haben die vorgegebene Länge</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCNoArcs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 30</value>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
     <value>Ersetze G2/3 durch Linien
 Max. Winkelabweichung</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
     <value>Ersetze G2/3 Befehle durch Liniensegmente</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
     <value>Pfad zur Datei mit Unterprogram</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
-    <value>Winkelschrittweite</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBImportGCSubEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 17</value>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCSubEnable.Text" xml:space="preserve">
     <value>Unterprog. einfügen</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
     <value>Füge Unterprogram nach jeder x Distanz ein</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCLineSegments.Text" xml:space="preserve">
     <value>Unterteile G1 Bewegungen in
 Segmente mit max. Länge</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
     <value>Unterteile lange gerade Strecken in kürzere mit vorgegebener Länge.
 Don't use with "Relative movements"</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox30.Text" xml:space="preserve">
-    <value>Original Bewegungen auftrennen</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
     <value>G-Code Modifikation</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="lblLastUseCase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>598, 13</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 13</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Zuletzt geladen:</value>
+    <comment>TabPage1_3</comment>
   </data>
   <data name="tBUseCaseSetting1.Text" xml:space="preserve">
     <value>Selektiere Anwendungsfall um zugehörige Einstellungen zu sehen.</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 13</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Information zum gespeicherten Anwendungsfall</value>
+    <comment>TabPage1_4</comment>
   </data>
   <data name="btnDelete.Text" xml:space="preserve">
     <value>Löschen</value>
-    <comment>Button</comment>
+    <comment>TabPage1_4</comment>
   </data>
   <data name="btnDelete.ToolTip" xml:space="preserve">
     <value>Lösche den ausgewählten Anwendungsfall</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseSave.Text" xml:space="preserve">
     <value>Speichern</value>
-    <comment>Button</comment>
+    <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseSave.ToolTip" xml:space="preserve">
     <value>Speichern Sie die aktuellen Importeinstellungen als Anwendungsfall</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseLoad.Text" xml:space="preserve">
     <value>öffnen</value>
-    <comment>Button</comment>
+    <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
     <value>Laden Sie die Einstellungen des ausgewählten Anwendungsfalls</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox43.Text" xml:space="preserve">
-    <value>Speichere Einstellungen als 'Anwendungsfall'</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage1_4</comment>
   </data>
   <data name="tabPage15.Text" xml:space="preserve">
     <value>Anwendungsfälle</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="btnReloadFile.Text" xml:space="preserve">
-    <value>SVG, DXF, Drill Datei neu laden</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnReloadFile.ToolTip" xml:space="preserve">
-    <value>Datei neu importieren um geänderte Einstellungen anzuwenden</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage1_4</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Grafik Import</value>
-    <comment>TabPage</comment>
+    <comment>TabPage1</comment>
   </data>
   <data name="btnDeleteToolTable.Text" xml:space="preserve">
     <value>Liste löschen</value>
-    <comment>Button</comment>
-  </data>
-  <data name="lblToolListLoaded.Location" type="System.Drawing.Point, System.Drawing">
-    <value>560, 12</value>
-  </data>
-  <data name="lblToolListLoaded.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 13</value>
+    <comment>TabPage2</comment>
   </data>
   <data name="lblToolListLoaded.Text" xml:space="preserve">
     <value>leer</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 12</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 13</value>
+    <comment>TabPage2</comment>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Zuletzt geladene Wkzg.liste:</value>
+    <comment>TabPage2</comment>
   </data>
   <data name="btnLoadToolTable.Text" xml:space="preserve">
     <value>öffnen</value>
-    <comment>Button</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="btnLoadToolTable.ToolTip" xml:space="preserve">
     <value>Laden Sie die ausgewählte Werkzeugtabelle</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="btnToolExport.Text" xml:space="preserve">
     <value>Speichern</value>
-    <comment>Button</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="btnToolExport.ToolTip" xml:space="preserve">
     <value>Aktuelle Werkzeugtabelle in CSV-Datei speichern</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox40.Text" xml:space="preserve">
-    <value>Werkzeuglisten</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBToolLaser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 17</value>
+    <comment>TabPage2</comment>
   </data>
   <data name="cBToolLaser.Text" xml:space="preserve">
     <value>Laserbezogen</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="cBToolLaser.ToolTip" xml:space="preserve">
     <value>Sichtbare Spalten verkleinern</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnReNumberTools.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 30</value>
-  </data>
-  <data name="btnReNumberTools.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 23</value>
+    <comment>TabPage2</comment>
   </data>
   <data name="btnReNumberTools.Text" xml:space="preserve">
     <value>Neu nummerieren</value>
-    <comment>Button</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="btnMoveToolXY.Text" xml:space="preserve">
     <value>Fahre zur XY Position der markierten Zeile</value>
-    <comment>Button</comment>
-  </data>
-  <data name="lblToolOffset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 16</value>
-  </data>
-  <data name="lblToolOffset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>254, 13</value>
-  </data>
-  <data name="lblToolOffset.Text" xml:space="preserve">
-    <value>Offset zu Werkzeugposition in Werkzeugliste (X,Y,Z)</value>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column2.HeaderText" xml:space="preserve">
     <value>Farbe</value>
-    <comment>DataGrid</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column2.ToolTipText" xml:space="preserve">
     <value>Stiftfarbe in 6-stelligem Hex. Klicken Sie, um nach Helligkeit zu sortieren.</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column7.HeaderText" xml:space="preserve">
     <value>Wkg Ø</value>
-    <comment>DataGrid</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column7.ToolTipText" xml:space="preserve">
     <value>Durchmesser des Werkzeugs</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column8.ToolTipText" xml:space="preserve">
     <value>Vorschub für XY-Bewegungen</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column15.ToolTipText" xml:space="preserve">
     <value>Sichere Höhe über dem Werkstück</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column9.ToolTipText" xml:space="preserve">
     <value>Finale Z-Tiefe</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column13.ToolTipText" xml:space="preserve">
     <value>Max. Z-Inkrement pro Durchgang</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column11.ToolTipText" xml:space="preserve">
     <value>Drehzahl der Spindle</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column12.ToolTipText" xml:space="preserve">
     <value>Abstand im Werkzeugdurchmesser zwischen parallelen Bahnen</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="Column14.ToolTipText" xml:space="preserve">
     <value>Code, der nach dem Befehl zum Werkzeugwechsel angewendet werden soll</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="gBToolTable.Text" xml:space="preserve">
-    <value>Positionen in Werkzeugliste sind Maschinenkoordinaten! Homing sollte ausgeführt werden!</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage2</comment>
   </data>
   <data name="tabPage14.Text" xml:space="preserve">
     <value>Werkzeugliste</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="btnFileDialogTT4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>832, 69</value>
-  </data>
-  <data name="btnFileDialogTT3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>832, 49</value>
-  </data>
-  <data name="btnFileDialogTT2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>832, 29</value>
-  </data>
-  <data name="btnFileDialogTT1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>832, 9</value>
-  </data>
-  <data name="nUDToolChangeEmpty.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 38</value>
+    <comment>TabPage2</comment>
   </data>
   <data name="nUDToolChangeEmpty.ToolTip" xml:space="preserve">
     <value>Verwenden Sie ein Werkzeug Nr. die nicht in der Werkzeugtabelle aufgeführt ist.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBToolChangeEmpty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 30</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="cBToolChangeEmpty.Text" xml:space="preserve">
     <value>Entleere Spindle durch 'laden' von Wkzg. Nr.</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage3</comment>
   </data>
   <data name="cBToolChangeEmpty.ToolTip" xml:space="preserve">
     <value>Entfernen Sie das zuletzt verwendete Werkzeug, indem Sie ein nicht vorhandenes Werkzeug als letzten Befehl laden.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label61.Size" type="System.Drawing.Size, System.Drawing">
-    <value>862, 233</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="label61.Text" xml:space="preserve">
     <value>So funktioniert es:
@@ -1120,535 +730,803 @@ Einfügen des Skripts 'PICK UP'
 Einfügen des Skripts 'PROBE'
 Kopieren der aktuellen Werkzeugwechselpositionen (TOAX,Y,Z nach TOLX,Y,Z)
 Entferne den 'M6' Befehl vom zu sendenen Code, weil grbl diesen Befehl nicht kennt.</value>
-  </data>
-  <data name="lbl_4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 72</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="lbl_4.ToolTip" xml:space="preserve">
     <value>Klicken, um den Dateiinhalt anzuzeigen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="tBToolChangeScriptProbe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 69</value>
-  </data>
-  <data name="tBToolChangeScriptProbe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 20</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="tBToolChangeScriptProbe.ToolTip" xml:space="preserve">
     <value>4. Werkzeuglänge bestimmen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="lbl_2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 32</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="lbl_2.ToolTip" xml:space="preserve">
     <value>Klicken, um den Dateiinhalt anzuzeigen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="tBToolChangeScriptSelect.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 29</value>
-  </data>
-  <data name="tBToolChangeScriptSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 20</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="tBToolChangeScriptSelect.ToolTip" xml:space="preserve">
     <value>2. Neues Werkzeug vor die Spindel bringen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="lbl_1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 12</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="lbl_1.ToolTip" xml:space="preserve">
     <value>Klicken, um den Dateiinhalt anzuzeigen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="tBToolChangeScriptPut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 9</value>
-  </data>
-  <data name="tBToolChangeScriptPut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 20</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="tBToolChangeScriptPut.ToolTip" xml:space="preserve">
     <value>Zuerst muss das alte Tool aus dem Spidle entfernt werden (außer beim ersten Mal)</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="lbl_3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>424, 52</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="lbl_3.ToolTip" xml:space="preserve">
     <value>Klicken, um den Dateiinhalt anzuzeigen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="tBToolChangeScriptGet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 49</value>
-  </data>
-  <data name="tBToolChangeScriptGet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 20</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="tBToolChangeScriptGet.ToolTip" xml:space="preserve">
     <value>3. neues Werkzeug aufnehmen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBToolChange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 17</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="cBToolChange.Text" xml:space="preserve">
     <value>Wkzg.wechsel ausführen bei Tx M06</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage3</comment>
   </data>
   <data name="cBToolChange.ToolTip" xml:space="preserve">
     <value>Führt die folgenden Skripte für Tx M06-Befehle aus</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage3</comment>
   </data>
   <data name="gBToolChange.Text" xml:space="preserve">
     <value>Werkzeugwechsel einstellen</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage3</comment>
   </data>
   <data name="tabPage8.Text" xml:space="preserve">
     <value>Werkzeugwechsel</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="cBrestoreCoordReset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 17</value>
+    <comment>TabPage3</comment>
   </data>
   <data name="cBrestoreCoordReset.Text" xml:space="preserve">
     <value>Wiederherstellen der Work-Koordinaten</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="groupBox36.Text" xml:space="preserve">
-    <value>Verhalten nach grbl RESET</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="label83.Text" xml:space="preserve">
-    <value>Annahme für die automatische Detektion:
-Default (Arduino Uno/Nano) - 127 bytes
-Mehr als 3 Achsen (Mega2560)- 255 bytes
-</value>
-  </data>
-  <data name="checkBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 17</value>
+    <comment>TabPage4</comment>
   </data>
   <data name="checkBox3.Text" xml:space="preserve">
     <value>Automatisch detektieren</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="groupBox39.Text" xml:space="preserve">
-    <value>grbl Puffergröße</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBpollIntervalReduce.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 17</value>
+    <comment>TabPage4</comment>
   </data>
   <data name="cBpollIntervalReduce.Text" xml:space="preserve">
     <value>Reduziere die Freq. während G-Code-str.</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="label82.Text" xml:space="preserve">
-    <value>Frequenz der Statusreportabfrage. Je höher, desto mehr Stress für den Controller.</value>
-  </data>
-  <data name="groupBox38.Text" xml:space="preserve">
-    <value>Frequenz der Statusabfragen</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBsimulation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 17</value>
+    <comment>TabPage4</comment>
   </data>
   <data name="cBsimulation.Text" xml:space="preserve">
     <value>Simuliere angeschlossenen grbl</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage4</comment>
   </data>
   <data name="tBflowControl.ToolTip" xml:space="preserve">
     <value>Zuordnung von regulärem G-Code, trenne einzelne Zeilen durch ';'.
 Oder gebe eine Datei an, welcher G-Code enthält.</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBflowControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 17</value>
+    <comment>TabPage4</comment>
   </data>
   <data name="cBflowControl.Text" xml:space="preserve">
     <value>Sende folgenden G-Code bei Pause oder Stop</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="groupBox37.Text" xml:space="preserve">
-    <value>Ablaufsteuerung während des Streamens</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage4</comment>
   </data>
   <data name="tabPage13.Text" xml:space="preserve">
     <value>Ablaufsteuerung</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="groupBox42.Text" xml:space="preserve">
-    <value>Inhalte einfügen</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage4</comment>
   </data>
   <data name="btnMachineRangeGet.Text" xml:space="preserve">
     <value>Einlesen von $130-$132</value>
-    <comment>Button</comment>
-  </data>
-  <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 39</value>
-  </data>
-  <data name="label64.Text" xml:space="preserve">
-    <value>Initialisiere die Maschine und fahre zu
-min X, min Y and max Z. 
-Notiere die Maschinenkoordinaten</value>
-  </data>
-  <data name="cBMachineLimitsAlarm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBMachineLimitsAlarm.Text" xml:space="preserve">
     <value>Alarm bei Überschreitung (X,Y)</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBMachineLimitsShow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBMachineLimitsShow.Text" xml:space="preserve">
     <value>Zeige Maschinenbereich</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="label62.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
-  </data>
-  <data name="label62.Text" xml:space="preserve">
-    <value>Verfahrweg Z</value>
-  </data>
-  <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
-  </data>
-  <data name="label37.Text" xml:space="preserve">
-    <value>Verfahrweg Y</value>
-  </data>
-  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
-  </data>
-  <data name="label34.Text" xml:space="preserve">
-    <value>Verfahrweg X</value>
-  </data>
-  <data name="groupBox33.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 274</value>
-  </data>
-  <data name="groupBox33.Text" xml:space="preserve">
-    <value>Arbeitsbereich</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBSerialDIY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBSerialDIY.Text" xml:space="preserve">
     <value>Öffne COM-Port bei Prog.-Start</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="groupBox27.Text" xml:space="preserve">
-    <value>DIY Steuerung via seriellen Port</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="label75.Text" xml:space="preserve">
-    <value>Skalierung der 4ten Achse in der 2D Ansicht kann über den Dreh- achsendurchmesser angepasst werden (Menu G-Code Transf.)</value>
-  </data>
-  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
     <value>Invert. 4te A. in 2D Anzeige</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="radioButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="radioButton2.Text" xml:space="preserve">
     <value>Anzeige 4te Achse auf Y</value>
-  </data>
-  <data name="radioButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="radioButton1.Text" xml:space="preserve">
     <value>Anzeige 4te Achse auf X</value>
-  </data>
-  <data name="cB4thUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cB4thUse.Text" xml:space="preserve">
     <value>Zeige Status und Steuerung</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 12</value>
-  </data>
-  <data name="label38.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 15</value>
-  </data>
-  <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 13</value>
-  </data>
-  <data name="label38.Text" xml:space="preserve">
-    <value>Name  4te Achse</value>
-  </data>
-  <data name="groupBox17.Text" xml:space="preserve">
-    <value>GRBL 4te Achse (spezielle Version)</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 62</value>
-  </data>
-  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 13</value>
-  </data>
-  <data name="label31.Text" xml:space="preserve">
-    <value>Original Achse</value>
-  </data>
-  <data name="label31.ToolTip" xml:space="preserve">
-    <value>Diese Einstellungen werden beim Deaktivieren der Achsenersetzung aktiviert</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="tBRotarySetupOff.ToolTip" xml:space="preserve">
     <value>Diese Einstellungen werden beim Deaktivieren der Achsenersetzung aktiviert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBRotarySetupApply.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBRotarySetupApply.Text" xml:space="preserve">
     <value>Sende settings</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
     <value>Automatisches Anpassen der grbl Einstellungen wenn Achsenersetzung aktiviert oder deaktiviert wird</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="tBRotarySetupOn.ToolTip" xml:space="preserve">
     <value>Diese Einstellungen werden beim Aktivieren der Achsenersetzung aktiviert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 38</value>
-  </data>
-  <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 13</value>
-  </data>
-  <data name="label32.Text" xml:space="preserve">
-    <value>Drehachse</value>
-  </data>
-  <data name="label32.ToolTip" xml:space="preserve">
-    <value>Diese Einstellungen werden beim Aktivieren der Achsenersetzung aktiviert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox13.Text" xml:space="preserve">
-    <value>GRBL Setup für ersetzte Achse</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="label30.Text" xml:space="preserve">
     <value>Einheiten</value>
-  </data>
-  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
-  </data>
-  <data name="label29.Text" xml:space="preserve">
-    <value>Durchmesser</value>
-  </data>
-  <data name="label29.ToolTip" xml:space="preserve">
-    <value>Wird benötigt um den Umfang zu berechnen für die Zuordnung Strecke &lt;=&gt; Winkel</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 13</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Einheiten der Achse</value>
-  </data>
-  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 13</value>
-  </data>
-  <data name="label26.Text" xml:space="preserve">
-    <value>360° entsprechen</value>
-  </data>
-  <data name="rBRotaryY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="rBRotaryY.Text" xml:space="preserve">
     <value>Y Achse</value>
-  </data>
-  <data name="cBRotarySubstitute.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBRotarySubstitute.Text" xml:space="preserve">
     <value>Achsen Ersetzung</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="groupBox12.Text" xml:space="preserve">
-    <value>Drehachsen Steuerung</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBCtrlCommentOut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBCtrlCommentOut.Text" xml:space="preserve">
     <value>Unbekannten Code auskommentieren</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBCtrlCommentOut.ToolTip" xml:space="preserve">
     <value>Verstecke unbekannten G-Code durch auskommentieren (In Klammern setzen), 
 um Fehlermeldungen von GRBL zu vermeiden</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="rBCtrlReplaceM4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="rBCtrlReplaceM4.Text" xml:space="preserve">
     <value>Ersetze 'M4' durch 'M3'</value>
-  </data>
-  <data name="rBCtrlReplaceM3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="rBCtrlReplaceM3.Text" xml:space="preserve">
     <value>Ersetze 'M3' durch 'M4'</value>
-  </data>
-  <data name="cBCtrlMCmd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBCtrlMCmd.Text" xml:space="preserve">
     <value>'Spindle On' Befehle umwandeln</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBCtrlMCmd.ToolTip" xml:space="preserve">
     <value>Wenn ausgewählt, werden M3 durch M4 Befehle oder M4 durch M3 Befehle ersetzt um den gewünschten Lasermode zu aktivieren
 M3 Constant Laser Power Mode
 oder
 M4 Dynamic Laser Power Mode</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 78</value>
-  </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>G-Code einlesen</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBSerial2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBSerial2.Text" xml:space="preserve">
     <value>Öffne zweiten COM-Port bei Prog.-Start</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBSerial2.ToolTip" xml:space="preserve">
     <value>Öffnet zweiten COM Port beim Programmstart und verbindet sich mit GRBL (falls möglich)
 Hilfreich für Werkzeugwechsler oder vierte Achse</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="cBSerialMinimize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBSerialMinimize.Text" xml:space="preserve">
     <value>Serielle Fenster minimieren bei Verbindung</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
     <value>Das serielle Fenster wird nach erfolgreicher Verbindung zum GRBL minimiert</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 68</value>
-  </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Serielle Verbindung</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="cBBackgroundImage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 30</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBBackgroundImage.Text" xml:space="preserve">
     <value>2D-Ansicht: verminderung der CPU-Last während des Streamens
 durch Anzeige einer Grafik statt des Echtzeitpfades</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBcheckupdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>275, 17</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBcheckupdate.Text" xml:space="preserve">
     <value>Überprüfe auf neue GRBL-Plotter Version auf GitHub</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="cBcheckupdate.ToolTip" xml:space="preserve">
     <value>Während jeden starts von GRBL-Plotter wird auf eine neue Version überprüft:
 Zuerst auf github.com/svenhb/GRBL-Plotter
 Zweiter Versuch auf svenhb.bplaced.net </value>
-    <comment>ToolTip</comment>
+    <comment>TabPage5</comment>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Prog. Steuerung</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="label76.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 13</value>
-  </data>
-  <data name="label76.Text" xml:space="preserve">
-    <value>Buttons 13 bis 16 werden nicht angezeigt wenn die Felder leer sind</value>
-  </data>
-  <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
-    <value>462, 44</value>
-  </data>
-  <data name="label46.Text" xml:space="preserve">
-    <value>Zuordnung von regulärem G-Code, trenne einzelne Zeilen durch ';'.
-Oder gebe eine Datei an, welcher G-Code enthält.
-Relativer Dateipfad beginnt hier:</value>
+    <comment>TabPage5</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>User Buttons</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="cBGPEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 17</value>
+    <comment>TabPage6</comment>
   </data>
   <data name="cBGPEnable.Text" xml:space="preserve">
     <value>GamePad im Program freigeben</value>
-    <comment>CheckBox</comment>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cBGPEnable.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="cBRInvert.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
+    <comment>TabPage7</comment>
   </data>
   <data name="cBRInvert.Text" xml:space="preserve">
     <value>Richtung umkehren</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBZInvert.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
+    <comment>TabPage7</comment>
   </data>
   <data name="cBZInvert.Text" xml:space="preserve">
     <value>Richtung umkehren</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBYInvert.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
+    <comment>TabPage7</comment>
   </data>
   <data name="cBYInvert.Text" xml:space="preserve">
     <value>Richtung umkehren</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBXInvert.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 17</value>
+    <comment>TabPage7</comment>
   </data>
   <data name="cBXInvert.Text" xml:space="preserve">
     <value>Richtung umkehren</value>
-    <comment>CheckBox</comment>
+    <comment>TabPage7</comment>
   </data>
-  <data name="label45.Text" xml:space="preserve">
+  <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRotaryInfo.Text" xml:space="preserve">
+    <value>Drehachse Info</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMachineLimit.Text" xml:space="preserve">
+    <value>Maschinenbereich</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDHeightMap.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorHeightMap.Text" xml:space="preserve">
+    <value>Höhenprofil</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDMarker.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDTool.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenDown.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenUp.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDRuler.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorTool.Text" xml:space="preserve">
+    <value>Werkzeug</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenDown.Text" xml:space="preserve">
+    <value>Stift unten</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenUp.Text" xml:space="preserve">
+    <value>Stift oben</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRuler.Text" xml:space="preserve">
+    <value>Lineal</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorBackground.Text" xml:space="preserve">
+    <value>Hintergrund</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
+    <value>Berechnen Sie die Geschwindigkeiten, um die Schrittweite innerhalb einer Wiederholrate von 0,5 Sekunden zu erreichen</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
+    <value>Berechnen Sie die Geschwindigkeiten, um die Schrittweite innerhalb einer Wiederholrate von 0,5 Sekunden zu erreichen</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Joystick / Farben</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnOpenHotkeys.Text" xml:space="preserve">
+    <value>Öffne hotkeys.xml in notepad</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="btnHotkeyRefresh.Text" xml:space="preserve">
+    <value>hotkeys.xml neu Laden</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="btnShapeSetSave4.Text" xml:space="preserve">
+    <value>speichern</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad4.Text" xml:space="preserve">
+    <value>öffnen</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave3.Text" xml:space="preserve">
+    <value>speichern</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad3.Text" xml:space="preserve">
+    <value>öffnen</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave2.Text" xml:space="preserve">
+    <value>speichern</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad2.Text" xml:space="preserve">
+    <value>öffnen</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave1.Text" xml:space="preserve">
+    <value>speichern</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad1.Text" xml:space="preserve">
+    <value>öffnen</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBFilterOuside.Text" xml:space="preserve">
+    <value>Pixel ausserhalb des Farbraumes ausblenden</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeRect.Text" xml:space="preserve">
+    <value>Rechteck</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeCircle.Text" xml:space="preserve">
+    <value>Kreis</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Formenerkennung</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnApplyChangings.Text" xml:space="preserve">
+    <value>Änderungen übernehmen</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>Form</comment>
+  </data>
+  <data name="btnApplyChangings.ToolTip" xml:space="preserve">
+    <value>Drücken Sie die Taste, um neue Einstellungen sofort auf benutzerdefinierte Tasten anzuwenden.
+Andere Einstellungen werden normalerweise beim Ändern gespeichert.</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="btnDeleteToolTable.ToolTip" xml:space="preserve">
+    <value>Ausgewählte Werkzeugtabelle löschen</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnColorMarker.Text" xml:space="preserve">
+    <value>Markierung</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.Text" xml:space="preserve">
+    <value>Spindle An/Aus</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBresetSendCode.Text" xml:space="preserve">
+    <value>Nach Reset folgenden G-Code senden</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBSerialPortFixer.Text" xml:space="preserve">
+    <value>'Serial Port Fixer' anwenden</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialPortFixer.ToolTip" xml:space="preserve">
+    <value>Dies kann helfen, Fehler beim Schließen der Anwendung zu vermeiden</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="Column1.ToolTipText" xml:space="preserve">
+    <value>Werkzeugnummer</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column10.ToolTipText" xml:space="preserve">
+    <value>Vorschub für Z Bewegungen</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column3.ToolTipText" xml:space="preserve">
+    <value>Werkzeugbenennung</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column4.ToolTipText" xml:space="preserve">
+    <value>Wechselposition X</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column5.ToolTipText" xml:space="preserve">
+    <value>Wechselposition Y</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column6.ToolTipText" xml:space="preserve">
+    <value>Wechselposition Z</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab11gB1.Text" xml:space="preserve">
+    <value>SVG-Erstellung, Änderung</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB3.Text" xml:space="preserve">
+    <value>SVG Zeichnungen online erstellen</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB4.Text" xml:space="preserve">
+    <value>Freie Schriftarten z.B. für Schablonen</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB5.Text" xml:space="preserve">
+    <value>GRBL und G-Code betreffend</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB2lbl2.Text" xml:space="preserve">
+    <value>Vermutlich tot</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB2lbl1.Text" xml:space="preserve">
+    <value>Achtung: drag and drop funktioniert nicht mit dem IE-Browser aber mit Google Chrome</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab1_1gB4.Text" xml:space="preserve">
+    <value>Gruppieren und Sortieren von Objekten</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl4.Text" xml:space="preserve">
+    <value>Schrittweite am Umfang des Bogens</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB1.Text" xml:space="preserve">
+    <value>Grafik Import</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.Text" xml:space="preserve">
+    <value>Zieleinheit und Display</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.ToolTip" xml:space="preserve">
+    <value>Falls in der Importdatei Einheiten angegeben sind, wird versucht die Zahlen auf die Zieleinheit umzurechnen</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.Text" xml:space="preserve">
+    <value>Anzahl der Liniensegmente in Bögen</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.ToolTip" xml:space="preserve">
+    <value>Kurven werden durch kurze Linienstücke erzeugt, je höher die Anzahl, desto genauer</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_2gB1.Text" xml:space="preserve">
+    <value>Allgemein</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl6.Text" xml:space="preserve">
+    <value>Drehrichtung</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl7.Text" xml:space="preserve">
+    <value>Delay nach 'EIN'</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.Text" xml:space="preserve">
+    <value>Dezimalstellen</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.ToolTip" xml:space="preserve">
+    <value>Nachkommastellen im Code</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl4.ToolTip" xml:space="preserve">
+    <value>Geschwindigkeit für G1,2,3 Befehle bei X oder Y Koordinaten</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>G-Code Kopfzeile</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl3.Text" xml:space="preserve">
+    <value>G-Code Fußzeile</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB7.Text" xml:space="preserve">
+    <value>Stift hoch/runter Übersetzung</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB3.Text" xml:space="preserve">
+    <value>Z-Achse</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB3.ToolTip" xml:space="preserve">
+    <value>Nutze die Z-Achse für Stift hoch/runter</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.Text" xml:space="preserve">
+    <value>Tiefenzustellung</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl33.ToolTip" xml:space="preserve">
+    <value>Endtiefe unter der Werkstückoberfläche - muss negativ sein</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl31.ToolTip" xml:space="preserve">
+    <value>Vorschub Richtung Werkstück</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.Text" xml:space="preserve">
+    <value>Spindle On/Off mit Stift hoch/runter</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.ToolTip" xml:space="preserve">
+    <value>Schalte die Spindle 'aus' mit 'Stift-hoch' und 'ein' mit 'Stift-runter' Befehlen (für Laser engraver)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl51.Text" xml:space="preserve">
+    <value>Siehe Spindle Einstellungen für M3, M4 Auswahl und Delay</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB6.Text" xml:space="preserve">
+    <value>Individuelle Befehle für Stift hoch/runter</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.Text" xml:space="preserve">
+    <value>Servo Steuerung</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.ToolTip" xml:space="preserve">
+    <value>Steuere RC-Servo mit Spindle speed Befehlen (es ist eine besondere GRBL version nötig, welche 1ms bis 2ms PWM ausgeben kann)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
+    <value>Pause G4 in Sek. nach 'Stift runter'</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
+    <value>Pause G4 in Sek. nach 'Stift runter'</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
+    <value>PWM Wert (S) für 'Stift runter'</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
+    <value>PWM Wert (S) für 'Stift hoch'</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_3gB3.Text" xml:space="preserve">
+    <value>Konvertiere Z-Achse zu Spindle Speed S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl34.Text" xml:space="preserve">
+    <value>S bei Z &gt; 0</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl31.Text" xml:space="preserve">
+    <value>Einstellung für den Menupunkt 'G-Code transformieren, konvertiere Z zu S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl33.Text" xml:space="preserve">
+    <value>Minimum S bei maximum Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl32.Text" xml:space="preserve">
+    <value>Maximum S bei minimum Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl41.Text" xml:space="preserve">
+    <value>Funktioniert möglicherweise nicht mit anderen Optionen</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB2.Text" xml:space="preserve">
+    <value>Schleppwerkzeug Kompensation</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.Text" xml:space="preserve">
+    <value>Schwenkwinkel</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.ToolTip" xml:space="preserve">
+    <value>Winkeländerung, bevor ein Bogen hinzugefügt wird</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.Text" xml:space="preserve">
+    <value>Versatz von der Mitte</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.ToolTip" xml:space="preserve">
+    <value>Versatz vom Drehmittelpunkt. Für Schleppmesser in der Regel um 0,3 mm.</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB1.Text" xml:space="preserve">
+    <value>Original Bewegungen auftrennen</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_4gB1.Text" xml:space="preserve">
+    <value>Speichere Einstellungen als 'Anwendungsfall'</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4lbl1.Text" xml:space="preserve">
+    <value>Zuletzt geladen:</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4lbl2.Text" xml:space="preserve">
+    <value>Information zum gespeicherten Anwendungsfall</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab2gB1.Text" xml:space="preserve">
+    <value>Werkzeuglisten</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2.Text" xml:space="preserve">
+    <value>Positionen in Werkzeugliste sind Maschinenkoordinaten! Homing sollte ausgeführt werden!</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2lbl1.Text" xml:space="preserve">
+    <value>Offset zu Werkzeugposition in Werkzeugliste (X,Y,Z)</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column1.HeaderText" xml:space="preserve">
+    <value>Nr.</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab4gB2.Text" xml:space="preserve">
+    <value>Verhalten nach grbl RESET</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tBresetSendCode.ToolTip" xml:space="preserve">
+    <value>Ordnen Sie den regulären GCode zu, trennen Sie den Code mit ';' als Trennzeichen.
+Oder weisen Sie einen Dateinamen zu, der GCode enthält.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3.Text" xml:space="preserve">
+    <value>grbl Puffergröße</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3lbl1.Text" xml:space="preserve">
+    <value>Annahme für die automatische Detektion:
+Default (Arduino Uno/Nano) - 127 bytes
+Mehr als 3 Achsen (Mega2560)- 255 bytes
+</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1.Text" xml:space="preserve">
+    <value>Frequenz der Statusabfragen</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1lbl1.Text" xml:space="preserve">
+    <value>Frequenz der Statusreportabfrage. Je höher, desto mehr Stress für den Controller.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB4.Text" xml:space="preserve">
+    <value>Ablaufsteuerung während des Streamens</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBExtendedLogging.Text" xml:space="preserve">
+    <value>Erweiterte Protokollierung aktivieren</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB9.Text" xml:space="preserve">
+    <value>Inhalte einfügen</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5.Text" xml:space="preserve">
+    <value>Arbeitsbereich</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl4.Text" xml:space="preserve">
+    <value>Initialisiere die Maschine und fahre zu
+min X, min Y and max Z.
+Notiere die Maschinenkoordinaten
+</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl3.Text" xml:space="preserve">
+    <value>Verfahrweg Z</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl2.Text" xml:space="preserve">
+    <value>Verfahrweg Y</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl1.Text" xml:space="preserve">
+    <value>Verfahrweg X</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB2.Text" xml:space="preserve">
+    <value>DIY Steuerung via seriellen Port</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6.Text" xml:space="preserve">
+    <value>GRBL 4te Achse (spezielle Version)</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl2.Text" xml:space="preserve">
+    <value>Skalierung der 4ten Achse in der 2D Ansicht kann über den Dreh- achsendurchmesser angepasst werden (Menu G-Code Transf.)</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl1.Text" xml:space="preserve">
+    <value>Name  4te Achse</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7.Text" xml:space="preserve">
+    <value>Drehachsen Steuerung</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8.Text" xml:space="preserve">
+    <value>GRBL Setup für ersetzte Achse</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.Text" xml:space="preserve">
+    <value>Original Achse</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.ToolTip" xml:space="preserve">
+    <value>Diese Einstellungen werden beim Deaktivieren der Achsenersetzung aktiviert</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.Text" xml:space="preserve">
+    <value>Drehachse</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.ToolTip" xml:space="preserve">
+    <value>Diese Einstellungen werden beim Aktivieren der Achsenersetzung aktiviert</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.Text" xml:space="preserve">
+    <value>Durchmesser</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.ToolTip" xml:space="preserve">
+    <value>Wird benötigt um den Umfang zu berechnen für die Zuordnung Strecke &lt;=&gt; Winkel</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl1.Text" xml:space="preserve">
+    <value>360° entsprechen</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB3.Text" xml:space="preserve">
+    <value>G-Code einlesen</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB1.Text" xml:space="preserve">
+    <value>Serielle Verbindung</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab6lbl2.Text" xml:space="preserve">
+    <value>Buttons 13 bis 16 werden nicht angezeigt wenn die Felder leer sind</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tab6lbl1.Text" xml:space="preserve">
+    <value>Zuordnung von regulärem G-Code, trenne einzelne Zeilen durch ';'.
+Oder gebe eine Datei an, welcher G-Code enthält.
+Relativer Dateipfad beginnt hier:
+</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tab7gB1.Text" xml:space="preserve">
+    <value>GamePad Tastenzuordnung</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="tab7gB1lbl1.Text" xml:space="preserve">
     <value>Drücke Tasten auf dem GamePad um die Tastenzuordnung zu überprüfen.
 
 Zuordnung von regulärem GCode (siehe Möglichkeiten im Tab 'Custom Buttons') oder speziellen Funktionen in den Textboxen.
 
-Spezielle Funktionen (beginnen mit #): 
+Spezielle Funktionen (beginnen mit #):
 #Start (Start streaming)
 #Stop (Stop streaming)
-#F-10 (-1, 100, +1, +10  Feedr. override)
-#S-10 (-1, 100, +1, +10  Spindle spd o.)
+#F-10 (-1, 100, +1, +10  Feedr. override)
+#S-10 (-1, 100, +1, +10  Spindle spd o.)
+#FEEDHOLD
+#RESUME
+#KILLALARM
+#RST  (soft reset via CTRL-X)
+#HRST (hardware reset via DTR/RTS)
 
 Analog Joystick wird für Jogging benutzt.
 Es nutzt die Einstellungen des virtual Joystick. Ordne die Achsen zu und invertiere die Richtung.
@@ -1656,348 +1534,82 @@ Refresh interval = 500ms.
 
 Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
 </value>
+    <comment>TabPage7</comment>
   </data>
-  <data name="gBGP.Text" xml:space="preserve">
-    <value>GamePad Tastenzuordnung</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
-    <value>Stiftbreite</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnColorRotaryInfo.Text" xml:space="preserve">
-    <value>Drehachse Info</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnColorMachineLimit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
-  <data name="btnColorMachineLimit.Text" xml:space="preserve">
-    <value>Maschinenbereich</value>
-    <comment>Button</comment>
-  </data>
-  <data name="label48.Text" xml:space="preserve">
-    <value>Stiftbreiten werden für mm Einheit gesetzt. Wenn zu Inch (Zoll) Einheit gewechselt wird, werden die Stiftbreiten angepasst.</value>
-  </data>
-  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
-  </data>
-  <data name="label47.Text" xml:space="preserve">
-    <value>Stiftbreite</value>
-  </data>
-  <data name="nUDHeightMap.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 195</value>
-  </data>
-  <data name="nUDHeightMap.ToolTip" xml:space="preserve">
-    <value>Stiftbreite</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnColorHeightMap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
-  <data name="btnColorHeightMap.Text" xml:space="preserve">
-    <value>Höhenprofil</value>
-    <comment>Button</comment>
-  </data>
-  <data name="nUDMarker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 166</value>
-  </data>
-  <data name="nUDMarker.ToolTip" xml:space="preserve">
-    <value>Stiftbreite</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnColorMarker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
-  <data name="nUDTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 137</value>
-  </data>
-  <data name="nUDTool.ToolTip" xml:space="preserve">
-    <value>Stiftbreite</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="nUDPenDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 108</value>
-  </data>
-  <data name="nUDPenDown.ToolTip" xml:space="preserve">
-    <value>Stiftbreite</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="nUDPenUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 79</value>
-  </data>
-  <data name="nUDPenUp.ToolTip" xml:space="preserve">
-    <value>Stiftbreite</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="nUDRuler.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 50</value>
-  </data>
-  <data name="nUDRuler.ToolTip" xml:space="preserve">
-    <value>Stiftbreite</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnColorTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
-  <data name="btnColorTool.Text" xml:space="preserve">
-    <value>Werkzeug</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnColorPenDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
-  <data name="btnColorPenDown.Text" xml:space="preserve">
-    <value>Stift unten</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnColorPenUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
-  <data name="btnColorPenUp.Text" xml:space="preserve">
-    <value>Stift oben</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnColorRuler.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
-  <data name="btnColorRuler.Text" xml:space="preserve">
-    <value>Lineal</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnColorBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 23</value>
-  </data>
-  <data name="btnColorBackground.Text" xml:space="preserve">
-    <value>Hintergrund</value>
-    <comment>Button</comment>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
+  <data name="tab8gB2.Text" xml:space="preserve">
     <value>Farben der 2D Vorschau</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage8</comment>
   </data>
-  <data name="label74.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 13</value>
+  <data name="tab8gB2lbl2.Text" xml:space="preserve">
+    <value>Stiftbreiten werden für mm Einheit gesetzt. Wenn zu Inch (Zoll) Einheit gewechselt wird, werden die Stiftbreiten angepasst.</value>
+    <comment>TabPage8</comment>
   </data>
-  <data name="label74.Text" xml:space="preserve">
-    <value>Drücke 'Änderungen jetzt Übernehmen' für Update</value>
+  <data name="tab8gB2lbl1.Text" xml:space="preserve">
+    <value>Stiftbreite</value>
+    <comment>TabPage8</comment>
   </data>
-  <data name="label73.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 13</value>
-  </data>
-  <data name="label73.Text" xml:space="preserve">
-    <value>Max. Größe des Joystick-Controls in Pixeln</value>
-  </data>
-  <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
-    <value>Berechnen Sie die Geschwindigkeiten, um die Schrittweite innerhalb einer Wiederholrate von 0,5 Sekunden zu erreichen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
-    <value>Berechnen Sie die Geschwindigkeiten, um die Schrittweite innerhalb einer Wiederholrate von 0,5 Sekunden zu erreichen</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="groupBox8.Text" xml:space="preserve">
+  <data name="tab8gB1.Text" xml:space="preserve">
     <value>Joystick Einstellungen</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage8</comment>
   </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Joystick / Farben</value>
-    <comment>TabPage</comment>
+  <data name="tab8gB1lbl2.Text" xml:space="preserve">
+    <value>Drücke 'Änderungen jetzt Übernehmen' für Update</value>
+    <comment>TabPage8</comment>
   </data>
-  <data name="btnOpenHotkeys.Text" xml:space="preserve">
-    <value>Öffne hotkeys.xml in notepad</value>
-    <comment>Button</comment>
+  <data name="tab8gB1lbl1.Text" xml:space="preserve">
+    <value>Max. Größe des Joystick-Controls in Pixeln</value>
+    <comment>TabPage8</comment>
   </data>
-  <data name="btnHotkeyRefresh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 20</value>
-  </data>
-  <data name="btnHotkeyRefresh.Text" xml:space="preserve">
-    <value>hotkeys.xml neu Laden</value>
-    <comment>Button</comment>
-  </data>
-  <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
-    <value>426, 13</value>
-  </data>
-  <data name="label68.Text" xml:space="preserve">
+  <data name="tab9gB1lbl2.Text" xml:space="preserve">
     <value>Inhalt von hotkeys.xml (nach externer Änderung, drücke 'Änderungen jetzt übernehmen'):</value>
+    <comment>TabPage9</comment>
   </data>
-  <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
-    <value>298, 13</value>
-  </data>
-  <data name="label67.Text" xml:space="preserve">
+  <data name="tab9gB1lbl1.Text" xml:space="preserve">
     <value>Teste Tastaturcodes hier (Ergebnis wird ins Clipboard kopiert):</value>
+    <comment>TabPage9</comment>
   </data>
-  <data name="label59.Size" type="System.Drawing.Size, System.Drawing">
-    <value>321, 42</value>
-  </data>
-  <data name="label59.Text" xml:space="preserve">
-    <value>Speichere Parameter-sets mit Namen um diese im Kamera Fenster aufzurufen. Damit ändert ich das Verhlaten der Formerkennung. Nach Umbenennung Kamerfenster schließen/öffnen.</value>
-  </data>
-  <data name="btnShapeSetSave4.Text" xml:space="preserve">
-    <value>speichern</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnShapeSetLoad4.Text" xml:space="preserve">
-    <value>öffnen</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnShapeSetSave3.Text" xml:space="preserve">
-    <value>speichern</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnShapeSetLoad3.Text" xml:space="preserve">
-    <value>öffnen</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnShapeSetSave2.Text" xml:space="preserve">
-    <value>speichern</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnShapeSetLoad2.Text" xml:space="preserve">
-    <value>öffnen</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnShapeSetSave1.Text" xml:space="preserve">
-    <value>speichern</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnShapeSetLoad1.Text" xml:space="preserve">
-    <value>öffnen</value>
-    <comment>Button</comment>
-  </data>
-  <data name="cBFilterOuside.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 17</value>
-  </data>
-  <data name="cBFilterOuside.Text" xml:space="preserve">
-    <value>Pixel ausserhalb des Farbraumes ausblenden</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="label51.Text" xml:space="preserve">
-    <value>Blau</value>
-  </data>
-  <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 13</value>
-  </data>
-  <data name="label50.Text" xml:space="preserve">
-    <value>Grün</value>
-  </data>
-  <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 13</value>
-  </data>
-  <data name="label49.Text" xml:space="preserve">
-    <value>Rot</value>
-  </data>
-  <data name="groupBox15.Text" xml:space="preserve">
-    <value>Farbfilter</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 13</value>
-  </data>
-  <data name="label56.Text" xml:space="preserve">
-    <value>Maximale Verzerrung</value>
-  </data>
-  <data name="label53.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 13</value>
-  </data>
-  <data name="label53.Text" xml:space="preserve">
-    <value>Minimale Verzerrung</value>
-  </data>
-  <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 13</value>
-  </data>
-  <data name="label52.Text" xml:space="preserve">
-    <value>Min. max. Größe der Form</value>
-  </data>
-  <data name="cBShapeRect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="cBShapeRect.Text" xml:space="preserve">
-    <value>Rechteck</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="cBShapeCircle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 17</value>
-  </data>
-  <data name="cBShapeCircle.Text" xml:space="preserve">
-    <value>Kreis</value>
-    <comment>CheckBox</comment>
-  </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>Formenerkennung</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox21.Text" xml:space="preserve">
+  <data name="tab10gB1.Text" xml:space="preserve">
     <value>Einstellungen für die Formenerkennung mit Kamera</value>
-    <comment>GroupBox</comment>
+    <comment>TabPage10</comment>
   </data>
-  <data name="tabPage7.Text" xml:space="preserve">
+  <data name="tab10lbl1.Text" xml:space="preserve">
+    <value>Speichere Parameter-sets mit Namen um diese im Kamera Fenster aufzurufen. Damit ändert ich das Verhlaten der Formerkennung. Nach Umbenennung Kamerfenster schließen/öffnen.</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl3.Text" xml:space="preserve">
+    <value>Blau</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl2.Text" xml:space="preserve">
+    <value>Grün</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl1.Text" xml:space="preserve">
+    <value>Rot</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3.Text" xml:space="preserve">
     <value>Formenerkennung</value>
-    <comment>TabPage</comment>
+    <comment>TabPage10</comment>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>214, 13</value>
+  <data name="tab10gB3lbl3.Text" xml:space="preserve">
+    <value>Maximale Verzerrung</value>
+    <comment>TabPage10</comment>
   </data>
-  <data name="label8.Text" xml:space="preserve">
+  <data name="tab10gB3lbl2.Text" xml:space="preserve">
+    <value>Minimale Verzerrung</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl1.Text" xml:space="preserve">
+    <value>Min. max. Größe der Form</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab11gB1lbl3.Text" xml:space="preserve">
     <value>Beschreibung des EggBot Inkscape-Plugins</value>
+    <comment>TabPage11</comment>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 13</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
+  <data name="tab11gB1lbl2.Text" xml:space="preserve">
     <value>Nützliche Erweiterungen für Inkscape</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 13</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Grafikprogramm</value>
-  </data>
-  <data name="groupBox47.Text" xml:space="preserve">
-    <value>SVG-Erstellung, Änderung</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox45.Text" xml:space="preserve">
-    <value>SVG Zeichnungen online erstellen</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox44.Text" xml:space="preserve">
-    <value>Freie Schriftarten z.B. für Schablonen</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>GRBL und G-Code betreffend</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 13</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Z-Höhe gravieren</value>
-  </data>
-  <data name="label39.Text" xml:space="preserve">
-    <value>Achtung: drag and drop funktioniert nicht mit dem IE-Browser aber mit Google Chrome</value>
-  </data>
-  <data name="groupBox18.Text" xml:space="preserve">
-    <value>Freie SVG Grafik Quellen (mit drag and drop Möglichkeit)</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="btnApplyChangings.Text" xml:space="preserve">
-    <value>Änderungen übernehmen</value>
-    <comment>Button</comment>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
-    <value>Schrittweite am Umfang des Bogens</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Schrittweite am Umfang des Bogens</value>
-    <comment>ToolTip</comment>
+    <comment>TabPage11</comment>
   </data>
 </root>
