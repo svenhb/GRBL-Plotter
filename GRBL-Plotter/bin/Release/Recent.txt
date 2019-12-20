@@ -1,20 +1,9 @@
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\DXF_crc.dxf
-lastProcessed.nc
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Drill_RS485_smd1.drd
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\DXF_Absperrklappe.dxf
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Drill_RS485_error.png
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Flying_Devil.mp4
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\dasharray_test.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Drill_RS485_smd1.dri
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\ellipse.dxf
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\ellipse_neu0.dxf
-https://www.w3.org/TR/SVG/images/paths/quad01.svg
-D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\Grafik\test_svg\Example quad01 - quadratic Bézier commands in path data.url
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\ellipse_neu.dxf
-https://www.w3.org/TR/SVG/images/paths/arcs02.svg
-D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\data\examples\graphic_grbl.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\Spline.dxf
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\Rocher_Elch.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\Padlock Silent spindle for cutting in 2 parts 0.125 EM 4.gcode
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\_Probleme\Spline ellipse.dxf
-D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\Grafik\test_svg\Example arcs02 - arc options in paths.url
+data\examples\graphic_bunny.dxf
+D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\bin\graphic_bunny_.nc
+D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\data\examples\gcode_subroutine.nc
+data\examples\graphic_grbl.svg
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\Basteln\Escaperoom_Raetsel\jigsaw_10_10.svg
+C:\Users\Sven_User\GMX Mediacenter\Aktuell\Basteln\Escaperoom_Raetsel\Jigsaw_Puzzle.svg
+data\examples\graphic_grbl_popup.svg
+data\examples\graphic_bunny_string_art.svg
+data\examples\image_flying_devil.png

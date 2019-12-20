@@ -1,9 +1,7 @@
 ----- Possible levels: Trace, Debug, Info, Warn, Error, Fatal ----|
 
-2019-12-07 17:20:10.5683 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter Ver. 1.3.2.4 START ++++++
-2019-12-07 17:20:10.7733 | Info  | GRBL_Plotter.MainForm          | Language: en
-2019-12-07 17:20:12.6032 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, openPort COM3 115200
-2019-12-07 17:20:14.6111 | Info  | GRBL_Plotter.MainForm          | Assume buffer size of 127 [Setup - Flow control - grbl buffer size]
-2019-12-07 17:20:27.2824 | Info  | GRBL_Plotter.MainForm          | Load file C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\DXF_crc.dxf
-2019-12-07 17:20:43.9111 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, closePort COM3
-2019-12-07 17:20:44.4560 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter STOP ++++++
+2019-12-20 17:25:20.0609 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter Ver. 1.3.2.6 START ++++++
+2019-12-20 17:25:20.2669 | Info  | GRBL_Plotter.MainForm          | Language: zh-CN
+2019-12-20 17:25:22.1548 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, openPort COM3 115200
+2019-12-20 17:25:22.1618 | Warn  | GRBL_Plotter.ControlSerialForm | Form 1, Port COM3 not available
+2019-12-20 17:25:43.4356 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter STOP ++++++

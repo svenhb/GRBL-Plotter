@@ -1,37 +1,8 @@
 ----- Possible levels: Trace, Debug, Info, Warn, Error, Fatal ----|
 
-2019-12-07 16:47:40.3465 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter Ver. 1.3.2.4 START ++++++
-2019-12-07 16:47:40.6121 | Info  | GRBL_Plotter.MainForm          | Language: en
-2019-12-07 16:47:42.2548 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, openPort COM3 115200
-2019-12-07 16:47:44.5845 | Info  | GRBL_Plotter.MainForm          | Assume buffer size of 127 [Setup - Flow control - grbl buffer size]
-2019-12-07 16:48:02.5555 | Info  | GRBL_Plotter.MainForm          | Load file C:\Users\Sven_User\GMX Mediacenter\Aktuell\GRBL\__Test_Data\Drill_RS485_smd1.drd
-2019-12-07 16:48:19.4340 | Info  | GRBL_Plotter.MainForm          | start streaming at line 0
-2019-12-07 16:48:54.4168 | Error | GRBL_Plotter.ControlSerialForm | -DataReceived-System.TimeoutException: Timeout für den Vorgang wurde überschritten.
-   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
-   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
-   bei System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
-   bei System.IO.Ports.SerialPort.ReadTo(String value)
-   bei GRBL_Plotter.ControlSerialForm.serialPort1_DataReceived(Object sender, SerialDataReceivedEventArgs e) in D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\MachineControl\ControlSerialForm.cs:Zeile 548.
-2019-12-07 16:49:47.3358 | Error | GRBL_Plotter.ControlSerialForm | -DataReceived-System.TimeoutException: Timeout für den Vorgang wurde überschritten.
-   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
-   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
-   bei System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
-   bei System.IO.Ports.SerialPort.ReadTo(String value)
-   bei GRBL_Plotter.ControlSerialForm.serialPort1_DataReceived(Object sender, SerialDataReceivedEventArgs e) in D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\MachineControl\ControlSerialForm.cs:Zeile 548.
-2019-12-07 16:49:55.6563 | Error | GRBL_Plotter.ControlSerialForm | -DataReceived-System.TimeoutException: Timeout für den Vorgang wurde überschritten.
-   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
-   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
-   bei System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
-   bei System.IO.Ports.SerialPort.ReadTo(String value)
-   bei GRBL_Plotter.ControlSerialForm.serialPort1_DataReceived(Object sender, SerialDataReceivedEventArgs e) in D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\MachineControl\ControlSerialForm.cs:Zeile 548.
-2019-12-07 16:49:58.1790 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, closePort COM3
-2019-12-07 16:49:58.2390 | Error | GRBL_Plotter.ControlSerialForm | -DataReceived-System.IO.IOException: Der E/A-Vorgang wurde wegen eines Threadendes oder einer Anwendungsanforderung abgebrochen.
-
-   bei System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
-   bei System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
-   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
-   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
-   bei System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
-   bei System.IO.Ports.SerialPort.ReadTo(String value)
-   bei GRBL_Plotter.ControlSerialForm.serialPort1_DataReceived(Object sender, SerialDataReceivedEventArgs e) in D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\MachineControl\ControlSerialForm.cs:Zeile 548.
-2019-12-07 16:49:58.8040 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter STOP ++++++
+2019-12-20 17:21:43.3360 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter Ver. 1.3.2.6 START ++++++
+2019-12-20 17:21:43.5519 | Info  | GRBL_Plotter.MainForm          | Language: en
+2019-12-20 17:21:45.6988 | Info  | GRBL_Plotter.ControlSerialForm | Form 1, openPort COM3 115200
+2019-12-20 17:21:45.7088 | Warn  | GRBL_Plotter.ControlSerialForm | Form 1, Port COM3 not available
+2019-12-20 17:21:57.7011 | Info  | GRBL_Plotter.MainForm          | Load file D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\bin\graphic_bunny_.nc
+2019-12-20 17:22:10.2493 | Info  | GRBL_Plotter.MainForm          | ++++++ GRBL-Plotter STOP ++++++
