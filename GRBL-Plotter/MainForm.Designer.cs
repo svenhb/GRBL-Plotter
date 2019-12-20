@@ -76,14 +76,13 @@ namespace GRBL_Plotter
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
-            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
             this.cmsCode = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsEditorHotkeys = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.codeBlocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldCodeBlocks1stLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.foldCodeBlocks2ndLevelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.foldCodeBlocks3rdLevelToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldCodeBlocks2ndLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldCodeBlocks3rdLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandCodeBlocksToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
             this.moveSelectedCodeBlockUpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -288,8 +287,11 @@ namespace GRBL_Plotter
             this.deutschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pусскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.portuguêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.franzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chinesischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.arabischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.japanischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createGCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -362,12 +364,12 @@ namespace GRBL_Plotter
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
+            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tLPLinks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             this.cmsCode.SuspendLayout();
             this.gBoxStream.SuspendLayout();
             this.gBoxDimension.SuspendLayout();
@@ -396,6 +398,7 @@ namespace GRBL_Plotter
             this.tLPCustomButton2.SuspendLayout();
             this.groupBoxCoordinates.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -422,40 +425,6 @@ namespace GRBL_Plotter
             this.tLPLinks.Controls.Add(this.gBoxDimension, 0, 2);
             this.tLPLinks.Controls.Add(this.gBoxOverride, 0, 1);
             this.tLPLinks.Name = "tLPLinks";
-            // 
-            // fCTBCode
-            // 
-            this.fCTBCode.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.fCTBCode.AutoIndent = false;
-            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
-            resources.ApplyResources(this.fCTBCode, "fCTBCode");
-            this.fCTBCode.BackBrush = null;
-            this.fCTBCode.CharHeight = 12;
-            this.fCTBCode.CharWidth = 7;
-            this.fCTBCode.ContextMenuStrip = this.cmsCode;
-            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fCTBCode.IsReplaceMode = false;
-            this.fCTBCode.Name = "fCTBCode";
-            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
-            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
-            this.fCTBCode.ToolTip = null;
-            this.fCTBCode.Zoom = 100;
-            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
-            this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
-            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
-            this.fCTBCode.MouseHover += new System.EventHandler(this.fCTBCode_MouseHover);
             // 
             // cmsCode
             // 
@@ -496,8 +465,8 @@ namespace GRBL_Plotter
             // 
             this.codeBlocksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.foldCodeBlocks1stLevelToolStripMenuItem,
-            this.foldCodeBlocks2ndLevelToolStripMenuItem1,
-            this.foldCodeBlocks3rdLevelToolStripMenuItem1,
+            this.foldCodeBlocks2ndLevelToolStripMenuItem,
+            this.foldCodeBlocks3rdLevelToolStripMenuItem,
             this.expandCodeBlocksToolStripMenuItem1,
             this.toolStripSeparator20,
             this.moveSelectedCodeBlockUpToolStripMenuItem1,
@@ -511,17 +480,17 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.foldCodeBlocks1stLevelToolStripMenuItem, "foldCodeBlocks1stLevelToolStripMenuItem");
             this.foldCodeBlocks1stLevelToolStripMenuItem.Click += new System.EventHandler(this.foldBlocks1stToolStripMenuItem1_Click);
             // 
-            // foldCodeBlocks2ndLevelToolStripMenuItem1
+            // foldCodeBlocks2ndLevelToolStripMenuItem
             // 
-            this.foldCodeBlocks2ndLevelToolStripMenuItem1.Name = "foldCodeBlocks2ndLevelToolStripMenuItem1";
-            resources.ApplyResources(this.foldCodeBlocks2ndLevelToolStripMenuItem1, "foldCodeBlocks2ndLevelToolStripMenuItem1");
-            this.foldCodeBlocks2ndLevelToolStripMenuItem1.Click += new System.EventHandler(this.foldBlocks2ndToolStripMenuItem1_Click);
+            this.foldCodeBlocks2ndLevelToolStripMenuItem.Name = "foldCodeBlocks2ndLevelToolStripMenuItem";
+            resources.ApplyResources(this.foldCodeBlocks2ndLevelToolStripMenuItem, "foldCodeBlocks2ndLevelToolStripMenuItem");
+            this.foldCodeBlocks2ndLevelToolStripMenuItem.Click += new System.EventHandler(this.foldBlocks2ndToolStripMenuItem1_Click);
             // 
-            // foldCodeBlocks3rdLevelToolStripMenuItem1
+            // foldCodeBlocks3rdLevelToolStripMenuItem
             // 
-            this.foldCodeBlocks3rdLevelToolStripMenuItem1.Name = "foldCodeBlocks3rdLevelToolStripMenuItem1";
-            resources.ApplyResources(this.foldCodeBlocks3rdLevelToolStripMenuItem1, "foldCodeBlocks3rdLevelToolStripMenuItem1");
-            this.foldCodeBlocks3rdLevelToolStripMenuItem1.Click += new System.EventHandler(this.foldBlocks3rdToolStripMenuItem1_Click);
+            this.foldCodeBlocks3rdLevelToolStripMenuItem.Name = "foldCodeBlocks3rdLevelToolStripMenuItem";
+            resources.ApplyResources(this.foldCodeBlocks3rdLevelToolStripMenuItem, "foldCodeBlocks3rdLevelToolStripMenuItem");
+            this.foldCodeBlocks3rdLevelToolStripMenuItem.Click += new System.EventHandler(this.foldBlocks3rdToolStripMenuItem1_Click);
             // 
             // expandCodeBlocksToolStripMenuItem1
             // 
@@ -1426,8 +1395,8 @@ namespace GRBL_Plotter
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -2041,8 +2010,11 @@ namespace GRBL_Plotter
             this.deutschToolStripMenuItem,
             this.pусскийToolStripMenuItem,
             this.toolStripMenuItem4,
+            this.portuguêsToolStripMenuItem,
             this.franzToolStripMenuItem,
-            this.chinesischToolStripMenuItem});
+            this.chinesischToolStripMenuItem,
+            this.arabischToolStripMenuItem,
+            this.japanischToolStripMenuItem});
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
             // 
@@ -2070,6 +2042,12 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
             this.toolStripMenuItem4.Click += new System.EventHandler(this.spanToolStripMenuItem_Click);
             // 
+            // portuguêsToolStripMenuItem
+            // 
+            this.portuguêsToolStripMenuItem.Name = "portuguêsToolStripMenuItem";
+            resources.ApplyResources(this.portuguêsToolStripMenuItem, "portuguêsToolStripMenuItem");
+            this.portuguêsToolStripMenuItem.Click += new System.EventHandler(this.portugisischToolStripMenuItem_Click);
+            // 
             // franzToolStripMenuItem
             // 
             this.franzToolStripMenuItem.Name = "franzToolStripMenuItem";
@@ -2081,6 +2059,18 @@ namespace GRBL_Plotter
             this.chinesischToolStripMenuItem.Name = "chinesischToolStripMenuItem";
             resources.ApplyResources(this.chinesischToolStripMenuItem, "chinesischToolStripMenuItem");
             this.chinesischToolStripMenuItem.Click += new System.EventHandler(this.chinesischToolStripMenuItem_Click);
+            // 
+            // arabischToolStripMenuItem
+            // 
+            this.arabischToolStripMenuItem.Name = "arabischToolStripMenuItem";
+            resources.ApplyResources(this.arabischToolStripMenuItem, "arabischToolStripMenuItem");
+            this.arabischToolStripMenuItem.Click += new System.EventHandler(this.arabischToolStripMenuItem_Click);
+            // 
+            // japanischToolStripMenuItem
+            // 
+            this.japanischToolStripMenuItem.Name = "japanischToolStripMenuItem";
+            resources.ApplyResources(this.japanischToolStripMenuItem, "japanischToolStripMenuItem");
+            this.japanischToolStripMenuItem.Click += new System.EventHandler(this.japanischToolStripMenuItem_Click);
             // 
             // createGCodeToolStripMenuItem
             // 
@@ -2584,6 +2574,41 @@ namespace GRBL_Plotter
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
             // 
+            // fCTBCode
+            // 
+            this.fCTBCode.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.fCTBCode.AutoIndent = false;
+            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
+            resources.ApplyResources(this.fCTBCode, "fCTBCode");
+            this.fCTBCode.BackBrush = null;
+            this.fCTBCode.CharCnWidth = 13;
+            this.fCTBCode.CharHeight = 12;
+            this.fCTBCode.CharWidth = 7;
+            this.fCTBCode.ContextMenuStrip = this.cmsCode;
+            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fCTBCode.IsReplaceMode = false;
+            this.fCTBCode.Name = "fCTBCode";
+            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
+            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
+            this.fCTBCode.ToolTip = null;
+            this.fCTBCode.Zoom = 100;
+            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
+            this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
+            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
+            this.fCTBCode.MouseHover += new System.EventHandler(this.fCTBCode_MouseHover);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2608,7 +2633,6 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tLPLinks.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             this.cmsCode.ResumeLayout(false);
             this.gBoxStream.ResumeLayout(false);
             this.gBoxStream.PerformLayout();
@@ -2649,6 +2673,7 @@ namespace GRBL_Plotter
             this.groupBoxCoordinates.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2937,13 +2962,16 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
         private System.Windows.Forms.ToolStripMenuItem codeBlocksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks1stLevelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks2ndLevelToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks3rdLevelToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks2ndLevelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks3rdLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
         private System.Windows.Forms.ToolStripMenuItem moveSelectedCodeBlockUpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem moveSelectedCodeBlockDownToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem expandCodeBlocksToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewInfo;
+        private System.Windows.Forms.ToolStripMenuItem portuguêsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem arabischToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem japanischToolStripMenuItem;
     }
 }
 

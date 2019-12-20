@@ -358,7 +358,7 @@ Um pino de entrada está disponível para conectar um botão ou comutador, se at
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnResume.Text" xml:space="preserve">
-    <value>Suspende imediatamente a condição de PORTA e desativa o eixo e o líquido de refrigeração. Se estiver em movimento, a máquina desacelerará até parar e depois será suspensa.</value>
+    <value>Currículo</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnResume.ToolTip" xml:space="preserve">
@@ -853,15 +853,6 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
     <value>Língua</value>
     <comment>Menu117</comment>
   </data>
-  <data name="toolStripMenuItem3.ToolTipText" xml:space="preserve">
-    <value>Language
-Sprache
-язык
-Idioma
-Langue
-语言</value>
-    <comment>Menu117</comment>
-  </data>
   <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
     <value>Escala XY definida Y = ... unidades</value>
     <comment>Menu133</comment>
@@ -919,5 +910,32 @@ Langue
   <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
     <value>Blocos de código dobrável 3º nível</value>
     <comment>Editor_Menu</comment>
+  </data>
+  <data name="englishToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Inglês</value>
+  </data>
+  <data name="deutschToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>alemão</value>
+  </data>
+  <data name="pусскийToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>russo</value>
+  </data>
+  <data name="toolStripMenuItem4.ToolTipText" xml:space="preserve">
+    <value>espanhol</value>
+  </data>
+  <data name="portuguêsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="franzToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>francês</value>
+  </data>
+  <data name="chinesischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>chinês</value>
+  </data>
+  <data name="arabischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>árabe</value>
+  </data>
+  <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>japonês</value>
   </data>
 </root>

@@ -580,15 +580,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>打开最近的文件</value>
     <comment>Menu112</comment>
   </data>
-  <data name="toolStripMenuItem3.ToolTipText" xml:space="preserve">
-    <value>Language
-Sprache
-язык
-Idioma
-Langue
-语言</value>
-    <comment>Menu117</comment>
-  </data>
   <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
     <value>建立文字</value>
     <comment>Menu121</comment>
@@ -883,5 +874,32 @@ Langue
   <data name="lblStatusSpeed.Text" xml:space="preserve">
     <value>当前速度</value>
     <comment>groupBox_Override3</comment>
+  </data>
+  <data name="englishToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>英语</value>
+  </data>
+  <data name="deutschToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>德语</value>
+  </data>
+  <data name="pусскийToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>俄语</value>
+  </data>
+  <data name="toolStripMenuItem4.ToolTipText" xml:space="preserve">
+    <value>西班牙文</value>
+  </data>
+  <data name="portuguêsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>葡萄牙语</value>
+  </data>
+  <data name="franzToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>法文</value>
+  </data>
+  <data name="chinesischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="arabischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>阿拉伯</value>
+  </data>
+  <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>日本</value>
   </data>
 </root>

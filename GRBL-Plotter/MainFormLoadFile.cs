@@ -25,6 +25,7 @@
  * 2019-05-12 tBURL - disable 2nd event in Line 272
  * 2019-09-28 insert usecase dialog
  * 2019-12-07 Line 221, message on unknown file extension
+ * 2019-12-20 in Line 439 replace   "File.WriteAllText(sfd.FileName, txt)" by "fCTBCode.SaveToFile(sfd.FileName, Encoding.Unicode);"
  */
 
 //#define debuginfo
@@ -38,6 +39,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Xml;
 using System.Globalization;
+using System.Text;
 
 namespace GRBL_Plotter
 {
@@ -85,12 +87,17 @@ namespace GRBL_Plotter
                 //           recentToolStripMenuItem.DropDownItems.Add(fileRecent);
                 toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
             }
-            StreamWriter stringToWrite =
-            new StreamWriter(Application.StartupPath + "\\Recent.txt"); //System.Environment.CurrentDirectory
-            foreach (string item in MRUlist)
-            { stringToWrite.WriteLine(item); }
-            stringToWrite.Flush(); //write stream to file
-            stringToWrite.Close(); //close the stream and reclaim memory
+            try
+            {
+                StreamWriter stringToWrite = new StreamWriter(Application.StartupPath + "\\Recent.txt"); //System.Environment.CurrentDirectory
+                foreach (string item in MRUlist)
+                { stringToWrite.WriteLine(item); }
+                stringToWrite.Flush(); //write stream to file
+                stringToWrite.Close(); //close the stream and reclaim memory
+            }
+            catch (Exception er)
+            {   Logger.Error(er, "SaveRecentFile - StreamWriter");
+            }
         }
         private void LoadRecentList()
         {
@@ -123,7 +130,7 @@ namespace GRBL_Plotter
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
             Cursor.Current = Cursors.WaitCursor;
-            pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0;
+            pBoxTransform.Reset(); zoomFactor = 1; //zoomOffsetX = 0; zoomOffsetY = 0;
             showPicBoxBgImage = false;                  // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             visuGCode.markSelectedFigure(-1);           // hide highlight
@@ -171,7 +178,7 @@ namespace GRBL_Plotter
             {
                 if (!File.Exists(fileName))
                 {
-                    Logger.Error(" file not found {0}", fileName);
+                    Logger.Error(" File not found {0}", fileName);
                     MessageBox.Show(Localization.getString("mainLoadError1") + fileName + "'", Localization.getString("mainAttention"));
                     return false;
                 }
@@ -327,6 +334,8 @@ namespace GRBL_Plotter
             UseCaseDialog();
             newCodeStart();
             fCTBCode.Text = GCodeFromSVG.convertFromFile(source);        // get code
+            if (fCTBCode.LinesCount <= 1)
+            { fCTBCode.Text = "( Code conversion failed )"; return; }
             newCodeEnd();
             SaveRecentFile(source);
             this.Text = appName + " | Source: " + source;
@@ -342,6 +351,8 @@ namespace GRBL_Plotter
             UseCaseDialog();
             newCodeStart();
             fCTBCode.Text = GCodeFromDXF.ConvertFromFile(source);
+            if (fCTBCode.LinesCount <= 1)
+            { fCTBCode.Text = "( Code conversion failed )"; return; }
             newCodeEnd();
             SaveRecentFile(source);
             this.Text = appName + " | Source: " + source;
@@ -352,9 +363,9 @@ namespace GRBL_Plotter
         {
             if (Properties.Settings.Default.importCodeFold)
             {   if (Properties.Settings.Default.importGCZIncEnable)
-                { }
+                { foldLevel = 0; }
                 else
-                    fCTBCode.CollapseAllFoldingBlocks();
+                { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
             }
         }
 
@@ -365,6 +376,8 @@ namespace GRBL_Plotter
 #endif
             newCodeStart();
             fCTBCode.Text = GCodeFromDrill.ConvertFile(source);
+            if (fCTBCode.LinesCount <= 1)
+            { fCTBCode.Text = "( Code conversion failed )"; return; }
             newCodeEnd();
             SaveRecentFile(source);
             this.Text = appName + " | Source: " + source;
@@ -376,7 +389,7 @@ namespace GRBL_Plotter
             if (File.Exists(tbFile.Text))
             {
                 newCodeStart();
-                fCTBCode.OpenFile(tbFile.Text);
+                fCTBCode.OpenFile(tbFile.Text);     // encoding
                 if (_serial_form.isLasermode && Properties.Settings.Default.ctrlReplaceEnable)
                 {
                     if (Properties.Settings.Default.ctrlReplaceM3)
@@ -423,7 +436,8 @@ namespace GRBL_Plotter
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 string txt = fCTBCode.Text;
-                File.WriteAllText(sfd.FileName, txt);
+                //File.WriteAllText(sfd.FileName, txt);
+                fCTBCode.SaveToFile(sfd.FileName, Encoding.Unicode);
                 Logger.Info("Save GCode as {0}", sfd.FileName);
             }
         }
@@ -456,34 +470,40 @@ namespace GRBL_Plotter
 
         // switch language
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.guiLanguage = "en";
+        {   Properties.Settings.Default.guiLanguage = "en";
             MessageBox.Show("Restart of GRBL-Plotter is needed", "Attention");
         }
         private void deutschToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.guiLanguage = "de-DE";
+        {   Properties.Settings.Default.guiLanguage = "de-DE";
             MessageBox.Show("Ein Neustart von GRBL-Plotter ist erforderlich", "Achtung");
         }
         private void russianToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.guiLanguage = "ru";
+        {   Properties.Settings.Default.guiLanguage = "ru";
             MessageBox.Show("Требуется перезапуск плоттера GRBL", "Внимание");
         }
         private void spanToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.guiLanguage = "es";
+        {   Properties.Settings.Default.guiLanguage = "es";
             MessageBox.Show("Se requiere reiniciar el trazador GRBL", "Atención");
         }
         private void franzToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.guiLanguage = "fr";
+        {   Properties.Settings.Default.guiLanguage = "fr";
             MessageBox.Show("Un redémarrage du traceur GRBL est requis", "Attention");
         }
         private void chinesischToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.guiLanguage = "zh-CN";
+        {   Properties.Settings.Default.guiLanguage = "zh-CN";
             MessageBox.Show("需要重启GRBL绘图仪", "注意");
+        }
+        private void portugisischToolStripMenuItem_Click(object sender, EventArgs e)
+        {   Properties.Settings.Default.guiLanguage = "pt";
+            MessageBox.Show("É necessário reiniciar a plotadora GRBL", "Atenção");
+        }
+        private void arabischToolStripMenuItem_Click(object sender, EventArgs e)
+        {   Properties.Settings.Default.guiLanguage = "ar";
+            MessageBox.Show("مطلوب إعادة تشغيل الراسمة GRBL", "انتباه");
+        }
+        private void japanischToolStripMenuItem_Click(object sender, EventArgs e)
+        {   Properties.Settings.Default.guiLanguage = "ja";
+            MessageBox.Show("GRBLプロッターの再起動が必要です", "注意");
         }
 
 
@@ -562,6 +582,8 @@ namespace GRBL_Plotter
                     UseCaseDialog();
                     newCodeStart();
                     fCTBCode.Text = GCodeFromSVG.convertFromText(txt.Trim((char)0x00), true);    // import as mm
+                    if (fCTBCode.LinesCount <= 1)
+                    { fCTBCode.Text = "( Code conversion failed )"; return; }
                     newCodeEnd();
                     this.Text = appName + " | Source: from Clipboard";
                     setLastLoadedFile("Data from Clipboard: SVG","");
@@ -577,6 +599,8 @@ namespace GRBL_Plotter
                     UseCaseDialog();
                     newCodeStart();
                     fCTBCode.Text = GCodeFromDXF.ConvertFromText(txt);
+                    if (fCTBCode.LinesCount <= 1)
+                    { fCTBCode.Text = "( Code conversion failed )"; return; }
                     newCodeEnd();
                     this.Text = appName + " | Source: from Clipboard";
                     setLastLoadedFile("Data from Clipboard: DXF","");
@@ -605,6 +629,8 @@ namespace GRBL_Plotter
                 UseCaseDialog();
                 newCodeStart();
                 fCTBCode.Text = GCodeFromSVG.convertFromText(txt);
+                if (fCTBCode.LinesCount <= 1)
+                { fCTBCode.Text = "( Code conversion failed )"; return; }
                 newCodeEnd();
                 this.Text = appName + " | Source: from Clipboard";
                 setLastLoadedFile("Data from Clipboard: SVG","");
@@ -720,21 +746,24 @@ namespace GRBL_Plotter
                 penTool.Color = Properties.Settings.Default.gui2DColorTool;
                 penMarker.Color = Properties.Settings.Default.gui2DColorMarker;
 
-                penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap;
+                float factorWidth = 1;
+                if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
+                if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
+                penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap * factorWidth;
                 penHeightMap.LineJoin = LineJoin.Round;
-                penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler;
-                penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp;
+                penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler * factorWidth;
+                penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
                 penUp.LineJoin = LineJoin.Round;
-                penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
+                penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
                 penDown.LineJoin = LineJoin.Round;
-                penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo;
+                penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
                 penRotary.LineJoin = LineJoin.Round;
-                penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool;
+                penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
                 penTool.LineJoin = LineJoin.Round;
-                penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker;
+                penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
                 penMarker.LineJoin = LineJoin.Round;
                 penLandMark.LineJoin = LineJoin.Round;
-                penLandMark.Width = 2* (float)Properties.Settings.Default.gui2DWidthPenDown;
+                penLandMark.Width = 2* (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
 
                 brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.gui2DColorMachineLimit, Color.Transparent);
                 picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);

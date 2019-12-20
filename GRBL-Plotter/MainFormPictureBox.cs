@@ -57,6 +57,10 @@ namespace GRBL_Plotter
         private xyPoint posMoveStart = new xyPoint(0, 0);
         private xyPoint posMoveTmp = new xyPoint(0, 0);
         private xyPoint posMoveEnd = new xyPoint(0, 0);
+        private xyPoint moveTranslation = new xyPoint(0, 0);
+        private xyPoint moveTranslationOld = new xyPoint(0, 0);
+        private xyPoint zoomTranslation = new xyPoint(0, 0);
+        private xyPoint zoomTranslationOld = new xyPoint(0, 0);
         private bool posIsMoving = false;
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -81,8 +85,10 @@ namespace GRBL_Plotter
             string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
             if ((picScaling > 0.001) && (picScaling < 10000))
             {
-                double relposX = zoomOffsetX + zoomRange * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X) / pictureBox1.Width);
-                double relposY = zoomOffsetY + zoomRange * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
+    //            double relposX = zoomOffsetX +  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X - zoomTranslationOld.X ) / pictureBox1.Width) / zoomFactor;
+    //            double relposY = zoomOffsetY +  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y - zoomTranslationOld.Y ) / pictureBox1.Height) / zoomFactor;
+                double relposX =  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X - pBoxTransform.OffsetX) / pictureBox1.Width) / zoomFactor;
+                double relposY =  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y - pBoxTransform.OffsetY) / pictureBox1.Height) / zoomFactor;
                 double ratioVisu = xRange / yRange;
                 double ratioPic = Convert.ToDouble(pictureBox1.Width) / pictureBox1.Height;
                 if (ratioVisu > ratioPic)
@@ -105,7 +111,7 @@ namespace GRBL_Plotter
                 e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);           // apply scaling (flip Y)
                 e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
 
-                if (showPaths)  // only show graphics path if something is loaded
+                if (showPaths)          // only show graphics path if something is loaded
                 {
                     if (!showPicBoxBgImage)
                         onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
@@ -121,7 +127,7 @@ namespace GRBL_Plotter
                     if (Properties.Settings.Default.gui2DInfoShow)
                     {
                         e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
-                        e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 / zoomRange, unit,
+                        e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 * zoomFactor, unit,
                             grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
                         if (visuGCode.selectedFigureInfo.Length > 0)
                             e.Graphics.DrawString(visuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
@@ -151,10 +157,18 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.guiBackgroundShow)
                 e.DrawPath(penLandMark, GCodeVisuAndTransform.pathBackground);
 
-            if (!Properties.Settings.Default.importUnitmm)
-            {   penDown.Width = 0.01F; penRotary.Width = 0.01F; penUp.Width = 0.01F; penRuler.Width = 0.01F; penHeightMap.Width = 0.01F;
-                penMarker.Width = 0.01F; penTool.Width = 0.01F;
-            }
+            float factorWidth = 1;
+            if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
+            if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
+            penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap * factorWidth;
+            penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler * factorWidth;
+            penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
+            penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+            penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
+            penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
+            penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
+            penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+
             e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathHeightMap);
 
             if (Properties.Settings.Default.gui2DRulerShow)
@@ -180,7 +194,7 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.guiBackgroundImageEnable)
             {
                 showPicBoxBgImage = true;
-                pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0;
+                pBoxTransform.Reset(); zoomFactor = 1; //zoomOffsetX = 0; zoomOffsetY = 0;
                 pictureBox1.BackgroundImageLayout = ImageLayout.None;
                 picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 Graphics graphics = Graphics.FromImage(picBoxBackround);
@@ -197,21 +211,28 @@ namespace GRBL_Plotter
                 onPaint_setBackground();
             pictureBox1.Invalidate();
         }
+
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {            
+        {
             if (e.Button == MouseButtons.Middle)
-            {   if (GCodeVisuAndTransform.pathMarkSelection != null)
+            {
+                xyPoint diff = new xyPoint(0, 0);
+                diff = posMoveEnd - posMoveTmp;
+                posMoveTmp = posMoveEnd;
+                if (GCodeVisuAndTransform.pathMarkSelection.PointCount > 1)
                 {
                     Matrix tmp = new Matrix();
-                    xyPoint diff = new xyPoint(0, 0);
-                    diff = posMoveEnd - posMoveTmp;
                     tmp.Translate((float)diff.X, (float)diff.Y);
                     GCodeVisuAndTransform.pathMarkSelection.Transform(tmp);
-                    posMoveTmp = posMoveEnd;
                     posIsMoving = true;
                 }
                 else
-                    posIsMoving = false;
+                {   posIsMoving = false;
+                    moveTranslation = new xyPoint(e.X, e.Y)  - moveTranslationOld;  // calc delta move
+                    pBoxTransform.Translate((float)moveTranslation.X / zoomFactor, (float)moveTranslation.Y / zoomFactor);
+                    moveTranslationOld = new xyPoint(e.X, e.Y);
+                    zoomTranslationOld -= (moveTranslation* zoomFactor);
+                }
             }
             pictureBox1.Invalidate();
         }
@@ -219,83 +240,85 @@ namespace GRBL_Plotter
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             posIsMoving = false;
+            allowZoom = true;
         }
 
         // find closest coordinate in GCode and mark
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {   // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
             pictureBox1.Focus();
-#if (debuginfo)
-            log.Add("MainFormPictureBox event pictureBox1_Click start");
-#endif
-            if ((fCTBCode.LinesCount > 2) && !posIsMoving)
+            moveTranslationOld = new xyPoint(e.X, e.Y); 
+
+            if (e.Button == MouseButtons.Left)
             {
-                int line = visuGCode.setPosMarkerNearBy(picAbsPos);
-                posMoveStart = picAbsPos;
-                posMoveTmp = posMoveStart;
-                posMoveEnd = posMoveStart;
+                if ((fCTBCode.LinesCount > 2) && !posIsMoving)
+                {
+                    int line = visuGCode.setPosMarkerNearBy(picAbsPos);
+                    posMoveStart = picAbsPos;
+                    posMoveTmp = posMoveStart;
+                    posMoveEnd = posMoveStart;
 
-                moveToMarkedPositionToolStripMenuItem.ToolTipText = "Work X: " + grbl.posMarker.X.ToString() + "   Y: " + grbl.posMarker.Y.ToString();
+                    moveToMarkedPositionToolStripMenuItem.ToolTipText = "Work X: " + grbl.posMarker.X.ToString() + "   Y: " + grbl.posMarker.Y.ToString();
 
-                fCTBCodeClickedLineNow = line;
-                fCTBCodeMarkLine();
-                fCTBBookmark.DoVisible();
-                findFigureMarkSelection(Color.OrangeRed);
-                posIsMoving = false;
-
-#if (debuginfo)
-                log.Add("MainFormPictureBox event pictureBox1_Click end, line: " + line.ToString());
-#endif
+                    fCTBCodeClickedLineNow = line;
+                    fCTBCodeMarkLine();
+                    fCTBBookmark.DoVisible();
+                    findFigureMarkSelection(Color.OrangeRed);
+                    posIsMoving = false;
+                }
             }
+            if (e.Button == MouseButtons.Middle)
+            { allowZoom = false; }
         }
 
         private Matrix pBoxTransform = new Matrix();
         private Matrix pBoxOrig = new Matrix();
-        private static float s_dScrollValue = 2f; // zoom factor   
-        private float zoomRange = 1f;
-        private float zoomOffsetX = 0f;
-        private float zoomOffsetY = 0f;
+        private static float scrollZoomFactor = 2f; // zoom factor   
+        private float zoomFactor = 1f;
+        private bool allowZoom = true;
 
         private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
         {
             pictureBox1.Focus();
-            if (pictureBox1.Focused == true && e.Delta != 0)
-            { ZoomScroll(e.Location, e.Delta > 0); }
+            if ((pictureBox1.Focused == true) && (e.Delta != 0) && allowZoom)
+            { ZoomScroll(e.Location, e.Delta); }
         }
-        private void ZoomScroll(Point location, bool zoomIn)
+        private void ZoomScroll(Point location, int zoomIn)
         {
             if (showPicBoxBgImage || posIsMoving)              // don't zoom if background image is shown
                 return;
-            float locX = -location.X;
-            float locY = -location.Y;
-            float posX = (float)location.X / (float)pictureBox1.Width;      // range 0..1
-            float posY = (float)location.Y / (float)pictureBox1.Height;     // range 0..1
-            float valX = zoomOffsetX + posX * zoomRange;                    // range offset...(offset+range)
-            float valY = zoomOffsetY + posY * zoomRange;
 
-            pBoxTransform.Translate(-locX, -locY);
-            if (zoomIn)
-            {
-                pBoxTransform.Scale((float)s_dScrollValue, (float)s_dScrollValue);
-                zoomRange *= 1 / s_dScrollValue;
+            if (zoomIn > 0)
+            {   if (zoomFactor < 1025)
+                {   pBoxTransform.Reset();
+                    zoomTranslation = new xyPoint(location.X, location.Y) * zoomFactor + zoomTranslationOld;// + (moveTranslation * zoomFactor);
+                    pBoxTransform.Translate((float)-zoomTranslation.X, (float)-zoomTranslation.Y);
+                    zoomFactor *= scrollZoomFactor;
+                    pBoxTransform.Scale(zoomFactor, zoomFactor);
+                }
             }
-            else
-            {
-                pBoxTransform.Scale(1 / (float)s_dScrollValue, 1 / (float)s_dScrollValue);
-                zoomRange *= s_dScrollValue;
+            else if (zoomIn < 0)
+            {   if (zoomFactor > 0.1)
+                {   pBoxTransform.Reset();
+                    zoomFactor *= 1 / scrollZoomFactor;
+                    zoomTranslation = new xyPoint(location.X, location.Y) * -zoomFactor + zoomTranslationOld;
+                    pBoxTransform.Translate((float)-zoomTranslation.X, (float)-zoomTranslation.Y);
+                    pBoxTransform.Scale(zoomFactor, zoomFactor);
+                }
             }
-            zoomOffsetX = valX - posX * zoomRange;
-            zoomOffsetY = valY - posY * zoomRange;
-            pBoxTransform.Translate(locX, locY);
-            if (zoomRange == 1)
-            { pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0; }
+            zoomTranslationOld = zoomTranslation;
+
+            if (zoomFactor == 1)
+            {   pBoxTransform.Reset(); zoomFactor = 1;
+                zoomTranslation = new xyPoint(0, 0);
+                zoomTranslationOld = new xyPoint(0, 0);
+            }
 
             pictureBox1.Invalidate();
         }
         private void resetZoomingToolStripMenuItem_Click(object sender, EventArgs e)
-        { pBoxTransform.Reset(); zoomRange = 1; zoomOffsetX = 0; zoomOffsetY = 0; }
-        private float transformMousePos(float old, float offset)
-        { return old * zoomRange + offset; }
+        { pBoxTransform.Reset(); zoomFactor = 1; 
+        }
 #endregion
 
     }

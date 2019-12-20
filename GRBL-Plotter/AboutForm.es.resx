@@ -129,4 +129,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Acerca de</value>
   </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>Visita GRBL-Plotter en GitHUb</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Abra el navegador y visite 'https://github.com/svenhb/GRBL-Plotter'</value>
+  </data>
+  <data name="linkLabel2.Text" xml:space="preserve">
+    <value>Ruta de inicio</value>
+  </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value>Carpeta abierta</value>
+  </data>
 </root>

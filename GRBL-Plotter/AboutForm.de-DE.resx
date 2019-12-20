@@ -123,4 +123,19 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Programmpfad:</value>
   </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>Besuche GRBL-Plotter auf GitHUb</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Öffne den Browser und gehe auf 'https://github.com/svenhb/GRBL-Plotter'</value>
+  </data>
+  <data name="linkLabel2.Text" xml:space="preserve">
+    <value>Startpfad</value>
+  </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value>Ordner öffnen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Über</value>
+  </data>
 </root>

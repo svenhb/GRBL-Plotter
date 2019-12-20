@@ -130,24 +130,75 @@ namespace GRBL_Plotter
         private void fCTBCode_Click(object sender, EventArgs e)
         {
             fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
+            Logger.Trace(" click {0}", fCTBCodeClickedLineNow);
             fCTBCodeMarkLine();
         }
         private void fCTBCode_KeyDown(object sender, KeyEventArgs e)    // up down arrow
         {
             int key = e.KeyValue;
-            if ((key == 38) && (fCTBCodeClickedLineNow > 0))
+            int fline = -1;
+            int oldline = fCTBCodeClickedLineNow;
+   //         MessageBox.Show(fCTBCodeClickedLineNow.ToString());
+            if ((key == 38) && (fCTBCodeClickedLineNow > 0))        // up
             {
-                fCTBCodeClickedLineNow -= 1;
+     /*           if (foldLevel > 0)
+                {
+                    if (fCTBCode.Lines[fCTBCodeClickedLineNow].Contains(xmlMarker.groupEnd))
+                    { fline = findLine(fCTBCodeClickedLineNow - 2, xmlMarker.groupEnd, false); }
+                    else if (fCTBCode.Lines[fCTBCodeClickedLineNow].Contains(xmlMarker.figureEnd))
+                    { fline = findLine(fCTBCodeClickedLineNow - 2, xmlMarker.figureEnd, false); }
+                    if (fline >= 0)
+                    {   fCTBCodeClickedLineNow = fline;
+               //         if (foldLevel == 1) foldBlocks1stToolStripMenuItem1_Click(sender, e);
+               //         else if (foldLevel == 2) foldBlocks2ndToolStripMenuItem1_Click(sender, e);
+               //         else if (foldLevel == 3) foldBlocks3rdToolStripMenuItem1_Click(sender, e);
+                    }
+                    Logger.Trace(" up old {0}  new {1}", oldline, fCTBCodeClickedLineNow);
+                }
+                else*/
+                    fCTBCodeClickedLineNow -= 1;
                 fCTBCodeMarkLine();
             }
-            if ((key == 40) && (fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))
+            if ((key == 40) && (fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))       // down
             {
-                fCTBCodeClickedLineNow += 1;
+      /*          if (foldLevel > 0)
+                {
+                    if (fCTBCode.Lines[fCTBCodeClickedLineNow].Contains(xmlMarker.groupEnd))
+                    { fline = findLine(fCTBCodeClickedLineNow + 2, xmlMarker.groupEnd); }
+                    else if (fCTBCode.Lines[fCTBCodeClickedLineNow].Contains(xmlMarker.figureEnd))
+                    { fline = findLine(fCTBCodeClickedLineNow + 2, xmlMarker.figureEnd); }
+                    if (fline >= 0)
+                    {   fCTBCodeClickedLineNow = fline;
+                //        if (foldLevel == 1) foldBlocks1stToolStripMenuItem1_Click(sender, e);
+                //        else if (foldLevel == 2) foldBlocks2ndToolStripMenuItem1_Click(sender, e);
+               //         else if (foldLevel == 3) foldBlocks3rdToolStripMenuItem1_Click(sender, e);
+                    }
+                    Logger.Trace(" down old {0}  new {1}", oldline, fCTBCodeClickedLineNow);
+                }
+                else*/
+                    fCTBCodeClickedLineNow += 1;
                 fCTBCodeMarkLine();
             }
         }
+        private int findLine(int start, string txt, bool down = true)
+        {   if (down)
+            {   for (int i = start; i < fCTBCode.Lines.Count; i++)
+                { if (fCTBCode.Lines[i].Contains(txt))
+                        return i;
+                }
+                return -1;
+            }
+            else
+            {   for (int i = start; i > 0; i--)
+                {   if (fCTBCode.Lines[i].Contains(txt))
+                        return i;
+                }
+                return -1;
+            }
+        }
+
         private Bookmark fCTBBookmark = null;
-        private void fCTBCodeMarkLine()
+        private void fCTBCodeMarkLine()     // click in text
         {
             if ((fCTBCodeClickedLineNow <= fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
             {
@@ -161,6 +212,9 @@ namespace GRBL_Plotter
                     // Set marker in drawing
                     Place tst = fCTBCode.Selection.Start;
                     visuGCode.setPosMarkerLine(fCTBCodeClickedLineNow,!isStreaming);
+
+                    if (fCTBCode.Lines[tst.iLine].Contains(xmlMarker.groupStart))
+                        visuGCode.markSelectedGroup(tst.iLine);
 
                     setFigureIsMarked(false);
                     int start = visuGCode.getLineOfFirstPointInFigure();

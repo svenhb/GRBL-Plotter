@@ -159,6 +159,14 @@ namespace GRBL_Plotter
             a.Y = b.Y - c.Y;
             return a;
         }
+        // Overload * operator 
+        public static xyPoint operator *(xyPoint b, double c)
+        {
+            xyPoint a = new xyPoint();
+            a.X = b.X * c;
+            a.Y = b.Y * c;
+            return a;
+        }
         // Overload / operator 
         public static xyPoint operator /(xyPoint b, double c)
         {

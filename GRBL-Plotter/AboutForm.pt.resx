@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label3.Text" xml:space="preserve">
-    <value>版</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>检查更新</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>程序路径：</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>关于</value>
-  </data>
   <data name="linkLabel1.Text" xml:space="preserve">
-    <value>在GitHUb上访问GRBL-Plotter</value>
+    <value>Visite GRBL-Plotter no GitHUb</value>
   </data>
   <data name="linkLabel1.ToolTip" xml:space="preserve">
-    <value>打开浏览器并访问'https://github.com/svenhb/GRBL-Plotter'</value>
+    <value>Abra o navegador e visite 'https://github.com/svenhb/GRBL-Plotter'</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Verifique atualizações</value>
   </data>
   <data name="linkLabel2.Text" xml:space="preserve">
-    <value>启动路径</value>
+    <value>Caminho de inicialização</value>
   </data>
   <data name="linkLabel2.ToolTip" xml:space="preserve">
-    <value>打开文件夹</value>
+    <value>Pasta aberta</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Caminho de inicialização:</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Sobre</value>
   </data>
 </root>

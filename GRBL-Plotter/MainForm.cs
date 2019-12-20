@@ -1840,7 +1840,7 @@ namespace GRBL_Plotter
             Properties.Settings.Default.gui2DToolTableShow = toolStripViewTool.Checked;
             Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked;
             Properties.Settings.Default.machineLimitsFix = toolStripViewMachineFix.Checked;
-            zoomRange = 1f;
+            zoomFactor = 1;
             visuGCode.drawMachineLimit(toolTable.getToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
         }

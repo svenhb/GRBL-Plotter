@@ -266,7 +266,7 @@ namespace GRBL_Plotter
             if (fCTBCode.Lines.Count > 1)
             {
                 transformStart("Apply Offset");
-                zoomRange = 1f;
+                zoomFactor = 1;
                 if (rBOrigin1.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset1); }
                 if (rBOrigin2.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset2); }
                 if (rBOrigin3.Checked) { fCTBCode.Text = visuGCode.transformGCodeOffset(-offsetx, -offsety, GCodeVisuAndTransform.translate.Offset3); }
@@ -699,7 +699,7 @@ namespace GRBL_Plotter
 
         private void moveSelectedPathToolStripMenuItem_Click(object sender, EventArgs e)
         {   transformStart("Apply Offset");
-            zoomRange = 1f;
+            zoomFactor = 1;
             fCTBCode.Text = visuGCode.transformGCodeOffset(-(posMoveEnd.X-posMoveStart.X), -(posMoveEnd.Y - posMoveStart.Y), GCodeVisuAndTransform.translate.None);
             fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
             fCTBCodeClickedLineLast = 0;
