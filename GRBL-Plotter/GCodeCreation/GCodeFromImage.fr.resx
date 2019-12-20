@@ -228,9 +228,6 @@
   <data name="label13.ToolTip" xml:space="preserve">
     <value>Le filtre filtre les canaux de couleur en effaçant les valeurs (définies en noir) situées à l'intérieur ou à l'extérieur de la plage de la valeur spécifiée.</value>
   </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Le filtre permet de remplir certaines plages de canaux de couleur RVB avec une valeur spécifiée.</value>
-  </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>Le filtre filtre les canaux de couleur en effaçant les valeurs (définies en noir) situées à l'intérieur ou à l'extérieur de la plage de la valeur spécifiée.</value>
   </data>
@@ -404,5 +401,20 @@
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
     <value>Génération de G-Code</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Z max (blanc)</value>
+  </data>
+  <data name="rBMode0.ToolTip" xml:space="preserve">
+    <value>Distance dans l'espace RVB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)); }</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value>Max. montant = max. entrées de table d'outils</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Mapper les couleurs de l'image aux couleurs de la table d'outils</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z min (noir)</value>
   </data>
 </root>

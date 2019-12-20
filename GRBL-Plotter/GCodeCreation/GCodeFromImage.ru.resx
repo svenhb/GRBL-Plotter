@@ -228,9 +228,6 @@
   <data name="label13.ToolTip" xml:space="preserve">
     <value>Фильтр выполняет фильтрацию цветовых каналов путем очистки значений (установленных в черный цвет), которые находятся внутри / вне диапазона указанного значения.</value>
   </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Фильтр позволяет заполнить определенные диапазоны цветовых каналов RGB указанным значением.</value>
-  </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>Фильтр выполняет фильтрацию цветовых каналов путем очистки значений (установленных в черный цвет), которые находятся внутри / вне диапазона указанного значения.</value>
   </data>
@@ -404,5 +401,20 @@
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
     <value>Генерация G-Code</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Z max (белый)</value>
+  </data>
+  <data name="rBMode0.ToolTip" xml:space="preserve">
+    <value>Расстояние в RGB-пространстве: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)); }</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value>Максимум. сумма = макс. записи в таблице инструментов</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Сопоставить цвета изображения с цветами таблицы инструментов</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z мин (черный)</value>
   </data>
 </root>

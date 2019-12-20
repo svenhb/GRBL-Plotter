@@ -178,9 +178,6 @@
   <data name="lblBrightness.Size" type="System.Drawing.Size, System.Drawing">
     <value>274, 13</value>
   </data>
-  <data name="lblBrightness.Text" xml:space="preserve">
-    <value>2: Abstand im Farbraum (0°-360°) + Sättigung + Helligkeit</value>
-  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Kontrast</value>
   </data>
@@ -291,11 +288,8 @@
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>513, 13</value>
   </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Mit dem Filter können bestimmte Bereiche von RGB-Farbkanälen mit einem bestimmten Wert gefüllt werden.</value>
-  </data>
   <data name="label14.ToolTip" xml:space="preserve">
-    <value>Der Filter filtert die Farbkanäle, indem er Werte löscht (auf Schwarz gesetzt), die innerhalb oder außerhalb des angegebenen Wertebereichs liegen.</value>
+    <value>Der Filter filtert die Farbkanäle durch Löschen von Werten (auf Schwarz gesetzt), die innerhalb oder außerhalb des angegebenen Wertebereichs liegen.</value>
   </data>
   <data name="label15.ToolTip" xml:space="preserve">
     <value>Der Filter filtert die Farbkanäle, indem er Werte löscht (auf Schwarz gesetzt), die innerhalb oder außerhalb des angegebenen Wertebereichs liegen.</value>
@@ -328,7 +322,7 @@
     <value>49, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Methode</value>
+    <value>Ordnen Sie die Bildfarben den Farben der Werkzeugtabellen zu</value>
   </data>
   <data name="btnTest.Text" xml:space="preserve">
     <value>Vorschau</value>
@@ -426,7 +420,7 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
     <value>606, 13</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>0: Abstand im RGB-Raum: Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }</value>
+    <value>Z max (weiß)</value>
   </data>
   <data name="nUDZTop.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 14</value>
@@ -435,7 +429,7 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
     <value>162, 13</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>1: Abstand im Farbraum (0°-360°)</value>
+    <value>Z min (schwarz)</value>
   </data>
   <data name="cBCompress.Location" type="System.Drawing.Point, System.Drawing">
     <value>313, 17</value>
@@ -574,5 +568,17 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Erzeuge G-Code aus Bild</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>Methode um am besten passende Farbe zu finden
+0: Abstand im RGB-Raum: Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }
+1: Abstand im Farbraum (0°-360°)
+2: Abstand im Farbraum (0°-360°) + Sättigung + Helligkeit</value>
+  </data>
+  <data name="rBMode0.ToolTip" xml:space="preserve">
+    <value>Abstand im RGB-Raum: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)); }</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value>Max. Menge = max. Werkzeugtabelleneinträge</value>
   </data>
 </root>

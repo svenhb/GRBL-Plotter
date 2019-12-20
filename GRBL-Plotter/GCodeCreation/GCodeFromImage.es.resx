@@ -228,9 +228,6 @@
   <data name="label13.ToolTip" xml:space="preserve">
     <value>El filtro filtra los canales de color al borrar los valores (establecidos en negro), que están dentro / fuera del rango del valor especificado.</value>
   </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>El filtro permite llenar ciertos rangos de canales de color RGB con un valor especificado.</value>
-  </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>El filtro filtra los canales de color al borrar los valores (establecidos en negro), que están dentro / fuera del rango del valor especificado.</value>
   </data>
@@ -336,9 +333,6 @@
   <data name="label24.Text" xml:space="preserve">
     <value>Configuración de carga para la aplicación</value>
   </data>
-  <data name="lblBrightness.Text" xml:space="preserve">
-    <value>2: distancia en el espacio de color (0 ° -360 °) + saturación + brillo</value>
-  </data>
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>Tramado</value>
   </data>
@@ -394,10 +388,10 @@
     <value>El color determina el número de herramienta</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>0: espacio en espacio RGB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G ) + (c1.B - c2.B) * (c1.B - c2.B)); }</value>
+    <value>Z max (blanco)</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>1: distancia en el espacio de color (0 ° -360 °)</value>
+    <value>Z min (negro)</value>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Preestablecido</value>
@@ -413,5 +407,14 @@
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
     <value>Génération de G-Code</value>
+  </data>
+  <data name="rBMode0.ToolTip" xml:space="preserve">
+    <value>Distancia en el espacio RGB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)); }</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value>Max. cantidad = max. entradas de la tabla de herramientas</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Asigna colores de imagen a colores de tabla de herramientas</value>
   </data>
 </root>

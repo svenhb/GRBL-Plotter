@@ -994,10 +994,10 @@
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label7.ToolTip" xml:space="preserve">
-    <value>Methode um am besten passende Farbe zu finden
-0: Abstand im RGB-Raum: Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }
-1: Abstand im Farbraum (0°-360°)
-2: Abstand im Farbraum (0°-360°) + Sättigung + Helligkeit</value>
+    <value>Method to find the best matching color
+0: Space in RGB space: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G ) + (c1.B - c2.B) * (c1.B - c2.B)); }
+1: distance in the color space (0 ° -360 °)
+2: distance in the color space (0 ° -360 °) + saturation + brightness</value>
   </data>
   <data name="label11.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>

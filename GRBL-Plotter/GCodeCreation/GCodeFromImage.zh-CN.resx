@@ -228,9 +228,6 @@
   <data name="label13.ToolTip" xml:space="preserve">
     <value>过滤器通过清除位于指定值范围内/外的值（设置为黑色）来进行颜色通道的过滤。</value>
   </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>滤镜可以用指定的值填充某些范围的RGB颜色通道。</value>
-  </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>过滤器通过清除位于指定值范围内/外的值（设置为黑色）来进行颜色通道的过滤。</value>
   </data>
@@ -404,5 +401,20 @@
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
     <value>G代码生成</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>最大Z（白色）</value>
+  </data>
+  <data name="rBMode0.ToolTip" xml:space="preserve">
+    <value>RGB空间中的距离：Math.Sqrt（（c1.R-c2.R）*（c1.R-c2.R）+（c1.G-c2.G）*（c1.G-c2.G）+ （c1.B-c2.B）*（c1.B-c2.B））; }</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value>最高 数量=最大 工具表条目</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>将图像颜色映射到工具表颜色</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z分钟（黑色）</value>
   </data>
 </root>
