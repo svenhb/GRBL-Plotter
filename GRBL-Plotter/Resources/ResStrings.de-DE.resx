@@ -166,7 +166,7 @@
     <value>Fehler mit Hotkey.xml</value>
   </data>
   <data name="mainLimits3" xml:space="preserve">
-    <value>Grafikgröße überschreitet Maschinengröße! \ R \ nTransformation wird empfohlen, um eine Beschädigung der Maschine zu vermeiden!</value>
+    <value>Grafikgröße überschreitet Maschinengröße! \r\nTransformation wird empfohlen, um eine Beschädigung der Maschine zu vermeiden!</value>
   </data>
   <data name="mainLoadError" xml:space="preserve">
     <value>Das Streaming muss vor dem Laden einer neuen Datei gestoppt werden</value>

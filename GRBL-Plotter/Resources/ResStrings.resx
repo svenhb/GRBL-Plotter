@@ -120,6 +120,9 @@
   <data name="mainAttention" xml:space="preserve">
     <value>Attention</value>
   </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>Feel free to improove translation</value>
+  </data>
   <data name="mainHotkeyError" xml:space="preserve">
     <value>File 'hotkeys.xml' not found, no hotkeys set!</value>
   </data>

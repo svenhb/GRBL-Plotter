@@ -117,160 +117,163 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="serialCloseError" xml:space="preserve">
-    <value>Une connexion série est nécessaire. \r\nFermez la fenêtre principale à la place.</value>
-  </data>
   <data name="mainAttention" xml:space="preserve">
-    <value>Attention</value>
+    <value>注意</value>
   </data>
-  <data name="mainLimits1" xml:space="preserve">
-    <value>Le prochain mouvement dépassera les limites de la machine!\r</value>
-  </data>
-  <data name="mainLimits2" xml:space="preserve">
-    <value>\r\n Appuyez sur 'Ok' pour continuer quand même</value>
-  </data>
-  <data name="mainParseError" xml:space="preserve">
-    <value>Pas un numéro valide</value>
-  </data>
-  <data name="mainProblem" xml:space="preserve">
-    <value>Problème</value>
-  </data>
-  <data name="mainQuit" xml:space="preserve">
-    <value>Quittez GRBL-Plotter?</value>
-  </data>
-  <data name="mainToolChange" xml:space="preserve">
-    <value>Changement d'outil / stylo!</value>
-  </data>
-  <data name="mainToolChange1" xml:space="preserve">
-    <value>Changement d'outil nécessaire: \r</value>
-  </data>
-  <data name="mainToolChange2" xml:space="preserve">
-    <value>\r appuyez sur start pour continuer.</value>
-  </data>
-  <data name="mainInfoCheckCode" xml:space="preserve">
-    <value>Vérifier le code G</value>
-  </data>
-  <data name="mainInfoSendCode" xml:space="preserve">
-    <value>Envoyer le code G</value>
-  </data>
-  <data name="mainInfoStopStream" xml:space="preserve">
-    <value>ARRÊTER le streaming (</value>
-  </data>
-  <data name="mainInfoStopStream2" xml:space="preserve">
-    <value>ARRÊTER le streaming (Line</value>
-  </data>
-  <data name="mainInfoToolChange" xml:space="preserve">
-    <value>Changement d'outil ...</value>
-  </data>
-  <data name="mainInfoUndo" xml:space="preserve">
-    <value>Annuler la dernière action</value>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>翻訳をお気軽に</value>
   </data>
   <data name="mainHotkeyError" xml:space="preserve">
-    <value>Fichier 'hotkeys.xml' non trouvé, aucun raccourci clavier défini!</value>
+    <value>ファイル 'hotkeys.xml'が見つかりません、ホットキーが設定されていません！</value>
   </data>
   <data name="mainHotkeyError1" xml:space="preserve">
-    <value>Action inconnue:</value>
+    <value>不明なアクション：</value>
   </data>
   <data name="mainHotkeyError2" xml:space="preserve">
-    <value>Erreur avec Hotkey.xml</value>
+    <value>Hotkey.xmlのエラー</value>
   </data>
-  <data name="mainLimits3" xml:space="preserve">
-    <value>La dimension graphique dépasse la dimension de la machine! \r\nLa transformation est recommandée pour éviter d’endommager la machine!</value>
-  </data>
-  <data name="mainLoadError" xml:space="preserve">
-    <value>Le streaming doit être arrêté avant de charger le nouveau fichier</value>
-  </data>
-  <data name="mainLoadError1" xml:space="preserve">
-    <value>Fichier non trouvé: '</value>
-  </data>
-  <data name="mainLoadError2" xml:space="preserve">
-    <value>L’extension d’URL n’est pas 'svg' ou 'dxf' \r\nEssayez quand même d’importer du SVG, mais sans définir la liste 'Fichier récent'.</value>
-  </data>
-  <data name="mainParseError1" xml:space="preserve">
-    <value>Numéro non valide, définissez la ligne sur 0</value>
-  </data>
-  <data name="mainPauseStream" xml:space="preserve">
-    <value>Pause streaming - appuyez sur play</value>
-  </data>
-  <data name="mainPauseStream1" xml:space="preserve">
-    <value>Le dernier travail a été mis en pause à la ligne</value>
-  </data>
-  <data name="mainPauseStream2" xml:space="preserve">
-    <value>\n\nVoulez-vous continuer le travail?</value>
-  </data>
-  <data name="mainStreamingActive" xml:space="preserve">
-    <value>Le streaming est toujours actif - appuyez sur Arrêter et réessayez.</value>
-  </data>
-  <data name="mainUnknownCode" xml:space="preserve">
-    <value>G-Code inconnu commenté: \r\n</value>
+  <data name="mainInfoCheckCode" xml:space="preserve">
+    <value>Gコードを確認</value>
   </data>
   <data name="mainInfoErrorLine" xml:space="preserve">
-    <value>Erreur avant la ligne</value>
+    <value>行の前のエラー</value>
   </data>
   <data name="mainInfoFinishCheck" xml:space="preserve">
-    <value>Terminer la vérification du code G</value>
+    <value>Gコードのチェックを終了</value>
   </data>
   <data name="mainInfoFinishSend" xml:space="preserve">
-    <value>Terminer l'envoi du code G</value>
+    <value>Gコードの送信を完了</value>
   </data>
   <data name="mainInfoKill" xml:space="preserve">
-    <value>Appuyez sur 'Kill Alarm' pour continuer</value>
+    <value>「殺すアラーム」を押して続行します</value>
   </data>
   <data name="mainInfoLaserModeOff" xml:space="preserve">
-    <value>Mode laser non actif $32 = 0</value>
+    <value>レーザーモードがアクティブではない$ 32 = 0</value>
   </data>
   <data name="mainInfoLaserModeOn" xml:space="preserve">
-    <value>Mode laser actif $32 = 1</value>
+    <value>レーザーモードがアクティブ$ 32 = 1</value>
   </data>
   <data name="mainInfoPause" xml:space="preserve">
-    <value>Pause streaming - appuyez sur play (</value>
+    <value>ストリーミングの一時停止-プレスプレイ（</value>
   </data>
   <data name="mainInfoProbing" xml:space="preserve">
-    <value>Sondage</value>
+    <value>プロービング</value>
   </data>
   <data name="mainInfoResume" xml:space="preserve">
-    <value>Appuyez sur 'Reprendre' pour continuer</value>
+    <value>[再開]を押して続行します</value>
+  </data>
+  <data name="mainInfoSendCode" xml:space="preserve">
+    <value>Gコードを送信</value>
+  </data>
+  <data name="mainInfoStopStream" xml:space="preserve">
+    <value>ストリーミングを停止（</value>
+  </data>
+  <data name="mainInfoStopStream2" xml:space="preserve">
+    <value>ストリーミングを停止（ライン</value>
+  </data>
+  <data name="mainInfoToolChange" xml:space="preserve">
+    <value>ツールの変更...</value>
+  </data>
+  <data name="mainInfoUndo" xml:space="preserve">
+    <value>最後のアクションを元に戻す</value>
   </data>
   <data name="mainInfoWaitIdle" xml:space="preserve">
-    <value>Attendez IDLE, puis faites une pause (</value>
+    <value>IDLEを待ってから、一時停止（</value>
   </data>
-  <data name="mainProgress" xml:space="preserve">
-    <value>Le progrès</value>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>次の動きはマシンの制限を超えます！\ r</value>
   </data>
-  <data name="probingCancel1" xml:space="preserve">
-    <value>Échantillonnage annulé</value>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\ r \ n [OK]を押して移動します</value>
   </data>
-  <data name="probingCancel2" xml:space="preserve">
-    <value>Traiter la dernière commande</value>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>グラフィックスの寸法が機械の寸法を超えています！\ r \ n機械の損傷を防ぐために、変形をお勧めします！</value>
   </data>
-  <data name="probingProbingOn" xml:space="preserve">
-    <value>Enquête sur </value>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>新しいファイルを読み込む前にストリーミングを停止する必要があります</value>
   </data>
-  <data name="probingCenter" xml:space="preserve">
-    <value>Déplacer au centre</value>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>ファイルが見つかりません： '</value>
   </data>
-  <data name="probingFail1" xml:space="preserve">
-    <value>Echec: pas de contact</value>
-  </data>
-  <data name="probingFail2" xml:space="preserve">
-    <value>Annuler le sondage</value>
-  </data>
-  <data name="probingFinish" xml:space="preserve">
-    <value>Terminer</value>
-  </data>
-  <data name="probingSetCenter" xml:space="preserve">
-    <value>Définir le centre</value>
-  </data>
-  <data name="probingTimeOut" xml:space="preserve">
-    <value>Temps libre</value>
-  </data>
-  <data name="serialClose" xml:space="preserve">
-    <value>Proche</value>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>URL拡張子が「svg」または「dxf」ではありません\ r \ nSVGインポートを試してください。ただし、「最近使用したファイル」リストは設定しません。</value>
   </data>
   <data name="mainLoadError3" xml:space="preserve">
-    <value>Extension de fichier non prise en charge "</value>
+    <value>サポートされていないファイル拡張子 '</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>有効な番号ではありません</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>有効な数値ではありません。行を0に設定してください</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>ストリーミングを一時停止-プレスプレイ</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>最後のジョブはラインで一時停止されました</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>、\ r \ nジョブを続行しますか？</value>
+  </data>
+  <data name="mainProblem" xml:space="preserve">
+    <value>問題</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>進捗</value>
+  </data>
+  <data name="mainQuit" xml:space="preserve">
+    <value>GRBL-Plotterを終了しますか？</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>ストリーミングはまだアクティブです-停止を押して再試行してください</value>
+  </data>
+  <data name="mainToolChange" xml:space="preserve">
+    <value>ツール/ペン交換！</value>
+  </data>
+  <data name="mainToolChange1" xml:space="preserve">
+    <value>ツールの変更が必要：\ r</value>
+  </data>
+  <data name="mainToolChange2" xml:space="preserve">
+    <value>\ rpress startは続行します。</value>
+  </data>
+  <data name="mainUnknownCode" xml:space="preserve">
+    <value>不明なGコードを修正しました：\ r \ n</value>
+  </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>プローブがキャンセルされました</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>最後のコマンドを処理する</value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>中央に移動</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>不合格：連絡なし</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>調査をキャンセル</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>終わり</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>調査中</value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>セットセンター</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>タイムアウト</value>
+  </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="serialCloseError" xml:space="preserve">
+    <value>シリアル接続が必要です。\ r \ n代わりにメインウィンドウを閉じます</value>
   </data>
   <data name="serialOpen" xml:space="preserve">
-    <value>Ouvrir</value>
+    <value>開いた</value>
   </data>
 </root>

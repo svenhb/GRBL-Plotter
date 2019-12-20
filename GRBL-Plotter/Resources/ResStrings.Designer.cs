@@ -70,6 +70,15 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Feel free to improove translation ähnelt.
+        /// </summary>
+        public static string mainHelpLanguage {
+            get {
+                return ResourceManager.GetString("mainHelpLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die File &apos;hotkeys.xml&apos; not found, no hotkeys set! ähnelt.
         /// </summary>
         public static string mainHotkeyError {

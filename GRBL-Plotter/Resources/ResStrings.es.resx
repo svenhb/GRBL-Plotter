@@ -127,7 +127,7 @@
     <value>¡El próximo movimiento excederá los límites de la máquina!\r</value>
   </data>
   <data name="mainLimits2" xml:space="preserve">
-    <value>\r\nPresione 'Ok' para moverse de todos modos</value>
+    <value>\r\n Presione 'Ok' para moverse de todos modos</value>
   </data>
   <data name="mainParseError" xml:space="preserve">
     <value>No es un numero valido</value>
@@ -175,7 +175,7 @@
     <value>Error con Hotkey.xml</value>
   </data>
   <data name="mainLimits3" xml:space="preserve">
-    <value>¡La dimensión de gráficos excede la dimensión de la máquina! \ R \ n ¡Se recomienda la transformación para evitar dañar la máquina!</value>
+    <value>¡La dimensión de gráficos excede la dimensión de la máquina! \r\n ¡Se recomienda la transformación para evitar dañar la máquina!</value>
   </data>
   <data name="mainLoadError" xml:space="preserve">
     <value>La transmisión debe detenerse antes de cargar un nuevo archivo</value>

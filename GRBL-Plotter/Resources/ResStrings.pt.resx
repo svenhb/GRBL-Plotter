@@ -117,160 +117,160 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="serialCloseError" xml:space="preserve">
-    <value>Une connexion série est nécessaire. \r\nFermez la fenêtre principale à la place.</value>
-  </data>
   <data name="mainAttention" xml:space="preserve">
-    <value>Attention</value>
-  </data>
-  <data name="mainLimits1" xml:space="preserve">
-    <value>Le prochain mouvement dépassera les limites de la machine!\r</value>
-  </data>
-  <data name="mainLimits2" xml:space="preserve">
-    <value>\r\n Appuyez sur 'Ok' pour continuer quand même</value>
-  </data>
-  <data name="mainParseError" xml:space="preserve">
-    <value>Pas un numéro valide</value>
-  </data>
-  <data name="mainProblem" xml:space="preserve">
-    <value>Problème</value>
-  </data>
-  <data name="mainQuit" xml:space="preserve">
-    <value>Quittez GRBL-Plotter?</value>
-  </data>
-  <data name="mainToolChange" xml:space="preserve">
-    <value>Changement d'outil / stylo!</value>
-  </data>
-  <data name="mainToolChange1" xml:space="preserve">
-    <value>Changement d'outil nécessaire: \r</value>
-  </data>
-  <data name="mainToolChange2" xml:space="preserve">
-    <value>\r appuyez sur start pour continuer.</value>
-  </data>
-  <data name="mainInfoCheckCode" xml:space="preserve">
-    <value>Vérifier le code G</value>
-  </data>
-  <data name="mainInfoSendCode" xml:space="preserve">
-    <value>Envoyer le code G</value>
-  </data>
-  <data name="mainInfoStopStream" xml:space="preserve">
-    <value>ARRÊTER le streaming (</value>
-  </data>
-  <data name="mainInfoStopStream2" xml:space="preserve">
-    <value>ARRÊTER le streaming (Line</value>
-  </data>
-  <data name="mainInfoToolChange" xml:space="preserve">
-    <value>Changement d'outil ...</value>
-  </data>
-  <data name="mainInfoUndo" xml:space="preserve">
-    <value>Annuler la dernière action</value>
+    <value>Atenção</value>
   </data>
   <data name="mainHotkeyError" xml:space="preserve">
-    <value>Fichier 'hotkeys.xml' non trouvé, aucun raccourci clavier défini!</value>
+    <value>Arquivo 'hotkeys.xml' não encontrado, nenhuma tecla de atalho definida!</value>
   </data>
   <data name="mainHotkeyError1" xml:space="preserve">
-    <value>Action inconnue:</value>
+    <value>Ação desconhecida:</value>
   </data>
   <data name="mainHotkeyError2" xml:space="preserve">
-    <value>Erreur avec Hotkey.xml</value>
+    <value>Erro com o Hotkey.xml</value>
   </data>
-  <data name="mainLimits3" xml:space="preserve">
-    <value>La dimension graphique dépasse la dimension de la machine! \r\nLa transformation est recommandée pour éviter d’endommager la machine!</value>
-  </data>
-  <data name="mainLoadError" xml:space="preserve">
-    <value>Le streaming doit être arrêté avant de charger le nouveau fichier</value>
-  </data>
-  <data name="mainLoadError1" xml:space="preserve">
-    <value>Fichier non trouvé: '</value>
-  </data>
-  <data name="mainLoadError2" xml:space="preserve">
-    <value>L’extension d’URL n’est pas 'svg' ou 'dxf' \r\nEssayez quand même d’importer du SVG, mais sans définir la liste 'Fichier récent'.</value>
-  </data>
-  <data name="mainParseError1" xml:space="preserve">
-    <value>Numéro non valide, définissez la ligne sur 0</value>
-  </data>
-  <data name="mainPauseStream" xml:space="preserve">
-    <value>Pause streaming - appuyez sur play</value>
-  </data>
-  <data name="mainPauseStream1" xml:space="preserve">
-    <value>Le dernier travail a été mis en pause à la ligne</value>
-  </data>
-  <data name="mainPauseStream2" xml:space="preserve">
-    <value>\n\nVoulez-vous continuer le travail?</value>
-  </data>
-  <data name="mainStreamingActive" xml:space="preserve">
-    <value>Le streaming est toujours actif - appuyez sur Arrêter et réessayez.</value>
-  </data>
-  <data name="mainUnknownCode" xml:space="preserve">
-    <value>G-Code inconnu commenté: \r\n</value>
+  <data name="mainInfoCheckCode" xml:space="preserve">
+    <value>Verificar código G</value>
   </data>
   <data name="mainInfoErrorLine" xml:space="preserve">
-    <value>Erreur avant la ligne</value>
+    <value>Erro antes da linha</value>
   </data>
   <data name="mainInfoFinishCheck" xml:space="preserve">
-    <value>Terminer la vérification du code G</value>
+    <value>Concluir a verificação do código G</value>
   </data>
   <data name="mainInfoFinishSend" xml:space="preserve">
-    <value>Terminer l'envoi du code G</value>
+    <value>Concluir o envio do código G</value>
   </data>
   <data name="mainInfoKill" xml:space="preserve">
-    <value>Appuyez sur 'Kill Alarm' pour continuer</value>
+    <value>Pressione 'Kill Alarm' para prosseguir</value>
   </data>
   <data name="mainInfoLaserModeOff" xml:space="preserve">
-    <value>Mode laser non actif $32 = 0</value>
+    <value>Modo Laser não ativo $ 32 = 0</value>
   </data>
   <data name="mainInfoLaserModeOn" xml:space="preserve">
-    <value>Mode laser actif $32 = 1</value>
+    <value>Modo a laser ativo $ 32 = 1</value>
   </data>
   <data name="mainInfoPause" xml:space="preserve">
-    <value>Pause streaming - appuyez sur play (</value>
+    <value>Pausar streaming - pressione reproduzir (</value>
   </data>
   <data name="mainInfoProbing" xml:space="preserve">
-    <value>Sondage</value>
+    <value>Sondagem</value>
   </data>
   <data name="mainInfoResume" xml:space="preserve">
-    <value>Appuyez sur 'Reprendre' pour continuer</value>
+    <value>Pressione 'Continuar' para continuar</value>
+  </data>
+  <data name="mainInfoSendCode" xml:space="preserve">
+    <value>Enviar código G</value>
+  </data>
+  <data name="mainInfoStopStream" xml:space="preserve">
+    <value>PARAR a transmissão (</value>
+  </data>
+  <data name="mainInfoStopStream2" xml:space="preserve">
+    <value>PARAR a transmissão (Linha</value>
+  </data>
+  <data name="mainInfoToolChange" xml:space="preserve">
+    <value>Troca de ferramenta ...</value>
+  </data>
+  <data name="mainInfoUndo" xml:space="preserve">
+    <value>Desfazer a última ação</value>
   </data>
   <data name="mainInfoWaitIdle" xml:space="preserve">
-    <value>Attendez IDLE, puis faites une pause (</value>
+    <value>Aguarde IDLE e faça uma pausa (</value>
   </data>
-  <data name="mainProgress" xml:space="preserve">
-    <value>Le progrès</value>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>O próximo passo excederá os limites da máquina!</value>
   </data>
-  <data name="probingCancel1" xml:space="preserve">
-    <value>Échantillonnage annulé</value>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\r\n Pressione 'Ok' para mover de qualquer maneira</value>
   </data>
-  <data name="probingCancel2" xml:space="preserve">
-    <value>Traiter la dernière commande</value>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>A dimensão gráfica excede a dimensão da máquina! \r\nA transformação é recomendada para evitar danos à máquina!</value>
   </data>
-  <data name="probingProbingOn" xml:space="preserve">
-    <value>Enquête sur </value>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>O fluxo deve ser interrompido antes de carregar o novo arquivo</value>
   </data>
-  <data name="probingCenter" xml:space="preserve">
-    <value>Déplacer au centre</value>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>Arquivo não encontrado: '</value>
   </data>
-  <data name="probingFail1" xml:space="preserve">
-    <value>Echec: pas de contact</value>
-  </data>
-  <data name="probingFail2" xml:space="preserve">
-    <value>Annuler le sondage</value>
-  </data>
-  <data name="probingFinish" xml:space="preserve">
-    <value>Terminer</value>
-  </data>
-  <data name="probingSetCenter" xml:space="preserve">
-    <value>Définir le centre</value>
-  </data>
-  <data name="probingTimeOut" xml:space="preserve">
-    <value>Temps libre</value>
-  </data>
-  <data name="serialClose" xml:space="preserve">
-    <value>Proche</value>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>A extensão do URL não é 'svg' ou 'dxf' \r\nTente importar o SVG de qualquer maneira, mas sem definir a lista 'Arquivo recente'.</value>
   </data>
   <data name="mainLoadError3" xml:space="preserve">
-    <value>Extension de fichier non prise en charge "</value>
+    <value>Extensão de arquivo não suportada '</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>Não é um número válido</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>Não é um número válido, defina a linha como 0</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>Pausar streaming - pressione reproduzir</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>O último trabalho foi interrompido na linha</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>, \ r \ n Deseja continuar o trabalho?</value>
+  </data>
+  <data name="mainProblem" xml:space="preserve">
+    <value>Problema</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>Progresso</value>
+  </data>
+  <data name="mainQuit" xml:space="preserve">
+    <value>Sair do GRBL-Plotter?</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>A transmissão ainda está ativa - pressione Parar e tente novamente</value>
+  </data>
+  <data name="mainToolChange" xml:space="preserve">
+    <value>Troca de ferramenta / caneta!</value>
+  </data>
+  <data name="mainToolChange1" xml:space="preserve">
+    <value>Mudança de ferramenta necessária:</value>
+  </data>
+  <data name="mainToolChange2" xml:space="preserve">
+    <value>pressione iniciar para continuar.</value>
+  </data>
+  <data name="mainUnknownCode" xml:space="preserve">
+    <value>Corrigido um código G desconhecido: \r\n</value>
+  </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>Sondagem cancelada</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>Processar o último comando</value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>Mover para o centro</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>Falhar: sem contato</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>Cancelar sondagem</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>Terminar</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>Sondagem ativada</value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>Definir centro</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>Tempo esgotado</value>
+  </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="serialCloseError" xml:space="preserve">
+    <value>É necessário conexão serial. \ R \ nFeche a janela principal</value>
   </data>
   <data name="serialOpen" xml:space="preserve">
-    <value>Ouvrir</value>
+    <value>Abrir</value>
   </data>
 </root>

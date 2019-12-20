@@ -175,7 +175,7 @@
     <value>Hotkey.xml错误</value>
   </data>
   <data name="mainLimits3" xml:space="preserve">
-    <value>图形尺寸超出了机器尺寸！\ r \ n建议进行变形以避免损坏机器！</value>
+    <value>图形尺寸超出了机器尺寸！\r\n建议进行变形以避免损坏机器！</value>
   </data>
   <data name="mainLoadError" xml:space="preserve">
     <value>加载新文件之前必须停止流传输</value>

@@ -127,7 +127,7 @@
     <value>Следующий ход превысит пределы машины!\r</value>
   </data>
   <data name="mainLimits2" xml:space="preserve">
-    <value>\r\nНажмите «ОК», чтобы все равно двигаться</value>
+    <value>\r\n Нажмите «ОК», чтобы все равно двигаться</value>
   </data>
   <data name="mainParseError" xml:space="preserve">
     <value>Неверный номер</value>
@@ -175,7 +175,7 @@
     <value>Ошибка с Hotkey.xml</value>
   </data>
   <data name="mainLimits3" xml:space="preserve">
-    <value>Размерность графики превышает размеры машины! \ R \ nПреобразование рекомендуется во избежание повреждения машины!</value>
+    <value>Размерность графики превышает размеры машины! \r\n Преобразование рекомендуется во избежание повреждения машины!</value>
   </data>
   <data name="mainLoadError" xml:space="preserve">
     <value>Перед загрузкой нового файла потоковая передача должна быть остановлена</value>

@@ -117,160 +117,163 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="serialCloseError" xml:space="preserve">
-    <value>Une connexion série est nécessaire. \r\nFermez la fenêtre principale à la place.</value>
-  </data>
   <data name="mainAttention" xml:space="preserve">
-    <value>Attention</value>
+    <value>انتباه</value>
   </data>
-  <data name="mainLimits1" xml:space="preserve">
-    <value>Le prochain mouvement dépassera les limites de la machine!\r</value>
-  </data>
-  <data name="mainLimits2" xml:space="preserve">
-    <value>\r\n Appuyez sur 'Ok' pour continuer quand même</value>
-  </data>
-  <data name="mainParseError" xml:space="preserve">
-    <value>Pas un numéro valide</value>
-  </data>
-  <data name="mainProblem" xml:space="preserve">
-    <value>Problème</value>
-  </data>
-  <data name="mainQuit" xml:space="preserve">
-    <value>Quittez GRBL-Plotter?</value>
-  </data>
-  <data name="mainToolChange" xml:space="preserve">
-    <value>Changement d'outil / stylo!</value>
-  </data>
-  <data name="mainToolChange1" xml:space="preserve">
-    <value>Changement d'outil nécessaire: \r</value>
-  </data>
-  <data name="mainToolChange2" xml:space="preserve">
-    <value>\r appuyez sur start pour continuer.</value>
-  </data>
-  <data name="mainInfoCheckCode" xml:space="preserve">
-    <value>Vérifier le code G</value>
-  </data>
-  <data name="mainInfoSendCode" xml:space="preserve">
-    <value>Envoyer le code G</value>
-  </data>
-  <data name="mainInfoStopStream" xml:space="preserve">
-    <value>ARRÊTER le streaming (</value>
-  </data>
-  <data name="mainInfoStopStream2" xml:space="preserve">
-    <value>ARRÊTER le streaming (Line</value>
-  </data>
-  <data name="mainInfoToolChange" xml:space="preserve">
-    <value>Changement d'outil ...</value>
-  </data>
-  <data name="mainInfoUndo" xml:space="preserve">
-    <value>Annuler la dernière action</value>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>لا تتردد في تحسين الترجمة</value>
   </data>
   <data name="mainHotkeyError" xml:space="preserve">
-    <value>Fichier 'hotkeys.xml' non trouvé, aucun raccourci clavier défini!</value>
+    <value>لم يتم العثور على الملف "hotkeys.xml" ، ولم يتم تعيين مفاتيح الاختصار!</value>
   </data>
   <data name="mainHotkeyError1" xml:space="preserve">
-    <value>Action inconnue:</value>
+    <value>عمل غير معروف:</value>
   </data>
   <data name="mainHotkeyError2" xml:space="preserve">
-    <value>Erreur avec Hotkey.xml</value>
+    <value>خطأ في Hotkey.xml</value>
   </data>
-  <data name="mainLimits3" xml:space="preserve">
-    <value>La dimension graphique dépasse la dimension de la machine! \r\nLa transformation est recommandée pour éviter d’endommager la machine!</value>
-  </data>
-  <data name="mainLoadError" xml:space="preserve">
-    <value>Le streaming doit être arrêté avant de charger le nouveau fichier</value>
-  </data>
-  <data name="mainLoadError1" xml:space="preserve">
-    <value>Fichier non trouvé: '</value>
-  </data>
-  <data name="mainLoadError2" xml:space="preserve">
-    <value>L’extension d’URL n’est pas 'svg' ou 'dxf' \r\nEssayez quand même d’importer du SVG, mais sans définir la liste 'Fichier récent'.</value>
-  </data>
-  <data name="mainParseError1" xml:space="preserve">
-    <value>Numéro non valide, définissez la ligne sur 0</value>
-  </data>
-  <data name="mainPauseStream" xml:space="preserve">
-    <value>Pause streaming - appuyez sur play</value>
-  </data>
-  <data name="mainPauseStream1" xml:space="preserve">
-    <value>Le dernier travail a été mis en pause à la ligne</value>
-  </data>
-  <data name="mainPauseStream2" xml:space="preserve">
-    <value>\n\nVoulez-vous continuer le travail?</value>
-  </data>
-  <data name="mainStreamingActive" xml:space="preserve">
-    <value>Le streaming est toujours actif - appuyez sur Arrêter et réessayez.</value>
-  </data>
-  <data name="mainUnknownCode" xml:space="preserve">
-    <value>G-Code inconnu commenté: \r\n</value>
+  <data name="mainInfoCheckCode" xml:space="preserve">
+    <value>تحقق G- كود</value>
   </data>
   <data name="mainInfoErrorLine" xml:space="preserve">
-    <value>Erreur avant la ligne</value>
+    <value>خطأ قبل الخط</value>
   </data>
   <data name="mainInfoFinishCheck" xml:space="preserve">
-    <value>Terminer la vérification du code G</value>
+    <value>إنهاء التحقق من رمز G-</value>
   </data>
   <data name="mainInfoFinishSend" xml:space="preserve">
-    <value>Terminer l'envoi du code G</value>
+    <value>الانتهاء من إرسال G- كود</value>
   </data>
   <data name="mainInfoKill" xml:space="preserve">
-    <value>Appuyez sur 'Kill Alarm' pour continuer</value>
+    <value>اضغط على "Kill Alarm" للمتابعة</value>
   </data>
   <data name="mainInfoLaserModeOff" xml:space="preserve">
-    <value>Mode laser non actif $32 = 0</value>
+    <value>وضع الليزر غير نشط $ 32 = 0</value>
   </data>
   <data name="mainInfoLaserModeOn" xml:space="preserve">
-    <value>Mode laser actif $32 = 1</value>
+    <value>وضع الليزر النشط 32 دولار = 1</value>
   </data>
   <data name="mainInfoPause" xml:space="preserve">
-    <value>Pause streaming - appuyez sur play (</value>
+    <value>توقف مؤقتًا - اضغط على play (</value>
   </data>
   <data name="mainInfoProbing" xml:space="preserve">
-    <value>Sondage</value>
+    <value>جس</value>
   </data>
   <data name="mainInfoResume" xml:space="preserve">
-    <value>Appuyez sur 'Reprendre' pour continuer</value>
+    <value>اضغط على "استئناف" للمتابعة</value>
+  </data>
+  <data name="mainInfoSendCode" xml:space="preserve">
+    <value>إرسال رمز G</value>
+  </data>
+  <data name="mainInfoStopStream" xml:space="preserve">
+    <value>إيقاف البث (</value>
+  </data>
+  <data name="mainInfoStopStream2" xml:space="preserve">
+    <value>وقف التدفق (الخط</value>
+  </data>
+  <data name="mainInfoToolChange" xml:space="preserve">
+    <value>تغيير الأداة...</value>
+  </data>
+  <data name="mainInfoUndo" xml:space="preserve">
+    <value>التراجع عن آخر إجراء</value>
   </data>
   <data name="mainInfoWaitIdle" xml:space="preserve">
-    <value>Attendez IDLE, puis faites une pause (</value>
+    <value>انتظر IDLE ، ثم توقف مؤقتًا (</value>
   </data>
-  <data name="mainProgress" xml:space="preserve">
-    <value>Le progrès</value>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>الخطوة التالية ستتجاوز حدود الماكينة!</value>
   </data>
-  <data name="probingCancel1" xml:space="preserve">
-    <value>Échantillonnage annulé</value>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\ r \ n اضغط على "موافق" للتحرك على أي حال</value>
   </data>
-  <data name="probingCancel2" xml:space="preserve">
-    <value>Traiter la dernière commande</value>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>يتجاوز حجم الرسومات بعد الماكينة! \ r \ n يوصى بالتحويل لتجنب إتلاف الجهاز!</value>
   </data>
-  <data name="probingProbingOn" xml:space="preserve">
-    <value>Enquête sur </value>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>يجب إيقاف البث قبل تحميل ملف جديد</value>
   </data>
-  <data name="probingCenter" xml:space="preserve">
-    <value>Déplacer au centre</value>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>لم يتم العثور على الملف: '</value>
   </data>
-  <data name="probingFail1" xml:space="preserve">
-    <value>Echec: pas de contact</value>
-  </data>
-  <data name="probingFail2" xml:space="preserve">
-    <value>Annuler le sondage</value>
-  </data>
-  <data name="probingFinish" xml:space="preserve">
-    <value>Terminer</value>
-  </data>
-  <data name="probingSetCenter" xml:space="preserve">
-    <value>Définir le centre</value>
-  </data>
-  <data name="probingTimeOut" xml:space="preserve">
-    <value>Temps libre</value>
-  </data>
-  <data name="serialClose" xml:space="preserve">
-    <value>Proche</value>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>امتداد عنوان URL ليس "svg" أو "dxf" \ r \ n حاول استيراد SVG على أي حال ، ولكن دون إعداد قائمة "الملف الأخير".</value>
   </data>
   <data name="mainLoadError3" xml:space="preserve">
-    <value>Extension de fichier non prise en charge "</value>
+    <value>امتداد الملف غير مدعوم "</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>ليس رقم صحيح</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>ليس رقمًا صالحًا ، قم بتعيين السطر على 0</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>توقف مؤقتًا - اضغط على play</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>تم إيقاف الوظيفة الأخيرة في الطابور</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>، \ r \ n هل تريد مواصلة المهمة؟</value>
+  </data>
+  <data name="mainProblem" xml:space="preserve">
+    <value>مشكلة</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>تقدم</value>
+  </data>
+  <data name="mainQuit" xml:space="preserve">
+    <value>استقال GRBL-Plotter؟</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>لا يزال البث نشطًا - اضغط على إيقاف وحاول مرة أخرى</value>
+  </data>
+  <data name="mainToolChange" xml:space="preserve">
+    <value>تغيير أداة / القلم!</value>
+  </data>
+  <data name="mainToolChange1" xml:space="preserve">
+    <value>يلزم تغيير الأداة: \ r</value>
+  </data>
+  <data name="mainToolChange2" xml:space="preserve">
+    <value>\ rpress البدء في المتابعة.</value>
+  </data>
+  <data name="mainUnknownCode" xml:space="preserve">
+    <value>تم إصلاح بعض رموز G غير المعروفة: \ r \ n</value>
+  </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>تم إلغاء التحقيق</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>عملية الأمر الأخير</value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>الانتقال إلى المركز</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>فشل: لا يوجد اتصال</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>إلغاء التحقيق</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>إنهاء</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>التحقيق في</value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>تعيين المركز</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>نفذ الوقت</value>
+  </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>قريب</value>
+  </data>
+  <data name="serialCloseError" xml:space="preserve">
+    <value>هناك حاجة إلى اتصال تسلسلي. \ r \ n أغلق النافذة الرئيسية بدلاً من ذلك</value>
   </data>
   <data name="serialOpen" xml:space="preserve">
-    <value>Ouvrir</value>
+    <value>افتح</value>
   </data>
 </root>
