@@ -4582,5 +4582,17 @@ namespace GRBL_Plotter.Properties {
                 this["guiExtendedLoggingEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gui2DKeepPenWidth {
+            get {
+                return ((bool)(this["gui2DKeepPenWidth"]));
+            }
+            set {
+                this["gui2DKeepPenWidth"] = value;
+            }
+        }
     }
 }
