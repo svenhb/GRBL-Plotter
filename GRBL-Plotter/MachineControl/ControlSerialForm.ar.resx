@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cbPort.ToolTip" xml:space="preserve">
+    <value>حدد منفذ تسلسلي مجاني</value>
+  </data>
+  <data name="cbBaud.ToolTip" xml:space="preserve">
+    <value>اختر السرعة</value>
+  </data>
+  <data name="btnOpenPort.Text" xml:space="preserve">
+    <value>افتح</value>
+  </data>
+  <data name="btnOpenPort.ToolTip" xml:space="preserve">
+    <value>افتح منفذ COM المحدد بالسرعة المحددة</value>
+  </data>
+  <data name="btnScanPort.Text" xml:space="preserve">
+    <value>مسح المنافذ</value>
+  </data>
+  <data name="btnScanPort.ToolTip" xml:space="preserve">
+    <value>البحث عن منافذ مجانية</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>سجل نظيف</value>
+  </data>
+  <data name="btnClear.ToolTip" xml:space="preserve">
+    <value>مسح القائمة أعلاه</value>
+  </data>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>إرسال</value>
+  </data>
+  <data name="btnSend.ToolTip" xml:space="preserve">
+    <value>اضغط لإرسال الأوامر</value>
+  </data>
+  <data name="btnGRBLCommand0.ToolTip" xml:space="preserve">
+    <value>مساعدة: الحصول على قائمة بجميع أوامر GRBL</value>
+  </data>
+  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
+    <value>عرض إعدادات Grbl</value>
+  </data>
+  <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
+    <value>عرض معلمات g-code</value>
+  </data>
+  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
+    <value>عرض كتل بدء التشغيل</value>
+  </data>
+  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
+    <value>قتل قفل المنبه</value>
+  </data>
+  <data name="lblSrPos.ToolTip" xml:space="preserve">
+    <value>موقف العمل</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>حالة التخزين المؤقت (يحتاج إلى تمكين عبر 10 دولارات = 2)</value>
+  </data>
+  <data name="lblSrBf.ToolTip" xml:space="preserve">
+    <value>حالة التخزين المؤقت (يحتاج إلى تمكين عبر 10 دولارات = 2)</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>التغذية الحالية (مم / دقيقة) والسرعة (RPM)</value>
+  </data>
+  <data name="lblSrFS.ToolTip" xml:space="preserve">
+    <value>التغذية الحالية (مم / دقيقة) والسرعة (RPM)</value>
+  </data>
+  <data name="lblSrPn.ToolTip" xml:space="preserve">
+    <value>حالة إدخال الدبوس لـ XYZ ، دقق ، باب ، تعليق ، إعادة ضبط لينة ، دورة البدء</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>حالة إدخال الدبوس لـ XYZ ، دقق ، باب ، تعليق ، إعادة ضبط لينة ، دورة البدء</value>
+  </data>
+  <data name="lblSrOv.ToolTip" xml:space="preserve">
+    <value>تجاوز قيم الخلاصة ، والسرعة في النسبة المئوية</value>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>تجاوز قيم الخلاصة ، والسرعة في النسبة المئوية</value>
+  </data>
+  <data name="lblSrA.ToolTip" xml:space="preserve">
+    <value>حالة الملحقات S = محور الدوران CW ، C = محور الدوران CCW ، F = عمود الدوران ، M = ضباب التبريد</value>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>حالة الملحقات S = محور الدوران CW ، C = محور الدوران CCW ، F = عمود الدوران ، M = ضباب التبريد</value>
+  </data>
+  <data name="lblSrLn.ToolTip" xml:space="preserve">
+    <value>رقم السطر (يحتاج إلى التمكين في config.h)</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>رقم السطر (يحتاج إلى التمكين في config.h)</value>
+  </data>
+  <data name="btnCheckGRBL.Text" xml:space="preserve">
+    <value>تحقق GRBL</value>
+  </data>
+  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
+    <value>تحقق من إعداد GRBL لمعرفة الحد الأقصى والحد الأدنى
+ليس ل GRBL Vers. &lt;1.0</value>
+  </data>
+  <data name="btnGRBLReset.ToolTip" xml:space="preserve">
+    <value>إعادة التعيين الناعم عبر CTRL-X</value>
+  </data>
+  <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
+    <value>جرب إعادة الضبط الثابت عبر DTR / RTS
+يعتمد النجاح على الأجهزة المستخدمة (DTR ، RTS سلكي؟)</value>
+  </data>
+  <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
+    <value>عرض حالة محلل g-code</value>
+  </data>
+  <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
+    <value>عرض معلومات البناء</value>
+  </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>عرض تقرير الحالة في الوقت الحقيقي</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>عرض تقارير حالة GRBL الأصلية المستلمة</value>
+  </data>
+  <data name="lblSrState.Text" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>إظهار الأوامر المرسلة والمعالجة أثناء التدفق</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>في الوقت الحقيقي تقرير الحالة</value>
+  </data>
+</root>

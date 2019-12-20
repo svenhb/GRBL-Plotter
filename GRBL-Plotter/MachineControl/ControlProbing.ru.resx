@@ -335,4 +335,13 @@ Z вернется в исходное положение</value>
     <value>Если флажок установлен, центр инструмента (щуп / резак) определяет нулевое положение.
 Обычно граница инструмента (зонд / резак) используется для определения нуля.</value>
   </data>
+  <data name="lblProbeFinal.Text" xml:space="preserve">
+    <value>Конечная позиция после исследования</value>
+  </data>
+  <data name="btnCancelTL.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Диаметр заготовки</value>
+  </data>
 </root>

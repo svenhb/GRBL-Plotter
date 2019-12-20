@@ -118,227 +118,213 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Diámeto de corte</value>
+    <value>プローブ/カッター直径</value>
   </data>
   <data name="label1.ToolTip" xml:space="preserve">
-    <value>Diámetro de punta de sondeo o cabezal de corte para calcular la posición cero</value>
+    <value>ゼロ位置を計算するためのプローブチップまたはカッターヘッドの直径</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Max. Distancia de sondeo</value>
+    <value>最大 プロービング距離</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
-    <value>Distancia máxima para moverse, para encontrar un borde</value>
+    <value>移動する最大距離、エッジを見つける</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Velocidad de alimentación</value>
+    <value>送り速度のプロービング</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Compensación de sondeo</value>
+    <value>タッチプレート寸法</value>
   </data>
   <data name="label4.ToolTip" xml:space="preserve">
-    <value>Desplazado a la posición cero de la sonda, causado por una placa táctil o papel de aluminio</value>
+    <value>タッチプレート、ゲージブロック、またはアルミ箔が原因で、プローブされたゼロ位置へのオフセット</value>
   </data>
   <data name="cBZProbing.Text" xml:space="preserve">
-    <value>Sonda Z también</value>
-  </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>Diámetro de punta de sondeo o cabezal de corte para calcular la posición cero</value>
-  </data>
-  <data name="nUDOffsetX.ToolTip" xml:space="preserve">
-    <value>Desplazado a la posición cero de la sonda, causado por una placa táctil o papel de aluminio</value>
-  </data>
-  <data name="nUDOffsetY.ToolTip" xml:space="preserve">
-    <value>Desplazado a la posición cero de la sonda, causado por una placa táctil o papel de aluminio</value>
-  </data>
-  <data name="nUDOffsetZ.ToolTip" xml:space="preserve">
-    <value>Desplazado a la posición cero de la sonda, causado por una placa táctil o papel de aluminio</value>
-  </data>
-  <data name="gBHardware.Text" xml:space="preserve">
-    <value>Dimensiones de hardware</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Distancia segura</value>
-  </data>
-  <data name="label14.ToolTip" xml:space="preserve">
-    <value>Después de un escaneo exitoso, conduzca de regreso a esta distancia</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Posición final después de sondear</value>
-  </data>
-  <data name="label18.ToolTip" xml:space="preserve">
-    <value>Posición final después de sondear</value>
-  </data>
-  <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
-    <value>Posición final después de sondear</value>
-  </data>
-  <data name="nUDProbeFinalY.ToolTip" xml:space="preserve">
-    <value>Posición final después de sondear</value>
-  </data>
-  <data name="nUDProbeFinalX.ToolTip" xml:space="preserve">
-    <value>Posición final después de sondear</value>
-  </data>
-  <data name="nUDProbeSaveZ.ToolTip" xml:space="preserve">
-    <value>Después de un escaneo exitoso, conduzca de regreso a esta distancia</value>
-  </data>
-  <data name="nUDProbeSaveY.ToolTip" xml:space="preserve">
-    <value>Después de un escaneo exitoso, conduzca de regreso a esta distancia</value>
-  </data>
-  <data name="nUDProbeSaveX.ToolTip" xml:space="preserve">
-    <value>Después de un escaneo exitoso, conduzca de regreso a esta distancia</value>
-  </data>
-  <data name="nUDProbeTravelZ.ToolTip" xml:space="preserve">
-    <value>Distancia máxima para moverse, para encontrar un borde</value>
-  </data>
-  <data name="nUDProbeTravelY.ToolTip" xml:space="preserve">
-    <value>Distancia máxima para moverse, para encontrar un borde</value>
-  </data>
-  <data name="nUDProbeTravelX.ToolTip" xml:space="preserve">
-    <value>Distancia máxima para moverse, para encontrar un borde</value>
-  </data>
-  <data name="gBMovement.Text" xml:space="preserve">
-    <value>Movimiento de la sonda</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Seleccione el borde o la esquina para reconocer.
-Mueva la punta de la herramienta frente al borde.
-En las esquinas, primero se marca X y luego Y.
-Z se verifica en último lugar.</value>
-  </data>
-  <data name="lblEFProgressInfo.Text" xml:space="preserve">
-    <value>Progreso</value>
-  </data>
-  <data name="btnStartEF.Text" xml:space="preserve">
-    <value>comienzo</value>
-  </data>
-  <data name="lblEFProgress.Text" xml:space="preserve">
-    <value>Statut</value>
-  </data>
-  <data name="btnCancelEF.Text" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="rB5.Text" xml:space="preserve">
-    <value>Solo Z</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Buscador de bordes</value>
-  </data>
-  <data name="lblCFProgressInfo.Text" xml:space="preserve">
-    <value>Progreso</value>
-  </data>
-  <data name="btnStartCF.Text" xml:space="preserve">
-    <value>comienzo</value>
-  </data>
-  <data name="lblCFProgress.Text" xml:space="preserve">
-    <value>Statut</value>
-  </data>
-  <data name="btnCancelCF.Text" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Buscador central</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Longitud de la herramienta</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Contorno interior:
-Coloque la punta de la herramienta dentro del orificio de la pieza de trabajo, casi centrada.
-Z no se moverá.
-
-Contorno exterior:
-Coloque la punta de la herramienta en el lado izquierdo de la pieza de trabajo, como para detectar bordes</value>
-  </data>
-  <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
-    <value>Diámetro de la pieza de trabajo para determinar la distancia de sondeo.</value>
-  </data>
-  <data name="lblProbeFinal.ToolTip" xml:space="preserve">
-    <value>Posición final después de sondear</value>
-  </data>
-  <data name="rBCF2.ToolTip" xml:space="preserve">
-    <value>Encuentra el centro y establece 0; 0
-Z arriba = Z inicio + sondeo Z
-Finalmente mover al centro</value>
-  </data>
-  <data name="rBCF1.ToolTip" xml:space="preserve">
-    <value>Encuentra el centro y establece 0; 0
-Finalmente mover al centro</value>
-  </data>
-  <data name="btnGetAngleEF.Text" xml:space="preserve">
-    <value>Girar el código G por ángulo</value>
-  </data>
-  <data name="btnGetAngleEF.ToolTip" xml:space="preserve">
-    <value>El ángulo de corrección se calculará de forma vertical (sondeo X) u borde horizontal (sondeo Y) de la pieza de trabajo</value>
-  </data>
-  <data name="tBAngle.ToolTip" xml:space="preserve">
-    <value>El ángulo de corrección se calculará de forma vertical (sondeo X) u borde horizontal (sondeo Y) de la pieza de trabajo</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Ángulo de corrección medido:</value>
-  </data>
-  <data name="btnSaveTL.Text" xml:space="preserve">
-    <value>Conduzca Z a la posición segura</value>
-  </data>
-  <data name="btnSaveTL.ToolTip" xml:space="preserve">
-    <value>Usar coordenadas absolutas G90</value>
-  </data>
-  <data name="cBSetCoordTL.Text" xml:space="preserve">
-    <value>Use la coordenada Z G92 para la primera herramienta</value>
-  </data>
-  <data name="cBSetCoordTL.ToolTip" xml:space="preserve">
-    <value>Establecer G92 Z</value>
-  </data>
-  <data name="btnClearTL.Text" xml:space="preserve">
-    <value>Borrar la longitud de la herramienta</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>1. Obtenga la longitud de la herramienta para la primera herramienta
-2. Use G92 para establecer Z cero
-3. Después del cambio de herramienta, simplemente mida la longitud de la herramienta nuevamente, la coordenada Z será corregida.
-
-Después del sondeo de longitud de herramienta:
-Z retrocederá a la posición inicial</value>
-  </data>
-  <data name="lblTLProgressInfo.Text" xml:space="preserve">
-    <value>Progreso</value>
-  </data>
-  <data name="btnStartTL.Text" xml:space="preserve">
-    <value>comienzo</value>
-  </data>
-  <data name="lblTLProgress.Text" xml:space="preserve">
-    <value>Statut</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="gBCoordinates.Text" xml:space="preserve">
-    <value>Coordenadas</value>
-  </data>
-  <data name="rBProbeCoord1.Text" xml:space="preserve">
-    <value>Utilice G10 L2 P0 - Establecer coord. (G54-G59)</value>
-  </data>
-  <data name="rBProbeCoord2.Text" xml:space="preserve">
-    <value>Utilizar G92</value>
-  </data>
-  <data name="btnProbeCoordClear.Text" xml:space="preserve">
-    <value>Claro G92</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Sondeo y desplazamiento de la longitud de la herramienta</value>
+    <value>プローブZも</value>
   </data>
   <data name="cBZProbing.ToolTip" xml:space="preserve">
-    <value>Sonda Z finalmente, después de una prueba exitosa de borde o esquina</value>
+    <value>エッジまたはコーナーのプローブに成功した後、最後にプローブZ</value>
   </data>
-  <data name="cBSetCenterZero.Text" xml:space="preserve">
-    <value>Establecer el centro de herramientas como cero</value>
+  <data name="nUDDiameter.ToolTip" xml:space="preserve">
+    <value>ゼロ位置を計算するためのプローブチップまたはカッターヘッドの直径</value>
   </data>
-  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
-    <value>Si se marca, el centro de la herramienta (sonda / cortador) define la posición cero.
-Por lo general, el borde de la herramienta (sonda / cortador) se utiliza para definir cero.</value>
+  <data name="nUDOffsetX.ToolTip" xml:space="preserve">
+    <value>ゲージブロックまたはアルミ箔が原因でプローブされたゼロ位置へのオフセット</value>
+  </data>
+  <data name="nUDOffsetY.ToolTip" xml:space="preserve">
+    <value>ゲージブロックまたはアルミ箔が原因でプローブされたゼロ位置へのオフセット</value>
+  </data>
+  <data name="nUDOffsetZ.ToolTip" xml:space="preserve">
+    <value>ゲージブロックまたはアルミ箔が原因でプローブされたゼロ位置へのオフセット</value>
+  </data>
+  <data name="gBHardware.Text" xml:space="preserve">
+    <value>ハードウェア寸法</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>距離を節約</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>プロービング成功後にこの距離だけ後退する</value>
   </data>
   <data name="lblProbeFinal.Text" xml:space="preserve">
-    <value>Posición final después de sondear</value>
+    <value>プロービング後の最終位置</value>
+  </data>
+  <data name="lblProbeFinal.ToolTip" xml:space="preserve">
+    <value>最後にこの位置に移動します</value>
+  </data>
+  <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
+    <value>プローブ距離を決定するワークピースの直径</value>
+  </data>
+  <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
+    <value>最後にこの位置に移動します</value>
+  </data>
+  <data name="nUDProbeFinalY.ToolTip" xml:space="preserve">
+    <value>最後にこの位置に移動します</value>
+  </data>
+  <data name="nUDProbeFinalX.ToolTip" xml:space="preserve">
+    <value>最後にこの位置に移動します</value>
+  </data>
+  <data name="nUDProbeSaveZ.ToolTip" xml:space="preserve">
+    <value>プロービング成功後にこの距離だけ後退する</value>
+  </data>
+  <data name="nUDProbeSaveY.ToolTip" xml:space="preserve">
+    <value>プロービング成功後にこの距離だけ後退する</value>
+  </data>
+  <data name="nUDProbeSaveX.ToolTip" xml:space="preserve">
+    <value>プロービング成功後にこの距離だけ後退する</value>
+  </data>
+  <data name="nUDProbeTravelZ.ToolTip" xml:space="preserve">
+    <value>移動する最大距離、エッジを見つける</value>
+  </data>
+  <data name="nUDProbeTravelY.ToolTip" xml:space="preserve">
+    <value>移動する最大距離、エッジを見つける</value>
+  </data>
+  <data name="nUDProbeTravelX.ToolTip" xml:space="preserve">
+    <value>移動する最大距離、エッジを見つける</value>
+  </data>
+  <data name="rBCF2.ToolTip" xml:space="preserve">
+    <value>中心を見つけて0; 0を設定
+Z up = Z start + Zプローブ
+最後に中央に移動</value>
+  </data>
+  <data name="rBCF1.ToolTip" xml:space="preserve">
+    <value>中心を見つけて0; 0を設定
+最後に中央に移動</value>
+  </data>
+  <data name="btnGetAngleEF.Text" xml:space="preserve">
+    <value>Gコードを角度で回転</value>
+  </data>
+  <data name="btnGetAngleEF.ToolTip" xml:space="preserve">
+    <value>補正角度は、ワークの垂直（Xプローブ）または水平エッジ（Yプローブ）から計算されます</value>
+  </data>
+  <data name="tBAngle.ToolTip" xml:space="preserve">
+    <value>補正角度は、ワークの垂直（Xプローブ）または水平エッジ（Yプローブ）から計算されます</value>
+  </data>
+  <data name="cBSetCoordTL.Text" xml:space="preserve">
+    <value>G92 Z座標を設定します。 最初のツール用</value>
+  </data>
+  <data name="cBSetCoordTL.ToolTip" xml:space="preserve">
+    <value>G92 Zを設定</value>
+  </data>
+  <data name="btnSaveTL.Text" xml:space="preserve">
+    <value>Zを移動して位置を保存します。</value>
+  </data>
+  <data name="btnSaveTL.ToolTip" xml:space="preserve">
+    <value>G90絶対座標を使用</value>
+  </data>
+  <data name="cBSetCenterZero.Text" xml:space="preserve">
+    <value>工具中心をゼロに設定</value>
+  </data>
+  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
+    <value>チェックすると、ツール（プローブ/カッター）の中心がゼロ位置を定義します。
+通常、ゼロの定義にはツールの境界（プローブ/カッター）が使用されます。</value>
+  </data>
+  <data name="gBMovement.Text" xml:space="preserve">
+    <value>プローブの動き</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>測定された補正角度：</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>検出するコーナーのエッジを選択します。
+先端の前にツールチップを置きます。
+コーナーでは、Xが最初にプローブされ、次にYがプローブされます。
+Zは最後にプローブされます。
+角度を取得するために、別の位置で2回目のエッジをプローブします。</value>
+  </data>
+  <data name="lblEFProgressInfo.Text" xml:space="preserve">
+    <value>進捗</value>
+  </data>
+  <data name="btnStartEF.Text" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="btnCancelEF.Text" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="rB5.Text" xml:space="preserve">
+    <value>Zのみ</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>エッジファインダー</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>ワーク径</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>内側の輪郭：
+工具の先端をワークの穴のほぼ中央に置きます。
+Zは移動しません。
+
+外輪郭：
+エッジ検出に関しては、ワークピースの左側にツールチップを置きます</value>
+  </data>
+  <data name="lblCFProgressInfo.Text" xml:space="preserve">
+    <value>進捗</value>
+  </data>
+  <data name="btnStartCF.Text" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="btnCancelCF.Text" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>センターファインダー</value>
+  </data>
+  <data name="btnClearTL.Text" xml:space="preserve">
+    <value>工具長オフセットのクリア</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>1.最初の工具の工具長を取得する
+2. G92を使用してZをゼロに設定します
+3.ツールの変更後、再度ツールの長さを測定するだけで、Z座標が修正されます。
+
+工具長の調査後：
+Zは開始位置に戻ります</value>
+  </data>
+  <data name="lblTLProgressInfo.Text" xml:space="preserve">
+    <value>進捗</value>
+  </data>
+  <data name="btnStartTL.Text" xml:space="preserve">
+    <value>開始</value>
   </data>
   <data name="btnCancelTL.Text" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>キャンセル</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>工具長</value>
+  </data>
+  <data name="btnProbeCoordClear.Text" xml:space="preserve">
+    <value>クリアG92</value>
+  </data>
+  <data name="rBProbeCoord2.Text" xml:space="preserve">
+    <value>G92を使用する</value>
+  </data>
+  <data name="rBProbeCoord1.Text" xml:space="preserve">
+    <value>G10 L2 P0を使用-座標を設定します。 （G54-G59）</value>
+  </data>
+  <data name="gBCoordinates.Text" xml:space="preserve">
+    <value>座標</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>プローブと工具長オフセット</value>
   </data>
 </root>

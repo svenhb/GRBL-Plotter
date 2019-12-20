@@ -1612,4 +1612,13 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
     <value>Nützliche Erweiterungen für Inkscape</value>
     <comment>TabPage11</comment>
   </data>
+  <data name="Column20.HeaderText" xml:space="preserve">
+    <value>العدد.</value>
+  </data>
+  <data name="Column21.HeaderText" xml:space="preserve">
+    <value>ضع الكلمة المناسبة</value>
+  </data>
+  <data name="Column22.HeaderText" xml:space="preserve">
+    <value>G-كود</value>
+  </data>
 </root>

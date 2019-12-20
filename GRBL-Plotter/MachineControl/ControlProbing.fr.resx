@@ -335,4 +335,10 @@ Z reviendra à la position de départ</value>
     <value>Si cette case est cochée, le centre de l'outil (palpeur / couteau) définit la position zéro.
 Habituellement, la bordure de l'outil (palpeur / couteau) est utilisée pour définir le zéro.</value>
   </data>
+  <data name="lblProbeFinal.Text" xml:space="preserve">
+    <value>Position finale après sondage</value>
+  </data>
+  <data name="btnCancelTL.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
 </root>

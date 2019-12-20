@@ -304,7 +304,7 @@ namespace GRBL_Plotter
             int value = state.Value;
             if (offset.IndexOf("Buttons") >= 0)
             {
-                foreach (Control c in this.gBGP.Controls)
+                foreach (Control c in this.tab7gB1.Controls)
                 {
                     if (c.Name == ("lbl" + offset)) if (c != null)
                         { c.BackColor = (value > 0) ? Color.Lime : Color.LightGray; break; }
@@ -771,7 +771,7 @@ namespace GRBL_Plotter
             tabControl1.Height = y - 64;
             btnApplyChangings.Top = y - 64;
             gBToolChange.Height = y - 98;
-            gBToolTable.Height = y - 192;
+            tab2gB2.Height = y - 192;
             dGVToolList.Height = y - 64;
         }
 
@@ -891,7 +891,7 @@ namespace GRBL_Plotter
         private void cBToolLaser_CheckedChanged(object sender, EventArgs e)
         {
             bool enabled = !cBToolLaser.Checked;
-            lblToolOffset.Visible = enabled;
+            tab2gB2lbl1.Visible = enabled;
             nUDToolOffsetX.Visible = enabled;
             nUDToolOffsetY.Visible = enabled;
             nUDToolOffsetZ.Visible = enabled;
@@ -947,14 +947,14 @@ namespace GRBL_Plotter
             numericUpDown2.Enabled = cBToolTableDefault.Checked && enable;
 
             // Use Z Group
-            lblZUse1.Enabled = optionUseZ;
-            lblZUse2.Enabled = optionUseZ;
-            lblZUse3.Enabled = optionUseZ;
+            tab1_2lbl31.Enabled = optionUseZ;
+            tab1_2lbl32.Enabled = optionUseZ;
+            tab1_2lbl33.Enabled = optionUseZ;
             nUDImportGCFeedZ.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
             nUDImportGCZUp.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
             nUDImportGCZDown.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
             cBImportGCZIncEnable.Enabled = optionUseZ;
-            lblZUse4.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked );
+            tab1_2lbl35.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked );
             cBImportGCZIncStartZero.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked);
             nUDImportGCZIncrement.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled) && cBImportGCZIncEnable.Checked);
 
@@ -964,10 +964,10 @@ namespace GRBL_Plotter
 
         private void cBImportGCUsePWM_CheckedChanged(object sender, EventArgs e)
         {   bool enable = cBImportGCUsePWM.Checked;
-            lblPWM1.Enabled = enable;
-            lblPWM2.Enabled = enable;
-            lblPWM3.Enabled = enable;
-            lblPWM4.Enabled = enable;
+            tab1_2lbl41.Enabled = enable;
+            tab1_2lbl42.Enabled = enable;
+            tab1_2lbl43.Enabled = enable;
+            tab1_2lbl44.Enabled = enable;
             nUDImportGCPWMUp.Enabled = enable;
             nUDImportGCDlyUp.Enabled = enable;
             nUDImportGCPWMDown.Enabled = enable;
@@ -976,8 +976,8 @@ namespace GRBL_Plotter
 
         private void cBImportGCUseIndividual_CheckedChanged(object sender, EventArgs e)
         {   bool enable = cBImportGCUseIndividual.Checked;
-            lblUseInd1.Enabled = enable;
-            lblUseInd2.Enabled = enable;
+            tab1_2lbl61.Enabled = enable;
+            tab1_2lbl62.Enabled = enable;
             tBImportGCIPU.Enabled = enable;
             tBImportGCIPD.Enabled = enable;
         }

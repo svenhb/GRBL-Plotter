@@ -335,4 +335,13 @@ Z将移回起始位置</value>
     <value>如果选中，则工具（探针/刀具）中心定义为零位置。
 通常，工具（探针/刀具）的边界用于定义零。</value>
   </data>
+  <data name="lblProbeFinal.Text" xml:space="preserve">
+    <value>探测后的最终位置</value>
+  </data>
+  <data name="btnCancelTL.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>工件直径</value>
+  </data>
 </root>

@@ -333,4 +333,10 @@ Setzen Sie die Werkzeugspitze wie bei der Kantenerkennung auf die linke Seite de
     <value>Wenn aktiviert, definiert die Werkzeugmitte (Messtaster / Fräser) die Nullposition.
 Normalerweise wird der Rand des Werkzeugs (Messtaster / Fräser) zum Definieren von Null verwendet.</value>
   </data>
+  <data name="lblProbeFinal.Text" xml:space="preserve">
+    <value>Endposition nach dem Antasten</value>
+  </data>
+  <data name="btnCancelTL.Text" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
 </root>
