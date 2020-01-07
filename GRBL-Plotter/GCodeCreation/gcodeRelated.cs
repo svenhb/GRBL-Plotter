@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 * 2019-05 line 398 correct start pos. for gcodeDragCompensation if lastMovewasG0
 * 2019-06 add depth per pass for final Z depth
 * 2019-09 add toolInfo.gcode
+* 2020-01 add trace level loggerTraceImport to hide log of any gcode command during import
 */
 
 using System;
@@ -36,7 +37,8 @@ namespace GRBL_Plotter
 {
     public static class gcode
     {
-        public static bool loggerTrace = false; 
+        public static bool loggerTrace = false;
+        public static bool loggerTraceImport = false;
         private static string formatCode = "00";
         private static string formatNumber = "0.###";
 
@@ -391,7 +393,7 @@ namespace GRBL_Plotter
 
         public static void PenDown(StringBuilder gcodeString, string cmto = "")
         {
-            if (loggerTrace) Logger.Trace("    PenDown");
+            if (loggerTraceImport) Logger.Trace("    PenDown");
 
             StringBuilder tmpString = new StringBuilder();
             string cmt = cmto;
@@ -418,7 +420,7 @@ namespace GRBL_Plotter
                     gcodeFigureTime = 0;
                     gcodeFigureLines = 0;  //
                     gcodeFigureDistance = 0;
-                    if (loggerTrace) Logger.Trace("    figureString.Clear()");
+                    if (loggerTraceImport) Logger.Trace("    figureString.Clear()");
                 }
                 else
                 {   float z_relative = gcodeZDown - lastz;
@@ -465,7 +467,7 @@ namespace GRBL_Plotter
 
         public static void PenUp(StringBuilder gcodeString, string cmto = "")
         {
-            if (loggerTrace) Logger.Trace("    PenUp");
+            if (loggerTraceImport) Logger.Trace("    PenUp");
 
             string cmt = cmto;
             string comment = "";
@@ -596,7 +598,7 @@ namespace GRBL_Plotter
         private static int lastCharCount = 0;
         private static void MoveSplit(StringBuilder gcodeStringFinal, int gnr, float finalx, float finaly, float? z, bool applyFeed, string cmt)
         {
-            if (loggerTrace) Logger.Trace("  MoveSplit G{0} X{1:0.000} Y{2:0.000}", gnr,finalx,finaly);
+            if (loggerTraceImport) Logger.Trace("  MoveSplit G{0} X{1:0.000} Y{2:0.000}", gnr,finalx,finaly);
 
             if (lastMovewasG0)
             {   if ((finalx == lastx) && (finaly == lasty)) // discard G1 without any move
@@ -791,7 +793,7 @@ namespace GRBL_Plotter
         {   Move(gcodeString, gnr, x, y, null, applyFeed, cmt); }
         private static void Move(StringBuilder gcodeStringFinal, int gnr, float x, float y, float? z, bool applyFeed, string cmt)
         {
-            if (loggerTrace) Logger.Trace("  Move G{0} X{1:0.000} Y{2:0.000}", gnr, x, y);
+            if (loggerTraceImport) Logger.Trace("  Move G{0} X{1:0.000} Y{2:0.000}", gnr, x, y);
 
             StringBuilder gcodeString = gcodeStringFinal;
 
@@ -918,11 +920,11 @@ namespace GRBL_Plotter
         { MoveArc(gcodeString, gnr, x, y, i, j, applyXYFeedRate, cmt, avoidG23); }
         private static void MoveArc(StringBuilder gcodeStringFinal, int gnr, float x, float y, float i, float j, bool applyFeed, string cmt="", bool avoidG23 = false)
         {
-            if (loggerTrace) Logger.Trace("  MoveArc G{0} X{1:0.000} Y{2:0.000}", gnr, x, y);
+            if (loggerTraceImport) Logger.Trace("  MoveArc G{0} X{1:0.000} Y{2:0.000}", gnr, x, y);
 
             StringBuilder gcodeString = gcodeStringFinal;
             if (gcodeZApply && repeatZ)
-            {   gcodeString = figureString; if (loggerTrace) Logger.Trace("    gcodeString = figureString"); }
+            {   gcodeString = figureString; if (loggerTraceImport) Logger.Trace("    gcodeString = figureString"); }
 
             string feed = "";
             float x_relative = x - lastx;
@@ -1110,7 +1112,7 @@ namespace GRBL_Plotter
             // add gcode from tool table
             toolProp toolInfo = toolTable.getToolProperties(toolnr);
             getValuesFromToolTable(toolInfo);
-            if (loggerTrace) Logger.Trace("   toolInfo toolNr {0} {1} {2}",toolnr,toolInfo.spindleSpeed,toolInfo.gcode.Length);
+            if (loggerTraceImport) Logger.Trace("   toolInfo toolNr {0} {1} {2}",toolnr,toolInfo.spindleSpeed,toolInfo.gcode.Length);
             if (Properties.Settings.Default.importGCToolTableUse)
             {   if (toolInfo.gcode.Length > 1)
                 {   string[] commands = toolInfo.gcode.Split(';');
@@ -1286,7 +1288,7 @@ namespace GRBL_Plotter
         }
         private static void intermediateZ(StringBuilder gcodeString)
         {
-            if (loggerTrace) Logger.Trace("   intermediateZ");
+            if (loggerTraceImport) Logger.Trace("   intermediateZ");
 
             float zStep = 0;
             int passCount = 1;

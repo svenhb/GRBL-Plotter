@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2019-09-06 new class for high level commands
  * 2019-11-28 add penup in line 180
  * 2019-11-30 add line 381- Arc added code - for DXF circle multiple pass 
+ * 2020-01-01 add public enum xmlMarkerType
 */
 
 using System;
@@ -589,10 +590,9 @@ namespace GRBL_Plotter
         { gcode.Pause(gcodeString[gcodeStringIndex], cmt); }
     }
 
-
+    public enum xmlMarkerType { none, Group, Figure, Pass, Contour, Fill };
     public static class xmlMarker
-    {
-        public const string groupStart = "<Group";
+    {   public const string groupStart = "<Group";
         public const string groupEnd  = "</Group";
         public const string figureStart = "<Figure";
         public const string figureEnd  = "</Figure";

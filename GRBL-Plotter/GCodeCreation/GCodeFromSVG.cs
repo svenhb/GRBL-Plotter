@@ -44,6 +44,7 @@
    2019-09-19 add stroke-dasharray
    2019-11-24 Code outsourcing to importMath.cs
    2019-12-07 add extended log
+   2019-12-22 Line 100 add try/catch for bad SVG-XML
 */
 
 using System;
@@ -99,12 +100,20 @@ namespace GRBL_Plotter
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
             MemoryStream stream = new MemoryStream(byteArray);
-            svgCode = XElement.Load(stream, LoadOptions.None);
-            fromClipboard = true;
-            if (svgText.IndexOf("Adobe") >= 0)
-                replaceUnitByPixel = false;
-            unitIsPixel = replaceUnitByPixel;
-            return convertSVG(svgCode, "from Clipboard");                   // startConvert(svgCode);
+            try
+            {
+                svgCode = XElement.Load(stream, LoadOptions.None);
+                fromClipboard = true;
+                if (svgText.IndexOf("Adobe") >= 0)
+                    replaceUnitByPixel = false;
+                unitIsPixel = replaceUnitByPixel;
+                return convertSVG(svgCode, "from Clipboard");                   // startConvert(svgCode);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e, "Error loading SVG-Code");
+                MessageBox.Show("Error '" + e.ToString() + "' in XML string "); return "( No valid SVG data found)";
+            }
         }
         public static string convertFromFile(string file)
         {
