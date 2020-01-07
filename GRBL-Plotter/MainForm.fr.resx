@@ -902,4 +902,16 @@ valeur négative sur le côté droit.</value>
   <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Japonais</value>
   </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>Cela bascule l'analyseur gcode du Grbl pour prendre tous les blocs entrants et les traiter complètement, comme il le ferait en fonctionnement normal, mais il ne déplace aucun des axes, ignore les arrêts et éteint la broche et le liquide de refroidissement. Ceci est destiné à fournir à l'utilisateur un moyen de vérifier comment son nouveau programme G-code se comporte avec l'analyseur de Grbl et de surveiller les erreurs (et vérifie les violations de limites logicielles, s'il est activé).</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>Demi vitesse de simulation</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>Double vitesse de simulation</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>Lancer la simulation de trajectoire</value>
+  </data>
 </root>

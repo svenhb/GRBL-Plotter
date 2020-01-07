@@ -221,9 +221,6 @@
     <value>Gコードストリーミング</value>
     <comment>groupBox_Streaming</comment>
   </data>
-  <data name="btnLimitExceed.Text" xml:space="preserve">
-    <value>？</value>
-  </data>
   <data name="btnOffsetApply.Text" xml:space="preserve">
     <value>オフセットを適用</value>
     <comment>groupBox_Dimension</comment>
@@ -962,5 +959,17 @@ Grblのバッファーにモーションがキューイングされていて準�
   </data>
   <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>日本人</value>
+  </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>これは、Grblのgcodeパーサーを切り替えて、すべての着信ブロックを取得し、通常の動作と同様に完全に処理しますが、軸を移動せず、滞留を無視し、スピンドルとクーラントの電源を切ります。 これは、ユーザーに新しいGコードプログラムがGrblのパーサーでどのように動作するかを確認し、エラーを監視する（および有効になっている場合はソフト制限違反を確認する）方法を提供することを目的としています。</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>半分のシミュレーション速度</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>ダブルシミュレーション速度</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>パスシミュレーションを開始</value>
   </data>
 </root>

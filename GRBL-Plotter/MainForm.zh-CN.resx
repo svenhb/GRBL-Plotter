@@ -902,4 +902,16 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>日本</value>
   </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>这将切换Grbl的gcode解析器以获取所有传入的块并完全对其进行处理，就像在正常操作中一样，但是它不会移动任何轴，忽略停顿并关闭主轴和冷却液。 这旨在为用户提供一种使用Grbl的解析器检查其新G代码程序的运行状况并监视任何错误的方法（并检查是否违反了软限制，如果已启用）。</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>半仿真速度</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>双倍仿真速度</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>起始路径模拟</value>
+  </data>
 </root>

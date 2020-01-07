@@ -963,4 +963,16 @@
   <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>اليابانية</value>
   </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>يعمل هذا على تبديل المحلل اللغوي الخاص بـ Grbl لأخذ جميع الكتل الواردة ومعالجتها تمامًا ، كما هو الحال في التشغيل العادي ، لكنه لا يحرك أي من المحاور ، ويتجاهل المساكن ، ويفصل الطاقة عن المغزل والمبرد. الغرض من ذلك هو توفير وسيلة للمستخدم للتحقق من كيفية حصول برنامج G-code الجديد على محلل Grbl ومراقبته عن أي أخطاء (والتحقق من انتهاكات الحد المسموح به ، إذا كان ممكّنًا).</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>نصف سرعة المحاكاة</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>سرعة محاكاة مزدوجة</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>بدء محاكاة المسار</value>
+  </data>
 </root>

@@ -930,4 +930,16 @@
   <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>японский язык</value>
   </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>Это переключает анализатор g-кода Grbl на прием всех входящих блоков и их полную обработку, как при обычной работе, но он не перемещает ни одну из осей, игнорирует задержки и отключает шпиндель и охлаждающую жидкость. Это предназначено для того, чтобы предоставить пользователю способ проверить, как его новая программа G-кода работает с парсером Grbl, и следить за любыми ошибками (и проверять нарушения мягкого лимита, если они включены).</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>Половина скорости симуляции</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>Двойная скорость симуляции</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>Начать симуляцию пути</value>
+  </data>
 </root>

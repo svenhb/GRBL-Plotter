@@ -938,4 +938,16 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>japonês</value>
   </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>Isso alterna o analisador gcode do Grbl para pegar todos os blocos recebidos e processá-los completamente, como faria na operação normal, mas não move nenhum dos eixos, ignora as interrupções e desliga o eixo e o líquido de arrefecimento. Isso tem como objetivo fornecer ao usuário uma maneira de verificar como o seu novo programa de código G se sai bem com o analisador do Grbl e monitorar se há erros (e verifica se há violações de limites suaves, se ativado).</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>Meia velocidade de simulação</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>Velocidade de simulação dupla</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>Iniciar simulação de caminho</value>
+  </data>
 </root>

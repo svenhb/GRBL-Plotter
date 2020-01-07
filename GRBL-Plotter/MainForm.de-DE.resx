@@ -874,4 +874,16 @@ negativer Wert auf der rechten Seite.</value>
   <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>japanisch</value>
   </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>Dadurch wird der Gcode-Parser des Grbl so umgeschaltet, dass alle eingehenden Blöcke wie im normalen Betrieb vollständig verarbeitet werden. Er bewegt jedoch keine der Achsen, ignoriert Verweilzeiten und schaltet die Spindel und das Kühlmittel aus. Auf diese Weise kann der Benutzer überprüfen, wie sein neues G-Code-Programm mit dem Grbl-Parser abschneidet und auf Fehler überwacht (und, falls aktiviert, auf Soft-Limit-Verstöße überprüft).</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>Halbe Simulationsgeschwindigkeit</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>Doppelte Simulationsgeschwindigkeit</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>Streckensimulation starten</value>
+  </data>
 </root>

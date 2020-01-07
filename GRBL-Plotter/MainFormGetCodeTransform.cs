@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 */
 /*
  * 2019-07-08 add foldCode() to text and image import 
+ * 2020-01-01 replace #if debuginfo by Logger.Info
 */
 using System;
 using System.Drawing;
@@ -160,9 +161,7 @@ namespace GRBL_Plotter
         // handle event from create Text form
         private void getGCodeFromText(object sender, EventArgs e)
         {
-#if (debuginfo)
-            log.Add("MainForm Event getGCodeFromText");
-#endif
+            Logger.Info("getGCodeFromText");
             if (!isStreaming)
             {
                 newCodeStart();
@@ -177,9 +176,7 @@ namespace GRBL_Plotter
         // handle event from create Shape
         private void getGCodeFromShape(object sender, EventArgs e)
         {
-#if (debuginfo)
-            log.Add("MainForm Event getGCodeFromShape");
-#endif
+            Logger.Info("getGCodeFromShape");
             if (!isStreaming)
             {
                 newCodeStart();
@@ -193,9 +190,7 @@ namespace GRBL_Plotter
         // handle event from create Image form
         private void getGCodeFromImage(object sender, EventArgs e)
         {
-#if (debuginfo)
-            log.Add("MainForm Event getGCodeFromImage");
-#endif
+            Logger.Info("getGCodeFromImage");
             if (!isStreaming)
             {
                 newCodeStart();
@@ -635,6 +630,8 @@ namespace GRBL_Plotter
             toolStrip_tb_X_X_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimx);
             toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
             toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", visuGCode.xyzSize.dimy);
+            btnSimulate.Enabled = true;
+
             if (visuGCode.containsG2G3Command())                        // disable X/Y independend scaling if G2 or G3 GCode is in use
             {                                                           // because it's not possible to stretch (convert 1st to G1 GCode)                skaliereXUmToolStripMenuItem.Enabled = false;
                 skaliereXUmToolStripMenuItem.Enabled = false;

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@
  *  2019-04-23  use joyAStep in gamePadTimer_Tick and gamePadGCode line 1360, 1490
  *  2019-05-10  extend override features
  *  2019-10-27  localization of strings
+ *  2019-12-22  Line 1891 check if xyWidth < 0;
  */
 
 //#define debuginfo
@@ -53,6 +54,7 @@ using System.Threading;
 using System.Text;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GRBL_Plotter
 {
@@ -1190,19 +1192,20 @@ namespace GRBL_Plotter
             {
                 grbl.axisUpdate = true;
                 if (Properties.Settings.Default.grblBufferAutomatic)
-                { if (grbl.axisCount > 3)
+                {   if (grbl.axisCount > 3)
                         grbl.RX_BUFFER_SIZE = 255;
                     else
                         grbl.RX_BUFFER_SIZE = 127;
 
                     _serial_form.addToLog("* Assume buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
+                    Logger.Info("Assume buffer size of {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
                 }
                 else
-                {  if (grbl.RX_BUFFER_SIZE != 127)
-                        _serial_form.addToLog("* Buffer size is not 127 but " + grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
+                {  //if (grbl.RX_BUFFER_SIZE != 127)
+                    _serial_form.addToLog("* Buffer size is manually set to " + grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
+                    Logger.Info("Buffer size was manually set to {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
                 }
                 loadSettings(sender, e);
-                Logger.Info("Assume buffer size of {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
             }
             if (delayedSend > 0)
             {
@@ -1612,7 +1615,7 @@ namespace GRBL_Plotter
                 }
                 else
                 {   if (!processSpecialCommands(command))
-                    sendCommand(btncmd.Trim());    
+                    sendCommand(btncmd.Trim());         // processCommands
                 }
             }
         }
@@ -1641,13 +1644,167 @@ namespace GRBL_Plotter
             return commandFound;
         }
 
+        #region gamePad
 
-        private bool gamePadSendCmd = false;
+//        private bool gamePadSendCmd = false;
         private string gamePadSendString = "";
-        private int gamePadRepitition = 0;
+//        private int gamePadRepitition = 0;
         private void gamePadTimer_Tick(object sender, EventArgs e)
+        {   //if (true)
+                processGamePadNew();
+//            else
+//                processGamePadOld();
+        }
+
+//        private static Stopwatch gamePadWatch = new Stopwatch();
+        Dictionary<string, int> gamePadValue = new Dictionary<string, int>();
+        private void processGamePadNew()
         {
             string command = "";
+            try
+            {   if (ControlGamePad.gamePad != null)
+                {   ControlGamePad.gamePad.Poll();
+                    var datas = ControlGamePad.gamePad.GetBufferedData();
+
+                    if (datas.Length > 0)   // no trigger if no change in data
+                    {
+                        bool doJog = false;
+                        var property = Properties.Settings.Default;
+                        foreach (var state in datas)
+                        {
+                            string offset = state.Offset.ToString();        // execute gPButtonsx strings
+                            int value = state.Value;
+                            if ((value > 0) && (offset.IndexOf("Buttons") >= 0))        // Buttons
+                            {   try
+                                {   command = Properties.Settings.Default["gamePad" + offset].ToString();        // gP
+                                    if (command.IndexOf('#') >= 0)
+                                    { processSpecialCommands(command); }
+                                    else
+                                    { processCommands(command); }
+                                }
+                                catch (Exception)
+                                { }
+                                return;
+                            }
+
+                            if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
+                            {   doJog = true;
+                                if (!gamePadValue.ContainsKey(offset))  // just keep latest value
+                                    gamePadValue.Add(offset, value);  
+                                else
+                                    gamePadValue[offset] = value;
+                            }
+                        }       // end foreach
+                        if (doJog)
+                        {   // execute analog joystick https://github.com/gnea/grbl/wiki/Grbl-v1.1-Jogging#joystick-implementation
+                            gamePadSendString = "";
+                            float maxSpeed = 0, maxValue = 0, minAxisSteps=1000;   // max. feed rate on axis
+                            int jval, jdir, invert = 1;
+                            int center = 32767, deadzone = 1000;
+                            center = (int)Properties.Settings.Default.gamePadAnalogOffset;
+                            deadzone = (int)Properties.Settings.Default.gamePadAnalogDead;
+                            string axis = "X";
+
+                            foreach (var item in gamePadValue.Where(kvp => Math.Abs(kvp.Value - center) <= deadzone).ToList())
+                            {   gamePadValue.Remove(item.Key); }            // if value within deadzone, nothing to do
+
+                            foreach (string key in gamePadValue.Keys)       // find maxima, keep values as long as they are not < limit
+                            {   jval = Math.Abs(gamePadValue[key] - center);
+                                if ((gamePadValue[key] <= 0) || (gamePadValue[key] >= 65535))
+                                    jval = 32767;
+                                maxValue = Math.Max(maxValue, jval);
+                                axis = gamePadGetAssignedAxis(key);
+                                maxSpeed = Math.Max(maxSpeed, grbl.getSetting(110 + getGrblSetupOffset(axis)));
+                                minAxisSteps = Math.Min(minAxisSteps, grbl.getSetting(100 + getGrblSetupOffset(axis)));
+                            }
+
+                            if (maxValue > deadzone)            // send move-command if any value is > limit; otherwise send jog-cancel
+                            {   float feedRate = maxSpeed * (maxValue - deadzone) / (32767f-deadzone);
+                                float minFeedRate = 1800 / minAxisSteps;
+                                if (feedRate < minFeedRate)
+                                    feedRate = 1.1f * 1800 / minAxisSteps;      // 10% above minimum speed
+                                float stepWidth;
+                                bool justOneAxis = (gamePadValue.Keys.Count <= 1);
+                                foreach (string key in gamePadValue.Keys)
+                                {   jdir = Math.Sign(gamePadValue[key] - center);
+                                    jval = Math.Abs(gamePadValue[key] - center);
+                                    if ((gamePadValue[key] <= 0) || (gamePadValue[key] >= 65535))
+                                        jval = 32767;
+                                    axis = gamePadGetAssignedAxis(key);
+                                    invert = gamePadGetAssignedDir(key);
+                                // step width must be a bit longer to avoid finishing move within timer-interval
+                                    stepWidth = 1.2f * feedRate * jdir * invert * gamePadTimer.Interval / 60000; // s = v * dt   20% longer
+                                    stepWidth *= jval / maxValue;
+                                    if (justOneAxis && (jval <= (int)Properties.Settings.Default.gamePadAnalogMinimum))
+                                    {   gamePadSendString += string.Format("{0}{1:0.000}", axis, Properties.Settings.Default.gamePadAnalogMinStep);
+                                        feedRate = (float)Properties.Settings.Default.gamePadAnalogMinFeed;
+                                        gamePadTimer.Interval = 200;
+                                    }
+                                    else
+                                    {   gamePadSendString += string.Format("{0}{1:0.000}", axis, stepWidth);
+                                        gamePadTimer.Interval = 50;
+                                    }
+                                }
+
+                                if (_serial_form.getFreeBuffer() >= 99)
+                                {   gamePadSendString = "G91"+ gamePadSendString;
+                                    gamePadSendString += string.Format("F{0:0}", feedRate);
+                                    sendCommand(gamePadSendString.Replace(",", "."), true);
+                                }
+                            }
+                            else
+                            {   sendRealtimeCommand(133); // Stop jogging
+                                gamePadSendString = "";
+                            }
+                        }
+                    }   // end if datalength
+                    else
+                    {   // if (datas.Length > 0)
+                        if ((gamePadSendString.Length > 0) && (_serial_form.getFreeBuffer() >= 99))     // keep sending commands if joystick is still on full speed
+                        {  sendCommand(gamePadSendString.Replace(",", "."), true);   }
+                    }
+                }
+                else
+                {   // if (ControlGamePad.gamePad == null)
+                    try { ControlGamePad.Initialize(); gamePadTimer.Interval = 50; }
+                    catch { gamePadTimer.Interval = 5000; }
+                }
+            }
+            catch   // ControlGamePad.gamePad failed
+            {   try { ControlGamePad.Initialize(); gamePadTimer.Interval = 50; }
+                catch { gamePadTimer.Interval = 5000; }
+            }
+        }
+        private static string gamePadGetAssignedAxis(string offset)
+        {
+            var prop = Properties.Settings.Default;
+            if (offset == "X") { return prop.gamePadXAxis; }
+            if (offset == "Y") { return prop.gamePadYAxis; }
+            if (offset == "Z") { return prop.gamePadZAxis; }
+            if (offset == "RotationZ") { return prop.gamePadRAxis; }
+            return "X";
+        }
+        private static int gamePadGetAssignedDir(string offset)
+        {
+            var prop = Properties.Settings.Default;
+            if (offset == "X") { return prop.gamePadXInvert ? -1 : 1; }
+            if (offset == "Y") { return prop.gamePadYInvert ? -1 : 1; }
+            if (offset == "Z") { return prop.gamePadZInvert ? -1 : 1; }
+            if (offset == "RotationZ") { return prop.gamePadRInvert ? -1 : 1; }
+            return 1;
+        }
+        private static int getGrblSetupOffset(string axis)
+        {   if (axis == "X") return 0;
+            if (axis == "Y") return 1;
+            if (axis == "Z") return 2;
+            if (axis == "A") return 3;
+            if (axis == "B") return 4;
+            if (axis == "C") return 5;
+            return 0;
+        }
+        /*
+        private void processGamePadOld()
+        {   string command = "";
             try
             {
                 if (ControlGamePad.gamePad != null)
@@ -1686,6 +1843,10 @@ namespace GRBL_Plotter
                             // execute analog joystick
                             if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
                             {
+                                // center position = 32767 (7FFF), range = 0 - 32767
+                                int jval = Math.Abs(value - 32767);
+                                int jdir = Math.Sign(value - 32767);
+
                                 if ((value > 28000) && (value < 36000))
                                 {
                                     sendRealtimeCommand(133); stopJog = true;
@@ -1729,7 +1890,7 @@ namespace GRBL_Plotter
                             gamePadSendString = cmd + "F" + feed;
                     }
 
-                    if (gamePadSendCmd && !stopJog && gamePadRepitition == 0)
+                    if (gamePadSendCmd && !stopJog && gamePadRepitition == 0)   // send in 500 ms raster
                     {
                         if (gamePadSendString.Length > 0)
                             sendCommand(gamePadSendString.Replace(",","."), true);
@@ -1785,10 +1946,8 @@ namespace GRBL_Plotter
             speed = 10;
             return "";
         }
-
-   /*     private int gamePadGCodeFeed(int feed, int speed1, int speed2, string axis)
-        {   return (axis != "X") && (axis != "Y") ? speed2 : speed1;
-        }*/
+        */
+        #endregion
 
         private void moveToMarkedPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {   sendCommand(String.Format("G0 X{0} Y{1}", gcode.frmtNum(grbl.posMarker.X), gcode.frmtNum(grbl.posMarker.Y)).Replace(',', '.'));
@@ -1799,19 +1958,13 @@ namespace GRBL_Plotter
         }
 
         private void MainForm_Activated(object sender, EventArgs e)
-        {
-            pictureBox1.Focus();
-        }
+        {   pictureBox1.Focus();   }
 
         private void pictureBox1_MouseHover(object sender, EventArgs e)
-        {
-            pictureBox1.Focus();
-        }
+        {   pictureBox1.Focus();   }
 
         private void fCTBCode_MouseHover(object sender, EventArgs e)
-        {
-            fCTBCode.Focus();
-        }
+        {   fCTBCode.Focus();      }
 
         private void toolStrip_tb_StreamLine_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1888,6 +2041,8 @@ namespace GRBL_Plotter
             int zWidth = (spaceX*zRatio/(100+zCount*zRatio));           // 
             zWidth = Math.Min(zWidth, virtualJoystickSize*zRatio/100);
             int xyWidth = spaceX - zCount*zWidth;
+            if (xyWidth < 0) xyWidth = 0;
+
             tLPRechtsUntenRechtsMitte.ColumnStyles[1].Width = zWidth;       // Z
             if (ctrl4thAxis || grbl.axisA)
             {   aWidth = zWidth;
@@ -1905,6 +2060,8 @@ namespace GRBL_Plotter
 
             xyWidth = Math.Min(xyWidth, spaceY);
             xyWidth = Math.Min(xyWidth, virtualJoystickSize);
+            xyWidth = Math.Max(xyWidth, 100);
+
             spaceX = Math.Min(xyWidth+zWidth+aWidth + bWidth + cWidth + 10, spaceX);
             spaceX = Math.Max(spaceX, 235);
             tLPRechtsUntenRechts.Width = spaceX;
@@ -1924,6 +2081,9 @@ namespace GRBL_Plotter
         {   int add = splitContainer1.Panel1.Width - 296;
             pbFile.Width = 194 + add;
             pbBuffer.Left = 219 + add;
+            btnSimulate.Width = 194 + add;
+            btnSimulateFaster.Left = 202 + add;
+            btnSimulateSlower.Left = 244 + add;
             gBOverrideFRGB.Width = 284 + add;
             gBOverrideSSGB.Width = 284 + add;
             gBOverrideASGB.Width = 284 + add;
@@ -1962,6 +2122,96 @@ namespace GRBL_Plotter
                 unDo2ToolStripMenuItem.Enabled = false;
             }
         }
+
+        #region simulate path
+        private static int simuLine=0;
+        private static bool simuEnabled = false;
+        private void btnSimulate_Click(object sender, EventArgs e)
+        {   if ((!isStreaming) && (fCTBCode.LinesCount > 2))
+            {   if (!simuEnabled)
+                {   simuStart(); }
+                else
+                {   simuStop(); }
+            }
+        }
+        private void simuStart()
+        {   pbFile.Maximum = fCTBCode.LinesCount;
+            fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+            btnSimulate.Text = Localization.getString("mainSimuStop");
+            simuLine = 0;
+            fCTBCodeClickedLineNow = simuLine;
+            fCTBCodeClickedLineLast = simuLine;
+            simuEnabled = true;
+            simulationTimer.Enabled = true;
+            visuGCode.markSelectedFigure(-1);
+            visuGCode.setPosMarkerLine(simuLine, false);
+            btnStreamStart.Enabled = false;
+            btnStreamStop.Enabled = false; 
+            btnStreamCheck.Enabled = false;
+            btnSimulateFaster.Enabled = true;
+            btnSimulateSlower.Enabled = true;
+            lblElapsed.Text = string.Format("{0} {1:0.0}", Localization.getString("mainSimuSpeed"), (1000 / simulationTimer.Interval));
+        }
+        private void simuStop()
+        {   bool isConnected = _serial_form.serialPortOpen || grbl.grblSimulate;
+            simuEnabled = false;
+            simulationTimer.Enabled = false;
+            btnSimulate.Text = Localization.getString("mainSimuStart");
+            pbFile.Value = 0;
+            btnStreamStart.Enabled = isConnected;
+            btnStreamStop.Enabled = isConnected;
+            btnStreamCheck.Enabled = isConnected;
+            btnSimulateFaster.Enabled = false;
+            btnSimulateSlower.Enabled = false;
+            lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.getString("mainProgress"),0);
+            lblElapsed.Text = "Time";
+        }
+
+        private void simulationTimer_Tick(object sender, EventArgs e)
+        {
+            simuLine = fCTBCodeClickedLineNow;
+            if (simuLine < (fCTBCode.LinesCount - 1))
+                simuLine++;
+            else
+            {   simuStop();
+                fCTBCode.UnbookmarkLine(simuLine);
+                simuLine = 0;
+                fCTBCode.BookmarkLine(simuLine);
+                fCTBCode.DoCaretVisible();
+                fCTBCodeClickedLineLast = simuLine;
+                visuGCode.setPosMarkerLine(simuLine, false);
+                pictureBox1.Invalidate(); // avoid too much events
+                return;
+            }
+
+            pbFile.Value = simuLine;
+            fCTBCode.Selection = fCTBCode.GetLine(simuLine);
+            fCTBCode.UnbookmarkLine(simuLine-1);
+            fCTBCode.BookmarkLine(simuLine);
+            fCTBCode.DoCaretVisible();
+            fCTBCodeClickedLineLast = simuLine;
+
+            visuGCode.setPosMarkerLine(simuLine, false);
+            pictureBox1.Invalidate(); // avoid too much events
+            lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.getString("mainProgress"), (100*simuLine / (fCTBCode.LinesCount-2)));
+            fCTBCodeClickedLineNow = simuLine;
+        }
+
+        private void btnSimulateFaster_Click(object sender, EventArgs e)
+        {   simulationTimer.Interval /= 2;
+            if (simulationTimer.Interval < 2)
+                simulationTimer.Interval = 2;
+            lblElapsed.Text = string.Format("{0} {1:0.0}", Localization.getString("mainSimuSpeed"), (1000 / (float)simulationTimer.Interval));
+        }
+
+        private void btnSimulateSlower_Click(object sender, EventArgs e)
+        {   simulationTimer.Interval *= 2;
+            if (simulationTimer.Interval > 1024)
+                simulationTimer.Interval = 1024;
+            lblElapsed.Text = string.Format("{0} {1:0.0}", Localization.getString("mainSimuSpeed"), (1000 / (float)simulationTimer.Interval));
+        }
+
+        #endregion
     }
 }
 

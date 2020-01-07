@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,9 +26,9 @@
  * 2019-09-28 insert usecase dialog
  * 2019-12-07 Line 221, message on unknown file extension
  * 2019-12-20 in Line 439 replace   "File.WriteAllText(sfd.FileName, txt)" by "fCTBCode.SaveToFile(sfd.FileName, Encoding.Unicode);"
- */
-
-//#define debuginfo
+ * 2020-01-01 add trace level loggerTraceImport to hide log of any gcode command during import line 678
+ * 2020-01-01 replace #if debuginfo by Logger.Info
+*/
 
 using System;
 using System.Collections.Generic;
@@ -95,9 +95,7 @@ namespace GRBL_Plotter
                 stringToWrite.Flush(); //write stream to file
                 stringToWrite.Close(); //close the stream and reclaim memory
             }
-            catch (Exception er)
-            {   Logger.Error(er, "SaveRecentFile - StreamWriter");
-            }
+            catch (Exception er) { Logger.Error(er, "SaveRecentFile - StreamWriter");  }
         }
         private void LoadRecentList()
         {
@@ -113,7 +111,7 @@ namespace GRBL_Plotter
                     MRUlist.Add(line); //insert to list
                 listToRead.Close(); //close the stream
             }
-            catch (Exception) { }
+            catch (Exception er) { Logger.Error(er, "LoadRecentList "); }
         }
         private void RecentFile_click(object sender, EventArgs e)
         {
@@ -123,9 +121,6 @@ namespace GRBL_Plotter
 
         private void newCodeStart()
         {
-#if (debuginfo)
-            log.Add("MainFormLoadFile newCodeStart");
-#endif
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
@@ -139,9 +134,6 @@ namespace GRBL_Plotter
 
         private void newCodeEnd()
         {
-#if (debuginfo)
-            log.Add("MainFormLoadFile newCodeEnd");
-#endif
             if (commentOut)
             { fCTB_CheckUnknownCode(); }                                // check code
             visuGCode.getGCodeLines(fCTBCode.Lines);                    // get code path
@@ -328,9 +320,7 @@ namespace GRBL_Plotter
 
         private void startConvertSVG(string source)
         {
-#if (debuginfo)
-            log.Add("MainFormLoadFile startConvertSVG");
-#endif
+            Logger.Info("startConvertSVG");
             UseCaseDialog();
             newCodeStart();
             fCTBCode.Text = GCodeFromSVG.convertFromFile(source);        // get code
@@ -345,9 +335,7 @@ namespace GRBL_Plotter
 
         private void startConvertDXF(string source)
         {
-#if (debuginfo)
-            log.Add("MainFormLoadFile startConvertDXF");
-#endif
+            Logger.Info("startConvertDXF");
             UseCaseDialog();
             newCodeStart();
             fCTBCode.Text = GCodeFromDXF.ConvertFromFile(source);
@@ -371,9 +359,7 @@ namespace GRBL_Plotter
 
         private void startConvertDrill(string source)
         {
-#if (debuginfo)
-            log.Add("MainFormLoadFile startConvertDrill");
-#endif
+            Logger.Info("startConvertDrill");
             newCodeStart();
             fCTBCode.Text = GCodeFromDrill.ConvertFile(source);
             if (fCTBCode.LinesCount <= 1)
@@ -479,31 +465,38 @@ namespace GRBL_Plotter
         }
         private void russianToolStripMenuItem_Click(object sender, EventArgs e)
         {   Properties.Settings.Default.guiLanguage = "ru";
-            MessageBox.Show("Требуется перезапуск плоттера GRBL", "Внимание");
+            MessageBox.Show("Необходим перезапуск GRBL-Plotter.\r\n"+
+                "Чтобы улучшить перевод, пожалуйста, откройте вопрос с предлагаемым исправлением на https://github.com/svenhb/GRBL-Plotter/issues", "Внимание");
         }
         private void spanToolStripMenuItem_Click(object sender, EventArgs e)
         {   Properties.Settings.Default.guiLanguage = "es";
-            MessageBox.Show("Se requiere reiniciar el trazador GRBL", "Atención");
+            MessageBox.Show("Es necesario reiniciar GRBL-Plotter.\r\n"+
+                "Para mejorar la traducción, abra un problema con la corrección sugerida en https://github.com/svenhb/GRBL-Plotter/issues", "Atención");
         }
         private void franzToolStripMenuItem_Click(object sender, EventArgs e)
         {   Properties.Settings.Default.guiLanguage = "fr";
-            MessageBox.Show("Un redémarrage du traceur GRBL est requis", "Attention");
+            MessageBox.Show("Un redémarrage de GRBL-Plotter est nécessaire.\r\n"+
+                "Pour améliorer la traduction, veuillez ouvrir un problème avec la correction suggérée sur https://github.com/svenhb/GRBL-Plotter/issues", "Attention");
         }
         private void chinesischToolStripMenuItem_Click(object sender, EventArgs e)
         {   Properties.Settings.Default.guiLanguage = "zh-CN";
-            MessageBox.Show("需要重启GRBL绘图仪", "注意");
+            MessageBox.Show("需要重启GRBL-Plotter\r\n"+
+                "为了改善翻译，请在 https://github.com/svenhb/GRBL-Plotter/issues 上打开建议更正的问题", "注意");
         }
         private void portugisischToolStripMenuItem_Click(object sender, EventArgs e)
         {   Properties.Settings.Default.guiLanguage = "pt";
-            MessageBox.Show("É necessário reiniciar a plotadora GRBL", "Atenção");
+            MessageBox.Show("É necessário reiniciar o GRBL-Plotter.\r\n"+
+                "Para melhorar a tradução, abra um problema com a correção sugerida em https://github.com/svenhb/GRBL-Plotter/issues", "Atenção");
         }
         private void arabischToolStripMenuItem_Click(object sender, EventArgs e)
         {   Properties.Settings.Default.guiLanguage = "ar";
-            MessageBox.Show("مطلوب إعادة تشغيل الراسمة GRBL", "انتباه");
+            MessageBox.Show("مطلوب إعادة تشغيل GRBL- الراسمة.\r\n"+
+                "لتحسين الترجمة ، يرجى فتح مشكلة مع التصحيح المقترح على  https://github.com/svenhb/GRBL-Plotter/issues", "انتباه");
         }
         private void japanischToolStripMenuItem_Click(object sender, EventArgs e)
         {   Properties.Settings.Default.guiLanguage = "ja";
-            MessageBox.Show("GRBLプロッターの再起動が必要です", "注意");
+            MessageBox.Show("GRBL-Plotterの再起動が必要です。\r\n"+
+                "翻訳を改善するには、https：//github.com/svenhb/GRBL-Plotter/issuesで修正を提案する問題を開いてください。", "注意");
         }
 
 
@@ -669,12 +662,10 @@ namespace GRBL_Plotter
         public void loadSettings(object sender, EventArgs e)
         {
             Logger.Trace("loadSettings");
-#if (debuginfo)
-            log.Add("MainFormLoadFile loadSettings");
-#endif
             // try
             {
                 gcode.loggerTrace = Properties.Settings.Default.guiExtendedLoggingEnabled;
+                gcode.loggerTraceImport = gcode.loggerTrace && Properties.Settings.Default.importGCAddComments;
                 if (gcode.loggerTrace)
                 {   foreach (var rule in NLog.LogManager.Configuration.LoggingRules)
                     {   rule.EnableLoggingForLevel(NLog.LogLevel.Trace);  }
@@ -1013,6 +1004,8 @@ namespace GRBL_Plotter
             btnStreamStart.Enabled = isConnected;// & isFileLoaded;
             btnStreamStop.Enabled = isConnected; // & isFileLoaded;
             btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
+
+
 
             btnJogStop.Visible = !grbl.isVersion_0;
             btnJogStop.Enabled = isConnected & !isStreaming | allowControl;

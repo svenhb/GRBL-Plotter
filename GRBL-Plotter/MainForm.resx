@@ -133,10 +133,10 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>214, 12</value>
+    <value>191, 12</value>
   </data>
   <metadata name="cmsCode.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>581, 17</value>
+    <value>743, 17</value>
   </metadata>
   <data name="cmsEditorHotkeys.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 22</value>
@@ -289,7 +289,7 @@
     <value>Courier New, 8pt</value>
   </data>
   <data name="fCTBCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 365</value>
+    <value>3, 391</value>
   </data>
   <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -310,7 +310,7 @@
 </value>
   </data>
   <data name="fCTBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 203</value>
+    <value>288, 177</value>
   </data>
   <data name="fCTBCode.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -330,6 +330,105 @@
   <data name="&gt;&gt;fCTBCode.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnSimulateSlower.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnSimulateSlower.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSimulateSlower.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 62</value>
+  </data>
+  <data name="btnSimulateSlower.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="btnSimulateSlower.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnSimulateSlower.Text" xml:space="preserve">
+    <value>/2</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>646, 17</value>
+  </metadata>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>Half simulation speed</value>
+  </data>
+  <data name="&gt;&gt;btnSimulateSlower.Name" xml:space="preserve">
+    <value>btnSimulateSlower</value>
+  </data>
+  <data name="&gt;&gt;btnSimulateSlower.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSimulateSlower.Parent" xml:space="preserve">
+    <value>gBoxStream</value>
+  </data>
+  <data name="&gt;&gt;btnSimulateSlower.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnSimulateFaster.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnSimulateFaster.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSimulateFaster.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 62</value>
+  </data>
+  <data name="btnSimulateFaster.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 23</value>
+  </data>
+  <data name="btnSimulateFaster.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="btnSimulateFaster.Text" xml:space="preserve">
+    <value>*2</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>Double simulation speed</value>
+  </data>
+  <data name="&gt;&gt;btnSimulateFaster.Name" xml:space="preserve">
+    <value>btnSimulateFaster</value>
+  </data>
+  <data name="&gt;&gt;btnSimulateFaster.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSimulateFaster.Parent" xml:space="preserve">
+    <value>gBoxStream</value>
+  </data>
+  <data name="&gt;&gt;btnSimulateFaster.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnSimulate.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnSimulate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnSimulate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 62</value>
+  </data>
+  <data name="btnSimulate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 23</value>
+  </data>
+  <data name="btnSimulate.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>Start path simulation</value>
+  </data>
+  <data name="&gt;&gt;btnSimulate.Name" xml:space="preserve">
+    <value>btnSimulate</value>
+  </data>
+  <data name="&gt;&gt;btnSimulate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSimulate.Parent" xml:space="preserve">
+    <value>gBoxStream</value>
+  </data>
+  <data name="&gt;&gt;btnSimulate.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="lbInfo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
@@ -337,7 +436,7 @@
     <value>NoControl</value>
   </data>
   <data name="lbInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 61</value>
+    <value>4, 85</value>
   </data>
   <data name="lbInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 21</value>
@@ -358,7 +457,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;lbInfo.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="pbBuffer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -382,7 +481,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;pbBuffer.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="btnStreamStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -396,9 +495,6 @@
   <data name="btnStreamStop.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>484, 17</value>
-  </metadata>
   <data name="btnStreamStop.ToolTip" xml:space="preserve">
     <value>Stop sending code to GRBL</value>
   </data>
@@ -412,7 +508,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;btnStreamStop.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="btnStreamCheck.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -429,6 +525,9 @@
   <data name="btnStreamCheck.Text" xml:space="preserve">
     <value>Check Code</value>
   </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>This toggles the Grbl's gcode parser to take all incoming blocks and process them completely, as it would in normal operation, but it does not move any of the axes, ignores dwells, and powers off the spindle and coolant. This is intended as a way to provide the user a way to check how their new G-code program fares with Grbl's parser and monitor for any errors (and checks for soft limit violations, if enabled).</value>
+  </data>
   <data name="&gt;&gt;btnStreamCheck.Name" xml:space="preserve">
     <value>btnStreamCheck</value>
   </data>
@@ -439,7 +538,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;btnStreamCheck.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="lblRemaining.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -466,7 +565,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;lblRemaining.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="pbFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -490,7 +589,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;pbFile.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="lblElapsed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -520,7 +619,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;lblElapsed.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="lblFileProgress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -550,7 +649,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;lblFileProgress.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="btnStreamStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -577,10 +676,10 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;btnStreamStart.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="tbFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 62</value>
+    <value>32, 85</value>
   </data>
   <data name="tbFile.Size" type="System.Drawing.Size, System.Drawing">
     <value>251, 20</value>
@@ -601,7 +700,7 @@
     <value>gBoxStream</value>
   </data>
   <data name="&gt;&gt;tbFile.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="gBoxStream.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -610,7 +709,7 @@
     <value>3, 3</value>
   </data>
   <data name="gBoxStream.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 84</value>
+    <value>288, 110</value>
   </data>
   <data name="gBoxStream.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -1123,7 +1222,7 @@
     <value>Fill</value>
   </data>
   <data name="gBoxDimension.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 274</value>
+    <value>3, 300</value>
   </data>
   <data name="gBoxDimension.Size" type="System.Drawing.Size, System.Drawing">
     <value>288, 85</value>
@@ -2038,7 +2137,7 @@
     <value>Fill</value>
   </data>
   <data name="gBoxOverride.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 93</value>
+    <value>3, 119</value>
   </data>
   <data name="gBoxOverride.Size" type="System.Drawing.Size, System.Drawing">
     <value>288, 175</value>
@@ -3250,7 +3349,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Stretch</value>
   </data>
   <metadata name="cmsPictureBox.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>661, 15</value>
+    <value>17, 56</value>
   </metadata>
   <data name="unDo2ToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -5379,7 +5478,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Import GUI-Settings (Button definitions, Joystick parameters) from an INI-file</value>
   </data>
   <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="englishToolStripMenuItem.Text" xml:space="preserve">
     <value>English</value>
@@ -5388,7 +5487,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>English</value>
   </data>
   <data name="deutschToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="deutschToolStripMenuItem.Text" xml:space="preserve">
     <value>Deutsch</value>
@@ -5397,7 +5496,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>German</value>
   </data>
   <data name="pусскийToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="pусскийToolStripMenuItem.Text" xml:space="preserve">
     <value>Pусский</value>
@@ -5406,7 +5505,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Russian</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="toolStripMenuItem4.Text" xml:space="preserve">
     <value>Español</value>
@@ -5415,7 +5514,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Spanish</value>
   </data>
   <data name="portuguêsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="portuguêsToolStripMenuItem.Text" xml:space="preserve">
     <value>Português</value>
@@ -5424,7 +5523,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Portuguese</value>
   </data>
   <data name="franzToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="franzToolStripMenuItem.Text" xml:space="preserve">
     <value>Francés</value>
@@ -5433,7 +5532,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>French</value>
   </data>
   <data name="chinesischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="chinesischToolStripMenuItem.Text" xml:space="preserve">
     <value>中国</value>
@@ -5442,7 +5541,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Chinese</value>
   </data>
   <data name="arabischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="arabischToolStripMenuItem.Text" xml:space="preserve">
     <value>العربية</value>
@@ -5451,7 +5550,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Arabic</value>
   </data>
   <data name="japanischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="japanischToolStripMenuItem.Text" xml:space="preserve">
     <value>日本の</value>
@@ -5984,10 +6083,13 @@ Langue
     <value>126, 21</value>
   </metadata>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>344, 17</value>
+    <value>506, 17</value>
   </metadata>
   <metadata name="gamePadTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>233, 17</value>
+  </metadata>
+  <metadata name="simulationTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>371, 20</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -6000,9 +6102,6 @@ Langue
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 601</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 640</value>
@@ -6830,6 +6929,12 @@ Langue
     <value>gamePadTimer</value>
   </data>
   <data name="&gt;&gt;gamePadTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;simulationTimer.Name" xml:space="preserve">
+    <value>simulationTimer</value>
+  </data>
+  <data name="&gt;&gt;simulationTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -76,6 +76,7 @@ namespace GRBL_Plotter
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
+            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
             this.cmsCode = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsEditorHotkeys = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
@@ -102,6 +103,9 @@ namespace GRBL_Plotter
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsUpdate2DView = new System.Windows.Forms.ToolStripMenuItem();
             this.gBoxStream = new System.Windows.Forms.GroupBox();
+            this.btnSimulateSlower = new System.Windows.Forms.Button();
+            this.btnSimulateFaster = new System.Windows.Forms.Button();
+            this.btnSimulate = new System.Windows.Forms.Button();
             this.lbInfo = new System.Windows.Forms.Label();
             this.pbBuffer = new System.Windows.Forms.ProgressBar();
             this.btnStreamStop = new System.Windows.Forms.Button();
@@ -364,12 +368,13 @@ namespace GRBL_Plotter
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
-            this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.simulationTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tLPLinks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             this.cmsCode.SuspendLayout();
             this.gBoxStream.SuspendLayout();
             this.gBoxDimension.SuspendLayout();
@@ -398,7 +403,6 @@ namespace GRBL_Plotter
             this.tLPCustomButton2.SuspendLayout();
             this.groupBoxCoordinates.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -425,6 +429,41 @@ namespace GRBL_Plotter
             this.tLPLinks.Controls.Add(this.gBoxDimension, 0, 2);
             this.tLPLinks.Controls.Add(this.gBoxOverride, 0, 1);
             this.tLPLinks.Name = "tLPLinks";
+            // 
+            // fCTBCode
+            // 
+            this.fCTBCode.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.fCTBCode.AutoIndent = false;
+            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
+            resources.ApplyResources(this.fCTBCode, "fCTBCode");
+            this.fCTBCode.BackBrush = null;
+            this.fCTBCode.CharCnWidth = 13;
+            this.fCTBCode.CharHeight = 12;
+            this.fCTBCode.CharWidth = 7;
+            this.fCTBCode.ContextMenuStrip = this.cmsCode;
+            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fCTBCode.IsReplaceMode = false;
+            this.fCTBCode.Name = "fCTBCode";
+            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
+            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
+            this.fCTBCode.ToolTip = null;
+            this.fCTBCode.Zoom = 100;
+            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
+            this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
+            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
+            this.fCTBCode.MouseHover += new System.EventHandler(this.fCTBCode_MouseHover);
             // 
             // cmsCode
             // 
@@ -587,6 +626,9 @@ namespace GRBL_Plotter
             // 
             // gBoxStream
             // 
+            this.gBoxStream.Controls.Add(this.btnSimulateSlower);
+            this.gBoxStream.Controls.Add(this.btnSimulateFaster);
+            this.gBoxStream.Controls.Add(this.btnSimulate);
             this.gBoxStream.Controls.Add(this.lbInfo);
             this.gBoxStream.Controls.Add(this.pbBuffer);
             this.gBoxStream.Controls.Add(this.btnStreamStop);
@@ -600,6 +642,29 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.gBoxStream, "gBoxStream");
             this.gBoxStream.Name = "gBoxStream";
             this.gBoxStream.TabStop = false;
+            // 
+            // btnSimulateSlower
+            // 
+            resources.ApplyResources(this.btnSimulateSlower, "btnSimulateSlower");
+            this.btnSimulateSlower.Name = "btnSimulateSlower";
+            this.toolTip1.SetToolTip(this.btnSimulateSlower, resources.GetString("btnSimulateSlower.ToolTip"));
+            this.btnSimulateSlower.UseVisualStyleBackColor = true;
+            this.btnSimulateSlower.Click += new System.EventHandler(this.btnSimulateSlower_Click);
+            // 
+            // btnSimulateFaster
+            // 
+            resources.ApplyResources(this.btnSimulateFaster, "btnSimulateFaster");
+            this.btnSimulateFaster.Name = "btnSimulateFaster";
+            this.toolTip1.SetToolTip(this.btnSimulateFaster, resources.GetString("btnSimulateFaster.ToolTip"));
+            this.btnSimulateFaster.UseVisualStyleBackColor = true;
+            this.btnSimulateFaster.Click += new System.EventHandler(this.btnSimulateFaster_Click);
+            // 
+            // btnSimulate
+            // 
+            resources.ApplyResources(this.btnSimulate, "btnSimulate");
+            this.btnSimulate.Name = "btnSimulate";
+            this.btnSimulate.UseVisualStyleBackColor = true;
+            this.btnSimulate.Click += new System.EventHandler(this.btnSimulate_Click);
             // 
             // lbInfo
             // 
@@ -624,6 +689,7 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.btnStreamCheck, "btnStreamCheck");
             this.btnStreamCheck.Name = "btnStreamCheck";
+            this.toolTip1.SetToolTip(this.btnStreamCheck, resources.GetString("btnStreamCheck.ToolTip"));
             this.btnStreamCheck.UseVisualStyleBackColor = true;
             this.btnStreamCheck.Click += new System.EventHandler(this.btnStreamCheck_Click);
             // 
@@ -2574,40 +2640,10 @@ namespace GRBL_Plotter
             // 
             this.gamePadTimer.Tick += new System.EventHandler(this.gamePadTimer_Tick);
             // 
-            // fCTBCode
+            // simulationTimer
             // 
-            this.fCTBCode.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.fCTBCode.AutoIndent = false;
-            this.fCTBCode.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
-            resources.ApplyResources(this.fCTBCode, "fCTBCode");
-            this.fCTBCode.BackBrush = null;
-            this.fCTBCode.CharCnWidth = 13;
-            this.fCTBCode.CharHeight = 12;
-            this.fCTBCode.CharWidth = 7;
-            this.fCTBCode.ContextMenuStrip = this.cmsCode;
-            this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fCTBCode.IsReplaceMode = false;
-            this.fCTBCode.Name = "fCTBCode";
-            this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
-            this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
-            this.fCTBCode.ToolTip = null;
-            this.fCTBCode.Zoom = 100;
-            this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
-            this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
-            this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
-            this.fCTBCode.MouseHover += new System.EventHandler(this.fCTBCode_MouseHover);
+            this.simulationTimer.Interval = 128;
+            this.simulationTimer.Tick += new System.EventHandler(this.simulationTimer_Tick);
             // 
             // MainForm
             // 
@@ -2633,6 +2669,7 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tLPLinks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             this.cmsCode.ResumeLayout(false);
             this.gBoxStream.ResumeLayout(false);
             this.gBoxStream.PerformLayout();
@@ -2673,7 +2710,6 @@ namespace GRBL_Plotter
             this.groupBoxCoordinates.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2972,6 +3008,10 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem portuguêsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem arabischToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem japanischToolStripMenuItem;
+        private System.Windows.Forms.Button btnSimulate;
+        private System.Windows.Forms.Timer simulationTimer;
+        private System.Windows.Forms.Button btnSimulateSlower;
+        private System.Windows.Forms.Button btnSimulateFaster;
     }
 }
 
