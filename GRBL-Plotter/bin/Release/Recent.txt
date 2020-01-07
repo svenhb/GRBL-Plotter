@@ -1,9 +1,5 @@
-data\examples\graphic_bunny.dxf
-D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\bin\graphic_bunny_.nc
-D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\GRBL-Plotter\data\examples\gcode_subroutine.nc
 data\examples\graphic_grbl.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\Basteln\Escaperoom_Raetsel\jigsaw_10_10.svg
-C:\Users\Sven_User\GMX Mediacenter\Aktuell\Basteln\Escaperoom_Raetsel\Jigsaw_Puzzle.svg
 data\examples\graphic_grbl_popup.svg
+data\examples\graphic_bunny.dxf
 data\examples\graphic_bunny_string_art.svg
 data\examples\image_flying_devil.png
