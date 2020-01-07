@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("GRBL-Plotter")]
-[assembly: AssemblyCopyright("Copyright ©  2015-2019 Sven Hasemann")]
+[assembly: AssemblyCopyright("Copyright ©  2015-2020 Sven Hasemann")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.3.2.6")]
-[assembly: AssemblyFileVersion("1.3.2.6")]
+[assembly: AssemblyVersion("1.3.3.0")]
+[assembly: AssemblyFileVersion("1.3.3.0")]
 [assembly: NeutralResourcesLanguage("en")]
 

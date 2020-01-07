@@ -4594,5 +4594,65 @@ namespace GRBL_Plotter.Properties {
                 this["gui2DKeepPenWidth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("32757")]
+        public decimal gamePadAnalogOffset {
+            get {
+                return ((decimal)(this["gamePadAnalogOffset"]));
+            }
+            set {
+                this["gamePadAnalogOffset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public decimal gamePadAnalogDead {
+            get {
+                return ((decimal)(this["gamePadAnalogDead"]));
+            }
+            set {
+                this["gamePadAnalogDead"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public decimal gamePadAnalogMinimum {
+            get {
+                return ((decimal)(this["gamePadAnalogMinimum"]));
+            }
+            set {
+                this["gamePadAnalogMinimum"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.001")]
+        public decimal gamePadAnalogMinStep {
+            get {
+                return ((decimal)(this["gamePadAnalogMinStep"]));
+            }
+            set {
+                this["gamePadAnalogMinStep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal gamePadAnalogMinFeed {
+            get {
+                return ((decimal)(this["gamePadAnalogMinFeed"]));
+            }
+            set {
+                this["gamePadAnalogMinFeed"] = value;
+            }
+        }
     }
 }

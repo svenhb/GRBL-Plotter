@@ -1145,5 +1145,20 @@
     <Setting Name="gui2DKeepPenWidth" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="gamePadAnalogOffset" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">32757</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogDead" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinimum" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.010</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
