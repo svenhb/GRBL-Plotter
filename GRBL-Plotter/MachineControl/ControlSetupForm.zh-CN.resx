@@ -1575,15 +1575,10 @@ M4动态激光功率模式</value>
 #RST  (soft reset via CTRL-X)
 #HRST (hardware reset via DTR/RTS)
 
-
-
-模拟操纵杆将用于慢跑。
-使用与虚拟游戏杆相同的设置
 分配轴和方向反转
-刷新间隔= 500ms。
+刷新间隔= 50ms。
 
-必须关闭设置窗口才能在GUI中使用Game-Pad。
-</value>
+必须关闭设置窗口才能在GUI中使用GamePad。</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tab8gB2.Text" xml:space="preserve">
@@ -1665,5 +1660,85 @@ M4动态激光功率模式</value>
   <data name="tab11gB1lbl2.Text" xml:space="preserve">
     <value>Inkscape的有用扩展</value>
     <comment>TabPage11</comment>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>低于给定值的最小步长</value>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>进给速度</value>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>如果仅激活一个操纵杆轴，则将在该值和死区之间发送给定的步长和进给速度。
+在这种情况下，重复间隔为200 ms，而不是50 ms。</value>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>盲区</value>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>中心位置偏移</value>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>减位以获得中心位置的“ 0”。
+更改偏移量后移动操纵杆。</value>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>发送任何点动命令之前要达到的最小值。</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>模拟操纵杆设置</value>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>--</value>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>应用偏移量的值</value>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>--</value>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>应用偏移量的值</value>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>--</value>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>应用偏移量的值</value>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>--</value>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>应用偏移量的值</value>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>G代码轴移动</value>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>G代码轴移动</value>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>G代码轴移动</value>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>G代码轴移动</value>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>操纵杆R通道的值</value>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>游戏杆Z通道的值</value>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>操纵杆Y通道的值</value>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>游戏杆X通道的值</value>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>请勿在缩放时更改笔宽</value>
   </data>
 </root>

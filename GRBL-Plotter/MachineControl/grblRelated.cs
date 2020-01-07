@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
  * 2019-05-10   move _serial_form.isGrblVers0 to here grbl.isVersion_0
  * https://github.com/fra589/grbl-Mega-5X
  * 2019-08-13   add PRB, TLO status
+ * 2020-01-04   add "errorBecauseOfBadCode"
 */
 
 using System;
@@ -131,9 +132,7 @@ namespace GRBL_Plotter
         }
 
         public static string displayCoord(string key)
-        {
-            //Logger.Info("displayCoord {0}",key);
-            if (coordinates.ContainsKey(key))
+        {   if (coordinates.ContainsKey(key))
             {   if (key == "TLO")
                     return String.Format("                  {0,8:###0.000}", coordinates[key].Z);
                 else
@@ -344,19 +343,34 @@ namespace GRBL_Plotter
         }
         public static string getError(string rxString)
         {   string[] tmp = rxString.Split(':');
-            string msg = " no information found '" + tmp[1] + "'";
-            try {   msg = grbl.messageErrorCodes[tmp[1].Trim()];
-                    int errnr = Convert.ToInt16(tmp[1].Trim());
-                    if ((errnr >= 32) && (errnr <= 34))
-                        msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";
+            string msg = " no information found for error-nr. '" + tmp[1] + "'";
+            try {   if (messageErrorCodes.ContainsKey(tmp[1].Trim()))
+                    {   msg = grbl.messageErrorCodes[tmp[1].Trim()];
+                        int errnr = Convert.ToInt16(tmp[1].Trim());
+                        if ((errnr >= 32) && (errnr <= 34))
+                            msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";
+                    }
                 }
             catch { }
             return msg;
         }
+        public static bool errorBecauseOfBadCode(string rxString)
+        {   string[] tmp = rxString.Split(':');
+            try {   int[] notByGCode = {3,5,6,7,8,9,10,12,13,14,15,16,17,18,19};
+                    int errnr = Convert.ToInt16(tmp[1].Trim());
+                    if (Array.Exists(notByGCode, element => element == errnr))
+                        return false; 
+                    else
+                        return true;
+                }
+            catch { }
+            return true;
+        }
         public static string getAlarm(string rxString)
         {   string[] tmp = rxString.Split(':');
-            string msg = " no information found '" + tmp[1] + "'";
-            try {    msg = grbl.messageAlarmCodes[tmp[1].Trim()];
+            string msg = " no information found for alarm-nr. '" + tmp[1] + "'";
+            try {   if (messageAlarmCodes.ContainsKey(tmp[1].Trim()))
+                        msg = grbl.messageAlarmCodes[tmp[1].Trim()];
                 }
             catch { }
             return msg;
@@ -490,16 +504,7 @@ namespace GRBL_Plotter
         public grblStreaming Status
         { get { return status; } }
     }
-/*
-    public class RxEventArgs : EventArgs
-    {
-        private string rxdat;
-        public RxEventArgs(string rx)
-        { rxdat = rx; }
-        public string rxData
-        { get { return rxdat; } }
-    }
-    */
+
     public class PosEventArgs : EventArgs
     {
         private xyzPoint posWorld, posMachine;

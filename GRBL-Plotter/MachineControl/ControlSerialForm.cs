@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,6 +43,7 @@
  * 2019-10-27 localization of strings
  * 2019-10-31 add SerialPortFixer http://zachsaw.blogspot.com/2010/07/serialport-ioexception-workaround-in-c.html
  * 2019-12-07 add additional log-info during streamning cBStatus1
+ * 2020-01-04 add "errorBecauseOfBadCode" line 652
 */
 
 //#define debuginfo 
@@ -88,6 +89,7 @@ namespace GRBL_Plotter
         private int iamSerial = 1;
         private string formTitle = "";
 //        private System.Net.Sockets.TcpClient sock;
+        private int rtsrResponse = 0;     // real time status report sent / receive differnence - should be zero.                    
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -203,7 +205,7 @@ namespace GRBL_Plotter
         }
 
         /*
-         * Timer to retry sending data
+         * Timer to retry sending data   timerSerial.Interval = grbl.pollInterval;
          */
         private void timerSerial_Tick(object sender, EventArgs e)
         {
@@ -214,16 +216,22 @@ namespace GRBL_Plotter
             }
 
             if (serialPort.IsOpen)
-            {
-                try
+            {   try
                 {   var dataArray = new byte[] { Convert.ToByte('?') };
-                    serialPort.Write(dataArray, 0, 1);                        
+                    serialPort.Write(dataArray, 0, 1);
+                    rtsrResponse++;     // real time status report sent                    
                 }
                 catch (Exception er)
-                {
-                    Logger.Error(er, "GRBL status not received");
+                {   Logger.Error(er, "GRBL status not received");
                     logError("! Retrieving GRBL status", er);
                     serialPort.Close();
+                }
+                if (Math.Abs(rtsrResponse) > 20)
+                {   lastError = "Missing some Real-time Status Reports - doing Hard-RESET";
+                    addToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    addToLog(lastError);
+                    Logger.Error(lastError);
+                    grblHardReset();
                 }
             }
             if (waitForIdle)
@@ -502,6 +510,8 @@ namespace GRBL_Plotter
             addToLog("> [CTRL-X] reset");
             preventOutput = 0; preventEvent = 0;
             grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
+            rxErrorCount = 0;
+            rtsrResponse = 0;     // real time status report sent / receive differnence                    
         }
 
         private void btnGRBLHardReset_Click(object sender, EventArgs e)
@@ -528,6 +538,8 @@ namespace GRBL_Plotter
             externalProbe = false;
             preventOutput = 0; preventEvent = 0;
             grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
+            rxErrorCount = 0;
+            rtsrResponse = 0;     // real time status report sent / receive differnence                    
         }
 
 
@@ -540,6 +552,7 @@ namespace GRBL_Plotter
          * */
         string logMessage;
         Exception logErr;
+        int rxErrorCount = 0;
         //https://stackoverflow.com/questions/10871339/terminating-a-form-while-com-datareceived-event-keeps-fireing-c-sharp
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -548,6 +561,7 @@ namespace GRBL_Plotter
                 try
                 {   rxString = serialPort.ReadTo("\r\n");              //read line from grbl, discard CR LF
                     isDataProcessing = true;
+//d                    Logger.Trace("DataReceived {0}", rxString);
                     this.Invoke(new EventHandler(handleRxData));        //tigger rx process 
                     while ((serialPort.IsOpen) && (isDataProcessing))   //wait previous data line processed done
 					{}
@@ -557,7 +571,17 @@ namespace GRBL_Plotter
                     Logger.Error(err, "-DataReceived-");
                     logErr = err;
                     logMessage = "Error reading line from serial port";
+                    addToLog(logMessage);
                     this.BeginInvoke(new EventHandler(logErrorThr));
+                    if (rxErrorCount++ > 5)
+                    {   closePort();
+                        this.WindowState = FormWindowState.Minimized;
+                        this.Show();
+                        this.WindowState = FormWindowState.Normal;
+                        Logger.Error(err, "-DataReceived- Close port after 5 retries");
+                    }
+                    else
+                        Logger.Error(err, "-DataReceived-");
                 }
             }
         }
@@ -574,10 +598,10 @@ namespace GRBL_Plotter
             // action by importance
             // grbl buffer processed
             if (rxString.Contains("ok"))
-            {   updateStreaming();                                   // process all other messages
-                rxString = "";                                      // clear if simulation is on
+            {   updateStreaming();                          // process all other messages
+                rxString = "";                              // clear if simulation is on
                 if (!isStreaming || isStreamingPause)
-                {   if (!isHeightProbing || cBStatus.Checked)
+                {   if (!(isHeightProbing || (cBStatus1.Checked || cBStatus.Checked)))
                         addToLog("< ok");   // string.Format("< {0}", rxString)); // < ok
                 }
                 isDataProcessing = false;                   // unlock serialPort1_DataReceived
@@ -589,7 +613,8 @@ namespace GRBL_Plotter
             {
                 if (cBStatus.Checked)
                     addToLog(rxString);
-                handleRX_Status(rxString.Trim(charsToTrim));            // Process status message with coordinates
+                handleRX_Status(rxString.Trim(charsToTrim));// Process status message with coordinates
+                rtsrResponse--;                             // real time status report received                    
                 isDataProcessing = false;                   // unlock serialPort1_DataReceived
                 return;
             }
@@ -623,6 +648,7 @@ namespace GRBL_Plotter
             else if (rxString.IndexOf("ALARM") >= 0)
             {
                 lastError = "";
+                Logger.Warn("grbl ALARM '{0}' {1}", rxString, grbl.getAlarm(rxString));
                 addToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 addToLog(string.Format("< {0} \t{1}", rxString, grbl.getAlarm(rxString)));
                 resetStreaming();
@@ -641,19 +667,22 @@ namespace GRBL_Plotter
                 string tmpMsg = "";
                 if (rxString != lastError)
                 {
-                    Logger.Warn("grbl error {0} {1}", rxString, grbl.getError(rxString));
+                    Logger.Warn("grbl ERROR '{0}' {1}", rxString, grbl.getError(rxString));
                     addToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     addToLog(string.Format("< {0} \t{1}", rxString, grbl.getError(rxString)));
                     lastError = rxString+" "+ grbl.getError(rxString)+"\r\n";
                     this.WindowState = FormWindowState.Minimized;
                     this.Show();
                     this.WindowState = FormWindowState.Normal;
-                    addToLog(">>> Last sent commmands to grbl, oldest first:");
-                    lastError += ">>> Last sent commmands to grbl, oldest first:";
-                    foreach (string lastLine in lastSentToCOM)
-                    {   tmpMsg = ">>> " + lastLine;
-                        addToLog(tmpMsg);
-                        lastError += tmpMsg + "\r\n";
+                    if (grbl.errorBecauseOfBadCode(rxString))
+                    {   addToLog(">>> Last sent commmands to grbl, oldest first:");
+                        lastError += ">>> Last sent commmands to grbl, oldest first:";
+                        foreach (string lastLine in lastSentToCOM)
+                        {
+                            tmpMsg = ">>> " + lastLine;
+                            addToLog(tmpMsg);
+                            lastError += tmpMsg + "\r\n";
+                        }
                     }
                 }
                 grblStatus = grblStreaming.error;
@@ -690,9 +719,10 @@ namespace GRBL_Plotter
             if (sendLinesConfirmed < sendLinesCount)
             {
                 grbl.updateParserState(sendLines[sendLinesConfirmed], ref mParserState);
+/* increase free buffer if ok was received */
                 grblBufferFree += (sendLines[sendLinesConfirmed].Length + 1);   //update bytes supose to be free on grbl rx bufer
                 if (cBStatus1.Checked || cBStatus.Checked)
-                { addToLog("< ok ( "+sendLines[sendLinesConfirmed]+" )"); }
+                { addToLog("< ok ( " + sendLines[sendLinesConfirmed] + " )"); }//  free Buffer: " + grblBufferFree); }
                 sendLinesConfirmed++;                                           // line processed
 
                 // Remove already sent lines to release memory
@@ -783,7 +813,8 @@ namespace GRBL_Plotter
         {
             grbl.axisCount = 0;
             resetProcessed = false;
-
+            rxErrorCount = 0;
+            rtsrResponse = 0;     // real time status report sent / receive differnence                    
             resetStreaming();
             addToLog("* RESET\r\n< " + rxString);
             if (rxString.ToLower().IndexOf("grbl 0") >= 0)
@@ -1037,6 +1068,9 @@ namespace GRBL_Plotter
         private int sendLinesSent=0;              // actual sent line
         private int sendLinesConfirmed=0;         // already received line
 
+        public int getFreeBuffer()
+        { return ((int)(100*grblBufferFree/(float)grblBufferSize)); }
+
         /*  requestSend fill up send buffer, called by main-prog for single commands
          *  or called by preProcessStreaming to stream GCode data
          *  requestSend -> processSend -> sendLine
@@ -1207,14 +1241,17 @@ namespace GRBL_Plotter
                             //  rtbLog.AppendText(string.Format("!!!> {0} {1}\r\n", line, sendLinesSent));
                     if (serialPort.IsOpen || grbl.grblSimulate)
                     {   sendLine(line);                         // now really send data to Arduino
+
+/* decrease free buffer after sending code */
+                        grblBufferFree -= (line.Length + 1);
+//                        addToLog("SEND  " + line + "   " + grblBufferFree );
                         if (lastSentToCOM.Count > 10)
                             lastSentToCOM.Dequeue();            // store last sent commands via COM for error analysis
-                        grblBufferFree -= (line.Length + 1);
                         sendLinesSent++;
-                        if (grbl.grblSimulate && !serialPort.IsOpen)
+        /*                if (grbl.grblSimulate && !serialPort.IsOpen)
                         {   rxString = "ok";
                             this.Invoke(new EventHandler(handleRxData)); //handleRxData(this, null);
-                        }
+                        }*/
                     }
                     else
                     {   addToLog("!!! Port is closed !!!");
@@ -1246,6 +1283,37 @@ namespace GRBL_Plotter
                     return;
             }
         }
+
+        /// <summary>
+        /// sendLine - now really send data to Arduino
+        /// </summary>
+        private void sendLine(string data)
+        {
+            try
+            {
+                if (serialPort.IsOpen)
+                    serialPort.Write(data + "\r");
+//                Logger.Trace("sendLine {0}", data);
+                lastSentToCOM.Enqueue(data);        // store last sent commands via COM for error analysis
+#if (debuginfo)
+                rtbLog.AppendText(string.Format("< {0} {1} {2} {3} \r\n", data, sendLinesSent, sendLinesConfirmed, grblBufferFree));//if not in transfer log the txLine
+#endif
+                if (!isHeightProbing && (!(isStreaming && !isStreamingPause)) || (cBStatus1.Checked || cBStatus.Checked))
+                {   addToLog(string.Format("> {0}", data));     //if not in transfer log the txLine
+                }
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "-sendLine-");
+                logErr = err;
+                logMessage = "Error reading line from serial port";
+                if (!grbl.grblSimulate)
+                    logError("! Sending line", err);
+                updateControls();
+            }
+        }
+
+
 
         /// <summary>
         /// Clear all streaming counters
@@ -1306,33 +1374,6 @@ namespace GRBL_Plotter
                 sendLinesConfirmed = 0;
                 sendLines.Clear();
                 grblBufferFree = grblBufferSize;
-            }
-        }
-        /// <summary>
-        /// sendLine - now really send data to Arduino
-        /// </summary>
-        private void sendLine(string data)
-        {   try
-            {
-                if (serialPort.IsOpen)
-                    serialPort.Write(data + "\r");
-                lastSentToCOM.Enqueue(data);        // store last sent commands via COM for error analysis
-#if (debuginfo)
-                rtbLog.AppendText(string.Format("< {0} {1} {2} {3} \r\n", data, sendLinesSent, sendLinesConfirmed, grblBufferFree));//if not in transfer log the txLine
-#endif
-                if (!isHeightProbing && (!(isStreaming && !isStreamingPause)) || (cBStatus1.Checked || cBStatus.Checked))
-                {
-                    addToLog(string.Format("> {0}", data));//if not in transfer log the txLine
-                }
-            }
-            catch (Exception err)
-            {
-                Logger.Error(err, "-sendLine-");
-                logErr = err;
-                logMessage = "Error reading line from serial port";
-                if (!grbl.grblSimulate)
-                    logError("! Sending line", err);
-                updateControls();
             }
         }
 

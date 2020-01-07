@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -552,7 +552,7 @@ namespace GRBL_Plotter
                                 {   center = point.actualPos; showCenter = true; break; }
                             }
                         }
-                        createMarkerPath(showCenter,center, coordList[line-1].actualPos);
+                        createMarkerPath(showCenter,center, coordList[line].actualPos);// line-1
 
                         figureNr = coordList[line].figureNumber;
                //         Logger.Trace(string.Format("1 Line:{0} Figure:{1} code:{2}",line,figureNr, gcodeList[line].codeLine));
@@ -571,7 +571,7 @@ namespace GRBL_Plotter
                                 grbl.posMarker = (xyPoint)gcline.actualPos;
                                 if (gcline.isArc)
                                 {   foreach (coordByLine point in centerList)
-                                    {   if (point.lineNumber == line)
+                                    {   if (point.lineNumber == gcline.lineNumber) // ==line
                                         {   center = point.actualPos; showCenter = true;  break; }
                                     }
                                 }
@@ -626,8 +626,15 @@ namespace GRBL_Plotter
             }
             createMarkerPath(showCenter, center);
             if (figureNr != lastFigureNumber)
-                markSelectedFigure(figureNr);
-            lastFigureNumber = figureNr;
+            {
+                markSelectedFigure(figureNr);   // select
+                lastFigureNumber = figureNr;
+            }
+            else
+            {
+                markSelectedFigure(-1);  // deselcet
+                lastFigureNumber = -1;
+            }
 
             return SortedList[line].lineNumber;
         }
@@ -681,7 +688,7 @@ namespace GRBL_Plotter
                                 return gcodeList[v].lineNumber;
                         }
                     }*/
-                    return coordList[i].lineNumber;
+                    return coordList[i-1].lineNumber;
                 }
             }
             return -1;
@@ -731,12 +738,12 @@ namespace GRBL_Plotter
 
         public string selectedFigureInfo = "";
         /// <summary>
-        /// create path of selected figure
+        /// create path of selected figure, or clear (-1)
         /// </summary>
         public void markSelectedFigure(int figureNr)
         {
 #if (debuginfo)
-            log.Add("   GCodeVisu markSelectedFigure fnr: " + fnr.ToString());
+            log.Add("   GCodeVisu markSelectedFigure figureNr: " + figureNr.ToString());
 #endif
             if (figureNr <= 0)
             {   pathMarkSelection.Reset();

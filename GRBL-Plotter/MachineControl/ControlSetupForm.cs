@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
  * 2019-08-15 add logger
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-12-07 add extended logging enable
+ * 2020-01-04 add labels to gamePad X,Y,Z,R track bars
 */
 
 using System;
@@ -285,16 +286,16 @@ namespace GRBL_Plotter
             {   if (ControlGamePad.gamePad != null)
                 {   ControlGamePad.gamePad.Poll();
                     var datas = ControlGamePad.gamePad.GetBufferedData();
+               //     lblgp.Text = "";
                     foreach (var state in datas)
                     {
-                        lblgp.Text = state.Offset + " Value: " + state.Value.ToString();
+                        lblgp.Text = state.Offset + " Value: " + state.Value.ToString();// + " | ";
                         processGamepad(state);
                     }
                 }
             }
             catch
-            {
-                try { ControlGamePad.Initialize(); timer1.Interval = 200; }
+            {   try { ControlGamePad.Initialize(); timer1.Interval = 200; }
                 catch { timer1.Interval = 5000; }
             }
         }
@@ -311,15 +312,29 @@ namespace GRBL_Plotter
                 }
             }
             if (offset == "X")
-            { trackBarX.Value = value; }
+            { trackBarX.Value = value; lblValX.Text = gamePadGetValue(value); lblValX.BackColor = gamePadGetColor(value); }
             if (offset == "Y")
-            { trackBarY.Value = value; }
+            { trackBarY.Value = value; lblValY.Text = gamePadGetValue(value); lblValY.BackColor = gamePadGetColor(value); }
             if (offset == "Z")
-            { trackBarZ.Value = value; }
+            { trackBarZ.Value = value; lblValZ.Text = gamePadGetValue(value); lblValZ.BackColor = gamePadGetColor(value); }
             if (offset == "RotationZ")
-            { trackBarR.Value = value; }
+            { trackBarR.Value = value; lblValR.Text = gamePadGetValue(value); lblValR.BackColor = gamePadGetColor(value); }
         }
-
+        private string gamePadGetValue(int value)
+        { return (value - nUDOffset.Value).ToString(); }
+        private Color gamePadGetColor(int value)
+        {   int center = (int)Math.Abs(value - nUDOffset.Value);
+            Color tmp = Color.Transparent;
+            if (center <= 5)
+                return tmp;
+            if (center <= nUDDead.Value)
+            { tmp = Color.Lime; }
+            else if (center <= nUDMinimum.Value)
+            { tmp = Color.Yellow; }
+            else
+            { tmp = Color.Fuchsia; }
+            return tmp;
+        }
 
         private void hsFilterScroll(object sender, ScrollEventArgs e)
         { hsFilterScrollSetLabels(); }

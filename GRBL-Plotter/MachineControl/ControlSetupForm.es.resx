@@ -1567,15 +1567,10 @@ Funciones especiales (comienza con #):
 #RST  (soft reset via CTRL-X)
 #HRST (hardware reset via DTR/RTS)
 
-
-
-Joystick analógico se utilizará para correr.
-Utiliza la misma configuración que para Joystick virtual
 Asignar eje y dirección invertida
-Intervalo de actualización = 500 ms.
+Intervalo de actualización = 50 ms.
 
-La ventana de configuración debe estar cerrada para usar Game-Pad en la GUI.
-</value>
+La ventana de configuración debe estar cerrada para usar GamePad en la GUI.</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tab8gB2.Text" xml:space="preserve">
@@ -1657,5 +1652,85 @@ La ventana de configuración debe estar cerrada para usar Game-Pad en la GUI.
   <data name="tab11gB1lbl2.Text" xml:space="preserve">
     <value>Extensiones útiles para Inkscape</value>
     <comment>TabPage11</comment>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>Ancho de paso mínimo por debajo del valor dado</value>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>Velocidad de alimentación</value>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>unidades</value>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>Entre este valor y la zona muerta, se enviará el ancho de paso y la velocidad de avance dados, si solo se activa un eje de joystick.
+En este caso, el intervalo de repetición es de 200 ms en lugar de 50 ms.</value>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>Zona muerta</value>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>Desplazamiento para la posición central</value>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>Sustrae para obtener '0' en la posición central.
+Mueva el joystick después de cambiar el desplazamiento.</value>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>Valor mínimo a alcanzar, antes de enviar cualquier comando jog.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Configuración de joystick analógico</value>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>Valor con desplazamiento aplicado</value>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>Valor con desplazamiento aplicado</value>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>Valor con desplazamiento aplicado</value>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>Valor con desplazamiento aplicado</value>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>Eje del código G para mover</value>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>Eje del código G para mover</value>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>Eje del código G para mover</value>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>Eje del código G para mover</value>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>Valor del canal Joystick R</value>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>Valor del canal Joystick Z</value>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>Valor del joystick en el canal Y</value>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>Valor del canal Joystick X</value>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>No cambie el ancho de la pluma al hacer zoom</value>
   </data>
 </root>

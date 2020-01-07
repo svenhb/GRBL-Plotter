@@ -1470,10 +1470,8 @@ CPU負荷を節約し、ストリーミング中のズームを無効にしま�
 #RST（CTRL-Xによるソフトリセット）
 #HRST（DTR / RTSを介したハードウェアリセット）
 
-ジョギングにはアナログジョイスティックが使用されます。
-仮想ジョイスティックと同じ設定を使用します
 軸と方向反転を割り当てる
-更新間隔= 500ミリ秒。
+更新間隔= 50ms。
 
 GUIでGamePadを使用するには、セットアップウィンドウを閉じる必要があります。</value>
     <comment>TabPage7</comment>
@@ -1491,7 +1489,7 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <comment>TabPage7</comment>
   </data>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
-    <value>ズーム時にペンを変更しないでください</value>
+    <value>ズーム時にペン幅を変更しないでください</value>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
     <value>ペン幅</value>
@@ -1830,5 +1828,82 @@ svenhb.bplaced.netでの2回目の試行</value>
   </data>
   <data name="Column22.HeaderText" xml:space="preserve">
     <value>Gコード</value>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>与えられた値を下回る最小ステップ幅</value>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>送り速度</value>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>単位</value>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>この値とデッドゾーンの間で、指定されたステップ幅と送り速度が送信されます-ジョイスティック軸が1つだけアクティブになっている場合。
+この場合、繰り返し間隔は50ミリ秒ではなく200ミリ秒です。</value>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>デッドゾーン</value>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>中心位置のオフセット</value>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>中心位置で「0」を取得するための減算。
+オフセットを変更した後、ジョイスティックを動かします。</value>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>ジョグコマンドを送信する前に到達する最小値。</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>アナログジョイスティックの設定</value>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>オフセットが適用された値</value>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>オフセットが適用された値</value>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>オフセットが適用された値</value>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>オフセットが適用された値</value>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>移動するGコード軸</value>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>移動するGコード軸</value>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>移動するGコード軸</value>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>移動するGコード軸</value>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>ジョイスティックRチャンネルの価値</value>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>ジョイスティックZチャンネルの価値</value>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>ジョイスティックYチャンネルの価値</value>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>Joystick Xチャンネルの価値</value>
   </data>
 </root>

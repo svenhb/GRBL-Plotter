@@ -1567,15 +1567,10 @@ Fonctions spéciales (commençant par #):
 #RST  (soft reset via CTRL-X)
 #HRST (hardware reset via DTR/RTS)
 
+Attribuer un axe et inverser la direction
+Intervalle de rafraîchissement = 50 ms.
 
-
-Un joystick analogique sera utilisé pour le jogging.
-Utilise les mêmes paramètres que pour le joystick virtuel
-Affecter axe et direction inversée
-Intervalle d'actualisation = 500 ms.
-
-La fenêtre d'installation doit être fermée pour utiliser Game-Pad dans l'interface graphique.
-</value>
+La fenêtre de configuration doit être fermée pour utiliser GamePad dans l'interface graphique.</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tab8gB2.Text" xml:space="preserve">
@@ -1657,5 +1652,85 @@ La fenêtre d'installation doit être fermée pour utiliser Game-Pad dans l'inte
   <data name="tab11gB1lbl2.Text" xml:space="preserve">
     <value>Extensions utiles pour Inkscape</value>
     <comment>TabPage11</comment>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>Largeur de pas minimale en dessous de la valeur donnée</value>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>Taux d'alimentation</value>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>unités</value>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>Entre cette valeur et la zone morte, la largeur de pas et la vitesse d'avance données seront envoyées - si un seul axe du joystick est activé.
+Dans ce cas, l'intervalle de répétition est de 200 ms au lieu de 50 ms.</value>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>Zone morte</value>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>Décalage pour la position centrale</value>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>Subtrahend pour obtenir «0» en position centrale.
+Déplacez le joystick après avoir modifié le décalage.</value>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>Valeur minimale à atteindre, avant d'envoyer une commande jog.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Paramètres du joystick analogique</value>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>Valeur avec décalage appliqué</value>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>Valeur avec décalage appliqué</value>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>Valeur avec décalage appliqué</value>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>Valeur avec décalage appliqué</value>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>Axe G-Code à déplacer</value>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>Axe G-Code à déplacer</value>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>Axe G-Code à déplacer</value>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>Axe G-Code à déplacer</value>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>Valeur du canal Joystick R</value>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>Valeur du canal Joystick Z</value>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>Valeur du canal Joystick Y</value>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>Valeur du canal Joystick X</value>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>Ne changez pas la largeur du stylo lors du zoom</value>
   </data>
 </root>

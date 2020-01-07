@@ -1575,10 +1575,8 @@ min X, min Y и max Z.
 #RST (программный сброс через CTRL-X)
 #HRST (аппаратный сброс через DTR / RTS)
 
-Аналоговый джойстик будет использоваться для бега.
-Используются те же настройки, что и для виртуального джойстика
 Назначьте ось и направление инвертирования
-Интервал обновления = 500 мс.
+Интервал обновления = 50 мс.
 
 Окно установки должно быть закрыто, чтобы использовать GamePad в графическом интерфейсе.</value>
     <comment>TabPage7</comment>
@@ -1662,5 +1660,85 @@ min X, min Y и max Z.
   <data name="tab11gB1lbl2.Text" xml:space="preserve">
     <value>Полезные расширения для Inkscape</value>
     <comment>TabPage11</comment>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>Минимальная ширина шага ниже заданного значения</value>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>Скорость подачи</value>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>единицы измерения</value>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>Между этим значением и мертвой зоной будут переданы заданная ширина шага и скорость подачи - если активирована только одна ось джойстика.
+В этом случае интервал повторения составляет 200 мс вместо 50 мс.</value>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>Мертвая зона</value>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>Смещение для центральной позиции</value>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>Вычитаем, чтобы получить «0» в центральном положении.
+Переместите джойстик после изменения смещения.</value>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>Минимальное значение, которое нужно достичь, перед отправкой любой команды пробежки.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Настройки аналогового джойстика</value>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>Значение с примененным смещением</value>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>Значение с примененным смещением</value>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>Значение с примененным смещением</value>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>Значение с примененным смещением</value>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>Ось G-кода для перемещения</value>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>Ось G-кода для перемещения</value>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>Ось G-кода для перемещения</value>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>Ось G-кода для перемещения</value>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>Значение джойстика R канала</value>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>Значение джойстика Z канала</value>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>Значение джойстика Y канала</value>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>Значение канала Joystick X</value>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>Не меняйте ширину пера при масштабировании</value>
   </data>
 </root>

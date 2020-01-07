@@ -1528,12 +1528,10 @@ Spezielle Funktionen (beginnen mit #):
 #RST  (soft reset via CTRL-X)
 #HRST (hardware reset via DTR/RTS)
 
-Analog Joystick wird für Jogging benutzt.
-Es nutzt die Einstellungen des virtual Joystick. Ordne die Achsen zu und invertiere die Richtung.
-Refresh interval = 500ms.
+Achsen zuweisen und Richtung umkehren
+Aktualisierungsintervall = 50ms.
 
-Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
-</value>
+Das Setup-Fenster muss geschlossen werden, damit das GamePad in der GUI verwendet werden kann.</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tab8gB2.Text" xml:space="preserve">
@@ -1620,5 +1618,85 @@ Setup Fenster muss geschlossen werden um das GamePad nutzen zu können.
   </data>
   <data name="Column22.HeaderText" xml:space="preserve">
     <value>G-كود</value>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>Minimale Schrittweite unter dem angegebenen Wert</value>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>Vorschubgeschwindigkeit</value>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>Einheiten</value>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>Zwischen diesem Wert und der Totzone werden die angegebene Schrittweite und Vorschubrate gesendet - wenn nur eine Joystick-Achse aktiviert ist.
+In diesem Fall beträgt das Wiederholungsintervall 200 ms anstatt 50 ms.</value>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>Totbereich</value>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>Offset für die Mittenposition</value>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>Subtrahend, um '0' in Mittelstellung zu bekommen.
+Bewegen Sie den Joystick, nachdem Sie den Versatz geändert haben.</value>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>Mindestwert, der erreicht werden muss, bevor ein Tippbefehl gesendet wird.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Analoge Joystick-Einstellungen</value>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>Wert mit angewendetem Offset</value>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>Wert mit angewendetem Offset</value>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>Wert mit angewendetem Offset</value>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>Wert mit angewendetem Offset</value>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>G-Code Achse welche angesprochen werden soll</value>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>G-Code Achse welche angesprochen werden soll</value>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>G-Code Achse welche angesprochen werden soll</value>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>G-Code Achse welche angesprochen werden soll</value>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>Wert des Joystick R-Kanals</value>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>Wert des Joystick-Z-Kanals</value>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>Wert des Joystick Y-Kanals</value>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>Wert des Joystick X-Kanals</value>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>Stiftbreite beim Zoomen nicht anpassen</value>
   </data>
 </root>

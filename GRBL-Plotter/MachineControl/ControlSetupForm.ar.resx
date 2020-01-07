@@ -1463,10 +1463,8 @@ M4 وضع الطاقة ليزر ديناميكي</value>
 #RST (إعادة تعيين ناعمة عبر CTRL-X)
 #HRST (إعادة ضبط الأجهزة عبر DTR / RTS)
 
-سيتم استخدام عصا التحكم التناظرية للركض.
-يستخدم نفس الإعدادات كما في جويستيك الظاهري
 تعيين المحور وعكس الاتجاه
-تحديث الفاصل = 500ms.
+تحديث الفاصل = 50ms.
 
 يجب إغلاق نافذة الإعداد لاستخدام GamePad في واجهة المستخدم الرسومية.</value>
     <comment>TabPage7</comment>
@@ -1484,7 +1482,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>TabPage7</comment>
   </data>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
-    <value>لا تغير القلم مع التكبير</value>
+    <value>لا تقم بتغيير عرض القلم عند التكبير</value>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
     <value>عرض القلم</value>
@@ -1823,5 +1821,82 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   </data>
   <data name="Column22.HeaderText" xml:space="preserve">
     <value>العدد.</value>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>الحد الأدنى لعرض الخطوة أدناه قيمة معينة</value>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>معدل التغذية</value>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>وحدات</value>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>بين هذه القيمة و deadzone سيتم إرسال عرض الخطوات ومعدل التغذية المعطى - إذا تم تنشيط محور عصا التحكم واحد فقط.
+في هذه الحالة ، يكون الفاصل الزمني للتكرار 200 مللي ثانية بدلاً من 50 مللي ثانية.</value>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>منطقة شديدة الخطورة</value>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>تعويض عن موقف الوسط</value>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>Subtrahend للحصول على "0" في مركز الوسط.
+حرك عصا التحكم بعد تغيير الإزاحة.</value>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>الحد الأدنى للوصول إلى القيمة ، قبل إرسال أي أمر هرول.</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>إعدادات جويستيك التناظرية</value>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>القيمة مع الإزاحة المطبقة</value>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>القيمة مع الإزاحة المطبقة</value>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>القيمة مع الإزاحة المطبقة</value>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>القيمة مع الإزاحة المطبقة</value>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>محور G- الرمز للتحرك</value>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>محور G- الرمز للتحرك</value>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>محور G- الرمز للتحرك</value>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>محور G- الرمز للتحرك</value>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>قيمة جويستيك R القناة</value>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>قيمة جويستيك Z القناة</value>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>قيمة جويستيك Y القناة</value>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>قيمة جويستيك X القناة</value>
   </data>
 </root>

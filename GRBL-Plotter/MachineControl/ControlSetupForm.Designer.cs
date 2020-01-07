@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -357,6 +357,21 @@ namespace GRBL_Plotter
             this.tab6lbl1 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tab7gB1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tab7gB2lbl3 = new System.Windows.Forms.Label();
+            this.tab7gB2lbl5 = new System.Windows.Forms.Label();
+            this.nUDFeedrate = new System.Windows.Forms.NumericUpDown();
+            this.nUDStepwidth = new System.Windows.Forms.NumericUpDown();
+            this.tab7gB2lbl4 = new System.Windows.Forms.Label();
+            this.nUDMinimum = new System.Windows.Forms.NumericUpDown();
+            this.tab7gB2lbl2 = new System.Windows.Forms.Label();
+            this.tab7gB2lbl1 = new System.Windows.Forms.Label();
+            this.nUDOffset = new System.Windows.Forms.NumericUpDown();
+            this.nUDDead = new System.Windows.Forms.NumericUpDown();
+            this.lblValR = new System.Windows.Forms.Label();
+            this.lblValY = new System.Windows.Forms.Label();
+            this.lblValZ = new System.Windows.Forms.Label();
+            this.lblValX = new System.Windows.Forms.Label();
             this.cBGPEnable = new System.Windows.Forms.CheckBox();
             this.cBRInvert = new System.Windows.Forms.CheckBox();
             this.cBZInvert = new System.Windows.Forms.CheckBox();
@@ -535,6 +550,8 @@ namespace GRBL_Plotter
             this.cBShapeCircle = new System.Windows.Forms.CheckBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tab11gB1 = new System.Windows.Forms.GroupBox();
+            this.tab11gB1lbl1a = new System.Windows.Forms.Label();
+            this.linkLabel16 = new System.Windows.Forms.LinkLabel();
             this.tab11gB1lbl3 = new System.Windows.Forms.Label();
             this.linkLabel14 = new System.Windows.Forms.LinkLabel();
             this.tab11gB1lbl2 = new System.Windows.Forms.Label();
@@ -563,8 +580,6 @@ namespace GRBL_Plotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tab11gB1lbl1a = new System.Windows.Forms.Label();
-            this.linkLabel16 = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -653,6 +668,12 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.dGVCustomBtn)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.tab7gB1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDFeedrate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDStepwidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMinimum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDOffset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).BeginInit();
@@ -3614,6 +3635,11 @@ namespace GRBL_Plotter
             // 
             // tab7gB1
             // 
+            this.tab7gB1.Controls.Add(this.groupBox1);
+            this.tab7gB1.Controls.Add(this.lblValR);
+            this.tab7gB1.Controls.Add(this.lblValY);
+            this.tab7gB1.Controls.Add(this.lblValZ);
+            this.tab7gB1.Controls.Add(this.lblValX);
             this.tab7gB1.Controls.Add(this.cBGPEnable);
             this.tab7gB1.Controls.Add(this.cBRInvert);
             this.tab7gB1.Controls.Add(this.cBZInvert);
@@ -3669,6 +3695,174 @@ namespace GRBL_Plotter
             this.tab7gB1.Name = "tab7gB1";
             this.tab7gB1.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tab7gB2lbl3);
+            this.groupBox1.Controls.Add(this.tab7gB2lbl5);
+            this.groupBox1.Controls.Add(this.nUDFeedrate);
+            this.groupBox1.Controls.Add(this.nUDStepwidth);
+            this.groupBox1.Controls.Add(this.tab7gB2lbl4);
+            this.groupBox1.Controls.Add(this.nUDMinimum);
+            this.groupBox1.Controls.Add(this.tab7gB2lbl2);
+            this.groupBox1.Controls.Add(this.tab7gB2lbl1);
+            this.groupBox1.Controls.Add(this.nUDOffset);
+            this.groupBox1.Controls.Add(this.nUDDead);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // tab7gB2lbl3
+            // 
+            resources.ApplyResources(this.tab7gB2lbl3, "tab7gB2lbl3");
+            this.tab7gB2lbl3.Name = "tab7gB2lbl3";
+            // 
+            // tab7gB2lbl5
+            // 
+            resources.ApplyResources(this.tab7gB2lbl5, "tab7gB2lbl5");
+            this.tab7gB2lbl5.Name = "tab7gB2lbl5";
+            // 
+            // nUDFeedrate
+            // 
+            this.nUDFeedrate.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDFeedrate.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDFeedrate, "nUDFeedrate");
+            this.nUDFeedrate.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDFeedrate.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDFeedrate.Name = "nUDFeedrate";
+            this.toolTip1.SetToolTip(this.nUDFeedrate, resources.GetString("nUDFeedrate.ToolTip"));
+            this.nUDFeedrate.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinFeed;
+            // 
+            // nUDStepwidth
+            // 
+            this.nUDStepwidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinStep", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDStepwidth.DecimalPlaces = 3;
+            this.nUDStepwidth.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            resources.ApplyResources(this.nUDStepwidth, "nUDStepwidth");
+            this.nUDStepwidth.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDStepwidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDStepwidth.Name = "nUDStepwidth";
+            this.toolTip1.SetToolTip(this.nUDStepwidth, resources.GetString("nUDStepwidth.ToolTip"));
+            this.nUDStepwidth.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinStep;
+            // 
+            // tab7gB2lbl4
+            // 
+            resources.ApplyResources(this.tab7gB2lbl4, "tab7gB2lbl4");
+            this.tab7gB2lbl4.Name = "tab7gB2lbl4";
+            // 
+            // nUDMinimum
+            // 
+            this.nUDMinimum.BackColor = System.Drawing.Color.Yellow;
+            this.nUDMinimum.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinimum", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMinimum.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDMinimum, "nUDMinimum");
+            this.nUDMinimum.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.nUDMinimum.Name = "nUDMinimum";
+            this.toolTip1.SetToolTip(this.nUDMinimum, resources.GetString("nUDMinimum.ToolTip"));
+            this.nUDMinimum.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinimum;
+            // 
+            // tab7gB2lbl2
+            // 
+            resources.ApplyResources(this.tab7gB2lbl2, "tab7gB2lbl2");
+            this.tab7gB2lbl2.Name = "tab7gB2lbl2";
+            // 
+            // tab7gB2lbl1
+            // 
+            resources.ApplyResources(this.tab7gB2lbl1, "tab7gB2lbl1");
+            this.tab7gB2lbl1.Name = "tab7gB2lbl1";
+            // 
+            // nUDOffset
+            // 
+            this.nUDOffset.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogOffset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDOffset, "nUDOffset");
+            this.nUDOffset.Maximum = new decimal(new int[] {
+            34757,
+            0,
+            0,
+            0});
+            this.nUDOffset.Minimum = new decimal(new int[] {
+            30757,
+            0,
+            0,
+            0});
+            this.nUDOffset.Name = "nUDOffset";
+            this.toolTip1.SetToolTip(this.nUDOffset, resources.GetString("nUDOffset.ToolTip"));
+            this.nUDOffset.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogOffset;
+            // 
+            // nUDDead
+            // 
+            this.nUDDead.BackColor = System.Drawing.Color.Lime;
+            this.nUDDead.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogDead", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDDead.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDDead, "nUDDead");
+            this.nUDDead.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDDead.Name = "nUDDead";
+            this.toolTip1.SetToolTip(this.nUDDead, resources.GetString("nUDDead.ToolTip"));
+            this.nUDDead.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogDead;
+            // 
+            // lblValR
+            // 
+            resources.ApplyResources(this.lblValR, "lblValR");
+            this.lblValR.Name = "lblValR";
+            this.toolTip1.SetToolTip(this.lblValR, resources.GetString("lblValR.ToolTip"));
+            // 
+            // lblValY
+            // 
+            resources.ApplyResources(this.lblValY, "lblValY");
+            this.lblValY.Name = "lblValY";
+            this.toolTip1.SetToolTip(this.lblValY, resources.GetString("lblValY.ToolTip"));
+            // 
+            // lblValZ
+            // 
+            resources.ApplyResources(this.lblValZ, "lblValZ");
+            this.lblValZ.Name = "lblValZ";
+            this.toolTip1.SetToolTip(this.lblValZ, resources.GetString("lblValZ.ToolTip"));
+            // 
+            // lblValX
+            // 
+            resources.ApplyResources(this.lblValX, "lblValX");
+            this.lblValX.Name = "lblValX";
+            this.toolTip1.SetToolTip(this.lblValX, resources.GetString("lblValX.ToolTip"));
+            // 
             // cBGPEnable
             // 
             resources.ApplyResources(this.cBGPEnable, "cBGPEnable");
@@ -3717,6 +3911,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tBRAxis, "tBRAxis");
             this.tBRAxis.Name = "tBRAxis";
             this.tBRAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadRAxis;
+            this.toolTip1.SetToolTip(this.tBRAxis, resources.GetString("tBRAxis.ToolTip"));
             // 
             // tBZAxis
             // 
@@ -3725,6 +3920,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tBZAxis, "tBZAxis");
             this.tBZAxis.Name = "tBZAxis";
             this.tBZAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadZAxis;
+            this.toolTip1.SetToolTip(this.tBZAxis, resources.GetString("tBZAxis.ToolTip"));
             // 
             // tBYAxis
             // 
@@ -3733,6 +3929,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tBYAxis, "tBYAxis");
             this.tBYAxis.Name = "tBYAxis";
             this.tBYAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadYAxis;
+            this.toolTip1.SetToolTip(this.tBYAxis, resources.GetString("tBYAxis.ToolTip"));
             // 
             // tBXAxis
             // 
@@ -3741,6 +3938,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tBXAxis, "tBXAxis");
             this.tBXAxis.Name = "tBXAxis";
             this.tBXAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadXAxis;
+            this.toolTip1.SetToolTip(this.tBXAxis, resources.GetString("tBXAxis.ToolTip"));
             // 
             // tab7gB1lbl1
             // 
@@ -3868,6 +4066,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.trackBarR, "trackBarR");
             this.trackBarR.Maximum = 65535;
             this.trackBarR.Name = "trackBarR";
+            this.toolTip1.SetToolTip(this.trackBarR, resources.GetString("trackBarR.ToolTip"));
             this.trackBarR.Value = 32767;
             // 
             // label43
@@ -3880,6 +4079,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.trackBarZ, "trackBarZ");
             this.trackBarZ.Maximum = 65535;
             this.trackBarZ.Name = "trackBarZ";
+            this.toolTip1.SetToolTip(this.trackBarZ, resources.GetString("trackBarZ.ToolTip"));
             this.trackBarZ.Value = 32767;
             // 
             // label42
@@ -3897,6 +4097,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.trackBarY, "trackBarY");
             this.trackBarY.Maximum = 65535;
             this.trackBarY.Name = "trackBarY";
+            this.toolTip1.SetToolTip(this.trackBarY, resources.GetString("trackBarY.ToolTip"));
             this.trackBarY.Value = 32767;
             // 
             // trackBarX
@@ -3904,6 +4105,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.trackBarX, "trackBarX");
             this.trackBarX.Maximum = 65600;
             this.trackBarX.Name = "trackBarX";
+            this.toolTip1.SetToolTip(this.trackBarX, resources.GetString("trackBarX.ToolTip"));
             this.trackBarX.Value = 32767;
             // 
             // lblButtons15
@@ -5382,6 +5584,18 @@ namespace GRBL_Plotter
             this.tab11gB1.Name = "tab11gB1";
             this.tab11gB1.TabStop = false;
             // 
+            // tab11gB1lbl1a
+            // 
+            resources.ApplyResources(this.tab11gB1lbl1a, "tab11gB1lbl1a");
+            this.tab11gB1lbl1a.Name = "tab11gB1lbl1a";
+            // 
+            // linkLabel16
+            // 
+            resources.ApplyResources(this.linkLabel16, "linkLabel16");
+            this.linkLabel16.Name = "linkLabel16";
+            this.linkLabel16.TabStop = true;
+            this.linkLabel16.Tag = "https://inkscape.org/gallery/=extension/";
+            // 
             // tab11gB1lbl3
             // 
             resources.ApplyResources(this.tab11gB1lbl3, "tab11gB1lbl3");
@@ -5578,18 +5792,6 @@ namespace GRBL_Plotter
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // tab11gB1lbl1a
-            // 
-            resources.ApplyResources(this.tab11gB1lbl1a, "tab11gB1lbl1a");
-            this.tab11gB1lbl1a.Name = "tab11gB1lbl1a";
-            // 
-            // linkLabel16
-            // 
-            resources.ApplyResources(this.linkLabel16, "linkLabel16");
-            this.linkLabel16.Name = "linkLabel16";
-            this.linkLabel16.TabStop = true;
-            this.linkLabel16.Tag = "https://inkscape.org/gallery/=extension/";
-            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -5725,6 +5927,13 @@ namespace GRBL_Plotter
             this.tabPage6.ResumeLayout(false);
             this.tab7gB1.ResumeLayout(false);
             this.tab7gB1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDFeedrate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDStepwidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMinimum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDOffset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDDead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).EndInit();
@@ -6309,5 +6518,20 @@ namespace GRBL_Plotter
         private System.Windows.Forms.LinkLabel linkLabel15;
         private System.Windows.Forms.Label tab11gB1lbl1a;
         private System.Windows.Forms.LinkLabel linkLabel16;
+        private System.Windows.Forms.Label lblValR;
+        private System.Windows.Forms.Label lblValY;
+        private System.Windows.Forms.Label lblValZ;
+        private System.Windows.Forms.Label lblValX;
+        private System.Windows.Forms.NumericUpDown nUDDead;
+        private System.Windows.Forms.NumericUpDown nUDOffset;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label tab7gB2lbl2;
+        private System.Windows.Forms.Label tab7gB2lbl1;
+        private System.Windows.Forms.Label tab7gB2lbl4;
+        private System.Windows.Forms.NumericUpDown nUDMinimum;
+        private System.Windows.Forms.Label tab7gB2lbl3;
+        private System.Windows.Forms.Label tab7gB2lbl5;
+        private System.Windows.Forms.NumericUpDown nUDFeedrate;
+        private System.Windows.Forms.NumericUpDown nUDStepwidth;
     }
 }
