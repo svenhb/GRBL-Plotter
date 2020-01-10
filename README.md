@@ -4,6 +4,22 @@ A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with W
 Written in C# VisualStudio 2015.  
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
    
+### New in Version 1.3.3.x      
+* Path 'simulation' #96
+  - automatically go through G-Code lines and show position in 2D view
+* Optimized joystick control
+  - Calculates speeds depending on max speed from $11x settings every 50 ms
+  - Speed / feedrate for smallest joystick deflection can be set, applied with 200 ms interval
+* Serial connection
+  - automatic reset if expected status reports are missing
+  - automatic disconnect if receiving-error appears
+* 2D-View 
+  - with middle mouse button: move complete view or selection #93
+  - new option "Don't change pen width on zooming"
+* Some bug fixes
+  - Group selection for code folding
+  - using new FCTB release #95
+  
 ### New in Version 1.3.2.x   
 * Update
   - #84 add setting to DXF-Import
@@ -80,7 +96,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.3.2.4](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2019-12-07     
+#### [GRBL-Plotter Vers. 1.3.3.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-01-07     
 
 ### Requirements for compiling
 * VisualStudio 2015 
