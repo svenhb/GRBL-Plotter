@@ -165,11 +165,11 @@ Separate serial COM window(s) - one for the CNC, one for the tool changer (or 4t
 ![GRBL-Plotter COM interface](doc/GRBLPlotter_COM2.png?raw=true "Serial connection") ![2nd GRBL control](doc/GRBLPlotter_Control_COM2.png?raw=true "Serial connection")
 
 Setup import / GCode conversion  
-![GRBL-Plotter Setup1.1](doc/GRBLPlotter_Setup1_1_en.png?raw=true "Setup1.1") 
+![GRBL-Plotter Setup1.1](doc/screenshots/en_1325_setup_1_1.png?raw=true "Setup1.1") 
 Setup import / GCode conversion  
-![GRBL-Plotter Setup1.2](doc/GRBLPlotter_Setup1_2_en.png?raw=true "Setup1.2") 
+![GRBL-Plotter Setup1.2](doc/screenshots/en_1325_setup_1_2.png?raw=true "Setup1.2") 
 Setup import / GCode conversion  
-![GRBL-Plotter Setup1.3](doc/GRBLPlotter_Setup1_3_en.png?raw=true "Setup1.3") 
+![GRBL-Plotter Setup1.3](doc/screenshots/en_1325_setup_1_3.png?raw=true "Setup1.3") 
    
 Setup main tool table  
 ![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_en.png?raw=true "Setup2")  
