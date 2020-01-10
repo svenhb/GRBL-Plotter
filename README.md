@@ -170,25 +170,36 @@ Setup import / GCode conversion
 ![GRBL-Plotter Setup1.2](doc/screenshots/en_1325_setup_1_2.png?raw=true "Setup1.2") 
 Setup import / GCode conversion  
 ![GRBL-Plotter Setup1.3](doc/screenshots/en_1325_setup_1_3.png?raw=true "Setup1.3") 
+Setup import / GCode conversion  
+![GRBL-Plotter Setup1.4](doc/screenshots/en_1325_setup_1_4.png?raw=true "Setup1.4") 
    
 Setup main tool table  
-![GRBL-Plotter Setup2](doc/GRBLPlotter_Setup2_en.png?raw=true "Setup2")  
+![GRBL-Plotter Setup2](doc/screenshots/en_1325_setup_2.png?raw=true "Setup2")  
    
-Setup main configuration  
-![GRBL-Plotter Setup3](doc/GRBLPlotter_Setup3_en.png?raw=true "Setup3")  
+Setup tool change configuration  
+![GRBL-Plotter Setup3](doc/screenshots/en_1325_setup_3.png?raw=true "Setup3")  
+ 
+Setup flow control configuration  
+![GRBL-Plotter Setup4](doc/screenshots/en_1325_setup_4.png?raw=true "Setup4")  
   
+Setup program control configuration  
+![GRBL-Plotter Setup5](doc/screenshots/en_1325_setup_5.png?raw=true "Setup5")  
+
 Setup user defined buttons  
-![GRBL-Plotter Setup4](doc/GRBLPlotter_Setup4_en.png?raw=true "Setup4")  
+![GRBL-Plotter Setup6](doc/screenshots/en_1325_setup_6.png?raw=true "Setup6")  
   
 Setup GamePad  
-![GRBL-Plotter Setup5](doc/GRBLPlotter_Setup5_en.png?raw=true "Setup5")  
+![GRBL-Plotter Setup7](doc/screenshots/en_1325_setup_7.png?raw=true "Setup7")  
   
 Setup virtual Joystick  
-![GRBL-Plotter Setup6](doc/GRBLPlotter_Setup6_en.png?raw=true "Setup6")  
+![GRBL-Plotter Setup8](doc/screenshots/en_1325_setup_8.png?raw=true "Setup8")  
+  
+Setup Hot-Keys     
+![GRBL-Plotter Setup9](doc/screenshots/en_1325_setup_9.png?raw=true "Setup9")  
   
 Setup shape recogniton for fiducial camera     
-![GRBL-Plotter Setup7](doc/GRBLPlotter_Setup7_en.png?raw=true "Setup7")  
-  
+![GRBL-Plotter Setup10](doc/screenshots/en_1325_setup_10.png?raw=true "Setup10")  
+    
 Text import  
 ![GRBL-Plotter Text](doc/GRBLPlotter_Text.png?raw=true "Text conversion")  
   
