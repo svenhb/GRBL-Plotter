@@ -56,9 +56,11 @@ any A,B,C,U,V,W commands will stay in place.
 * Radius compensation 
   
 #### Machine control:  
+* Height map, auto leveling 
+* Probing dialog 
 * Individual commands via user defined Buttons  
 * Joystick like control in user interface  
-* support of no-name USB GamePad  
+* support of no-name USB GamePad / Joystick   
 * Optional usage of a WebCam with separate coordinate system: graphics overlay of the current GCode, set zero point, measure angle, zoom, teaching  
   - Shape recognition for easier teach-point (fiducial) assignment  
   - Transforming GCode with camera aid, to match drill file with PCB view [Wiki 'PCB drilling'](https://github.com/svenhb/GRBL-Plotter/wiki/PCB-drilling)   
