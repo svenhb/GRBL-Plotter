@@ -1,6 +1,39 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### 2020-01-07 Version 1.3.3.0
+* Path 'simulation' #96
+  - automatically go through G-Code lines and show position in 2D view
+* Optimized joystick control
+  - Calculates speeds depending on max speed from $11x settings every 50 ms
+  - Speed / feedrate for smallest joystick deflection can be set, applied with 200 ms interval
+* Serial connection
+  - automatic reset if expected status reports are missing
+  - automatic disconnect if receiving-error appears
+* 2D-View 
+  - with middle mouse button: move complete view or selection #93
+  - new option "Don't change pen width on zooming"
+* Some bug fixes
+  - Group selection for code folding
+  - using new FCTB release #95
+
+### 2019-12-20 Version 1.3.2.6
+* Add arabic and japanese language
+* Bug fix save gcode - using new FastColoredTextBox.dll
+
+### 2019-12-07 Version 1.3.2.4
+* Update
+  - #84 add setting to DXF-Import
+  - #85 offset marked figure by moving in 2d view, while middle mouse button is pressed (after moving, confirm translation via menu)
+  - #88 marked figure can be moved up/down in GCode editor to change order
+  - enable/disable 2D-view of ruler, info, Pen-up-path
+  - Run GCode or script after Reset (Setup - Flow Control - Behavior after Reset)
+  - Add key-words for custom-buttons, hot-keys, Game-pad: #FEEDHOLD, #RESUME, #KILLALARM, #RST, #HRST
+* Bug fixes 
+  - #85 try to load from locked file 
+  - #89 multiple passes and laser 
+  - misc 
+
 ### 2019-11-24 version 1.3.2.3
 * Bug fix DXF Import - Ellipse:
 Fix DXFLib.dll, Add Ellipse support
