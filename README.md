@@ -17,7 +17,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 * VisualStudio 2015 
 * DotNET 4.0
  
-### Feature list:
+## Feature list:
 #### Import/Export:  
 * Several options to translate Pen Up/Down
   - controlling a Z axis
@@ -52,6 +52,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 any A,B,C,U,V,W commands will stay in place.
 * Transformation via camera teaching
 * Axis Substitution for Rotary Axis
+* Radius compensation 
   
 #### Machine control:  
 * Individual commands via user defined Buttons  
