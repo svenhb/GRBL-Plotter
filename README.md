@@ -36,6 +36,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
   - if text needs to be imported, convert text into path first
 * DXF graphics import via file load, drag & drop (also URL) - tested with [LibreCAD](http://librecad.org/cms/home.html) generated DXFs 
   - few entities are missing
+* [Drag tool compensation](https://github.com/svenhb/GRBL-Plotter/wiki/Drag-tool-compensation)
 * Drill file import via file load, drag & drop
 * Image import via file load or drag & drop
 * GCode can be edited and saved
