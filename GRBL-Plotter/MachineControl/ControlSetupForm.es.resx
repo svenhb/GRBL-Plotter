@@ -1733,4 +1733,59 @@ Mueva el joystick después de cambiar el desplazamiento.</value>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
     <value>No cambie el ancho de la pluma al hacer zoom</value>
   </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>Traducir mensajes grbl</value>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>Traduce mensajes grbl como IDLE, RUN, HOLD</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>Avance para correr</value>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>Paso para correr</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Ángulo de giro</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>Si el cambio en el ángulo es mayor que el ángulo de giro,
+El eje Z se moverá hacia arriba
+eje girará
+El eje Z se moverá hacia abajo</value>
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value>Cambio de ángulo antes de insertar una secuencia "Eje Z hacia arriba, cambio de ángulo, eje Z hacia abajo".</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Nombre del eje tangencial</value>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>Añadir eje tangencial</value>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>Comandos de eje tangencial</value>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>ordenar grupos por dimensión de objeto - ascendente</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>Unidades por turno</value>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>Ángulo de giro</value>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>Si el cambio en el ángulo es mayor que el ángulo de giro,
+El eje Z se moverá hacia arriba
+eje girará
+El eje Z se moverá hacia abajo</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>Cambie el ángulo antes de levantar, girar y bajar el cuchillo.</value>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>Nombre del eje tangencial.</value>
+  </data>
 </root>

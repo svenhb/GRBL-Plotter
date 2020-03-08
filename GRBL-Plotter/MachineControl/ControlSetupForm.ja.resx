@@ -1906,4 +1906,59 @@ svenhb.bplaced.netでの2回目の試行</value>
   <data name="trackBarX.ToolTip" xml:space="preserve">
     <value>Joystick Xチャンネルの価値</value>
   </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>grblメッセージを翻訳する</value>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>IDLE、RUN、HOLDなどのgrblメッセージを翻訳する</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>ジョギングの送り速度</value>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>ジョギングのためのステップ</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>旋回角度</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>角度の変化がスイベル角度より大きい場合、
+Z軸が上に移動します
+軸が回る
+Z軸が下に移動します</value>
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value>シーケンス「Z軸アップ、角度変更、Z軸ダウン」が挿入される前の角度変更。</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>接線軸の名前</value>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>接線軸を追加</value>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>接線軸コマンド</value>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>オブジェクトの次元でグループをソート-昇順</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>ターンあたりのユニット</value>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>旋回角度</value>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>角度の変化がスイベル角度より大きい場合、
+Z軸が上に移動します
+軸が回る
+Z軸が下に移動します</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>ナイフを上げて、回して、下げる前に角度を変える</value>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>接線軸の名前</value>
+  </data>
 </root>

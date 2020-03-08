@@ -1741,4 +1741,59 @@ M4动态激光功率模式</value>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
     <value>请勿在缩放时更改笔宽</value>
   </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>翻译grbl讯息</value>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>翻译GRBL消息，例如IDLE，RUN，HOLD</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>慢进给速度</value>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>慢跑</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>旋转角度</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>如果角度变化大于旋转角度，
+Z轴将向上移动
+轴将转动
+Z轴将向下移动</value>
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value>在插入“ Z轴向上，角度改变，Z轴向下”序列之前的角度改变。</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>切线轴名称</value>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>添加切线轴</value>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>切线轴命令</value>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>按对象维度对组进行排序-升序</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>每转单位</value>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>旋转角度</value>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>如果角度变化大于旋转角度，
+Z轴将向上移动
+轴将转动
+Z轴将向下移动</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>在升高，旋转和降低刀之前更改角度</value>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>切线轴名称</value>
+  </data>
 </root>

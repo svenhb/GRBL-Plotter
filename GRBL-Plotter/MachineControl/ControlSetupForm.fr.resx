@@ -1733,4 +1733,59 @@ Déplacez le joystick après avoir modifié le décalage.</value>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
     <value>Ne changez pas la largeur du stylo lors du zoom</value>
   </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>Traduire les messages grbl</value>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>Traduire les messages grbl comme IDLE, RUN, HOLD</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>Vitesse d'avance pour le jogging</value>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>Étape avec pour faire du jogging</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Angle de pivotement</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>Si le changement d'angle est supérieur à l'angle de pivotement,
+L'axe Z sera déplacé vers le haut
+l'axe tournera
+L'axe Z sera déplacé vers le bas</value>
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value>Changement d'angle avant l'insertion d'une séquence "axe Z vers le haut, changement d'angle, axe Z vers le bas".</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Nom de l'axe tangentiel</value>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>Ajouter un axe tangentiel</value>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>Commandes d'axe tangentiel</value>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>trier les groupes par dimension d'objet - croissant</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>Unités par tour</value>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>Angle de pivotement</value>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>Si le changement d'angle est supérieur à l'angle de pivotement,
+L'axe Z sera déplacé vers le haut
+l'axe tournera
+L'axe Z sera déplacé vers le bas</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>Changer l'angle avant que le couteau ne soit levé, tourné et abaissé</value>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>Nom de l'axe tangentiel</value>
+  </data>
 </root>

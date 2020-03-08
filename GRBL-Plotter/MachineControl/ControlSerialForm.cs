@@ -44,6 +44,7 @@
  * 2019-10-31 add SerialPortFixer http://zachsaw.blogspot.com/2010/07/serialport-ioexception-workaround-in-c.html
  * 2019-12-07 add additional log-info during streamning cBStatus1
  * 2020-01-04 add "errorBecauseOfBadCode" line 652
+ * 2020-01-22 remove hard reset because of missing status reports
 */
 
 //#define debuginfo 
@@ -197,20 +198,21 @@ namespace GRBL_Plotter
         {   grblBufferSize = grbl.RX_BUFFER_SIZE;  //rx bufer size of grbl on arduino 127
             grblBufferFree = grbl.RX_BUFFER_SIZE;
             timerSerial.Interval = grbl.pollInterval;
+            failCounter = 10000 / timerSerial.Interval;
         }
 
         private void timerSerialEnable(bool value)
-        {
-            timerSerial.Enabled = value;
-        }
+        {   timerSerial.Enabled = value;  }
 
         /*
          * Timer to retry sending data   timerSerial.Interval = grbl.pollInterval;
          */
+        private int failCounter = 100;
         private void timerSerial_Tick(object sender, EventArgs e)
         {
+            failCounter--;
             if (minimizeCount > 0)
-            { minimizeCount--;
+            {   minimizeCount--;
                 if (minimizeCount == 0)
                     this.WindowState = FormWindowState.Minimized;
             }
@@ -226,12 +228,15 @@ namespace GRBL_Plotter
                     logError("! Retrieving GRBL status", er);
                     serialPort.Close();
                 }
-                if (Math.Abs(rtsrResponse) > 20)
-                {   lastError = "Missing some Real-time Status Reports - doing Hard-RESET";
-                    addToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                    addToLog(lastError);
-                    Logger.Error(lastError);
-                    grblHardReset();
+                if (failCounter <= 0)
+                {   if (Math.Abs(rtsrResponse) > 10)
+                    {   lastError = string.Format("Missing {0} Real-time Status Reports per 10 seconds",rtsrResponse);
+                        addToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        addToLog(lastError);
+                        Logger.Error(lastError);
+                    }
+                    failCounter = 10000 / timerSerial.Interval;
+                    rtsrResponse = 0;
                 }
             }
             if (waitForIdle)
@@ -248,6 +253,7 @@ namespace GRBL_Plotter
             {   grblBufferSize = grbl.RX_BUFFER_SIZE;  //rx bufer size of grbl on arduino 127
                 grblBufferFree = grbl.RX_BUFFER_SIZE;
                 timerSerial.Interval = grbl.pollInterval;
+                failCounter = 10000/ timerSerial.Interval;
                 resetProcessed = true;
             }
             if (preventOutput > 0)
@@ -441,6 +447,7 @@ namespace GRBL_Plotter
                     if (Properties.Settings.Default.serialMinimize)
                         minimizeCount = 10;                         // minimize window after 10 timer ticks
                     timerSerial.Interval = grbl.pollInterval;       // timerReload;
+                    failCounter = 10000 / timerSerial.Interval;
                     preventOutput = 0; preventEvent = 0;
                     isHeightProbing = false;
                     if (grbl.grblSimulate)
@@ -899,7 +906,10 @@ namespace GRBL_Plotter
                         allowStreamingEvent = true;
                         OnRaiseStreamEvent(new StreamEventArgs(0, 0, 0, grblStreaming.finish));
                         if (Properties.Settings.Default.grblPollIntervalReduce)
+                        {
                             timerSerial.Interval = grbl.pollInterval;
+                            failCounter = 10000 / timerSerial.Interval;
+                        }
                     }
                 }
             }
@@ -915,6 +925,7 @@ namespace GRBL_Plotter
         private void handleRX_Setup(string rxString)
         {
             timerSerial.Interval = grbl.pollInterval;
+            failCounter = 10000 / timerSerial.Interval;
 
             string[] splt = rxString.Split('=');
             int id;
@@ -1008,18 +1019,18 @@ namespace GRBL_Plotter
             }
 
             if (iamSerial == 1)
-                {   if (!grbl.posChanged)
-                        grbl.posChanged = ! (xyzPoint.AlmostEqual(grbl.posWCO, posWCO) && xyzPoint.AlmostEqual(grbl.posMachine, posMachine));
-                    if (!grbl.wcoChanged)
-                        grbl.wcoChanged = !(xyzPoint.AlmostEqual(grbl.posWCO, posWCO));
-                    grbl.posWCO = posWCO; grbl.posWork = posWork; grbl.posMachine = posMachine;
-                } // make it global
+            {   if (!grbl.posChanged)
+                    grbl.posChanged = ! (xyzPoint.AlmostEqual(grbl.posWCO, posWCO) && xyzPoint.AlmostEqual(grbl.posMachine, posMachine));
+                if (!grbl.wcoChanged)
+                    grbl.wcoChanged = !(xyzPoint.AlmostEqual(grbl.posWCO, posWCO));
+                grbl.posWCO = posWCO; grbl.posWork = posWork; grbl.posMachine = posMachine;
+            } // make it global
 
             gcodeVariable["MACX"] = posMachine.X; gcodeVariable["MACY"] = posMachine.Y; gcodeVariable["MACZ"] = posMachine.Z;
             gcodeVariable["WACX"] = posWork.X;   gcodeVariable["WACY"] = posWork.Y;   gcodeVariable["WACZ"] = posWork.Z;
             grblStateNow = grbl.parseStatus(status);
             lblSrState.BackColor = grbl.grblStateColor(grblStateNow);
-            lblSrState.Text = status;
+            lblSrState.Text = grbl.statusToText(grblStateNow);  // status;
 
             lblSrPos.Text = posWork.Print(false, grbl.axisB || grbl.axisC); // show actual work position
             if (grblStateNow != grblStateLast) { grblStateChanged(); }
@@ -1412,7 +1423,9 @@ namespace GRBL_Plotter
             }
             updateControls();
             if (Properties.Settings.Default.grblPollIntervalReduce)
-                timerSerial.Interval = grbl.pollInterval;
+            {   timerSerial.Interval = grbl.pollInterval;
+                failCounter = 10000 / timerSerial.Interval;
+            }
         }
         public void pauseStreaming()
         {   if (!isStreamingPause)
@@ -1458,7 +1471,9 @@ namespace GRBL_Plotter
             grblBufferSize = grbl.RX_BUFFER_SIZE;  //rx bufer size of grbl on arduino 127
             grblBufferFree = grbl.RX_BUFFER_SIZE;
             if (Properties.Settings.Default.grblPollIntervalReduce)
-                timerSerial.Interval = grbl.pollInterval*2;
+            {   timerSerial.Interval = grbl.pollInterval * 2;
+                failCounter = 10000 / timerSerial.Interval;
+            }
 
             lastError = "";
             lastSentToCOM.Clear();

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// 2020-01-10 line 113 set x,y,z=null
+
 using System;
 using System.Windows.Forms;
 
@@ -28,15 +30,16 @@ namespace GRBL_Plotter
     class coordByLine
     {   public int lineNumber;          // line number in fCTBCode
         public int figureNumber;
-        public xyPoint actualPos;      // accumulates position
+        public xyPoint actualPos;       // accumulates position
+        public double alpha;            // angle between old and this position
         public double distance;         // distance to specific point
         public bool isArc;
 
-        public coordByLine(int line, int figure, xyPoint p, bool isarc)
-        { lineNumber = line; figureNumber = figure; actualPos = p; distance = -1; isArc = isarc; }
+        public coordByLine(int line, int figure, xyPoint p, double a, bool isarc)
+        { lineNumber = line; figureNumber = figure; actualPos = p; alpha = a; distance = -1; isArc = isarc; }
 
-        public coordByLine(int line, int figure, xyPoint p, double dist)
-        { lineNumber = line; figureNumber = figure; actualPos = p; distance = dist; isArc = false; }
+        public coordByLine(int line, int figure, xyPoint p, double a, double dist)
+        { lineNumber = line; figureNumber = figure; actualPos = p; alpha = a; distance = dist; isArc = false; }
 
         public void calcDistance(xyPoint tmp)
         {   xyPoint delta = new xyPoint(tmp - actualPos);
@@ -76,6 +79,7 @@ namespace GRBL_Plotter
         public int feedRate;            // actual feed rate
         public double? x, y, z, a, b, c, u, v, w, i, j; // current parameters
         public xyzabcuvwPoint actualPos;      // accumulates position
+        public double alpha;            // angle between old and this position
         public double distance;         // distance to specific point
         public string otherCode;
         public string info;
@@ -90,7 +94,7 @@ namespace GRBL_Plotter
             isSubroutine = tmp.isSubroutine; spindleState = tmp.spindleState; coolantState = tmp.coolantState;
             spindleSpeed = tmp.spindleSpeed; feedRate = tmp.feedRate;
             x = tmp.x; y = tmp.y; z = tmp.z; i = tmp.i; j = tmp.j; a = tmp.a; b = tmp.b; c = tmp.c; u = tmp.u; v = tmp.v; w = tmp.w;
-            actualPos = tmp.actualPos; distance = tmp.distance;
+            actualPos = tmp.actualPos; distance = tmp.distance; alpha = tmp.alpha;
             isSetCoordinateSystem = tmp.isSetCoordinateSystem;  otherCode = tmp.otherCode;
         }
 
@@ -108,7 +112,9 @@ namespace GRBL_Plotter
 
             actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
-            distance = -1; otherCode = ""; info = "";
+            distance = -1; otherCode = ""; info = ""; alpha = 0;
+
+            x = y = z = a = b = c = u = v = w = i = j = null;
                  
             resetCoordinates();
         }
@@ -349,4 +355,124 @@ namespace GRBL_Plotter
         }
     }
 
+    struct ArcProperties
+    {   public double angleStart, angleEnd, angleDiff, radius;
+        public xyPoint center;
+    };
+
+    class gcodeMath
+    {   private static double precision = 0.00001;
+
+        public static bool isEqual(System.Windows.Point a, System.Windows.Point b)
+        {   return ((Math.Abs(a.X - b.X) < precision) && (Math.Abs(a.Y - b.Y) < precision));    }
+        public static bool isEqual(xyPoint a, xyPoint b)
+        {   return ((Math.Abs(a.X - b.X) < precision) && (Math.Abs(a.Y - b.Y) < precision));    }
+
+        public static double distancePointToPoint(System.Windows.Point a, System.Windows.Point b)
+        {   return Math.Sqrt(((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y)));        }
+
+        public static ArcProperties getArcMoveProperties(xyPoint pOld, xyPoint pNew, double? I, double? J, bool isG2)
+        {
+            ArcProperties tmp = getArcMoveAngle(pOld, pNew, I, J);
+            if (!isG2) { tmp.angleDiff = Math.Abs(tmp.angleEnd - tmp.angleStart + 2 * Math.PI); }
+            if (tmp.angleDiff > (2 * Math.PI)) { tmp.angleDiff -= (2 * Math.PI); }
+            if (tmp.angleDiff < (-2 * Math.PI)) { tmp.angleDiff += (2 * Math.PI); }
+
+            if ((pOld.X == pNew.X) && (pOld.Y == pNew.Y))
+            {   if (isG2) { tmp.angleDiff = -2 * Math.PI; }
+                else { tmp.angleDiff = 2 * Math.PI; }
+            }
+            return tmp;
+        }
+
+        public static ArcProperties getArcMoveAngle(xyPoint pOld, xyPoint pNew, double? I, double? J)
+        {
+            ArcProperties tmp;
+			if (I==null) {I=0;}
+			if (J==null) {J=0;}
+            double i = (double)I;
+            double j = (double)J;
+            tmp.radius = Math.Sqrt(i * i + j * j);  // get radius of circle
+            tmp.center.X = pOld.X + i;
+            tmp.center.Y = pOld.Y + j;
+            tmp.angleStart = tmp.angleEnd = tmp.angleDiff = 0;
+            if (tmp.radius == 0)
+                return tmp;
+
+            double cos1 = i / tmp.radius;
+            if (cos1 > 1) cos1 = 1;
+            if (cos1 < -1) cos1 = -1;
+            tmp.angleStart = Math.PI - Math.Acos(cos1);
+            if (j > 0) { tmp.angleStart = -tmp.angleStart; }
+
+            double cos2 = (tmp.center.X - pNew.X) / tmp.radius;
+            if (cos2 > 1) cos2 = 1;
+            if (cos2 < -1) cos2 = -1;
+            tmp.angleEnd = Math.PI - Math.Acos(cos2);
+            if ((tmp.center.Y - pNew.Y) > 0) { tmp.angleEnd = -tmp.angleEnd; }
+
+            tmp.angleDiff = tmp.angleEnd - tmp.angleStart - 2 * Math.PI;
+            return tmp;
+        }
+
+        public static double getAlpha(System.Windows.Point pOld, double P2x, double P2y)
+        { return getAlpha(pOld.X, pOld.Y, P2x, P2y); }
+        public static double getAlpha(System.Windows.Point pOld, System.Windows.Point pNew)
+        { return getAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
+        public static double getAlpha(xyPoint pOld, xyPoint pNew)
+        {   return getAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
+        public static double getAlpha(double P1x, double P1y, double P2x, double P2y)
+        {
+            double s = 1, a = 0;
+            double dx = P2x - P1x;
+            double dy = P2y - P1y;
+            if (dx == 0)
+            {
+                if (dy > 0)
+                    a = Math.PI / 2;
+                else
+                    a = 3 * Math.PI / 2;
+                if (dy == 0)
+                    return 0;
+            }
+            else if (dy == 0)
+            {
+                if (dx > 0)
+                    a = 0;
+                else
+                    a = Math.PI;
+                if (dx == 0)
+                    return 0;
+            }
+            else
+            {
+                s = dy / dx;
+                a = Math.Atan(s);
+                if (dx < 0)
+                    a += Math.PI;
+            }
+            return a;
+        }
+
+        public static double cutAngle=0, cutAngleLast=0, angleOffset = 0;
+        public static void resetAngles()
+        {   angleOffset = cutAngle = cutAngleLast = 0.0;  }
+        public static double getAngle(System.Windows.Point a, System.Windows.Point b, double offset, int dir)
+        {   return monitorAngle(getAlpha(a, b) + offset, dir);  }
+        private static double monitorAngle(double angle, int direction)		// take care of G2 cw G3 ccw direction
+        {   double diff = angle - cutAngleLast + angleOffset;
+            if (direction == 2)
+            { if (diff > 0) { angleOffset -= 2 * Math.PI; } }    // clock wise, more negative
+            else if (direction == 3)
+            {   if (diff < 0) { angleOffset += 2 * Math.PI; } }    // counter clock wise, more positive
+            else
+            {   if (diff > Math.PI)
+                    angleOffset -= 2 * Math.PI;
+                if (diff < -Math.PI)
+                    angleOffset += 2 * Math.PI;
+            }
+            angle += angleOffset;
+            return angle;
+        }
+    }
 }

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,9 @@
     During transformation the drawing path will be generated, because cooridantes are already parsed.
     Return transformed GCode 
 */
+/* 2020-01-13 convert GCodeVisuAndTransform to a static class
+ * 2020-02-18 extend simulation for tangetial angle
+ */
 
 //#define debuginfo   // MainFormGetCodeTransform Line 591    showMessageForm(log.get());
 
@@ -30,26 +33,26 @@ using System.Drawing.Drawing2D;
 
 namespace GRBL_Plotter
 {
-    public partial class GCodeVisuAndTransform
+    public static partial class VisuGCode
     {
-        public xyPoint getCenterOfMarkedFigure()
+        public static xyPoint getCenterOfMarkedFigure()
         {
             RectangleF selectionBounds = pathMarkSelection.GetBounds();
             float centerX = selectionBounds.X + selectionBounds.Width / 2;
             float centerY = selectionBounds.Y + selectionBounds.Height / 2;
             return new xyPoint((double)centerX, (double)centerY); 
         }
-        private bool xyMove(gcodeByLine tmp)
+        private static bool xyMove(gcodeByLine tmp)
         { return ((tmp.x != null) || (tmp.y != null)); }
 
-        private bool sameXYPos(gcodeByLine tmp1, gcodeByLine tmp2)
+        private static bool sameXYPos(gcodeByLine tmp1, gcodeByLine tmp2)
         { return ((tmp1.x == tmp2.x) && (tmp1.y == tmp2.y) && (tmp1.z == tmp2.z));
         }
 
         /// <summary>
         /// mirror gcode
         /// </summary>
-        public string transformGCodeMirror(translate shiftToZero = translate.MirrorX)
+        public static string transformGCodeMirror(translate shiftToZero = translate.MirrorX)
         {
             Logger.Debug("Mirror {0}", shiftToZero);
 #if (debuginfo)
@@ -114,7 +117,7 @@ namespace GRBL_Plotter
             return createGCodeProg();
         }
 
-        public string cutOutFigure()
+        public static string cutOutFigure()
         {
             if (lastFigureNumber > 0)
             {   for (int i = gcodeList.Count - 1; i >= 0; i--)
@@ -125,7 +128,7 @@ namespace GRBL_Plotter
             return createGCodeProg();
         }
 
-        public string transformGCodeRadiusCorrection(double radius)
+        public static string transformGCodeRadiusCorrection(double radius)
         {
             Logger.Debug("Radius correction r: {0}", radius);
 #if (debuginfo)
@@ -157,7 +160,7 @@ namespace GRBL_Plotter
             {
                 if ((i == (gcodeList.Count - 1)) || ((lastFigureNumber > 0) && (gcodeList[i].figureNumber != lastFigureNumber)))  // if wrong selection, nothing to do
                 { if (figureProcessed)        // correct last point
-                    { figureProcessed = false;
+                    {   figureProcessed = false;
                         goto ProcessesPath;
                     }
                     continue;
@@ -196,13 +199,6 @@ namespace GRBL_Plotter
 #endif
                     }
                 }
-/*                xyPoint tmpAct = new xyPoint(gcodeList[act].actualPos.X, gcodeList[act].actualPos.Y);
-                double tmpDist = tmpAct.DistanceTo(new xyPoint(gcodeList[i].actualPos.X, gcodeList[i].actualPos.Y));
-                if (tmpDist < Math.Abs(radius))
-                {   gcodeList.RemoveAt(i);
-                    continue;
-                }
-*/
                 figureProcessed = true;                 // must stay before jump label
                 next = i;
                 endFigure = false;
@@ -270,7 +266,7 @@ namespace GRBL_Plotter
             return createGCodeProg();
         }
 
-        private bool sameSign(double? a, double? b)
+        private static bool sameSign(double? a, double? b)
         {   if (double.IsNaN((double)a) || double.IsNaN((double)b))
                 return false;
             if ((a.HasValue && b.HasValue))
@@ -280,7 +276,7 @@ namespace GRBL_Plotter
         }
 
         // calculate and apply offset for given coordinates in gcodeList[prev,act,next] (which should have xy moves)
-        public int createOffsetedPath(bool isFirst, bool isEnd, int iInitial, int prev, int act, int next, double radius, ref xyPoint[] offset)
+        public static int createOffsetedPath(bool isFirst, bool isEnd, int iInitial, int prev, int act, int next, double radius, ref xyPoint[] offset)
         {
             xyArcPoint p1 = fillPointData(prev, prev);
             xyArcPoint p2 = fillPointData(prev, act);
@@ -354,13 +350,239 @@ namespace GRBL_Plotter
             return offsetType;
         }
 
-        private xyArcPoint fillPointData(int prevLine, int tmpLine)
+        private static xyArcPoint fillPointData(int prevLine, int tmpLine)
         {
             xyArcPoint tmpPoint;
             tmpPoint = (xyArcPoint)gcodeList[tmpLine].actualPos;
             if ((tmpPoint.mode = gcodeList[tmpLine].motionMode) > 1)
             { tmpPoint.CX = gcodeList[prevLine].actualPos.X + (double)gcodeList[tmpLine].i; tmpPoint.CY = gcodeList[prevLine].actualPos.Y + (double)gcodeList[tmpLine].j; }
             return tmpPoint;
+        }
+
+        // calculate intermediate steps betwee code lines
+        public static class Simulation
+        {
+            private static int lineNr = 0;  // actual code line
+            public static int dt = 50;    // step width
+            private static xyPoint posXY = new xyPoint();
+            private static double posZ = 0;
+            private static double posA = 0;
+            private static double posAngle = 0;
+            private static float feedRate = 1000;
+            private static float feedRateRapid = 2000;
+            private static double stepWidth = 10;
+            private static double remainingStep = 10;
+            private static bool isIntermediate = false;
+            private static double distance  = 0;
+            private static gcodeByLine codeLast = new gcodeByLine();
+            private static gcodeByLine codeNext = new gcodeByLine();
+            private static bool isTangentialZ = false;
+
+			private struct length
+			{	public double XY;
+                public double Z;
+                public double A;
+                public double Arc;
+                public double Max;
+            };
+            private static length diff;
+
+            public static void Reset()
+            {   lineNr = 0;  isIntermediate = false;
+                diff.XY = diff.Z = diff.A = diff.Arc = 0;
+                distance = 0; dt = 50; posZ = 0; posA = 0;
+                remainingStep = stepWidth = 10;
+                posXY = grbl.posMarker = new xyPoint();
+                posAngle = grbl.posMarkerAngle = 0;
+                codeNext = new gcodeByLine(simuList[lineNr]);
+                createMarkerPath();
+                isTangentialZ = (tangentialAxisName == "Z");
+            }
+            public static void setDt(int tmp)
+            { dt = tmp; }
+            public static double getZ()
+            { return posZ; }
+            public static double getA()
+            { return posA; }
+            public static int Next()
+            {   if (isIntermediate)
+                {   isIntermediate = calcIntermediatePos(); }
+                if (!isIntermediate)
+                {
+                    if (!getNextPos())                      //  finish simu if nextPos = false
+                    {   grbl.posMarker = (xyPoint)codeNext.actualPos;
+                        grbl.posMarkerAngle = codeNext.alpha;
+                        createMarkerPath(false, (xyPoint)codeNext.actualPos);
+                        return -1;
+                    }
+                    if (remainingStep <= 0)
+                        remainingStep += stepWidth;
+                    remainingStep -= distance;   
+
+                    if (remainingStep == 0)                 // just next full pos
+                    {
+                        grbl.posMarker = (xyPoint)codeNext.actualPos;
+                        grbl.posMarkerAngle = codeNext.alpha;
+                        createMarkerPath(false, (xyPoint)codeNext.actualPos);
+                        posXY = grbl.posMarker;
+                        posA = grbl.posMarkerAngle;
+                        return codeNext.lineNumber;    
+                    }
+                    else if (remainingStep > 0)             // move too short, get next gcode
+                    {   while (remainingStep > 0)
+                        {   if (!getNextPos())              //  finish simu if nextPos = false //  calc distance & remaining steps
+                            {   grbl.posMarker = (xyPoint)codeNext.actualPos;
+                                grbl.posMarkerAngle = codeNext.alpha;
+                                createMarkerPath(false, (xyPoint)codeNext.actualPos);
+                                return -codeNext.lineNumber;
+                            }
+                            remainingStep -= distance;   
+                        }
+                        if (remainingStep == 0)             // just next full pos
+                        {   grbl.posMarker = (xyPoint)codeNext.actualPos;
+                            grbl.posMarkerAngle = codeNext.alpha;
+                            createMarkerPath(false, (xyPoint)codeNext.actualPos);
+                            posXY = grbl.posMarker;
+                            posA = grbl.posMarkerAngle;
+                            return codeNext.lineNumber;   
+                        }
+                    }
+        // remainingStep < 0 calc intermediate steps
+                    posXY = (xyPoint)codeLast.actualPos;
+                    posAngle = codeLast.alpha;
+                    posZ = codeLast.actualPos.Z;
+                    posA = codeLast.alpha;
+					diff.XY = ((xyPoint)codeLast.actualPos).DistanceTo((xyPoint)codeNext.actualPos);
+                    diff.Z  = Math.Abs(codeNext.actualPos.Z - codeLast.actualPos.Z);
+                    diff.A   = Math.Abs(codeNext.alpha - codeLast.alpha);
+                    isIntermediate = true;
+//                    Logger.Trace(" astart {0} aend {1}", 180*arcMove.angleStart/Math.PI, 180*arcMove.angleEnd/Math.PI);
+                    calcIntermediatePos();
+                    remainingStep = stepWidth;
+                }
+                grbl.posMarker = posXY;
+                grbl.posMarkerAngle = posA ; // posAngle;
+                createMarkerPath(false, posXY);
+                return codeNext.lineNumber;    
+            }
+
+            private static bool calcIntermediatePos()
+            {   updateFeedRate();
+                remainingStep = stepWidth;
+                double deltaA = codeNext.alpha - posA;
+                if (codeNext.motionMode < 2)
+                {   double deltaS = posXY.DistanceTo((xyPoint)codeNext.actualPos);      // XY remaining max distance
+                    if (tangentialAxisName != "Z")
+                        deltaS = Math.Max(deltaS, Math.Abs(codeNext.actualPos.Z - posZ));   // Z  remaining max distance
+
+//                    Logger.Trace("calcIntermediatePos deltaS {0:0.00}   codeLast.alpha {1:0.00}  codeNext.alpha {2:0.00} posA {3:0.00}  ", deltaS, codeLast.alpha, codeNext.alpha, posA);
+                    if ((deltaS < remainingStep) && ((deltaA) < 0.1))       // return false if finish with intermediate
+                    {   remainingStep -= deltaS;
+                        return false;
+                    }
+                    double deltaX = codeNext.actualPos.X - posXY.X;     // get remaining distance
+                    double deltaY = codeNext.actualPos.Y - posXY.Y;
+                    double deltaZ = codeNext.actualPos.Z - posZ;
+                    //           double deltaA = codeNext.alpha - posA;
+                    double dX = 0, dY = 0, dZ = 0, aStep = 10;
+                    if (deltaS != 0)
+                    {   dX = deltaX * remainingStep / deltaS;        // get step width relativ to max distance
+                        dY = deltaY * remainingStep / deltaS;
+                        dZ = deltaZ * remainingStep / deltaS;
+                        aStep = diff.Max / remainingStep;               // amount of steps to reach end-value
+                    }
+                    posXY.X += dX;
+                    posXY.Y += dY;
+                    posA += (codeNext.alpha - codeLast.alpha) / aStep;	// step width = 1/10	dA;
+                    if ((codeNext.z != null) && !isTangentialZ)
+                        posZ += dZ;
+                    return true;
+                }
+                else
+                {
+                    double aStep2 = remainingStep / arcMove.radius;         // get delta angle
+                    double turnAngle = arcMove.angleEnd - arcMove.angleStart;
+                    if (codeNext.motionMode == 2)
+                    {   if (turnAngle > 0)
+                            turnAngle -= 2 * Math.PI;
+                    }
+                    else
+                    {   if (turnAngle < 0)
+                            turnAngle += 2 * Math.PI;
+                    }
+
+                    if (turnAngle == 0)
+                        turnAngle = 2 * Math.PI;
+                    double dA = (codeNext.alpha - codeLast.alpha) / Math.Abs((turnAngle) /aStep2);	// get step width 
+
+                    if ((Math.Abs(codeNext.alpha - posA)) > 0)    // only rotate if needed
+                        posA += dA;
+
+                    if (arcMove.angleDiff > 0)
+                    {   angleTmp += aStep2;
+                    //    posA += dA;
+                        if ((angleTmp >= (arcMove.angleStart + arcMove.angleDiff)) && (Math.Abs(codeNext.alpha - posA) < Math.Abs(dA))) // return false if finish with intermediate
+                            return false;
+                    }
+                    else
+                    {   angleTmp -= aStep2;
+                     //   posA -= dA;
+                        if ((angleTmp <= (arcMove.angleStart + arcMove.angleDiff)) && (Math.Abs(codeNext.alpha - posA) < Math.Abs(dA))) // return false if finish with intermediate
+                            return false;
+                    }
+                    posXY.X = arcMove.center.X + arcMove.radius * Math.Cos(angleTmp);
+                    posXY.Y = arcMove.center.Y + arcMove.radius * Math.Sin(angleTmp);
+//                    Logger.Trace("  codeLast.alpha {0:0.00}  codeNext.alpha {1:0.00} posA {2:0.00}  angleTmp {3:0.00}", codeLast.alpha, codeNext.alpha, posA, angleTmp);
+                    return true;
+                }
+            }
+
+            private static bool getNextPos()
+            {   lineNr++;
+                if (lineNr >= simuList.Count)
+                    return false;
+                codeLast = new gcodeByLine(codeNext);
+                codeNext = new gcodeByLine(simuList[lineNr]);
+                if (codeNext.codeLine.Contains("M30"))          // program end
+                    return false;
+                distance = getDistance();
+                updateFeedRate();
+//                Logger.Trace(" Code line {0}",codeNext.codeLine);
+                return true;
+            }
+
+            private static void updateFeedRate()
+            {   feedRate = codeNext.feedRate;
+                if (codeNext.motionMode == 0)
+                    feedRate = feedRateRapid;
+                stepWidth = feedRate * dt / 60000;   // feedrate in mm/min; dt in ms
+            }
+
+            private static double angleTmp=0;
+            private static ArcProperties arcMove;
+            private static double getDistance()
+            {
+                diff.Max = 0;
+                diff.XY = ((xyPoint)codeLast.actualPos).DistanceTo((xyPoint)codeNext.actualPos);
+                if (isTangentialZ)
+                    diff.Z = 0;
+                else
+                    diff.Z = Math.Abs(codeNext.actualPos.Z - codeLast.actualPos.Z);
+                diff.A = Math.Abs(codeNext.alpha - codeLast.alpha);
+
+                if (diff.Max == 0)
+                    diff.Max = diff.A;
+
+                if (codeNext.motionMode < 2)
+                {   diff.Max = Math.Max(diff.XY, diff.Z);
+                    return diff.Max;   
+                }
+                arcMove = gcodeMath.getArcMoveProperties((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, codeNext.i, codeNext.j, (codeNext.motionMode==2));
+                angleTmp = arcMove.angleStart;
+                diff.Arc = Math.Abs(arcMove.angleDiff * arcMove.radius);
+                diff.Max = diff.Arc;
+                return diff.Max;
+            }
         }
     }
 

@@ -1734,4 +1734,59 @@ Mova o joystick após alterar o deslocamento.</value>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
     <value>Não altere a largura da caneta no zoom</value>
   </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>Traduzir mensagens grbl</value>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>Traduza mensagens grbl como IDLE, RUN, HOLD</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>Avanço para correr</value>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>Passo com para correr</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Ângulo de rotação</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>Se a mudança no ângulo for maior que o ângulo de rotação,
+O eixo Z será movido para cima
+eixo vai virar
+O eixo Z será movido para baixo</value>
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value>Mudança de ângulo antes da inserção da sequência "Eixo Z para cima, mudança de ângulo, Eixo Z para baixo".</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Nome do eixo tangencial</value>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>Adicionar eixo tangencial</value>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>Comandos do eixo tangencial</value>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>classificar grupos por dimensão de objeto - crescente</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>Unidades por turno</value>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>Ângulo de rotação</value>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>Se a mudança no ângulo for maior que o ângulo de rotação,
+O eixo Z será movido para cima
+eixo vai virar
+O eixo Z será movido para baixo</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>Mude o ângulo antes que a faca seja levantada, girada e abaixada</value>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>Nome do eixo tangencial</value>
+  </data>
 </root>

@@ -117,81 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cBshowImportDialog.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cBshowImportDialog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cBshowImportDialog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>265, 338</value>
-  </data>
-  <data name="cBshowImportDialog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 17</value>
-  </data>
-  <data name="cBshowImportDialog.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="cBshowImportDialog.Text" xml:space="preserve">
-    <value>Show 'use case' selection on graphics import</value>
-    <comment>TabPage1</comment>
-  </data>
-  <data name="&gt;&gt;cBshowImportDialog.Name" xml:space="preserve">
-    <value>cBshowImportDialog</value>
-  </data>
-  <data name="&gt;&gt;cBshowImportDialog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBshowImportDialog.Parent" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;cBshowImportDialog.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnReloadFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnReloadFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 334</value>
-  </data>
-  <data name="btnReloadFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 23</value>
-  </data>
-  <data name="btnReloadFile.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="btnReloadFile.Text" xml:space="preserve">
-    <value>Reload SVG, DXF, Drill file</value>
-    <comment>TabPage1</comment>
-  </data>
-  <data name="btnReloadFile.ToolTip" xml:space="preserve">
-    <value>Reload data to apply new setings during import</value>
-    <comment>TabPage1</comment>
-  </data>
-  <data name="&gt;&gt;btnReloadFile.Name" xml:space="preserve">
-    <value>btnReloadFile</value>
-  </data>
-  <data name="&gt;&gt;btnReloadFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnReloadFile.Parent" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;btnReloadFile.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="numericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 51</value>
   </data>
   <data name="numericUpDown2.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="numericUpDown2.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="numericUpDown2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
@@ -271,10 +208,10 @@ select items on next page 'G-Code generation'</value>
     <value>2</value>
   </data>
   <data name="tab1_1gB5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>598, 209</value>
+    <value>582, 112</value>
   </data>
   <data name="tab1_1gB5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 77</value>
+    <value>275, 77</value>
   </data>
   <data name="tab1_1gB5.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -294,6 +231,37 @@ select items on next page 'G-Code generation'</value>
   <data name="&gt;&gt;tab1_1gB5.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="rBImportSVGSort3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBImportSVGSort3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBImportSVGSort3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 83</value>
+  </data>
+  <data name="rBImportSVGSort3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 17</value>
+  </data>
+  <data name="rBImportSVGSort3.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>sort groups by oject dimension - ascending</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="&gt;&gt;rBImportSVGSort3.Name" xml:space="preserve">
+    <value>rBImportSVGSort3</value>
+  </data>
+  <data name="&gt;&gt;rBImportSVGSort3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBImportSVGSort3.Parent" xml:space="preserve">
+    <value>tab1_1gB4</value>
+  </data>
+  <data name="&gt;&gt;rBImportSVGSort3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBImportSVGSortInvert.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -301,7 +269,7 @@ select items on next page 'G-Code generation'</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGSortInvert.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 87</value>
+    <value>24, 115</value>
   </data>
   <data name="cBImportSVGSortInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 17</value>
@@ -323,7 +291,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;cBImportSVGSortInvert.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="rBImportSVGSort1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -354,7 +322,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;rBImportSVGSort1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="rBImportSVGSort2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -385,7 +353,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;rBImportSVGSort2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="rBImportSVGSort0.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -416,7 +384,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;rBImportSVGSort0.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cBImportSVGGroup.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -451,13 +419,13 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;cBImportSVGGroup.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="tab1_1gB4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>302, 181</value>
+    <value>302, 112</value>
   </data>
   <data name="tab1_1gB4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>290, 105</value>
+    <value>275, 174</value>
   </data>
   <data name="tab1_1gB4.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -485,7 +453,7 @@ select items on next page 'G-Code generation'</value>
     <value>NoControl</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 54</value>
+    <value>246, 54</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 13</value>
@@ -540,7 +508,7 @@ select items on next page 'G-Code generation'</value>
     <value>1</value>
   </data>
   <data name="nUDImportDXFStepWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>204, 51</value>
+    <value>194, 51</value>
   </data>
   <data name="nUDImportDXFStepWidth.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 20</value>
@@ -638,10 +606,10 @@ select items on next page 'G-Code generation'</value>
     <value>4</value>
   </data>
   <data name="tab1_1gB3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>302, 98</value>
+    <value>582, 6</value>
   </data>
   <data name="tab1_1gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>290, 77</value>
+    <value>275, 100</value>
   </data>
   <data name="tab1_1gB3.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1443,7 +1411,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3</value>
   </data>
   <data name="nUDSVGScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>197, 42</value>
+    <value>187, 42</value>
   </data>
   <data name="nUDSVGScale.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -1480,7 +1448,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 69</value>
+    <value>185, 69</value>
   </data>
   <data name="cBImportSVGPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 17</value>
@@ -1518,7 +1486,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="lblSVGScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 44</value>
+    <value>246, 44</value>
   </data>
   <data name="lblSVGScale.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 13</value>
@@ -1545,7 +1513,7 @@ to avoid problems when scaling down gcode.</value>
     <value>302, 6</value>
   </data>
   <data name="tab1_1gB2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>290, 87</value>
+    <value>275, 100</value>
   </data>
   <data name="tab1_1gB2.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1573,7 +1541,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>863, 293</value>
+    <value>863, 322</value>
   </data>
   <data name="tabPage9.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1594,35 +1562,34 @@ to avoid problems when scaling down gcode.</value>
   <data name="&gt;&gt;tabPage9.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="checkBox2.AutoSize" type="System.Boolean, mscorlib">
+  <data name="cBImportLasermode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="checkBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="cBImportLasermode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="checkBox2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cBImportLasermode.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 33</value>
   </data>
-  <data name="checkBox2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cBImportLasermode.Size" type="System.Drawing.Size, System.Drawing">
     <value>276, 17</value>
   </data>
-  <data name="checkBox2.TabIndex" type="System.Int32, mscorlib">
+  <data name="cBImportLasermode.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="checkBox2.Text" xml:space="preserve">
+  <data name="cBImportLasermode.Text" xml:space="preserve">
     <value>Lasermode (use S0 instead of M5 to switch off Laser)</value>
-    <comment>TabPage1_2</comment>
   </data>
-  <data name="&gt;&gt;checkBox2.Name" xml:space="preserve">
-    <value>checkBox2</value>
+  <data name="&gt;&gt;cBImportLasermode.Name" xml:space="preserve">
+    <value>cBImportLasermode</value>
   </data>
-  <data name="&gt;&gt;checkBox2.Type" xml:space="preserve">
+  <data name="&gt;&gt;cBImportLasermode.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cBImportLasermode.Parent" xml:space="preserve">
     <value>tab1_2gB2</value>
   </data>
-  <data name="&gt;&gt;checkBox2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cBImportLasermode.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="btnCheckSpindle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -3374,6 +3341,237 @@ Not usable with other pen up/down options!</value>
   <data name="&gt;&gt;tabPage10.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="lblDImportGCTangential3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDImportGCTangential3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDImportGCTangential3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 86</value>
+  </data>
+  <data name="lblDImportGCTangential3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="lblDImportGCTangential3.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>Units per turn</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential3.Name" xml:space="preserve">
+    <value>lblDImportGCTangential3</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential3.Parent" xml:space="preserve">
+    <value>tab1_3gB5</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nUDImportGCTangentialUnits.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 84</value>
+  </data>
+  <data name="nUDImportGCTangentialUnits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="nUDImportGCTangentialUnits.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCTangentialUnits.Name" xml:space="preserve">
+    <value>nUDImportGCTangentialUnits</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCTangentialUnits.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCTangentialUnits.Parent" xml:space="preserve">
+    <value>tab1_3gB5</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCTangentialUnits.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblDImportGCTangential2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDImportGCTangential2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDImportGCTangential2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 64</value>
+  </data>
+  <data name="lblDImportGCTangential2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="lblDImportGCTangential2.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>Swivel angle</value>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>If change in angle is greater than swivel angle, 
+Z-axis will be moved up
+axis will turn
+Z-axis will be moved down</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential2.Name" xml:space="preserve">
+    <value>lblDImportGCTangential2</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential2.Parent" xml:space="preserve">
+    <value>tab1_3gB5</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 62</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>Change in angle before the knife is raised, turned and lowered</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCTangentialSwivel.Name" xml:space="preserve">
+    <value>nUDImportGCTangentialSwivel</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCTangentialSwivel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCTangentialSwivel.Parent" xml:space="preserve">
+    <value>tab1_3gB5</value>
+  </data>
+  <data name="&gt;&gt;nUDImportGCTangentialSwivel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Items" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Items1" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Items2" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Items3" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 39</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 21</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cBoxImportGCTangentialName.Name" xml:space="preserve">
+    <value>cBoxImportGCTangentialName</value>
+  </data>
+  <data name="&gt;&gt;cBoxImportGCTangentialName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBoxImportGCTangentialName.Parent" xml:space="preserve">
+    <value>tab1_3gB5</value>
+  </data>
+  <data name="&gt;&gt;cBoxImportGCTangentialName.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lblDImportGCTangential1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDImportGCTangential1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDImportGCTangential1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 42</value>
+  </data>
+  <data name="lblDImportGCTangential1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 13</value>
+  </data>
+  <data name="lblDImportGCTangential1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>Name of tangential axis</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential1.Name" xml:space="preserve">
+    <value>lblDImportGCTangential1</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential1.Parent" xml:space="preserve">
+    <value>tab1_3gB5</value>
+  </data>
+  <data name="&gt;&gt;lblDImportGCTangential1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cBImportGCTangential.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGCTangential.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGCTangential.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="cBImportGCTangential.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 17</value>
+  </data>
+  <data name="cBImportGCTangential.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>Add Tangential axis</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTangential.Name" xml:space="preserve">
+    <value>cBImportGCTangential</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTangential.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTangential.Parent" xml:space="preserve">
+    <value>tab1_3gB5</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTangential.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="tab1_3gB5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 6</value>
+  </data>
+  <data name="tab1_3gB5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 111</value>
+  </data>
+  <data name="tab1_3gB5.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>Tangential axis commands</value>
+  </data>
+  <data name="&gt;&gt;tab1_3gB5.Name" xml:space="preserve">
+    <value>tab1_3gB5</value>
+  </data>
+  <data name="&gt;&gt;tab1_3gB5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tab1_3gB5.Parent" xml:space="preserve">
+    <value>tabPage11</value>
+  </data>
+  <data name="&gt;&gt;tab1_3gB5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="numericUpDown5.Location" type="System.Drawing.Point, System.Drawing">
     <value>156, 92</value>
   </data>
@@ -3568,10 +3766,10 @@ Not usable with other pen up/down options!</value>
     <value>6</value>
   </data>
   <data name="tab1_3gB3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 6</value>
+    <value>300, 167</value>
   </data>
   <data name="tab1_3gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 119</value>
+    <value>250, 120</value>
   </data>
   <data name="tab1_3gB3.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -3590,7 +3788,7 @@ Not usable with other pen up/down options!</value>
     <value>tabPage11</value>
   </data>
   <data name="&gt;&gt;tab1_3gB3.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="tab1_3lbl41.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3718,7 +3916,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tabPage11</value>
   </data>
   <data name="&gt;&gt;tab1_3gB4.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="nUDImportGCDragKnifePercent.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 61</value>
@@ -3966,7 +4164,7 @@ Note: Don't use 'Sort objects by pen index'</value>
     <value>tabPage11</value>
   </data>
   <data name="&gt;&gt;tab1_3gB2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="nUDImportGCSegment.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 21</value>
@@ -4302,7 +4500,7 @@ Don't use with "Relative movements"</value>
     <value>tabPage11</value>
   </data>
   <data name="&gt;&gt;tab1_3gB1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="tabPage11.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -4311,7 +4509,7 @@ Don't use with "Relative movements"</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>863, 293</value>
+    <value>863, 322</value>
   </data>
   <data name="tabPage11.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -4680,7 +4878,7 @@ Don't use with "Relative movements"</value>
     <value>3, 6</value>
   </data>
   <data name="tabControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>871, 319</value>
+    <value>871, 348</value>
   </data>
   <data name="tabControl2.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -4695,7 +4893,7 @@ Don't use with "Relative movements"</value>
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;tabControl2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -5972,6 +6170,70 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   <data name="&gt;&gt;tabPage8.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="checkBox2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 224</value>
+  </data>
+  <data name="checkBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 17</value>
+  </data>
+  <data name="checkBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="checkBox2.Text" xml:space="preserve">
+    <value>Check registry to paste code from clipboard</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="&gt;&gt;checkBox2.Name" xml:space="preserve">
+    <value>checkBox2</value>
+  </data>
+  <data name="&gt;&gt;checkBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox2.Parent" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;checkBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBgrblTranslate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBgrblTranslate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBgrblTranslate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 247</value>
+  </data>
+  <data name="cBgrblTranslate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 17</value>
+  </data>
+  <data name="cBgrblTranslate.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>Translate grbl messages</value>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>Translate grbl messages like IDLE, RUN, HOLD</value>
+  </data>
+  <data name="&gt;&gt;cBgrblTranslate.Name" xml:space="preserve">
+    <value>cBgrblTranslate</value>
+  </data>
+  <data name="&gt;&gt;cBgrblTranslate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBgrblTranslate.Parent" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;cBgrblTranslate.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="cBresetSendCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -6080,7 +6342,7 @@ Or assign a filename containing GCode. </value>
     <value>tabPage13</value>
   </data>
   <data name="&gt;&gt;tab4gB2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="numericUpDown6.Location" type="System.Drawing.Point, System.Drawing">
     <value>160, 58</value>
@@ -6191,7 +6453,7 @@ More than 3 axes (Mega2560)- 255 bytes
     <value>tabPage13</value>
   </data>
   <data name="&gt;&gt;tab4gB3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="cBpollIntervalReduce.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6311,7 +6573,7 @@ More than 3 axes (Mega2560)- 255 bytes
     <value>tabPage13</value>
   </data>
   <data name="&gt;&gt;tab4gB1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="cBsimulation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6345,7 +6607,7 @@ More than 3 axes (Mega2560)- 255 bytes
     <value>tabPage13</value>
   </data>
   <data name="&gt;&gt;cBsimulation.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="tBflowControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 39</value>
@@ -6427,7 +6689,7 @@ Or assign a filename containing GCode. </value>
     <value>tabPage13</value>
   </data>
   <data name="&gt;&gt;tab4gB4.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="tabPage13.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -10319,7 +10581,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>112, 285</value>
   </data>
   <data name="cBKeepPenWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 17</value>
+    <value>196, 17</value>
   </data>
   <data name="cBKeepPenWidth.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -13944,6 +14206,36 @@ Setup window must be closed to use GamePad in GUI.
   <data name="&gt;&gt;tab11gB1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="linkLabel17.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabel17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkLabel17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 61</value>
+  </data>
+  <data name="linkLabel17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 13</value>
+  </data>
+  <data name="linkLabel17.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="linkLabel17.Text" xml:space="preserve">
+    <value>https://drawingbots.net/knowledge/tools</value>
+  </data>
+  <data name="&gt;&gt;linkLabel17.Name" xml:space="preserve">
+    <value>linkLabel17</value>
+  </data>
+  <data name="&gt;&gt;linkLabel17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkLabel17.Parent" xml:space="preserve">
+    <value>tab11gB3</value>
+  </data>
+  <data name="&gt;&gt;linkLabel17.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="linkLabel15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -13972,7 +14264,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>tab11gB3</value>
   </data>
   <data name="&gt;&gt;linkLabel15.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="linkLabel11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -14002,7 +14294,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>tab11gB3</value>
   </data>
   <data name="&gt;&gt;linkLabel11.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="linkLabel10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -14032,13 +14324,13 @@ Setup window must be closed to use GamePad in GUI.
     <value>tab11gB3</value>
   </data>
   <data name="&gt;&gt;linkLabel10.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tab11gB3.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 198</value>
   </data>
   <data name="tab11gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 71</value>
+    <value>377, 86</value>
   </data>
   <data name="tab11gB3.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -14175,10 +14467,10 @@ Setup window must be closed to use GamePad in GUI.
     <value>1</value>
   </data>
   <data name="tab11gB5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 275</value>
+    <value>6, 290</value>
   </data>
   <data name="tab11gB5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 79</value>
+    <value>377, 64</value>
   </data>
   <data name="tab11gB5.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -14509,7 +14801,39 @@ Setup window must be closed to use GamePad in GUI.
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
+  </data>
+  <data name="btnReloadFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnReloadFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 386</value>
+  </data>
+  <data name="btnReloadFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 23</value>
+  </data>
+  <data name="btnReloadFile.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btnReloadFile.Text" xml:space="preserve">
+    <value>Reload SVG, DXF, HPGL, Drill file</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnReloadFile.ToolTip" xml:space="preserve">
+    <value>Reload data to apply new setings during import</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="&gt;&gt;btnReloadFile.Name" xml:space="preserve">
+    <value>btnReloadFile</value>
+  </data>
+  <data name="&gt;&gt;btnReloadFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnReloadFile.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnReloadFile.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="btnApplyChangings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -14542,6 +14866,37 @@ Other settings will be stored on change, usually.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnApplyChangings.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBshowImportDialog.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBshowImportDialog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBshowImportDialog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 390</value>
+  </data>
+  <data name="cBshowImportDialog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 17</value>
+  </data>
+  <data name="cBshowImportDialog.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="cBshowImportDialog.Text" xml:space="preserve">
+    <value>Show 'use case' selection on graphics import</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="&gt;&gt;cBshowImportDialog.Name" xml:space="preserve">
+    <value>cBshowImportDialog</value>
+  </data>
+  <data name="&gt;&gt;cBshowImportDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBshowImportDialog.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cBshowImportDialog.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
@@ -14694,6 +15049,18 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value />
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

@@ -24,6 +24,7 @@
  * https://github.com/fra589/grbl-Mega-5X
  * 2019-08-13   add PRB, TLO status
  * 2020-01-04   add "errorBecauseOfBadCode"
+ * 2020-01-13   localization of grblStatus (Idle, run, hold...)
 */
 
 using System;
@@ -52,12 +53,35 @@ namespace GRBL_Plotter
         public static int pollInterval = 200;
 
         public static bool grblSimulate = false;
-        public static xyPoint posMarker   = new xyPoint(0, 0);
         private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
         private static Dictionary<string, xyzPoint> coordinates = new Dictionary<string, xyzPoint>();    // keep []-settings
 
+        private static xyPoint _posMarker = new xyPoint(0, 0);
+        private static double _posMarkerAngle = 0;
+        private static xyPoint _posMarkerOld = new xyPoint(0, 0);
+        public static xyPoint posMarker
+        {   get
+            {   return _posMarker;  }
+            set
+            {   _posMarkerOld = _posMarker;
+                _posMarker = value;
+            }
+        }
+        public static xyPoint posMarkerOld
+        {   get
+            {   return _posMarkerOld; }
+            set
+            {   _posMarkerOld = value; }
+        }
+        public static double posMarkerAngle
+        {   get
+            { return _posMarkerAngle; }
+            set
+            { _posMarkerAngle = value; }
+        }
+
         // Trace, Debug, Info, Warn, Error, Fatal
-   //     private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        //     private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         // private mState machineState = new mState();     // Keep info about Bf, Ln, FS, Pn, Ov, A;
         //  private pState mParserState = new pState();     // keep info about last M and G settings
@@ -79,16 +103,16 @@ namespace GRBL_Plotter
             setMessageString(ref messageSettingCodes, Properties.Resources.setting_codes_en_US);
 
             //    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, unknown };
-            statusConvert[0].msg = "Idle";  statusConvert[0].state = grblState.idle; statusConvert[0].color = Color.Lime;
-            statusConvert[1].msg = "Run";   statusConvert[1].state = grblState.run;  statusConvert[1].color = Color.Yellow;
-            statusConvert[2].msg = "Hold";  statusConvert[2].state = grblState.hold; statusConvert[2].color = Color.YellowGreen;
-            statusConvert[3].msg = "Jog";   statusConvert[3].state = grblState.jog;  statusConvert[3].color = Color.LightGreen;
-            statusConvert[4].msg = "Alarm"; statusConvert[4].state = grblState.alarm;statusConvert[4].color = Color.Red;
-            statusConvert[5].msg = "Door";  statusConvert[5].state = grblState.door; statusConvert[5].color = Color.Orange;
-            statusConvert[6].msg = "Check"; statusConvert[6].state = grblState.check;statusConvert[6].color = Color.Orange;
-            statusConvert[7].msg = "Home";  statusConvert[7].state = grblState.home; statusConvert[7].color = Color.Magenta;
-            statusConvert[8].msg = "Sleep"; statusConvert[8].state = grblState.sleep;statusConvert[8].color = Color.Yellow;
-            statusConvert[9].msg = "Probe"; statusConvert[9].state = grblState.probe;statusConvert[9].color = Color.LightBlue;
+            statusConvert[0].msg = "Idle";  statusConvert[0].text = Localization.getString("grblIdle");  statusConvert[0].state = grblState.idle; statusConvert[0].color = Color.Lime;
+            statusConvert[1].msg = "Run";   statusConvert[1].text = Localization.getString("grblRun");   statusConvert[1].state = grblState.run;  statusConvert[1].color = Color.Yellow;
+            statusConvert[2].msg = "Hold";  statusConvert[2].text = Localization.getString("grblHold");  statusConvert[2].state = grblState.hold; statusConvert[2].color = Color.YellowGreen;
+            statusConvert[3].msg = "Jog";   statusConvert[3].text = Localization.getString("grblJog");   statusConvert[3].state = grblState.jog;  statusConvert[3].color = Color.LightGreen;
+            statusConvert[4].msg = "Alarm"; statusConvert[4].text = Localization.getString("grblAlarm"); statusConvert[4].state = grblState.alarm;statusConvert[4].color = Color.Red;
+            statusConvert[5].msg = "Door";  statusConvert[5].text = Localization.getString("grblDoor");  statusConvert[5].state = grblState.door; statusConvert[5].color = Color.Orange;
+            statusConvert[6].msg = "Check"; statusConvert[6].text = Localization.getString("grblCheck"); statusConvert[6].state = grblState.check;statusConvert[6].color = Color.Orange;
+            statusConvert[7].msg = "Home";  statusConvert[7].text = Localization.getString("grblHome");  statusConvert[7].state = grblState.home; statusConvert[7].color = Color.Magenta;
+            statusConvert[8].msg = "Sleep"; statusConvert[8].text = Localization.getString("grblSleep"); statusConvert[8].state = grblState.sleep;statusConvert[8].color = Color.Yellow;
+            statusConvert[9].msg = "Probe"; statusConvert[9].text = Localization.getString("grblProbe"); statusConvert[9].state = grblState.probe;statusConvert[9].color = Color.LightBlue;
 
             settings.Clear();
             coordinates.Clear();
@@ -288,7 +312,11 @@ namespace GRBL_Plotter
             for (int i = 0; i < statusConvert.Length; i++)
             {
                 if (state == statusConvert[i].state)
-                    return statusConvert[i].msg;
+                { if (Properties.Settings.Default.grblTranslateMessage)
+                        return statusConvert[i].text;
+                    else
+                        return statusConvert[i].state.ToString();
+                }
             }
             return "Unknown";
         }
@@ -435,6 +463,7 @@ namespace GRBL_Plotter
     public struct sConvert
     {
         public string msg;
+        public string text;
         public grblState state;
         public Color color;
     };

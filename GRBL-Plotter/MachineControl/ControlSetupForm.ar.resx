@@ -1899,4 +1899,59 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="trackBarX.ToolTip" xml:space="preserve">
     <value>قيمة جويستيك X القناة</value>
   </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>ترجمة رسائل grbl</value>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>ترجمة رسائل grbl مثل IDLE و RUN و HOLD</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>تغذية للركض</value>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>خطوة مع الركض</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>زاوية الدوران</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>إذا كان التغيير في الزاوية أكبر من زاوية الدوران ،
+سيتم نقل المحور Z لأعلى
+سوف محور بدوره
+سيتم نقل المحور Z لأسفل</value>
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value>يتم تغيير زاوية التغيير قبل إدخال تسلسل "المحور Z لأعلى ، تغيير الزاوية ، المحور Z لأسفل".</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>اسم المحور العرضي</value>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>إضافة المحور العرضي</value>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>أوامر المحور العرضي</value>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>مجموعات الفرز حسب بعد الكائن - تصاعدي</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>وحدات لكل بدوره</value>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>زاوية الدوران</value>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>إذا كان التغيير في الزاوية أكبر من زاوية الدوران ،
+سيتم نقل المحور Z لأعلى
+سوف محور بدوره
+سيتم نقل المحور Z لأسفل</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>قم بتغيير الزاوية قبل رفع السكين وتحويله وخفضه</value>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>اسم المحور العرضي</value>
+  </data>
 </root>

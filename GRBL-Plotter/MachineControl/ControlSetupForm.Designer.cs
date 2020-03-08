@@ -68,8 +68,6 @@ namespace GRBL_Plotter
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
-            this.btnReloadFile = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tab1_1gB5 = new System.Windows.Forms.GroupBox();
@@ -119,7 +117,7 @@ namespace GRBL_Plotter
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tab1_2gB1 = new System.Windows.Forms.GroupBox();
             this.tab1_2gB2 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cBImportLasermode = new System.Windows.Forms.CheckBox();
             this.btnCheckSpindle = new System.Windows.Forms.Button();
             this.rBImportGCSpindleCmd2 = new System.Windows.Forms.RadioButton();
             this.tab1_2lbl6 = new System.Windows.Forms.Label();
@@ -175,6 +173,14 @@ namespace GRBL_Plotter
             this.tab1_2lbl43 = new System.Windows.Forms.Label();
             this.tab1_2lbl41 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.tab1_3gB5 = new System.Windows.Forms.GroupBox();
+            this.lblDImportGCTangential3 = new System.Windows.Forms.Label();
+            this.nUDImportGCTangentialUnits = new System.Windows.Forms.NumericUpDown();
+            this.lblDImportGCTangential2 = new System.Windows.Forms.Label();
+            this.nUDImportGCTangentialSwivel = new System.Windows.Forms.NumericUpDown();
+            this.cBoxImportGCTangentialName = new System.Windows.Forms.ComboBox();
+            this.lblDImportGCTangential1 = new System.Windows.Forms.Label();
+            this.cBImportGCTangential = new System.Windows.Forms.CheckBox();
             this.tab1_3gB3 = new System.Windows.Forms.GroupBox();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
             this.tab1_3lbl34 = new System.Windows.Forms.Label();
@@ -272,6 +278,8 @@ namespace GRBL_Plotter
             this.tBToolChangeScriptGet = new System.Windows.Forms.TextBox();
             this.cBToolChange = new System.Windows.Forms.CheckBox();
             this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cBgrblTranslate = new System.Windows.Forms.CheckBox();
             this.tab4gB2 = new System.Windows.Forms.GroupBox();
             this.cBresetSendCode = new System.Windows.Forms.CheckBox();
             this.tBresetSendCode = new System.Windows.Forms.TextBox();
@@ -559,6 +567,7 @@ namespace GRBL_Plotter
             this.linkLabel13 = new System.Windows.Forms.LinkLabel();
             this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.tab11gB3 = new System.Windows.Forms.GroupBox();
+            this.linkLabel17 = new System.Windows.Forms.LinkLabel();
             this.linkLabel15 = new System.Windows.Forms.LinkLabel();
             this.linkLabel11 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
@@ -576,10 +585,13 @@ namespace GRBL_Plotter
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.btnReloadFile = new System.Windows.Forms.Button();
             this.btnApplyChangings = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
+            this.rBImportSVGSort3 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -616,6 +628,9 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMUp)).BeginInit();
             this.tabPage11.SuspendLayout();
+            this.tab1_3gB5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialUnits)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel)).BeginInit();
             this.tab1_3gB3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -756,32 +771,14 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.cBshowImportDialog);
-            this.tabPage3.Controls.Add(this.btnReloadFile);
             this.tabPage3.Controls.Add(this.tabControl2);
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // cBshowImportDialog
-            // 
-            resources.ApplyResources(this.cBshowImportDialog, "cBshowImportDialog");
-            this.cBshowImportDialog.Checked = global::GRBL_Plotter.Properties.Settings.Default.importShowUseCaseDialog;
-            this.cBshowImportDialog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBshowImportDialog.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importShowUseCaseDialog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBshowImportDialog.Name = "cBshowImportDialog";
-            this.cBshowImportDialog.UseVisualStyleBackColor = true;
-            // 
-            // btnReloadFile
-            // 
-            resources.ApplyResources(this.btnReloadFile, "btnReloadFile");
-            this.btnReloadFile.Name = "btnReloadFile";
-            this.toolTip1.SetToolTip(this.btnReloadFile, resources.GetString("btnReloadFile.ToolTip"));
-            this.btnReloadFile.UseVisualStyleBackColor = true;
-            this.btnReloadFile.Click += new System.EventHandler(this.btnReloadFile_Click);
             // 
             // tabControl2
             // 
@@ -850,6 +847,7 @@ namespace GRBL_Plotter
             // 
             // tab1_1gB4
             // 
+            this.tab1_1gB4.Controls.Add(this.rBImportSVGSort3);
             this.tab1_1gB4.Controls.Add(this.cBImportSVGSortInvert);
             this.tab1_1gB4.Controls.Add(this.rBImportSVGSort1);
             this.tab1_1gB4.Controls.Add(this.rBImportSVGSort2);
@@ -1010,6 +1008,7 @@ namespace GRBL_Plotter
             this.cBImportSVGNodesOnly.Name = "cBImportSVGNodesOnly";
             this.toolTip1.SetToolTip(this.cBImportSVGNodesOnly, resources.GetString("cBImportSVGNodesOnly.ToolTip"));
             this.cBImportSVGNodesOnly.UseVisualStyleBackColor = true;
+            this.cBImportSVGNodesOnly.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
             // 
             // checkBox4
             // 
@@ -1280,7 +1279,7 @@ namespace GRBL_Plotter
             // 
             // tab1_2gB2
             // 
-            this.tab1_2gB2.Controls.Add(this.checkBox2);
+            this.tab1_2gB2.Controls.Add(this.cBImportLasermode);
             this.tab1_2gB2.Controls.Add(this.btnCheckSpindle);
             this.tab1_2gB2.Controls.Add(this.rBImportGCSpindleCmd2);
             this.tab1_2gB2.Controls.Add(this.tab1_2lbl6);
@@ -1294,13 +1293,14 @@ namespace GRBL_Plotter
             this.tab1_2gB2.Name = "tab1_2gB2";
             this.tab1_2gB2.TabStop = false;
             // 
-            // checkBox2
+            // cBImportLasermode
             // 
-            resources.ApplyResources(this.checkBox2, "checkBox2");
-            this.checkBox2.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleToggleLaser;
-            this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleToggleLaser", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.cBImportLasermode, "cBImportLasermode");
+            this.cBImportLasermode.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleToggleLaser;
+            this.cBImportLasermode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleToggleLaser", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportLasermode.Name = "cBImportLasermode";
+            this.cBImportLasermode.UseVisualStyleBackColor = true;
+            this.cBImportLasermode.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
             // 
             // btnCheckSpindle
             // 
@@ -1703,6 +1703,7 @@ namespace GRBL_Plotter
             this.cBImportGCUseSpindle.Name = "cBImportGCUseSpindle";
             this.toolTip1.SetToolTip(this.cBImportGCUseSpindle, resources.GetString("cBImportGCUseSpindle.ToolTip"));
             this.cBImportGCUseSpindle.UseVisualStyleBackColor = true;
+            this.cBImportGCUseSpindle.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
             // 
             // tab1_2gB6
             // 
@@ -1750,6 +1751,7 @@ namespace GRBL_Plotter
             // 
             // tab1_2gB4
             // 
+            this.tab1_2gB4.BackColor = System.Drawing.Color.Transparent;
             this.tab1_2gB4.Controls.Add(this.cBImportGCUsePWM);
             this.tab1_2gB4.Controls.Add(this.nUDImportGCDlyDown);
             this.tab1_2gB4.Controls.Add(this.nUDImportGCDlyUp);
@@ -1864,6 +1866,7 @@ namespace GRBL_Plotter
             // 
             // tabPage11
             // 
+            this.tabPage11.Controls.Add(this.tab1_3gB5);
             this.tabPage11.Controls.Add(this.tab1_3gB3);
             this.tabPage11.Controls.Add(this.tab1_3gB4);
             this.tabPage11.Controls.Add(this.tab1_3gB2);
@@ -1871,6 +1874,94 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tabPage11, "tabPage11");
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tab1_3gB5
+            // 
+            this.tab1_3gB5.Controls.Add(this.lblDImportGCTangential3);
+            this.tab1_3gB5.Controls.Add(this.nUDImportGCTangentialUnits);
+            this.tab1_3gB5.Controls.Add(this.lblDImportGCTangential2);
+            this.tab1_3gB5.Controls.Add(this.nUDImportGCTangentialSwivel);
+            this.tab1_3gB5.Controls.Add(this.cBoxImportGCTangentialName);
+            this.tab1_3gB5.Controls.Add(this.lblDImportGCTangential1);
+            this.tab1_3gB5.Controls.Add(this.cBImportGCTangential);
+            resources.ApplyResources(this.tab1_3gB5, "tab1_3gB5");
+            this.tab1_3gB5.Name = "tab1_3gB5";
+            this.tab1_3gB5.TabStop = false;
+            // 
+            // lblDImportGCTangential3
+            // 
+            resources.ApplyResources(this.lblDImportGCTangential3, "lblDImportGCTangential3");
+            this.lblDImportGCTangential3.Name = "lblDImportGCTangential3";
+            // 
+            // nUDImportGCTangentialUnits
+            // 
+            this.nUDImportGCTangentialUnits.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialTurn", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCTangentialUnits.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDImportGCTangentialUnits, "nUDImportGCTangentialUnits");
+            this.nUDImportGCTangentialUnits.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.nUDImportGCTangentialUnits.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDImportGCTangentialUnits.Name = "nUDImportGCTangentialUnits";
+            this.nUDImportGCTangentialUnits.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialTurn;
+            // 
+            // lblDImportGCTangential2
+            // 
+            resources.ApplyResources(this.lblDImportGCTangential2, "lblDImportGCTangential2");
+            this.lblDImportGCTangential2.Name = "lblDImportGCTangential2";
+            this.toolTip1.SetToolTip(this.lblDImportGCTangential2, resources.GetString("lblDImportGCTangential2.ToolTip"));
+            // 
+            // nUDImportGCTangentialSwivel
+            // 
+            this.nUDImportGCTangentialSwivel.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCTangentialSwivel.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCTangentialSwivel, "nUDImportGCTangentialSwivel");
+            this.nUDImportGCTangentialSwivel.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.nUDImportGCTangentialSwivel.Name = "nUDImportGCTangentialSwivel";
+            this.toolTip1.SetToolTip(this.nUDImportGCTangentialSwivel, resources.GetString("nUDImportGCTangentialSwivel.ToolTip"));
+            this.nUDImportGCTangentialSwivel.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAngle;
+            // 
+            // cBoxImportGCTangentialName
+            // 
+            this.cBoxImportGCTangentialName.AllowDrop = true;
+            this.cBoxImportGCTangentialName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBoxImportGCTangentialName.FormattingEnabled = true;
+            this.cBoxImportGCTangentialName.Items.AddRange(new object[] {
+            resources.GetString("cBoxImportGCTangentialName.Items"),
+            resources.GetString("cBoxImportGCTangentialName.Items1"),
+            resources.GetString("cBoxImportGCTangentialName.Items2"),
+            resources.GetString("cBoxImportGCTangentialName.Items3")});
+            resources.ApplyResources(this.cBoxImportGCTangentialName, "cBoxImportGCTangentialName");
+            this.cBoxImportGCTangentialName.Name = "cBoxImportGCTangentialName";
+            this.cBoxImportGCTangentialName.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAxis;
+            // 
+            // lblDImportGCTangential1
+            // 
+            resources.ApplyResources(this.lblDImportGCTangential1, "lblDImportGCTangential1");
+            this.lblDImportGCTangential1.Name = "lblDImportGCTangential1";
+            // 
+            // cBImportGCTangential
+            // 
+            resources.ApplyResources(this.cBImportGCTangential, "cBImportGCTangential");
+            this.cBImportGCTangential.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialEnable;
+            this.cBImportGCTangential.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTangential.Name = "cBImportGCTangential";
+            this.cBImportGCTangential.UseVisualStyleBackColor = true;
+            this.cBImportGCTangential.CheckedChanged += new System.EventHandler(this.cBImportGCTangential_CheckedChanged);
             // 
             // tab1_3gB3
             // 
@@ -2820,6 +2911,8 @@ namespace GRBL_Plotter
             // 
             // tabPage13
             // 
+            this.tabPage13.Controls.Add(this.checkBox2);
+            this.tabPage13.Controls.Add(this.cBgrblTranslate);
             this.tabPage13.Controls.Add(this.tab4gB2);
             this.tabPage13.Controls.Add(this.tab4gB3);
             this.tabPage13.Controls.Add(this.tab4gB1);
@@ -2828,6 +2921,24 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tabPage13, "tabPage13");
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            resources.ApplyResources(this.checkBox2, "checkBox2");
+            this.checkBox2.Checked = global::GRBL_Plotter.Properties.Settings.Default.flowCheckRegistryChange;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "flowCheckRegistryChange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // cBgrblTranslate
+            // 
+            resources.ApplyResources(this.cBgrblTranslate, "cBgrblTranslate");
+            this.cBgrblTranslate.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblTranslateMessage;
+            this.cBgrblTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblTranslateMessage", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBgrblTranslate.Name = "cBgrblTranslate";
+            this.toolTip1.SetToolTip(this.cBgrblTranslate, resources.GetString("cBgrblTranslate.ToolTip"));
+            this.cBgrblTranslate.UseVisualStyleBackColor = true;
             // 
             // tab4gB2
             // 
@@ -5637,12 +5748,21 @@ namespace GRBL_Plotter
             // 
             // tab11gB3
             // 
+            this.tab11gB3.Controls.Add(this.linkLabel17);
             this.tab11gB3.Controls.Add(this.linkLabel15);
             this.tab11gB3.Controls.Add(this.linkLabel11);
             this.tab11gB3.Controls.Add(this.linkLabel10);
             resources.ApplyResources(this.tab11gB3, "tab11gB3");
             this.tab11gB3.Name = "tab11gB3";
             this.tab11gB3.TabStop = false;
+            // 
+            // linkLabel17
+            // 
+            resources.ApplyResources(this.linkLabel17, "linkLabel17");
+            this.linkLabel17.Name = "linkLabel17";
+            this.linkLabel17.TabStop = true;
+            this.linkLabel17.Tag = "https://drawingbots.net/knowledge/tools";
+            this.linkLabel17.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
             // 
             // linkLabel15
             // 
@@ -5780,6 +5900,14 @@ namespace GRBL_Plotter
             this.linkLabel1.Tag = "https://openclipart.org/tags/svg";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
             // 
+            // btnReloadFile
+            // 
+            resources.ApplyResources(this.btnReloadFile, "btnReloadFile");
+            this.btnReloadFile.Name = "btnReloadFile";
+            this.toolTip1.SetToolTip(this.btnReloadFile, resources.GetString("btnReloadFile.ToolTip"));
+            this.btnReloadFile.UseVisualStyleBackColor = true;
+            this.btnReloadFile.Click += new System.EventHandler(this.btnReloadFile_Click);
+            // 
             // btnApplyChangings
             // 
             resources.ApplyResources(this.btnApplyChangings, "btnApplyChangings");
@@ -5792,11 +5920,29 @@ namespace GRBL_Plotter
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // cBshowImportDialog
+            // 
+            resources.ApplyResources(this.cBshowImportDialog, "cBshowImportDialog");
+            this.cBshowImportDialog.Checked = global::GRBL_Plotter.Properties.Settings.Default.importShowUseCaseDialog;
+            this.cBshowImportDialog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBshowImportDialog.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importShowUseCaseDialog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBshowImportDialog.Name = "cBshowImportDialog";
+            this.cBshowImportDialog.UseVisualStyleBackColor = true;
+            // 
+            // rBImportSVGSort3
+            // 
+            resources.ApplyResources(this.rBImportSVGSort3, "rBImportSVGSort3");
+            this.rBImportSVGSort3.Name = "rBImportSVGSort3";
+            this.rBImportSVGSort3.UseVisualStyleBackColor = true;
+            this.rBImportSVGSort3.CheckedChanged += new System.EventHandler(this.rBImportSVGSort0_CheckedChanged);
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cBshowImportDialog);
             this.Controls.Add(this.btnApplyChangings);
+            this.Controls.Add(this.btnReloadFile);
             this.Controls.Add(this.tabControl1);
             this.Name = "ControlSetupForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SetupForm_FormClosing);
@@ -5804,7 +5950,6 @@ namespace GRBL_Plotter
             this.SizeChanged += new System.EventHandler(this.ControlSetupForm_SizeChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
             this.tab1_1gB5.ResumeLayout(false);
@@ -5850,6 +5995,10 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMUp)).EndInit();
             this.tabPage11.ResumeLayout(false);
+            this.tab1_3gB5.ResumeLayout(false);
+            this.tab1_3gB5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialUnits)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel)).EndInit();
             this.tab1_3gB3.ResumeLayout(false);
             this.tab1_3gB3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
@@ -6014,6 +6163,7 @@ namespace GRBL_Plotter
             this.tab11gB2.ResumeLayout(false);
             this.tab11gB2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -6459,7 +6609,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBImportGCZIncStartZero;
         private System.Windows.Forms.GroupBox tab5gB9;
         private System.Windows.Forms.TextBox tBPasteSpecial;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox cBImportLasermode;
         private System.Windows.Forms.LinkLabel linkLabel9;
         private System.Windows.Forms.Label lblToolListLoaded;
         private System.Windows.Forms.CheckBox cBshowImportDialog;
@@ -6533,5 +6683,17 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label tab7gB2lbl5;
         private System.Windows.Forms.NumericUpDown nUDFeedrate;
         private System.Windows.Forms.NumericUpDown nUDStepwidth;
+        private System.Windows.Forms.CheckBox cBgrblTranslate;
+        private System.Windows.Forms.GroupBox tab1_3gB5;
+        private System.Windows.Forms.ComboBox cBoxImportGCTangentialName;
+        private System.Windows.Forms.Label lblDImportGCTangential1;
+        private System.Windows.Forms.CheckBox cBImportGCTangential;
+        private System.Windows.Forms.NumericUpDown nUDImportGCTangentialSwivel;
+        private System.Windows.Forms.Label lblDImportGCTangential2;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.LinkLabel linkLabel17;
+        private System.Windows.Forms.Label lblDImportGCTangential3;
+        private System.Windows.Forms.NumericUpDown nUDImportGCTangentialUnits;
+        private System.Windows.Forms.RadioButton rBImportSVGSort3;
     }
 }

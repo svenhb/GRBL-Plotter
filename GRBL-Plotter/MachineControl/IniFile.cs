@@ -206,6 +206,12 @@ namespace GRBL_Plotter
                 Write("Drag tool angle", setup.importGCDragKnifeAngle.ToString(), section);
             }
 
+            if (setup.importGCTangentialEnable)
+            {   Write("Tangential axis enable", setup.importGCTangentialEnable.ToString(), section);
+                Write("Tangential axis name", setup.importGCTangentialAxis.ToString(), section);
+                Write("Tangential axis angle", setup.importGCTangentialAngle.ToString(), section);
+            }
+
             if (setup.importGCCompress) { Write("Compress", setup.importGCCompress.ToString(), section); }
             if (setup.importGCRelative) { Write("Relative", setup.importGCRelative.ToString(), section); }
 //            Write("Spindle use M3", setup.importGCSpindleCmd.ToString(), section);
@@ -417,6 +423,7 @@ namespace GRBL_Plotter
 
             setup.importGCDragKnifeEnable = false;
             setup.importGCDragKnifePercentEnable = false;
+            setup.importGCTangentialEnable = false;
             setup.importGCCompress = false;
             setup.importGCRelative = false;
         }
@@ -515,7 +522,7 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpdeci, section, "Line segmentation length")) { setup.importGCLineSegmentLength = tmpdeci; }
             if (setVariable(ref tmpbool, section, "Line segmentation equidistant")) { setup.importGCLineSegmentEquidistant = tmpbool; }
             if (setVariable(ref tmpbool, section, "Insert subroutine enable")) { setup.importGCSubEnable = tmpbool; }
-            if (setVariable(ref tmpstr, section, "Insert subroutine file")) { setup.importGCSubroutine = tmpstr; } 
+            if (setVariable(ref tmpstr,  section, "Insert subroutine file")) { setup.importGCSubroutine = tmpstr; } 
             if (setVariable(ref tmpbool, section, "Insert subroutine at beginn")) { setup.importGCSubFirst = tmpbool; }
 
             if (setVariable(ref tmpbool, section, "Drag tool enable"))          { setup.importGCDragKnifeEnable = tmpbool; }
@@ -523,6 +530,10 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpdeci, section, "Drag tool percent"))         { setup.importGCDragKnifePercent = tmpdeci; }
             if (setVariable(ref tmpbool, section, "Drag tool percent enable"))  { setup.importGCDragKnifePercentEnable = tmpbool; }
             if (setVariable(ref tmpdeci, section, "Drag tool angle"))           { setup.importGCDragKnifeAngle = tmpdeci; }
+
+            if (setVariable(ref tmpbool, section, "Tangential axis enable")) { setup.importGCTangentialEnable = tmpbool; }
+            if (setVariable(ref tmpstr,  section, "Tangential axis name")) { setup.importGCTangentialAxis = tmpstr; }
+            if (setVariable(ref tmpdeci, section, "Tangential axis angle")) { setup.importGCTangentialAngle = tmpdeci; }
 
             if (setVariable(ref tmpbool, section, "Compress")) { setup.importGCCompress = tmpbool; }
             if (setVariable(ref tmpbool, section, "Relative")) { setup.importGCRelative = tmpbool; }
@@ -714,12 +725,15 @@ namespace GRBL_Plotter
             bool fromTTSS = false; setVariable(ref fromTTSS, "GCode generation", "Spindle Speed from TT"); 
             bool ZEnable  = false; setVariable(ref ZEnable, "GCode generation", "Z Enable");
             bool TTImport = false; setVariable(ref TTImport, "Graphics Import", "Tool table enable");
+            bool TangEnable = false; setVariable(ref TangEnable, "GCode modification", "Tangential axis enable");
+
             if (fromSettings)
             {   fromTTZ = Properties.Settings.Default.importGCTTZAxis;
                 fromTTXY = Properties.Settings.Default.importGCTTXYFeed;
                 fromTTSS = Properties.Settings.Default.importGCTTSSpeed;
                 ZEnable = Properties.Settings.Default.importGCZEnable;
                 TTImport = Properties.Settings.Default.importGCToolTableUse;
+                TangEnable = Properties.Settings.Default.importGCTangentialEnable;
             }
  //           string state;
             addInfo(tmp,"Process dashed: {0}\r\n", fromSettings? Properties.Settings.Default.importLineDashPattern.ToString() : Read("Process Dashed Lines", "Graphics Import"));
@@ -748,6 +762,11 @@ namespace GRBL_Plotter
             }
             addInfo(tmp, "Spindle Toggle: {0}\r\n", fromSettings ? Properties.Settings.Default.importGCSpindleToggle.ToString() : Read("Spindle Toggle", "GCode generation"));
             addInfo(tmp, "PWM RC-Servo  : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCPWMEnable.ToString() : Read("PWM Enable", "GCode generation"));
+            tmp.AppendFormat("Tangent.Enable: {0}\r\n", TangEnable.ToString());
+            if (TangEnable)
+            {   tmp.AppendFormat("  Tang. Axis  : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCTangentialAxis.ToString() : Read("Tangential axis name", "GCode modification"));
+                tmp.AppendFormat("  Tang. angle : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCTangentialAngle.ToString(): Read("Tangential axis angle", "GCode modification"));
+            }
             tmp.AppendLine();
             addInfo(tmp,"Tool table enable : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCToolTableUse.ToString() : Read("Tool table enable", "Graphics Import"));
             addInfo(tmp,"Tool table apply  : {0}\r\n", fromSettings ? Properties.Settings.Default.toolTableLastLoaded.ToString() : Read("Tool table loaded", "Tool change"));

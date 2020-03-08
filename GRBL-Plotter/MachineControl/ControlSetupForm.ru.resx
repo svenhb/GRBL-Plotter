@@ -1741,4 +1741,59 @@ min X, min Y и max Z.
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
     <value>Не меняйте ширину пера при масштабировании</value>
   </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>Перевести сообщения grbl</value>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>Перевести сообщения grbl как IDLE, RUN, HOLD</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>Скорость подачи для бега</value>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>Шаг с для бега</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Угол поворота</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>Если изменение угла больше угла поворота,
+Ось Z будет перемещена вверх
+ось повернет
+Ось Z будет смещена вниз</value>
+  </data>
+  <data name="numericUpDown1.ToolTip" xml:space="preserve">
+    <value>Изменение угла перед вставкой последовательности «Ось Z вверх, изменение угла, ось Z вниз».</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Наименование тангенциальной оси</value>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>Добавить касательную ось</value>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>Команды касательной оси</value>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>сортировка групп по размеру объекта - по возрастанию</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>Единиц за ход</value>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>Угол поворота</value>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>Если изменение угла больше угла поворота,
+Ось Z будет перемещена вверх
+ось повернет
+Ось Z будет смещена вниз</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>Измените угол до того, как нож поднимется, повернется и опустится</value>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>Наименование тангенциальной оси</value>
+  </data>
 </root>

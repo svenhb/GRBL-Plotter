@@ -23,6 +23,8 @@
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-12-07 add extended logging enable
  * 2020-01-04 add labels to gamePad X,Y,Z,R track bars
+ * 2020-02-07 add tangential axis
+ * 2020-03-05 bug fix save gui2D colors
 */
 
 using System;
@@ -94,6 +96,7 @@ namespace GRBL_Plotter
             setButtonColors(btnColorRuler, Properties.Settings.Default.gui2DColorRuler);
             setButtonColors(btnColorPenUp, Properties.Settings.Default.gui2DColorPenUp);
             setButtonColors(btnColorPenDown, Properties.Settings.Default.gui2DColorPenDown);
+			setButtonColors(btnColorRotaryInfo, Properties.Settings.Default.gui2DColorRotaryInfo);
             setButtonColors(btnColorTool, Properties.Settings.Default.gui2DColorTool);
             setButtonColors(btnColorMarker, Properties.Settings.Default.gui2DColorMarker);
             setButtonColors(btnColorHeightMap, Properties.Settings.Default.gui2DColorHeightMap);
@@ -109,6 +112,7 @@ namespace GRBL_Plotter
             rBImportSVGSort0.Checked = (sort == 0);
             rBImportSVGSort1.Checked = (sort == 1);
             rBImportSVGSort2.Checked = (sort == 2);
+            rBImportSVGSort3.Checked = (sort == 3);
 
             if (Properties.Settings.Default.importGCSpindleCmd)
                 rBImportGCSpindleCmd1.Checked = true;
@@ -185,23 +189,23 @@ namespace GRBL_Plotter
         {   saveSettings();  }
 
         private void btnColorBackground_Click(object sender, EventArgs e)
-        { applyColor(btnColorBackground, "colorBackground"); }
+        { applyColor(btnColorBackground, "gui2DColorBackground"); }
         private void btnColorRuler_Click(object sender, EventArgs e)
-        { applyColor(btnColorRuler, "colorRuler"); }
+        { applyColor(btnColorRuler, "gui2DColorRuler"); }
         private void btnColorPenUp_Click(object sender, EventArgs e)
-        { applyColor(btnColorPenUp, "colorPenUp"); }
+        { applyColor(btnColorPenUp, "gui2DColorPenUp"); }
         private void btnColorPenDown_Click(object sender, EventArgs e)
-        { applyColor(btnColorPenDown, "colorPenDown"); }
+        { applyColor(btnColorPenDown, "gui2DColorPenDown"); }
         private void btnColorRotaryInfo_Click(object sender, EventArgs e)
-        { applyColor(btnColorRotaryInfo, "colorRotaryInfo"); }
+        { applyColor(btnColorRotaryInfo, "gui2DColorRotaryInfo"); }
         private void btnColorTool_Click(object sender, EventArgs e)
-        { applyColor(btnColorTool, "colorTool"); }
+        { applyColor(btnColorTool, "gui2DColorTool"); }
         private void btnColorMarker_Click(object sender, EventArgs e)
-        { applyColor(btnColorMarker, "colorMarker"); }
+        { applyColor(btnColorMarker, "gui2DColorMarker"); }
         private void btnColorHeightMap_Click(object sender, EventArgs e)
-        { applyColor(btnColorHeightMap, "colorHeightMap"); }
+        { applyColor(btnColorHeightMap, "gui2DColorHeightMap"); }
         private void btnColorMachineLimit_Click(object sender, EventArgs e)
-        { applyColor(btnColorMachineLimit, "colorMachineLimit"); }
+        { applyColor(btnColorMachineLimit, "gui2DColorMachineLimit"); }
 
         private void applyColor(Button btn, string settings)
         {
@@ -709,12 +713,56 @@ namespace GRBL_Plotter
 
         private void cBImportGCTool_CheckedChanged(object sender, EventArgs e)
         {
-            /*         nUDImportGCSSpeed.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTSSpeed.Checked);
-                     nUDImportGCFeedXY.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTXYFeed.Checked);
-                     nUDImportGCFeedZ.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZFeed.Checked);
-                     nUDImportGCZDown.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZDeepth.Checked);
-                     nUDImportGCZIncrement.Enabled = !(cBImportGCTool.Checked && cBToolChange.Checked && cBImportGCTTZIncrement.Checked);*/
+            highlight_PenOptions_Click(sender, e);
             checkVisibility();
+        }
+
+        private void highlight_PenOptions_Click(object sender, EventArgs e)
+        {
+            if (cBImportSVGNodesOnly.Checked)
+                cBImportSVGNodesOnly.BackColor = Color.Yellow;
+            else
+                cBImportSVGNodesOnly.BackColor = Color.Transparent;
+
+            if (cBImportLasermode.Checked)
+                cBImportLasermode.BackColor = Color.Yellow;
+            else
+                cBImportLasermode.BackColor = Color.Transparent;
+
+            if (cBImportGCUseZ.Checked)
+                tab1_2gB3.BackColor = Color.Yellow;
+            else
+                tab1_2gB3.BackColor = Color.Transparent;
+
+            if (cBImportGCUsePWM.Checked)
+                tab1_2gB4.BackColor = Color.Yellow;
+            else
+                tab1_2gB4.BackColor = Color.Transparent;
+
+            if (cBImportGCUseSpindle.Checked)
+                tab1_2gB5.BackColor = Color.Yellow;
+            else
+                tab1_2gB5.BackColor = Color.Transparent;
+
+            if (cBImportGCUseIndividual.Checked)
+                tab1_2gB6.BackColor = Color.Yellow;
+            else
+                tab1_2gB6.BackColor = Color.Transparent;
+
+            if (cBImportGCDragKnife.Checked)
+                tab1_3gB2.BackColor = Color.Yellow;
+            else
+                tab1_3gB2.BackColor = Color.Transparent;
+
+            if (cBImportGCTangential.Checked)
+            {   tab1_3gB5.BackColor = Color.Yellow;
+				if (cBImportGCZIncEnable.Checked)
+				{	MessageBox.Show("Tangential axis doesn't work with Z-Axis 'Use several passes'.\r\nThis option will be disabled");
+					cBImportGCZIncEnable.Checked=false;
+				}
+			}
+            else
+                tab1_3gB5.BackColor = Color.Transparent;
         }
 
         private void btnFileDialogTT1_Click(object sender, EventArgs e)
@@ -868,6 +916,8 @@ namespace GRBL_Plotter
                 Properties.Settings.Default.importGroupSort = 1;
             if (rBImportSVGSort2.Checked)
                 Properties.Settings.Default.importGroupSort = 2;
+            if (rBImportSVGSort3.Checked)
+                Properties.Settings.Default.importGroupSort = 3;
         }
 
         private void dGVToolList_SelectionChanged(object sender, EventArgs e)
@@ -929,6 +979,7 @@ namespace GRBL_Plotter
             rBImportSVGSort0.Enabled = enable;
             rBImportSVGSort1.Enabled = enable;
             rBImportSVGSort2.Enabled = enable;
+            rBImportSVGSort3.Enabled = enable;
             cBImportSVGSortInvert.Enabled = enable;
         }
 
@@ -969,6 +1020,8 @@ namespace GRBL_Plotter
             nUDImportGCZUp.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
             nUDImportGCZDown.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
             cBImportGCZIncEnable.Enabled = optionUseZ;
+//			if (cBImportGCTangential.Checked)
+//			{	cBImportGCZIncEnable.Enabled = false; cBImportGCZIncEnable.Checked=false; }
             tab1_2lbl35.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked );
             cBImportGCZIncStartZero.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked);
             nUDImportGCZIncrement.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled) && cBImportGCZIncEnable.Checked);
@@ -987,6 +1040,7 @@ namespace GRBL_Plotter
             nUDImportGCDlyUp.Enabled = enable;
             nUDImportGCPWMDown.Enabled = enable;
             nUDImportGCDlyDown.Enabled = enable;
+            highlight_PenOptions_Click(sender, e);
         }
 
         private void cBImportGCUseIndividual_CheckedChanged(object sender, EventArgs e)
@@ -995,6 +1049,7 @@ namespace GRBL_Plotter
             tab1_2lbl62.Enabled = enable;
             tBImportGCIPU.Enabled = enable;
             tBImportGCIPD.Enabled = enable;
+            highlight_PenOptions_Click(sender, e);
         }
 
         private void cBImportGCDragKnife_CheckedChanged(object sender, EventArgs e)
@@ -1006,6 +1061,7 @@ namespace GRBL_Plotter
             cBImportGCDragKnifePercent.Enabled = enable;
             lblDrag1.Enabled = enable;
             lblDrag2.Enabled = enable;
+			highlight_PenOptions_Click(sender, e); 
         }
 
         private void cBImportGCLineSegments_CheckedChanged(object sender, EventArgs e)
@@ -1098,5 +1154,15 @@ namespace GRBL_Plotter
             tBUseCaseSetting2.Text = MyIni.ReadUseCaseInfo();
             tBUseCaseSetting1.Text = MyIni.showIniSettings(); ;
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool show = (tabControl1.SelectedIndex == 0);
+            btnReloadFile.Visible = show;
+            cBshowImportDialog.Visible = show;
+        }
+
+        private void cBImportGCTangential_CheckedChanged(object sender, EventArgs e)
+        {	highlight_PenOptions_Click(sender, e); }
     }
 }
