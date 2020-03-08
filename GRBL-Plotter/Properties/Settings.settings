@@ -360,10 +360,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="gui2DWidthHeightMap" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="gui2DWidthMarker" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="gui2DWidthPenDown" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.4</Value>
@@ -1159,6 +1159,27 @@
     </Setting>
     <Setting Name="gamePadAnalogMinFeed" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="grblTranslateMessage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTangentialEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTangentialAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="importGCTangentialAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="flowCheckRegistryChange" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiDimensionShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCTangentialTurn" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">360</Value>
     </Setting>
   </Settings>
 </SettingsFile>

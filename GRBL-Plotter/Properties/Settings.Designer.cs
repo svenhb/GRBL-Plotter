@@ -1453,7 +1453,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public decimal gui2DWidthHeightMap {
             get {
                 return ((decimal)(this["gui2DWidthHeightMap"]));
@@ -1465,7 +1465,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public decimal gui2DWidthMarker {
             get {
                 return ((decimal)(this["gui2DWidthMarker"]));
@@ -4633,7 +4633,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.001")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.010")]
         public decimal gamePadAnalogMinStep {
             get {
                 return ((decimal)(this["gamePadAnalogMinStep"]));
@@ -4652,6 +4652,90 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["gamePadAnalogMinFeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool grblTranslateMessage {
+            get {
+                return ((bool)(this["grblTranslateMessage"]));
+            }
+            set {
+                this["grblTranslateMessage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCTangentialEnable {
+            get {
+                return ((bool)(this["importGCTangentialEnable"]));
+            }
+            set {
+                this["importGCTangentialEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("A")]
+        public string importGCTangentialAxis {
+            get {
+                return ((string)(this["importGCTangentialAxis"]));
+            }
+            set {
+                this["importGCTangentialAxis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public decimal importGCTangentialAngle {
+            get {
+                return ((decimal)(this["importGCTangentialAngle"]));
+            }
+            set {
+                this["importGCTangentialAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool flowCheckRegistryChange {
+            get {
+                return ((bool)(this["flowCheckRegistryChange"]));
+            }
+            set {
+                this["flowCheckRegistryChange"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool guiDimensionShow {
+            get {
+                return ((bool)(this["guiDimensionShow"]));
+            }
+            set {
+                this["guiDimensionShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("360")]
+        public decimal importGCTangentialTurn {
+            get {
+                return ((decimal)(this["importGCTangentialTurn"]));
+            }
+            set {
+                this["importGCTangentialTurn"] = value;
             }
         }
     }
