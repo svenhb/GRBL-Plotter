@@ -78,13 +78,15 @@ namespace GRBL_Plotter
             e.ChangedRange.ClearFoldingMarkers();
             e.ChangedRange.SetFoldingMarkers(xmlMarker.fillStart, xmlMarker.fillEnd);
             e.ChangedRange.SetFoldingMarkers(xmlMarker.contourStart, xmlMarker.contourEnd);
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.clearanceStart, xmlMarker.clearanceEnd);
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.revolutionStart, xmlMarker.revolutionEnd);
             e.ChangedRange.SetFoldingMarkers(xmlMarker.passStart, xmlMarker.passEnd);
             e.ChangedRange.SetFoldingMarkers(xmlMarker.figureStart, xmlMarker.figureEnd);
-  //          if (Properties.Settings.Default.importGCZIncEnable)
-  //               fCTBCode.CollapseAllFoldingBlocks();
             e.ChangedRange.SetFoldingMarkers(xmlMarker.groupStart, xmlMarker.groupEnd);
+            if (Properties.Settings.Default.importCodeFold)
+                fCTBCode.CollapseAllFoldingBlocks();
 
-            codeBlocksToolStripMenuItem.Enabled = visuGCode.codeBlocksAvailable();
+            codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
             codeSelection.setFCTB = fCTBCode;
         }
 
@@ -131,7 +133,8 @@ namespace GRBL_Plotter
         private int fCTBCodeClickedLineLast = 0;
         private void fCTBCode_Click(object sender, EventArgs e)         // click into FCTB  
         {   fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
-            fCTBCodeMarkLine();
+            fCTBCodeMarkLine(false);
+            fCTBCode.DoCaretVisible();
         }
         private void fCTBCode_KeyDown(object sender, KeyEventArgs e)    // key up down 
         {
@@ -140,18 +143,20 @@ namespace GRBL_Plotter
             {   fCTBCodeClickedLineNow -= 1;
                 while (fCTBCode.GetVisibleState(fCTBCodeClickedLineNow) == VisibleState.Hidden)
                     fCTBCodeClickedLineNow -= 1;
-                fCTBCodeMarkLine();
+                fCTBCodeMarkLine(false);
+                fCTBCode.DoCaretVisible();
             }
             if ((key == 40) && (fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))       // down
             {   fCTBCodeClickedLineNow += 1;
                 while (fCTBCode.GetVisibleState(fCTBCodeClickedLineNow) == VisibleState.Hidden)
                     fCTBCodeClickedLineNow += 1;
-                fCTBCodeMarkLine();
+                fCTBCodeMarkLine(false);
+                fCTBCode.DoCaretVisible();
             }
         }
 
         private Bookmark fCTBBookmark = null;
-        private void fCTBCodeMarkLine()     // after click on gcode line, mark text and graphics
+        private void fCTBCodeMarkLine(bool select=true)     // after click on gcode line, mark text and graphics
         {
             if ((fCTBCodeClickedLineNow <= fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
             {
@@ -164,14 +169,13 @@ namespace GRBL_Plotter
 
                     // Set marker in drawing
                     Place tst = fCTBCode.Selection.Start;
-                    visuGCode.setPosMarkerLine(fCTBCodeClickedLineNow,!isStreaming);
+                    VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow,!isStreaming);
 
                     if ((fCTBCode.Lines[tst.iLine].Contains(xmlMarker.groupStart)) || (fCTBCode.Lines[tst.iLine].Contains(xmlMarker.groupEnd)))
-                        visuGCode.markSelectedGroup(tst.iLine);
+                        VisuGCode.markSelectedGroup(tst.iLine);
 
-                    if (codeSelection.checkClicked(fCTBCodeClickedLineNow))
+                    if (select && codeSelection.checkClicked(fCTBCodeClickedLineNow))
                     {   setFigureIsMarked(true);
-           //             fCTBCode.Selection.Start = tst;
                         fCTBCode.DoCaretVisible();
                     }
                     else
@@ -301,7 +305,7 @@ namespace GRBL_Plotter
         private void cutOutSelectedPathToolStripMenuItem_Click(object sender, EventArgs e)
         {
             transformStart("Crop selection (Cut out)",false);
-            fCTBCode.Text = visuGCode.cutOutFigure();
+            fCTBCode.Text = VisuGCode.cutOutFigure();
             transformEnd();
         }
 
@@ -309,7 +313,7 @@ namespace GRBL_Plotter
         private int findFigureMarkSelection(Color selectionColor)   // called by click on figure in 2D view
         {
             setFigureIsMarked(false);
-            int start = visuGCode.getLineOfFirstPointInFigure();
+            int start = VisuGCode.getLineOfFirstPointInFigure();
             if (codeSelection.checkClicked(start))
             {   setFigureIsMarked(true);
                 fCTBCode.DoCaretVisible();

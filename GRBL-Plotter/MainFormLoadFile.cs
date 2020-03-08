@@ -28,6 +28,8 @@
  * 2019-12-20 in Line 439 replace   "File.WriteAllText(sfd.FileName, txt)" by "fCTBCode.SaveToFile(sfd.FileName, Encoding.Unicode);"
  * 2020-01-01 add trace level loggerTraceImport to hide log of any gcode command during import line 678
  * 2020-01-01 replace #if debuginfo by Logger.Info
+ * 2020-02-05 add HPGL format
+ * 2020-03-05 export some settings to registry
 */
 
 using System;
@@ -40,21 +42,32 @@ using System.Threading;
 using System.Xml;
 using System.Globalization;
 using System.Text;
+using Microsoft.Win32;
 
 namespace GRBL_Plotter
 {
     public partial class MainForm : Form
     {
-        private const string extensionDrill = ".drd,.drl,.dri";             //   else if ((ext == ".drd") || (ext == ".drl") || (ext == ".dri"))
-        private const string extensionPicture = ".bmp,.gif,.png,.jpg";      //   else if ((ext == ".bmp") || (ext == ".gif") || (ext == ".png") || (ext == ".jpg"))
-        private const string extensionGCode = ".nc,.cnc,.ngc,.gcode";            //   else if (ext == ".nc")
+        private const string extensionGCode = ".nc,.cnc,.ngc,.gcode"; 
+        private const string extensionDrill = ".drd,.drl,.dri"; 
+        private const string extensionPicture = ".bmp,.gif,.png,.jpg";
+        private const string extensionHPGL = ".plt,.hpgl"; 
+
+        private const string loadFilter =   "G-Code (*.nc, *.cnc, *.ngc, *.gcode)|*.nc;*.cnc;*.ngc;*.gcode|"+
+		                                    "SVG - Scalable Vector Graphics|*.svg|"+
+		                                    "DXF - Drawing Exchange Format |*.dxf|"+
+		                                    "HPGL - HP Graphics Language (*.plt, *.hpgl)|*.plt;*.hpgl|"+
+		                                    "Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|"+
+		                                    "Images (*.bmp,*.gif,*.png,*.jpg)|*.bmp;*.gif;*.png;*.jpg|"+
+		                                    "All files (*.*)|*.*";
+
 
         #region MAIN-MENU FILE
         // open a file via dialog
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = "gcode files (*.nc, *.cnc, *.ngc, *.gcode)|*.nc;*.cnc;*.ngc;*.gcode|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|All files (*.*)|*.*";
+            openFileDialog1.Filter = loadFilter;// "gcode files (*.nc, *.cnc, *.ngc, *.gcode)|*.nc;*.cnc;*.ngc;*.gcode|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|All files (*.*)|*.*";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 loadFile(openFileDialog1.FileName);
@@ -128,7 +141,7 @@ namespace GRBL_Plotter
             pBoxTransform.Reset(); zoomFactor = 1; //zoomOffsetX = 0; zoomOffsetY = 0;
             showPicBoxBgImage = false;                  // don't show background image anymore
             pictureBox1.BackgroundImage = null;
-            visuGCode.markSelectedFigure(-1);           // hide highlight
+            VisuGCode.markSelectedFigure(-1);           // hide highlight
             grbl.posMarker = new xyPoint(0, 0);
         }
 
@@ -136,9 +149,9 @@ namespace GRBL_Plotter
         {
             if (commentOut)
             { fCTB_CheckUnknownCode(); }                                // check code
-            visuGCode.getGCodeLines(fCTBCode.Lines);                    // get code path
-            visuGCode.calcDrawingArea();                                 // calc ruler dimension
-            visuGCode.drawMachineLimit(toolTable.getToolCordinates());
+            VisuGCode.getGCodeLines(fCTBCode.Lines);                    // get code path
+            VisuGCode.calcDrawingArea();                                 // calc ruler dimension
+            VisuGCode.drawMachineLimit(toolTable.getToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
             update_GCode_Depending_Controls();                          // update GUI controls
             updateControls();                                           // update control enable 
@@ -151,9 +164,10 @@ namespace GRBL_Plotter
         {
             Logger.Info("Load file {0}", fileName);
             bool fileLoaded = false;
+            simuStop();
 
             if (unDoToolStripMenuItem.Enabled)
-                visuGCode.setPathAsLandMark(true);
+                VisuGCode.setPathAsLandMark(true);
             setUndoText("");
             if (isStreaming)
             {
@@ -178,11 +192,17 @@ namespace GRBL_Plotter
             String ext = Path.GetExtension(fileName).ToLower();
             if (ext == ".svg")
             { startConvertSVG(fileName); fileLoaded = true; }
+		
             else if (ext == ".dxf")
             { startConvertDXF(fileName); fileLoaded = true; }
-            else if (extensionDrill.Contains(ext))  //((ext == ".drd") || (ext == ".drl") || (ext == ".dri"))
+		
+            else if (extensionDrill.Contains(ext))  
             { startConvertDrill(fileName); fileLoaded = true; }
-            else if (extensionGCode.Contains(ext))  //(ext == ".nc")
+		
+            else if (extensionHPGL.Contains(ext))  
+            { startConvertHPGL(fileName); fileLoaded = true; }
+		
+            else if (extensionGCode.Contains(ext))  
             {
                 tbFile.Text = fileName;
                 loadGcode();
@@ -213,7 +233,7 @@ namespace GRBL_Plotter
                 setLastLoadedFile("Data from file", fileName);
                 Cursor.Current = Cursors.Default;
                 pBoxTransform.Reset();
-                codeBlocksToolStripMenuItem.Enabled = visuGCode.codeBlocksAvailable();
+                codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
                 return true;
             }
             else
@@ -258,15 +278,18 @@ namespace GRBL_Plotter
          //   String ext = Path.GetExtension(fileName).ToLower();
          //   MessageBox.Show("-" + ext + "-");
             if (ext.IndexOf("svg") >= 0)
-            {
-                startConvertSVG(tBURL.Text);
+            {   startConvertSVG(tBURL.Text);
                 setLastLoadedFile("Data from URL",tBURL.Text);
             }
             else if (ext.IndexOf("dxf") >= 0)
-            {
-                startConvertDXF(tBURL.Text);
+            {   startConvertDXF(tBURL.Text);
                 setLastLoadedFile("Data from URL", tBURL.Text);
             }
+            else if (extensionHPGL.Contains(ext)) 
+			{	startConvertHPGL(tBURL.Text);
+                setLastLoadedFile("Data from URL", tBURL.Text);
+			}
+		
             else if (extensionPicture.Contains(ext)) //((ext.ToLower().IndexOf("bmp") >= 0) || (ext.ToLower().IndexOf("gif") >= 0) || (ext.ToLower().IndexOf("png") >= 0) || (ext.ToLower().IndexOf("jpg") >= 0))
             {
                 if (_image_form == null)
@@ -347,6 +370,22 @@ namespace GRBL_Plotter
             lbInfo.Text = "DXF-Code loaded";
             foldCode();
         }
+		
+        private void startConvertHPGL(string source)
+        {
+            Logger.Info("startConvertHPGL");
+            UseCaseDialog();
+            newCodeStart();
+            fCTBCode.Text = GCodeFromHPGL.convertFromFile(source);        // get code
+            if (fCTBCode.LinesCount <= 1)
+            { fCTBCode.Text = "( Code conversion failed )"; return; }
+            newCodeEnd();
+            SaveRecentFile(source);
+            this.Text = appName + " | Source: " + source;
+            lbInfo.Text = "HPGL-Code loaded";
+            foldCode();
+        }
+		
         private void foldCode()
         {
             if (Properties.Settings.Default.importCodeFold)
@@ -508,6 +547,7 @@ namespace GRBL_Plotter
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
             {
                 loadFromClipboard();
+                codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
                 e.SuppressKeyPress = true;
                 e.Handled = true;
                 return;
@@ -656,7 +696,9 @@ namespace GRBL_Plotter
         }
 
         private void pasteFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
-        { loadFromClipboard(); }
+        {   loadFromClipboard();
+            codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
+        }
 
         // load settings
         public void loadSettings(object sender, EventArgs e)
@@ -668,7 +710,9 @@ namespace GRBL_Plotter
                 gcode.loggerTraceImport = gcode.loggerTrace && Properties.Settings.Default.importGCAddComments;
                 if (gcode.loggerTrace)
                 {   foreach (var rule in NLog.LogManager.Configuration.LoggingRules)
-                    {   rule.EnableLoggingForLevel(NLog.LogLevel.Trace);  }
+                    {   rule.EnableLoggingForLevel(NLog.LogLevel.Trace);
+                        rule.EnableLoggingForLevel(NLog.LogLevel.Debug);
+                    }
                     NLog.LogManager.ReconfigExistingLoggers();
                 }
                 tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
@@ -727,37 +771,9 @@ namespace GRBL_Plotter
                 }
 
                 fCTBCode.BookmarkColor = Properties.Settings.Default.gui2DColorMarker; ;
-                pictureBox1.BackColor = Properties.Settings.Default.gui2DColorBackground;
-                //                visuGCode.setColors();
-                penUp.Color = Properties.Settings.Default.gui2DColorPenUp;
-                penDown.Color = Properties.Settings.Default.gui2DColorPenDown;
-                penRotary.Color = Properties.Settings.Default.gui2DColorRotaryInfo;
-                penHeightMap.Color = Properties.Settings.Default.gui2DColorHeightMap;
-                penRuler.Color = Properties.Settings.Default.gui2DColorRuler;
-                penTool.Color = Properties.Settings.Default.gui2DColorTool;
-                penMarker.Color = Properties.Settings.Default.gui2DColorMarker;
 
-                float factorWidth = 1;
-                if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
-                if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
-                penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap * factorWidth;
-                penHeightMap.LineJoin = LineJoin.Round;
-                penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler * factorWidth;
-                penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
-                penUp.LineJoin = LineJoin.Round;
-                penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
-                penDown.LineJoin = LineJoin.Round;
-                penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
-                penRotary.LineJoin = LineJoin.Round;
-                penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
-                penTool.LineJoin = LineJoin.Round;
-                penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
-                penMarker.LineJoin = LineJoin.Round;
-                penLandMark.LineJoin = LineJoin.Round;
-                penLandMark.Width = 2* (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+                setGraphicProperties();
 
-                brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.gui2DColorMachineLimit, Color.Transparent);
-                picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
                 commentOut = Properties.Settings.Default.ctrlCommentOut;
 
                 joystickXYStep[0] = 0;
@@ -868,6 +884,9 @@ namespace GRBL_Plotter
                 btnJogZeroA.Visible = ctrl4thAxis || grbl.axisA;
                 btnJogZeroA.Text = ctrl4thName + "=0";
 
+                toolTip1.SetToolTip(btnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
+                toolTip1.SetToolTip(btnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
+
                 resizeJoystick();
 
                 if (grbl.axisB || grbl.axisC)
@@ -935,7 +954,10 @@ namespace GRBL_Plotter
                 checkMachineLimit();
                 loadHotkeys();
             }
-        }
+            writeSettingsToRegistry();
+        }   // end load settings
+
+
         // Save settings
         public void saveSettings()
         {   try
@@ -994,6 +1016,9 @@ namespace GRBL_Plotter
             gCodeToolStripMenuItem.Enabled = !isStreaming;
 
             cBSpindle.Enabled = isConnected & !isStreaming | allowControl;
+            btnPenUp.Enabled = isConnected & !isStreaming | allowControl;
+            btnPenDown.Enabled = isConnected & !isStreaming | allowControl;
+
             tBSpeed.Enabled = isConnected & !isStreaming | allowControl;
             cBCoolant.Enabled = isConnected & !isStreaming | allowControl;
             cBTool.Enabled = isConnected & !isStreaming | allowControl;
@@ -1315,6 +1340,59 @@ namespace GRBL_Plotter
                     }
                 }
             }
+        }
+
+
+        // handle Extension List
+        private void LoadExtensionList()
+        {
+            Logger.Trace("LoadExtensioList");
+            string extensionPath = Application.StartupPath + datapath.extension;
+            string[] fileEntries;
+
+            try
+            {   if (Directory.Exists(extensionPath))
+                {   fileEntries = Directory.GetFiles(extensionPath);
+                    foreach (string item in fileEntries)
+                    {
+                        string file = Path.GetFileName(item);
+                        if (!file.StartsWith("_"))
+                        {   ToolStripMenuItem fileExtension = new ToolStripMenuItem(file, null, ExtensionFile_click);
+                            startExtensionToolStripMenuItem.DropDownItems.Add(fileExtension);
+                            Logger.Debug("Add Extension {0}", file);
+                        }
+                    }
+                }
+                else Logger.Debug("Extension path not found {0}", extensionPath);
+            }
+            catch (Exception er) { Logger.Error(er, "LoadExtensionList "); }
+        }
+        private void ExtensionFile_click(object sender, EventArgs e)
+        {
+            string tmp = Application.StartupPath + datapath.extension + "\\" + sender.ToString();
+//            MessageBox.Show(tmp);
+            Logger.Debug("Start Extension {0}", tmp);
+            try { System.Diagnostics.Process.Start(tmp); }
+            catch (Exception er) { Logger.Error(er, "Start Process {0}",tmp); }
+        }
+
+        private void writeSettingsToRegistry()
+        {       
+            const string reg_key0 = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
+            const string reg_key  = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter\\GCodeSettings";
+            try
+            {   Registry.SetValue(reg_key, "DecimalPlaces", Properties.Settings.Default.importGCDecPlaces);
+                Registry.SetValue(reg_key, "XY_FeedRate", Properties.Settings.Default.importGCXYFeed);
+                Registry.SetValue(reg_key, "Z_FeedRate", Properties.Settings.Default.importGCZFeed);
+                Registry.SetValue(reg_key, "Z_Save", Properties.Settings.Default.importGCZUp);
+                Registry.SetValue(reg_key, "Z_Engrave", Properties.Settings.Default.importGCZDown);
+                Registry.SetValue(reg_key, "SpindleSpeed", Properties.Settings.Default.guiSpindleSpeed);
+                Registry.SetValue(reg_key, "SpindleDelay", Properties.Settings.Default.importGCSpindleDelay);
+                Registry.SetValue(reg_key, "GcodeHeader", Properties.Settings.Default.importGCHeader);
+                Registry.SetValue(reg_key, "GcodeFooter", Properties.Settings.Default.importGCFooter);
+                Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);
+            }
+            catch (Exception er) { Logger.Error(er, "writeSettingsToRegistry"); }
         }
     }
 

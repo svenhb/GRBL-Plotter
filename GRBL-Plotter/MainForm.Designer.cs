@@ -103,6 +103,7 @@ namespace GRBL_Plotter
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsUpdate2DView = new System.Windows.Forms.ToolStripMenuItem();
             this.gBoxStream = new System.Windows.Forms.GroupBox();
+            this.btnSimulatePause = new System.Windows.Forms.Button();
             this.btnSimulateSlower = new System.Windows.Forms.Button();
             this.btnSimulateFaster = new System.Windows.Forms.Button();
             this.btnSimulate = new System.Windows.Forms.Button();
@@ -170,6 +171,9 @@ namespace GRBL_Plotter
             this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
             this.gB_Jogging = new System.Windows.Forms.GroupBox();
+            this.cBServoButtons = new System.Windows.Forms.CheckBox();
+            this.btnPenDown = new System.Windows.Forms.Button();
+            this.btnPenUp = new System.Windows.Forms.Button();
             this.btnJogStop = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnJogZeroA = new System.Windows.Forms.Button();
@@ -177,6 +181,7 @@ namespace GRBL_Plotter
             this.btnJogZeroXY = new System.Windows.Forms.Button();
             this.btnJogZeroY = new System.Windows.Forms.Button();
             this.btnJogZeroZ = new System.Windows.Forms.Button();
+            this.cBMoveG0 = new System.Windows.Forms.CheckBox();
             this.lblTool = new System.Windows.Forms.Label();
             this.cBTool = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -300,6 +305,7 @@ namespace GRBL_Plotter
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createSimpleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unDoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
@@ -360,6 +366,7 @@ namespace GRBL_Plotter
             this.toolStripViewPenUp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachineFix = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachine = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewDimension = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewTool = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -626,6 +633,7 @@ namespace GRBL_Plotter
             // 
             // gBoxStream
             // 
+            this.gBoxStream.Controls.Add(this.btnSimulatePause);
             this.gBoxStream.Controls.Add(this.btnSimulateSlower);
             this.gBoxStream.Controls.Add(this.btnSimulateFaster);
             this.gBoxStream.Controls.Add(this.btnSimulate);
@@ -642,6 +650,14 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.gBoxStream, "gBoxStream");
             this.gBoxStream.Name = "gBoxStream";
             this.gBoxStream.TabStop = false;
+            // 
+            // btnSimulatePause
+            // 
+            this.btnSimulatePause.Image = global::GRBL_Plotter.Properties.Resources.btn_pause;
+            resources.ApplyResources(this.btnSimulatePause, "btnSimulatePause");
+            this.btnSimulatePause.Name = "btnSimulatePause";
+            this.btnSimulatePause.UseVisualStyleBackColor = true;
+            this.btnSimulatePause.Click += new System.EventHandler(this.btnSimulatePause_Click);
             // 
             // btnSimulateSlower
             // 
@@ -1117,6 +1133,9 @@ namespace GRBL_Plotter
             // gB_Jogging
             // 
             resources.ApplyResources(this.gB_Jogging, "gB_Jogging");
+            this.gB_Jogging.Controls.Add(this.cBServoButtons);
+            this.gB_Jogging.Controls.Add(this.btnPenDown);
+            this.gB_Jogging.Controls.Add(this.btnPenUp);
             this.gB_Jogging.Controls.Add(this.btnJogStop);
             this.gB_Jogging.Controls.Add(this.groupBox3);
             this.gB_Jogging.Controls.Add(this.lblTool);
@@ -1129,6 +1148,29 @@ namespace GRBL_Plotter
             this.gB_Jogging.TabStop = false;
             this.gB_Jogging.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
             this.gB_Jogging.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            // 
+            // cBServoButtons
+            // 
+            resources.ApplyResources(this.cBServoButtons, "cBServoButtons");
+            this.cBServoButtons.Name = "cBServoButtons";
+            this.cBServoButtons.UseVisualStyleBackColor = true;
+            this.cBServoButtons.CheckedChanged += new System.EventHandler(this.cBServoButtons_CheckedChanged);
+            // 
+            // btnPenDown
+            // 
+            resources.ApplyResources(this.btnPenDown, "btnPenDown");
+            this.btnPenDown.Name = "btnPenDown";
+            this.toolTip1.SetToolTip(this.btnPenDown, resources.GetString("btnPenDown.ToolTip"));
+            this.btnPenDown.UseVisualStyleBackColor = true;
+            this.btnPenDown.Click += new System.EventHandler(this.btnPenDown_Click);
+            // 
+            // btnPenUp
+            // 
+            resources.ApplyResources(this.btnPenUp, "btnPenUp");
+            this.btnPenUp.Name = "btnPenUp";
+            this.toolTip1.SetToolTip(this.btnPenUp, resources.GetString("btnPenUp.ToolTip"));
+            this.btnPenUp.UseVisualStyleBackColor = true;
+            this.btnPenUp.Click += new System.EventHandler(this.btnPenUp_Click);
             // 
             // btnJogStop
             // 
@@ -1146,6 +1188,7 @@ namespace GRBL_Plotter
             this.groupBox3.Controls.Add(this.btnJogZeroXY);
             this.groupBox3.Controls.Add(this.btnJogZeroY);
             this.groupBox3.Controls.Add(this.btnJogZeroZ);
+            this.groupBox3.Controls.Add(this.cBMoveG0);
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
@@ -1189,6 +1232,12 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.btnJogZeroZ, resources.GetString("btnJogZeroZ.ToolTip"));
             this.btnJogZeroZ.UseVisualStyleBackColor = true;
             this.btnJogZeroZ.Click += new System.EventHandler(this.btnJogZ_Click);
+            // 
+            // cBMoveG0
+            // 
+            resources.ApplyResources(this.cBMoveG0, "cBMoveG0");
+            this.cBMoveG0.Name = "cBMoveG0";
+            this.cBMoveG0.UseVisualStyleBackColor = true;
             // 
             // lblTool
             // 
@@ -2143,7 +2192,8 @@ namespace GRBL_Plotter
             this.createGCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.textWizzardToolStripMenuItem,
             this.imageToolStripMenuItem,
-            this.createSimpleShapesToolStripMenuItem});
+            this.createSimpleShapesToolStripMenuItem,
+            this.startExtensionToolStripMenuItem});
             this.createGCodeToolStripMenuItem.Name = "createGCodeToolStripMenuItem";
             resources.ApplyResources(this.createGCodeToolStripMenuItem, "createGCodeToolStripMenuItem");
             // 
@@ -2164,6 +2214,11 @@ namespace GRBL_Plotter
             this.createSimpleShapesToolStripMenuItem.Name = "createSimpleShapesToolStripMenuItem";
             resources.ApplyResources(this.createSimpleShapesToolStripMenuItem, "createSimpleShapesToolStripMenuItem");
             this.createSimpleShapesToolStripMenuItem.Click += new System.EventHandler(this.createSimpleShapesToolStripMenuItem_Click);
+            // 
+            // startExtensionToolStripMenuItem
+            // 
+            this.startExtensionToolStripMenuItem.Name = "startExtensionToolStripMenuItem";
+            resources.ApplyResources(this.startExtensionToolStripMenuItem, "startExtensionToolStripMenuItem");
             // 
             // gCodeToolStripMenuItem
             // 
@@ -2550,6 +2605,7 @@ namespace GRBL_Plotter
             this.toolStripViewPenUp,
             this.toolStripViewMachineFix,
             this.toolStripViewMachine,
+            this.toolStripViewDimension,
             this.toolStripViewTool,
             this.toolStripViewBackground});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
@@ -2598,6 +2654,15 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.toolStripViewMachine, "toolStripViewMachine");
             this.toolStripViewMachine.Click += new System.EventHandler(this.updateView);
             // 
+            // toolStripViewDimension
+            // 
+            this.toolStripViewDimension.Checked = true;
+            this.toolStripViewDimension.CheckOnClick = true;
+            this.toolStripViewDimension.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewDimension.Name = "toolStripViewDimension";
+            resources.ApplyResources(this.toolStripViewDimension, "toolStripViewDimension");
+            this.toolStripViewDimension.Click += new System.EventHandler(this.updateView);
+            // 
             // toolStripViewTool
             // 
             this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DToolTableShow;
@@ -2642,7 +2707,7 @@ namespace GRBL_Plotter
             // 
             // simulationTimer
             // 
-            this.simulationTimer.Interval = 128;
+            this.simulationTimer.Interval = 50;
             this.simulationTimer.Tick += new System.EventHandler(this.simulationTimer_Tick);
             // 
             // MainForm
@@ -2692,6 +2757,7 @@ namespace GRBL_Plotter
             this.gB_Jogging.ResumeLayout(false);
             this.gB_Jogging.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.tLPRechtsUntenRechtsMitte.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -3012,6 +3078,13 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Timer simulationTimer;
         private System.Windows.Forms.Button btnSimulateSlower;
         private System.Windows.Forms.Button btnSimulateFaster;
+        private System.Windows.Forms.Button btnSimulatePause;
+        private System.Windows.Forms.CheckBox cBServoButtons;
+        private System.Windows.Forms.Button btnPenDown;
+        private System.Windows.Forms.Button btnPenUp;
+        private System.Windows.Forms.CheckBox cBMoveG0;
+        private System.Windows.Forms.ToolStripMenuItem startExtensionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripViewDimension;
     }
 }
 

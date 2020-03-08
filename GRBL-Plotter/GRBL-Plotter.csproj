@@ -28,7 +28,7 @@
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.3.3.0</ApplicationVersion>
+    <ApplicationVersion>1.3.4.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -155,6 +155,7 @@
     <Compile Include="GCodeCreation\AForge_Imaging_Filter_RemoveArtefact.cs" />
     <Compile Include="GCodeCreation\GCodeFormFontHershey.cs" />
     <Compile Include="GCodeCreation\GCodeFromFont.cs" />
+    <Compile Include="GCodeCreation\GCodeFromHPGL.cs" />
     <Compile Include="GCodeCreation\GCodeFromImageCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,10 +300,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResStrings.resx</DependentUpon>
     </Compile>
+    <Content Include="data\extensions\GCode_Conic_Spiral.hta">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\extensions\SVG_simple_example.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\extensions\_script_functions.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\usecases\example_plotter_automatic_pen_changer.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\usecases\example_plotter_manual_pen_change.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\example_router.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\example_tangential.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\fonts-in-librecad-examples-sheet1.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\fonts-in-librecad-examples-sheet2.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\fonts-in-librecad-examples-sheet3.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\fonts-in-librecad-examples-sheet4.dxf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\tlOn.png" />
@@ -543,6 +571,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.de-DE.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.es.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
@@ -550,6 +579,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.fr.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.ja.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
@@ -559,9 +589,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.ru.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.zh-CN.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupForm.ar.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
@@ -857,8 +889,8 @@
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -920,7 +952,9 @@
     <Content Include="data\scripts\script_brush_select.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\examples\graphic_Hershey_Fonts.svg" />
+    <Content Include="data\examples\graphic_Hershey_Fonts.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\tools\router_tools.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1010,6 +1044,7 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

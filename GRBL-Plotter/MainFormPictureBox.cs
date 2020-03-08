@@ -65,16 +65,16 @@ namespace GRBL_Plotter
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            double minx = GCodeVisuAndTransform.drawingSize.minX;                  // extend dimensions
-            double maxx = GCodeVisuAndTransform.drawingSize.maxX;
-            double miny = GCodeVisuAndTransform.drawingSize.minY;
-            double maxy = GCodeVisuAndTransform.drawingSize.maxY;
+            double minx = VisuGCode.drawingSize.minX;                  // extend dimensions
+            double maxx = VisuGCode.drawingSize.maxX;
+            double miny = VisuGCode.drawingSize.minY;
+            double maxy = VisuGCode.drawingSize.maxY;
             double xRange = (maxx - minx);                                              // calculate new size
             double yRange = (maxy - miny);
             if (Properties.Settings.Default.machineLimitsFix)
             {   RectangleF tmp;
                 float offset = (float)Properties.Settings.Default.machineLimitsRangeX/40;       // view size
-                tmp = GCodeVisuAndTransform.pathMachineLimit.GetBounds();
+                tmp = VisuGCode.pathMachineLimit.GetBounds();
                 minx = (float)Properties.Settings.Default.machineLimitsHomeX - (float)grbl.posWCO.X - offset;
                 miny = (float)Properties.Settings.Default.machineLimitsHomeY - (float)grbl.posWCO.Y - offset; 
                 xRange = (float)Properties.Settings.Default.machineLimitsRangeX + 2*offset;
@@ -115,8 +115,8 @@ namespace GRBL_Plotter
                 {
                     if (!showPicBoxBgImage)
                         onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
-                    e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
-                    e.Graphics.DrawPath(penTool, GCodeVisuAndTransform.pathTool);
+                    e.Graphics.DrawPath(penTool, VisuGCode.pathTool);
+                    e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
 
                     e.Graphics.Transform = pBoxOrig;
                     if (Properties.Settings.Default.machineLimitsShow)
@@ -127,10 +127,15 @@ namespace GRBL_Plotter
                     if (Properties.Settings.Default.gui2DInfoShow)
                     {
                         e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
-                        e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 * zoomFactor, unit,
+                        if (simuEnabled)
+                            e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}\r\n Z:{4,7:0.000}\r\n a:{5,7:0.000}°", 100 * zoomFactor, unit,
+                            grbl.posMarker.X, grbl.posMarker.Y, VisuGCode.Simulation.getZ(), 180*grbl.posMarkerAngle/Math.PI), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
+                        else
+                            e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 * zoomFactor, unit,
                             grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
-                        if (visuGCode.selectedFigureInfo.Length > 0)
-                            e.Graphics.DrawString(visuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
+
+                        if (VisuGCode.selectedFigureInfo.Length > 0)
+                            e.Graphics.DrawString(VisuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
                     }
                 }
             }
@@ -138,10 +143,10 @@ namespace GRBL_Plotter
 
         private void onPaint_scaling(Graphics e)
         {
-            double minx = GCodeVisuAndTransform.drawingSize.minX;                  // extend dimensions
-            double maxx = GCodeVisuAndTransform.drawingSize.maxX;
-            double miny = GCodeVisuAndTransform.drawingSize.minY;
-            double maxy = GCodeVisuAndTransform.drawingSize.maxY;
+            double minx = VisuGCode.drawingSize.minX;                  // extend dimensions
+            double maxx = VisuGCode.drawingSize.maxX;
+            double miny = VisuGCode.drawingSize.minY;
+            double maxy = VisuGCode.drawingSize.maxY;
             double xRange = (maxx - minx);                                              // calculate new size
             double yRange = (maxy - miny);
             double picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
@@ -151,11 +156,13 @@ namespace GRBL_Plotter
         private void onPaint_drawToolPath(Graphics e)
         {
             if (Properties.Settings.Default.machineLimitsShow)
-                e.FillPath(brushMachineLimit, GCodeVisuAndTransform.pathMachineLimit); 
+                e.FillPath(brushMachineLimit, VisuGCode.pathMachineLimit); 
             if (Properties.Settings.Default.gui2DToolTableShow)
-                e.DrawPath(penTool, GCodeVisuAndTransform.pathToolTable);           
+                e.DrawPath(penTool, VisuGCode.pathToolTable);           
             if (Properties.Settings.Default.guiBackgroundShow)
-                e.DrawPath(penLandMark, GCodeVisuAndTransform.pathBackground);
+                e.DrawPath(penLandMark, VisuGCode.pathBackground);
+            if (Properties.Settings.Default.guiDimensionShow)
+                e.DrawPath(penLandMark, VisuGCode.pathDimension);
 
             float factorWidth = 1;
             if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
@@ -169,23 +176,23 @@ namespace GRBL_Plotter
             penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
             penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
 
-            e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathHeightMap);
+            e.DrawPath(penHeightMap, VisuGCode.pathHeightMap);
 
             if (Properties.Settings.Default.gui2DRulerShow)
-                e.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
+                e.DrawPath(penRuler, VisuGCode.pathRuler);
 
-            e.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
+            e.DrawPath(penDown, VisuGCode.pathPenDown);
 
             if (Properties.Settings.Default.ctrl4thUse)
-                e.DrawPath(penRotary, GCodeVisuAndTransform.pathRotaryInfo);
+                e.DrawPath(penRotary, VisuGCode.pathRotaryInfo);
 
             if (posIsMoving)
-                e.DrawPath(penLandMark, GCodeVisuAndTransform.pathMarkSelection);
+                e.DrawPath(penLandMark, VisuGCode.pathMarkSelection);
             else
-                e.DrawPath(penHeightMap, GCodeVisuAndTransform.pathMarkSelection);
+                e.DrawPath(penHeightMap, VisuGCode.pathMarkSelection);
 
             if (!(showPathPenUp ^ Properties.Settings.Default.gui2DPenUpShow))
-                e.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
+                e.DrawPath(penUp, VisuGCode.pathPenUp);
         }
 
         // Generante a background-image for pictureBox to avoid frequent drawing of pen-up/down paths
@@ -219,15 +226,15 @@ namespace GRBL_Plotter
                 xyPoint diff = new xyPoint(0, 0);
                 diff = posMoveEnd - posMoveTmp;
                 posMoveTmp = posMoveEnd;
-                if (GCodeVisuAndTransform.pathMarkSelection.PointCount > 1)
+                if (VisuGCode.pathMarkSelection.PointCount > 1)     // move selected path
                 {
                     Matrix tmp = new Matrix();
                     tmp.Translate((float)diff.X, (float)diff.Y);
-                    GCodeVisuAndTransform.pathMarkSelection.Transform(tmp);
+                    VisuGCode.pathMarkSelection.Transform(tmp);
                     posIsMoving = true;
                 }
                 else
-                {   posIsMoving = false;
+                {   posIsMoving = false;                            // move view
                     moveTranslation = new xyPoint(e.X, e.Y)  - moveTranslationOld;  // calc delta move
                     pBoxTransform.Translate((float)moveTranslation.X / zoomFactor, (float)moveTranslation.Y / zoomFactor);
                     moveTranslationOld = new xyPoint(e.X, e.Y);
@@ -253,7 +260,7 @@ namespace GRBL_Plotter
             {
                 if ((fCTBCode.LinesCount > 2) && !posIsMoving)
                 {
-                    int line = visuGCode.setPosMarkerNearBy(picAbsPos);
+                    int line = VisuGCode.setPosMarkerNearBy(picAbsPos);
                     posMoveStart = picAbsPos;
                     posMoveTmp = posMoveStart;
                     posMoveEnd = posMoveStart;
@@ -271,8 +278,11 @@ namespace GRBL_Plotter
             { allowZoom = false; }
         }
 
+
+// Make array of Matrix to store and reload previous view, instead of back-calculation
+
         private Matrix pBoxTransform = new Matrix();
-        private Matrix pBoxOrig = new Matrix();
+        private Matrix pBoxOrig = new Matrix();			// to restore e.Graphics.Transform
         private static float scrollZoomFactor = 2f; // zoom factor   
         private float zoomFactor = 1f;
         private bool allowZoom = true;
@@ -319,7 +329,41 @@ namespace GRBL_Plotter
         private void resetZoomingToolStripMenuItem_Click(object sender, EventArgs e)
         { pBoxTransform.Reset(); zoomFactor = 1; 
         }
-#endregion
+
+        private void setGraphicProperties()
+        {
+            pictureBox1.BackColor = Properties.Settings.Default.gui2DColorBackground;
+            penUp.Color = Properties.Settings.Default.gui2DColorPenUp;
+            penDown.Color = Properties.Settings.Default.gui2DColorPenDown;
+            penRotary.Color = Properties.Settings.Default.gui2DColorRotaryInfo;
+            penHeightMap.Color = Properties.Settings.Default.gui2DColorHeightMap;
+            penRuler.Color = Properties.Settings.Default.gui2DColorRuler;
+            penTool.Color = Properties.Settings.Default.gui2DColorTool;
+            penMarker.Color = Properties.Settings.Default.gui2DColorMarker;
+
+            float factorWidth = 1;
+            if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
+            if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
+            penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap * factorWidth;
+            penHeightMap.LineJoin = LineJoin.Round;
+            penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler * factorWidth;
+            penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
+            penUp.LineJoin = LineJoin.Round;
+            penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+            penDown.LineJoin = LineJoin.Round;
+            penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
+            penRotary.LineJoin = LineJoin.Round;
+            penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
+            penTool.LineJoin = LineJoin.Round;
+            penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
+            penMarker.LineJoin = LineJoin.Round;
+            penLandMark.LineJoin = LineJoin.Round;
+            penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+
+            brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.gui2DColorMachineLimit, Color.Transparent);
+            picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+        }
+        #endregion
 
     }
 }

@@ -35,8 +35,9 @@ namespace GRBL_Plotter
         public const string tools    = "\\data\\tools";
         public const string scripts  = "\\data\\scripts";
         public const string usecases = "\\data\\usecases";
-        public const string hotkeys = "\\data\\hotkeys.xml";
+        public const string hotkeys  = "\\data\\hotkeys.xml";
         public const string examples = "\\data\\examples";
+        public const string extension= "\\data\\extensions";
     }
 
     public struct xyzPoint
@@ -108,6 +109,8 @@ namespace GRBL_Plotter
         public double X, Y;
         public xyPoint(double x, double y)
         { X = x; Y = y; }
+        public xyPoint(System.Windows.Point xy)
+        { X = xy.X; Y = xy.Y; }
         public xyPoint(xyPoint tmp)
         { X = tmp.X; Y = tmp.Y; }
         public xyPoint(Point tmp)
@@ -123,6 +126,8 @@ namespace GRBL_Plotter
 
         public Point ToPoint()
         { return new Point((int)X, (int)Y); }
+
+ //       public static explicit operator System.Windows.Point(xyPoint tmp) => new System.Windows.Point(tmp.X,tmp.Y);
 
         public double DistanceTo(xyPoint anotherPoint)
         {
@@ -252,6 +257,10 @@ namespace GRBL_Plotter
             maxz = Math.Max(maxz, value);
             dimz = maxz - minz;
         }
+
+        public double getArea()
+        {   return dimx* dimy;  }
+
         // calculate min/max dimensions of a circle
         public void setDimensionCircle(double x, double y, double radius, double start, double delta)
         {
