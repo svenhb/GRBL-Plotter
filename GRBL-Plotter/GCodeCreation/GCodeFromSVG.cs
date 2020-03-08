@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,6 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+/* Level 1: import graphics SVG, DXF, HPGL, Drill, 
+ *          extract objects, coordinates, colors, groups
+ *
+ * Level 2: plotterRelated: collect blocks, sort groups, code repition, tangential axis
+ *
+ * Level 3: gcodeRelated: implement Pen up/down options, avoid G23, cutter correction, write GCode commands 
+*/
+
 /*  GCodeFromSVG.cs a static class to convert SVG data into G-Code 
     Not implemented: 
         Basic-shapes: Text, Image
@@ -45,6 +54,7 @@
    2019-11-24 Code outsourcing to importMath.cs
    2019-12-07 add extended log
    2019-12-22 Line 100 add try/catch for bad SVG-XML
+   2020-02-28 Bug fix "polygon"
 */
 
 using System;
@@ -57,6 +67,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using System.IO;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace GRBL_Plotter
 {
@@ -377,12 +388,14 @@ namespace GRBL_Plotter
                     Plotter.PathColor = pathColor.Substring(1);       //getColor(pathElement);
                 Plotter.PathToolNr = toolTable.getToolNr(Plotter.PathColor, 0);
                 setDashPattern(getStyleProperty(element, "stroke-dasharray"));
+                if (gcode.loggerTrace) Logger.Trace(" parseAttributs: stroke: {0} P-color: {1} P-toolNr: {2}", pathColor, Plotter.PathColor, Plotter.PathToolNr);
             }
             if (element.Attribute("stroke") != null)
             {   //if (svgComments) Plotter.Comment(string.Format(" stroke '{0}'", element.Attribute("stroke").Value));
                 string pathColor = element.Attribute("stroke").Value;
                 Plotter.PathColor = pathColor.StartsWith("#") ? pathColor.Substring(1) : pathColor;
                 Plotter.PathToolNr = toolTable.getToolNr(Plotter.PathColor, 0);
+                if (gcode.loggerTrace) Logger.Trace(" parseAttributs: stroke: {0} P-color: {1} P-toolNr: {2}", pathColor, Plotter.PathColor, Plotter.PathToolNr);
             }
             if (element.Attribute("stroke-dasharray") != null)
             {   //if (svgComments) Plotter.Comment(string.Format(" stroke-dasharray '{0}'", element.Attribute("stroke-dasharray").Value));
@@ -694,37 +707,42 @@ namespace GRBL_Plotter
                         }
                         else if ((form == "polyline") || (form == "polygon"))
                         {
-                            offsetX = 0;// (float)matrixElement.OffsetX;
-                            offsetY = 0;// (float)matrixElement.OffsetY;
+                            //offsetX = 0;// (float)matrixElement.OffsetX;
+                            //offsetY = 0;// (float)matrixElement.OffsetY;
                             x1 = -1;y1 = -1;
                             if (svgComments) Plotter.Comment(" SVG-Polyline ");
-                            int index = 0;
-                            for (index = 0; index < points.Length; index++)
+//                            if (gcode.loggerTrace) Logger.Trace("{0} {1}", form, pathElement.Attribute("points"));
+                            for (int index = 0; index < points.Length; index++)
                             {   if (points[index].IndexOf(",") >= 0)
                                 {
                                     string[] coord = points[index].Split(',');
-                                    x = convertToPixel(coord[0]); y = convertToPixel(coord[1]);
+                                    x = convertToPixel(coord[0]) + offsetX; y = convertToPixel(coord[1]) + offsetY;
+//                                    if (gcode.loggerTrace) Logger.Trace("{0} {1} x{2:0.00}  y{3:0.00}   {4}",form, index, x, y, points[index]);
                                     if (index == 0)
-                                    {   x1 = x; y1 = y;
+                                    {
+                                        x1 = x; y1 = y;
                                         if (!svgNodesOnly)
                                             svgStartPath(x, y, form);     // move to
                                         else
                                             gcodeDotOnly(x, y, form);
                                     }
-                                    Plotter.IsPathReduceOk = true;
-
-                                    if (!svgNodesOnly)
-                                        svgMoveTo(x, y, form);            // line to
                                     else
-                                        gcodeDotOnly(x, y, form);
+                                    {
+                                        Plotter.IsPathReduceOk = true;
+
+                                        if (!svgNodesOnly)
+                                            svgMoveTo(x, y, form);            // line to
+                                        else
+                                            gcodeDotOnly(x, y, form);
+                                    }
                                 }
                             }
                             if (form == "polygon")
                             {
                                 if (!svgNodesOnly)
                                     svgMoveTo(x1, y1, form);              // close path
-                                else
-                                    gcodeDotOnly(x1, y1, form);
+//                                else
+//                                    gcodeDotOnly(x1, y1, form);
                             }
                             Plotter.StopPath(form);
                         }
@@ -830,12 +848,34 @@ namespace GRBL_Plotter
             char cmd = char.ToUpper(command);
             bool absolute = (cmd==command);
             string remainingargs = svgPath.Substring(1);
+            // 2020-01-13 "@"-?(?:\d*\.)?\d+|[a-z]";"   nok
             string argSeparators = @"[\s,]|(?=(?<!e)-)";// @"[\s,]|(?=-)|(-{,2})";        // support also -1.2e-3 orig. @"[\s,]|(?=-)"; 
             var splitArgs = Regex
                 .Split(remainingargs, argSeparators)
                 .Where(t => !string.IsNullOrEmpty(t));
-// get command coordinates
-            float[] floatArgs = splitArgs.Select(arg => convertToPixel(arg)).ToArray();
+
+/*            if (gcode.loggerTrace)
+                foreach (string str in splitArgs)
+                    Logger.Trace("    {0}", str);
+*/            // get command coordinates
+            float[] floatArgs = splitArgs.Select(arg => convertToPixel(arg)).ToArray(); 
+
+/*            List<string> tmp = new List<string>();
+            foreach (string arg in splitArgs)
+            {   string[] num = arg.Split('.');
+                if (num.Count() <= 2)
+                {   tmp.Add(arg); }
+                else
+                {   tmp.Add(num[0]+"."+num[1]);
+                    tmp.Add("00000." + num[2]);
+                }
+            }
+            if (gcode.loggerTrace)
+                foreach (string str in tmp)
+                    Logger.Trace("    {0}", str);
+            floatArgs = tmp.Select(arg => convertToPixel(arg)).ToArray();
+*/
+
             int objCount = 0;
 
             switch (cmd)
@@ -1252,7 +1292,8 @@ namespace GRBL_Plotter
         /// Insert G1 gcode command
         /// </summary>
         private static void svgMoveTo(Point orig, string cmt)
-        {   
+        {
+            if (gcode.loggerTrace) Logger.Trace(" svgMoveTo x{0:0.000} y{1:0.000} cmt {2}", orig.X, orig.Y,cmt);
             Point tmp = translateXY(orig);
             Plotter.MoveTo(tmp, cmt);
         }

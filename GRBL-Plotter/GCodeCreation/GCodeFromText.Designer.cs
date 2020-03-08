@@ -84,22 +84,19 @@ namespace GRBL_Plotter
             // 
             // cBFont
             // 
-            resources.ApplyResources(this.cBFont, "cBFont");
             this.cBFont.FormattingEnabled = true;
+            resources.ApplyResources(this.cBFont, "cBFont");
             this.cBFont.Name = "cBFont";
-            this.toolTip1.SetToolTip(this.cBFont, resources.GetString("cBFont.ToolTip"));
             // 
             // btnApply
             // 
             resources.ApplyResources(this.btnApply, "btnApply");
             this.btnApply.Name = "btnApply";
-            this.toolTip1.SetToolTip(this.btnApply, resources.GetString("btnApply.ToolTip"));
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // groupBox3
             // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.nUDFontLine);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.nUDFontDistance);
@@ -107,22 +104,21 @@ namespace GRBL_Plotter
             this.groupBox3.Controls.Add(this.nUDFontSize);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.cBFont);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
             // 
             // nUDFontLine
             // 
-            resources.ApplyResources(this.nUDFontLine, "nUDFontLine");
             this.nUDFontLine.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "createtextLineDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDFontLine.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDFontLine, "nUDFontLine");
             this.nUDFontLine.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDFontLine.Name = "nUDFontLine";
-            this.toolTip1.SetToolTip(this.nUDFontLine, resources.GetString("nUDFontLine.ToolTip"));
             this.nUDFontLine.Value = global::GRBL_Plotter.Properties.Settings.Default.createTextLineDistance;
             // 
             // label11
@@ -133,7 +129,6 @@ namespace GRBL_Plotter
             // 
             // nUDFontDistance
             // 
-            resources.ApplyResources(this.nUDFontDistance, "nUDFontDistance");
             this.nUDFontDistance.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "createtextFontDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDFontDistance.DecimalPlaces = 1;
             this.nUDFontDistance.Increment = new decimal(new int[] {
@@ -141,13 +136,13 @@ namespace GRBL_Plotter
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDFontDistance, "nUDFontDistance");
             this.nUDFontDistance.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             -2147483648});
             this.nUDFontDistance.Name = "nUDFontDistance";
-            this.toolTip1.SetToolTip(this.nUDFontDistance, resources.GetString("nUDFontDistance.ToolTip"));
             this.nUDFontDistance.Value = global::GRBL_Plotter.Properties.Settings.Default.createTextFontDistance;
             // 
             // label10
@@ -158,31 +153,28 @@ namespace GRBL_Plotter
             // 
             // nUDFontSize
             // 
-            resources.ApplyResources(this.nUDFontSize, "nUDFontSize");
             this.nUDFontSize.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "createtextFontSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDFontSize.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDFontSize, "nUDFontSize");
             this.nUDFontSize.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nUDFontSize.Name = "nUDFontSize";
-            this.toolTip1.SetToolTip(this.nUDFontSize, resources.GetString("nUDFontSize.ToolTip"));
             this.nUDFontSize.Value = global::GRBL_Plotter.Properties.Settings.Default.createTextFontSize;
             this.nUDFontSize.ValueChanged += new System.EventHandler(this.nUDFontSize_ValueChanged);
             // 
             // btnCancel
             // 
-            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
-            this.toolTip1.SetToolTip(this.btnCancel, resources.GetString("btnCancel.ToolTip"));
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.cBToolTable);
             this.groupBox1.Controls.Add(this.cBConnectLetter);
             this.groupBox1.Controls.Add(this.cBTool);
@@ -191,9 +183,9 @@ namespace GRBL_Plotter
             this.groupBox1.Controls.Add(this.cBPauseWord);
             this.groupBox1.Controls.Add(this.cBPauseChar);
             this.groupBox1.Controls.Add(this.label2);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
             // 
             // cBToolTable
             // 
@@ -214,52 +206,45 @@ namespace GRBL_Plotter
             // 
             // cBTool
             // 
-            resources.ApplyResources(this.cBTool, "cBTool");
             this.cBTool.FormattingEnabled = true;
+            resources.ApplyResources(this.cBTool, "cBTool");
             this.cBTool.Name = "cBTool";
-            this.toolTip1.SetToolTip(this.cBTool, resources.GetString("cBTool.ToolTip"));
             this.cBTool.SelectedIndexChanged += new System.EventHandler(this.cBTool_SelectedIndexChanged);
             // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // cBPauseLine
             // 
             resources.ApplyResources(this.cBPauseLine, "cBPauseLine");
             this.cBPauseLine.Name = "cBPauseLine";
-            this.toolTip1.SetToolTip(this.cBPauseLine, resources.GetString("cBPauseLine.ToolTip"));
             this.cBPauseLine.UseVisualStyleBackColor = true;
             // 
             // cBPauseWord
             // 
             resources.ApplyResources(this.cBPauseWord, "cBPauseWord");
             this.cBPauseWord.Name = "cBPauseWord";
-            this.toolTip1.SetToolTip(this.cBPauseWord, resources.GetString("cBPauseWord.ToolTip"));
             this.cBPauseWord.UseVisualStyleBackColor = true;
             // 
             // cBPauseChar
             // 
             resources.ApplyResources(this.cBPauseChar, "cBPauseChar");
             this.cBPauseChar.Name = "cBPauseChar";
-            this.toolTip1.SetToolTip(this.cBPauseChar, resources.GetString("cBPauseChar.ToolTip"));
             this.cBPauseChar.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
             // 
             // tBText
             // 
-            resources.ApplyResources(this.tBText, "tBText");
             this.tBText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "createtextFontText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBText, "tBText");
             this.tBText.Name = "tBText";
             this.tBText.Text = global::GRBL_Plotter.Properties.Settings.Default.createTextFontText;
-            this.toolTip1.SetToolTip(this.tBText, resources.GetString("tBText.ToolTip"));
             // 
             // GCodeFromText
             // 
@@ -272,7 +257,6 @@ namespace GRBL_Plotter
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.tBText);
             this.Name = "GCodeFromText";
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TextForm_FormClosing);
             this.Load += new System.EventHandler(this.TextForm_Load);
             this.Resize += new System.EventHandler(this.GCodeFromText_Resize);

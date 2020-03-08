@@ -21,6 +21,8 @@
  * 2019-06-10 insert xmlMarker.figureStart tag
  * 2019-07-08 add char-info to xmlMarker.figureStart tag
  * 2019-08-15 add logger
+ * 2020-02-22 bug fix line 290
+ * 2020-02-25 switch from gcode.xx to plotter.xx to support tangential axis
 */
 
 using System;
@@ -41,7 +43,7 @@ namespace GRBL_Plotter
         public static int gcAttachPoint = 7;    // origin of text 1 = Top left; 2 = Top center; 3 = Top right; etc
         public static double gcHeight = 1;      // desired Text height
         public static double gcWidth = 1;       // desired Text width
-        public static double gcAngle = 0;
+        public static double gcAngleRad = 0;
         public static double gcSpacing = 1;     // Percentage of default (3-on-5) line spacing to be applied. Valid values range from 0.25 to 4.00.
         public static double gcOffX = 0;
         public static double gcOffY = 0;
@@ -53,12 +55,11 @@ namespace GRBL_Plotter
         public static bool gcPauseChar = false;
         public static bool gcConnectLetter = false;
 
-        private static double gcLetterSpacing = 3;  //  # LetterSpacing:     3
-        private static double gcWordSpacing = 6.75; //  # WordSpacing:       6.75
+        private static double gcLetterSpacing = 3;  
+        private static double gcWordSpacing = 6.75; 
 
         private static double offsetX = 0;
         private static double offsetY = 0;
-        private static bool gcodePenIsUp = false;
         private static bool useLFF = false;
         private static bool isSameWord = false;
 
@@ -75,19 +76,19 @@ namespace GRBL_Plotter
         public static void reset()
         {
             gcFontName = "standard"; gcText = ""; gcFont = 0; gcAttachPoint = 7;
-            gcHeight = 0; gcWidth = 0; gcAngle = 0; gcSpacing = 1; gcOffX = 0; gcOffY = 0;
-            gcPauseLine = false; gcPauseWord = false; gcPauseChar = false; gcodePenIsUp = false;
+            gcHeight = 0; gcWidth = 0; gcAngleRad = 0; gcSpacing = 1; gcOffX = 0; gcOffY = 0;
+            gcPauseLine = false; gcPauseWord = false; gcPauseChar = false; 
             useLFF = false; gcLineDistance = 1.5; gcFontDistance = 0;
             pathCount = 0;
         }
 
-        public static int getCode(StringBuilder gcodeString, int startCount, string cmt)   
+        public static int getCode(int startCount, string cmt)       // return pathCount
         {
             pathCount = startCount;
-            Logger.Trace("Create GCode, text length {0}, font {1}", gcText.Length, gcFontName);
             double scale = gcHeight / 21;
             string tmp1 = gcText.Replace('\r', '|');
-            gcodeString.AppendFormat("( Text: {0} )\r\n", tmp1.Replace('\n', ' '));
+            Plotter.Comment(string.Format(" Text: {0}", tmp1.Replace('\n', ' ')));
+            Logger.Trace("Create GCode, text length {0}, font '{1}', Text '{2}'", gcText.Length, gcFontName, tmp1.Replace('\n', ' '));
             string[] fileContent=new string[] { "" };
 
             string fileName = "";
@@ -116,7 +117,7 @@ namespace GRBL_Plotter
                     }
                 }
                 else
-                {   gcodeString.AppendFormat("( Font '{0}' not found )\r\n", gcFontName);
+                {   Plotter.Comment(string.Format(" Font '{0}' not found ", gcFontName));
                     if (!hersheyFonts.ContainsKey(gcFontName))
                     {
                         Logger.Error("Font '{0}' or file '{1}' not found", gcFontName, fileName);
@@ -146,9 +147,9 @@ namespace GRBL_Plotter
             double charWidth = gcWidth / maxCharCount;
 
             offsetX = 0;
-            offsetY = 9 * scale + ((double)lines.Length - 1) * gcHeight * gcLineDistance;// (double)nUDFontLine.Value;
+            offsetY = 9 * scale + ((double)lines.Length - 1) * gcHeight * gcLineDistance;
             if (useLFF)
-                offsetY = ((double)lines.Length - 1) * gcHeight * gcLineDistance;// (double)nUDFontLine.Value;
+                offsetY = ((double)lines.Length - 1) * gcHeight * gcLineDistance;
 
             isSameWord = false;
 
@@ -158,7 +159,7 @@ namespace GRBL_Plotter
                 {
                     offsetY -= gcHeight * gcLineDistance;
                     if (gcPauseLine)
-                        gcode.Pause(gcodeString, "Pause before line");
+                        gcodePause("Pause before line");
 
                 }
                 string actualLine = lines[lineIndex];
@@ -180,12 +181,12 @@ namespace GRBL_Plotter
                     if (useLFF) // LFF Font (LibreCAD font file format)
                     {
                         if (chrIndexLFF > 32)
-                        { gcode.Comment(gcodeString, string.Format("{0} {1} Char=\"{2}\" {3}>", xmlMarker.figureStart, (++pathCount), actualChar, cmt)); }
+                        { gcodeComment(string.Format("{0} {1} Char=\"{2}\" {3}>", xmlMarker.figureStart, (++pathCount), actualChar, cmt)); }
 
-                        drawLetterLFF(gcodeString, ref fileContent, chrIndexLFF, scale);//, string.Format("Char: {0}", gcText[txtIndex])); // regular char
-                        gcodePenUp(gcodeString);
+                        drawLetterLFF(ref fileContent, chrIndexLFF, scale);// regular char
+                        gcodePenUp("getCode");
                         if (chrIndexLFF > 32)
-                            gcode.Comment(gcodeString, Plotter.SetFigureEnd(pathCount));
+                            gcodeComment(Plotter.SetFigureEnd(pathCount));
                     }
                     else
                     {
@@ -194,31 +195,29 @@ namespace GRBL_Plotter
                             offsetX += 2 * gcSpacing;                   // apply space
                             isSameWord = false;
                             if (gcPauseWord)
-                                gcode.Pause(gcodeString, "Pause before word");
+                                gcodePause("Pause before word");
                         }
                         else
                         {
-                            //gcodeString.AppendFormat("( Char: {0})\r\n", gcText[txtIndex]);                        
                             if (gcPauseChar)
-                                gcode.Pause(gcodeString, "Pause before char");
+                                gcodePause("Pause before char");
                             if (gcPauseChar && (actualChar == ' '))
-                                gcode.Pause(gcodeString, "Pause before word");
-                            drawLetter(gcodeString, hersheyFonts[gcFontName][chrIndex], scale, actualChar.ToString() + cmt); // regular char
+                                gcodePause("Pause before word");
+                            drawLetter(hersheyFonts[gcFontName][chrIndex], scale, actualChar.ToString() + cmt); // regular char
                         }
                     }
                 }
             }
             if (!useLFF)
-            {   gcode.PenUp(gcodeString);
-                gcode.Comment(gcodeString, Plotter.SetFigureEnd(pathCount));
+            {   gcodePenUp("getCode");
+                gcodeComment(Plotter.SetFigureEnd(pathCount));
             }
-   //         startCount = pathCount;
             return pathCount;
         }
 
         // http://forum.librecad.org/Some-questions-about-the-LFF-fonts-td5715159.html
 
-        private static double drawLetterLFF(StringBuilder gcodeString, ref string[] txtFont, int index, double scale, bool isCopy=false)
+        private static double drawLetterLFF(ref string[] txtFont, int index, double scale, bool isCopy=false)
         {
             int lineIndex = 0;
             double maxX = 0;
@@ -227,7 +226,7 @@ namespace GRBL_Plotter
             if (index <= 32)
             {   offsetX += gcWordSpacing * scale;
                 if (gcPauseWord)
-                {   gcode.Pause(gcodeString, "Pause before word");
+                {   gcodePause("Pause before word");
                 }
             }
             else
@@ -247,7 +246,7 @@ namespace GRBL_Plotter
                         {
                             charXOld = -1; charYOld = -1;
                             if (gcPauseChar)
-                                gcode.Pause(gcodeString, "Pause before char");
+                                gcodePause("Pause before char");
 
                             int pathIndex;
                             for (pathIndex = lineIndex + 1; pathIndex < txtFont.Length; pathIndex++)
@@ -257,10 +256,10 @@ namespace GRBL_Plotter
                                 if (txtFont[pathIndex][0] == 'C')       // copy other char first
                                 {
                                     int copyIndex = Convert.ToInt16(txtFont[pathIndex].Substring(1, 4), 16);
-                                    maxX = drawLetterLFF(gcodeString, ref txtFont, copyIndex, scale, true);
+                                    maxX = drawLetterLFF(ref txtFont, copyIndex, scale, true);
                                 }
                                 else
-                                    maxX = Math.Max(maxX, drawTokenLFF(gcodeString, txtFont[pathIndex], offsetX + gcOffX, offsetY + gcOffY, scale));
+                                    maxX = Math.Max(maxX, drawTokenLFF(txtFont[pathIndex], offsetX, offsetY, scale));
                             }
                             break;
                         }
@@ -274,43 +273,39 @@ namespace GRBL_Plotter
 
         private static double charX, charY, charXOld=0, charYOld=0;
 
-        private static double drawTokenLFF(StringBuilder gcodeString, string txtPath, double offX, double offY, double scale)
+        private static double drawTokenLFF(string txtPath, double offX, double offY, double scale)
         {   string[] points = txtPath.Split(';');
             int cnt = 0;
             double xx,yy,x,y,xOld=0,yOld=0,bulge=0,maxX = 0;
             foreach (string point in points)
             {   string[] scoord = point.Split(',');
-                charX = double.Parse(scoord[0], CultureInfo.InvariantCulture.NumberFormat);// Convert.ToDouble(scoord[0]);
+                charX = double.Parse(scoord[0], CultureInfo.InvariantCulture.NumberFormat);
                 xx = charX * scale ;
                 maxX = Math.Max(maxX, xx);
                 xx += offX;
-                charY = double.Parse(scoord[1], CultureInfo.InvariantCulture.NumberFormat); // Convert.ToDouble(scoord[1]);
+                charY = double.Parse(scoord[1], CultureInfo.InvariantCulture.NumberFormat); 
                 yy = charY * scale + offY;
-                if (gcAngle == 0)
-                { x = xx; y = yy; }
+                if (gcAngleRad == 0)
+                { x = xx + gcOffX; y = yy + gcOffY; }
                 else
-                {
-                    x = xx * Math.Cos(gcAngle * Math.PI / 180) - yy * Math.Sin(gcAngle * Math.PI / 180);
-                    y = xx * Math.Sin(gcAngle * Math.PI / 180) + yy * Math.Cos(gcAngle * Math.PI / 180);
+                {   x = xx * Math.Cos(gcAngleRad) - yy * Math.Sin(gcAngleRad) + gcOffX;
+                    y = xx * Math.Sin(gcAngleRad) + yy * Math.Cos(gcAngleRad) + gcOffY;
                 }
 
                 if (scoord.Length > 2)
                 {   if (scoord[2].IndexOf('A')>=0)
-                        bulge = double.Parse(scoord[2].Substring(1), CultureInfo.InvariantCulture.NumberFormat); //Convert.ToDouble(scoord[2].Substring(1)) ;
-                    //AddRoundCorner(gcodeString, bulge, xOld + offX, yOld + offY, x + offX, y + offY);
-                    AddRoundCorner(gcodeString, bulge, xOld, yOld, x, y);
+                        bulge = double.Parse(scoord[2].Substring(1), CultureInfo.InvariantCulture.NumberFormat); 
+                    AddRoundCorner(bulge, xOld, yOld, x, y);
                 }
                 else if (cnt == 0)
                 {   if ((charX != charXOld) || (charY != charYOld))
                     {
-                        gcodePenUp(gcodeString);
-                        gcodeMove(gcodeString, 0, (float)x, (float)y);
-                        gcodePenDown(gcodeString);
+                        gcodePenUp(" drawTokenLFF");
+                        gcodeMove(0, (float)x, (float)y);
                     }
                 }
                 else
-                    gcodeMove(gcodeString, 1, (float)x, (float)y);
-                //gcodeMove(gcodeString, 1, (float)(x + offX), (float)(y + offY));
+                    gcodeMove(1, (float)x, (float)y);
                 cnt++;
                 xOld = x; yOld = y;
                 charXOld = charX; charYOld = charY;
@@ -319,7 +314,7 @@ namespace GRBL_Plotter
         }
 
         // break down path of a single char into pieces
-        private static void drawLetter(StringBuilder gcodeString, string svgtxt, double scale, string comment)
+        private static void drawLetter(string svgtxt, double scale, string comment)
         {
             string separators = @"(?=[A-Za-z])";
             var tokens = Regex.Split(svgtxt, separators).Where(t => !string.IsNullOrEmpty(t));
@@ -328,14 +323,14 @@ namespace GRBL_Plotter
             tmpX = offsetX - double.Parse(svgsplit[0], NumberFormatInfo.InvariantInfo) * scale;
             int token_cnt = 0;
             foreach (string token in tokens)
-            {   drawToken(gcodeString, token, tmpX + gcOffX, offsetY + gcOffY, (float)scale, token_cnt++, comment);
+            {   drawToken(token, tmpX + gcOffX, offsetY + gcOffY, (float)scale, token_cnt++, comment);
             }
             offsetX = tmpX + double.Parse(svgsplit[1], NumberFormatInfo.InvariantInfo) * scale + gcFontDistance; //double.Parse(svgsplit[1]) * scale + gcFontDistance;
             isSameWord = true;
         }
 
         // draw a piece of the letter path: M x,y  or L x,y
-        private static void drawToken(StringBuilder gcodeString, string svgPath, double offX, double offY, float scale, int tnr, string comment)
+        private static void drawToken(string svgPath, double offX, double offY, float scale, int tnr, string comment)
         {
             var cmd = svgPath.Take(1).Single();
             string remainingargs = svgPath.Substring(1);
@@ -348,48 +343,40 @@ namespace GRBL_Plotter
             if (tnr == 1)
             {
                 if (pathCount > 0)
-                    gcode.Comment(gcodeString, Plotter.SetFigureEnd(pathCount));
-                gcode.Comment(gcodeString, string.Format("{0} {1} char='{2}'>", xmlMarker.figureStart, (++pathCount), comment));
+                    gcodeComment(Plotter.SetFigureEnd(pathCount));
+                gcodeComment(string.Format("{0} {1} char='{2}'>", xmlMarker.figureStart, (++pathCount), comment));
             }
             if (cmd == 'M')
             {   if (gcConnectLetter && isSameWord && (tnr == 1))
                 {   for (int i = 0; i < floatArgs.Length; i += 2)
-                    { gcodeMove(gcodeString, 1, (float)(offX + floatArgs[i]), (float)(offY - floatArgs[i + 1])); }
+                    { gcodeMove(1, (float)(offX + floatArgs[i]), (float)(offY - floatArgs[i + 1])); }
                 }
                 else
-                {   gcodePenUp(gcodeString);
+                {   gcodePenUp("drawToken");
                     for (int i = 0; i < floatArgs.Length; i += 2)
-                    { gcodeMove(gcodeString, 0, (float)(offX + floatArgs[i]), (float)(offY - floatArgs[i + 1])); }
-                    gcodePenDown(gcodeString);
+                    { gcodeMove(0, (float)(offX + floatArgs[i]), (float)(offY - floatArgs[i + 1])); }
                 }
             }
             if (cmd == 'L')
             {   for (int i = 0; i < floatArgs.Length; i += 2)
-                {   gcodeMove(gcodeString, 1, (float)(offX + floatArgs[i]), (float)(offY - floatArgs[i + 1])); }
+                {   gcodeMove(1, (float)(offX + floatArgs[i]), (float)(offY - floatArgs[i + 1])); }
             }
         }
 
-        private static void gcodeMove(StringBuilder gcodeString, int gnr, float x, float y, string cmd = "")
-        {
-            if (gnr == 0)
-                gcode.MoveToRapid(gcodeString, x, y, cmd);
-            else
-                gcode.MoveTo(gcodeString, x, y, cmd);
-        }
+        private static void gcodeMove(int gnr, float x, float y, string cmd = "")
+        {   Plotter.MoveToSimple(new xyPoint(x,y),cmd,(gnr==0));       }
 
-        private static void gcodePenDown(StringBuilder gcodeString)
-        {
-            gcode.PenDown(gcodeString, "");
-            gcodePenIsUp = false;
-        }
-        private static void gcodePenUp(StringBuilder gcodeString)
-        {
-            if (!gcodePenIsUp)
-                gcode.PenUp(gcodeString, "");
-            gcodePenIsUp = true;
-        }
+        private static void gcodePenDown(string cmt)
+        {   Plotter.PenDown(cmt);  }
+        private static void gcodePenUp(string cmt)
+        {   Plotter.PenUp(cmt);      }
+        private static void gcodeComment(string cmt)
+        {   Plotter.Comment(cmt); }         
+        private static void gcodePause(string cmt)
+        {   Plotter.InsertPause(cmt); }     
 
-        private static void AddRoundCorner(StringBuilder gcodeString, double bulge, double p1x, double p1y, double p2x, double p2y)
+
+        private static void AddRoundCorner(double bulge, double p1x, double p1y, double p2x, double p2y)
         {
             //Definition of bulge, from Autodesk DXF fileformat specs
             double angle = Math.Abs(Math.Atan(bulge) * 4);
@@ -430,11 +417,10 @@ namespace GRBL_Plotter
             }
 
             string cmt = "";
-//            if (dxfComments) { cmt = "Bulge " + bulge.ToString(); }
             if (bulge > 0)
-                gcode.Arc(gcodeString, 3, (float)p2x, (float)p2y, (float)(xc - p1x), (float)(yc - p1y), cmt);
+                Plotter.Arc(3, (float)p2x, (float)p2y, (float)(xc - p1x), (float)(yc - p1y), cmt);
             else
-                gcode.Arc(gcodeString, 2, (float)p2x, (float)p2y, (float)(xc - p1x), (float)(yc - p1y), cmt);
+                Plotter.Arc(2, (float)p2x, (float)p2y, (float)(xc - p1x), (float)(yc - p1y), cmt);
         }
 
 

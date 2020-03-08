@@ -36,6 +36,7 @@ namespace GRBL_Plotter
         public bool colorPresent;
         public bool toolSelected;
         public int codeSize;
+        public double codeDimension;
         public int pixelCount;
         public double diff;
 
@@ -72,9 +73,10 @@ namespace GRBL_Plotter
         public enum toolSortOption
         {   nosort = 0,
             bytool = 1,
-            bysize = 2
+            bysize = 2,
+            bydim = 3
         }
- // defaultTool needed in Setup   fields:   ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-speed,Z-save,Z-depth,Z-step, spindleSpeed, overlap, gcode
+        // defaultTool needed in Setup   fields:   ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-speed,Z-save,Z-depth,Z-step, spindleSpeed, overlap, gcode
         public static string[] defaultTool = { "1", "000000", "Default black", "0", "0", "0", "1", "999", "555", "3", "-1", "1", "1111", "100", "" };
 
         public static toolPos[] getToolCordinates()
@@ -129,6 +131,8 @@ namespace GRBL_Plotter
             if (index >= toolTableIndex - 2) index = toolTableIndex - 2;
             toolTableArray[index + 1].codeSize = size;
         }
+        public static void indexSetCodeDimension(double size)
+        { toolTableArray[tmpIndex].codeDimension = size; }
         public static void setIndex(int index)
         {   if ((index >= 0) && (index < toolTableIndex))
                 tmpIndex = index;
@@ -166,6 +170,13 @@ namespace GRBL_Plotter
                 Array.Sort<toolProp>(toolTableArray, (x, y) => x.pixelCount.CompareTo(y.pixelCount));
             else
                 Array.Sort<toolProp>(toolTableArray, (x, y) => y.pixelCount.CompareTo(x.pixelCount));    // sort by size
+        }
+        public static void sortByCodeDim(bool invert)
+        {
+            if (!invert)
+                Array.Sort<toolProp>(toolTableArray, (x, y) => x.codeDimension.CompareTo(y.codeDimension));
+            else
+                Array.Sort<toolProp>(toolTableArray, (x, y) => y.codeDimension.CompareTo(x.codeDimension));    // sort by dimension
         }
 
         public static toolProp setDefault()

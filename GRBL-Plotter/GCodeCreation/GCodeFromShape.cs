@@ -39,6 +39,7 @@ namespace GRBL_Plotter
         private static StringBuilder gcodeString = new StringBuilder();
 
         public float offsetX = 0, offsetY = 0;
+        private static bool gcodeTangEnable = false;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -64,6 +65,7 @@ namespace GRBL_Plotter
             gcode.gcodeZFeed  = (float)nUDToolFeedZ.Value;    // override devault values
             gcode.gcodeSpindleSpeed = (float)nUDToolSpindleSpeed.Value;    // override devault values
             gcode.gcodeZDown = (float)nUDImportGCZDown.Value;
+            gcodeTangEnable = Properties.Settings.Default.importGCTangentialEnable;
 
             Logger.Debug("Create GCode {0}", gcode.getSettings());
 
@@ -95,6 +97,7 @@ namespace GRBL_Plotter
             bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value);
 
             gcode.Comment(gcodeString, xmlMarker.figureStart + " " + figureCount.ToString() + " >");
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (rBShape1.Checked)                               // rectangle
             {   getOffset(x,y);
                 offsetX -= rTool; offsetY -= rTool;
@@ -115,6 +118,9 @@ namespace GRBL_Plotter
                         if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + "  " + passCount.ToString() + ">");
                     }
                     passCount++;
+
+                    if(gcodeTangEnable)
+                        gcode.setTangential(gcodeString, 90, true);
 
                     if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart,passCount, zStep, nUDImportGCZDown.Value));
 
@@ -151,6 +157,7 @@ namespace GRBL_Plotter
                 gcode.PenUp(gcodeString);
                 if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
             }
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             else if (rBShape2.Checked)           // rectangle with round edge
             {
                 getOffset(x, y);
@@ -173,6 +180,9 @@ namespace GRBL_Plotter
                         if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
                     }
                     passCount++;
+
+                    if (gcodeTangEnable)
+                        gcode.setTangential(gcodeString, 90, true);
 
                     if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
@@ -209,6 +219,7 @@ namespace GRBL_Plotter
                 gcode.PenUp(gcodeString);
                 if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
             }
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             else if (rBShape3.Checked)           // circle
             {
                 getOffset(d, d);
@@ -228,6 +239,10 @@ namespace GRBL_Plotter
                     }
                     passCount++;
 
+                    if (gcodeTangEnable)
+                        gcode.setTangential(gcodeString, 90, true);
+
+
                     if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
@@ -244,6 +259,7 @@ namespace GRBL_Plotter
                     if ((cBToolpathPocket.Checked) && (rShape > 2*rTool))
                     {   while ((rDelta < rShape) && (counter++ < safety))
                         {
+                            gcode.setTangential(gcodeString, -270, false);  //
                             gcode.Arc(gcodeString, 2, offsetX + rShape - rDelta, offsetY + rShape, rDelta, 0, "");
                             rDelta += overlap;
                             if (rDelta < rShape)
@@ -251,6 +267,7 @@ namespace GRBL_Plotter
                         }
                         gcode.MoveTo(gcodeString, offsetX , offsetY + rShape, "");
                     }
+                    gcode.setTangential(gcodeString, -270, false);  //
                     gcode.Arc(gcodeString, 2, offsetX, offsetY + rShape, rShape, 0, "");
                 }
                 gcode.PenUp(gcodeString);
@@ -273,28 +290,50 @@ namespace GRBL_Plotter
         {   // start bottom left
             if (cw)
             {
-                gcode.MoveTo(gcodeString, x1, y2 - r, "");          //BL to TL
-                if (r > 0) { gcode.Arc(gcodeString, 2, x1 + r, y2, r, 0,  "");}
-                gcode.MoveTo(gcodeString, x2 - r, y2, "");          // TL to TR
+                gcode.MoveTo(gcodeString, x1, y2 - r, "cw 1");          //BL to TL
+                setTangentialUpDown(0, !(r > 0));
+                if (r > 0) { gcode.Arc(gcodeString, 2, x1 + r, y2, r, 0, ""); }
+                gcode.MoveTo(gcodeString, x2 - r, y2, "cw 2");          // TL to TR
+                setTangentialUpDown(-90, !(r > 0));
                 if (r > 0) { gcode.Arc(gcodeString, 2, x2, y2 - r, 0, -r,  ""); }
-                gcode.MoveTo(gcodeString, x2, y1 + r, "");          // TR to BR
+                gcode.MoveTo(gcodeString, x2, y1 + r, "cw 3");          // TR to BR
+                setTangentialUpDown(-180, !(r > 0));
                 if (r > 0) { gcode.Arc(gcodeString, 2, x2 - r, y1, -r, 0,  ""); }
-                gcode.MoveTo(gcodeString, x1 + r, y1, "");          // BR to BL
+                gcode.MoveTo(gcodeString, x1 + r, y1, "cw 4");          // BR to BL
+                if (r > 0) gcode.setTangential(gcodeString, -270, !(r > 0));  //
                 if (r > 0) { gcode.Arc(gcodeString, 2, x1, y1 + r, 0, r,  ""); }
             }
             else
             {
+                setTangentialUpDown(0, !(r > 0));
                 if (r > 0) { gcode.Arc(gcodeString, 3, x1 + r, y1, r, 0,  ""); }
-                gcode.MoveTo(gcodeString, x2 - r, y1, "");          // to BR
+                gcode.MoveTo(gcodeString, x2 - r, y1, "ccw 1");          // to BR
+                setTangentialUpDown(90, !(r > 0));
                 if (r > 0) { gcode.Arc(gcodeString, 3, x2, y1 + r, 0, r,  ""); }
-                gcode.MoveTo(gcodeString, x2, y2 - r, "");           // to TR
+                gcode.MoveTo(gcodeString, x2, y2 - r, "ccw 2");           // to TR
+                setTangentialUpDown(180, !(r > 0));
                 if (r > 0) { gcode.Arc(gcodeString, 3, x2 - r, y2, -r, 0,  ""); }
-                gcode.MoveTo(gcodeString, x1 + r, y2, "");           // to TL
+                gcode.MoveTo(gcodeString, x1 + r, y2, "ccw 3");           // to TL
+                setTangentialUpDown(270, !(r > 0));
                 if (r > 0) { gcode.Arc(gcodeString, 3, x1, y2 - r, 0, -r,  ""); }
-                gcode.MoveTo(gcodeString, x1, y1 + r, "");           // to BL 
+                gcode.MoveTo(gcodeString, x1, y1 + r, "ccw 4");           // to BL 
             }
 
         }
+
+        private void setTangentialUpDown(double angle, bool penUp)
+        {
+            double angleNew = (double)Properties.Settings.Default.importGCTangentialTurn * angle / 360;
+            if (gcodeTangEnable)
+            {   if (penUp)
+                {   gcode.PenUp(gcodeString);
+                    gcodeString.AppendFormat("G00 {0}{1:0.000}\r\n", Properties.Settings.Default.importGCTangentialAxis, angleNew);
+                    gcode.PenDown(gcodeString);
+                }
+                gcode.setTangential(gcodeString, angle);  //
+            }
+        }
+
         private void getOffset(float x, float y)
         {   if (rBOrigin1.Checked) { offsetX = 0; offsetY = -y; }
             if (rBOrigin2.Checked) { offsetX = -x/2; offsetY = -y; }
