@@ -23,9 +23,8 @@
 */
 /* 2020-01-13 convert GCodeVisuAndTransform to a static class
  * 2020-02-18 extend simulation for tangetial angle
+ * 2020-03-09 bug-fix simulation of G2/3 code without tangential line 525
  */
-
-//#define debuginfo   // MainFormGetCodeTransform Line 591    showMessageForm(log.get());
 
 using System;
 using System.Drawing;
@@ -521,18 +520,18 @@ namespace GRBL_Plotter
                     if (arcMove.angleDiff > 0)
                     {   angleTmp += aStep2;
                     //    posA += dA;
-                        if ((angleTmp >= (arcMove.angleStart + arcMove.angleDiff)) && (Math.Abs(codeNext.alpha - posA) < Math.Abs(dA))) // return false if finish with intermediate
+                        if ((angleTmp >= (arcMove.angleStart + arcMove.angleDiff)) && (Math.Abs(codeNext.alpha - posA) <= Math.Abs(dA))) // return false if finish with intermediate
                             return false;
                     }
                     else
                     {   angleTmp -= aStep2;
                      //   posA -= dA;
-                        if ((angleTmp <= (arcMove.angleStart + arcMove.angleDiff)) && (Math.Abs(codeNext.alpha - posA) < Math.Abs(dA))) // return false if finish with intermediate
+                        if ((angleTmp <= (arcMove.angleStart + arcMove.angleDiff)) && (Math.Abs(codeNext.alpha - posA) <= Math.Abs(dA))) // return false if finish with intermediate
                             return false;
                     }
                     posXY.X = arcMove.center.X + arcMove.radius * Math.Cos(angleTmp);
                     posXY.Y = arcMove.center.Y + arcMove.radius * Math.Sin(angleTmp);
-//                    Logger.Trace("  codeLast.alpha {0:0.00}  codeNext.alpha {1:0.00} posA {2:0.00}  angleTmp {3:0.00}", codeLast.alpha, codeNext.alpha, posA, angleTmp);
+//                    Logger.Trace("  arcMove.angleStart {0:0.00} arcMove.angleDiff {1:0.00} codeLast.alpha {2:0.00}  codeNext.alpha {3:0.00} posA {4:0.00}  angleTmp {5:0.00} dA {6:0.00}", arcMove.angleStart, arcMove.angleDiff, codeLast.alpha, codeNext.alpha, posA, angleTmp, dA);
                     return true;
                 }
             }
