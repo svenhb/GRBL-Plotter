@@ -1,0 +1,956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmsCodeSelect.Text" xml:space="preserve">
+    <value>全选</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodeCopy.Text" xml:space="preserve">
+    <value>复制到剪贴板</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePaste.Text" xml:space="preserve">
+    <value>从剪贴板粘贴</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
+    <value>插入“ PenUp”</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
+    <value>插入“ PenDown”</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsFindDialog.Text" xml:space="preserve">
+    <value>查找对话框</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsReplaceDialog.Text" xml:space="preserve">
+    <value>替换对话框</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodeSendLine.Text" xml:space="preserve">
+    <value>发送标记为GRBL的线</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCommentOut.Text" xml:space="preserve">
+    <value>注释掉未知的G-Code</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsUpdate2DView.Text" xml:space="preserve">
+    <value>更新2D视图</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="btnStreamStop.ToolTip" xml:space="preserve">
+    <value>停止向GRBL发送代码</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnStreamStart.ToolTip" xml:space="preserve">
+    <value>从文本编辑器向GRBL发送代码</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
+    <value>仅在保持状态下工作</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
+    <value>在grbl中可能未启用M7</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="btnJogStop.ToolTip" xml:space="preserve">
+    <value>停止当前的慢跑运动</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="cBSendJogStop.Text" xml:space="preserve">
+    <value>停止向上移动鼠标</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
+    <value>尽管通常连接到输入引脚以检测安全门的打开，但是此命令允许GUI使用此命令来制定安全门的行为。
+立即暂停进入DOOR状态并禁用主轴和冷却液。 如果运动，则机器将减速至停止，然后停止。
+如果在归位期间执行，Grbl将停止运动并引发归位警报。
+如果已经处于挂起状态或保持状态，则DOOR状态将取代它。
+如果启用了停车编译时间选项，Grbl将把主轴停车到指定位置。
+当Grbl处于IDLE，HOLD，RUN，HOMING或JOG状态时，将执行命令。 否则将被忽略。
+如果进行慢跑，安全门将取消慢跑和计划器缓冲区中所有排队的动作。 当安全门关闭并恢复时，Grbl将返回到空闲状态。
+如果启用了编译时选项，则可以使用输入引脚来连接按钮或开关。</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnResume.ToolTip" xml:space="preserve">
+    <value>循环启动或恢复命令“〜”可以随时发出，因为它是实时命令。
+当Grbl的动作在其缓冲区中排队并且准备就绪时，〜cycle start命令将
+开始执行缓冲区，Grbl将开始移动轴。</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnFeedHold.ToolTip" xml:space="preserve">
+    <value>提要保持命令'！' 将通过控制的减速使有效周期停止，以免失去位置。
+它也是实时的，可以随时激活。 完成或暂停后，Grbl将等待直到循环启动命令
+发出以恢复程序。 进给保持只能暂停一个周期，不会影响归位或任何其他过程。
+如果您需要停止一个循环中间程序而又不能承受失去位置的麻烦，请执行Feed暂停以将Grbl带入
+一切都受控停止。 完成后，您可以发出重置。 始终尝试执行Feed暂停
+机器在达到复位状态之前正在运行，除非有紧急情况。</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
+    <value>Grbl的警报模式是发生严重错误的状态，
+例如硬限制或在循环中中止，或者如果Grbl不知道其位置。
+默认情况下，如果您启用了归位并打开Arduino的电源，Grbl将进入
+警报状态，因为它不知道其位置。 闹钟模式将锁定所有
+G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
+覆盖警报锁以将其轴移出限位开关，例如，“ $ X”取消警报锁
+将覆盖锁定并允许G代码功能再次运行。</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnReset.ToolTip" xml:space="preserve">
+    <value>这是Grbl的软重置命令“ Ctrl-x”。 它是实时的，可以随时发送。
+顾名思义，它会重置Grbl，但会以受控方式保留您的机器位置，
+并且无需关闭Arduino就可以完成所有操作。 只有软复位才能
+失去位置是指问题出现并且步进机在移动时被杀死。
+如果是这样，它将报告Grbl对机器位置的跟踪是否丢失。
+这是因为不受控制的减速可能导致失步，而Grbl没有反馈
+损失多少（通常这是步进器的问题）。 否则，Grbl只会重新初始化，
+  运行启动行，并继续其愉快的方式。</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
+    <value>清晰的背景</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="btnZeroC.ToolTip" xml:space="preserve">
+    <value>将工件C坐标设置为零</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroB.ToolTip" xml:space="preserve">
+    <value>将工件B坐标设置为零</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroA.ToolTip" xml:space="preserve">
+    <value>将工作坐标设置为零</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnHome.ToolTip" xml:space="preserve">
+    <value>启动归位（如果在GRBL中启用）</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
+    <value>将工件X，Y，Z坐标设置为零</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXY.ToolTip" xml:space="preserve">
+    <value>将工件X，Y坐标设置为零</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroZ.ToolTip" xml:space="preserve">
+    <value>将工作Z坐标设置为零</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroY.ToolTip" xml:space="preserve">
+    <value>将工作Y坐标设置为零</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroX.ToolTip" xml:space="preserve">
+    <value>将工件X坐标设置为零</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
+    <value>控制流</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>超越进给速度和主轴转速</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>控制第二GRBL</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>关于</value>
+    <comment>Menu16</comment>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>打开一个简单的窗口来控制第二个GRBL控制器</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="cmsEditorHotkeys.Text" xml:space="preserve">
+    <value>显示编辑器热键</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="fCTBCode.Text" xml:space="preserve">
+    <value>(粘贴G代码或加载文件)</value>
+    <comment>Editor</comment>
+  </data>
+  <data name="lbInfo.Text" xml:space="preserve">
+    <value>信息</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="lblElapsed.Text" xml:space="preserve">
+    <value>持续时间</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="lblFileProgress.Text" xml:space="preserve">
+    <value>进度</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="gBoxStream.Text" xml:space="preserve">
+    <value>G代码流</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="lbDimension.Text" xml:space="preserve">
+    <value>外型尺寸</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="gBoxDimension.Text" xml:space="preserve">
+    <value>G代码尺寸</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
+    <value>实际进给速度，单位：mm / min或inch / min（取决于$ 13）</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
+    <value>实际主轴转速（RPM）</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="gB_Jogging.Text" xml:space="preserve">
+    <value>控制/慢跑</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>标记代码（不删除）</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>点击切换</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>删除此代码行</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="deleteThisCodeLineToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>删除/标记代码行</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
+    <value>标记所选路径的第一点</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
+    <value>删除所选路径</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="deletePathToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>删除所选路径</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="cutOutSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>剪出所选路径</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>自定义按钮</value>
+    <comment>groupBox_Custom</comment>
+  </data>
+  <data name="lblCurrentG.ToolTip" xml:space="preserve">
+    <value>默认坐标系= G54
+相机坐标系= G59
+添加“ G54；” 到G-Code标头以在流G-Code之前自动切换回G54</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label_status0.Text" xml:space="preserve">
+    <value>状态</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label_status.Text" xml:space="preserve">
+    <value>状态</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="groupBoxCoordinates.Text" xml:space="preserve">
+    <value>工具坐标（工作/机器）</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="loadToolStripMenuItem.Text" xml:space="preserve">
+    <value>打开文件</value>
+    <comment>Menu111</comment>
+  </data>
+  <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>打开G代码或SVG文件</value>
+    <comment>Menu111</comment>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>导入机器设置</value>
+    <comment>Menu116</comment>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>从INI文件导入GUI设置（按钮定义，操纵杆参数）</value>
+    <comment>Menu116</comment>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>文件</value>
+    <comment>Menu11</comment>
+  </data>
+  <data name="imageToolStripMenuItem.Text" xml:space="preserve">
+    <value>转换影像</value>
+    <comment>Menu122</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
+    <value>创建简单的形状</value>
+    <comment>Menu123</comment>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>G代码创建</value>
+    <comment>Menu12</comment>
+  </data>
+  <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
+    <value>镜子X（水平）</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
+    <value>镜子Y（垂直）</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
+    <value>后视镜旋转轴</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
+    <value>用行替换G2 / 3</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.Text" xml:space="preserve">
+    <value>将Z转换为S（主轴速度）</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将最大主轴转速设置为最小Z in
+[设置-图形导入-G代码修改]</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>表面扫描</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
+    <value>坐标系</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>圆形或矩形，可选带圆角，可选作为袋</value>
+    <comment>Menu123</comment>
+  </data>
+  <data name="moveToMarkedPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>移至标记的位置G0</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
+    <value>重设缩放</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>从剪贴板粘贴</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="reloadFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>达蒂·新·拉丹</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="setGCodeAsBackgroundToolStripMenuItem.Text" xml:space="preserve">
+    <value>将G代码设置为背景</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>半径补偿</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>正值会导致移动方向左侧的校正，
+右侧为负值。</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>保存G代码</value>
+    <comment>Menu113</comment>
+  </data>
+  <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将显示的G代码保存到文件</value>
+    <comment>Menu113</comment>
+  </data>
+  <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
+    <value>设定</value>
+    <comment>Menu114</comment>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>导出机器设置</value>
+    <comment>Menu115</comment>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将程序设置（按钮定义，操纵杆参数）导出到INI文件</value>
+    <comment>Menu115</comment>
+  </data>
+  <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
+    <value>旋转+ 90°（逆时针）</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
+    <value>旋转-90°（顺时针）</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
+    <value>旋转180°</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
+    <value>旋转...°</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
+    <value>回转直径</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>设置旋转轴零件直径</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="removeAnyZMoveToolStripMenuItem.Text" xml:space="preserve">
+    <value>删除所有Z轴移动</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>DIY控制</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>设置GUI和导入参数</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
+    <value>机器控制</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
+    <value>点动第4轴</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
+    <value>点动X和Y轴</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
+    <value>点动Z轴</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
+    <value>点动第4轴</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
+    <value>点动第4轴</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>撤消上一个动作</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Text" xml:space="preserve">
+    <value>在标记位置G10 L20处的零XY</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="tBURL.Text" xml:space="preserve">
+    <value>在此处粘贴SVG / DXF文件的URL</value>
+    <comment>2DView</comment>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>打开最近的文件</value>
+    <comment>Menu112</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
+    <value>建立文字</value>
+    <comment>Menu121</comment>
+  </data>
+  <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
+    <value>撤消上一个动作</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="sToolStripMenuItem.Text" xml:space="preserve">
+    <value>XY缩放...％</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
+    <value>XY比例尺X = ...单位</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
+    <value>比例尺XY设定Y = ...单位</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>X缩放...％</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>不支持G2 / G3</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>比例尺X设定X = ...单位</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>不支持G2 / G3</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>Y缩放...％</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>不支持G2 / G3</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>比例尺Y设定Y = ...单位</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>不支持G2 / G3</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>X缩放至...°（旋转轴）</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>不支持G2 / G3</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>将Y缩放为...°（旋转轴）</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>不支持G2 / G3</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="toolStrip_RadiusComp.Text" xml:space="preserve">
+    <value>半径补偿</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>显示相机</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
+    <value>显示已连接的WebCam的摄像机图像</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStrip_tb_StreamLine.ToolTipText" xml:space="preserve">
+    <value>标记线</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>开始在线直播</value>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>如果G代码不能从第0行开始，则在此处设置开始行</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="toolStripViewMachineFix.Text" xml:space="preserve">
+    <value>固定机器区</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachineFix.ToolTipText" xml:space="preserve">
+    <value>限制和偏移可以通过“设置”-“控制”-“机器区域”进行设置</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachine.Text" xml:space="preserve">
+    <value>机器限制</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachine.ToolTipText" xml:space="preserve">
+    <value>限制和偏移可以通过“设置”-“控制”-“机器区域”进行设置</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewTool.Text" xml:space="preserve">
+    <value>工具表</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
+    <value>可以通过“设置”-“换刀设置”-“工具表”设置极限和补偿</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewBackground.Text" xml:space="preserve">
+    <value>背景</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>视图</value>
+    <comment>Menu15</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>使用Hershey字体进行简单的文案撰写</value>
+    <comment>Menu121</comment>
+  </data>
+  <data name="btnStreamCheck.Text" xml:space="preserve">
+    <value>验证码</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnOffsetApply.Text" xml:space="preserve">
+    <value>应用偏移</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>偏移Y</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>偏移X</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>零点XY</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="gBOverrideRGB.Text" xml:space="preserve">
+    <value>快速</value>
+    <comment>groupBox_Override1</comment>
+  </data>
+  <data name="gBoxOverride.Text" xml:space="preserve">
+    <value>替代（仅适用于grbl 1.1）-单击以展开/收缩</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="btnJogStop.Text" xml:space="preserve">
+    <value>停止慢跑</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>搬去</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnOverrideDoor.Text" xml:space="preserve">
+    <value>门</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnZeroC.Text" xml:space="preserve">
+    <value>零C</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroB.Text" xml:space="preserve">
+    <value>零B</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroA.Text" xml:space="preserve">
+    <value>零A</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXYZ.Text" xml:space="preserve">
+    <value>零XYZ</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXY.Text" xml:space="preserve">
+    <value>零XY</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroZ.Text" xml:space="preserve">
+    <value>零Z</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroY.Text" xml:space="preserve">
+    <value>零Y</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroX.Text" xml:space="preserve">
+    <value>零X</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="toolStripMenuItem3.Text" xml:space="preserve">
+    <value>语言</value>
+    <comment>Menu117</comment>
+  </data>
+  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>代码转换</value>
+    <comment>Menu13</comment>
+  </data>
+  <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>激光工具</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>探测/刀具长度</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>表面扫描/高度图</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>工件</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>探测</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
+    <value>代码块</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>折叠码块1级</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>扩展代码块</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>向上移动所选代码块</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
+    <value>下移所选代码块</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>移动所选路径</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="toolStripViewRuler.Text" xml:space="preserve">
+    <value>统治者</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewInfo.Text" xml:space="preserve">
+    <value>信息</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewPenUp.Text" xml:space="preserve">
+    <value>固定路径</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>折叠码块2级</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>折叠代码块3级</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value>偏移Y</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>偏移X</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="gBOverrideASGB.Text" xml:space="preserve">
+    <value>切换附件状态</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="lblStatusFeed.Text" xml:space="preserve">
+    <value>当前的提要</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="gBOverrideFRGB.Text" xml:space="preserve">
+    <value>饲料</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="lblStatusSpeed.Text" xml:space="preserve">
+    <value>当前速度</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="englishToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>英语</value>
+  </data>
+  <data name="deutschToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>德语</value>
+  </data>
+  <data name="pусскийToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>俄语</value>
+  </data>
+  <data name="toolStripMenuItem4.ToolTipText" xml:space="preserve">
+    <value>西班牙文</value>
+  </data>
+  <data name="portuguêsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>葡萄牙语</value>
+  </data>
+  <data name="franzToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>法文</value>
+  </data>
+  <data name="chinesischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="arabischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>阿拉伯</value>
+  </data>
+  <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>这将切换Grbl的gcode解析器以获取所有传入的块并完全对其进行处理，就像在正常操作中一样，但是它不会移动任何轴，忽略停顿并关闭主轴和冷却液。 这旨在为用户提供一种使用Grbl的解析器检查其新G代码程序的运行状况并监视任何错误的方法（并检查是否违反了软限制，如果已启用）。</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>半仿真速度</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>双倍仿真速度</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>起始路径模拟</value>
+  </data>
+  <data name="gBOverrideSSGB.Text" xml:space="preserve">
+    <value>转数</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
+    <value>发送G90 G0 A（或B，C）0</value>
+  </data>
+  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
+    <value>发送G90 G0 X0</value>
+  </data>
+  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
+    <value>发送G90 G0 X0 Y0</value>
+  </data>
+  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
+    <value>发送G90 G0 Y0</value>
+  </data>
+  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
+    <value>发送G90 G0 Z0</value>
+  </data>
+  <data name="cBTool.Text" xml:space="preserve">
+    <value>刀具在主轴中</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>速度</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="cBCoolant.Text" xml:space="preserve">
+    <value>冷却液</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="cBSpindle.Text" xml:space="preserve">
+    <value>主轴CW</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnHome.Text" xml:space="preserve">
+    <value>家</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+</root>
