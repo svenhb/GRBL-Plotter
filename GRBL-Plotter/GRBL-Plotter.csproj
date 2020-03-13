@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.3.4.0</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.3.4.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -145,10 +145,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs">
+    <Compile Include="GUI\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutForm.Designer.cs">
+    <Compile Include="GUI\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GCodeCreation\AForge_Imaging_Filter_HueShift.cs" />
@@ -162,6 +162,12 @@
     <Compile Include="GCodeCreation\GCodeFromImageOutline.cs" />
     <Compile Include="GCodeCreation\importMath.cs" />
     <Compile Include="GCodeCreation\plotterRelated.cs" />
+    <Compile Include="GUI\MainFormGamePad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainFormSimulatePath.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MachineControl\ControlCoordSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,10 +203,10 @@
     <Compile Include="MachineControl\GCodeTransform.cs" />
     <Compile Include="MachineControl\NativeMethods.cs" />
     <Compile Include="MachineControl\SerialPortFixer.cs" />
-    <Compile Include="MainFormGetCodeTransform.cs">
+    <Compile Include="GUI\MainFormGetCodeTransform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mainObjects.cs" />
+    <Compile Include="GUI\MainFormObjects.cs" />
     <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
     <Compile Include="MachineControl\ControlCameraForm.cs">
       <SubType>Form</SubType>
@@ -232,25 +238,25 @@
     <Compile Include="GCodeCreation\GCodeFromImage.Designer.cs">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="GUI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainFormFCTB.cs">
+    <Compile Include="GUI\MainFormFCTB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainFormLoadFile.cs">
+    <Compile Include="GUI\MainFormLoadFile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainFormPictureBox.cs">
+    <Compile Include="GUI\MainFormPictureBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MessageForm.cs">
+    <Compile Include="GUI\MessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MessageForm.Designer.cs">
+    <Compile Include="GUI\MessageForm.Designer.cs">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -303,6 +309,9 @@
     <Content Include="data\extensions\GCode_Conic_Spiral.hta">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\extensions\GCode_Spherical_Bowl.hta">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\extensions\SVG_simple_example.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -333,6 +342,9 @@
     <Content Include="data\examples\fonts-in-librecad-examples-sheet4.dxf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\scripts\script_move_arround_dimension.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\tlOn.png" />
     <None Include="Resources\cfOff1.png" />
     <None Include="Resources\cfOff2.png" />
@@ -356,31 +368,31 @@
     <Content Include="Resources\efOn7.png" />
     <Content Include="Resources\efOn8.png" />
     <Content Include="Resources\efOn9.png" />
-    <EmbeddedResource Include="AboutForm.ar.resx">
+    <EmbeddedResource Include="GUI\AboutForm.ar.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.de-DE.resx">
+    <EmbeddedResource Include="GUI\AboutForm.de-DE.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.es.resx">
+    <EmbeddedResource Include="GUI\AboutForm.es.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.fr.resx">
+    <EmbeddedResource Include="GUI\AboutForm.fr.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.ja.resx">
+    <EmbeddedResource Include="GUI\AboutForm.ja.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.pt.resx">
+    <EmbeddedResource Include="GUI\AboutForm.pt.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.resx">
+    <EmbeddedResource Include="GUI\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.ru.resx">
+    <EmbeddedResource Include="GUI\AboutForm.ru.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AboutForm.zh-CN.resx">
+    <EmbeddedResource Include="GUI\AboutForm.zh-CN.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\GCodeFromImage.ar.resx">
@@ -661,35 +673,35 @@
     <EmbeddedResource Include="GCodeCreation\GCodeFromText.de-DE.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.ar.resx">
+    <EmbeddedResource Include="GUI\MainForm.ar.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.de-DE.resx">
+    <EmbeddedResource Include="GUI\MainForm.de-DE.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.es.resx">
+    <EmbeddedResource Include="GUI\MainForm.es.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.fr.resx">
+    <EmbeddedResource Include="GUI\MainForm.fr.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.ja.resx">
+    <EmbeddedResource Include="GUI\MainForm.ja.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.pt.resx">
+    <EmbeddedResource Include="GUI\MainForm.pt.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.ru.resx">
+    <EmbeddedResource Include="GUI\MainForm.ru.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.zh-CN.resx">
+    <EmbeddedResource Include="GUI\MainForm.zh-CN.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageForm.resx">
+    <EmbeddedResource Include="GUI\MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
