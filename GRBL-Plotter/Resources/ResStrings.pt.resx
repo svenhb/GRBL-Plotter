@@ -273,4 +273,46 @@
   <data name="serialOpen" xml:space="preserve">
     <value>Abrir</value>
   </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Iniciar simulação de caminho</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Parar simulação</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>Sinta-se livre para melhorar a tradução</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>Rapidez</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>Ocioso</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>Ecexutando</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>Alarme</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>Verifica</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>Porta</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>Aguarde</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>Casa</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>Jog</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>Sonda</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>Dormir</value>
+  </data>
 </root>

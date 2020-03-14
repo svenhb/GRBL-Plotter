@@ -243,4 +243,10 @@
   <data name="serialOpen" xml:space="preserve">
     <value>Öffnen</value>
   </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Starte Pfadsimulation</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Stop Simulation</value>
+  </data>
 </root>

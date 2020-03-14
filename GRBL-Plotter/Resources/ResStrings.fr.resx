@@ -273,4 +273,40 @@
   <data name="serialOpen" xml:space="preserve">
     <value>Ouvrir</value>
   </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Lancer la simulation de trajectoire</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Arrêter la simulation</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>N'hésitez pas à améliorer la traduction</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>La vitesse</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>Alarme</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>Vérifier</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>Porte</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>Tenir</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>Sonde</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>Courir</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>Sommeil</value>
+  </data>
 </root>

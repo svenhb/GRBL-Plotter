@@ -273,4 +273,46 @@
   <data name="serialOpen" xml:space="preserve">
     <value>打开</value>
   </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>起始路径模拟</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>停止模拟</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>随时改善翻译</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>报警</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>校验</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>门</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>保持</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>家</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>闲</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>慢跑</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>探测</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>跑</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>睡觉</value>
+  </data>
 </root>

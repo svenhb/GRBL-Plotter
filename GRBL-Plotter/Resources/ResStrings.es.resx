@@ -273,4 +273,46 @@
   <data name="mainLoadError3" xml:space="preserve">
     <value>Extensión de archivo no compatible '</value>
   </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Iniciar simulación de ruta</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Detener la simulación</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>Siéntase libre de mejorar la traducción</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>Velo.</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>Alarma</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>Cheque</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>Puerta</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>Sostener</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>Hogar</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>Ocioso</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>Empujoncito</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>Investigacion</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>correr</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>Dormir</value>
+  </data>
 </root>

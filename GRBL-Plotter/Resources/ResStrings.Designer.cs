@@ -61,6 +61,96 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Alarm ähnelt.
+        /// </summary>
+        public static string grblAlarm {
+            get {
+                return ResourceManager.GetString("grblAlarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Check ähnelt.
+        /// </summary>
+        public static string grblCheck {
+            get {
+                return ResourceManager.GetString("grblCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Door ähnelt.
+        /// </summary>
+        public static string grblDoor {
+            get {
+                return ResourceManager.GetString("grblDoor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hold ähnelt.
+        /// </summary>
+        public static string grblHold {
+            get {
+                return ResourceManager.GetString("grblHold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Home ähnelt.
+        /// </summary>
+        public static string grblHome {
+            get {
+                return ResourceManager.GetString("grblHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Idle ähnelt.
+        /// </summary>
+        public static string grblIdle {
+            get {
+                return ResourceManager.GetString("grblIdle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Jog ähnelt.
+        /// </summary>
+        public static string grblJog {
+            get {
+                return ResourceManager.GetString("grblJog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Probe ähnelt.
+        /// </summary>
+        public static string grblProbe {
+            get {
+                return ResourceManager.GetString("grblProbe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Run ähnelt.
+        /// </summary>
+        public static string grblRun {
+            get {
+                return ResourceManager.GetString("grblRun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sleep ähnelt.
+        /// </summary>
+        public static string grblSleep {
+            get {
+                return ResourceManager.GetString("grblSleep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Attention ähnelt.
         /// </summary>
         public static string mainAttention {
@@ -381,6 +471,33 @@ namespace GRBL_Plotter.Resources {
         public static string mainQuit {
             get {
                 return ResourceManager.GetString("mainQuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Speed ähnelt.
+        /// </summary>
+        public static string mainSimuSpeed {
+            get {
+                return ResourceManager.GetString("mainSimuSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Start path simulation ähnelt.
+        /// </summary>
+        public static string mainSimuStart {
+            get {
+                return ResourceManager.GetString("mainSimuStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Stop simulation ähnelt.
+        /// </summary>
+        public static string mainSimuStop {
+            get {
+                return ResourceManager.GetString("mainSimuStop", resourceCulture);
             }
         }
         

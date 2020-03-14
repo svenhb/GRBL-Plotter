@@ -276,4 +276,43 @@
   <data name="serialOpen" xml:space="preserve">
     <value>افتح</value>
   </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>بدء محاكاة المسار</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>وقف المحاكاة</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>سرعة</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>إنذار</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>التحقق من</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>باب</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>معلق</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>خامل</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>يجري بيطء</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>مسبار</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>يركض</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>ينام</value>
+  </data>
 </root>

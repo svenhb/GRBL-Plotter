@@ -276,4 +276,43 @@
   <data name="serialOpen" xml:space="preserve">
     <value>開いた</value>
   </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>パスシミュレーションを開始</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>シミュレーションを停止</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>警報</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>小切手</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>ドア</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>ホールド</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>アイドル状態</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>ジョグ</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>調査</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>走る</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>睡眠</value>
+  </data>
 </root>

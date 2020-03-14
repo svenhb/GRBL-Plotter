@@ -273,4 +273,46 @@
   <data name="mainLoadError3" xml:space="preserve">
     <value>Расширение файла не поддерживается</value>
   </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Начать симуляцию пути</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Остановить симуляцию</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>Не стесняйтесь улучшать перевод</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>скорость</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>Аварийная </value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>Проверьте</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>Дверь</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>Держать</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>Дом</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>вхолостую</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>бегать трусцой</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>зонд</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>Бегать</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>Спать</value>
+  </data>
 </root>

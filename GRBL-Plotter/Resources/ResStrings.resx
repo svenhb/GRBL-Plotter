@@ -117,6 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>Alarm</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>Door</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>Hold</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>Idle</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>Jog</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>Probe</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>Sleep</value>
+  </data>
   <data name="mainAttention" xml:space="preserve">
     <value>Attention</value>
   </data>
@@ -224,6 +254,15 @@
   </data>
   <data name="mainQuit" xml:space="preserve">
     <value>Quit GRBL-Plotter?</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Start path simulation</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Stop simulation</value>
   </data>
   <data name="mainStreamingActive" xml:space="preserve">
     <value>Streaming is still active - press Stop and try again</value>
