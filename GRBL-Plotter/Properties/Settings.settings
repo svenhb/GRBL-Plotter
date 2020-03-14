@@ -393,7 +393,7 @@
       <Value Profile="(Default)">Set new coord|G43.1 Z-31.628 ; G92 X140 Y0 Z32</Value>
     </Setting>
     <Setting Name="guiCustomBtn10" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Btn 10|(-)</Value>
+      <Value Profile="(Default)">Move graph dim|data\scripts\script_move_arround_dimension.nc</Value>
     </Setting>
     <Setting Name="guiCustomBtn11" Type="System.String" Scope="User">
       <Value Profile="(Default)">Soft RESET|#RST</Value>
@@ -435,10 +435,10 @@
       <Value Profile="(Default)">Btn 8|(-)</Value>
     </Setting>
     <Setting Name="guiCustomBtn9" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Btn 9|(-)</Value>
+      <Value Profile="(Default)">Move Bottom-Left|$J=G90 X#GMIX Y#GMIY F1000</Value>
     </Setting>
     <Setting Name="guiCustomBtn17" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> | </Value>
+      <Value Profile="(Default)"> |</Value>
     </Setting>
     <Setting Name="guiCustomBtn18" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>

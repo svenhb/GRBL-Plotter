@@ -1585,7 +1585,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Btn 10|(-)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Move graph dim|data\\scripts\\script_move_arround_dimension.nc")]
         public string guiCustomBtn10 {
             get {
                 return ((string)(this["guiCustomBtn10"]));
@@ -1753,7 +1753,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Btn 9|(-)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Move Bottom-Left|$J=G90 X#GMIX Y#GMIY F1000")]
         public string guiCustomBtn9 {
             get {
                 return ((string)(this["guiCustomBtn9"]));
@@ -1765,7 +1765,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" |")]
         public string guiCustomBtn17 {
             get {
                 return ((string)(this["guiCustomBtn17"]));
