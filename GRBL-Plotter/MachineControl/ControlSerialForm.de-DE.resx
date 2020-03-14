@@ -208,9 +208,6 @@ Erfolg hängt von der Hardware ab (DTR, RTS verkabelt?)</value>
   <data name="cbStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 17</value>
   </data>
-  <data name="cbStatus.Text" xml:space="preserve">
-    <value>Zeige den Echtzeit Status Report</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Echtzeit Status Report</value>
   </data>

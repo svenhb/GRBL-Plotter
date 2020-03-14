@@ -183,14 +183,8 @@ M =冷却液</value>
   <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
     <value>查看版本信息</value>
   </data>
-  <data name="cbStatus.Text" xml:space="preserve">
-    <value>显示实时状态报告</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>实时状态报告</value>
-  </data>
-  <data name="cbStatus.ToolTip" xml:space="preserve">
-    <value>显示原始收到的GRBL状态报告</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
     <value>缓冲区状态（需要通过$ 10 = 2启用）</value>

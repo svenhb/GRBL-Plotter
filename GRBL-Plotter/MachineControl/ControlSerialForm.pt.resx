@@ -130,19 +130,19 @@
     <value>Abra a porta COM selecionada com a velocidade selecionada</value>
   </data>
   <data name="btnScanPort.Text" xml:space="preserve">
-    <value>Portas de digitalização</value>
+    <value>Procurar</value>
   </data>
   <data name="btnScanPort.ToolTip" xml:space="preserve">
     <value>Procure portas gratuitas</value>
   </data>
   <data name="btnClear.Text" xml:space="preserve">
-    <value>Log clara</value>
+    <value>Limpa</value>
   </data>
   <data name="btnClear.ToolTip" xml:space="preserve">
     <value>Limpar lista acima</value>
   </data>
   <data name="btnSend.Text" xml:space="preserve">
-    <value>Mandar</value>
+    <value>Executar</value>
   </data>
   <data name="btnSend.ToolTip" xml:space="preserve">
     <value>Pressione para enviar o comando</value>

@@ -183,14 +183,8 @@ El éxito depende del hardware (¿DTR, RTS cableado?)</value>
   <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
     <value>Ver información de compilación</value>
   </data>
-  <data name="cbStatus.Text" xml:space="preserve">
-    <value>Mostrar informe de estado</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Informe de estado en tiempo real</value>
-  </data>
-  <data name="cbStatus.ToolTip" xml:space="preserve">
-    <value>Mostrar los informes de estado GRBL recibidos originales</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
     <value>Estado del búfer (debe habilitarse mediante $ 10 = 2)</value>

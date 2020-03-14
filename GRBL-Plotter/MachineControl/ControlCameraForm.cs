@@ -328,10 +328,10 @@ namespace GRBL_Plotter
             // show drawing from MainForm (static members of class GCodeVisualization)
             if (showOverlay)
             {
-                e.Graphics.DrawPath(penRuler, GCodeVisuAndTransform.pathRuler);
-                e.Graphics.DrawPath(penMarker, GCodeVisuAndTransform.pathMarker);
-                e.Graphics.DrawPath(penDown, GCodeVisuAndTransform.pathPenDown);
-                e.Graphics.DrawPath(penUp, GCodeVisuAndTransform.pathPenUp);
+                e.Graphics.DrawPath(penRuler, VisuGCode.pathRuler);
+                e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
+                e.Graphics.DrawPath(penDown, VisuGCode.pathPenDown);
+                e.Graphics.DrawPath(penUp, VisuGCode.pathPenUp);
                 //           e.Graphics.DrawEllipse(penTeach, new Rectangle((int)actualPosMarker.X-2, (int)actualPosMarker.Y - 2, (int)actualPosMarker.X + 2, (int)actualPosMarker.Y + 2));
             }
         }

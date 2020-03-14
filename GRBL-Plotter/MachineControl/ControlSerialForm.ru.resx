@@ -248,12 +248,6 @@ M = туманная охлаждающая жидкость</value>
   <data name="cbStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 17</value>
   </data>
-  <data name="cbStatus.Text" xml:space="preserve">
-    <value>Текущее состояние</value>
-  </data>
-  <data name="cbStatus.ToolTip" xml:space="preserve">
-    <value>Показать оригинальные полученные отчеты о состоянии GRBL</value>
-  </data>
   <data name="lblSrState.Text" xml:space="preserve">
     <value>Статус</value>
   </data>

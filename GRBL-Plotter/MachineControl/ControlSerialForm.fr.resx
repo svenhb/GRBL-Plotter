@@ -183,14 +183,8 @@ Le succès dépend du matériel utilisé (DTR, RTS câblé?)</value>
   <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
     <value>Voir les informations de construction</value>
   </data>
-  <data name="cbStatus.Text" xml:space="preserve">
-    <value>Afficher le rapport d'état en temps réel</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Rapport de situation en temps réel</value>
-  </data>
-  <data name="cbStatus.ToolTip" xml:space="preserve">
-    <value>Afficher les rapports d'état GRBL originaux reçus</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
     <value>Etat tampon (doit être activé via $ 10 = 2)</value>
