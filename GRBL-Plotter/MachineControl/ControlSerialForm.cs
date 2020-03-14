@@ -519,6 +519,8 @@ namespace GRBL_Plotter
             grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
             rxErrorCount = 0;
             rtsrResponse = 0;     // real time status report sent / receive differnence                    
+            lblSrState.BackColor = Color.LightGray;
+            lblSrState.Text ="reset";  // status;
         }
 
         private void btnGRBLHardReset_Click(object sender, EventArgs e)
@@ -547,6 +549,8 @@ namespace GRBL_Plotter
             grbl.axisA = false; grbl.axisB = false; grbl.axisC = false; grbl.axisUpdate = false;
             rxErrorCount = 0;
             rtsrResponse = 0;     // real time status report sent / receive differnence                    
+            lblSrState.BackColor = Color.LightGray;
+            lblSrState.Text = "reset";  // status;
         }
 
 
@@ -1224,8 +1228,8 @@ namespace GRBL_Plotter
                 if (line.Contains('#'))                      // check if variable neededs to be replaced
                 {   line = insertVariable(line);
                     replaced = true;
-                    if (grblBufferFree < grblBufferSize)
-                        waitForIdle = true;
+   //                 if (grblBufferFree < grblBufferSize)
+  //                      waitForIdle = true;
                 }
                 if (line.Contains("(^2"))                   // forward cmd to 2nd GRBL
                     if (grblBufferFree < grblBufferSize)
@@ -1362,7 +1366,12 @@ namespace GRBL_Plotter
                         mykey = variable.Substring(1);
                         if (gcodeVariable.ContainsKey(mykey))
                         { myvalue = gcodeVariable[mykey]; }
+                        else if (gui.variable.ContainsKey(mykey))
+                        { myvalue = gui.variable[mykey]; }
                         else { line += " (" + mykey + " not found)"; }
+                        if (cBStatus1.Checked || cBStatus.Checked)
+                        { addToLog("< replace " + mykey + " = "+ myvalue.ToString()); }
+
                         line = line.Replace(variable, string.Format("{0:0.000}", myvalue));
                         //                  addToLog("replace "+ mykey+" by "+ myvalue.ToString());
                     }

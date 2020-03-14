@@ -24,6 +24,7 @@
  * 2019-09-17 update settings
  * 2019-11-16 add gamepad
  * 2019-12-07 showIniSettings -> selection between actual (Properties.Settings.Default.x) and ini-file values
+ * 2020-03-10 add tangential axis
 */
 
 using System;
@@ -210,6 +211,7 @@ namespace GRBL_Plotter
             {   Write("Tangential axis enable", setup.importGCTangentialEnable.ToString(), section);
                 Write("Tangential axis name", setup.importGCTangentialAxis.ToString(), section);
                 Write("Tangential axis angle", setup.importGCTangentialAngle.ToString(), section);
+                Write("Tangential axis turn", setup.importGCTangentialTurn.ToString(), section);
             }
 
             if (setup.importGCCompress) { Write("Compress", setup.importGCCompress.ToString(), section); }
@@ -534,6 +536,7 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpbool, section, "Tangential axis enable")) { setup.importGCTangentialEnable = tmpbool; }
             if (setVariable(ref tmpstr,  section, "Tangential axis name")) { setup.importGCTangentialAxis = tmpstr; }
             if (setVariable(ref tmpdeci, section, "Tangential axis angle")) { setup.importGCTangentialAngle = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Tangential axis turn")) { setup.importGCTangentialTurn = tmpdeci; }
 
             if (setVariable(ref tmpbool, section, "Compress")) { setup.importGCCompress = tmpbool; }
             if (setVariable(ref tmpbool, section, "Relative")) { setup.importGCRelative = tmpbool; }
@@ -766,6 +769,7 @@ namespace GRBL_Plotter
             if (TangEnable)
             {   tmp.AppendFormat("  Tang. Axis  : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCTangentialAxis.ToString() : Read("Tangential axis name", "GCode modification"));
                 tmp.AppendFormat("  Tang. angle : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCTangentialAngle.ToString(): Read("Tangential axis angle", "GCode modification"));
+                tmp.AppendFormat("  Tang. turn  : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCTangentialTurn.ToString() : Read("Tangential axis turn", "GCode modification"));
             }
             tmp.AppendLine();
             addInfo(tmp,"Tool table enable : {0}\r\n", fromSettings ? Properties.Settings.Default.importGCToolTableUse.ToString() : Read("Tool table enable", "Graphics Import"));
