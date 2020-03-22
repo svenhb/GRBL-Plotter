@@ -81,8 +81,8 @@ namespace GRBL_Plotter
             variable.Add("GMAX", 0.0); // Graphic Maximum X
             variable.Add("GMIY", 0.0); // Graphic Minimum Y
             variable.Add("GMAY", 0.0); // Graphic Maximum Y
-            variable.Add("GMIZ", 0.0); // Graphic Minimum Y
-            variable.Add("GMAZ", 0.0); // Graphic Maximum Y
+            variable.Add("GMIZ", 0.0); // Graphic Minimum Z
+            variable.Add("GMAZ", 0.0); // Graphic Maximum Z
         }
 
         public static void writeSettingsToRegistry()
@@ -102,7 +102,7 @@ namespace GRBL_Plotter
                 Registry.SetValue(reg_key, "GcodeFooter", Properties.Settings.Default.importGCFooter);
                 Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);
             }
-            catch (Exception er) { };//            Logger.Error(er, "writeSettingsToRegistry"); }
+            catch { };//            Logger.Error(er, "writeSettingsToRegistry"); }
         }
     }
 

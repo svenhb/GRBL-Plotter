@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +24,9 @@
  * pictureBox1_SizeChanged
  * 2019-01-28 3 digitis for coordinates
  * 2019-12-07 enable/disable show of ruler, info, pen-up
- * */
+ * 2020-03-22 fix zoom-in -out behavior
+ * 
+ */
 
 using System;
 using System.Drawing;
@@ -60,8 +62,6 @@ namespace GRBL_Plotter
         private xyPoint posMoveEnd = new xyPoint(0, 0);
         private xyPoint moveTranslation = new xyPoint(0, 0);
         private xyPoint moveTranslationOld = new xyPoint(0, 0);
-        private xyPoint zoomTranslation = new xyPoint(0, 0);
-        private xyPoint zoomTranslationOld = new xyPoint(0, 0);
         private bool posIsMoving = false;
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -73,21 +73,16 @@ namespace GRBL_Plotter
             double xRange = (maxx - minx);                                              // calculate new size
             double yRange = (maxy - miny);
             if (Properties.Settings.Default.machineLimitsFix)
-            {   RectangleF tmp;
-                float offset = (float)Properties.Settings.Default.machineLimitsRangeX/40;       // view size
-                tmp = VisuGCode.pathMachineLimit.GetBounds();
-                minx = (float)Properties.Settings.Default.machineLimitsHomeX - (float)grbl.posWCO.X - offset;
-                miny = (float)Properties.Settings.Default.machineLimitsHomeY - (float)grbl.posWCO.Y - offset; 
-                xRange = (float)Properties.Settings.Default.machineLimitsRangeX + 2*offset;
-                yRange = (float)Properties.Settings.Default.machineLimitsRangeY + 2*offset;
+            {   double offset = (double)Properties.Settings.Default.machineLimitsRangeX/40;       // view size
+                minx = (double)Properties.Settings.Default.machineLimitsHomeX - grbl.posWCO.X - offset;
+                miny = (double)Properties.Settings.Default.machineLimitsHomeY - grbl.posWCO.Y - offset; 
+                xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2*offset;
+                yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2*offset;
             }
 
             double picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
-            string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
             if ((picScaling > 0.001) && (picScaling < 10000))
             {
-    //            double relposX = zoomOffsetX +  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X - zoomTranslationOld.X ) / pictureBox1.Width) / zoomFactor;
-    //            double relposY = zoomOffsetY +  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y - zoomTranslationOld.Y ) / pictureBox1.Height) / zoomFactor;
                 double relposX =  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X - pBoxTransform.OffsetX) / pictureBox1.Width) / zoomFactor;
                 double relposY =  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y - pBoxTransform.OffsetY) / pictureBox1.Height) / zoomFactor;
                 double ratioVisu = xRange / yRange;
@@ -127,6 +122,7 @@ namespace GRBL_Plotter
                     }
                     if (Properties.Settings.Default.gui2DInfoShow)
                     {
+                        string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
                         e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
                         if (simuEnabled)
                             e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}\r\n Z:{4,7:0.000}\r\n a:{5,7:0.000}°", 100 * zoomFactor, unit,
@@ -239,24 +235,35 @@ namespace GRBL_Plotter
                     moveTranslation = new xyPoint(e.X, e.Y)  - moveTranslationOld;  // calc delta move
                     pBoxTransform.Translate((float)moveTranslation.X / zoomFactor, (float)moveTranslation.Y / zoomFactor);
                     moveTranslationOld = new xyPoint(e.X, e.Y);
-                    zoomTranslationOld -= (moveTranslation* zoomFactor);
                 }
+                if ((diff.X!=0) || (diff.Y!=0))
+                    previousClick = 0;  // no doubleclick
             }
             pictureBox1.Invalidate();
         }
 
+        private static MouseButtons _lastButtonUp = MouseButtons.None;
+        private static int previousClick = SystemInformation.DoubleClickTime;
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             posIsMoving = false;
             allowZoom = true;
+            _lastButtonUp = e.Button;
+
+            int now = System.Environment.TickCount;
+            int diff = now - previousClick;
+ //           lbInfo.Text = SystemInformation.DoubleClickTime.ToString() + "   " + diff.ToString();
+            if ((diff <= SystemInformation.DoubleClickTime) && (diff > 100))
+            {   pictureBox1_DoubleClick(sender, e);   }
+            previousClick = now;
         }
 
         // find closest coordinate in GCode and mark
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {   // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
             pictureBox1.Focus();
-            moveTranslationOld = new xyPoint(e.X, e.Y); 
-
+            moveTranslationOld = new xyPoint(e.X, e.Y);
+            allowZoom = false;
             if (e.Button == MouseButtons.Left)
             {
                 if ((fCTBCode.LinesCount > 2) && !posIsMoving)
@@ -275,54 +282,88 @@ namespace GRBL_Plotter
                     posIsMoving = false;
                 }
             }
-            if (e.Button == MouseButtons.Middle)
-            { allowZoom = false; }
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            if (_lastButtonUp == MouseButtons.Middle)
+            {   pBoxTransform.Reset(); zoomFactor = 1;
+                pictureBox1.Invalidate();
+            }
         }
 
 
         // Make array of Matrix to store and reload previous view, instead of back-calculation
         private Matrix pBoxTransform = new Matrix();
         private Matrix pBoxOrig = new Matrix();			// to restore e.Graphics.Transform
-        private static float scrollZoomFactor = 2f; // zoom factor   
+        private static float scrollZoomFactor = 1.2f; // zoom factor   
         private float zoomFactor = 1f;
         private bool allowZoom = true;
 
         private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
-        {
-            pictureBox1.Focus();
+        {   pictureBox1.Focus();
             if ((pictureBox1.Focused == true) && (e.Delta != 0) && allowZoom)
-            { ZoomScroll(e.Location, e.Delta); }
+            {   ZoomScroll(e.Location, e.Delta);    }
         }
+
+        private xyPoint getPicBoxOffset(Point mouseLocation)
+        {   // backwards calculation to keep real coordinates on mouse-pos. on zoom-in -out
+            double minx = VisuGCode.drawingSize.minX;
+            double miny = VisuGCode.drawingSize.minY;
+            double xRange = (VisuGCode.drawingSize.maxX - VisuGCode.drawingSize.minX);                                              // calculate new size
+            double yRange = (VisuGCode.drawingSize.maxY - VisuGCode.drawingSize.minY);
+
+            if (Properties.Settings.Default.machineLimitsFix)
+            {   double offset = (double)Properties.Settings.Default.machineLimitsRangeX / 40;       // view size
+                minx = (double)Properties.Settings.Default.machineLimitsHomeX - grbl.posWCO.X - offset;
+                miny = (double)Properties.Settings.Default.machineLimitsHomeY - grbl.posWCO.Y - offset;
+                xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2 * offset;
+                yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
+            }
+
+            double ratioVisu = xRange / yRange;
+            double ratioPic = Convert.ToDouble(pictureBox1.Width) / pictureBox1.Height;
+            double relposX = (         picAbsPos.X - minx) / xRange;
+            double relposY = (yRange - picAbsPos.Y + miny) / yRange;
+
+            if (ratioVisu > ratioPic)
+                relposY = relposY * ratioPic / ratioVisu;
+            else
+                relposX = relposX * ratioVisu / ratioPic;
+          
+            xyPoint picOffset = new xyPoint();
+            picOffset.X = mouseLocation.X - (relposX * zoomFactor * pictureBox1.Width);
+            picOffset.Y = mouseLocation.Y - (relposY * zoomFactor * pictureBox1.Height);
+            return picOffset;
+        }
+
         private void ZoomScroll(Point location, int zoomIn)
         {
             if (showPicBoxBgImage || posIsMoving)              // don't zoom if background image is shown
                 return;
 
             if (zoomIn > 0)
-            {   if (zoomFactor < 1025)
+            {   if (zoomFactor < 200)
                 {
-                    pBoxTransform.Reset();
-                    zoomTranslation = new xyPoint(location.X, location.Y) * zoomFactor + zoomTranslationOld;// + (moveTranslation * zoomFactor);
-                    pBoxTransform.Translate((float)-zoomTranslation.X, (float)-zoomTranslation.Y);
                     zoomFactor *= scrollZoomFactor;
+                    xyPoint locationO = getPicBoxOffset(location);
+                    pBoxTransform.Reset();
+                    pBoxTransform.Translate((float)locationO.X , (float)locationO.Y );
                     pBoxTransform.Scale(zoomFactor, zoomFactor);
                 }
             }
             else if (zoomIn < 0)
-            {   if (zoomFactor > 0.1)
-                {   pBoxTransform.Reset();
-                    zoomFactor *= 1 / scrollZoomFactor;
-                    zoomTranslation = new xyPoint(location.X, location.Y) * -zoomFactor + zoomTranslationOld;
-                    pBoxTransform.Translate((float)-zoomTranslation.X, (float)-zoomTranslation.Y);
+            {   if (zoomFactor > 0.4)
+                {
+                    zoomFactor *= 1/scrollZoomFactor;
+                    xyPoint locationO = getPicBoxOffset(location);
+                    pBoxTransform.Reset();
+                    pBoxTransform.Translate((float)locationO.X, (float)locationO.Y);
                     pBoxTransform.Scale(zoomFactor, zoomFactor);
                 }
             }
-            zoomTranslationOld = zoomTranslation;
-
-            if (zoomFactor == 1)
+            if (Math.Round(zoomFactor,2) == 1.00)
             {   pBoxTransform.Reset(); zoomFactor = 1;
-                zoomTranslation = new xyPoint(0, 0);
-                zoomTranslationOld = new xyPoint(0, 0);
             }
 
             pictureBox1.Invalidate();

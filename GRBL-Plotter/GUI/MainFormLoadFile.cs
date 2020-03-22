@@ -1045,6 +1045,8 @@ namespace GRBL_Plotter
             btnPenDown.Enabled = isConnected & !isStreaming | allowControl;
 
             tBSpeed.Enabled = isConnected & !isStreaming | allowControl;
+            lblSpeed.Enabled = isConnected & !isStreaming | allowControl;
+            gB_Jog0.Enabled = isConnected & !isStreaming | allowControl;
             cBCoolant.Enabled = isConnected & !isStreaming | allowControl;
             cBTool.Enabled = isConnected & !isStreaming | allowControl;
             btnReset.Enabled = isConnected;

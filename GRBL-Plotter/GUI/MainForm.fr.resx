@@ -933,4 +933,7 @@ valeur négative sur le côté droit.</value>
   <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
     <value>Envoyer G90 G0 Z0</value>
   </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>Dimension G-Code</value>
+  </data>
 </root>

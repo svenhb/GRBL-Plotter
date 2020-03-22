@@ -617,7 +617,7 @@
     <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; فتح الملف</value>
+    <value>فتح الملف</value>
     <comment>Menu111</comment>
   </data>
   <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -629,7 +629,7 @@
     <comment>Menu112</comment>
   </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; حفظ G- كود</value>
+    <value>حفظ G- كود</value>
     <comment>Menu113</comment>
   </data>
   <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -641,7 +641,7 @@
     <comment>Menu114</comment>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; تصدير إعدادات الجهاز</value>
+    <value>تصدير إعدادات الجهاز</value>
     <comment>Menu115</comment>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -657,7 +657,7 @@
     <comment>Menu116</comment>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;ملف</value>
+    <value>ملف</value>
     <comment>Menu11</comment>
   </data>
   <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
@@ -806,7 +806,7 @@
     <comment>Menu134</comment>
   </data>
   <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>G-Code T &amp; ransform</value>
+    <value>تحويل G- كود</value>
     <comment>Menu13</comment>
   </data>
   <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
@@ -929,7 +929,7 @@
     <comment>Menu15</comment>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;حول</value>
+    <value>حول</value>
     <comment>Menu16</comment>
   </data>
   <data name="toolStripMenuItem3.Text" xml:space="preserve">
@@ -989,5 +989,8 @@
   </data>
   <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
     <value>أرسل G90 G0 Z0</value>
+  </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>البعد G- كود</value>
   </data>
 </root>

@@ -120,12 +120,16 @@ namespace GRBL_Plotter
         }
         private void loadHeightMap(object sender, EventArgs e)
         {
-            VisuGCode.drawHeightMap(_heightmap_form.Map);
-            VisuGCode.createMarkerPath();
-            VisuGCode.calcDrawingArea();
-            pictureBox1.BackgroundImage = null;
-            pictureBox1.Invalidate();
-            isHeightMapApplied = false;
+            if (_heightmap_form.mapIsLoaded)
+            {
+                VisuGCode.drawHeightMap(_heightmap_form.Map);
+                VisuGCode.createMarkerPath();
+                VisuGCode.calcDrawingArea();
+                pictureBox1.BackgroundImage = null;
+                pictureBox1.Invalidate();
+                isHeightMapApplied = false;
+                _heightmap_form.mapIsLoaded = false;
+            }
         }
 
         private bool isHeightMapApplied = false;

@@ -676,7 +676,7 @@ valor negativo no lado direito.
     <comment>Menu15</comment>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Sobre</value>
+    <value>Sobre</value>
     <comment>Menu16</comment>
   </data>
   <data name="lblCurrentG.ToolTip" xml:space="preserve">
@@ -739,7 +739,7 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
     <comment>Menu11</comment>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Criar Sh &amp; macacos simples</value>
+    <value>Criar Sh macacos simples</value>
     <comment>Menu123</comment>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -900,7 +900,7 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
     <comment>Menu141</comment>
   </data>
   <data name="machineToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp; Controle da máquina</value>
+    <value>Controle da máquina</value>
     <comment>Menu14</comment>
   </data>
   <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
@@ -964,5 +964,8 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   </data>
   <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
     <value>Enviar G90 G0 Z0</value>
+  </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>Dimensão do código G</value>
   </data>
 </root>

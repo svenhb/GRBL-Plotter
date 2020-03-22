@@ -175,7 +175,7 @@ namespace GRBL_Plotter
             this.btnPenDown = new System.Windows.Forms.Button();
             this.btnPenUp = new System.Windows.Forms.Button();
             this.btnJogStop = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gB_Jog0 = new System.Windows.Forms.GroupBox();
             this.btnJogZeroA = new System.Windows.Forms.Button();
             this.btnJogZeroX = new System.Windows.Forms.Button();
             this.btnJogZeroXY = new System.Windows.Forms.Button();
@@ -184,7 +184,7 @@ namespace GRBL_Plotter
             this.cBMoveG0 = new System.Windows.Forms.CheckBox();
             this.lblTool = new System.Windows.Forms.Label();
             this.cBTool = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblSpeed = new System.Windows.Forms.Label();
             this.tBSpeed = new System.Windows.Forms.TextBox();
             this.cBCoolant = new System.Windows.Forms.CheckBox();
             this.cBSpindle = new System.Windows.Forms.CheckBox();
@@ -395,7 +395,7 @@ namespace GRBL_Plotter
             this.tLPRechtsUnten.SuspendLayout();
             this.tLPRechtsUntenRechts.SuspendLayout();
             this.gB_Jogging.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gB_Jog0.SuspendLayout();
             this.tLPRechtsUntenRechtsMitte.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -1137,10 +1137,10 @@ namespace GRBL_Plotter
             this.gB_Jogging.Controls.Add(this.btnPenDown);
             this.gB_Jogging.Controls.Add(this.btnPenUp);
             this.gB_Jogging.Controls.Add(this.btnJogStop);
-            this.gB_Jogging.Controls.Add(this.groupBox3);
+            this.gB_Jogging.Controls.Add(this.gB_Jog0);
             this.gB_Jogging.Controls.Add(this.lblTool);
             this.gB_Jogging.Controls.Add(this.cBTool);
-            this.gB_Jogging.Controls.Add(this.label9);
+            this.gB_Jogging.Controls.Add(this.lblSpeed);
             this.gB_Jogging.Controls.Add(this.tBSpeed);
             this.gB_Jogging.Controls.Add(this.cBCoolant);
             this.gB_Jogging.Controls.Add(this.cBSpindle);
@@ -1181,17 +1181,17 @@ namespace GRBL_Plotter
             this.btnJogStop.UseVisualStyleBackColor = false;
             this.btnJogStop.Click += new System.EventHandler(this.btnJogStop_Click);
             // 
-            // groupBox3
+            // gB_Jog0
             // 
-            this.groupBox3.Controls.Add(this.btnJogZeroA);
-            this.groupBox3.Controls.Add(this.btnJogZeroX);
-            this.groupBox3.Controls.Add(this.btnJogZeroXY);
-            this.groupBox3.Controls.Add(this.btnJogZeroY);
-            this.groupBox3.Controls.Add(this.btnJogZeroZ);
-            this.groupBox3.Controls.Add(this.cBMoveG0);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
+            this.gB_Jog0.Controls.Add(this.btnJogZeroA);
+            this.gB_Jog0.Controls.Add(this.btnJogZeroX);
+            this.gB_Jog0.Controls.Add(this.btnJogZeroXY);
+            this.gB_Jog0.Controls.Add(this.btnJogZeroY);
+            this.gB_Jog0.Controls.Add(this.btnJogZeroZ);
+            this.gB_Jog0.Controls.Add(this.cBMoveG0);
+            resources.ApplyResources(this.gB_Jog0, "gB_Jog0");
+            this.gB_Jog0.Name = "gB_Jog0";
+            this.gB_Jog0.TabStop = false;
             // 
             // btnJogZeroA
             // 
@@ -1251,10 +1251,10 @@ namespace GRBL_Plotter
             this.cBTool.UseVisualStyleBackColor = true;
             this.cBTool.CheckedChanged += new System.EventHandler(this.cBTool_CheckedChanged);
             // 
-            // label9
+            // lblSpeed
             // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
+            resources.ApplyResources(this.lblSpeed, "lblSpeed");
+            this.lblSpeed.Name = "lblSpeed";
             // 
             // tBSpeed
             // 
@@ -2756,8 +2756,8 @@ namespace GRBL_Plotter
             this.tLPRechtsUntenRechts.ResumeLayout(false);
             this.gB_Jogging.ResumeLayout(false);
             this.gB_Jogging.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gB_Jog0.ResumeLayout(false);
+            this.gB_Jog0.PerformLayout();
             this.tLPRechtsUntenRechtsMitte.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -2985,7 +2985,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnResume;
         private virtualJoystick.virtualJoystick virtualJoystickA;
         private System.Windows.Forms.Button btnJogStop;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gB_Jog0;
         private System.Windows.Forms.Button btnJogZeroA;
         private System.Windows.Forms.Button btnJogZeroX;
         private System.Windows.Forms.Button btnJogZeroXY;
@@ -2995,7 +2995,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBTool;
         private virtualJoystick.virtualJoystick virtualJoystickZ;
         private virtualJoystick.virtualJoystick virtualJoystickXY;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblSpeed;
         private System.Windows.Forms.TextBox tBSpeed;
         private System.Windows.Forms.CheckBox cBCoolant;
         private System.Windows.Forms.CheckBox cBSpindle;

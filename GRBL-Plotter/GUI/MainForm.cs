@@ -1869,7 +1869,6 @@ namespace GRBL_Plotter
             btnPenUp.Visible = cBServoButtons.Checked;
             btnPenDown.Visible = cBServoButtons.Checked;
         }
-
     }
 }
 

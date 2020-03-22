@@ -429,7 +429,7 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
     <comment>Menu123</comment>
   </data>
   <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>G-Code &amp;transformieren</value>
+    <value>G-Code transformieren</value>
     <comment>Menu13</comment>
   </data>
   <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
@@ -889,5 +889,27 @@ negativer Wert auf der rechten Seite.</value>
   <data name="gBOverrideSSGB.Text" xml:space="preserve">
     <value>Drehzahl</value>
     <comment>groupBox_Override3</comment>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Fahre zu</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 A(or B,C)0</value>
+  </data>
+  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 X0</value>
+  </data>
+  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 X0 Y0</value>
+  </data>
+  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 Y0</value>
+  </data>
+  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 Z0</value>
+  </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>G-Code Dimensionen</value>
   </data>
 </root>

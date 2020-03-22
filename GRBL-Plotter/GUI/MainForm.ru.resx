@@ -957,4 +957,7 @@
   <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
     <value>Отправить G90 G0 Z0</value>
   </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>Размер G-кода</value>
+  </data>
 </root>

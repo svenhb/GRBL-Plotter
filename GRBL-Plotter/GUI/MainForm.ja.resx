@@ -803,7 +803,7 @@ Grblのバッファーにモーションがキューイングされていて準�
     <comment>Menu134</comment>
   </data>
   <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>GコードT＆ransform</value>
+    <value>Gコード変換</value>
     <comment>Menu13</comment>
   </data>
   <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
@@ -986,5 +986,8 @@ Grblのバッファーにモーションがキューイングされていて準�
   </data>
   <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
     <value>G90 G0 Z0を送信</value>
+  </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>Gコード寸法</value>
   </data>
 </root>

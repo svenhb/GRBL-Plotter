@@ -3318,16 +3318,16 @@
   <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="&gt;&gt;gB_Jog0.Name" xml:space="preserve">
+    <value>gB_Jog0</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jog0.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jog0.Parent" xml:space="preserve">
     <value>gB_Jogging</value>
   </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jog0.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="&gt;&gt;lblTool.Name" xml:space="preserve">
@@ -3354,16 +3354,16 @@
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
+  <data name="&gt;&gt;lblSpeed.Name" xml:space="preserve">
+    <value>lblSpeed</value>
   </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblSpeed.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblSpeed.Parent" xml:space="preserve">
     <value>gB_Jogging</value>
   </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblSpeed.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="&gt;&gt;tBSpeed.Name" xml:space="preserve">
@@ -3568,7 +3568,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroA.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroA.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -3580,7 +3580,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroX.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroX.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -3592,7 +3592,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroXY.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroXY.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -3604,7 +3604,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroY.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -3616,7 +3616,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroZ.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -3628,33 +3628,33 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBMoveG0.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;cBMoveG0.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gB_Jog0.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 73</value>
   </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="gB_Jog0.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 54</value>
   </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+  <data name="gB_Jog0.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
+  <data name="gB_Jog0.Text" xml:space="preserve">
     <value>Move to</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="&gt;&gt;gB_Jog0.Name" xml:space="preserve">
+    <value>gB_Jog0</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jog0.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jog0.Parent" xml:space="preserve">
     <value>gB_Jogging</value>
   </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gB_Jog0.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="btnJogZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -3682,7 +3682,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroA.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroA.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -3712,7 +3712,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroX.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroX.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -3742,7 +3742,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroXY.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroXY.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -3772,7 +3772,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroY.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -3802,7 +3802,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnJogZeroZ.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -3832,7 +3832,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBMoveG0.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+    <value>gB_Jog0</value>
   </data>
   <data name="&gt;&gt;cBMoveG0.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -3894,34 +3894,34 @@
   <data name="&gt;&gt;cBTool.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblSpeed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblSpeed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lblSpeed.Location" type="System.Drawing.Point, System.Drawing">
     <value>124, 36</value>
   </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblSpeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 13</value>
   </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblSpeed.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
+  <data name="lblSpeed.Text" xml:space="preserve">
     <value>Speed</value>
   </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
+  <data name="&gt;&gt;lblSpeed.Name" xml:space="preserve">
+    <value>lblSpeed</value>
   </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblSpeed.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblSpeed.Parent" xml:space="preserve">
     <value>gB_Jogging</value>
   </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblSpeed.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="tBSpeed.Location" type="System.Drawing.Point, System.Drawing">
@@ -8170,7 +8170,7 @@ Langue
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>30</value>
+    <value>60</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

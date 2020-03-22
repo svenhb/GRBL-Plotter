@@ -953,4 +953,25 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>家</value>
     <comment>groupBox_Tool_Coord</comment>
   </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>组：</value>
+  </data>
+  <data name="btnOverrideSpindle.Text" xml:space="preserve">
+    <value>主轴CW</value>
+  </data>
+  <data name="btnOverrideMist.Text" xml:space="preserve">
+    <value>薄雾</value>
+  </data>
+  <data name="btnOverrideFlood.Text" xml:space="preserve">
+    <value>泛滥</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>组：</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>组：</value>
+  </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>G代码尺寸</value>
+  </data>
 </root>
