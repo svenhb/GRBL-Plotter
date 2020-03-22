@@ -945,9 +945,9 @@ namespace GRBL_Plotter
                     }
                 }
             }
-            catch (Exception Ex)
+            catch //Exception Ex)
             {
-                throw (Ex);
+                //throw (Ex);
             }
         }
 
@@ -1096,9 +1096,9 @@ namespace GRBL_Plotter
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
             }
-            catch (Exception Ex)
+            catch //(Exception Ex)
             {
-                throw (Ex);
+                //throw (Ex);
             }
         }
 

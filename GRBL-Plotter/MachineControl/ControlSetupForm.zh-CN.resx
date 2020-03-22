@@ -1796,4 +1796,150 @@ Z轴将向下移动</value>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>切线轴名称</value>
   </data>
+  <data name="tab1_1gB5.Text" xml:space="preserve">
+    <value>工具表</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="cBImportUnitGCode.Text" xml:space="preserve">
+    <value>添加G20（英寸）/ G21（毫米）G代码</value>
+  </data>
+  <data name="rBImportUnitInch.Text" xml:space="preserve">
+    <value>英寸</value>
+  </data>
+  <data name="rBImportUnitmm.Text" xml:space="preserve">
+    <value>毫米</value>
+  </data>
+  <data name="lblSVGScale.Text" xml:space="preserve">
+    <value>单位</value>
+  </data>
+  <data name="cBImportLasermode.Text" xml:space="preserve">
+    <value>Lasermode（使用S0而不是M5来关闭Laser）</value>
+  </data>
+  <data name="tab1_2lbl4.Text" xml:space="preserve">
+    <value>XY进给速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>G代码标题</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.Text" xml:space="preserve">
+    <value>每遍深度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl32.Text" xml:space="preserve">
+    <value>节省Z高度</value>
+  </data>
+  <data name="tab1_2lbl33.Text" xml:space="preserve">
+    <value>Z高度雕刻</value>
+  </data>
+  <data name="tab1_2lbl31.Text" xml:space="preserve">
+    <value>Z进给速度</value>
+  </data>
+  <data name="tab1_2gB3.Text" xml:space="preserve">
+    <value>Z轴</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl62.Text" xml:space="preserve">
+    <value>下笔</value>
+  </data>
+  <data name="tab1_2lbl61.Text" xml:space="preserve">
+    <value>笔向上</value>
+  </data>
+  <data name="tab1_2lbl44.Text" xml:space="preserve">
+    <value>延迟后</value>
+  </data>
+  <data name="tab1_2lbl42.Text" xml:space="preserve">
+    <value>延迟后</value>
+  </data>
+  <data name="tab1_2lbl43.Text" xml:space="preserve">
+    <value>下笔</value>
+  </data>
+  <data name="tab1_2lbl41.Text" xml:space="preserve">
+    <value>笔向上</value>
+  </data>
+  <data name="tab1_3lbl33.Text" xml:space="preserve">
+    <value>最小S，最大Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl32.Text" xml:space="preserve">
+    <value>最小Z时最大S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.Text" xml:space="preserve">
+    <value>Z深度的百分比</value>
+  </data>
+  <data name="lblToolListLoaded.Text" xml:space="preserve">
+    <value>空的</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="Column10.HeaderText" xml:space="preserve">
+    <value>Z速度</value>
+  </data>
+  <data name="Column15.HeaderText" xml:space="preserve">
+    <value>Z储存</value>
+  </data>
+  <data name="Column9.HeaderText" xml:space="preserve">
+    <value>Z深</value>
+  </data>
+  <data name="Column13.HeaderText" xml:space="preserve">
+    <value>Z增量</value>
+  </data>
+  <data name="Column11.HeaderText" xml:space="preserve">
+    <value>主轴</value>
+  </data>
+  <data name="Column12.HeaderText" xml:space="preserve">
+    <value>跨步</value>
+  </data>
+  <data name="Column14.HeaderText" xml:space="preserve">
+    <value>G代码</value>
+  </data>
+  <data name="rBRotaryY.Text" xml:space="preserve">
+    <value>Y轴</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB4.Text" xml:space="preserve">
+    <value>激光模式</value>
+  </data>
+  <data name="Column20.HeaderText" xml:space="preserve">
+    <value>数</value>
+  </data>
+  <data name="Column21.HeaderText" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="Column22.HeaderText" xml:space="preserve">
+    <value>G代码</value>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>A，B，C步长+速度</value>
+  </data>
+  <data name="btnJoyZCalc.Text" xml:space="preserve">
+    <value>计算最佳速度</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Z步幅+速度</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>XY步进宽度+速度</value>
+  </data>
+  <data name="btnJoyXYCalc.Text" xml:space="preserve">
+    <value>计算最佳速度</value>
+  </data>
+  <data name="tB_kP_Left1.Text" xml:space="preserve">
+    <value>A，控制，Alt</value>
+  </data>
+  <data name="tab10gB2.Text" xml:space="preserve">
+    <value>彩色滤光片</value>
+  </data>
+  <data name="tab10gB3lbl5.Text" xml:space="preserve">
+    <value>像素点</value>
+  </data>
+  <data name="tab10gB3lbl4.Text" xml:space="preserve">
+    <value>像素点</value>
+  </data>
 </root>

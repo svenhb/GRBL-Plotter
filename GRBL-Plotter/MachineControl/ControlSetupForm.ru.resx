@@ -1796,4 +1796,7 @@ min X, min Y и max Z.
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>Наименование тангенциальной оси</value>
   </data>
+  <data name="tab1_1gB5.Text" xml:space="preserve">
+    <value>Стол для инструментов</value>
+  </data>
 </root>

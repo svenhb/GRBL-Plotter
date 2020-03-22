@@ -103,8 +103,9 @@ namespace GRBL_Plotter
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
             }
-            catch (Exception Ex)
-            {   throw (Ex);  }
+            catch //(Exception Ex)
+            {   //throw (Ex);
+            }
         }
 
         private void lBUseCase_SelectedIndexChanged(object sender, EventArgs e)

@@ -1789,4 +1789,8 @@ O eixo Z será movido para baixo</value>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>Nome do eixo tangencial</value>
   </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>Cabeçalho do Código G</value>
+    <comment>TabPage1_2</comment>
+  </data>
 </root>

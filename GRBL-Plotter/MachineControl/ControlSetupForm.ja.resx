@@ -985,7 +985,7 @@ gcodeを縮小する際の問題を回避するため。</value>
     <comment>TabPage2</comment>
   </data>
   <data name="Column10.HeaderText" xml:space="preserve">
-    <value>Z Spd</value>
+    <value>Zスピード</value>
   </data>
   <data name="Column10.ToolTipText" xml:space="preserve">
     <value>Z移動の送り速度</value>
@@ -1006,7 +1006,7 @@ gcodeを縮小する際の問題を回避するため。</value>
     <comment>TabPage2</comment>
   </data>
   <data name="Column13.HeaderText" xml:space="preserve">
-    <value>Z Inc.</value>
+    <value>Z増分</value>
   </data>
   <data name="Column13.ToolTipText" xml:space="preserve">
     <value>最大 パスごとのZ増分</value>
@@ -1568,7 +1568,7 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <comment>TabPage8</comment>
   </data>
   <data name="label77.Text" xml:space="preserve">
-    <value>A、B、Cステップ幅+ Spd</value>
+    <value>A、B、Cステップ幅+速度</value>
   </data>
   <data name="tab8gB1lbl2.Text" xml:space="preserve">
     <value>「変更を適用」を押して、ジョイスティックコントロールのサイズを変更します</value>
@@ -1960,5 +1960,21 @@ Z軸が下に移動します</value>
   </data>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>接線軸の名前</value>
+  </data>
+  <data name="cBImportLasermode.Text" xml:space="preserve">
+    <value>レーザーモード（レーザーをオフにするにはM5ではなくS0を使用）</value>
+  </data>
+  <data name="tab1_2gB3.Text" xml:space="preserve">
+    <value>Z軸</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="Column14.HeaderText" xml:space="preserve">
+    <value>Gコード</value>
+  </data>
+  <data name="btnJoyXYCalc.Text" xml:space="preserve">
+    <value>計算 最高速度</value>
+  </data>
+  <data name="tab10gB2.Text" xml:space="preserve">
+    <value>カラーフィルター</value>
   </data>
 </root>

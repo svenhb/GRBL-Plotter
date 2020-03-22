@@ -1748,4 +1748,7 @@ Die Z-Achse wird nach unten verschoben</value>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>Name der Tangentialachse</value>
   </data>
+  <data name="tab1_2lbl31.Text" xml:space="preserve">
+    <value>Z Vorschub</value>
+  </data>
 </root>

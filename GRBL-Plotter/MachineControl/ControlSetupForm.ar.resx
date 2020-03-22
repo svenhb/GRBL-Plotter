@@ -486,7 +486,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl3.Text" xml:space="preserve">
-    <value>G-Code Footer</value>
+    <value>تذييل G- كود</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
@@ -978,7 +978,7 @@
     <comment>TabPage2</comment>
   </data>
   <data name="Column10.HeaderText" xml:space="preserve">
-    <value>Z Spd</value>
+    <value>سرعة Z</value>
   </data>
   <data name="Column10.ToolTipText" xml:space="preserve">
     <value>تغذية ل Z التحركات</value>
@@ -999,7 +999,7 @@
     <comment>TabPage2</comment>
   </data>
   <data name="Column13.HeaderText" xml:space="preserve">
-    <value>Z Inc.</value>
+    <value>زيادة Z</value>
   </data>
   <data name="Column13.ToolTipText" xml:space="preserve">
     <value>ماكس. Z زيادة في تمرير</value>
@@ -1561,7 +1561,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>TabPage8</comment>
   </data>
   <data name="label77.Text" xml:space="preserve">
-    <value>a ، b ، c عرض الخطوة + spd</value>
+    <value>أ ، ب ، ج عرض الخطوة + السرعة</value>
   </data>
   <data name="tab8gB1lbl2.Text" xml:space="preserve">
     <value>اضغط على "تطبيق التغييرات" لتغيير حجم عناصر التحكم بعصا التحكم</value>
@@ -1953,5 +1953,28 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   </data>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>اسم المحور العرضي</value>
+  </data>
+  <data name="cBImportLasermode.Text" xml:space="preserve">
+    <value>Lasermode (استخدم S0 بدلاً من M5 لإيقاف تشغيل الليزر)</value>
+  </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>عنوان G-Code</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl31.Text" xml:space="preserve">
+    <value>معدل تغذية Z</value>
+  </data>
+  <data name="tab1_2gB3.Text" xml:space="preserve">
+    <value>المحور Z</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="Column14.HeaderText" xml:space="preserve">
+    <value>كود G</value>
+  </data>
+  <data name="btnJoyXYCalc.Text" xml:space="preserve">
+    <value>احسب. أفضل سرعة</value>
+  </data>
+  <data name="tab10gB2.Text" xml:space="preserve">
+    <value>مرشح اللون</value>
   </data>
 </root>

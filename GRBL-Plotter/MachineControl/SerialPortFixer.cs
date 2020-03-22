@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
+/*
+ * 2020-03-19 move some fundtion to NativeMethods.cs 
+*/
 using System;
 using System.Text;
 using System.IO;
@@ -32,11 +34,19 @@ namespace GRBL_Plotter
         #region IDisposable Members
 
         public void Dispose()
+        {   Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
         {
-            if (m_Handle != null)
+            if (disposing)
             {
-                m_Handle.Close();
-                m_Handle = null;
+                // free managed resources
+                if (m_Handle != null)
+                {
+                    m_Handle.Close();
+                    m_Handle = null;
+                }
             }
         }
 
@@ -57,7 +67,7 @@ namespace GRBL_Plotter
             {
                 throw new ArgumentException("Invalid Serial Port", "portName");
             }
-            SafeFileHandle hFile = CreateFile(@"\\.\" + portName, dwAccess, 0, IntPtr.Zero, 3, dwFlagsAndAttributes,
+            SafeFileHandle hFile = NativeMethods.CreateFile(@"\\.\" + portName, dwAccess, 0, IntPtr.Zero, 3, dwFlagsAndAttributes,
                                               IntPtr.Zero);
             if (hFile.IsInvalid)
             {
@@ -65,7 +75,7 @@ namespace GRBL_Plotter
             }
             try
             {
-                int fileType = GetFileType(hFile);
+                int fileType = NativeMethods.GetFileType(hFile);
                 if ((fileType != 2) && (fileType != 0))
                 {
                     throw new ArgumentException("Invalid Serial Port", "portName");
@@ -80,7 +90,7 @@ namespace GRBL_Plotter
                 throw;
             }
         }
-
+/*
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int FormatMessage(int dwFlags, HandleRef lpSource, int dwMessageId, int dwLanguageId,
                                                 StringBuilder lpBuffer, int nSize, IntPtr arguments);
@@ -101,7 +111,7 @@ namespace GRBL_Plotter
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern int GetFileType(SafeFileHandle hFile);
-
+        */
         private void InitializeDcb()
         {
             Dcb dcb = new Dcb();
@@ -114,7 +124,7 @@ namespace GRBL_Plotter
         {
             StringBuilder lpBuffer = new StringBuilder(0x200);
             if (
-                FormatMessage(0x3200, new HandleRef(null, IntPtr.Zero), errorCode, 0, lpBuffer, lpBuffer.Capacity,
+                NativeMethods.FormatMessage(0x3200, new HandleRef(null, IntPtr.Zero), errorCode, 0, lpBuffer, lpBuffer.Capacity,
                               IntPtr.Zero) != 0)
             {
                 return lpBuffer.ToString();
@@ -140,11 +150,11 @@ namespace GRBL_Plotter
 
             for (int i = 0; i < CommStateRetries; i++)
             {
-                if (!ClearCommError(m_Handle, ref commErrors, ref comStat))
+                if (!NativeMethods.ClearCommError(m_Handle, ref commErrors, ref comStat))
                 {
                     WinIoError();
                 }
-                if (GetCommState(m_Handle, ref lpDcb))
+                if (NativeMethods.GetCommState(m_Handle, ref lpDcb))
                 {
                     break;
                 }
@@ -162,11 +172,11 @@ namespace GRBL_Plotter
 
             for (int i = 0; i < CommStateRetries; i++)
             {
-                if (!ClearCommError(m_Handle, ref commErrors, ref comStat))
+                if (!NativeMethods.ClearCommError(m_Handle, ref commErrors, ref comStat))
                 {
                     WinIoError();
                 }
-                if (SetCommState(m_Handle, ref lpDcb))
+                if (NativeMethods.SetCommState(m_Handle, ref lpDcb))
                 {
                     break;
                 }
@@ -180,7 +190,7 @@ namespace GRBL_Plotter
         #region Nested type: COMSTAT
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct Comstat
+        internal struct Comstat
         {
             public readonly uint Flags;
             public readonly uint cbInQue;
@@ -192,7 +202,7 @@ namespace GRBL_Plotter
         #region Nested type: DCB
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct Dcb
+        internal struct Dcb
         {
             public readonly uint DCBlength;
             public readonly uint BaudRate;

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
  * 2019-02-05 switch to global variables grbl.posWork
  * 2019-04-06 limit digits to 3, bugfix x3d export '.'-','
  * 2019-08-15 add logger
+ * 2020-03-18 bug fix: abort btnLoad_Click - causes main GUI to load an empty map
 */
 
 using System;
@@ -44,6 +45,7 @@ namespace GRBL_Plotter
         private Bitmap heightMapBMP;
         private Bitmap heightLegendBMP;
         private bool isMapOk = false;
+        public bool mapIsLoaded = false;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -313,6 +315,7 @@ namespace GRBL_Plotter
             OpenFileDialog sfd = new OpenFileDialog();
             sfd.InitialDirectory = Application.StartupPath + datapath.examples;
             sfd.Filter = "HeightMap|*.map";
+            mapIsLoaded = false;
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 cntReceived = 0; cntSent = 0;
@@ -327,6 +330,7 @@ namespace GRBL_Plotter
                     showHightMapBMP(heightMapBMP, BMPsizeX, isgray);
                     isMapOk = true;
                     enableControls(true);
+                    mapIsLoaded = true;
                 }
             }
         }

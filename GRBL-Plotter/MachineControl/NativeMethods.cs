@@ -16,7 +16,8 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*  2018-12-26	Commits from RasyidUFA via Github
+/*  2018-12-26 Commits from RasyidUFA via Github
+ *  2020-03-19 add SerialPortFixer code
  */
 
 using DWORD = System.UInt32;
@@ -24,6 +25,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.Win32.SafeHandles;
 
 namespace GRBL_Plotter
 {
@@ -202,6 +204,29 @@ namespace GRBL_Plotter
         internal static extern DWORD GetPrivateProfileString(string Section, string Key, string Default, StringBuilder RetVal, int Size, string FilePath);
 
         #endregion
-    }
 
+        #region Serial PortFixer
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        internal static extern int FormatMessage(int dwFlags, HandleRef lpSource, int dwMessageId, int dwLanguageId,
+                                        StringBuilder lpBuffer, int nSize, IntPtr arguments);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        internal static extern bool GetCommState(SafeFileHandle hFile, ref GRBL_Plotter.SerialPortFixer.Dcb lpDcb);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        internal static extern bool SetCommState(SafeFileHandle hFile, ref GRBL_Plotter.SerialPortFixer.Dcb lpDcb);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        internal static extern bool ClearCommError(SafeFileHandle hFile, ref int lpErrors, ref GRBL_Plotter.SerialPortFixer.Comstat lpStat);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        internal static extern SafeFileHandle CreateFile(string lpFileName, int dwDesiredAccess, int dwShareMode,
+                                                        IntPtr securityAttrs, int dwCreationDisposition,
+                                                        int dwFlagsAndAttributes, IntPtr hTemplateFile);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern int GetFileType(SafeFileHandle hFile);
+
+        #endregion
+    }
 }
