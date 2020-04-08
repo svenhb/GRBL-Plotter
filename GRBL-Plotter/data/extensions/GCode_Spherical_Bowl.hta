@@ -1,0 +1,307 @@
+<!--    Name:        GCode_Spherical_Bowl.hta
+        Version:     2020-03-12
+        Function:    Milling a spherical bowl 
+		
+Enabled Active X in the broswer security settings.
+In IE9:
+a) Go to Tools ->Internet Options
+b) Select security tab
+c) Click on Trusted Sites (or Local Intranet depending on whether your site is trusted or not)
+d) Click on Custom Level
+e) Ensure that "Initialize and script active x controls is not marked safe for scripting" is enabled.		
+-->
+
+<html>
+<head>
+<hta:application id="hta" 
+    applicationname="GCode_Spherical_Bowl"
+    caption="yes" 
+    contextmenu="yes"
+    innerborder="no"
+    navigable="yes" 
+    scroll="no"
+    scrollflat="yes" 
+    selection="yes"
+    singleinstance="yes"
+    sysmenu="yes" 
+    windowState="normal" >
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>GCode Spherical Bowl</title>
+<script type="text/javascript" src="_script_functions.js"></script>
+
+<script type="text/javascript">
+<!--
+// all values must be positive, correct sign will be given, when writing the GCode
+var d_sphere= 100;		// outer diameter
+var h_sphere= 5;		// depth
+var d_cutter = 2.2;		// cutter diameter
+var h_cutter = 2;		// max depth to cut in one go
+var cutter_overlap = 0.75;
+var z_save =  2;		// save Z height
+var z_reso = 0.5;		// Z increment per turn
+var header = "G21 ";	// use mm
+var footer = "M30 ";	// program end
+var dir_cw = false;		// clock wise direction?
+
+var finalGCode = "";
+var headerCode = ""
+var copyCode = "";
+var lineCounter= 0;
+var last_gnr=0;		// needed in write_GCodeLine_XY
+
+function OnLoad()
+{   var xx=560;
+    var yy=920;
+    try { window.resizeTo(xx,yy);}         catch(err){}
+    try { window.moveTo(screen.width - xx, 0);}     catch(err){}
+}
+
+var startTime = new Date();
+function start_OnClick()
+{   html_info.innerText = "";
+	startTime = new Date();
+	
+	read_GRBL_Plotter_Settings();	// in _script_functions.js
+	read_SettingsFromForm();
+	create_GCode();
+	
+	var endTime = new Date();
+	var timeDiff = (endTime - startTime)/1000; //in s
+
+	headerCode += "( GCode lines :"+lineCounter+" )\r\n";
+	headerCode += "( Elapsed time:"+timeDiff+" )\r\n";
+	
+	copyCode = headerCode + finalGCode;
+	html_info.innerHTML = "<b><font color='red'>It takes time to copy large amounts of text to the clipboard</font></b>";
+	codeForm.result.value = copyCode;
+	setTimeout(copy_content,500);	// delayed copy to force <textarea> to show content
+}
+function copy_content()
+{
+//    copyTextToClipboard(copyCode);		// in _script_functions.js
+	codeForm.result.select();
+	document.execCommand('copy');
+	setTimeout(set_GRBL_Plotter_Update, 1000);
+//	set_GRBL_Plotter_Update();		// in _script_functions.js
+	
+	endTime = new Date();
+	timeDiff = (endTime - startTime)/1000; //in s
+	codeForm.result.value += "( Elapsed time:"+timeDiff+" after copy to clipboard )\r\n";
+}
+
+function create_GCode()
+{	headerCode  = "( GCode Spherical Bowl )\r\n";
+	headerCode += "( by GRBL-Plotter )\r\n";
+	finalGCode  = header + "(internal header data)\r\n";
+	finalGCode += GRBL_Plt_header + "(header from GRBL-Plotter)\r\n";
+	finalGCode += "G0 G90 Z" + z_save.toFixed(GRBL_Plt_decimals) + "( move to save height )\r\n";		// Tool up
+	lineCounter= 5;
+	
+	// https://en.wikipedia.org/wiki/Spherical_cap	r²=a²+(r-h)²
+	var a_sphere = d_sphere/2;
+	var r_sphere = (a_sphere*a_sphere + h_sphere*h_sphere)/(2*h_sphere);
+	var r_cutter = d_cutter/2;
+	var x,y,z,r_tmp,h_tmp,a_tmp;
+	last_gnr=0;		// needed in write_GCodeLine_XY
+	
+	// rough shape to remove much material
+	if ((h_sphere > h_cutter)	&&  (codeForm.clearance.checked))
+	{	
+		r_tmp = r_sphere - 1;				// smaller radius to keep material for finishing
+		z = h_cutter;						// first depth to remove
+		h_tmp = h_sphere - z;				
+		a_tmp = Math.sqrt(r_tmp*r_tmp - (r_tmp-h_tmp)*(r_tmp-h_tmp));	// find max radius to cut
+		x = a_tmp - r_cutter;
+		y = 0;
+
+		while (z <  h_sphere)
+		{			
+			finalGCode += "(<Clearance Z -" + z.toFixed(GRBL_Plt_decimals) + ">)\r\n";
+			finalGCode += G0(x,y);
+			finalGCode += PenDown(-z);		// Tool down
+			finalGCode += G2(x,y,-x,0);
+			finalGCode += clear_InnerArea(x, r_cutter, d_cutter*cutter_overlap, 0);
+			finalGCode += PenUp();			// Tool up
+			finalGCode += "(</Clearance >)\r\n";
+			z += h_cutter;
+			h_tmp = h_sphere - z;				// find max radius to cut
+			a_tmp = Math.sqrt(r_tmp*r_tmp - (r_tmp-h_tmp)*(r_tmp-h_tmp));
+			x = a_tmp - r_cutter;
+		}
+	}
+	// finishing
+	finalGCode += "( finishing )\r\n";
+	z = 0;	
+	a_tmp = Math.sqrt(r_sphere*r_sphere - (r_sphere-h_sphere)*(r_sphere-h_sphere));
+	var	r = a_tmp - r_cutter;
+	var r_last = r;
+	y = 0; 
+	var angle_step = Math.PI/180;	// resolution = 1°
+	var z_step = z_reso / 360;		// z_step per angle_step
+	var r_step = r_cutter / 360		// max allowed increase for r per angle_step
+	var angle = 0;					// start angle
+	
+	finalGCode += G0(r,y);
+	finalGCode += PenDown(0);		// Tool down
+	
+	while ((z <  h_sphere) && (r > r_cutter/2))
+	{
+		finalGCode += write_GCodeLine_XYZ(1, r, angle, -z);		// calculate new XYZ depending on angle
+		angle += angle_step;
+		z += z_step;
+		h_tmp = h_sphere - z;				// find max radius to cut
+		a_tmp = Math.sqrt(r_sphere*r_sphere - (r_sphere-h_tmp)*(r_sphere-h_tmp));
+		r = a_tmp - r_cutter;
+		if ((r_last - r) > r_step)			// if change in radius is too big, reduce Z_step
+			z_step *= 0.9;
+		r_last = r;
+	}
+
+	finalGCode += PenUp();
+	finalGCode += GRBL_Plt_footer + "(footer from GRBL-Plotter)\r\n";;
+	finalGCode += footer + "(internal footer data)\r\n";;
+}
+
+function G0(x,y)
+{	last_gnr=0; lineCounter++;
+	return "G0 X" + x.toFixed(GRBL_Plt_decimals) + " Y" + y.toFixed(GRBL_Plt_decimals) + "\r\n";
+}
+function PenDown(z)
+{	last_gnr=0; lineCounter++;
+	return "G1 Z" + z.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_z + "\r\n";		// Tool down
+}
+function PenUp()
+{	last_gnr=0; lineCounter++;
+	return "G0 Z" + z_save.toFixed(GRBL_Plt_decimals) + "\r\n";
+}
+function G1(x,y)
+{	last_gnr=1; lineCounter++;
+	return "G1 X" + x.toFixed(GRBL_Plt_decimals) + " Y" + y.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+function G2(x,y,i,j)
+{	last_gnr=2; lineCounter++;
+	return "G2 X" + x.toFixed(GRBL_Plt_decimals) + " Y" + y.toFixed(GRBL_Plt_decimals) + " I" + i.toFixed(GRBL_Plt_decimals) + " J" + j.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+
+function do_ConicSpiralOnTurn(r,r_end,z)
+{	var a=0;
+	var code ="";
+	var	angle_step = Math.asin(1/r);					// calculate next step width (the larger the radius, the smaller the angle must be)
+	var r_step  = inc_radius*angle_step/(2*Math.PI);	// initial radius step
+	while (a <= 2*Math.PI)
+	{	code += write_GCodeLine_XYZ(1, r, a, z);		// calculate new XYZ depending on angle
+		
+		angle_step = Math.asin(1/r);					// calculate next step width (the larger the radius, the smaller the angle must be)
+		r_step  = inc_radius*angle_step/(2*Math.PI);
+		z_step  = z_turn * angle_step/(2*Math.PI);
+		
+		a += angle_step;								// apply next delta steps
+		r += r_step;
+		z += z_step;	
+		
+		if (r > r_end)
+			break;
+	}
+	return code;
+}
+
+// remove inner material after each turn
+function clear_InnerArea(r_start, r_end, inc_radius, a_start)
+{
+	var r = r_start;
+	var a_step = 1;
+	var a = a_start;
+	var code = "";
+	while (r > r_end)
+	{
+		code += write_GCodeLine_XY(1, r, a);
+		a_step = Math.asin(1/r);
+		r_step = inc_radius*a_step/(2*Math.PI);
+		
+		a += a_step;
+		r -= r_step;
+	}
+	return code;
+}
+
+function write_GCodeLine_XY(gnr, r, a)
+{	var x1 = r * Math.cos(a);
+	var y1 = r * Math.sin(a);
+	if (dir_cw)
+		y1= -y1;
+	var gmode = "";
+	var feed = "";
+	if ((gnr == 1) && (gnr != last_gnr))
+	{	gmode = "G" + gnr + " ";
+		feed = " F" + GRBL_Plt_feedrate_xy;
+	}
+	last_gnr = gnr; lineCounter++;
+	return gmode + "X" + x1.toFixed(GRBL_Plt_decimals) + " Y" + y1.toFixed(GRBL_Plt_decimals) + feed + "\r\n";
+}
+function write_GCodeLine_XYZ(gnr, r, a, z)
+{	var x1 = r * Math.cos(a);
+	var y1 = r * Math.sin(a);
+	if (dir_cw)
+		y1= -y1;
+	var gmode = "";
+	var feed = "";
+	if ((gnr == 1) && (gnr != last_gnr))
+	{	gmode = "G" + gnr + " ";
+		feed = " F" + GRBL_Plt_feedrate_xy;
+	}
+	last_gnr = gnr; lineCounter++;
+	return gmode + "X" + x1.toFixed(GRBL_Plt_decimals) + " Y" + y1.toFixed(GRBL_Plt_decimals) + " Z" + z.toFixed(GRBL_Plt_decimals) + feed + "\r\n";
+}
+
+function read_SettingsFromForm()
+{	d_sphere = 	Math.abs(parseFloat(codeForm.d_outside.value));
+	h_sphere = 	Math.abs(parseFloat(codeForm.h_depth.value));
+	d_cutter = 	Math.abs(parseFloat(codeForm.d_cutter.value));
+	h_cutter =  Math.abs(parseFloat(codeForm.h_cutter.value));
+	z_reso = 	Math.abs(parseFloat(codeForm.z_reso.value));
+	z_save = 	Math.abs(parseFloat(codeForm.z_save.value));
+}
+
+//-->
+</script>
+<style type="text/css">
+body {margin:1px; }
+div, td, textarea { font-size:12px;  }
+select, input { font-size:12px;  }
+</style>
+
+</head>
+<body bgcolor="#F0F0F0" OnLoad='OnLoad();' style="margin:0;">
+<basefont face="arial, verdana, sans-serif" >
+<form name="codeForm">
+
+<table width='100%'>
+<tr>
+  <td valign="top"><table border>
+    <tr><th colspan="2"><b>GCode Spherical Bowl</b></th></tr>
+	<tr><td colspan="2">Mills a spiral from inner diameter to outer diameter with increasing z depth.<br>Following settings will be taken from GRBL-Plotter:<br>
+	decimal places, XY feedrate, Z feedrate, GCode header, GCode footer.<br>
+	GCode can be checked in 3D online on <a href="https://ncviewer.com/" target="_blank">https://ncviewer.com/</a><br>- click 'New File', 'Paste (ctrl-V)' and 'PLOT'.</th></tr>
+    <tr><td colspan="2" ><b><font color="red">Usage of the script and the generated GCode is on you own risk!</font></b></td></tr>
+	<tr><td width="30%">Outer diameter</td><td><input type="text" name="d_outside" value="50" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Final Depth</td><td><input type="text" name="h_depth" value="5" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Cutter diameter</td><td><input type="text" name="d_cutter" value="2.2" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Cutter max. Z</td><td><input type="text" name="h_cutter" value="2" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Z resolution</td><td><input type="text" name="z_reso" value="0.5" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Z save</td><td><input type="text" name="z_save" value="2" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Option</td><td><input type="checkbox" id="clearance" name="clearance" value=""> Do rough shape first</td></tr>
+	<tr><td colspan="2"><input name="btn_start" type="BUTTON" value="Create GCode and copy to clipboard (paste in GRBL-Plotter via CTRL-V)" onclick="start_OnClick();" style="width:520px";></td></tr>
+    <tr><td colspan="2" id='html_info'></td></tr>
+    <tr><td colspan="2"><textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="result" wrap="off" cols="66" rows="24" readonly>
+This script mills a spherical recess.
+	</textarea></td></tr>
+    <tr><td><b>Status </b></td><td id='html_status'></td></tr>
+  </table></td>
+</tr>
+<tr><td><font size="-2">SH 12.03.2020</font></td></tr>
+</table>  
+
+</form>
+</body>
+</html>

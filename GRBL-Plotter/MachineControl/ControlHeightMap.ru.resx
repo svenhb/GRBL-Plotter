@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="label9.Text" xml:space="preserve">
+    <value>длина ребра</value>
+  </data>
+  <data name="btnPosUR.ToolTip" xml:space="preserve">
+    <value>Получить фактическое положение машины и установить верхние правые координаты</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnPosLL.ToolTip" xml:space="preserve">
+    <value>Получить фактическое положение машины и установить нижние левые координаты</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Площадь профиля высоты</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="btnOffset.ToolTip" xml:space="preserve">
+    <value>Удалить смещение из всех значений Z</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Сохранить высоту</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Максимальная глубина</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>зондирование</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="btnStartHeightScan.Text" xml:space="preserve">
+    <value>Создать карту высот</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
+    <value>Отправить команды сканирования карты высот</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Сохранить карту высот</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnLoad.Text" xml:space="preserve">
+    <value>Загрузить карту высот</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnApply.Text" xml:space="preserve">
+    <value>Применить карту высот</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnApply.ToolTip" xml:space="preserve">
+    <value>Автоматическое выравнивание: применить профиль высоты к G-коду</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Открытый профиль высоты</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сохранить профиль высоты</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сохранить как BMP</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сохранить как STL</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сохранить как X3D</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="savePictureAsBWBMPToolStripMenuItem.Text" xml:space="preserve">
+    <value>экспорт</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="cBGray.Text" xml:space="preserve">
+    <value>Оттенки серого</value>
+    <comment>CheckBox</comment>
+  </data>
+  <data name="cBGray.ToolTip" xml:space="preserve">
+    <value>Показать изображение результата в оттенках серого для дальнейшего использования в качестве изображения карты высот</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>результат</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="btnOffsetZ.ToolTip" xml:space="preserve">
+    <value>Добавить данное смещение ко всем значениям Z</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnZoomZ.ToolTip" xml:space="preserve">
+    <value>Умножьте все значения Z на заданное значение.</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnInvertZ.Text" xml:space="preserve">
+    <value>Инвертировать Z</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnInvertZ.ToolTip" xml:space="preserve">
+    <value>Переключатель знака значений Z</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnCutOffZ.Text" xml:space="preserve">
+    <value>Z отрезать !!!</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnCutOffZ.ToolTip" xml:space="preserve">
+    <value>Отрежьте значения Z ниже заданного значения. Лучше сохранить данные перед использованием отрезать!</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnGCode.Text" xml:space="preserve">
+    <value>Создать G-код</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnGCode.ToolTip" xml:space="preserve">
+    <value>Сгенерируйте G-код, чтобы восстановить карту высот</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="gB_Manipulation.Text" xml:space="preserve">
+    <value>манипуляция</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Читать профиль высоты</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Размер сетки X и Y</value>
+  </data>
+  <data name="btnPosUR.Text" xml:space="preserve">
+    <value>Используйте актуальный поз.</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnPosLL.Text" xml:space="preserve">
+    <value>Используйте актуальный поз.</value>
+    <comment>Button</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>В правом верхнем углу</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Снизу слева</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Скорость зондирования Z</value>
+  </data>
+</root>

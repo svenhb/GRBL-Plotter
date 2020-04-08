@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCodeFromShape));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cBNoZUp = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cBToolSet = new System.Windows.Forms.CheckBox();
+            this.cBTool = new System.Windows.Forms.ComboBox();
             this.nUDToolOverlap = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
             this.nUDToolSpindleSpeed = new System.Windows.Forms.NumericUpDown();
@@ -94,6 +98,10 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.cBNoZUp);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cBToolSet);
+            this.groupBox1.Controls.Add(this.cBTool);
             this.groupBox1.Controls.Add(this.nUDToolOverlap);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.nUDToolSpindleSpeed);
@@ -109,6 +117,37 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
+            // 
+            // cBNoZUp
+            // 
+            resources.ApplyResources(this.cBNoZUp, "cBNoZUp");
+            this.cBNoZUp.Name = "cBNoZUp";
+            this.toolTip1.SetToolTip(this.cBNoZUp, resources.GetString("cBNoZUp.ToolTip"));
+            this.cBNoZUp.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
+            // 
+            // cBToolSet
+            // 
+            resources.ApplyResources(this.cBToolSet, "cBToolSet");
+            this.cBToolSet.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolUseRouter;
+            this.cBToolSet.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolUseRouter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolSet.Name = "cBToolSet";
+            this.toolTip1.SetToolTip(this.cBToolSet, resources.GetString("cBToolSet.ToolTip"));
+            this.cBToolSet.UseVisualStyleBackColor = true;
+            this.cBToolSet.CheckedChanged += new System.EventHandler(this.cBToolSet_CheckedChanged);
+            // 
+            // cBTool
+            // 
+            resources.ApplyResources(this.cBTool, "cBTool");
+            this.cBTool.FormattingEnabled = true;
+            this.cBTool.Name = "cBTool";
+            this.toolTip1.SetToolTip(this.cBTool, resources.GetString("cBTool.ToolTip"));
+            this.cBTool.SelectedIndexChanged += new System.EventHandler(this.cBTool_SelectedIndexChanged);
             // 
             // nUDToolOverlap
             // 
@@ -317,10 +356,10 @@
             0,
             65536});
             this.nUDImportGCZDown.Maximum = new decimal(new int[] {
-            1000,
+            1,
             0,
             0,
-            0});
+            -2147418112});
             this.nUDImportGCZDown.Minimum = new decimal(new int[] {
             1000,
             0,
@@ -609,6 +648,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "GCodeFromShape";
             this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShapeToGCode_FormClosing);
@@ -683,5 +723,9 @@
         private System.Windows.Forms.RadioButton rBOrigin1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox cBToolSet;
+        private System.Windows.Forms.ComboBox cBTool;
+        private System.Windows.Forms.CheckBox cBNoZUp;
     }
 }

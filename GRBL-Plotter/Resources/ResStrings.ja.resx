@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="mainAttention" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>翻訳をお気軽に</value>
+  </data>
+  <data name="mainHotkeyError" xml:space="preserve">
+    <value>ファイル 'hotkeys.xml'が見つかりません、ホットキーが設定されていません！</value>
+  </data>
+  <data name="mainHotkeyError1" xml:space="preserve">
+    <value>不明なアクション：</value>
+  </data>
+  <data name="mainHotkeyError2" xml:space="preserve">
+    <value>Hotkey.xmlのエラー</value>
+  </data>
+  <data name="mainInfoCheckCode" xml:space="preserve">
+    <value>Gコードを確認</value>
+  </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>行の前のエラー</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>Gコードのチェックを終了</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>Gコードの送信を完了</value>
+  </data>
+  <data name="mainInfoKill" xml:space="preserve">
+    <value>「殺すアラーム」を押して続行します</value>
+  </data>
+  <data name="mainInfoLaserModeOff" xml:space="preserve">
+    <value>レーザーモードがアクティブではない$ 32 = 0</value>
+  </data>
+  <data name="mainInfoLaserModeOn" xml:space="preserve">
+    <value>レーザーモードがアクティブ$ 32 = 1</value>
+  </data>
+  <data name="mainInfoPause" xml:space="preserve">
+    <value>ストリーミングの一時停止-プレスプレイ（</value>
+  </data>
+  <data name="mainInfoProbing" xml:space="preserve">
+    <value>プロービング</value>
+  </data>
+  <data name="mainInfoResume" xml:space="preserve">
+    <value>[再開]を押して続行します</value>
+  </data>
+  <data name="mainInfoSendCode" xml:space="preserve">
+    <value>Gコードを送信</value>
+  </data>
+  <data name="mainInfoStopStream" xml:space="preserve">
+    <value>ストリーミングを停止（</value>
+  </data>
+  <data name="mainInfoStopStream2" xml:space="preserve">
+    <value>ストリーミングを停止（ライン</value>
+  </data>
+  <data name="mainInfoToolChange" xml:space="preserve">
+    <value>ツールの変更...</value>
+  </data>
+  <data name="mainInfoUndo" xml:space="preserve">
+    <value>最後のアクションを元に戻す</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>IDLEを待ってから、一時停止（</value>
+  </data>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>次の動きはマシンの制限を超えます！\ r</value>
+  </data>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\ r \ n [OK]を押して移動します</value>
+  </data>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>グラフィックスの寸法が機械の寸法を超えています！\ r \ n機械の損傷を防ぐために、変形をお勧めします！</value>
+  </data>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>新しいファイルを読み込む前にストリーミングを停止する必要があります</value>
+  </data>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>ファイルが見つかりません： '</value>
+  </data>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>URL拡張子が「svg」または「dxf」ではありません\ r \ nSVGインポートを試してください。ただし、「最近使用したファイル」リストは設定しません。</value>
+  </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>サポートされていないファイル拡張子 '</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>有効な番号ではありません</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>有効な数値ではありません。行を0に設定してください</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>ストリーミングを一時停止-プレスプレイ</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>最後のジョブはラインで一時停止されました</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>、\ r \ nジョブを続行しますか？</value>
+  </data>
+  <data name="mainProblem" xml:space="preserve">
+    <value>問題</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>進捗</value>
+  </data>
+  <data name="mainQuit" xml:space="preserve">
+    <value>GRBL-Plotterを終了しますか？</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>ストリーミングはまだアクティブです-停止を押して再試行してください</value>
+  </data>
+  <data name="mainToolChange" xml:space="preserve">
+    <value>ツール/ペン交換！</value>
+  </data>
+  <data name="mainToolChange1" xml:space="preserve">
+    <value>ツールの変更が必要：\ r</value>
+  </data>
+  <data name="mainToolChange2" xml:space="preserve">
+    <value>\ rpress startは続行します。</value>
+  </data>
+  <data name="mainUnknownCode" xml:space="preserve">
+    <value>不明なGコードを修正しました：\ r \ n</value>
+  </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>プローブがキャンセルされました</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>最後のコマンドを処理する</value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>中央に移動</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>不合格：連絡なし</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>調査をキャンセル</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>終わり</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>調査中</value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>セットセンター</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>タイムアウト</value>
+  </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="serialCloseError" xml:space="preserve">
+    <value>シリアル接続が必要です。\ r \ n代わりにメインウィンドウを閉じます</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>開いた</value>
+  </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>パスシミュレーションを開始</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>シミュレーションを停止</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>警報</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>小切手</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>ドア</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>ホールド</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>アイドル状態</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>ジョグ</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>調査</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>走る</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>睡眠</value>
+  </data>
+</root>

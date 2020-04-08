@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cbPort.ToolTip" xml:space="preserve">
+    <value>选择一个可用的串行端口</value>
+  </data>
+  <data name="cbBaud.ToolTip" xml:space="preserve">
+    <value>选择速度</value>
+  </data>
+  <data name="btnOpenPort.Text" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="btnOpenPort.ToolTip" xml:space="preserve">
+    <value>以选定的速度打开选定的COM端口。 或关闭打开的COM端口</value>
+  </data>
+  <data name="btnScanPort.Text" xml:space="preserve">
+    <value>扫描端口</value>
+  </data>
+  <data name="btnScanPort.ToolTip" xml:space="preserve">
+    <value>扫描空闲端口</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>清除日志</value>
+  </data>
+  <data name="btnClear.ToolTip" xml:space="preserve">
+    <value>删除记录</value>
+  </data>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="btnSend.ToolTip" xml:space="preserve">
+    <value>按下即可发送命令</value>
+  </data>
+  <data name="btnGRBLCommand0.ToolTip" xml:space="preserve">
+    <value>帮助：获取所有GRBL命令的列表</value>
+  </data>
+  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
+    <value>查看Grbl设置</value>
+  </data>
+  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
+    <value>杀死警报锁</value>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>附件状态
+S =主轴CW，
+C =主轴CCW，
+F =防洪线，
+M =冷却液</value>
+  </data>
+  <data name="btnCheckGRBL.Text" xml:space="preserve">
+    <value>检查GRBL</value>
+  </data>
+  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
+    <value>检查GRBL设置的最大和最小限制
+不适用于GRBL Vers。 &lt;1.0</value>
+  </data>
+  <data name="btnGRBLReset.ToolTip" xml:space="preserve">
+    <value>通过CTRL-X进行软重置</value>
+  </data>
+  <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
+    <value>尝试通过DTR / RTS进行硬重置
+成功取决于所使用的硬件（DTR，RTS有线？）</value>
+  </data>
+  <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
+    <value>查看g代码解析器状态</value>
+  </data>
+  <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
+    <value>查看版本信息</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>实时状态报告</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>缓冲区状态（需要通过$ 10 = 2启用）</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>当前进给（mm / min）和速度（RPM）</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>XYZ，探针，门，保持，软复位，循环启动的输入引脚状态</value>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>进给，急流和速度的替代值，以％为单位</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>行号（需要在config.h中启用）</value>
+  </data>
+  <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
+    <value>查看g代码参数</value>
+  </data>
+  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
+    <value>查看启动块</value>
+  </data>
+  <data name="lblSrPos.ToolTip" xml:space="preserve">
+    <value>工作岗位</value>
+  </data>
+  <data name="lblSrBf.ToolTip" xml:space="preserve">
+    <value>缓冲区状态（需要通过$ 10 = 2启用）</value>
+  </data>
+  <data name="lblSrFS.ToolTip" xml:space="preserve">
+    <value>当前进给（mm / min）和速度（RPM）</value>
+  </data>
+  <data name="lblSrPn.ToolTip" xml:space="preserve">
+    <value>XYZ，探针，门，保持，软复位，循环启动的输入引脚状态</value>
+  </data>
+  <data name="lblSrOv.ToolTip" xml:space="preserve">
+    <value>进给，急流和速度的替代值，以％为单位</value>
+  </data>
+  <data name="lblSrA.ToolTip" xml:space="preserve">
+    <value>附件状态
+S =主轴CW，
+C =主轴CCW，
+F =防洪线，
+M =冷却液</value>
+  </data>
+  <data name="lblSrLn.ToolTip" xml:space="preserve">
+    <value>行号（需要在config.h中启用）</value>
+  </data>
+  <data name="lblSrState.Text" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>显示实时状态报告</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>显示原始收到的GRBL状态报告</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>在流式传输期间显示已发送和已处理的命令</value>
+  </data>
+</root>

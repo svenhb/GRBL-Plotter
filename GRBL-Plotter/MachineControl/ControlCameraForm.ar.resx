@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعليم التحجيم</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>تدوير الصورة</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) قم بالتبديل إلى "أداة التنسيق". (G54)
+2) صفر X ، Y الموقف
+3) وضع علامة أداة (في X = 0 ، Y = 0) مع أداة على قطعة العمل
+4) حرك علامة أسفل مركز عرض الكاميرا
+5) تعليم الموقف الفعلي كما إزاحة
+6) قم بالتبديل إلى "Cam coord". (G59) - يظهر الآن X = 0 ، Y = 0</value>
+  </data>
+  <data name="btnApplyAngle.Text" xml:space="preserve">
+    <value>تطبيق زاوية على GCode</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) الراسمة الرئيسية
+2) نقل الكاميرا إلى الموضع العلوي
+3) انقر في الصورة لتعليم المسافة من دائرة نصف قطرها العلوي
+4) نقل الكاميرا إلى انخفاض الموقف
+5) انقر في الصورة لتعليم مسافة نصف قطرها السفلي</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>بوحدات GRBL (مم أو بوصة)</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>عرض تراكب الرسومات</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>الة تصوير</value>
+  </data>
+  <data name="btnCamCoordTool.Text" xml:space="preserve">
+    <value>أداة التنسيق.</value>
+  </data>
+  <data name="teachZeroPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Set XY = 0؛ 0 مع مؤشر الماوس والنقر الأيسر</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>تدوير صورة الفيديو - أدخل زاوية</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>مجموعة تعليم أسفل دائرة نصف قطرها</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>تعليم عرض الكاميرا</value>
+  </data>
+  <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
+    <value>تطبيق إزاحة الكاميرا على الرسومات</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) صفر X ، Y الموقف
+2) وضع علامة الأداة (في X = 0 ، Y = 0)
+3) تحرك حتى علامة في وسط عرض الكاميرا
+4) تعليم الموقف الفعلي كما إزاحة</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>ضبط تنسيق الصفر مع إزاحة الكاميرا</value>
+  </data>
+  <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
+    <value>حرك موضع الكاميرا الحالي أسفل الأداة</value>
+  </data>
+  <data name="teachZeroPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>مجموعة XY = 0 ؛ 0</value>
+  </data>
+  <data name="lblCenterPos.Text" xml:space="preserve">
+    <value>لم يتم العثور على الشكل</value>
+  </data>
+  <data name="btnAutoCenter.Text" xml:space="preserve">
+    <value>مركز الدائرة الحمراء</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>بوحدات GRBL (مم أو بوصة)</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>زاوية</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>تعليم عرض الكاميرا</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>اقامة</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>حدد مجموعة مرشح</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعليم الوظيفة العليا</value>
+  </data>
+  <data name="cBShapeDetection.Text" xml:space="preserve">
+    <value>التعرف على الشكل</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>مصدر الفيديو</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>إزاحة الكاميرا / الحركة</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>تدوير صورة الفيديو - أدخل زاوية</value>
+  </data>
+  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعيين تنسيق نظام الإزاحة</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعليم إزاحة الكاميرا</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>الة تصوير</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعويض زاوية وحجم</value>
+  </data>
+  <data name="btnApplyAngle.ToolTip" xml:space="preserve">
+    <value>استخدم زر الفأرة الأيمن لقياس الزاوية.
+اضغط على الزر لتحويل G-Code بزاوية مقاسة.</value>
+  </data>
+  <data name="btnCamCoordCam.Text" xml:space="preserve">
+    <value>كام التنسيق</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>الصليب الشعر</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>الألوان</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعليم الموقف الأدنى</value>
+  </data>
+  <data name="cBCamCoordMove.Text" xml:space="preserve">
+    <value>تحريك المرحلة</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>قياس</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>محاذاة السيارات</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>تكبير</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>علم الأوفست</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعيين تعليم نصف قطرها أعلى</value>
+  </data>
+  <data name="lblAngle.ToolTip" xml:space="preserve">
+    <value>زاوية قياس</value>
+  </data>
+  <data name="btnCamCoordTool.ToolTip" xml:space="preserve">
+    <value>حرك موضع الأداة الحالي أسفل الكاميرا</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>حدد مصدر الكاميرا.</value>
+  </data>
+  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعيين نقاط البيع الفعلية. لوضع علامة نقاط البيع.</value>
+  </data>
+  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعيين XY = موقف ماركر</value>
+  </data>
+</root>

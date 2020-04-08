@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,175 +19,535 @@
 
 /*  Thanks to:
  *  3dpBurner Image2Gcode. A Image to GCODE converter for GRBL based devices.
-    This file is part of 3dpBurner Image2Gcode application.
-   
+    This file is part of 3dpBurner Image2Gcode application. 
     Copyright (C) 2015  Adrian V. J. (villamany) contact: villamany@gmail.com
+*/
+/*
+ * 2018-11  split code into ...Create and ...Outline
+ * 2019-08-15 add logger
+ * 2019-10-25 remove icon to reduce resx size, load icon on run-time
 */
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
-using System.Net;
+
+using AForge.Imaging.ColorReduction;
+using AForge.Imaging.Filters;
 
 namespace GRBL_Plotter
 {
     public partial class GCodeFromImage : Form
     {
-        Bitmap loadedImage;
         Bitmap originalImage;
         Bitmap adjustedImage;
         Bitmap resultImage;
-        private static int svgToolMax = 256;            // max amount of tools
-        private static StringBuilder[] gcodeString = new StringBuilder[svgToolMax];
-        private static int gcodeStringIndex = 0;
-        private static StringBuilder finalString = new StringBuilder();
-        private static StringBuilder tmpString = new StringBuilder();
-        private static int svgToolIndex = 0;            // last index
-        private static bool gcodeToolChange = false;          // Apply tool exchange command
+        private static int maxToolTableIndex = 0;       // last index
         private static bool gcodeSpindleToggle = false; // Switch on/off spindle for Pen down/up (M3/M5)
         private static bool loadFromFile = false;
+        private static Color backgroundColor = Color.White;
 
         private string imagegcode = "";
         public string imageGCode
         { get { return imagegcode; } }
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        //On form load
+        private void GCodeFromImage_Load(object sender, EventArgs e)
+        {
+            this.Icon = Properties.Resources.Icon;
+            lblStatus.Text = "Done";
+            getSettings();
+            autoZoomToolStripMenuItem_Click(this, null);//Set preview zoom mode
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+        }
+        private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Logger.Trace("++++++ GCodeFromImage STOP ++++++");
+            Properties.Settings.Default.locationImageForm = Location;
+        }
+        private void GCodeFromImage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
+            {
+                loadClipboard();
+                e.SuppressKeyPress = true;
+            }
+        }
+        private void GCodeFromImage_Resize(object sender, EventArgs e)
+        {
+            panel1.Width = Width - 440;
+            pictureBox1.Width = Width - 440;
+            panel1.Height = Height - 60;
+            pictureBox1.Height = Height - 60;
+            pictureBox1.Refresh();
+        }
+
         public GCodeFromImage(bool loadFile=false)
         {
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Logger.Trace("++++++ GCodeFromImage loadFile:{0} START ++++++", loadFile);
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
             loadFromFile = loadFile;
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
         }
 
-        private void getSettings()
-        {
-            svgToolIndex = svgPalette.init();       // svgPalette.cs
-        }
 
+        #region load picture
         // load picture when form opens
         private void ImageToGCode_Load(object sender, EventArgs e)
         {
             if (loadFromFile) loadExtern(lastFile);
             originalImage = new Bitmap(Properties.Resources.modell);
-
             Location = Properties.Settings.Default.locationImageForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
-            processLoading();
+            processLoading();   // reset color corrections
         }
 
-        private static bool fileLoaded = false;
         private static string lastFile = "";
         //OpenFile, save picture grayscaled to originalImage and save the original aspect ratio to ratio
         private void btnLoad_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog sfd = new OpenFileDialog();
+        {   try
+            {   OpenFileDialog sfd = new OpenFileDialog();
                 sfd.Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tif;";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     if (!File.Exists(sfd.FileName)) return;
-                    fileLoaded = true;
                     lastFile = sfd.FileName;
-                    loadedImage = new Bitmap(Image.FromFile(sfd.FileName));
-                    originalImage = new Bitmap(Image.FromFile(sfd.FileName));
-                    processLoading();
+                    originalImage = new Bitmap(System.Drawing.Image.FromFile(sfd.FileName));
+                    processLoading();   // reset color corrections
                 }
             }
             catch (Exception err)
-            {
-                MessageBox.Show("Error opening file: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {   MessageBox.Show("Error opening file: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void loadExtern(string file)
-        {
-            if (!File.Exists(file)) return;
+        {   if (!File.Exists(file)) return;
             lastFile = file;
-            fileLoaded = true;
-            loadedImage = new Bitmap(Image.FromFile(file));
-            originalImage = new Bitmap(Image.FromFile(file));
+            originalImage = new Bitmap(System.Drawing.Image.FromFile(file));
+            processLoading();   // reset color corrections
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        { Clipboard.SetImage(pictureBox1.Image); }
+
+        private void setAsOriginalToolStripMenuItem_Click(object sender, EventArgs e)
+        {   originalImage = new Bitmap(pictureBox1.Image);
             processLoading();
         }
 
         private void pasteFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
-        {   loadClipboard();  }
+        {   loadClipboard(); }
         public void loadClipboard()
-        {
-            IDataObject iData = Clipboard.GetDataObject();
+        {   IDataObject iData = Clipboard.GetDataObject();
             if (iData.GetDataPresent(DataFormats.Bitmap))
             {
                 lastFile = "";
-                fileLoaded = true;
-                loadedImage = new Bitmap(Clipboard.GetImage());
                 originalImage = new Bitmap(Clipboard.GetImage());
-                processLoading();
+                processLoading();   // reset color corrections
             }
         }
 
         public void loadURL(string url)
-        {
-            pictureBox1.Load(url);
+        {   pictureBox1.Load(url);
             originalImage = new Bitmap(pictureBox1.Image);
+            processLoading();   // reset color corrections
+        }
+        private void GCodeFromImage_DragEnter(object sender, DragEventArgs e)
+        {   e.Effect = DragDropEffects.All; }
+
+        private void GCodeFromImage_DragDrop(object sender, DragEventArgs e)
+        {   string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files != null)
+            { loadExtern(files[0]); }
         }
 
+        decimal ratio; //Used to lock the aspect ratio when the option is selected
         private void processLoading()
-        {
+        {   //rBImportSVGTool.Checked = Properties.Settings.Default.importSVGToolSort;
+  //          if (!rBImportSVGTool.Checked)
+  //              rBImportSVGTool2.Checked = true;
             lblStatus.Text = "Opening file...";
+            adjustedImage = new Bitmap(originalImage);
+            resultImage = new Bitmap(originalImage);
+
+            ratio = (decimal)originalImage.Width / (decimal)originalImage.Height;         //Save ratio for future use if needled
+            nUDHeight.ValueChanged -= nUDWidthHeight_ValueChanged;
+            oldWidth = Properties.Settings.Default.importImageWidth;    //nUDWidth.Value;
+            oldHeight = oldWidth / ratio;               //Initialize y size
+            nUDHeight.Value = oldHeight;
+            nUDHeight.ValueChanged += nUDWidthHeight_ValueChanged;
+
+            getSettings();
+            setToolList();
+            resetColorCorrection(); applyColorCorrections(); lblImageSource.Text = "original";
+            tabControl1.SelectedIndex = 0;
+            showInfo();
+        }
+
+        private void showInfo()
+        {   int xSize = (int)(nUDWidth.Value / nUDReso.Value);  //Total X pixels of resulting image for GCode generation
+            int ySize = (int)(nUDHeight.Value / nUDReso.Value); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
+            pixelCount = xSize * ySize;
+            lblSizeOrig.Text = "Original size: " + originalImage.Width + " x " + originalImage.Height + " = " + (originalImage.Width* originalImage.Height) + " px";
+            lblSizeResult.Text = "Result size: " + xSize.ToString() + " x " + ySize.ToString() + " = " + pixelCount.ToString() + " px";
+            string tmp = "Press 'Preview' to update tool list\r\n\r\nNumber of pens: " + (maxToolTableIndex-1)+"\r\n\r\n";
+            tmp += "Original Image size (px):\r\n" + originalImage.Width + " px * " + originalImage.Height + " px = " + (originalImage.Width* originalImage.Height) + " px\r\n\r\n";
+            tmp += "Result Image size (px)  :\r\n" + xSize.ToString() + " px * " + ySize.ToString() + " px = " + pixelCount.ToString() + " px\r\n\r\n";
+            tmp += "Result image size(units): \r\nWidth: " + Math.Round(nUDWidth.Value, 1);
+            tmp += "  Height: " + Math.Round(nUDHeight.Value, 1) + "\r\n\r\n";
+            tBToolList.Text = tmp;
+        }
+
+        #endregion
+
+
+        private void getSettings()
+        {   maxToolTableIndex = toolTable.init() ;       // 1 entry reserved
+            nUDMaxColors.Maximum = maxToolTableIndex-1;
+            nUDMaxColors.Value = maxToolTableIndex-1;
+            setToolList();
+        }
+        private void setToolList(bool all=true)
+        {   cLBTools.Items.Clear();
+            for (int i = 0; i < maxToolTableIndex; i++)
+            {   toolTable.setIndex(i);
+                if ((toolTable.indexToolNr() >= 0) && (all || toolTable.indexUse()))
+                {   cLBTools.Items.Add(toolTable.indexToolNr() + ") " + toolTable.getName(), toolTable.indexSelected());
+                }
+            }
+        }
+        /// <summary>
+        /// update result after deselecting tools
+        /// </summary>
+        private void cLBTools_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            toolTable.sortByToolNr(false);
+            int toolNr = 0;
+            for (int i = 0; i < cLBTools.Items.Count; i++)      // index = unknown
+            {
+                Int32.TryParse((cLBTools.Items[i].ToString().Split(')'))[0], out toolNr);    // get toolNr from text
+                toolTable.setIndex(toolTable.getIndexByToolNr(toolNr));                     // get index from toolNr
+                toolTable.setSelected(cLBTools.GetItemChecked(i));                          // set selected property of index
+            }
+            generateResultImage(ref resultToolNrArray);      // fill countColors
+            showResultActive = true;
+            pictureBox1.Image = resultImage;
+            lblImageSource.Text = "result";
             Refresh();
+        }
+
+
+        #region preset color correction
+        private void btnResetCorrection_Click(object sender, EventArgs e)
+        { resetColorCorrection();  applyColorCorrections(); lblImageSource.Text = "original"; }
+
+        private void btnPresetCorrection1_Click(object sender, EventArgs e)
+        { resetColorCorrection(); presetColorCorrection(1); applyColorCorrections(); }
+        private void btnPresetCorrection2_Click(object sender, EventArgs e)
+        { resetColorCorrection(); presetColorCorrection(2); applyColorCorrections(); }
+        private void btnPresetCorrection3_Click(object sender, EventArgs e)
+        { resetColorCorrection(); presetColorCorrection(3); applyColorCorrections(); }
+        private void btnPresetCorrection4_Click(object sender, EventArgs e)
+        {   resetColorCorrection(); presetColorCorrection(4); applyColorCorrections(); adjustedImage = imgInvert(adjustedImage);
+            originalImage = new Bitmap(adjustedImage); resetColorCorrection();
+            disableControlEvents(); cbGrayscale.Checked = true; tBarGamma.Value = 10;
+            cbExceptColor.Checked = true; toolTable.setExceptionColor(cbExceptColor.BackColor);
+            cBPreview.Checked = true; cBReduceColorsToolTable.Checked = true; nUDMaxColors.Value = 2;
+            enableControlEvents(); applyColorCorrections(); 
+        }
+
+        private void resetColorCorrection()
+        {   disableControlEvents();
             tBarBrightness.Value = 0;
             tBarContrast.Value = 0;
             tBarGamma.Value = 100;
-            lblBrightness.Text = Convert.ToString(tBarBrightness.Value);
-            lblContrast.Text = Convert.ToString(tBarContrast.Value);
-            lblGamma.Text = Convert.ToString(tBarGamma.Value / 100.0f);
-            if (cbGrayscale.Checked) originalImage = imgGrayscale(originalImage);
-            adjustedImage = new Bitmap(originalImage);
-            resultImage = new Bitmap(originalImage);
-            ratio = (originalImage.Width + 0.0f) / originalImage.Height;//Save ratio for future use if needled
-            if (cbLockRatio.Checked) nUDHeight.Value = nUDWidth.Value / (decimal)ratio; //Initialize y size
-            userAdjust();
-            lblStatus.Text = "Done";
+            tBarSaturation.Value = 0;
+            cbGrayscale.Checked = false;
+            tBRMin.Value = 0; tBRMax.Value = 255;
+            tBGMin.Value = 0; tBGMax.Value = 255;
+            tBBMin.Value = 0; tBBMax.Value = 255;
+            tBarHueShift.Value = 0;
+            cBFilterRemoveArtefact.Checked = false;
+            cBFilterEdge.Checked = false;
+            cBPosterize.Checked = false;
+            cBFilterEdge.Checked = false;
+            cBFilterHistogram.Checked = false;
             getSettings();
+            cBReduceColorsToolTable.Checked = false;
+            cBReduceColorsDithering.Checked = false;
+            rBMode0.Checked = true;
+            cbExceptColor.Checked = false;
+            cbExceptColor.BackColor = Color.White;
+            toolTable.clrExceptionColor();
+            cBPreview.Checked = false;
+            redoColorAdjust = false;
+ //           updatePixelCountPerColorNeeded = false;
+            lblImageSource.Text = "original";
+            enableControlEvents();
+        }
+        private void disableControlEvents()
+        {
+            tBarBrightness.Scroll -= applyColorCorrectionsEvent;
+            tBarContrast.Scroll -= applyColorCorrectionsEvent;
+            tBarGamma.Scroll -= applyColorCorrectionsEvent;
+            tBarSaturation.Scroll -= applyColorCorrectionsEvent;
+            cbGrayscale.CheckedChanged -= applyColorCorrectionsEvent;
+            tBRMin.Scroll -= applyColorCorrectionsEvent;
+            tBGMin.Scroll -= applyColorCorrectionsEvent;
+            tBBMin.Scroll -= applyColorCorrectionsEvent;
+            tBarHueShift.Scroll -= applyColorCorrectionsEvent;
+            cBPosterize.CheckedChanged -= applyColorCorrectionsEvent;
+            cBFilterRemoveArtefact.CheckedChanged -= applyColorCorrectionsEvent;
+            cBFilterEdge.CheckedChanged -= applyColorCorrectionsEvent;
+            cBFilterHistogram.CheckedChanged -= applyColorCorrectionsEvent;
+            cBReduceColorsToolTable.CheckedChanged -= applyColorCorrectionsEvent;
+            cBReduceColorsDithering.CheckedChanged -= applyColorCorrectionsEvent;
+            nUDMaxColors.ValueChanged -= applyColorCorrectionsEvent;
+            cBPreview.CheckedChanged -= justShowResult;
+            cbExceptColor.CheckedChanged -= cbExceptColor_CheckedChanged;
+            rBMode0.CheckedChanged -= rBMode0_CheckedChanged;
+            rBMode1.CheckedChanged -= rBMode0_CheckedChanged;
+            rBMode2.CheckedChanged -= rBMode0_CheckedChanged;
+        }
+        private void enableControlEvents()
+        {
+            tBarBrightness.Scroll += applyColorCorrectionsEvent;
+            tBarContrast.Scroll += applyColorCorrectionsEvent;
+            tBarGamma.Scroll += applyColorCorrectionsEvent;
+            tBarSaturation.Scroll += applyColorCorrectionsEvent;
+            cbGrayscale.CheckedChanged += applyColorCorrectionsEvent;
+            tBRMin.Scroll += applyColorCorrectionsEvent;
+            tBGMin.Scroll += applyColorCorrectionsEvent;
+            tBBMin.Scroll += applyColorCorrectionsEvent;
+            tBarHueShift.Scroll += applyColorCorrectionsEvent;
+            cBPosterize.CheckedChanged += applyColorCorrectionsEvent;
+            cBFilterRemoveArtefact.CheckedChanged += applyColorCorrectionsEvent;
+            cBFilterEdge.CheckedChanged += applyColorCorrectionsEvent;
+            cBFilterHistogram.CheckedChanged += applyColorCorrectionsEvent;
+            cBReduceColorsToolTable.CheckedChanged += applyColorCorrectionsEvent;
+            cBReduceColorsDithering.CheckedChanged += applyColorCorrectionsEvent;
+            nUDMaxColors.ValueChanged += applyColorCorrectionsEvent;
+            cBPreview.CheckedChanged += justShowResult;
+            cbExceptColor.CheckedChanged += cbExceptColor_CheckedChanged;
+            rBMode0.CheckedChanged += rBMode0_CheckedChanged;
+            rBMode1.CheckedChanged += rBMode0_CheckedChanged;
+            rBMode2.CheckedChanged += rBMode0_CheckedChanged;
         }
 
-        float ratio; //Used to lock the aspect ratio when the option is selected
+        private static bool redoColorAdjust = false;
+        private void presetColorCorrection(int tmp)
+        {
+            disableControlEvents();
+            if (tmp == 1)                   // Image dark background
+            {   tBarSaturation.Value = 128;
+                tBRMin.Value = 64;
+                tBGMin.Value = 64;
+                tBBMin.Value = 64;
+                cbExceptColor.Checked = true;
+                cbExceptColor.BackColor = Color.FromArgb(255, 0, 0, 0);
+                toolTable.setExceptionColor(cbExceptColor.BackColor);
+                cBGCodeOutline.Checked = false;
+            }
+            else if (tmp == 2)              // graphic many colors
+            {   cBPosterize.Checked = true;
+                rBMode2.Checked = true;
+            }
+            else if (tmp == 3)              // comic few colors
+            {   tBarBrightness.Value = -15;
+                tBarContrast.Value = 20;
+                tBarGamma.Value = 88;
+                cBReduceColorsToolTable.Checked = true;
+                cbExceptColor.Checked = true;   // except white
+                cBFilterRemoveArtefact.Checked = true;
+                rBMode0.Checked = true;
+                redoColorAdjust = true;
+            }
+            else if (tmp == 4)              // comic few colors
+            {   cbGrayscale.Checked = true;
+                rbModeGray.Checked = true;
+                cBFilterEdge.Checked = true;
+            }
+            cBPreview.Checked = true;
+            enableControlEvents();
+        }
+        private string listColorCorrection()
+        {   string tmp = "";
+            tmp += "Reduce colors \t" + (cBReduceColorsToolTable.Checked ? "on" : "off") + " " + Convert.ToString(nUDMaxColors.Value) + "\r\n";
+            tmp += "Dithering  \t" + (cBReduceColorsDithering.Checked ? "on" : "off") +"\r\n";
+            tmp += "Except. col.\t" + (cbExceptColor.Checked ? "on" : "off") + " " + Convert.ToString(cbExceptColor.BackColor) + "\r\n";
+            tmp += "Brightness \t"+ Convert.ToString(tBarBrightness.Value)+"\r\n";
+            tmp += "Contrast   \t" + Convert.ToString(tBarContrast.Value) + "\r\n";
+            tmp += "Gamma      \t" + Convert.ToString(tBarGamma.Value / 100.0f) + "\r\n";
+            tmp += "Saturation \t" + Convert.ToString(tBarSaturation.Value) + "\r\n";
+            tmp += "Grayscale  \t" + (cbGrayscale.Checked ? "on" : "off") + "\r\n";
+            tmp += "Channel filter red   \t" + Convert.ToString(tBRMin.Value) + ";" + Convert.ToString(tBRMax.Value) + "\r\n";
+            tmp += "Channel filter green \t" + Convert.ToString(tBGMin.Value) + ";" + Convert.ToString(tBGMax.Value) + "\r\n";
+            tmp += "Channel filter blue  \t" + Convert.ToString(tBBMin.Value) + ";" + Convert.ToString(tBBMax.Value) + "\r\n";
+            tmp += "Hue shift  \t" + Convert.ToString(tBarHueShift.Value) + "\r\n";
+            tmp += "Edge filter   \t" + (cBFilterEdge.Checked? "on":"off") + "\r\n";
+            tmp += "Histogram equ.\t" + (cBFilterHistogram.Checked ? "on" : "off") + "\r\n";
+            tmp += "Posterize     \t" + (cBPosterize.Checked ? "on" : "off") + "\r\n";
+            return tmp;
+        }
+
+        private void updateLabels()
+        {   lblBrightness.Text = Convert.ToString(tBarBrightness.Value);
+            lblContrast.Text = Convert.ToString(tBarContrast.Value);
+            lblGamma.Text = Convert.ToString(tBarGamma.Value / 100.0f);
+            lblSaturation.Text = Convert.ToString(tBarSaturation.Value);
+            lblHueShift.Text = Convert.ToString(tBarHueShift.Value);
+            lblCFR.Text = Convert.ToString(tBRMin.Value) + ";" + Convert.ToString(tBRMax.Value);
+            lblCFG.Text = Convert.ToString(tBGMin.Value) + ";" + Convert.ToString(tBGMax.Value);
+            lblCFB.Text = Convert.ToString(tBBMin.Value) + ";" + Convert.ToString(tBBMax.Value);
+            Refresh();
+        }
+        private void btnShowSettings_Click(object sender, EventArgs e)
+        {   MessageBox.Show(listColorCorrection(),"Color correction settings");
+            System.Windows.Forms.Clipboard.SetText(listColorCorrection());
+        }
+        #endregion
+
+
+        #region image manipulation
+
+        private static decimal oldWidth=0, oldHeight=0;
+        private void nUDWidthHeight_ValueChanged(object sender, EventArgs e)
+        {   nUDWidth.ValueChanged -= nUDWidthHeight_ValueChanged;
+            nUDHeight.ValueChanged -= nUDWidthHeight_ValueChanged;
+            bool edit = false;
+            if (oldWidth != nUDWidth.Value)
+            {   oldWidth = nUDWidth.Value;
+                if (cbLockRatio.Checked)
+                {   oldHeight = oldWidth / ratio;
+                    nUDHeight.Value = oldHeight;
+                    nUDHeight.Invalidate();
+                }
+                nUDWidth.Value = oldWidth;
+                edit = true;
+            }
+            if (oldHeight != nUDHeight.Value)
+            {   oldHeight = nUDHeight.Value;
+                if (cbLockRatio.Checked)
+                {   oldWidth = oldHeight * ratio;
+                    nUDWidth.Value = oldWidth;
+                    nUDWidth.Invalidate();
+                }
+                nUDHeight.Value = oldHeight;
+                edit = true;
+            }
+            if (edit)
+                applyColorCorrections();
+            nUDWidth.ValueChanged += nUDWidthHeight_ValueChanged;
+            nUDHeight.ValueChanged += nUDWidthHeight_ValueChanged;
+            Refresh();
+        }
+
+        private void btnKeepSizeWidth_Click(object sender, EventArgs e)
+        { nUDWidth.Value = originalImage.Width * nUDReso.Value; }
+
+        private void btnKeepSizeReso_Click(object sender, EventArgs e)
+        { nUDReso.Value = nUDWidth.Value / originalImage.Width; }
+
+
+        //Horizontal mirroing
+        private void btnHorizMirror_Click(object sender, EventArgs e)
+        {   if (adjustedImage == null) return;//if no image, do nothing
+            adjustedImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            originalImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            pictureBox1.Image = adjustedImage;
+        }
+        //Vertical mirroing
+        private void btnVertMirror_Click(object sender, EventArgs e)
+        {   if (adjustedImage == null) return;//if no image, do nothing
+            adjustedImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            originalImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            pictureBox1.Image = adjustedImage;
+            showResultImage();
+        }
+        //Rotate right
+        private void btnRotateRight_Click(object sender, EventArgs e)
+        {   if (adjustedImage == null) return;//if no image, do nothing
+            adjustedImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            originalImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            ratio = 1 / ratio;
+            decimal s = nUDHeight.Value;
+            nUDHeight.Value = nUDWidth.Value;
+            nUDWidth.Value = s;
+            pictureBox1.Image = adjustedImage;
+            autoZoomToolStripMenuItem_Click(this, null);
+            showResultImage();
+        }
+        //Rotate left
+        private void btnRotateLeft_Click(object sender, EventArgs e)
+        {   if (adjustedImage == null) return;//if no image, do nothing
+            adjustedImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            originalImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            ratio = 1 / ratio;
+            decimal s = nUDHeight.Value;
+            nUDHeight.Value = nUDWidth.Value;
+            nUDWidth.Value = s;
+            pictureBox1.Image = adjustedImage;
+            autoZoomToolStripMenuItem_Click(this, null);
+            showResultImage();
+        }
+        //Invert image color
+        private void btnInvert_Click(object sender, EventArgs e)
+        {   if (adjustedImage == null) return;//if no image, do nothing
+            adjustedImage = imgInvert(adjustedImage);
+            originalImage = imgInvert(originalImage);
+            pictureBox1.Image = adjustedImage;
+            showResultImage();
+        }
+
+        //Contrast adjusted by user
+        private void applyColorCorrectionsEvent(object sender, EventArgs e)
+        {   applyColorCorrections();
+        }
+
+        private static int conversionMode = 0, conversionModeOld = 0;
+        private void rBMode0_CheckedChanged(object sender, EventArgs e)
+        {   conversionMode = 0;
+            if (rBMode1.Checked) conversionMode = 1;
+            else if (rBMode2.Checked) conversionMode = 2;
+            if (conversionMode != conversionModeOld)
+                applyColorCorrections();
+            conversionModeOld = conversionMode;
+        }
 
         //Interpolate a 8 bit grayscale value (0-255) between min,max
-        private Int32 interpolate(Int32 grayValue, Int32 min, Int32 max)
-        {
-            Int32 dif = max - min;
+        private int interpolate(int grayValue, int min, int max)
+        {   int dif = max - min;
             return (min + ((grayValue * dif) / 255));
         }
 
-
-        //Apply dirthering to an image (Convert to 1 bit)
+        //Apply dithering to an image (Convert to 1 bit)
         private Bitmap imgDirther(Bitmap input)
         {
-            lblStatus.Text = "Dirthering...";
+            lblStatus.Text = "Dithering...";
             Refresh();
             var masks = new byte[] { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 };
             var output = new Bitmap(input.Width, input.Height, PixelFormat.Format1bppIndexed);
             var data = new sbyte[input.Width, input.Height];
             var inputData = input.LockBits(new Rectangle(0, 0, input.Width, input.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
             try
-            {
-                var scanLine = inputData.Scan0;
+            {   var scanLine = inputData.Scan0;
                 var line = new byte[inputData.Stride];
                 for (var y = 0; y < inputData.Height; y++, scanLine += inputData.Stride)
-                {
-                    Marshal.Copy(scanLine, line, 0, line.Length);
+                {   Marshal.Copy(scanLine, line, 0, line.Length);
                     for (var x = 0; x < input.Width; x++)
                     {
                         data[x, y] = (sbyte)(64 * (GetGreyLevel(line[x * 3 + 2], line[x * 3 + 1], line[x * 3 + 0]) - 0.5));
@@ -195,9 +555,8 @@ namespace GRBL_Plotter
                 }
             }
             finally
-            {
-                input.UnlockBits(inputData);
-            }
+            {   input.UnlockBits(inputData);  }
+
             var outputData = output.LockBits(new Rectangle(0, 0, output.Width, output.Height), ImageLockMode.WriteOnly, PixelFormat.Format1bppIndexed);
             try
             {
@@ -229,15 +588,12 @@ namespace GRBL_Plotter
             Refresh();
             return (output);
         }
+
         private static double GetGreyLevel(byte r, byte g, byte b)//aux for dirthering
-        {
-            return (r * 0.299 + g * 0.587 + b * 0.114) / 255;
-        }
+        {   return (r * 0.299 + g * 0.587 + b * 0.114) / 255; }
         //Adjust brightness contrast and gamma of an image      
         private Bitmap imgBalance(Bitmap img, int brigh, int cont, int gam)
         {
-            lblStatus.Text = "Balancing...";
-            Refresh();
             ImageAttributes imageAttributes;
             float brightness = (brigh / 100.0f) + 1.0f;
             float contrast = (cont / 100.0f) + 1.0f;
@@ -261,15 +617,12 @@ namespace GRBL_Plotter
             g.DrawImage(output, new Rectangle(0, 0, output.Width, output.Height)
             , 0, 0, output.Width, output.Height,
             GraphicsUnit.Pixel, imageAttributes);
-            lblStatus.Text = "Done";
-            Refresh();
             return (output);
         }
+
         //Return a grayscale version of an image
         private Bitmap imgGrayscale(Bitmap original)
         {
-            lblStatus.Text = "Grayscaling...";
-            Refresh();
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);//create a blank bitmap the same size as original
             Graphics g = Graphics.FromImage(newBitmap);//get a graphics object from the new image
             //create the grayscale ColorMatrix
@@ -289,15 +642,12 @@ namespace GRBL_Plotter
             g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
                0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
             g.Dispose();//dispose the Graphics object
-            lblStatus.Text = "Done";
-            Refresh();
             return (newBitmap);
         }
+
         //Return a inverted colors version of a image
         private Bitmap imgInvert(Bitmap original)
         {
-            lblStatus.Text = "Inverting...";
-            Refresh();
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);//create a blank bitmap the same size as original
             Graphics g = Graphics.FromImage(newBitmap);//get a graphics object from the new image
             //create the grayscale ColorMatrix
@@ -317,967 +667,606 @@ namespace GRBL_Plotter
             g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
                0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
             g.Dispose();//dispose the Graphics object
-            lblStatus.Text = "Done";
-            Refresh();
             return (newBitmap);
         }
 
-        // Resize image to desired width/height for gcode generation
-        //  http://stackoverflow.com/questions/1922040/resize-an-image-c-sharp
-        public static Bitmap imgResize(Image image, int width, int height)
-        {
-            var destRect = new Rectangle(0, 0, width, height);
-            var destImage = new Bitmap(width, height);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (var graphics = Graphics.FromImage(destImage))
-            {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.AssumeLinear;//.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.NearestNeighbor;// HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.None;//.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.None;//.HighQuality;
-
-                using (var wrapMode = new ImageAttributes())
-                {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                }
-            }
-            return destImage;
-        }        
-        
         //Invoked when the user input any value for image adjust
-        private void userAdjust()
+        private static int pixelCount = 100;
+        private static bool useFullReso = false;
+        private static decimal resoFull = 1;
+        private static decimal resoDesired = 1;
+        private static int resoFactor = 1;
+        private void applyColorCorrections()
         {
+            Cursor.Current = Cursors.WaitCursor;
+            useFullReso = (cBGCodeOutline.Checked && rBProcessTool.Checked);
+            updateLabels();
+            lblStatus.Text = "Apply color corrections...";
+
+            resoDesired = nUDReso.Value;
+            resoFactor = 1;
+            if (useFullReso)                                        // if full resolution is needed
+            {   resoFull = (nUDWidth.Value / originalImage.Width);      // get max possible resolution
+                resoFactor = (int)Math.Ceiling(resoDesired / resoFull); // get rounded factor to set resolution
+                if (resoFactor > 5)             
+                    resoFactor = 5;
+                resoDesired = resoDesired / resoFactor;              // set rounded value
+            }
+            lblInfo1.Text = "Reso: " + Math.Round(resoDesired,3) + "  factor: " + resoFactor;
+            int xSize = (int)(nUDWidth.Value / resoDesired);  //Total X pixels of resulting image for GCode generation
+            int ySize = (int)(nUDHeight.Value / resoDesired); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
+
+            showInfo();
+            Refresh();
             try
             {
                 if (adjustedImage == null) return;//if no image, do nothing
-                //Apply resize to original image
-                Int32 xSize;//Total X pixels of resulting image for GCode generation
-                Int32 ySize;//Total Y pixels of resulting image for GCode generation
-                xSize = (int)(nUDWidth.Value / nUDReso.Value);
-                ySize = (int)(nUDHeight.Value / nUDReso.Value); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
-                adjustedImage = imgResize(originalImage, xSize, ySize);
-                //Apply balance to adjusted (resized) image
+
+                ResizeNearestNeighbor filterResize = new ResizeNearestNeighbor(xSize, ySize);
+                adjustedImage = filterResize.Apply(originalImage);
                 adjustedImage = imgBalance(adjustedImage, tBarBrightness.Value, tBarContrast.Value, tBarGamma.Value);
-                //Reset dirthering to adjusted (resized and balanced) image
-                //              cbDirthering.Text = "GrayScale 8 bit";
-                //Display image
-                if (rbModeDither.Checked)// cbDirthering.Text == "Dirthering FS 1 bit")
-                {
-                    lblStatus.Text = "Dirtering...";
-                    adjustedImage = imgDirther(adjustedImage);
-                    pictureBox1.Image = adjustedImage;
-                    lblStatus.Text = "Done";
-                }
-                else
-                    pictureBox1.Image = adjustedImage;
-                lblColors.Text = "Colors:";
-                updateLabelColor = true;
-                resultImage = new Bitmap(adjustedImage);
+                
+                SaturationCorrection filterS = new SaturationCorrection((float)tBarSaturation.Value/255);
+                filterS.ApplyInPlace(adjustedImage);       
 
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error resizing/balancing image: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private bool updateLabelColor = false;
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (updateLabelColor)
-                countImageColors();
-        }
-        private void countImageColors()
-        {   Dictionary<Color, int> colors = new Dictionary<Color, int>();
-            Color newcol;
-            for (int y = 0; y < adjustedImage.Height - 1; y++)
-            {
-                for (int x = 0; x < adjustedImage.Width - 1; x++)
-                {
-                    newcol = adjustedImage.GetPixel(x, y);
-                    if (colors.ContainsKey(newcol))
-                        colors[newcol] = colors[newcol] + 1;
+                if (cbGrayscale.Checked)// cbDirthering.Text == "Dirthering FS 1 bit")
+                {   if (rbModeDither.Checked)
+                        adjustedImage = imgDirther(adjustedImage);
                     else
-                        colors.Add(newcol, 1);
+                        adjustedImage = imgGrayscale(adjustedImage);
+                    adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, originalImage.PixelFormat); //Format32bppARGB
                 }
-            }
-            lblColors.Text = "Colors: " + colors.Count.ToString();
-            updateLabelColor = false;
-        }
+                updateLabelColorCount = true;
 
-        //Contrast adjusted by user
-        private void tBarContrast_Scroll(object sender, EventArgs e)
-        {
-            lblContrast.Text = Convert.ToString(tBarContrast.Value);
-            Refresh();
-            userAdjust();
-        }
-        //Brightness adjusted by user
-        private void tBarBrightness_Scroll(object sender, EventArgs e)
-        {
-            lblBrightness.Text = Convert.ToString(tBarBrightness.Value);
-            Refresh();
-            userAdjust();
-        }
-        //Gamma adjusted by user
-        private void tBarGamma_Scroll(object sender, EventArgs e)
-        {
-            lblGamma.Text = Convert.ToString(tBarGamma.Value / 100.0f);
-            Refresh();
-            userAdjust();
-        }
-        //Quick preview of the original image. Todo: use a new image container for fas return to processed image
-        private void btnCheckOrig_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            getSettings();
-            usedColors = new string[svgToolIndex + 1];
-            countColors = new int[svgToolIndex + 1];
-            Array.Resize<string>(ref usedColors, svgToolIndex + 1);     //usedColors = string[svgToolIndex + 1];
-            Array.Resize<int>(ref countColors, svgToolIndex + 1);     //countColors = new int[svgToolIndex + 1];
-            for (int i = 0; i <= svgToolIndex; i++)
-            {  countColors[i] = 0; usedColors[i] = ""; }    // usedColors[i] = "";
-            generateResultImage();
-            pictureBox1.Image = resultImage;
-        }
-        //Reload the processed image after temporal preiew of the original image
-        private void btnCheckOrig_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            pictureBox1.Image = adjustedImage;
-        }
+                // create filter
+                ChannelFiltering filterC = new ChannelFiltering();
+                // set channels' ranges to keep
+                filterC.Red = new AForge.IntRange((int)tBRMin.Value, (int)tBRMax.Value);
+                filterC.Green = new AForge.IntRange((int)tBGMin.Value, (int)tBGMax.Value);
+                filterC.Blue = new AForge.IntRange((int)tBBMin.Value, (int)tBBMax.Value);
+                filterC.ApplyInPlace(adjustedImage);
 
-        //CheckBox lockAspectRatio checked. Set as mandatory the user setted width and calculate the height by using the original aspect ratio
-        private void cbLockRatio_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbLockRatio.Checked)
-            {
-                nUDHeight.Value = nUDWidth.Value / (decimal)ratio; //Initialize y size
-                if (adjustedImage == null) return;//if no image, do nothing
-                userAdjust();
-            }
-        }
-        //On form load
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            lblStatus.Text = "Done";
-            getSettings();
-            autoZoomToolStripMenuItem_Click(this, null);//Set preview zoom mode
-        }
+                HueShift filter1 = new HueShift((int)tBarHueShift.Value);   // self made filter, not part of AForge
+                filter1.ApplyInPlace(adjustedImage);
 
-        //Generate a "minimalist" gcode line based on the actual and last coordinates and laser power
-        float coordX;//X
-        float coordY;//Y
-        float lastX;//Last x/y  coords for compare
-        float lastY;
-
-        // colorMap will store x-start; x-stop values for each color and line(y)
-        private static Dictionary<int, List<int>[]> colorMap = new Dictionary<int, List<int>[]>();
-        private static int colorStart = -2, colorEnd = -2, lastTool = -2,lastLine=-2;
-        int myToolNumber;
-        private void setColorMap(int col, int line, int direction)
-        {
-            Color myColor = adjustedImage.GetPixel(col, (adjustedImage.Height - 1) - line);  //Get pixel color
-            myToolNumber = svgPalette.getToolNr(myColor, (int)nUDMode.Value);     // find nearest color in palette
-            svgPalette.countPixel();
-            if (((cbExceptAlpha.Checked) && (myColor.A == 0)) || (myToolNumber < 0))
-                myToolNumber = -1;
-
-            if ((myToolNumber >= 0) && (!colorMap.ContainsKey(myToolNumber)))
-            {   colorMap.Add(myToolNumber, new List<int>[adjustedImage.Height]);
-                for (int i=0; i< adjustedImage.Height;i++)
-                {   colorMap[myToolNumber][i] = new List<int>(); }
-            }
-
-            if (lastTool != myToolNumber)
-            {   if (lastTool >= 0)
-                    colorMap[lastTool][line].Add(colorEnd);// -direction);     // finish old color
-                colorStart = col;
-                colorEnd = col;
-                if (myToolNumber >= 0)
-                    colorMap[myToolNumber][line].Add(colorStart);   // start new color
-            }
-            else
-            {
-                if ((lastLine != line) && (lastLine >= 0) && (myToolNumber >= 0))
-                { colorMap[myToolNumber][lastLine].Add(colorEnd);// -direction); // finish old line
-                    colorStart = col;
-                    colorMap[myToolNumber][line].Add(colorStart);   // start new line
+                if (cBFilterEdge.Checked)
+                {   Edges filterEdge = new Edges();
+                    filterEdge.ApplyInPlace(adjustedImage);
                 }
-                colorEnd = col;
-            }
-            lastTool = myToolNumber;
-            lastLine = line;
-        }
+                if (cBFilterHistogram.Checked)
+                {   HistogramEqualization filterHisto = new HistogramEqualization();
+                    filterHisto.ApplyInPlace(adjustedImage);
+                }
+                if (cBPosterize.Checked)
+                {   SimplePosterization filter2 = new SimplePosterization();
+                    filter2.ApplyInPlace(adjustedImage);
+                }
 
-        private void convertColorMap(float resol)
-        {
-            int tool, skipTooNr=0;
-            int key;
-            gcode.MoveToRapid(finalString, 0, 0);          // move to start pos
-            for (int index = 0; index < svgToolIndex; index++)  // go through sorted by pixel-amount list
-            {
-                svgPalette.setIndex(index);                     // set index in class
-                key = svgPalette.indexToolNr();                 // if tool-nr == known key go on
-                if (colorMap.ContainsKey(key))
-                {
-                    tool = svgPalette.indexToolNr();            // use tool in palette order
-                    if (cbSkipToolOrder.Checked)
-                        tool = skipTooNr++;                     // or start tool-nr at 0
+                toolTable.setAllSelected(true);     //  enable all tools
+                if (cBReduceColorsToolTable.Checked)
+                {   List<Color> myPalette = new List<Color>();
+                    ColorImageQuantizer ciq = new ColorImageQuantizer(new MedianCutQuantizer());
+                    countResultColors();        // get all possible tool-colors and its count
 
-                    finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
-                    gcode.Tool(finalString, tool, svgPalette.indexName());  // + svgPalette.pixelCount());
-                    for (int y = 0; y < adjustedImage.Height; y++)
+                    if (redoColorAdjust)        // 
                     {
-                        while (colorMap[key][y].Count > 1)          // stat at line 0 and check line by line
-                            drawColorMap(resol, key, y, 0, true);   
+                        redoColorAdjust = false;
+                        toolTable.sortByPixelCount(false);
+                        int matchLimit = 0;
+                        toolTable.sortByToolNr(false);
+                        int tmpCount = pixelCount;                // keep original counter 
+                        if (useFullReso)
+                            tmpCount = originalImage.Width * originalImage.Height;
+
+                        if (cbExceptColor.Checked)
+                            tmpCount -= toolTable.pixelCount(0);  // no color-except
+                        for (int i = 0; i < maxToolTableIndex; i++)
+                        {   if ((toolTable.pixelCount(i) * 100 / tmpCount) >= nUDColorPercent.Value)
+                            { matchLimit++; }// tmp += toolTable.getName() + "  " + (toolTable.pixelCount(i) * 100 / tmpCount) + "\r\n"; }
+                            else
+                                toolTable.setPresent(false);
+                        }
+                        if (matchLimit < nUDMaxColors.Minimum) { matchLimit = (int)nUDMaxColors.Maximum; }
+                        if (matchLimit > nUDMaxColors.Maximum) { matchLimit = (int)nUDMaxColors.Maximum; }
+                        nUDMaxColors.ValueChanged -= applyColorCorrectionsEvent;    // set new value without generating an event
+                        nUDMaxColors.Value = matchLimit;
+                        nUDMaxColors.ValueChanged += applyColorCorrectionsEvent;
                     }
-                }
-            }
-        }
 
-        // check recursive line by line for same color near by given x-value
-        private void drawColorMap(float resol, int color, int line, int startIndex, bool first)
-        {   int start, stop, newIndex;
-            float coordy = resol * (float)line;
-            if (colorMap[color][line].Count > 1)
-            {   if ((startIndex % 2 == 0) && ((startIndex +1)< colorMap[color][line].Count)) //////
-                {
-                    start = colorMap[color][line][startIndex];
-                    stop = colorMap[color][line][startIndex+1];
-                    colorMap[color][line].RemoveRange(startIndex, 2);
-                }
-                else
-                {
-                    start = colorMap[color][line][startIndex];
-                    stop = colorMap[color][line][startIndex-1];
-                    colorMap[color][line].RemoveRange(startIndex-1, 2);
-                }
-                float coordX = resol * (float)start;
-                if (first)
-                {
-                    gcode.MoveToRapid(finalString, coordX, coordy);          // move to start pos
-                    gcode.PenDown(finalString);
-                }
-                else
-                    gcode.MoveTo(finalString, coordX, coordy);          // move to start pos
-                coordX = resol * (float)stop;
-                gcode.MoveTo(finalString, coordX, coordy);              // move to end pos
-
-                if (line < (adjustedImage.Height - 1))
-                {
-                    var nextLine = colorMap[color][line + 1];   // check for pixel nearby
-                    bool end = true;
-                    for (int k = -1; k <= 1; k++)
-                    {   // check recursive line by line for same color near by given x-value
-                        newIndex = nextLine.IndexOf(stop + k);
-                        if (newIndex >= 0)
-                        {
-                            drawColorMap(resol, color, line + 1, newIndex, false);
-                            end = false;
-                            break;
+                    if (cbExceptColor.Checked)
+                        myPalette.Add(cbExceptColor.BackColor);
+                    toolTable.sortByPixelCount(false);                       // fill palette with colors in order of occurence
+                    toolTable.setAllSelected(false);                                                    //        toolTable.clear();
+                    for (int i = 0; i < (int)nUDMaxColors.Value; i++)   // add colors to AForge filter
+                    {   toolTable.setIndex(i);
+                        if (toolTable.indexToolNr() >= 0)
+                        {   myPalette.Add(toolTable.indexColor());
+                            toolTable.setSelected(true);
                         }
                     }
-                    if (end)
-                        gcode.PenUp(finalString);
+                    setToolList(false);      // show only applied colors
+
+                    if (cBReduceColorsDithering.Checked)
+                    {   OrderedColorDithering dithering = new OrderedColorDithering();
+                        dithering.ColorTable = myPalette.ToArray();
+                        adjustedImage = dithering.Apply(adjustedImage);
+                    }
+                    else
+                        adjustedImage = ciq.ReduceColors(adjustedImage, myPalette.ToArray());// (int)nUDMaxColors.Value);                                                                                                 // adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, originalImage.PixelFormat); //Format32bppARGB
                 }
                 else
-                    gcode.PenUp(finalString);
-            }
-        }
+                    setToolList();      
 
-        private static string debugColorMap()
-        {
-            string temp = "";
-            int i = 0;
-            foreach (var pair in colorMap)
-            {
-                i = 0;
-                temp += "\r\n\r\n NEW COLOR\r\n";
-                foreach (var y in pair.Value)
+                if (cBFilterRemoveArtefact.Checked)
                 {
-                    temp += pair.Key+" "+ i.ToString() + "  ";
-                    foreach (int pixel in y)
-                    {
-                        temp += pixel.ToString() + "|";
-                    }
-                    temp += "\r\n"; i++;
+                    adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, PixelFormat.Format24bppRgb);
+                    RemoveArtefact filterRA = new RemoveArtefact(5,3);
+                    filterRA.ApplyInPlace(adjustedImage);
                 }
+                adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, originalImage.PixelFormat); //Format32bppARGB
+                if (!cBPreview.Checked)
+                    pictureBox1.Image = adjustedImage;
+
+                resultImage = new Bitmap(adjustedImage);
+                lblStatus.Text = "Done";
+                lblImageSource.Text = "modified";
+                Refresh();
             }
-            return temp;
+            catch (Exception e)
+            {   MessageBox.Show("Error resizing/balancing image: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            showResultImage();  // if checked, show final result with tool colors
+            Cursor.Current = Cursors.Default;
         }
 
-
-        private void drawHeight(int col, int lin, float coordX, float coordY)
+        private static bool showResultActive = false;
+        private static bool showResultPreview = false;
+        private void showResultImage(bool showResult=true)//, bool preview = false)
         {
-            Color myColor = adjustedImage.GetPixel(col, (adjustedImage.Height - 1) - lin);          // Get pixel color
-            double height = 255 - Math.Round((double)(myColor.R + myColor.G + myColor.B) / 3);  // calc height
-            float coordZ = (float)((double)nUDZTop.Value - height * (double)(nUDZTop.Value- nUDZBot.Value) / 255);    // calc Z value
-            string feed = string.Format("F{0}", gcode.gcodeXYFeed); ;
-            gcode.MoveTo(finalString, coordX, coordY, coordZ, "");
-        }
-
-
-        private int lastToolNumber=-1;
-        private float lastDrawX, lastDrawY;
-        bool lastIfBackground = false;
-        private void drawPixel(int col, int lin, float coordX, float coordY, int edge, int dir)
-        {
-            Color myColor = adjustedImage.GetPixel(col, (adjustedImage.Height - 1) - lin);  //Get pixel color
-            int myToolNumber = svgPalette.getToolNr(myColor,(int)nUDMode.Value);     // find nearest color in palette
-            svgPalette.countPixel();
-            bool ifBackground = false;
-            float myX = coordX;
-            float myY = coordY;
-
-            if (((cbExceptAlpha.Checked) && (myColor.A == 0)) || (myToolNumber < 0))
-            {   ifBackground = true;
-                myToolNumber = -1;
-                svgPalette.setUse(false);
+            if (adjustedImage == null) return;//if no image, do nothing
+            if (cBPreview.Checked || showResultPreview)
+            {
+                showResultPreview = false;
+  /*              maxToolTableIndex = toolTable.clear();
+                if (nUDMaxColors.Maximum != maxToolTableIndex - 1)
+                {
+                    nUDMaxColors.Maximum = maxToolTableIndex - 1;
+                    nUDMaxColors.Value = maxToolTableIndex - 1;
+                }*/
+                generateResultImage(ref resultToolNrArray);      // fill countColors
+                showResultActive = true;
+                if (showResult)
+                {   updateToolList();
+                    pictureBox1.Image = resultImage;
+                    lblImageSource.Text = "result";
+                }
+                Refresh();
             }
             else
-                svgPalette.setUse(true);
+            {   pictureBox1.Image = adjustedImage;
+                showResultActive = false;
+                lblImageSource.Text = "modified";
+            }
+        }
 
-            if (edge == 0)
+        /// <summary>
+        /// Simulate creating result image, count usage of tool-colors
+        /// </summary>
+        private void countResultColors()    // update pixelCounts for specific tool-colors
+        {
+            Color myColor;
+            if (cbExceptColor.Checked)
+                toolTable.setExceptionColor(cbExceptColor.BackColor);
+            else
+                toolTable.clrExceptionColor();
+            int mode = conversionMode;
+            toolTable.clear();                  // setUse = false
+            BitmapData dataAdjusted = null;
+            sbyte myToolNr = 0;//, myIndex;
+            Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
+            try
             {
-                if (dir == -1) myX += (float)nUDReso.Value;
-                if (dir == -2) myX += (float)nUDReso.Value;
-                if (dir == 2) myY += (float)nUDReso.Value;
-            }
-            if ((lastToolNumber != myToolNumber) ||  (edge>0))
-            {   
-                if ((edge != 1) && !lastIfBackground)
-                { lineEnd(myX,myY);   }
-                if (myToolNumber >=0) gcodeStringIndex = myToolNumber;
-                if ((edge != 2) && !ifBackground)
-                { lineStart(myX, myY); }
-                lastDrawX = coordX;
-                lastDrawY = coordY;
-            }
+                Rectangle rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
+                dataAdjusted = adjustedImage.LockBits(rect, ImageLockMode.ReadOnly, adjustedImage.PixelFormat);
 
-            lastToolNumber = myToolNumber;
-            lastX = coordX; lastY = coordY;
-            lastIfBackground = ifBackground;
+                IntPtr ptrAdjusted = dataAdjusted.Scan0;
+                int psize = 4;  // 32bppARGB GetPixelInfoSize(adjustedImage.PixelFormat);
+                int bsize = dataAdjusted.Stride * adjustedImage.Height;
+                byte[] pixelsAdjusted = new byte[bsize];
+                Marshal.Copy(ptrAdjusted, pixelsAdjusted, 0, pixelsAdjusted.Length);
+                byte r, g, b, a;
+                for (int index = 0; index < pixelsAdjusted.Length; index += psize)
+                {
+                    b = pixelsAdjusted[index]; g = pixelsAdjusted[index + 1]; r = pixelsAdjusted[index + 2]; a = pixelsAdjusted[index + 3];
+                    myColor = Color.FromArgb(a, r, g, b);
+                    if (myColor.A == 0)                             // skip exception, removed: cbExceptAlpha.Checked
+                    { myToolNr = -1; toolTable.sortByToolNr(false); toolTable.setIndex(0); }
+                    else
+                    {
+                        if (lookUpToolNr.TryGetValue(myColor, out myToolNr))
+                        {   toolTable.setIndex(toolTable.getIndexByToolNr(myToolNr));
+                        }
+                        else
+                        {   myToolNr = (sbyte)toolTable.getToolNr(myColor, mode);     // find nearest color in palette, sort by match, set index to 0
+                            lookUpToolNr.Add(myColor, myToolNr);
+                        }
+                    }
+                    toolTable.countPixel(); // count pixel / color
+                    toolTable.setPresent(true);
+                }
+            }
+            finally
+            {   if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+            }
+            setToolList();
         }
-        private void lineEnd(float x, float y, string txt="")   // finish line with old pen
-        {
-            gcode.MoveTo(tmpString, x, y, txt);          // move to end pos
-            gcode.PenUp(tmpString);                             // pen up
-            gcodeString[gcodeStringIndex].Append(tmpString);    // take over code if...
-            tmpString.Clear();
+
+        // Replace orginal color by nearest color from tool table
+        // fill-up usedColor array
+        private static sbyte[,] resultToolNrArray;
+        /// <summary>
+        /// Generate result image and fill resultToolNrArray
+        /// </summary>
+        private void generateResultImage(ref sbyte[,] tmpToolNrArray)      // and count tool colors
+        {//https://www.codeproject.com/Articles/17162/Fast-Color-Depth-Change-for-Bitmaps
+            Color myColor, newColor;
+            if (cbExceptColor.Checked)
+                toolTable.setExceptionColor(cbExceptColor.BackColor);
+            else
+                toolTable.clrExceptionColor();
+            int mode = conversionMode;
+            BitmapData dataAdjusted = null;
+            BitmapData dataResult = null;
+            lblStatus.Text = "Generate result image...";
+            sbyte myToolNr = 0;//, myIndex;
+            Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
+            try
+            {
+                Rectangle rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
+                dataAdjusted = adjustedImage.LockBits(rect, ImageLockMode.ReadOnly, adjustedImage.PixelFormat);
+
+                dataResult = resultImage.LockBits(rect, ImageLockMode.WriteOnly, adjustedImage.PixelFormat);
+                IntPtr ptrAdjusted = dataAdjusted.Scan0;
+                IntPtr ptrResult = dataResult.Scan0;
+                int psize = 4;  // 32bppARGB GetPixelInfoSize(adjustedImage.PixelFormat);
+                int bsize = dataAdjusted.Stride * adjustedImage.Height;
+                byte[] pixelsAdjusted = new byte[bsize];
+                byte[] pixelsResult = new byte[bsize];
+                tmpToolNrArray = new sbyte[adjustedImage.Width, adjustedImage.Height];
+                Marshal.Copy(ptrAdjusted, pixelsAdjusted, 0, pixelsAdjusted.Length);
+
+                byte r, g, b, a;
+                int bx = 0, by = 0;
+                for (int index = 0; index < pixelsAdjusted.Length; index += psize)
+                {
+                    b = pixelsAdjusted[index];      // https://stackoverflow.com/questions/8104461/pixelformat-format32bppargb-seems-to-have-wrong-byte-order
+                    g = pixelsAdjusted[index + 1];
+                    r = pixelsAdjusted[index + 2];
+                    a = pixelsAdjusted[index + 3];
+                    // get current color
+                    myColor = Color.FromArgb(a, r, g, b);
+                    if (lookUpToolNr.TryGetValue(myColor, out myToolNr))
+                    {   toolTable.setIndex(toolTable.getIndexByToolNr(myToolNr));
+                    }
+                    else
+                    {   myToolNr = (sbyte)toolTable.getToolNr(myColor, mode);     // find nearest color in palette, sort by match, set index to 0
+                        lookUpToolNr.Add(myColor, myToolNr);
+                    }
+
+                    if (myColor.A == 0)                 // skip exception, removed: cbExceptAlpha.Checked
+                    {   newColor = backgroundColor; myToolNr = -1; toolTable.sortByToolNr(false); toolTable.setIndex(0); }// usedColorName[0] = "Alpha = 0      " + myColor.ToString(); }
+                    else
+                    {   
+                        if ((myToolNr < 0) || (!toolTable.indexSelected()))  // -1 = alpha, -1 = exception color
+                        {   newColor = backgroundColor; myToolNr = -1; }
+                        else
+                            newColor = toolTable.getColor();   // Color.FromArgb(255, r, g, b);
+                    }
+                    toolTable.countPixel(); // count pixel / color
+                    toolTable.setPresent(true);
+                    tmpToolNrArray[bx++, by] = myToolNr;
+
+                    if (bx >= adjustedImage.Width)
+                    { bx = 0; by++; }
+                    // apply new color
+                    pixelsResult[index] = newColor.B;// newColor.A;
+                    pixelsResult[index + 1] = newColor.G;
+                    pixelsResult[index + 2] = newColor.R;
+                    pixelsResult[index + 3] = 255;
+                }
+                Marshal.Copy(pixelsResult, 0, ptrResult, pixelsResult.Length);
+            }
+            finally
+            {
+                if (resultImage != null) resultImage.UnlockBits(dataResult);
+                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+            }
+            lblStatus.Text = "Done";
         }
-        private void lineStart(float x, float y, string txt="")
-        {
-            gcode.MoveToRapid(tmpString, x, y, txt);         // rapid move to start pos
-            gcode.PenDown(tmpString);                           // pen down
+
+        #endregion
+
+        private bool updateLabelColorCount = false;
+        private void timer1_Tick(object sender, EventArgs e)
+        {   if (updateLabelColorCount)
+                countImageColors();
+        }
+        /// <summary>
+        /// Count amount of different colors in adjusted image
+        /// </summary>
+        private void countImageColors()
+        {   // Lock the bitmap's bits.  
+            Rectangle rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
+            BitmapData bmpData = adjustedImage.LockBits(rect, ImageLockMode.ReadWrite, adjustedImage.PixelFormat);       
+            IntPtr ptr = bmpData.Scan0;                         // Get the address of the first line.
+            int bytes = bmpData.Stride * adjustedImage.Height;  // Declare an array to hold the bytes of the bitmap.
+            byte[] rgbValues = new byte[bytes];
+            byte r, g, b, a;         
+            Marshal.Copy(ptr, rgbValues, 0, bytes);             // Copy the RGB values into the array.
+            int count = 0;
+            int stride = bmpData.Stride;
+            var cnt = new HashSet<System.Drawing.Color>();      // count each color once
+            for (int column = 0; column < bmpData.Height; column++)
+            {   for (int row = 0; row < bmpData.Width; row++)
+                {
+                    b = (byte)(rgbValues[(column * stride) + (row * 4) + 0]);  // https://stackoverflow.com/questions/8104461/pixelformat-format32bppargb-seems-to-have-wrong-byte-order
+                    g = (byte)(rgbValues[(column * stride) + (row * 4) + 1]);
+                    r = (byte)(rgbValues[(column * stride) + (row * 4) + 2]);
+                    a = (byte)(rgbValues[(column * stride) + (row * 4) + 3]);
+                    cnt.Add(Color.FromArgb(a, r, g, b));
+                    count++;
+                }
+            }
+            adjustedImage.UnlockBits(bmpData);
+            lblColors.Text = "Number of colors: " + cnt.Count.ToString();
+            updateLabelColorCount = false;
+        }
+
+        //Quick preview of the original image. Todo: use a new image container for fas return to processed image
+        private void btnCheckOrig_MouseDown(object sender, MouseEventArgs e)
+        { showResultPreview = true; showResultImage();    }
+        private void btnCheckOrig_MouseUp(object sender, MouseEventArgs e)
+        {   if (adjustedImage == null) return;//if no image, do nothing
+            pictureBox1.Image = adjustedImage;
+            cBPreview.Checked = false;
+            lblImageSource.Text = "modified";
+        }
+
+        private void btnShowOrig_MouseDown(object sender, MouseEventArgs e)
+        { pictureBox1.Image = originalImage; lblImageSource.Text = "original"; }
+
+        private void btnShowOrig_MouseUp(object sender, MouseEventArgs e)
+        {   if (cBPreview.Checked)
+            { pictureBox1.Image = resultImage; lblImageSource.Text = "result"; }
+            else
+            { pictureBox1.Image = adjustedImage; lblImageSource.Text = "modified"; }
+        }
+
+        private void updateToolList()
+        {   string tmp1 = "", tmp2 ="";
+            int skipToolNr = 1;
+
+            toolTable.sortByToolNr(false);
+            toolTable.setIndex(0);
+            int tmpCount = pixelCount;
+            if (useFullReso)
+                tmpCount = originalImage.Width * originalImage.Height;
+
+            if (cbExceptColor.Checked)
+                tmpCount -= toolTable.pixelCount();     // no color-except
+
+
+    //        if (!rBImportSVGTool.Checked)
+                toolTable.sortByPixelCount(false);           // sort by color area (max. first)
+
+            if (tmpCount == 0) { tmpCount = 100; }
+
+            tmp2 = "Tools sorted by pixel count.\r\n"; 
+            tmp2 += "Tool colors in use and pixel count:\r\n";
+            String cIndex, cName, cCount, cPercent;
+            int toolNr; 
+            for (int i = 0; i < maxToolTableIndex; i++)
+            {   toolTable.setIndex(i);
+                toolNr = toolTable.indexToolNr();
+                if (toolTable.indexUse() && (toolTable.pixelCount() > 0))       
+                {   cIndex = toolNr.ToString().PadLeft(2, ' ') + ") ";
+                    cName = toolTable.indexName().PadRight(15, ' ');
+                    cCount = toolTable.pixelCount().ToString().PadLeft(8, ' ') + "  ";  
+                    cPercent = string.Format("{0,4:0.0}",(toolTable.pixelCount() * 100 / tmpCount)) + "%";
+                    if (toolNr < 0)
+                        tmp1 += cIndex + cName + cCount + "\r\n";
+                    else
+                    {   if (cbSkipToolOrder.Checked)
+                            tmp2 += skipToolNr++.ToString().PadLeft(2, ' ') + ") " + cName + cCount + cPercent + "\r\n";
+                        else
+                            tmp2 += cIndex + cName + cCount + cPercent + "\r\n";
+                    }
+                }
+            }
+            tBToolList.Text = tmp2 + "\r\n" + tmp1;
         }
 
         //Generate button click
         public void btnGenerate_Click(object sender, EventArgs e)
-        {  
-            getSettings();
-            colorMap.Clear();
-            if (cbExceptColor.Checked)
-                svgPalette.setExceptionColor(cbExceptColor.BackColor);
-            else
-                svgPalette.clrExceptionColor();
+        {   Cursor.Current = Cursors.WaitCursor;
+            tabControl1.SelectedTab = tabPage5;
 
-            gcodeStringIndex = 0;
-            for (int i = 0; i < svgToolMax; i++)
+            if (rBProcessTool.Checked)
             {
-                gcodeString[i] = new StringBuilder();
-                gcodeString[i].Clear();
-            }
-            finalString.Clear();
-            gcode.setup();
-
-            if (rBProcessZ.Checked)
-            {   generateHeightData();
-                return;
-            }//            gcodeString.Clear();
-            if (adjustedImage == null) return;  //if no image, do nothing
-            float resol = (float)nUDReso.Value;
-            float w = (float)nUDWidth.Value;   
-            float h = (float)nUDHeight.Value;  
-
-            if ((resol <= 0) | (adjustedImage.Width < 1) | (adjustedImage.Height < 1) | (w < 1) | (h < 1))
-            {
-                MessageBox.Show("Check widht, height and resolution values.", "Invalid value", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            Int32 lin;//top/botom pixel
-            Int32 col;//Left/right pixel
-
-            lblStatus.Text = "Generating file...";
-            Refresh();
-            //Generate picture Gcode
-            Int32 pixTot = adjustedImage.Width * adjustedImage.Height;
-            Int32 pixBurned = 0;
-            int edge = 0;
-            int direction = 0;
-            if (!gcodeSpindleToggle) gcode.SpindleOn(finalString, "Start spindle");
-            gcode.PenUp(finalString);                             // pen up
-            //            colorMap= new Dictionary<int, new List<int>[adjustedImage.Width]>();
-            //////////////////////////////////////////////
-            // Generate Gcode lines by Horozontal scanning
-            //////////////////////////////////////////////
-            #region horizontal and setColorMap
-            if (rbEngravingPattern1.Checked)
-            {
-                //Start image
-                lin = adjustedImage.Height - 1;//top tile
-                col = 0;//Left pixel
-                tmpString.Clear();
-                lastX = 0;//reset last positions
-                lastY = resol * (float)lin;
-                while (lin >= 0)
-                {
-                    //Y coordinate
-                    coordY = resol * (float)lin;
-                    edge = 1;                           // line starts
-                    direction = 1;                      // left to right
-                    while (col < adjustedImage.Width)   //From left to right
-                    {
-                        //X coordinate
-                        coordX = resol * (float)col;
-                        setColorMap(col, lin, direction);
-                 //       drawPixel(col,lin,coordX, coordY,edge,dir);
-                        edge = 0;
-                        pixBurned++;
-                        col++;
-                        if (col >= adjustedImage.Width-1) edge = 2; // line ends
-                    }
-                    col--;
-                    lin--;
-                    coordY = resol * (float)lin;
-                    edge = 1;                           // line starts
-                    direction = -1;                     // right to left
-                    while ((col >= 0) & (lin >= 0))     //From right to left
-                    {
-                        //X coordinate
-                        coordX = resol * (float)col;
-                        setColorMap(col, lin, direction);
-                  //      drawPixel(col, lin, coordX, coordY,edge,dir);
-                        edge = 0;
-                        pixBurned++;
-                        col--;
-                        if (col <= 0) edge = 2;         // line ends
-                    }
-                    col++;
-                    lin--;
-                    lblStatus.Text = "Generating GCode... " + Convert.ToString((pixBurned * 100) / pixTot) + "%";
-                    Refresh();
+                if (!showResultActive)
+                {   cBPreview.Checked = true;
+                    showResultImage(true);      // generate and show result
                 }
-                if (myToolNumber >=0)
-                    colorMap[myToolNumber][0].Add(colorEnd);
-            }
-            #endregion
-            //////////////////////////////////////////////
-            // Generate Gcode lines by Diagonal scanning
-            //////////////////////////////////////////////
-            #region diagonal and  drawPixel
-            else
-            {
-                //Start image
-                col = 0;
-                lin = 0;
-                lastX = 0;//reset last positions
-                lastY = 0;
-                while ((col < adjustedImage.Width) | (lin < adjustedImage.Height))
-                {
-                    edge = 1;
-                    direction = 2;    // up-left to low-right
-
-                    while ((col < adjustedImage.Width) & (lin >= 0))
-                    {
-                        //Y coordinate
-                        coordY = resol * (float)lin;
-                        //X coordinate
-                        coordX = resol * (float)col;
-
-                        drawPixel(col, lin, coordX, coordY,edge,direction);
-                        edge = 0;
-                        pixBurned++;
-                        col++;
-                        lin--;
-                        if ((col >= adjustedImage.Width-1) || (lin <=0)) edge = 2;  //&& (lin == 0)
-                    }
-                    col--;
-                    lin++;
-
-                    if (col >= adjustedImage.Width - 1) lin++;
-                    else col++;
-                    edge = 1;
-                    direction = -2;    // low-right to up-left 
-                    while ((col >= 0) & (lin < adjustedImage.Height))
-                    {
-                        //Y coordinate
-                        coordY = resol * (float)lin;
-                        //X coordinate
-                        coordX = resol * (float)col;
-
-                        drawPixel(col, lin, coordX, coordY,edge,direction);
-                        edge = 0;
-                        pixBurned++;
-                        col--;
-                        lin++;
-                        if ((col <= 0) || (lin >= adjustedImage.Height-1)) edge = 2;  //&& (lin >= adjustedImage.Height-1)
-                    }
-                    col++;
-                    lin--;
-                    if (lin >= adjustedImage.Height - 1) col++;
-                    else lin++;
-                    lblStatus.Text = "Generating GCode... " + Convert.ToString((pixBurned * 100) / pixTot) + "%";
-                    Refresh();
-                }
-
-
-            }
-            #endregion
-
-            Refresh();
-            lblStatus.Text = "Done (" + Convert.ToString(pixBurned) + "/" + Convert.ToString(pixTot) + ")";
-            imagegcode = "( Generated by GRBL-Plotter )\r\n";
-
-            int arrayIndex;
-            int skipTooNr = 0;
-            int tool = 0;
-
-            svgPalette.sortByPixelCount();    // sort by color area (max. first)
-
-            if (!rbEngravingPattern1.Checked)   // diagonal
-            {
-                for (int i = 0; i < svgToolIndex; i++)
-                {
-                    svgPalette.setIndex(i);
-                    arrayIndex = svgPalette.indexToolNr();
-                    if ((arrayIndex >= 0) && (gcodeString[arrayIndex].Length > 1))
-                    {
-                        if ((gcodeToolChange) && svgPalette.indexUse())
-                        {
-                            tool = svgPalette.indexToolNr();
-                            if (cbSkipToolOrder.Checked)
-                                tool = skipTooNr++;
-                            finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
-                            gcode.Tool(finalString, tool, svgPalette.indexName());  // + svgPalette.pixelCount());
-                        }
-                        finalString.Append(gcodeString[svgPalette.indexToolNr()]);
-                    }
-                }
-
-                if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
-                imagegcode += gcode.GetHeader("Image import") + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
+                if (rbEngravingPattern1.Checked)
+                    generateGCodeHorizontal();
+                else
+                    generateGCodeDiagonal();
             }
             else
-            {               // horizontal
-                gcode.reduceGCode = true;
-                convertColorMap(resol);
-                if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
-                imagegcode += gcode.GetHeader("Image import") + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
-           //     imagegcode += debugColorMap();
-            }
+                generateHeightData();
+            Cursor.Current = Cursors.Default;
+            return;
         }
 
-        private void generateHeightData()
-        {
-            getSettings();
-            finalString.Clear();
-            gcode.setup();
-            gcode.reduceGCode = cBCompress.Checked;
-
-            if (adjustedImage == null) return;  //if no image, do nothing
-            float resol = (float)nUDReso.Value;
-            float w = (float)nUDWidth.Value;
-            float h = (float)nUDHeight.Value;
-
-            if ((resol <= 0) | (adjustedImage.Width < 1) | (adjustedImage.Height < 1) | (w < 1) | (h < 1))
-            {
-                MessageBox.Show("Check widht, height and resolution values.", "Invalid value", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            Int32 lin;//top/botom pixel
-            Int32 col;//Left/right pixel
-
-            lblStatus.Text = "Generating file...";
-            Refresh();
-            //Generate picture Gcode
-            Int32 pixTot = adjustedImage.Width * adjustedImage.Height;
-            Int32 pixBurned = 0;
-            //int direction = 0;
-            if (!gcodeSpindleToggle) gcode.SpindleOn(finalString, "Start spindle");
-
-            if (rbEngravingPattern1.Checked)
-            {
-                //Start image
-                lin = adjustedImage.Height - 1;//top tile
-                col = 0;//Left pixel
-                lastX = 0;//reset last positions
-                lastY = resol * (float)lin;
-                coordX = resol * (float)col;
-                coordY = resol * (float)lin;
-                gcode.PenUp(finalString);                             // pen up
-                gcode.MoveToRapid(finalString, coordX, coordY, "");         // rapid move to start pos
-                while (lin >= 0)
-                {
-                    //Y coordinate
-                    coordY = resol * (float)lin;
-                    //direction = 1;                      // left to right
-                    while (col < adjustedImage.Width)   //From left to right
-                    {
-                        //X coordinate
-                        coordX = resol * (float)col;
-                        drawHeight(col, lin, coordX, coordY);
-                        pixBurned++;
-                        col++;
-                    }
-                    col--;
-                    lin--;
-                    coordY = resol * (float)lin;
-                    //direction = -1;                     // right to left
-                    while ((col >= 0) & (lin >= 0))     //From right to left
-                    {
-                        //X coordinate
-                        coordX = resol * (float)col;
-                        drawHeight(col, lin, coordX, coordY);
-                        pixBurned++;
-                        col--;
-                    }
-                    col++;
-                    lin--;
-                    lblStatus.Text = "Generating GCode... " + Convert.ToString((pixBurned * 100) / pixTot) + "%";
-                    Refresh();
-                }
-            }
-            else
-            {
-                //Start image
-                col = 0;
-                lin = 0;
-                lastX = 0;//reset last positions
-                lastY = 0;
-                while ((col < adjustedImage.Width) | (lin < adjustedImage.Height))
-                {
-                    //direction = 2;    // up-left to low-right
-
-                    while ((col < adjustedImage.Width) & (lin >= 0))
-                    {
-                        //Y coordinate
-                        coordY = resol * (float)lin;
-                        //X coordinate
-                        coordX = resol * (float)col;
-
-                        drawHeight(col, lin, coordX, coordY);
-                        pixBurned++;
-                        col++;
-                        lin--;
-                    }
-                    col--;
-                    lin++;
-
-                    if (col >= adjustedImage.Width - 1) lin++;
-                    else col++;
-                    //direction = -2;    // low-right to up-left 
-                    while ((col >= 0) & (lin < adjustedImage.Height))
-                    {
-                        //Y coordinate
-                        coordY = resol * (float)lin;
-                        //X coordinate
-                        coordX = resol * (float)col;
-
-                        drawHeight(col, lin, coordX, coordY);
-                        pixBurned++;
-                        col--;
-                        lin++;
-                    }
-                    col++;
-                    lin--;
-                    if (lin >= adjustedImage.Height - 1) col++;
-                    else lin++;
-                    lblStatus.Text = "Generating GCode... " + Convert.ToString((pixBurned * 100) / pixTot) + "%";
-                    Refresh();
-                }
-            }
-            gcode.PenUp(finalString);                             // pen up
-            if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
-
-            imagegcode = "( Generated by GRBL-Plotter )\r\n";
-            imagegcode += gcode.GetHeader("Image import") + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
-        }
-
-        private static string debug_string;
-        private static string[] usedColors = new string[svgToolIndex+1];
-        private static int[] countColors = new int[svgToolIndex + 1];
-        private void btnList_Click(object sender, EventArgs e)
-        {
-            getSettings();
-            Array.Resize<string>(ref usedColors, svgToolIndex + 1);     //usedColors = string[svgToolIndex + 1];
-            Array.Resize<int>(ref countColors, svgToolIndex + 1);     //countColors = new int[svgToolIndex + 1];
-
-            for (int i = 0; i <= svgToolIndex; i++)
-            { usedColors[i] = ""; countColors[i] = 0; }
-            generateResultImage();
-
-            string tool_string = "";
-            string not_used = "\r\nAll current palette colors:\r\n";
-            Dictionary<int, string> values =  new Dictionary<int, string>();
-
-            debug_string = "Palette has " + (svgToolIndex - 1).ToString() + " colors\r\n\r\n";
-            if (cbSkipToolOrder.Checked)
-                debug_string += "Colors / Tools used in image (sort by pixel count):\r\nTool nr not from palette\r\n ";
-            else
-                debug_string += "Colors / Tools used in image:\r\n ";
-            for (int i = 0; i <= svgToolIndex; i++)
-            {
-                if (usedColors[i].Length > 1)
-                {
-                    if (i < 2)
-                        debug_string += (i - 2).ToString() + ") Exception color " + usedColors[i] + "\r\n";
-                    else
-                    {
-                        tool_string += (i - 2).ToString() + ") " + usedColors[i] + "\r\n";
-                        while (values.ContainsKey(countColors[i]))
-                            countColors[i]++;
-                        values.Add(countColors[i], usedColors[i]);
-                    }
-                }
-            }
-            for (int i = 0; i < svgToolIndex-1; i++)
-            { not_used += (i).ToString() + ") " + svgPalette.getToolName(i) + "\r\n"; }
-
-            if (cbSkipToolOrder.Checked)
-            {   if (values.Count() > 0)
-                {
-                    tool_string = "";
-                    var list = values.Keys.ToList();
-                    list.Sort();            // sort by pixelamount
-                    list.Reverse();         // but descending order
-                    int i = 0;
-                    foreach (var key in list)
-                    {
-                        tool_string += (i++).ToString() + ") " + " "+key+"  "+values[key] + "\r\n";
-                    }
-                }
-            }
-            MessageBox.Show(debug_string + tool_string + not_used, "List of pens");
-        }
-
-        private void generateResultImage()
-        {   int x, y;
-            Color myColor,newColor;
-            if (cbExceptColor.Checked)
-                svgPalette.setExceptionColor(cbExceptColor.BackColor);
-            else
-                svgPalette.clrExceptionColor();
-            int myToolNr, myIndex;
-            int mode = (int)nUDMode.Value;
-            for (y = 0; y < adjustedImage.Height; y++)
-            {
-                for (x = 0; x < adjustedImage.Width; x++)
-                {
-                    myColor = adjustedImage.GetPixel(x, y);                 // Get pixel color}
-                    if (((cbExceptAlpha.Checked) && (myColor.A == 0)))      // skip exception
-                    {  newColor = Color.White; myToolNr = -2; usedColors[0] = "Alpha = 0      " + myColor.ToString();
-                    }
-                    else
-                    {   myToolNr = svgPalette.getToolNr(myColor, mode);     // find nearest color in palette
-                        if (myToolNr < 0)
-                            newColor = Color.White;
-                        else
-                            newColor = svgPalette.getColor();   // Color.FromArgb(255, r, g, b);
-                    }
-                    myIndex = myToolNr + 2;
-                    countColors[myIndex]++;
-                    if (usedColors[myIndex].Length < 1)
-                        usedColors[myIndex] = svgPalette.getName() + "      " + svgPalette.getColor().ToString();
-                    resultImage.SetPixel(x, y, newColor);
-                }
-            }
-        }
-
-        //Horizontal mirroing
-        private void btnHorizMirror_Click(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            lblStatus.Text = "Mirroing...";
-            Refresh();
-            adjustedImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            originalImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            pictureBox1.Image = adjustedImage;
-            lblStatus.Text = "Done";
-        }
-        //Vertical mirroing
-        private void btnVertMirror_Click(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            lblStatus.Text = "Mirroing...";
-            Refresh();
-            adjustedImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            originalImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            pictureBox1.Image = adjustedImage;
-            lblStatus.Text = "Done";
-        }
-        //Rotate right
-        private void btnRotateRight_Click(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            lblStatus.Text = "Rotating...";
-            Refresh();
-            adjustedImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            originalImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            ratio = 1 / ratio;
-            decimal s = nUDHeight.Value;
-            nUDHeight.Value = nUDWidth.Value;
-            nUDWidth.Value = s;
-            pictureBox1.Image = adjustedImage;
-            autoZoomToolStripMenuItem_Click(this, null);
-            lblStatus.Text = "Done";
-        }
-        //Rotate left
-        private void btnRotateLeft_Click(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            lblStatus.Text = "Rotating...";
-            Refresh();
-            adjustedImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            originalImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            ratio = 1 / ratio;
-            decimal s = nUDHeight.Value;
-            nUDHeight.Value = nUDWidth.Value;
-            nUDWidth.Value = s;
-            pictureBox1.Image = adjustedImage;
-            autoZoomToolStripMenuItem_Click(this, null);
-            lblStatus.Text = "Done";
-        }
-        //Invert image color
-        private void btnInvert_Click(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            adjustedImage = imgInvert(adjustedImage);
-            originalImage = imgInvert(originalImage);
-            pictureBox1.Image = adjustedImage;
-        }
-
-       // private void cbDirthering_SelectedIndexChanged(object sender, EventArgs e)
-        private void rbModeGray_CheckedChanged(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            if (rbModeDither.Checked)// cbDirthering.Text == "Dirthering FS 1 bit")
-            {
-                lblStatus.Text = "Dirtering...";
-                adjustedImage = imgDirther(adjustedImage);
-                pictureBox1.Image = adjustedImage;
-                lblStatus.Text = "Done";
-            }
-            else
-                userAdjust();
-            updateLabelColor = true;
-
-        }
         private void autoZoomToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        {   pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.Width = panel1.Width;
             pictureBox1.Height = panel1.Height;
             pictureBox1.Top = 0;
             pictureBox1.Left = 0;
         }
 
-        private void nUDWidth_ValueChanged(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            if (cbLockRatio.Checked)
-            {
-                nUDHeight.Value = (decimal)((float)nUDWidth.Value / ratio);
-            }
-            userAdjust();
-        }
-
-        private void nUDHeight_ValueChanged(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            if (cbLockRatio.Checked)
-            {
-                nUDWidth.Value = (decimal)((float)nUDHeight.Value * ratio);
-            }
-            userAdjust();
-        }
-
-        private void nUDReso_ValueChanged(object sender, EventArgs e)
-        {
-            if (adjustedImage == null) return;//if no image, do nothing
-            userAdjust();
-        }
-
-        private void cbGrayscale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbGrayscale.Checked)
-                originalImage = imgGrayscale(originalImage);
-            else
-            {   //if (fileLoaded)
-               //     originalImage = new Bitmap(Image.FromFile(lastFile));
-               // else
-               //     originalImage = new Bitmap(Properties.Resources.modell);
-                originalImage = new Bitmap(loadedImage);
-            }
-            adjustedImage = new Bitmap(originalImage);
-            userAdjust();
-        }
-
-        private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Properties.Settings.Default.locationImageForm = Location;
-        }
-
-        private void GCodeFromImage_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
-            {
-                loadClipboard();
-                e.SuppressKeyPress = true;
-            }
-        }
+        private void justShowResult(object sender, EventArgs e)
+        {   showResultImage(); }
 
         private Point oldPoint = new Point(0,0);
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if ((e.Location != oldPoint) || (e.Button == MouseButtons.Left))
-            {
-                Color clr = GetColorAt(e.Location);
-                if (e.Button == MouseButtons.Left)
-                {
-                    int i = svgPalette.getToolNr(clr, (int)nUDMode.Value);
-                    lblStatus.Text = clr.ToString() + " = " + svgPalette.getToolName(i);
-                    cbExceptColor.BackColor = clr;
+        {   if ((e.Location != oldPoint) || (e.Button == MouseButtons.Left))
+            {   Color clr = backgroundColor;// GetColorAt(e.Location);
+                if (pictureBox1.Image != null)
+                {   Bitmap bmp = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height);
+                    pictureBox1.DrawToBitmap(bmp, pictureBox1.ClientRectangle);
+                    if ((0 <= e.X) && (e.X <= pictureBox1.ClientSize.Width) && (0 <= e.Y) && (e.Y <= pictureBox1.ClientSize.Height))
+                        clr = bmp.GetPixel(e.X, e.Y);
+                    bmp.Dispose();
                 }
-                float zoom = (float)nUDWidth.Value / pictureBox1.Width;
-                //        toolTip1.SetToolTip(pictureBox1, (e.X * zoom).ToString() + "  " + (e.Y * zoom).ToString());
+                if (e.Button == MouseButtons.Left)
+                {   int i = toolTable.getToolNr(clr, conversionMode);
+                    lblStatus.Text = clr.ToString() + " = " + toolTable.getToolName(i);
+                    cbExceptColor.BackColor = clr;
+                    showResultImage();
+                }
+                float zoom =  (float)nUDWidth.Value / pictureBox1.Width;
                 toolTip1.SetToolTip(pictureBox1, (e.X * zoom).ToString() + "  " + (e.Y * zoom).ToString() + "   " +clr.ToString());
                 oldPoint = e.Location;
             }
         }
 
         private void cbExceptColor_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbExceptColor.Checked)
-                svgPalette.setExceptionColor(cbExceptColor.BackColor);
+        {   if (cbExceptColor.Checked)
+                toolTable.setExceptionColor(cbExceptColor.BackColor);
             else
-                svgPalette.clrExceptionColor();
+                toolTable.clrExceptionColor();
+            redoColorAdjust = true;
+            applyColorCorrections();
         }
 
-        private Color GetColorAt(Point point)
+        /// <summary>
+        /// Set contrast color for text
+        /// </summary>
+        private void cbExceptColor_BackColorChanged(object sender, EventArgs e)
+        {   cbExceptColor.ForeColor = ContrastColor(cbExceptColor.BackColor);   }
+
+        /// <summary>
+        /// for 'diagonal' no outline
+        /// </summary>
+        private void rbEngravingPattern2_CheckedChanged(object sender, EventArgs e)
         {
-            float zoom = ((float)nUDWidth.Value / (float)nUDReso.Value) / pictureBox1.Width  ;
-            int x = (int)(point.X * zoom);
-            if (x < 0) x = 0;
-            if (x >= adjustedImage.Width-1) x = adjustedImage.Width-1;
-            int y = (int)(point.Y * zoom);  //(adjustedImage.Height - 1) - (int)(point.Y * zoom);
-            if (y < 0) y = 0;
-            if (y >= adjustedImage.Height-1) y = adjustedImage.Height - 1;
-            return adjustedImage.GetPixel(x, y);
+            if (rbEngravingPattern2.Checked)
+            {
+                cBGCodeOutline.Checked = false;
+                cBGCodeOutline.Enabled = false;
+                cBGCodeFill.Checked = true;
+                cBGCodeFill.Enabled = false;
+            }
+            else
+            {
+                cBGCodeOutline.Checked = true;
+                cBGCodeOutline.Enabled = true;
+                cBGCodeFill.Checked = true;
+                cBGCodeFill.Enabled = true;
+            }
         }
+
+        /// <summary>
+        /// if 'Draw outline' is unchecked, disable smoothing
+        /// </summary>
+        private void cBGCodeOutline_CheckedChanged(object sender, EventArgs e)
+        {   cBGCodeOutlineSmooth.Enabled = cBGCodeOutline.Checked;
+            nUDGCodeOutlineSmooth.Enabled = cBGCodeOutline.Checked;
+            applyColorCorrections();
+        }
+
+        /// <summary>
+        /// Grayscale checked
+        /// </summary>
+        private void rBProcessZ_CheckedChanged(object sender, EventArgs e)
+        {   resetColorCorrection(); applyColorCorrections(); lblImageSource.Text = "original";
+            bool useZ = rBProcessZ.Checked;
+            cBPreview.Checked = !useZ;
+            cbGrayscale.Checked = useZ;
+//            gBgcodeDirection.Enabled = !useZ;
+   //         gBgcodeSetup.Enabled = !useZ;
+            gBgcodeSelection.Enabled = !useZ;
+        }
+
+
+        public string ReturnValue1 { get; set; }
+        private void btnLoad_Click_1(object sender, EventArgs e)
+        {
+            ReturnValue1 = "";
+            if (lBUseCase.Text == "")
+                return;
+            string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+            var MyIni = new IniFile(path);
+            Logger.Trace("Load use case: '{0}'", path);
+            MyIni.ReadAll();    // ReadImport();
+            Properties.Settings.Default.useCaseLastLoaded = lBUseCase.Text; ;
+            lblLastUseCase.Text = lBUseCase.Text;
+
+            bool laseruse = Properties.Settings.Default.importGCSpindleToggleLaser;
+            float lasermode = grbl.getSetting(32);
+            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+
+            if (lasermode >= 0)
+            {
+                if ((lasermode > 0) && !laseruse)
+                {
+                    DialogResult dialogResult = MessageBox.Show("grbl laser mode ($32) is activated, \r\nbut not recommended\r\n\r\n Press 'Yes' to fix this", "Attention", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                        ReturnValue1 = "$32=0 (laser mode off)";
+                }
+
+                if ((lasermode < 1) && laseruse)
+                {
+                    DialogResult dialogResult = MessageBox.Show("grbl laser mode ($32) is not activated, \r\nbut recommended if a laser will be used\r\n\r\n Press 'Yes' to fix this", "Attention", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                        ReturnValue1 = "$32=1 (laser mode on)";
+                }
+            }
+   //         this.DialogResult = DialogResult.OK;
+   //         this.Close();
+        }
+
+        /// <summary>
+        /// Calculate contrast color from given color
+        /// </summary>
+        private Color ContrastColor(Color color)
+        {   int d = 0;
+            double a = 1 - (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
+            if (a < 0.5)
+                d = 0; // bright colors - black font
+            else
+                d = 255; // dark colors - white font
+            return Color.FromArgb(d, d, d);
+        }
+
+
+        private void fillUseCaseFileList(string Root)
+        {
+            List<string> FileArray = new List<string>();
+            try
+            {   string[] Files = System.IO.Directory.GetFiles(Root);
+                lBUseCase.Items.Clear();
+                for (int i = 0; i < Files.Length; i++)
+                {   if (Files[i].ToLower().EndsWith("ini"))
+                        lBUseCase.Items.Add(Path.GetFileName(Files[i]));
+                }
+            }
+            catch //(Exception Ex)
+            {   //throw (Ex);
+            }
+        }
+
     }
 }

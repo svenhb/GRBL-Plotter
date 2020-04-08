@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,6 +15,9 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+ * 2019-08-15 add logger
 */
 
 using System;
@@ -38,9 +41,13 @@ namespace GRBL_Plotter
         private double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
         private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public Control2ndGRBL(ControlSerialForm handle = null)
         {
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.language);
+            Logger.Trace("++++++ Control2ndGRBL START ++++++");
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
@@ -54,7 +61,7 @@ namespace GRBL_Plotter
         }
 
         // send command via serial form
-        private void sendRealtimeCommand(int cmd)
+        private void sendRealtimeCommand(byte cmd)
         { if (_serial_form2.serialPortOpen)
                 _serial_form2.realtimeCommand(cmd);
         }
@@ -106,20 +113,16 @@ namespace GRBL_Plotter
         { sendRealtimeCommand(133); }    //0x85
 
         private void btnReset_Click(object sender, EventArgs e)
-        {
-            _serial_form2.grblReset();
+        {   _serial_form2.grblReset();
         }
         private void btnFeedHold_Click(object sender, EventArgs e)
-        {
-            sendRealtimeCommand('!');
+        {   sendRealtimeCommand((byte)'!');
         }
         private void btnResume_Click(object sender, EventArgs e)
-        {
-            sendRealtimeCommand('~');
+        {   sendRealtimeCommand((byte)'~');
         }
         private void btnKillAlarm_Click(object sender, EventArgs e)
-        {
-            sendCommand("$X");
+        {   sendCommand("$X");
         }
 
         private void virtualJoystickXY_Enter(object sender, EventArgs e)
@@ -165,26 +168,26 @@ namespace GRBL_Plotter
 
         private void Control2ndGRBL_Load(object sender, EventArgs e)
         {
-            joystickXYStep[1] = (double)Properties.Settings.Default.joyXYStep1;
-            joystickXYStep[2] = (double)Properties.Settings.Default.joyXYStep2;
-            joystickXYStep[3] = (double)Properties.Settings.Default.joyXYStep3;
-            joystickXYStep[4] = (double)Properties.Settings.Default.joyXYStep4;
-            joystickXYStep[5] = (double)Properties.Settings.Default.joyXYStep5;
-            joystickZStep[1] = (double)Properties.Settings.Default.joyZStep1;
-            joystickZStep[2] = (double)Properties.Settings.Default.joyZStep2;
-            joystickZStep[3] = (double)Properties.Settings.Default.joyZStep3;
-            joystickZStep[4] = (double)Properties.Settings.Default.joyZStep4;
-            joystickZStep[5] = (double)Properties.Settings.Default.joyZStep5;
-            joystickXYSpeed[1] = (double)Properties.Settings.Default.joyXYSpeed1;
-            joystickXYSpeed[2] = (double)Properties.Settings.Default.joyXYSpeed2;
-            joystickXYSpeed[3] = (double)Properties.Settings.Default.joyXYSpeed3;
-            joystickXYSpeed[4] = (double)Properties.Settings.Default.joyXYSpeed4;
-            joystickXYSpeed[5] = (double)Properties.Settings.Default.joyXYSpeed5;
-            joystickZSpeed[1] = (double)Properties.Settings.Default.joyZSpeed1;
-            joystickZSpeed[2] = (double)Properties.Settings.Default.joyZSpeed2;
-            joystickZSpeed[3] = (double)Properties.Settings.Default.joyZSpeed3;
-            joystickZSpeed[4] = (double)Properties.Settings.Default.joyZSpeed4;
-            joystickZSpeed[5] = (double)Properties.Settings.Default.joyZSpeed5;
+            joystickXYStep[1] = (double)Properties.Settings.Default.guiJoystickXYStep1;
+            joystickXYStep[2] = (double)Properties.Settings.Default.guiJoystickXYStep2;
+            joystickXYStep[3] = (double)Properties.Settings.Default.guiJoystickXYStep3;
+            joystickXYStep[4] = (double)Properties.Settings.Default.guiJoystickXYStep4;
+            joystickXYStep[5] = (double)Properties.Settings.Default.guiJoystickXYStep5;
+            joystickZStep[1] = (double)Properties.Settings.Default.guiJoystickZStep1;
+            joystickZStep[2] = (double)Properties.Settings.Default.guiJoystickZStep2;
+            joystickZStep[3] = (double)Properties.Settings.Default.guiJoystickZStep3;
+            joystickZStep[4] = (double)Properties.Settings.Default.guiJoystickZStep4;
+            joystickZStep[5] = (double)Properties.Settings.Default.guiJoystickZStep5;
+            joystickXYSpeed[1] = (double)Properties.Settings.Default.guiJoystickXYSpeed1;
+            joystickXYSpeed[2] = (double)Properties.Settings.Default.guiJoystickXYSpeed2;
+            joystickXYSpeed[3] = (double)Properties.Settings.Default.guiJoystickXYSpeed3;
+            joystickXYSpeed[4] = (double)Properties.Settings.Default.guiJoystickXYSpeed4;
+            joystickXYSpeed[5] = (double)Properties.Settings.Default.guiJoystickXYSpeed5;
+            joystickZSpeed[1] = (double)Properties.Settings.Default.guiJoystickZSpeed1;
+            joystickZSpeed[2] = (double)Properties.Settings.Default.guiJoystickZSpeed2;
+            joystickZSpeed[3] = (double)Properties.Settings.Default.guiJoystickZSpeed3;
+            joystickZSpeed[4] = (double)Properties.Settings.Default.guiJoystickZSpeed4;
+            joystickZSpeed[5] = (double)Properties.Settings.Default.guiJoystickZSpeed5;
             virtualJoystickX.JoystickLabel = joystickXYStep;
             virtualJoystickY.JoystickLabel = joystickXYStep;
             virtualJoystickZ.JoystickLabel = joystickZStep;
@@ -198,6 +201,7 @@ namespace GRBL_Plotter
 
         private void Control2ndGRBL_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Logger.Trace("++++++ Control2ndGRBL Stop ++++++");
             Properties.Settings.Default.location2ndGRBLForm = Location;
         }
     }

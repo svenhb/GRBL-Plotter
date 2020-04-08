@@ -1,0 +1,344 @@
+<!--    Name:        GCode_Conic_Spiral.hta
+        Version:     2020-03-12
+        Function:    Milling a conical spiral 
+		
+		2020-03-08 Initial version
+		2020-03-12 update 
+		
+Enabled Active X in the broswer security settings.
+In IE9:
+a) Go to Tools ->Internet Options
+b) Select security tab
+c) Click on Trusted Sites (or Local Intranet depending on whether your site is trusted or not)
+d) Click on Custom Level
+e) Ensure that "Initialize and script active x controls is not marked safe for scripting" is enabled.		
+-->
+
+<html>
+<head>
+<hta:application id="hta" 
+    applicationname="GCode_Conic_Spiral"
+    caption="yes" 
+    contextmenu="yes"
+    innerborder="no"
+    navigable="yes" 
+    scroll="no"
+    scrollflat="yes" 
+    selection="yes"
+    singleinstance="yes"
+    sysmenu="yes" 
+    windowState="normal" >
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>GCode Conic Spiral</title>
+<script type="text/javascript" src="_script_functions.js"></script>
+
+<script type="text/javascript">
+<!--
+
+var d_inside = 15;		// inner diameter
+var d_outside= 100;		// outer diameter
+var d_cutter = 2.2;		// cutter diameter
+var cutter_overlap = 0.9;
+var inc_radius = 6;		// increase of the radius from turn to turn
+var z_save =  2;		// save Z height
+var z_turn = -2;		// Z increment per turn
+var header = "G21 ";	// use mm
+var footer = "M30 ";	// program end
+var dir_cw = false;		// clock wise direction?
+
+var finalGCode = "";
+var headerCode = ""
+var copyCode = "";
+var lineCounter= 0;
+var last_gnr=0;		// needed in write_GCodeLine_XY
+
+function OnLoad()
+{   var xx=560;
+    var yy=860;
+    try { window.resizeTo(xx,yy);}         catch(err){}
+    try { window.moveTo(screen.width - xx, 0);}     catch(err){}
+}
+
+var startTime = new Date();
+function start_OnClick()
+{   html_info.innerText = "";
+	startTime = new Date();
+
+	read_GRBL_Plotter_Settings();	// in _script_functions.js
+	read_SettingsFromForm();
+	create_GCode();
+
+	var endTime = new Date();
+	var timeDiff = (endTime - startTime)/1000; //in s
+
+	headerCode += "( GCode lines :"+lineCounter+" )\r\n";
+	headerCode += "( Elapsed time:"+timeDiff+" )\r\n";
+
+	copyCode = headerCode + finalGCode;
+	html_info.innerHTML = "<b><font color='red'>It takes time to copy large amounts of text to the clipboard</font></b>";
+	codeForm.result.value = copyCode;
+	setTimeout(copy_content,500);	// delayed copy to force <textarea> to show content
+
+//	copyTextToClipboard(finalGCode) // in _script_functions.js
+//	set_GRBL_Plotter_Update();		// in _script_functions.js
+}
+function copy_content()
+{
+//    copyTextToClipboard(copyCode);		// in _script_functions.js
+	codeForm.result.select();
+	document.execCommand('copy');
+	set_GRBL_Plotter_Update();		// in _script_functions.js
+	
+	endTime = new Date();
+	timeDiff = (endTime - startTime)/1000; //in s
+	codeForm.result.value += "( Elapsed time:"+timeDiff+" after copy to clipboard )\r\n";
+}
+
+function create_GCode()
+{	headerCode  = "( GCode Conic Spiral )\r\n";
+	headerCode += "( by GRBL-Plotter )\r\n";
+	finalGCode  = header + "(internal header data)\r\n";
+	finalGCode += GRBL_Plt_header + "(header from GRBL-Plotter)\r\n";
+	lineCounter= 5;
+
+	var angle_step = 1*Math.PI/180;						// initial angle step = 1 degree
+	var r_step  = inc_radius*angle_step/(2*Math.PI);	// initial radius step
+	var z_step  = z_turn*angle_step/(2*Math.PI);		// z radius step
+	var r_cut   = d_cutter/2;
+	var r_start = d_inside/2 + r_cut;					// start radius
+	var r_end   = d_outside/2+ r_cut;					// end radius
+	var a,r,z;
+
+	a = 0;
+	r = r_start;
+	z = z_turn;
+
+	finalGCode += PenUp();
+	finalGCode += "M3 S" + GRBL_Plt_spindle_speed + " (Spindle on)\r\n";
+	finalGCode += "G4 P" + GRBL_Plt_spindle_delay + " (Delay)\r\n";
+
+	finalGCode += write_GCodeLine_XY(0, r, 0);
+	
+	var turn_complete = true;
+	var figureStart = false;
+	var turns = 0;
+	var singlePass = (d_cutter > inc_radius);
+	var expectedTurns = Math.ceil((r_end - r_start) / inc_radius);
+
+	while (r < r_end)
+	{	
+		if (turn_complete)
+		{	if (figureStart)
+				finalGCode += "(</Revolution >)\r\n";
+
+			if (codeForm.clearance.checked)
+			{
+			    finalGCode += "(<Clearance " + turns + " / " + expectedTurns + " Z" + z.toFixed(GRBL_Plt_decimals) + ">)\r\n";
+			    if ((r + inc_radius) < (r_end + (r_cut/2 * expectedTurns)))
+			    {
+			        finalGCode += write_GCodeLine_XY(0, r + inc_radius, a);
+			       	finalGCode += PenDown(z);
+			        finalGCode += clear_OuterArea(r + inc_radius, r_end + (r_cut/2 * expectedTurns--), d_cutter * cutter_overlap, a);
+		        	finalGCode += PenUp();
+			        finalGCode += write_GCodeLine_XY(0, r, a);							// Move to start position
+			        if (singlePass)                                 // Z = save
+			            	finalGCode += PenDown(z);
+
+			    }
+				finalGCode += "(</Clearance >)\r\n";
+			}
+
+			finalGCode += "(<Revolution "+turns+" >)\r\n";
+			figureStart = true;
+			turns++;
+			turn_complete = false;
+		}
+		
+		
+		if (singlePass)			// if cutter diameter is >= radius-increment - just one pass is needed
+		{	finalGCode += write_GCodeLine_XYZ(1, r, a, z);	// calculate new XYZ depending on angle
+		
+			angle_step = Math.asin(1/r);					// calculate next step width (the larger the radius, the smaller the angle must be)
+			r_step  = inc_radius*angle_step/(2*Math.PI);
+			z_step  = z_turn * angle_step/(2*Math.PI);
+		
+			a += angle_step;								// apply next delta steps
+			r += r_step;
+			z += z_step;
+		}
+		else
+		{	for (i=0; i<inc_radius; i+=(d_cutter * cutter_overlap))
+			{	if ((r+i) < r_end)
+				{	finalGCode += "(<Pass "+i.toFixed(GRBL_Plt_decimals)+" >)\r\n";
+					finalGCode += write_GCodeLine_XY(0, r + i, a);					
+					finalGCode += PenDown(z);
+					finalGCode += do_ConicSpiralOnTurn(r + i, r_end, z);
+					finalGCode += PenUp();
+					finalGCode += "(</Pass >)\r\n";
+				}
+			}
+			z += z_turn;
+			r += inc_radius;
+			a += 2 * Math.PI;
+		}
+		
+		if ( a >= (turns * 2 * Math.PI))
+			turn_complete = true;
+	}
+	finalGCode += PenUp();
+	finalGCode += "(</Revolution >)\r\n";
+	finalGCode += "M5 (Spindle off)\r\n";
+	finalGCode += GRBL_Plt_footer + "(footer from GRBL-Plotter)\r\n";;
+	finalGCode += footer + "(internal footer data)\r\n";;
+}
+
+function G0(x,y)
+{	last_gnr=0; lineCounter++;
+	return "G0 X" + x.toFixed(GRBL_Plt_decimals) + " Y" + y.toFixed(GRBL_Plt_decimals) + "\r\n";
+}
+function PenDown(z)
+{	last_gnr=0; lineCounter++;
+	return "G1 Z" + z.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_z + "\r\n";		// Tool down
+}
+function PenUp()
+{	last_gnr=0; lineCounter++;
+	return "G0 Z" + z_save.toFixed(GRBL_Plt_decimals) + "\r\n";
+}
+function G1(x,y)
+{	last_gnr=1; lineCounter++;
+	return "G1 X" + x.toFixed(GRBL_Plt_decimals) + " Y" + y.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+function G2(x,y,i,j)
+{	last_gnr=2; lineCounter++;
+	return "G2 X" + x.toFixed(GRBL_Plt_decimals) + " Y" + y.toFixed(GRBL_Plt_decimals) + " I" + i.toFixed(GRBL_Plt_decimals) + " J" + j.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+
+function do_ConicSpiralOnTurn(r,r_end,z)
+{	var a=0;
+	var code ="";
+	var	angle_step = Math.asin(1/r);					// calculate next step width (the larger the radius, the smaller the angle must be)
+	var r_step  = inc_radius*angle_step/(2*Math.PI);	// initial radius step
+	code += write_GCodeLine_XYZ(1, r, a, z);		    // calculate new XYZ depending on angle
+	while (a <= 2 * Math.PI)
+	{	
+		angle_step = Math.asin(1/r);					// calculate next step width (the larger the radius, the smaller the angle must be)
+		r_step = inc_radius * angle_step / (2 * Math.PI);
+		z_step  = z_turn * angle_step/(2*Math.PI);
+		
+		a += angle_step;								// apply next delta steps
+		r += r_step;
+		z += z_step;	
+		
+		if (r > r_end)
+			break;
+		code += write_GCodeLine_XYZ(1, r, a, z);		// calculate new XYZ depending on angle
+    }
+	return code;
+}
+
+// remove outer material after each turn
+function clear_OuterArea(r_start, r_end, inc_radius, a_start)
+{
+	var r = r_start;
+	var a_step = 1;
+	var a = a_start;
+	var nr = (180 * a_start/Math.PI);
+	var code = "";
+	while (r < r_end)
+	{   code += write_GCodeLine_XY(1, r, a);
+		a_step = Math.asin(3/r);
+		r_step = inc_radius*a_step/(2*Math.PI);
+		
+		a += a_step;
+		r += r_step;
+	}
+	code += "( add circle )\r\n";
+	for (b = a; b <= (a + (2 * Math.PI)) ; b += a_step)
+	{ code += write_GCodeLine_XY(1, r, b); }
+	return code;
+}
+
+var last_gnr=0;
+function write_GCodeLine_XY(gnr, r, a)
+{	var x1 = r * Math.cos(a);
+	var y1 = r * Math.sin(a);
+	if (dir_cw)
+		y1= -y1;
+	var gmode = "";
+	var feed = "";
+	if ((gnr == 1) && (gnr != last_gnr))
+	{	gmode = "G" + gnr + " ";
+		feed = " F" + GRBL_Plt_feedrate_xy;
+	}
+	last_gnr = gnr; lineCounter++;
+	return gmode + "X" + x1.toFixed(GRBL_Plt_decimals) + " Y" + y1.toFixed(GRBL_Plt_decimals) + feed + "\r\n";
+}
+function write_GCodeLine_XYZ(gnr, r, a, z)
+{	var x1 = r * Math.cos(a);
+	var y1 = r * Math.sin(a);
+	if (dir_cw)
+		y1= -y1;
+	var gmode = "";
+	var feed = "";
+	if ((gnr == 1) && (gnr != last_gnr))
+	{	gmode = "G" + gnr + " ";
+		feed = " F" + GRBL_Plt_feedrate_xy;
+	}
+	last_gnr = gnr; lineCounter++;
+	return gmode + "X" + x1.toFixed(GRBL_Plt_decimals) + " Y" + y1.toFixed(GRBL_Plt_decimals) + " Z" + z.toFixed(GRBL_Plt_decimals) + feed + "\r\n";
+}
+
+function read_SettingsFromForm()
+{	d_inside = parseFloat(codeForm.d_inner.value);
+	d_outside= parseFloat(codeForm.d_outer.value);
+	d_cutter = parseFloat(codeForm.d_cutter.value);
+	inc_radius = parseFloat(codeForm.r_inc.value);
+	z_save = parseFloat(codeForm.z_save.value);
+	z_turn = parseFloat(codeForm.z_inc.value);
+	dir_cw = codeForm.dir_cw.checked;
+}
+
+//-->
+</script>
+<style type="text/css">
+body {margin:1px; }
+div, td, textarea { font-size:12px;  }
+select, input { font-size:12px;  }
+</style>
+
+</head>
+<body bgcolor="#F0F0F0" OnLoad='OnLoad();' style="margin:0;">
+<basefont face="arial, verdana, sans-serif" >
+<form name="codeForm">
+
+<table width='100%'>
+<tr>
+  <td valign="top"><table border>
+    <tr><th colspan="2"><b>GCode Conic Spiral</b></th></tr>
+	<tr><td colspan="2">Mills a spiral from inner diameter to outer diameter with increasing z depth.<br>Following settings will be taken from GRBL-Plotter:<br>
+	decimal places, XY feedrate, Z feedrate, GCode header, GCode footer.<br>
+	GCode can be checked in 3D online on <a href="https://ncviewer.com/" target="_blank">https://ncviewer.com/</a><br>- click 'New File', 'Paste (ctrl-V)' and 'PLOT'.</td></tr>
+    <tr><td colspan="2" ><b><font color="red">Usage of the script and the generated GCode is on you own risk!</font></b></td></tr>
+	<tr><td width="30%">Inner diameter</td><td><input type="text" name="d_inner" value="20" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Outer diameter</td><td><input type="text" name="d_outer" value="50" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Cutter diameter</td><td><input type="text" name="d_cutter" value="2.2" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Radius increment per turn</td><td><input type="text" name="r_inc" value="5" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Z increment per turn</td><td><input type="text" name="z_inc" value="-2" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Z save</td><td><input type="text" name="z_save" value="2" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Option</td><td><input type="checkbox" id="dir_cw" name="dir_cw" value=""> check for clock wise direction</td></tr>
+	<tr><td>Option</td><td><input type="checkbox" id="clearance" name="clearance" value=""> remove outer material on every turn</td></tr>
+	<tr><td colspan="2"><input name="btn_start" type="BUTTON" value="Create GCode and copy to clipboard (paste in GRBL-Plotter via CTRL-V)" onclick="start_OnClick();" style="width:520px";></td></tr>
+    <tr><td colspan="2" id='html_info'></td></tr>
+    <tr><td colspan="2"><textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="result" wrap="off" cols="66" rows="22" readonly>
+This script mills a conic spiral.
+	</textarea></td></tr>
+    <tr><td><b>Status </b></td><td id='html_status'></td></tr>
+  </table></td>
+</tr>
+<tr><td><font size="-2">SH 12.03.2020</font></td></tr>
+</table>  
+
+</form>
+</body>
+</html>

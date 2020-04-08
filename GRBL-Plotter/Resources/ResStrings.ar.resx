@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="mainAttention" xml:space="preserve">
+    <value>انتباه</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>لا تتردد في تحسين الترجمة</value>
+  </data>
+  <data name="mainHotkeyError" xml:space="preserve">
+    <value>لم يتم العثور على الملف "hotkeys.xml" ، ولم يتم تعيين مفاتيح الاختصار!</value>
+  </data>
+  <data name="mainHotkeyError1" xml:space="preserve">
+    <value>عمل غير معروف:</value>
+  </data>
+  <data name="mainHotkeyError2" xml:space="preserve">
+    <value>خطأ في Hotkey.xml</value>
+  </data>
+  <data name="mainInfoCheckCode" xml:space="preserve">
+    <value>تحقق G- كود</value>
+  </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>خطأ قبل الخط</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>إنهاء التحقق من رمز G-</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>الانتهاء من إرسال G- كود</value>
+  </data>
+  <data name="mainInfoKill" xml:space="preserve">
+    <value>اضغط على "Kill Alarm" للمتابعة</value>
+  </data>
+  <data name="mainInfoLaserModeOff" xml:space="preserve">
+    <value>وضع الليزر غير نشط $ 32 = 0</value>
+  </data>
+  <data name="mainInfoLaserModeOn" xml:space="preserve">
+    <value>وضع الليزر النشط 32 دولار = 1</value>
+  </data>
+  <data name="mainInfoPause" xml:space="preserve">
+    <value>توقف مؤقتًا - اضغط على play (</value>
+  </data>
+  <data name="mainInfoProbing" xml:space="preserve">
+    <value>جس</value>
+  </data>
+  <data name="mainInfoResume" xml:space="preserve">
+    <value>اضغط على "استئناف" للمتابعة</value>
+  </data>
+  <data name="mainInfoSendCode" xml:space="preserve">
+    <value>إرسال رمز G</value>
+  </data>
+  <data name="mainInfoStopStream" xml:space="preserve">
+    <value>إيقاف البث (</value>
+  </data>
+  <data name="mainInfoStopStream2" xml:space="preserve">
+    <value>وقف التدفق (الخط</value>
+  </data>
+  <data name="mainInfoToolChange" xml:space="preserve">
+    <value>تغيير الأداة...</value>
+  </data>
+  <data name="mainInfoUndo" xml:space="preserve">
+    <value>التراجع عن آخر إجراء</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>انتظر IDLE ، ثم توقف مؤقتًا (</value>
+  </data>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>الخطوة التالية ستتجاوز حدود الماكينة!</value>
+  </data>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\ r \ n اضغط على "موافق" للتحرك على أي حال</value>
+  </data>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>يتجاوز حجم الرسومات بعد الماكينة! \ r \ n يوصى بالتحويل لتجنب إتلاف الجهاز!</value>
+  </data>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>يجب إيقاف البث قبل تحميل ملف جديد</value>
+  </data>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>لم يتم العثور على الملف: '</value>
+  </data>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>امتداد عنوان URL ليس "svg" أو "dxf" \ r \ n حاول استيراد SVG على أي حال ، ولكن دون إعداد قائمة "الملف الأخير".</value>
+  </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>امتداد الملف غير مدعوم "</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>ليس رقم صحيح</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>ليس رقمًا صالحًا ، قم بتعيين السطر على 0</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>توقف مؤقتًا - اضغط على play</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>تم إيقاف الوظيفة الأخيرة في الطابور</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>، \ r \ n هل تريد مواصلة المهمة؟</value>
+  </data>
+  <data name="mainProblem" xml:space="preserve">
+    <value>مشكلة</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>تقدم</value>
+  </data>
+  <data name="mainQuit" xml:space="preserve">
+    <value>استقال GRBL-Plotter؟</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>لا يزال البث نشطًا - اضغط على إيقاف وحاول مرة أخرى</value>
+  </data>
+  <data name="mainToolChange" xml:space="preserve">
+    <value>تغيير أداة / القلم!</value>
+  </data>
+  <data name="mainToolChange1" xml:space="preserve">
+    <value>يلزم تغيير الأداة: \ r</value>
+  </data>
+  <data name="mainToolChange2" xml:space="preserve">
+    <value>\ rpress البدء في المتابعة.</value>
+  </data>
+  <data name="mainUnknownCode" xml:space="preserve">
+    <value>تم إصلاح بعض رموز G غير المعروفة: \ r \ n</value>
+  </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>تم إلغاء التحقيق</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>عملية الأمر الأخير</value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>الانتقال إلى المركز</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>فشل: لا يوجد اتصال</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>إلغاء التحقيق</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>إنهاء</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>التحقيق في</value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>تعيين المركز</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>نفذ الوقت</value>
+  </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>قريب</value>
+  </data>
+  <data name="serialCloseError" xml:space="preserve">
+    <value>هناك حاجة إلى اتصال تسلسلي. \ r \ n أغلق النافذة الرئيسية بدلاً من ذلك</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>افتح</value>
+  </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>بدء محاكاة المسار</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>وقف المحاكاة</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>سرعة</value>
+  </data>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>إنذار</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>التحقق من</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>باب</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>معلق</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>خامل</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>يجري بيطء</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>مسبار</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>يركض</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>ينام</value>
+  </data>
+</root>

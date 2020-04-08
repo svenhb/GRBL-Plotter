@@ -1,4 +1,5 @@
-_misc\test_svg\grbl.svg
-_misc\test_gcode\test_subroutine.nc
-_misc\test_gcode\scale.nc
-_misc\test_dxf\Bunny.dxf
+data\examples\graphic_grbl.svg
+data\examples\graphic_grbl_popup.svg
+data\examples\graphic_bunny.dxf
+data\examples\graphic_bunny_string_art.svg
+data\examples\image_flying_devil.png

@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblColors.Text" xml:space="preserve">
+    <value>عدد الألوان</value>
+  </data>
+  <data name="cbLockRatio.Text" xml:space="preserve">
+    <value>إبقاء على النسبة</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>غاما</value>
+  </data>
+  <data name="tBBMax.ToolTip" xml:space="preserve">
+    <value>سيتم تعيين القيم الزرقاء فوق هذا ، إلى صفر</value>
+  </data>
+  <data name="rBMode2.ToolTip" xml:space="preserve">
+    <value>المسافة في لون هوى (0 ° -360 °) + تشبع اللون + سطوع اللون</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>ارتفاع</value>
+  </data>
+  <data name="btnShowOrig.ToolTip" xml:space="preserve">
+    <value>اضغط لرؤية الصورة الأصلية غير المعدلة</value>
+  </data>
+  <data name="btnTest.Text" xml:space="preserve">
+    <value>معاينة</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Z كحد أقصى (أبيض)</value>
+  </data>
+  <data name="lblImageSource.Text" xml:space="preserve">
+    <value>أصلي</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>تناقض</value>
+  </data>
+  <data name="lblSizeResult.Text" xml:space="preserve">
+    <value>بحجم</value>
+  </data>
+  <data name="gBgcodeSelection.Text" xml:space="preserve">
+    <value>رسم اختيار</value>
+  </data>
+  <data name="cBGCodeFill.Text" xml:space="preserve">
+    <value>ملء المناطق</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="btnShowSettings.Text" xml:space="preserve">
+    <value>إعدادات العرض</value>
+  </data>
+  <data name="btnInvert.ToolTip" xml:space="preserve">
+    <value>عكس الألوان</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>لصق من الحافظة</value>
+  </data>
+  <data name="btnRotateLeft.ToolTip" xml:space="preserve">
+    <value>تدوير الصورة 90 ° ccw</value>
+  </data>
+  <data name="cbSkipToolOrder.ToolTip" xml:space="preserve">
+    <value>بدلاً من استخدام رقم الأداة من جدول الأدوات (على سبيل المثال ، 3،7،9) سيتم احتساب الأدوات بترتيب تصاعدي (1،2،3)</value>
+  </data>
+  <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعيين الأصلي</value>
+  </data>
+  <data name="btnPresetCorrection3.ToolTip" xml:space="preserve">
+    <value>حاول استخدام أقل عدد ممكن من الألوان من خلال التخلص من الألوان التي تقل عن نسبة معينة</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>طريقة للعثور على أفضل لون مطابق
+0: مساحة في مساحة RGB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)) ؛ }
+1: المسافة في مساحة اللون (0 ° -360 °)
+2: المسافة في مساحة اللون (0 ° -360 °) + التشبع + السطوع</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>يقوم المرشح بترشيح قنوات اللون عن طريق مسح القيم (المعينة إلى الأسود) ، والتي تكون داخل / خارج نطاق القيمة المحددة.</value>
+  </data>
+  <data name="rBMode0.ToolTip" xml:space="preserve">
+    <value>المسافة في مساحة RGB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)) ؛ }</value>
+  </data>
+  <data name="rBMode1.Text" xml:space="preserve">
+    <value>المسافة في لون هوى (0 ° -360 °)</value>
+  </data>
+  <data name="nUDColorPercent.ToolTip" xml:space="preserve">
+    <value>الحد الأدنى ٪ من ocurence اللون</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>قيمة رمادية مثل Z (عمق) أو سرعة الدوران</value>
+  </data>
+  <data name="tBGMin.ToolTip" xml:space="preserve">
+    <value>القيم الخضراء أدناه ، سيتم ضبطها على الصفر</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value>ماكس. المبلغ = الحد الأقصى إدخالات جدول الأداة</value>
+  </data>
+  <data name="btnPresetCorrection4.Text" xml:space="preserve">
+    <value>كونتور (لا رجوع)</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>خريطة ألوان الصورة لألوان الجدول الأداة</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>معالج التحويل</value>
+  </data>
+  <data name="cBFilterEdge.Text" xml:space="preserve">
+    <value>مرشح الحافة</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>قم بإنشاء G-Code من الصورة</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>ضغط الرمز</value>
+  </data>
+  <data name="cBResolutionPenWidth.Text" xml:space="preserve">
+    <value>تطبيق قيمة القرار كعرض القلم في عرض ثنائي الأبعاد</value>
+  </data>
+  <data name="cBFilterHistogram.Text" xml:space="preserve">
+    <value>الرسم البياني معادلة</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>S دقيقة (أبيض)</value>
+  </data>
+  <data name="btnRotateRight.ToolTip" xml:space="preserve">
+    <value>تدوير الصورة 90 درجة مئوية</value>
+  </data>
+  <data name="rBProcessTool.Text" xml:space="preserve">
+    <value>   اللون كأداة رقم.</value>
+  </data>
+  <data name="rbEngravingPattern1.Text" xml:space="preserve">
+    <value>أفقي</value>
+  </data>
+  <data name="btnVertMirror.ToolTip" xml:space="preserve">
+    <value>الوجه العمودي</value>
+  </data>
+  <data name="btnShowSettings.ToolTip" xml:space="preserve">
+    <value>إظهار قيم التصحيح المطبقة</value>
+  </data>
+  <data name="tBRMin.ToolTip" xml:space="preserve">
+    <value>القيم الحمراء أدناه ، سيتم ضبطها على الصفر</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>قم بإلغاء تحديد الألوان إذا لم تكن هناك حاجة لذلك</value>
+  </data>
+  <data name="btnPresetCorrection3.Text" xml:space="preserve">
+    <value>هزلية - بعض الألوان</value>
+  </data>
+  <data name="cBGCodeOutline.Text" xml:space="preserve">
+    <value>ارسم الخطوط العريضة</value>
+  </data>
+  <data name="btnTest.ToolTip" xml:space="preserve">
+    <value>استمر في الضغط على الزر للتحقق من الألوان باستخدام جدول الأدوات</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>وضع التحويل</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>معالجة اللون</value>
+  </data>
+  <data name="rbEngravingPattern2.Text" xml:space="preserve">
+    <value>قطري</value>
+  </data>
+  <data name="btnPresetCorrection1.Text" xml:space="preserve">
+    <value>صورة - الخلفية المظلمة</value>
+  </data>
+  <data name="rBMode0.Text" xml:space="preserve">
+    <value>المسافة في RGB- الفضاء</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>تخفيض اللون</value>
+  </data>
+  <data name="cbSkipToolOrder.Text" xml:space="preserve">
+    <value>تخطي الاصليه. أداة رقم. استخدام الرقم التسلسلي.</value>
+  </data>
+  <data name="tBBMin.ToolTip" xml:space="preserve">
+    <value>سيتم تعيين القيم الزرقاء أدناه ، إلى صفر</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>استبدال لون الوضع</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>S كحد أقصى (أسود)</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
+    <value>ناعم</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>جيل رمز جيل</value>
+  </data>
+  <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
+    <value>دورات تجانس</value>
+  </data>
+  <data name="cbGrayscale.Text" xml:space="preserve">
+    <value>الرمادي</value>
+  </data>
+  <data name="cBPosterize.Text" xml:space="preserve">
+    <value>على posterization</value>
+  </data>
+  <data name="cBGCodeOutlineShrink.ToolTip" xml:space="preserve">
+    <value>تقليص المسار لتعويض عرض القلم</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>يقوم المرشح بترشيح قنوات اللون عن طريق مسح القيم (المعينة إلى الأسود) ، والتي تكون داخل / خارج نطاق القيمة المحددة.
+يسمح المرشح بملء نطاقات معينة من قنوات ألوان RGB بالقيمة المحددة.</value>
+  </data>
+  <data name="tBarHueShift.ToolTip" xml:space="preserve">
+    <value>في نطاق ألوان HSV ، أضف قيمة إلى HUE</value>
+  </data>
+  <data name="btnLoad.Text" xml:space="preserve">
+    <value>تحميل وتطبيق حالة الاستخدام</value>
+  </data>
+  <data name="lblSizeOrig.Text" xml:space="preserve">
+    <value>بحجم</value>
+  </data>
+  <data name="btnShowOrig.Text" xml:space="preserve">
+    <value>أصلي</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>قائمة الأدوات</value>
+  </data>
+  <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحميل الصورة</value>
+  </data>
+  <data name="lblInfo1.Text" xml:space="preserve">
+    <value>معلومات</value>
+  </data>
+  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
+    <value>نسخ</value>
+  </data>
+  <data name="cbExceptColor.Text" xml:space="preserve">
+    <value>لون الاستثناء</value>
+  </data>
+  <data name="cBPreview.Text" xml:space="preserve">
+    <value>معاينة مع الألوان من جدول الأداة</value>
+  </data>
+  <data name="rbModeGray.Text" xml:space="preserve">
+    <value>الرمادي</value>
+  </data>
+  <data name="btnResetCorrection.Text" xml:space="preserve">
+    <value>إعادة تعيين القيم</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>سطوع</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>القرار</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>تحميل حالة الاستخدام للإعداد</value>
+  </data>
+  <data name="btnPresetCorrection2.Text" xml:space="preserve">
+    <value>الرسم - العديد من الألوان</value>
+  </data>
+  <data name="nUDReso.ToolTip" xml:space="preserve">
+    <value>المسافة بين السطور ، يجب أن تتطابق مع عرض القلم</value>
+  </data>
+  <data name="tBRMax.ToolTip" xml:space="preserve">
+    <value>سيتم تعيين القيم الحمراء فوق هذا ، إلى صفر</value>
+  </data>
+  <data name="cBGCodeOutlineShrink.Text" xml:space="preserve">
+    <value>انكماش المسار</value>
+  </data>
+  <data name="tBGMax.ToolTip" xml:space="preserve">
+    <value>سيتم تعيين القيم الخضراء فوق هذا ، إلى صفر</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>قيمة أقل</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
+    <value>إزالة بكسل واحد</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
+    <value>تقليل الألوان</value>
+  </data>
+  <data name="btnKeepSizeWidth.Text" xml:space="preserve">
+    <value>الحفاظ على الأصل. حجم بكسل ، احسب. عرض</value>
+  </data>
+  <data name="btnKeepSizeReso.Text" xml:space="preserve">
+    <value>الحفاظ على الأصل. حجم بكسل ، احسب. القرار</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>حجم الانتاج في وحدات</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>استبدال اللون</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>آخر تحميل:</value>
+  </data>
+  <data name="rbModeDither.Text" xml:space="preserve">
+    <value>التردد</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>قيمة أقل</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>التشبع</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>مسبقا</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>تأثيرات الألوان</value>
+  </data>
+  <data name="cbExceptColor.ToolTip" xml:space="preserve">
+    <value>انقر بزر الماوس الأيسر داخل الصورة لتحديد اللون الذي لن يتم رسمه</value>
+  </data>
+  <data name="btnGenerate.Text" xml:space="preserve">
+    <value>قم بإنشاء G-Code</value>
+  </data>
+  <data name="rBMode1.ToolTip" xml:space="preserve">
+    <value>المسافة في لون هوى (0 ° -360 °)</value>
+  </data>
+  <data name="btnHorizMirror.ToolTip" xml:space="preserve">
+    <value>الوجه الأفقي</value>
+  </data>
+  <data name="cBReduceColorsDithering.Text" xml:space="preserve">
+    <value>التردد</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>يقوم المرشح بترشيح قنوات اللون عن طريق مسح القيم (المعينة إلى الأسود) ، والتي تكون داخل / خارج نطاق القيمة المحددة.</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>هوى التحول</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>تصحيح الصورة</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z دقيقة (أسود)</value>
+  </data>
+  <data name="rBMode2.Text" xml:space="preserve">
+    <value>المسافة في لون هوى ، -sat. ، - مشرق.</value>
+  </data>
+</root>

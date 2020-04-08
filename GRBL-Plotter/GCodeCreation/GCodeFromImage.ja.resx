@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lblColors.Text" xml:space="preserve">
+    <value>カラーカウント</value>
+  </data>
+  <data name="cbLockRatio.Text" xml:space="preserve">
+    <value>比率を保つ</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>ガンマ</value>
+  </data>
+  <data name="tBBMax.ToolTip" xml:space="preserve">
+    <value>これより上の青い値はゼロに設定されます</value>
+  </data>
+  <data name="rBMode2.ToolTip" xml:space="preserve">
+    <value>色相の距離（0°-360°）+色の彩度+色の明るさ</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>高さ</value>
+  </data>
+  <data name="btnShowOrig.ToolTip" xml:space="preserve">
+    <value>を押して、元の変更されていない画像を表示します</value>
+  </data>
+  <data name="btnTest.Text" xml:space="preserve">
+    <value>プレビュー</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Z max（白）</value>
+  </data>
+  <data name="lblImageSource.Text" xml:space="preserve">
+    <value>元の</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>コントラスト</value>
+  </data>
+  <data name="lblSizeResult.Text" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="gBgcodeSelection.Text" xml:space="preserve">
+    <value>選択範囲を描く</value>
+  </data>
+  <data name="cBGCodeFill.Text" xml:space="preserve">
+    <value>塗りつぶしエリア</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>幅</value>
+  </data>
+  <data name="btnShowSettings.Text" xml:space="preserve">
+    <value>設定を表示</value>
+  </data>
+  <data name="btnInvert.ToolTip" xml:space="preserve">
+    <value>色を反転</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>クリップボードから貼り付け</value>
+  </data>
+  <data name="btnRotateLeft.ToolTip" xml:space="preserve">
+    <value>画像を90°回転させる</value>
+  </data>
+  <data name="cbSkipToolOrder.ToolTip" xml:space="preserve">
+    <value>ツールテーブルのツール番号（3,7,9など）を使用する代わりに、ツールは昇順（1,2,3）でカウントされます</value>
+  </data>
+  <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>オリジナルとして設定</value>
+  </data>
+  <data name="btnPresetCorrection3.ToolTip" xml:space="preserve">
+    <value>特定の割合未満の色を破棄して、できるだけ少ない色を使用するようにしてください</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>最適な色を見つける方法
+0：RGB空間のスペース：Math.Sqrt（（c1.R-c2.R）*（c1.R-c2.R）+（c1.G-c2.G）*（c1.G-c2.G） +（c1.B-c2.B）*（c1.B-c2.B））; }
+1：色空間での距離（0°-360°）
+2：色空間での距離（0°-360°）+彩度+輝度</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>このフィルターは、指定された値の範囲の内側/外側にある値（黒に設定）をクリアすることにより、カラーチャンネルのフィルター処理を行います。</value>
+  </data>
+  <data name="rBMode0.ToolTip" xml:space="preserve">
+    <value>RGB空間の距離：Math.Sqrt（（c1.R-c2.R）*（c1.R-c2.R）+（c1.G-c2.G）*（c1.G-c2.G）+ （c1.B-c2.B）*（c1.B-c2.B））; }</value>
+  </data>
+  <data name="rBMode1.Text" xml:space="preserve">
+    <value>色相の距離（0°-360°）</value>
+  </data>
+  <data name="nUDColorPercent.ToolTip" xml:space="preserve">
+    <value>色の発生の最小制限％</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Z（深さ）またはスピンドル速度としてのグレー値</value>
+  </data>
+  <data name="tBGMin.ToolTip" xml:space="preserve">
+    <value>これ以下の緑の値はゼロに設定されます</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value>最大 量=最大 ツールテーブルエントリ</value>
+  </data>
+  <data name="btnPresetCorrection4.Text" xml:space="preserve">
+    <value>輪郭（戻ることはできません）</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>画像の色をツールテーブルの色にマッピングする</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>変換ウィザード</value>
+  </data>
+  <data name="cBFilterEdge.Text" xml:space="preserve">
+    <value>エッジフィルター</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>画像からGコードを作成</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>コードを圧縮</value>
+  </data>
+  <data name="cBResolutionPenWidth.Text" xml:space="preserve">
+    <value>2Dビューでペン幅として解像度値を適用</value>
+  </data>
+  <data name="cBFilterHistogram.Text" xml:space="preserve">
+    <value>ヒストグラム均等化</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>S分（白）</value>
+  </data>
+  <data name="btnRotateRight.ToolTip" xml:space="preserve">
+    <value>画像を90°回転させる</value>
+  </data>
+  <data name="rBProcessTool.Text" xml:space="preserve">
+    <value>   ツール番号としての色</value>
+  </data>
+  <data name="rbEngravingPattern1.Text" xml:space="preserve">
+    <value>水平</value>
+  </data>
+  <data name="btnVertMirror.ToolTip" xml:space="preserve">
+    <value>垂直反転</value>
+  </data>
+  <data name="btnShowSettings.ToolTip" xml:space="preserve">
+    <value>適用された補正値を表示</value>
+  </data>
+  <data name="tBRMin.ToolTip" xml:space="preserve">
+    <value>これより下の赤の値はゼロに設定されます</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>不要な場合は色を選択解除します</value>
+  </data>
+  <data name="btnPresetCorrection3.Text" xml:space="preserve">
+    <value>コミック-少数の色</value>
+  </data>
+  <data name="cBGCodeOutline.Text" xml:space="preserve">
+    <value>輪郭を描く</value>
+  </data>
+  <data name="btnTest.ToolTip" xml:space="preserve">
+    <value>ボタンを押したままにして、ツールテーブルの色で画像を確認します</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>変換モード</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>色処理</value>
+  </data>
+  <data name="rbEngravingPattern2.Text" xml:space="preserve">
+    <value>対角線</value>
+  </data>
+  <data name="btnPresetCorrection1.Text" xml:space="preserve">
+    <value>画像-暗い背景</value>
+  </data>
+  <data name="rBMode0.Text" xml:space="preserve">
+    <value>RGBスペースでの距離</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>減色</value>
+  </data>
+  <data name="cbSkipToolOrder.Text" xml:space="preserve">
+    <value>元をスキップします。 ツール番号 シーケンシャルnrを使用します。</value>
+  </data>
+  <data name="tBBMin.ToolTip" xml:space="preserve">
+    <value>これより下の青の値はゼロに設定されます</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>色置換モード</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>S max（黒）</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
+    <value>なめらか</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>Gコード生成</value>
+  </data>
+  <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
+    <value>平滑化サイクル</value>
+  </data>
+  <data name="cbGrayscale.Text" xml:space="preserve">
+    <value>グレースケール</value>
+  </data>
+  <data name="cBPosterize.Text" xml:space="preserve">
+    <value>ポスタリゼーション</value>
+  </data>
+  <data name="cBGCodeOutlineShrink.ToolTip" xml:space="preserve">
+    <value>ペン幅を補正するパスを縮小</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>このフィルターは、指定された値の範囲の内側/外側にある値（黒に設定）をクリアすることにより、カラーチャンネルのフィルター処理を行います。
+このフィルターを使用すると、特定の範囲のRGBカラーチャネルを指定した値で埋めることができます。</value>
+  </data>
+  <data name="tBarHueShift.ToolTip" xml:space="preserve">
+    <value>HSVカラー範囲で、HUEに値を追加します</value>
+  </data>
+  <data name="btnLoad.Text" xml:space="preserve">
+    <value>ユースケースをロードして適用する</value>
+  </data>
+  <data name="lblSizeOrig.Text" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="btnShowOrig.Text" xml:space="preserve">
+    <value>元の</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>ツールリスト</value>
+  </data>
+  <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
+    <value>画像を読み込む</value>
+  </data>
+  <data name="lblInfo1.Text" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="cbExceptColor.Text" xml:space="preserve">
+    <value>例外色</value>
+  </data>
+  <data name="cBPreview.Text" xml:space="preserve">
+    <value>ツールテーブルの色でプレビュー</value>
+  </data>
+  <data name="rbModeGray.Text" xml:space="preserve">
+    <value>グレースケール</value>
+  </data>
+  <data name="btnResetCorrection.Text" xml:space="preserve">
+    <value>リセット値</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>輝度</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>解決</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>セットアップのユースケースを読み込む</value>
+  </data>
+  <data name="btnPresetCorrection2.Text" xml:space="preserve">
+    <value>グラフィック-多くの色</value>
+  </data>
+  <data name="nUDReso.ToolTip" xml:space="preserve">
+    <value>線間の距離、ペンの幅と一致する必要があります</value>
+  </data>
+  <data name="tBRMax.ToolTip" xml:space="preserve">
+    <value>これより上の赤い値はゼロに設定されます</value>
+  </data>
+  <data name="cBGCodeOutlineShrink.Text" xml:space="preserve">
+    <value>収縮経路</value>
+  </data>
+  <data name="tBGMax.ToolTip" xml:space="preserve">
+    <value>これより上の緑の値はゼロに設定されます</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>低い値</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
+    <value>単一ピクセルを削除</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
+    <value>色を減らす</value>
+  </data>
+  <data name="btnKeepSizeWidth.Text" xml:space="preserve">
+    <value>元のままにしてください。 pxサイズ、計算。 幅</value>
+  </data>
+  <data name="btnKeepSizeReso.Text" xml:space="preserve">
+    <value>元のままにしてください。 pxサイズ、計算。 解決</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>単位の出力サイズ</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>色置換</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>最終ロード：</value>
+  </data>
+  <data name="rbModeDither.Text" xml:space="preserve">
+    <value>ディザリング</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>低い値</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>飽和</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>プリセット</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>色の効果</value>
+  </data>
+  <data name="cbExceptColor.ToolTip" xml:space="preserve">
+    <value>画像内を左クリックして、描画されない色を選択します</value>
+  </data>
+  <data name="btnGenerate.Text" xml:space="preserve">
+    <value>Gコードを作成</value>
+  </data>
+  <data name="rBMode1.ToolTip" xml:space="preserve">
+    <value>色相の距離（0°-360°）</value>
+  </data>
+  <data name="btnHorizMirror.ToolTip" xml:space="preserve">
+    <value>水平反転</value>
+  </data>
+  <data name="cBReduceColorsDithering.Text" xml:space="preserve">
+    <value>ディザリング</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>このフィルターは、指定された値の範囲の内側/外側にある値（黒に設定）をクリアすることにより、カラーチャンネルのフィルター処理を行います。</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>色相シフト</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>画像補正</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z min（黒）</value>
+  </data>
+  <data name="rBMode2.Text" xml:space="preserve">
+    <value>色相、彩度、明度での距離。</value>
+  </data>
+</root>
