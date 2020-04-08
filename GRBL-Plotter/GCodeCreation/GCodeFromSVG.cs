@@ -19,7 +19,7 @@
 /*  GCodeFromSVG.cs a static class to convert SVG data into G-Code 
     Not implemented: 
         Basic-shapes: Text, Image
-        Transform: rotation with offset, skewX, skewY
+        Transform: skewX, skewY
 
     GCode will be written to gcodeString[gcodeStringIndex] where gcodeStringIndex corresponds with color of element to draw
 */
@@ -379,18 +379,28 @@ namespace GRBL_Plotter
                     }
                     if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("( SVG-Scale {0} {1} )\r\n", tmp.M11, tmp.M22));
                 }
-                if ((transform != null) && (transform.IndexOf("rotate") >= 0))
-                {
-                    var coord = getTextBetween(transform, "rotate(", ")");
-                    var split = coord.Split(',');
-                    if (coord.IndexOf(',') < 0)
-                        split = coord.Split(' ');
-                    float angle = floatParse(split[0]) * (float)Math.PI / 180;
-                    tmp.M11 = Math.Cos(angle); tmp.M12 = Math.Sin(angle);
-                    tmp.M21 = -Math.Sin(angle); tmp.M22 = Math.Cos(angle);
+				if ((transform != null) && (transform.IndexOf("rotate") >= 0))
+				{
+					var coord = getTextBetween(transform, "rotate(", ")");
+					var split = coord.Split(',');
+					if (coord.IndexOf(',') < 0)
+						split = coord.Split(' ');
 
-                    if (svgComments) gcodeString[gcodeStringIndex].Append(string.Format("( SVG-Rotate {0} )\r\n", angle));
-                }
+					//Original code from https://github.com/svenhb/GRBL-Plotter
+					//float angle = floatParse(split[0]) * (float)Math.PI / 180;
+					//tmp.OffsetX = px;
+					//tmp.OffsetY = py;
+					//tmp.M11 = Math.Cos(angle); tmp.M12 = Math.Sin(angle);
+					//tmp.M21 = -Math.Sin(angle); tmp.M22 = Math.Cos(angle);
+
+					//current code from https://github.com/arkypita/LaserGRBL now support rotation with offset
+					float angle = floatParse(split[0]); //no need to convert in radiant
+					float px = split.Length == 3 ? floatParse(split[1]) : 0.0f; //<--- this read rotation offset point x
+					float py = split.Length == 3 ? floatParse(split[2]) : 0.0f; //<--- this read rotation offset point y
+					tmp.RotateAt(angle, px, py); // <--- this apply RotateAt matrix
+
+					if (svgComments) gcodeString.Append(string.Format("( SVG-Rotate ({0},{1},{2}) )\r\n", angle, px, py));
+				}
                 if ((transform != null) && (transform.IndexOf("matrix") >= 0))
                 {
                     var coord = getTextBetween(transform, "matrix(", ")");
