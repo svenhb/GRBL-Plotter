@@ -129,18 +129,6 @@
     <value>Expandir blocos de código</value>
     <comment>Editor_Menu</comment>
   </data>
-  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Mover o bloco de código selecionado para cima</value>
-    <comment>Editor_Menu</comment>
-  </data>
-  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Mover o bloco de código selecionado para baixo</value>
-    <comment>Editor_Menu</comment>
-  </data>
-  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
-    <value>Blocos de código</value>
-    <comment>Editor_Menu</comment>
-  </data>
   <data name="cmsCodeSelect.Text" xml:space="preserve">
     <value>Selecionar tudo</value>
     <comment>Editor_Menu</comment>
@@ -297,16 +285,8 @@
     <value>Pare o movimento de corrida atual</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Mover para</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="cBTool.Text" xml:space="preserve">
     <value>Ferramenta no Eixo</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>RPM</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="cBCoolant.Text" xml:space="preserve">
@@ -413,26 +393,6 @@ executar as linhas de inicialização e continuar em seu caminho alegre.
     <value>Desfazer a última ação</value>
     <comment>Menu131</comment>
   </data>
-  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zero XY na posição marcada G10 L20</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveToMarkedPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mover para a posição marcada G0</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Redefinir o zoom</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Colar da área de transferência</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="reloadFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Recarregar arquivo</value>
-    <comment>2DView_Menu</comment>
-  </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Código de marca (sem exclusão)</value>
     <comment>2DView_Menu</comment>
@@ -440,52 +400,6 @@ executar as linhas de inicialização e continuar em seu caminho alegre.
   <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Clique para alternar</value>
     <comment>2DView_Menu</comment>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Excluir esta linha de código</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Excluir / marcar linha de código</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
-    <value>Marcar o primeiro ponto do caminho selecionado</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Excluir caminho selecionado</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletePathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Excluir caminho selecionado</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="cutOutSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Cortar o caminho selecionado</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Mover o caminho selecionado</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="setGCodeAsBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir código G como plano de fundo</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fundo claro</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Compensação do raio</value>
-    <comment>Menu134</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Valor positivo causa correção no lado esquerdo da direção de movimento,
-valor negativo no lado direito.
-</value>
-    <comment>Menu134</comment>
   </data>
   <data name="tBURL.Text" xml:space="preserve">
     <value>Cole aqui o URL do arquivo SVG / DXF</value>
@@ -967,5 +881,158 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
     <value>Dimensão do código G</value>
+  </data>
+  <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Extensões</value>
+  </data>
+  <data name="cmsEditMode.Text" xml:space="preserve">
+    <value>Alternar modo de edição</value>
+  </data>
+  <data name="cBServoButtons.Text" xml:space="preserve">
+    <value>Mostrar caneta para cima / para baixo</value>
+  </data>
+  <data name="btnPenDown.Text" xml:space="preserve">
+    <value>Pen Down</value>
+  </data>
+  <data name="btnPenDown.ToolTip" xml:space="preserve">
+    <value>Use as configurações do Setup-Servo-PWM</value>
+  </data>
+  <data name="btnPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="btnPenUp.ToolTip" xml:space="preserve">
+    <value>Use as configurações do Setup-Servo-PWM</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
+    <value>Mover para a posição marcada G0</value>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
+    <value>Zero XY na posição marcada G10 L20</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
+    <value>Gráficos deslocados por posição do marcador</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
+    <value>Redefinir o zoom</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
+    <value>Colar da área de transferência</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
+    <value>Recarregar arquivo</value>
+  </data>
+  <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
+    <value>Marcar o primeiro ponto do caminho selecionado</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
+    <value>Excluir caminho selecionado</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
+    <value>Excluir caminho selecionado</value>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
+    <value>Recorte o caminho selecionado</value>
+  </data>
+  <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
+    <value>Aplicar deslocamento ao GCode</value>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
+    <value>Definir código G como plano de fundo</value>
+  </data>
+  <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
+    <value>Fundo claro</value>
+  </data>
+  <data name="unDo3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Desfazer a última ação</value>
+  </data>
+  <data name="cmsEditorHotkeys.AccessibleDescription" xml:space="preserve">
+    <value>Mostrar janela com teclas de atalho padrão para a "Caixa de texto colorida rápida"</value>
+  </data>
+  <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
+    <value>Blocos de código são código G cercados por elementos XML como "Grupo" de "Figura"</value>
+  </data>
+  <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
+    <value>Dobrar blocos de código</value>
+  </data>
+  <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
+    <value>Blocos de código são código G cercados por elementos XML como "Grupo" de "Figura"</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
+    <value>Mover o bloco de código selecionado mais para cima</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockUp.Text" xml:space="preserve">
+    <value>Mover o bloco de código selecionado para cima</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockDown.Text" xml:space="preserve">
+    <value>Mover o bloco de código selecionado para baixo</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostDown.Text" xml:space="preserve">
+    <value>Mover o bloco de código selecionado mais para baixo</value>
+  </data>
+  <data name="cmsCodeBlocksMove.Text" xml:space="preserve">
+    <value>Mover blocos de código</value>
+  </data>
+  <data name="cmsCodeBlocksSortReverse.Text" xml:space="preserve">
+    <value>Ordem de classificação inversa</value>
+  </data>
+  <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
+    <value>Classificar por 'Id'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
+    <value>Classificar por 'Geometria'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
+    <value>Classificar por 'ToolNr'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
+    <value>Classificar por 'ToolName'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
+    <value>Classificar por 'Cor'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
+    <value>Classificar por 'CodeSize'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
+    <value>Classificar por 'CodeArea'</value>
+  </data>
+  <data name="cmsCodeBlocksSort.Text" xml:space="preserve">
+    <value>Classificar blocos de código</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveGroup.Text" xml:space="preserve">
+    <value>Remover tags XML do 'Grupo'</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveAll.Text" xml:space="preserve">
+    <value>Remover todas as tags XML</value>
+  </data>
+  <data name="cmsEditMode.AccessibleDescription" xml:space="preserve">
+    <value>No modo de edição, a seleção automática de grupos é desativada</value>
+  </data>
+  <data name="cmsCodeSelect.AccessibleDescription" xml:space="preserve">
+    <value>Selecionar código completo</value>
+  </data>
+  <data name="cmsCodeCopy.AccessibleDescription" xml:space="preserve">
+    <value>Copiar seleção para a área de transferência</value>
+  </data>
+  <data name="cmsCodePaste.AccessibleDescription" xml:space="preserve">
+    <value>Limpar editor e colar da área de transferência</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.AccessibleDescription" xml:space="preserve">
+    <value>Insira o código G "Pen up" na frente da linha atual</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.AccessibleDescription" xml:space="preserve">
+    <value>Insira o código G "Pen down" na frente da linha atual</value>
+  </data>
+  <data name="cmsFindDialog.AccessibleDescription" xml:space="preserve">
+    <value>Abra "Localizar caixa de diálogo" em "Caixa de texto colorida rápida"</value>
+  </data>
+  <data name="cmsReplaceDialog.AccessibleDescription" xml:space="preserve">
+    <value>Abra "Substituir caixa de diálogo" </value>
+  </data>
+  <data name="cmsUpdate2DView.AccessibleDescription" xml:space="preserve">
+    <value>Leia o código G novamente no editor para atualizar a visualização 2D</value>
+  </data>
+  <data name="toolStripStatusLabel0.Text" xml:space="preserve">
+    <value>[Carregar arquivo via arrastar e soltar ou caixa de diálogo de abertura de arquivo. Ou selecione 'Recarregar arquivo' para abrir o último arquivo usado. ]</value>
   </data>
 </root>

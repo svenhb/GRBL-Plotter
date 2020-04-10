@@ -126,19 +126,19 @@
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeCopy.Text" xml:space="preserve">
-    <value>Kopieren</value>
+    <value>In die Zwischenablage kopieren</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePaste.Text" xml:space="preserve">
-    <value>Einfügen</value>
+    <value>Einfügen aus der Zwischenablage</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
-    <value>Einfügen 'PenUp'</value>
+    <value>Fügen Sie 'PenUp' ein</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
-    <value>Einfügen 'PenDown'</value>
+    <value>Fügen Sie 'PenDown' ein</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFindDialog.Text" xml:space="preserve">
@@ -236,61 +236,9 @@ Wenn das Rücksetzen nicht während der Bewegung erfolgt, wird die Position beib
 Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Text" xml:space="preserve">
-    <value>XY an markierter Position nullen G10 L20</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveToMarkedPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fahre zur markierten Position G0</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zooming zurücksetzen</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Einfügen aus Zwischenablage</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="reloadFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Datei neu Laden</value>
-    <comment>2DView_Menu</comment>
-  </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Markiere  Code (kein Löschen)</value>
     <comment>2DView_Menu</comment>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lösche diese Codezeile</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
-    <value>Markiere ersten Punkt des selektierten Pfades</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Selektierten Pfad löschen</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletePathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>lösche selektierten Pfad</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="cutOutSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Selektierten Pfad freistellen</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="setGCodeAsBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>Setze G-Code als Hintergrund</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>Lösche Hintergrund</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Radiuskompensation</value>
-    <comment>Menu134</comment>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Benutzerdefinierte Buttons</value>
@@ -641,10 +589,6 @@ Ein Eingangspin ist verfügbar, um eine Schaltfläche oder einen Schalter anzusc
     <value>Zum Umschalten klicken</value>
     <comment>2DView_Menu</comment>
   </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Codezeile löschen / markieren</value>
-    <comment>2DView_Menu</comment>
-  </data>
   <data name="lblCurrentG.ToolTip" xml:space="preserve">
     <value>Standardkoordinatensystem = G54
 Kamerakoordinatensystem = G59
@@ -654,11 +598,6 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
     <value>Drehachse spiegeln</value>
     <comment>Menu131</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Positiver Wert bewirkt Korrektur auf der linken Seite der Bewegungsrichtung.
-negativer Wert auf der rechten Seite.</value>
-    <comment>Menu134</comment>
   </data>
   <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
     <value>180 ° drehen</value>
@@ -755,10 +694,6 @@ negativer Wert auf der rechten Seite.</value>
     <value>Abtasten</value>
     <comment>Menu14</comment>
   </data>
-  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
-    <value>Codeblöcke</value>
-    <comment>Editor_Menu</comment>
-  </data>
   <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
     <value>Codeblock auf erster Ebene einklappen</value>
     <comment>Editor_Menu</comment>
@@ -766,18 +701,6 @@ negativer Wert auf der rechten Seite.</value>
   <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
     <value>Alle Codeblöcke aufklappen</value>
     <comment>Editor_Menu</comment>
-  </data>
-  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Markierten Codeblock nach oben schieben</value>
-    <comment>Editor_Menu</comment>
-  </data>
-  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Markierten Codeblock nach unten schieben</value>
-    <comment>Editor_Menu</comment>
-  </data>
-  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ausgewählten Pfad verschieben</value>
-    <comment>2DView_Menu</comment>
   </data>
   <data name="toolStripViewRuler.Text" xml:space="preserve">
     <value>Lineal</value>
@@ -890,10 +813,6 @@ negativer Wert auf der rechten Seite.</value>
     <value>Drehzahl</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Fahre zu</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="btnJogZeroA.ToolTip" xml:space="preserve">
     <value>Sende G90 G0 A(or B,C)0</value>
   </data>
@@ -911,5 +830,158 @@ negativer Wert auf der rechten Seite.</value>
   </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
     <value>G-Code Dimensionen</value>
+  </data>
+  <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Erweiterungen</value>
+  </data>
+  <data name="cmsEditMode.Text" xml:space="preserve">
+    <value>Bearbeitungsmodus umschalten</value>
+  </data>
+  <data name="cBServoButtons.Text" xml:space="preserve">
+    <value>Stift nach oben / unten anzeigen</value>
+  </data>
+  <data name="btnPenDown.Text" xml:space="preserve">
+    <value>Stift runter</value>
+  </data>
+  <data name="btnPenDown.ToolTip" xml:space="preserve">
+    <value>Verwenden Sie die Einstellungen von Setup-Servo-PWM</value>
+  </data>
+  <data name="btnPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="btnPenUp.ToolTip" xml:space="preserve">
+    <value>Verwenden Sie die Einstellungen von Setup-Servo-PWM</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
+    <value>Zur markierten Position mit G0 fahren</value>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
+    <value>Null XY an der markierten Position G10 L20</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
+    <value>Versetzte Grafik um die Markerposition</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
+    <value>Zoomen zurücksetzen</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
+    <value>Einfügen aus der Zwischenablage</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
+    <value>Datei neu laden</value>
+  </data>
+  <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
+    <value>Markieren Sie den ersten Punkt des ausgewählten Pfads</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad löschen</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
+    <value>Ausgewählten Pfad löschen</value>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad freistellen</value>
+  </data>
+  <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
+    <value>Versatz auf GCode anwenden</value>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
+    <value>Stellen Sie den G-Code als Hintergrund ein</value>
+  </data>
+  <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
+    <value>Hintergrund löschen</value>
+  </data>
+  <data name="unDo3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Letzte Aktion rückgängig machen</value>
+  </data>
+  <data name="cmsEditorHotkeys.AccessibleDescription" xml:space="preserve">
+    <value>Fenster mit Standard-Hotkeys für das "Fast Coloured Text Box" anzeigen</value>
+  </data>
+  <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
+    <value>Codeblöcke sind G-Code, umgeben von XML-Elementen wie "Gruppe" von "Abbildung"</value>
+  </data>
+  <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
+    <value>Codeblöcke falten</value>
+  </data>
+  <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
+    <value>Codeblöcke sind G-Code, umgeben von XML-Elementen wie "Gruppe" von "Abbildung"</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
+    <value>Verschieben des ausgewählten Codeblock am weitesten nach oben</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockUp.Text" xml:space="preserve">
+    <value>Verschieben des ausgewählten Codeblock nach oben</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockDown.Text" xml:space="preserve">
+    <value>Verschieben des ausgewählten Codeblock nach unten</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostDown.Text" xml:space="preserve">
+    <value>Verschieben des  ausgewählten Codeblock am weitesten nach unten</value>
+  </data>
+  <data name="cmsCodeBlocksMove.Text" xml:space="preserve">
+    <value>Codeblöcke verschieben</value>
+  </data>
+  <data name="cmsCodeBlocksSortReverse.Text" xml:space="preserve">
+    <value>Sortierreihenfolge umkehren</value>
+  </data>
+  <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
+    <value>Sortieren nach 'Id'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
+    <value>Sortieren nach 'Geometrie'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
+    <value>Sortieren nach 'ToolNr'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
+    <value>Sortieren nach 'ToolName'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
+    <value>Sortieren nach 'Farbe'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
+    <value>Sortieren nach 'CodeSize'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
+    <value>Sortieren nach 'CodeArea'</value>
+  </data>
+  <data name="cmsCodeBlocksSort.Text" xml:space="preserve">
+    <value>Codeblöcke sortieren</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveGroup.Text" xml:space="preserve">
+    <value>'Group' XML-Tags entfernen</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveAll.Text" xml:space="preserve">
+    <value>Entfernen Sie alle XML-Tags</value>
+  </data>
+  <data name="cmsEditMode.AccessibleDescription" xml:space="preserve">
+    <value>Im Bearbeitungsmodus ist die automatische Auswahl von Gruppen deaktiviert</value>
+  </data>
+  <data name="cmsCodeSelect.AccessibleDescription" xml:space="preserve">
+    <value>Wählen Sie den vollständigen Code</value>
+  </data>
+  <data name="cmsCodeCopy.AccessibleDescription" xml:space="preserve">
+    <value>Kopieren Sie die Auswahl in die Zwischenablage</value>
+  </data>
+  <data name="cmsCodePaste.AccessibleDescription" xml:space="preserve">
+    <value>Editor löschen und aus der Zwischenablage einfügen</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.AccessibleDescription" xml:space="preserve">
+    <value>Fügen Sie den G-Code "Pen up" vor die aktuelle Zeile ein</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.AccessibleDescription" xml:space="preserve">
+    <value>Fügen Sie den G-Code "Pen down" vor die aktuelle Zeile ein</value>
+  </data>
+  <data name="cmsFindDialog.AccessibleDescription" xml:space="preserve">
+    <value>Öffnen Sie "Dialogfeld suchen" im "Schnellfarbigen Textfeld".</value>
+  </data>
+  <data name="cmsReplaceDialog.AccessibleDescription" xml:space="preserve">
+    <value>Öffnen Sie "Dialogfeld ersetzen" </value>
+  </data>
+  <data name="cmsUpdate2DView.AccessibleDescription" xml:space="preserve">
+    <value>G-Code neu vom Editor einlesen, um die 2D-Ansicht zu aktualisieren</value>
+  </data>
+  <data name="toolStripStatusLabel0.Text" xml:space="preserve">
+    <value>[Datei per Drag &amp; Drop laden oder Datei öffnen. Oder wählen Sie 'Datei neu laden', um die zuletzt verwendete Datei zu öffnen. ]</value>
   </data>
 </root>

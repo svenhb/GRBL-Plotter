@@ -187,11 +187,19 @@ namespace GRBL_Plotter
             saveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
             loadMachineParametersToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.Control | Keys.O;
             saveMachineParametersToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.Control | Keys.S;
-            cmsCodeCopy.ShortcutKeys = Keys.Alt | Keys.Control | Keys.C;
-            cmsCodePaste.ShortcutKeys = Keys.Alt | Keys.Control | Keys.V;
+
+            cmsCodeSelect.ShortcutKeys = Keys.Control | Keys.A;
+            cmsCodeCopy.ShortcutKeys =  Keys.Control | Keys.C;
+            cmsCodePaste.ShortcutKeys = Keys.Control | Keys.V;
             cmsCodeSendLine.ShortcutKeys = Keys.Alt | Keys.Control | Keys.M;
-            moveToMarkedPositionToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.M;
-            pasteFromClipboardToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
+
+            foldCodeBlocks1stLevelToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.D2;
+            foldCodeBlocks2ndLevelToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.D3;
+            foldCodeBlocks3rdLevelToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.D4;
+            expandCodeBlocksToolStripMenuItem1.ShortcutKeys = Keys.Alt | Keys.D1;
+
+            cmsPicBoxMoveToMarkedPosition.ShortcutKeys = Keys.Control | Keys.M;
+            cmsPicBoxPasteFromClipboard.ShortcutKeys = Keys.Control | Keys.V;
 
             toolStrip_tBRadiusCompValue.Text = string.Format("{0:0.000}", Properties.Settings.Default.crcValue);
 
@@ -231,6 +239,7 @@ namespace GRBL_Plotter
 
             loadSettings(sender, e);    // includes loadHotkeys();
                                         //           loadHotkeys();
+            cmsPicBoxEnable(false);
             updateControls();
             LoadRecentList();
             LoadExtensionList();
@@ -259,6 +268,11 @@ namespace GRBL_Plotter
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
             Logger.Trace("FormClosing");
+
+            _serial_form.closePort();
+            _serial_form.RaisePosEvent -= OnRaisePosEvent;
+            _serial_form.RaiseStreamEvent -= OnRaiseStreamEvent;
+
 
             Properties.Settings.Default.mainFormWinState = WindowState;
             WindowState = FormWindowState.Normal;
@@ -368,15 +382,20 @@ namespace GRBL_Plotter
 
             if (flagResetOffset)            // Restore saved position after reset and set initial feed rate:
             {
-                double x = Properties.Settings.Default.grblLastOffsetX;
-                double y = Properties.Settings.Default.grblLastOffsetY;
-                double z = Properties.Settings.Default.grblLastOffsetZ;
-                double a = Properties.Settings.Default.grblLastOffsetA;
-                double b = Properties.Settings.Default.grblLastOffsetB;
-                double c = Properties.Settings.Default.grblLastOffsetC;
+                if (!_serial_form.checkGRBLSettingsOk())   // check 30 kHz limit
+                {   statusStripSet(1,grbl.lastMessage, Color.Orange);
+                    statusStripSet(2, Localization.getString("statusStripeCheckCOM"), Color.Yellow);
+                }
 
                 if (Properties.Settings.Default.resetRestoreWorkCoordinates)
                 {
+                    double x = Properties.Settings.Default.grblLastOffsetX;
+                    double y = Properties.Settings.Default.grblLastOffsetY;
+                    double z = Properties.Settings.Default.grblLastOffsetZ;
+                    double a = Properties.Settings.Default.grblLastOffsetA;
+                    double b = Properties.Settings.Default.grblLastOffsetB;
+                    double c = Properties.Settings.Default.grblLastOffsetC;
+
                     Logger.Info("restoreWorkCoordinates [Setup - Flow control - Behavior after grbl reset]");
                     coordinateG = Properties.Settings.Default.grblLastOffsetCoord;
                     _serial_form.addToLog("* Restore last selected coordinate system:");
@@ -402,11 +421,12 @@ namespace GRBL_Plotter
                     sendCommand(setAxis.Replace(',', '.'));
                 }
                 if (Properties.Settings.Default.resetSendCodeEnable)
-                { _serial_form.addToLog("* Code from [Setup - Flow control]");
+                {   _serial_form.addToLog("* Code from [Setup - Flow control]");
                     _serial_form.addToLog("* Code after reset: " + Properties.Settings.Default.resetSendCode);
                     processCommands(Properties.Settings.Default.resetSendCode);
                 }
 
+                setGRBLBuffer();
                 flagResetOffset = false;
                 updateControls();
             }
@@ -440,7 +460,7 @@ namespace GRBL_Plotter
         private bool updateDrawingPath = false;
         private void processStatus() // {idle, run, hold, home, alarm, check, door}
         {
-            if (machineStatus != lastMachineStatus)
+            if ((machineStatus != lastMachineStatus) || (grbl.lastMessage.Length > 5))
             {
                 label_status.Text = grbl.statusToText(machineStatus);
                 label_status.BackColor = grbl.grblStateColor(machineStatus);
@@ -449,8 +469,13 @@ namespace GRBL_Plotter
                     case grblState.idle:
                         if ((lastMachineStatus == grblState.hold) || (lastMachineStatus == grblState.alarm))
                         {
+                            statusStripClear(1,2);
                             lbInfo.Text = lastInfoText;
                             lbInfo.BackColor = SystemColors.Control;
+                            if (!_serial_form.checkGRBLSettingsOk())   // check 30 kHz limit
+                            {   statusStripSet(1,grbl.lastMessage, Color.Fuchsia);
+                                statusStripSet(2,Localization.getString("statusStripeCheckCOM"), Color.Yellow);
+                            }
                         }
                         signalResume = 0;
                         btnResume.BackColor = SystemColors.Control;
@@ -460,10 +485,14 @@ namespace GRBL_Plotter
                         if (!isStreaming)                       // update drawing if G91 is used
                             updateDrawingPath = true;
 
+  //                      statusStripClear(1,2);
+                        grbl.lastMessage = "";
+
                         break;
                     case grblState.run:
                         if (lastMachineStatus == grblState.hold)
                         {
+                            statusStripClear();
                             lbInfo.Text = lastInfoText;
                             lbInfo.BackColor = SystemColors.Control;
                         }
@@ -475,6 +504,9 @@ namespace GRBL_Plotter
                         lastInfoText = lbInfo.Text;
                         lbInfo.Text = Localization.getString("mainInfoResume");     //"Press 'Resume' to proceed";
                         lbInfo.BackColor = Color.Yellow;
+                        statusStripClear();
+                        statusStripSet(1,grbl.statusToText(machineStatus), grbl.grblStateColor(machineStatus));
+                        statusStripSet(2,lbInfo.Text, lbInfo.BackColor);
                         if (signalResume == 0) { signalResume = 1; }
                         break;
                     case grblState.home:
@@ -484,6 +516,10 @@ namespace GRBL_Plotter
                         btnKillAlarm.BackColor = Color.Yellow;
                         lbInfo.Text = Localization.getString("mainInfoKill");     //"Press 'Kill Alarm' to proceed";
                         lbInfo.BackColor = Color.Yellow;
+      //                  statusStripClear(1,2);
+                        statusStripSet(1,grbl.statusToText(machineStatus) + " " + grbl.lastMessage, grbl.grblStateColor(machineStatus));
+                        statusStripSet(2,lbInfo.Text, lbInfo.BackColor);
+                        grbl.lastMessage = "";
                         if (_heightmap_form != null)
                             _heightmap_form.stopScan();
                         break;
@@ -494,6 +530,9 @@ namespace GRBL_Plotter
                         lastInfoText = lbInfo.Text;
                         lbInfo.Text = Localization.getString("mainInfoResume");     //"Press 'Resume' to proceed";
                         lbInfo.BackColor = Color.Yellow;
+        //                statusStripClear(1,2);
+                        statusStripSet(1,grbl.statusToText(machineStatus), grbl.grblStateColor(machineStatus));
+                        statusStripSet(2,lbInfo.Text, lbInfo.BackColor);
                         if (signalResume == 0) { signalResume = 1; }
                         break;
                     case grblState.probe:
@@ -505,9 +544,7 @@ namespace GRBL_Plotter
                         break;
                 }
                 if (_probing_form != null)
-                {
-                    _probing_form.setGrblSaState = machineStatus;
-                }
+                {   _probing_form.setGrblSaState = machineStatus; }
 
             }
             lastMachineStatus = machineStatus;
@@ -919,7 +956,7 @@ namespace GRBL_Plotter
                 actualCodeLine = fCTBCode.LinesCount - 1;
             fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine);
             fCTBCodeClickedLineNow = e.CodeLine - 1;
-            fCTBCodeMarkLine();
+            fCTBCodeMarkLine();         // set Bookmark and marker in 2D-View
             fCTBCode.DoCaretVisible();
             if (_diyControlPad != null)
                 _diyControlPad.sendFeedback("[" + e.Status.ToString() + "]");
@@ -930,20 +967,16 @@ namespace GRBL_Plotter
                     break;
                 case grblStreaming.reset:
                     flagResetOffset = true;
-                    isStreaming = false;
-                    isStreamingCheck = false;
-                    btnStreamStart.BackColor = SystemColors.Control;
-                    btnStreamStart.Image = Properties.Resources.btn_play;
+                    stopStreaming(false);
                     if (e.CodeProgress < 0)
-                    {
-                        lbInfo.Text = _serial_form.lastError;
+                    {   lbInfo.Text = _serial_form.lastError;
                         lbInfo.BackColor = Color.Fuchsia;
                     }
                     else
-                    {
-                        lbInfo.Text = "Vers. " + _serial_form.grblVers;
+                    {   lbInfo.Text = "Vers. " + _serial_form.grblVers;
                         lbInfo.BackColor = Color.Lime;
                     }
+                    statusStripClear(1, 2);
                     toolTip1.SetToolTip(lbInfo, lbInfo.Text);
                     updateControls();
                     if (_coordSystem_form != null)
@@ -953,6 +986,7 @@ namespace GRBL_Plotter
                     break;
                 case grblStreaming.error:
                     Logger.Info("streaming error at line {0}", e.CodeLine);
+                    statusStripSet(1,grbl.lastMessage, Color.Fuchsia);
                     isStreaming = false;
                     isStreamingCheck = false;
                     pbFile.ForeColor = Color.Red;
@@ -971,7 +1005,6 @@ namespace GRBL_Plotter
                         lbInfo.BackColor = Color.Lime;
                         signalPlay = 0;
                         btnStreamStart.BackColor = SystemColors.Control;
-                        //                btnStreamPause.BackColor = SystemColors.Control; 
                     }
                     break;
                 case grblStreaming.finish:
@@ -1054,7 +1087,7 @@ namespace GRBL_Plotter
             {
                 if (!isStreaming)
                 {
-                    Logger.Info("start streaming at line {0}", startLine);
+                    Logger.Info("Start streaming at line {0}", startLine);
                     isStreaming = true;
                     isStreamingPause = false;
                     isStreamingCheck = false;
@@ -1095,20 +1128,21 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    Logger.Info("pause streaming");
                     if (!isStreamingPause)
                     {
+                        Logger.Info("Pause streaming - pause stream");
                         btnStreamStart.Image = Properties.Resources.btn_play;
                         _serial_form.pauseStreaming();
                         isStreamingPause = true;
-                        //                        ControlPowerSaving.EnableStandby();
+                        statusStripSet(0,Localization.getString("statusStripeStreamingStatusSaved"), Color.LightGreen);
                     }
                     else
                     {
+                        Logger.Info("Pause streaming - continue stream");
                         btnStreamStart.Image = Properties.Resources.btn_pause;
                         _serial_form.pauseStreaming();
                         isStreamingPause = false;
-                        //                        ControlPowerSaving.SuppressStandby();
+                        statusStripClear(0);
                     }
                 }
             }
@@ -1134,15 +1168,16 @@ namespace GRBL_Plotter
             }
         }
         private void btnStreamStop_Click(object sender, EventArgs e)
-        {
-            Logger.Info("stop streaming at line {0}", (fCTBCodeClickedLineNow + 1));
+        { stopStreaming(); }
+        private void stopStreaming(bool showMessage=true)
+        {   Logger.Info("stop streaming at line {0}", (fCTBCodeClickedLineNow + 1));
             showPicBoxBgImage = false;                 // don't show background image anymore
-            pictureBox1.BackgroundImage = null;
+//            pictureBox1.BackgroundImage = null;
             btnStreamStart.Image = Properties.Resources.btn_play;
             btnStreamStart.BackColor = SystemColors.Control;
             btnStreamStart.Enabled = true;
             btnStreamCheck.Enabled = true;
-            _serial_form.stopStreaming();
+            _serial_form.stopStreaming(showMessage);
             if (isStreaming || isStreamingCheck)
             {
                 lbInfo.Text = Localization.getString("mainInfoStopStream2") + (fCTBCodeClickedLineNow + 1).ToString() + " )";
@@ -1164,8 +1199,7 @@ namespace GRBL_Plotter
         private void MainTimer_Tick(object sender, EventArgs e)
         {
             if (isStreaming)
-            {
-                elapsed = DateTime.UtcNow - timeInit;
+            {   elapsed = DateTime.UtcNow - timeInit;
                 lblElapsed.Text = "Time " + elapsed.ToString(@"hh\:mm\:ss");
             }
             else
@@ -1190,7 +1224,7 @@ namespace GRBL_Plotter
                     if (update > 0)
                     {   Logger.Trace("Automatic update from clipboard");
                         loadFromClipboard();
-                        codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
+                        enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
                     }
                 }
             }
@@ -1209,35 +1243,65 @@ namespace GRBL_Plotter
                 if ((signalPlay++ % 2) > 0) btnStreamStart.BackColor = Color.Yellow;
                 else btnStreamStart.BackColor = SystemColors.Control;
             }
-            if (!grbl.axisUpdate && (grbl.axisCount > 0))
-            {
-                grbl.axisUpdate = true;
-                if (Properties.Settings.Default.grblBufferAutomatic)
-                { if (grbl.axisCount > 3)
-                        grbl.RX_BUFFER_SIZE = 255;
-                    else
-                        grbl.RX_BUFFER_SIZE = 127;
-
-                    _serial_form.addToLog("* Assume buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
-                    Logger.Info("Assume buffer size of {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
-                }
-                else
-                {  //if (grbl.RX_BUFFER_SIZE != 127)
-                    _serial_form.addToLog("* Buffer size is manually set to " + grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
-                    Logger.Info("Buffer size was manually set to {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
-                }
-                loadSettings(sender, e);
-            }
             if (delayedSend > 0)
-            {
-                if (delayedSend-- == 1)
+            {   if (delayedSend-- == 1)
                 {   _serial_form.addToLog("* Code from [Setup - Flow control]");
                     _serial_form.addToLog("* Code after pause/stop: " + Properties.Settings.Default.flowControlText);
                     processCommands(Properties.Settings.Default.flowControlText);
                 }
             }
+            if (grbl.lastMessage.Length > 3)
+            {   if (grbl.lastMessage.ToLower().Contains("missing"))
+                {   statusStripClear();
+                    statusStripSet(1,grbl.lastMessage, Color.Red);
+                    statusStripSet(2, Localization.getString("statusStripeResetNeeded"), Color.Yellow);
+                }
+                else if (grbl.lastMessage.ToLower().Contains("reset"))
+                {   label_status.Text = "";
+                    label_status.BackColor = SystemColors.Control;
+                    statusStripClear(2);
+                    statusStripSet(1,grbl.lastMessage, Color.Yellow);
+                    if (grbl.lastMessage.ToLower().Contains("hard"))
+                        statusStripSet(2,Localization.getString("statusStripeGrblResetNeeded"), Color.Yellow);
+                }
+                else
+                    statusStripSet(1,grbl.lastMessage, Color.Yellow);
+                grbl.lastMessage = "";
+            }
         }
 
+        private void setGRBLBuffer()
+        {
+            if (!grbl.axisUpdate && (grbl.axisCount > 0))
+            {
+                grbl.axisUpdate = true;
+                if (Properties.Settings.Default.grblBufferAutomatic)
+                {
+                    if (grbl.bufferSize > 0)
+                    {
+                        grbl.RX_BUFFER_SIZE = (grbl.bufferSize != 128) ? grbl.bufferSize : 127;
+                        _serial_form.addToLog("* Read buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
+                        Logger.Info("Read buffer size of {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
+                    }
+                    else
+                    {
+                        if (grbl.axisCount > 3)
+                            grbl.RX_BUFFER_SIZE = 255;
+                        else
+                            grbl.RX_BUFFER_SIZE = 127;
+
+                        _serial_form.addToLog("* Assume buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
+                        Logger.Info("Assume buffer size of {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
+                    }
+                }
+                else
+                {  //if (grbl.RX_BUFFER_SIZE != 127)
+                    _serial_form.addToLog("* Buffer size was manually set to " + grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
+                    Logger.Info("Buffer size was manually set to {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
+                }
+                statusStripSet(1,string.Format("grbl-controller connected: vers: {0}, axis: {1}, buffer: {2}", _serial_form.grblVers, grbl.axisCount, grbl.RX_BUFFER_SIZE), Color.Lime);
+            }
+        }
         // handle positon click event from camera form
         private void OnRaisePositionClickEvent(object sender, XYZEventArgs e)
         {
@@ -1689,14 +1753,6 @@ namespace GRBL_Plotter
             return commandFound;
         }
 
-        private void moveToMarkedPositionToolStripMenuItem_Click(object sender, EventArgs e)
-        { sendCommand(String.Format("G0 X{0} Y{1}", gcode.frmtNum(grbl.posMarker.X), gcode.frmtNum(grbl.posMarker.Y)).Replace(',', '.'));
-        }
-        private void zeroXYAtMarkedPositionG92ToolStripMenuItem_Click(object sender, EventArgs e)
-        { xyPoint tmp = (xyPoint)(grbl.posWork) - grbl.posMarker;
-            sendCommand(String.Format(zeroCmd + " X{0} Y{1}", gcode.frmtNum(tmp.X), gcode.frmtNum(tmp.Y)).Replace(',', '.'));
-        }
-
         private void MainForm_Activated(object sender, EventArgs e)
         { pictureBox1.Focus(); }
 
@@ -1739,14 +1795,6 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();                                   // resfresh view
         }
 
-        private void setGCodeAsBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
-        { VisuGCode.setPathAsLandMark();
-            Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked = true;
-        }
-
-        private void clearBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
-        { VisuGCode.setPathAsLandMark(true); }
-
         private void logToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(log.get());
@@ -1758,15 +1806,15 @@ namespace GRBL_Plotter
             if (WindowState == FormWindowState.Normal)
                 resizeJoystick();
             for (int i = 17; i <= 32; i++)
-            { if (CustomButtons17.ContainsKey(i))
-                { Button b = CustomButtons17[i];
+            {   if (CustomButtons17.ContainsKey(i))
+                {   Button b = CustomButtons17[i];
                     b.Width = btnCustom1.Width - 24;
                     b.Height = btnCustom1.Height;
                 }
             }
         }
         private void resizeJoystick()
-        { int virtualJoystickSize = Properties.Settings.Default.guiJoystickSize;
+        {   int virtualJoystickSize = Properties.Settings.Default.guiJoystickSize;
             int zRatio = 25;                    // 20% of xyJoystick width
             int zCount = 1;
             // grbl.axisB = true;
@@ -1774,7 +1822,7 @@ namespace GRBL_Plotter
             if (ctrl4thAxis || grbl.axisA) zCount = 2;
             if (grbl.axisB) { zCount = 3; zRatio = 25; }
             if (grbl.axisC) { zCount = 4; zRatio = 25; }
-            int spaceY = this.Height - 485;     // width is 125% or 150%
+            int spaceY = this.Height - 520;     // width is 125% or 150%    485
             int spaceX = this.Width - 670;      // heigth is 100%
             spaceX = Math.Max(spaceX, 235);     // minimum width is 235px
 
@@ -1785,12 +1833,15 @@ namespace GRBL_Plotter
             if (xyWidth < 0) xyWidth = 0;
 
             tLPRechtsUntenRechtsMitte.ColumnStyles[1].Width = zWidth;       // Z
+            virtualJoystickA.Visible = false;
+            virtualJoystickB.Visible = false;
+            virtualJoystickC.Visible = false;
             if (ctrl4thAxis || grbl.axisA)
-            { aWidth = zWidth;   }
+            { aWidth = zWidth; virtualJoystickA.Visible = true; }
             if (grbl.axisB)
-            { aWidth = bWidth = zWidth;  }
+            { aWidth = bWidth = zWidth; virtualJoystickB.Visible = true; }
             if (grbl.axisC)
-            { aWidth = bWidth = cWidth = zWidth;   }
+            { aWidth = bWidth = cWidth = zWidth; virtualJoystickC.Visible = true; }
 
             tLPRechtsUntenRechtsMitte.ColumnStyles[2].Width = aWidth;       // A
             tLPRechtsUntenRechtsMitte.ColumnStyles[3].Width = bWidth;       // B
@@ -1812,6 +1863,7 @@ namespace GRBL_Plotter
             virtualJoystickA.Size = new Size(aWidth, xyWidth);
             virtualJoystickB.Size = new Size(bWidth, xyWidth);
             virtualJoystickC.Size = new Size(cWidth, xyWidth);
+//            toolStripStatusLabel1.Text = string.Format("[Resize Form XY:{0} Z:{1} A:{2} B:{3} C:{4} spaceX:{5}]", xyWidth, zWidth, aWidth, bWidth, cWidth, spaceX);
         }
 
 
@@ -1853,6 +1905,8 @@ namespace GRBL_Plotter
                 unDoToolStripMenuItem.Enabled = true;
                 unDo2ToolStripMenuItem.Text = txt;
                 unDo2ToolStripMenuItem.Enabled = true;
+                unDo3ToolStripMenuItem.Text = txt;
+                unDo3ToolStripMenuItem.Enabled = true;
             }
             else
             {
@@ -1860,6 +1914,8 @@ namespace GRBL_Plotter
                 unDoToolStripMenuItem.Enabled = false;
                 unDo2ToolStripMenuItem.Text = Localization.getString("mainInfoUndo");    //"Undo last action";
                 unDo2ToolStripMenuItem.Enabled = false;
+                unDo3ToolStripMenuItem.Text = Localization.getString("mainInfoUndo");    //"Undo last action";
+                unDo3ToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -1869,6 +1925,39 @@ namespace GRBL_Plotter
             btnPenUp.Visible = cBServoButtons.Checked;
             btnPenDown.Visible = cBServoButtons.Checked;
         }
+
+        private void statusStripSet(int nr, string text, Color color)
+        {
+            if (nr == 0)
+            {
+                toolStripStatusLabel0.Text = "[ " + text + " ]";
+                toolStripStatusLabel0.BackColor = color;
+            }
+            else if (nr == 1)
+
+            {
+                toolStripStatusLabel1.Text = "[ " + text + " ]";
+                toolStripStatusLabel1.BackColor = color;
+            }
+            else if (nr == 2)
+            {
+                toolStripStatusLabel2.Text = "[ " + text + " ]";
+                toolStripStatusLabel2.BackColor = color;
+            }
+        }
+        private void statusStripClear(int nr1, int nr2=-1)
+        {   if ((nr1 == 0) || (nr2 == 0))
+            { toolStripStatusLabel0.Text = ""; toolStripStatusLabel0.BackColor = SystemColors.Control; }
+            if ((nr1 == 1) || (nr2 == 1))
+            { toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; }
+            if ((nr1 == 2) || (nr2 == 2))
+            { toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; }
+        }
+        private void statusStripClear()
+        {   toolStripStatusLabel0.Text = toolStripStatusLabel1.Text = toolStripStatusLabel2.Text = "";
+            toolStripStatusLabel0.BackColor = toolStripStatusLabel1.BackColor = toolStripStatusLabel2.BackColor = SystemColors.Control;
+        }
+
     }
 }
 

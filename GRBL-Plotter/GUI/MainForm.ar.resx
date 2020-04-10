@@ -137,18 +137,6 @@
     <value>توسيع كتل التعليمات البرمجية</value>
     <comment>Editor_Menu</comment>
   </data>
-  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
-    <value>نقل كتلة الرمز المحدد لأعلى</value>
-    <comment>Editor_Menu</comment>
-  </data>
-  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
-    <value>نقل كتلة الرمز المحدد لأسفل</value>
-    <comment>Editor_Menu</comment>
-  </data>
-  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
-    <value>كتل رمز</value>
-    <comment>Editor_Menu</comment>
-  </data>
   <data name="cmsCodeSelect.Text" xml:space="preserve">
     <value>اختر الكل</value>
     <comment>Editor_Menu</comment>
@@ -162,11 +150,11 @@
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
-    <value>أدخل "PenUp"</value>
+    <value>إدراج "PenUp"</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
-    <value>أدخل "PenDown"</value>
+    <value>إدراج "PenDown"</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFindDialog.Text" xml:space="preserve">
@@ -326,16 +314,8 @@
     <value>وقف حركة الركض الحالية</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>الانتقال إلى</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="cBTool.Text" xml:space="preserve">
     <value>الأداة في المغزل</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>سرعة</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="cBCoolant.Text" xml:space="preserve">
@@ -445,26 +425,6 @@
     <value>التراجع عن آخر إجراء</value>
     <comment>Menu131</comment>
   </data>
-  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Text" xml:space="preserve">
-    <value>صفر XY في موقف ملحوظ G10 L20</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveToMarkedPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>الانتقال إلى وضع علامة G0</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
-    <value>إعادة تعيين التكبير</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>لصق من الحافظة</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="reloadFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>إعادة تحميل الملف</value>
-    <comment>2DView_Menu</comment>
-  </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>تعليم الكود (بدون حذف)</value>
     <comment>2DView_Menu</comment>
@@ -472,51 +432,6 @@
   <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>انقر للتبديل</value>
     <comment>2DView_Menu</comment>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>احذف سطر الشفرة هذا</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>حذف / علامة سطر التعليمات البرمجية</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
-    <value>بمناسبة النقطة الأولى من المسار المحدد</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
-    <value>حذف المسار المحدد</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletePathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>حذف المسار المحدد</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="cutOutSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>قطع المسار المحدد</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>نقل المسار المحدد</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="setGCodeAsBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>تعيين رمز G كخلفية</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>خلفية واضحة</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>تعويض نصف القطر</value>
-    <comment>Menu134</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>القيمة الموجبة تسبب تصحيحًا على الجانب الأيسر من الاتجاه المتحرك ،
-القيمة السلبية على الجانب الأيمن.</value>
-    <comment>Menu134</comment>
   </data>
   <data name="tBURL.Text" xml:space="preserve">
     <value>لصق عنوان URL لملف SVG / DXF هنا</value>
@@ -992,5 +907,158 @@
   </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
     <value>البعد G- كود</value>
+  </data>
+  <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>ملحقات</value>
+  </data>
+  <data name="cmsEditMode.Text" xml:space="preserve">
+    <value>تبديل وضع التحرير</value>
+  </data>
+  <data name="cBServoButtons.Text" xml:space="preserve">
+    <value>إظهار القلم لأعلى / لأسفل</value>
+  </data>
+  <data name="btnPenDown.Text" xml:space="preserve">
+    <value>القلم لأسفل</value>
+  </data>
+  <data name="btnPenDown.ToolTip" xml:space="preserve">
+    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
+  </data>
+  <data name="btnPenUp.Text" xml:space="preserve">
+    <value>قلم لأعلى</value>
+  </data>
+  <data name="btnPenUp.ToolTip" xml:space="preserve">
+    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
+    <value>الانتقال إلى الموضع المميز G0</value>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
+    <value>صفر XY في الموضع المميز G10 L20</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
+    <value>تعويض الرسوم عن طريق وضع علامة</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
+    <value>إعادة تعيين التكبير</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
+    <value>لصق من الحافظة</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
+    <value>إعادة تحميل الملف</value>
+  </data>
+  <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
+    <value>ضع علامة على النقطة الأولى من المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
+    <value>حذف المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
+    <value>حذف المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
+    <value>قطع المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
+    <value>تطبيق الإزاحة على GCode</value>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
+    <value>قم بتعيين G-Code كخلفية</value>
+  </data>
+  <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
+    <value>خلفية واضحة</value>
+  </data>
+  <data name="unDo3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>التراجع عن الإجراء الأخير</value>
+  </data>
+  <data name="cmsEditorHotkeys.AccessibleDescription" xml:space="preserve">
+    <value>إظهار النافذة باستخدام مفاتيح التشغيل السريع الافتراضية لـ "مربع نص ملون سريع"</value>
+  </data>
+  <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
+    <value>كتل التعليمات البرمجية هي G- كود محاطة بعناصر XML مثل "مجموعة" من "الشكل"</value>
+  </data>
+  <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
+    <value>أضعاف كتل رمز</value>
+  </data>
+  <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
+    <value>كتل التعليمات البرمجية هي G- كود محاطة بعناصر XML مثل "مجموعة" من "الشكل"</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
+    <value>نقل كتلة التعليمات البرمجية المحددة لأعلى</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockUp.Text" xml:space="preserve">
+    <value>نقل كتلة الرمز المحدد لأعلى</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockDown.Text" xml:space="preserve">
+    <value>نقل كتلة الرمز المحدد لأسفل</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostDown.Text" xml:space="preserve">
+    <value>نقل كتلة التعليمات البرمجية المحددة لأسفل</value>
+  </data>
+  <data name="cmsCodeBlocksMove.Text" xml:space="preserve">
+    <value>نقل كتل التعليمات البرمجية</value>
+  </data>
+  <data name="cmsCodeBlocksSortReverse.Text" xml:space="preserve">
+    <value>ترتيب فرز عكسي</value>
+  </data>
+  <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
+    <value>فرز حسب 'Id'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
+    <value>فرز حسب "الهندسة"</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
+    <value>فرز حسب "ToolNr"</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
+    <value>فرز حسب "ToolName"</value>
+  </data>
+  <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
+    <value>فرز حسب "اللون"</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
+    <value>فرز حسب 'CodeSize'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
+    <value>فرز حسب 'CodeArea'</value>
+  </data>
+  <data name="cmsCodeBlocksSort.Text" xml:space="preserve">
+    <value>فرز كتل الرمز</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveGroup.Text" xml:space="preserve">
+    <value>إزالة علامات XML "المجموعة"</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveAll.Text" xml:space="preserve">
+    <value>إزالة كافة علامات XML</value>
+  </data>
+  <data name="cmsEditMode.AccessibleDescription" xml:space="preserve">
+    <value>يتم تعطيل التحديد التلقائي للمجموعات في وضع التحرير</value>
+  </data>
+  <data name="cmsCodeSelect.AccessibleDescription" xml:space="preserve">
+    <value>حدد الرمز الكامل</value>
+  </data>
+  <data name="cmsCodeCopy.AccessibleDescription" xml:space="preserve">
+    <value>نسخ التحديد إلى الحافظة</value>
+  </data>
+  <data name="cmsCodePaste.AccessibleDescription" xml:space="preserve">
+    <value>محرر واضح ولصق من الحافظة</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.AccessibleDescription" xml:space="preserve">
+    <value>أدخل "Pen up" G-Code أمام السطر الحالي</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.AccessibleDescription" xml:space="preserve">
+    <value>أدخل "Pen down" G-Code أمام السطر الحالي</value>
+  </data>
+  <data name="cmsFindDialog.AccessibleDescription" xml:space="preserve">
+    <value>افتح "مربع حوار البحث" من "مربع نص ملون سريع"</value>
+  </data>
+  <data name="cmsReplaceDialog.AccessibleDescription" xml:space="preserve">
+    <value>فتح "استبدال مربع حوار" من "مربع نص ملون سريع"</value>
+  </data>
+  <data name="cmsUpdate2DView.AccessibleDescription" xml:space="preserve">
+    <value>معالجة G-Code من المحرر لتحديث 2D-View</value>
+  </data>
+  <data name="toolStripStatusLabel0.Text" xml:space="preserve">
+    <value>[تحميل الملف عن طريق السحب والإفلات أو فتح ملف الحوار. أو حدد "إعادة تحميل الملف" لفتح آخر ملف مستخدم. ]</value>
   </data>
 </root>

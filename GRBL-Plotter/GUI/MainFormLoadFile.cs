@@ -81,9 +81,8 @@ namespace GRBL_Plotter
         private List<string> MRUlist = new List<string>();
         private void SaveRecentFile(string path, bool addPath = true)
         {
-            //    savePath = Path.GetDirectoryName(path);// + "\\";
+            Logger.Trace("SaveRecentFile");
             saveName = Path.GetFileNameWithoutExtension(path);
-            //   recentToolStripMenuItem.DropDownItems.Clear();
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
             if (MRUlist.Contains(path)) //prevent duplication on recent list
@@ -97,7 +96,6 @@ namespace GRBL_Plotter
             foreach (string item in MRUlist)
             {
                 ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
-                //           recentToolStripMenuItem.DropDownItems.Add(fileRecent);
                 toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
             }
             try
@@ -121,15 +119,16 @@ namespace GRBL_Plotter
                 string line;
                 MRUlist.Clear();
                 while ((line = listToRead.ReadLine()) != null) //read each line until end of file
-                    MRUlist.Add(line); //insert to list
-                listToRead.Close(); //close the stream
+                    MRUlist.Add(line);      //insert to list
+                listToRead.Close();         //close the stream
             }
             catch (Exception er) { Logger.Error(er, "LoadRecentList "); }
         }
         private void RecentFile_click(object sender, EventArgs e)
-        {
-            if (!loadFile(sender.ToString()))
-                SaveRecentFile(sender.ToString(), false);   // remove nonexisting file-path
+        {   if (!loadFile(sender.ToString()))
+            {   SaveRecentFile(sender.ToString(), false);   // remove nonexisting file-path
+                statusStripSet(1,string.Format("[{0}: {1}]", Localization.getString("statusStripeFileNotFound"), sender.ToString()),Color.Yellow);
+            }
         }
 
         private void newCodeStart()
@@ -137,6 +136,8 @@ namespace GRBL_Plotter
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
+            setEditMode(false);
+
             Cursor.Current = Cursors.WaitCursor;
             pBoxTransform.Reset(); zoomFactor = 1; //zoomOffsetX = 0; zoomOffsetY = 0;
             showPicBoxBgImage = false;                  // don't show background image anymore
@@ -147,6 +148,8 @@ namespace GRBL_Plotter
 
         private void newCodeEnd()
         {
+            setEditMode(false);
+
             if (commentOut)
             { fCTB_CheckUnknownCode(); }                                // check code
             VisuGCode.getGCodeLines(fCTBCode.Lines);                    // get code path
@@ -163,8 +166,10 @@ namespace GRBL_Plotter
         private bool loadFile(string fileName)
         {
             Logger.Info("Load file {0}", fileName);
+            statusStripSet(1,string.Format("[{0}: {1}]", Localization.getString("statusStripeFileLoad"), fileName),Color.Lime);
             bool fileLoaded = false;
             simuStop();
+            statusStripClear(0);
 
             if (unDoToolStripMenuItem.Enabled)
                 VisuGCode.setPathAsLandMark(true);
@@ -172,7 +177,6 @@ namespace GRBL_Plotter
             if (isStreaming)
             {
                 Logger.Error(" loadFile not allowed during streaming {0} ", fileName);
-                MessageBox.Show(Localization.getString("mainLoadError"), Localization.getString("mainAttention"));
                 return false;
             }
             if (fileName.IndexOf("http") >= 0)
@@ -234,7 +238,8 @@ namespace GRBL_Plotter
                 setLastLoadedFile("Data from file", fileName);
                 Cursor.Current = Cursors.Default;
                 pBoxTransform.Reset();
-                codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
+                enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
+                cmsPicBoxEnable();
                 return true;
             }
             else
@@ -324,19 +329,20 @@ namespace GRBL_Plotter
             tBURL.Text = "";
             tBURL.TextChanged += tBURL_TextChanged;
         }
-        private void reloadFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            reStartConvertFile(sender, e);
-        }
+
         public void reStartConvertFile(object sender, EventArgs e)   // event from setup form
         {
             if (!isStreaming)
             {
                 this.Cursor = Cursors.WaitCursor;
                 if (lastLoadSource.IndexOf("Clipboard") >= 0)
-                { loadFromClipboard(); }
+                {   loadFromClipboard(); }
                 else
-                { loadFile(lastLoadFile); }
+                {   if (lastLoadFile.Contains("Nothing"))
+                    { loadFile(MRUlist[0]); }
+                    else
+                    { loadFile(lastLoadFile); }
+                }
                 this.Cursor = Cursors.Default;
             }
         }
@@ -563,7 +569,7 @@ namespace GRBL_Plotter
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
             {
                 loadFromClipboard();
-                codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
+                enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
                 e.SuppressKeyPress = true;
                 e.Handled = true;
                 return;
@@ -709,12 +715,6 @@ namespace GRBL_Plotter
                 { tmp += format + "\r\n"; }
                 MessageBox.Show(tmp);
             }
-        }
-
-        private void pasteFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            loadFromClipboard();
-            codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
         }
 
         // load settings
@@ -870,7 +870,7 @@ namespace GRBL_Plotter
                         skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "";
                     }
                 }
-                if (Properties.Settings.Default.rotarySubstitutionSetupEnable)
+                if (Properties.Settings.Default.rotarySubstitutionEnable && Properties.Settings.Default.rotarySubstitutionSetupEnable)
                 {
                     string[] commands;
                     if (Properties.Settings.Default.rotarySubstitutionEnable)
@@ -967,9 +967,8 @@ namespace GRBL_Plotter
                 int index = Properties.Settings.Default.grblPollIntervalIndex;
                 if ((index >= 0) && (index < 5))
                     grbl.pollInterval = interval[index];
-                if (!Properties.Settings.Default.grblBufferAutomatic)
-                    grbl.RX_BUFFER_SIZE = (int)Properties.Settings.Default.grblBufferSize;
-                _serial_form.updateGrblSettings();
+
+                _serial_form.updateGrblBufferSettings();
 
                 gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
                 checkMachineLimit();
@@ -996,7 +995,7 @@ namespace GRBL_Plotter
         // update controls on Main form
         public void updateControls(bool allowControl = false)
         {
-            Logger.Trace("updateControls {0}", allowControl);
+//            Logger.Trace("updateControls {0}", allowControl);
             bool isConnected = _serial_form.serialPortOpen || grbl.grblSimulate;
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
@@ -1125,7 +1124,7 @@ namespace GRBL_Plotter
         {
             string code = "";
             string action = "";//= hotkey[keyData];
-            if (gcode.loggerTrace) Logger.Trace("processHotkeys {0} {1}", keyData, keyDown);
+ //           if (gcode.loggerTrace) Logger.Trace("processHotkeys {0} {1}", keyData, keyDown);
 
             if (hotkeyCode.TryGetValue(keyData, out code)) // Returns true.
             { if (!keyDown) processCommands(code); }
@@ -1370,7 +1369,7 @@ namespace GRBL_Plotter
                     var result = f.ShowDialog(this);
                     if (result == DialogResult.OK)
                     {
-                        _serial_form.requestSend(f.ReturnValue1, true);
+                        _serial_form.requestSend(f.ReturnValue1, true); // set or clear lasermode $32=x
                         _serial_form.readSettings();
                     }
                 }

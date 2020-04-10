@@ -83,8 +83,11 @@ namespace GRBL_Plotter
             double picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
             if ((picScaling > 0.001) && (picScaling < 10000))
             {
-                double relposX =  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X - pBoxTransform.OffsetX) / pictureBox1.Width) / zoomFactor;
-                double relposY =  (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y - pBoxTransform.OffsetY) / pictureBox1.Height) / zoomFactor;
+                double offsetX = 0;// pBoxTransform.OffsetX;
+                double offsetY = 0;// pBoxTransform.OffsetY;
+                try { offsetX = pBoxTransform.OffsetX; offsetY = pBoxTransform.OffsetY; } catch { } // pBoxTransform.Dispose  too early
+                double relposX = (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X) - offsetX) / Convert.ToDouble(pictureBox1.Width) / Convert.ToDouble(zoomFactor);
+                double relposY = (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) - offsetY) / Convert.ToDouble(pictureBox1.Height) / Convert.ToDouble(zoomFactor);
                 double ratioVisu = xRange / yRange;
                 double ratioPic = Convert.ToDouble(pictureBox1.Width) / pictureBox1.Height;
                 if (ratioVisu > ratioPic)
@@ -94,7 +97,10 @@ namespace GRBL_Plotter
 
                 picAbsPos.X = relposX * xRange + minx;
                 picAbsPos.Y = yRange - relposY * yRange + miny;
-                posMoveEnd = picAbsPos;
+
+                if (posIsMoving)
+                    posMoveEnd = picAbsPos;
+
                 int offX = +5;
 
                 if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width - 100))
@@ -103,38 +109,42 @@ namespace GRBL_Plotter
                 Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y - 10);
 
                 pBoxOrig = e.Graphics.Transform;
-                e.Graphics.Transform = pBoxTransform;
+                try { e.Graphics.Transform = pBoxTransform; } catch { }
                 e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);           // apply scaling (flip Y)
                 e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
 
-                if (showPaths)          // only show graphics path if something is loaded
+                try
                 {
-                    if (!showPicBoxBgImage)
-                        onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
-                    e.Graphics.DrawPath(penTool, VisuGCode.pathTool);
-                    e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
-
-                    e.Graphics.Transform = pBoxOrig;
-                    if (Properties.Settings.Default.machineLimitsShow)
+                    if (showPaths)          // only show graphics path if something is loaded
                     {
-                        e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
-                        e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 50));
-                    }
-                    if (Properties.Settings.Default.gui2DInfoShow)
-                    {
-                        string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
-                        e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
-                        if (simuEnabled)
-                            e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}\r\n Z:{4,7:0.000}\r\n a:{5,7:0.000}°", 100 * zoomFactor, unit,
-                            grbl.posMarker.X, grbl.posMarker.Y, VisuGCode.Simulation.getZ(), 180*grbl.posMarkerAngle/Math.PI), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
-                        else
-                            e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 * zoomFactor, unit,
-                            grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
+                        if (!showPicBoxBgImage)
+                            onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
+                        e.Graphics.DrawPath(penTool, VisuGCode.pathTool);
+                        e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
 
-                        if (VisuGCode.selectedFigureInfo.Length > 0)
-                            e.Graphics.DrawString(VisuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
+                        e.Graphics.Transform = pBoxOrig;
+                        if (Properties.Settings.Default.machineLimitsShow)
+                        {
+                            e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
+                            e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 50));
+                        }
+                        if (Properties.Settings.Default.gui2DInfoShow)
+                        {
+                            string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
+                            e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
+                            if (simuEnabled)
+                                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}\r\n Z:{4,7:0.000}\r\n a:{5,7:0.000}°", 100 * zoomFactor, unit,
+                                grbl.posMarker.X, grbl.posMarker.Y, VisuGCode.Simulation.getZ(), 180 * grbl.posMarkerAngle / Math.PI), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
+                            else
+                                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 * zoomFactor, unit,
+                                grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
+
+                            if (VisuGCode.selectedFigureInfo.Length > 0)
+                                e.Graphics.DrawString(VisuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
+                        }
                     }
                 }
+                catch { }
             }
         }
 
@@ -152,44 +162,48 @@ namespace GRBL_Plotter
         }
         private void onPaint_drawToolPath(Graphics e)
         {
-            if (Properties.Settings.Default.machineLimitsShow)
-                e.FillPath(brushMachineLimit, VisuGCode.pathMachineLimit); 
-            if (Properties.Settings.Default.gui2DToolTableShow)
-                e.DrawPath(penTool, VisuGCode.pathToolTable);           
-            if (Properties.Settings.Default.guiBackgroundShow)
-                e.DrawPath(penLandMark, VisuGCode.pathBackground);
-            if (Properties.Settings.Default.guiDimensionShow)
-                e.DrawPath(penLandMark, VisuGCode.pathDimension);
+            try
+            {
+                if (Properties.Settings.Default.machineLimitsShow)
+                    e.FillPath(brushMachineLimit, VisuGCode.pathMachineLimit);
+                if (Properties.Settings.Default.gui2DToolTableShow)
+                    e.DrawPath(penTool, VisuGCode.pathToolTable);
+                if (Properties.Settings.Default.guiBackgroundShow)
+                    e.DrawPath(penLandMark, VisuGCode.pathBackground);
+                if (Properties.Settings.Default.guiDimensionShow)
+                    e.DrawPath(penLandMark, VisuGCode.pathDimension);
 
-            float factorWidth = 1;
-            if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
-            if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
-            penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap * factorWidth;
-            penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler * factorWidth;
-            penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
-            penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
-            penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
-            penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
-            penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
-            penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+                float factorWidth = 1;
+                if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
+                if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
+                penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap * factorWidth;
+                penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler * factorWidth;
+                penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
+                penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+                penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
+                penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
+                penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
+                penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
 
-            e.DrawPath(penHeightMap, VisuGCode.pathHeightMap);
+                e.DrawPath(penHeightMap, VisuGCode.pathHeightMap);
 
-            if (Properties.Settings.Default.gui2DRulerShow)
-                e.DrawPath(penRuler, VisuGCode.pathRuler);
+                if (Properties.Settings.Default.gui2DRulerShow)
+                    e.DrawPath(penRuler, VisuGCode.pathRuler);
 
-            e.DrawPath(penDown, VisuGCode.pathPenDown);
+                e.DrawPath(penDown, VisuGCode.pathPenDown);
 
-            if (Properties.Settings.Default.ctrl4thUse)
-                e.DrawPath(penRotary, VisuGCode.pathRotaryInfo);
+                if (Properties.Settings.Default.ctrl4thUse)
+                    e.DrawPath(penRotary, VisuGCode.pathRotaryInfo);
 
-            if (posIsMoving)
-                e.DrawPath(penLandMark, VisuGCode.pathMarkSelection);
-            else
-                e.DrawPath(penHeightMap, VisuGCode.pathMarkSelection);
+                if (posIsMoving)
+                    e.DrawPath(penLandMark, VisuGCode.pathMarkSelection);
+                else
+                    e.DrawPath(penHeightMap, VisuGCode.pathMarkSelection);
 
-            if (!(showPathPenUp ^ Properties.Settings.Default.gui2DPenUpShow))
-                e.DrawPath(penUp, VisuGCode.pathPenUp);
+                if (!(showPathPenUp ^ Properties.Settings.Default.gui2DPenUpShow))
+                    e.DrawPath(penUp, VisuGCode.pathPenUp);
+            }
+            catch { }
         }
 
         // Generante a background-image for pictureBox to avoid frequent drawing of pen-up/down paths
@@ -238,6 +252,8 @@ namespace GRBL_Plotter
                 }
                 if ((diff.X!=0) || (diff.Y!=0))
                     previousClick = 0;  // no doubleclick
+
+                statusStripSet(2,string.Format("{0} X:{1:0.00}  Y:{2:0.00}", Localization.getString("statusStripeSelectionMoved"), (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y)),Color.Yellow);
             }
             pictureBox1.Invalidate();
         }
@@ -246,6 +262,12 @@ namespace GRBL_Plotter
         private static int previousClick = SystemInformation.DoubleClickTime;
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
+            if (posIsMoving)
+            {
+                cmsPicBoxMoveSelectedPathInCode.Enabled = true;
+                cmsPicBoxMoveSelectedPathInCode.BackColor = Color.Yellow;
+                statusStripSet(2,string.Format("{0} X:{1:0.00}  Y:{2:0.00} - click [{3}] to apply", Localization.getString("statusStripeSelectionMoved"), (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y), cmsPicBoxMoveSelectedPathInCode.Text), Color.Yellow);
+            }
             posIsMoving = false;
             allowZoom = true;
             _lastButtonUp = e.Button;
@@ -260,25 +282,43 @@ namespace GRBL_Plotter
 
         // find closest coordinate in GCode and mark
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {   // MessageBox.Show(picAbsPosX + "  " + picAbsPosY);
-            pictureBox1.Focus();
+        {   pictureBox1.Focus();
             moveTranslationOld = new xyPoint(e.X, e.Y);
             allowZoom = false;
             if (e.Button == MouseButtons.Left)
             {
                 if ((fCTBCode.LinesCount > 2) && !posIsMoving)
                 {
-                    int line = VisuGCode.setPosMarkerNearBy(picAbsPos);
+                    int line = 0;
                     posMoveStart = picAbsPos;
                     posMoveTmp = posMoveStart;
                     posMoveEnd = posMoveStart;
 
-                    moveToMarkedPositionToolStripMenuItem.ToolTipText = "Work X: " + grbl.posMarker.X.ToString() + "   Y: " + grbl.posMarker.Y.ToString();
+                    if (manualEdit)
+                        newCodeEnd();
+                    if (Panel.ModifierKeys == Keys.Alt)
+                    {
+                        line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);         // find line with coord nearby, mark / unmark figure
+                        fCTBCodeClickedLineNow = line;
+                        findFigureMarkSelection(xmlMarkerType.Line, line);
+                    }
+                    else if (Panel.ModifierKeys == Keys.Control) //Keys.Alt)
+                    {
+                        line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);         // find line with coord nearby, mark / unmark figure
+                        fCTBCodeClickedLineNow = line;
+                        findFigureMarkSelection(xmlMarkerType.Group, line);
+                    }
+                    else
+                    {
+                        line = VisuGCode.setPosMarkerNearBy(picAbsPos);         // find line with coord nearby, mark / unmark figure
+                        fCTBCodeClickedLineNow = line;
+                        findFigureMarkSelection(xmlMarkerType.Figure, line);
+                    }
 
-                    fCTBCodeClickedLineNow = line;
-                    fCTBCodeMarkLine();
-                    fCTBBookmark.DoVisible();
-                    findFigureMarkSelection(Color.OrangeRed);
+                    cmsPicBoxMoveToMarkedPosition.ToolTipText = "Work X: " + grbl.posMarker.X.ToString() + "   Y: " + grbl.posMarker.Y.ToString();
+                    enableBlockCommands(VisuGCode.getHighlightStatus() > 0 );
+                    if (VisuGCode.codeBlocksAvailable())
+                        statusStripSet(1, Localization.getString("statusStripeClickKeys2"),Color.LightGreen);
                     posIsMoving = false;
                 }
             }
@@ -368,9 +408,6 @@ namespace GRBL_Plotter
 
             pictureBox1.Invalidate();
         }
-        private void resetZoomingToolStripMenuItem_Click(object sender, EventArgs e)
-        { pBoxTransform.Reset(); zoomFactor = 1; 
-        }
 
         private void setGraphicProperties()
         {
@@ -406,6 +443,121 @@ namespace GRBL_Plotter
             picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);
         }
         #endregion
+
+        #region cmsPictureBox events
+        private void cmsPicBoxEnable(bool enable = true)
+        {   cmsPicBoxMoveToMarkedPosition.Enabled = enable;
+            cmsPicBoxZeroXYAtMarkedPosition.Enabled = enable;
+            cmsPicBoxMoveGraphicsOrigin.Enabled = enable;
+            cmsPicBoxResetZooming.Enabled = enable;
+            cmsPicBoxSetGCodeAsBackground.Enabled = enable;
+            cmsPicBoxClearBackground.Enabled = enable;
+        }
+
+        private void cmsPicBoxMoveToMarkedPosition_Click(object sender, EventArgs e)
+        {   sendCommand(String.Format("G0 X{0} Y{1}", gcode.frmtNum(grbl.posMarker.X), gcode.frmtNum(grbl.posMarker.Y)).Replace(',', '.'));
+        }
+
+        private void cmsPicBoxZeroXYAtMarkedPosition_Click(object sender, EventArgs e)
+        {   xyPoint tmp = (xyPoint)(grbl.posWork) - grbl.posMarker;
+            sendCommand(String.Format(zeroCmd + " X{0} Y{1}", gcode.frmtNum(tmp.X), gcode.frmtNum(tmp.Y)).Replace(',', '.'));
+        //    grbl.posMarker = new xyPoint(0, 0);
+        }
+        private void cmsPicBoxMoveGraphicsOrigin_Click(object sender, EventArgs e)
+        {   unDo.setCode(fCTBCode.Text, cmsPicBoxMoveGraphicsOrigin.Text, this);
+            clearTextSelection(fCTBCodeClickedLineNow);
+            VisuGCode.markSelectedFigure(-1);
+            fCTBCode.Text = VisuGCode.transformGCodeOffset(grbl.posMarker.X, grbl.posMarker.Y, VisuGCode.translate.None);
+            transformEnd();
+            grbl.posMarker = new xyPoint(0, 0);
+        }
+
+        private void cmsPicBoxResetZooming_Click(object sender, EventArgs e)
+        {   pBoxTransform.Reset(); zoomFactor = 1;    }
+
+        private void cmsPicBoxPasteFromClipboard_Click(object sender, EventArgs e)
+        {   unDo.setCode(fCTBCode.Text, cmsPicBoxPasteFromClipboard.Text, this);
+            loadFromClipboard();
+            enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
+        }
+
+        private void cmsPicBoxReloadFile_Click(object sender, EventArgs e)
+        {   reStartConvertFile(sender, e);   }
+
+        private void cmsPicBoxMoveToFirstPos_Click(object sender, EventArgs e)
+        {
+            //      int start = findFigureMarkSelection(xmlMarkerType.Figure, 0);
+            //     fCTBCodeClickedLineNow = start;
+            fCTBCodeMarkLine();
+            fCTBCode.DoCaretVisible();
+            return;
+        }
+
+        private void cmsPicBoxDeletePath_Click(object sender, EventArgs e)
+        {   unDo.setCode(fCTBCode.Text, cmsPicBoxDeletePath.Text, this);
+            if (figureIsMarked)
+            {   resetView = true;
+                fCTBCode.InsertText("( Figure removed )\r\n");
+                transformEnd();
+            }
+            return;
+        }
+
+        private void cmsPicBoxCropSelectedPath_Click(object sender, EventArgs e)
+        {
+            if (manualEdit)
+                return;
+            transformStart(cmsPicBoxCropSelectedPath.Text, false);
+
+            if ((xmlMarker.GetGroupCount() > 0) && (markedBlockType == xmlMarkerType.Group))
+            {   if (xmlMarker.GetGroup(fCTBCodeClickedLineNow, 10))    // get range group+1-start to group+n-end
+                {   setTextSelection(xmlMarker.lastGroup.lineStart, xmlMarker.lastGroup.lineEnd);
+                    fCTBCode.SelectedText = "";
+                }
+                if (xmlMarker.GetGroup(fCTBCodeClickedLineNow, -10))    // get range group0-start to group-1-end
+                {   setTextSelection(xmlMarker.lastGroup.lineStart, xmlMarker.lastGroup.lineEnd);
+                    fCTBCode.SelectedText = "";
+                }
+            }
+            else if ((xmlMarker.GetFigureCount() > 0) && (markedBlockType == xmlMarkerType.Figure))
+            {
+                if (xmlMarker.GetFigure(fCTBCodeClickedLineNow, 10))    // get range group+1-start to group+n-end
+                {   setTextSelection(xmlMarker.lastGroup.lineStart, xmlMarker.lastGroup.lineEnd);
+                    fCTBCode.SelectedText = "";
+                }
+                if (xmlMarker.GetFigure(fCTBCodeClickedLineNow, -10))    // get range group0-start to group-1-end
+                {   setTextSelection(xmlMarker.lastGroup.lineStart, xmlMarker.lastGroup.lineEnd);
+                    fCTBCode.SelectedText = "";
+                }
+            }
+            else
+                fCTBCode.Text = VisuGCode.cutOutFigure();
+            transformEnd();
+        }
+
+        private void cmsPicBoxMoveSelectedPathInCode_Click(object sender, EventArgs e)
+        {
+            transformStart(cmsPicBoxMoveSelectedPathInCode.Text);
+            zoomFactor = 1;
+            fCTBCode.Text = VisuGCode.transformGCodeOffset(-(posMoveEnd.X - posMoveStart.X), -(posMoveEnd.Y - posMoveStart.Y), VisuGCode.translate.None);
+            fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
+            fCTBCodeClickedLineLast = 0;
+            transformEnd();
+            statusStripClear(2);
+            cmsPicBoxMoveSelectedPathInCode.Enabled = false;
+            cmsPicBoxMoveSelectedPathInCode.BackColor = SystemColors.Control;
+        }
+
+        private void cmsPicBoxSetGCodeAsBackground_Click(object sender, EventArgs e)
+        {   VisuGCode.setPathAsLandMark();
+            Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked = true;
+        }
+
+        private void cmsPicBoxClearBackground_Click(object sender, EventArgs e)
+        { VisuGCode.setPathAsLandMark(true); }
+
+        #endregion
+
 
     }
 }

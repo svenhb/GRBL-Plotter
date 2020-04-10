@@ -63,6 +63,7 @@ namespace GRBL_Plotter
             double factor = 100 * VisuGCode.Simulation.dt / 50;
             lblElapsed.Text = string.Format("{0} {1:0}%", Localization.getString("mainSimuSpeed"), factor);
             btnSimulatePause.Visible = true;
+            lbInfo.BackColor = System.Drawing.Color.LightGreen;
         }
         private void simuStop()
         {
@@ -79,14 +80,19 @@ namespace GRBL_Plotter
             lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.getString("mainProgress"), 0);
             lblElapsed.Text = "Time";
             btnSimulatePause.Visible = false;
+            lbInfo.BackColor = System.Drawing.SystemColors.Control;
         }
 
         private void simulationTimer_Tick(object sender, EventArgs e)
         {
             simuLine = VisuGCode.Simulation.Next();
+            if ((simuLine >= 0) && (simuLine < fCTBCode.Lines.Count()))
+                lbInfo.Text = string.Format("Line {0}: {1}",(simuLine+1), fCTBCode.Lines[simuLine] );
+            else
+                lbInfo.Text = string.Format("Line {0}", (simuLine + 1));
+
             if (simuLine >= 0)
-            {
-                fCTBCode.Selection = fCTBCode.GetLine(simuLine);
+            {   fCTBCode.Selection = fCTBCode.GetLine(simuLine);
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCode.BookmarkLine(simuLine);
                 fCTBCode.DoCaretVisible();
@@ -94,8 +100,7 @@ namespace GRBL_Plotter
                 pictureBox1.Invalidate(); // avoid too much events
             }
             else
-            {
-                simuStop();
+            {   simuStop();
                 simuLine = 0;   // Math.Abs(simuLine);
                 VisuGCode.Simulation.Reset();
                 FastColoredTextBoxNS.Range mySelection = fCTBCode.Range;
@@ -111,6 +116,7 @@ namespace GRBL_Plotter
                 fCTBCode.DoCaretVisible();
                 fCTBCodeClickedLineLast = simuLine;
                 pictureBox1.Invalidate(); // avoid too much events
+                lbInfo.Text = string.Format("Simulation finished");
                 return;
             }
             pbFile.Value = simuLine;

@@ -46,20 +46,22 @@ namespace GRBL_Plotter
                 StyleZAxis.Dispose();
                 StyleCommentxml.Dispose();
                 StyleFail.Dispose();
+
+                penUp.Dispose();
                 penDown.Dispose();
                 penRotary.Dispose();
-                penMarker.Dispose();
+                penHeightMap.Dispose();
                 penRuler.Dispose();
                 penTool.Dispose();
-                penUp.Dispose();
-                pBoxTransform.Dispose();
-                penHeightMap.Dispose();
+                penMarker.Dispose();
+                penLandMark.Dispose();
+
                 brushMachineLimit.Dispose();
                 brushBackground.Dispose();
-                pBoxOrig.Dispose();
-                penLandMark.Dispose();
                 StyleAAxis.Dispose();
                 StyleLineN.Dispose();
+                pBoxOrig.Dispose();
+                pBoxTransform.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -77,18 +79,34 @@ namespace GRBL_Plotter
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tLPLinks = new System.Windows.Forms.TableLayoutPanel();
             this.fCTBCode = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.cmsCode = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsFCTB = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.unDo3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsEditorHotkeys = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
-            this.codeBlocksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksFold = new System.Windows.Forms.ToolStripMenuItem();
             this.foldCodeBlocks1stLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldCodeBlocks2ndLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foldCodeBlocks3rdLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandCodeBlocksToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
-            this.moveSelectedCodeBlockUpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveSelectedCodeBlockDownToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksMove = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsFCTBMoveSelectedCodeBlockMostUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsFCTBMoveSelectedCodeBlockUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsFCTBMoveSelectedCodeBlockDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsFCTBMoveSelectedCodeBlockMostDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSort = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortReverse = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortById = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortByGeometry = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortByToolNr = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortByToolName = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortByColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortByCodeSize = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortByCodeArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksRemoveGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksRemoveAll = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmsEditMode = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeSelect = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodePaste = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +118,6 @@ namespace GRBL_Plotter
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsCodeSendLine = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCommentOut = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsUpdate2DView = new System.Windows.Forms.ToolStripMenuItem();
             this.gBoxStream = new System.Windows.Forms.GroupBox();
             this.btnSimulatePause = new System.Windows.Forms.Button();
@@ -209,24 +226,23 @@ namespace GRBL_Plotter
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unDo2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.zeroXYAtMarkedPositionG92ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveToMarkedPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxMoveToMarkedPosition = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxZeroXYAtMarkedPosition = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxMoveGraphicsOrigin = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.resetZoomingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxResetZooming = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.pasteFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxPasteFromClipboard = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxReloadFile = new System.Windows.Forms.ToolStripMenuItem();
             this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteThisCodeLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveToFirstPosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletePathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutOutSelectedPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveSelectedPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxMarkFirstPos = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxDeletePath = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxCropSelectedPath = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxMoveSelectedPathInCode = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.setGCodeAsBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.radiusCorrectionOnSelectedPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxSetGCodeAsBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxClearBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.tBURL = new System.Windows.Forms.TextBox();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -376,13 +392,17 @@ namespace GRBL_Plotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gamePadTimer = new System.Windows.Forms.Timer(this.components);
             this.simulationTimer = new System.Windows.Forms.Timer(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel0 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tLPLinks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).BeginInit();
-            this.cmsCode.SuspendLayout();
+            this.cmsFCTB.SuspendLayout();
             this.gBoxStream.SuspendLayout();
             this.gBoxDimension.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -410,6 +430,7 @@ namespace GRBL_Plotter
             this.tLPCustomButton2.SuspendLayout();
             this.groupBoxCoordinates.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -439,6 +460,7 @@ namespace GRBL_Plotter
             // 
             // fCTBCode
             // 
+            this.fCTBCode.AllowMacroRecording = false;
             this.fCTBCode.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -457,28 +479,39 @@ namespace GRBL_Plotter
             this.fCTBCode.CharCnWidth = 13;
             this.fCTBCode.CharHeight = 12;
             this.fCTBCode.CharWidth = 7;
-            this.fCTBCode.ContextMenuStrip = this.cmsCode;
+            this.fCTBCode.ContextMenuStrip = this.cmsFCTB;
             this.fCTBCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fCTBCode.DelayedTextChangedInterval = 200;
             this.fCTBCode.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fCTBCode.Hotkeys = resources.GetString("fCTBCode.Hotkeys");
             this.fCTBCode.IsReplaceMode = false;
             this.fCTBCode.Name = "fCTBCode";
             this.fCTBCode.Paddings = new System.Windows.Forms.Padding(0);
             this.fCTBCode.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.fCTBCode.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fCTBCode.ServiceColors")));
+            this.fCTBCode.ShowFoldingLines = true;
             this.fCTBCode.ToolTip = null;
             this.fCTBCode.Zoom = 100;
             this.fCTBCode.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChanged);
+            this.fCTBCode.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fCTBCode_TextChangedDelayed);
             this.fCTBCode.Click += new System.EventHandler(this.fCTBCode_Click);
             this.fCTBCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fCTBCode_KeyDown);
             this.fCTBCode.MouseHover += new System.EventHandler(this.fCTBCode_MouseHover);
             // 
-            // cmsCode
+            // cmsFCTB
             // 
-            this.cmsCode.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsFCTB.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unDo3ToolStripMenuItem,
+            this.toolStripSeparator13,
             this.cmsEditorHotkeys,
             this.toolStripSeparator19,
-            this.codeBlocksToolStripMenuItem,
+            this.cmsCodeBlocksFold,
+            this.cmsCodeBlocksMove,
+            this.cmsCodeBlocksSort,
+            this.cmsCodeBlocksRemoveGroup,
+            this.cmsCodeBlocksRemoveAll,
             this.toolStripSeparator11,
+            this.cmsEditMode,
             this.cmsCodeSelect,
             this.cmsCodeCopy,
             this.cmsCodePaste,
@@ -490,35 +523,42 @@ namespace GRBL_Plotter
             this.toolStripSeparator12,
             this.cmsCodeSendLine,
             this.cmsCommentOut,
-            this.toolStripSeparator13,
             this.cmsUpdate2DView});
-            this.cmsCode.Name = "cmsCode";
-            this.cmsCode.ShowImageMargin = false;
-            resources.ApplyResources(this.cmsCode, "cmsCode");
-            this.cmsCode.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsCode_ItemClicked);
+            this.cmsFCTB.Name = "cmsCode";
+            this.cmsFCTB.ShowImageMargin = false;
+            resources.ApplyResources(this.cmsFCTB, "cmsFCTB");
+            this.cmsFCTB.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.cmsFCTB_ItemClicked);
+            // 
+            // unDo3ToolStripMenuItem
+            // 
+            this.unDo3ToolStripMenuItem.Name = "unDo3ToolStripMenuItem";
+            resources.ApplyResources(this.unDo3ToolStripMenuItem, "unDo3ToolStripMenuItem");
+            this.unDo3ToolStripMenuItem.Click += new System.EventHandler(this.unDoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
             // 
             // cmsEditorHotkeys
             // 
-            this.cmsEditorHotkeys.Name = "cmsEditorHotkeys";
             resources.ApplyResources(this.cmsEditorHotkeys, "cmsEditorHotkeys");
+            this.cmsEditorHotkeys.Name = "cmsEditorHotkeys";
             // 
             // toolStripSeparator19
             // 
             this.toolStripSeparator19.Name = "toolStripSeparator19";
             resources.ApplyResources(this.toolStripSeparator19, "toolStripSeparator19");
             // 
-            // codeBlocksToolStripMenuItem
+            // cmsCodeBlocksFold
             // 
-            this.codeBlocksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.cmsCodeBlocksFold, "cmsCodeBlocksFold");
+            this.cmsCodeBlocksFold.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.foldCodeBlocks1stLevelToolStripMenuItem,
             this.foldCodeBlocks2ndLevelToolStripMenuItem,
             this.foldCodeBlocks3rdLevelToolStripMenuItem,
-            this.expandCodeBlocksToolStripMenuItem1,
-            this.toolStripSeparator20,
-            this.moveSelectedCodeBlockUpToolStripMenuItem1,
-            this.moveSelectedCodeBlockDownToolStripMenuItem1});
-            resources.ApplyResources(this.codeBlocksToolStripMenuItem, "codeBlocksToolStripMenuItem");
-            this.codeBlocksToolStripMenuItem.Name = "codeBlocksToolStripMenuItem";
+            this.expandCodeBlocksToolStripMenuItem1});
+            this.cmsCodeBlocksFold.Name = "cmsCodeBlocksFold";
             // 
             // foldCodeBlocks1stLevelToolStripMenuItem
             // 
@@ -544,52 +584,148 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.expandCodeBlocksToolStripMenuItem1, "expandCodeBlocksToolStripMenuItem1");
             this.expandCodeBlocksToolStripMenuItem1.Click += new System.EventHandler(this.expandCodeBlocksToolStripMenuItem_Click);
             // 
-            // toolStripSeparator20
+            // cmsCodeBlocksMove
             // 
-            this.toolStripSeparator20.Name = "toolStripSeparator20";
-            resources.ApplyResources(this.toolStripSeparator20, "toolStripSeparator20");
+            resources.ApplyResources(this.cmsCodeBlocksMove, "cmsCodeBlocksMove");
+            this.cmsCodeBlocksMove.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsFCTBMoveSelectedCodeBlockMostUp,
+            this.cmsFCTBMoveSelectedCodeBlockUp,
+            this.cmsFCTBMoveSelectedCodeBlockDown,
+            this.cmsFCTBMoveSelectedCodeBlockMostDown});
+            this.cmsCodeBlocksMove.Name = "cmsCodeBlocksMove";
             // 
-            // moveSelectedCodeBlockUpToolStripMenuItem1
+            // cmsFCTBMoveSelectedCodeBlockMostUp
             // 
-            resources.ApplyResources(this.moveSelectedCodeBlockUpToolStripMenuItem1, "moveSelectedCodeBlockUpToolStripMenuItem1");
-            this.moveSelectedCodeBlockUpToolStripMenuItem1.Name = "moveSelectedCodeBlockUpToolStripMenuItem1";
-            this.moveSelectedCodeBlockUpToolStripMenuItem1.Click += new System.EventHandler(this.moveSelectedCodeBlockUpToolStripMenuItem_Click);
+            this.cmsFCTBMoveSelectedCodeBlockMostUp.Name = "cmsFCTBMoveSelectedCodeBlockMostUp";
+            resources.ApplyResources(this.cmsFCTBMoveSelectedCodeBlockMostUp, "cmsFCTBMoveSelectedCodeBlockMostUp");
+            this.cmsFCTBMoveSelectedCodeBlockMostUp.Click += new System.EventHandler(this.moveSelectedCodeBlockMostUpToolStripMenuItem_Click);
             // 
-            // moveSelectedCodeBlockDownToolStripMenuItem1
+            // cmsFCTBMoveSelectedCodeBlockUp
             // 
-            resources.ApplyResources(this.moveSelectedCodeBlockDownToolStripMenuItem1, "moveSelectedCodeBlockDownToolStripMenuItem1");
-            this.moveSelectedCodeBlockDownToolStripMenuItem1.Name = "moveSelectedCodeBlockDownToolStripMenuItem1";
-            this.moveSelectedCodeBlockDownToolStripMenuItem1.Click += new System.EventHandler(this.moveSelectedCodeBlockDownToolStripMenuItem_Click);
+            this.cmsFCTBMoveSelectedCodeBlockUp.Name = "cmsFCTBMoveSelectedCodeBlockUp";
+            resources.ApplyResources(this.cmsFCTBMoveSelectedCodeBlockUp, "cmsFCTBMoveSelectedCodeBlockUp");
+            this.cmsFCTBMoveSelectedCodeBlockUp.Click += new System.EventHandler(this.moveSelectedCodeBlockUpToolStripMenuItem_Click);
+            // 
+            // cmsFCTBMoveSelectedCodeBlockDown
+            // 
+            this.cmsFCTBMoveSelectedCodeBlockDown.Name = "cmsFCTBMoveSelectedCodeBlockDown";
+            resources.ApplyResources(this.cmsFCTBMoveSelectedCodeBlockDown, "cmsFCTBMoveSelectedCodeBlockDown");
+            this.cmsFCTBMoveSelectedCodeBlockDown.Click += new System.EventHandler(this.moveSelectedCodeBlockDownToolStripMenuItem_Click);
+            // 
+            // cmsFCTBMoveSelectedCodeBlockMostDown
+            // 
+            this.cmsFCTBMoveSelectedCodeBlockMostDown.Name = "cmsFCTBMoveSelectedCodeBlockMostDown";
+            resources.ApplyResources(this.cmsFCTBMoveSelectedCodeBlockMostDown, "cmsFCTBMoveSelectedCodeBlockMostDown");
+            this.cmsFCTBMoveSelectedCodeBlockMostDown.Click += new System.EventHandler(this.moveSelectedCodeBlockMostDownToolStripMenuItem_Click);
+            // 
+            // cmsCodeBlocksSort
+            // 
+            this.cmsCodeBlocksSort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsCodeBlocksSortReverse,
+            this.cmsCodeBlocksSortById,
+            this.cmsCodeBlocksSortByGeometry,
+            this.cmsCodeBlocksSortByToolNr,
+            this.cmsCodeBlocksSortByToolName,
+            this.cmsCodeBlocksSortByColor,
+            this.cmsCodeBlocksSortByCodeSize,
+            this.cmsCodeBlocksSortByCodeArea});
+            resources.ApplyResources(this.cmsCodeBlocksSort, "cmsCodeBlocksSort");
+            this.cmsCodeBlocksSort.Name = "cmsCodeBlocksSort";
+            // 
+            // cmsCodeBlocksSortReverse
+            // 
+            this.cmsCodeBlocksSortReverse.CheckOnClick = true;
+            this.cmsCodeBlocksSortReverse.Name = "cmsCodeBlocksSortReverse";
+            resources.ApplyResources(this.cmsCodeBlocksSortReverse, "cmsCodeBlocksSortReverse");
+            // 
+            // cmsCodeBlocksSortById
+            // 
+            this.cmsCodeBlocksSortById.Name = "cmsCodeBlocksSortById";
+            resources.ApplyResources(this.cmsCodeBlocksSortById, "cmsCodeBlocksSortById");
+            this.cmsCodeBlocksSortById.Click += new System.EventHandler(this.cmsCodeBlocksSortById_Click);
+            // 
+            // cmsCodeBlocksSortByGeometry
+            // 
+            this.cmsCodeBlocksSortByGeometry.Name = "cmsCodeBlocksSortByGeometry";
+            resources.ApplyResources(this.cmsCodeBlocksSortByGeometry, "cmsCodeBlocksSortByGeometry");
+            this.cmsCodeBlocksSortByGeometry.Click += new System.EventHandler(this.cmsCodeBlocksSortByGeometry_Click);
+            // 
+            // cmsCodeBlocksSortByToolNr
+            // 
+            this.cmsCodeBlocksSortByToolNr.Name = "cmsCodeBlocksSortByToolNr";
+            resources.ApplyResources(this.cmsCodeBlocksSortByToolNr, "cmsCodeBlocksSortByToolNr");
+            this.cmsCodeBlocksSortByToolNr.Click += new System.EventHandler(this.cmsCodeBlocksSortByToolNr_Click);
+            // 
+            // cmsCodeBlocksSortByToolName
+            // 
+            this.cmsCodeBlocksSortByToolName.Name = "cmsCodeBlocksSortByToolName";
+            resources.ApplyResources(this.cmsCodeBlocksSortByToolName, "cmsCodeBlocksSortByToolName");
+            this.cmsCodeBlocksSortByToolName.Click += new System.EventHandler(this.cmsCodeBlocksSortByToolName_Click);
+            // 
+            // cmsCodeBlocksSortByColor
+            // 
+            this.cmsCodeBlocksSortByColor.Name = "cmsCodeBlocksSortByColor";
+            resources.ApplyResources(this.cmsCodeBlocksSortByColor, "cmsCodeBlocksSortByColor");
+            this.cmsCodeBlocksSortByColor.Click += new System.EventHandler(this.cmsCodeBlocksSortByColor_Click);
+            // 
+            // cmsCodeBlocksSortByCodeSize
+            // 
+            this.cmsCodeBlocksSortByCodeSize.Name = "cmsCodeBlocksSortByCodeSize";
+            resources.ApplyResources(this.cmsCodeBlocksSortByCodeSize, "cmsCodeBlocksSortByCodeSize");
+            this.cmsCodeBlocksSortByCodeSize.Click += new System.EventHandler(this.cmsCodeBlocksSortByCodeSize_Click);
+            // 
+            // cmsCodeBlocksSortByCodeArea
+            // 
+            this.cmsCodeBlocksSortByCodeArea.Name = "cmsCodeBlocksSortByCodeArea";
+            resources.ApplyResources(this.cmsCodeBlocksSortByCodeArea, "cmsCodeBlocksSortByCodeArea");
+            this.cmsCodeBlocksSortByCodeArea.Click += new System.EventHandler(this.cmsCodeBlocksSortByCodeArea_Click);
+            // 
+            // cmsCodeBlocksRemoveGroup
+            // 
+            resources.ApplyResources(this.cmsCodeBlocksRemoveGroup, "cmsCodeBlocksRemoveGroup");
+            this.cmsCodeBlocksRemoveGroup.Name = "cmsCodeBlocksRemoveGroup";
+            this.cmsCodeBlocksRemoveGroup.Click += new System.EventHandler(this.cmsCodeBlocksRemoveGroup_Click);
+            // 
+            // cmsCodeBlocksRemoveAll
+            // 
+            resources.ApplyResources(this.cmsCodeBlocksRemoveAll, "cmsCodeBlocksRemoveAll");
+            this.cmsCodeBlocksRemoveAll.Name = "cmsCodeBlocksRemoveAll";
+            this.cmsCodeBlocksRemoveAll.Click += new System.EventHandler(this.cmsCodeBlocksRemoveAll_Click);
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
             resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
             // 
+            // cmsEditMode
+            // 
+            resources.ApplyResources(this.cmsEditMode, "cmsEditMode");
+            this.cmsEditMode.Name = "cmsEditMode";
+            // 
             // cmsCodeSelect
             // 
-            this.cmsCodeSelect.Name = "cmsCodeSelect";
             resources.ApplyResources(this.cmsCodeSelect, "cmsCodeSelect");
+            this.cmsCodeSelect.Name = "cmsCodeSelect";
             // 
             // cmsCodeCopy
             // 
-            this.cmsCodeCopy.Name = "cmsCodeCopy";
             resources.ApplyResources(this.cmsCodeCopy, "cmsCodeCopy");
+            this.cmsCodeCopy.Name = "cmsCodeCopy";
             // 
             // cmsCodePaste
             // 
-            this.cmsCodePaste.Name = "cmsCodePaste";
             resources.ApplyResources(this.cmsCodePaste, "cmsCodePaste");
+            this.cmsCodePaste.Name = "cmsCodePaste";
             // 
             // cmsCodePasteSpecial1
             // 
-            this.cmsCodePasteSpecial1.Name = "cmsCodePasteSpecial1";
             resources.ApplyResources(this.cmsCodePasteSpecial1, "cmsCodePasteSpecial1");
+            this.cmsCodePasteSpecial1.Name = "cmsCodePasteSpecial1";
             // 
             // cmsCodePasteSpecial2
             // 
-            this.cmsCodePasteSpecial2.Name = "cmsCodePasteSpecial2";
             resources.ApplyResources(this.cmsCodePasteSpecial2, "cmsCodePasteSpecial2");
+            this.cmsCodePasteSpecial2.Name = "cmsCodePasteSpecial2";
             // 
             // toolStripSeparator14
             // 
@@ -598,13 +734,13 @@ namespace GRBL_Plotter
             // 
             // cmsFindDialog
             // 
-            this.cmsFindDialog.Name = "cmsFindDialog";
             resources.ApplyResources(this.cmsFindDialog, "cmsFindDialog");
+            this.cmsFindDialog.Name = "cmsFindDialog";
             // 
             // cmsReplaceDialog
             // 
-            this.cmsReplaceDialog.Name = "cmsReplaceDialog";
             resources.ApplyResources(this.cmsReplaceDialog, "cmsReplaceDialog");
+            this.cmsReplaceDialog.Name = "cmsReplaceDialog";
             // 
             // toolStripSeparator12
             // 
@@ -621,15 +757,10 @@ namespace GRBL_Plotter
             this.cmsCommentOut.Name = "cmsCommentOut";
             resources.ApplyResources(this.cmsCommentOut, "cmsCommentOut");
             // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
-            // 
             // cmsUpdate2DView
             // 
-            this.cmsUpdate2DView.Name = "cmsUpdate2DView";
             resources.ApplyResources(this.cmsUpdate2DView, "cmsUpdate2DView");
+            this.cmsUpdate2DView.Name = "cmsUpdate2DView";
             // 
             // gBoxStream
             // 
@@ -1423,10 +1554,10 @@ namespace GRBL_Plotter
             // 
             // cBSendJogStop
             // 
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
             this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
             this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
             this.cBSendJogStop.Name = "cBSendJogStop";
             this.cBSendJogStop.UseVisualStyleBackColor = true;
             // 
@@ -1522,24 +1653,23 @@ namespace GRBL_Plotter
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unDo2ToolStripMenuItem,
             this.toolStripSeparator17,
-            this.zeroXYAtMarkedPositionG92ToolStripMenuItem,
-            this.moveToMarkedPositionToolStripMenuItem,
+            this.cmsPicBoxMoveToMarkedPosition,
+            this.cmsPicBoxZeroXYAtMarkedPosition,
+            this.cmsPicBoxMoveGraphicsOrigin,
             this.toolStripSeparator9,
-            this.resetZoomingToolStripMenuItem,
+            this.cmsPicBoxResetZooming,
             this.toolStripSeparator8,
-            this.pasteFromClipboardToolStripMenuItem,
-            this.reloadFileToolStripMenuItem,
+            this.cmsPicBoxPasteFromClipboard,
+            this.cmsPicBoxReloadFile,
             this.deletenotMarkToolStripMenuItem,
             this.toolStripSeparator1,
-            this.deleteThisCodeLineToolStripMenuItem,
-            this.moveToFirstPosToolStripMenuItem,
-            this.deletePathToolStripMenuItem,
-            this.cutOutSelectedPathToolStripMenuItem,
-            this.moveSelectedPathToolStripMenuItem,
+            this.cmsPicBoxMarkFirstPos,
+            this.cmsPicBoxDeletePath,
+            this.cmsPicBoxCropSelectedPath,
+            this.cmsPicBoxMoveSelectedPathInCode,
             this.toolStripSeparator10,
-            this.setGCodeAsBackgroundToolStripMenuItem,
-            this.clearBackgroundToolStripMenuItem,
-            this.radiusCorrectionOnSelectedPathToolStripMenuItem});
+            this.cmsPicBoxSetGCodeAsBackground,
+            this.cmsPicBoxClearBackground});
             this.cmsPictureBox.Name = "cmsPictureBox";
             resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
             // 
@@ -1554,45 +1684,51 @@ namespace GRBL_Plotter
             this.toolStripSeparator17.Name = "toolStripSeparator17";
             resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             // 
-            // zeroXYAtMarkedPositionG92ToolStripMenuItem
+            // cmsPicBoxMoveToMarkedPosition
             // 
-            this.zeroXYAtMarkedPositionG92ToolStripMenuItem.Name = "zeroXYAtMarkedPositionG92ToolStripMenuItem";
-            resources.ApplyResources(this.zeroXYAtMarkedPositionG92ToolStripMenuItem, "zeroXYAtMarkedPositionG92ToolStripMenuItem");
-            this.zeroXYAtMarkedPositionG92ToolStripMenuItem.Click += new System.EventHandler(this.zeroXYAtMarkedPositionG92ToolStripMenuItem_Click);
+            this.cmsPicBoxMoveToMarkedPosition.Name = "cmsPicBoxMoveToMarkedPosition";
+            resources.ApplyResources(this.cmsPicBoxMoveToMarkedPosition, "cmsPicBoxMoveToMarkedPosition");
+            this.cmsPicBoxMoveToMarkedPosition.Click += new System.EventHandler(this.cmsPicBoxMoveToMarkedPosition_Click);
             // 
-            // moveToMarkedPositionToolStripMenuItem
+            // cmsPicBoxZeroXYAtMarkedPosition
             // 
-            this.moveToMarkedPositionToolStripMenuItem.Name = "moveToMarkedPositionToolStripMenuItem";
-            resources.ApplyResources(this.moveToMarkedPositionToolStripMenuItem, "moveToMarkedPositionToolStripMenuItem");
-            this.moveToMarkedPositionToolStripMenuItem.Click += new System.EventHandler(this.moveToMarkedPositionToolStripMenuItem_Click);
+            this.cmsPicBoxZeroXYAtMarkedPosition.Name = "cmsPicBoxZeroXYAtMarkedPosition";
+            resources.ApplyResources(this.cmsPicBoxZeroXYAtMarkedPosition, "cmsPicBoxZeroXYAtMarkedPosition");
+            this.cmsPicBoxZeroXYAtMarkedPosition.Click += new System.EventHandler(this.cmsPicBoxZeroXYAtMarkedPosition_Click);
+            // 
+            // cmsPicBoxMoveGraphicsOrigin
+            // 
+            this.cmsPicBoxMoveGraphicsOrigin.Name = "cmsPicBoxMoveGraphicsOrigin";
+            resources.ApplyResources(this.cmsPicBoxMoveGraphicsOrigin, "cmsPicBoxMoveGraphicsOrigin");
+            this.cmsPicBoxMoveGraphicsOrigin.Click += new System.EventHandler(this.cmsPicBoxMoveGraphicsOrigin_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
             // 
-            // resetZoomingToolStripMenuItem
+            // cmsPicBoxResetZooming
             // 
-            this.resetZoomingToolStripMenuItem.Name = "resetZoomingToolStripMenuItem";
-            resources.ApplyResources(this.resetZoomingToolStripMenuItem, "resetZoomingToolStripMenuItem");
-            this.resetZoomingToolStripMenuItem.Click += new System.EventHandler(this.resetZoomingToolStripMenuItem_Click);
+            this.cmsPicBoxResetZooming.Name = "cmsPicBoxResetZooming";
+            resources.ApplyResources(this.cmsPicBoxResetZooming, "cmsPicBoxResetZooming");
+            this.cmsPicBoxResetZooming.Click += new System.EventHandler(this.cmsPicBoxResetZooming_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             // 
-            // pasteFromClipboardToolStripMenuItem
+            // cmsPicBoxPasteFromClipboard
             // 
-            this.pasteFromClipboardToolStripMenuItem.Name = "pasteFromClipboardToolStripMenuItem";
-            resources.ApplyResources(this.pasteFromClipboardToolStripMenuItem, "pasteFromClipboardToolStripMenuItem");
-            this.pasteFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteFromClipboardToolStripMenuItem_Click);
+            this.cmsPicBoxPasteFromClipboard.Name = "cmsPicBoxPasteFromClipboard";
+            resources.ApplyResources(this.cmsPicBoxPasteFromClipboard, "cmsPicBoxPasteFromClipboard");
+            this.cmsPicBoxPasteFromClipboard.Click += new System.EventHandler(this.cmsPicBoxPasteFromClipboard_Click);
             // 
-            // reloadFileToolStripMenuItem
+            // cmsPicBoxReloadFile
             // 
-            this.reloadFileToolStripMenuItem.Name = "reloadFileToolStripMenuItem";
-            resources.ApplyResources(this.reloadFileToolStripMenuItem, "reloadFileToolStripMenuItem");
-            this.reloadFileToolStripMenuItem.Click += new System.EventHandler(this.reloadFileToolStripMenuItem_Click);
+            this.cmsPicBoxReloadFile.Name = "cmsPicBoxReloadFile";
+            resources.ApplyResources(this.cmsPicBoxReloadFile, "cmsPicBoxReloadFile");
+            this.cmsPicBoxReloadFile.Click += new System.EventHandler(this.cmsPicBoxReloadFile_Click);
             // 
             // deletenotMarkToolStripMenuItem
             // 
@@ -1605,57 +1741,46 @@ namespace GRBL_Plotter
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
-            // deleteThisCodeLineToolStripMenuItem
+            // cmsPicBoxMarkFirstPos
             // 
-            this.deleteThisCodeLineToolStripMenuItem.Name = "deleteThisCodeLineToolStripMenuItem";
-            resources.ApplyResources(this.deleteThisCodeLineToolStripMenuItem, "deleteThisCodeLineToolStripMenuItem");
-            this.deleteThisCodeLineToolStripMenuItem.Click += new System.EventHandler(this.deleteThisCodeLineToolStripMenuItem_Click);
+            this.cmsPicBoxMarkFirstPos.Name = "cmsPicBoxMarkFirstPos";
+            resources.ApplyResources(this.cmsPicBoxMarkFirstPos, "cmsPicBoxMarkFirstPos");
+            this.cmsPicBoxMarkFirstPos.Click += new System.EventHandler(this.cmsPicBoxMoveToFirstPos_Click);
             // 
-            // moveToFirstPosToolStripMenuItem
+            // cmsPicBoxDeletePath
             // 
-            this.moveToFirstPosToolStripMenuItem.Name = "moveToFirstPosToolStripMenuItem";
-            resources.ApplyResources(this.moveToFirstPosToolStripMenuItem, "moveToFirstPosToolStripMenuItem");
-            this.moveToFirstPosToolStripMenuItem.Click += new System.EventHandler(this.moveToFirstPosToolStripMenuItem_Click);
+            resources.ApplyResources(this.cmsPicBoxDeletePath, "cmsPicBoxDeletePath");
+            this.cmsPicBoxDeletePath.Name = "cmsPicBoxDeletePath";
+            this.cmsPicBoxDeletePath.Click += new System.EventHandler(this.cmsPicBoxDeletePath_Click);
             // 
-            // deletePathToolStripMenuItem
+            // cmsPicBoxCropSelectedPath
             // 
-            this.deletePathToolStripMenuItem.Name = "deletePathToolStripMenuItem";
-            resources.ApplyResources(this.deletePathToolStripMenuItem, "deletePathToolStripMenuItem");
-            this.deletePathToolStripMenuItem.Click += new System.EventHandler(this.deletePathToolStripMenuItem_Click);
+            resources.ApplyResources(this.cmsPicBoxCropSelectedPath, "cmsPicBoxCropSelectedPath");
+            this.cmsPicBoxCropSelectedPath.Name = "cmsPicBoxCropSelectedPath";
+            this.cmsPicBoxCropSelectedPath.Click += new System.EventHandler(this.cmsPicBoxCropSelectedPath_Click);
             // 
-            // cutOutSelectedPathToolStripMenuItem
+            // cmsPicBoxMoveSelectedPathInCode
             // 
-            this.cutOutSelectedPathToolStripMenuItem.Name = "cutOutSelectedPathToolStripMenuItem";
-            resources.ApplyResources(this.cutOutSelectedPathToolStripMenuItem, "cutOutSelectedPathToolStripMenuItem");
-            this.cutOutSelectedPathToolStripMenuItem.Click += new System.EventHandler(this.cutOutSelectedPathToolStripMenuItem_Click);
-            // 
-            // moveSelectedPathToolStripMenuItem
-            // 
-            this.moveSelectedPathToolStripMenuItem.Name = "moveSelectedPathToolStripMenuItem";
-            resources.ApplyResources(this.moveSelectedPathToolStripMenuItem, "moveSelectedPathToolStripMenuItem");
-            this.moveSelectedPathToolStripMenuItem.Click += new System.EventHandler(this.moveSelectedPathToolStripMenuItem_Click);
+            resources.ApplyResources(this.cmsPicBoxMoveSelectedPathInCode, "cmsPicBoxMoveSelectedPathInCode");
+            this.cmsPicBoxMoveSelectedPathInCode.Name = "cmsPicBoxMoveSelectedPathInCode";
+            this.cmsPicBoxMoveSelectedPathInCode.Click += new System.EventHandler(this.cmsPicBoxMoveSelectedPathInCode_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
             // 
-            // setGCodeAsBackgroundToolStripMenuItem
+            // cmsPicBoxSetGCodeAsBackground
             // 
-            this.setGCodeAsBackgroundToolStripMenuItem.Name = "setGCodeAsBackgroundToolStripMenuItem";
-            resources.ApplyResources(this.setGCodeAsBackgroundToolStripMenuItem, "setGCodeAsBackgroundToolStripMenuItem");
-            this.setGCodeAsBackgroundToolStripMenuItem.Click += new System.EventHandler(this.setGCodeAsBackgroundToolStripMenuItem_Click);
+            this.cmsPicBoxSetGCodeAsBackground.Name = "cmsPicBoxSetGCodeAsBackground";
+            resources.ApplyResources(this.cmsPicBoxSetGCodeAsBackground, "cmsPicBoxSetGCodeAsBackground");
+            this.cmsPicBoxSetGCodeAsBackground.Click += new System.EventHandler(this.cmsPicBoxSetGCodeAsBackground_Click);
             // 
-            // clearBackgroundToolStripMenuItem
+            // cmsPicBoxClearBackground
             // 
-            this.clearBackgroundToolStripMenuItem.Name = "clearBackgroundToolStripMenuItem";
-            resources.ApplyResources(this.clearBackgroundToolStripMenuItem, "clearBackgroundToolStripMenuItem");
-            this.clearBackgroundToolStripMenuItem.Click += new System.EventHandler(this.clearBackgroundToolStripMenuItem_Click);
-            // 
-            // radiusCorrectionOnSelectedPathToolStripMenuItem
-            // 
-            this.radiusCorrectionOnSelectedPathToolStripMenuItem.Name = "radiusCorrectionOnSelectedPathToolStripMenuItem";
-            resources.ApplyResources(this.radiusCorrectionOnSelectedPathToolStripMenuItem, "radiusCorrectionOnSelectedPathToolStripMenuItem");
+            this.cmsPicBoxClearBackground.Name = "cmsPicBoxClearBackground";
+            resources.ApplyResources(this.cmsPicBoxClearBackground, "cmsPicBoxClearBackground");
+            this.cmsPicBoxClearBackground.Click += new System.EventHandler(this.cmsPicBoxClearBackground_Click);
             // 
             // tBURL
             // 
@@ -2710,6 +2835,30 @@ namespace GRBL_Plotter
             this.simulationTimer.Interval = 50;
             this.simulationTimer.Tick += new System.EventHandler(this.simulationTimer_Tick);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel0,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.statusStrip1.Name = "statusStrip1";
+            // 
+            // toolStripStatusLabel0
+            // 
+            this.toolStripStatusLabel0.Name = "toolStripStatusLabel0";
+            resources.ApplyResources(this.toolStripStatusLabel0, "toolStripStatusLabel0");
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            resources.ApplyResources(this.toolStripStatusLabel2, "toolStripStatusLabel2");
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2717,6 +2866,7 @@ namespace GRBL_Plotter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.statusStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -2735,7 +2885,7 @@ namespace GRBL_Plotter
             this.splitContainer1.ResumeLayout(false);
             this.tLPLinks.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fCTBCode)).EndInit();
-            this.cmsCode.ResumeLayout(false);
+            this.cmsFCTB.ResumeLayout(false);
             this.gBoxStream.ResumeLayout(false);
             this.gBoxStream.PerformLayout();
             this.gBoxDimension.ResumeLayout(false);
@@ -2754,13 +2904,13 @@ namespace GRBL_Plotter
             this.tLPRechtsUnten.ResumeLayout(false);
             this.tLPRechtsUnten.PerformLayout();
             this.tLPRechtsUntenRechts.ResumeLayout(false);
+            this.tLPRechtsUntenRechts.PerformLayout();
             this.gB_Jogging.ResumeLayout(false);
             this.gB_Jogging.PerformLayout();
             this.gB_Jog0.ResumeLayout(false);
             this.gB_Jog0.PerformLayout();
             this.tLPRechtsUntenRechtsMitte.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -2776,6 +2926,8 @@ namespace GRBL_Plotter
             this.groupBoxCoordinates.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2831,7 +2983,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnCustom16;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label lbInfo;
-        private System.Windows.Forms.ContextMenuStrip cmsCode;
+        private System.Windows.Forms.ContextMenuStrip cmsFCTB;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeSelect;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeCopy;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeSendLine;
@@ -2851,9 +3003,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnStreamCheck;
         private System.Windows.Forms.Button btnStreamStop;
         private System.Windows.Forms.ContextMenuStrip cmsPictureBox;
-        private System.Windows.Forms.ToolStripMenuItem moveToFirstPosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deletePathToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteThisCodeLineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxMarkFirstPos;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxDeletePath;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem deletenotMarkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
@@ -2923,13 +3074,13 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem ersetzteG23DurchLinienToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem heightMapToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetZoomingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxResetZooming;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.Label label_a;
         private System.Windows.Forms.Button btnZeroA;
         private System.Windows.Forms.Label label_ma;
         private System.Windows.Forms.Label label_wa;
-        private System.Windows.Forms.ToolStripMenuItem pasteFromClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxPasteFromClipboard;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.GroupBox gBOverrideFRGB;
         private System.Windows.Forms.Button btnOverrideFR1;
@@ -2951,9 +3102,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label lblOverrideSSValue;
         private System.Windows.Forms.ToolStripMenuItem cmsCommentOut;
         private System.Windows.Forms.Timer gamePadTimer;
-        private System.Windows.Forms.ToolStripMenuItem moveToMarkedPositionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxMoveToMarkedPosition;
         private System.Windows.Forms.Label lblCurrentG;
-        private System.Windows.Forms.ToolStripMenuItem reloadFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxReloadFile;
         private System.Windows.Forms.Button btnLimitExceed;
         private System.Windows.Forms.ToolStripMenuItem startStreamingAtLineToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStrip_tb_StreamLine;
@@ -2963,20 +3114,19 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewMachine;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewTool;
-        private System.Windows.Forms.ToolStripMenuItem setGCodeAsBackgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxSetGCodeAsBackground;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-        private System.Windows.Forms.ToolStripMenuItem clearBackgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxClearBackground;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewBackground;
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewMachineFix;
-        private System.Windows.Forms.ToolStripMenuItem zeroXYAtMarkedPositionG92ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxZeroXYAtMarkedPosition;
         private System.Windows.Forms.ToolStripMenuItem removeAnyZMoveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmsUpdate2DView;
         private System.Windows.Forms.ToolStripMenuItem cmsEditorHotkeys;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem cmsReplaceDialog;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem cmsFindDialog;
         private System.Windows.Forms.TableLayoutPanel tLPRechtsUntenRechts;
@@ -3036,8 +3186,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnOverrideRapid2;
         private System.Windows.Forms.Label lblOverrideRapidValue;
         private System.Windows.Forms.Button btnOverrideRapid1;
-        private System.Windows.Forms.ToolStripMenuItem radiusCorrectionOnSelectedPathToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cutOutSelectedPathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxCropSelectedPath;
         private System.Windows.Forms.ToolStripMenuItem unDoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
         private System.Windows.Forms.ToolStripMenuItem unDo2ToolStripMenuItem;
@@ -3059,16 +3208,13 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem probingToolLengthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem surfaceScanHeightMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewPenUp;
-        private System.Windows.Forms.ToolStripMenuItem moveSelectedPathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxMoveSelectedPathInCode;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewRuler;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
-        private System.Windows.Forms.ToolStripMenuItem codeBlocksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksFold;
         private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks1stLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks2ndLevelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foldCodeBlocks3rdLevelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
-        private System.Windows.Forms.ToolStripMenuItem moveSelectedCodeBlockUpToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem moveSelectedCodeBlockDownToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem expandCodeBlocksToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewInfo;
         private System.Windows.Forms.ToolStripMenuItem portuguêsToolStripMenuItem;
@@ -3085,6 +3231,30 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBMoveG0;
         private System.Windows.Forms.ToolStripMenuItem startExtensionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewDimension;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel0;
+        private System.Windows.Forms.ToolStripMenuItem cmsEditMode;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxMoveGraphicsOrigin;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksMove;
+        private System.Windows.Forms.ToolStripMenuItem cmsFCTBMoveSelectedCodeBlockMostUp;
+        private System.Windows.Forms.ToolStripMenuItem cmsFCTBMoveSelectedCodeBlockUp;
+        private System.Windows.Forms.ToolStripMenuItem cmsFCTBMoveSelectedCodeBlockDown;
+        private System.Windows.Forms.ToolStripMenuItem cmsFCTBMoveSelectedCodeBlockMostDown;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksRemoveAll;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSort;
+        private System.Windows.Forms.ToolStripMenuItem unDo3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksRemoveGroup;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortById;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortReverse;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByGeometry;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByToolNr;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByToolName;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByColor;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByCodeSize;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByCodeArea;
     }
 }
 

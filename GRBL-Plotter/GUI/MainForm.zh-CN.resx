@@ -228,10 +228,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   运行启动行，并继续其愉快的方式。</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="clearBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>清晰的背景</value>
-    <comment>2DView_Menu</comment>
-  </data>
   <data name="btnZeroC.ToolTip" xml:space="preserve">
     <value>将工件C坐标设置为零</value>
     <comment>groupBox_Tool_Coord</comment>
@@ -340,30 +336,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>点击切换</value>
     <comment>2DView_Menu</comment>
   </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>删除此代码行</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deleteThisCodeLineToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>删除/标记代码行</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="moveToFirstPosToolStripMenuItem.Text" xml:space="preserve">
-    <value>标记所选路径的第一点</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletePathToolStripMenuItem.Text" xml:space="preserve">
-    <value>删除所选路径</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletePathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>删除所选路径</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="cutOutSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>剪出所选路径</value>
-    <comment>2DView_Menu</comment>
-  </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>自定义按钮</value>
     <comment>groupBox_Custom</comment>
@@ -455,35 +427,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>圆形或矩形，可选带圆角，可选作为袋</value>
     <comment>Menu123</comment>
   </data>
-  <data name="moveToMarkedPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>移至标记的位置G0</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="resetZoomingToolStripMenuItem.Text" xml:space="preserve">
-    <value>重设缩放</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>从剪贴板粘贴</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="reloadFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>达蒂·新·拉丹</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="setGCodeAsBackgroundToolStripMenuItem.Text" xml:space="preserve">
-    <value>将G代码设置为背景</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>半径补偿</value>
-    <comment>Menu134</comment>
-  </data>
-  <data name="radiusCorrectionOnSelectedPathToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>正值会导致移动方向左侧的校正，
-右侧为负值。</value>
-    <comment>Menu134</comment>
-  </data>
   <data name="saveToolStripMenuItem.Text" xml:space="preserve">
     <value>保存G代码</value>
     <comment>Menu113</comment>
@@ -567,10 +510,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
     <value>撤消上一个动作</value>
     <comment>Menu131</comment>
-  </data>
-  <data name="zeroXYAtMarkedPositionG92ToolStripMenuItem.Text" xml:space="preserve">
-    <value>在标记位置G10 L20处的零XY</value>
-    <comment>2DView_Menu</comment>
   </data>
   <data name="tBURL.Text" xml:space="preserve">
     <value>在此处粘贴SVG / DXF文件的URL</value>
@@ -739,10 +678,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>停止慢跑</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>搬去</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="btnOverrideDoor.Text" xml:space="preserve">
     <value>门</value>
     <comment>groupBox_Jogging</comment>
@@ -807,10 +742,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>探测</value>
     <comment>Menu14</comment>
   </data>
-  <data name="codeBlocksToolStripMenuItem.Text" xml:space="preserve">
-    <value>代码块</value>
-    <comment>Editor_Menu</comment>
-  </data>
   <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
     <value>折叠码块1级</value>
     <comment>Editor_Menu</comment>
@@ -818,18 +749,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
     <value>扩展代码块</value>
     <comment>Editor_Menu</comment>
-  </data>
-  <data name="moveSelectedCodeBlockUpToolStripMenuItem1.Text" xml:space="preserve">
-    <value>向上移动所选代码块</value>
-    <comment>Editor_Menu</comment>
-  </data>
-  <data name="moveSelectedCodeBlockDownToolStripMenuItem1.Text" xml:space="preserve">
-    <value>下移所选代码块</value>
-    <comment>Editor_Menu</comment>
-  </data>
-  <data name="moveSelectedPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>移动所选路径</value>
-    <comment>2DView_Menu</comment>
   </data>
   <data name="toolStripViewRuler.Text" xml:space="preserve">
     <value>统治者</value>
@@ -937,10 +856,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>刀具在主轴中</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>速度</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="cBCoolant.Text" xml:space="preserve">
     <value>冷却液</value>
     <comment>groupBox_Jogging</comment>
@@ -973,5 +888,158 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
     <value>G代码尺寸</value>
+  </data>
+  <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>扩展名</value>
+  </data>
+  <data name="cmsEditMode.Text" xml:space="preserve">
+    <value>删除“组” XML标签</value>
+  </data>
+  <data name="cBServoButtons.Text" xml:space="preserve">
+    <value>显示笔向上/向下</value>
+  </data>
+  <data name="btnPenDown.Text" xml:space="preserve">
+    <value>下笔</value>
+  </data>
+  <data name="btnPenDown.ToolTip" xml:space="preserve">
+    <value>使用Setup-Servo-PWM中的设置</value>
+  </data>
+  <data name="btnPenUp.Text" xml:space="preserve">
+    <value>笔向上</value>
+  </data>
+  <data name="btnPenUp.ToolTip" xml:space="preserve">
+    <value>使用Setup-Servo-PWM中的设置</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
+    <value>移至标记的位置G0</value>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
+    <value>在标记位置G10 L20处的零XY</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
+    <value>通过标记位置偏移图形</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
+    <value>重置缩放</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
+    <value>从剪贴板粘贴</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
+    <value>重新载入档案</value>
+  </data>
+  <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
+    <value>标记所选路径的第一点</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
+    <value>删除所选路径</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
+    <value>删除所选路径</value>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
+    <value>剪出所选路径</value>
+  </data>
+  <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
+    <value>将偏移量应用于GCode</value>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
+    <value>将G代码设置为背景</value>
+  </data>
+  <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
+    <value>清晰的背景</value>
+  </data>
+  <data name="unDo3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>撤消上一个动作</value>
+  </data>
+  <data name="cmsEditorHotkeys.AccessibleDescription" xml:space="preserve">
+    <value>显示窗口，带有“快速彩色文本框”的默认热键</value>
+  </data>
+  <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
+    <value>代码块是G代码，周围是XML元素，例如“ Figure”的“ Group”</value>
+  </data>
+  <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
+    <value>折叠码块</value>
+  </data>
+  <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
+    <value>代码块是G代码，周围是XML元素，例如“ Figure”的“ Group”</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
+    <value>向上移动所选代码块</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockUp.Text" xml:space="preserve">
+    <value>向上移动所选代码块</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockDown.Text" xml:space="preserve">
+    <value>下移所选代码块</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostDown.Text" xml:space="preserve">
+    <value>将所选代码块最下移</value>
+  </data>
+  <data name="cmsCodeBlocksMove.Text" xml:space="preserve">
+    <value>移动代码块</value>
+  </data>
+  <data name="cmsCodeBlocksSortReverse.Text" xml:space="preserve">
+    <value>反向排序</value>
+  </data>
+  <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
+    <value>按“ Id”排序</value>
+  </data>
+  <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
+    <value>按“几何”排序</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
+    <value>按“ ToolNr”排序</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
+    <value>按“工具名称”排序</value>
+  </data>
+  <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
+    <value>按“颜色”排序</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
+    <value>按“ CodeSize”排序</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
+    <value>按“ CodeArea”排序</value>
+  </data>
+  <data name="cmsCodeBlocksSort.Text" xml:space="preserve">
+    <value>排序代码块</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveGroup.Text" xml:space="preserve">
+    <value>删除“组” XML标签</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveAll.Text" xml:space="preserve">
+    <value>删除所有XML标签</value>
+  </data>
+  <data name="cmsEditMode.AccessibleDescription" xml:space="preserve">
+    <value>在编辑模式下，组的自动选择被禁用</value>
+  </data>
+  <data name="cmsCodeSelect.AccessibleDescription" xml:space="preserve">
+    <value>选择完整的代码</value>
+  </data>
+  <data name="cmsCodeCopy.AccessibleDescription" xml:space="preserve">
+    <value>将选择内容复制到剪贴板</value>
+  </data>
+  <data name="cmsCodePaste.AccessibleDescription" xml:space="preserve">
+    <value>清除编辑器并从剪贴板粘贴</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.AccessibleDescription" xml:space="preserve">
+    <value>在当前行的前面插入“ Pen up” G代码</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.AccessibleDescription" xml:space="preserve">
+    <value>在当前行的前面插入“下压” G代码</value>
+  </data>
+  <data name="cmsFindDialog.AccessibleDescription" xml:space="preserve">
+    <value>从“彩色文本框”打开“查找对话框”</value>
+  </data>
+  <data name="cmsReplaceDialog.AccessibleDescription" xml:space="preserve">
+    <value>从“彩色文本框”打开“替换对话框”</value>
+  </data>
+  <data name="cmsUpdate2DView.AccessibleDescription" xml:space="preserve">
+    <value>再次从编辑器中读取G代码以更新2D视图</value>
+  </data>
+  <data name="toolStripStatusLabel0.Text" xml:space="preserve">
+    <value>[通过拖放或文件打开对话框加载文件。 或选择“重新加载文件”以打开上次使用的文件。 ]</value>
   </data>
 </root>

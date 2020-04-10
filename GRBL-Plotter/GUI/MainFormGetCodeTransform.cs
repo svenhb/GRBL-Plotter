@@ -251,7 +251,9 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();                                   // resfresh view
             update_GCode_Depending_Controls();                          // update GUI controls
             updateControls();                                           // update control enable 
+            enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
             this.Cursor = Cursors.Default;
+            setEditMode(false);
         }
 
         private void btnOffsetApply_Click(object sender, EventArgs e)
@@ -701,15 +703,6 @@ namespace GRBL_Plotter
         private void unDoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fCTBCode.Text = unDo.getCode();
-            transformEnd();
-        }
-
-        private void moveSelectedPathToolStripMenuItem_Click(object sender, EventArgs e)
-        {   transformStart("Apply Offset");
-            zoomFactor = 1;
-            fCTBCode.Text = VisuGCode.transformGCodeOffset(-(posMoveEnd.X-posMoveStart.X), -(posMoveEnd.Y - posMoveStart.Y), VisuGCode.translate.None);
-            fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
-            fCTBCodeClickedLineLast = 0;
             transformEnd();
         }
     }

@@ -27,6 +27,7 @@
  * 2018-01-04 no selection of text to highlight current line 136...
  * 2019-12-07 add move up/down of selected code block
  * 2020-01-01 improve group handling, new class codeSelection
+ * 2020-04-06 improove selection of figures and groups
 */
 
 using System;
@@ -42,6 +43,8 @@ namespace GRBL_Plotter
     public partial class MainForm : Form
     {
         private bool commentOut;        // comment out unknown GCode to avoid errors from GRBL
+        private bool resetView = false;
+        private bool manualEdit= false;
 
         #region fCTB FastColoredTextBox related
         // highlight code in editor
@@ -61,6 +64,7 @@ namespace GRBL_Plotter
 
         private void fCTBCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
+//            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit {0}",manualEdit);
             e.ChangedRange.ClearStyle(StyleComment);
             e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleCommentxml, "(\\(<.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -83,11 +87,29 @@ namespace GRBL_Plotter
             e.ChangedRange.SetFoldingMarkers(xmlMarker.passStart, xmlMarker.passEnd);
             e.ChangedRange.SetFoldingMarkers(xmlMarker.figureStart, xmlMarker.figureEnd);
             e.ChangedRange.SetFoldingMarkers(xmlMarker.groupStart, xmlMarker.groupEnd);
-            if (Properties.Settings.Default.importCodeFold)
-                fCTBCode.CollapseAllFoldingBlocks();
 
-            codeBlocksToolStripMenuItem.Enabled = VisuGCode.codeBlocksAvailable();
-            codeSelection.setFCTB = fCTBCode;
+            if (!manualEdit)
+            {   if (Properties.Settings.Default.importCodeFold)
+                { foldBlocks2(); fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
+
+                enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
+            }
+        }
+        private void fCTBCode_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        {
+//            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit {0}  resetView {1}", manualEdit, resetView);
+            if (resetView && !manualEdit)
+            {   transformEnd();
+                if (foldLevel == 1)
+                { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
+                else if (foldLevel == 2)
+                { foldBlocks2(); }
+
+                fCTBCodeMarkLine();         // set Bookmark and marker in 2D-View
+                findFigureMarkSelection(markedBlockType, fCTBCodeClickedLineNow);
+                fCTBCode.DoCaretVisible();
+            }
+            resetView = false;
         }
 
         private void fCTB_CheckUnknownCode()
@@ -96,6 +118,7 @@ namespace GRBL_Plotter
             string number = " +-.0123456789";
             string cmt = "(;";
             string message = "";
+            if (gcode.loggerTrace) Logger.Trace(" fCTB_CheckUnknownCode");
             for (int i = 0; i < fCTBCode.LinesCount; i++)
             {
                 curLine = fCTBCode.Lines[i].Trim();
@@ -132,63 +155,159 @@ namespace GRBL_Plotter
         private int fCTBCodeClickedLineNow = 0;
         private int fCTBCodeClickedLineLast = 0;
         private void fCTBCode_Click(object sender, EventArgs e)         // click into FCTB  
-        {   fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
-            fCTBCodeMarkLine(false);
+        {
+//            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_Click");
+            fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
+//            statusStripSet2(string.Format("Clicked: {0}", fCTBCodeClickedLineNow),SystemColors.Control);
+            enableBlockCommands(false);       // disable CMS-Menu block-move items 
             fCTBCode.DoCaretVisible();
+            markedBlockType = xmlMarkerType.none;
+            if (manualEdit)
+                return;
+
+            if (Panel.ModifierKeys == Keys.Alt)
+            { findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow); }
+            else if (Panel.ModifierKeys == Keys.Control)
+            { findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow); }
+
+            else if (xmlMarker.isFoldingMarkerFigure(fCTBCodeClickedLineNow))
+            { findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow); }
+            else if (xmlMarker.isFoldingMarkerGroup(fCTBCodeClickedLineNow))
+            { findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow); }
+
+            if (VisuGCode.codeBlocksAvailable())
+                statusStripSet(1,Localization.getString("statusStripeClickKeys"), Color.LightGreen);
+
+            fCTBCodeMarkLine(true);             // set Bookmark and marker in 2D-View
         }
         private void fCTBCode_KeyDown(object sender, KeyEventArgs e)    // key up down 
         {
+//            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_KeyDown {0} {1} {2}  clickedLine {3}", e.KeyValue, ModifierKeys, markedBlockType.ToString(), fCTBCodeClickedLineNow);
             int key = e.KeyValue;
-            if ((key == 38) && (fCTBCodeClickedLineNow > 0))            // up
-            {   fCTBCodeClickedLineNow -= 1;
-                while (fCTBCode.GetVisibleState(fCTBCodeClickedLineNow) == VisibleState.Hidden)
-                    fCTBCodeClickedLineNow -= 1;
-                fCTBCodeMarkLine(false);
-                fCTBCode.DoCaretVisible();
+            #region key up
+            if (key == 38)                                  // up
+            {   //if (!(fCTBCodeClickedLineNow > 0))
+               //     return;
+                if (Panel.ModifierKeys == Keys.Control)
+                { moveSelectedCodeBlockUp(); }
+                else if (Panel.ModifierKeys == (Keys.Control | Keys.Shift))
+                { moveSelectedCodeBlockUp(true); }
+                else
+                {
+                    if (markedBlockType == xmlMarkerType.Figure)
+                    {
+                        clearTextSelection(0);
+                        markedBlockType = xmlMarkerType.none;
+                        enableBlockCommands(false);                                 // disable CMS-Menu block-move items 
+                        xmlMarker.GetFigure(xmlMarker.lastFigure.lineStart ,-1);    // find figure before
+                        fCTBCodeClickedLineNow = xmlMarker.lastFigure.lineEnd;
+                        if (gcode.loggerTrace) Logger.Trace("Figure up found {0}  {1}", xmlMarker.lastFigure.lineStart, xmlMarker.lastFigure.lineEnd);
+                        findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow);
+                        enableBlockCommands(false);                                 // no idea why, code is selected, but not colored. Moving up/down of blocks doesn't work - better disable "isMarked"
+                    }
+                    else if (markedBlockType == xmlMarkerType.Group)
+                    {
+                        clearTextSelection(0);
+                        markedBlockType = xmlMarkerType.none;
+                        enableBlockCommands(false);                                 // disable CMS-Menu block-move items 
+                        xmlMarker.GetGroup(xmlMarker.lastGroup.lineStart, -1);    // find figure before
+                        fCTBCodeClickedLineNow = xmlMarker.lastGroup.lineEnd;
+                        if (gcode.loggerTrace) Logger.Trace("Group up found {0}  {1}", xmlMarker.lastGroup.lineStart, xmlMarker.lastGroup.lineEnd);
+                        findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow);
+                        enableBlockCommands(false);                                 // no idea why, code is selected, but not colored. Moving up/down of blocks doesn't work - better disable "isMarked"
+                    }
+                    else
+                    {   fCTBCodeClickedLineNow -= 1;
+                        while (fCTBCode.GetVisibleState(fCTBCodeClickedLineNow) == VisibleState.Hidden)
+                            fCTBCodeClickedLineNow -= 1;
+                        if (gcode.loggerTrace) Logger.Trace("Else up {0} ", markedBlockType.ToString());
+                    }
+                    fCTBCodeMarkLine();             // set Bookmark and marker in 2D-View
+                    fCTBCode.DoCaretVisible();
+                }
+                statusStripClear(1);
+                if (VisuGCode.codeBlocksAvailable() && figureIsMarked)
+                    statusStripSet(1,Localization.getString("statusStripeUpKeys"),Color.LightGreen);
+                else
+                    statusStripClear(2);
             }
-            if ((key == 40) && (fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))       // down
-            {   fCTBCodeClickedLineNow += 1;
-                while (fCTBCode.GetVisibleState(fCTBCodeClickedLineNow) == VisibleState.Hidden)
-                    fCTBCodeClickedLineNow += 1;
-                fCTBCodeMarkLine(false);
-                fCTBCode.DoCaretVisible();
+            #endregion
+            #region key down
+            else if (key == 40)       // down
+            {   //if (!(fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))
+               //     return;
+                if (Panel.ModifierKeys == Keys.Control)
+                { moveSelectedCodeBlockDown(); }
+                else if (Panel.ModifierKeys == (Keys.Control | Keys.Shift))
+                { moveSelectedCodeBlockDown(true); }
+                else
+                {
+                    if (markedBlockType == xmlMarkerType.Figure)
+                    {
+                        clearTextSelection(0);
+                        markedBlockType = xmlMarkerType.none;
+                        enableBlockCommands(false);                                 // disable CMS-Menu block-move items 
+                        xmlMarker.GetFigure(xmlMarker.lastFigure.lineStart ,1);
+                        fCTBCodeClickedLineNow = xmlMarker.lastFigure.lineStart;
+                        if (gcode.loggerTrace) Logger.Trace(" Figure down found {0}  {1}", xmlMarker.lastFigure.lineStart, xmlMarker.lastFigure.lineEnd);
+                        findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow);
+                        enableBlockCommands(false);                                 // no idea why, code is selected, but not colored. Moving up/down of blocks doesn't work - better disable "isMarked"
+                    }
+                    else if (markedBlockType == xmlMarkerType.Group)
+                    {
+                        clearTextSelection(0);
+                        markedBlockType = xmlMarkerType.none;
+                        enableBlockCommands(false);                                 // disable CMS-Menu block-move items 
+                        xmlMarker.GetGroup(xmlMarker.lastGroup.lineStart, 1);
+                        fCTBCodeClickedLineNow = xmlMarker.lastGroup.lineStart;
+                        if (gcode.loggerTrace) Logger.Trace(" Group down found {0}  {1}", xmlMarker.lastGroup.lineStart, xmlMarker.lastGroup.lineEnd);
+                        findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow);
+                        enableBlockCommands(false);                                 // no idea why, code is selected, but not colored. Moving up/down of blocks doesn't work - better disable "isMarked"
+                    }
+                    else
+                    {   fCTBCodeClickedLineNow += 1;
+                        while (fCTBCode.GetVisibleState(fCTBCodeClickedLineNow) == VisibleState.Hidden)
+                            fCTBCodeClickedLineNow += 1;
+                    }
+                    fCTBCodeMarkLine();                 // set Bookmark and marker in 2D-View
+                    fCTBCode.DoCaretVisible();
+                }
+                statusStripClear(1);
+                if (VisuGCode.codeBlocksAvailable() && figureIsMarked)
+                    statusStripSet(1, Localization.getString("statusStripeDownKeys"),Color.LightGreen);
+                else
+                    statusStripClear(2);
             }
+            #endregion
+
+            else if (!manualEdit && ((key == 8) || (key == 46)))    // delete
+            {   unDo.setCode(fCTBCode.Text, "Delete", this);
+                resetView = true;
+            }
+            else if (((key >= 32) && (key <= 127)) || (key == (char)13))
+            {   setEditMode(true);}
         }
 
-        private Bookmark fCTBBookmark = null;
-        private void fCTBCodeMarkLine(bool select=true)     // after click on gcode line, mark text and graphics
+        private void fCTBCodeMarkLine(bool markAnyway=false)     // after click on gcode line, mark text and graphics
         {
             if ((fCTBCodeClickedLineNow <= fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
             {
-                fCTBBookmark = new Bookmark(fCTBCode, "marked", fCTBCodeClickedLineNow);
-                if (fCTBCodeClickedLineNow != fCTBCodeClickedLineLast)
+                if ((fCTBCodeClickedLineNow != fCTBCodeClickedLineLast) || markAnyway)
                 {
-                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                    fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);
+                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);           // remove marker from old line
+                    fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
                     fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
-
-                    // Set marker in drawing
-                    Place tst = fCTBCode.Selection.Start;
-                    VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow,!isStreaming);
-
-                    if ((fCTBCode.Lines[tst.iLine].Contains(xmlMarker.groupStart)) || (fCTBCode.Lines[tst.iLine].Contains(xmlMarker.groupEnd)))
-                        VisuGCode.markSelectedGroup(tst.iLine);
-
-                    if (select && codeSelection.checkClicked(fCTBCodeClickedLineNow))
-                    {   setFigureIsMarked(true);
-                        fCTBCode.DoCaretVisible();
-                    }
-                    else
-                        setFigureIsMarked(false);
-
+                    VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
                     pictureBox1.Invalidate(); // avoid too much events
                     toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
                 }
             }
         }
+        #endregion
 
-            // context Menu on fastColoredTextBox
-        private void cmsCode_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        #region CMS Menu
+        // context Menu on fastColoredTextBox
+        private void cmsFCTB_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Name == "cmsCodeSelect")
                 fCTBCode.SelectAll();
@@ -200,63 +319,41 @@ namespace GRBL_Plotter
             else if (e.ClickedItem.Name == "cmsCodePaste")
             {       //fCTBCode.Paste();
                 IDataObject iData = Clipboard.GetDataObject();
-                newCodeStart();
+                unDo.setCode(fCTBCode.Text, "Paste Code", this);
                 fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
                 newCodeEnd();
                 setLastLoadedFile("Data from Clipboard: Text", "");
                 lbInfo.Text = "GCode from clipboard";
             }
-            else if (e.ClickedItem.Name == "cmsCodePasteSpecial1")
+            else if (e.ClickedItem.Name == "cmsEditMode")
+            {   if (!manualEdit)
+                {   setEditMode(true);  }
+                else
+                {   newCodeEnd(); }
+            }
+            else if (e.ClickedItem.Name == "cmsCodePasteSpecial1")  // Pen up
             {
-                Place selStart, selEnd;
-                Range mySelection = fCTBCode.Range;
-                selStart.iLine = fCTBCodeClickedLineNow + 1;
-                selStart.iChar = 0;
-                selEnd.iLine = fCTBCodeClickedLineNow + 2;
-                selEnd.iChar = 0;
+                setEditMode(true);
                 gcode.setup();
                 StringBuilder gcodeString = new StringBuilder();
-                gcodeString.Append("\r\n");
                 gcode.PenUp(gcodeString, "pasted");
-                string tmp = fCTBCode.Lines[fCTBCodeClickedLineNow + 1];
-                if (tmp.Contains("G01"))
-                {
-                    mySelection.Start = selStart;
-                    mySelection.End = selEnd;
-                    fCTBCode.Selection = mySelection;
-                    fCTBCode.SelectedText = (tmp.Replace("G01", "G00")) + "\r\n";
-                }
-                else
-                    gcodeString.Append("G00\r\n");
+                setTextSelection(fCTBCodeClickedLineNow, fCTBCodeClickedLineNow);
+                gcodeString.Append(fCTBCode.SelectedText.Replace("G01","G00")+" (modified)");
                 Clipboard.SetText(gcodeString.ToString());
-                // restore old cursor pos. to insert code
-                selStart.iLine = fCTBCodeClickedLineNow + 1;
-                selEnd.iLine = fCTBCodeClickedLineNow + 1;
-                mySelection.Start = selStart;
-                mySelection.End = selEnd;
-                fCTBCode.Selection = mySelection;
                 fCTBCode.Paste();
-                // set new cursor pos. for assumed PenDown command
-                fCTBCodeClickedLineNow += gcodeString.ToString().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Length; // 
-                selStart.iLine = fCTBCodeClickedLineNow + 1;
-                selEnd.iLine = fCTBCodeClickedLineNow + 1;
-                mySelection.Start = selStart;
-                mySelection.End = selEnd;
-                fCTBCode.Selection = mySelection;
                 fCTBCodeMarkLine();
             }
-            else if (e.ClickedItem.Name == "cmsCodePasteSpecial2")
+            else if (e.ClickedItem.Name == "cmsCodePasteSpecial2")  // Pen down
             {
+                setEditMode(true);
                 gcode.setup();
                 StringBuilder gcodeString = new StringBuilder();
                 gcode.PenDown(gcodeString, "pasted");
-                string tmp = fCTBCode.Lines[fCTBCodeClickedLineNow + 1];
-                if (!tmp.Contains("G01"))
-                    gcodeString.Append("G01\r\n");
-                gcodeString.Append("\r\n");
+                setTextSelection(fCTBCodeClickedLineNow, fCTBCodeClickedLineNow);
+                gcodeString.Append(fCTBCode.SelectedText.Replace("G00", "G01")+" F"+gcode.gcodeXYFeed + " (modified)");
                 Clipboard.SetText(gcodeString.ToString());
                 fCTBCode.Paste();
-                newCodeEnd();       // redraw 2D view
+                fCTBCodeMarkLine();
             }
             else if (e.ClickedItem.Name == "cmsCodeSendLine")
             {
@@ -286,93 +383,156 @@ namespace GRBL_Plotter
             {
                 _message_form.Visible = false;
             }
-            _message_form.showMessage("Information",text);
+            _message_form.showMessage("Information", text);
             _message_form.Show(this);
             _message_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_MessageForm(object sender, FormClosedEventArgs e)
-        { _message_form = null;  }
+        { _message_form = null; }
 
         #endregion
-        private void moveToFirstPosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int start = findFigureMarkSelection(Color.Red);
-            fCTBCodeClickedLineNow = start;
-            fCTBCodeMarkLine();
-            fCTBCode.DoCaretVisible();
-            return;
-        }
-        private void cutOutSelectedPathToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            transformStart("Crop selection (Cut out)",false);
-            fCTBCode.Text = VisuGCode.cutOutFigure();
-            transformEnd();
-        }
 
-        private static bool figureIsMarked = false;
-        private int findFigureMarkSelection(Color selectionColor)   // called by click on figure in 2D view
+        private void setEditMode(bool set)
         {
-            setFigureIsMarked(false);
-            int start = VisuGCode.getLineOfFirstPointInFigure();
-            if (codeSelection.checkClicked(start))
-            {   setFigureIsMarked(true);
-                fCTBCode.DoCaretVisible();
-            }
+            manualEdit = set;
+            fCTBCode.BackColor = set? Color.FromArgb(255, 255, 255, 100): Color.White;
+            if (set)
+                statusStripSet(1, Localization.getString("statusStripeEditModeOn"), Color.FromArgb(255, 255, 255, 100));
             else
-                setFigureIsMarked(false);
-
-            return start;
+                statusStripClear(1, 2);
         }
 
-        private void deletePathToolStripMenuItem_Click(object sender, EventArgs e)
+        private void enableCmsCodeBlocks(bool enable)
         {
-            int start = findFigureMarkSelection(Color.Red);
-            if (start < 0)
+            cmsCodeBlocksFold.Enabled = enable;
+            cmsCodeBlocksMove.Enabled = enable;
+            cmsCodeBlocksSort.Enabled = enable;
+            cmsCodeBlocksRemoveAll.Enabled = enable;
+            cmsCodeBlocksRemoveGroup.Enabled = enable;
+        }
+
+        #region find blocks
+        private static bool figureIsMarked = false;
+        private static xmlMarkerType markedBlockType = xmlMarkerType.none;
+        private void findFigureMarkSelection(xmlMarkerType marker, int clickedLine, bool collapse=true)   // called by click on figure in 2D view
+        {
+            if (manualEdit)
                 return;
-            fCTBCodeClickedLineNow = start;
-            fCTBCode.InsertText("( Figure removed )\r\n");
-            fCTBCodeMarkLine();
+            fCTBCode.Selection.ColumnSelectionMode = false;
+            statusStripClear(2);
+            enableBlockCommands(false);
+            markedBlockType = marker;
+
+            if (marker == xmlMarkerType.Group)
+            {
+                if (xmlMarker.GetGroupCount() > 0)
+                {   if (collapse) { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
+                    if (xmlMarker.GetGroup(clickedLine))
+                    {   fCTBCode.ExpandFoldedBlock(xmlMarker.lastGroup.lineStart);
+                        enableBlockCommands(setTextSelection(xmlMarker.lastGroup.lineStart, xmlMarker.lastGroup.lineEnd));
+                        VisuGCode.markSelectedGroup(xmlMarker.lastGroup.lineStart);
+                        statusStripSet(2,string.Format("Marked: {0}", fCTBCode.Lines[xmlMarker.lastGroup.lineStart]),SystemColors.Control);
+                        pictureBox1.Invalidate();
+                        fCTBCode.Invalidate();
+                    }
+
+                }
+                else if (xmlMarker.GetFigureCount() > 0)
+                {   if (collapse)
+                        foldBlocks2();
+                    markedBlockType = xmlMarkerType.Figure;
+                    if (xmlMarker.GetFigure(clickedLine)) 
+                    {   enableBlockCommands(setTextSelection(xmlMarker.lastFigure.lineStart, xmlMarker.lastFigure.lineEnd));
+                        VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+                        statusStripSet(2,string.Format("Marked: {0}", fCTBCode.Lines[xmlMarker.lastFigure.lineStart]), SystemColors.Control);
+                    }
+                }
+            }
+            else if (marker == xmlMarkerType.Figure)
+            {   if (xmlMarker.GetGroupCount() > 0)
+                {   if (collapse)
+                    { foldBlocks2(); }
+                }
+                else
+                {   if (collapse)
+                    { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
+                }
+                if (xmlMarker.GetFigure(clickedLine))
+                {   enableBlockCommands(setTextSelection(xmlMarker.lastFigure.lineStart, xmlMarker.lastFigure.lineEnd));
+                    VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+                    statusStripSet(2,string.Format("Marked: {0}", fCTBCode.Lines[xmlMarker.lastFigure.lineStart]), SystemColors.Control);
+                    fCTBCode.Invalidate();
+                }
+                fCTBCode.ExpandFoldedBlock(xmlMarker.lastFigure.lineStart);   
+            }
+            else if (marker == xmlMarkerType.Line)
+            {   if (xmlMarker.GetGroupCount() > 0)
+                {   if (collapse)
+                    { foldBlocks2(); }
+                }
+                else
+                {   if (collapse)
+                    { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
+                }
+                if (xmlMarker.GetFigure(clickedLine))
+                {   fCTBCode.ExpandFoldedBlock(xmlMarker.lastFigure.lineStart);    }
+                if (clickedLine == xmlMarker.lastFigure.lineStart)
+                    clickedLine++;
+
+                fCTBCodeClickedLineNow = clickedLine;
+
+                setTextSelection(clickedLine, clickedLine);
+                enableBlockCommands(false, true);
+            }
+            fCTBCodeClickedLineNow = xmlMarker.lastFigure.lineStart;
             fCTBCode.DoCaretVisible();
-            transformEnd();
-            return;
         }
 
-        private void deleteThisCodeLineToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clearTextSelection(int line)
+        {   Range mySelection = new Range(fCTBCode,0,line,0,line);
+            fCTBCode.Selection = mySelection;
+            fCTBCode.SelectionColor = Color.Green;
+        }
+        private bool setTextSelection(int start, int end)
         {
-            if (fCTBCode.LinesCount < 1) return;
-            fCTBCodeClickedLineLast = 1;
-            fCTBCodeMarkLine();
-            if (deleteMarkedCode)
-            {
-                fCTBCode.Cut();
-                fCTBCodeClickedLineNow--;
-                fCTBCodeMarkLine();
-            }
-            fCTBCode.DoCaretVisible();
-            newCodeEnd();
-            return;
+            Place selStart, selEnd;
+            selStart.iLine = start;
+            selStart.iChar = 0;
+            Range mySelection = new Range(fCTBCode);
+            mySelection.Start = selStart;
+            selEnd.iLine = end;
+            selEnd.iChar = fCTBCode.Lines[end].Length;
+            mySelection.End = selEnd;
+            if ((selStart == fCTBCode.Selection.Start) && (selEnd == fCTBCode.Selection.End))
+            { return false; }    // was selected, now deselected
+
+            fCTBCode.Selection = mySelection;
+            fCTBCode.SelectionColor = Color.Red;
+            return true;
         }
 
         private bool deleteMarkedCode = false;
         private void deletenotMarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (deleteMarkedCode)
-            {
-                deleteMarkedCode = false;
+            {   deleteMarkedCode = false;
                 deletenotMarkToolStripMenuItem.Text = "Mark (not delete)";
             }
             else
-            {
-                deleteMarkedCode = true;
+            {   deleteMarkedCode = true;
                 deletenotMarkToolStripMenuItem.Text = "Delete (not mark)";
             }
         }
+        #endregion
 
+        #region fold blocks
         private static int foldLevel = 0;
         private void foldBlocks1stToolStripMenuItem1_Click(object sender, EventArgs e)  // fold all blocks
         {   fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
 
         private void foldBlocks2ndToolStripMenuItem1_Click(object sender, EventArgs e)  // fold 2nd level blocks
+        { foldBlocks2(); }
+        private void foldBlocks2()
         {   string tmp;
             fCTBCode.ExpandAllFoldingBlocks();
             for (int i = 0; i < fCTBCode.LinesCount; i++)
@@ -397,202 +557,211 @@ namespace GRBL_Plotter
         private void expandCodeBlocksToolStripMenuItem_Click(object sender, EventArgs e)
         {   fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; }
 
-        private void setFigureIsMarked(bool tmp)
+        private void enableBlockCommands(bool tmp, bool keepSelection=false)
         {
+            if (!tmp && !keepSelection)
+                clearTextSelection(fCTBCodeClickedLineNow);
             figureIsMarked = tmp;
-            moveSelectedCodeBlockUpToolStripMenuItem1.Enabled = tmp;
-            moveSelectedCodeBlockDownToolStripMenuItem1.Enabled = tmp;
-        }
+            cmsFCTBMoveSelectedCodeBlockMostUp.Enabled = tmp;
+            cmsFCTBMoveSelectedCodeBlockUp.Enabled = tmp;
+            cmsFCTBMoveSelectedCodeBlockDown.Enabled = tmp;
+            cmsFCTBMoveSelectedCodeBlockMostDown.Enabled = tmp;
 
+            cmsPicBoxDeletePath.Enabled = tmp;
+            cmsPicBoxCropSelectedPath.Enabled = tmp;
+        }
+        #endregion
+
+        #region move blocks
+        // Move code block upwards
+        private void moveSelectedCodeBlockMostUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {   fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
+            moveSelectedCodeBlockUp(true);
+        }
         private void moveSelectedCodeBlockUpToolStripMenuItem_Click(object sender, EventArgs e)
-        {   
-            fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
-            if (codeSelection.moveBlockUp(figureIsMarked))
-            {
-                fCTBCodeClickedLineNow = codeSelection.start;
-                transformEnd();
-
-                if (foldLevel > 0)
-                {   if (foldLevel == 1) fCTBCode.CollapseAllFoldingBlocks();
-                    else if (foldLevel == 2) foldBlocks2ndToolStripMenuItem1_Click(sender, e);
+        {   fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
+            moveSelectedCodeBlockUp();
+        }
+        private void moveSelectedCodeBlockUp(bool mostTop=false)
+        {   if (!figureIsMarked)
+                return;
+            xmlMarker.BlockData block;
+            int insert = 0;
+            if (markedBlockType == xmlMarkerType.Figure)
+            {   block = xmlMarker.lastFigure;       // save current selection range
+                if (mostTop)
+                    insert = xmlMarker.FindInsertPositionFigureMostTop(block.lineStart);
+                else
+                    insert = xmlMarker.FindInsertPositionFigureTop(block.lineStart);
+                if (moveBlockUp(block.lineStart, block.lineEnd, insert))
+                {   newCodeEnd();
+                    resetView = true;
+                    fCTBCodeClickedLineNow = insert;
                 }
-                newCodeEnd();
             }
-            setFigureIsMarked(false);
+            else if (markedBlockType == xmlMarkerType.Group)
+            {
+                block = xmlMarker.lastGroup;       // save current selection range
+                if (mostTop)
+                    insert = xmlMarker.FindInsertPositionGroupMostTop(block.lineStart);
+                else
+                    insert = xmlMarker.FindInsertPositionGroupTop(block.lineStart);
+                if (moveBlockUp(block.lineStart, block.lineEnd, insert))
+                {   newCodeEnd();
+                    resetView = true;
+                    fCTBCodeClickedLineNow = insert;
+                }
+            }
+        }
+        private bool moveBlockUp(int blockStart, int blockEnd, int insert)
+        {
+            if (insert >= 0)
+            {
+                if (gcode.loggerTrace) Logger.Trace(" moveBlockUp blockStart:{0} Text:{1},  blockEnd:{2} insert:{3}  Text:{4}", blockStart, fCTBCode.Lines[blockStart].Substring(0, 10), blockEnd, insert, fCTBCode.Lines[insert].Substring(0, 10));
+                Bookmarks tmp = new Bookmarks(fCTBCode);
+                tmp.Clear();
+                fCTBCode.Cut();
+                List<int> remove = new List<int>();
+                remove.Add(blockStart);
+                fCTBCode.RemoveLines(remove);       // remove empty line after cut
+
+                Place selStart;
+                selStart.iLine = insert;
+                selStart.iChar = 0;
+                Range mySelection = new Range(fCTBCode);// fCTBCode.Range;
+                mySelection.Start = mySelection.End = selStart;
+                fCTBCode.Selection = mySelection;
+                fCTBCode.InsertText("\r\n");
+                fCTBCode.Selection = mySelection;
+                fCTBCode.Paste();
+                return true;
+            }
+            return false;
         }
 
+
+        private void moveSelectedCodeBlockMostDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {   fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
+            moveSelectedCodeBlockDown(true);
+        }
         private void moveSelectedCodeBlockDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {   fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
+            moveSelectedCodeBlockDown();
+        }
+
+        private void moveSelectedCodeBlockDown(bool mostBottom = false)
         {
-            fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
-            if (codeSelection.moveBlockDown(figureIsMarked))
-            {
-                fCTBCodeClickedLineNow = codeSelection.start;
-                transformEnd();
-
-                if (foldLevel > 0)
-                {   if (foldLevel == 1) fCTBCode.CollapseAllFoldingBlocks();
-                    else if (foldLevel == 2) foldBlocks2ndToolStripMenuItem1_Click(sender, e);
+            if (!figureIsMarked)
+                return;
+            xmlMarker.BlockData block;
+            int insert = 0;
+            if (markedBlockType == xmlMarkerType.Figure)
+            {   block = xmlMarker.lastFigure;       // save current selection range
+                if (mostBottom)
+                    insert = xmlMarker.FindInsertPositionFigureMostBottom(block.lineStart);
+                else
+                    insert = xmlMarker.FindInsertPositionFigureBottom(block.lineStart);
+                if (moveBlockDown(block.lineStart, block.lineEnd, insert))
+                {   newCodeEnd();
+                    resetView = true;
+                    fCTBCodeClickedLineNow = insert-1;
                 }
-                newCodeEnd();
             }
-            setFigureIsMarked(false);
-        }
-    }
-
-
-    public static class codeSelection
-    {   public static xmlMarkerType type = xmlMarkerType.none;
-        public static FastColoredTextBox fCTB = null;
-        public static int start = -1;
-        public static int end = -1;
-        public static int range = -1;
-        public static int clicked = -1;
-        public static bool rangeOk = false;
-
-        // Trace, Debug, Info, Warn, Error, Fatal
-        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-
-        public static FastColoredTextBox setFCTB
-        { set { fCTB = value; } }
-
-        public static bool checkClicked(int value)
-        {   clicked = value;
-            rangeOk = false;
-            type = xmlMarkerType.none;
-            if ((fCTB != null) && (clicked >= 0))
+            else if (markedBlockType == xmlMarkerType.Group)
             {
-                if (gcode.loggerTrace) Logger.Trace("checkClicked Line {0}  {1}", clicked, fCTB.Lines[clicked]);
-                if (fCTB.Lines[clicked].Contains(xmlMarker.groupStart)) type = xmlMarkerType.Group;
-                else if (fCTB.Lines[clicked].Contains(xmlMarker.groupEnd)) type = xmlMarkerType.Group;
-                else if (fCTB.Lines[clicked].Contains(xmlMarker.figureStart)) type = xmlMarkerType.Figure;
-                else if (fCTB.Lines[clicked].Contains(xmlMarker.figureEnd)) type = xmlMarkerType.Figure;
-                else if (fCTB.Lines[clicked].Contains(xmlMarker.passStart)) type = xmlMarkerType.Pass;
-                else if (fCTB.Lines[clicked].Contains(xmlMarker.contourStart)) type = xmlMarkerType.Contour;
-                else if (fCTB.Lines[clicked].Contains(xmlMarker.fillStart)) type = xmlMarkerType.Fill;
-
-                if ((type == xmlMarkerType.none) || (type == xmlMarkerType.Figure))
-                    findRange(xmlMarker.figureStart, xmlMarker.figureEnd);
-                else if (type == xmlMarkerType.Group)
-                    findRange(xmlMarker.groupStart, xmlMarker.groupEnd);
-
-                if (rangeOk)
-                    setSelection();
+                block = xmlMarker.lastGroup;       // save current selection range
+                if (mostBottom)
+                    insert = xmlMarker.FindInsertPositionGroupMostBottom(block.lineStart);
+                else
+                    insert = xmlMarker.FindInsertPositionGroupBottom(block.lineStart);
+                if (moveBlockDown(block.lineStart, block.lineEnd, insert))
+                {   newCodeEnd();
+                    resetView = true;
+                    fCTBCodeClickedLineNow = insert-1;
+                }
             }
-            return rangeOk;
         }
-        public static void setSelection()
+        private bool moveBlockDown(int blockStart, int blockEnd, int insert)
         {
-            Place selStart, selEnd;
-            selStart.iLine = start;
-            selStart.iChar = 0;
-            Range mySelection = new Range(fCTB);
-            mySelection.Start = selStart;
-            selEnd.iLine = end;
-            selEnd.iChar = fCTB.Lines[end].Length; 
-            mySelection.End = selEnd;
-            fCTB.Selection = mySelection;
-            fCTB.SelectionColor = Color.Red;
-        }
-        private static int findUp(string key, int begin)
-        { int line = -1;
-            for (int i = begin; i >= 0; i--)              // search up
-            { if (fCTB.Lines[i].Contains(key))
-                { line = i; break; }
-            }
-            return line;
-        }
-        private static int findDown(string key, int begin)
-        { int line = -1;
-            for (int i = begin; i < fCTB.LinesCount; i++) // search down
-            { if (fCTB.Lines[i].Contains(key))
-                { line = i; break; }
-            }
-            return line;
-        }
-        public static void findRange(string xmlStart, string xmlEnd)
-        {   rangeOk = false;
-            end   = findDown(xmlEnd, clicked);
-            start = findUp(xmlStart, clicked);
-            range = end - start;
-            if ((start >= 0) && (end > start))
-            {   rangeOk = true;
-                if (gcode.loggerTrace) Logger.Trace("findRange Start {0}  {1}", start, fCTB.Lines[start]);
-                if (gcode.loggerTrace) Logger.Trace("findRange End   {0}  {1}", end, fCTB.Lines[end]);
-            }
-        }
-        public static bool moveBlockUp(bool figureIsMarked)
-        {   if (rangeOk && figureIsMarked)
-            {   string key = "";
-                if (type == xmlMarkerType.Figure)
-                    key = xmlMarker.figureStart;
-                else if (type == xmlMarkerType.Group)
-                    key = xmlMarker.groupStart;
+            if (insert >= blockEnd)
+            {
+                if (gcode.loggerTrace) Logger.Trace(" moveBlockDown blockStart:{0} Text:{1},  blockEnd:{2} insert:{3}  Text:{4}", blockStart, fCTBCode.Lines[blockStart].Substring(0,10), blockEnd, insert, fCTBCode.Lines[insert].Substring(0, 10));
+                Bookmarks tmp = new Bookmarks(fCTBCode);
+                tmp.Clear();
+                fCTBCode.Copy();                        // copy selection
+                Range oldSelection = fCTBCode.Selection.Clone();
 
-                int newPos = -1;
-                if (key.Length > 1)
-                    newPos = findUp(key, start - 1);    //   find previous xmlStart marker
-                if (newPos >= 0)
-                {
-                    if (gcode.loggerTrace) Logger.Trace("moveBlockUp Start {0} {1}", newPos, fCTB.Lines[newPos]);
-                    Bookmarks tmp = new Bookmarks(fCTB);
-                    tmp.Clear();
-                    fCTB.Cut();
-                    List<int> remove = new List<int>();
-                    remove.Add(start);
-                    fCTB.RemoveLines(remove);       // remove empty line after cut
-
-                    Place selStart;
-                    selStart.iLine = newPos;
-                    selStart.iChar = 0;
-                    Range mySelection = new Range(fCTB);// fCTBCode.Range;
-                    mySelection.Start = mySelection.End = selStart;
-                    fCTB.Selection = mySelection;
-                    fCTB.Paste();
-                    fCTB.InsertText("\r\n");
-                    return true;
-                }
+                Place selStart;
+                selStart.iLine = insert;
+                selStart.iChar = 0;
+                Range mySelection = new Range(fCTBCode);
+                mySelection.Start = mySelection.End = selStart;
+                fCTBCode.Selection = mySelection;
+                fCTBCode.InsertText("\r\n");
+                fCTBCode.Selection = mySelection;
+                fCTBCode.Paste();                       // insert code at new position
+                fCTBCode.Selection = oldSelection;
+                fCTBCode.Cut();                         // remove code from old position
+                List<int> remove = new List<int>();
+                remove.Add(blockStart);
+                fCTBCode.RemoveLines(remove);           // remove empty line after cut
+                return true;
             }
             return false;
         }
-        public static bool moveBlockDown(bool figureIsMarked)
-        {
-            if (rangeOk && figureIsMarked)
-            {
-                string key = "";
-                if (type == xmlMarkerType.Figure)
-                    key = xmlMarker.figureEnd;
-                else if (type == xmlMarkerType.Group)
-                    key = xmlMarker.groupEnd;
+        #endregion
 
-                int newPos = -1;
-                if (key.Length > 1)
-                    newPos = findDown(key, end+1)+1;    //   find next xmlEnd marker
-                if (newPos >= end)
-                {
-                    if (gcode.loggerTrace) Logger.Trace(" moveBlockDown Start {0} {1}", newPos, fCTB.Lines[newPos]);
-                    Bookmarks tmp = new Bookmarks(fCTB);
-                    tmp.Clear();
-                    fCTB.Copy();
-                    Range oldSelection = fCTB.Selection.Clone();
-
-                    Place selStart;
-                    selStart.iLine = newPos;
-                    selStart.iChar = 0;
-                    Range mySelection = new Range(fCTB);
-                    mySelection.Start = mySelection.End = selStart;
-                    fCTB.Selection = mySelection;
-                    fCTB.Paste();                       // insert code at new position
-                    fCTB.InsertText("\r\n");
-
-                    fCTB.Selection = oldSelection;
-                    fCTB.Cut();
-                    List<int> remove = new List<int>();
-                    remove.Add(start);
-                    fCTB.RemoveLines(remove);           // remove empty line after cut
-                    return true;
-                }
+        #region remove tags
+        private void cmsCodeBlocksRemoveGroup_Click(object sender, EventArgs e)
+        {   removeXMLTags(true); }
+        private void cmsCodeBlocksRemoveAll_Click(object sender, EventArgs e)
+        { removeXMLTags(); }
+        private void removeXMLTags(bool groupsOnly=false)
+        {   unDo.setCode(fCTBCode.Text, cmsCodeBlocksRemoveAll.Text, this);
+            clearTextSelection(0);
+            manualEdit = true;
+            if (gcode.loggerTrace) Logger.Trace(" removeXMLTags groupsOnly:{0} ", groupsOnly);
+            string find1 = groupsOnly ? "(<Group" : "(<";
+            string find2 = groupsOnly ? "(</Group" : "(</";
+            StringBuilder tmp = new StringBuilder();
+            for (int i = 0; i < fCTBCode.LinesCount; i++)
+            {   if (!(fCTBCode.Lines[i].Contains(find1) || fCTBCode.Lines[i].Contains(find2)))
+                    tmp.AppendLine(fCTBCode.Lines[i]);
             }
-            return false;
+            fCTBCode.Text = tmp.ToString();
+            transformEnd();
         }
+        #endregion
+
+        #region sort blocks
+        private void cmsCodeBlocksSortById_Click(object sender, EventArgs e)
+        { xmlMarker.sortById(cmsCodeBlocksSortReverse.Checked); getSortedCode(); }
+        private void cmsCodeBlocksSortByGeometry_Click(object sender, EventArgs e)
+        { xmlMarker.sortByGeometry(cmsCodeBlocksSortReverse.Checked); getSortedCode(); }
+        private void cmsCodeBlocksSortByToolNr_Click(object sender, EventArgs e)
+        { xmlMarker.sortByToolNr(cmsCodeBlocksSortReverse.Checked); getSortedCode(); }
+        private void cmsCodeBlocksSortByToolName_Click(object sender, EventArgs e)
+        { xmlMarker.sortByToolName(cmsCodeBlocksSortReverse.Checked); getSortedCode(); }
+        private void cmsCodeBlocksSortByColor_Click(object sender, EventArgs e)
+        { xmlMarker.sortByColor(cmsCodeBlocksSortReverse.Checked); getSortedCode(); }
+        private void cmsCodeBlocksSortByCodeSize_Click(object sender, EventArgs e)
+        { xmlMarker.sortByCodeSize(cmsCodeBlocksSortReverse.Checked); getSortedCode(); }
+        private void cmsCodeBlocksSortByCodeArea_Click(object sender, EventArgs e)
+        { xmlMarker.sortByCodeArea(cmsCodeBlocksSortReverse.Checked); getSortedCode(); }
+
+        private void getSortedCode()
+        {   unDo.setCode(fCTBCode.Text, cmsCodeBlocksRemoveAll.Text, this);
+            clearTextSelection(0);
+            manualEdit = true;
+            if (gcode.loggerTrace) Logger.Trace(" sortXMLTags by Id");
+            
+            fCTBCode.Text = xmlMarker.getSortedCode(fCTBCode.Lines.ToArray<string>());
+            transformEnd();
+            if      (foldLevel == 1) { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
+            else if (foldLevel == 2) foldBlocks2();
+        }
+
+
+        #endregion
     }
 }
