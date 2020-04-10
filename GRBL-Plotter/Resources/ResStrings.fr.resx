@@ -309,4 +309,40 @@
   <data name="grblSleep" xml:space="preserve">
     <value>Sommeil</value>
   </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>Consultez la fenêtre COM pour plus d'informations</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>Contrôle-cliquez pour sélectionner la figure; Alt-Cliquez pour sélectionner Groupe; Ou cliquez sur XML-Tag</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>Cliquez: marquez la figure; Ctrl-clic: marquer le groupe; Alt-Click: afficher la ligne GCode</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Contrôle-Bas pour déplacer le bloc sélectionné d'un vers le bas; Control-Shift-Down pour aller jusqu'à la fin</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>Mode édition activé - cliquez dans la vue 2D pour terminer</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>Chargement de fichiers</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>Fichier introuvable - supprimer de la liste</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>Le port série est peut-être verrouillé et un redémarrage de GRBL-Plotter est nécessaire</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>Une réinitialisation du contrôleur est probablement nécessaire</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>Le statut de streaming et le G-Code sont enregistrés dans '_lastProcessed.nc'. La poursuite après le redémarrage du programme est possible.</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Contrôle vers le haut pour déplacer le bloc sélectionné vers le haut; Control-Shift-Up pour aller en haut</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Sélection déplacée par</value>
+  </data>
 </root>

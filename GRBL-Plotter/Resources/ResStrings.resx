@@ -175,7 +175,7 @@
     <value>Finish sending G-Code</value>
   </data>
   <data name="mainInfoKill" xml:space="preserve">
-    <value>Press 'Kill Alarm' to proceed</value>
+    <value>Press 'Kill Alarm' to proceed ('$X')</value>
   </data>
   <data name="mainInfoLaserModeOff" xml:space="preserve">
     <value>Laser Mode not active $32=0</value>
@@ -190,7 +190,7 @@
     <value>Probing</value>
   </data>
   <data name="mainInfoResume" xml:space="preserve">
-    <value>Press 'Resume' to proceed</value>
+    <value>Press 'Resume' to proceed ('~')</value>
   </data>
   <data name="mainInfoSendCode" xml:space="preserve">
     <value>Send G-Code</value>
@@ -314,5 +314,44 @@
   </data>
   <data name="serialOpen" xml:space="preserve">
     <value>Open</value>
+  </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>Check COM-window for further information</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>Control-Click to select Figure; Alt-Click to select Group; Or click on XML-Tag</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>Click: mark Figure; Control-Click: mark Group; Alt-Click: show GCode line</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Control-Down to move selected Block one down; Control-Shift-Down to move to end</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>Edit mode on - click into 2D view to finish</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>File loading</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>File not found - remove from list</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>Perhaps serial port is locked and a restart of GRBL-Plotter is needed</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>Probably a reset of the controller is needed</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Selection moved by</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>Streaming status and G-Code are saved in '_lastProcessed.nc'. Continuation after program restart is possible.</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Control-Up to move selected Block one up; Control-Shift-Up to move to top</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
 </root>

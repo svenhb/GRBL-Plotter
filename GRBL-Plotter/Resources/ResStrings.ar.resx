@@ -315,4 +315,40 @@
   <data name="grblSleep" xml:space="preserve">
     <value>ينام</value>
   </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>تحقق من نافذة COM للحصول على مزيد من المعلومات</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>انقر مع الضغط على مفتاح Control لتحديد الشكل ؛ Alt- نقر لتحديد مجموعة ؛ أو انقر على علامة XML</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>انقر فوق: علامة الشكل ؛ انقر مع الضغط على Control: mark Group؛ Alt- نقر: إظهار خط GCode</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Control-Down لتحريك الكتلة المحددة لأسفل ؛ Control-Shift-Down للانتقال إلى النهاية</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>تحرير الوضع - انقر على عرض ثنائي الأبعاد للإنهاء</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>تحميل الملف</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>لم يتم العثور على الملف - إزالة من القائمة</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>ربما تم تأمين المنفذ التسلسلي وتحتاج إلى إعادة تشغيل GRBL- راسمة</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>ربما هناك حاجة لإعادة ضبط وحدة التحكم</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>يتم حفظ حالة البث و G-Code في "_lastProcessed.nc". يمكن الاستمرار بعد إعادة تشغيل البرنامج.</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Control-Up لتحريك الكتلة المحددة لأعلى ؛ Control-Shift-Up للانتقال إلى الأعلى</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>تم نقل التحديد بواسطة</value>
+  </data>
 </root>

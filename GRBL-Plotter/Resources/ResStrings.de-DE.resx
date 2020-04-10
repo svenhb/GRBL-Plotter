@@ -249,4 +249,40 @@
   <data name="mainSimuStop" xml:space="preserve">
     <value>Stop Simulation</value>
   </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>Überprüfen Sie das COM-Fenster für weitere Informationen</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>Klicken Sie bei gedrückter Ctrl-Taste, um Abbildung auszuwählen. Alt-Klicken, um Gruppe auszuwählen. Oder klicken Sie auf XML-Tag</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>Klicken Sie auf: Markieren Sie Abbildung; Control-Click: Gruppe markieren; Alt-Klick: GCode-Zeile anzeigen</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Strg-Ab, um den ausgewählten Block 1 nach unten zu verschieben; Strg-Umschalt-Ab, um zum Ende zu gelangen</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>Bearbeitungsmodus ein - Klicken Sie zum Abschluss in die 2D-Ansicht</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>Datei laden</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>Datei nicht gefunden - aus Liste entfernen</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>Möglicherweise ist die serielle Schnittstelle gesperrt und ein Neustart von GRBL-Plotter ist erforderlich</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>Möglicherweise ist ein Reset des Controllers erforderlich</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>Streaming-Status und G-Code werden in '_lastProcessed.nc' gespeichert. Fortsetzung nach Programmneustart ist möglich.</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Control-Up, um den ausgewählten Block 1 nach oben zu verschieben; Control-Shift-Up, um nach oben zu gelangen</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Auswahl verschoben um</value>
+  </data>
 </root>

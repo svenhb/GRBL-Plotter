@@ -315,4 +315,40 @@
   <data name="grblSleep" xml:space="preserve">
     <value>睡眠</value>
   </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>詳細については、COMウィンドウを確認してください</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>Ctrlキーを押しながらクリックして図を選択します。 Alt-クリックしてグループを選択します。 またはXMLタグをクリックします</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>クリック：図をマーク; Control-クリック：グループをマーク; Alt-クリック：GCodeラインを表示</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Ctrlキーを押しながら選択したブロックを1つ下に移動します。 Ctrl-Shift-Downで最後に移動</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>編集モードがオン-2Dビューをクリックして終了</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>ファイルの読み込み</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>ファイルが見つかりません-リストから削除</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>おそらくシリアルポートがロックされていて、GRBL-Plotterの再起動が必要です</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>おそらくコントローラーのリセットが必要です</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>ストリーミングステータスとGコードは「_lastProcessed.nc」に保存されます。 プログラムの再起動後の継続が可能です。</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Ctrlキーを押しながら選択したブロックを1つ上に移動します。 Control-Shift-Upでトップに移動</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>選択を移動しました</value>
+  </data>
 </root>

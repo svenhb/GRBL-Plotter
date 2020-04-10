@@ -232,7 +232,7 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Press &apos;Kill Alarm&apos; to proceed ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press &apos;Kill Alarm&apos; to proceed (&apos;$X&apos;) ähnelt.
         /// </summary>
         public static string mainInfoKill {
             get {
@@ -277,7 +277,7 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Press &apos;Resume&apos; to proceed ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press &apos;Resume&apos; to proceed (&apos;~&apos;) ähnelt.
         /// </summary>
         public static string mainInfoResume {
             get {
@@ -651,6 +651,123 @@ namespace GRBL_Plotter.Resources {
         public static string serialOpen {
             get {
                 return ResourceManager.GetString("serialOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Check COM-window for further information ähnelt.
+        /// </summary>
+        public static string statusStripeCheckCOM {
+            get {
+                return ResourceManager.GetString("statusStripeCheckCOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Control-Click to select Figure; Alt-Click to select Group; Or click on XML-Tag ähnelt.
+        /// </summary>
+        public static string statusStripeClickKeys {
+            get {
+                return ResourceManager.GetString("statusStripeClickKeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Click: mark Figure; Control-Click: mark Group; Alt-Click: show GCode line ähnelt.
+        /// </summary>
+        public static string statusStripeClickKeys2 {
+            get {
+                return ResourceManager.GetString("statusStripeClickKeys2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Control-Down to move selected Block one down; Control-Shift-Down to move to end ähnelt.
+        /// </summary>
+        public static string statusStripeDownKeys {
+            get {
+                return ResourceManager.GetString("statusStripeDownKeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit mode on - click into 2D view to finish ähnelt.
+        /// </summary>
+        public static string statusStripeEditModeOn {
+            get {
+                return ResourceManager.GetString("statusStripeEditModeOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File loading ähnelt.
+        /// </summary>
+        public static string statusStripeFileLoad {
+            get {
+                return ResourceManager.GetString("statusStripeFileLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File not found - remove from list ähnelt.
+        /// </summary>
+        public static string statusStripeFileNotFound {
+            get {
+                return ResourceManager.GetString("statusStripeFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Perhaps serial port is locked and a restart of GRBL-Plotter is needed ähnelt.
+        /// </summary>
+        public static string statusStripeGrblResetNeeded {
+            get {
+                return ResourceManager.GetString("statusStripeGrblResetNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Probably a reset of the controller is needed ähnelt.
+        /// </summary>
+        public static string statusStripeResetNeeded {
+            get {
+                return ResourceManager.GetString("statusStripeResetNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Selection moved by ähnelt.
+        /// </summary>
+        public static string statusStripeSelectionMoved {
+            get {
+                return ResourceManager.GetString("statusStripeSelectionMoved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Streaming status and G-Code are saved in &apos;_lastProcessed.nc&apos;. Continuation after program restart is possible. ähnelt.
+        /// </summary>
+        public static string statusStripeStreamingStatusSaved {
+            get {
+                return ResourceManager.GetString("statusStripeStreamingStatusSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Control-Up to move selected Block one up; Control-Shift-Up to move to top ähnelt.
+        /// </summary>
+        public static string statusStripeUpKeys {
+            get {
+                return ResourceManager.GetString("statusStripeUpKeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

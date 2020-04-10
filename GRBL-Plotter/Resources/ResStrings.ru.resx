@@ -315,4 +315,40 @@
   <data name="grblSleep" xml:space="preserve">
     <value>Спать</value>
   </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>Проверьте COM-окно для получения дополнительной информации</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>Control-Click, чтобы выбрать рисунок; Alt-Click, чтобы выбрать группу; Или нажмите на XML-тег</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>Нажмите: пометить рисунок; Control-Click: пометить группу; Alt-Click: показать строку GCode</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Control-Down для перемещения выбранного блока один вниз; Control-Shift-Down для перехода в конец</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>Режим редактирования на - нажмите в 2D вид, чтобы закончить</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>Загрузка файла</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>Файл не найден - удалить из списка</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>Возможно, последовательный порт заблокирован и необходим перезапуск GRBL-Plotter</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>Вероятно, необходим сброс контроллера</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>Статус потоковой передачи и G-код сохраняются в _lastProcessed.nc. Продолжение после перезапуска программы возможно.</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Control-Up для перемещения выбранного блока один вверх; Control-Shift-Up для перемещения наверх</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Выбор перемещен</value>
+  </data>
 </root>

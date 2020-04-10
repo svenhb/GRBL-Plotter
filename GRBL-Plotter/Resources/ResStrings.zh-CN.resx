@@ -315,4 +315,40 @@
   <data name="grblSleep" xml:space="preserve">
     <value>睡觉</value>
   </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>检查COM窗口以获取更多信息</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>按住Control键并单击以选择Figure； Alt单击以选择“组”； 或点击XML标签</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>点击：标记图； 按住Control键并单击：标记组； Alt单击：显示GCode行</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Control-Down键将选定的块向下移动一格； 按住Control-Shift-Down移至结尾</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>开启编辑模式-单击进入2D视图以完成</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>文件加载</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>找不到文件-从列表中删除</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>也许串行端口被锁定，需要重启GRBL-Plotter</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>可能需要重置控制器</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>流状态和G代码保存在“ _lastProcessed.nc”中。 程序重新启动后可以继续。</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Control-Up向上移动选定的块一； Ctrl-Shift-Up移至顶部</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>选择移至</value>
+  </data>
 </root>

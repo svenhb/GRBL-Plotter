@@ -315,4 +315,40 @@
   <data name="grblSleep" xml:space="preserve">
     <value>Dormir</value>
   </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>Verifique a janela COM para obter mais informações</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>Ctrl-Clique para selecionar Figura; Clique com a tecla Alt pressionada para selecionar Grupo; Ou clique em XML-Tag</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>Clique: marque Figura; Control-Click: marque Grupo; Alt-Click: mostra a linha do GCode</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Control-Down para mover o bloco selecionado um para baixo; Control-Shift-Down para mover para o final</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>Modo de edição ativado - clique na visualização 2D para finalizar</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>Carregamento de arquivo</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>Arquivo não encontrado - remover da lista</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>Talvez a porta serial esteja bloqueada e seja necessário reiniciar o GRBL-Plotter</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>Provavelmente é necessário reiniciar o controlador</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>O status da transmissão e o código G são salvos em '_lastProcessed.nc'. É possível continuar após a reinicialização do programa.</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Control-Up para mover o bloco selecionado para cima; Control-Shift-Up para mover para o topo</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Seleção movida por</value>
+  </data>
 </root>
