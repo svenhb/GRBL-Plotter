@@ -55,6 +55,8 @@
    2019-12-07 add extended log
    2019-12-22 Line 100 add try/catch for bad SVG-XML
    2020-02-28 Bug fix "polygon"
+   2020-03-30 Grouping also by Layer-Name (ID of 1st level groups)
+   2020-04-08 Line 466 adapt changing from arkypita-LaserGRBL  Experimental SVG support #451
 */
 
 using System;
@@ -79,6 +81,7 @@ namespace GRBL_Plotter
         private static float svgMaxSize = 100;          // final GCode size (greater dimension) if scale is applied
         private static bool svgClosePathExtend = true;  // not working if true move to first and second point of path to get overlap
         private static bool svgGroupObjects = true;     // if true sort objects by tool-nr. (to avoid back and forth pen change)
+        private static bool svgGroupByColor = true;
         private static bool svgNodesOnly = true;        // if true only do pen-down -up on given coordinates
         private static bool svgComments = true;         // if true insert additional comments into GCode
 
@@ -181,6 +184,7 @@ namespace GRBL_Plotter
             svgComments = Properties.Settings.Default.importSVGAddComments;
             svgConvertToMM = Properties.Settings.Default.importUnitmm;                  // Target units and display in setup
             svgGroupObjects = Properties.Settings.Default.importGroupObjects;           // SVG-Import group objects
+            svgGroupByColor = Properties.Settings.Default.importGroupByColor;           // 
             svgNodesOnly = Properties.Settings.Default.importSVGNodesOnly;
 
             Plotter.StartCode();        // initalize variables
@@ -227,7 +231,7 @@ namespace GRBL_Plotter
             parseGroup(svgCode,1);                      // parse groups (recursive)
             if (svgGroupObjects)
             {   if (!Plotter.IsPathFigureEnd)
-                {   Plotter.Comment(xmlMarker.figureEnd + Plotter.PathCount + ">");     // reached if SVG code via copy & paste was converted
+                {   Plotter.Comment(xmlMarker.figureEnd + ">");// + Plotter.PathCount + ">");     // reached if SVG code via copy & paste was converted
                     Logger.Debug(" FigureEnd");
                 }
                 Plotter.IsPathFigureEnd = true;
@@ -361,11 +365,16 @@ namespace GRBL_Plotter
         private static void parseGroup(XElement svgCode, int level)
         {   foreach (XElement groupElement in svgCode.Elements(nspace + "g"))
             {
+                Plotter.PathId = "";
                 if (groupElement.Attribute("id") != null)
                     Plotter.PathId = groupElement.Attribute("id").Value;
 
-                Plotter.PathId = "";
+    //            Plotter.PathId = "";
                 Plotter.PathDashArray = new double[0];      // reset dash pattern
+                if ((level == 1) && (!svgGroupByColor))
+                {   if (Plotter.PathId == "") Plotter.PathId = "0";
+                    Plotter.SetGroup(Plotter.PathId); }
+
 
                 parseTransform(groupElement,true, level);   // transform will be applied in gcodeMove
                 parseAttributs(groupElement);               // process color and stroke-dasharray
@@ -450,10 +459,15 @@ namespace GRBL_Plotter
                     var split = coord.Split(',');
                     if (coord.IndexOf(',') < 0)
                         split = coord.Split(' ');
-                    float angle = convertToPixel(split[0]) * (float)Math.PI / 180;
-                    tmp.M11 = Math.Cos(angle); tmp.M12 = Math.Sin(angle);
-                    tmp.M21 = -Math.Sin(angle); tmp.M22 = Math.Cos(angle);
-
+                    /*             float angle = convertToPixel(split[0]) * (float)Math.PI / 180;
+                                 tmp.M11 = Math.Cos(angle); tmp.M12 = Math.Sin(angle);
+                                 tmp.M21 = -Math.Sin(angle); tmp.M22 = Math.Cos(angle);
+             */
+// change by arkypita LaserGRBL
+                    float angle = convertToPixel(split[0]); //no need to convert in radiant
+                    float px = split.Length == 3 ? convertToPixel(split[1]) : 0.0f; //<--- this read rotation offset point x
+                    float py = split.Length == 3 ? convertToPixel(split[2]) : 0.0f; //<--- this read rotation offset point y
+                    tmp.RotateAt(angle, px, py); // <--- this apply RotateAt matrix
                     if (svgComments) Plotter.Comment(string.Format(" SVG-Rotate {0} ", angle));
                 }
                 if ((transform != null) && (transform.IndexOf("matrix") >= 0))
@@ -583,7 +597,8 @@ namespace GRBL_Plotter
                         parseAttributs(pathElement);   // process color and stroke-dasharray
                         logSource = "Basic element " + form;
 
-                        Plotter.SetGroup(Plotter.PathToolNr);
+                        if (svgGroupByColor)
+                            Plotter.SetGroup(Plotter.PathToolNr);       // set index if grouping and tool
 
                         if (pathElement.Attribute("id") != null)
                             Plotter.PathId = pathElement.Attribute("id").Value;
@@ -792,7 +807,8 @@ namespace GRBL_Plotter
 
                     parseAttributs(pathElement);   // process color and stroke-dasharray
 
-                    Plotter.SetGroup(Plotter.PathToolNr); 
+                    if (svgGroupByColor)
+                        Plotter.SetGroup(Plotter.PathToolNr);       // set index if grouping and tool
 
                     if (pathElement.Attribute("id") != null)
                         Plotter.PathId = pathElement.Attribute("id").Value;

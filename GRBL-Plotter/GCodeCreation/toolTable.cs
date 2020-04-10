@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
     2018-08 only use tool table for color palette
     2019-09 add logger, change sub-path
+    2020-04 add codeSize (line-count), codeDimension (xSize * ySize)
 */
 
 using System;
@@ -131,12 +132,23 @@ namespace GRBL_Plotter
             if (index >= toolTableIndex - 2) index = toolTableIndex - 2;
             toolTableArray[index + 1].codeSize = size;
         }
+        public static int indexCodeSize()
+        {   if (tmpIndex < toolTableArray.Length)
+                return toolTableArray[tmpIndex].codeSize;
+            return -1;
+        }
         public static void indexSetCodeDimension(double size)
         { toolTableArray[tmpIndex].codeDimension = size; }
         public static void setIndex(int index)
         {   if ((index >= 0) && (index < toolTableIndex))
                 tmpIndex = index;
         }
+        public static double indexCodeDimension()
+        {   if (tmpIndex < toolTableArray.Length)
+                return toolTableArray[tmpIndex].codeDimension;
+            return -1;
+        }
+
         public static short indexToolNr()
         {   if (tmpIndex < toolTableArray.Length)
                 return toolTableArray[tmpIndex].toolnr;

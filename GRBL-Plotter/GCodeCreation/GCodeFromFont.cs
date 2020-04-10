@@ -181,7 +181,7 @@ namespace GRBL_Plotter
                     if (useLFF) // LFF Font (LibreCAD font file format)
                     {
                         if (chrIndexLFF > 32)
-                        { gcodeComment(string.Format("{0} {1} Char=\"{2}\" {3}>", xmlMarker.figureStart, (++pathCount), actualChar, cmt)); }
+                        { gcodeComment(string.Format("{0} Id=\"{1}\" Char=\"{2}\" {3}>", xmlMarker.figureStart, (++pathCount), actualChar, cmt)); }
 
                         drawLetterLFF(ref fileContent, chrIndexLFF, scale);// regular char
                         gcodePenUp("getCode");
@@ -344,7 +344,7 @@ namespace GRBL_Plotter
             {
                 if (pathCount > 0)
                     gcodeComment(Plotter.SetFigureEnd(pathCount));
-                gcodeComment(string.Format("{0} {1} char='{2}'>", xmlMarker.figureStart, (++pathCount), comment));
+                gcodeComment(string.Format("{0} Id=\"{1}\" char=\"{2}\">", xmlMarker.figureStart, (++pathCount), comment));
             }
             if (cmd == 'M')
             {   if (gcConnectLetter && isSameWord && (tnr == 1))

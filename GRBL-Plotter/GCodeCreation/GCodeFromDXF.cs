@@ -47,6 +47,7 @@
  * 2020-01-08 bug fix convert 'Point' line 323
  * 2020-02-19 bug fix round corners in blocks
  * 2020-02-22 updated DXFLib.dll is needed (DXFInsert-RotationAngle, DXFEllipse)
+ * 2020-03-30 Grouping also by Layer-Name
 */
 
 using System;
@@ -74,7 +75,9 @@ namespace GRBL_Plotter //DXFImporter
         private static int dxfColorIDold = -1;
         private static string dxfColorHex = "";
         private static bool groupObjects = false;
+        private static bool groupByColor = true;
         private static bool nodesOnly = false;              // if true only do pen-down -up on given coordinates
+        private static Point lastUsedCoord = new Point();
 
         private static Dictionary<string, int> layerColor = new Dictionary<string, int>();
         private static Dictionary<string, string> layerLType = new Dictionary<string, string>();
@@ -150,6 +153,7 @@ namespace GRBL_Plotter //DXFImporter
             dxfComments = Properties.Settings.Default.importSVGAddComments;
             dxfUseColorIndex = Properties.Settings.Default.importDXFToolIndex;       // use DXF color index instead real color
             groupObjects = Properties.Settings.Default.importGroupObjects;           // DXF-Import group objects
+            groupByColor = Properties.Settings.Default.importGroupByColor;           // DXF-Import group objects
             nodesOnly = Properties.Settings.Default.importSVGNodesOnly;
 
             dxfColorID = 259;
@@ -197,11 +201,11 @@ namespace GRBL_Plotter //DXFImporter
             lineTypes.Clear();
 
             List<DXFLayerRecord> tst = doc.Tables.Layers;
-            foreach (DXFLayerRecord rec in tst)
+            foreach (DXFLayerRecord record in tst)
             {
-                Plotter.AddToHeader(string.Format("Layer: {0} , color: {1} , line type: {2}", rec.LayerName, rec.Color, rec.LineType));
-                layerColor.Add(rec.LayerName, rec.Color);
-                layerLType.Add(rec.LayerName, rec.LineType);
+                Plotter.AddToHeader(string.Format("Layer: {0} , color: {1} , line type: {2}", record.LayerName, record.Color, record.LineType));
+                layerColor.Add(record.LayerName, record.Color);
+                layerLType.Add(record.LayerName, record.LineType);
             }
 
             List<DXFLineTypeRecord> ltypes = doc.Tables.LineTypes;
@@ -235,16 +239,17 @@ namespace GRBL_Plotter //DXFImporter
                     if (ins.RotationAngle != null)                                  // insertion angle in degrees
                         insertionAngle = (double)ins.RotationAngle;
 
-                    if (gcode.loggerTrace) Logger.Trace("Block: at X{0:0.00}  Y{1:0.00}  a{2:0.00}", insertion.X, insertion.Y, ins.RotationAngle);
-
+                    if (gcode.loggerTrace) Logger.Trace("Block: at X{0:0.00}  Y{1:0.00}  a{2:0.00}  layer{3}", insertion.X, insertion.Y, ins.RotationAngle, dxfEntity.LayerName);
+                   
                     foreach (DXFBlock block in doc.Blocks)
                     {   if (block.BlockName.ToString() == ins.BlockName)
                         {   if (gcode.loggerTrace) Logger.Trace("Block: {0}", block.BlockName);
                             dxfColorID = block.ColorNumber;
+                            
                             Plotter.PathName = "Block:"+block.BlockName;
                             Plotter.AddToHeader(string.Format("Block: {0} at X{1:0.000}  Y{2:0.000}  a{3:0.00}" ,block.BlockName, insertion.X, insertion.Y, ins.RotationAngle));
                             foreach (DXFEntity blockEntity in block.Children)
-                            {   processEntities(blockEntity, insertion, insertionAngle, false);   }
+                            {   processEntities(blockEntity, insertion, insertionAngle, dxfEntity.LayerName);   }
                         }
                     }
                 }
@@ -252,7 +257,7 @@ namespace GRBL_Plotter //DXFImporter
                 {
                     DXFPoint empty = new DXFPoint();
                     empty.X = 0; empty.Y = 0;
-                    processEntities(dxfEntity, empty, 0); }
+                    processEntities(dxfEntity, empty, 0, dxfEntity.LayerName); }
             }
             Plotter.PenUp("DXF End");
         }
@@ -263,21 +268,19 @@ namespace GRBL_Plotter //DXFImporter
         /// <param name="entity">Entity to convert</param>
         /// <param name="offsetX">Offset to apply if called by block insertion</param>
         /// <returns></returns>                       
-        private static void processEntities(DXFEntity entity, DXFPoint offset, double offsetAngle=0, bool updateColor=true)		// double offsetX=0, double offsetY=0
+        private static void processEntities(DXFEntity entity, DXFPoint offset, double offsetAngle, string layerName)		// double offsetX=0, double offsetY=0
         {
             int index = 0;
 			DXFPoint position = new DXFPoint();
             position.X = 0; position.Y = 0;
 
-            if (updateColor)
-            {   dxfColorID = entity.ColorNumber;
-                Plotter.PathName = "Layer:"+entity.LayerName;
-            }
+            dxfColorID = entity.ColorNumber;
+            Plotter.PathName = "Layer:"+layerName;
 
             Plotter.PathDashArray = new double[0];                  // default no dashes
             if ((entity.LineType==null) || (entity.LineType == "ByLayer"))
-            {   if (layerLType.ContainsKey(entity.LayerName))       // check if layer name is known
-                {   string dashType = layerLType[entity.LayerName]; // get name of pattern
+            {   if (layerLType.ContainsKey(layerName))       // check if layer name is known
+                {   string dashType = layerLType[layerName]; // get name of pattern
                     if (lineTypes.ContainsKey(dashType))            // check if pattern name is known
                         Plotter.PathDashArray = lineTypes[dashType];// apply pattern
                 }
@@ -287,9 +290,9 @@ namespace GRBL_Plotter //DXFImporter
                      Plotter.PathDashArray = lineTypes[entity.LineType];// apply pattern
             }
 
-            if (dxfColorID > 255)
-                if (layerColor.ContainsKey(entity.LayerName))
-                    dxfColorID = layerColor[entity.LayerName];
+            if (dxfColorID > 255)     //   DXF 256 = color BYLAYER
+                if (layerColor.ContainsKey(layerName))
+                    dxfColorID = layerColor[layerName];
 
             if (dxfColorID < 0) dxfColorID = 0;
             if (dxfColorID >255) dxfColorID = 7;
@@ -300,12 +303,16 @@ namespace GRBL_Plotter //DXFImporter
             Plotter.PathColor = dxfColorHex;
 
             if (dxfUseColorIndex)
-                toolNr = dxfColorID + 1;      // avoid ID=0 to start tool-table with index 1
+            {   toolNr = dxfColorID + 1; }     // avoid ID=0 to start tool-table with index 1
             else
-            {   toolNr = toolTable.getToolNr(dxfColorHex, 0);
-            }
+            {   toolNr = toolTable.getToolNr(dxfColorHex, 0);  }
 
-            Plotter.SetGroup(toolNr);       // set index if grouping and tool
+            if (groupByColor)
+                Plotter.SetGroup(toolNr);       // set index if grouping and tool
+            else
+                Plotter.SetGroup(layerName);
+
+            if (gcode.loggerTrace) Logger.Trace("Group: {0}  dxfColorID: {1}  LayerName: {2}  entityColor: {3}", toolNr, dxfColorID, layerName, entity.ColorNumber);
 
             if (dxfColorIDold != dxfColorID)
             {   
@@ -331,6 +338,7 @@ namespace GRBL_Plotter //DXFImporter
             #region DXFPoint
             if (entity.GetType() == typeof(DXFPointEntity))
             {
+                Plotter.Geometry = "Point";
                 DXFPointEntity point = (DXFPointEntity)entity;
 				position = calcPosition(point.Location, offset, offsetAngle);
                 if (gcode.loggerTrace) Logger.Trace(" Point: {0:0.00};{1:0.00} ", position.X, position.Y);
@@ -340,6 +348,7 @@ namespace GRBL_Plotter //DXFImporter
             #region DXFLWPolyline
             else if (entity.GetType() == typeof(DXFLWPolyLine))
             {
+                Plotter.Geometry = "Polyline";
                 DXFLWPolyLine lp = (DXFLWPolyLine)entity;
                 index = 0;
                 double bulge = 0;
@@ -388,6 +397,7 @@ namespace GRBL_Plotter //DXFImporter
             #region DXFPolyline
             else if (entity.GetType() == typeof(DXFPolyLine))
             {
+                Plotter.Geometry = "Polyline";
                 DXFPolyLine lp = (DXFPolyLine)entity;
                 index = 0;
                 DXFPoint start = new DXFPoint();
@@ -417,6 +427,7 @@ namespace GRBL_Plotter //DXFImporter
             #region DXFLine
             else if (entity.GetType() == typeof(DXFLine))
             {
+                Plotter.Geometry = "Line";
                 DXFLine line = (DXFLine)entity;
                 position = calcPosition(line.Start, offset, offsetAngle);
                 DXFPoint pos2 = calcPosition(line.End, offset, offsetAngle);
@@ -437,6 +448,7 @@ namespace GRBL_Plotter //DXFImporter
             else if (entity.GetType() == typeof(DXFSpline))
             {   // from Inkscape DXF import - modified
                 // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L106
+                Plotter.Geometry = "Spline";
                 DXFSpline spline = (DXFSpline)entity;
                 index = 0;
                 DXFPoint last = calcPosition(spline.ControlPoints[0], offset, offsetAngle);
@@ -490,7 +502,7 @@ namespace GRBL_Plotter //DXFImporter
                         }
                         last = calcPosition(spline.ControlPoints[3 * i + 3], offset, offsetAngle);
                     }
-                    dxfStopPath();
+                    dxfStopPath(true);
                 }
                 if ((ctrls == 3) && (knots == 6))           //  # quadratic
                 {   //  path = 'M %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2])
@@ -505,7 +517,7 @@ namespace GRBL_Plotter //DXFImporter
                     {   gcodeDotOnly(last, "");
                         gcodeDotOnly(toWSPoint(calcPosition(spline.ControlPoints[2], offset, offsetAngle)), "");
                     }
-                    dxfStopPath();
+                    dxfStopPath(true);
                 }
                 if ((ctrls == 5) && (knots == 8))           //  # spliced quadratic
                 {   //  path = 'M %f,%f Q %f,%f %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2], vals[groups['10']][3], vals[groups['20']][3], vals[groups['10']][4], vals[groups['20']][4])
@@ -523,13 +535,14 @@ namespace GRBL_Plotter //DXFImporter
                         gcodeDotOnly(toWSPoint(calcPosition(spline.ControlPoints[2], offset,offsetAngle)), "");
                         gcodeDotOnly(toWSPoint(calcPosition(spline.ControlPoints[5], offset,offsetAngle)), "");
                     }
-                    dxfStopPath();
+                    dxfStopPath(true);
                 }
             }
             #endregion
             #region DXFCircle
             else if (entity.GetType() == typeof(DXFCircle))
             {
+                Plotter.Geometry = "Circle";
                 DXFCircle circle = (DXFCircle)entity;
                 position = calcPosition(circle.Center, offset, offsetAngle);
                 if (gcode.loggerTrace) Logger.Trace(" Circle center: {0};{1}  R: {2}", position.X, position.Y, circle.Radius);
@@ -542,6 +555,7 @@ namespace GRBL_Plotter //DXFImporter
             else if (entity.GetType() == typeof(DXFEllipse))
             {   // from Inkscape DXF import - modified
                 // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L341
+                Plotter.Geometry = "Ellipse";
                 DXFEllipse ellipse = (DXFEllipse)entity;
                 double angleRad = offsetAngle * Math.PI / 180;
                 float xc = (float)(ellipse.Center.X * Math.Cos(angleRad) - ellipse.Center.Y * Math.Sin(angleRad) + offset.X);
@@ -588,6 +602,7 @@ namespace GRBL_Plotter //DXFImporter
             #region DXFArc
             else if (entity.GetType() == typeof(DXFArc))
             {
+                Plotter.Geometry = "Arc";
                 DXFArc arc = (DXFArc)entity;
                 
                 double X = (double)arc.Center.X + (double)offset.X;
@@ -640,6 +655,7 @@ namespace GRBL_Plotter //DXFImporter
             #region DXFMText
             else if (entity.GetType() == typeof(DXFMText))
             {   // https://www.autodesk.com/techpubs/autocad/acad2000/dxf/mtext_dxf_06.htm
+                Plotter.Geometry = "Text";
                 DXFMText txt = (DXFMText)entity;
                 xyPoint origin = new xyPoint(0,0);
                 GCodeFromFont.reset();
@@ -820,13 +836,38 @@ namespace GRBL_Plotter //DXFImporter
         /// Insert G0, Pen down gcode command
         /// </summary>
         private static void dxfStartPath(DXFPoint tmp, string cmt = "")
-        { Plotter.StartPath(translateXY((float)tmp.X, (float)tmp.Y), cmt); }
-
+        {   Point coord = translateXY((float)tmp.X, (float)tmp.Y);
+            dxfStartTrsanslatedPath(coord, cmt);
+        }
         private static void dxfStartPath(double x, double y, string cmt = "")
-        {   Plotter.StartPath(translateXY((float)x, (float)y), cmt);  }
+        {   Point coord = translateXY((float)x, (float)y);
+            dxfStartTrsanslatedPath(coord, cmt);
+        }
+        private static void dxfStartTrsanslatedPath(Point coord, string cmt = "")
+        {   if (!gcodeMath.isEqual(coord, lastUsedCoord))
+            {   if (requestStopPath)
+                { dxfStopPath(); requestStopPath = false; }   // stop previous path
+                Plotter.StartPath(coord, cmt);                  // start next path
+            }
+            else
+            {
+                Plotter.Comment(string.Format("Skip StartPath at X:{0} Y:{1}", coord.X, coord.Y));
+                if (requestStopPath)
+                {   requestStopPath = false; }  // skip stop
+                else
+                    Plotter.StartPath(coord, cmt);                  // start next path
+            }
+            lastUsedCoord = coord;
+        }
 
-        private static void dxfStopPath(string cmt="")
-        {   Plotter.StopPath(cmt);  }
+
+        private static bool requestStopPath = false;
+        private static void dxfStopPath(bool allowSkip=false)
+        {   if (allowSkip)
+                requestStopPath = true;
+            else
+                Plotter.StopPath("");
+        }
 
         /// <summary>
         /// Insert G1 gcode command
@@ -843,7 +884,7 @@ namespace GRBL_Plotter //DXFImporter
         /// Insert G1 gcode command
         /// </summary>
         private static void dxfMoveTo(float x, float y, string cmt)
-        {   System.Windows.Point coord = new System.Windows.Point(x, y);
+        {   Point coord = new System.Windows.Point(x, y);
             dxfMoveTo(coord, cmt);
         }
         /// <summary>
@@ -856,6 +897,8 @@ namespace GRBL_Plotter //DXFImporter
                 Plotter.MoveTo(coord, cmt);
             else
                 gcodeDotOnly(coord.X, coord.Y, "");
+
+            lastUsedCoord = coord;
         }
 
         private static string getColorFromID(int id)

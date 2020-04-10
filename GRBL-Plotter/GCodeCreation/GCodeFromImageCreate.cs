@@ -175,7 +175,7 @@ namespace GRBL_Plotter
 
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
                     gcode.Tool(finalString, toolNr, toolTable.indexName());  // + svgPalette.pixelCount());
-                    gcode.Comment(finalString, string.Format("{0} {1} color='{2}'>", xmlMarker.figureStart, (++pathCount), toolTable.indexName()));
+                    gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" color=\"{2}\">", xmlMarker.figureStart, (++pathCount), toolTable.indexName()));
                     gcode.reduceGCode = false;
                     gcode.PenUp(finalString," start ");
 //                    gcode.MoveToRapid(finalString, 0, 0);          // move to start pos
@@ -197,7 +197,7 @@ namespace GRBL_Plotter
                             {   cnt++;
                                 tmpP = path[0];
                                 tmpY = (adjustedImage.Height - 1) - tmpP.Y; // start point
-                                gcode.Comment(finalString, string.Format("{0} {1}>", xmlMarker.contourStart, cnt));
+                                gcode.Comment(finalString, string.Format("{0} Nr=\"{1}\">", xmlMarker.contourStart, cnt));
                                 gcode.MoveToRapid(finalString, tmpP.X * resoOutline, tmpY * resoOutline, "");          // move to start pos
                                 gcode.PenDown(finalString);// " contour "+cnt);
                                 foreach (PointF aP in path)
@@ -439,7 +439,7 @@ namespace GRBL_Plotter
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
                     gcode.Tool(finalString, toolNr, toolTable.indexName());  // + svgPalette.pixelCount());
 
-                    gcode.Comment(finalString, string.Format("{0} {1} color='{2}'>", xmlMarker.figureStart, (++pathCount), toolTable.indexName()));
+                    gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" color=\"{2}\">", xmlMarker.figureStart, (++pathCount), toolTable.indexName()));
                     gcode.PenUp(finalString);                             // pen up
                     finalString.Append(gcodeByToolNr[key]);
                     gcode.Comment(finalString, string.Format("{0}>", xmlMarker.figureEnd));
@@ -516,7 +516,7 @@ namespace GRBL_Plotter
             bool useZ = rBGrayZ.Checked;
 
             generateGCodePreset(0, resol*(resultImage.Height - 1)); // 1st position
-            gcode.Comment(finalString, string.Format("{0} {1}>", xmlMarker.figureStart, 1));
+            gcode.Comment(finalString, string.Format("{0} Id=\"{1}\">", xmlMarker.figureStart, 1));
 
             if (rbEngravingPattern1.Checked)        // horizontal
             {
@@ -592,7 +592,7 @@ namespace GRBL_Plotter
                     else
                         gcode.PenUp(finalString);                             // pen up
                         */
-            gcode.Comment(finalString, string.Format("{0} 1>", xmlMarker.figureEnd));
+            gcode.Comment(finalString, string.Format("{0}>", xmlMarker.figureEnd));
             gcode.jobEnd(finalString);
 
             //       if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");

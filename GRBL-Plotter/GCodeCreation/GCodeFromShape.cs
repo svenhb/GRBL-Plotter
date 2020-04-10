@@ -96,7 +96,7 @@ namespace GRBL_Plotter
 
             bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value);
 
-            gcode.Comment(gcodeString, xmlMarker.figureStart + " " + figureCount.ToString() + " >");
+            gcode.Comment(gcodeString, xmlMarker.figureStart + " Id=\"" + figureCount.ToString() + "\" >");
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if (rBShape1.Checked)                               // rectangle
             {   getOffset(x,y);
@@ -115,14 +115,14 @@ namespace GRBL_Plotter
                     //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                     if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
                     {   gcode.PenUp(gcodeString);
-                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + "  " + passCount.ToString() + ">");
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ "  " + passCount.ToString() + ">");
                     }
                     passCount++;
 
                     if(gcodeTangEnable)
                         gcode.setTangential(gcodeString, 90, true);
 
-                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart,passCount, zStep, nUDImportGCZDown.Value));
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart,passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + overlap, ""); 
@@ -155,7 +155,7 @@ namespace GRBL_Plotter
                     makeRect(offsetX, offsetY, offsetX + x, offsetY + y, 0, true);  // final rectangle clockwise
                 }
                 gcode.PenUp(gcodeString);
-                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
             }
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             else if (rBShape2.Checked)           // rectangle with round edge
@@ -177,14 +177,14 @@ namespace GRBL_Plotter
                     //                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                     if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
                     {   gcode.PenUp(gcodeString);
-                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
                     }
                     passCount++;
 
                     if (gcodeTangEnable)
                         gcode.setTangential(gcodeString, 90, true);
 
-                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + rShape , "");
@@ -217,7 +217,7 @@ namespace GRBL_Plotter
                     makeRect(offsetX, offsetY, offsetX + x, offsetY + y, rShape, true);  // rectangle clockwise
                 }
                 gcode.PenUp(gcodeString);
-                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
             }
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             else if (rBShape3.Checked)           // circle
@@ -235,7 +235,7 @@ namespace GRBL_Plotter
                     //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
                     if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
                     {   gcode.PenUp(gcodeString);
-                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
+                        if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
                     }
                     passCount++;
 
@@ -243,7 +243,7 @@ namespace GRBL_Plotter
                         gcode.setTangential(gcodeString, 90, true);
 
 
-                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}'>", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
+                    if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                     if (cBToolpathPocket.Checked)
                         gcode.MoveToRapid(gcodeString, offsetX + rShape-overlap, offsetY + rShape, "");
@@ -271,7 +271,7 @@ namespace GRBL_Plotter
                     gcode.Arc(gcodeString, 2, offsetX, offsetY + rShape, rShape, 0, "");
                 }
                 gcode.PenUp(gcodeString);
-                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + " " + passCount.ToString() + ">");
+                if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
             }
             gcode.Comment(gcodeString, Plotter.SetFigureEnd(figureCount));
 

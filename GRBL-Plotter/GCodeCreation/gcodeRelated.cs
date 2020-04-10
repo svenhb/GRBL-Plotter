@@ -1184,7 +1184,7 @@ namespace GRBL_Plotter
             string header = "( "+cmt+" by GRBL-Plotter )\r\n";
             string header_end = headerData.ToString();
             if (gcodeTangentialEnable)
-                header_end += string.Format("({0} {1}/>)\r\n", xmlMarker.tangentialAxis, gcodeTangentialName);
+                header_end += string.Format("({0} Axis=\"{1}\"/>)\r\n", xmlMarker.tangentialAxis, gcodeTangentialName);
 
             string[] commands = Properties.Settings.Default.importGCHeader.Split(';');
             foreach (string cmd in commands)
@@ -1301,7 +1301,7 @@ namespace GRBL_Plotter
                 if (zStep < finalZ)
                     zStep = finalZ;
                 gcodeZDown = zStep;
-                Comment(gcodeString, string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}' >", xmlMarker.passStart, passCount, zStep, finalZ));
+                Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\" >", xmlMarker.passStart, passCount, zStep, finalZ));
                 if (passCount <= 1)
                 {   gcodeTangentialCommand = figureStartAlpha;
                     Move(gcodeString, 0, (float)figureStart.X, (float)figureStart.Y, false, "");
@@ -1310,7 +1310,7 @@ namespace GRBL_Plotter
                 gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(zStep), gcodeZFeed, cmt);    // Router down
                 gcodeDownUp++;
                 gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), "");                  // Router up
-                Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + ">");
+                Comment(gcodeString, xmlMarker.passEnd + ">"); //+ passCount.ToString() + ">");
                 passCount++;
 
                 gcodeTime += gcodeFigureTime;
@@ -1342,7 +1342,7 @@ namespace GRBL_Plotter
                 if (zStep < finalZ)
                     zStep = finalZ;
                 gcodeZDown = zStep;
-                xml = string.Format("{0} {1} step='{2:0.000}' final='{3:0.000}' >", xmlMarker.passStart, passCount, zStep, finalZ);
+                xml = string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\" >", xmlMarker.passStart, passCount, zStep, finalZ);
                 Comment(gcodeString, xml);
                 Logger.Trace("{0}", xml);
                 gcodeTangentialCommand = figureStartAlpha;
@@ -1384,7 +1384,7 @@ namespace GRBL_Plotter
                 gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), "");                  // Router up
                 if (gcodeSpindleToggle && !gcodeUseLasermode)  SpindleOff(gcodeString);
 
-                Comment(gcodeString, xmlMarker.passEnd + passCount.ToString() + ">");
+                Comment(gcodeString, xmlMarker.passEnd + ">"); //+ passCount.ToString() + ">");
                 passCount++;
 
                 gcodeTime += gcodeFigureTime;
