@@ -1918,21 +1918,6 @@ svenhb.bplaced.netでの2回目の試行</value>
   <data name="nUDStepwidth.ToolTip" xml:space="preserve">
     <value>ジョギングのためのステップ</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>旋回角度</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>角度の変化がスイベル角度より大きい場合、
-Z軸が上に移動します
-軸が回る
-Z軸が下に移動します</value>
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value>シーケンス「Z軸アップ、角度変更、Z軸ダウン」が挿入される前の角度変更。</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>接線軸の名前</value>
-  </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>接線軸を追加</value>
   </data>
@@ -1976,5 +1961,8 @@ Z軸が下に移動します</value>
   </data>
   <data name="tab10gB2.Text" xml:space="preserve">
     <value>カラーフィルター</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>色別/レイヤー別</value>
   </data>
 </root>

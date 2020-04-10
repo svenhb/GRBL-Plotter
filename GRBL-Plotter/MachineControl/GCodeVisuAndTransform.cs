@@ -86,7 +86,6 @@ namespace GRBL_Plotter
         private static bool tangentialAxisEnable = false;
         private static string tangentialAxisName = "C";
 
-
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -283,32 +282,40 @@ namespace GRBL_Plotter
             bool isArc = false;
             bool upDateFigure = false;
             tangentialAxisEnable = false;
+            xmlMarker.Reset();                      // reset lists, holding marker line numbers
             //            figureCountNr.Clear();
 
+            bool xyPosChanged;
+            bool updateFigureLineNeeded = false;
             for (int lineNr = 0; lineNr < GCode.Length; lineNr++)   // go through all gcode lines
             {
                 modal.resetSubroutine();                            // reset m, p, o, l Word
                 singleLine = GCode[lineNr].ToUpper().Trim();        // get line, remove unneeded chars
-                if (singleLine == "")
-                    continue;
-
-                if (GCode[lineNr].Contains(xmlMarker.figureStart))                    // check if marker available
-                {   figureMarkerCount++;
-                    figureActive = true;
-                }
-                if (GCode[lineNr].Contains(xmlMarker.tangentialAxis))                    
-                {   tangentialAxisEnable = true;
-                    tangentialAxisName = GCode[lineNr].Substring(xmlMarker.tangentialAxis.Length + 2, 1);
-                    Logger.Trace("Show tangetial axis '{0}'",tangentialAxisName);
-                }
-
-
+   //             if (singleLine == "")
+   //                 continue;
 
                 if (processSubs && programEnd)
                 { singleLine = "( " + singleLine + " )"; }          // don't process subroutine itself when processed
 
                 newLine.parseLine(lineNr, singleLine, ref modal);
-                calcAbsPosition(newLine, oldLine);                  // Calc. absolute positions and set object dimension: xyzSize.setDimension
+                xyPosChanged = calcAbsPosition(newLine, oldLine);                  // Calc. absolute positions and set object dimension: xyzSize.setDimension
+
+                if (GCode[lineNr].Contains(xmlMarker.groupStart))                   // check if marker available
+                {   xmlMarker.AddGroup(lineNr, GCode[lineNr]);    }
+
+                if (GCode[lineNr].Contains(xmlMarker.figureStart))                  // check if marker available
+                {   figureMarkerCount++;
+                    figureActive = true;
+                    updateFigureLineNeeded = true;                                  // update coordList.actualPos of this line later on
+                    xyPosChanged = false;
+                    xmlMarker.AddFigure(lineNr, GCode[lineNr]);
+//                    Logger.Debug("xmlMarker.AddFigure {0}", lineNr);
+                }
+                if (GCode[lineNr].Contains(xmlMarker.tangentialAxis))                    
+                {   tangentialAxisEnable = true;
+                    tangentialAxisName = xmlMarker.getAttributeValue(GCode[lineNr],"Axis");
+                    if (gcode.loggerTrace) Logger.Trace("Show tangetial axis '{0}'",tangentialAxisName);
+                }
 
                 if (figureMarkerCount > 0)                          // preset figure nr
                     newLine.figureNumber = figureMarkerCount;
@@ -323,10 +330,8 @@ namespace GRBL_Plotter
                 }
 
                 if (!programEnd)
-                {
-                    upDateFigure = createDrawingPathFromGCode(newLine, oldLine);        // add data to drawing path
+                {   upDateFigure = createDrawingPathFromGCode(newLine, oldLine);        // add data to drawing path
                     calculateProcessTime(newLine, oldLine);
-  //                Logger.Info("g {0} x {1} y {2}",newLine.motionMode,newLine.actualPos.X,newLine.actualPos.Y);
                 }
                 if (figureMarkerCount > 0)
                 {   if (figureActive)
@@ -349,9 +354,14 @@ namespace GRBL_Plotter
                 gcodeList.Add(new gcodeByLine(newLine));                // add parsed line to list
                 simuList.Add(new gcodeByLine(newLine));                // add parsed line to list
                 coordList.Add(new coordByLine(lineNr, newLine.figureNumber, (xyPoint)newLine.actualPos, newLine.alpha, isArc));
-#if (debuginfo)
-                File.AppendAllText("logfile.txt",lineNr+"  "+ newLine.figureNumber+"  "+ newLine.actualPos.X+"  "+ newLine.actualPos.Y + "\r");
-#endif
+
+                if (updateFigureLineNeeded && xyPosChanged)
+                {   updateFigureLineNeeded = false;
+                    coordList[xmlMarker.tmpFigure.lineStart].actualPos = (xyPoint)newLine.actualPos;
+                    coordList[xmlMarker.tmpFigure.lineStart].alpha = newLine.alpha;
+//                    Logger.Debug("updateFigureLine {0}  at {1}  X {2:0.000}  Y {3:0.000}", lineNr, xmlMarker.tmpFigure.lineStart, newLine.actualPos.X, newLine.actualPos.Y);
+                }
+
                 if ((modal.mWord == 30) || (modal.mWord == 2)) { programEnd = true; }
                 if (modal.mWord == 98)
                 {   if (lastSubroutine[0] == modal.pWord)
@@ -361,7 +371,10 @@ namespace GRBL_Plotter
                 }
 
                 if (GCode[lineNr].Contains(xmlMarker.figureEnd))                    // check if marker available
-                {   figureActive = false;  }
+                {   figureActive = false; xmlMarker.FinishFigure(lineNr); }
+                if (GCode[lineNr].Contains(xmlMarker.groupEnd))                    // check if marker available
+                {   xmlMarker.FinishGroup(lineNr); }
+
             }
         }
         /// <summary>
@@ -434,10 +447,12 @@ namespace GRBL_Plotter
 
 
         /// <summary>
-        /// Calc. absolute positions and set object dimension: xyzSize.setDimension
+        /// Calc. absolute positions and set object dimension: xyzSize.setDimension.
+        /// Return if X,Y or Z changed
         /// </summary>
-        private static void calcAbsPosition(gcodeByLine newLine, gcodeByLine oldLine)
+        private static bool calcAbsPosition(gcodeByLine newLine, gcodeByLine oldLine)
         {
+            bool posChanged = false;
             if (!newLine.ismachineCoordG53)         // only use world coordinates
             {   if ((newLine.motionMode >= 1) && (oldLine.motionMode == 0))     // take account of last G0 move
                 {   xyzSize.setDimensionX(oldLine.actualPos.X);
@@ -448,9 +463,10 @@ namespace GRBL_Plotter
                     G0Size.setDimensionY(newLine.actualPos.Y);
                 }
                 if (newLine.x != null)
-                {   if (newLine.isdistanceModeG90)  // absolute move
-                    {   newLine.actualPos.X = (double)newLine.x;
-                        if(newLine.motionMode >=1 )//if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
+                {   //posChanged = true;
+                    if (newLine.isdistanceModeG90)  // absolute move
+                    {   newLine.actualPos.X = (double)newLine.x; 
+                        if (newLine.motionMode >=1 )//if (newLine.actualPos.X != toolPos.X)            // don't add actual tool pos
                         {   xyzSize.setDimensionX(newLine.actualPos.X);
                         }
                     }
@@ -465,7 +481,8 @@ namespace GRBL_Plotter
                     newLine.actualPos.X = oldLine.actualPos.X;
 
                 if (newLine.y != null)
-                {   if (newLine.isdistanceModeG90)
+                {   //posChanged = true;
+                    if (newLine.isdistanceModeG90)
                     {   newLine.actualPos.Y = (double)newLine.y;
                         if (newLine.motionMode >= 1)//if (newLine.actualPos.Y != toolPos.Y)            // don't add actual tool pos
                         {   xyzSize.setDimensionY(newLine.actualPos.Y);
@@ -482,7 +499,8 @@ namespace GRBL_Plotter
                     newLine.actualPos.Y = oldLine.actualPos.Y;
 
                 if (newLine.z != null)
-                {   if (newLine.isdistanceModeG90)
+                {   //posChanged = true;
+                    if (newLine.isdistanceModeG90)
                     {   newLine.actualPos.Z = (double)newLine.z;
                         if (newLine.actualPos.Z != grbl.posWork.Z)            // don't add actual tool pos
                             xyzSize.setDimensionZ(newLine.actualPos.Z); // removed - toolPosZ
@@ -557,7 +575,10 @@ namespace GRBL_Plotter
             }
             newLine.alpha = oldLine.alpha;
             if (((xyPoint)oldLine.actualPos).DistanceTo((xyPoint)newLine.actualPos) != 0)
-                newLine.alpha = gcodeMath.getAlpha((xyPoint)oldLine.actualPos, (xyPoint)newLine.actualPos);
+            {   newLine.alpha = gcodeMath.getAlpha((xyPoint)oldLine.actualPos, (xyPoint)newLine.actualPos);
+                posChanged = true;
+            }         
+            return posChanged;
         }
 
         /// <summary>
@@ -575,6 +596,7 @@ namespace GRBL_Plotter
             {
                 if (line < coordList.Count)
                 {
+//                    Logger.Debug("0 createMarkerPath index {0}   line {1}    ", line, coordList[line].lineNumber);
                     if (line == coordList[line].lineNumber)
                     {
                         grbl.posMarker = (xyPoint)coordList[line].actualPos;
@@ -586,6 +608,7 @@ namespace GRBL_Plotter
                             }
                         }
                         createMarkerPath(showCenter,center, coordList[line].actualPos);// line-1
+ //                       Logger.Debug("1 createMarkerPath {0}    X {1:0.000}  Y {2:0.000}", line, coordList[line].actualPos.X, coordList[line].actualPos.Y);
 
                         figureNr = coordList[line].figureNumber;
                //         Logger.Trace(string.Format("1 Line:{0} Figure:{1} code:{2}",line,figureNr, gcodeList[line].codeLine));
@@ -600,7 +623,7 @@ namespace GRBL_Plotter
                         {
                             if (line == gcline.lineNumber)
                             {
-                                line--; // FCTB line 1-x = index 0 - x
+                  //              line--; // FCTB line 1-x = index 0 - x
                                 grbl.posMarker = (xyPoint)gcline.actualPos;
                                 grbl.posMarkerAngle = gcline.alpha;
                                 if (gcline.isArc)
@@ -610,6 +633,7 @@ namespace GRBL_Plotter
                                     }
                                 }
                                 createMarkerPath(showCenter, center, last);
+   //                             Logger.Debug("2 createMarkerPath {0}    X {1:0.000}  Y {2:0.000}", line, gcline.actualPos.X, gcline.actualPos.Y);
 
                                 figureNr = coordList[line].figureNumber;
                    //             Logger.Trace(string.Format("2 Line:{0} Figure:{1} code:{2}", line, figureNr, gcodeList[line].codeLine));
@@ -630,7 +654,7 @@ namespace GRBL_Plotter
         /// <summary>
         /// find gcode line with xy-coordinates near by given coordinates
         /// </summary>
-        public static int setPosMarkerNearBy(xyPoint pos)
+        public static int setPosMarkerNearBy(xyPoint pos,bool toggleHighlight = true)
         {   List<coordByLine> tmpList = new List<coordByLine>();     // get all coordinates (also subroutines)
             int figureNr;
             xyPoint center = new xyPoint(0, 0);
@@ -660,20 +684,20 @@ namespace GRBL_Plotter
                 }
             }
             createMarkerPath(showCenter, center);
-            if (figureNr != lastFigureNumber)
-            {
-                markSelectedFigure(figureNr);   // select
+            if ((figureNr != lastFigureNumber) || !toggleHighlight)
+            {   markSelectedFigure(figureNr);   // select
                 lastFigureNumber = figureNr;
             }
             else
-            {
-                markSelectedFigure(-1);  // deselcet
+            {   markSelectedFigure(-1);  // deselcet
                 lastFigureNumber = -1;
             }
 
             return SortedList[line].lineNumber;
         }
         private static int lastFigureNumber = -1;
+        public static int getHighlightStatus()
+        { return lastFigureNumber; }
 
         public static int getFigureNumber(int line)
         {   foreach (coordByLine gcline in coordList)           // start search at beginning

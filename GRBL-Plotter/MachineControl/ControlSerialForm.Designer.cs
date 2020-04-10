@@ -81,6 +81,7 @@ namespace GRBL_Plotter
             this.btnGRBLCmndParser = new System.Windows.Forms.Button();
             this.btnGRBLCmndBuild = new System.Windows.Forms.Button();
             this.cBStatus = new System.Windows.Forms.CheckBox();
+            this.cBStatus1 = new System.Windows.Forms.CheckBox();
             this.lblSrState = new System.Windows.Forms.Label();
             this.cBCommand = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -88,7 +89,6 @@ namespace GRBL_Plotter
             this.btnCheckGRBLResult = new System.Windows.Forms.Button();
             this.cBTelnet = new System.Windows.Forms.CheckBox();
             this.timerSerial = new System.Windows.Forms.Timer(this.components);
-            this.cBStatus1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -322,6 +322,13 @@ namespace GRBL_Plotter
             this.toolTipSerial.SetToolTip(this.cBStatus, resources.GetString("cBStatus.ToolTip"));
             this.cBStatus.UseVisualStyleBackColor = true;
             // 
+            // cBStatus1
+            // 
+            resources.ApplyResources(this.cBStatus1, "cBStatus1");
+            this.cBStatus1.Name = "cBStatus1";
+            this.toolTipSerial.SetToolTip(this.cBStatus1, resources.GetString("cBStatus1.ToolTip"));
+            this.cBStatus1.UseVisualStyleBackColor = true;
+            // 
             // lblSrState
             // 
             resources.ApplyResources(this.lblSrState, "lblSrState");
@@ -384,13 +391,6 @@ namespace GRBL_Plotter
             // 
             this.timerSerial.Interval = 500;
             this.timerSerial.Tick += new System.EventHandler(this.timerSerial_Tick);
-            // 
-            // cBStatus1
-            // 
-            resources.ApplyResources(this.cBStatus1, "cBStatus1");
-            this.cBStatus1.Name = "cBStatus1";
-            this.toolTipSerial.SetToolTip(this.cBStatus1, resources.GetString("cBStatus1.ToolTip"));
-            this.cBStatus1.UseVisualStyleBackColor = true;
             // 
             // ControlSerialForm
             // 

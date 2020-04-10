@@ -1911,21 +1911,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="nUDStepwidth.ToolTip" xml:space="preserve">
     <value>خطوة مع الركض</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>زاوية الدوران</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>إذا كان التغيير في الزاوية أكبر من زاوية الدوران ،
-سيتم نقل المحور Z لأعلى
-سوف محور بدوره
-سيتم نقل المحور Z لأسفل</value>
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value>يتم تغيير زاوية التغيير قبل إدخال تسلسل "المحور Z لأعلى ، تغيير الزاوية ، المحور Z لأسفل".</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>اسم المحور العرضي</value>
-  </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>إضافة المحور العرضي</value>
   </data>
@@ -1976,5 +1961,8 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   </data>
   <data name="tab10gB2.Text" xml:space="preserve">
     <value>مرشح اللون</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>تجميع حسب اللون / حسب الطبقة</value>
   </data>
 </root>

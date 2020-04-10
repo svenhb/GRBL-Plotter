@@ -51,6 +51,8 @@ namespace GRBL_Plotter
         public static bool axisUpdate = false;  // update of GUI needed
         public static int RX_BUFFER_SIZE = 127; // grbl buffer size inside Arduino
         public static int pollInterval = 200;
+        public static int bufferSize = -1;
+        public static string lastMessage = "";
 
         public static bool grblSimulate = false;
         private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
@@ -116,6 +118,14 @@ namespace GRBL_Plotter
 
             settings.Clear();
             coordinates.Clear();
+        }
+
+        public static void Clear()
+        {
+            axisA = false; axisB = false; axisC = false; axisUpdate = false;
+            bufferSize = -1;        // readout buffer size
+            settings.Clear();       // clear $$ values
+            coordinates.Clear();    // clear gcode parameters
         }
 
         // store grbl settings https://github.com/gnea/grbl/wiki/Grbl-v1.1-Configuration#grbl-settings
@@ -329,6 +339,15 @@ namespace GRBL_Plotter
             }
             return Color.Fuchsia;
         }
+        public static bool getBufferSize(string text)
+        {   if (bufferSize <= 0)    // only get if not done already
+            {   string[] dataValue = text.Split(',');
+                if (dataValue.Length > 1)
+                { int.TryParse(dataValue[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out bufferSize); }
+                return true;
+            }
+            return false;
+        }
         public static void getPosition(string text, ref xyzPoint position)
         {
             string[] dataField = text.Split(':');
@@ -363,13 +382,13 @@ namespace GRBL_Plotter
             //axisA = true; axisB = true; axisC = true;     // for test only
         }
 
-        public static string getSetting(string msgNr)
+        public static string getSettingDescription(string msgNr)
         {   string msg = " no information found '" + msgNr + "'";
             try { msg = grbl.messageSettingCodes[msgNr]; }
             catch { }
             return msg;
         }
-        public static string getError(string rxString)
+        public static string getErrorDescription(string rxString)
         {   string[] tmp = rxString.Split(':');
             string msg = " no information found for error-nr. '" + tmp[1] + "'";
             try {   if (messageErrorCodes.ContainsKey(tmp[1].Trim()))
@@ -394,7 +413,7 @@ namespace GRBL_Plotter
             catch { }
             return true;
         }
-        public static string getAlarm(string rxString)
+        public static string getAlarmDescription(string rxString)
         {   string[] tmp = rxString.Split(':');
             string msg = " no information found for alarm-nr. '" + tmp[1] + "'";
             try {   if (messageAlarmCodes.ContainsKey(tmp[1].Trim()))
@@ -403,7 +422,7 @@ namespace GRBL_Plotter
             catch { }
             return msg;
         }
-        public static string getRealtime(int id)
+        public static string getRealtimeDescription(int id)
         {
             switch (id)
             {

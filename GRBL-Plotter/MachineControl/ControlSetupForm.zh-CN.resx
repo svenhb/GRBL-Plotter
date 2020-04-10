@@ -1753,21 +1753,6 @@ M4动态激光功率模式</value>
   <data name="nUDStepwidth.ToolTip" xml:space="preserve">
     <value>慢跑</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>旋转角度</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>如果角度变化大于旋转角度，
-Z轴将向上移动
-轴将转动
-Z轴将向下移动</value>
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value>在插入“ Z轴向上，角度改变，Z轴向下”序列之前的角度改变。</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>切线轴名称</value>
-  </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>添加切线轴</value>
   </data>
@@ -1941,5 +1926,8 @@ Z轴将向下移动</value>
   </data>
   <data name="tab10gB3lbl4.Text" xml:space="preserve">
     <value>像素点</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>按颜色/按层分组</value>
   </data>
 </root>

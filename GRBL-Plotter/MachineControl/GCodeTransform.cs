@@ -24,6 +24,7 @@
 /* 2020-01-13 convert GCodeVisuAndTransform to a static class
  * 2020-02-18 extend simulation for tangetial angle
  * 2020-03-09 bug-fix simulation of G2/3 code without tangential line 525
+ * 2020-04-04 bug-fix simulation of G2/3 code without tangential line 518 - never ending rotation
  */
 
 using System;
@@ -512,21 +513,24 @@ namespace GRBL_Plotter
 
                     if (turnAngle == 0)
                         turnAngle = 2 * Math.PI;
-                    double dA = (codeNext.alpha - codeLast.alpha) / Math.Abs((turnAngle) /aStep2);	// get step width 
-
-                    if ((Math.Abs(codeNext.alpha - posA)) > 0)    // only rotate if needed
-                        posA += dA;
+                    double dA = Math.Abs((codeNext.alpha - codeLast.alpha) / (turnAngle /aStep2));	// get step width 
 
                     if (arcMove.angleDiff > 0)
-                    {   angleTmp += aStep2;
-                    //    posA += dA;
-                        if ((angleTmp >= (arcMove.angleStart + arcMove.angleDiff)) && (Math.Abs(codeNext.alpha - posA) <= Math.Abs(dA))) // return false if finish with intermediate
+                    {
+                        if (angleTmp < (arcMove.angleStart + arcMove.angleDiff))
+                            angleTmp += aStep2;
+                        if (posA < codeNext.alpha)
+                            posA += dA;
+                        if ((angleTmp >= (arcMove.angleStart + arcMove.angleDiff)) && (posA >= codeNext.alpha)) // return false if finish with intermediate
                             return false;
                     }
                     else
-                    {   angleTmp -= aStep2;
-                     //   posA -= dA;
-                        if ((angleTmp <= (arcMove.angleStart + arcMove.angleDiff)) && (Math.Abs(codeNext.alpha - posA) <= Math.Abs(dA))) // return false if finish with intermediate
+                    {
+                        if (angleTmp > (arcMove.angleStart + arcMove.angleDiff))
+                            angleTmp -= aStep2;
+                        if (posA > codeNext.alpha)
+                            posA -= dA;
+                        if ((angleTmp <= (arcMove.angleStart + arcMove.angleDiff)) && (posA <= codeNext.alpha)) // return false if finish with intermediate
                             return false;
                     }
                     posXY.X = arcMove.center.X + arcMove.radius * Math.Cos(angleTmp);

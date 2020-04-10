@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /*
- * 2020-03-19 move some fundtion to NativeMethods.cs 
+ * 2020-03-19 move some functions to NativeMethods.cs 
 */
 using System;
 using System.Text;

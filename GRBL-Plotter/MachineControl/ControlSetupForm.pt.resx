@@ -1746,21 +1746,6 @@ Mova o joystick após alterar o deslocamento.</value>
   <data name="nUDStepwidth.ToolTip" xml:space="preserve">
     <value>Passo com para correr</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Ângulo de rotação</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>Se a mudança no ângulo for maior que o ângulo de rotação,
-O eixo Z será movido para cima
-eixo vai virar
-O eixo Z será movido para baixo</value>
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value>Mudança de ângulo antes da inserção da sequência "Eixo Z para cima, mudança de ângulo, Eixo Z para baixo".</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Nome do eixo tangencial</value>
-  </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>Adicionar eixo tangencial</value>
   </data>
@@ -1792,5 +1777,8 @@ O eixo Z será movido para baixo</value>
   <data name="tab1_2lbl2.Text" xml:space="preserve">
     <value>Cabeçalho do Código G</value>
     <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>Agrupar por cor / por camada</value>
   </data>
 </root>

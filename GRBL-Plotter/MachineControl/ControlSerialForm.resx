@@ -131,6 +131,9 @@
   <data name="cbPort.Text" xml:space="preserve">
     <value>COM123</value>
   </data>
+  <metadata name="toolTipSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>119, 17</value>
+  </metadata>
   <data name="cbPort.ToolTip" xml:space="preserve">
     <value>Select free serial port</value>
   </data>
@@ -246,6 +249,9 @@
   <data name="&gt;&gt;btnScanPort.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="serialPort.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="rtbLog.Font" type="System.Drawing.Font, System.Drawing">
     <value>Lucida Console, 8pt</value>
   </data>
@@ -1029,6 +1035,33 @@ Success depends on used hardware (DTR, RTS wired?)</value>
   <data name="&gt;&gt;cBStatus.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="cBStatus1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBStatus1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 75</value>
+  </data>
+  <data name="cBStatus1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 14</value>
+  </data>
+  <data name="cBStatus1.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>Show sent and processed commands during streaming</value>
+  </data>
+  <data name="&gt;&gt;cBStatus1.Name" xml:space="preserve">
+    <value>cBStatus1</value>
+  </data>
+  <data name="&gt;&gt;cBStatus1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBStatus1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;cBStatus1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="lblSrState.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9.75pt, style=Bold</value>
   </data>
@@ -1045,7 +1078,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>Status</value>
   </data>
   <data name="lblSrState.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+    <value>MiddleCenter</value>
   </data>
   <data name="&gt;&gt;lblSrState.Name" xml:space="preserve">
     <value>lblSrState</value>
@@ -1088,33 +1121,6 @@ Success depends on used hardware (DTR, RTS wired?)</value>
   </data>
   <data name="&gt;&gt;cBCommand.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="cBStatus1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBStatus1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 75</value>
-  </data>
-  <data name="cBStatus1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 14</value>
-  </data>
-  <data name="cBStatus1.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="cBStatus1.ToolTip" xml:space="preserve">
-    <value>Show sent and processed commands during streaming</value>
-  </data>
-  <data name="&gt;&gt;cBStatus1.Name" xml:space="preserve">
-    <value>cBStatus1</value>
-  </data>
-  <data name="&gt;&gt;cBStatus1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBStatus1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cBStatus1.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="tBURL.Location" type="System.Drawing.Point, System.Drawing">
     <value>164, 5</value>
@@ -1221,6 +1227,15 @@ Success depends on used hardware (DTR, RTS wired?)</value>
   <data name="&gt;&gt;cBTelnet.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="timerSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>239, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>39</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -1260,19 +1275,4 @@ Success depends on used hardware (DTR, RTS wired?)</value>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="toolTipSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>119, 17</value>
-  </metadata>
-  <metadata name="serialPort.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="timerSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>239, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>39</value>
-  </metadata>
 </root>

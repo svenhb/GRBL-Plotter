@@ -75,6 +75,8 @@ namespace GRBL_Plotter
             this.cBToolTableDefault = new System.Windows.Forms.CheckBox();
             this.cBToolTableUse = new System.Windows.Forms.CheckBox();
             this.tab1_1gB4 = new System.Windows.Forms.GroupBox();
+            this.cBImportSVGGroupColor = new System.Windows.Forms.CheckBox();
+            this.rBImportSVGSort3 = new System.Windows.Forms.RadioButton();
             this.cBImportSVGSortInvert = new System.Windows.Forms.CheckBox();
             this.rBImportSVGSort1 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGSort2 = new System.Windows.Forms.RadioButton();
@@ -591,7 +593,6 @@ namespace GRBL_Plotter
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
-            this.rBImportSVGSort3 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -847,6 +848,7 @@ namespace GRBL_Plotter
             // 
             // tab1_1gB4
             // 
+            this.tab1_1gB4.Controls.Add(this.cBImportSVGGroupColor);
             this.tab1_1gB4.Controls.Add(this.rBImportSVGSort3);
             this.tab1_1gB4.Controls.Add(this.cBImportSVGSortInvert);
             this.tab1_1gB4.Controls.Add(this.rBImportSVGSort1);
@@ -856,6 +858,22 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_1gB4, "tab1_1gB4");
             this.tab1_1gB4.Name = "tab1_1gB4";
             this.tab1_1gB4.TabStop = false;
+            // 
+            // cBImportSVGGroupColor
+            // 
+            resources.ApplyResources(this.cBImportSVGGroupColor, "cBImportSVGGroupColor");
+            this.cBImportSVGGroupColor.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGroupByColor;
+            this.cBImportSVGGroupColor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportSVGGroupColor.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGroupByColor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGGroupColor.Name = "cBImportSVGGroupColor";
+            this.cBImportSVGGroupColor.UseVisualStyleBackColor = true;
+            // 
+            // rBImportSVGSort3
+            // 
+            resources.ApplyResources(this.rBImportSVGSort3, "rBImportSVGSort3");
+            this.rBImportSVGSort3.Name = "rBImportSVGSort3";
+            this.rBImportSVGSort3.UseVisualStyleBackColor = true;
+            this.rBImportSVGSort3.CheckedChanged += new System.EventHandler(this.rBImportSVGSort0_CheckedChanged);
             // 
             // cBImportSVGSortInvert
             // 
@@ -2998,7 +3016,7 @@ namespace GRBL_Plotter
             0,
             0});
             this.numericUpDown6.Minimum = new decimal(new int[] {
-            63,
+            7,
             0,
             0,
             0});
@@ -5929,13 +5947,6 @@ namespace GRBL_Plotter
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 
-            // rBImportSVGSort3
-            // 
-            resources.ApplyResources(this.rBImportSVGSort3, "rBImportSVGSort3");
-            this.rBImportSVGSort3.Name = "rBImportSVGSort3";
-            this.rBImportSVGSort3.UseVisualStyleBackColor = true;
-            this.rBImportSVGSort3.CheckedChanged += new System.EventHandler(this.rBImportSVGSort0_CheckedChanged);
-            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -6695,5 +6706,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label lblDImportGCTangential3;
         private System.Windows.Forms.NumericUpDown nUDImportGCTangentialUnits;
         private System.Windows.Forms.RadioButton rBImportSVGSort3;
+        private System.Windows.Forms.CheckBox cBImportSVGGroupColor;
     }
 }

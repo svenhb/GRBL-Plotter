@@ -157,7 +157,7 @@ namespace GRBL_Plotter
         private void handleRxData(object sender, EventArgs e)
         {
             if ((rxChar > 0x7F) || (isRealTimeCmd.Contains(rxChar)))
-            {   rtbLog.AppendText(string.Format("< 0x{0:X} {1}\r\n", rxChar, grbl.getRealtime(rxChar)));
+            {   rtbLog.AppendText(string.Format("< 0x{0:X} {1}\r\n", rxChar, grbl.getRealtimeDescription(rxChar)));
                 rtbLog.ScrollToCaret();
                 OnRaiseCommandEvent(new CommandEventArgs(rxChar));
                 rxChar = 0;

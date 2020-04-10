@@ -1705,21 +1705,6 @@ Bewegen Sie den Joystick, nachdem Sie den Versatz geändert haben.</value>
   <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
     <value>grbl Nachrichten übersetzen wie z.B. IDLE, RUN, HOLD</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Schwenkwinkel</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>Ist die Winkeländerung größer als der Schwenkwinkel,
-wird die Z-Achse wird nach oben gefahren
-die Drehachse positioniert
-wird die Z-Achse wieder runtergefahren</value>
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value>Winkeländerung, bevor eine Sequenz "Z-Achse hoch, Winkeländerung, Z-Achse runter" eingefügt wird.</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Name der Tangentialachse</value>
-  </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>Tangentialachse hinzufügen</value>
   </data>
@@ -1750,5 +1735,8 @@ Die Z-Achse wird nach unten verschoben</value>
   </data>
   <data name="tab1_2lbl31.Text" xml:space="preserve">
     <value>Z Vorschub</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>Gruppieren nach Farbe / nach Ebene</value>
   </data>
 </root>

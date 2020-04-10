@@ -1745,21 +1745,6 @@ Mueva el joystick después de cambiar el desplazamiento.</value>
   <data name="nUDStepwidth.ToolTip" xml:space="preserve">
     <value>Paso para correr</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Ángulo de giro</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>Si el cambio en el ángulo es mayor que el ángulo de giro,
-El eje Z se moverá hacia arriba
-eje girará
-El eje Z se moverá hacia abajo</value>
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value>Cambio de ángulo antes de insertar una secuencia "Eje Z hacia arriba, cambio de ángulo, eje Z hacia abajo".</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Nombre del eje tangencial</value>
-  </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>Añadir eje tangencial</value>
   </data>
@@ -1787,5 +1772,8 @@ El eje Z se moverá hacia abajo</value>
   </data>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>Nombre del eje tangencial.</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>Agrupar por color / por capa</value>
   </data>
 </root>

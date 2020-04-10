@@ -1753,21 +1753,6 @@ min X, min Y и max Z.
   <data name="nUDStepwidth.ToolTip" xml:space="preserve">
     <value>Шаг с для бега</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Угол поворота</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>Если изменение угла больше угла поворота,
-Ось Z будет перемещена вверх
-ось повернет
-Ось Z будет смещена вниз</value>
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value>Изменение угла перед вставкой последовательности «Ось Z вверх, изменение угла, ось Z вниз».</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Наименование тангенциальной оси</value>
-  </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>Добавить касательную ось</value>
   </data>
@@ -1798,5 +1783,8 @@ min X, min Y и max Z.
   </data>
   <data name="tab1_1gB5.Text" xml:space="preserve">
     <value>Стол для инструментов</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>Группировать по цвету / по слою</value>
   </data>
 </root>

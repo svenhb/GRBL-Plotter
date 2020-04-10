@@ -976,6 +976,7 @@ namespace GRBL_Plotter
 
         private void cBImportSVGGroup_CheckedChanged(object sender, EventArgs e)
         {   bool enable = cBImportSVGGroup.Checked;
+            cBImportSVGGroupColor.Enabled = enable;
             rBImportSVGSort0.Enabled = enable;
             rBImportSVGSort1.Enabled = enable;
             rBImportSVGSort2.Enabled = enable;

@@ -1745,21 +1745,6 @@ Déplacez le joystick après avoir modifié le décalage.</value>
   <data name="nUDStepwidth.ToolTip" xml:space="preserve">
     <value>Étape avec pour faire du jogging</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Angle de pivotement</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>Si le changement d'angle est supérieur à l'angle de pivotement,
-L'axe Z sera déplacé vers le haut
-l'axe tournera
-L'axe Z sera déplacé vers le bas</value>
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value>Changement d'angle avant l'insertion d'une séquence "axe Z vers le haut, changement d'angle, axe Z vers le bas".</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Nom de l'axe tangentiel</value>
-  </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>Ajouter un axe tangentiel</value>
   </data>
@@ -1787,5 +1772,8 @@ L'axe Z sera déplacé vers le bas</value>
   </data>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>Nom de l'axe tangentiel</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>Regrouper par couleur / par couche</value>
   </data>
 </root>

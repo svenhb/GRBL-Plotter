@@ -231,6 +231,36 @@ select items on next page 'G-Code generation'</value>
   <data name="&gt;&gt;tab1_1gB5.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="cBImportSVGGroupColor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportSVGGroupColor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 37</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="cBImportSVGGroupColor.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
+    <value>Group by color / by layer</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGGroupColor.Name" xml:space="preserve">
+    <value>cBImportSVGGroupColor</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGGroupColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGGroupColor.Parent" xml:space="preserve">
+    <value>tab1_1gB4</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGGroupColor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="rBImportSVGSort3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -238,16 +268,16 @@ select items on next page 'G-Code generation'</value>
     <value>NoControl</value>
   </data>
   <data name="rBImportSVGSort3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 83</value>
+    <value>24, 103</value>
   </data>
   <data name="rBImportSVGSort3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 17</value>
+    <value>231, 17</value>
   </data>
   <data name="rBImportSVGSort3.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
-    <value>sort groups by oject dimension - ascending</value>
+    <value>sort groups by object dimension - ascending</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;rBImportSVGSort3.Name" xml:space="preserve">
@@ -260,7 +290,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;rBImportSVGSort3.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBImportSVGSortInvert.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -269,7 +299,7 @@ select items on next page 'G-Code generation'</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGSortInvert.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 115</value>
+    <value>24, 135</value>
   </data>
   <data name="cBImportSVGSortInvert.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 17</value>
@@ -291,7 +321,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;cBImportSVGSortInvert.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="rBImportSVGSort1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -300,7 +330,7 @@ select items on next page 'G-Code generation'</value>
     <value>NoControl</value>
   </data>
   <data name="rBImportSVGSort1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 51</value>
+    <value>24, 71</value>
   </data>
   <data name="rBImportSVGSort1.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 17</value>
@@ -322,7 +352,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;rBImportSVGSort1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="rBImportSVGSort2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -331,7 +361,7 @@ select items on next page 'G-Code generation'</value>
     <value>NoControl</value>
   </data>
   <data name="rBImportSVGSort2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 67</value>
+    <value>24, 87</value>
   </data>
   <data name="rBImportSVGSort2.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 17</value>
@@ -353,7 +383,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;rBImportSVGSort2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="rBImportSVGSort0.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -362,7 +392,7 @@ select items on next page 'G-Code generation'</value>
     <value>NoControl</value>
   </data>
   <data name="rBImportSVGSort0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 35</value>
+    <value>24, 55</value>
   </data>
   <data name="rBImportSVGSort0.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 17</value>
@@ -384,7 +414,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;rBImportSVGSort0.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBImportSVGGroup.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -419,7 +449,7 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB4</value>
   </data>
   <data name="&gt;&gt;cBImportSVGGroup.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="tab1_1gB4.Location" type="System.Drawing.Point, System.Drawing">
     <value>302, 112</value>
@@ -3320,7 +3350,7 @@ Not usable with other pen up/down options!</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>863, 293</value>
+    <value>863, 322</value>
   </data>
   <data name="tabPage10.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -4853,7 +4883,7 @@ Don't use with "Relative movements"</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>863, 293</value>
+    <value>863, 322</value>
   </data>
   <data name="tabPage15.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -15049,18 +15079,6 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="numericUpDown1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value />
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
