@@ -4738,5 +4738,17 @@ namespace GRBL_Plotter.Properties {
                 this["importGCTangentialTurn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGroupByColor {
+            get {
+                return ((bool)(this["importGroupByColor"]));
+            }
+            set {
+                this["importGroupByColor"] = value;
+            }
+        }
     }
 }
