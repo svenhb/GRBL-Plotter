@@ -1,5 +1,11 @@
+lastProcessed.nc
 data\examples\graphic_grbl.svg
 data\examples\graphic_grbl_popup.svg
 data\examples\graphic_bunny.dxf
 data\examples\graphic_bunny_string_art.svg
 data\examples\image_flying_devil.png
+data\examples\graphic_Hershey_Fonts.svg
+data\examples\fonts-in-librecad-examples-sheet1.dxf
+data\examples\fonts-in-librecad-examples-sheet2.dxf
+data\examples\fonts-in-librecad-examples-sheet3.dxf
+data\examples\fonts-in-librecad-examples-sheet4.dxf
