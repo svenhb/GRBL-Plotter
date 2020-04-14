@@ -249,7 +249,7 @@ namespace GRBL_Plotter
             headerData.Clear();
             figureString.Clear();                                                           // 
 
-            lastx = -1; lasty = -1; lastz = 0;
+            lastx = -1; lasty = -1; lastz = 0; lasta = 0;
 
             if (gcodeRelative)
             { lastx = 0; lasty = 0; }
@@ -1033,7 +1033,10 @@ namespace GRBL_Plotter
             bool equidistance = Properties.Settings.Default.importGCLineSegmentEquidistant;
 
             ArcProperties arcMove;
-            arcMove = gcodeMath.getArcMoveProperties(new xyPoint(x1,y1), new xyPoint(x2, y2), i, j, (gnr == 2));
+            xyPoint p1 = new xyPoint(x1, y1);
+            xyPoint p2 = new xyPoint(x2, y2);
+            p1.Round(); p2.Round();
+            arcMove = gcodeMath.getArcMoveProperties(p1, p2, i, j, (gnr == 2)); // 2020-04-14 add round()
             double step = Math.Asin(gcodeAngleStep / arcMove.radius);     // in RAD
             if (step > Math.Abs(arcMove.angleDiff))
                 step = Math.Abs(arcMove.angleDiff/2);

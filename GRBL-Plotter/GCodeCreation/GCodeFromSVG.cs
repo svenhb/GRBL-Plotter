@@ -84,6 +84,7 @@ namespace GRBL_Plotter
         private static bool svgGroupByColor = true;
         private static bool svgNodesOnly = true;        // if true only do pen-down -up on given coordinates
         private static bool svgComments = true;         // if true insert additional comments into GCode
+        private static bool svgConvertCircleToDot = false;
 
         private static bool svgConvertToMM = true;
         private static float gcodeScale = 1;                    // finally scale with this factor if svgScaleApply and svgMaxSize
@@ -186,6 +187,7 @@ namespace GRBL_Plotter
             svgGroupObjects = Properties.Settings.Default.importGroupObjects;           // SVG-Import group objects
             svgGroupByColor = Properties.Settings.Default.importGroupByColor;           // 
             svgNodesOnly = Properties.Settings.Default.importSVGNodesOnly;
+            svgConvertCircleToDot = Properties.Settings.Default.importSVGCircleToDot;
 
             Plotter.StartCode();        // initalize variables
             GetVectorSVG(svgCode);      // convert graphics
@@ -670,17 +672,21 @@ namespace GRBL_Plotter
                         else if (form == "circle")
                         {
                             if (svgComments) Plotter.Comment(string.Format(" circle cx:{0} cy:{1} r:{2} ", cx, cy, r));
-                            if (gcode.loggerTrace) Logger.Trace(" circle cx:{0} cy:{1} r:{2} ", cx, cy, r);
-                            cx += offsetX; cy += offsetY;
-                            if (!svgNodesOnly)
-                            {
-                                svgStartPath(cx + r, cy, form);
-                                svgArcToCCW(cx + r, cy, -r, 0, form);
-                            }
+                            if (gcode.loggerTrace) Logger.Trace(" circle cx:{0} cy:{1} r:{2} r=z:{3}", cx, cy, r, svgConvertCircleToDot);
+
+                            if (svgConvertCircleToDot)
+                            {   gcodeDotOnlyWithZ(cx, cy, r, "Dot r=Z"); }
                             else
-                            {
-                                gcodeDotOnly(cx + r, cy, form);
-                                gcodeDotOnly(cx + r, cy, form);
+                            {   cx += offsetX; cy += offsetY;
+                                if (!svgNodesOnly)
+                                {
+                                    svgStartPath(cx + r, cy, form);
+                                    svgArcToCCW(cx + r, cy, -r, 0, form);
+                                }
+                                else
+                                {
+                                    gcodeDotOnly(cx, cy, form);
+                                }
                             }
                             Plotter.StopPath(form);
                         }
@@ -1277,9 +1283,15 @@ namespace GRBL_Plotter
             return pointResult;
         }
 
+        private static void gcodeDotOnlyWithZ(float x, float y, float z, string cmt)
+        {   if (!svgComments)
+                cmt = "";
+            svgStartPath(x, y, cmt);
+            Plotter.PenDownWithZ(z,cmt);
+            Plotter.PenUp(cmt, false);
+        }
         private static void gcodeDotOnly(float x, float y, string cmt)
-        {
-            if (!svgComments)
+        {   if (!svgComments)
                 cmt = "";
             svgStartPath(x, y, cmt);
             Plotter.PenDown(cmt);

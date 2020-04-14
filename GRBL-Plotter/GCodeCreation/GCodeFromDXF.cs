@@ -851,7 +851,7 @@ namespace GRBL_Plotter //DXFImporter
             }
             else
             {
-                Plotter.Comment(string.Format("Skip StartPath at X:{0} Y:{1}", coord.X, coord.Y));
+                Plotter.Comment(string.Format("Skip StartPath at X:{0:0.000} Y:{1:0.000}", coord.X, coord.Y));
                 if (requestStopPath)
                 {   requestStopPath = false; }  // skip stop
                 else

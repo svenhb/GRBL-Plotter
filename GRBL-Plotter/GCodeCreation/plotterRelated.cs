@@ -26,6 +26,8 @@
  * 2020-02-28 remove empty figure sections FigureCheck[] lastFigureStart
  * 2020-04-04 replace ArcToCCW
  * 2020-04-09 extend class xmlMarker
+ * 2020-04-11 fix splitting problem for attributes in element-string (if value contains ' ')
+ * 2020-04-13 add splitArc to support tangential axis
 */
 
 using System;
@@ -38,7 +40,7 @@ namespace GRBL_Plotter
 {
     public static class Plotter
     {
-        private static bool loggerTrace = false;
+        private static bool loggerTrace = true;
 
         struct FigureCheck      // collect data of last created code for removement if needed
         {   public int lastIndexStart;
@@ -75,6 +77,7 @@ namespace GRBL_Plotter
         private static bool gcodeTangEnable = false;
         private static string gcodeTangName = "C";
         private static double gcodeTangTurn = 360;
+        private static bool gcodeNoArcs = false;
 
         private static Point lastGC, lastSetGC;             // store last position
 		private static bool isStartPathIsPending = false;
@@ -126,6 +129,7 @@ namespace GRBL_Plotter
             gcodeTangEnable = Properties.Settings.Default.importGCTangentialEnable;
             gcodeTangName   = Properties.Settings.Default.importGCTangentialAxis;
             gcodeTangTurn = (double)Properties.Settings.Default.importGCTangentialTurn;
+            gcodeNoArcs = Properties.Settings.Default.importGCNoArcs;        // reduce code by 
             comments = Properties.Settings.Default.importSVGAddComments;
             lastSetGroup = -1;
             penIsDown = false;
@@ -274,6 +278,7 @@ namespace GRBL_Plotter
             {
 				if (loggerTrace) Logger.Trace(" MoveTo get angle p1 {0:0.000};{1:0.000}  p2 {2:0.000};{3:0.000}", lastSetGC.X, lastSetGC.Y, coordxy.X, coordxy.Y);
                 gcodeMath.cutAngle = getAngle(lastSetGC, coordxy, 0, 0);
+                fixAngleExceed();
                 posStartAngle = gcodeMath.cutAngle;
 
                 PenDown(cmt + " moveto");                           // also process tangetial axis
@@ -293,6 +298,7 @@ namespace GRBL_Plotter
             if (loggerTrace) Logger.Trace(" MoveToSimple X{0:0.000} Y{1:0.000} rapid {2}", coordxy.X, coordxy.Y,rapid);
 
             gcodeMath.cutAngle = gcodeMath.getAngle(lastGC, coordxy, 0, 0); // get and store position
+            fixAngleExceed();
             if (rapid)
             {
                 isStartPathIsPending = true;                  // and angle of desired
@@ -476,40 +482,6 @@ namespace GRBL_Plotter
         {
             Arc(3, (float)coordxy.X, (float)coordxy.Y, (float)coordij.X, (float)coordij.Y, cmt);
             return;
-/*                
-            Point center = new Point(lastGC.X + coordij.X, lastGC.Y + coordij.Y);
-            double offset = +Math.PI / 2;
-            if (loggerTrace) Logger.Trace("  Start ArcToCCW G{0} X{1:0.000} Y{2:0.000} cx{3:0.000} cy{4:0.000} ", 2, coordxy.X, coordxy.Y, center.X,center.Y);
-
-            if (gcodeReduce && IsPathReduceOk)      			// restore last skipped point for accurat G2/G3 use
-            {   if (!gcodeMath.isEqual(lastSetGC, lastGC))  
-                {
-                    if (loggerTrace) Logger.Trace(" gcodeReduce MoveTo X{0:0.000} Y{1:0.000}", lastGC.X, lastGC.Y);
-                    gcodeMath.cutAngle = getAngle(lastSetGC, lastGC, 0, 0);
-                    posStartAngle = gcodeMath.cutAngle;
-                    gcode.setTangential(gcodeString[gcodeStringIndex], 180 * gcodeMath.cutAngle / Math.PI);
-                    gcodeMath.cutAngleLast = gcodeMath.cutAngle;
-                    MoveToDashed(lastGC, cmt);
-                }
-            }
-
-            gcodeMath.cutAngle = getAngle(lastGC, center, offset, 0);     // start angle
-            posStartAngle = gcodeMath.cutAngle;
-
-            PenDown(cmt + " from ArcToCCW");
-
-            gcodeMath.cutAngle = getAngle(coordxy, center, offset, 2);    // end angle
-            if (gcodeMath.isEqual(coordxy,lastGC))				// end = start position? Full circle!
-            {
-                gcodeMath.cutAngle -= 2 * Math.PI;        				// CCW 360°
-            }
-            setG2Dimension(3,coordxy,coordij);
-            gcode.setTangential(gcodeString[gcodeStringIndex], 180 * gcodeMath.cutAngle / Math.PI);
-            gcode.Arc(gcodeString[gcodeStringIndex], 3, coordxy, coordij, cmt, IsPathAvoidG23);
-            gcodeMath.cutAngleLast = gcodeMath.cutAngle;
-
-            lastSetGC = coordxy;
-            lastGC = coordxy;*/
         }
         public static void Arc(int gnr, float x, float y, float i, float j, string cmt = "", bool avoidG23 = false)
         {
@@ -524,6 +496,7 @@ namespace GRBL_Plotter
                 {
                     if (loggerTrace) Logger.Trace("   gcodeReduce MoveTo X{0:0.000} Y{1:0.000}", lastGC.X, lastGC.Y);
                     gcodeMath.cutAngle = getAngle(lastSetGC, lastGC, 0, 0);
+                    fixAngleExceed();
                     posStartAngle = gcodeMath.cutAngle;
                     gcode.setTangential(gcodeString[gcodeStringIndex], 180 * gcodeMath.cutAngle / Math.PI);
                     gcodeMath.cutAngleLast = gcodeMath.cutAngle;
@@ -531,7 +504,8 @@ namespace GRBL_Plotter
                 }
             }
 
-            gcodeMath.cutAngle = getAngle(lastGC, center, offset, 0);   	// start angle
+            gcodeMath.cutAngle = getAngle(lastGC, center, offset, 0);       // start angle
+            fixAngleExceed();
             posStartAngle = gcodeMath.cutAngle;
             if (loggerTrace) Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * gcodeMath.cutAngle / Math.PI, 180 * offset / Math.PI);
 
@@ -546,20 +520,70 @@ namespace GRBL_Plotter
             }
 
             setG2Dimension(gnr, x, y, i, j);
-            gcode.setTangential(gcodeString[gcodeStringIndex], 180 * gcodeMath.cutAngle / Math.PI);
-            gcode.Arc(gcodeString[gcodeStringIndex], gnr, x, y, i, j, cmt, avoidG23);
+            if (gcodeNoArcs || avoidG23)
+            {
+                if (loggerTrace) Logger.Trace("   Replace Arc by MoveTo");
+                Comment("Replace Arc by MoveTo");
+                splitArc(gnr, x, y, i, j, cmt); }
+            else
+            {   gcode.setTangential(gcodeString[gcodeStringIndex], 180 * gcodeMath.cutAngle / Math.PI);
+                gcode.Arc(gcodeString[gcodeStringIndex], gnr, x, y, i, j, cmt, avoidG23);
+            }
             gcodeMath.cutAngleLast = gcodeMath.cutAngle;
 
             lastSetGC = coordxy;
             lastGC = coordxy;
         }
 
+        public static void splitArc(int gnr, float x2, float y2, float i, float j, string cmt = "")
+        {
+            float segmentLength = (float)Properties.Settings.Default.importGCLineSegmentLength;
+            float gcodeAngleStep = (float)Properties.Settings.Default.importGCSegment;
+            if (loggerTrace) Logger.Trace("   splitArc gnr:{0} segmentLength:{1:0.000} gcodeAngleStep:{2:0.000} ", gnr, segmentLength, gcodeAngleStep);
+
+            ArcProperties arcMove;
+            xyPoint p1 = new xyPoint(lastSetGC);
+            xyPoint p2 = new xyPoint(x2, y2);
+            p1.Round(); p2.Round();
+            if (loggerTrace) Logger.Trace("   splitArc P1:{0};{1}  P2:{2};{3}  i:{4}  j:{5}", p1.X, p1.Y, p2.X, p2.Y, i, j);
+            arcMove = gcodeMath.getArcMoveProperties( p1, p2, i, j, (gnr == 2));
+            double step = Math.Asin(gcodeAngleStep / arcMove.radius);     // in RAD
+            if (step > Math.Abs(arcMove.angleDiff))
+                step = Math.Abs(arcMove.angleDiff / 2);
+
+            if (loggerTrace) Logger.Trace("   splitArc arcMove.angleStart:{0:0.000} arcMove.angleEnd:{1:0.000} arcMove.angleDiff:{2:0.000} step:{2:0.000} ", arcMove.angleStart, arcMove.angleEnd, arcMove.angleDiff, step);
+
+            if (arcMove.angleDiff > 0)   //(da > 0)                                             // if delta >0 go counter clock wise
+            {
+                for (double angle = (arcMove.angleStart + step); angle < (arcMove.angleStart + arcMove.angleDiff); angle += step)
+                {
+                    double x = arcMove.center.X + arcMove.radius * Math.Cos(angle);
+                    double y = arcMove.center.Y + arcMove.radius * Math.Sin(angle);
+                    MoveTo(new Point(x, y), "");
+                }
+            }
+            else                                                       // else go clock wise
+            {
+                for (double angle = (arcMove.angleStart - step); angle > (arcMove.angleStart + arcMove.angleDiff); angle -= step)
+                {
+                    double x = arcMove.center.X + arcMove.radius * Math.Cos(angle);
+                    double y = arcMove.center.Y + arcMove.radius * Math.Sin(angle);
+                    MoveTo(new Point(x,y), "");
+                }
+            }
+            MoveTo(new Point(x2, y2), "End Arc conversion");
+        }
+
+
         private static void setG2Dimension(int gnr, double x, double y, double i, double j)
         { setG2Dimension(gnr, new Point(x, y), new Point(i, j)); }
         private static void setG2Dimension(int gnr, Point xy, Point ij)
         {
             ArcProperties arcMove;
-            arcMove = gcodeMath.getArcMoveProperties(new xyPoint(lastSetGC), new xyPoint(xy), ij.X, ij.Y, (gnr == 2));
+            xyPoint p1 = new xyPoint(lastSetGC);
+            xyPoint p2 = new xyPoint(xy);
+            p1.Round(); p2.Round();
+            arcMove = gcodeMath.getArcMoveProperties(p1, p2, ij.X, ij.Y, (gnr == 2));   // 2020-04-14 add round()
 
             float x1 = (float)(arcMove.center.X - arcMove.radius);
             float x2 = (float)(arcMove.center.X + arcMove.radius);
@@ -575,7 +599,12 @@ namespace GRBL_Plotter
             {
                 double angleDiff = 180*Math.Abs(angleNew-angleOld)/Math.PI;
                 double swivelAngle = (double)Properties.Settings.Default.importGCTangentialAngle;
-                if (angleDiff > swivelAngle)
+         /*       bool rangeExceed = false;
+                if (Properties.Settings.Default.importGCTangentialRange)
+                {   if ((angleNew < 0) || (angleNew > (2 * Math.PI)))
+                        rangeExceed = true;
+                }*/
+                if ((angleDiff > swivelAngle) || fixAngleExceed())//rangeExceed)
                 {   // do pen up, turn, pen down
                     if (penIsDown)
                     {
@@ -583,11 +612,17 @@ namespace GRBL_Plotter
                         if (comments) { cmt = "Tangential axis PenUp"; }
                         bool tmp = gcode.RepeatZ;			
                         gcode.RepeatZ = false;				// doesn't solve the problem with repeatZ
-                        if (loggerTrace) Logger.Trace("processTangentialAxis PenUp");
+                        if (loggerTrace) Logger.Trace("processTangentialAxis PenUp {0}:{1:0.00} offset:{2:0.00}", gcodeTangName, 180 * angleOld / Math.PI, swivelAngle, 180 * gcodeMath.angleOffset / Math.PI, swivelAngle);
+                 /*       if (rangeExceed)
+                        {   if (angleNew < 0)
+                            { gcodeMath.cutAngle = angleNew += 2 * Math.PI; gcodeMath.angleOffset += 2 * Math.PI; }
+                            else if (angleNew > (2 * Math.PI))
+                            { gcodeMath.cutAngle = angleNew -= 2 * Math.PI; gcodeMath.angleOffset -= 2 * Math.PI; }
+                        }*/
                         gcode.PenUp(gcodeString[gcodeStringIndex], cmt);
                         gcodeString[gcodeStringIndex].AppendFormat("G00 {0}{1:0.000} (a > {2:0.0})\r\n", gcodeTangName, (gcodeTangTurn/2) * angleNew / Math.PI, swivelAngle);
                         if (comments) { cmt = "Tangential axis PenDown"; }
-                        if (loggerTrace) Logger.Trace("processTangentialAxis PenDown");
+                        if (loggerTrace) Logger.Trace("processTangentialAxis PenDown {0}:{1:0.00} offset:{2:0.00}", gcodeTangName, 180 * angleNew / Math.PI, swivelAngle, swivelAngle, 180 * gcodeMath.angleOffset / Math.PI, swivelAngle);
                         gcode.PenDown(gcodeString[gcodeStringIndex], cmt);
                         gcodeMath.cutAngleLast = angleNew;
                         gcode.RepeatZ = tmp;
@@ -606,7 +641,15 @@ namespace GRBL_Plotter
                 }
             }                
         }
-
+        private static bool fixAngleExceed()
+        {   if (Properties.Settings.Default.importGCTangentialRange)
+            {   if (gcodeMath.cutAngle < 0)
+                { gcodeMath.cutAngle += 2 * Math.PI; gcodeMath.angleOffset += 2 * Math.PI; return true; }
+                else if (gcodeMath.cutAngle > (2 * Math.PI))
+                { gcodeMath.cutAngle -= 2 * Math.PI; gcodeMath.angleOffset -= 2 * Math.PI; return true; }
+            }
+            return false;
+        }
         private static double getAngle(Point a, Point b, double offset, int dir)
         {   if (!gcodeTangEnable)
 				return 0;
@@ -678,12 +721,16 @@ namespace GRBL_Plotter
                         gcodeString[toolnr].Clear();            // don't append a 2nd time
                     }
                 }
-                toolName = useDefTool ? " ToolName=\"Default\"" : " ToolName=\"not in tool table\"";
+                if (groupByColor)
+                { toolName = useDefTool ? " ToolName=\"Default\"" : " ToolName=\"not in tool table\""; toolLayer = ""; }
+                else
+                { toolLayer = " Layer=\"not set\""; toolName = ""; }
+
                 for (int i = 0; i < gcodeStringMax; i++)  
                 {
                     if (gcodeString[i].Length > 1)
                     {
-                        gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\" ToolNr=\"{2}\" {3}>", xmlMarker.groupStart, ++groupnr, useDefToolNr, toolName));
+                        gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\" ToolNr=\"{2}\" {3}{4}>", xmlMarker.groupStart, ++groupnr, useDefToolNr, toolName, toolLayer));
                         gcode.Tool(finalGcodeString, useDefToolNr, toolName); // add tool change commands (if enabled) and set XYFeed etc.
                         finalGcodeString.Append(gcodeString[i]);
                         gcode.Comment(finalGcodeString, xmlMarker.groupEnd + ">"); //+ " " + groupnr + ">");
@@ -803,7 +850,15 @@ namespace GRBL_Plotter
         /// <summary>
         /// Insert Pen-down gcode command
         /// </summary>
-        public static void PenDown(string cmt)
+        public static void PenDownWithZ(float z, string cmt)
+        {   float orig = gcode.gcodeZDown;
+            float setZ = -Math.Abs(z);      // be sure for right sign
+            setZ = Math.Max(orig, setZ);    // don't go deeper than set Z
+            gcode.gcodeZDown = setZ;
+            PenDown(cmt);
+            gcode.gcodeZDown = orig;
+        }
+       public static void PenDown(string cmt)
         {
             if (loggerTrace) Logger.Trace(" PenDown {0}",cmt);
             if (!comments)
@@ -812,6 +867,7 @@ namespace GRBL_Plotter
             if (!penIsDown)
             {   if (isStartPathIsPending)
                 {   if (loggerTrace) Logger.Trace("  PenDown - MoveToRapid X{0:0.000} Y{1:0.000} alpha {2:0.00}", posStartPath.X, posStartPath.Y, 180*posStartAngle/Math.PI);
+                    fixAngleExceed();
                     gcode.setTangential(gcodeString[gcodeStringIndex], 180 * posStartAngle / Math.PI);
                     gcode.MoveToRapid(gcodeString[gcodeStringIndex], posStartPath, cmt);
                     gcodeMath.cutAngleLast = gcodeMath.cutAngle;
@@ -1000,20 +1056,13 @@ namespace GRBL_Plotter
 
         public static string getAttributeValue(string Element, string Attribute)
         {
-            string[] segments = Element.Split(' ');     // Attributes seperated by ' '
-            foreach (string attr in segments)
-            {   if (attr.Contains(Attribute))        // x="y"
-                {   if (attr.Contains("="))
-                    {   string[] attribut = Element.Split('=');
-                        int strt = attribut[1].IndexOf('"');
-                        int end  = attribut[1].IndexOf('"',strt+1);
-                        string val = attribut[1].Substring(strt+1,(end-strt-1));
-                        return val;
-                    }
-                    else return "";
-                }                   
-            }
-            return "";
+            int posAttribute = Element.IndexOf(Attribute);
+            if (posAttribute <= 0) return "";
+            int strt = Element.IndexOf('"',posAttribute + Attribute.Length);
+            int end = Element.IndexOf('"', strt + 1);
+            string val = Element.Substring(strt + 1, (end - strt - 1));
+//            if (gcode.loggerTrace) Logger.Trace(" getAttributeValue {0}  {1}  {2}", Element, Attribute, val);
+            return val;
         }
         public static int getAttributeValueInt(string Element, string Attribute)
         {   string tmp = getAttributeValue(Element, Attribute);
@@ -1036,16 +1085,14 @@ namespace GRBL_Plotter
             tmp.lineStart = lineStart;
             tmp.id = tmp.toolNr = tmp.codeSize = tmp.codeArea = -1;
             tmp.geometry = tmp.layer = tmp.color = tmp.toolName = "";
-            string[] attributes = element.Split(' ');
-            foreach (string attr in attributes)
-            {   if      (attr.Contains("Id"))       { tmp.id = getAttributeValueInt(attr, "Id"); }
-                else if (attr.Contains("ToolNr"))   { tmp.toolNr = getAttributeValueInt(attr, "ToolNr"); }
-                else if (attr.Contains("CodeSize")) { tmp.codeSize = getAttributeValueInt(attr, "CodeSize"); }
-                else if (attr.Contains("CodeArea")) { tmp.codeArea = getAttributeValueInt(attr, "CodeArea"); }
-                else if (attr.Contains("Geometry")) { tmp.geometry = getAttributeValue(attr, "Geometry"); }
-                else if (attr.Contains("Color"))    { tmp.color = getAttributeValue(attr, "Color"); }
-                else if (attr.Contains("ToolName")) { tmp.toolName = getAttributeValue(attr, "ToolName"); }
-            }
+//            if (gcode.loggerTrace) Logger.Trace("setBlockData {0}", element);
+            if (element.Contains("Id"))        { tmp.id       = getAttributeValueInt(element, "Id"); }
+            if (element.Contains("ToolNr"))    { tmp.toolNr   = getAttributeValueInt(element, "ToolNr"); }
+            if (element.Contains("CodeSize"))  { tmp.codeSize = getAttributeValueInt(element, "CodeSize"); }
+            if (element.Contains("CodeArea"))  { tmp.codeArea = getAttributeValueInt(element, "CodeArea"); }
+            if (element.Contains("Geometry"))  { tmp.geometry = getAttributeValue(element, "Geometry"); }
+            if (element.Contains("Color"))     { tmp.color    = getAttributeValue(element, "Color"); }
+            if (element.Contains("ToolName"))  { tmp.toolName = getAttributeValue(element, "ToolName"); }
             return tmp;
         }
 
