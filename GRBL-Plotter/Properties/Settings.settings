@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRBL_Plotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -215,11 +215,32 @@
     <Setting Name="ctrlUseSerialDIY" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="ctrlUseSerialPortFixer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="flowCheckRegistryChange" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="flowControlEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="flowControlText" Type="System.String" Scope="User">
       <Value Profile="(Default)">M5; M9</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogDead" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinimum" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.010</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogOffset" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">32757</Value>
     </Setting>
     <Setting Name="gamePadButtons0" Type="System.String" Scope="User">
       <Value Profile="(Default)">#Start (Start streaming)</Value>
@@ -329,6 +350,9 @@
     <Setting Name="grblPollIntervalReduce" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="grblTranslateMessage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="gui2DColorBackground" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">224, 224, 224</Value>
     </Setting>
@@ -353,8 +377,23 @@
     <Setting Name="gui2DColorRuler" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">0, 0, 192</Value>
     </Setting>
+    <Setting Name="gui2DColorSimulation" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Lime</Value>
+    </Setting>
     <Setting Name="gui2DColorTool" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="gui2DInfoShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DKeepPenWidth" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DPenUpShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DRulerShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="gui2DToolTableShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -376,6 +415,9 @@
     </Setting>
     <Setting Name="gui2DWidthRuler" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="gui2DWidthSimulation" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1.0</Value>
     </Setting>
     <Setting Name="gui2DWidthTool" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.5</Value>
@@ -413,30 +455,6 @@
     <Setting Name="guiCustomBtn16" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
     </Setting>
-    <Setting Name="guiCustomBtn2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Move to 0;0;0|G90 G0 X0 Y0 Z0</Value>
-    </Setting>
-    <Setting Name="guiCustomBtn3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Tray Out|G91 G53 G0 Z-1;G90 G53 G0 Y-5</Value>
-    </Setting>
-    <Setting Name="guiCustomBtn4" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Tray In|G90 G53 G0 Y-160</Value>
-    </Setting>
-    <Setting Name="guiCustomBtn5" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Set Pen 1|T1;</Value>
-    </Setting>
-    <Setting Name="guiCustomBtn6" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Pen take|data\scripts\script_pen2_select.nc</Value>
-    </Setting>
-    <Setting Name="guiCustomBtn7" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Pen remove|data\scripts\script_pen2_remove.nc</Value>
-    </Setting>
-    <Setting Name="guiCustomBtn8" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Btn 8|(-)</Value>
-    </Setting>
-    <Setting Name="guiCustomBtn9" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Move Bottom-Left|$J=G90 X#GMIX Y#GMIY F1000</Value>
-    </Setting>
     <Setting Name="guiCustomBtn17" Type="System.String" Scope="User">
       <Value Profile="(Default)"> |</Value>
     </Setting>
@@ -445,6 +463,9 @@
     </Setting>
     <Setting Name="guiCustomBtn19" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Move to 0;0;0|G90 G0 X0 Y0 Z0</Value>
     </Setting>
     <Setting Name="guiCustomBtn20" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -476,6 +497,9 @@
     <Setting Name="guiCustomBtn29" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
     </Setting>
+    <Setting Name="guiCustomBtn3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Tray Out|G91 G53 G0 Z-1;G90 G53 G0 Y-5</Value>
+    </Setting>
     <Setting Name="guiCustomBtn30" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
     </Setting>
@@ -484,6 +508,30 @@
     </Setting>
     <Setting Name="guiCustomBtn32" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Tray In|G90 G53 G0 Y-160</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Set Pen 1|T1;</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Pen take|data\scripts\script_pen2_select.nc</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Pen remove|data\scripts\script_pen2_remove.nc</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Btn 8|(-)</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn9" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Move Bottom-Left|$J=G90 X#GMIX Y#GMIY F1000</Value>
+    </Setting>
+    <Setting Name="guiDimensionShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiExtendedLoggingEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="guiJoystickASpeed1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -629,6 +677,9 @@
     <Setting Name="ImportDXFSize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importDXFStepWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
     <Setting Name="importDXFSwitchWhite" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -734,6 +785,21 @@
     <Setting Name="importGCSubroutine" Type="System.String" Scope="User">
       <Value Profile="(Default)">data\scripts\subroutine.nc</Value>
     </Setting>
+    <Setting Name="importGCTangentialAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="importGCTangentialAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="importGCTangentialEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTangentialRange" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTangentialTurn" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">360</Value>
+    </Setting>
     <Setting Name="importGCTool" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -784,6 +850,9 @@
     </Setting>
     <Setting Name="importGCZUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGroupByColor" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGroupObjects" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -839,6 +908,9 @@
     <Setting Name="importSVGAddComments" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importSVGCircleToDot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importSVGDPI96" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -859,6 +931,9 @@
     </Setting>
     <Setting Name="importUnitmm" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importUseCaseInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Information about current use case</Value>
     </Setting>
     <Setting Name="laserMotionDelay" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -921,6 +996,9 @@
       <Value Profile="(Default)">100, 350</Value>
     </Setting>
     <Setting Name="locationMForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="locationProbingForm" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="locationSerForm1" Type="System.Drawing.Point" Scope="User">
@@ -995,8 +1073,68 @@
     <Setting Name="overrideSSValue" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5000</Value>
     </Setting>
+    <Setting Name="probingCoordG10" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="probingEdgeCenter" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="probingEdgeZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="probingFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="probingFinalX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingFinalY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingFinalZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingOffsetZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingSaveX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingSaveY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingSaveZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="probingTravelX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingTravelY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingTravelZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingWorkpieceDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
     <Setting Name="resetRestoreWorkCoordinates" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="resetSendCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G10 L20 P0 X0 Y0 Z0</Value>
+    </Setting>
+    <Setting Name="resetSendCodeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="rotarySubstitutionDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
@@ -1057,132 +1195,6 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
-    </Setting>
-    <Setting Name="importUseCaseInfo" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Information about current use case</Value>
-    </Setting>
-    <Setting Name="probingToolDiameter" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">3</Value>
-    </Setting>
-    <Setting Name="probingOffsetX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.1</Value>
-    </Setting>
-    <Setting Name="probingOffsetY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.1</Value>
-    </Setting>
-    <Setting Name="probingOffsetZ" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.1</Value>
-    </Setting>
-    <Setting Name="probingFeed" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
-    </Setting>
-    <Setting Name="probingTravelX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">30</Value>
-    </Setting>
-    <Setting Name="probingTravelY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">30</Value>
-    </Setting>
-    <Setting Name="probingTravelZ" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">30</Value>
-    </Setting>
-    <Setting Name="probingSaveX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="probingSaveY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="probingSaveZ" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="probingFinalX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="probingFinalY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="probingFinalZ" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="locationProbingForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="probingWorkpieceDiameter" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">20</Value>
-    </Setting>
-    <Setting Name="ctrlUseSerialPortFixer" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="probingEdgeCenter" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="probingEdgeZ" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="probingCoordG10" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="importDXFStepWidth" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="resetSendCodeEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="resetSendCode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">G10 L20 P0 X0 Y0 Z0</Value>
-    </Setting>
-    <Setting Name="gui2DPenUpShow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="gui2DRulerShow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="gui2DInfoShow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="guiExtendedLoggingEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="gui2DKeepPenWidth" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="gamePadAnalogOffset" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">32757</Value>
-    </Setting>
-    <Setting Name="gamePadAnalogDead" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1000</Value>
-    </Setting>
-    <Setting Name="gamePadAnalogMinimum" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5000</Value>
-    </Setting>
-    <Setting Name="gamePadAnalogMinStep" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.010</Value>
-    </Setting>
-    <Setting Name="gamePadAnalogMinFeed" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">50</Value>
-    </Setting>
-    <Setting Name="grblTranslateMessage" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGCTangentialEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGCTangentialAxis" Type="System.String" Scope="User">
-      <Value Profile="(Default)">A</Value>
-    </Setting>
-    <Setting Name="importGCTangentialAngle" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">30</Value>
-    </Setting>
-    <Setting Name="flowCheckRegistryChange" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="guiDimensionShow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="importGCTangentialTurn" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">360</Value>
-    </Setting>
-    <Setting Name="importGroupByColor" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

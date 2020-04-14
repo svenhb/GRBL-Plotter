@@ -4750,5 +4750,53 @@ namespace GRBL_Plotter.Properties {
                 this["importGroupByColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importSVGCircleToDot {
+            get {
+                return ((bool)(this["importSVGCircleToDot"]));
+            }
+            set {
+                this["importSVGCircleToDot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCTangentialRange {
+            get {
+                return ((bool)(this["importGCTangentialRange"]));
+            }
+            set {
+                this["importGCTangentialRange"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
+        public decimal gui2DWidthSimulation {
+            get {
+                return ((decimal)(this["gui2DWidthSimulation"]));
+            }
+            set {
+                this["gui2DWidthSimulation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Lime")]
+        public global::System.Drawing.Color gui2DColorSimulation {
+            get {
+                return ((global::System.Drawing.Color)(this["gui2DColorSimulation"]));
+            }
+            set {
+                this["gui2DColorSimulation"] = value;
+            }
+        }
     }
 }
