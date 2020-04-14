@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.3.4.4</ApplicationVersion>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.3.4.5</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -167,6 +167,12 @@
     </Compile>
     <Compile Include="GUI\MainFormSimulatePath.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\splashscreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\splashscreen.Designer.cs">
+      <DependentUpon>splashscreen.cs</DependentUpon>
     </Compile>
     <Compile Include="MachineControl\ControlCoordSystem.cs">
       <SubType>Form</SubType>
@@ -457,6 +463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\GCodeFromText.zh-CN.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\splashscreen.resx">
+      <DependentUpon>splashscreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\Control2ndGRBL.de-DE.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
