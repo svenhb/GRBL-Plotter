@@ -49,6 +49,7 @@ namespace GRBL_Plotter
         private Pen penTool = new Pen(Color.Black, 0.5F);
         private Pen penMarker = new Pen(Color.DeepPink, 1F);
         private Pen penLandMark = new Pen(Color.DarkGray, 1F);
+        private Pen penSimulation = new Pen(Color.Blue, 0.4F);
         //       SolidBrush machineLimit = new SolidBrush(Color.Red);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
         private SolidBrush brushBackground = new SolidBrush(Color.White);
@@ -184,7 +185,7 @@ namespace GRBL_Plotter
                 penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
                 penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
                 penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
-
+                penSimulation.Width = (float)Properties.Settings.Default.gui2DWidthSimulation * factorWidth;
                 e.DrawPath(penHeightMap, VisuGCode.pathHeightMap);
 
                 if (Properties.Settings.Default.gui2DRulerShow)
@@ -202,6 +203,8 @@ namespace GRBL_Plotter
 
                 if (!(showPathPenUp ^ Properties.Settings.Default.gui2DPenUpShow))
                     e.DrawPath(penUp, VisuGCode.pathPenUp);
+
+                e.DrawPath(penSimulation, VisuGCode.Simulation.pathSimulation);
             }
             catch { }
         }
@@ -419,6 +422,7 @@ namespace GRBL_Plotter
             penRuler.Color = Properties.Settings.Default.gui2DColorRuler;
             penTool.Color = Properties.Settings.Default.gui2DColorTool;
             penMarker.Color = Properties.Settings.Default.gui2DColorMarker;
+            penSimulation.Color = Properties.Settings.Default.gui2DColorSimulation;
 
             float factorWidth = 1;
             if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
@@ -438,6 +442,8 @@ namespace GRBL_Plotter
             penMarker.LineJoin = LineJoin.Round;
             penLandMark.LineJoin = LineJoin.Round;
             penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+            penSimulation.Width = (float)Properties.Settings.Default.gui2DWidthSimulation * factorWidth;
+            penSimulation.LineJoin = LineJoin.Round;
 
             brushMachineLimit = new HatchBrush(HatchStyle.DiagonalCross, Properties.Settings.Default.gui2DColorMachineLimit, Color.Transparent);
             picBoxBackround = new Bitmap(pictureBox1.Width, pictureBox1.Height);

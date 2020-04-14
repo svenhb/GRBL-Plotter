@@ -968,7 +968,8 @@ namespace GRBL_Plotter
                 if ((index >= 0) && (index < 5))
                     grbl.pollInterval = interval[index];
 
-                _serial_form.updateGrblBufferSettings();
+                if (_serial_form != null)
+                    _serial_form.updateGrblBufferSettings();
 
                 gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
                 checkMachineLimit();
@@ -995,8 +996,10 @@ namespace GRBL_Plotter
         // update controls on Main form
         public void updateControls(bool allowControl = false)
         {
-//            Logger.Trace("updateControls {0}", allowControl);
-            bool isConnected = _serial_form.serialPortOpen || grbl.grblSimulate;
+            //            Logger.Trace("updateControls {0}", allowControl);
+            bool isConnected = false;
+            if (_serial_form != null)
+            {   isConnected = _serial_form.serialPortOpen || grbl.grblSimulate; }
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);

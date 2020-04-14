@@ -64,7 +64,7 @@ namespace GRBL_Plotter
 
         private void fCTBCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-//            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit {0}",manualEdit);
+            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit {0}",manualEdit);
             e.ChangedRange.ClearStyle(StyleComment);
             e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleCommentxml, "(\\(<.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -97,7 +97,7 @@ namespace GRBL_Plotter
         }
         private void fCTBCode_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-//            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit {0}  resetView {1}", manualEdit, resetView);
+            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit {0}  resetView {1}", manualEdit, resetView);
             if (resetView && !manualEdit)
             {   transformEnd();
                 if (foldLevel == 1)
@@ -154,16 +154,17 @@ namespace GRBL_Plotter
         // mark clicked line in editor
         private int fCTBCodeClickedLineNow = 0;
         private int fCTBCodeClickedLineLast = 0;
-        private void fCTBCode_Click(object sender, EventArgs e)         // click into FCTB  
+        private void fCTBCode_Click(object sender, EventArgs e)         // click into FCTB with mouse
         {
 //            if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_Click");
             fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
 //            statusStripSet2(string.Format("Clicked: {0}", fCTBCodeClickedLineNow),SystemColors.Control);
-            enableBlockCommands(false);       // disable CMS-Menu block-move items 
-            fCTBCode.DoCaretVisible();
             markedBlockType = xmlMarkerType.none;
             if (manualEdit)
                 return;
+
+            enableBlockCommands(false);       // disable CMS-Menu block-move items 
+            fCTBCode.DoCaretVisible();
 
             if (Panel.ModifierKeys == Keys.Alt)
             { findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow); }
@@ -725,7 +726,10 @@ namespace GRBL_Plotter
             string find2 = groupsOnly ? "(</Group" : "(</";
             StringBuilder tmp = new StringBuilder();
             for (int i = 0; i < fCTBCode.LinesCount; i++)
-            {   if (!(fCTBCode.Lines[i].Contains(find1) || fCTBCode.Lines[i].Contains(find2)))
+            {   
+                if (!(fCTBCode.Lines[i].Contains(find1) || fCTBCode.Lines[i].Contains(find2)))
+                    tmp.AppendLine(fCTBCode.Lines[i]);
+                else if (fCTBCode.Lines[i].Contains("(<Tang"))
                     tmp.AppendLine(fCTBCode.Lines[i]);
             }
             fCTBCode.Text = tmp.ToString();

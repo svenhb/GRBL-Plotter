@@ -214,7 +214,18 @@ namespace GRBL_Plotter
             if (distanceY > 0) { angle = -angle; }
             return angle;
         }
+        public xyPoint Round(int decimals = 4)
+        {   X = Math.Round(X, decimals);
+            Y = Math.Round(Y, decimals);
+            return this;
+        }
 
+        public static xyPoint Round(xyPoint tmpIn, int decimals = 4)
+        {   xyPoint tmpOut = new xyPoint();
+            tmpOut.X = Math.Round(tmpIn.X,decimals);
+            tmpOut.Y = Math.Round(tmpIn.Y, decimals);
+            return tmpOut;
+        }
         // Overload + operator 
         public static xyPoint operator +(xyPoint b, xyPoint c)
         {   xyPoint a = new xyPoint();

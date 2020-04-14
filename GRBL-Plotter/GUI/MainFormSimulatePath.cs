@@ -23,6 +23,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 
@@ -32,6 +33,7 @@ namespace GRBL_Plotter
         #region simulate path
         private static int simuLine = 0;
         private static bool simuEnabled = false;
+
         private void btnSimulate_Click(object sender, EventArgs e)
         {
             if ((!isStreaming) && (fCTBCode.LinesCount > 2))
@@ -60,6 +62,7 @@ namespace GRBL_Plotter
             btnSimulateFaster.Enabled = true;
             btnSimulateSlower.Enabled = true;
             VisuGCode.Simulation.Reset();
+
             double factor = 100 * VisuGCode.Simulation.dt / 50;
             lblElapsed.Text = string.Format("{0} {1:0}%", Localization.getString("mainSimuSpeed"), factor);
             btnSimulatePause.Visible = true;
@@ -81,6 +84,8 @@ namespace GRBL_Plotter
             lblElapsed.Text = "Time";
             btnSimulatePause.Visible = false;
             lbInfo.BackColor = System.Drawing.SystemColors.Control;
+            VisuGCode.Simulation.pathSimulation.Reset();
+            pictureBox1.Invalidate();
         }
 
         private void simulationTimer_Tick(object sender, EventArgs e)
@@ -115,6 +120,7 @@ namespace GRBL_Plotter
                 fCTBCode.BookmarkLine(simuLine);
                 fCTBCode.DoCaretVisible();
                 fCTBCodeClickedLineLast = simuLine;
+                VisuGCode.Simulation.pathSimulation.Reset();
                 pictureBox1.Invalidate(); // avoid too much events
                 lbInfo.Text = string.Format("Simulation finished");
                 return;

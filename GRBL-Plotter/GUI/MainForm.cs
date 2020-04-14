@@ -59,6 +59,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Win32;
+using GRBL_Plotter.GUI;
 
 namespace GRBL_Plotter
 {
@@ -76,6 +77,7 @@ namespace GRBL_Plotter
         ControlDIYControlPad _diyControlPad = null;
         ControlCoordSystem _coordSystem_form = null;
         ControlLaser _laser_form = null;
+        splashscreen _splashscreen = null;
 
         GCodeFromText _text_form = null;
         GCodeFromImage _image_form = null;
@@ -108,6 +110,8 @@ namespace GRBL_Plotter
         public MainForm()
         {
             Logger.Info("++++++ GRBL-Plotter Ver. {0} START ++++++", Application.ProductVersion);
+            _splashscreen = new splashscreen();
+            _splashscreen.Show();
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Localization.UpdateLanguage(Properties.Settings.Default.guiLanguage);
             Logger.Info("Language: {0}", ci);
@@ -202,7 +206,7 @@ namespace GRBL_Plotter
             cmsPicBoxPasteFromClipboard.ShortcutKeys = Keys.Control | Keys.V;
 
             toolStrip_tBRadiusCompValue.Text = string.Format("{0:0.000}", Properties.Settings.Default.crcValue);
-
+/*
             if (_serial_form == null)
             {
                 if (Properties.Settings.Default.ctrlUseSerial2)
@@ -217,7 +221,7 @@ namespace GRBL_Plotter
             }
             if (Properties.Settings.Default.ctrlUseSerialDIY)
             { DIYControlopen(sender, e); }
-
+            */
             this.gBoxOverride.Click += gBoxOverride_Click;
             gBoxOverride.Height = 15;
             gBoxOverrideBig = false;
@@ -263,7 +267,35 @@ namespace GRBL_Plotter
             { Logger.Debug("Load via CommandLineArgs[1] {0}", args[1]);
                 loadFile(args[1]);
             }
+
+            SplashScreenTimer.Enabled = true;
+            SplashScreenTimer.Stop();
+            SplashScreenTimer.Start();
+   //         this.Opacity = 100;
         }
+
+        private void SplashScreenTimer_Tick(object sender, EventArgs e)
+        {  
+            SplashScreenTimer.Enabled = false;
+            this.Opacity = 100;
+            if (_serial_form == null)
+            {
+                if (Properties.Settings.Default.ctrlUseSerial2)
+                {
+                    _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
+                    _serial_form2.Show(this);
+                }
+                _serial_form = new ControlSerialForm("COM CNC", 1, _serial_form2);
+                _serial_form.Show(this);
+                _serial_form.RaisePosEvent += OnRaisePosEvent;
+                _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
+            }
+            if (Properties.Settings.Default.ctrlUseSerialDIY)
+            { DIYControlopen(sender, e); }
+            _splashscreen.Close();
+            _splashscreen.Dispose();
+        }
+
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
@@ -1957,7 +1989,6 @@ namespace GRBL_Plotter
         {   toolStripStatusLabel0.Text = toolStripStatusLabel1.Text = toolStripStatusLabel2.Text = "";
             toolStripStatusLabel0.BackColor = toolStripStatusLabel1.BackColor = toolStripStatusLabel2.BackColor = SystemColors.Control;
         }
-
     }
 }
 

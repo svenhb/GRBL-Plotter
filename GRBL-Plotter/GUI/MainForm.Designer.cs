@@ -55,6 +55,7 @@ namespace GRBL_Plotter
                 penTool.Dispose();
                 penMarker.Dispose();
                 penLandMark.Dispose();
+                penSimulation.Dispose();
 
                 brushMachineLimit.Dispose();
                 brushBackground.Dispose();
@@ -396,6 +397,7 @@ namespace GRBL_Plotter
             this.toolStripStatusLabel0 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2859,6 +2861,11 @@ namespace GRBL_Plotter
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             resources.ApplyResources(this.toolStripStatusLabel2, "toolStripStatusLabel2");
             // 
+            // SplashScreenTimer
+            // 
+            this.SplashScreenTimer.Interval = 1500;
+            this.SplashScreenTimer.Tick += new System.EventHandler(this.SplashScreenTimer_Tick);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2870,6 +2877,7 @@ namespace GRBL_Plotter
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
+            this.Opacity = 0D;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -3255,6 +3263,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByColor;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByCodeSize;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByCodeArea;
+        private System.Windows.Forms.Timer SplashScreenTimer;
     }
 }
 
