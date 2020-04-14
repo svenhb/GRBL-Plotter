@@ -101,6 +101,7 @@ namespace GRBL_Plotter
             setButtonColors(btnColorMarker, Properties.Settings.Default.gui2DColorMarker);
             setButtonColors(btnColorHeightMap, Properties.Settings.Default.gui2DColorHeightMap);
             setButtonColors(btnColorMachineLimit, Properties.Settings.Default.gui2DColorMachineLimit);
+            setButtonColors(btnColorSimulation, Properties.Settings.Default.gui2DColorSimulation);
             nUDImportDecPlaces.Value = Properties.Settings.Default.importGCDecPlaces;
 
             Location = Properties.Settings.Default.locationSetForm;
@@ -166,6 +167,7 @@ namespace GRBL_Plotter
             cBImportGCDragKnife_CheckedChanged(sender, e);
             cBImportGCLineSegments_CheckedChanged(sender, e);
             cBImportGCNoArcs_CheckedChanged(sender, e);
+            cBImportGCTangential_CheckStateChanged(sender, e);
         }
 
         private void saveSettings()
@@ -206,6 +208,8 @@ namespace GRBL_Plotter
         { applyColor(btnColorHeightMap, "gui2DColorHeightMap"); }
         private void btnColorMachineLimit_Click(object sender, EventArgs e)
         { applyColor(btnColorMachineLimit, "gui2DColorMachineLimit"); }
+        private void btnColorSimulation_Click(object sender, EventArgs e)
+        { applyColor(btnColorSimulation, "gui2DColorSimulation"); }
 
         private void applyColor(Button btn, string settings)
         {
@@ -724,6 +728,11 @@ namespace GRBL_Plotter
             else
                 cBImportSVGNodesOnly.BackColor = Color.Transparent;
 
+            if (cBImportSVGCircleToDot.Checked)
+                cBImportSVGCircleToDot.BackColor = Color.Yellow;
+            else
+                cBImportSVGCircleToDot.BackColor = Color.Transparent;
+
             if (cBImportLasermode.Checked)
                 cBImportLasermode.BackColor = Color.Yellow;
             else
@@ -748,6 +757,11 @@ namespace GRBL_Plotter
                 tab1_2gB6.BackColor = Color.Yellow;
             else
                 tab1_2gB6.BackColor = Color.Transparent;
+
+            if(cBImportGCNoArcs.Checked)
+                cBImportGCNoArcs.BackColor = Color.Yellow;
+            else
+                cBImportGCNoArcs.BackColor = Color.Transparent;
 
             if (cBImportGCDragKnife.Checked)
                 tab1_3gB2.BackColor = Color.Yellow;
@@ -1080,6 +1094,7 @@ namespace GRBL_Plotter
         private void cBImportGCNoArcs_CheckedChanged(object sender, EventArgs e)
         {
             nUDImportGCSegment.Enabled = cBImportGCNoArcs.Checked;
+            highlight_PenOptions_Click(sender, e);
         }
 
         private void fillUseCaseFileList(string Root)
@@ -1163,7 +1178,24 @@ namespace GRBL_Plotter
             cBshowImportDialog.Visible = show;
         }
 
-        private void cBImportGCTangential_CheckedChanged(object sender, EventArgs e)
-        {	highlight_PenOptions_Click(sender, e); }
+        private void cBImportGCTangential_CheckStateChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGCTangential.Checked;
+            lblDImportGCTangential1.Enabled = enable;
+            lblDImportGCTangential2.Enabled = enable;
+            lblDImportGCTangential3.Enabled = enable;
+            cBoxImportGCTangentialName.Enabled = enable;
+            nUDImportGCTangentialSwivel.Enabled = enable;
+            nUDImportGCTangentialUnits.Enabled = enable;
+            cBImportGCTangentialRange.Enabled = enable;
+            if (cBImportGCTangentialRange.Checked && enable)
+            {   cBImportGCNoArcs.Checked = true;   }
+            highlight_PenOptions_Click(sender, e); }
+
+        private void cBImportGCTangentialRange_CheckStateChanged(object sender, EventArgs e)
+        {   if (cBImportGCTangentialRange.Checked)
+            {   cBImportGCNoArcs.Checked = true;   }
+            highlight_PenOptions_Click(sender, e);
+        }
     }
 }

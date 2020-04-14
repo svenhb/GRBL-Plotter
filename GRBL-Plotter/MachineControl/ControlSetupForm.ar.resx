@@ -1965,4 +1965,38 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
     <value>تجميع حسب اللون / حسب الطبقة</value>
   </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>حد زاوية الأداة إلى&gt; = 0 ° ، &lt;360 °</value>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>استخدم هذا الخيار لتجنب الزوايا أقل من 0 درجة وما فوق 360 درجة.
+لا يعمل مع G2 / 3 - تنشيط "تجنب أوامر G2 / 3"</value>
+  </data>
+  <data name="tab1_1gB21.Text" xml:space="preserve">
+    <value>تطبيق خاص</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>تحويل نصف قطر الدائرة إلى عمق النقطة</value>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>عرض القلم</value>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>محاكاة</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>تحويل الصورة</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>يحول الصور الثابتة إلى خطوط متعرجة مناسبة للتخطيط</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>ينشئ رسومات متقطعة و "فن TSP" من ملفات الصور.</value>
+  </data>
+  <data name="tab11gB1lbl1a.Text" xml:space="preserve">
+    <value>ملحقات إنكسكيب</value>
+  </data>
+  <data name="linkLabel16.Text" xml:space="preserve">
+    <value>ملحقات إنكسكيب</value>
+  </data>
 </root>

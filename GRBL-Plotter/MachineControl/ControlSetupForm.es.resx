@@ -1776,4 +1776,29 @@ El eje Z se moverá hacia abajo</value>
   <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
     <value>Agrupar por color / por capa</value>
   </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>Limite el ángulo de la herramienta a&gt; = 0 °, &lt;360 °</value>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>Use esta opción para evitar ángulos inferiores a 0 ° y superiores a 360 °.
+No funciona con G2 / 3: active 'Evitar comandos G2 / 3'</value>
+  </data>
+  <data name="tab1_1gB21.Text" xml:space="preserve">
+    <value>Aplicación especial</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>Convierte el radio del círculo en profundidad de punto</value>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>Ancho de la pluma</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Conversión de imagen</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Convierte imágenes fijas en líneas onduladas adecuadas para trazar</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Crea dibujos punteados y "arte TSP" a partir de archivos de imagen.</value>
+  </data>
 </root>

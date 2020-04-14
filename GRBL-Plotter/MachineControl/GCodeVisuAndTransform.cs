@@ -1236,6 +1236,7 @@ namespace GRBL_Plotter
             pathTool.Reset();
             pathMarker.Reset();
             pathMarkSelection.Reset();
+            Simulation.pathSimulation.Reset();
 //            lastFigureNumber = -1;
             path = pathPenUp;
             onlyZ = 0;

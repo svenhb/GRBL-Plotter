@@ -377,8 +377,11 @@ namespace GRBL_Plotter
             private static gcodeByLine codeLast = new gcodeByLine();
             private static gcodeByLine codeNext = new gcodeByLine();
             private static bool isTangentialZ = false;
+            private static bool isPenDownOld = false;
+            private static bool isPenDownNow = false;
+            public static GraphicsPath pathSimulation = new GraphicsPath();
 
-			private struct length
+            private struct length
 			{	public double XY;
                 public double Z;
                 public double A;
@@ -392,11 +395,14 @@ namespace GRBL_Plotter
                 diff.XY = diff.Z = diff.A = diff.Arc = 0;
                 distance = 0; dt = 50; posZ = 0; posA = 0;
                 remainingStep = stepWidth = 10;
-                posXY = grbl.posMarker = new xyPoint();
+                lastPosMarker = posXY = grbl.posMarker = new xyPoint();
                 posAngle = grbl.posMarkerAngle = 0;
                 codeNext = new gcodeByLine(simuList[lineNr]);
                 createMarkerPath();
                 isTangentialZ = (tangentialAxisName == "Z");
+                pathSimulation.Reset();
+                markSelectedFigure(-1);
+                isPenDownOld = isPenDownNow = false;
             }
             public static void setDt(int tmp)
             { dt = tmp; }
@@ -412,6 +418,8 @@ namespace GRBL_Plotter
                     if (!getNextPos())                      //  finish simu if nextPos = false
                     {   grbl.posMarker = (xyPoint)codeNext.actualPos;
                         grbl.posMarkerAngle = codeNext.alpha;
+  //                      isPenDownNow = codeNext.motionMode > 0;
+  //                      createSimulationPath((xyPoint)codeNext.actualPos);
                         createMarkerPath(false, (xyPoint)codeNext.actualPos);
                         return -1;
                     }
@@ -421,33 +429,45 @@ namespace GRBL_Plotter
 
                     if (remainingStep == 0)                 // just next full pos
                     {
+    //                    Logger.Trace("(1) remainingStep == 0)");
                         grbl.posMarker = (xyPoint)codeNext.actualPos;
                         grbl.posMarkerAngle = codeNext.alpha;
+                        isPenDownNow = codeNext.motionMode > 0;
+                        createSimulationPath((xyPoint)codeNext.actualPos);
                         createMarkerPath(false, (xyPoint)codeNext.actualPos);
                         posXY = grbl.posMarker;
                         posA = grbl.posMarkerAngle;
                         return codeNext.lineNumber;    
                     }
                     else if (remainingStep > 0)             // move too short, get next gcode
-                    {   while (remainingStep > 0)
-                        {   if (!getNextPos())              //  finish simu if nextPos = false //  calc distance & remaining steps
+                    {
+                        //                     Logger.Trace("(remainingStep > 0)");
+                        isPenDownNow = codeNext.motionMode > 0;
+                        createSimulationPath((xyPoint)codeNext.actualPos);
+                        while (remainingStep > 0)
+                        {
+   //                         Logger.Trace(" remainingStep {0}",remainingStep);
+                            if (!getNextPos())              //  finish simu if nextPos = false //  calc distance & remaining steps
                             {   grbl.posMarker = (xyPoint)codeNext.actualPos;
                                 grbl.posMarkerAngle = codeNext.alpha;
                                 createMarkerPath(false, (xyPoint)codeNext.actualPos);
                                 return -codeNext.lineNumber;
                             }
-                            remainingStep -= distance;   
+                            remainingStep -= distance;
                         }
                         if (remainingStep == 0)             // just next full pos
                         {   grbl.posMarker = (xyPoint)codeNext.actualPos;
                             grbl.posMarkerAngle = codeNext.alpha;
+ //                           Logger.Trace("3 remainingStep ==0", remainingStep);
+                            isPenDownNow = codeNext.motionMode > 0;
+                            createSimulationPath((xyPoint)codeNext.actualPos);
                             createMarkerPath(false, (xyPoint)codeNext.actualPos);
                             posXY = grbl.posMarker;
                             posA = grbl.posMarkerAngle;
                             return codeNext.lineNumber;   
                         }
                     }
-        // remainingStep < 0 calc intermediate steps
+                    // remainingStep < 0 calc intermediate steps
                     posXY = (xyPoint)codeLast.actualPos;
                     posAngle = codeLast.alpha;
                     posZ = codeLast.actualPos.Z;
@@ -462,6 +482,9 @@ namespace GRBL_Plotter
                 }
                 grbl.posMarker = posXY;
                 grbl.posMarkerAngle = posA ; // posAngle;
+ //               Logger.Trace("4 remainingStep ==0", remainingStep);
+                isPenDownNow = codeNext.motionMode > 0;
+                createSimulationPath(posXY);
                 createMarkerPath(false, posXY);
                 return codeNext.lineNumber;    
             }
@@ -470,6 +493,7 @@ namespace GRBL_Plotter
             {   updateFeedRate();
                 remainingStep = stepWidth;
                 double deltaA = codeNext.alpha - posA;
+                isPenDownNow = codeNext.motionMode > 0;
                 if (codeNext.motionMode < 2)
                 {   double deltaS = posXY.DistanceTo((xyPoint)codeNext.actualPos);      // XY remaining max distance
                     if (tangentialAxisName != "Z")
@@ -478,6 +502,7 @@ namespace GRBL_Plotter
 //                    Logger.Trace("calcIntermediatePos deltaS {0:0.00}   codeLast.alpha {1:0.00}  codeNext.alpha {2:0.00} posA {3:0.00}  ", deltaS, codeLast.alpha, codeNext.alpha, posA);
                     if ((deltaS < remainingStep) && ((deltaA) < 0.1))       // return false if finish with intermediate
                     {   remainingStep -= deltaS;
+ //                       createSimulationPath((xyPoint)codeNext.actualPos);
                         return false;
                     }
                     double deltaX = codeNext.actualPos.X - posXY.X;     // get remaining distance
@@ -493,6 +518,9 @@ namespace GRBL_Plotter
                     }
                     posXY.X += dX;
                     posXY.Y += dY;
+                    if (!checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, posXY))  // avoid going too far
+                        posXY = (xyPoint)codeNext.actualPos;
+
                     posA += (codeNext.alpha - codeLast.alpha) / aStep;	// step width = 1/10	dA;
                     if ((codeNext.z != null) && !isTangentialZ)
                         posZ += dZ;
@@ -550,7 +578,8 @@ namespace GRBL_Plotter
                     return false;
                 distance = getDistance();
                 updateFeedRate();
-//                Logger.Trace(" Code line {0}",codeNext.codeLine);
+                lastPosMarker = (xyPoint)codeLast.actualPos;
+//                Logger.Trace("  getNextPos  line:{0}  distance:{1:0.00}", lineNr, distance);
                 return true;
             }
 
@@ -585,6 +614,39 @@ namespace GRBL_Plotter
                 diff.Arc = Math.Abs(arcMove.angleDiff * arcMove.radius);
                 diff.Max = diff.Arc;
                 return diff.Max;
+            }
+
+            private static xyPoint lastPosMarker = new xyPoint();
+            private static void createSimulationPath(xyPoint moveto)
+            {
+                PointF start = new PointF((float)lastPosMarker.X,(float)lastPosMarker.Y);
+//                PointF end = new PointF((float)grbl.posMarker.X, (float)grbl.posMarker.Y);
+                PointF end = new PointF((float)moveto.X, (float)moveto.Y);
+                if ((isPenDownOld == false) && (isPenDownNow == true))
+                {   pathSimulation.StartFigure(); }
+                if (isPenDownNow)
+                {
+                    if (checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, moveto))
+                    {
+        //                Logger.Trace(" createSimulationPath  {0} p1 {1};{2}  p2 {3};{4}", codeNext.codeLine, start.X,start.Y,end.X,end.Y);
+                        pathSimulation.AddLine(start, end);
+                        lastPosMarker = moveto;
+                    }
+                }
+                isPenDownOld = isPenDownNow;
+            }
+            private static bool checkWithin(xyPoint start, xyPoint end, xyPoint check)
+            {
+//                Logger.Trace(" checkWithin  X:{0} < {1} < {2}   Y:{3} < {4} < {5}", start.X, check.X, end.X, start.Y, check.Y, end.Y);
+                if (check.X < Math.Min(start.X, end.X))
+                    return false;
+                if (check.X > Math.Max(start.X, end.X))
+                    return false;
+                if (check.Y < Math.Min(start.Y, end.Y))
+                    return false;
+                if (check.Y > Math.Max(start.Y, end.Y))
+                    return false;
+                return true;                
             }
         }
     }

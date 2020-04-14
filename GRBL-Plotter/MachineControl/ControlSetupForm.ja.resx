@@ -1965,4 +1965,38 @@ Z軸が下に移動します</value>
   <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
     <value>色別/レイヤー別</value>
   </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>工具角度を&gt; = 0°、&lt;360°に制限</value>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>このオプションを使用して、0°未満および360°を超える角度を回避します。
+G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効にします</value>
+  </data>
+  <data name="tab1_1gB21.Text" xml:space="preserve">
+    <value>特別なアプリケーション</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>円の半径を点の深さに変換します</value>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>シミュレーション</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>画像変換</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>静止画像をプロットに適した波線に変換します</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>画像ファイルから点描と「TSPアート」を作成します。</value>
+  </data>
+  <data name="tab11gB1lbl1a.Text" xml:space="preserve">
+    <value>Inkscape拡張</value>
+  </data>
+  <data name="linkLabel16.Text" xml:space="preserve">
+    <value>Inkscape拡張</value>
+  </data>
 </root>

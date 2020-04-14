@@ -1787,4 +1787,62 @@ min X, min Y и max Z.
   <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
     <value>Группировать по цвету / по слою</value>
   </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>Ограничьте угол инструмента до&gt; = 0 °, &lt;360 °</value>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>Используйте эту опцию, чтобы избежать углов ниже 0 ° и выше 360 °.
+Не работает с G2 / 3 - активируйте «Избегайте команд G2 / 3»</value>
+  </data>
+  <data name="tab1_1gB21.Text" xml:space="preserve">
+    <value>Специальное приложение</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>Преобразует радиус круга в глубину точки</value>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>Ширина пера</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Преобразование изображения</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Преобразует неподвижные изображения в волнистые линии, пригодные для построения</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Создает точечные рисунки и «TSP art» из файлов изображений.</value>
+  </data>
+  <data name="tab11gB1lbl1a.Text" xml:space="preserve">
+    <value>Расширения Inkscape</value>
+  </data>
+  <data name="linkLabel16.Text" xml:space="preserve">
+    <value>Расширения Inkscape</value>
+  </data>
+  <data name="linkLabel15.Text" xml:space="preserve">
+    <value>Генератор пазлов от Draradech / jigsaw.html на Github</value>
+  </data>
+  <data name="linkLabel8.Text" xml:space="preserve">
+    <value>Обзор GCode на linuxcnc</value>
+  </data>
+  <data name="linkLabel7.Text" xml:space="preserve">
+    <value>GRBL на GitHub</value>
+  </data>
+  <data name="tab11gB2.Text" xml:space="preserve">
+    <value>Бесплатные графические источники SVG (с возможностью перетаскивания)</value>
+  </data>
+  <data name="tab10gB2.Text" xml:space="preserve">
+    <value>Цветовой фильтр</value>
+  </data>
+  <data name="tab10gB3lbl5.Text" xml:space="preserve">
+    <value>пиксель</value>
+  </data>
+  <data name="tab10gB3lbl4.Text" xml:space="preserve">
+    <value>пиксель</value>
+  </data>
+  <data name="linkLabel14.Text" xml:space="preserve">
+    <value>Создание заполненных областей</value>
+  </data>
+  <data name="tab11gB1lbl1.Text" xml:space="preserve">
+    <value>Графическая программа</value>
+  </data>
 </root>

@@ -1716,7 +1716,7 @@ Bewegen Sie den Joystick, nachdem Sie den Versatz geändert haben.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
-    <value>Einheiten pro Runde</value>
+    <value>Einheiten pro Umdrehung</value>
   </data>
   <data name="lblDImportGCTangential2.Text" xml:space="preserve">
     <value>Schwenkwinkel</value>
@@ -1738,5 +1738,30 @@ Die Z-Achse wird nach unten verschoben</value>
   </data>
   <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
     <value>Gruppieren nach Farbe / nach Ebene</value>
+  </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>Werkzeugwinkel auf &gt; = 0 °, &lt;360 ° begrenzen</value>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>Verwenden Sie diese Option, um Winkel unter 0 ° und über 360 ° zu vermeiden.
+Funktioniert nicht mit G2 / 3 - aktiviere 'G2 / 3-Befehle vermeiden'</value>
+  </data>
+  <data name="tab1_1gB21.Text" xml:space="preserve">
+    <value>Spezieller Anwendungsfall</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>Konvertiert Kreisradius in Punkttiefe</value>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>Stiftbreite</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Bildkonvertierung</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Konvertiert Standbilder in verschnörkelte Linien, die zum Zeichnen geeignet sind</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Erstellt Punktzeichnungen und „TSP-Grafiken“ aus Bilddateien.</value>
   </data>
 </root>

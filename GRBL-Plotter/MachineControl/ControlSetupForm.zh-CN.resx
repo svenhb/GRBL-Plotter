@@ -1930,4 +1930,56 @@ Z轴将向下移动</value>
   <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
     <value>按颜色/按层分组</value>
   </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>将刀具角度限制为&gt; = 0°，&lt;360°</value>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>使用此选项可避免角度小于0°且大于360°。
+不适用于G2 / 3-激活“避免G2 / 3命令”</value>
+  </data>
+  <data name="tab1_1gB21.Text" xml:space="preserve">
+    <value>特殊应用</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>将圆半径转换为点深度</value>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>模拟</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>影像转换</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>将静态图像转换为适合绘制的波浪线</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>从图像文件创建点画工程图和“ TSP插图”。</value>
+  </data>
+  <data name="tab11gB1lbl1a.Text" xml:space="preserve">
+    <value>Inkscape扩展</value>
+  </data>
+  <data name="linkLabel16.Text" xml:space="preserve">
+    <value>Inkscape扩展</value>
+  </data>
+  <data name="linkLabel15.Text" xml:space="preserve">
+    <value>Генератор пазлов от Draradech / jigsaw.html на Github</value>
+  </data>
+  <data name="linkLabel8.Text" xml:space="preserve">
+    <value>linuxcnc上的GCode概述</value>
+  </data>
+  <data name="linkLabel7.Text" xml:space="preserve">
+    <value>GitHub上的GRBL</value>
+  </data>
+  <data name="tab11gB2.Text" xml:space="preserve">
+    <value>免费的SVG图形源（具有拖放功能）</value>
+  </data>
+  <data name="linkLabel14.Text" xml:space="preserve">
+    <value>创建填充区域</value>
+  </data>
+  <data name="tab11gB1lbl1.Text" xml:space="preserve">
+    <value>图形程序</value>
+  </data>
 </root>

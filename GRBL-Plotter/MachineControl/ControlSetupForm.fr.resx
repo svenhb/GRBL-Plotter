@@ -1776,4 +1776,29 @@ L'axe Z sera déplacé vers le bas</value>
   <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
     <value>Regrouper par couleur / par couche</value>
   </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>Limiter l'angle de l'outil à&gt; = 0 °, &lt;360 °</value>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>Utilisez cette option pour éviter les angles inférieurs à 0 ° et supérieurs à 360 °.
+Ne fonctionne pas avec G2 / 3 - activez 'Eviter les commandes G2 / 3'</value>
+  </data>
+  <data name="tab1_1gB21.Text" xml:space="preserve">
+    <value>Application spéciale</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>Convertit le rayon du cercle en profondeur de point</value>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>Largeur du stylo</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Conversion d'image</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Convertit les images fixes en lignes ondulées adaptées au traçage</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Crée des dessins pointillés et des «illustrations TSP» à partir de fichiers image.</value>
+  </data>
 </root>

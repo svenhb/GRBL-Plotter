@@ -1781,4 +1781,29 @@ O eixo Z será movido para baixo</value>
   <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
     <value>Agrupar por cor / por camada</value>
   </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>Limite o ângulo da ferramenta a&gt; = 0 °, &lt;360 °</value>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>Use esta opção para evitar ângulos abaixo de 0 ° e acima de 360 °.
+Não funciona com o G2 / 3 - ative 'Evitar comandos do G2 / 3'</value>
+  </data>
+  <data name="tab1_1gB21.Text" xml:space="preserve">
+    <value>Aplicação especial</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>Converte o raio do círculo em profundidade do ponto</value>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>Largura da caneta</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Conversão de imagem</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Converte imagens estáticas em linhas onduladas adequadas para plotagem</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Cria desenhos pontilhados e "arte TSP" a partir de arquivos de imagem.</value>
+  </data>
 </root>
