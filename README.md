@@ -11,7 +11,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.3.4.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-03-08     
+#### [GRBL-Plotter Vers. 1.3.4.5](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-04-14     
 
 ### Requirements for compiling
 * VisualStudio 2015 
@@ -37,6 +37,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 * DXF graphics import via file load, drag & drop (also URL) - tested with [LibreCAD](http://librecad.org/cms/home.html) generated DXFs 
   - few entities are missing
 * [Drag tool compensation](https://github.com/svenhb/GRBL-Plotter/wiki/Drag-tool-compensation)
+* HPGL graphics import via file load, drag & drop  
 * Drill file import via file load, drag & drop
 * Image import via file load or drag & drop
 * GCode can be edited and saved
@@ -47,6 +48,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 * Create Text
   - own created 'Dot Matrix' font [Video 'Dot Matrix'](https://youtu.be/ip_qCQwoufw) 
 * Create simple shapes
+* Create GCode via tool extensions 
     
 #### GCode manipulation:  
 * Transformation of GCodes (scale, rotation, mirror, zero-Offset)  
@@ -54,6 +56,7 @@ any A,B,C,U,V,W commands will stay in place.
 * Transformation via camera teaching
 * Axis Substitution for Rotary Axis
 * Radius compensation 
+* Create Code for Tangential axis 
   
 #### Machine control:  
 * Height map, auto leveling 
@@ -75,6 +78,7 @@ any A,B,C,U,V,W commands will stay in place.
 #### GRBL:  
 * Automatic reconnect on program start  
 * Supporting GRBL 1.1 (and 0.9 also)
+* Check for 30 kHz max. step-pin frequency 
 * Supporting new GRBL 1.1 features
   - Jogging
   - Feed rate override
