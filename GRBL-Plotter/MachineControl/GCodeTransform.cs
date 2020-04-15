@@ -579,6 +579,8 @@ namespace GRBL_Plotter
                 distance = getDistance();
                 updateFeedRate();
                 lastPosMarker = (xyPoint)codeLast.actualPos;
+                if ((remainingStep - distance) > 0)
+                    createSimulationPath((xyPoint)codeNext.actualPos);
 //                Logger.Trace("  getNextPos  line:{0}  distance:{1:0.00}", lineNr, distance);
                 return true;
             }

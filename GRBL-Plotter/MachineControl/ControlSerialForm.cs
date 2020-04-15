@@ -96,7 +96,7 @@ namespace GRBL_Plotter
 
         public ControlSerialForm(string txt, int nr, ControlSerialForm handle = null)
         {
-            Logger.Trace("++++++ SerialForm {0} START ++++++", iamSerial);
+            Logger.Info("++++++ SerialForm {0} START ++++++", iamSerial);
             this.Icon = Properties.Resources.Icon;
             mParserState.reset();
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
@@ -165,7 +165,7 @@ namespace GRBL_Plotter
                 grblReset(false);
                 closePort();
                 e.Cancel = false;
-                Logger.Trace("++++++ SerialForm {0} STOP ++++++", iamSerial);
+                Logger.Info("++++++ SerialForm {0} STOP ++++++", iamSerial);
             }
             else
             {
