@@ -1383,7 +1383,7 @@ namespace GRBL_Plotter
         // handle Extension List
         private void LoadExtensionList()
         {
-            Logger.Trace("LoadExtensioList");
+            Logger.Trace("LoadExtensionList");
             string extensionPath = Application.StartupPath + datapath.extension;
             string[] fileEntries;
 
@@ -1396,16 +1396,15 @@ namespace GRBL_Plotter
                     {
                         string file = Path.GetFileName(item);
                         if (!file.StartsWith("_"))
-                        {
-                            ToolStripMenuItem fileExtension = new ToolStripMenuItem(file, null, ExtensionFile_click);
+                        {   ToolStripMenuItem fileExtension = new ToolStripMenuItem(file, null, ExtensionFile_click);
                             startExtensionToolStripMenuItem.DropDownItems.Add(fileExtension);
-                            Logger.Debug("Add Extension {0}", file);
+                            Logger.Trace("  - Add Extension {0}", file);
                         }
                     }
                 }
-                else Logger.Debug("Extension path not found {0}", extensionPath);
+                else Logger.Warn("Extension path not found {0}", extensionPath);
             }
-            catch (Exception er) { Logger.Error(er, "LoadExtensionList "); }
+            catch (Exception err) { Logger.Error(err, "LoadExtensionList "); }
         }
         private void ExtensionFile_click(object sender, EventArgs e)
         {

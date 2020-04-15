@@ -129,6 +129,11 @@ namespace GRBL_Plotter
         //Unhandled exception
         private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
+            this.Opacity = 100;
+            if (_splashscreen != null)
+            {   _splashscreen.Close();
+                _splashscreen.Dispose();
+            }
             Exception ex = e.Exception;
             Logger.Error(ex, "Application_ThreadException");
             MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex), "Main Form Thread exception");
@@ -137,6 +142,11 @@ namespace GRBL_Plotter
         }
         private void Application_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            this.Opacity = 100;
+            if (_splashscreen != null)
+            {   _splashscreen.Close();
+                _splashscreen.Dispose();
+            }
             if (e.ExceptionObject != null)
             {
                 Exception ex = (Exception)e.ExceptionObject;
@@ -172,7 +182,7 @@ namespace GRBL_Plotter
         {
             Logger.Trace("MainForm_Load start");
             if (Properties.Settings.Default.ctrlUpgradeRequired)
-            { Logger.Trace("Properties.Settings.Default.UpgradeRequired");
+            {   Logger.Trace("Properties.Settings.Default.UpgradeRequired");
                 Properties.Settings.Default.Upgrade();
                 Properties.Settings.Default.ctrlUpgradeRequired = false;
                 Properties.Settings.Default.Save();
@@ -206,23 +216,9 @@ namespace GRBL_Plotter
             cmsPicBoxPasteFromClipboard.ShortcutKeys = Keys.Control | Keys.V;
 
             toolStrip_tBRadiusCompValue.Text = string.Format("{0:0.000}", Properties.Settings.Default.crcValue);
-/*
-            if (_serial_form == null)
-            {
-                if (Properties.Settings.Default.ctrlUseSerial2)
-                {
-                    _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
-                    _serial_form2.Show(this);
-                }
-                _serial_form = new ControlSerialForm("COM CNC", 1, _serial_form2);
-                _serial_form.Show(this);
-                _serial_form.RaisePosEvent += OnRaisePosEvent;
-                _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
-            }
-            if (Properties.Settings.Default.ctrlUseSerialDIY)
-            { DIYControlopen(sender, e); }
-            */
+
             this.gBoxOverride.Click += gBoxOverride_Click;
+
             gBoxOverride.Height = 15;
             gBoxOverrideBig = false;
 
@@ -260,13 +256,7 @@ namespace GRBL_Plotter
 
             try { ControlGamePad.Initialize(); }
             catch { }
-            Logger.Trace("MainForm_Load finish");
-
-            string[] args = Environment.GetCommandLineArgs();
-            if (args.Length > 1)
-            { Logger.Debug("Load via CommandLineArgs[1] {0}", args[1]);
-                loadFile(args[1]);
-            }
+            Logger.Trace("MainForm_Load finish, start splashScreen timer");
 
             SplashScreenTimer.Enabled = true;
             SplashScreenTimer.Stop();
@@ -294,6 +284,13 @@ namespace GRBL_Plotter
             { DIYControlopen(sender, e); }
             _splashscreen.Close();
             _splashscreen.Dispose();
+            Logger.Info("++++++ MainForm SplashScreen closed");
+
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {   Logger.Info("Load file via CommandLineArgs[1] {0}", args[1]);
+                loadFile(args[1]);
+            }
         }
 
         // close Main form
@@ -301,10 +298,11 @@ namespace GRBL_Plotter
         {   // Note all other forms will be closed, before reaching following code...
             Logger.Trace("FormClosing");
 
-            _serial_form.closePort();
-            _serial_form.RaisePosEvent -= OnRaisePosEvent;
-            _serial_form.RaiseStreamEvent -= OnRaiseStreamEvent;
-
+            if (_serial_form != null)
+            {   _serial_form.closePort();
+                _serial_form.RaisePosEvent -= OnRaisePosEvent;
+                _serial_form.RaiseStreamEvent -= OnRaiseStreamEvent;
+            }
 
             Properties.Settings.Default.mainFormWinState = WindowState;
             WindowState = FormWindowState.Normal;

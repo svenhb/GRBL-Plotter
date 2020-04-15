@@ -12,8 +12,8 @@ namespace GRBL_Plotter.GUI
     public partial class splashscreen : Form
     {
         public splashscreen()
-        {
-            InitializeComponent();
+        {   InitializeComponent();
+            this.Icon = Properties.Resources.Icon;
         }
 
         private void splashscreen_Load(object sender, EventArgs e)
