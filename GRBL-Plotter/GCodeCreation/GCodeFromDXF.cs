@@ -48,6 +48,7 @@
  * 2020-02-19 bug fix round corners in blocks
  * 2020-02-22 updated DXFLib.dll is needed (DXFInsert-RotationAngle, DXFEllipse)
  * 2020-03-30 Grouping also by Layer-Name
+ * 2020-04-15 DXFArc automatic correction if R is > DXF ARC step width
 */
 
 using System;
@@ -203,7 +204,7 @@ namespace GRBL_Plotter //DXFImporter
             List<DXFLayerRecord> tst = doc.Tables.Layers;
             foreach (DXFLayerRecord record in tst)
             {
-                Plotter.AddToHeader(string.Format("Layer: {0} , color: {1} , line type: {2}", record.LayerName, record.Color, record.LineType));
+                Plotter.AddToHeader(string.Format(" Layer: {0} , color: {1} , line type: {2}", record.LayerName, record.Color, record.LineType));
                 layerColor.Add(record.LayerName, record.Color);
                 layerLType.Add(record.LayerName, record.LineType);
             }
@@ -246,7 +247,7 @@ namespace GRBL_Plotter //DXFImporter
                         {   if (gcode.loggerTrace) Logger.Trace("Block: {0}", block.BlockName);
                             dxfColorID = block.ColorNumber;
                             
-                            Plotter.PathName = "Block:"+block.BlockName;
+                            Plotter.PathName = " Block:"+block.BlockName;
                             Plotter.AddToHeader(string.Format("Block: {0} at X{1:0.000}  Y{2:0.000}  a{3:0.00}" ,block.BlockName, insertion.X, insertion.Y, ins.RotationAngle));
                             foreach (DXFEntity blockEntity in block.Children)
                             {   processEntities(blockEntity, insertion, insertionAngle, dxfEntity.LayerName);   }
@@ -612,6 +613,14 @@ namespace GRBL_Plotter //DXFImporter
                 double endAngle = arc.EndAngle;
                 if (startAngle > endAngle) endAngle += 360;
                 double stepwidth = (double)Properties.Settings.Default.importDXFStepWidth; 
+                
+                if (stepwidth > R/2)
+                {   string comment = string.Format("DXF ARC step width ({0:0.00}) is too low for given r ({1:0.00}), corrected to {2:0.00} ", stepwidth, R, (R/5));
+                    Plotter.Comment( comment);
+                    Plotter.AddToHeader(" ATTENTION: "+comment);
+                    Logger.Warn(" ATTENTION: {0}", comment);
+                    stepwidth = R/5;
+                }
                 float StepAngle = (float)(Math.Asin(stepwidth / R) * 180 / Math.PI);
                 double currAngle = startAngle;
                 index = 0;

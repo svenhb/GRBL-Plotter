@@ -40,7 +40,7 @@ namespace GRBL_Plotter
 {
     public static class Plotter
     {
-        private static bool loggerTrace = true;
+        private static bool loggerTrace = false;
 
         struct FigureCheck      // collect data of last created code for removement if needed
         {   public int lastIndexStart;

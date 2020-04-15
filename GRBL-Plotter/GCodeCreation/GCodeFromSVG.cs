@@ -1321,7 +1321,7 @@ namespace GRBL_Plotter
         /// </summary>
         private static void svgMoveTo(Point orig, string cmt)
         {
-            if (gcode.loggerTrace) Logger.Trace(" svgMoveTo x{0:0.000} y{1:0.000} cmt {2}", orig.X, orig.Y,cmt);
+//            if (gcode.loggerTrace) Logger.Trace(" svgMoveTo x{0:0.000} y{1:0.000} cmt {2}", orig.X, orig.Y,cmt);
             Point tmp = translateXY(orig);
             Plotter.MoveTo(tmp, cmt);
         }
