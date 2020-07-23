@@ -1,0 +1,283 @@
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+ * 2020-07-05 new
+*/
+
+using System;
+using System.Collections.Generic;
+using System.Windows;
+
+namespace GRBL_Plotter
+{
+    public static partial class Graphic
+    {
+        
+		public static void CalculateTangentialAxis()
+		{   const uint loggerSelect = (uint)LogEnable.PathModification;
+            double maxAngleChangeDeg = (double)Properties.Settings.Default.importGCTangentialAngle;
+            bool limitRange = Properties.Settings.Default.importGCTangentialRange;
+
+            double maxAngleRad = maxAngleChangeDeg * Math.PI / 180;		// in RAD
+			double angleNow,angleLast,angleOffset,angleApply, angleLastApply;
+			finalPathList = new List<PathObject>();    // figures of one tile
+			ItemPath tempPath = new ItemPath();
+			Point pStart, pEnd;
+            Logger.Trace("...CalculateTangentialAxis maxAngle:{0}", maxAngleChangeDeg);
+			gcodeMath.resetAngles();
+
+            foreach (PathObject graphicItem in completeGraphic)
+			{
+				angleLast = angleApply = angleLastApply = 0;
+                angleOffset = 0;
+                if (!(graphicItem is ItemDot))
+				{
+					ItemPath item = (ItemPath)graphicItem;
+
+					if (item.path.Count == 0)
+						continue;
+
+					pStart = item.path[0].MoveTo;
+
+/* copy general info */			
+					actualDashArray = new double[0];
+					if (item.dashArray.Length > 0)
+					{	actualDashArray = new double[item.dashArray.Length];
+						item.dashArray.CopyTo(actualDashArray, 0);
+					}
+
+					tempPath = new ItemPath(new Point(pStart.X, pStart.Y));		// create new path
+					tempPath.Info.CopyData(graphicItem.Info);              		// preset global info for GROUP																			
+					if (actualDashArray.Length > 0)								// set dash array
+					{	tempPath.dashArray = new double[actualDashArray.Length];
+						actualDashArray.CopyTo(tempPath.dashArray, 0);
+					}
+
+					for (int i = 1; i < item.path.Count; i++)           		// go through path objects
+					{
+						pStart = item.path[i - 1].MoveTo;						
+						pEnd = item.path[i].MoveTo;			
+
+/* Process Line */
+						if (item.path[i] is GCodeLine)
+						{	angleNow = gcodeMath.getAlpha(pStart, pEnd);  	// angle-i = p[i-1] to p[i] in radiant
+
+//                            if ((loggerTrace & loggerSelect) > 0) Logger.Trace("    TangentialAxis diff:{0:0.00} now:{1:0.00}  last:{2:0.00} offfset:{3:0.00}  ", diff, angleNow,angleLast, angleOffset);
+
+                            if (i==1) 
+							{ 	angleLast = item.path[0].Angle = angleNow;
+								tempPath.StartAngle = angleNow;
+								angleLastApply = angleApply = angleNow;
+                            }
+
+							if ((loggerTrace & loggerSelect) > 0) Logger.Trace("    before angleNow:{0:0.00}  angleLast:{1:0.00} angleApply:{2:0.00}  offset:{3:0.00}", (angleNow * 180 / Math.PI), (angleLast * 180 / Math.PI),(angleApply * 180 / Math.PI), (angleOffset* 180 / Math.PI));
+
+                            double diff = angleNow - angleLast;	// + angleOffset;
+                            if (diff > Math.PI) { angleOffset -= 2 * Math.PI; }
+                            else if (diff < -Math.PI) { angleOffset += 2 * Math.PI; }
+                            angleApply = angleNow + angleOffset;
+
+							if ((loggerTrace & loggerSelect) > 0) Logger.Trace("    after  angleNow:{0:0.00}  angleLast:{1:0.00} angleApply:{2:0.00}  offset:{3:0.00}", (angleNow * 180 / Math.PI), (angleLast * 180 / Math.PI),(angleApply * 180 / Math.PI), (angleOffset* 180 / Math.PI));
+
+                            item.path[i].Angle = angleApply;           				
+					//		if ((loggerTrace & loggerSelect) > 0) Logger.Trace("    TangentialAxis Line   X:{0:0.00} Y:{1:0.00}  end X:{2:0.00} Y:{3:0.00}  angleNow:{4:0.00}  angleApply:{5:0.00}  offset:{6:0.00}", pStart.X, pStart.Y, pEnd.X, pEnd.Y, (angleNow * 180 / Math.PI), (angleApply * 180 / Math.PI), (angleOffset* 180 / Math.PI));
+
+/* split path if swivel angle is reached*/							
+							if ((Math.Abs(angleLastApply - angleApply) > maxAngleRad) || fixAngleExceed(ref angleApply, ref angleNow, ref angleOffset))      	// change in angle is too large -> insert pen up/turn/down -> seperate path
+							{	if (tempPath.path.Count > 1)
+									finalPathList.Add(tempPath);                // save prev path, start new path to force pen up/turn/down
+                                if ((loggerTrace & loggerSelect) > 0) Logger.Trace("      Exceed angle max:{0:0.00}  actual:{1:0.00}", (maxAngleRad * 180 / Math.PI), (Math.Abs(angleLast - angleNow) * 180 / Math.PI));
+
+								tempPath = new ItemPath(new Point(pStart.X, pStart.Y));     // start new path with clipped start position
+								tempPath.Info.CopyData(graphicItem.Info);                	// preset global info for GROUP
+								if (actualDashArray.Length > 0)								// set dash array
+								{	tempPath.dashArray = new double[actualDashArray.Length];
+									actualDashArray.CopyTo(tempPath.dashArray, 0);
+								}
+								tempPath.Add(pEnd, item.path[i].Depth, angleApply);
+								tempPath.StartAngle = angleApply;
+							}
+							else
+                            {	tempPath.Add(pEnd, item.path[i].Depth, angleApply);}		// add point and angle
+						
+                            angleLast = angleApply;	//angleNow;
+							angleLastApply = angleApply;
+                        }
+                        else
+/* Process Arc   implement fixAngleExceed(ref angleApply, ref angleNow, ref angleOffset)?*/
+                        {
+                            double offset = +Math.PI / 2;        // angle-i = center to p[i] + 90° it is the tangente
+							double aStart = 0;
+							if (!((GCodeArc)item.path[i]).IsCW) { offset = -offset; }                                          // angleStart-i = center to p[i-1] + 90°
+							
+							Point center = new Point(pStart.X + ((GCodeArc)item.path[i]).CenterIJ.X, pStart.Y + ((GCodeArc)item.path[i]).CenterIJ.Y);
+							
+							aStart = gcodeMath.getAngle(pStart, center, offset, 0);	// angle of tangente
+                            if (i == 1)
+                            {   angleLast = item.path[0].Angle = aStart;
+                                tempPath.StartAngle = aStart;
+                            }
+
+                            double diff = aStart - angleLast;	// + angleOffset;
+                            if (diff > Math.PI) { angleOffset -= 2 * Math.PI; }
+                            else if (diff < -Math.PI) { angleOffset += 2 * Math.PI; }
+                            angleApply = aStart + angleOffset;
+
+                            //             if (loggerTrace) Logger.Trace(" Tang Circle a-start:{0:0.00} a-end:{1:0.00}  ", (angle * 180 / Math.PI));
+                            ((GCodeArc)item.path[i]).AngleStart = angleApply;
+
+                            angleNow = gcodeMath.getAngle(pEnd, center, offset, 0);
+                            diff = angleNow - angleLast;	 //+ angleOffset;
+                            if (diff > Math.PI) { angleOffset -= 2 * Math.PI; }
+                            else if (diff < -Math.PI) { angleOffset += 2 * Math.PI; }
+                            angleApply = angleNow + angleOffset;
+
+                            ((GCodeArc)item.path[i]).Angle = angleApply;
+							if ((loggerTrace & loggerSelect) > 0) Logger.Trace("    Tangential Circle X:{0:0.00} Y:{1:0.00}  end X:{2:0.00} Y:{3:0.00}  angleStart:{4:0.00} angleEnd:{5:0.00}", pStart.X, pStart.Y, pEnd.X, pEnd.Y, (aStart * 180 / Math.PI), (angleNow * 180 / Math.PI));
+							
+							if (Math.Abs(angleLast - angleNow) > maxAngleRad)                     // change in angle is too large -> insert pen up/turn/down -> seperate path
+							{	if (tempPath.path.Count > 1)
+									finalPathList.Add(tempPath);           // save prev path, start new path to force pen up/turn/down
+
+								tempPath = new ItemPath(new Point(pStart.X, pStart.Y));     // start new path with clipped start position
+								tempPath.Info.CopyData(graphicItem.Info);                // preset global info for GROUP
+								if (actualDashArray.Length > 0)
+								{	tempPath.dashArray = new double[actualDashArray.Length];
+									actualDashArray.CopyTo(tempPath.dashArray, 0);
+								}
+							}
+							else
+							{	tempPath.AddArc((GCodeArc)item.path[i],aStart, angleApply, item.path[i].Depth);}				// add point and angle
+						}
+						angleLast = angleNow;
+					}
+					if (tempPath.path.Count > 1)
+						finalPathList.Add(tempPath);                       // save prev path
+				}
+				else
+/* Process Dot */
+                {
+                    ItemDot dot = new ItemDot(graphicItem.Start.X, graphicItem.Start.Y);
+					dot.Info.CopyData(graphicItem.Info);              // preset global info for GROUP
+					finalPathList.Add(dot);
+					if ((loggerTrace & loggerSelect) > 0) Logger.Trace("   Clip Dot copied");
+				}
+			}
+            completeGraphic.Clear();
+            foreach (PathObject item in finalPathList)     // add tile to full graphic
+                completeGraphic.Add(item);
+		}
+	
+        private static bool fixAngleExceed(ref double angleApply, ref double angleNow, ref double angleOffset)
+        {   if (Properties.Settings.Default.importGCTangentialRange)
+            {   if (angleApply < 0)
+                { angleApply += 2 * Math.PI; angleOffset += 2 * Math.PI; return true; }
+                else if (angleApply > (2 * Math.PI))
+                { angleApply -= 2 * Math.PI; angleOffset -= 2 * Math.PI; return true; }
+            }
+            return false;
+        }
+
+
+        public static void DragToolModification(List<PathObject> graphicToModify)
+        {	const uint loggerSelect = (uint)LogEnable.PathModification;
+            double gcodeDragRadius = (double)Properties.Settings.Default.importGCDragKnifeLength;
+            if (Properties.Settings.Default.importGCDragKnifePercentEnable)
+            {   gcodeDragRadius = Math.Abs((double)Properties.Settings.Default.importGCZDown * (double)Properties.Settings.Default.importGCDragKnifePercent / 100); }
+
+            double gcodeDragAngle = (double)Properties.Settings.Default.importGCDragKnifeAngle;
+
+            Logger.Trace("...DragToolModification radius:{0:0.00} angle:{1:0.00}", gcodeDragRadius, gcodeDragAngle );
+            ListGraphicObjects(graphicToModify, true);
+
+            List<PathObject> modifiedGraphic = new List<PathObject>();
+
+            foreach (PathObject item in graphicToModify)      // replace original list?
+            {
+                if (item is ItemPath)               // if Dot: nothing to correct
+                {
+                    Point origMoveTo, center,shorten;
+                    double a, a1, a2;
+                    ItemPath opath = (ItemPath)item;
+                    if (opath.path.Count > 1)
+                    {
+                        origMoveTo = opath.path[0].MoveTo;
+                        opath.path[0].MoveTo = extendPath(opath.path[0].MoveTo, opath.path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startEarlier);
+                        opath.Start = opath.path[0].MoveTo;
+		/*Go from path-end to path-start for easier path-insertion*/
+                        for (int i = opath.path.Count - 1; i > 0; i--)
+                        {
+							if (isEqual(opath.path[i - 1].MoveTo, opath.path[i].MoveTo))
+							{	if ((loggerTrace & loggerSelect) > 0) Logger.Trace(" Error same coord: Drag (i-1) x:{0:0.00} y:{1:0.00} (i) x:{2:0.00} y:{3:0.00}  ", opath.path[i - 1].MoveTo.X, opath.path[i - 1].MoveTo.Y, opath.path[i].MoveTo.X, opath.path[i].MoveTo.Y);
+								continue;
+							}
+						
+                            origMoveTo = opath.path[i].MoveTo;
+                            opath.path[i].MoveTo = extendPath(opath.path[i - 1].MoveTo, opath.path[i].MoveTo, gcodeDragRadius, ExtendDragPath.endLater);
+                            if (i < opath.path.Count - 1)
+                            {
+                                a1 = gcodeMath.getAlpha(opath.path[i - 1].MoveTo, origMoveTo);
+                                a2 = gcodeMath.getAlpha(origMoveTo, opath.path[i + 1].MoveTo);
+                                a = a2 - a1;
+                                if (a > Math.PI) { a = a - 2*Math.PI; }
+                                if (a < -Math.PI) { a = 2 * Math.PI + a; }
+                                if ((loggerTrace & loggerSelect) > 0) Logger.Trace(" Drag (i-1) x:{0:0.00} y:{1:0.00} (i) x:{2:0.00} y:{3:0.00}  (i+1) x:{4:0.00} y:{5:0.00} a1:{6:0.00} a2:{7:0.00}", opath.path[i - 1].MoveTo.X, opath.path[i - 1].MoveTo.Y, opath.path[i].MoveTo.X, opath.path[i].MoveTo.Y, opath.path[i + 1].MoveTo.X, opath.path[i + 1].MoveTo.Y, (a1*180/Math.PI), (a2 * 180 / Math.PI));
+		/* if change in angle is too much, insert extra path */
+                                if ((Math.Abs(a)*180/Math.PI) > gcodeDragAngle)
+                                {   if ((loggerTrace & loggerSelect) > 0) Logger.Trace("   Abs angle exceeds max a:{0:0.00} > max:{1:0.00}",(a*180/Math.PI), gcodeDragAngle);
+									shorten = extendPath(origMoveTo, opath.path[i + 1].MoveTo, gcodeDragRadius, ExtendDragPath.startLater);
+                                    center = (Point)Point.Subtract(origMoveTo, opath.path[i].MoveTo);
+                                    GCodeMotion tmpArc = new GCodeArc(shorten, center, Math.Sign(a) < 0, opath.path[i].Depth);
+                                    opath.path.Insert(i+1, tmpArc);
+                                }
+                            }
+                        }
+                        opath.End = opath.path[opath.path.Count - 1].MoveTo;
+                    }
+                }
+            }
+        }
+
+        private enum ExtendDragPath { startEarlier, startLater, endLater };
+        private static Point extendPath(Point start, Point end, double gcodeDragRadius, ExtendDragPath extend)
+        {
+            double dx = end.X - start.X;
+            double dy = end.Y - start.Y;
+            double moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
+            if (moveLength == 0)
+                return end;
+            if (extend == ExtendDragPath.endLater)
+            {   double newx = end.X + gcodeDragRadius * dx / moveLength;
+                double newy = end.Y + gcodeDragRadius * dy / moveLength;
+                return new Point(newx, newy);
+            }
+            else if (extend == ExtendDragPath.startLater)
+            {   double newx = start.X + gcodeDragRadius * dx / moveLength;
+                double newy = start.Y + gcodeDragRadius * dy / moveLength;
+                return new Point(newx, newy);
+            }
+            else if (extend == ExtendDragPath.startEarlier)
+            {   double newx = start.X - gcodeDragRadius * dx / moveLength;
+                double newy = start.Y - gcodeDragRadius * dy / moveLength;
+                return new Point(newx, newy);
+            }
+            return end;
+        }
+    }
+}

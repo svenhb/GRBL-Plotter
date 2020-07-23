@@ -51,9 +51,9 @@ namespace GRBL_Plotter
         private static int gcodeSubroutineEnable = 0;   // state subroutine
         private static string gcodeSubroutine = "";     //  subroutine
 
-        private static bool gcodeDragCompensation = false;
-        public static float gcodeDragRadius = 0;
-        private static float gcodeDragAngle = 30;
+  //      private static bool gcodeDragCompensation = false;
+  //      public static float gcodeDragRadius = 0;
+ //       private static float gcodeDragAngle = 30;
 
         private static int gcodeDownUp = 0;             // counter for GCode Pen Down / Up
         private static float gcodeTime = 0;             // counter for GCode work time
@@ -112,6 +112,7 @@ namespace GRBL_Plotter
         private static bool gcodeTangentialEnable = false;
         private static string gcodeTangentialName = "C";
         private static float gcodeTangentialAngle = 0;
+        private static float gcodeTangentialAngleDevi = 0;
         private static float gcodeTangentialAngleLast = 0;
         private static string gcodeTangentialCommand = "";
 
@@ -206,13 +207,13 @@ namespace GRBL_Plotter
             gcodeNoArcs = Properties.Settings.Default.importGCNoArcs;        // reduce code by 
             gcodeAngleStep = (float)Properties.Settings.Default.importGCSegment;
 
-            gcodeDragCompensation = Properties.Settings.Default.importGCDragKnifeEnable;
+   /*         gcodeDragCompensation = false;// Properties.Settings.Default.importGCDragKnifeEnable;
             gcodeDragRadius = (float)Properties.Settings.Default.importGCDragKnifeLength;
             if (Properties.Settings.Default.importGCDragKnifePercentEnable)
             {   gcodeDragRadius = Math.Abs(gcodeZDown * (float)Properties.Settings.Default.importGCDragKnifePercent / 100); }
 
             gcodeDragAngle = (float)Properties.Settings.Default.importGCDragKnifeAngle;
-
+*/
             gcodeInsertSubroutine = Properties.Settings.Default.importGCSubEnable;
             gcodeSubroutineCount = 0;
             lastMovewasG0 = true;
@@ -229,6 +230,8 @@ namespace GRBL_Plotter
             gcodeTangentialEnable = Properties.Settings.Default.importGCTangentialEnable;
             gcodeTangentialName = Properties.Settings.Default.importGCTangentialAxis;
             gcodeTangentialAngle = gcodeTangentialAngleLast = 0;
+
+            gcodeTangentialAngleDevi = (float)Properties.Settings.Default.importGCTangentialAngleDevi;
             gcodeTangentialCommand = figureStartAlpha = "";
 
             gcodeSubroutineEnable = 0;
@@ -249,7 +252,7 @@ namespace GRBL_Plotter
             headerData.Clear();
             figureString.Clear();                                                           // 
 
-            lastx = -1; lasty = -1; lastz = 0; lasta = 0;
+            lastx = -1; lasty = -1; lastz = +1; lasta = 0;
 
             if (gcodeRelative)
             { lastx = 0; lasty = 0; }
@@ -415,7 +418,7 @@ namespace GRBL_Plotter
             StringBuilder tmpString = new StringBuilder();
             string cmt = cmto;
             if (Properties.Settings.Default.importGCTTZAxis && gcodeComments && useValueFromToolTable) { cmt += " Z values from tool table"; }
-            drag1stMove = true;
+  //          drag1stMove = true;
             origFinalX = lastx;
             origFinalY = lasty;
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
@@ -493,7 +496,7 @@ namespace GRBL_Plotter
 
             string cmt = cmto;
             string comment = "";
-            drag1stMove = true;
+     //       drag1stMove = true;
             origFinalX = lastx;
             origFinalY = lasty;
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
@@ -569,10 +572,11 @@ namespace GRBL_Plotter
                     SpindleOff(gcodeString, cmto);
                 }
             }
-            dragCompi = 0; dragCompj = 0;
+  //          dragCompi = 0; dragCompj = 0;
         }
 
-        public static float lastx, lasty, lastz, lastg, lastf, lasta;
+        public static float lastx, lasty, lastz, lastg, lastf;
+        private static double lasta;
         public static bool lastMovewasG0 = true;
         public static void MoveTo(StringBuilder gcodeString, Point coord, string cmt, bool avoidFeed)
         { applyXYFeedRate = false; MoveSplit(gcodeString, 1, (float)coord.X, (float)coord.Y, applyXYFeedRate, cmt); }
@@ -598,6 +602,7 @@ namespace GRBL_Plotter
         {   figureStart.X = coord.X; figureStart.Y = coord.Y;
             segLastFinalX = segFinalX; segLastFinalY = segFinalY;
             segFinalX = (float)coord.X; segFinalY = (float)coord.X;
+	//		setTangential(gcodeString, angle);
             figureStartAlpha = gcodeTangentialCommand;
             if (!(gcodeZApply && repeatZ))
             { Move(gcodeString, 0, (float)coord.X, (float)coord.Y, false, cmt); lastMovewasG0 = true; }
@@ -610,6 +615,7 @@ namespace GRBL_Plotter
         {   figureStart.X = x; figureStart.Y = y;
             segLastFinalX = segFinalX; segLastFinalY = segFinalY;
             segFinalX = x; segFinalY = y;
+	//		setTangential(gcodeString, angle);
             figureStartAlpha = gcodeTangentialCommand;
             if (!(gcodeZApply && repeatZ))
             { Move(gcodeString, 0, x, y, false, cmt); lastMovewasG0 = true; }
@@ -628,7 +634,7 @@ namespace GRBL_Plotter
         private static int lastCharCount = 0;
         private static void MoveSplit(StringBuilder gcodeStringFinal, int gnr, float finalx, float finaly, float? z, bool applyFeed, string cmt)
         {
-            if (loggerTraceImport) Logger.Trace("  MoveSplit G{0} X{1:0.000} Y{2:0.000}", gnr,finalx,finaly);
+//            if (loggerTraceImport) Logger.Trace("  MoveSplit G{0} X{1:0.000} Y{2:0.000}", gnr,finalx,finaly);
 
             if (lastMovewasG0)
             {   if ((finalx == lastx) && (finaly == lasty)) // discard G1 without any move
@@ -650,7 +656,7 @@ namespace GRBL_Plotter
             }
 
 
-            if (gcodeDragCompensation)  // start next move with an arc and end with extended move
+    /*        if (gcodeDragCompensation)  // start next move with an arc and end with extended move
             {   if (lastMovewasG0)      // start this line earlier - fix coordinates
                 {   float dx = finalx - lastx;       // distance from old point
                     float dy = finaly - lasty;       // lastXY is global
@@ -667,14 +673,14 @@ namespace GRBL_Plotter
 
                 Point tmp = dragToolCompensation(gcodeString, finalx, finaly);
                 finalx = (float)tmp.X; finaly = (float)tmp.Y;   // get extended final position
-            }
+            }*/
 
             if (gcodeLineSegmentation)       // apply segmentation
             {   float segFinalX = finalx, segFinalY = finaly;
-                if (gcodeDragCompensation)
+          /*      if (gcodeDragCompensation)
                 {   lastx = segLastFinalX;// origLastX;
                     lasty = segLastFinalY;
-                }
+                }*/
                 float dx = finalx -  lastx;       // remaining distance until full move
                 float dy = finaly -  lasty;       // lastXY is global
                 float moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
@@ -695,8 +701,8 @@ namespace GRBL_Plotter
                         cmt += string.Format("{0:0.0} until subroutine",remainingC);
                     Move(gcodeString, 1, finalx, finaly, z, applyXYFeedRate, cmt);      // remainingC.ToString()
                     remainingC -= moveLength;
-                    if (gcodeDragCompensation)
-                        remainingC += gcodeDragRadius;
+                //    if (gcodeDragCompensation)
+               //         remainingC += gcodeDragRadius;
                 }
                 else
                 {
@@ -750,10 +756,10 @@ namespace GRBL_Plotter
             lastMovewasG0 = false;
         }
 
-        private static bool dragArc = false, drag1stMove = true;
+  //      private static bool dragArc = false, drag1stMove = true;
         private static float origLastX, origLastY, origFinalX, origFinalY;
-        private static float dragCompi = 0, dragCompj = 0;
-        private static Point dragToolCompensation(StringBuilder gcodeString, float finalx, float finaly)
+ //       private static float dragCompi = 0, dragCompj = 0;
+    /*    private static Point dragToolCompensation(StringBuilder gcodeString, float finalx, float finaly)
         {
             float dx = finalx - origFinalX;// lastx;       // remaining distance until full move
             float dy = finaly - origFinalY;// lasty;       // lastXY is global
@@ -766,7 +772,7 @@ namespace GRBL_Plotter
             float ry = origFinalY + gcodeDragRadius * dy / moveLength;
             ArcProperties arcMove;
             arcMove = gcodeMath.getArcMoveAngle(new xyPoint(lastx, lasty), new xyPoint(rx, ry), dragCompi, dragCompj);
-    */
+    *//*
             float rx = origFinalX + gcodeDragRadius * dx / moveLength;     // calc end-pos of arc
             float ry = origFinalY + gcodeDragRadius * dy / moveLength;
             float[] angle = getAngle(lastx, lasty, rx, ry, dragCompi, dragCompj); // get start-,end- and diff-angle
@@ -801,7 +807,7 @@ namespace GRBL_Plotter
 
             drag1stMove = false;
             return new Point(finalx, finaly);
-        }
+        }*/
 
         // process subroutine, afterwards move back to last regular position before subroutine        
         private static bool insertSubroutine(StringBuilder gcodeString, float lX, float lY, float lZ, bool applyFeed)
@@ -828,7 +834,7 @@ namespace GRBL_Plotter
         {   Move(gcodeString, gnr, x, y, null, applyFeed, cmt); }
         private static void Move(StringBuilder gcodeStringFinal, int gnr, float x, float y, float? z, bool applyFeed, string cmt)
         {
-            if (loggerTraceImport) Logger.Trace("  Move G{0} X{1:0.000} Y{2:0.000}  {3}", gnr, x, y, gcodeTangentialCommand);
+//            if (loggerTraceImport) Logger.Trace("  Move G{0} X{1:0.000} Y{2:0.000}  {3}", gnr, x, y, gcodeTangentialCommand);
 
             StringBuilder gcodeString = gcodeStringFinal;
 
@@ -953,9 +959,9 @@ namespace GRBL_Plotter
         {   gcodeTangentialAngle = (float)((double)Properties.Settings.Default.importGCTangentialTurn * angle/360);
             if (gcodeTangentialEnable)
             {   gcodeTangentialCommand = string.Format(" {0}{1}",gcodeTangentialName, frmtNum(gcodeTangentialAngle));
-                if (writeCode)
-                {   gcodeString.AppendFormat("G{0}{1}\r\n", frmtCode(0), gcodeTangentialCommand);                }
-                lasta = (float)angle;
+                if (writeCode && (Math.Abs(lasta - angle) > gcodeTangentialAngleDevi))
+                {   gcodeString.AppendFormat("G{0}{1}\r\n", frmtCode(1), gcodeTangentialCommand);                }
+                lasta = angle;
             }
             else gcodeTangentialCommand = "";
         }
@@ -966,7 +972,7 @@ namespace GRBL_Plotter
         { MoveArc(gcodeString, gnr, x, y, i, j, applyXYFeedRate, cmt, avoidG23); }
         private static void MoveArc(StringBuilder gcodeStringFinal, int gnr, float x, float y, float i, float j, bool applyFeed, string cmt="", bool avoidG23 = false)
         {
-            if (loggerTraceImport) Logger.Trace("  MoveArc G{0} X{1:0.000} Y{2:0.000}", gnr, x, y);
+ //           if (loggerTraceImport) Logger.Trace("  MoveArc G{0} X{1:0.000} Y{2:0.000}", gnr, x, y);
 
             StringBuilder gcodeString = gcodeStringFinal;
             if (gcodeZApply && repeatZ)
@@ -977,7 +983,7 @@ namespace GRBL_Plotter
             float y_relative = y - lasty;
             float a_relative = gcodeTangentialAngle - gcodeTangentialAngleLast;
 
-            if (gcodeDragCompensation && lastMovewasG0)  // start this line earlier - fix coordinates
+       /*     if (gcodeDragCompensation && lastMovewasG0)  // start this line earlier - fix coordinates
             {
                 float moveLength = (float)Math.Sqrt(i * i + j * j);
                 if (moveLength > 0)
@@ -993,7 +999,7 @@ namespace GRBL_Plotter
                     lastx = tmpx; lasty = tmpy;
                     Move(gcodeString, 1, lastx, lasty, applyXYFeedRate, "correct start pos.");  // move to orig pos
                 }
-            }
+            }*/
 
             if (applyFeed)
             {   feed = string.Format("F{0}", gcodeXYFeed);
@@ -1171,13 +1177,13 @@ namespace GRBL_Plotter
                     gcodeZDown = toolInfo.finalZ;   // stepZ;
                     gcodeZInc  = Math.Abs(toolInfo.stepZ);
                 }
-                if (Properties.Settings.Default.importGCDragKnifePercentEnable)
-                { gcodeDragRadius = Math.Abs(gcodeZDown * (float)Properties.Settings.Default.importGCDragKnifePercent / 100); }
+    //            if (Properties.Settings.Default.importGCDragKnifePercentEnable)
+    //            { gcodeDragRadius = Math.Abs(gcodeZDown * (float)Properties.Settings.Default.importGCDragKnifePercent / 100); }
             }
         }
 
         public static void AddToHeader(string cmt)
-        { headerData.AppendFormat("({0})\r\n", cmt); }
+        { 	headerData.AppendFormat("({0})\r\n", cmt); }
 
         public static string docTitle = "";
         public static string docDescription = "";
@@ -1186,6 +1192,8 @@ namespace GRBL_Plotter
             gcodeTime += gcodeDistance / gcodeXYFeed;
             string header = "( "+cmt+" by GRBL-Plotter )\r\n";
             string header_end = headerData.ToString();
+			header_end += string.Format("({0} >)\r\n", xmlMarker.headerEnd);
+			
             if (gcodeTangentialEnable)
                 header_end += string.Format("({0} Axis=\"{1}\"/>)\r\n", xmlMarker.tangentialAxis, gcodeTangentialName);
 
@@ -1227,6 +1235,8 @@ namespace GRBL_Plotter
                 }
             }
 
+			header += string.Format("({0} >)\r\n", xmlMarker.headerStart);
+
             if (Properties.Settings.Default.importRepeatEnable)
             header += string.Format("( G-Code repetitions: {0:0} times)\r\n", Properties.Settings.Default.importRepeatCnt);
 
@@ -1257,6 +1267,7 @@ namespace GRBL_Plotter
             if (gcodePauseCounter>0)
                 header += string.Format("( M0 count    : {0})\r\n", gcodePauseCounter);
 
+//			header_end += string.Format("({0} >)\r\n", xmlMarker.headerEnd);
             return header + header_end;
         }
 

@@ -17,13 +17,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /*
-    2018-08 only use tool table for color palette
-    2019-09 add logger, change sub-path
-    2020-04 add codeSize (line-count), codeDimension (xSize * ySize)
+ * 2018-08 only use tool table for color palette
+ * 2019-09 add logger, change sub-path
+ * 2020-04 add codeSize (line-count), codeDimension (xSize * ySize)
+ * 2020-07-06 add axis A
 */
 
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -41,7 +43,7 @@ namespace GRBL_Plotter
         public int pixelCount;
         public double diff;
 
-        public float X, Y, Z;
+        public float X, Y, Z, A;
         public float diameter;
         public float feedXY;
         public float feedZ;
@@ -56,7 +58,7 @@ namespace GRBL_Plotter
     {
         public int toolnr;
         public String name;
-        public float X, Y;
+        public float X, Y, Z, A;
     }
     public static class toolTable
     {
@@ -77,8 +79,8 @@ namespace GRBL_Plotter
             bysize = 2,
             bydim = 3
         }
-        // defaultTool needed in Setup   fields:   ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-speed,Z-save,Z-depth,Z-step, spindleSpeed, overlap, gcode
-        public static string[] defaultTool = { "1", "000000", "Default black", "0", "0", "0", "1", "999", "555", "3", "-1", "1", "1111", "100", "" };
+        // defaultTool needed in Setup   fields:   ToolNr,color,name,X,Y,Z,A, diameter,XYspeed,Z-speed,Z-save,Z-depth,Z-step, spindleSpeed, overlap, gcode
+        public static string[] defaultTool = { "1", "000000", "Default black", "0", "0", "0", "0", "1", "999", "555", "3", "-1", "1", "1111", "100", "" };
 
         public static toolPos[] getToolCordinates()
         {   if (!init_done)        //|| !Properties.Settings.Default.importGCTool
@@ -91,6 +93,8 @@ namespace GRBL_Plotter
                     newpos[index].name = tool.name;
                     newpos[index].X = tool.X + (float)Properties.Settings.Default.toolTableOffsetX;
                     newpos[index].Y = tool.Y + (float)Properties.Settings.Default.toolTableOffsetY;
+                    newpos[index].Z = tool.Z + (float)Properties.Settings.Default.toolTableOffsetZ;
+                    newpos[index].A = tool.A + (float)Properties.Settings.Default.toolTableOffsetA;
                     index++;
                 }
             }
@@ -193,7 +197,7 @@ namespace GRBL_Plotter
 
         public static toolProp setDefault()
         {   toolProp tmp = new toolProp();
-            tmp.X = 0; tmp.Y = 0; tmp.Z = 0; tmp.diameter=3; tmp.feedXY=1000; tmp.feedZ=500;
+            tmp.X = 0; tmp.Y = 0; tmp.Z = 0; tmp.A = 0; tmp.diameter=3; tmp.feedXY=1000; tmp.feedZ=500;
             tmp.saveZ = 2; tmp.finalZ = -1; tmp.stepZ= 1; tmp.spindleSpeed=1000;tmp.overlap = 100; tmp.gcode = "";
             return tmp;
         }
@@ -257,15 +261,16 @@ namespace GRBL_Plotter
                             if (col.Length >= 4) toolTableArray[toolTableIndex].X = float.Parse(col[3].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
                             if (col.Length >= 5) toolTableArray[toolTableIndex].Y = float.Parse(col[4].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
                             if (col.Length >= 6) toolTableArray[toolTableIndex].Z = float.Parse(col[5].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 7) toolTableArray[toolTableIndex].diameter = float.Parse(col[6].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 8) toolTableArray[toolTableIndex].feedXY = float.Parse(col[7].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 9) toolTableArray[toolTableIndex].feedZ = float.Parse(col[8].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 10) toolTableArray[toolTableIndex].saveZ = float.Parse(col[9].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 11) toolTableArray[toolTableIndex].finalZ = float.Parse(col[10].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 12) toolTableArray[toolTableIndex].stepZ = float.Parse(col[11].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 13) toolTableArray[toolTableIndex].spindleSpeed = float.Parse(col[12].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 14) toolTableArray[toolTableIndex].overlap = float.Parse(col[13].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 15) toolTableArray[toolTableIndex].gcode = col[14].Trim();
+                            if (col.Length >= 7) toolTableArray[toolTableIndex].A = float.Parse(col[6].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 8) toolTableArray[toolTableIndex].diameter = float.Parse(col[7].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 9) toolTableArray[toolTableIndex].feedXY = float.Parse(col[8].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 10) toolTableArray[toolTableIndex].feedZ = float.Parse(col[9].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 11) toolTableArray[toolTableIndex].saveZ = float.Parse(col[10].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 12) toolTableArray[toolTableIndex].finalZ = float.Parse(col[11].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 13) toolTableArray[toolTableIndex].stepZ = float.Parse(col[12].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 14) toolTableArray[toolTableIndex].spindleSpeed = float.Parse(col[13].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 15) toolTableArray[toolTableIndex].overlap = float.Parse(col[14].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                            if (col.Length >= 16) toolTableArray[toolTableIndex].gcode = col[15].Trim();
                         }
                         catch (Exception ex) { Logger.Debug(ex, "Error "); }
                         if (toolTableIndex < (toolTableMax - 1)) toolTableIndex++;
@@ -331,7 +336,7 @@ namespace GRBL_Plotter
         {   useException=false; toolTableArray[0].colorPresent = false; }
 
         // return tool nr of nearest color
-        public static int getToolNr(String mycolor, int mode)
+        public static int getToolNrByToolColor(String mycolor, int mode)
         {
  //           Logger.Trace("getToolNr {0}",mycolor);
             if (mycolor == "")
@@ -341,16 +346,16 @@ namespace GRBL_Plotter
                 int cr, cg, cb;
                 int num = int.Parse(mycolor, System.Globalization.NumberStyles.AllowHexSpecifier);
                 cb = num & 255; cg = num >> 8 & 255; cr = num >> 16 & 255;
-                return getToolNr(Color.FromArgb(255, cr, cg, cb), mode);
+                return getToolNrByColor(Color.FromArgb(255, cr, cg, cb), mode);
             }
             else
-                return getToolNr(Color.FromName(mycolor),mode);
+                return getToolNrByColor(Color.FromName(mycolor),mode);
         }
         public static bool OnlyHexInString(string test)
         {   // For C-style hex notation (0xFF) you can use @"\A\b(0[xX])?[0-9a-fA-F]+\b\Z"
             return System.Text.RegularExpressions.Regex.IsMatch(test, @"\A\b[0-9a-fA-F]+\b\Z");
         }
-        public static short getToolNr(Color mycolor,int mode)
+        public static short getToolNrByColor(Color mycolor,int mode)
         {
             int i,start=1;
             Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
@@ -375,7 +380,175 @@ namespace GRBL_Plotter
             return toolTableArray[0].toolnr; ;   // return tool nr of nearest color
         }
 
-        public static void countPixel()
+        public static short getToolNrByToolDiameter(string width_txt)
+        {
+            double width = 1;
+            if (!double.TryParse(width_txt, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out width))
+            { Logger.Error("Error converting getToolNrByWidth '{0}' ", width_txt); }
+
+            Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
+
+            for (int i = 1; i < toolTableIndex; i++)
+            {
+                if (width == toolTableArray[i].diameter)         // direct hit
+                {
+                    tmpIndex = i;
+                    return toolTableArray[i].toolnr;
+                }
+                toolTableArray[i].diff = Math.Abs(width - toolTableArray[i].codeDimension);
+            }
+            Array.Sort<toolProp>(toolTableArray, (x, y) => x.diff.CompareTo(y.diff));    // sort by color difference
+            tmpIndex = 0;
+            return toolTableArray[0].toolnr; ;   // return tool nr of nearest color
+        }
+
+        public static short getToolNrByToolName(string layer)
+        {
+            Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
+            int diff = 0;
+            for (int i = 1; i < toolTableIndex; i++)
+            {
+                if (layer == toolTableArray[i].name)         // direct hit
+                {
+                    tmpIndex = i;
+//                    Logger.Debug("   check strings direkt hit {0} ", layer);
+                    return toolTableArray[i].toolnr;
+                }
+                diff = LevenshteinDistanceAlgorithm(layer, toolTableArray[i].name);
+ //               Logger.Debug("   check strings {0}  {1}  diff {2}", layer, toolTableArray[i].name, diff);
+
+                toolTableArray[i].diff = diff;
+            }
+            Array.Sort<toolProp>(toolTableArray, (x, y) => x.diff.CompareTo(y.diff));    // sort by color difference
+            tmpIndex = 0;
+            return toolTableArray[0].toolnr; ;   // return tool nr of nearest color
+        }
+        /// <summary>
+        /// Compute the distance between two strings.
+        /// </summary>
+        public static int LevenshteinDistanceAlgorithm(string s, string t)
+        {
+            int n = s.Length;
+            int m = t.Length;
+            int[,] d = new int[n + 1, m + 1];
+
+            // Step 1
+            if (n == 0)
+            {   return m;  }
+
+            if (m == 0)
+            {   return n;  }
+
+            // Step 2
+            for (int i = 0; i <= n; d[i, 0] = i++)
+            {            }
+
+            for (int j = 0; j <= m; d[0, j] = j++)
+            {            }
+
+            // Step 3
+            for (int i = 1; i <= n; i++)
+            {
+                //Step 4
+                for (int j = 1; j <= m; j++)
+                {
+                    // Step 5
+                    int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
+
+                    // Step 6
+                    d[i, j] = Math.Min(
+                        Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                        d[i - 1, j - 1] + cost);
+                }
+            }
+            // Step 7
+   //         Logger.Debug("  Compute '{0}' '{1}'  Result:{2}", s,t, d[n, m]);
+            return d[n, m];
+        }
+  
+/// <summary>
+/// Computes the Damerau-Levenshtein Distance between two strings, represented as arrays of
+/// integers, where each integer represents the code point of a character in the source string.
+/// Includes an optional threshhold which can be used to indicate the maximum allowable distance.
+/// </summary>
+/// <param name="source">An array of the code points of the first string</param>
+/// <param name="target">An array of the code points of the second string</param>
+/// <param name="threshold">Maximum allowable distance</param>
+/// <returns>Int.MaxValue if threshhold exceeded; otherwise the Damerau-Leveshteim distance between the strings</returns>
+/*public static int DamerauLevenshteinDistance(string source, string target, int threshold=1000) {
+    int length1 = source.Length;
+    int length2 = target.Length;
+
+    // Return trivial case - difference in string lengths exceeds threshhold
+    if (Math.Abs(length1 - length2) > threshold) { return int.MaxValue; }
+
+    // Ensure arrays [i] / length1 use shorter length 
+    if (length1 > length2) {
+        Swap(ref target, ref source);
+        Swap(ref length1, ref length2);
+    }
+
+    int maxi = length1;
+    int maxj = length2;
+
+    int[] dCurrent = new int[maxi + 1];
+    int[] dMinus1 = new int[maxi + 1];
+    int[] dMinus2 = new int[maxi + 1];
+    int[] dSwap;
+
+    for (int i = 0; i <= maxi; i++) { dCurrent[i] = i; }
+
+    int jm1 = 0, im1 = 0, im2 = -1;
+
+    for (int j = 1; j <= maxj; j++) {
+
+        // Rotate
+        dSwap = dMinus2;
+        dMinus2 = dMinus1;
+        dMinus1 = dCurrent;
+        dCurrent = dSwap;
+
+        // Initialize
+        int minDistance = int.MaxValue;
+        dCurrent[0] = j;
+        im1 = 0;
+        im2 = -1;
+
+        for (int i = 1; i <= maxi; i++) {
+
+            int cost = source[im1] == target[jm1] ? 0 : 1;
+
+            int del = dCurrent[im1] + 1;
+            int ins = dMinus1[i] + 1;
+            int sub = dMinus1[im1] + cost;
+
+            //Fastest execution for min value of 3 integers
+            int min = (del > ins) ? (ins > sub ? sub : ins) : (del > sub ? sub : del);
+
+            if (i > 1 && j > 1 && source[im2] == target[jm1] && source[im1] == target[j - 2])
+                min = Math.Min(min, dMinus2[im2] + cost);
+
+            dCurrent[i] = min;
+            if (min < minDistance) { minDistance = min; }
+            im1++;
+            im2++;
+        }
+        jm1++;
+        if (minDistance > threshold) { return int.MaxValue; }
+    }
+
+    int result = dCurrent[maxi];
+    return (result > threshold) ? int.MaxValue : result;
+}
+static void Swap<T>(ref T arg1,ref T arg2) {
+    T temp = arg1;
+    arg1 = arg2;
+    arg2 = temp;
+}
+*/
+
+
+  public static void countPixel()
         { toolTableArray[tmpIndex].pixelCount++; }
 
         public static int pixelCount()
