@@ -25,6 +25,7 @@
  * 2020-02-18 extend simulation for tangetial angle
  * 2020-03-09 bug-fix simulation of G2/3 code without tangential line 525
  * 2020-04-04 bug-fix simulation of G2/3 code without tangential line 518 - never ending rotation
+ * 2020-07-22 show ProcessedPath
  */
 
 using System;
@@ -54,10 +55,7 @@ namespace GRBL_Plotter
         /// </summary>
         public static string transformGCodeMirror(translate shiftToZero = translate.MirrorX)
         {
-            Logger.Debug("Mirror {0}", shiftToZero);
-#if (debuginfo)
-            log.Add("   GCodeVisu transform Mirror");
-#endif
+            Logger.Debug("..transformGCodeMirror {0}", shiftToZero);
             if (gcodeList == null) return "";
 
             xyPoint centerOfFigure = xyzSize.getCenter();
@@ -130,11 +128,7 @@ namespace GRBL_Plotter
 
         public static string transformGCodeRadiusCorrection(double radius)
         {
-            Logger.Debug("Radius correction r: {0}", radius);
-#if (debuginfo)
-            log.clear();
-            log.Add("### GCodeVisu radius correction ###");
-#endif
+            Logger.Debug("..transformGCodeRadiusCorrection r: {0}", radius);
             if (gcodeList == null) return "";
 
             if (lastFigureNumber > 0)
@@ -178,9 +172,8 @@ namespace GRBL_Plotter
                 while (sameXYPos(gcodeList[i], gcodeList[i + 1]) && (i < (gcodeList.Count - 1)))  // remove double coordinates
                 { gcodeList.RemoveAt(i + 1); }
 
-#if (debuginfo)
-                log.Add("----- "+i.ToString()+" -----");
-#endif
+                Logger.Trace("   ----- {0} -----",i);
+
                 if (gcodeList[i].motionMode > 1)
                 {   double tmpR = Math.Sqrt((double)gcodeList[i].i * (double)gcodeList[i].i + (double)gcodeList[i].j * (double)gcodeList[i].j);
                     bool remove = false;
@@ -194,9 +187,7 @@ namespace GRBL_Plotter
                     if (remove)
                     {   gcodeList[i].i = null; gcodeList[i].j = null;
                         gcodeList[i].motionMode = 1;
-#if (debuginfo)
-                        log.Add("Radius too small, do G1 "+gcodeList[act].codeLine+" ##############################");
-#endif
+                        Logger.Trace("   Radius too small, do G1 {0}",gcodeList[act].codeLine);
                     }
                 }
                 figureProcessed = true;                 // must stay before jump label
@@ -223,18 +214,17 @@ namespace GRBL_Plotter
                     if ((gcodeList[act].actualPos.X == gcodeList[figureStart].actualPos.X) && (gcodeList[act].actualPos.Y == gcodeList[figureStart].actualPos.Y))
                     { next = figure2nd; closeFigure = true; }//                    gcodeList[act].info += " closefig "; }
 
-#if (debuginfo)
-                    log.Add(gcodeList[act].codeLine);
-#endif
+                    Logger.Trace("   {0}",gcodeList[act].codeLine);
+
                     offType = createOffsetedPath((isFirst++ == 0), (endFigure && !closeFigure), figureStart, prev, act, next, radius, ref offset);
-#if (debuginfo)
-                    log.Add(string.Format(" typ {0} {1} {2} {3} {4} {5} ", offType, endFigure, figureStart, prev, act, next));
-#endif
+
+                    Logger.Trace(" typ {0} {1} {2} {3} {4} {5} ", offType, endFigure, figureStart, prev, act, next);
+
                     if (closeFigure)// && !endFigure)
                     {
-#if (debuginfo)
-                        log.Add(string.Format(" close Figure {0:0.00} {1:0.00}  ", offset[2].X, offset[2].Y));
-#endif
+
+                        Logger.Trace(" close Figure {0:0.00} {1:0.00}  ", offset[2].X, offset[2].Y);
+
                         gcodeList[figureStart].x = offset[2].X; gcodeList[figureStart].y = offset[2].Y;    // close figure
                         if (gcodeList[figure2nd].motionMode > 1)    // act
                         {
@@ -244,9 +234,9 @@ namespace GRBL_Plotter
                                 xyArcPoint p3 = fillPointData(prev, act); //fillPointData(act, next);
                                 gcodeList[figure2nd].i = p3.CX - offset[2].X;
                                 gcodeList[figure2nd].j = p3.CY - offset[2].Y;   // offset radius
-#if (debuginfo)
-                                log.Add(string.Format(" correct Arc center of f2nd {0} origX {1:0.00} origY {2:0.00}  ", figure2nd, p3.CX, p3.CY));
-#endif
+
+                                Logger.Trace(" correct Arc center of f2nd {0} origX {1:0.00} origY {2:0.00}  ", figure2nd, p3.CX, p3.CY);
+
                             }
                         }
                     }
@@ -286,9 +276,8 @@ namespace GRBL_Plotter
             bool isFullCircle = ((p1.X==p2.X)&&(p1.Y==p2.Y));
             int offsetType = crc.getPointOffsets(ref offset, p1, p2, p3, radius, isEnd);
 
-#if (debuginfo)
-            log.Add(string.Format(" offset typ{0} x{1:0.000} y{2:0.000}", offsetType, offset[1].X, offset[1].Y));
-#endif
+            Logger.Trace(" offset typ{0} x{1:0.000} y{2:0.000}", offsetType, offset[1].X, offset[1].Y);
+
      /*       if (offsetType == -2)   // intersection not successfull
             {
                 gcodeList[act].motionMode = 1; gcodeList[act].x = null; gcodeList[act].y = null;    // clear move
@@ -315,9 +304,9 @@ namespace GRBL_Plotter
             }
 
             gcodeList[act].x = offset[1].X; gcodeList[act].y = offset[1].Y;         // offset point
-#if (debuginfo)
-            log.Add(string.Format(" createOffsetedPath Offset x{0:0.000} y{1:0.000}", gcodeList[act].x, gcodeList[act].y));
-#endif
+
+            Logger.Trace(" createOffsetedPath Offset x{0:0.000} y{1:0.000}", gcodeList[act].x, gcodeList[act].y);
+
             if (isArc)                                                              // offset radius     
             {   double iNew = p2.CX - (double)gcodeList[prev].x;
                 double jNew = p2.CY - (double)gcodeList[prev].y; ;
@@ -343,9 +332,9 @@ namespace GRBL_Plotter
                 }
                 else
                     gcodeList[insert].motionMode = 1;
-#if (debuginfo)
-                log.Add(string.Format(" createOffsetedPath Insert G{0} x{1:0.000} y{2:0.000}", gcodeList[insert].motionMode, gcodeList[insert].x, gcodeList[insert].y));
-#endif
+
+                Logger.Trace(" createOffsetedPath Insert G{0} x{1:0.000} y{2:0.000}", gcodeList[insert].motionMode, gcodeList[insert].x, gcodeList[insert].y);
+
             }
             return offsetType;
         }
@@ -379,6 +368,9 @@ namespace GRBL_Plotter
             private static bool isTangentialZ = false;
             private static bool isPenDownOld = false;
             private static bool isPenDownNow = false;
+            private static bool isG2G3 = false;
+            private static float drawAngleOld = 0;
+            private static float drawAngleNow = 0;
             public static GraphicsPath pathSimulation = new GraphicsPath();
 
             private struct length
@@ -418,8 +410,6 @@ namespace GRBL_Plotter
                     if (!getNextPos())                      //  finish simu if nextPos = false
                     {   grbl.posMarker = (xyPoint)codeNext.actualPos;
                         grbl.posMarkerAngle = codeNext.alpha;
-  //                      isPenDownNow = codeNext.motionMode > 0;
-  //                      createSimulationPath((xyPoint)codeNext.actualPos);
                         createMarkerPath(false, (xyPoint)codeNext.actualPos);
                         return -1;
                     }
@@ -429,7 +419,6 @@ namespace GRBL_Plotter
 
                     if (remainingStep == 0)                 // just next full pos
                     {
-    //                    Logger.Trace("(1) remainingStep == 0)");
                         grbl.posMarker = (xyPoint)codeNext.actualPos;
                         grbl.posMarkerAngle = codeNext.alpha;
                         isPenDownNow = codeNext.motionMode > 0;
@@ -441,12 +430,10 @@ namespace GRBL_Plotter
                     }
                     else if (remainingStep > 0)             // move too short, get next gcode
                     {
-                        //                     Logger.Trace("(remainingStep > 0)");
                         isPenDownNow = codeNext.motionMode > 0;
                         createSimulationPath((xyPoint)codeNext.actualPos);
                         while (remainingStep > 0)
                         {
-   //                         Logger.Trace(" remainingStep {0}",remainingStep);
                             if (!getNextPos())              //  finish simu if nextPos = false //  calc distance & remaining steps
                             {   grbl.posMarker = (xyPoint)codeNext.actualPos;
                                 grbl.posMarkerAngle = codeNext.alpha;
@@ -458,7 +445,6 @@ namespace GRBL_Plotter
                         if (remainingStep == 0)             // just next full pos
                         {   grbl.posMarker = (xyPoint)codeNext.actualPos;
                             grbl.posMarkerAngle = codeNext.alpha;
- //                           Logger.Trace("3 remainingStep ==0", remainingStep);
                             isPenDownNow = codeNext.motionMode > 0;
                             createSimulationPath((xyPoint)codeNext.actualPos);
                             createMarkerPath(false, (xyPoint)codeNext.actualPos);
@@ -476,33 +462,34 @@ namespace GRBL_Plotter
                     diff.Z  = Math.Abs(codeNext.actualPos.Z - codeLast.actualPos.Z);
                     diff.A   = Math.Abs(codeNext.alpha - codeLast.alpha);
                     isIntermediate = true;
-//                    Logger.Trace(" astart {0} aend {1}", 180*arcMove.angleStart/Math.PI, 180*arcMove.angleEnd/Math.PI);
                     calcIntermediatePos();
                     remainingStep = stepWidth;
                 }
                 grbl.posMarker = posXY;
                 grbl.posMarkerAngle = posA ; // posAngle;
- //               Logger.Trace("4 remainingStep ==0", remainingStep);
                 isPenDownNow = codeNext.motionMode > 0;
                 createSimulationPath(posXY);
                 createMarkerPath(false, posXY);
                 return codeNext.lineNumber;    
             }
 
+/* Calculate intermediate position after fix time delay: simulationTimer = 50ms = 20Hz
+   Step width depends on feedrate
+*/ 
             private static bool calcIntermediatePos()
             {   updateFeedRate();
                 remainingStep = stepWidth;
                 double deltaA = codeNext.alpha - posA;
                 isPenDownNow = codeNext.motionMode > 0;
-                if (codeNext.motionMode < 2)
+                isG2G3 = codeNext.motionMode > 1;
+                if (!isG2G3)
                 {   double deltaS = posXY.DistanceTo((xyPoint)codeNext.actualPos);      // XY remaining max distance
                     if (tangentialAxisName != "Z")
                         deltaS = Math.Max(deltaS, Math.Abs(codeNext.actualPos.Z - posZ));   // Z  remaining max distance
 
-//                    Logger.Trace("calcIntermediatePos deltaS {0:0.00}   codeLast.alpha {1:0.00}  codeNext.alpha {2:0.00} posA {3:0.00}  ", deltaS, codeLast.alpha, codeNext.alpha, posA);
                     if ((deltaS < remainingStep) && ((deltaA) < 0.1))       // return false if finish with intermediate
                     {   remainingStep -= deltaS;
- //                       createSimulationPath((xyPoint)codeNext.actualPos);
+                        createSimulationPath((xyPoint)codeNext.actualPos);
                         return false;
                     }
                     double deltaX = codeNext.actualPos.X - posXY.X;     // get remaining distance
@@ -543,6 +530,7 @@ namespace GRBL_Plotter
                         turnAngle = 2 * Math.PI;
                     double dA = Math.Abs((codeNext.alpha - codeLast.alpha) / (turnAngle /aStep2));	// get step width 
 
+                    drawAngleOld = drawAngleNow;
                     if (arcMove.angleDiff > 0)
                     {
                         if (angleTmp < (arcMove.angleStart + arcMove.angleDiff))
@@ -550,7 +538,11 @@ namespace GRBL_Plotter
                         if (posA < codeNext.alpha)
                             posA += dA;
                         if ((angleTmp >= (arcMove.angleStart + arcMove.angleDiff)) && (posA >= codeNext.alpha)) // return false if finish with intermediate
+                        {
+                            drawAngleNow = (float)((arcMove.angleStart + arcMove.angleDiff) * 180 / Math.PI);
+                            createSimulationPath((xyPoint)codeNext.actualPos);
                             return false;
+                        }
                     }
                     else
                     {
@@ -559,11 +551,15 @@ namespace GRBL_Plotter
                         if (posA > codeNext.alpha)
                             posA -= dA;
                         if ((angleTmp <= (arcMove.angleStart + arcMove.angleDiff)) && (posA <= codeNext.alpha)) // return false if finish with intermediate
+                        {
+                            drawAngleNow = (float)((arcMove.angleStart + arcMove.angleDiff) * 180 / Math.PI);
+                            createSimulationPath((xyPoint)codeNext.actualPos);
                             return false;
+                        }
                     }
                     posXY.X = arcMove.center.X + arcMove.radius * Math.Cos(angleTmp);
                     posXY.Y = arcMove.center.Y + arcMove.radius * Math.Sin(angleTmp);
-//                    Logger.Trace("  arcMove.angleStart {0:0.00} arcMove.angleDiff {1:0.00} codeLast.alpha {2:0.00}  codeNext.alpha {3:0.00} posA {4:0.00}  angleTmp {5:0.00} dA {6:0.00}", arcMove.angleStart, arcMove.angleDiff, codeLast.alpha, codeNext.alpha, posA, angleTmp, dA);
+                    drawAngleNow = (float)(angleTmp * 180 / Math.PI);
                     return true;
                 }
             }
@@ -576,13 +572,21 @@ namespace GRBL_Plotter
                 codeNext = new gcodeByLine(simuList[lineNr]);
                 if (codeNext.codeLine.Contains("M30"))          // program end
                     return false;
-                distance = getDistance();
                 updateFeedRate();
+                distance = getDistance();
                 lastPosMarker = (xyPoint)codeLast.actualPos;
                 if ((remainingStep - distance) > 0)
+                {   isG2G3 = codeNext.motionMode > 1;
                     createSimulationPath((xyPoint)codeNext.actualPos);
-//                Logger.Trace("  getNextPos  line:{0}  distance:{1:0.00}", lineNr, distance);
+                }
                 return true;
+            }
+
+            public static xyPoint getLinePos(int lineNr)
+            {
+                if (lineNr >= simuList.Count)
+                    return new xyPoint();
+                return (xyPoint)simuList[lineNr].actualPos;
             }
 
             private static void updateFeedRate()
@@ -613,24 +617,35 @@ namespace GRBL_Plotter
                 }
                 arcMove = gcodeMath.getArcMoveProperties((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, codeNext.i, codeNext.j, (codeNext.motionMode==2));
                 angleTmp = arcMove.angleStart;
+                drawAngleOld = drawAngleNow = (float)(angleTmp * 180 / Math.PI);
                 diff.Arc = Math.Abs(arcMove.angleDiff * arcMove.radius);
                 diff.Max = diff.Arc;
                 return diff.Max;
             }
 
             private static xyPoint lastPosMarker = new xyPoint();
-            private static void createSimulationPath(xyPoint moveto)
+            public static void createSimulationPath(xyPoint moveto)
             {
                 PointF start = new PointF((float)lastPosMarker.X,(float)lastPosMarker.Y);
-//                PointF end = new PointF((float)grbl.posMarker.X, (float)grbl.posMarker.Y);
                 PointF end = new PointF((float)moveto.X, (float)moveto.Y);
                 if ((isPenDownOld == false) && (isPenDownNow == true))
                 {   pathSimulation.StartFigure(); }
                 if (isPenDownNow)
                 {
-                    if (checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, moveto))
+                    if (isG2G3)
                     {
-        //                Logger.Trace(" createSimulationPath  {0} p1 {1};{2}  p2 {3};{4}", codeNext.codeLine, start.X,start.Y,end.X,end.Y);
+                        float x1 = (float)(arcMove.center.X - arcMove.radius);
+                        float x2 = (float)(arcMove.center.X + arcMove.radius);
+                        float y1 = (float)(arcMove.center.Y - arcMove.radius);
+                        float y2 = (float)(arcMove.center.Y + arcMove.radius);
+                        float r2 = 2 * (float)arcMove.radius;
+						//System.Drawing.Drawing2D.GraphicsPath.AddArc(Single x, Single y, Single width, Single height, Single startAngle, Single sweepAngle)
+			//			Logger.Debug("x1:{0:0.00} y1:{1:0.00} r2:{2:0.00} start:{3:0.00} sweep:{4:0.00}",x1, y1, r2,drawAngleOld, (drawAngleNow- drawAngleOld));
+                        pathSimulation.AddArc(x1, y1, r2, r2, drawAngleOld, (drawAngleNow- drawAngleOld));
+                        lastPosMarker = moveto;
+                    }
+                    else if (checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, moveto))
+                    {
                         pathSimulation.AddLine(start, end);
                         lastPosMarker = moveto;
                     }
@@ -639,7 +654,6 @@ namespace GRBL_Plotter
             }
             private static bool checkWithin(xyPoint start, xyPoint end, xyPoint check)
             {
-//                Logger.Trace(" checkWithin  X:{0} < {1} < {2}   Y:{3} < {4} < {5}", start.X, check.X, end.X, start.Y, check.Y, end.Y);
                 if (check.X < Math.Min(start.X, end.X))
                     return false;
                 if (check.X > Math.Max(start.X, end.X))
@@ -651,6 +665,210 @@ namespace GRBL_Plotter
                 return true;                
             }
         }
+		
+		public static class ProcessedPath
+		{
+		    private static xyzPoint lastPos = new xyzPoint();
+            private static xyzPoint lastGCodePos = new xyzPoint();
+            private static int lastLine = 0;
+            private static int currentLine = 0;
+            private static int maxLine = 0;
+            private static byte lastMode = 0;
+			
+			private static int indexLastSucess = 0;
+					
+            public static void processedPathClear()
+            {   Simulation.pathSimulation.Reset();
+                lastLine = currentLine = maxLine = indexLastSucess = 0;
+                lastPos = grbl.posWork;
+            }
+
+            public static void processedPathLine(int line)		// 
+            {   maxLine = line;
+//                Logger.Trace("  processedPathLine  {0} ", line);
+            }
+
+			private static int getNextXYIndex(int start)
+			{	for (int i=start; i < simuList.Count; i++)
+                {	if ((simuList[i].actualPos.X != simuList[start].actualPos.X) || (simuList[i].actualPos.Y != simuList[start].actualPos.Y))
+						return i;
+				}
+                return start + 1;
+			}
+
+            public static void processedPathDraw(xyzPoint newPos)
+            {
+//                Logger.Trace("drawProcessedPath  {0:0.00}  {1:0.00}  {2:0.00}", newPos.X, newPos.Y, newPos.Z);
+          //      int i = 0;
+				int iStart, iEnd;
+                bool onTrack = false;
+
+                if ((lastPos.X == newPos.X) && (lastPos.Y == newPos.Y))
+                    return;
+
+                for (iStart = lastLine; iStart < maxLine; iStart++)
+                {
+                    iEnd = iStart + 1;
+                    if (simuList[iEnd].motionMode <=1)
+                        iEnd = getNextXYIndex(iStart);
+                    onTrack = false;
+
+                    if ((lastMode == 0) && (simuList[iStart].motionMode > 0))
+                    {   Simulation.pathSimulation.StartFigure();    }
+
+//                    Logger.Trace("  lastGCodePos x:{0:0.00} y:{1:0.00}  newPos x:{2:0.00} y:{3:0.00}   codePos iEnd:{4}  x:{5:0.00} y:{6:0.00}", lastGCodePos.X, lastGCodePos.Y, newPos.X, newPos.Y, iEnd, simuList[iEnd].actualPos.X, simuList[iEnd].actualPos.Y);
+                    if (simuList[iEnd].motionMode > 1)
+                    {
+                        ArcProperties arcMove1, arcMove2;
+                        arcMove1 = gcodeMath.getArcMoveProperties((xyPoint)simuList[iStart].actualPos, (xyPoint)simuList[iEnd].actualPos, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
+                        arcMove2 = gcodeMath.getArcMoveProperties((xyPoint)simuList[iStart].actualPos, (xyPoint)newPos,                   simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
+                        onTrack = pointOnArc(arcMove1, arcMove2, toPointF(newPos)); 
+//                        Logger.Trace(" arc ontrack iStart:{0}  iEnd:{1}  onTrack:{2}", iStart, iEnd, onTrack);
+                    }
+                    else if (simuList[iEnd].motionMode == 1)
+                    {   onTrack = pointOnLine(toPointF(simuList[iStart].actualPos), toPointF(simuList[iEnd].actualPos), toPointF(newPos));
+                  //      Logger.Trace(" line ontrack i{0} x:{1:0.00} y:{2:0.00} {3}", i, simuList[i].actualPos.X, simuList[i].actualPos.Y, onTrack);
+                    }
+
+                    if (onTrack)
+                    {   // newPos is on line towards next GCode command
+ //                       Logger.Trace(" drawProcessedPath  true iStart:{0} iEnd:{1}  {2:0.00}  {3:0.00}  {4:0.00}",iStart, iEnd, newPos.X, newPos.Y, newPos.Z);
+						indexLastSucess = iStart;
+						for (int k = lastLine+1; k < iEnd; k++)
+                        {
+                            if ((lastGCodePos.X == simuList[k].actualPos.X) && (lastGCodePos.Y == simuList[k].actualPos.Y) && (simuList[k].motionMode < 2))
+                            {   lastMode = simuList[k].motionMode;
+//                                Logger.Trace("  same pos {0}",k);
+                                continue; }
+
+//                            Logger.Trace(" drawProcessedPath  k:{0} x:{1:0.00}  y:{2:0.00} mode:{3}", k, simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].motionMode);
+                            if (simuList[k].motionMode == 0)
+                            {
+                                lastGCodePos = new xyzPoint(simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].actualPos.Z);
+                                Simulation.pathSimulation.StartFigure();
+//                                Logger.Trace("  startFigure");
+                            }
+                            else if (simuList[k].motionMode == 1)
+                            {
+                                Simulation.pathSimulation.AddLine(toPointF(lastGCodePos), toPointF(simuList[k].actualPos));
+//                                Logger.Trace(" AddLine x:{0:0.00}  y:{1:0.00} to x:{2:0.00}  y:{3:0.00}", lastGCodePos.X, lastGCodePos.Y, simuList[k].actualPos.X, simuList[k].actualPos.Y);
+                            }
+                            else if (simuList[k].motionMode >= 2)
+                            {
+                                ArcProperties arcMove;
+                                arcMove = gcodeMath.getArcMoveProperties((xyPoint)lastGCodePos, (xyPoint)simuList[k].actualPos, simuList[k].i, simuList[k].j, (simuList[k].motionMode == 2));
+
+                                float x1 = (float)(arcMove.center.X - arcMove.radius);
+                                float x2 = (float)(arcMove.center.X + arcMove.radius);
+                                float y1 = (float)(arcMove.center.Y - arcMove.radius);
+                                float y2 = (float)(arcMove.center.Y + arcMove.radius);
+                                float r2 = 2 * (float)arcMove.radius;
+                                float aStart = (float)(arcMove.angleStart * 180 / Math.PI);
+                                float aDiff = (float)(arcMove.angleDiff * 180 / Math.PI);
+                                if (arcMove.radius > 0)
+                                {
+                                    Simulation.pathSimulation.AddArc(x1, y1, r2, r2, aStart, aDiff);
+//                                    Logger.Trace(" AddArc x:{0:0.00}  y:{1:0.00} r:{2:0.00}  ", x1, y1, r2);
+                                }
+                            }
+                            lastGCodePos = new xyzPoint(simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].actualPos.Z);
+                        }
+
+
+                        if (simuList[iEnd].motionMode == 1)
+                        {   Simulation.pathSimulation.AddLine(toPointF(lastGCodePos), toPointF(newPos));
+//                            Logger.Trace("   AddLine newPos  i:{0}  x:{1:0.00}  y:{2:0.00} to x:{3:0.00}  y:{4:0.00}", iEnd, lastGCodePos.X, lastGCodePos.Y, newPos.X, newPos.Y);
+                        }
+                        else if (simuList[iEnd].motionMode > 1)
+                        {   Simulation.pathSimulation.AddLine(toPointF(lastPos), toPointF(newPos));
+//                            Logger.Trace("   AddArc newPos  i:{0}  x:{1:0.00}  y:{2:0.00} to x:{3:0.00}  y:{4:0.00}", iEnd, lastPos.X, lastPos.Y, newPos.X, newPos.Y);
+                        }
+                        //      if (i > 1)
+                        lastLine = iStart;		//200720
+                        lastMode = simuList[iStart].motionMode;
+                        lastPos = newPos;
+                        indexLastSucess = iStart;
+                        break;
+                    }
+                }				
+				// no match found, try new start-pos
+				if (!onTrack)	
+				{	lastGCodePos = new xyzPoint(simuList[indexLastSucess].actualPos.X, simuList[indexLastSucess].actualPos.Y, simuList[indexLastSucess].actualPos.Z);}				
+            }
+            private static PointF toPointF(xyzPoint tmp)
+            { return new PointF((float)tmp.X, (float)tmp.Y); }
+            private static PointF toPointF(xyzabcuvwPoint tmp)
+            { return new PointF((float)tmp.X, (float)tmp.Y); }
+
+            private static bool pointOnArc(ArcProperties arcMove1, ArcProperties arcMove2, PointF xp)
+            {
+                double dx = arcMove1.center.X - xp.X;
+                double dy = arcMove1.center.Y - xp.Y;
+                double r = Math.Sqrt(dx * dx + dy * dy);
+//                Logger.Trace("   pointOnArc  origR:{0:0.00}  xpR:{1:0.00}  aStart:{2:0.00} aEnd:{3:0.00}  xpEnd:{4:0.00}", arcMove1.radius, r, arcMove1.angleStart, arcMove1.angleEnd, arcMove2.angleEnd);
+
+                if (!isEqual(r, arcMove1.radius))
+                    return false;
+
+                if (arcMove1.angleEnd == arcMove1.angleStart)
+                    return true;
+
+                if (arcMove2.angleEnd < arcMove1.angleStart)
+                    return false;
+                if (arcMove2.angleEnd > arcMove1.angleEnd)
+                    return false;
+
+                return true;
+            }
+
+            private static bool pointOnLine(PointF p1,PointF p2, PointF xp)
+            {
+                if ((xp.X < Math.Min(p1.X, p2.X)) || (xp.X > Math.Max(p1.X, p2.X)))
+                {
+          //          Logger.Trace("  pointOnLine false ((xp.X < p1.X) || (xp.X > p2.X))  p1:{0:0.00}  xp:{1:0.00}  p2:{2:0.00}", p1.X, xp.X, p2.X);
+                    if (isEqual(xp.X, Math.Min(p1.X, p2.X))) return true;
+                    if (isEqual(xp.X, Math.Max(p1.X, p2.X))) return true;
+                    return false;
+                }
+                if ((xp.Y < Math.Min(p1.Y, p2.Y)) || (xp.Y > Math.Max(p1.Y, p2.Y)))
+                {
+       //             Logger.Trace("  pointOnLine false ((xp.Y < p1.Y) || (xp.Y > p2.Y))  p1:{0:0.00}  xp:{1:0.00}  p2:{2:0.00}", p1.Y, xp.Y, p2.Y);
+                    if (isEqual(xp.Y, Math.Min(p1.Y, p2.Y))) return true;
+                    if (isEqual(xp.Y, Math.Max(p1.Y, p2.Y))) return true;
+                    return false;
+                }
+                double dx = p2.X - p1.X;
+                double dy = p2.Y - p1.Y;
+                if (isEqual(dx, 0))
+                {
+      //              Logger.Trace("  pointOnLine  (isEqual(dx, 0))");
+                    return (isEqual(p1.X, xp.X));
+                }
+                if (isEqual(dy, 0))
+                {
+       //             Logger.Trace("  pointOnLine  (isEqual(dy, 0))");
+                    return (isEqual(p1.Y, xp.Y));
+                }
+
+                double m = dy / dx;
+                double b = p1.Y - (m * p1.X);
+                double y = m * xp.X + b;
+
+/*                Logger.Trace("  pointOnLine  p1 x:{0:0.00}  y:{1:0.00}", p1.X, p1.Y);
+                Logger.Trace("  pointOnLine  p2 x:{0:0.00}  y:{1:0.00}", p2.X, p2.Y);
+                Logger.Trace("  pointOnLine  xp x:{0:0.00}  y:{1:0.00}", xp.X, xp.Y);
+                Logger.Trace("  pointOnLine  grbl x:{0:0.000}  y:{1:0.000}", grbl.posWork.X, grbl.posWork.Y);
+                Logger.Trace("  pointOnLine  isEqual(y, xp.Y) y:{0:0.00}  xp.Y:{1:0.00}",y,xp.Y);
+*/                return (isEqual(y, xp.Y));
+            }
+            private static bool isEqual(double a, double b, double max= 0.1)
+            {
+                if (Math.Abs(a - b) < max)
+                    return true;
+                return false;
+            }
+
+        }
     }
 
     /// <summary>
@@ -658,6 +876,10 @@ namespace GRBL_Plotter
     /// </summary>
     public static class crc   // cutter radius compensation
     {   // http://www.hinterseher.de/Diplomarbeit/GeometrischeFunktionen.html
+
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static bool logenable = ((uint)Properties.Settings.Default.importLoggerSettings & 32) > 0;
 
         // get two lines and calc offsetted points
         public static int getPointOffsets(ref xyPoint[] offset, xyArcPoint P0, xyArcPoint P1, xyArcPoint P2, double distance, bool isEnd)
@@ -696,9 +918,7 @@ namespace GRBL_Plotter
             offset[0] = S1off[0];
             offset[1] = S1off[1];
 
-#if (debuginfo)
-            log.Add(string.Format(" getPointOffsets P0-P1: P1mode: {0} S1offX {1:0.000} S1offX {2:0.000} S1offX {3:0.000} S1offX {4:0.000}", P1.mode, S1off[0].X, S1off[0].Y, S1off[1].X, S1off[1].Y));
-#endif
+   //         Logger.Trace(" getPointOffsets P0-P1: P1mode: {0} S1offX {1:0.000} S1offX {2:0.000} S1offX {3:0.000} S1offX {4:0.000}", P1.mode, S1off[0].X, S1off[0].Y, S1off[1].X, S1off[1].Y);
 
             if (P2.mode <= 1)   // is a line
             {
@@ -725,9 +945,9 @@ namespace GRBL_Plotter
             }
             offset[2] = S2off[0];
             offset[3] = S2off[1];
-#if (debuginfo)
-            log.Add(string.Format(" getPointOffsets P1-P2: P2mode: {0} S1offX {1:0.000} S1offX {2:0.000} S1offX {3:0.000} S1offX {4:0.000}", P2.mode, S2off[0].X, S2off[0].Y, S2off[1].X, S2off[1].Y));
-#endif
+
+            if (logenable) Logger.Trace(" getPointOffsets P1-P2: P2mode: {0} S1offX {1:0.000} S1offX {2:0.000} S1offX {3:0.000} S1offX {4:0.000}", P2.mode, S2off[0].X, S2off[0].Y, S2off[1].X, S2off[1].Y);
+
             if ((P1.mode == P2.mode) && (P1.X == P2.X) && (P1.Y == P2.Y))
             { a2 = a0; a3 = a1; }
 
@@ -735,18 +955,16 @@ namespace GRBL_Plotter
             adelta = a2 - a1;
             double dist = offset[1].DistanceTo(offset[2]);
 
-#if (debuginfo)
-            log.Add(string.Format(" getPointOffsets Angles: a1 {0:0.000} a2 {1:0.000} delta {2:0.000}", (a1*180/Math.PI),(a2 * 180 / Math.PI), (adelta * 180 / Math.PI)));
-#endif
+            if (logenable) Logger.Trace(" getPointOffsets Angles: a1 {0:0.000} a2 {1:0.000} delta {2:0.000}", (a1*180/Math.PI),(a2 * 180 / Math.PI), (adelta * 180 / Math.PI));
+
             if (adelta >= (Math.PI))
                 adelta -= 2 * Math.PI;
             if (adelta <= -(Math.PI))
                 adelta += 2 * Math.PI;
 
-#if (debuginfo)
-            log.Add(string.Format(" getPointOffsets adelta corrected {0:0.000}", (adelta * 180 / Math.PI)));
-            log.Add(string.Format(" getPointOffsets offset [0]x{0:0.000} [0]y{1:0.000} [1]x{2:0.000} [1]y{3:0.000} [2]x{4:0.000} [2]y{5:0.000}", offset[0].X, offset[0].Y, offset[1].X, offset[1].Y, offset[2].X, offset[2].Y));
-#endif
+            if (logenable) Logger.Trace(" getPointOffsets adelta corrected {0:0.000}", (adelta * 180 / Math.PI));
+            if (logenable) Logger.Trace(" getPointOffsets offset [0]x{0:0.000} [0]y{1:0.000} [1]x{2:0.000} [1]y{3:0.000} [2]x{4:0.000} [2]y{5:0.000}", offset[0].X, offset[0].Y, offset[1].X, offset[1].Y, offset[2].X, offset[2].Y);
+
             if (isEnd || (Math.Abs(adelta) <= 0.2) || (dist < 0.2))
                 return 0;           // S1-angle == S2-angle, no correction needed
 
@@ -758,9 +976,7 @@ namespace GRBL_Plotter
             if ((adelta < 0) && (distance > 0))
                 return 1;           // connect lines with additional arc
 
-#if (debuginfo)
-            log.Add(string.Format(" getPointOffsets Find intersection {0} {1}", P1.mode, P2.mode));
-#endif
+            if (logenable) Logger.Trace(" getPointOffsets Find intersection {0} {1}", P1.mode, P2.mode);
 
             bool result = false;
             // find common intersection
@@ -852,10 +1068,10 @@ namespace GRBL_Plotter
             double x = 0, x1 = 0, x2 = 0, y = 0, y1 = 0, y2 = 0;
             double dx = (linePoint[1].X - linePoint[0].X);
             double dy = (linePoint[1].Y - linePoint[0].Y);
-#if (debuginfo)
-            log.Add(string.Format("   calcIntersectionLineArc 0x {0:0.00} 0y {1:0.00} 1x {2:0.00} 1y {3:0.00} Arcx {4:0.00} Arcy {5:0.00} ArcCx {6:0.00} ArcCy {7:0.00}", linePoint[0].X, linePoint[0].Y, linePoint[1].X, linePoint[1].Y,arc.X,arc.Y, arc.CX, arc.CY));
-            log.Add(string.Format("   dx {0:0.00} dy {1:0.00} ", dx,dy));
-#endif
+
+            if (logenable) Logger.Trace("   calcIntersectionLineArc 0x {0:0.00} 0y {1:0.00} 1x {2:0.00} 1y {3:0.00} Arcx {4:0.00} Arcy {5:0.00} ArcCx {6:0.00} ArcCy {7:0.00}", linePoint[0].X, linePoint[0].Y, linePoint[1].X, linePoint[1].Y,arc.X,arc.Y, arc.CX, arc.CY);
+            if (logenable) Logger.Trace("   dx {0:0.00} dy {1:0.00} ", dx,dy);
+
             if (dx == 0)        // vertical line, x is known
             {
                 double a2minusb2 = getA2minusB2(radius, (linePoint[0].X - arc.CX));
@@ -870,9 +1086,9 @@ namespace GRBL_Plotter
                     resultOffset[1].X = linePoint[0].X;
                     resultOffset[1].Y = y;
                     resultOffset[2] = resultOffset[1];
-#if (debuginfo)
-                    log.Add(string.Format("   intersection at x{0:0.000} y{1:0.000}", resultOffset[1].X, resultOffset[1].Y));
-#endif
+
+                    if (logenable) Logger.Trace("   intersection at x{0:0.000} y{1:0.000}", resultOffset[1].X, resultOffset[1].Y);
+
                     return true;
                 }
                 else
@@ -880,9 +1096,9 @@ namespace GRBL_Plotter
                     resultOffset[1].X = linePoint[0].X;
                     resultOffset[1].Y = resultOffset[3].Y;// arc.Y-radius;
                     resultOffset[2] = resultOffset[1];
-#if (debuginfo)
-                    log.Add("   no intersection! ");
-#endif
+
+                    if (logenable) Logger.Trace("   no intersection! ");
+
                     return false;
                 }
             }
@@ -901,9 +1117,9 @@ namespace GRBL_Plotter
                     resultOffset[1].X = x;
                     resultOffset[1].Y = linePoint[0].Y;
                     resultOffset[2] = resultOffset[1];
-#if (debuginfo)
-                    log.Add(string.Format("   intersection at x{0:0.000} y{1:0.000}", resultOffset[1].X, resultOffset[1].Y));
-#endif
+
+                    if (logenable) Logger.Trace("   intersection at x{0:0.000} y{1:0.000}", resultOffset[1].X, resultOffset[1].Y);
+
                     return true;
                 }
                 else
@@ -911,9 +1127,9 @@ namespace GRBL_Plotter
                     resultOffset[1].X = resultOffset[2].X;// arc.X - radius;
                     resultOffset[1].Y = linePoint[0].Y; 
                     resultOffset[2] = resultOffset[1];
-#if (debuginfo)
-                    log.Add("   no intersection! ");
-#endif
+
+                    if (logenable) Logger.Trace("   no intersection! ");
+
                     return false;
                 }
             }
@@ -939,9 +1155,9 @@ namespace GRBL_Plotter
 
                     if (Math.Abs(linePoint[1].X - x2) < Math.Abs(linePoint[1].X - x1))
                         x = x2;
-#if (debuginfo)
-                    log.Add(string.Format("   x1 {0:0.00} x2 {1:0.00} lp1x {2:0.00} x {3:0.00}", x1, x2, linePoint[1].X, x));
-#endif
+
+                    if (logenable) Logger.Trace("   x1 {0:0.00} x2 {1:0.00} lp1x {2:0.00} x {3:0.00}", x1, x2, linePoint[1].X, x);
+
                     y = m * x + n;
                     resultOffset[1].X = x; resultOffset[1].Y = y;
                     resultOffset[2] = resultOffset[1];

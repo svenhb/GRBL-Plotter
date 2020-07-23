@@ -534,14 +534,6 @@ luego agregue nodos a través de 'Extensiones - Modificar ruta - Agregar nodos' 
 para evitar problemas al reducir g-code.</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="cBImportSVGPath.Text" xml:space="preserve">
-    <value>Superposición de ruta</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="cBImportSVGPath.ToolTip" xml:space="preserve">
-    <value>Finalmente, muévase al primer y segundo punto del camino para superponerse (para el cortador)</value>
-    <comment>TabPage1_1</comment>
-  </data>
   <data name="cBImportGCZIncStartZero.Text" xml:space="preserve">
     <value>Comience en Z = 0</value>
     <comment>TabPage1_2</comment>
@@ -672,10 +664,6 @@ para evitar problemas al reducir g-code.</value>
 seleccione elementos en la página siguiente 'Generación de código G'</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Traiter le motif en pointillé...</value>
-    <comment>TabPage1_1</comment>
-  </data>
   <data name="checkBox4.Text" xml:space="preserve">
     <value>Doblar bloques de código</value>
     <comment>TabPage1_1</comment>
@@ -707,19 +695,6 @@ seleccione elementos en la página siguiente 'Generación de código G'</value>
   <data name="cBXInvert.Text" xml:space="preserve">
     <value>dirección invertida</value>
     <comment>TabPage7</comment>
-  </data>
-  <data name="checkBox6.Text" xml:space="preserve">
-    <value>G0 en pluma</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox6.ToolTip" xml:space="preserve">
-    <value>El estándar es G1 para un movimiento suave,
-menos estrés para la mecánica</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox5.ToolTip" xml:space="preserve">
-    <value>Convierta la línea discontinua en bolígrafo real arriba / abajo</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="Column1.ToolTipText" xml:space="preserve">
     <value>Número de herramienta</value>
@@ -786,7 +761,7 @@ menos estrés para la mecánica</value>
     <comment>TabPage3</comment>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>unidades</value>
+    <value>Min</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="label30.Text" xml:space="preserve">
@@ -995,7 +970,8 @@ No es necesario establecer estas palabras</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
-    <value>Ancho de paso angular</value>
+    <value>Ancho de paso en la circunferencia del arco.
+Si el valor es&gt; radio de arco, el valor se reducirá automáticamente.</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
@@ -1092,7 +1068,7 @@ O asigne un nombre de archivo que contenga G-Code.</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>GamePad</value>
+    <value>Vista 2D / Editor</value>
     <comment>TabPage7</comment>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
@@ -1127,14 +1103,6 @@ O asigne un nombre de archivo que contenga G-Code.</value>
     <value>Joystick / Colores</value>
     <comment>TabPage8</comment>
   </data>
-  <data name="tabPage12.Text" xml:space="preserve">
-    <value>Teclas</value>
-    <comment>TabPage9</comment>
-  </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>Reconoci. de forma</value>
-    <comment>TabPage10</comment>
-  </data>
   <data name="tabPage5.Text" xml:space="preserve">
     <value>Enlaces WWW</value>
     <comment>TabPage11</comment>
@@ -1154,10 +1122,6 @@ O asigne un nombre de archivo que contenga G-Code.</value>
   <data name="btnLoadToolTable.Text" xml:space="preserve">
     <value>abrir</value>
     <comment>TabPage2</comment>
-  </data>
-  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
-    <value>Ancho de paso en la circunferencia del arco</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="btnColorPenUp.Text" xml:space="preserve">
     <value>Pin up</value>
@@ -1221,10 +1185,6 @@ O asigne un nombre de archivo que contenga G-Code.</value>
   </data>
   <data name="tab1_1gB3.Text" xml:space="preserve">
     <value>Importación DXF</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="tab1_1lbl4.Text" xml:space="preserve">
-    <value>Ancho de paso en la circunferencia del arco</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1gB1.Text" xml:space="preserve">
@@ -1773,18 +1733,12 @@ El eje Z se moverá hacia abajo</value>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>Nombre del eje tangencial.</value>
   </data>
-  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
-    <value>Agrupar por color / por capa</value>
-  </data>
   <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
     <value>Limite el ángulo de la herramienta a&gt; = 0 °, &lt;360 °</value>
   </data>
   <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
     <value>Use esta opción para evitar ángulos inferiores a 0 ° y superiores a 360 °.
 No funciona con G2 / 3: active 'Evitar comandos G2 / 3'</value>
-  </data>
-  <data name="tab1_1gB21.Text" xml:space="preserve">
-    <value>Aplicación especial</value>
   </data>
   <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
     <value>Convierte el radio del círculo en profundidad de punto</value>
@@ -1800,5 +1754,297 @@ No funciona con G2 / 3: active 'Evitar comandos G2 / 3'</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Crea dibujos punteados y "arte TSP" a partir de archivos de imagen.</value>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
+    <value>Convierte el radio del círculo en profundidad de punto</value>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
+    <value>La profundidad está limitada al grabado de "altura Z".
+Idea: use un avellanado para establecer el diámetro del círculo</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
+    <value>Use un taladro para marcar el centro del círculo con la profundidad del grabado 'Z-Height'</value>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
+    <value>Origen de gráficos desplazados a 0; 0</value>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
+    <value>Establezca el borde inferior izquierdo del gráfico importado en la coordenada xy 0; 0</value>
+  </data>
+  <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
+    <value>Ordenar objetos por conexiones más cortas y fusionar</value>
+  </data>
+  <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
+    <value>Los objetos se ordenarán por la distancia más cercana entre las coordenadas de inicio y fin, de la ruta útil de los objetos se invertirá.
+Los objetos con la misma coordenada inicial y final se fusionarán.</value>
+  </data>
+  <data name="tabPage16.Text" xml:space="preserve">
+    <value>Formato relacionado</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Interpretación del camino</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Repetición de trayectoria (para láser débil)</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Apariencia del código G</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Control de flujo</value>
+  </data>
+  <data name="tab1_1_2lbl2.Text" xml:space="preserve">
+    <value>Distancia a asumir como igual</value>
+  </data>
+  <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
+    <value>Pequeñas brechas se cerrarán</value>
+  </data>
+  <data name="tabPage17.Text" xml:space="preserve">
+    <value>Opciones generales</value>
+  </data>
+  <data name="tabPage20.Text" xml:space="preserve">
+    <value>Modificaciones de ruta</value>
+  </data>
+  <data name="tabPage18.Text" xml:space="preserve">
+    <value>Recorte</value>
+  </data>
+  <data name="tabPage19.Text" xml:space="preserve">
+    <value>Agrupación y herramientas</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Comportamiento del programa</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Apariencia del programa</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Importación CSV (* .csv, * .dat)</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Delímetro</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Valores que comienzan en la línea</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Valor Y</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>X valor</value>
+  </data>
+  <data name="radioButton4.Text" xml:space="preserve">
+    <value>Procesar coordenadas como puntos</value>
+  </data>
+  <data name="radioButton3.Text" xml:space="preserve">
+    <value>Conectar coordenadas con líneas</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Escala</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Columna</value>
+  </data>
+  <data name="checkBox8.Text" xml:space="preserve">
+    <value>Proceso Z también (solo punto)</value>
+  </data>
+  <data name="checkBox7.Text" xml:space="preserve">
+    <value>Prueba el reconocimiento automático</value>
+  </data>
+  <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
+    <value>Repita camino por camino</value>
+  </data>
+  <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
+    <value>Repita el código completo</value>
+  </data>
+  <data name="gBHatchFill.Text" xml:space="preserve">
+    <value>Llenar caminos cerrados</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
+    <value>Relleno insertado desde los bordes por</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
+    <value>Cambiar el ángulo después de cada ruta por</value>
+  </data>
+  <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
+    <value>Trampilla cruzada</value>
+  </data>
+  <data name="lblHatchFill2.Text" xml:space="preserve">
+    <value>Ángulo de línea</value>
+  </data>
+  <data name="lblHatchFill1.Text" xml:space="preserve">
+    <value>Distancia de la línea</value>
+  </data>
+  <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
+    <value>Trama de relleno</value>
+  </data>
+  <data name="lblDImportGCTangential4.Text" xml:space="preserve">
+    <value>Angulo de inicio correcto si la desviación es&gt;</value>
+  </data>
+  <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
+    <value>Si el cambio en el ángulo es mayor que este ángulo, se insertará un solo comando de giro</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
+    <value>Cambio de ángulo antes de levantar, girar y bajar el cuchillo</value>
+  </data>
+  <data name="gBClipping.Text" xml:space="preserve">
+    <value>Recorte / Azulejos</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Anchura / altura de recorte / mosaico</value>
+  </data>
+  <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
+    <value>X dimensión de la baldosa</value>
+  </data>
+  <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
+    <value>X dimensión de la baldosa</value>
+  </data>
+  <data name="rBImportGraphicClip1.Text" xml:space="preserve">
+    <value>Convierta gráficos en mosaicos</value>
+  </data>
+  <data name="rBImportGraphicClip0.Text" xml:space="preserve">
+    <value>Clipp en el punto inferior izquierdo X / Y:</value>
+  </data>
+  <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
+    <value>Resultado</value>
+  </data>
+  <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
+    <value>Dimensión Y del azulejo</value>
+  </data>
+  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
+    <value>X dimensión de la baldosa</value>
+  </data>
+  <data name="cBImportGraphicTile.Text" xml:space="preserve">
+    <value>Aplicar recorte o mosaico</value>
+  </data>
+  <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
+    <value>Cortar todo el gráfico en mosaicos para dibujarlos por separado</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>GCode antes del mosaico</value>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>GCode para aplicar antes de que se procese el siguiente mosaico.
+P.ej. 'M0' para pausar el movimiento manual del papel, o '(^ 2 G91 X100)' para mover X del segundo controlador grbl para mover el papel.</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>Establezca el origen de la región / mosaicos recortados en 0; 0</value>
+  </data>
+  <data name="rBImportSVGSort4.Text" xml:space="preserve">
+    <value>ordenar grupos por dimensión de objeto - ascendente</value>
+  </data>
+  <data name="tab1_1_4gB2.Text" xml:space="preserve">
+    <value>Propiedad para agrupar y seleccionar Tool-Nr. vía</value>
+  </data>
+  <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
+    <value>Agrupar por capa (Nombre de herramienta ~ = capa)</value>
+  </data>
+  <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
+    <value>Agrupe por capa gráfica y seleccione el número de herramienta según el nombre de herramienta más adecuado</value>
+  </data>
+  <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
+    <value>Agrupar por ancho de pluma (Diámetro de herramienta ~ = ancho de pluma)</value>
+  </data>
+  <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
+    <value>Agrupe por ancho de pluma y seleccione el número de herramienta de acuerdo con el diámetro de herramienta más adecuado</value>
+  </data>
+  <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
+    <value>Agrupar por color de lápiz (Color de herramienta ~ = color de lápiz)</value>
+  </data>
+  <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
+    <value>Agrupe por color de lápiz y seleccione el número de herramienta según el color de herramienta más adecuado</value>
+  </data>
+  <data name="tabPage26.Text" xml:space="preserve">
+    <value>Control del programa</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Obtenga una notificación si el código excede las dimensiones de la máquina</value>
+  </data>
+  <data name="tabPage23.Text" xml:space="preserve">
+    <value>Botones personalizados</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Distancia de línea del editor</value>
+  </data>
+  <data name="tab1_1_4gB3.Text" xml:space="preserve">
+    <value>Ordenar grupos</value>
+  </data>
+  <data name="Column16.ToolTipText" xml:space="preserve">
+    <value>Posición de intercambio A</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>conexión grbl</value>
+  </data>
+  <data name="tabPage25.Text" xml:space="preserve">
+    <value>Control de flujo</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
+    <value>El ancho de lápiz más ancho se traducirá a esta profundidad, pero limitado por el grabado de altura Z en 'Generación de código G'</value>
+  </data>
+  <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
+    <value>El ancho de lápiz más pequeño se traducirá a esta profundidad.</value>
+  </data>
+  <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
+    <value>Traducir el ancho del lápiz al valor Z</value>
+  </data>
+  <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
+    <value>El ancho de la pluma se procesará como valor Z para la profundidad.
+La profundidad máxima estará limitada por el grabado Z-Height.</value>
+  </data>
+  <data name="tab1_3gB8.Text" xml:space="preserve">
+    <value>Superposición de camino cerrado</value>
+  </data>
+  <data name="lblPathModification.Text" xml:space="preserve">
+    <value>Cualquiera de estas modificaciones habilitará "Evitar comandos G2 / G3"</value>
+  </data>
+  <data name="cBDashedLine2.Text" xml:space="preserve">
+    <value>G0 en pluma</value>
+  </data>
+  <data name="cBDashedLine2.ToolTip" xml:space="preserve">
+    <value>El valor predeterminado es G1 para un movimiento suave,
+menos estrés para la mecánica</value>
+  </data>
+  <data name="cBDashedLine1.Text" xml:space="preserve">
+    <value>Patrón de línea discontinua de proceso</value>
+  </data>
+  <data name="cBDashedLine1.ToolTip" xml:space="preserve">
+    <value>Convierta la línea discontinua en bolígrafo real arriba / abajo</value>
+  </data>
+  <data name="cBPathOverlapEnable.Text" xml:space="preserve">
+    <value>Superposición de ruta</value>
+  </data>
+  <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
+    <value>Después de terminar un camino cerrado, comience desde el principio y avance por la distancia dada.
+Útil para cortador láser.</value>
+  </data>
+  <data name="btnReloadSettings.Text" xml:space="preserve">
+    <value>Establecer todas las configuraciones por defecto</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Traduzca Z en el rango de:
+(No se excederá el 'grabado de altura Z')</value>
+  </data>
+  <data name="gBCreateZValue.Text" xml:space="preserve">
+    <value>Crear valor Z</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Ancho de paso en circunferencia de arcos</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Diverso</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Especial</value>
+  </data>
+  <data name="cBShowStreamingProgress.Text" xml:space="preserve">
+    <value>Mostrar el progreso de la transmisión en vista 2D</value>
+  </data>
+  <data name="tab4gB5.Text" xml:space="preserve">
+    <value>Durante la transmisión de G-Code</value>
   </data>
 </root>

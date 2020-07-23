@@ -25,6 +25,7 @@
  * 2019-11-16 add gamepad
  * 2019-12-07 showIniSettings -> selection between actual (Properties.Settings.Default.x) and ini-file values
  * 2020-03-10 add tangential axis
+ * 2020-07-08 add hatch fill
 */
 
 using System;
@@ -98,10 +99,16 @@ namespace GRBL_Plotter
             Write("Graph Units mm", setup.importUnitmm.ToString(), section);
             if (setup.importUnitGCode) { Write("Graph Units GCode", setup.importUnitGCode.ToString(), section); }
             Write("Bezier Segment count", setup.importBezierLineSegmentsCnt.ToString(), section);
+            Write("Arc circumfence step", setup.importGCSegment.ToString(), section);
+
             if (setup.importRemoveShortMovesEnable)
             {   Write("Remove Moves enable", setup.importRemoveShortMovesEnable.ToString(), section);
                 Write("Remove Moves units", setup.importRemoveShortMovesLimit.ToString(), section);
             }
+
+            if (!setup.importGraphicOffsetOrigin) { Write("Objects offset origin", setup.importGraphicOffsetOrigin.ToString(), section); }
+            if (!setup.importGraphicSortDistance)   { Write("Objects sort by distance", setup.importGraphicSortDistance.ToString(), section); }
+
             if (setup.importLineDashPattern) { Write("Process Dashed Lines", setup.importLineDashPattern.ToString(), section); }
             if (setup.importPauseElement) { Write("Pause before Path", setup.importPauseElement.ToString(), section); }
             if (setup.importPausePenDown) { Write("Pause before Pen", setup.importPausePenDown.ToString(), section); }
@@ -118,6 +125,7 @@ namespace GRBL_Plotter
                 Write("SVG resize units", setup.importSVGMaxSize.ToString(), section);
             }
             if (setup.importSVGCircleToDot) { Write("SVG circle to dot", setup.importSVGNodesOnly.ToString(), section); }
+            if (setup.importSVGCircleToDotZ) { Write("SVG circle to dot with Z", setup.importSVGNodesOnly.ToString(), section); }
             if (setup.importSVGNodesOnly) { Write("SVG Process nodes only", setup.importSVGNodesOnly.ToString(), section); }
 
             if (setup.importDXFToolIndex) { Write("DXF use color index", setup.importDXFToolIndex.ToString(), section); }
@@ -125,7 +133,7 @@ namespace GRBL_Plotter
 
             if (setup.importGroupObjects)
             {   Write("Grouping enable", setup.importGroupObjects.ToString(), section);
-                Write("Grouping by color", setup.importGroupByColor.ToString(), section);
+//                Write("Grouping by color", setup.importGroupByColor.ToString(), section);
                 Write("Grouping sort option", setup.importGroupSort.ToString(), section);
                 Write("Grouping sort invert", setup.importGroupSortInvert.ToString(), section);
             }
@@ -215,6 +223,18 @@ namespace GRBL_Plotter
                 Write("Tangential axis angle", setup.importGCTangentialAngle.ToString(), section);
                 Write("Tangential axis turn", setup.importGCTangentialTurn.ToString(), section);
                 Write("Tangential axis range", setup.importGCTangentialRange.ToString(), section);
+                Write("Tangential axis deviation", setup.importGCTangentialAngleDevi.ToString(), section);
+            }
+
+            if (setup.importGraphicHatchFillEnable)
+            {   Write("Hatch fill enable", 	setup.importGraphicHatchFillEnable.ToString(), section);
+                Write("Hatch fill cross", 	setup.importGraphicHatchFillCross.ToString(), section);
+                Write("Hatch fill distance",setup.importGraphicHatchFillDistance.ToString(), section);
+                Write("Hatch fill angle", setup.importGraphicHatchFillAngle.ToString(), section);
+                Write("Hatch fill angle inc enable", setup.importGraphicHatchFillAngleInc.ToString(), section);
+                Write("Hatch fill angle inc ", setup.importGraphicHatchFillAngle2.ToString(), section);
+                Write("Hatch fill inset enable", setup.importGraphicHatchFillInsetEnable.ToString(), section);
+                Write("Hatch fill inset distance", setup.importGraphicHatchFillInset.ToString(), section);
             }
 
             if (setup.importGCCompress) { Write("Compress", setup.importGCCompress.ToString(), section); }
@@ -402,14 +422,18 @@ namespace GRBL_Plotter
             setup.importSVGAddComments = false;
             setup.importSVGRezise = false;
             setup.importSVGCircleToDot = false;
+            setup.importSVGCircleToDotZ = false;
             setup.importSVGNodesOnly = false;
             setup.importDXFToolIndex = false;
             setup.importDXFSwitchWhite = false;
             setup.importGroupObjects = false;
-            setup.importGroupByColor = true;
+//            setup.importGroupByColor = true;
             setup.importGroupSortInvert = false;
             setup.importGCToolTableUse = false;
             setup.importGCToolDefNrUse = false;
+
+            setup.importGraphicSortDistance = true;
+            setup.importGraphicOffsetOrigin = true;
 
             setup.importGCSpindleToggleLaser = false;
             setup.importGCTool = false;
@@ -431,6 +455,7 @@ namespace GRBL_Plotter
             setup.importGCDragKnifeEnable = false;
             setup.importGCDragKnifePercentEnable = false;
             setup.importGCTangentialEnable = false;
+			setup.importGraphicHatchFillEnable = false;
             setup.importGCCompress = false;
             setup.importGCRelative = false;
         }
@@ -451,6 +476,11 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpbool, section, "Graph Units mm"))            { setup.importUnitmm = tmpbool; }
             if (setVariable(ref tmpbool, section, "Graph Units GCode"))         { setup.importUnitGCode = tmpbool; }
             if (setVariable(ref tmpdeci, section, "Bezier Segment count"))      { setup.importBezierLineSegmentsCnt = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Arc circumfence step")) { setup.importGCSegment = tmpdeci; }
+
+            if (setVariable(ref tmpbool, section, "Objects sort by distance"))  { setup.importGraphicSortDistance = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Objects offset origin"))     { setup.importGraphicOffsetOrigin = tmpbool; }
+
             if (setVariable(ref tmpbool, section, "Process Dashed Lines"))      { setup.importLineDashPattern = tmpbool; }
             if (setVariable(ref tmpbool, section, "Remove Moves enable"))       { setup.importRemoveShortMovesEnable = tmpbool; }
             if (setVariable(ref tmpdeci, section, "Remove Moves units"))        { setup.importRemoveShortMovesLimit = tmpdeci; }
@@ -464,14 +494,15 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpbool, section, "SVG DPI 96 enable"))         { setup.importSVGDPI96 = tmpbool; }
             if (setVariable(ref tmpbool, section, "SVG resize enable"))         { setup.importSVGRezise = tmpbool; }
             if (setVariable(ref tmpdeci, section, "SVG resize units"))          { setup.importSVGMaxSize = tmpdeci; }
-            if (setVariable(ref tmpdeci, section, "SVG circle to dot")) { setup.importSVGCircleToDot = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "SVG circle to dot"))         { setup.importSVGCircleToDot = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "SVG circle to dot with Z"))      { setup.importSVGCircleToDotZ = tmpbool; }
             if (setVariable(ref tmpbool, section, "SVG Process nodes only"))    { setup.importSVGNodesOnly = tmpbool; }
 
             if (setVariable(ref tmpbool, section, "DXF use color index"))       { setup.importDXFToolIndex = tmpbool; }
             if (setVariable(ref tmpbool, section, "DXF handle white as black")) { setup.importDXFSwitchWhite= tmpbool; }
 
             if (setVariable(ref tmpbool, section, "Grouping enable"))           { setup.importGroupObjects= tmpbool; }
-            if (setVariable(ref tmpbool, section, "Grouping by color"))         { setup.importGroupByColor = tmpbool; }
+  //          if (setVariable(ref tmpbool, section, "Grouping by color"))         { setup.importGroupByColor = tmpbool; }
             if (setVariable(ref tmpint, section, "Grouping sort option"))       { setup.importGroupSort= tmpint; }
             if (setVariable(ref tmpbool, section, "Grouping sort invert"))      { setup.importGroupSortInvert= tmpbool; }
 
@@ -545,6 +576,16 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpdeci, section, "Tangential axis angle")) { setup.importGCTangentialAngle = tmpdeci; }
             if (setVariable(ref tmpdeci, section, "Tangential axis turn")) { setup.importGCTangentialTurn = tmpdeci; }
             if (setVariable(ref tmpbool, section, "Tangential axis range")) { setup.importGCTangentialRange = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Tangential axis deviation")) { setup.importGCTangentialAngleDevi = tmpdeci; }
+
+            if (setVariable(ref tmpbool, section, "Hatch fill enable")) 		{ setup.importGraphicHatchFillEnable = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Hatch fill cross")) 		{ setup.importGraphicHatchFillCross = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Hatch fill distance")) 		{ setup.importGraphicHatchFillDistance = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Hatch fill angle")) 			{ setup.importGraphicHatchFillAngle = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Hatch fill angle inc enable")) { setup.importGraphicHatchFillAngleInc = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Hatch fill angle inc")) 		{ setup.importGraphicHatchFillAngle2 = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Hatch fill inset enable")) 	{ setup.importGraphicHatchFillInsetEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Hatch fill inset distance")) { setup.importGraphicHatchFillInset = tmpdeci; }
 
             if (setVariable(ref tmpbool, section, "Compress")) { setup.importGCCompress = tmpbool; }
             if (setVariable(ref tmpbool, section, "Relative")) { setup.importGCRelative = tmpbool; }

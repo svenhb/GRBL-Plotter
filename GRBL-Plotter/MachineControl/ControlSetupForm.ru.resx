@@ -142,20 +142,12 @@
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>Геймпад</value>
+    <value>2D-просмотр / редактор</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Джойстик / Цвета</value>
     <comment>TabPage8</comment>
-  </data>
-  <data name="tabPage12.Text" xml:space="preserve">
-    <value>Горячие клавиши</value>
-    <comment>TabPage9</comment>
-  </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>Распознавание формы</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
     <value>WWW ссылки</value>
@@ -218,23 +210,6 @@
     <value>Формат DXF использует индекс цвета от 0 до 255. Этот индекс + 1 будет использоваться как номер инструмента.</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="checkBox6.Text" xml:space="preserve">
-    <value>G0 на ручке</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox6.ToolTip" xml:space="preserve">
-    <value>Стандарт G1 для плавного движения,
-меньше стресса для механики</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Обрабатывать пунктирную линию</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox5.ToolTip" xml:space="preserve">
-    <value>Преобразовать пунктирную линию в настоящие ручки вверх / вниз</value>
-    <comment>TabPage1_1</comment>
-  </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
     <value>Nœuds de chemin de processus uniquement...</value>
     <comment>TabPage1_1</comment>
@@ -287,7 +262,7 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>единицы</value>
+    <value>Min</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="nUDImportReduce.ToolTip" xml:space="preserve">
@@ -333,14 +308,6 @@
   </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>Попробуйте масштабировать графику до заданных единиц, прежде чем генерировать g-code,</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="cBImportSVGPath.Text" xml:space="preserve">
-    <value>Путь перекрытия</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="cBImportSVGPath.ToolTip" xml:space="preserve">
-    <value>Наконец, переместитесь к 1-й и 2-й точке пути, чтобы получить перекрытие (для фрезы)</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tabPage10.Text" xml:space="preserve">
@@ -596,7 +563,8 @@
     <comment>TabPage1_3</comment>
   </data>
   <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
-    <value>Угол шага ширина</value>
+    <value>Ширина шага по окружности дуги.
+Если значение&gt; радиус дуги, значение будет уменьшено автоматически.</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
@@ -1159,10 +1127,6 @@ M4 Dynamic Laser Power Mode</value>
     <value>расстановок</value>
     <comment>Form</comment>
   </data>
-  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
-    <value>Ширина шага по окружности дуги</value>
-    <comment>TabPage1_1</comment>
-  </data>
   <data name="cB4thUse.Text" xml:space="preserve">
     <value>Показать статус и контроль</value>
     <comment>TabPage5</comment>
@@ -1221,10 +1185,6 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="tab1_1gB3.Text" xml:space="preserve">
     <value>DXF Импорт</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="tab1_1lbl4.Text" xml:space="preserve">
-    <value>Ширина шага по окружности дуги</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1gB1.Text" xml:space="preserve">
@@ -1784,18 +1744,12 @@ min X, min Y и max Z.
   <data name="tab1_1gB5.Text" xml:space="preserve">
     <value>Стол для инструментов</value>
   </data>
-  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
-    <value>Группировать по цвету / по слою</value>
-  </data>
   <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
     <value>Ограничьте угол инструмента до&gt; = 0 °, &lt;360 °</value>
   </data>
   <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
     <value>Используйте эту опцию, чтобы избежать углов ниже 0 ° и выше 360 °.
 Не работает с G2 / 3 - активируйте «Избегайте команд G2 / 3»</value>
-  </data>
-  <data name="tab1_1gB21.Text" xml:space="preserve">
-    <value>Специальное приложение</value>
   </data>
   <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
     <value>Преобразует радиус круга в глубину точки</value>
@@ -1844,5 +1798,321 @@ min X, min Y и max Z.
   </data>
   <data name="tab11gB1lbl1.Text" xml:space="preserve">
     <value>Графическая программа</value>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
+    <value>Преобразует радиус круга в глубину точки</value>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
+    <value>Глубина ограничена гравировкой "Z-height".
+Идея: использовать зенковку, чтобы установить диаметр круга</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
+    <value>Используйте сверло, чтобы отметить центр круга с глубиной гравировки «Z-Высота»</value>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
+    <value>Смещение исходной графики до 0; 0</value>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
+    <value>Установить нижний левый край импортируемой графики в координату xy 0; 0</value>
+  </data>
+  <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
+    <value>Сортировка объектов по кратчайшим соединениям и слияние</value>
+  </data>
+  <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
+    <value>Объекты будут отсортированы по ближайшему расстоянию между начальной и конечной координатами, полезный путь объектов будет изменен на обратный.
+Объекты с одинаковыми координатами начала и конца будут объединены.</value>
+  </data>
+  <data name="tabPage16.Text" xml:space="preserve">
+    <value>Формат связан</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Путь интерпретации</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Повторение пути (для слабого лазера)</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Внешний вид G-кода</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Управление потоком</value>
+  </data>
+  <data name="tab1_1_2lbl2.Text" xml:space="preserve">
+    <value>Расстояние должно быть принято равным</value>
+  </data>
+  <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
+    <value>Маленькие пробелы будут закрыты</value>
+  </data>
+  <data name="tabPage17.Text" xml:space="preserve">
+    <value>Общие настройки</value>
+  </data>
+  <data name="tabPage20.Text" xml:space="preserve">
+    <value>Модификации пути</value>
+  </data>
+  <data name="tabPage18.Text" xml:space="preserve">
+    <value>вырезка</value>
+  </data>
+  <data name="tabPage19.Text" xml:space="preserve">
+    <value>Группировка и инструменты</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Поведение программы</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Появление программы</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>CSV Import (* .csv, * .dat)</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>разделители</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Значения, начинающиеся с строки</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Значение Y</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Значение Х</value>
+  </data>
+  <data name="radioButton4.Text" xml:space="preserve">
+    <value>Обрабатывать координаты в виде точек</value>
+  </data>
+  <data name="radioButton3.Text" xml:space="preserve">
+    <value>Соединить координаты с линиями</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>колонка</value>
+  </data>
+  <data name="checkBox8.Text" xml:space="preserve">
+    <value>Процесс Z также (только точка)</value>
+  </data>
+  <data name="checkBox7.Text" xml:space="preserve">
+    <value>Попробуйте автоматическое распознавание</value>
+  </data>
+  <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
+    <value>Повторите путь по пути</value>
+  </data>
+  <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
+    <value>Повторите полный код</value>
+  </data>
+  <data name="gBHatchFill.Text" xml:space="preserve">
+    <value>Заполните замкнутые пути</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
+    <value>Вставка заливки из краев</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
+    <value>Изменить угол после каждого пути на</value>
+  </data>
+  <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
+    <value>Поперечный люк</value>
+  </data>
+  <data name="lblHatchFill2.Text" xml:space="preserve">
+    <value>Угол линии</value>
+  </data>
+  <data name="lblHatchFill1.Text" xml:space="preserve">
+    <value>Расстояние линии</value>
+  </data>
+  <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
+    <value>Заливка люка</value>
+  </data>
+  <data name="lblDImportGCTangential4.Text" xml:space="preserve">
+    <value>Исправьте начальный угол, если отклонение&gt;</value>
+  </data>
+  <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
+    <value>Если изменение угла больше этого угла, будет вставлена команда на один поворот</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
+    <value>Изменение угла до поднятия, поворота и опускания ножа</value>
+  </data>
+  <data name="gBClipping.Text" xml:space="preserve">
+    <value>Отсечение / Черепица</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Отсечение / Размер черепицы ширина / высота</value>
+  </data>
+  <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
+    <value>X размер плитки</value>
+  </data>
+  <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
+    <value>X размер плитки</value>
+  </data>
+  <data name="rBImportGraphicClip1.Text" xml:space="preserve">
+    <value>Преобразование графики в плитки</value>
+  </data>
+  <data name="rBImportGraphicClip0.Text" xml:space="preserve">
+    <value>Клипп в нижней левой точке X / Y:</value>
+  </data>
+  <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
+    <value>результат</value>
+  </data>
+  <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
+    <value>Y размер плитки</value>
+  </data>
+  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
+    <value>X размер плитки</value>
+  </data>
+  <data name="cBImportGraphicTile.Text" xml:space="preserve">
+    <value>Применить отсечение или плитку</value>
+  </data>
+  <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
+    <value>Разрежьте всю графику на плитки, чтобы они были выгружены отдельно</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>GCode перед плиткой</value>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>GCode для применения до обработки следующей плитки.
+Например. «M0», чтобы приостановить ручное перемещение бумаги, или «(^ 2 G91 X100)», чтобы переместить X второго grbl-контроллера для перемещения бумаги.</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>Установите начало отсеченного региона / тайлов на 0; 0</value>
+  </data>
+  <data name="rBImportSVGSort4.Text" xml:space="preserve">
+    <value>сортировать группы по размеру объекта - по возрастанию</value>
+  </data>
+  <data name="tab1_1_4gB2.Text" xml:space="preserve">
+    <value>Свойство для группировки и выберите Tool-Nr. через</value>
+  </data>
+  <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
+    <value>Группировать по слою (Tool-Name ~ = layer)</value>
+  </data>
+  <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
+    <value>Сгруппируйте по графическому слою и выберите номер инструмента в соответствии с наиболее подходящим названием инструмента</value>
+  </data>
+  <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
+    <value>Группировать по ширине пера (Tool-Diameter ~ = pen-width)</value>
+  </data>
+  <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
+    <value>Сгруппируйте по ширине пера и выберите номер инструмента в соответствии с наиболее подходящим диаметром инструмента</value>
+  </data>
+  <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
+    <value>Группировка по цвету пера (Tool-Color ~ = цвет пера)</value>
+  </data>
+  <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
+    <value>Сгруппируйте по цвету пера и выберите номер инструмента в соответствии с наиболее подходящим цветом инструмента</value>
+  </data>
+  <data name="tabPage26.Text" xml:space="preserve">
+    <value>Управление программой</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Получить уведомление, если код превышает размеры машины</value>
+  </data>
+  <data name="tabPage23.Text" xml:space="preserve">
+    <value>Пользовательские кнопки</value>
+  </data>
+  <data name="tabPage24.Text" xml:space="preserve">
+    <value>Геймпад</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>редактор</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Расстояние строки редактора</value>
+  </data>
+  <data name="tab1_1_4gB3.Text" xml:space="preserve">
+    <value>Сортировать группы</value>
+  </data>
+  <data name="Column16.ToolTipText" xml:space="preserve">
+    <value>Обменная позиция A</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>GRBL соединение</value>
+  </data>
+  <data name="tabPage25.Text" xml:space="preserve">
+    <value>Управление потоком</value>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>моделирование</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Максимум</value>
+  </data>
+  <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
+    <value>Наибольшая ширина пера будет переведена в эту глубину - но ограничена гравировкой Z-высоты в «Генерировании G-кода»</value>
+  </data>
+  <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
+    <value>Наименьшая ширина пера будет переведена на эту глубину</value>
+  </data>
+  <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
+    <value>Перевести ширину пера в значение Z</value>
+  </data>
+  <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
+    <value>Ширина пера будет обработана как значение Z для глубины.
+Максимальная глубина будет ограничена гравировкой Z-высоты.</value>
+  </data>
+  <data name="tab1_3gB8.Text" xml:space="preserve">
+    <value>Закрытый путь перекрытия</value>
+  </data>
+  <data name="lblPathModification.Text" xml:space="preserve">
+    <value>Любая из этих модификаций включит «Избегать команд G2 / G3»</value>
+  </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>Заголовок G-кода</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl3.Text" xml:space="preserve">
+    <value>нижний колонтитул</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.Text" xml:space="preserve">
+    <value>Глубина за проход</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl32.Text" xml:space="preserve">
+    <value>Z-высота сохранения</value>
+  </data>
+  <data name="tab1_2lbl33.Text" xml:space="preserve">
+    <value>Z-Высота гравировка</value>
+  </data>
+  <data name="cBDashedLine2.Text" xml:space="preserve">
+    <value>G0 на ручке</value>
+  </data>
+  <data name="cBDashedLine2.ToolTip" xml:space="preserve">
+    <value>По умолчанию G1 для плавного движения,
+меньше стресса для механики</value>
+  </data>
+  <data name="cBDashedLine1.Text" xml:space="preserve">
+    <value>Обрабатывать пунктирную линию</value>
+  </data>
+  <data name="cBDashedLine1.ToolTip" xml:space="preserve">
+    <value>Преобразовать пунктирную линию в настоящие ручки вверх / вниз</value>
+  </data>
+  <data name="cBPathOverlapEnable.Text" xml:space="preserve">
+    <value>Путь перекрытия</value>
+  </data>
+  <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
+    <value>Закончив замкнутый путь, начните с начала и двигайтесь на заданное расстояние.
+Полезно для лазерного резака.</value>
+  </data>
+  <data name="btnReloadSettings.Text" xml:space="preserve">
+    <value>Установить все настройки по умолчанию</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Перевести Z в диапазон:
+(«Гравировка Z-высоты» не будет превышена)</value>
+  </data>
+  <data name="gBCreateZValue.Text" xml:space="preserve">
+    <value>Создать значение Z</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Ширина шага по окружности дуг</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Разное</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Специальный</value>
+  </data>
+  <data name="cBShowStreamingProgress.Text" xml:space="preserve">
+    <value>Показать прогресс потоковой передачи в 2D-виде</value>
+  </data>
+  <data name="tab4gB5.Text" xml:space="preserve">
+    <value>Во время потоковой передачи G-кода</value>
   </data>
 </root>

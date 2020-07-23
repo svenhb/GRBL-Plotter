@@ -170,15 +170,7 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>単位</value>
-  </data>
-  <data name="tab1_1lbl4.Text" xml:space="preserve">
     <value>円弧の周囲のステップ幅</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
-    <value>円弧の周囲のステップ幅</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
     <value>白を黒として扱う</value>
@@ -198,23 +190,6 @@
   </data>
   <data name="tab1_1gB3.Text" xml:space="preserve">
     <value>DXFインポート</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox6.Text" xml:space="preserve">
-    <value>ペンアップでG0</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox6.ToolTip" xml:space="preserve">
-    <value>スムーズな動きのデフォルトはG1です。
-メカニックのストレスが少ない</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>破線パターンの処理</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox5.ToolTip" xml:space="preserve">
-    <value>実際のペンの破線を上下に変換する</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
@@ -290,7 +265,7 @@ Inkscapeでは、最初にオブジェクトをパス「パス-オブジェク�
     <comment>TabPage1_1</comment>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>単位</value>
+    <value>最小</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="nUDImportReduce.ToolTip" xml:space="preserve">
@@ -352,14 +327,6 @@ gcodeを縮小する際の問題を回避するため。</value>
   </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>gcodeを生成する前に、グラフィックスを指定された単位にスケーリングしてみてください。</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="cBImportSVGPath.Text" xml:space="preserve">
-    <value>パスオーバーラップ</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="cBImportSVGPath.ToolTip" xml:space="preserve">
-    <value>最後にパスの1番目と2番目のポイントに移動して、オーバーラップを取得します（カッターの場合）</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblSVGScale.Text" xml:space="preserve">
@@ -771,7 +738,8 @@ gcodeを縮小する際の問題を回避するため。</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
-    <value>円弧の周囲のステップ幅</value>
+    <value>円弧の周囲のステップ幅。
+値が&gt;弧半径の場合、値は自動的に減少します。</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCSubFirst.Text" xml:space="preserve">
@@ -1421,7 +1389,7 @@ CPU負荷を節約し、ストリーミング中のズームを無効にしま�
     <comment>TabPage5</comment>
   </data>
   <data name="cBcheckupdate.Text" xml:space="preserve">
-    <value>CPU負荷を節約し、ストリーミング中のズームを無効にします</value>
+    <value>GitHubで新しいGRBL-Plotterリリースを確認する</value>
     <comment>TabPage5</comment>
   </data>
   <data name="tab6lbl1.Text" xml:space="preserve">
@@ -1485,7 +1453,7 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <comment>TabPage7</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>ゲームパッド</value>
+    <value>2Dビュー/エディター</value>
     <comment>TabPage7</comment>
   </data>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
@@ -1630,10 +1598,6 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <value>ホットキー</value>
     <comment>TabPage9</comment>
   </data>
-  <data name="tabPage12.Text" xml:space="preserve">
-    <value>ホットキー</value>
-    <comment>TabPage9</comment>
-  </data>
   <data name="tab10lbl1.Text" xml:space="preserve">
     <value>設定を名前付きパラメーターセットに保存し、カメラウィンドウで呼び出して形状認識動作を変更します。 名前を変更した後、カメラウィンドウを閉じる/開きます。</value>
     <comment>TabPage10</comment>
@@ -1718,10 +1682,6 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
   </data>
   <data name="tab10gB1.Text" xml:space="preserve">
     <value>形状認識の設定</value>
-    <comment>TabPage10</comment>
-  </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>形状認識</value>
     <comment>TabPage10</comment>
   </data>
   <data name="tab11gB1lbl3.Text" xml:space="preserve">
@@ -1962,18 +1922,12 @@ Z軸が下に移動します</value>
   <data name="tab10gB2.Text" xml:space="preserve">
     <value>カラーフィルター</value>
   </data>
-  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
-    <value>色別/レイヤー別</value>
-  </data>
   <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
     <value>工具角度を&gt; = 0°、&lt;360°に制限</value>
   </data>
   <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
     <value>このオプションを使用して、0°未満および360°を超える角度を回避します。
 G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効にします</value>
-  </data>
-  <data name="tab1_1gB21.Text" xml:space="preserve">
-    <value>特別なアプリケーション</value>
   </data>
   <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
     <value>円の半径を点の深さに変換します</value>
@@ -1998,5 +1952,297 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
   </data>
   <data name="linkLabel16.Text" xml:space="preserve">
     <value>Inkscape拡張</value>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
+    <value>円の半径を点の深さに変換します</value>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
+    <value>奥行きは「Z-height」の彫刻に限定されています。
+アイデア：皿穴を使用して円の直径を設定します</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
+    <value>ドリルを使用して、円の中心を「Z-Height」の深さで刻印します</value>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
+    <value>グラフィックスの原点を0; 0にオフセット</value>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
+    <value>インポートしたグラフィックの左下端をxy座標0; 0に設定します</value>
+  </data>
+  <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
+    <value>最短の接続でオブジェクトを並べ替え、マージする</value>
+  </data>
+  <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
+    <value>オブジェクトは、開始座標と終了座標の間の最も近い距離で並べ替えられ、オブジェクトの有効なパスが逆になります。
+同じ開始座標と終了座標を持つオブジェクトがマージされます。</value>
+  </data>
+  <data name="tabPage16.Text" xml:space="preserve">
+    <value>フォーマット関連</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>パスの解釈</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>パスの繰り返し（弱いレーザーの場合）</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Gコードの外観</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>フロー制御</value>
+  </data>
+  <data name="tab1_1_2lbl2.Text" xml:space="preserve">
+    <value>等しいと見なされる距離</value>
+  </data>
+  <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
+    <value>小さな隙間が埋められます</value>
+  </data>
+  <data name="tabPage17.Text" xml:space="preserve">
+    <value>一般的なオプション</value>
+  </data>
+  <data name="tabPage20.Text" xml:space="preserve">
+    <value>パスの変更</value>
+  </data>
+  <data name="tabPage18.Text" xml:space="preserve">
+    <value>クリッピング</value>
+  </data>
+  <data name="tabPage19.Text" xml:space="preserve">
+    <value>グループ化とツール</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>プログラムの動作</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>プログラム出演</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>CSVインポート（* .csv、*。dat）</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>デリメータ</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>行から始まる値</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Y値</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>X値</value>
+  </data>
+  <data name="radioButton4.Text" xml:space="preserve">
+    <value>座標をドットとして処理</value>
+  </data>
+  <data name="radioButton3.Text" xml:space="preserve">
+    <value>座標を線で結ぶ</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>規模</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>カラム</value>
+  </data>
+  <data name="checkBox8.Text" xml:space="preserve">
+    <value>プロセスZも（ドットのみ）</value>
+  </data>
+  <data name="checkBox7.Text" xml:space="preserve">
+    <value>自動認識を試す</value>
+  </data>
+  <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
+    <value>パスごとにパスを繰り返す</value>
+  </data>
+  <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
+    <value>完全なコードを繰り返す</value>
+  </data>
+  <data name="gBHatchFill.Text" xml:space="preserve">
+    <value>閉じたパスを埋める</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
+    <value>エッジからのインセットフィル</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
+    <value>各パスの後で角度を変更する</value>
+  </data>
+  <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
+    <value>クロスハッチ</value>
+  </data>
+  <data name="lblHatchFill2.Text" xml:space="preserve">
+    <value>ライン角度</value>
+  </data>
+  <data name="lblHatchFill1.Text" xml:space="preserve">
+    <value>ライン距離</value>
+  </data>
+  <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
+    <value>ハッチ塗りつぶし</value>
+  </data>
+  <data name="lblDImportGCTangential4.Text" xml:space="preserve">
+    <value>偏差が&gt;の場合、正しい開始角度</value>
+  </data>
+  <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
+    <value>角度の変化がこの角度より大きい場合、単一の回転コマンドが挿入されます</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
+    <value>ナイフを上げる、回す、下げる前の角度の変化</value>
+  </data>
+  <data name="gBClipping.Text" xml:space="preserve">
+    <value>クリッピング/タイリング</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>クリッピング/タイリング寸法幅/高さ</value>
+  </data>
+  <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
+    <value>タイルのX次元</value>
+  </data>
+  <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
+    <value>タイルのX次元</value>
+  </data>
+  <data name="rBImportGraphicClip1.Text" xml:space="preserve">
+    <value>グラフィックをタイルに変換する</value>
+  </data>
+  <data name="rBImportGraphicClip0.Text" xml:space="preserve">
+    <value>左下のポイントX / Yでクリップ：</value>
+  </data>
+  <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
+    <value>結果</value>
+  </data>
+  <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
+    <value>タイルのY次元</value>
+  </data>
+  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
+    <value>タイルのX次元</value>
+  </data>
+  <data name="cBImportGraphicTile.Text" xml:space="preserve">
+    <value>クリッピングまたはタイリングを適用する</value>
+  </data>
+  <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
+    <value>グラフィック全体をタイルにカットして、個別にドレーヌします</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>タイルの前のGCode</value>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>次のタイルが処理される前に適用するGCode。
+例えば。 手動で用紙を移動する場合は「M0」で一時停止するか、「（^ 2 G91 X100）」で2番目のgrbl-controllerのXを移動して用紙を移動します。</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>クリッピング領域/タイルの原点を0に設定; 0</value>
+  </data>
+  <data name="rBImportSVGSort4.Text" xml:space="preserve">
+    <value>オブジェクトディメンションでグループを並べ替え-昇順</value>
+  </data>
+  <data name="tab1_1_4gB2.Text" xml:space="preserve">
+    <value>グループ化してTool-Nrを選択するプロパティ。 経由して</value>
+  </data>
+  <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
+    <value>レイヤーごとにグループ化（ツール名〜=レイヤー）</value>
+  </data>
+  <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
+    <value>グラフィックレイヤーでグループ化し、最適なツール名に従ってツール番号を選択します</value>
+  </data>
+  <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
+    <value>ペン幅でグループ化（ツール直径〜=ペン幅）</value>
+  </data>
+  <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
+    <value>ペン幅でグループ化し、最適な工具径に応じて工具番号を選択します</value>
+  </data>
+  <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
+    <value>ペンの色でグループ化（Tool-Color〜= pen-color）</value>
+  </data>
+  <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
+    <value>ペンの色でグループ化し、最適な工具の色に応じて工具番号を選択します</value>
+  </data>
+  <data name="tabPage26.Text" xml:space="preserve">
+    <value>プログラム制御</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>コードがマシンの寸法を超えた場合に通知を受け取る</value>
+  </data>
+  <data name="tabPage23.Text" xml:space="preserve">
+    <value>カスタムボタン</value>
+  </data>
+  <data name="tabPage24.Text" xml:space="preserve">
+    <value>ゲームパッド</value>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>編集者</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>エディターの行間</value>
+  </data>
+  <data name="tab1_1_4gB3.Text" xml:space="preserve">
+    <value>グループを並べ替える</value>
+  </data>
+  <data name="Column16.ToolTipText" xml:space="preserve">
+    <value>交換ポジションA</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>grbl接続</value>
+  </data>
+  <data name="tabPage25.Text" xml:space="preserve">
+    <value>フロー制御</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>マックス</value>
+  </data>
+  <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
+    <value>ペンの最大幅はこの深さに変換されますが、「Gコード生成」のZ-Height彫刻によって制限されます</value>
+  </data>
+  <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
+    <value>ペンの最小幅はこの深さに変換されます</value>
+  </data>
+  <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
+    <value>ペンの幅をZ値に変換します</value>
+  </data>
+  <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
+    <value>ペンの幅は、奥行きのZ値として処理されます。
+最大深度は、Z-Height彫刻によって制限されます。</value>
+  </data>
+  <data name="tab1_3gB8.Text" xml:space="preserve">
+    <value>閉じたパスのオーバーラップ</value>
+  </data>
+  <data name="lblPathModification.Text" xml:space="preserve">
+    <value>この変更により、「G2 / G3コマンドを回避」が有効になります</value>
+  </data>
+  <data name="cBDashedLine2.Text" xml:space="preserve">
+    <value>ペンアップのG0</value>
+  </data>
+  <data name="cBDashedLine2.ToolTip" xml:space="preserve">
+    <value>スムーズな動きのためのデフォルトはG1です。
+メカニックへのストレスが少ない</value>
+  </data>
+  <data name="cBDashedLine1.Text" xml:space="preserve">
+    <value>破線パターンの処理</value>
+  </data>
+  <data name="cBDashedLine1.ToolTip" xml:space="preserve">
+    <value>破線を実際のペンの上下に変換</value>
+  </data>
+  <data name="cBPathOverlapEnable.Text" xml:space="preserve">
+    <value>パスの重複</value>
+  </data>
+  <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
+    <value>閉じたパスを終了したら、最初から開始して、指定された距離を移動します。
+レーザーカッターに便利です。</value>
+  </data>
+  <data name="btnReloadSettings.Text" xml:space="preserve">
+    <value>すべての設定をデフォルトに設定</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Zを次の範囲に変換します。
+（「Z-Height engrave」を超えることはありません）</value>
+  </data>
+  <data name="gBCreateZValue.Text" xml:space="preserve">
+    <value>Z値を作成</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>雑多</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>特殊な</value>
+  </data>
+  <data name="cBShowStreamingProgress.Text" xml:space="preserve">
+    <value>2D-Viewでストリーミングの進行状況を表示する</value>
+  </data>
+  <data name="tab4gB5.Text" xml:space="preserve">
+    <value>Gコードのストリーミング中</value>
   </data>
 </root>

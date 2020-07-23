@@ -25,6 +25,7 @@
  * 2020-01-04 add labels to gamePad X,Y,Z,R track bars
  * 2020-02-07 add tangential axis
  * 2020-03-05 bug fix save gui2D colors
+ * 2020-07-23 hide logging
 */
 
 using System;
@@ -42,6 +43,9 @@ namespace GRBL_Plotter
 {
     public partial class ControlSetupForm : Form
     {
+        private Color inactive = Color.WhiteSmoke;
+        public bool settingsReloaded = false;
+
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
   //      private const string toolTableDefaultName = "current.csv";
@@ -108,12 +112,25 @@ namespace GRBL_Plotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
 
+//			rBimportGraphicClip0.Checked = Properties.Settings.Default.importGraphicClip;
+			rBImportGraphicClip1.Checked = !Properties.Settings.Default.importGraphicClip;
+
+
+            int group = Properties.Settings.Default.importGroupItem;
+            rBImportSVGGroupItem1.Checked = (group == 1);
+            rBImportSVGGroupItem2.Checked = (group == 2);
+            rBImportSVGGroupItem3.Checked = (group == 3);
+
             //if (cBImportSVGSort0.Checked)
             int sort = Properties.Settings.Default.importGroupSort;
             rBImportSVGSort0.Checked = (sort == 0);
             rBImportSVGSort1.Checked = (sort == 1);
             rBImportSVGSort2.Checked = (sort == 2);
             rBImportSVGSort3.Checked = (sort == 3);
+            rBImportSVGSort4.Checked = (sort == 4);
+
+            if (!Properties.Settings.Default.importRepeatComplete)
+                rBImportSVGRepeat2.Checked = true;
 
             if (Properties.Settings.Default.importGCSpindleCmd)
                 rBImportGCSpindleCmd1.Checked = true;
@@ -168,6 +185,18 @@ namespace GRBL_Plotter
             cBImportGCLineSegments_CheckedChanged(sender, e);
             cBImportGCNoArcs_CheckedChanged(sender, e);
             cBImportGCTangential_CheckStateChanged(sender, e);
+            cBImportGraphicHatchFill_CheckStateChanged(sender, e);
+            cBPathOverlapEnable_CheckStateChanged(sender, e);
+
+            uint val = Properties.Settings.Default.importLoggerSettings;
+            cBLog0.Checked = (val & (uint)LogEnable.Detailed) > 0;
+            cBLog1.Checked = (val & (uint)LogEnable.Coordinates) > 0;
+            cBLog2.Checked = (val & (uint)LogEnable.Properties) > 0;
+            cBLog3.Checked = (val & (uint)LogEnable.GroupAllGraphics) > 0;
+            cBLog4.Checked = (val & (uint)LogEnable.ClipCode) > 0;
+            cBLog5.Checked = (val & (uint)LogEnable.PathModification) > 0;
+            cBLog6.Checked = (val & (uint)LogEnable.graphic2gcode) > 0;
+
         }
 
         private void saveSettings()
@@ -436,16 +465,18 @@ namespace GRBL_Plotter
         private void ExportDgvToCSV(string file)
         {
 // fields: ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z - speed,Z - save,Z - depth,Z - step, spindleSpeed, overlap, gcode
-            int[] cellWidth  = {3,7,-20,5,5,5,4,4,5,4,4,5,6,4,1,1,1 };
+            int[] cellWidth  = {3,7,-20,5,5,5,5,4,4,5,4,4,5,6,4,1,1,1, 1, 1, 1 };
             string format = "{0,2}";
             var csv = new StringBuilder();
-            csv.AppendLine("# T-Nr; Color; T-Name; ExPosX; ExPosY; ExPosZ; T-Diameter; XY-Feed; Z-Feed; Z-Save; Z-Deepth; Z-Step; Spindle-Spd; Step-over %, GCode");
+            csv.AppendLine("# T-Nr; Color; T-Name; ExPosX; ExPosY; ExPosZ; ExPosA; T-Diameter; XY-Feed; Z-Feed; Z-Save; Z-Deepth; Z-Step; Spindle-Spd; Step-over %, GCode");
             foreach (DataGridViewRow dgvR in dGVToolList.Rows)
             {
+    //            Logger.Trace("ExportDgvToCSV row {0}", dgvR.ToString());
                 bool firstColumn = true;
                 if (dgvR.Cells[0].Value != null)
                 {   for (int j = 0; j < dGVToolList.Columns.Count; ++j)
                     {   object val = dgvR.Cells[j].Value;
+          //              Logger.Trace("ExportDgvToCSV cell {0} {1}   {2}", j, val, cellWidth[j].ToString());
                         if (!firstColumn)
                             csv.Append(',');                            // csv delimiter
                         if (val == null)
@@ -723,6 +754,16 @@ namespace GRBL_Plotter
 
         private void highlight_PenOptions_Click(object sender, EventArgs e)
         {
+            if (cBDashedLine1.Checked)
+            {   cBDashedLine1.BackColor = cBDashedLine2.BackColor = Color.Yellow; }
+            else
+            {   cBDashedLine1.BackColor = cBDashedLine2.BackColor = Color.Transparent; }
+
+            if (cBImportPenWidthToZ.Checked)
+                cBImportPenWidthToZ.BackColor = Color.Yellow;
+            else
+                cBImportPenWidthToZ.BackColor = Color.Transparent;
+
             if (cBImportSVGNodesOnly.Checked)
                 cBImportSVGNodesOnly.BackColor = Color.Yellow;
             else
@@ -741,22 +782,22 @@ namespace GRBL_Plotter
             if (cBImportGCUseZ.Checked)
                 tab1_2gB3.BackColor = Color.Yellow;
             else
-                tab1_2gB3.BackColor = Color.Transparent;
+                tab1_2gB3.BackColor = inactive;
 
             if (cBImportGCUsePWM.Checked)
                 tab1_2gB4.BackColor = Color.Yellow;
             else
-                tab1_2gB4.BackColor = Color.Transparent;
+                tab1_2gB4.BackColor = inactive;
 
             if (cBImportGCUseSpindle.Checked)
                 tab1_2gB5.BackColor = Color.Yellow;
             else
-                tab1_2gB5.BackColor = Color.Transparent;
+                tab1_2gB5.BackColor = inactive;
 
             if (cBImportGCUseIndividual.Checked)
                 tab1_2gB6.BackColor = Color.Yellow;
             else
-                tab1_2gB6.BackColor = Color.Transparent;
+                tab1_2gB6.BackColor = inactive;
 
             if(cBImportGCNoArcs.Checked)
                 cBImportGCNoArcs.BackColor = Color.Yellow;
@@ -766,7 +807,7 @@ namespace GRBL_Plotter
             if (cBImportGCDragKnife.Checked)
                 tab1_3gB2.BackColor = Color.Yellow;
             else
-                tab1_3gB2.BackColor = Color.Transparent;
+                tab1_3gB2.BackColor = inactive;
 
             if (cBImportGCTangential.Checked)
             {   tab1_3gB5.BackColor = Color.Yellow;
@@ -776,7 +817,13 @@ namespace GRBL_Plotter
 				}
 			}
             else
-                tab1_3gB5.BackColor = Color.Transparent;
+                tab1_3gB5.BackColor = inactive;
+
+            if (cBImportGraphicHatchFill.Checked)
+                gBHatchFill.BackColor = Color.Yellow;
+            else
+                gBHatchFill.BackColor = inactive;
+
         }
 
         private void btnFileDialogTT1_Click(object sender, EventArgs e)
@@ -845,7 +892,7 @@ namespace GRBL_Plotter
         private void ControlSetupForm_SizeChanged(object sender, EventArgs e)
         {
             int y = Height;
-            tabControl1.Height = y - 64;
+            tabControl_Level1.Height = y - 64;
             btnApplyChangings.Top = y - 64;
             gBToolChange.Height = y - 98;
             tab2gB2.Height = y - 192;
@@ -922,6 +969,14 @@ namespace GRBL_Plotter
             }
         }
 
+        private void rBImportSVGGroupItem0_CheckedChanged(object sender, EventArgs e)
+        {
+            int group = Properties.Settings.Default.importGroupItem;
+            if (rBImportSVGGroupItem1.Checked) Properties.Settings.Default.importGroupItem = 1;
+            if (rBImportSVGGroupItem2.Checked) Properties.Settings.Default.importGroupItem = 2;
+            if (rBImportSVGGroupItem3.Checked) Properties.Settings.Default.importGroupItem = 3;
+        }
+
         private void rBImportSVGSort0_CheckedChanged(object sender, EventArgs e)
         {
             if (rBImportSVGSort0.Checked)
@@ -932,6 +987,8 @@ namespace GRBL_Plotter
                 Properties.Settings.Default.importGroupSort = 2;
             if (rBImportSVGSort3.Checked)
                 Properties.Settings.Default.importGroupSort = 3;
+            if (rBImportSVGSort4.Checked)
+                Properties.Settings.Default.importGroupSort = 4;
         }
 
         private void dGVToolList_SelectionChanged(object sender, EventArgs e)
@@ -990,12 +1047,14 @@ namespace GRBL_Plotter
 
         private void cBImportSVGGroup_CheckedChanged(object sender, EventArgs e)
         {   bool enable = cBImportSVGGroup.Checked;
-            cBImportSVGGroupColor.Enabled = enable;
+            tab1_1_4gB2.Enabled = enable;
+            tab1_1_4gB3.Enabled = enable;
+         /*   cBImportSVGGroupColor.Enabled = enable;
             rBImportSVGSort0.Enabled = enable;
             rBImportSVGSort1.Enabled = enable;
             rBImportSVGSort2.Enabled = enable;
             rBImportSVGSort3.Enabled = enable;
-            cBImportSVGSortInvert.Enabled = enable;
+            cBImportSVGSortInvert.Enabled = enable;*/
         }
 
         private void cBToolTableUse_CheckedChanged(object sender, EventArgs e)
@@ -1006,6 +1065,10 @@ namespace GRBL_Plotter
             cBImportGCTTZAxis.Enabled = (enable && cBImportGCUseZ.Checked);
       //      cBImportGCTTZIncrement.Enabled = (enable && cBImportGCUseZ.Checked && cBImportGCZIncEnable.Checked);
             checkVisibility();
+            if (cBToolTableUse.Checked)
+                tab1_1gB5.BackColor = Color.Yellow;
+            else
+                tab1_1gB5.BackColor = Color.WhiteSmoke;
         }
 
         private void cBImportSVGResize_CheckedChanged(object sender, EventArgs e)
@@ -1093,7 +1156,7 @@ namespace GRBL_Plotter
 
         private void cBImportGCNoArcs_CheckedChanged(object sender, EventArgs e)
         {
-            nUDImportGCSegment.Enabled = cBImportGCNoArcs.Checked;
+//            nUDImportGCSegment.Enabled = cBImportGCNoArcs.Checked;
             highlight_PenOptions_Click(sender, e);
         }
 
@@ -1173,7 +1236,7 @@ namespace GRBL_Plotter
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool show = (tabControl1.SelectedIndex == 0);
+            bool show = (tabControl_Level1.SelectedIndex == 0);
             btnReloadFile.Visible = show;
             cBshowImportDialog.Visible = show;
         }
@@ -1184,8 +1247,10 @@ namespace GRBL_Plotter
             lblDImportGCTangential1.Enabled = enable;
             lblDImportGCTangential2.Enabled = enable;
             lblDImportGCTangential3.Enabled = enable;
+            lblDImportGCTangential4.Enabled = enable;
             cBoxImportGCTangentialName.Enabled = enable;
             nUDImportGCTangentialSwivel.Enabled = enable;
+            nUDImportGCTangentialSwivel2.Enabled = enable;
             nUDImportGCTangentialUnits.Enabled = enable;
             cBImportGCTangentialRange.Enabled = enable;
             if (cBImportGCTangentialRange.Checked && enable)
@@ -1196,6 +1261,76 @@ namespace GRBL_Plotter
         {   if (cBImportGCTangentialRange.Checked)
             {   cBImportGCNoArcs.Checked = true;   }
             highlight_PenOptions_Click(sender, e);
+        }
+        private void cBImportGraphicHatchFill_CheckStateChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGraphicHatchFill.Checked;
+            lblHatchFill1.Enabled = enable;
+            lblHatchFill2.Enabled = enable;
+            cBImportGraphicHatchFillCross.Enabled = enable;
+            cBImportGraphicHatchFillChangeAngle.Enabled = enable;
+            nUDHatchFillAngle.Enabled = enable;
+            nUDHatchFillAngle2.Enabled = enable;
+            nUDHatchFillDist.Enabled = enable;
+            cBImportGraphicHatchFillInset.Enabled = enable;
+            nUDHatchFillInset.Enabled = enable;
+
+            if (enable)
+            { cBImportGCNoArcs.Checked = true; }
+            highlight_PenOptions_Click(sender, e);
+        }
+
+        private void cBLog1_CheckedChanged(object sender, EventArgs e)
+        {
+            uint val = 0;
+            val += cBLog0.Checked ? (uint)LogEnable.Detailed : 0;
+            val += cBLog1.Checked ? (uint)LogEnable.Coordinates : 0;
+            val += cBLog2.Checked ? (uint)LogEnable.Properties : 0;
+            val += cBLog3.Checked ? (uint)LogEnable.GroupAllGraphics : 0;
+            val += cBLog4.Checked ? (uint)LogEnable.ClipCode : 0;
+            val += cBLog5.Checked ? (uint)LogEnable.PathModification : 0;
+            val += cBLog6.Checked ? (uint)LogEnable.graphic2gcode : 0;
+
+            Properties.Settings.Default.importLoggerSettings = val;
+        }
+
+        private void cBExtendedLogging_CheckStateChanged(object sender, EventArgs e)
+        {
+            gBLoggingOptions.Visible = cBExtendedLogging.Checked;
+        }
+
+        private void cBImportGraphicTile_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBImportGraphicTile.Checked)
+                gBClipping.BackColor = Color.Yellow;
+            else
+                gBClipping.BackColor = Color.WhiteSmoke;
+        }
+
+        private void cBPathOverlapEnable_CheckStateChanged(object sender, EventArgs e)
+        {
+            bool enable = cBPathOverlapEnable.Checked;
+            nUDPathOverlapValue.Enabled = enable;
+            if (enable)
+                tab1_3gB8.BackColor = Color.Yellow;
+            else
+                tab1_3gB8.BackColor = Color.WhiteSmoke;
+
+        }
+
+        private void btnReloadSettings_Click(object sender, EventArgs e)
+        {	settingsReloaded = true;
+            Logger.Info("+++++ Set default settings +++++");
+            Properties.Settings.Default.Reset();
+            Properties.Settings.Default.ctrlUpgradeRequired = false;
+            saveSettings();
+            SetupForm_Load(sender, e);
+            btnApplyChangings.PerformClick();
+        }
+
+        private void lblEnableLogging_Click(object sender, EventArgs e)
+        {
+            groupBox3.Visible = true;
         }
     }
 }

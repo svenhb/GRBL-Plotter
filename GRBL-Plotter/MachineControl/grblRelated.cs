@@ -534,17 +534,21 @@ namespace GRBL_Plotter
     public class StreamEventArgs : EventArgs
     {
         private float codeFinish, buffFinish;
-        private int codeLine;
+        private int codeLineSent;
+        private int codeLineConfirmed;
         private grblStreaming status;
-        public StreamEventArgs(int c1, float a1, float a2, grblStreaming stat)
+        public StreamEventArgs(int c1, int c2, float a1, float a2, grblStreaming stat)
         {
-            codeLine = c1;
+            codeLineSent = c1;
+            codeLineConfirmed = c2;
             codeFinish = a1;
             buffFinish = a2;
             status = stat;
         }
-        public int CodeLine
-        { get { return codeLine; } }
+        public int CodeLineSent
+        { get { return codeLineSent; } }
+        public int CodeLineConfirmed
+        { get { return codeLineConfirmed; } }
         public float CodeProgress
         { get { return codeFinish; } }
         public float BuffProgress

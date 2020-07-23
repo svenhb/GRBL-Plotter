@@ -162,10 +162,6 @@ wähle Eigenschaften auf dem nächsten Tab.</value>
     <value>Gruppiere Objekte gleicher Farbe = gleiches Werkzeug</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="nUDImportDXFStepWidth.ToolTip" xml:space="preserve">
-    <value>Schrittweite am Umfang des Bogens</value>
-    <comment>TabPage1_1</comment>
-  </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
     <value>Weiß als Schwarz verarbeiten</value>
     <comment>TabPage1_1</comment>
@@ -182,24 +178,6 @@ Beim Plotten soll es aber ein schwarzer Stift sein...</value>
   <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
     <value>Das DXF Format nutzt einen Farbindex von 0 bis 255, 
 dieser Index wird als Werkzeugnummer verwendet.</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox6.Text" xml:space="preserve">
-    <value>G0 bei Stift hoch</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox6.ToolTip" xml:space="preserve">
-    <value>Standard ist G1 für eine gleichmäßige Bewegung,
-weniger Stress für die Mechanik</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Gestrichelte Linien verarbeiten</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="checkBox5.ToolTip" xml:space="preserve">
-    <value>Konvertiere gestrichelte Linien in echte Stift hoch/runter Befehle
-</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
@@ -300,15 +278,6 @@ dann füge Knoten hinzu via 'Erweiterungen - Pfad modifizieren - Knoten hinzufü
   </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>Es wird versucht die Grafik auf die gewünschte Größe zu skalieren</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="cBImportSVGPath.Text" xml:space="preserve">
-    <value>Pfad Überlappung</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="cBImportSVGPath.ToolTip" xml:space="preserve">
-    <value>Nach Abschluß des Pfades (anfahren der ersten Koordinate) wird auch noch die zweite Koordinate angefahren
-Diese Einstellung ist für Schneidmesser gedacht</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tabPage9.Text" xml:space="preserve">
@@ -515,7 +484,8 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
-    <value>Winkelschrittweite</value>
+    <value>Schrittweite am Umfang des Bogens.
+Wenn der Wert&gt; Bogenradius ist, wird der Wert automatisch verringert.</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCSubFirst.Text" xml:space="preserve">
@@ -1085,10 +1055,6 @@ Zweiter Versuch auf svenhb.bplaced.net </value>
     <value>Kreis</value>
     <comment>TabPage10</comment>
   </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>Formenerkennung</value>
-    <comment>TabPage10</comment>
-  </data>
   <data name="btnApplyChangings.Text" xml:space="preserve">
     <value>Änderungen übernehmen</value>
     <comment>TabPage0</comment>
@@ -1176,10 +1142,6 @@ Andere Einstellungen werden normalerweise beim Ändern gespeichert.</value>
   </data>
   <data name="tab1_1gB4.Text" xml:space="preserve">
     <value>Gruppieren und Sortieren von Objekten</value>
-    <comment>TabPage1_1</comment>
-  </data>
-  <data name="tab1_1lbl4.Text" xml:space="preserve">
-    <value>Schrittweite am Umfang des Bogens</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1gB1.Text" xml:space="preserve">
@@ -1736,9 +1698,6 @@ Die Z-Achse wird nach unten verschoben</value>
   <data name="tab1_2lbl31.Text" xml:space="preserve">
     <value>Z Vorschub</value>
   </data>
-  <data name="cBImportSVGGroupColor.Text" xml:space="preserve">
-    <value>Gruppieren nach Farbe / nach Ebene</value>
-  </data>
   <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
     <value>Werkzeugwinkel auf &gt; = 0 °, &lt;360 ° begrenzen</value>
   </data>
@@ -1746,11 +1705,8 @@ Die Z-Achse wird nach unten verschoben</value>
     <value>Verwenden Sie diese Option, um Winkel unter 0 ° und über 360 ° zu vermeiden.
 Funktioniert nicht mit G2 / 3 - aktiviere 'G2 / 3-Befehle vermeiden'</value>
   </data>
-  <data name="tab1_1gB21.Text" xml:space="preserve">
-    <value>Spezieller Anwendungsfall</value>
-  </data>
   <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
-    <value>Konvertiert Kreisradius in Punkttiefe</value>
+    <value>Konvertiert die Mitte des Kreises in einen Punkt (zum Bohren).</value>
   </data>
   <data name="nUDSimulation.ToolTip" xml:space="preserve">
     <value>Stiftbreite</value>
@@ -1763,5 +1719,299 @@ Funktioniert nicht mit G2 / 3 - aktiviere 'G2 / 3-Befehle vermeiden'</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Erstellt Punktzeichnungen und „TSP-Grafiken“ aus Bilddateien.</value>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
+    <value>Konvertiert den Kreisradius in Punkttiefe</value>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
+    <value>Die Tiefe ist auf die Gravur "Z-Höhe" begrenzt.
+Idee: Verwendung eines Senkers, um den Kreisadurchmesser festzulegen</value>
+  </data>
+  <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
+    <value>Verwenden Sie einen Bohrer, um die Kreismitte mit der Tiefe der Gravur "Z-Höhe" zu markieren</value>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
+    <value>Versetzt den Grafikursprung auf 0; 0</value>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
+    <value>Setzt den unteren linken Rand der importierten Grafik auf die xy-Koordinate 0; 0</value>
+  </data>
+  <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
+    <value>Sortiert die Objekte nach kürzesten Verbindungen und führt sie zusammen</value>
+  </data>
+  <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
+    <value>Objekte werden nach dem nächstgelegenen Abstand zwischen Start- und Endkoordinaten sortiert, und falls von Vorteil, wird der Pfad der Objekte umgekehrt.
+Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
+  </data>
+  <data name="tabPage16.Text" xml:space="preserve">
+    <value>Formatbezogen</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Pfadinterpretation</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Pfadwiederholung (für schwachen Laser)</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>G-Code Aussehen</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Ablaufsteuerung</value>
+  </data>
+  <data name="tab1_1_2lbl2.Text" xml:space="preserve">
+    <value>Abstand als gleich anzunehmen</value>
+  </data>
+  <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
+    <value>Kleine Lücken werden geschlossen</value>
+  </data>
+  <data name="tabPage17.Text" xml:space="preserve">
+    <value>Allgemeine Optionen</value>
+  </data>
+  <data name="tabPage20.Text" xml:space="preserve">
+    <value>Pfadänderungen</value>
+  </data>
+  <data name="tabPage18.Text" xml:space="preserve">
+    <value>Ausschnitt</value>
+  </data>
+  <data name="tabPage19.Text" xml:space="preserve">
+    <value>Gruppierung und Tools</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Programmverhalten</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Programmauftritt</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>WWW-Links</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>CSV-Import (* .csv, * .dat)</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Delimeter</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Werte ab Zeile</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Y-Wert</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>X-Wert</value>
+  </data>
+  <data name="radioButton4.Text" xml:space="preserve">
+    <value>Prozesskoordinaten als Punkte</value>
+  </data>
+  <data name="radioButton3.Text" xml:space="preserve">
+    <value>Koordinaten mit Linien verbinden</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Rahmen</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Säule</value>
+  </data>
+  <data name="checkBox8.Text" xml:space="preserve">
+    <value>Prozess Z auch (nur Punkt)</value>
+  </data>
+  <data name="checkBox7.Text" xml:space="preserve">
+    <value>Versuchen Sie die automatische Erkennung</value>
+  </data>
+  <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
+    <value>Wiederholt Pfad für Pfad</value>
+  </data>
+  <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
+    <value>Wiederholt den vollständigen Code</value>
+  </data>
+  <data name="gBHatchFill.Text" xml:space="preserve">
+    <value>Füllt geschlossene Pfade</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
+    <value>Einrückung an Kanten um</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
+    <value>Ändern den Winkel nach jedem Pfad um</value>
+  </data>
+  <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
+    <value>Kreuzschraffur</value>
+  </data>
+  <data name="lblHatchFill2.Text" xml:space="preserve">
+    <value>Linienwinkel</value>
+  </data>
+  <data name="lblHatchFill1.Text" xml:space="preserve">
+    <value>Linienabstand</value>
+  </data>
+  <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
+    <value>Schraffurfüllung</value>
+  </data>
+  <data name="lblDImportGCTangential4.Text" xml:space="preserve">
+    <value>Korrigiert den Startwinkel, wenn die Abweichung &gt;</value>
+  </data>
+  <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
+    <value>Wenn die Winkeländerung größer als dieser Winkel ist, wird ein einzelner Drehbefehl eingefügt</value>
+  </data>
+  <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
+    <value>Winkeländerung, bevor das Messer angehoben, gedreht und abgesenkt wird</value>
+  </data>
+  <data name="gBClipping.Text" xml:space="preserve">
+    <value>Ausschnitt / Fliesen</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Schnitt- / Fliesenabmessung Breite / Höhe</value>
+  </data>
+  <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
+    <value>X-Dimension der Fliese</value>
+  </data>
+  <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
+    <value>X-Dimension der Fliese</value>
+  </data>
+  <data name="rBImportGraphicClip1.Text" xml:space="preserve">
+    <value>Konvertieren Sie Grafiken in Kacheln</value>
+  </data>
+  <data name="rBImportGraphicClip0.Text" xml:space="preserve">
+    <value>Clipp am unteren linken Punkt X / Y:</value>
+  </data>
+  <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
+    <value>Ergebnis</value>
+  </data>
+  <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
+    <value>Y-Dimension der Fliese</value>
+  </data>
+  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
+    <value>X-Dimension der Fliese</value>
+  </data>
+  <data name="cBImportGraphicTile.Text" xml:space="preserve">
+    <value>Clipping oder Fliesen anwenden</value>
+  </data>
+  <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
+    <value>Schneiden Sie die gesamte Grafik in Kacheln, um sie separat zu entleeren</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>GCode vor der Fliese</value>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>Der vor der nächsten Kachel anzuwendende GCode wird verarbeitet.
+Z.B. 'M0' zum Anhalten für manuelles Verschieben von Papier oder '(^ 2 G91 X100)' zum Verschieben von X des 2. Grbl-Controllers zum Verschieben von Papier.</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>Setzt den Ursprung der abgeschnittenen Region / Kacheln auf 0; 0</value>
+  </data>
+  <data name="rBImportSVGSort4.Text" xml:space="preserve">
+    <value>Gruppen nach Objektdimension sortieren - aufsteigend</value>
+  </data>
+  <data name="tab1_1_4gB2.Text" xml:space="preserve">
+    <value>Eigenschaft zum Gruppieren und Auswählen von Tool-Nr. über</value>
+  </data>
+  <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
+    <value>Gruppieren nach Ebene (Werkzeugname ~ = Ebene)</value>
+  </data>
+  <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
+    <value>Gruppieren Sie nach Grafikebenen und wählen Sie die Werkzeugnummer entsprechend dem am besten geeigneten Werkzeugnamen aus</value>
+  </data>
+  <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
+    <value>Gruppieren nach Stiftbreite (Werkzeugdurchmesser ~ = Stiftbreite)</value>
+  </data>
+  <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
+    <value>Gruppieren Sie nach Stiftbreite und wählen Sie die Werkzeugnummer entsprechend dem am besten geeigneten Werkzeugdurchmesser aus</value>
+  </data>
+  <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
+    <value>Gruppieren nach Stiftfarbe (Werkzeugfarbe ~ = Stiftfarbe)</value>
+  </data>
+  <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
+    <value>Gruppieren Sie nach Stiftfarbe und wählen Sie die Werkzeugnummer entsprechend der am besten geeigneten Werkzeugfarbe aus</value>
+  </data>
+  <data name="tabPage26.Text" xml:space="preserve">
+    <value>Programmsteuerung</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Benachrichtigung erhalten, wenn der Code die Maschinenabmessungen überschreitet</value>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>2D-Ansicht / Editor</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Zeilenabstand des Editors</value>
+  </data>
+  <data name="tab1_1_4gB3.Text" xml:space="preserve">
+    <value>Gruppen sortieren</value>
+  </data>
+  <data name="Column16.ToolTipText" xml:space="preserve">
+    <value>Wechselposition A</value>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>grbl verbindung</value>
+  </data>
+  <data name="tabPage25.Text" xml:space="preserve">
+    <value>Ablaufsteuerung</value>
+  </data>
+  <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
+    <value>Die breiteste Stiftbreite wird in diese Tiefe übersetzt - jedoch begrenzt durch die Z-Höhe-Gravur in der 'G-Code-Generierung'.</value>
+  </data>
+  <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
+    <value>Die kleinste Stiftbreite wird in diese Tiefe übersetzt</value>
+  </data>
+  <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
+    <value>Übersetzen Sie die Stiftbreite in den Z-Wert</value>
+  </data>
+  <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
+    <value>Die Stiftbreite wird als Z-Wert für die Tiefe verarbeitet.
+Die maximale Tiefe wird durch die Gravur in Z-Höhe begrenzt.</value>
+  </data>
+  <data name="tab1_3gB8.Text" xml:space="preserve">
+    <value>Überlappung geschlossener Pfade</value>
+  </data>
+  <data name="lblPathModification.Text" xml:space="preserve">
+    <value>Jede dieser Änderungen aktiviert "Vermeiden Sie G2 / G3-Befehle".</value>
+  </data>
+  <data name="cBDashedLine2.ToolTip" xml:space="preserve">
+    <value>Standard ist G1 für eine reibungslose Bewegung,
+weniger Stress für die Mechanik</value>
+  </data>
+  <data name="cBDashedLine1.Text" xml:space="preserve">
+    <value>Gestricheltes Linienmuster verarbeiten</value>
+  </data>
+  <data name="cBDashedLine1.ToolTip" xml:space="preserve">
+    <value>Konvertieren Sie die gestrichelte Linie in echte Stift-Auf / Ab</value>
+  </data>
+  <data name="cBPathOverlapEnable.Text" xml:space="preserve">
+    <value>Pfadüberlappung</value>
+  </data>
+  <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
+    <value>Beginnen Sie nach Beendigung eines geschlossenen Pfades am Anfang und bewegen Sie sich für eine bestimmte Strecke.
+Nützlich für Laserschneider.</value>
+  </data>
+  <data name="btnReloadSettings.Text" xml:space="preserve">
+    <value>Stellt alle Einstellungen auf Standard ein</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Übersetzt Z in den Bereich von:
+('Gravur in Z-Höhe' wird nicht überschritten)</value>
+  </data>
+  <data name="gBCreateZValue.Text" xml:space="preserve">
+    <value>Erzeuge Z-Wert</value>
+  </data>
+  <data name="cBDashedLine2.Text" xml:space="preserve">
+    <value>G0 wenn Stift oben</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Schrittweite am Umfang</value>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Verschiedenes</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Spezial</value>
+  </data>
+  <data name="cBShowStreamingProgress.Text" xml:space="preserve">
+    <value>Streaming-Fortschritt in 2D-Ansicht anzeigen</value>
+  </data>
+  <data name="tab4gB5.Text" xml:space="preserve">
+    <value>Während des Streamings von G-Code</value>
   </data>
 </root>

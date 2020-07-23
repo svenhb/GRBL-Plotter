@@ -371,6 +371,11 @@ namespace GRBL_Plotter
         public static double distancePointToPoint(System.Windows.Point a, System.Windows.Point b)
         {   return Math.Sqrt(((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y)));        }
 
+        public static ArcProperties getArcMoveProperties(System.Windows.Point pOld, System.Windows.Point pNew, System.Windows.Point centerIJ, bool isG2)
+        { return getArcMoveProperties(new xyPoint(pOld), new xyPoint(pNew), centerIJ.X, centerIJ.Y, isG2); }
+        public static ArcProperties getArcMoveProperties(xyPoint pOld, xyPoint pNew, xyPoint center, bool isG2)
+        {   return getArcMoveProperties(pOld, pNew, pOld.X - center.X, pOld.Y - center.Y, isG2);}
+
         public static ArcProperties getArcMoveProperties(xyPoint pOld, xyPoint pNew, double? I, double? J, bool isG2)
         {
             ArcProperties tmp = getArcMoveAngle(pOld, pNew, I, J);
