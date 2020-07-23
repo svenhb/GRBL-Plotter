@@ -19,6 +19,7 @@
 /*
  * 2019-10-27 add logger
  * 2019-12-07 send some user info in line 56
+ * 2020-05-06 add Logger.Info
 */
 
 using System;
@@ -32,15 +33,18 @@ namespace GRBL_Plotter
 {
     class checkUpdate
     {
+		private enum counterType {import, usage};
+		
         private static bool showAny = false;
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public static void CheckVersion(bool showAnyResult=false)
         {
+            Logger.Info("CheckVersion");
             showAny = showAnyResult;
-            if (Properties.Settings.Default.guiCheckUpdate)
-                System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(checkUpdate.AsyncCheckVersion));
+//            if (Properties.Settings.Default.guiCheckUpdate)
+            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(checkUpdate.AsyncCheckVersion));
         }
 
         private static void AsyncCheckVersion(object foo)
@@ -58,13 +62,47 @@ namespace GRBL_Plotter
                     get += "&hwid=" + getID();
                     get += "&langset=" + Properties.Settings.Default.guiLanguage; // add next get with &
                     get += "&langori=" + ci.Name;
+					get += "&import=" + getCounters(counterType.import);
+					get += "&usage=" + getCounters(counterType.usage);
                     CheckSite2(@"http://svenhb.bplaced.net/GRBL-Plotter.php"+get);   // get Version-Nr and count individual ip to get an idea of amount of users
                 }
                 catch (Exception ex)
                 { Logger.Error(ex, "AsyncCheckVersion - CheckSite2"); }
             }
         }
-
+		private static string getCounters(counterType type)
+		{	try
+            {
+				if (type == counterType.import)
+				{	uint gcode = Properties.Settings.Default.counterImportGCode;
+					uint svg = Properties.Settings.Default.counterImportSVG;
+					uint dxf = Properties.Settings.Default.counterImportDXF;
+					uint hpgl =Properties.Settings.Default.counterImportHPGL;
+					uint csv = Properties.Settings.Default.counterImportCSV;
+					uint drill =Properties.Settings.Default.counterImportDrill;
+					uint image =Properties.Settings.Default.counterImportImage;
+					uint barcode=Properties.Settings.Default.counterImportBarcode;
+					uint text = Properties.Settings.Default.counterImportText;
+					uint shape = Properties.Settings.Default.counterImportShape;
+					uint extension = Properties.Settings.Default.counterImportExtension;
+					string tmp = string.Format("{0}-{1}-{2}-{3}-{4}-{5}_",gcode,svg,dxf,hpgl,csv,drill);
+					tmp += string.Format("{0}-{1}-{2}-{3}-{4}",image,barcode,text,shape,extension);
+					Logger.Trace(" getCounters import {0}",tmp);
+					return tmp;
+				}
+				else if (type == counterType.usage)
+				{	uint laser = Properties.Settings.Default.counterUseLaserSetup;
+					uint probe = Properties.Settings.Default.counterUseProbing;
+					uint height = Properties.Settings.Default.counterUseHeightMap;
+					string tmp = string.Format("{0}-{1}-{2}",laser, probe, height);
+					Logger.Trace(" getCounters usage {0}",tmp);
+					return tmp;
+				}
+			}
+			catch (Exception ex)
+			{ Logger.Error(ex, " getCounters"); }
+			return "0";
+		}
         // Suddenly it was not possible anymore to get latest version from here (@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest"); 
         // workarround: put file 'GRBL-Plotter.txt' with actual version on own server
 

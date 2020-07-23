@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>6</ApplicationRevision>
-    <ApplicationVersion>1.3.4.6</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.5.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -116,6 +116,9 @@
       <HintPath>DLLs\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="QRCoder">
+      <HintPath>DLLs\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX">
       <HintPath>DLLs\SharpDX.dll</HintPath>
     </Reference>
@@ -145,23 +148,37 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GCodeCreation\CreateFromForm\BarcodeLib.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\BarcodeLibSymbologies.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeForBarcode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeForBarcode.Designer.cs">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCodeCreation\graphicClasses.cs" />
+    <Compile Include="GCodeCreation\graphicRelatedHatchFill.cs" />
+    <Compile Include="GCodeCreation\graphicRelatedTangential.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromCSV.cs" />
+    <Compile Include="GCodeCreation\graphicRelated.cs" />
+    <Compile Include="GCodeCreation\xmlMarker.cs" />
     <Compile Include="GUI\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeCreation\AForge_Imaging_Filter_HueShift.cs" />
-    <Compile Include="GCodeCreation\AForge_Imaging_Filter_RemoveArtefact.cs" />
-    <Compile Include="GCodeCreation\GCodeFormFontHershey.cs" />
-    <Compile Include="GCodeCreation\GCodeFromFont.cs" />
-    <Compile Include="GCodeCreation\GCodeFromHPGL.cs" />
-    <Compile Include="GCodeCreation\GCodeFromImageCreate.cs">
+    <Compile Include="GCodeCreation\CreateFromForm\AForge_Imaging_Filter_HueShift.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\AForge_Imaging_Filter_RemoveArtefact.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromFontHershey.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromFont.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromHPGL.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageCreate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeCreation\GCodeFromImageOutline.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageOutline.cs" />
     <Compile Include="GCodeCreation\importMath.cs" />
-    <Compile Include="GCodeCreation\plotterRelated.cs" />
+    <Compile Include="GCodeCreation\graphic2GCode.cs" />
     <Compile Include="GUI\MainFormGamePad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,7 +230,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainFormObjects.cs" />
-    <Compile Include="GCodeCreation\GCodeFromDrill.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromDrill.cs" />
     <Compile Include="MachineControl\ControlCameraForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,15 +250,15 @@
     <Compile Include="MachineControl\ControlHeightMap.Designer.cs">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeCreation\GCodeFromDXF.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromDXF.cs" />
     <Compile Include="GCodeCreation\gcodeRelated.cs" />
     <Compile Include="MachineControl\grblRelated.cs" />
     <Compile Include="MachineControl\IniFile.cs" />
     <Compile Include="MachineControl\GCodeVisuAndTransform.cs" />
-    <Compile Include="GCodeCreation\GCodeFromImage.cs">
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeCreation\GCodeFromImage.Designer.cs">
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImage.Designer.cs">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\MainForm.cs">
@@ -273,6 +290,11 @@
     <Compile Include="MachineControl\ControlSerialForm.Designer.cs">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="MachineControl\ControlSetupForm.cs">
       <SubType>Form</SubType>
@@ -293,17 +315,17 @@
       <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="GCodeCreation\toolTable.cs" />
-    <Compile Include="GCodeCreation\GCodeFromSVG.cs" />
-    <Compile Include="GCodeCreation\GCodeFromText.cs">
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromSVG.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromText.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeCreation\GCodeFromText.Designer.cs">
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromText.Designer.cs">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeCreation\GCodeFromShape.cs">
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromShape.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeCreation\GCodeFromShape.Designer.cs">
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromShape.Designer.cs">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </Compile>
     <Compile Include="checkUpdate.cs" />
@@ -351,11 +373,17 @@
     <Content Include="data\scripts\script_move_arround_dimension.nc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\tools\test_layer.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\qrcode.png" />
+    <None Include="Resources\logo.png" />
     <None Include="Resources\tlOn.png" />
     <None Include="Resources\cfOff1.png" />
     <None Include="Resources\cfOff2.png" />
     <None Include="Resources\cfOn1.png" />
     <None Include="Resources\cfOn2.png" />
+    <None Include="Resources\barcode.png" />
     <Content Include="Resources\efOff1.png" />
     <Content Include="Resources\efOff2.png" />
     <Content Include="Resources\efOff3.png" />
@@ -374,6 +402,33 @@
     <Content Include="Resources\efOn7.png" />
     <Content Include="Resources\efOn8.png" />
     <Content Include="Resources\efOn9.png" />
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.ar.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.de-DE.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.es.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.fr.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.ja.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.pt.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.ru.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.zh-CN.resx">
+      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.ar.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -401,67 +456,67 @@
     <EmbeddedResource Include="GUI\AboutForm.zh-CN.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.ar.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.ar.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.es.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.es.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.fr.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.fr.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.ja.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.ja.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.pt.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.pt.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.ru.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.ru.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.zh-CN.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.zh-CN.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.ar.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.ar.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.es.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.es.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.fr.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.fr.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.ja.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.ja.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.pt.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.pt.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.ru.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.ru.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.zh-CN.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.zh-CN.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.ar.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.ar.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.es.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.es.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.fr.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.fr.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.ja.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.ja.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.pt.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.pt.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.ru.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.ru.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.zh-CN.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.zh-CN.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\splashscreen.resx">
@@ -670,16 +725,16 @@
     <EmbeddedResource Include="MachineControl\ControlStreamingForm.de-DE.resx">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.de-DE.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.de-DE.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromImage.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.de-DE.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.de-DE.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.de-DE.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.de-DE.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.ar.resx">
@@ -728,6 +783,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupForm.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlStreamingForm.resx">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
@@ -735,10 +791,10 @@
     <EmbeddedResource Include="MachineControl\ControlStreamingForm2.resx">
       <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromText.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\GCodeFromShape.resx">
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="data\examples\graphic_bunny_string_art.svg">
@@ -910,14 +966,9 @@
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <Content Include="data\hotkeys.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1056,12 +1107,12 @@
   <ItemGroup>
     <PublishFile Include="data\hotkeys.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
