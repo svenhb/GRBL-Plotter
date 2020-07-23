@@ -351,4 +351,7 @@
   <data name="statusStripeSelectionMoved" xml:space="preserve">
     <value>تم نقل التحديد بواسطة</value>
   </data>
+  <data name="statusStripeCheckUpdate" xml:space="preserve">
+    <value>"التحقق من إصدار GRBL-Plotter الجديد على GitHub" - يمكن تعطيله في [الإعداد - التحكم في البرنامج]</value>
+  </data>
 </root>

@@ -351,6 +351,9 @@
   <data name="statusStripeUpKeys" xml:space="preserve">
     <value>Control-Up to move selected Block one up; Control-Shift-Up to move to top</value>
   </data>
+  <data name="statusStripeCheckUpdate" xml:space="preserve">
+    <value>'Check for new GRBL-Plotter release on GitHub' - can be disabled in [Setup - Program control] </value>
+  </data>
   <data name="String1" xml:space="preserve">
     <value />
   </data>

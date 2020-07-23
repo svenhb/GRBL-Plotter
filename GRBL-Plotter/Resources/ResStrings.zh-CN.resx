@@ -351,4 +351,7 @@
   <data name="statusStripeSelectionMoved" xml:space="preserve">
     <value>选择移至</value>
   </data>
+  <data name="statusStripeCheckUpdate" xml:space="preserve">
+    <value>“在GitHub上检查新的GRBL-Plotter版本”-可以在[设置-程序控制]中禁用</value>
+  </data>
 </root>

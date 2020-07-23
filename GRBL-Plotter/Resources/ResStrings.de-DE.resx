@@ -285,4 +285,7 @@
   <data name="statusStripeSelectionMoved" xml:space="preserve">
     <value>Auswahl verschoben um</value>
   </data>
+  <data name="statusStripeCheckUpdate" xml:space="preserve">
+    <value>'Auf GitHub nach neuer GRBL-Plotter-Version suchen' - kann in [Setup - Programmsteuerung] deaktiviert werden.</value>
+  </data>
 </root>
