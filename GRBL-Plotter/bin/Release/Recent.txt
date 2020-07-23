@@ -1,4 +1,3 @@
-lastProcessed.nc
 data\examples\graphic_grbl.svg
 data\examples\graphic_grbl_popup.svg
 data\examples\graphic_bunny.dxf

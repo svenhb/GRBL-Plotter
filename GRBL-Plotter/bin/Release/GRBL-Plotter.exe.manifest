@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="GRBL-Plotter.exe" version="1.3.4.5" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="GRBL-Plotter.exe" version="1.5.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="GRBL-Plotter" version="1.3.4.5" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="GRBL-Plotter" version="1.5.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="GRBL-Plotter.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -103,14 +103,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DXFLib.dll" size="89088">
-      <assemblyIdentity name="DXFLib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DXFLib.dll" size="89600">
+      <assemblyIdentity name="DXFLib" version="1.0.1.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Yr6203y1K+iqYLQ4JfBsJADp8Hk=</dsig:DigestValue>
+        <dsig:DigestValue>l3Skirp9RfbNny7znlN/LmWTTJ0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -127,110 +127,110 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GRBL-Plotter.exe" size="5518848">
-      <assemblyIdentity name="GRBL-Plotter" version="1.3.4.5" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GRBL-Plotter.exe" size="5912064">
+      <assemblyIdentity name="GRBL-Plotter" version="1.5.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>uTVPtye+JHEHvjZbuvsGvtwQkqQ=</dsig:DigestValue>
+        <dsig:DigestValue>MksbsdO5W7qpmxpQokVMM6DlhZ4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ar\GRBL-Plotter.resources.dll" size="139264">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.3.4.5" language="ar" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ar\GRBL-Plotter.resources.dll" size="152064">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.5.0.0" language="ar" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>0QBvkwQr1k7ipOoFD/rOD8D7fSg=</dsig:DigestValue>
+        <dsig:DigestValue>gtMC8RoBjc4SC4oRRpeGzclUK/Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="de-DE\GRBL-Plotter.resources.dll" size="333312">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.3.4.5" language="de-DE" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="de-DE\GRBL-Plotter.resources.dll" size="347136">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.5.0.0" language="de-DE" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>np/h8tfrf0MvBdZNRxICto6LnuQ=</dsig:DigestValue>
+        <dsig:DigestValue>Dm13Jr1t25xL2VCpsWSkf78RJUU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="es\GRBL-Plotter.resources.dll" size="118272">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.3.4.5" language="es" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="es\GRBL-Plotter.resources.dll" size="130048">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.5.0.0" language="es" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>RqsjOMJAtKxmoZ48D3/9yaXaLpA=</dsig:DigestValue>
+        <dsig:DigestValue>6H/4S68at9qyci4P0AGtgXlw7t8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="fr\GRBL-Plotter.resources.dll" size="119808">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.3.4.5" language="fr" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="fr\GRBL-Plotter.resources.dll" size="131072">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.5.0.0" language="fr" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>OKUuZubMoy0Q6tRqgCBiRQRt398=</dsig:DigestValue>
+        <dsig:DigestValue>abkXnHz3bA4aIHhVhNP4O+RYDxw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ja\GRBL-Plotter.resources.dll" size="132096">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.3.4.5" language="ja" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ja\GRBL-Plotter.resources.dll" size="143872">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.5.0.0" language="ja" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>bQOe8MTknZ/4LHRd3hNgrsKxRfY=</dsig:DigestValue>
+        <dsig:DigestValue>gIfoUZtdNLbs9sxeFh95DubX30Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="pt\GRBL-Plotter.resources.dll" size="117760">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.3.4.5" language="pt" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="pt\GRBL-Plotter.resources.dll" size="129024">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.5.0.0" language="pt" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>qHOChpNhP0bO6lhBbIjolXCDFT8=</dsig:DigestValue>
+        <dsig:DigestValue>unDtyEZXhI1GCtX76Bv64LO4Zcs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ru\GRBL-Plotter.resources.dll" size="155648">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.3.4.5" language="ru" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ru\GRBL-Plotter.resources.dll" size="171008">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.5.0.0" language="ru" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>qAPadD0fyjrJu2tZdfoRz8AkYps=</dsig:DigestValue>
+        <dsig:DigestValue>7OgVevEjHog4ro9lKGDi7AZXn30=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="zh-CN\GRBL-Plotter.resources.dll" size="108544">
-      <assemblyIdentity name="GRBL-Plotter.resources" version="1.3.4.5" language="zh-CN" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="zh-CN\GRBL-Plotter.resources.dll" size="118272">
+      <assemblyIdentity name="GRBL-Plotter.resources" version="1.5.0.0" language="zh-CN" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>DSGeZ+K3jHkexQjpuN+ElJVu4m4=</dsig:DigestValue>
+        <dsig:DigestValue>WDSioJc9McO/+DsIXQoo5MnMtho=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -243,6 +243,18 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
         <dsig:DigestValue>N8bfu5NE4Mqj/usnD7lzG+uC/XI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="QRCoder.dll" size="121344">
+      <assemblyIdentity name="QRCoder" version="1.3.9.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>xUevbPe8hgOIre2jOqk5sDFjpxI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1047,58 +1059,67 @@
       <dsig:DigestValue>nb5c5noMfGmEd2/AhCRAwGZRWBQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="data\tools\_current_.csv" size="1311">
+  <file name="data\tools\_current_.csv" size="1355">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>tZJwbMko7BmQgMwHoy9N+Wzn3es=</dsig:DigestValue>
+      <dsig:DigestValue>9h+1cP/hqDIcFHCn0QMnKbuUMfU=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="data\tools\laser_and_pen.csv" size="535">
+  <file name="data\tools\laser_and_pen.csv" size="555">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>pFCt8rCpD5ddst0taT+OvhpkYCs=</dsig:DigestValue>
+      <dsig:DigestValue>Hzbw2MkqwkVf5fscQRpxWnNeF90=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="data\tools\laser_popup.csv" size="420">
+  <file name="data\tools\laser_popup.csv" size="437">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>DsYUZapEWcEdIIjFoxVNPcwFlRA=</dsig:DigestValue>
+      <dsig:DigestValue>iC6+J+SjFBomMb17Tcwq6G8+Wmw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="data\tools\paint_Stabilopower.csv" size="1319">
+  <file name="data\tools\paint_Stabilopower.csv" size="1363">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>Ccs7vZA0qIcEwj54lS8emXBR70A=</dsig:DigestValue>
+      <dsig:DigestValue>fpthEaif/DXGj24YdBupbe5XEA0=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="data\tools\paint_watercolor.csv" size="827">
+  <file name="data\tools\paint_watercolor.csv" size="856">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>lboEA0bpytlEx4ZqQDTGveq9clw=</dsig:DigestValue>
+      <dsig:DigestValue>4gUhTACm9JThgJbbTv/Yv8ff9Fk=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="data\tools\router_tools.csv" size="837">
+  <file name="data\tools\router_tools.csv" size="866">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>3rSJP4BXsWD5Gvw8GKqUz6sPt+w=</dsig:DigestValue>
+      <dsig:DigestValue>P5GQ7tYYI1uWCwAEKyAq9NOkriE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="data\tools\test_layer.csv" size="791">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>+9l69HFsO8RiYo6LWHEfmZNJIG0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="data\usecases\example_eggbot.ini" size="1127">
@@ -1191,13 +1212,13 @@
       <dsig:DigestValue>ieJi8bnbridbVL3SmiZB5lK5PoE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="GRBL-Plotter.exe.config" size="45260">
+  <file name="GRBL-Plotter.exe.config" size="53332">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>0UX+27v+jgPuqgCrrYfmCphPPsw=</dsig:DigestValue>
+      <dsig:DigestValue>EcDbrb9MxBlYbUKtFJoOUhh3RFM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Icon.ico" size="180062">
