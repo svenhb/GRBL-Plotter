@@ -18,34 +18,33 @@
 */
 /*  Thanks to https://github.com/PavelTorgashov/FastColoredTextBox
 */
-/*  2016-09-18  improve performance for low-performance PC: during streaming show background-image with toolpath
- *              instead of redrawing toolpath with each onPaint.
- *              Joystick-control: adjustable step-width and speed.
- *  2016-12-31  Add GRBL 1.1 function
- *  2017-01-01  check form-location and fix strange location
- *  2017-01-03  Add 'Replace M3 by M4' during GCode file open
- *  2017-06-22  Cleanup transform actions
- *  2018-01-02  Add Override Buttons
- *              Bugfix - no zooming during  streaming - disable background image (XP Problems?)
- *  2018-03-18  Divide this file into several files
- *  2018-12-26	Commits from RasyidUFA via Github
- *  2019-01-01  Pass CustomButton command "($abc)" through DIY-Control "[abc]"
- *              Add variable hotkeys
- *  2019-01-06  Remove feedback-loop at cBSpindle / cBCoolant, save last value for spindle-textbox
- *  2019-01-16  line 922 || !_serial_form.isHeightProbing
- *  2019-03-02  Swap code to MainFormGetCodeTransform
- *  2019-03-05  Add SplitContainer for Editor, resize Joystick controls
- *  2019-03-17  Add custom buttons 13-16, save size of form
- *  2019-04-23  use joyAStep in gamePadTimer_Tick and gamePadGCode line 1360, 1490
- *  2019-05-10  extend override features
- *  2019-10-27  localization of strings
- *  2019-12-22  Line 1891 check if xyWidth < 0;
- *  2020-01-13  convert GCodeVisuAndTransform to a static class
- *  2020-03-10  add gui.variable GMIX,Y,Z GMAX,Y,Z - graphics dimensions
- *  2020-03-12  outsourcing GamePad, SimulatePath
+/* 2016-09-18 improve performance for low-performance PC: during streaming show background-image with toolpath
+ *            instead of redrawing toolpath with each onPaint.
+ *            Joystick-control: adjustable step-width and speed.
+ * 2016-12-31 Add GRBL 1.1 function
+ * 2017-01-01 check form-location and fix strange location
+ * 2017-01-03 Add 'Replace M3 by M4' during GCode file open
+ * 2017-06-22 Cleanup transform actions
+ * 2018-01-02 Add Override Buttons
+ *            Bugfix - no zooming during  streaming - disable background image (XP Problems?)
+ * 2018-03-18 Divide this file into several files
+ * 2018-12-26 Commits from RasyidUFA via Github
+ * 2019-01-01 Pass CustomButton command "($abc)" through DIY-Control "[abc]"
+ *            Add variable hotkeys
+ * 2019-01-06 Remove feedback-loop at cBSpindle / cBCoolant, save last value for spindle-textbox
+ * 2019-01-16 line 922 || !_serial_form.isHeightProbing
+ * 2019-03-02 Swap code to MainFormGetCodeTransform
+ * 2019-03-05 Add SplitContainer for Editor, resize Joystick controls
+ * 2019-03-17 Add custom buttons 13-16, save size of form
+ * 2019-04-23 use joyAStep in gamePadTimer_Tick and gamePadGCode line 1360, 1490
+ * 2019-05-10 extend override features
+ * 2019-10-27 localization of strings
+ * 2019-12-22 Line 1891 check if xyWidth < 0;
+ * 2020-01-13 convert GCodeVisuAndTransform to a static class
+ * 2020-03-10 add gui.variable GMIX,Y,Z GMAX,Y,Z - graphics dimensions
+ * 2020-03-12 outsourcing GamePad, SimulatePath
+ * 2020-05-06 add status strip info during check for Prog-update
  */
-
-//#define debuginfo
 
 using System;
 using System.Drawing;
@@ -82,6 +81,7 @@ namespace GRBL_Plotter
         GCodeFromText _text_form = null;
         GCodeFromImage _image_form = null;
         GCodeFromShape _shape_form = null;
+        GCodeForBarcode _barcode_form = null;
         MessageForm _message_form = null;
 
         private const string appName = "GRBL Plotter";
@@ -122,9 +122,6 @@ namespace GRBL_Plotter
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Application_UnhandledException);
-#if (debuginfo)
-            logToolStripMenuItem.Visible = true;
-#endif
         }
         //Unhandled exception
         private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
@@ -150,9 +147,9 @@ namespace GRBL_Plotter
             if (e.ExceptionObject != null)
             {
                 Exception ex = (Exception)e.ExceptionObject;
-                Logger.Error(ex, "UnhandledException");
+                Logger.Error(ex, "UnhandledException - Quit GRBL Plotter?");
                 MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex), "Main Form Application exception");
-                if (MessageBox.Show(Localization.getString("mainQuit"), Localization.getString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(Localization.getString("mainQuit") + "\r\n\r\nCheck " + Application.StartupPath + "\\logfile.txt", Localization.getString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                 { Application.Exit(); }
             }
         }
@@ -172,7 +169,6 @@ namespace GRBL_Plotter
                 traceString.Append(", LineNumber: " + frame.GetFileLineNumber());
                 traceString.Append("  -->  ");
             }
-
             return traceString.ToString();
         }
 
@@ -180,9 +176,9 @@ namespace GRBL_Plotter
         Dictionary<int, Button> CustomButtons17 = new Dictionary<int, Button>();
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Logger.Trace("MainForm_Load start");
+            Logger.Info("MainForm_Load start");
             if (Properties.Settings.Default.ctrlUpgradeRequired)
-            {   Logger.Trace("Properties.Settings.Default.UpgradeRequired");
+            {   Logger.Info("MainForm_Load - Properties.Settings.Default.ctrlUpgradeRequired");
                 Properties.Settings.Default.Upgrade();
                 Properties.Settings.Default.ctrlUpgradeRequired = false;
                 Properties.Settings.Default.Save();
@@ -192,6 +188,7 @@ namespace GRBL_Plotter
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
             Size = Properties.Settings.Default.mainFormSize;
+
             WindowState = Properties.Settings.Default.mainFormWinState;
             splitContainer1.SplitterDistance = Properties.Settings.Default.mainFormSplitDistance;
 
@@ -242,13 +239,19 @@ namespace GRBL_Plotter
             cmsPicBoxEnable(false);
             updateControls();
             LoadRecentList();
+            cmsPicBoxReloadFile.ToolTipText = string.Format("Load '{0}'", MRUlist[0]);
             LoadExtensionList();
             foreach (string item in MRUlist)
-            { ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);  //create new menu for each item in list
+            {   ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);  //create new menu for each item in list
                 toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
             }
 
-            checkUpdate.CheckVersion();     // check update
+            if (Properties.Settings.Default.guiCheckUpdate)
+            {   statusStripSet(2,Localization.getString("statusStripeCheckUpdate"), Color.LightGreen);
+                checkUpdate.CheckVersion();     // check update
+            }
+//            statusStripClear(2,2);
+
             grbl.init();                    // load and set grbl messages
             toolTable.init();               // fill structure
 
@@ -265,38 +268,51 @@ namespace GRBL_Plotter
         }
 
         private void SplashScreenTimer_Tick(object sender, EventArgs e)
-        {  
-            SplashScreenTimer.Enabled = false;
-            this.Opacity = 100;
-            if (_serial_form == null)
+        {
+            if (_splashscreen != null)
             {
-                if (Properties.Settings.Default.ctrlUseSerial2)
+//                SplashScreenTimer.Enabled = false;
+                this.Opacity = 100;
+                if (_serial_form == null)
                 {
-                    _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
-                    _serial_form2.Show(this);
+                    if (Properties.Settings.Default.ctrlUseSerial2)
+                    {
+                        _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
+                        _serial_form2.Show(this);
+                    }
+                    _serial_form = new ControlSerialForm("COM CNC", 1, _serial_form2);
+                    _serial_form.Show(this);
+                    _serial_form.RaisePosEvent += OnRaisePosEvent;
+                    _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
                 }
-                _serial_form = new ControlSerialForm("COM CNC", 1, _serial_form2);
-                _serial_form.Show(this);
-                _serial_form.RaisePosEvent += OnRaisePosEvent;
-                _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
-            }
-            if (Properties.Settings.Default.ctrlUseSerialDIY)
-            { DIYControlopen(sender, e); }
-            _splashscreen.Close();
-            _splashscreen.Dispose();
-            Logger.Info("++++++ MainForm SplashScreen closed");
+                if (Properties.Settings.Default.ctrlUseSerialDIY)
+                { DIYControlopen(sender, e); }
+                _splashscreen.Close();
+                _splashscreen.Dispose();
+                _splashscreen = null;
+                Logger.Info("++++++ MainForm SplashScreen closed");
 
-            string[] args = Environment.GetCommandLineArgs();
-            if (args.Length > 1)
-            {   Logger.Info("Load file via CommandLineArgs[1] {0}", args[1]);
-                loadFile(args[1]);
+                string[] args = Environment.GetCommandLineArgs();
+                if (args.Length > 1)
+                {
+                    Logger.Info("Load file via CommandLineArgs[1] {0}", args[1]);
+                    loadFile(args[1]);
+                }
+                SplashScreenTimer.Stop();
+                SplashScreenTimer.Interval = 5000;
+                SplashScreenTimer.Start();
+            }
+            else
+            {   SplashScreenTimer.Enabled = false;
+                statusStripClear(2, 2);
+                Logger.Info("++++++ SplashScreenTimer disabled");
             }
         }
 
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
-            Logger.Trace("FormClosing");
+            Logger.Trace("FormClosing ");
 
             if (_serial_form != null)
             {   _serial_form.closePort();
@@ -480,6 +496,8 @@ namespace GRBL_Plotter
                     oldRaw = e.Raw;
                 }
             }
+            if (((isStreaming || isStreamingRequestStop)) && Properties.Settings.Default.guiProgressShow)
+                VisuGCode.ProcessedPath.processedPathDraw(grbl.posWork);
 
         }
         private string oldRaw = "";
@@ -838,6 +856,7 @@ namespace GRBL_Plotter
         {
             if (!_serial_form.requestSend(e.Command, true))     // check if COM is still open
                 updateControls();
+			Properties.Settings.Default.counterUseLaserSetup += 1;
         }
 
         // edge finder / Probing
@@ -880,6 +899,7 @@ namespace GRBL_Plotter
             }
 
             updateControls();
+            Properties.Settings.Default.counterUseProbing += 1;
         }
 
 
@@ -927,7 +947,7 @@ namespace GRBL_Plotter
             {
                 _setup_form.Visible = false;
             }
-            _setup_form.Show(this);
+            _setup_form.Show(null);// this);
             _setup_form.WindowState = FormWindowState.Normal;
         }
         private void formClosed_SetupForm(object sender, FormClosedEventArgs e)
@@ -972,6 +992,7 @@ namespace GRBL_Plotter
         private bool isStreaming = false;
         private bool isStreamingPause = false;
         private bool isStreamingCheck = false;
+        private bool isStreamingRequestStop = false;
         private bool isStreamingOk = true;
         private bool isStreamingPauseFirst = false;
         private void OnRaiseStreamEvent(object sender, StreamEventArgs e)
@@ -981,15 +1002,18 @@ namespace GRBL_Plotter
             pbFile.Value = cPrgs;
             pbBuffer.Value = bPrgs;
             lblFileProgress.Text = string.Format("Progress {0:0.0}%", e.CodeProgress);
-            int actualCodeLine = e.CodeLine;
-            if (e.CodeLine > fCTBCode.LinesCount)
+            int actualCodeLine = e.CodeLineSent;
+            if (e.CodeLineSent > fCTBCode.LinesCount)
                 actualCodeLine = fCTBCode.LinesCount - 1;
             fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine);
-            fCTBCodeClickedLineNow = e.CodeLine - 1;
+            fCTBCodeClickedLineNow = e.CodeLineSent - 1;
             fCTBCodeMarkLine();         // set Bookmark and marker in 2D-View
             fCTBCode.DoCaretVisible();
             if (_diyControlPad != null)
                 _diyControlPad.sendFeedback("[" + e.Status.ToString() + "]");
+            
+            if (Properties.Settings.Default.guiProgressShow)
+                VisuGCode.ProcessedPath.processedPathLine(e.CodeLineConfirmed);
             switch (e.Status)
             {
                 case grblStreaming.lasermode:
@@ -1013,14 +1037,15 @@ namespace GRBL_Plotter
                         _coordSystem_form.showValues();
 
                     ControlPowerSaving.EnableStandby();
+                    VisuGCode.ProcessedPath.processedPathClear();
                     break;
                 case grblStreaming.error:
-                    Logger.Info("streaming error at line {0}", e.CodeLine);
+                    Logger.Info("streaming error at line {0}", e.CodeLineSent);
                     statusStripSet(1,grbl.lastMessage, Color.Fuchsia);
                     isStreaming = false;
                     isStreamingCheck = false;
                     pbFile.ForeColor = Color.Red;
-                    lbInfo.Text = Localization.getString("mainInfoErrorLine") + e.CodeLine.ToString();
+                    lbInfo.Text = Localization.getString("mainInfoErrorLine") + e.CodeLineSent.ToString();
                     lbInfo.BackColor = Color.Fuchsia;
                     fCTBCode.BookmarkLine(actualCodeLine - 1);
                     fCTBCode.DoSelectionVisible();
@@ -1031,10 +1056,11 @@ namespace GRBL_Plotter
                     if (!isStreamingCheck)
                     {
                         updateControls();
-                        lbInfo.Text = Localization.getString("mainInfoSendCode") + "(" + e.CodeLine.ToString() + ")";
+                        lbInfo.Text = Localization.getString("mainInfoSendCode") + "(" + e.CodeLineSent.ToString() + ")";
                         lbInfo.BackColor = Color.Lime;
                         signalPlay = 0;
                         btnStreamStart.BackColor = SystemColors.Control;
+ //                       VisuGCode.Simulation.createSimulationPath(VisuGCode.Simulation.getLinePos(e.CodeLine));
                     }
                     break;
                 case grblStreaming.finish:
@@ -1057,25 +1083,26 @@ namespace GRBL_Plotter
                     pictureBox1.BackgroundImage = null;
                     updateControls();
                     ControlPowerSaving.EnableStandby();
+                    VisuGCode.ProcessedPath.processedPathClear();
                     break;
                 case grblStreaming.waitidle:
                     updateControls(true);
                     btnStreamStart.Image = Properties.Resources.btn_play;
                     isStreamingPause = true;
-                    lbInfo.Text = Localization.getString("mainInfoWaitIdle") + e.CodeLine.ToString() + ")";
+                    lbInfo.Text = Localization.getString("mainInfoWaitIdle") + e.CodeLineSent.ToString() + ")";
                     lbInfo.BackColor = Color.Yellow;
                     break;
                 case grblStreaming.pause:
                     updateControls(true);
                     btnStreamStart.Image = Properties.Resources.btn_play;
                     isStreamingPause = true;
-                    lbInfo.Text = Localization.getString("mainInfoPause") + e.CodeLine.ToString() + ")";
+                    lbInfo.Text = Localization.getString("mainInfoPause") + e.CodeLineSent.ToString() + ")";
                     signalPlay = 1;
                     lbInfo.BackColor = Color.Yellow;
-                    isStreamingPauseFirst = (streamingPauseFirstLine != e.CodeLine);
+                    isStreamingPauseFirst = (streamingPauseFirstLine != e.CodeLineSent);
                     // save parser state on pause
-                    saveStreamingStatus(e.CodeLine);
-                    streamingPauseFirstLine = e.CodeLine;
+                    saveStreamingStatus(e.CodeLineSent);
+                    streamingPauseFirstLine = e.CodeLineSent;
 
                     if (isStreamingPauseFirst && Properties.Settings.Default.flowControlEnable) // send extra Pause-Code
                         delayedSend = 2;
@@ -1094,12 +1121,12 @@ namespace GRBL_Plotter
                     cBTool.Checked = _serial_form.toolInSpindle;
                     break;
                 case grblStreaming.stop:
-                    lbInfo.Text = Localization.getString("mainInfoStopStream") + e.CodeLine.ToString() + ")";
+                    lbInfo.Text = Localization.getString("mainInfoStopStream") + e.CodeLineSent.ToString() + ")";
                     lbInfo.BackColor = Color.Fuchsia;
 
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code
                         delayedSend = 2;
-
+  //                  VisuGCode.ProcessedPath.processedPathClear();
                     break;
                 default:
                     break;
@@ -1113,11 +1140,13 @@ namespace GRBL_Plotter
         // if startline > 0 start with pause
         private void startStreaming(int startLine = 0)
         {
+            isStreamingRequestStop = false;
             if (fCTBCode.LinesCount > 1)
             {
                 if (!isStreaming)
                 {
-                    Logger.Info("Start streaming at line {0}", startLine);
+                    Logger.Info("Start streaming at line:{0}  showProgress:{1}  backgroundImage:{2}", startLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
+                    VisuGCode.ProcessedPath.processedPathClear();
                     isStreaming = true;
                     isStreamingPause = false;
                     isStreamingCheck = false;
@@ -1207,17 +1236,23 @@ namespace GRBL_Plotter
             btnStreamStart.BackColor = SystemColors.Control;
             btnStreamStart.Enabled = true;
             btnStreamCheck.Enabled = true;
+            isStreamingRequestStop = true;
             _serial_form.stopStreaming(showMessage);
             if (isStreaming || isStreamingCheck)
             {
                 lbInfo.Text = Localization.getString("mainInfoStopStream2") + (fCTBCodeClickedLineNow + 1).ToString() + " )";
                 lbInfo.BackColor = Color.Fuchsia;
             }
+            if (!isStreaming)
+            {   VisuGCode.ProcessedPath.processedPathClear();
+                pictureBox1.Invalidate();
+                pbFile.Value = 0;
+                pbBuffer.Value = 0;
+                signalPlay = 0;
+                isStreamingRequestStop = false;
+            }
             isStreaming = false;
             isStreamingCheck = false;
-            pbFile.Value = 0;
-            pbBuffer.Value = 0;
-            signalPlay = 0;
             ControlPowerSaving.EnableStandby();
             updateControls();
         }
@@ -1255,6 +1290,7 @@ namespace GRBL_Plotter
                     {   Logger.Trace("Automatic update from clipboard");
                         loadFromClipboard();
                         enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
+						Properties.Settings.Default.counterImportExtension += 1;
                     }
                 }
             }
@@ -1809,9 +1845,6 @@ namespace GRBL_Plotter
 
         private void updateView(object sender, EventArgs e)
         {
-#if (debuginfo)
-            log.Add("MainForm updateView");
-#endif
             Properties.Settings.Default.gui2DRulerShow = toolStripViewRuler.Checked;
             Properties.Settings.Default.gui2DInfoShow = toolStripViewInfo.Checked;
             Properties.Settings.Default.gui2DPenUpShow = toolStripViewPenUp.Checked;
@@ -1825,11 +1858,11 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();                                   // resfresh view
         }
 
-        private void logToolStripMenuItem_Click(object sender, EventArgs e)
+   /*     private void logToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(log.get());
-            log.clear();
-        }
+    //        MessageBox.Show(log.get());
+    //        log.clear();
+        }*/
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
@@ -1975,17 +2008,41 @@ namespace GRBL_Plotter
                 toolStripStatusLabel2.BackColor = color;
             }
         }
+        private void statusStripSetToolTip(int nr, string text)
+        {
+            if (nr == 0)
+            {   toolStripStatusLabel0.ToolTipText = text; }
+            else if (nr == 1)
+            {   toolStripStatusLabel1.ToolTipText = text; }
+            else if (nr == 2)
+            {   toolStripStatusLabel2.ToolTipText = text; }
+        }
+
         private void statusStripClear(int nr1, int nr2=-1)
         {   if ((nr1 == 0) || (nr2 == 0))
-            { toolStripStatusLabel0.Text = ""; toolStripStatusLabel0.BackColor = SystemColors.Control; }
+            { toolStripStatusLabel0.Text = ""; toolStripStatusLabel0.BackColor = SystemColors.Control; toolStripStatusLabel0.ToolTipText = ""; }
             if ((nr1 == 1) || (nr2 == 1))
-            { toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; }
+            { toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; toolStripStatusLabel1.ToolTipText = ""; }
             if ((nr1 == 2) || (nr2 == 2))
-            { toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; }
+            { toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; toolStripStatusLabel2.ToolTipText = ""; }
         }
         private void statusStripClear()
         {   toolStripStatusLabel0.Text = toolStripStatusLabel1.Text = toolStripStatusLabel2.Text = "";
             toolStripStatusLabel0.BackColor = toolStripStatusLabel1.BackColor = toolStripStatusLabel2.BackColor = SystemColors.Control;
+        }
+
+        private void copyContentTroClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Image img = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+
+            Graphics g = Graphics.FromImage(img);
+            Point pB1 = PointToScreen(pictureBox1.Location); 
+            Point pB2 = new Point(pB1.X+splitContainer1.Panel2.Left+ tLPRechtsUnten.Left+6, pB1.Y+tLPRechts.Location.Y+ splitContainer1.Panel2.Top+ tLPRechtsUnten.Top+30);
+            g.CopyFromScreen(pB2, new Point(0, 0), new Size(pictureBox1.Width, pictureBox1.Height));
+
+            Clipboard.SetImage(img);
+
+            g.Dispose();
         }
     }
 }

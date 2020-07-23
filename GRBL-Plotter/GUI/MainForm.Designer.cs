@@ -104,6 +104,7 @@ namespace GRBL_Plotter
             this.cmsCodeBlocksSortByColor = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortByCodeSize = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortByCodeArea = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortByDistance = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksRemoveGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksRemoveAll = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
@@ -244,6 +245,7 @@ namespace GRBL_Plotter
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsPicBoxSetGCodeAsBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxClearBackground = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyContentTroClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tBURL = new System.Windows.Forms.TextBox();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -320,6 +322,7 @@ namespace GRBL_Plotter
             this.japanischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createGCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createBarcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createSimpleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -630,7 +633,8 @@ namespace GRBL_Plotter
             this.cmsCodeBlocksSortByToolName,
             this.cmsCodeBlocksSortByColor,
             this.cmsCodeBlocksSortByCodeSize,
-            this.cmsCodeBlocksSortByCodeArea});
+            this.cmsCodeBlocksSortByCodeArea,
+            this.cmsCodeBlocksSortByDistance});
             resources.ApplyResources(this.cmsCodeBlocksSort, "cmsCodeBlocksSort");
             this.cmsCodeBlocksSort.Name = "cmsCodeBlocksSort";
             // 
@@ -681,6 +685,12 @@ namespace GRBL_Plotter
             this.cmsCodeBlocksSortByCodeArea.Name = "cmsCodeBlocksSortByCodeArea";
             resources.ApplyResources(this.cmsCodeBlocksSortByCodeArea, "cmsCodeBlocksSortByCodeArea");
             this.cmsCodeBlocksSortByCodeArea.Click += new System.EventHandler(this.cmsCodeBlocksSortByCodeArea_Click);
+            // 
+            // cmsCodeBlocksSortByDistance
+            // 
+            this.cmsCodeBlocksSortByDistance.Name = "cmsCodeBlocksSortByDistance";
+            resources.ApplyResources(this.cmsCodeBlocksSortByDistance, "cmsCodeBlocksSortByDistance");
+            this.cmsCodeBlocksSortByDistance.Click += new System.EventHandler(this.cmsCodeBlocksSortByDistance_Click);
             // 
             // cmsCodeBlocksRemoveGroup
             // 
@@ -1671,7 +1681,8 @@ namespace GRBL_Plotter
             this.cmsPicBoxMoveSelectedPathInCode,
             this.toolStripSeparator10,
             this.cmsPicBoxSetGCodeAsBackground,
-            this.cmsPicBoxClearBackground});
+            this.cmsPicBoxClearBackground,
+            this.copyContentTroClipboardToolStripMenuItem});
             this.cmsPictureBox.Name = "cmsPictureBox";
             resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
             // 
@@ -1783,6 +1794,12 @@ namespace GRBL_Plotter
             this.cmsPicBoxClearBackground.Name = "cmsPicBoxClearBackground";
             resources.ApplyResources(this.cmsPicBoxClearBackground, "cmsPicBoxClearBackground");
             this.cmsPicBoxClearBackground.Click += new System.EventHandler(this.cmsPicBoxClearBackground_Click);
+            // 
+            // copyContentTroClipboardToolStripMenuItem
+            // 
+            this.copyContentTroClipboardToolStripMenuItem.Name = "copyContentTroClipboardToolStripMenuItem";
+            resources.ApplyResources(this.copyContentTroClipboardToolStripMenuItem, "copyContentTroClipboardToolStripMenuItem");
+            this.copyContentTroClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyContentTroClipboardToolStripMenuItem_Click);
             // 
             // tBURL
             // 
@@ -2318,6 +2335,7 @@ namespace GRBL_Plotter
             // 
             this.createGCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.textWizzardToolStripMenuItem,
+            this.createBarcodeToolStripMenuItem,
             this.imageToolStripMenuItem,
             this.createSimpleShapesToolStripMenuItem,
             this.startExtensionToolStripMenuItem});
@@ -2329,6 +2347,12 @@ namespace GRBL_Plotter
             this.textWizzardToolStripMenuItem.Name = "textWizzardToolStripMenuItem";
             resources.ApplyResources(this.textWizzardToolStripMenuItem, "textWizzardToolStripMenuItem");
             this.textWizzardToolStripMenuItem.Click += new System.EventHandler(this.textWizzardToolStripMenuItem_Click);
+            // 
+            // createBarcodeToolStripMenuItem
+            // 
+            this.createBarcodeToolStripMenuItem.Name = "createBarcodeToolStripMenuItem";
+            resources.ApplyResources(this.createBarcodeToolStripMenuItem, "createBarcodeToolStripMenuItem");
+            this.createBarcodeToolStripMenuItem.Click += new System.EventHandler(this.createBarcodeToolStripMenuItem_Click);
             // 
             // imageToolStripMenuItem
             // 
@@ -2816,7 +2840,6 @@ namespace GRBL_Plotter
             // 
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
             resources.ApplyResources(this.logToolStripMenuItem, "logToolStripMenuItem");
-            this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
             // 
             // MainTimer
             // 
@@ -2848,16 +2871,19 @@ namespace GRBL_Plotter
             // 
             // toolStripStatusLabel0
             // 
+            this.toolStripStatusLabel0.AutoToolTip = true;
             this.toolStripStatusLabel0.Name = "toolStripStatusLabel0";
             resources.ApplyResources(this.toolStripStatusLabel0, "toolStripStatusLabel0");
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.AutoToolTip = true;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             // 
             // toolStripStatusLabel2
             // 
+            this.toolStripStatusLabel2.AutoToolTip = true;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             resources.ApplyResources(this.toolStripStatusLabel2, "toolStripStatusLabel2");
             // 
@@ -3264,6 +3290,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByCodeSize;
         private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByCodeArea;
         private System.Windows.Forms.Timer SplashScreenTimer;
+        private System.Windows.Forms.ToolStripMenuItem cmsCodeBlocksSortByDistance;
+        private System.Windows.Forms.ToolStripMenuItem copyContentTroClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createBarcodeToolStripMenuItem;
     }
 }
 

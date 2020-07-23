@@ -984,4 +984,10 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>[Datei per Drag &amp; Drop laden oder Datei öffnen. Oder wählen Sie 'Datei neu laden', um die zuletzt verwendete Datei zu öffnen. ]</value>
   </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kopiert den Inhalt in die Zwischenablage</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Barcode erstellen</value>
+  </data>
 </root>

@@ -1008,4 +1008,10 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>[Charger le fichier par glisser-déposer ou boîte de dialogue d'ouverture de fichier. Ou sélectionnez «Recharger le fichier» pour ouvrir le dernier fichier utilisé. ]</value>
   </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copier le contenu dans le presse-papiers</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Créer un code-barres</value>
+  </data>
 </root>

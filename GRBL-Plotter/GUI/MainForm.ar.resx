@@ -1061,4 +1061,10 @@
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>[تحميل الملف عن طريق السحب والإفلات أو فتح ملف الحوار. أو حدد "إعادة تحميل الملف" لفتح آخر ملف مستخدم. ]</value>
   </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>نسخ المحتوى إلى الحافظة</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>إنشاء الباركود</value>
+  </data>
 </root>

@@ -84,6 +84,27 @@ namespace GRBL_Plotter
         }
         private void formClosed_ShapeToGCode(object sender, FormClosedEventArgs e)
         { _shape_form = null; }
+
+        private void createBarcodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_barcode_form == null)
+            {
+                _barcode_form = new GCodeForBarcode();
+                _barcode_form.FormClosed += formClosed_BarcodeToGCode;
+                _barcode_form.btnGenerateBarcode1D.Click += getGCodeFromBarcode;      // assign btn-click event
+                _barcode_form.btnGenerateBarcode2D.Click += getGCodeFromBarcode;      // assign btn-click event
+            }
+            else
+            {
+                _barcode_form.Visible = false;
+            }
+            _barcode_form.Show(this);
+            _barcode_form.WindowState = FormWindowState.Normal;
+        }
+        private void formClosed_BarcodeToGCode(object sender, FormClosedEventArgs e)
+        { _barcode_form = null; }
+
+
         #endregion
 
         // handle event from create Height Map form
@@ -108,6 +129,8 @@ namespace GRBL_Plotter
                     pictureBox1.Invalidate();
                     if (_diyControlPad != null)
                     { _diyControlPad.isHeightProbing = true; }
+					Properties.Settings.Default.counterUseHeightMap += 1;
+				
                 }
                 else
                 {
@@ -168,12 +191,19 @@ namespace GRBL_Plotter
             Logger.Info("getGCodeFromText");
             if (!isStreaming)
             {
+                importOptions = "";
                 simuStop();
                 newCodeStart();
                 fCTBCode.Text = _text_form.textGCode;
                 setLastLoadedFile("from text", "");
                 newCodeEnd();
                 foldCode();
+                importOptions = Graphic.graphicInformation.ListOptions();
+                if (importOptions.Length > 1)
+                {   importOptions = "Import options: " + importOptions;
+                    statusStripSet(1, importOptions, Color.Yellow);
+                }
+                Properties.Settings.Default.counterImportText += 1;
             }
             else
                 MessageBox.Show(Localization.getString("mainStreamingActive"), Localization.getString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -189,10 +219,32 @@ namespace GRBL_Plotter
                 fCTBCode.Text = _shape_form.shapeGCode;
                 setLastLoadedFile("from shape", "");
                 newCodeEnd();
-            }
+                Properties.Settings.Default.counterImportShape += 1;
+           }
             else
                 MessageBox.Show(Localization.getString("mainStreamingActive"));
         }
+
+
+        private void getGCodeFromBarcode(object sender, EventArgs e)
+        {
+            Logger.Info("getGCodeFromBarcode");
+            if (!isStreaming)
+            {
+                simuStop();
+                newCodeStart();
+                fCTBCode.Text = _barcode_form.barcodeGCode;
+                setLastLoadedFile("from barcode", "");
+                newCodeEnd();
+                Properties.Settings.Default.counterImportBarcode += 1;
+
+            }
+            else
+                MessageBox.Show(Localization.getString("mainStreamingActive"));
+
+            Cursor.Current = Cursors.Default;
+        }
+
         // handle event from create Image form
         private void getGCodeFromImage(object sender, EventArgs e)
         {
@@ -209,6 +261,7 @@ namespace GRBL_Plotter
                 setLastLoadedFile("from image", "");
                 newCodeEnd();
                 foldCode();
+                Properties.Settings.Default.counterImportImage += 1;
             }
             else
                 MessageBox.Show(Localization.getString("mainStreamingActive"));

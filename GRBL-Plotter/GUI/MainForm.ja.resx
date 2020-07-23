@@ -1058,4 +1058,10 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>[ドラッグアンドドロップまたはファイルを開くダイアログでファイルをロードします。 または、「ファイルの再読み込み」を選択して、最後に使用したファイルを開きます。 ]</value>
   </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>コンテンツをクリップボードにコピー</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>バーコードを作成</value>
+  </data>
 </root>

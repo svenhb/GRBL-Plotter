@@ -174,6 +174,9 @@ namespace GRBL_Plotter
                 if (Properties.Settings.Default.guiDimensionShow)
                     e.DrawPath(penLandMark, VisuGCode.pathDimension);
 
+ //               e.DrawPath(penLandMark, Graphic.pathBackground);
+
+
                 float factorWidth = 1;
                 if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
                 if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
@@ -432,8 +435,9 @@ namespace GRBL_Plotter
             penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler * factorWidth;
             penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
             penUp.LineJoin = LineJoin.Round;
-            penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
             penDown.LineJoin = LineJoin.Round;
+            penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+//            penDown.LineJoin = LineJoin.Round;
             penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
             penRotary.LineJoin = LineJoin.Round;
             penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;

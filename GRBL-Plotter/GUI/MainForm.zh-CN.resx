@@ -831,7 +831,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>双倍仿真速度</value>
   </data>
   <data name="btnSimulate.Text" xml:space="preserve">
-    <value>起始路径模拟</value>
+    <value>开始路径模拟</value>
   </data>
   <data name="gBOverrideSSGB.Text" xml:space="preserve">
     <value>转数</value>
@@ -1041,5 +1041,11 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   </data>
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>[通过拖放或文件打开对话框加载文件。 或选择“重新加载文件”以打开上次使用的文件。 ]</value>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>将内容复制到剪贴板</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>创建条形码</value>
   </data>
 </root>

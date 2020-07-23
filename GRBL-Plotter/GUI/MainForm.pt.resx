@@ -1035,4 +1035,10 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>[Carregar arquivo via arrastar e soltar ou caixa de diálogo de abertura de arquivo. Ou selecione 'Recarregar arquivo' para abrir o último arquivo usado. ]</value>
   </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copiar conteúdo para a área de transferência</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Criar código de barras</value>
+  </data>
 </root>

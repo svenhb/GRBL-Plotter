@@ -1032,4 +1032,10 @@
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>Загрузить файл с помощью перетаскивания или открытия файла. Или выберите «Перезагрузить файл», чтобы открыть последний использованный файл. ]</value>
   </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Скопируйте содержимое в буфер обмена</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Создать штрих-код</value>
+  </data>
 </root>

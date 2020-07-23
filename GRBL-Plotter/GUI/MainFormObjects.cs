@@ -18,7 +18,7 @@
 */
 /*
  * 2020-03-11 add gui class
- *
+ * 2020-05-01 add setDimensionArc
 */
 
 using System;
@@ -34,6 +34,9 @@ using Microsoft.Win32;
 
 namespace GRBL_Plotter
 {
+
+    public enum LogEnable { Detailed=1, Coordinates=2, Properties=4, GroupAllGraphics = 8, ClipCode = 16, PathModification = 32, graphic2gcode = 64 }
+
     public static class datapath
     {
         public const string fonts    = "data\\fonts";
@@ -185,15 +188,19 @@ namespace GRBL_Plotter
         { X = tmp.X; Y = tmp.Y; }
         public static explicit operator xyPoint(Point tmp)
         { return new xyPoint(tmp); }
+        public static explicit operator xyPoint(System.Windows.Point tmp)
+        { return new xyPoint(tmp); }
         public static explicit operator xyPoint(xyzPoint tmp)
         { return new xyPoint(tmp); }
         public static explicit operator xyPoint(xyArcPoint tmp)
         { return new xyPoint(tmp.X,tmp.Y); }
 
+        public System.Windows.Point ToPointDouble()
+        { return new System.Windows.Point(X, Y); }
         public Point ToPoint()
         { return new Point((int)X, (int)Y); }
 
- //       public static explicit operator System.Windows.Point(xyPoint tmp) => new System.Windows.Point(tmp.X,tmp.Y);
+        //       public static explicit operator System.Windows.Point(xyPoint tmp) => new System.Windows.Point(tmp.X,tmp.Y);
 
         public double DistanceTo(xyPoint anotherPoint)
         {
@@ -303,8 +310,20 @@ namespace GRBL_Plotter
         public double minx, maxx, miny, maxy, minz, maxz;
         public double dimx, dimy, dimz;
 
-        public Dimensions()
+        public Dimensions(Dimensions old)
+        {   Dimensions n = new Dimensions();
+            n.minx = old.minx; n.maxx = old.maxx; n.miny = old.miny; n.maxy = old.maxy;
+            n.minz = old.minz; n.maxz = old.maxz;
+            n.dimx = old.dimx; n.dimy = old.dimy; n.dimz = old.dimz;
+        }
+
+            public Dimensions()
         { resetDimension(); }
+
+        public void addDimensionXY(Dimensions tmp)
+        {   setDimensionXY(tmp.minx, tmp.miny);
+            setDimensionXY(tmp.maxx, tmp.maxy);
+        }
         public void setDimensionXYZ(double? x, double? y, double? z)
         {
             if (x != null) { setDimensionX((double)x); }
@@ -318,48 +337,68 @@ namespace GRBL_Plotter
         }
         public void setDimensionX(double value)
         {
+            if ((value == Double.MaxValue) || (value == Double.MinValue))
+                return;
             minx = Math.Min(minx, value);
             maxx = Math.Max(maxx, value);
             dimx = maxx - minx;
         }
         public void setDimensionY(double value)
         {
+            if ((value == Double.MaxValue) || (value == Double.MinValue))
+                return;
             miny = Math.Min(miny, value);
             maxy = Math.Max(maxy, value);
             dimy = maxy - miny;
         }
         public void setDimensionZ(double value)
         {
+            if ((value == Double.MaxValue) || (value == Double.MinValue))
+                return;
             minz = Math.Min(minz, value);
             maxz = Math.Max(maxz, value);
             dimz = maxz - minz;
         }
+        public void offsetXY(double x, double y)
+        { minx += x; maxx += x; miny += y; maxy += y;}
+        public void scaleXY(double scaleX, double scaleY)
+        { minx *= scaleX; maxx *= scaleX; miny *= scaleY; maxy *= scaleY; dimx = maxx - minx; dimy = maxy - miny; }
 
         public double getArea()
         {   return dimx* dimy;  }
 
         // calculate min/max dimensions of a circle
         public void setDimensionCircle(double x, double y, double radius, double start, double delta)
-        {
-            double end = start + delta;
+        {   double end = start + delta;
             if (delta > 0)
-            {
-                for (double i = start; i < end; i += 5)
-                {
-                    setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+            {   for (double i = start; i < end; i += 5)
+                {   setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
                     setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
                 }
             }
             else
-            {
-                for (double i = start; i > end; i -= 5)
-                {
-                    setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+            {   for (double i = start; i > end; i -= 5)
+                {   setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
                     setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
                 }
             }
-
         }
+
+        public void setDimensionArc(xyPoint oldPos, xyPoint newPos, double i, double j, bool isG2)
+        {
+            ArcProperties arcMove;
+            arcMove = gcodeMath.getArcMoveProperties(oldPos, newPos, i, j, isG2);
+
+            float x1 = (float)(arcMove.center.X - arcMove.radius);
+            float x2 = (float)(arcMove.center.X + arcMove.radius);
+            float y1 = (float)(arcMove.center.Y - arcMove.radius);
+            float y2 = (float)(arcMove.center.Y + arcMove.radius);
+            float r2 = 2 * (float)arcMove.radius;
+            float aStart = (float)(arcMove.angleStart * 180 / Math.PI);
+            float aDiff = (float)(arcMove.angleDiff * 180 / Math.PI);
+            setDimensionCircle(arcMove.center.X, arcMove.center.Y, arcMove.radius, aStart, aDiff);        // calculate new dimensions
+        }
+
         public void resetDimension()
         {
             minx = Double.MaxValue;
@@ -498,16 +537,6 @@ namespace GRBL_Plotter
         { get { return posZ; } }
         public string Command
         {   get { return command; } }
-    }
-
-    public static class log
-    {   public static StringBuilder logText = new StringBuilder();
-        public static void Add(string tmp)
-        {   logText.AppendLine(tmp); }
-        public static string get()
-        {   return logText.ToString(); }
-        public static void clear()
-        { logText.Clear(); }
     }
 
     public static class unDo
