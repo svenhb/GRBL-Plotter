@@ -1,0 +1,9 @@
+# T-Nr, Color, T-Name, ExPosX, ExPosY, ExPosZ, ExPosA, T-Diameter, XY-Feed, Z-Feed, Z-Save, Z-Deepth, Z-Step, Spindle-Spd, Step-over %, GCode
+# router_tools
+  1, FF0000,layer1   ,    0,    0,    0,   0, 3, 500,  500,   2,  -1,    1, 10000,  75, 
+  2, FFFF00,layer3   ,   50,    0,    0,   0, 1, 500,  500,   2,  -1,    1, 10000,  75, 
+  3, 00FF00,layer2   ,    0,  -34,    0,   0, 2, 500,  500,   2,  -1,    1, 10000,  75, 
+  4, 00FFFF,Lay3     ,   50,  -34,    0,   0, 4, 500,  500,   2,  -1,    1, 10000,  75, 
+  5, 0000FF,Lay2     ,    0,  -69,    0,   0, 5, 500,  500,   2,  -1,    1, 10000,  75, 
+  6, FF00FF,Magenta   ,   50,  -69,    0,   0, 6, 500,  500,   2,  -1,    1, 10000,  75, 
+  7, 000000,Black     ,    0, -100,    0,   0, 8, 500,  500,   2,  -1,    1, 10000,  75, 
