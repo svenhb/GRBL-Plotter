@@ -1,7 +1,28 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
-
+### 2020-07-23 Version 1.5.0.0    
+Revision of the graphical import algorithms:   
+* grouping by pen-color, pen-width, layer-name
+* clipping, tiling [Setup - Graphics import - Path import - Clipping](issue #109)
+* sort objects by shortest connections [Setup - Graphics import - Path import - General Options](issue #119)
+* merge / append almost connected paths (issue #121)
+* path repetition optionally path by path [Setup - Graphics import - Path import - General Options]
+* hatch fill of closed paths [Setup - Graphics import - Path import - Path modifications](issue #124)
+* path extension of closed path for laser cutting
+* path interpretation: translate pen-width to Z-value [Setup - Graphics import - Path import - General options](issue #127)
+  
+New features:    
+* import of CSV data (like airfoil data from: https://m-selig.ae.illinois.edu/ads/coord_database.html)
+* creation of Barcode and QR-Code [G-Code Creation - Create Barcode](issue #123)
+  
+Improovements:    
+* continuously switching of visibility of PenUp path with space-bar (issue #122)
+* editor: adjustable line distance [Setup - Program appearance - 2D-View/Editor](issue #125)
+* tool table: add axis A for tool change (issue #126)
+* marking of the processed path 
+  
+    
 ### 2020-03-08 Version 1.3.4.0  
 * Import of basic HPGL code  
 * Tangential knife support for axis A,B,C or Z 
