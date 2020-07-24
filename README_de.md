@@ -4,6 +4,23 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+### Neu in Version 1.5.0.x
+Revision of the graphical import algorithms:
+* Gruppierung von Stift-Farbe, Stift-breite oder Ebenenname 
+* Zuschneiden oder Kachelung [Setup - Graphics import - Path import - Clipping](issue #109)
+* Sortieren der Objekte nach kürzestem Abstand [Setup - Graphics import - Path import - General Options](issue #119)
+* Zusammen führen von sich berührenden Pfaden (issue #121)
+* Wiederholungen, komplett oder Pfad für Pfad [Setup - Graphics import - Path import - General Options]
+* hatch fill von geschlossenen Pfaden [Setup - Graphics import - Path import - Path modifications](issue #124)
+* Pfadverlängerung für geschlossene Pfade (für Laser cutter)
+* Übersetzung von Stiftbreite zu Z-Tiefe [Setup - Graphics import - Path import - General options](issue #127)
+* Import von CSV Daten (like airfoil data from: https://m-selig.ae.illinois.edu/ads/coord_database.html)
+* Erzeugung von Barcode und QR-Code [G-Code Creation - Create Barcode](issue #123)
+* Dauerhaftes Umschalten der "Stift-oben" Pfade mit der Leertaste (issue #122)
+* Editor: Einstellbarer Zeilenabstand [Setup - Program appearance - 2D-View/Editor](issue #125)
+* Tool table: A-Achse hinzugefügt (issue #126)
+* Anzeige des bearbeitungsverlaufs 
+  
 ### Neu in Version 1.3.2.x   
 * Bug fix DXF Import - Ellipse:
 Fix DXFLib.dll, Add Ellipse support
