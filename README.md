@@ -11,7 +11,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.3.4.6](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-04-15     
+#### [GRBL-Plotter Vers. 1.5.0.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-07-23     
 
 ### Requirements for compiling
 * VisualStudio 2015 
@@ -39,6 +39,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 * [Drag tool compensation](https://github.com/svenhb/GRBL-Plotter/wiki/Drag-tool-compensation)
 * HPGL graphics import via file load, drag & drop  
 * Drill file import via file load, drag & drop
+* CSV file import via file load, drag & drop
 * Image import via file load or drag & drop
 * GCode can be edited and saved
 * Recent File List (Files and URLs)
@@ -47,16 +48,25 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 #### GCode creation:
 * Create Text
   - own created 'Dot Matrix' font [Video 'Dot Matrix'](https://youtu.be/ip_qCQwoufw) 
-* Create simple shapes
+* Create simple shapes 
+* Create Barcode and QR-Code 
 * Create GCode via tool extensions 
     
+#### Import options: 
+* Process pen-width as Z-depth 
+* Process circle radius as dot (optional with Z-depth) 
+* Modify paths for drag knife
+* Add angle information for tangential axis 
+* Add hatch fill to closed paths 
+* Repeat closed path for a small distance (for laser cutter)
+ 
 #### GCode manipulation:  
 * Transformation of GCodes (scale, rotation, mirror, zero-Offset)  
 any A,B,C,U,V,W commands will stay in place.
 * Transformation via camera teaching
 * Axis Substitution for Rotary Axis
 * Radius compensation 
-* Create Code for Tangential axis 
+
   
 #### Machine control:  
 * Height map, auto leveling 
