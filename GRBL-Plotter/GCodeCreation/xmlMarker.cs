@@ -238,6 +238,7 @@ namespace GRBL_Plotter
 
         public static string getAttributeValue(string Element, string Attribute)
         {
+//            Logger.Trace("   getAttributeValue  element:{0}  attribute:{1}", Element, Attribute);
             int posAttribute = Element.IndexOf(Attribute);
             if (posAttribute <= 0) return "";
             int strt = Element.IndexOf('"', posAttribute + Attribute.Length);
@@ -248,6 +249,7 @@ namespace GRBL_Plotter
         }
         public static int getAttributeValueInt(string Element, string Attribute)
         {
+//            Logger.Trace("   getAttributeValueInt  element:{0}  attribute:{1}", Element, Attribute);
             string tmp = getAttributeValue(Element, Attribute);
             if (tmp == "") return -1;
             int att;
@@ -264,6 +266,7 @@ namespace GRBL_Plotter
 
         public static BlockData setBlockData(int lineStart, string element)
         {
+//            Logger.Trace("   setBlockData");
             header.lineEnd = Math.Min(header.lineEnd, lineStart);   // lowest block-line = end of header
             BlockData tmp = new BlockData();
             tmp.lineStart = lineStart; tmp.reverse = false;
@@ -277,6 +280,7 @@ namespace GRBL_Plotter
             if (element.Contains("Geometry")) { tmp.geometry = getAttributeValue(element, "Geometry"); }
             if (element.Contains("Color")) { tmp.color = getAttributeValue(element, "Color"); }
             if (element.Contains("ToolName")) { tmp.toolName = getAttributeValue(element, "ToolName"); }
+//            Logger.Trace("   setBlockData finish");
             return tmp;
         }
 
@@ -414,7 +418,7 @@ namespace GRBL_Plotter
         }
 
         public static void AddGroup(int lineStart, string element)
-        { tmpGroup = setBlockData(lineStart, element); }
+        {   tmpGroup = setBlockData(lineStart, element);   }
 
         public static void FinishGroup(int lineEnd)
         {
