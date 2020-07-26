@@ -2047,4 +2047,7 @@ Utile pour la découpe laser.</value>
   <data name="tab4gB5.Text" xml:space="preserve">
     <value>Pendant la diffusion en continu de G-Code</value>
   </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>Autoriser le nouveau point de départ dans le chemin fermé</value>
+  </data>
 </root>

@@ -2014,4 +2014,7 @@ Nützlich für Laserschneider.</value>
   <data name="tab4gB5.Text" xml:space="preserve">
     <value>Während des Streamings von G-Code</value>
   </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>Neuen Startpunkt im geschlossenen Pfad zulassen</value>
+  </data>
 </root>

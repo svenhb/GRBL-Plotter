@@ -2245,4 +2245,7 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
   <data name="tab4gB5.Text" xml:space="preserve">
     <value>Gコードのストリーミング中</value>
   </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>閉じたパスで新しい開始点を許可する</value>
+  </data>
 </root>

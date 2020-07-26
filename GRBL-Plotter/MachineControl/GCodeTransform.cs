@@ -26,6 +26,7 @@
  * 2020-03-09 bug-fix simulation of G2/3 code without tangential line 525
  * 2020-04-04 bug-fix simulation of G2/3 code without tangential line 518 - never ending rotation
  * 2020-07-22 show ProcessedPath
+ * 2020-07-25 bug fix in simulaation -> only addArc if r > 0
  */
 
 using System;
@@ -633,20 +634,19 @@ namespace GRBL_Plotter
                 if (isPenDownNow)
                 {
                     if (isG2G3)
-                    {
-                        float x1 = (float)(arcMove.center.X - arcMove.radius);
+                    {   float x1 = (float)(arcMove.center.X - arcMove.radius);
                         float x2 = (float)(arcMove.center.X + arcMove.radius);
                         float y1 = (float)(arcMove.center.Y - arcMove.radius);
                         float y2 = (float)(arcMove.center.Y + arcMove.radius);
                         float r2 = 2 * (float)arcMove.radius;
-						//System.Drawing.Drawing2D.GraphicsPath.AddArc(Single x, Single y, Single width, Single height, Single startAngle, Single sweepAngle)
-			//			Logger.Debug("x1:{0:0.00} y1:{1:0.00} r2:{2:0.00} start:{3:0.00} sweep:{4:0.00}",x1, y1, r2,drawAngleOld, (drawAngleNow- drawAngleOld));
-                        pathSimulation.AddArc(x1, y1, r2, r2, drawAngleOld, (drawAngleNow- drawAngleOld));
+
+//                        Logger.Debug("x1:{0:0.00} y1:{1:0.00} r2:{2:0.00} start:{3:0.00} now:{4} sweep:{5:0.00}",x1, y1, r2,drawAngleOld, drawAngleNow, (drawAngleNow- drawAngleOld));
+                        if (r2 > 0)
+                            pathSimulation.AddArc(x1, y1, r2, r2, drawAngleOld, (drawAngleNow- drawAngleOld));
                         lastPosMarker = moveto;
                     }
                     else if (checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, moveto))
-                    {
-                        pathSimulation.AddLine(start, end);
+                    {   pathSimulation.AddLine(start, end);
                         lastPosMarker = moveto;
                     }
                 }

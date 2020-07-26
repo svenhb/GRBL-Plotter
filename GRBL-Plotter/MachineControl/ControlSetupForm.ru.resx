@@ -2115,4 +2115,7 @@ min X, min Y и max Z.
   <data name="tab4gB5.Text" xml:space="preserve">
     <value>Во время потоковой передачи G-кода</value>
   </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>Разрешить новую начальную точку в закрытом пути</value>
+  </data>
 </root>

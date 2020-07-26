@@ -2056,4 +2056,7 @@ menos estresse para a mecânica</value>
   <data name="tab4gB5.Text" xml:space="preserve">
     <value>Durante a transmissão do código G</value>
   </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>Permitir novo ponto de partida no caminho fechado</value>
+  </data>
 </root>

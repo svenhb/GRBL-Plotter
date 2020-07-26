@@ -38,6 +38,7 @@
  * 2019-11-30 new line 913 offset via mouse move 
  * 2020-01-10 init path = pathPenUp in line 259
  * 2020-01-13 convert GCodeVisuAndTransform to a static class
+ * 2020-07-24 pathBackground.Reset() after code-rotation, -scaling, -offset
 */
 
 using System;
@@ -875,6 +876,7 @@ namespace GRBL_Plotter
                     oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
+			pathBackground.Reset();
             return createGCodeProg();
         }
  
@@ -913,6 +915,7 @@ namespace GRBL_Plotter
                     oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
+   			pathBackground.Reset();
             return createGCodeProg();        
         }
         public static string transformGCodeOffset(double x, double y, translate shiftToZero)
@@ -1000,6 +1003,7 @@ namespace GRBL_Plotter
                     oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
+			pathBackground.Reset();
             return createGCodeProg();   
         }
 

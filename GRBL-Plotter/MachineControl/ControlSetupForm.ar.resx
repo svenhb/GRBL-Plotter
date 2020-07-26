@@ -2244,4 +2244,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="tab4gB5.Text" xml:space="preserve">
     <value>أثناء تدفق G-Code</value>
   </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>السماح بنقطة بداية جديدة في المسار المغلق</value>
+  </data>
 </root>
