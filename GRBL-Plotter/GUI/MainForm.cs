@@ -133,7 +133,7 @@ namespace GRBL_Plotter
             }
             Exception ex = e.Exception;
             Logger.Error(ex, "Application_ThreadException");
-            MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex), "Main Form Thread exception");
+            MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Application.StartupPath + "\\logfile.txt", "Main Form Thread exception");
             if (MessageBox.Show(Localization.getString("mainQuit"), Localization.getString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             { Application.Exit(); }
         }
@@ -148,7 +148,7 @@ namespace GRBL_Plotter
             {
                 Exception ex = (Exception)e.ExceptionObject;
                 Logger.Error(ex, "UnhandledException - Quit GRBL Plotter?");
-                MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex), "Main Form Application exception");
+                MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Application.StartupPath + "\\logfile.txt", "Main Form Application exception");
                 if (MessageBox.Show(Localization.getString("mainQuit") + "\r\n\r\nCheck " + Application.StartupPath + "\\logfile.txt", Localization.getString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                 { Application.Exit(); }
             }
@@ -258,7 +258,7 @@ namespace GRBL_Plotter
             gui.resetVariables();
 
             try { ControlGamePad.Initialize(); }
-            catch { }
+            catch (Exception er) { Logger.Error(er, " MainForm_Load - ControlGamePad.Initialize"); }
             Logger.Trace("MainForm_Load finish, start splashScreen timer");
 
             SplashScreenTimer.Enabled = true;

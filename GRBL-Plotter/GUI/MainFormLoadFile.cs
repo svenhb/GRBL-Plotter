@@ -158,6 +158,8 @@ namespace GRBL_Plotter
         {
             setEditMode(false);
 
+            Logger.Trace("----newCodeEnd++++");
+
             if (Properties.Settings.Default.ctrlCommentOut)
             {   fCTB_CheckUnknownCode(); }                                // check code
             VisuGCode.getGCodeLines(fCTBCode.Lines);                    // get code path
@@ -171,6 +173,7 @@ namespace GRBL_Plotter
             if (VisuGCode.errorString.Length > 1)
                 statusStripSet(0, VisuGCode.errorString, Color.OrangeRed);
             //            showPaths = true;
+            Logger.Trace("----newCodeEnd----");
         }
 
         string importOptions = "";
@@ -267,6 +270,7 @@ namespace GRBL_Plotter
             if (ext == ".url")
             { getURL(fileName); fileLoaded = true; }
 
+            Logger.Info("Load file fileLoaded:{0}", fileLoaded);
             if (fileLoaded)
             {
                 SaveRecentFile(fileName);
@@ -403,8 +407,6 @@ namespace GRBL_Plotter
             _setup_form.commandToSend = "";
         }
 
-
-
         private void startConvert(Graphic.SourceTypes type, string source)
         {
             Logger.Info("startConvert"+type.ToString());
@@ -483,6 +485,7 @@ namespace GRBL_Plotter
 
         private void loadGcode()
         {
+            Logger.Trace(" loadGCode");
             if (File.Exists(tbFile.Text))
             {
                 newCodeStart();
@@ -524,6 +527,7 @@ namespace GRBL_Plotter
                 }
                 else
                     SaveRecentFile(tbFile.Text);
+                Logger.Trace(" loadGCode end");
             }
         }
 
@@ -1021,6 +1025,8 @@ namespace GRBL_Plotter
                     btnZeroA.Text = ctrl4thName + " nullen";
 
                 virtualJoystickA.Visible |= ctrl4thAxis || grbl.axisA;
+                if (ctrl4thAxis)
+                    virtualJoystickA.JoystickText = ctrl4thName;
                 //virtualJoystickB.Visible = ctrl4thAxis;
                 //virtualJoystickC.Visible = ctrl4thAxis;
                 btnJogZeroA.Visible = ctrl4thAxis || grbl.axisA;
