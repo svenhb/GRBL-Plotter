@@ -19,6 +19,7 @@
 /*
  * 2020-03-11 add gui class
  * 2020-05-01 add setDimensionArc
+ * 2020-07-26 fix setDimensionCircle line 371
 */
 
 using System;
@@ -370,16 +371,30 @@ namespace GRBL_Plotter
         // calculate min/max dimensions of a circle
         public void setDimensionCircle(double x, double y, double radius, double start, double delta)
         {   double end = start + delta;
-            if (delta > 0)
-            {   for (double i = start; i < end; i += 5)
-                {   setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-                    setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+            double i = start;
+            setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+            setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+            i = end;
+            setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+            setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+
+            for (int k = -360; k <= 360; k += 90)
+            {
+                if (delta > 0)
+                {
+                    if ((k > start) && (k < end))
+                    {   i = k;
+                        setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                        setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                    }
                 }
-            }
-            else
-            {   for (double i = start; i > end; i -= 5)
-                {   setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-                    setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                else
+                {
+                    if ((k < start) && (k > end))
+                    {   i = k;
+                        setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                        setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                    }
                 }
             }
         }
