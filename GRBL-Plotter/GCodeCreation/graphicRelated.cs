@@ -18,6 +18,8 @@
 */
 /*
  * 2020-07-05 new class to collect graphic primitives
+ * 2020-07-24 switch process-order of tangential and drag-knife - do tangential as a last step
+			  clipping/tilig: show tiling cuts only for tiling
 */
 
 using System;
@@ -332,14 +334,10 @@ namespace GRBL_Plotter
 /* sort by distance and merge paths with same start / end coordinates*/
             if (graphicInformation.OptionSortCode)  { MergeFigures(completeGraphic); SortByDistance(completeGraphic);  }
 
-/* calculate tangential axis - paths may be splitted, do not merge afterwards!*/
-            if (graphicInformation.OptionTangentialAxis)
-                CalculateTangentialAxis(); 
-
 /* Drag Tool path modification*/
             if (graphicInformation.OptionDragTool)
                 DragToolModification(completeGraphic);
- 
+
 /* clipping or tiling of whole graphic */
             if (graphicInformation.OptionClipCode)  
             {   //OffsetCoordinates();
@@ -350,10 +348,15 @@ namespace GRBL_Plotter
 				}
                 ClipCode((double)Properties.Settings.Default.importGraphicTileX,(double)Properties.Settings.Default.importGraphicTileY); 
             }
+
 			
 /* extend closed path for laser cutting to avoid a "nose" at start/end position */
             if (graphicInformation.OptionExtendPath)
 				ExtendClosedPaths(completeGraphic, (double)Properties.Settings.Default.importGraphicExtendPathValue);
+
+/* calculate tangential axis - paths may be splitted, do not merge afterwards!*/
+            if (graphicInformation.OptionTangentialAxis)
+                CalculateTangentialAxis(); 
 
 /* List option data */
             if (graphicInformation.OptionZFromWidth || (graphicInformation.OptionDotFromCircle && graphicInformation.OptionZFromRadius))
@@ -591,17 +594,23 @@ namespace GRBL_Plotter
             int tileNr = 0;
 			
 			string tileID ="";
+			
+			bool doTilingNotClipping = !Properties.Settings.Default.importGraphicClip;
 
-            for (int indexX = 0; indexX < tilesX; indexX++)
-            {
-                pathBackground.StartFigure();
-                pathBackground.AddLine((float)(indexX * tileSizeX), 0, (float)(indexX * tileSizeX), (float)actualDimension.maxy);
-            }
+			if (doTilingNotClipping)	// show cut lines in backgroud
+            {	for (int indexX = 0; indexX < tilesX; indexX++)
+				{   pathBackground.StartFigure();
+					pathBackground.AddLine((float)(indexX * tileSizeX), 0, (float)(indexX * tileSizeX), (float)actualDimension.maxy);
+				}
+			}
 
             for (int indexY = 0; indexY < tilesY; indexY++)
             {
-                pathBackground.StartFigure();
-                pathBackground.AddLine(0,(float)(indexY* tileSizeY), (float)actualDimension.maxx, (float)(indexY * tileSizeY));
+				if (doTilingNotClipping)	// show cut lines in backgroud
+                {	pathBackground.StartFigure();
+					pathBackground.AddLine(0,(float)(indexY* tileSizeY), (float)actualDimension.maxx, (float)(indexY * tileSizeY));
+				}
+				
                 for (int indexX = 0; indexX < tilesX; indexX++)
                 {
                     clipMin.X = indexX * tileSizeX;
@@ -610,17 +619,17 @@ namespace GRBL_Plotter
                     clipMax.Y = (indexY + 1) * tileSizeY ;
                     tileNr++;
 
-                    if (Properties.Settings.Default.importGraphicClip)      // Apply offset for single clip
+                    if (doTilingNotClipping)
+                    {                                                       // Add micro-offset to avoid double consideration of points on clip-border
+                        if (clipMin.X > 0) clipMin.X += 0.00001;
+                        if (clipMin.Y > 0) clipMin.Y += 0.00001;
+                    }
+					else
                     {
                         clipMin.X = (double)Properties.Settings.Default.importGraphicClipOffsetX;
                         clipMin.Y = (double)Properties.Settings.Default.importGraphicClipOffsetY;
                         clipMax.X = clipMin.X + tileSizeX;
                         clipMax.Y = clipMin.Y + tileSizeY;
-                    }
-                    else
-                    {                                                       // Add micro-offset to avoid double consideration of points on clip-border
-                        if (clipMin.X > 0) clipMin.X += 0.00001;
-                        if (clipMin.Y > 0) clipMin.Y += 0.00001;
                     }
 					
 					tileID = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
@@ -986,21 +995,50 @@ namespace GRBL_Plotter
             double distanceReverse;
             bool allowReverse = true;
             PathObject tmp;
+            bool closedPathRotate = Properties.Settings.Default.importGraphicSortDistanceAllowRotate;
 
             while (graphicToSort.Count > 0)                       // items will be removed step by step from completeGraphic
             {
+                Logger.Trace("   Start point x:{0:0.00}  y:{1:0.00}", actualPos.X, actualPos.Y);
                 for (int i = 0; i < graphicToSort.Count; i++)     // calculate distance to all remaining items check start and end position
                 {   tmp = graphicToSort[i];
                     tmp.Distance = PointDistanceSquared(actualPos, tmp.Start);
                     if (tmp is ItemPath)
-                    {   distanceReverse = PointDistanceSquared(actualPos, tmp.End);
-                        if (allowReverse && !(isEqual(tmp.Start, tmp.End)) && (distanceReverse < tmp.Distance))
+                    {
+/* if closed path, find closest point */
+                        if (isEqual(tmp.Start, tmp.End))
                         {
-                            tmp.Distance = distanceReverse;
-                            ((ItemPath)tmp).Reversed = !((ItemPath)tmp).Reversed;
-                            Point start = tmp.Start;            //##################### new Point
-                            tmp.Start = tmp.End;
-                            tmp.End = start;
+                            if (closedPathRotate)
+                            {
+                                ItemPath tmpItemPath = (ItemPath)tmp;
+                                if (tmpItemPath.path.Count > 2)
+                                {   PathDistanceSquared(actualPos, tmpItemPath);
+                                    int index = (int)tmp.StartAngle;
+                                    Logger.Trace("    id:{0}  object:{1}  path index:{2}   distance:{3:0.00}", tmp.Info.id, tmp.Info.pathGeometry, index, tmp.Distance);
+                                    if ((index >= 0) && (index < tmpItemPath.path.Count))
+                                    { tmp.Start = tmp.End = tmpItemPath.path[(int)tmp.StartAngle].MoveTo; }
+                                }
+                                else if (tmpItemPath.path.Count == 2)       // is circle
+                                {   if (tmpItemPath.path[1] is GCodeArc)
+                                    {
+                                        CircleDistanceSquared(actualPos, tmpItemPath);
+                                        Logger.Trace("    id:{0}  object:{1}  angle:{2:0.0}  distance:{3:0.00}", tmp.Info.id, tmp.Info.pathGeometry, (tmp.StartAngle*180/Math.PI), tmp.Distance);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+/* if other end is closer, reverse path */
+                            distanceReverse = PointDistanceSquared(actualPos, tmp.End);
+                            if (allowReverse && !(isEqual(tmp.Start, tmp.End)) && (distanceReverse < tmp.Distance))
+                            {
+                                tmp.Distance = distanceReverse;
+                                ((ItemPath)tmp).Reversed = !((ItemPath)tmp).Reversed;
+                                Point start = tmp.Start;            //##################### new Point
+                                tmp.Start = tmp.End;
+                                tmp.End = start;
+                            }
                         }
                         graphicToSort[i] = tmp;
                     }
@@ -1009,6 +1047,7 @@ namespace GRBL_Plotter
 
                 sortedGraphic.Add(graphicToSort[0]);       	// get closest item = first in list
                 actualPos = graphicToSort[0].End;         	// set new start pos
+                Logger.Trace("   remove id:{0} ", graphicToSort[0].Info.id);
                 graphicToSort.RemoveAt(0);                	// remove item from remaining list
             }
             
@@ -1016,6 +1055,11 @@ namespace GRBL_Plotter
             for (int i=0; i < sortedGraphic.Count; i++)     // loop through all items
             {   sortedItem = sortedGraphic[i];
 
+/* now rotate path-points */
+                if ((sortedItem is ItemPath) && (closedPathRotate) && (isEqual(sortedItem.Start, sortedItem.End)))
+                {   RotatePath((ItemPath)sortedItem); }            // finally reverse path if needed
+
+/* now reverse path */
                 if ((sortedItem is ItemPath) && ((ItemPath)sortedItem).Reversed)
                 {   ReversePath((ItemPath)sortedItem); }            // finally reverse path if needed
             }
@@ -1031,8 +1075,43 @@ namespace GRBL_Plotter
             double dy = a.Y - b.Y;
             return (dx * dx + dy * dy);	// speed up
         }
-       
-		private static bool hasSameProperties(ItemPath a, ItemPath b)
+        private static void CircleDistanceSquared(Point a, ItemPath tmp)
+        {
+            ArcProperties arcMove = gcodeMath.getArcMoveProperties((xyPoint)tmp.path[0].MoveTo, (xyPoint)tmp.path[1].MoveTo, ((GCodeArc)tmp.path[1]).CenterIJ.X, ((GCodeArc)tmp.path[1]).CenterIJ.Y, ((GCodeArc)tmp.path[1]).IsCW);
+            double aLine = gcodeMath.getAlpha( toPointF(arcMove.center), a);
+            Point ptmp = new Point();
+            ptmp.X = arcMove.center.X - arcMove.radius * Math.Sin(aLine);
+            ptmp.Y = arcMove.center.Y - arcMove.radius * Math.Cos(aLine);
+
+            double distance = PointDistanceSquared(a, ptmp);
+            Logger.Trace("       circle angle:{0:0.00}  radius:{1:0.00}  x:{2:0.00} y:{3:0.00}  distance:{4:0.00}  ", (aLine*180/Math.PI), arcMove.radius, ptmp.X, ptmp.Y, distance);
+
+            tmp.Distance = distance;
+            tmp.StartAngle = aLine;
+        }
+        private static void PathDistanceSquared(Point a, ItemPath tmp)
+        {
+            if (tmp.path.Count < 2)
+                return;
+            double distance = PointDistanceSquared(a, tmp.path[0].MoveTo);
+            double distTemp;
+            int i,index=0;
+            for (i = 0; i < tmp.path.Count; i++)
+            {   distTemp = PointDistanceSquared(a, tmp.path[i].MoveTo);
+                if (distTemp < distance)
+                {   distance = distTemp;
+                    index = i;
+                }
+//                Logger.Trace("       path a.x:{0:0.00}  a.y:{1:0.00}  distance:{2:0.00}   i:{3}  index:{4}", a.X, a.Y, distTemp, i, index);
+            }
+            tmp.Distance = distance;
+            tmp.StartAngle = index;
+//            Logger.Trace("       path a.x:{0:0.00}  a.y:{1:0.00}  distance:{2:0.00}   i:{3}", a.X, a.Y, distance, index);
+        }
+        private static Point toPointF(xyPoint tmp)
+        { return new Point((float)tmp.X, (float)tmp.Y); }
+
+        private static bool hasSameProperties(ItemPath a, ItemPath b)
         {   bool sameProperties = true;
             if (graphicInformation.GroupEnable)
             {  
@@ -1045,12 +1124,23 @@ namespace GRBL_Plotter
                 sameProperties = a.Info.groupAttributes[(int)GroupOptions.ByWidth] == b.Info.groupAttributes[(int)GroupOptions.ByWidth];
             }*/
             bool sameDash = true;
-            if (Properties.Settings.Default.importLineDashPattern) 
-				sameDash = (a.dashArray == b.dashArray);
-			
+            if (Properties.Settings.Default.importLineDashPattern)
+            {
+//                Logger.Trace("  hasSameProperties a-count:{0} dash-a:{1}  b-count:{2} dash-b:{3}", a.dashArray.Count(), showArray(a.dashArray), b.dashArray.Count(), showArray(b.dashArray));
+                sameDash = false;
+                if ((a.dashArray.Count() == 0) && (a.dashArray.Count() == 0))
+                    sameDash = true;
+                else if (a.dashArray == b.dashArray)
+                    sameDash = true;
+            }
 			return (sameProperties && sameDash);
 		}
-		
+        private static string showArray(double[] tmp)
+        {   string tmps = "";
+            foreach (double nr in tmp)
+                tmps += string.Format("{0:0.00} ", nr);
+            return tmps;
+        }
         private static void MergeFigures(List<PathObject> graphicToMerge)
         {
             Logger.Trace("...MergeFigures before:{0}    ------------------------------------", graphicToMerge.Count);
@@ -1072,9 +1162,11 @@ namespace GRBL_Plotter
                             if (isEqual(graphicToMerge[k].Start, graphicToMerge[k].End))  
                                 continue;
 
-						// paths with different propertys should not be merged
+                            // paths with different propertys should not be merged
                             if (!hasSameProperties((ItemPath)graphicToMerge[i], (ItemPath)graphicToMerge[k]))
+                            {   //                             Logger.Trace("  not same Properties");
                                 continue;
+                            }
 
 						// i-start = k-end -> just connect paths (i at the end of k)
                             if (isEqual(graphicToMerge[i].Start, graphicToMerge[k].End))
@@ -1114,6 +1206,7 @@ namespace GRBL_Plotter
                 }
    			}
             ListGraphicObjects(graphicToMerge, true);
+            Logger.Trace("...MergeFigures after:{0}    ------------------------------------", graphicToMerge.Count);
         }
         public static bool isEqual(System.Windows.Point a, System.Windows.Point b)
         {   return ((Math.Abs(a.X - b.X) < equalPrecision) && (Math.Abs(a.Y - b.Y) < equalPrecision));    }
@@ -1134,9 +1227,87 @@ namespace GRBL_Plotter
                     }           
                 }*/
 
+
+        private static void RotatePath(ItemPath item)
+        {
+            List<GCodeMotion> rotatedPath = new List<GCodeMotion>();
+            GCodeMotion tmpMove;
+            int i, iStart = (int)item.StartAngle;
+            int listIndex = 0;
+
+            if (loggerTrace > 0)
+            {   Logger.Trace(".....RotatePath ID:{0}  index:{1}  count:{2}", item.Info.id, iStart, item.path.Count);
+                if (item.path.Count < listIndex)
+                { for (i = 0; i < item.path.Count; i++)
+                    { if (item.path[i] is GCodeLine)
+                            Logger.Trace("      index:{0} Line  x:{1:0.00}  y:{2:0.00}", i, item.path[i].MoveTo.X, item.path[i].MoveTo.Y);
+                        else
+                            Logger.Trace("      index:{0} Arc   x:{1:0.00}  y:{2:0.00}  i:{3:0.00}  j:{4:0.00}", i, item.path[i].MoveTo.X, item.path[i].MoveTo.Y, ((GCodeArc)item.path[i]).CenterIJ.X, ((GCodeArc)item.path[i]).CenterIJ.Y);
+                    }
+                }
+            }
+
+            if ((iStart >= 0) && (iStart < item.path.Count))
+                item.Start = item.End = item.path[iStart].MoveTo;       // restore start/end position
+
+
+            if (item.path.Count == 2)       // is circle
+            {
+                if (item.path[1] is GCodeArc)
+                {
+                    ArcProperties arcMove = gcodeMath.getArcMoveProperties((xyPoint)item.path[0].MoveTo, (xyPoint)item.path[1].MoveTo, ((GCodeArc)item.path[1]).CenterIJ.X, ((GCodeArc)item.path[1]).CenterIJ.Y, ((GCodeArc)item.path[1]).IsCW);
+                    Point ptmp = new Point();
+                    Point pij = new Point();
+                    ptmp.X = arcMove.center.X - arcMove.radius * Math.Sin(item.StartAngle);
+                    ptmp.Y = arcMove.center.Y - arcMove.radius * Math.Cos(item.StartAngle);
+
+                    pij.X = arcMove.center.X - ptmp.X;
+                    pij.Y = arcMove.center.Y - ptmp.Y;
+                    item.Start = item.path[0].MoveTo = ptmp;
+                    item.End   = item.path[1].MoveTo = ptmp;
+                    ((GCodeArc)item.path[1]).CenterIJ = pij;
+          //          Logger.Trace("       circle angle:{0:0.00}  radius:{1:0.00}  x:{2:0.00} y:{3:0.00}  distance:{4:0.00}  ", aLine, arcMove.radius, ptmp.X, ptmp.Y, distance);
+                    rotatedPath.Add(item.path[0]);
+                    rotatedPath.Add(item.path[1]);
+                }
+            }
+            else
+            {
+                if ((item.StartAngle == 0) || (iStart >= item.path.Count))           // nothing to rotate
+                    return;
+
+                tmpMove = new GCodeLine(item.Start);     	// 
+                rotatedPath.Add(tmpMove);
+
+                for (i = iStart + 1; i < item.path.Count; i++)
+                { rotatedPath.Add(item.path[i]); }
+                for (i = 1; i <= iStart; i++)
+                { rotatedPath.Add(item.path[i]); }
+            }
+
+            item.StartAngle = 0;
+
+            /* replace original path */
+            item.path.Clear();
+            foreach (GCodeMotion ent in rotatedPath)
+                item.path.Add(ent);
+
+            if (loggerTrace > 0)
+            {   if (item.path.Count < listIndex)
+                {   Logger.Trace("     after rotation");
+                    for (i = 0; i < item.path.Count; i++)
+                    {   if (item.path[i] is GCodeLine)
+                            Logger.Trace("      Line i:{0}   x:{1:0.00}  y:{2:0.00}", i, item.path[i].MoveTo.X, item.path[i].MoveTo.Y);
+                        else
+                            Logger.Trace("      Arc  i:{0}   x:{1:0.00}  y:{2:0.00}  i:{3:0.00}  j:{4:0.00}", i, item.path[i].MoveTo.X, item.path[i].MoveTo.Y, ((GCodeArc)item.path[i]).CenterIJ.X, ((GCodeArc)item.path[i]).CenterIJ.Y);
+                    }
+                }
+            }
+        }
+
         private static void ReversePath( ItemPath item)
         {   List<GCodeMotion> reversedPath = new List<GCodeMotion>();
-            if (loggerTrace > 0) Logger.Trace("     ReversePath ID:{0}",item.Info.id);
+            if (loggerTrace > 0) Logger.Trace(".....ReversePath ID:{0}",item.Info.id);
             GCodeMotion tmpMove;
 
             if (item.isReversed)	// indicatior if Start/End was already switched (in SortCode()

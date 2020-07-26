@@ -400,6 +400,7 @@ namespace GRBL_Plotter
             bool showDashInfo = false;
             string dashInfo = "";
 
+            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  MoveToDashed enabled:{0} length:{1}", Properties.Settings.Default.importLineDashPattern, PathDashArray.Length);
             if (!Properties.Settings.Default.importLineDashPattern || (PathDashArray.Length <= 1))
             {   gcode.MoveTo(gcodeString, coordxy, cmt); }
             else
