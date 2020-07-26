@@ -39,6 +39,7 @@
  * 2020-01-10 init path = pathPenUp in line 259
  * 2020-01-13 convert GCodeVisuAndTransform to a static class
  * 2020-07-24 pathBackground.Reset() after code-rotation, -scaling, -offset
+ * 2020-07-27 clean line - replace ' by "  313, 327
 */
 
 using System;
@@ -92,6 +93,7 @@ namespace GRBL_Plotter
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static bool logEnable = true;
 
         public static string getProcessingTime()
         {   try
@@ -186,7 +188,7 @@ namespace GRBL_Plotter
                             pathToolTable.Transform(matrix);
                         }
                     }
-                    catch { }
+                    catch (Exception er) { Logger.Error(er, " drawMachineLimit"); }
                 }
             }
             origWCOMachineLimit = (xyPoint)grbl.posWCO;
@@ -259,6 +261,8 @@ namespace GRBL_Plotter
             string singleLine;
             modal = new modalGroup();               // clear
 
+            Logger.Trace("getGCodeLines count:{0}",GCode.Count());
+
             gcodeList = new List<gcodeByLine>();    //.Clear();
             simuList = new List<gcodeByLine>();    //.Clear();
             coordList = new List<coordByLine>();    //.Clear();
@@ -294,7 +298,7 @@ namespace GRBL_Plotter
                 modal.resetSubroutine();                            // reset m, p, o, l Word
                 singleLine = GCode[lineNr].ToUpper().Trim();        // get line, remove unneeded chars
 
-//                Logger.Trace("Process: {0}",singleLine);
+//                Logger.Trace(" Process: {0}", GCode[lineNr]);
 
                 if (processSubs && programEnd)
                 { singleLine = "( " + singleLine + " )"; }          // don't process subroutine itself when processed
@@ -303,9 +307,12 @@ namespace GRBL_Plotter
                 xyPosChanged = calcAbsPosition(newLine, oldLine);                  // Calc. absolute positions and set object dimension: xyzSize.setDimension
 
                 if (GCode[lineNr].Contains(xmlMarker.groupStart))                   // check if marker available
-                {   xmlMarker.AddGroup(lineNr, GCode[lineNr]);
+                {
+                    string clean = GCode[lineNr].Replace("'", "\"");
+                    xmlMarker.AddGroup(lineNr, clean);
                     figureMarkerCount++;
-                    figureActive = true;  
+                    figureActive = true;
+                    if (logEnable) Logger.Trace(" Set Group figureMarkerCount:{0}", figureMarkerCount);
 				}
 
                 if (GCode[lineNr].Contains(xmlMarker.figureStart))                  // check if marker available
@@ -314,17 +321,15 @@ namespace GRBL_Plotter
                     figureActive = true;
                     updateFigureLineNeeded = true;                                  // update coordList.actualPos of this line later on
                     xyPosChanged = false;
-                    xmlMarker.AddFigure(lineNr, GCode[lineNr]);
-//                    Logger.Debug("xmlMarker.AddFigure {0}", lineNr);
+                    string clean = GCode[lineNr].Replace("'", "\"");
+                    xmlMarker.AddFigure(lineNr, clean);
+                    if (logEnable) Logger.Trace(" Set Figure figureMarkerCount:{0}", figureMarkerCount);
                 }
                 if (GCode[lineNr].Contains(xmlMarker.tangentialAxis))                    
                 {   tangentialAxisEnable = true;
                     tangentialAxisName = xmlMarker.getAttributeValue(GCode[lineNr],"Axis");
-                    if (gcode.loggerTrace) Logger.Trace("Show tangetial axis '{0}'",tangentialAxisName);
+                    if (logEnable) Logger.Trace("Show tangetial axis '{0}'",tangentialAxisName);
                 }
-
-       //         if (figureMarkerCount > 0)                          // preset figure nr
-       //             newLine.figureNumber = figureMarkerCount;
 
                 if ((modal.mWord == 98) && processSubs)
                     newLine.codeLine = "(" + GCode[lineNr] + ")";
@@ -647,7 +652,7 @@ namespace GRBL_Plotter
                     }
                 }
             }
-            catch { }
+            catch (Exception er) { Logger.Error(er, " setPosMarkerLine"); }
         }
 
         /// <summary>

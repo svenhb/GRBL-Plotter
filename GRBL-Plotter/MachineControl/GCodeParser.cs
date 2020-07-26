@@ -84,6 +84,9 @@ namespace GRBL_Plotter
         public string otherCode;
         public string info;
 
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         public gcodeByLine()
         {   resetAll(); }
         public gcodeByLine(gcodeByLine tmp)
@@ -146,10 +149,10 @@ namespace GRBL_Plotter
             string num = "";
             bool comment = false;
             double value = 0;
-            line = line.ToUpper().Trim();
+            line = line.ToUpper().Trim();   // 2020-07-26
             isSetCoordinateSystem = false;
             #region parse
-            if (!(line.StartsWith("$") || line.StartsWith("("))) //do not parse grbl comments
+            if ((!(line.StartsWith("$") || line.StartsWith("("))) && (line.Length > 1))//do not parse grbl comments
             {
                 try
                 {
@@ -158,7 +161,7 @@ namespace GRBL_Plotter
                         if (c == ';')                                   // comment?
                             break;
                         if (c == '(')                                   // comment starts
-                            comment = true;
+                        {   comment = true;  }
                         if (!comment)
                         {
                             if (Char.IsLetter(c))                       // if char is letter
@@ -176,8 +179,9 @@ namespace GRBL_Plotter
                                 num += c;
                             }
                         }
+
                         if (c == ')')                                   // comment ends
-                            comment = false;
+                        {   comment = false;  }
                     }
                     if (cmd != '\0')                                    // finally after for-each process final command and number
                     {
@@ -185,7 +189,7 @@ namespace GRBL_Plotter
                             parseGCodeToken(cmd, value, ref modalState);
                     }
                 }
-                catch { }
+                catch (Exception er) { Logger.Error(er, "parseLine"); }
             }
             #endregion
             if (isSetCoordinateSystem)
