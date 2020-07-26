@@ -5650,5 +5650,17 @@ namespace GRBL_Plotter.Properties {
                 this["useCaseLastLoaded"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicSortDistanceAllowRotate {
+            get {
+                return ((bool)(this["importGraphicSortDistanceAllowRotate"]));
+            }
+            set {
+                this["importGraphicSortDistanceAllowRotate"] = value;
+            }
+        }
     }
 }

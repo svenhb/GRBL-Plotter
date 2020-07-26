@@ -1409,5 +1409,8 @@
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
     </Setting>
+    <Setting Name="importGraphicSortDistanceAllowRotate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
