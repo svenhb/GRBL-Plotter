@@ -123,15 +123,16 @@ namespace GRBL_Plotter //DXFImporter
                 }
                 int pos = content.IndexOf("dxfrw");
                 if ((content != "") && (pos >= 0) && (pos < 8))
-                { try
+                {   try
                     {
-                        byte[] byteArray = Encoding.UTF8.GetBytes(content);
+                        byte[] byteArray = Encoding.Unicode.GetBytes(content); // Encoding.UTF8.GetBytes(content);
                         MemoryStream stream = new MemoryStream(byteArray);
+                        Logger.Info(" load from stream");
                         if (!LoadDXF(stream))
                             return "(File could not be loaded)";
                     }
                     catch (Exception e)
-                    { MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + filePath); }
+                    {   MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + filePath); }
                 }
                 else
                     MessageBox.Show("This is probably not a DXF document.\r\nFirst line: " + content.Substring(0, 50));
@@ -140,12 +141,13 @@ namespace GRBL_Plotter //DXFImporter
             {
                 if (File.Exists(filePath))
                 {
+                    Logger.Info(" load from file");
                     try
                     {   if (!LoadDXF(filePath))
                             return "(File could not be loaded)";
                     }
                     catch (Exception e)
-                    { MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + filePath); return ""; }
+                    {   MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + filePath); return ""; }
                 }
                 else { MessageBox.Show("File does not exist: " + filePath); return ""; }
             }
