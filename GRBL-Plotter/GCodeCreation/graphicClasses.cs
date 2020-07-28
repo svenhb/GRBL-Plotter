@@ -311,7 +311,7 @@ namespace GRBL_Plotter
             {   info = new PathInformation();
                 start = new Point();
                 end = new Point();
-                distance = 0;
+                distance = startAngle = pathLength = 0;
                 dimension = new Dimensions();
 				options = CreationOptions.none;
             }
@@ -542,8 +542,9 @@ namespace GRBL_Plotter
             { 	moveTo = new Point(); }
 
             public GCodeMotion(GCodeMotion old)
-            { 	moveTo = new Point(old.moveTo.X, old.moveTo.Y); 	
-				angle = old.angle;
+            { 	moveTo = new Point(old.moveTo.X, old.moveTo.Y);
+                depth = old.depth;
+                angle = old.angle;
 			}
         }
 

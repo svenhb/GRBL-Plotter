@@ -20,6 +20,7 @@
  * 2020-07-05 new class to collect graphic primitives
  * 2020-07-24 switch process-order of tangential and drag-knife - do tangential as a last step
 			  clipping/tilig: show tiling cuts only for tiling
+ * 2020-07-28 bug fix in ReversePath() add depth information to line, clipping background raster
 */
 
 using System;
@@ -168,7 +169,7 @@ namespace GRBL_Plotter
 			{	if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  AddLine SKIP, same coordinates! X:{0:0.00} Y:{1:0.00}", xy.X, xy.Y);	}
 			else
 			{	actualPath.Add(xy,z,0);
-				if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  AddLine to X:{0:0.00} Y:{1:0.00}  new dist {2:0.00}", xy.X, xy.Y, actualPath.PathLength);
+				if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  AddLine to X:{0:0.00} Y:{1:0.00}  Z:{2:0.00} new dist {3:0.00}", xy.X, xy.Y, z, actualPath.PathLength);
 				actualDimension.setDimensionXY(xy.X, xy.Y);
 				lastPoint = xy;
 			}
@@ -368,10 +369,11 @@ namespace GRBL_Plotter
                 SetHeaderInfo(tmp1);
                 SetHeaderInfo(tmp2);
                 if (loggerTrace > 0) Logger.Trace("----OptionZFromWidth {0}{1}", tmp1, tmp2);
-			}
+//                if (loggerTrace > 0) ListGraphicObjects(completeGraphic,true);
+            }
 
-/* group objects by color/width/layer/tile-nr */
-			if (graphicInformation.GroupEnable)
+            /* group objects by color/width/layer/tile-nr */
+            if (graphicInformation.GroupEnable)
 			{	//if (!graphicInformation.OptionClipCode)
                     GroupAllGraphics(graphicInformation);
 				return Graphic2GCode.CreateGCode(groupedGraphic, headerInfo, graphicInformation);
@@ -522,7 +524,7 @@ namespace GRBL_Plotter
 // Sort paths in group by distance		
             if (Properties.Settings.Default.importGraphicSortDistance)
             {   foreach (GroupObject groupObject in groupedGraphic)
-                {   MergeFigures(groupObject.groupPath); SortByDistance(groupObject.groupPath);  }
+                {   SortByDistance(groupObject.groupPath);  }
             }
 
             if ((loggerTrace & loggerSelect) > 0)
@@ -561,7 +563,7 @@ namespace GRBL_Plotter
 				{	if (showCoord && (graphicItem is ItemPath))
 					{
 						foreach (GCodeMotion ent in ((ItemPath)graphicItem).path)
-						{    Logger.Trace("       X:{0:0.00} Y:{1:0.00} Line:{2} ", ent.MoveTo.X, ent.MoveTo.Y, (ent is GCodeLine).ToString()); }
+						{    Logger.Trace("       X:{0:0.00} Y:{1:0.00} Z:{2:0.00}  Line:{3} ", ent.MoveTo.X, ent.MoveTo.Y, ent.Depth, (ent is GCodeLine).ToString()); }
 					}
 				}
             }
@@ -597,20 +599,34 @@ namespace GRBL_Plotter
 			
 			bool doTilingNotClipping = !Properties.Settings.Default.importGraphicClip;
 
-			if (doTilingNotClipping)	// show cut lines in backgroud
-            {	for (int indexX = 0; indexX < tilesX; indexX++)
-				{   pathBackground.StartFigure();
-					pathBackground.AddLine((float)(indexX * tileSizeX), 0, (float)(indexX * tileSizeX), (float)actualDimension.maxy);
-				}
-			}
+/* show cut lines in backgroud */
+            float tmpX, tmpY;
+            if (doTilingNotClipping)	// show cut lines in backgroud
+            {
+                for (int indexX = 0; indexX < tilesX; indexX++)
+                {
+                    pathBackground.StartFigure();
+                    tmpX = (float)(indexX * tileSizeX);
+                    pathBackground.AddLine(tmpX, 0, tmpX, (float)actualDimension.maxy);
+                }
+                for (int indexY = 0; indexY < tilesY; indexY++)
+                {
+                    pathBackground.StartFigure();
+                    tmpY = (float)(indexY * tileSizeY);
+                    pathBackground.AddLine(0, tmpY, (float)actualDimension.maxx, tmpY);
+                }
+            }
+            else
+            {
+                pathBackground.StartFigure();
+                tmpX = (float)Properties.Settings.Default.importGraphicClipOffsetX;
+                tmpY = (float)Properties.Settings.Default.importGraphicClipOffsetY;
+                System.Drawing.RectangleF pathRect = new System.Drawing.RectangleF(tmpX, tmpY, (float)tileSizeX, (float)tileSizeY);
+                pathBackground.AddRectangle(pathRect);
+            }
 
             for (int indexY = 0; indexY < tilesY; indexY++)
-            {
-				if (doTilingNotClipping)	// show cut lines in backgroud
-                {	pathBackground.StartFigure();
-					pathBackground.AddLine(0,(float)(indexY* tileSizeY), (float)actualDimension.maxx, (float)(indexY * tileSizeY));
-				}
-				
+            {				
                 for (int indexX = 0; indexX < tilesX; indexX++)
                 {
                     clipMin.X = indexX * tileSizeX;
@@ -737,9 +753,6 @@ namespace GRBL_Plotter
 					
                     foreach (PathObject tile in finalPathList)     // add tile to full graphic
                         tileGraphicAll.Add(tile);
-
-        //            tmpGroup = new GroupObject(tileID, 0, "", tileGraphicAll);
-        //            groupedGraphic.Add(tmpGroup);
 							
 					finalPathList = new List<PathObject>();		// 
 
@@ -1080,8 +1093,8 @@ namespace GRBL_Plotter
             ArcProperties arcMove = gcodeMath.getArcMoveProperties((xyPoint)tmp.path[0].MoveTo, (xyPoint)tmp.path[1].MoveTo, ((GCodeArc)tmp.path[1]).CenterIJ.X, ((GCodeArc)tmp.path[1]).CenterIJ.Y, ((GCodeArc)tmp.path[1]).IsCW);
             double aLine = gcodeMath.getAlpha( toPointF(arcMove.center), a);
             Point ptmp = new Point();
-            ptmp.X = arcMove.center.X - arcMove.radius * Math.Sin(aLine);
-            ptmp.Y = arcMove.center.Y - arcMove.radius * Math.Cos(aLine);
+            ptmp.X = arcMove.center.X + arcMove.radius * Math.Cos(aLine);
+            ptmp.Y = arcMove.center.Y + arcMove.radius * Math.Sin(aLine);
 
             double distance = PointDistanceSquared(a, ptmp);
             Logger.Trace("       circle angle:{0:0.00}  radius:{1:0.00}  x:{2:0.00} y:{3:0.00}  distance:{4:0.00}  ", (aLine*180/Math.PI), arcMove.radius, ptmp.X, ptmp.Y, distance);
@@ -1148,7 +1161,11 @@ namespace GRBL_Plotter
             int i =0,k=0;
 
 			for (i = graphicToMerge.Count-1; i > 0; i--)
-			{   if (graphicToMerge[i] is ItemPath)
+			{
+                if (graphicToMerge[i] is ItemDot)
+                    continue;
+
+                else if (graphicToMerge[i] is ItemPath)
                 {   if (isEqual(graphicToMerge[i].Start, graphicToMerge[i].End))  // closed path can't be merged
                         continue;
                     for (k = 0; k < graphicToMerge.Count; k++)
@@ -1258,8 +1275,8 @@ namespace GRBL_Plotter
                     ArcProperties arcMove = gcodeMath.getArcMoveProperties((xyPoint)item.path[0].MoveTo, (xyPoint)item.path[1].MoveTo, ((GCodeArc)item.path[1]).CenterIJ.X, ((GCodeArc)item.path[1]).CenterIJ.Y, ((GCodeArc)item.path[1]).IsCW);
                     Point ptmp = new Point();
                     Point pij = new Point();
-                    ptmp.X = arcMove.center.X - arcMove.radius * Math.Sin(item.StartAngle);
-                    ptmp.Y = arcMove.center.Y - arcMove.radius * Math.Cos(item.StartAngle);
+                    ptmp.X = arcMove.center.X + arcMove.radius * Math.Cos(item.StartAngle);
+                    ptmp.Y = arcMove.center.Y + arcMove.radius * Math.Sin(item.StartAngle);
 
                     pij.X = arcMove.center.X - ptmp.X;
                     pij.Y = arcMove.center.Y - ptmp.Y;
@@ -1311,15 +1328,15 @@ namespace GRBL_Plotter
             GCodeMotion tmpMove;
 
             if (item.isReversed)	// indicatior if Start/End was already switched (in SortCode()
-				tmpMove = new GCodeLine(item.Start);     	// first reversed point is End of original (but original is already switched in SortCode() -> use start)
+				tmpMove = new GCodeLine(item.Start, item.path[item.path.Count-1].Depth);     	// first reversed point is End of original (but original is already switched in SortCode() -> use start)
 			else
-				tmpMove = new GCodeLine(item.End);     	// first reversed point is End of original 
+				tmpMove = new GCodeLine(item.End, item.path[item.path.Count-1].Depth);     	// first reversed point is End of original 
 			
             reversedPath.Add(tmpMove);
 
             for (int i = item.path.Count - 2; i >= 0; i--)              // -1 start from rear, with item one before last
             {   if (item.path[i+1] is GCodeLine)         // isLine
-                {   tmpMove = new GCodeLine(item.path[i].MoveTo);
+                {   tmpMove = new GCodeLine(item.path[i].MoveTo, item.path[i].Depth);
                     reversedPath.Add(tmpMove); 
                 }
                 else
