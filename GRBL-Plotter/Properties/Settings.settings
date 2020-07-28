@@ -813,7 +813,7 @@
       <Value Profile="(Default)">-5</Value>
     </Setting>
     <Setting Name="importDepthFromWidthMin" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.1</Value>
+      <Value Profile="(Default)">-1</Value>
     </Setting>
     <Setting Name="ImportDXFSize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -999,7 +999,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicClipGCode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">G0 X#OFFX Y#OFFY (set offset)</Value>
+      <Value Profile="(Default)">(^2 G0 X#OFFX Y#OFFY)  (set offset via 2nd grbl)</Value>
     </Setting>
     <Setting Name="importGraphicClipOffsetApply" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

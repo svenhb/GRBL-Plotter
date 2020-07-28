@@ -3265,7 +3265,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
         public decimal importDepthFromWidthMin {
             get {
                 return ((decimal)(this["importDepthFromWidthMin"]));
@@ -4009,7 +4009,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G0 X#OFFX Y#OFFY (set offset)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("(^2 G0 X#OFFX Y#OFFY)  (set offset via 2nd grbl)")]
         public string importGraphicClipGCode {
             get {
                 return ((string)(this["importGraphicClipGCode"]));
