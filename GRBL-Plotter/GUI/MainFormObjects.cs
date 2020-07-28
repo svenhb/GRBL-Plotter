@@ -369,31 +369,42 @@ namespace GRBL_Plotter
         {   return dimx* dimy;  }
 
         // calculate min/max dimensions of a circle
-        public void setDimensionCircle(double x, double y, double radius, double start, double delta)
-        {   double end = start + delta;
-            double i = start;
-            setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-            setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
-            i = end;
-            setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-            setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+        public void setDimensionCircle(double x, double y, double radius, double startDeg, double deltaDeg)
+        {   double end = startDeg + deltaDeg;
+            double i = startDeg;
 
-            for (int k = -360; k <= 360; k += 90)
+            if (Math.Abs(Math.Abs(deltaDeg) - 360) < 0.00001)
             {
-                if (delta > 0)
+                setDimensionXY(x - radius, y - radius);
+                setDimensionXY(x + radius, y + radius);
+            }
+            else
+            {
+                setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                i = end;
+                setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+
+                for (int k = -360; k <= 360; k += 90)
                 {
-                    if ((k > start) && (k < end))
-                    {   i = k;
-                        setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-                        setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                    if (deltaDeg > 0)
+                    {
+                        if ((k > startDeg) && (k < end))
+                        {
+                            i = k;
+                            setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                            setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                        }
                     }
-                }
-                else
-                {
-                    if ((k < start) && (k > end))
-                    {   i = k;
-                        setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-                        setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                    else
+                    {
+                        if ((k < startDeg) && (k > end))
+                        {
+                            i = k;
+                            setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                            setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                        }
                     }
                 }
             }
@@ -411,7 +422,13 @@ namespace GRBL_Plotter
             float r2 = 2 * (float)arcMove.radius;
             float aStart = (float)(arcMove.angleStart * 180 / Math.PI);
             float aDiff = (float)(arcMove.angleDiff * 180 / Math.PI);
-            setDimensionCircle(arcMove.center.X, arcMove.center.Y, arcMove.radius, aStart, aDiff);        // calculate new dimensions
+
+            if (gcodeMath.isEqual(oldPos, newPos))
+            {   setDimensionXY(x1, y1);
+                setDimensionXY(x2, y2);
+            }
+            else
+                setDimensionCircle(arcMove.center.X, arcMove.center.Y, arcMove.radius, aStart, aDiff);        // calculate new dimensions
         }
 
         public void resetDimension()

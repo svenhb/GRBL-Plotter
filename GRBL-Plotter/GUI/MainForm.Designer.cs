@@ -204,7 +204,6 @@ namespace GRBL_Plotter
             this.lblTool = new System.Windows.Forms.Label();
             this.cBTool = new System.Windows.Forms.CheckBox();
             this.lblSpeed = new System.Windows.Forms.Label();
-            this.tBSpeed = new System.Windows.Forms.TextBox();
             this.cBCoolant = new System.Windows.Forms.CheckBox();
             this.cBSpindle = new System.Windows.Forms.CheckBox();
             this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
@@ -214,7 +213,6 @@ namespace GRBL_Plotter
             this.virtualJoystickB = new virtualJoystick.virtualJoystick();
             this.virtualJoystickC = new virtualJoystick.virtualJoystick();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOverrideDoor = new System.Windows.Forms.Button();
@@ -381,14 +379,9 @@ namespace GRBL_Plotter
             this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewPenUp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachineFix = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachine = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewDimension = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewTool = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
@@ -401,6 +394,13 @@ namespace GRBL_Plotter
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
+            this.tBSpeed = new System.Windows.Forms.TextBox();
+            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
+            this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewPenUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewTool = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -1399,13 +1399,6 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.lblSpeed, "lblSpeed");
             this.lblSpeed.Name = "lblSpeed";
             // 
-            // tBSpeed
-            // 
-            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "guiSpindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBSpeed, "tBSpeed");
-            this.tBSpeed.Name = "tBSpeed";
-            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.guiSpindleSpeed;
-            // 
             // cBCoolant
             // 
             resources.ApplyResources(this.cBCoolant, "cBCoolant");
@@ -1563,15 +1556,6 @@ namespace GRBL_Plotter
             this.tableLayoutPanel2.Controls.Add(this.cBSendJogStop, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            // 
-            // cBSendJogStop
-            // 
-            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
-            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
-            this.cBSendJogStop.Name = "cBSendJogStop";
-            this.cBSendJogStop.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -2762,33 +2746,6 @@ namespace GRBL_Plotter
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
             // 
-            // toolStripViewRuler
-            // 
-            this.toolStripViewRuler.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DRulerShow;
-            this.toolStripViewRuler.CheckOnClick = true;
-            this.toolStripViewRuler.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripViewRuler.Name = "toolStripViewRuler";
-            resources.ApplyResources(this.toolStripViewRuler, "toolStripViewRuler");
-            this.toolStripViewRuler.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewInfo
-            // 
-            this.toolStripViewInfo.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DInfoShow;
-            this.toolStripViewInfo.CheckOnClick = true;
-            this.toolStripViewInfo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripViewInfo.Name = "toolStripViewInfo";
-            resources.ApplyResources(this.toolStripViewInfo, "toolStripViewInfo");
-            this.toolStripViewInfo.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewPenUp
-            // 
-            this.toolStripViewPenUp.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DPenUpShow;
-            this.toolStripViewPenUp.CheckOnClick = true;
-            this.toolStripViewPenUp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripViewPenUp.Name = "toolStripViewPenUp";
-            resources.ApplyResources(this.toolStripViewPenUp, "toolStripViewPenUp");
-            this.toolStripViewPenUp.Click += new System.EventHandler(this.updateView);
-            // 
             // toolStripViewMachineFix
             // 
             this.toolStripViewMachineFix.CheckOnClick = true;
@@ -2813,22 +2770,6 @@ namespace GRBL_Plotter
             this.toolStripViewDimension.Name = "toolStripViewDimension";
             resources.ApplyResources(this.toolStripViewDimension, "toolStripViewDimension");
             this.toolStripViewDimension.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewTool
-            // 
-            this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DToolTableShow;
-            this.toolStripViewTool.CheckOnClick = true;
-            this.toolStripViewTool.Name = "toolStripViewTool";
-            resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
-            this.toolStripViewTool.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewBackground
-            // 
-            this.toolStripViewBackground.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundShow;
-            this.toolStripViewBackground.CheckOnClick = true;
-            this.toolStripViewBackground.Name = "toolStripViewBackground";
-            resources.ApplyResources(this.toolStripViewBackground, "toolStripViewBackground");
-            this.toolStripViewBackground.Click += new System.EventHandler(this.updateView);
             // 
             // aboutToolStripMenuItem
             // 
@@ -2891,6 +2832,66 @@ namespace GRBL_Plotter
             // 
             this.SplashScreenTimer.Interval = 1500;
             this.SplashScreenTimer.Tick += new System.EventHandler(this.SplashScreenTimer_Tick);
+            // 
+            // tBSpeed
+            // 
+            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "guiSpindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBSpeed, "tBSpeed");
+            this.tBSpeed.Name = "tBSpeed";
+            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.guiSpindleSpeed;
+            // 
+            // cBSendJogStop
+            // 
+            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
+            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
+            this.cBSendJogStop.Name = "cBSendJogStop";
+            this.cBSendJogStop.UseVisualStyleBackColor = true;
+            // 
+            // toolStripViewRuler
+            // 
+            this.toolStripViewRuler.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DRulerShow;
+            this.toolStripViewRuler.CheckOnClick = true;
+            this.toolStripViewRuler.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewRuler.Name = "toolStripViewRuler";
+            resources.ApplyResources(this.toolStripViewRuler, "toolStripViewRuler");
+            this.toolStripViewRuler.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewInfo
+            // 
+            this.toolStripViewInfo.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DInfoShow;
+            this.toolStripViewInfo.CheckOnClick = true;
+            this.toolStripViewInfo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewInfo.Name = "toolStripViewInfo";
+            resources.ApplyResources(this.toolStripViewInfo, "toolStripViewInfo");
+            this.toolStripViewInfo.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewPenUp
+            // 
+            this.toolStripViewPenUp.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DPenUpShow;
+            this.toolStripViewPenUp.CheckOnClick = true;
+            this.toolStripViewPenUp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewPenUp.Name = "toolStripViewPenUp";
+            resources.ApplyResources(this.toolStripViewPenUp, "toolStripViewPenUp");
+            this.toolStripViewPenUp.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewTool
+            // 
+            this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DToolTableShow;
+            this.toolStripViewTool.CheckOnClick = true;
+            this.toolStripViewTool.Name = "toolStripViewTool";
+            resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
+            this.toolStripViewTool.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewBackground
+            // 
+            this.toolStripViewBackground.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundShow;
+            this.toolStripViewBackground.CheckOnClick = true;
+            this.toolStripViewBackground.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewBackground.Name = "toolStripViewBackground";
+            resources.ApplyResources(this.toolStripViewBackground, "toolStripViewBackground");
+            this.toolStripViewBackground.Click += new System.EventHandler(this.updateView);
             // 
             // MainForm
             // 

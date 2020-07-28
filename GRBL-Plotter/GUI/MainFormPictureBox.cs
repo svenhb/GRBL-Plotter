@@ -389,7 +389,7 @@ namespace GRBL_Plotter
                 return;
 
             if (zoomIn > 0)
-            {   if (zoomFactor < 200)
+            {   if (zoomFactor < 800)
                 {
                     zoomFactor *= scrollZoomFactor;
                     xyPoint locationO = getPicBoxOffset(location);
@@ -399,7 +399,7 @@ namespace GRBL_Plotter
                 }
             }
             else if (zoomIn < 0)
-            {   if (zoomFactor > 0.4)
+            {   if (zoomFactor > 0.1)
                 {
                     zoomFactor *= 1/scrollZoomFactor;
                     xyPoint locationO = getPicBoxOffset(location);
