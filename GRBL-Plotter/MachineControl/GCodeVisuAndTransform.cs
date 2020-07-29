@@ -70,6 +70,15 @@ namespace GRBL_Plotter
         public static GraphicsPath pathDimension= new GraphicsPath();
         public static GraphicsPath path = pathPenUp;
 
+        public struct pathInfo
+        {
+            public PointF position;
+            public double angle;
+            public string info;
+        };
+        private static pathInfo tempPathInfo = new pathInfo();
+        public static List<pathInfo> pathInfoMarker = new List<pathInfo>();
+
         public enum convertMode { nothing, removeZ, convertZToS };
 
         public static double gcodeMinutes = 0;
@@ -267,6 +276,7 @@ namespace GRBL_Plotter
             simuList = new List<gcodeByLine>();    //.Clear();
             coordList = new List<coordByLine>();    //.Clear();
             centerList = new List<coordByLine>();    //.Clear();
+            pathInfoMarker = new List<pathInfo>();
             clearDrawingnPath();                    // reset path, dimensions
             figureMarkerCount = 0;
             lastFigureNumber = -1;
@@ -393,7 +403,12 @@ namespace GRBL_Plotter
                 if (GCode[lineNr].Contains(xmlMarker.groupEnd))                    // check if marker available
                 {   xmlMarker.FinishGroup(lineNr); }
 
-            }
+            }   // finish reading lines
+            foreach (pathInfo tmp in pathInfoMarker)
+            {
+                addArrow(pathPenUp, tmp.position, tmp.angle, tmp.info);
+                    
+                    }
         }
         /// <summary>
         /// Find and add subroutine within given gcode
@@ -1227,7 +1242,10 @@ namespace GRBL_Plotter
                 { path = pathPenDown; path.StartFigure(); }
                 if (((newL.motionMode == 0) && (oldL.motionMode > 0)) || (newL.actualPos.Z > 0))
                 {   path = pathPenUp; path.StartFigure();
-                    addArrow(pathPenUp, oldL, newL, figureCount+1);
+                    tempPathInfo = new pathInfo();
+                    tempPathInfo.position = new PointF((float)newL.actualPos.X, (float)newL.actualPos.Y);
+                    tempPathInfo.angle = gcodeMath.getAlpha((xyPoint)oldL.actualPos, (xyPoint)newL.actualPos);
+      //              addArrow(pathPenUp, oldL, newL, figureCount+1);
                 }
 
                 /*      if ((newL.z != null) && (newL.actualPos.Z < 0))         // Z > 0 = PenUp
@@ -1262,6 +1280,8 @@ namespace GRBL_Plotter
                             figureCount = figureMarkerCount;
                             oldL.figureNumber = figureCount;
                         }
+                        tempPathInfo.info = figureCount.ToString();
+                        pathInfoMarker.Add(tempPathInfo);
                     }
                 }
 
@@ -1353,40 +1373,52 @@ namespace GRBL_Plotter
             return true;// figureStart;
         }
 
-        private static void addArrow(GraphicsPath path, gcodeByLine p1, gcodeByLine p2, int id)
-        {   double angle = gcodeMath.getAlpha((xyPoint)p1.actualPos, (xyPoint)p2.actualPos);
-            if (gcodeMath.isEqual((xyPoint)p1.actualPos, (xyPoint)p2.actualPos))
-                return;
-            double msize = (float)Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 80f;
+  //      private static void addArrow(GraphicsPath path, gcodeByLine p1, gcodeByLine p2, int id)
+        private static void addArrow(GraphicsPath path, PointF p2, double angle, string info)
+        {
+   //         double angle = gcodeMath.getAlpha((xyPoint)p1.actualPos, (xyPoint)p2.actualPos);
+   //         if (gcodeMath.isEqual((xyPoint)p1.actualPos, (xyPoint)p2.actualPos))
+   //             return;
+            double msize = (float)Math.Max(Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 80f, 2);
+            int emSize = (int)Math.Max((msize * 1), 2);
 
-            double aoff = Math.PI / 6;
-            float pointToX0 = (float)(p2.actualPos.X + msize * Math.Cos(angle));
-            float pointToY0 = (float)(p2.actualPos.Y + msize * Math.Sin(angle));
-            float pointToX1 = (float)(p2.actualPos.X - msize * Math.Cos(angle + aoff));
-            float pointToY1 = (float)(p2.actualPos.Y - msize * Math.Sin(angle + aoff));
-            float pointToX2 = (float)(p2.actualPos.X - msize * Math.Cos(angle - aoff));
-            float pointToY2 = (float)(p2.actualPos.Y - msize * Math.Sin(angle - aoff));
+            Logger.Trace("addArrow x:{0:0.00}  y:{1:0.00}   size:{2:0.00}", p2.X, p2.Y, msize);
+            try
+            {
+                double aoff = Math.PI / 6;
+                float pointToX1 = (float)(p2.X - msize * Math.Cos(angle + aoff));
+                float pointToY1 = (float)(p2.Y - msize * Math.Sin(angle + aoff));
+                float pointToX2 = (float)(p2.X - msize * Math.Cos(angle - aoff));
+                float pointToY2 = (float)(p2.Y - msize * Math.Sin(angle - aoff));
 
-            path.AddLine((float)p2.actualPos.X, (float)p2.actualPos.Y, pointToX1, pointToY1);
-            path.AddLine(pointToX1, pointToY1, pointToX2, pointToY2);
-            path.AddLine(pointToX2, pointToY2, (float)p2.actualPos.X, (float)p2.actualPos.Y);
+                path.AddLine((float)p2.X, (float)p2.Y, pointToX1, pointToY1);
+                path.AddLine(pointToX1, pointToY1, pointToX2, pointToY2);
+                path.AddLine(pointToX2, pointToY2, (float)p2.X, (float)p2.Y);
+            }
+            catch (Exception err) { Logger.Error(err, "addArrow Addline - msize:{0}   ",msize); }
 
-            FontFamily family = new FontFamily("Lucida Console");
-            int fontStyle = (int)FontStyle.Italic;
-            int emSize = (int)(msize * 0.8);
-//            PointF origin = new PointF(pointToX0, -pointToY0);
-            PointF origin = new PointF((float)p2.actualPos.X, -(float)p2.actualPos.Y);
-            StringFormat format = StringFormat.GenericDefault;
+            try {
+                float pointToX0 = (float)(p2.X + msize * Math.Cos(angle));
+                float pointToY0 = (float)(p2.Y + msize * Math.Sin(angle));
+                FontFamily family = new FontFamily("Lucida Console");
+                int fontStyle = (int)FontStyle.Italic;
+    //            PointF origin = new PointF(pointToX0, -pointToY0);
+                PointF origin = new PointF((float)pointToX0, -(float)pointToY0);
+                StringFormat format = StringFormat.GenericDefault;
 
-            GraphicsPath tmpString = new GraphicsPath();
-            tmpString.AddString(id.ToString(), family, fontStyle, emSize, origin, format);
-            Matrix translateMatrix = new Matrix();
-            translateMatrix.Scale(1,-1);
-            tmpString.Transform(translateMatrix);
+                GraphicsPath tmpString = new GraphicsPath();
+                tmpString.AddString(info, family, fontStyle, emSize, origin, format);
+                RectangleF boundRect = tmpString.GetBounds();
 
-            path.AddPath(tmpString, false);
+                Matrix translateMatrix = new Matrix();
+                translateMatrix.Translate(-boundRect.Width/2, -boundRect.Height/2);
+                tmpString.Transform(translateMatrix);
+                translateMatrix.Scale(1,-1);
+                tmpString.Transform(translateMatrix);
 
-   //         path.AddString(id.ToString(), family, fontStyle, emSize, origin, format);
+                path.AddPath(tmpString, false);
+            }
+            catch (Exception err) { Logger.Error(err, "addArrow AddString - emSize:{0}   ",emSize); }
         }
 
 

@@ -705,6 +705,7 @@ namespace GRBL_Plotter
             this.nUDPenDown = new System.Windows.Forms.NumericUpDown();
             this.nUDPenUp = new System.Windows.Forms.NumericUpDown();
             this.nUDRuler = new System.Windows.Forms.NumericUpDown();
+            this.cBImportPenWidthToZRamp = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -1102,6 +1103,7 @@ namespace GRBL_Plotter
             // 
             // gBCreateZValue
             // 
+            this.gBCreateZValue.Controls.Add(this.cBImportPenWidthToZRamp);
             this.gBCreateZValue.Controls.Add(this.cBImportSVGCircleToDotZ);
             this.gBCreateZValue.Controls.Add(this.label17);
             this.gBCreateZValue.Controls.Add(this.cBImportSVGCircleToDot);
@@ -7223,6 +7225,14 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.nUDRuler, resources.GetString("nUDRuler.ToolTip"));
             this.nUDRuler.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRuler;
             // 
+            // cBImportPenWidthToZRamp
+            // 
+            resources.ApplyResources(this.cBImportPenWidthToZRamp, "cBImportPenWidthToZRamp");
+            this.cBImportPenWidthToZRamp.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidthRamp;
+            this.cBImportPenWidthToZRamp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidthRamp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportPenWidthToZRamp.Name = "cBImportPenWidthToZRamp";
+            this.cBImportPenWidthToZRamp.UseVisualStyleBackColor = true;
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -8167,5 +8177,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBShowStreamingProgress;
         private System.Windows.Forms.Label lblEnableLogging;
         private System.Windows.Forms.CheckBox cBImportGraphicSortDistanceRotatePath;
+        private System.Windows.Forms.CheckBox cBImportPenWidthToZRamp;
     }
 }

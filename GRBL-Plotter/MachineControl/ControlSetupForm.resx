@@ -967,6 +967,33 @@ to avoid problems when scaling down gcode.</value>
   <data name="&gt;&gt;tabPage16.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="cBImportPenWidthToZRamp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportPenWidthToZRamp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 90</value>
+  </data>
+  <data name="cBImportPenWidthToZRamp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 17</value>
+  </data>
+  <data name="cBImportPenWidthToZRamp.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>Apply ramp instead of a step</value>
+  </data>
+  <data name="&gt;&gt;cBImportPenWidthToZRamp.Name" xml:space="preserve">
+    <value>cBImportPenWidthToZRamp</value>
+  </data>
+  <data name="&gt;&gt;cBImportPenWidthToZRamp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportPenWidthToZRamp.Parent" xml:space="preserve">
+    <value>gBCreateZValue</value>
+  </data>
+  <data name="&gt;&gt;cBImportPenWidthToZRamp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBImportSVGCircleToDotZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -974,7 +1001,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGCircleToDotZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 120</value>
+    <value>30, 140</value>
   </data>
   <data name="cBImportSVGCircleToDotZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 17</value>
@@ -999,7 +1026,7 @@ Idea: use a countersink to control circle dimension</value>
     <value>gBCreateZValue</value>
   </data>
   <data name="&gt;&gt;cBImportSVGCircleToDotZ.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1027,7 +1054,7 @@ Idea: use a countersink to control circle dimension</value>
     <value>gBCreateZValue</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBImportSVGCircleToDot.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1036,7 +1063,7 @@ Idea: use a countersink to control circle dimension</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportSVGCircleToDot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 100</value>
+    <value>6, 120</value>
   </data>
   <data name="cBImportSVGCircleToDot.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 17</value>
@@ -1060,7 +1087,7 @@ Idea: use a countersink to control circle dimension</value>
     <value>gBCreateZValue</value>
   </data>
   <data name="&gt;&gt;cBImportSVGCircleToDot.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1090,7 +1117,7 @@ Idea: use a countersink to control circle dimension</value>
     <value>gBCreateZValue</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cBImportPenWidthToZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1099,7 +1126,7 @@ Idea: use a countersink to control circle dimension</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportPenWidthToZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 67</value>
+    <value>6, 70</value>
   </data>
   <data name="cBImportPenWidthToZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>170, 17</value>
@@ -1124,7 +1151,7 @@ Maximum depth will be limited by Z-Height engrave.</value>
     <value>gBCreateZValue</value>
   </data>
   <data name="&gt;&gt;cBImportPenWidthToZ.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nUDImportPenWidthToZMin.Location" type="System.Drawing.Point, System.Drawing">
     <value>205, 12</value>
@@ -1151,7 +1178,7 @@ Maximum depth will be limited by Z-Height engrave.</value>
     <value>gBCreateZValue</value>
   </data>
   <data name="&gt;&gt;nUDImportPenWidthToZMin.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1181,7 +1208,7 @@ Maximum depth will be limited by Z-Height engrave.</value>
     <value>gBCreateZValue</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="nUDImportPenWidthToZMax.Location" type="System.Drawing.Point, System.Drawing">
     <value>205, 38</value>
@@ -1208,13 +1235,13 @@ Maximum depth will be limited by Z-Height engrave.</value>
     <value>gBCreateZValue</value>
   </data>
   <data name="&gt;&gt;nUDImportPenWidthToZMax.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="gBCreateZValue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 119</value>
+    <value>6, 76</value>
   </data>
   <data name="gBCreateZValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 147</value>
+    <value>258, 190</value>
   </data>
   <data name="gBCreateZValue.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -17674,9 +17701,6 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 411</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>
