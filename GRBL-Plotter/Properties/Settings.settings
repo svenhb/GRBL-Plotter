@@ -1412,5 +1412,8 @@
     <Setting Name="importGraphicSortDistanceAllowRotate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importDepthFromWidthRamp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -5662,5 +5662,17 @@ namespace GRBL_Plotter.Properties {
                 this["importGraphicSortDistanceAllowRotate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importDepthFromWidthRamp {
+            get {
+                return ((bool)(this["importDepthFromWidthRamp"]));
+            }
+            set {
+                this["importDepthFromWidthRamp"] = value;
+            }
+        }
     }
 }
