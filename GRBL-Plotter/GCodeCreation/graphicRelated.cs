@@ -1012,8 +1012,8 @@ namespace GRBL_Plotter
 
             while (graphicToSort.Count > 0)                       // items will be removed step by step from completeGraphic
             {
-                Logger.Trace("   Start point x:{0:0.00}  y:{1:0.00}", actualPos.X, actualPos.Y);
-                for (int i = 0; i < graphicToSort.Count; i++)     // calculate distance to all remaining items check start and end position
+//                Logger.Trace("   Start point x:{0:0.00}  y:{1:0.00}", actualPos.X, actualPos.Y);
+                for (int i = 1; i < graphicToSort.Count; i++)     // calculate distance to all remaining items check start and end position
                 {   tmp = graphicToSort[i];
                     tmp.Distance = PointDistanceSquared(actualPos, tmp.Start);
                     if (tmp is ItemPath)

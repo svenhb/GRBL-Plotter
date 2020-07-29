@@ -249,7 +249,8 @@ namespace GRBL_Plotter
 						newZ = calculateZFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, entity.Depth);
                         newZ = Math.Max(origZ, newZ);        // don't go deeper than set Z
                         gcode.gcodeZDown = (float)newZ;
-                        penIsDown = false;
+                        if (!Properties.Settings.Default.importDepthFromWidthRamp)
+                            penIsDown = false;
                         if (loggerTrace > 0)Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setZ:{1:0.00}", entity.Depth, newZ);
                     }
 
@@ -385,11 +386,15 @@ namespace GRBL_Plotter
         /// </summary>
         public static void MoveTo(Point coordxy, double newZ, double tangAngle, string cmt)
         {
-            PenDown(cmt);   //  + " moveto"                      // also process tangetial axis
+            if (!Properties.Settings.Default.importDepthFromWidthRamp)
+                PenDown(cmt);   //  + " moveto"                      // also process tangetial axis
             double setangle = 180 * tangAngle / Math.PI;
             if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}", coordxy.X, coordxy.Y, setangle);
             gcode.setTangential(gcodeString, setangle, true);
-            MoveToDashed(coordxy, cmt);
+            if(Properties.Settings.Default.importDepthFromWidthRamp)
+                gcode.Move(gcodeString, 1, (float)coordxy.X, (float)coordxy.Y, (float)newZ, true, cmt);        
+            else
+                MoveToDashed(coordxy, cmt);
             lastGC = coordxy;
         }
 

@@ -832,7 +832,7 @@ namespace GRBL_Plotter
 
         private static void Move(StringBuilder gcodeString, int gnr, float x, float y, bool applyFeed, string cmt)
         {   Move(gcodeString, gnr, x, y, null, applyFeed, cmt); }
-        private static void Move(StringBuilder gcodeStringFinal, int gnr, float x, float y, float? z, bool applyFeed, string cmt)
+        public static void Move(StringBuilder gcodeStringFinal, int gnr, float x, float y, float? z, bool applyFeed, string cmt)
         {
 //            if (loggerTraceImport) Logger.Trace("  Move G{0} X{1:0.000} Y{2:0.000}  {3}", gnr, x, y, gcodeTangentialCommand);
 
