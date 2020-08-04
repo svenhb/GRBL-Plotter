@@ -19,6 +19,7 @@
 /*
  * 2020-06-14 move class into sperate file
  * 2020-06-15 add 'Header'
+ * 2020-08-04 add figureNr, penWidth
 */
 
 using System;
@@ -60,13 +61,19 @@ namespace GRBL_Plotter
             public xyPoint posEnd;
             public double distance;
             public bool reverse;
+            public int figureNr;
 
             public int id;                  // block informations
             public int toolNr;
             public int codeSize;
             public int codeArea;
+            public int pathId;        
+            public double pathLength;
+            public double pathArea;
+            public double penWidth;
+
             public string geometry;
-            public string color;
+            public string penColor;
             public string toolName;
             public string layer;
         };
@@ -80,7 +87,7 @@ namespace GRBL_Plotter
         public static BlockData header = new BlockData();
         public static BlockData footer = new BlockData();
 
-        public enum sortItem { id, geometry, toolNr, toolName, layer, color, codeSize, codeArea };
+//        public enum sortItem { id, geometry, toolNr, toolName, layer, color, codeSize, codeArea };
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -137,8 +144,8 @@ namespace GRBL_Plotter
         }
         public static void sortByColor(bool reverse = false)
         {
-            if (reverse) listFigures.Sort((x, y) => y.color.CompareTo(x.color));
-            else listFigures.Sort((x, y) => x.color.CompareTo(y.color));
+            if (reverse) listFigures.Sort((x, y) => y.penColor.CompareTo(x.penColor));
+            else listFigures.Sort((x, y) => x.penColor.CompareTo(y.penColor));
         }
         public static void sortByCodeSize(bool reverse = false)
         {
@@ -255,31 +262,51 @@ namespace GRBL_Plotter
             int att;
             if (int.TryParse(tmp, out att))
                 return att;
+            Logger.Error("getAttributeValueInt Element:{0} Attribut:{1}",Element, Attribute);
+            return -1;
+        }
+        public static double getAttributeValueDouble(string Element, string Attribute)
+        {
+            //            Logger.Trace("   getAttributeValueInt  element:{0}  attribute:{1}", Element, Attribute);
+            string tmp = getAttributeValue(Element, Attribute);
+            if (tmp == "") return -1;
+            double att;
+            if (double.TryParse(tmp, out att))
+                return att;
+            Logger.Error("getAttributeValueDouble Element:{0} Attribut:{1}", Element, Attribute);
             return -1;
         }
 
-        public static void AddFigure(int lineStart, string element)
+        public static void AddFigure(int lineStart, string element, int figureNr)
         {
-            tmpFigure = setBlockData(lineStart, element);
+            tmpFigure = setBlockData(lineStart, element, figureNr);
             //           if (gcode.loggerTrace) Logger.Trace("AddFigure Line {0}  Id {1}  Geometry {2}", lineStart, tmpFigure.id, tmpFigure.geometry);
         }
 
-        public static BlockData setBlockData(int lineStart, string element)
+        public static BlockData setBlockData(int lineStart, string element, int figNr)
         {
 //            Logger.Trace("   setBlockData");
             header.lineEnd = Math.Min(header.lineEnd, lineStart);   // lowest block-line = end of header
             BlockData tmp = new BlockData();
             tmp.lineStart = lineStart; tmp.reverse = false;
-            tmp.id = tmp.toolNr = tmp.codeSize = tmp.codeArea = -1;
-            tmp.geometry = tmp.layer = tmp.color = tmp.toolName = "";
+            tmp.id = tmp.toolNr = tmp.codeSize = tmp.codeArea = tmp.pathId = - 1;
+            tmp.penWidth = tmp.pathLength  = tmp.pathArea  = - 1;
+            tmp.geometry = tmp.layer = tmp.penColor = tmp.toolName = "";
+            tmp.figureNr = figNr;
             //            if (gcode.loggerTrace) Logger.Trace("setBlockData {0}", element);
-            if (element.Contains("Id")) { tmp.id = getAttributeValueInt(element, "Id"); }
-            if (element.Contains("ToolNr")) { tmp.toolNr = getAttributeValueInt(element, "ToolNr"); }
+            if (element.Contains("Id"))       { tmp.id = getAttributeValueInt(element, "Id"); }
+            if (element.Contains("ToolNr"))   { tmp.toolNr = getAttributeValueInt(element, "ToolNr"); }
+            if (element.Contains("ToolName")) { tmp.toolName = getAttributeValue(element, "ToolName"); }
+            if (element.Contains("PathLength")) { tmp.pathLength = getAttributeValueDouble(element, "PathLength"); }
+            if (element.Contains("PathArea")) { tmp.pathArea = getAttributeValueDouble(element, "PathArea"); }
+            if (element.Contains("PathId"))   { tmp.pathId = getAttributeValueInt(element, "PathId"); }
+            if (element.Contains("Layer"))    { tmp.layer = getAttributeValue(element, "Layer"); }
             if (element.Contains("CodeSize")) { tmp.codeSize = getAttributeValueInt(element, "CodeSize"); }
             if (element.Contains("CodeArea")) { tmp.codeArea = getAttributeValueInt(element, "CodeArea"); }
             if (element.Contains("Geometry")) { tmp.geometry = getAttributeValue(element, "Geometry"); }
-            if (element.Contains("Color")) { tmp.color = getAttributeValue(element, "Color"); }
-            if (element.Contains("ToolName")) { tmp.toolName = getAttributeValue(element, "ToolName"); }
+            if (element.Contains("PenColor")) { tmp.penColor = getAttributeValue(element, "PenColor"); }
+            if (element.Contains("PenWidth")) { tmp.penWidth = getAttributeValueDouble(element, "PenWidth"); }
+  //          if (element.Contains("ToolName")) { tmp.toolName = getAttributeValue(element, "ToolName"); }
 //            Logger.Trace("   setBlockData finish");
             return tmp;
         }
@@ -294,6 +321,16 @@ namespace GRBL_Plotter
         public static int GetFigureCount()
         { return listFigures.Count; }
 
+        public static bool GetFigureByFigureNr(int figNr)
+        {
+            foreach (BlockData tmp in listFigures)
+            {   if (tmp.figureNr == figNr)
+                {   tmpFigure = tmp;
+                    return true;
+                }
+            }
+            return false;
+        }
         public static bool GetFigure(int lineNr, int search = 0)
         {
             if (listFigures.Count > 0)
@@ -417,8 +454,8 @@ namespace GRBL_Plotter
             return false;
         }
 
-        public static void AddGroup(int lineStart, string element)
-        {   tmpGroup = setBlockData(lineStart, element);   }
+        public static void AddGroup(int lineStart, string element, int figureNr)
+        {   tmpGroup = setBlockData(lineStart, element, figureNr);   }
 
         public static void FinishGroup(int lineEnd)
         {

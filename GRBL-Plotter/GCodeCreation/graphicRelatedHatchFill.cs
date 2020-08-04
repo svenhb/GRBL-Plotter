@@ -62,7 +62,7 @@ namespace GRBL_Plotter
 						
                         // collect paths of same id, process if id changes
                         nextIsSameHatch = ((index != (maxObject - 1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
-                        if ((loggerTrace & (uint)LogEnable.PathModification) > 0) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1} ", PathData.Info.id, nextIsSameHatch);
+                        if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1} ", PathData.Info.id, nextIsSameHatch);
                         if (nextIsSameHatch)   
                         {   continue;  }
 
@@ -80,7 +80,7 @@ namespace GRBL_Plotter
                         {   ClipLineByPolygone(hatchLine[0], hatchLine[1], tmpPath, finalPattern); }
 
                         // add processed hatch lines to final graphic
-						if ((loggerTrace & (uint)LogEnable.PathModification) > 0) Logger.Trace("  Add hatch lines, clear tmpPath");
+						if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("  Add hatch lines, clear tmpPath");
                         AddLinesToGraphic(finalPattern, PathData);
 
 						// tidy up for next object with new id
@@ -90,10 +90,10 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    if ((loggerTrace & (uint)LogEnable.PathModification) > 0) Logger.Trace(" is Dot ID:{0} Length:{1:0.00}  start x:{2:0.00} y:{3:0.00} end x:{4:0.00} y:{5:0.00} ", item.Info.id, item.PathLength, item.Start.X, item.Start.Y, item.End.X, item.End.Y);
+                    if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace(" is Dot ID:{0} Length:{1:0.00}  start x:{2:0.00} y:{3:0.00} end x:{4:0.00} y:{5:0.00} ", item.Info.id, item.PathLength, item.Start.X, item.Start.Y, item.End.X, item.End.Y);
                 }
             }
-            if ((loggerTrace) > 0) Logger.Trace("HatchFill End --------------------------------------", actualDimension.minx, actualDimension.miny);
+            if ((logFlags) > 0) Logger.Trace("HatchFill End --------------------------------------", actualDimension.minx, actualDimension.miny);
         }
 
         private static List<Point[]> CreateLinePattern(Dimensions dim, double angle, double distance)
@@ -210,7 +210,7 @@ namespace GRBL_Plotter
                     ItemPath ipath = (ItemPath)path;
 
                     p3 = ipath.path[0].MoveTo;
-                    if ((loggerTrace & (uint)LogEnable.PathModification) > 0) Logger.Trace("   ClipLineByPolygone p3.x:{0:0.00} p3.y:{1:0.00}    {2}", p3.X,p3.Y, ipath.Info.id);
+                    if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("   ClipLineByPolygone p3.x:{0:0.00} p3.y:{1:0.00}    {2}", p3.X,p3.Y, ipath.Info.id);
 
                     for (int k = 1; k < ipath.path.Count; k++)
                     {

@@ -42,7 +42,7 @@ namespace GRBL_Plotter
 {
     public static class Graphic2GCode
     {
-        private static uint loggerTrace = 0;
+        private static uint logFlags = 0;
         private const int gcodeStringMax = 260;                 // max amount of tools
 //        private static int gcodeStringIndex = 0;                // index for stringBuilder-Array
 
@@ -67,8 +67,11 @@ namespace GRBL_Plotter
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static bool logEnable;
+        private static bool logDetailed;
+        private static bool logCoordinates;
 
-		public static void CleanUp()
+        public static void CleanUp()
 		{	Logger.Trace("CleanUp()");
 			gcodeString.Clear();
 			finalGcodeString.Clear();
@@ -76,10 +79,13 @@ namespace GRBL_Plotter
 
         public static void Init()
         {
-            loggerTrace = (uint)Properties.Settings.Default.importLoggerSettings;
-            if (!((loggerTrace & (uint)LogEnable.graphic2gcode) > 0))
-                loggerTrace = 0;
-            Logger.Trace("Init Graphic2GCode   loggerTrace:{0}", Convert.ToString(loggerTrace, 2));
+
+            logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
+            logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level3) > 0);
+            logDetailed = logEnable && ((logFlags & (uint)LogEnable.Detailed) > 0);
+            logCoordinates = logEnable && ((logFlags & (uint)LogEnable.Coordinates) > 0);
+
+            Logger.Trace("Init Graphic2GCode   loggerTrace:{0}", Convert.ToString(logFlags, 2));
 
             pauseBeforePath = Properties.Settings.Default.importPauseElement;
             pauseBeforePenDown = Properties.Settings.Default.importPausePenDown;
@@ -113,17 +119,17 @@ namespace GRBL_Plotter
             int groupID = 0;
 			string groupAttributes;
 			
-			if (loggerTrace > 0) Logger.Trace("-CreateGCode from Groups");
+			if (logEnable) Logger.Trace("-CreateGCode from Groups");
 			
             foreach (GroupObject groupObject in completeGraphic)
             {	groupAttributes = getGroupAttributes(groupObject, graphicInfo);
 				
 				groupID++;
 				gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\"{2}>", xmlMarker.groupStart, groupID, groupAttributes));
-                if (loggerTrace > 0) Logger.Trace("-CreateGCode {0} Id=\"{1}\"{2}>", xmlMarker.groupStart, groupID, groupAttributes);
+                if (logEnable) Logger.Trace("-CreateGCode {0} Id=\"{1}\"{2}>", xmlMarker.groupStart, groupID, groupAttributes);
 
 				if (graphicInfo.GroupOption == GroupOptions.ByTile)
-				{	if (loggerTrace > 0) Logger.Trace("-CreateGCode  try to insert Tile command {0}", groupObject.key);
+				{	if (logEnable) Logger.Trace("-CreateGCode  try to insert Tile command {0}", groupObject.key);
                     if (Graphic.tileCommands.ContainsKey(groupObject.key))
                     {   finalGcodeString.AppendLine(Graphic.tileCommands[groupObject.key]);  }
                 }
@@ -132,7 +138,7 @@ namespace GRBL_Plotter
 		
                 foreach (PathObject pathObject in groupObject.groupPath)
                 {
-                    if (loggerTrace > 0) Logger.Trace(" ProcessPathObject id:{0} ", pathObject.Info.id);
+                    if (logEnable) Logger.Trace(" ProcessPathObject id:{0} ", pathObject.Info.id);
                     ProcessPathObject(pathObject, graphicInfo);	// create Dot or Path GCode
                 }
                 PenUp(" CreateGCode 1", true);      // set xmlMarker.figureEnd
@@ -141,7 +147,7 @@ namespace GRBL_Plotter
                 gcodeString.Clear();                // don't add gcode a 2nd time
 
                 gcode.Comment(finalGcodeString, xmlMarker.groupEnd + ">"); 
-                if (loggerTrace > 0) Logger.Trace("-CreateGCode {0} >", xmlMarker.groupEnd);
+                if (logEnable) Logger.Trace("-CreateGCode {0} >", xmlMarker.groupEnd);
             }
             return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
         }
@@ -156,7 +162,7 @@ namespace GRBL_Plotter
             foreach (string info in headerInfo)		// set header info
             {   gcode.AddToHeader(info);  }         
 
-			if (loggerTrace > 0) Logger.Trace("-CreateGCode from paths");
+			if (logEnable) Logger.Trace("-CreateGCode from paths");
 
             int toolNr = 1;
             string toolName = "";
@@ -193,7 +199,7 @@ namespace GRBL_Plotter
 //convert graphic to gcode ##################################################################
 		private static void ProcessPathObject(PathObject pathObject, Graphic.GraphicInformation graphicInfo)
 		{
-            if ((loggerTrace & (uint)LogEnable.Detailed) > 0) Logger.Trace("ProcessPathObject start");
+            if (logDetailed) Logger.Trace("ProcessPathObject start");
             figureEnable = graphicInfo.FigureEnable;
             float origZ = gcode.gcodeZDown;
 
@@ -203,9 +209,9 @@ namespace GRBL_Plotter
                 if (DotData.UseZ)
                 {	
                     double setZ = calculateZFromRange(graphicInfo.DotZMin, graphicInfo.DotZMax, DotData.Z);//-Math.Abs(DotData.Z);      // be sure for right sign
-                    if (loggerTrace > 0) Logger.Trace("---Dot DotData.UseZ: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}", graphicInfo.DotZMin, graphicInfo.DotZMax, DotData.Z, setZ);
+                    if (logEnable) Logger.Trace("---Dot DotData.UseZ: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}", graphicInfo.DotZMin, graphicInfo.DotZMax, DotData.Z, setZ);
                     setZ = Math.Max(origZ, setZ);    // don't go deeper than set Z
-                    if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  PenDownWithZ z:{0:0.00}  setZ:{1:0.00}  gcodeZDown:{2:0.00}", DotData.Z, setZ, origZ);
+                    if (logCoordinates) Logger.Trace("  PenDownWithZ z:{0:0.00}  setZ:{1:0.00}  gcodeZDown:{2:0.00}", DotData.Z, setZ, origZ);
                     gcode.gcodeZDown = (float)setZ;
                     penIsDown = false;
                 }
@@ -213,13 +219,13 @@ namespace GRBL_Plotter
                 else if (graphicInfo.OptionZFromWidth)
                 {
                     double newZ = calculateZFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.Z);
-                    if (loggerTrace > 0) Logger.Trace("---Dot OptionZFromWidth: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}", graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.Z, newZ);
+                    if (logEnable) Logger.Trace("---Dot OptionZFromWidth: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}", graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.Z, newZ);
                     newZ = Math.Max(origZ, newZ);        // don't go deeper than set Z
                     gcode.gcodeZDown = (float)newZ;
                     penIsDown = false;
                 }
-				
-				StartPath(DotData);
+
+                pathObject.FigureId = StartPath(DotData);
 				PenDown();
                 StopPath();
                 gcode.gcodeZDown = origZ;
@@ -230,13 +236,13 @@ namespace GRBL_Plotter
 					gcode.gcodeZDown = 0;
 
 				ItemPath PathData = (ItemPath)pathObject;
-				if ((loggerTrace & (uint)LogEnable.Detailed) > 0) Logger.Trace(" {0}  cnt:{1}", PathData.Info.List(), PathData.path.Count);
+				if (logDetailed) Logger.Trace(" {0}  cnt:{1}", PathData.Info.List(), PathData.path.Count);
 
 				if (PathData.path.Count == 0)
-				{	if (loggerTrace > 0) Logger.Trace("--ProcessPathObject: Empty path ID:{0}", PathData.Info.id);
+				{	if (logEnable) Logger.Trace("--ProcessPathObject: Empty path ID:{0}", PathData.Info.id);
 				    return;
 				}
-				StartPath(PathData);
+                pathObject.FigureId = StartPath(PathData);
 				PathDashArray = PathData.dashArray;				
 				
 				double newZ = gcode.gcodeZDown;		// default
@@ -251,7 +257,7 @@ namespace GRBL_Plotter
                         gcode.gcodeZDown = (float)newZ;
                         if (!Properties.Settings.Default.importDepthFromWidthRamp)
                             penIsDown = false;
-                        if (loggerTrace > 0)Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setZ:{1:0.00}", entity.Depth, newZ);
+                        if (logEnable) Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setZ:{1:0.00}", entity.Depth, newZ);
                     }
 
 /* Create Line */
@@ -267,12 +273,12 @@ namespace GRBL_Plotter
 				StopPath("");
 			}
             gcode.gcodeZDown = origZ;
-            if ((loggerTrace & (uint)LogEnable.Detailed) > 0) Logger.Trace("ProcessPathObject end");
+            if (logDetailed) Logger.Trace("ProcessPathObject end");
         }
 
-		private static double calculateZFromRange(double min, double max, double penWidth)
+		public static double calculateZFromRange(double min, double max, double penWidth)
 		{
-            if (loggerTrace > 0) Logger.Trace("----calculateZFromRange: min:{0:0.00}  max: {1:0.00}  input: {2:0.00}", min, max, penWidth);
+            if (logEnable) Logger.Trace("----calculateZFromRange: min:{0:0.00}  max: {1:0.00}  input: {2:0.00}", min, max, penWidth);
             if (penWidth == 0)
 				return (double)Properties.Settings.Default.importDepthFromWidthMin;
 			
@@ -297,7 +303,7 @@ namespace GRBL_Plotter
 			else
 				z = (penDelta - nPen) * Math.Abs(zDelta) + Math.Min(zMin,zMax);                // min to max, max to min
 
-            if (loggerTrace > 0) Logger.Trace("---calculateZFromPenWidth: penWidth:{0:0.00}  nPen:{1:0.00}  zDelta:{2:0.00}   z:{3:0.00}", penWidth, nPen, zDelta, z);
+            if (logEnable) Logger.Trace("---calculateZFromPenWidth: penWidth:{0:0.00}  nPen:{1:0.00}  zDelta:{2:0.00}   z:{3:0.00}", penWidth, nPen, zDelta, z);
 
             return -z;
 		}
@@ -329,7 +335,7 @@ namespace GRBL_Plotter
         /// Set start tag, move to beginning of path via G0, finish old path
         /// </summary>
 		private static PathInformation pathInfo = new PathInformation();
-        public static void StartPath(PathObject pathObject)//string cmt)
+        public static int StartPath(PathObject pathObject)//string cmt)
         {
 			Point coordxy = pathObject.Start;
 			double angle = 0;
@@ -345,7 +351,7 @@ namespace GRBL_Plotter
 				string xml = string.Format("{0} Id=\"{1}\"{2}> ", xmlMarker.figureStart, (++PathCount), getFigureAttributes(pathObject).ToString());//attributeGeometry, attributeId, attributeColor, attributeToolNr);
 				if (figureEnable)
 					Comment(xml);
-                if ((loggerTrace & (uint)LogEnable.Properties) > 0) Logger.Trace(" StartPath Option:{0}  {1}", pathObject.Options, xml);
+                if (logCoordinates) Logger.Trace(" StartPath Option:{0}  {1}", pathObject.Options, xml);
 				FigureEndTagWasSet = false;
 
 				pathInfo = pathObject.Info.Copy();
@@ -359,16 +365,17 @@ namespace GRBL_Plotter
 			gcode.MoveToRapid(gcodeString, coordxy);
 			PenDown("");
 
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", coordxy.X, coordxy.Y, setangle);
+            if (logCoordinates) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", coordxy.X, coordxy.Y, setangle);
 
             lastGC = coordxy;
+            return PathCount;
         }
 
         public static void SetFigureEndTag()
         {   if (figureEnable)
             {   string xml = string.Format("{0}>", xmlMarker.figureEnd);//, nr);    //string.Format("{0} nr=\"{1}\" >", xmlMarker.figureEnd, nr);
                 Comment(xml);
-                if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace(" {0}", xml);
+                if (logCoordinates) Logger.Trace(" {0}", xml);
             }
         }
 
@@ -377,7 +384,7 @@ namespace GRBL_Plotter
         /// </summary>
         public static void StopPath(string cmt="")
         {
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  StopPath {0}",cmt);
+            if (logCoordinates) Logger.Trace("  StopPath {0}",cmt);
             PenUp(cmt + " Stop path"); 
         }
 
@@ -389,7 +396,7 @@ namespace GRBL_Plotter
             if (!Properties.Settings.Default.importDepthFromWidthRamp)
                 PenDown(cmt);   //  + " moveto"                      // also process tangetial axis
             double setangle = 180 * tangAngle / Math.PI;
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}", coordxy.X, coordxy.Y, setangle);
+            if (logCoordinates) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}", coordxy.X, coordxy.Y, setangle);
             gcode.setTangential(gcodeString, setangle, true);
             if(Properties.Settings.Default.importDepthFromWidthRamp)
                 gcode.Move(gcodeString, 1, (float)coordxy.X, (float)coordxy.Y, (float)newZ, true, cmt);        
@@ -400,12 +407,12 @@ namespace GRBL_Plotter
 
         private static void MoveToDashed(Point coordxy, string cmt)
         {
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  MoveToDashed X{0:0.000} Y{1:0.000}", coordxy.X, coordxy.Y);
+            if (logCoordinates) Logger.Trace("  MoveToDashed X{0:0.000} Y{1:0.000}", coordxy.X, coordxy.Y);
 
             bool showDashInfo = false;
             string dashInfo = "";
 
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  MoveToDashed enabled:{0} length:{1}", Properties.Settings.Default.importLineDashPattern, PathDashArray.Length);
+            if (logCoordinates) Logger.Trace("  MoveToDashed enabled:{0} length:{1}", Properties.Settings.Default.importLineDashPattern, PathDashArray.Length);
             if (!Properties.Settings.Default.importLineDashPattern || (PathDashArray.Length <= 1))
             {   gcode.MoveTo(gcodeString, coordxy, cmt); }
             else
@@ -570,11 +577,11 @@ namespace GRBL_Plotter
             Point coordxy = new Point(x,y);
 			Point center = new Point(lastGC.X + i, lastGC.Y + j);
             double offset = +Math.PI / 2;
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  Start Arc G{0} X{1:0.000} Y{2:0.000} cx{3:0.000} cy{4:0.000} ", gnr, x, y, center.X,center.Y);
+            if (logCoordinates) Logger.Trace("  Start Arc G{0} X{1:0.000} Y{2:0.000} cx{3:0.000} cy{4:0.000} ", gnr, x, y, center.X,center.Y);
             if (gnr > 2) { offset = -offset; }
 
             gcode.setTangential(gcodeString, 180 * tangStartRad / Math.PI, true);
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
+            if (logCoordinates) Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
 
             PenDown(cmt + " from Arc");
 
@@ -619,7 +626,7 @@ namespace GRBL_Plotter
         /// </summary>
         public static void AddToHeader(string cmt)
         {   gcode.AddToHeader(cmt);
-            if (loggerTrace > 0) Logger.Trace("AddToHeader: {0}", cmt);
+            if (logEnable) Logger.Trace("AddToHeader: {0}", cmt);
         }
 
         /// <summary>
@@ -633,7 +640,7 @@ namespace GRBL_Plotter
         /// </summary>
         public static bool PenUp(string cmt = "", bool setEndFigureTag = false)
         {
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  PenUp {0}",cmt);
+            if (logCoordinates) Logger.Trace("  PenUp {0}",cmt);
 
             if (!comments)
                 cmt = "";
@@ -660,14 +667,14 @@ namespace GRBL_Plotter
             float setZ = -Math.Abs(z);      // be sure for right sign
             setZ = Math.Max(orig, setZ);    // don't go deeper than set Z
 			
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("  PenDownWithZ z:{0:0.00}  setZ:{1:0.00}  gcodeZDown:{2:0.00}",z, setZ, orig);
+            if (logCoordinates) Logger.Trace("  PenDownWithZ z:{0:0.00}  setZ:{1:0.00}  gcodeZDown:{2:0.00}",z, setZ, orig);
 			gcode.gcodeZDown = setZ;
             PenDown(cmt);
             gcode.gcodeZDown = orig;
         }
         public static void PenDown(string cmt="")
         {
-            if ((loggerTrace & (uint)LogEnable.Coordinates) > 0) Logger.Trace("   PenDown penIsDown:{0}  cmt:{1}", penIsDown, cmt);
+            if (logCoordinates) Logger.Trace("   PenDown penIsDown:{0}  cmt:{1}", penIsDown, cmt);
             if (!comments)
                 cmt = "";
 

@@ -34,7 +34,7 @@ namespace GRBL_Plotter
         /// <summary>
         /// General information about imported graphic
         /// </summary>		
-        public enum SourceTypes { none, DXF, SVG, HPGL, CSV, Drill, Text, Barcode };
+        public enum SourceTypes { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode };
         public enum GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByTile = 4, ByType = 5};
         public enum SortOptions { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4 };
 		public enum CreationOptions { none = 0, AddPause = 1};
@@ -268,6 +268,7 @@ namespace GRBL_Plotter
             protected PathInformation info;
             protected Dimensions dimension;
 			protected CreationOptions options;
+            protected int figureId;
 
             public PathObject Copy()
             {
@@ -314,6 +315,7 @@ namespace GRBL_Plotter
                 distance = startAngle = pathLength = 0;
                 dimension = new Dimensions();
 				options = CreationOptions.none;
+                figureId = -1;
             }
             public Point Start
             {   get { return start; }
@@ -343,9 +345,13 @@ namespace GRBL_Plotter
             {   get { return dimension; }
                 set { dimension = value; }
             }
-            public CreationOptions Options
+            public CreationOptions Options  // e.g. pause before path
             {   get { return options; }
                 set { options = value; }
+            }
+            public int FigureId             // Figure Id from graphic2Gcode
+            {   get { return figureId; }
+                set { figureId = value; }
             }
         }
 
