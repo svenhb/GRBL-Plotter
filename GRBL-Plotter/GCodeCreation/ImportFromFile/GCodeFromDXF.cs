@@ -95,7 +95,8 @@ namespace GRBL_Plotter //DXFImporter
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        private static bool loggerTrace = false;
+        private static uint logFlags = 0;
+        private static bool logEnable = false;
         private static bool logPosition = false;
 
         /// <summary>
@@ -160,8 +161,9 @@ namespace GRBL_Plotter //DXFImporter
         private static string ConvertDXF(string filePath)
         {
             Logger.Info(" convertDXF {0}", filePath);
-            loggerTrace = Properties.Settings.Default.guiExtendedLoggingEnabled && ((Properties.Settings.Default.importLoggerSettings & (uint)LogEnable.Detailed) > 0);
-            logPosition = (Properties.Settings.Default.importLoggerSettings & (uint)LogEnable.Coordinates) > 0;
+            logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
+            logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level1) > 0);
+            logPosition = logEnable && ((logFlags & (uint)LogEnable.Coordinates) > 0);
 
             nodesOnly = Properties.Settings.Default.importSVGNodesOnly;
 			conversionInfo = "";
@@ -248,11 +250,11 @@ namespace GRBL_Plotter //DXFImporter
                     if (ins.RotationAngle != null)                                  // insertion angle in degrees
                         insertionAngle = (double)ins.RotationAngle;
 
-                    if (loggerTrace) Logger.Trace(" Block: at X{0:0.00}  Y{1:0.00}  a{2:0.00}  layer{3}", insertion.X, insertion.Y, ins.RotationAngle, dxfEntity.LayerName);
+                    if (logEnable) Logger.Trace(" Block: at X{0:0.00}  Y{1:0.00}  a{2:0.00}  layer{3}", insertion.X, insertion.Y, ins.RotationAngle, dxfEntity.LayerName);
                    
                     foreach (DXFBlock block in doc.Blocks)
                     {   if (block.BlockName.ToString() == ins.BlockName)
-                        {   if (loggerTrace) Logger.Trace("Block: {0}", block.BlockName);
+                        {   if (logEnable) Logger.Trace("Block: {0}", block.BlockName);
                             dxfBlockColorNr = block.ColorNumber;
                             dxfBlockLineWeigth = block.LineWeight;
                             Graphic.SetComment("Block:" + block.BlockName);
@@ -322,7 +324,7 @@ namespace GRBL_Plotter //DXFImporter
                      Graphic.SetDash(lineTypes[entity.LineType]);
             }
 
-            if (loggerTrace) Logger.Trace("ProcessEntity Layer:{0}{1} EntityColorNumber:{2} -use:{3} EntityLineWeight:{4} -use:{5}", layerName, "", entity.ColorNumber, dxfColorNr, entity.LineWeight, dxfLineWeigth);
+            if (logEnable) Logger.Trace("ProcessEntity Layer:{0}{1} EntityColorNumber:{2} -use:{3} EntityLineWeight:{4} -use:{5}", layerName, "", entity.ColorNumber, dxfColorNr, entity.LineWeight, dxfLineWeigth);
             Graphic.SetComment("Layer:" + layerName);
             Graphic.SetLayer(layerName);
             Graphic.SetPenColor(dxfColorHex);
@@ -333,7 +335,7 @@ namespace GRBL_Plotter //DXFImporter
             if (entity.GetType() == typeof(DXFPointEntity))
             {   DXFPointEntity point = (DXFPointEntity)entity;
 				position = ApplyOffsetAndAngle(point.Location, offset, offsetAngle);
-                if (loggerTrace && logPosition) Logger.Trace(" Point: {0:0.00};{1:0.00} ", position.X, position.Y);
+                if (logPosition) Logger.Trace(" Point: {0:0.00};{1:0.00} ", position.X, position.Y);
                 GCodeDotOnly(position, "Start Point");
             }
 			#endregion
@@ -356,16 +358,16 @@ namespace GRBL_Plotter //DXFImporter
                         {   DXFStartPath(position, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString());
                         }
                         else { GCodeDotOnly(position, "Start LWPolyLine"); }
-                        if (loggerTrace && logPosition) Logger.Trace("Start LWPolyLine {0}", lp.VertexCount);
+                        if (logPosition) Logger.Trace("Start LWPolyLine {0}", lp.VertexCount);
                     }
 
                     if ((!roundcorner) && (i > 0))
-                    {   if (loggerTrace && logPosition) Logger.Trace(" dxfMoveTo {0}",i);
+                    {   if (logPosition) Logger.Trace(" dxfMoveTo {0}",i);
                         DXFMoveTo(position, "");
                     }
                     if (bulge != 0)
                     {
-                        if (loggerTrace && logPosition) Logger.Trace(" addRoundCorner {0}", i);
+                        if (logPosition) Logger.Trace(" addRoundCorner {0}", i);
 
                         if (i < (lp.VertexCount - 1))
                             AddRoundCorner(lp.Elements[i], lp.Elements[i + 1], offset, offsetAngle);
@@ -419,7 +421,7 @@ namespace GRBL_Plotter //DXFImporter
                 DXFLine line = (DXFLine)entity;
                 position = ApplyOffsetAndAngle(line.Start, offset, offsetAngle);
                 DXFPoint pos2 = ApplyOffsetAndAngle(line.End, offset, offsetAngle);
-                if (loggerTrace && logPosition) Logger.Trace(" Line from: {0};{1}  To: {2};{3}", position.X, position.Y, pos2.X, pos2.Y);
+                if (logPosition) Logger.Trace(" Line from: {0};{1}  To: {2};{3}", position.X, position.Y, pos2.X, pos2.Y);
                 if (!nodesOnly)
                 {   DXFStartPath(position, "Start Line");
                     DXFMoveTo(pos2, "");
@@ -442,7 +444,7 @@ namespace GRBL_Plotter //DXFImporter
                 string cmt = "Start Spline " + spline.KnotValues.Count.ToString() + " " + spline.ControlPoints.Count.ToString() + " " + spline.FitPoints.Count.ToString();
                 int knots = spline.KnotCount;
                 int ctrls = spline.ControlPointCount;
-                if (loggerTrace && logPosition) Logger.Trace(" Spline ControlPointCnt: {0} KnotsCount: {1}", ctrls, knots);
+                if (logPosition) Logger.Trace(" Spline ControlPointCnt: {0} KnotsCount: {1}", ctrls, knots);
 
                 if ((ctrls > 3) && (knots == ctrls + 4))    //  # cubic
                 {   if (ctrls > 4)
@@ -527,7 +529,7 @@ namespace GRBL_Plotter //DXFImporter
             else if (entity.GetType() == typeof(DXFCircle))
             {   DXFCircle circle = (DXFCircle)entity;
                 position = ApplyOffsetAndAngle(circle.Center, offset, offsetAngle);
-                if (loggerTrace && logPosition) Logger.Trace(" Circle center: {0:0.000};{1:0.000}  R: {2:0.000}", position.X, position.Y, circle.Radius);
+                if (logPosition) Logger.Trace(" Circle center: {0:0.000};{1:0.000}  R: {2:0.000}", position.X, position.Y, circle.Radius);
                 if (!nodesOnly)
                 {   DXFStartPath((double)position.X + circle.Radius, (double)position.Y, "Start Circle");
                     Graphic.SetGeometry("Circle");
@@ -564,7 +566,7 @@ namespace GRBL_Plotter //DXFImporter
                 double a = Math.Atan2(-ym, xm);
                 float diff = (float)((a2 - a1 + 2 * Math.PI) % (2 * Math.PI));
 
-                if (loggerTrace && logPosition) Logger.Trace(" Ellipse center: {0:0.000};{1:0.000}  R1: {2:0.000} R2: {3:000} Start: {4:0.000} End: {5:000}", xc, yc, rm, w * rm, ellipse.StartParam, ellipse.EndParam);
+                if (logPosition) Logger.Trace(" Ellipse center: {0:0.000};{1:0.000}  R1: {2:0.000} R2: {3:000} Start: {4:0.000} End: {5:000}", xc, yc, rm, w * rm, ellipse.StartParam, ellipse.EndParam);
                 if ((Math.Abs(diff) > 0.0001) && (Math.Abs(diff - 2 * Math.PI) > 0.0001))
                 {
                     int large = 0;
@@ -610,7 +612,7 @@ namespace GRBL_Plotter //DXFImporter
                     double endX = (double)(X + R * Math.Cos(endA));
                     double endY = (double)(Y + R * Math.Sin(endA));
 
-                    if (loggerTrace) Logger.Trace(" Arc center: {0:0.000};{1:0.000}  R: {2:0.000}  start:{3:0.0}   end:{4:0.0}", X, Y, R, arc.StartAngle, arc.EndAngle);
+                    if (logEnable) Logger.Trace(" Arc center: {0:0.000};{1:0.000}  R: {2:0.000}  start:{3:0.0}   end:{4:0.0}", X, Y, R, arc.StartAngle, arc.EndAngle);
                     DXFStartPath(startX, startY, "Start Arc");
                     Graphic.AddArc(false, endX, endY, X-startX, Y-startY, "Arc");
                     DXFStopPath();
@@ -647,7 +649,7 @@ namespace GRBL_Plotter //DXFImporter
                 GCodeFromFont.gcOffY = (double)tmpPos.Y;
 
                 GCodeFromFont.gcAngleRad = (angle + offsetAngle) * Math.PI / 180;
-                if (loggerTrace) Logger.Trace(" Text: {0} X{1:0.00} Y{2:0.00} a{3:0.00} oa{4:0.00}", GCodeFromFont.gcText, GCodeFromFont.gcOffX, GCodeFromFont.gcOffY, angle, offsetAngle);
+                if (logEnable) Logger.Trace(" Text: {0} X{1:0.00} Y{2:0.00} a{3:0.00} oa{4:0.00}", GCodeFromFont.gcText, GCodeFromFont.gcOffX, GCodeFromFont.gcOffY, angle, offsetAngle);
                 GCodeFromFont.getCode();
             }
             #endregion

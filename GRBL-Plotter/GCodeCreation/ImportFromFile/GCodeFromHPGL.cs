@@ -116,8 +116,8 @@ namespace GRBL_Plotter
             return Graphic.CreateGCode(); 
         }
 
-        private static void GetVectorHPGL(string htmlCode)
-        {   string[] commands = htmlCode.Split(';');
+        private static void GetVectorHPGL(string hpglCode)
+        {   string[] commands = hpglCode.Split(';');
             char[] charsToTrim = { ' ', '\r', '\n' };
             string line, cmd, parameter;
             foreach (string cmdline in commands)
