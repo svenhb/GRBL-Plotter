@@ -2118,4 +2118,7 @@ min X, min Y и max Z.
   <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
     <value>Разрешить новую начальную точку в закрытом пути</value>
   </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>Применить рампу вместо шага</value>
+  </data>
 </root>

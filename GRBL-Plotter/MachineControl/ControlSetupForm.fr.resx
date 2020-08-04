@@ -2050,4 +2050,7 @@ Utile pour la découpe laser.</value>
   <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
     <value>Autoriser le nouveau point de départ dans le chemin fermé</value>
   </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>Appliquer une rampe au lieu d'une marche</value>
+  </data>
 </root>

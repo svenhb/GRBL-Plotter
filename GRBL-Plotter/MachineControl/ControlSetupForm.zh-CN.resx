@@ -2231,4 +2231,7 @@ Z轴将向下移动</value>
   <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
     <value>在封闭路径中允许新的起点</value>
   </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>应用坡道而不是台阶</value>
+  </data>
 </root>

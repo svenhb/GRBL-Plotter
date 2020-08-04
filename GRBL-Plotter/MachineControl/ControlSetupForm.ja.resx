@@ -2248,4 +2248,7 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
   <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
     <value>閉じたパスで新しい開始点を許可する</value>
   </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>ステップの代わりにランプを適用する</value>
+  </data>
 </root>

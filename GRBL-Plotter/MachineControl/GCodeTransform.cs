@@ -30,6 +30,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -348,6 +349,24 @@ namespace GRBL_Plotter
             { tmpPoint.CX = gcodeList[prevLine].actualPos.X + (double)gcodeList[tmpLine].i; tmpPoint.CY = gcodeList[prevLine].actualPos.Y + (double)gcodeList[tmpLine].j; }
             return tmpPoint;
         }
+
+        /* 2020-08-04 implemented via graphicRelated ReDoReversePath
+        public static string transformGCodeReversePath()
+        {
+            Logger.Debug("..transformGCodeReversePath figure {0}", lastFigureNumber);
+            if (gcodeList == null) return "";
+
+            List<gcodeByLine> tmpCode = new List<gcodeByLine>();
+            if (xmlMarker.GetFigureByFigureNr(lastFigureNumber))
+            {
+                for (int i = xmlMarker.tmpFigure.lineEnd; i >= xmlMarker.tmpFigure.lineEnd; i--)
+                { }
+
+            }
+
+            return createGCodeProg();
+        }
+        */
 
         // calculate intermediate steps betwee code lines
         public static class Simulation

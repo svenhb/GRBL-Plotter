@@ -2247,4 +2247,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
     <value>السماح بنقطة بداية جديدة في المسار المغلق</value>
   </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>ضع منحدرًا بدلاً من خطوة</value>
+  </data>
 </root>

@@ -189,14 +189,19 @@ namespace GRBL_Plotter
             cBPathOverlapEnable_CheckStateChanged(sender, e);
 
             uint val = Properties.Settings.Default.importLoggerSettings;
+            cBLogLevel1.Checked = (val & (uint)LogEnable.Level1) > 0;
+            cBLogLevel2.Checked = (val & (uint)LogEnable.Level2) > 0;
+            cBLogLevel3.Checked = (val & (uint)LogEnable.Level3) > 0;
+            cBLogLevel4.Checked = (val & (uint)LogEnable.Level4) > 0;
             cBLog0.Checked = (val & (uint)LogEnable.Detailed) > 0;
             cBLog1.Checked = (val & (uint)LogEnable.Coordinates) > 0;
             cBLog2.Checked = (val & (uint)LogEnable.Properties) > 0;
-            cBLog3.Checked = (val & (uint)LogEnable.GroupAllGraphics) > 0;
-            cBLog4.Checked = (val & (uint)LogEnable.ClipCode) > 0;
-            cBLog5.Checked = (val & (uint)LogEnable.PathModification) > 0;
-            cBLog6.Checked = (val & (uint)LogEnable.graphic2gcode) > 0;
+            cBLog3.Checked = (val & (uint)LogEnable.Sort) > 0;
+            cBLog4.Checked = (val & (uint)LogEnable.GroupAllGraphics) > 0;
+            cBLog5.Checked = (val & (uint)LogEnable.ClipCode) > 0;
+            cBLog6.Checked = (val & (uint)LogEnable.PathModification) > 0;
 
+            checkZEngraveExceed();
         }
 
         private void saveSettings()
@@ -754,6 +759,11 @@ namespace GRBL_Plotter
 
         private void highlight_PenOptions_Click(object sender, EventArgs e)
         {
+            if( cBImportGraphicTile.Checked)
+                gBClipping.BackColor = Color.Yellow;
+            else
+                gBClipping.BackColor = Color.WhiteSmoke;
+
             if (cBDashedLine1.Checked)
             {   cBDashedLine1.BackColor = cBDashedLine2.BackColor = Color.Yellow; }
             else
@@ -1283,13 +1293,17 @@ namespace GRBL_Plotter
         private void cBLog1_CheckedChanged(object sender, EventArgs e)
         {
             uint val = 0;
+            val += cBLogLevel1.Checked ? (uint)LogEnable.Level1 : 0;
+            val += cBLogLevel2.Checked ? (uint)LogEnable.Level2 : 0;
+            val += cBLogLevel3.Checked ? (uint)LogEnable.Level3 : 0;
+            val += cBLogLevel4.Checked ? (uint)LogEnable.Level4 : 0;
             val += cBLog0.Checked ? (uint)LogEnable.Detailed : 0;
             val += cBLog1.Checked ? (uint)LogEnable.Coordinates : 0;
             val += cBLog2.Checked ? (uint)LogEnable.Properties : 0;
-            val += cBLog3.Checked ? (uint)LogEnable.GroupAllGraphics : 0;
-            val += cBLog4.Checked ? (uint)LogEnable.ClipCode : 0;
-            val += cBLog5.Checked ? (uint)LogEnable.PathModification : 0;
-            val += cBLog6.Checked ? (uint)LogEnable.graphic2gcode : 0;
+            val += cBLog3.Checked ? (uint)LogEnable.Sort : 0;
+            val += cBLog4.Checked ? (uint)LogEnable.GroupAllGraphics : 0;
+            val += cBLog5.Checked ? (uint)LogEnable.ClipCode : 0;
+            val += cBLog6.Checked ? (uint)LogEnable.PathModification : 0;
 
             Properties.Settings.Default.importLoggerSettings = val;
         }
@@ -1329,8 +1343,14 @@ namespace GRBL_Plotter
         }
 
         private void lblEnableLogging_Click(object sender, EventArgs e)
+        {   groupBox3.Visible = true;    }
+
+        private void checkZEngraveExceed()
+        {   lblImportPenWidthToZWarning.Visible = (nUDImportGCZDown.Value > Math.Min(nUDImportPenWidthToZMax.Value, nUDImportPenWidthToZMin.Value));    }
+
+        private void nUDImportPenWidthToZMin_ValueChanged(object sender, EventArgs e)
         {
-            groupBox3.Visible = true;
+            checkZEngraveExceed();
         }
     }
 }

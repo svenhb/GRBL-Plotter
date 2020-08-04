@@ -2059,4 +2059,7 @@ menos estresse para a mecânica</value>
   <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
     <value>Permitir novo ponto de partida no caminho fechado</value>
   </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>Aplique uma rampa em vez de um degrau</value>
+  </data>
 </root>
