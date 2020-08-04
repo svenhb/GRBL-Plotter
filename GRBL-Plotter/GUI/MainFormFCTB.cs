@@ -491,7 +491,8 @@ namespace GRBL_Plotter
                     statusStripSet(2,string.Format("Marked: {0}", fCTBCode.Lines[xmlMarker.lastFigure.lineStart]), highlight);
                     fCTBCode.Invalidate();
                 }
-                fCTBCode.ExpandFoldedBlock(xmlMarker.lastFigure.lineStart);   
+                if (xmlMarker.lastFigure.lineStart < fCTBCode.LinesCount)
+                    fCTBCode.ExpandFoldedBlock(xmlMarker.lastFigure.lineStart);   
             }
             else if (marker == xmlMarkerType.Line)
             {   if (xmlMarker.GetGroupCount() > 0)
@@ -598,6 +599,7 @@ namespace GRBL_Plotter
 
             cmsPicBoxDeletePath.Enabled = tmp;
             cmsPicBoxCropSelectedPath.Enabled = tmp;
+            cmsPicBoxReverseSelectedPath.Enabled = tmp;
         }
         #endregion
 

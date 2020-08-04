@@ -36,7 +36,7 @@ using Microsoft.Win32;
 namespace GRBL_Plotter
 {
 
-    public enum LogEnable { Detailed=1, Coordinates=2, Properties=4, GroupAllGraphics = 8, ClipCode = 16, PathModification = 32, graphic2gcode = 64 }
+    public enum LogEnable { Level1=1, Level2=2, Level3=4, Level4=8, Detailed=16, Coordinates=32, Properties=64, Sort = 128, GroupAllGraphics = 256, ClipCode = 512, PathModification = 1024 }
 
     public static class datapath
     {

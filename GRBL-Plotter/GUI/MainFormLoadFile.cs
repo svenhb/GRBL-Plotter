@@ -52,6 +52,7 @@ namespace GRBL_Plotter
     {
         private const string extensionGCode = ".nc,.cnc,.ngc,.gcode,.tap";
         private const string extensionDrill = ".drd,.drl,.dri";
+        private const string extensionGerber = ".gbr,.ger,.gtl,.gbl,.gts,.gbs,.gto,.gbo,.gko,.g2l,.g3l";
         private const string extensionPicture = ".bmp,.gif,.png,.jpg";
         private const string extensionHPGL = ".plt,.hpgl";
         private const string extensionCSV = ".csv,.dat";
@@ -60,7 +61,9 @@ namespace GRBL_Plotter
                                             "SVG - Scalable Vector Graphics|*.svg|" +
                                             "DXF - Drawing Exchange Format |*.dxf|" +
                                             "HPGL - HP Graphics Language (*.plt, *.hpgl)|*.plt;*.hpgl|" +
+                                            "CSV  - Comma-separated values (*.csv, *.dat)|*.csv;*.dat|" +
                                             "Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|" +
+                                            "Gerber files (*.gbr, *.ger, kicad)|*.gbr;*.ger;*.gtl;*.gbl;*.gts;*.gbs;*.gto;*.gbo;*.gko;*.g2l;*.g3l|" +
                                             "Images (*.bmp,*.gif,*.png,*.jpg)|*.bmp;*.gif;*.png;*.jpg|" +
                                             "All files (*.*)|*.*";
 
@@ -227,6 +230,9 @@ namespace GRBL_Plotter
             else if (extensionDrill.Contains(ext))
             { 	startConvert(Graphic.SourceTypes.Drill, fileName); fileLoaded = true; }
 
+            else if (extensionGerber.Contains(ext))
+            { startConvert(Graphic.SourceTypes.Gerber, fileName); fileLoaded = true; }
+
             else if (extensionHPGL.Contains(ext))
             { 	startConvert(Graphic.SourceTypes.HPGL, fileName); fileLoaded = true; }
 
@@ -339,6 +345,11 @@ namespace GRBL_Plotter
                 startConvert(Graphic.SourceTypes.HPGL, tBURL.Text);
                 setLastLoadedFile("Data from URL", tBURL.Text);
             }
+            else if (extensionGerber.Contains(ext))
+            {
+                startConvert(Graphic.SourceTypes.Gerber, tBURL.Text);
+                setLastLoadedFile("Data from URL", tBURL.Text);
+            }
             else if (extensionCSV.Contains(ext))
             {
                 startConvert(Graphic.SourceTypes.CSV, tBURL.Text);
@@ -434,10 +445,15 @@ namespace GRBL_Plotter
 				{	fCTBCode.Text = GCodeFromDrill.ConvertFromFile(source); conversionInfo = GCodeFromDrill.conversionInfo;
 					Properties.Settings.Default.counterImportDrill += 1;
 					break;   }
-				default: break;
+                case Graphic.SourceTypes.Gerber:
+                {   fCTBCode.Text = GCodeFromGerber.ConvertFromFile(source); conversionInfo = GCodeFromGerber.conversionInfo;
+                    Properties.Settings.Default.counterImportGerber += 1;
+                    break;
+                }
+                default: break;
 			}		
 
-			Graphic.CleanUp();
+//			Graphic.CleanUp();
 		
             newCodeEnd();
             this.Text = appName + " | Source: " + source;

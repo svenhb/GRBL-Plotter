@@ -558,6 +558,18 @@ namespace GRBL_Plotter
             cmsPicBoxMoveSelectedPathInCode.BackColor = SystemColors.Control;
         }
 
+
+        private void cmsPicBoxReverseSelectedPath_Click(object sender, EventArgs e)
+        {
+            if (figureIsMarked)
+            {
+                resetView = true;
+                fCTBCode.Text = Graphic.ReDoReversePath(xmlMarker.lastFigure.figureNr, picAbsPos);
+                newCodeEnd();
+            }
+            return;
+        }
+
         private void cmsPicBoxSetGCodeAsBackground_Click(object sender, EventArgs e)
         {   VisuGCode.setPathAsLandMark();
             Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked = true;
