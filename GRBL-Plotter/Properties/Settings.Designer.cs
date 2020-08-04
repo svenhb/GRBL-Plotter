@@ -5674,5 +5674,41 @@ namespace GRBL_Plotter.Properties {
                 this["importDepthFromWidthRamp"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DPenUpArrow {
+            get {
+                return ((bool)(this["gui2DPenUpArrow"]));
+            }
+            set {
+                this["gui2DPenUpArrow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DPenUpId {
+            get {
+                return ((bool)(this["gui2DPenUpId"]));
+            }
+            set {
+                this["gui2DPenUpId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public uint counterImportGerber {
+            get {
+                return ((uint)(this["counterImportGerber"]));
+            }
+            set {
+                this["counterImportGerber"] = value;
+            }
+        }
     }
 }
