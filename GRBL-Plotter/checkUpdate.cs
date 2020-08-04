@@ -80,14 +80,15 @@ namespace GRBL_Plotter
 					uint hpgl =Properties.Settings.Default.counterImportHPGL;
 					uint csv = Properties.Settings.Default.counterImportCSV;
 					uint drill =Properties.Settings.Default.counterImportDrill;
-					uint image =Properties.Settings.Default.counterImportImage;
+                    uint gerber = Properties.Settings.Default.counterImportGerber;
+                    uint image =Properties.Settings.Default.counterImportImage;
 					uint barcode=Properties.Settings.Default.counterImportBarcode;
 					uint text = Properties.Settings.Default.counterImportText;
 					uint shape = Properties.Settings.Default.counterImportShape;
 					uint extension = Properties.Settings.Default.counterImportExtension;
-					string tmp = string.Format("{0}-{1}-{2}-{3}-{4}-{5}_",gcode,svg,dxf,hpgl,csv,drill);
+					string tmp = string.Format("{0}-{1}-{2}-{3}-{4}-{5}-{6}_",gcode,svg,dxf,hpgl,csv,drill,gerber);
 					tmp += string.Format("{0}-{1}-{2}-{3}-{4}",image,barcode,text,shape,extension);
-					Logger.Trace(" getCounters import {0}",tmp);
+					Logger.Trace(" getCounters import {0}  gc,svg,dxf,hpgl,csv,drill,gerber _ img,barc,txt,shape,ext",tmp);
 					return tmp;
 				}
 				else if (type == counterType.usage)
@@ -95,7 +96,7 @@ namespace GRBL_Plotter
 					uint probe = Properties.Settings.Default.counterUseProbing;
 					uint height = Properties.Settings.Default.counterUseHeightMap;
 					string tmp = string.Format("{0}-{1}-{2}",laser, probe, height);
-					Logger.Trace(" getCounters usage {0}",tmp);
+					Logger.Trace(" getCounters usage {0}   laser,probe,height",tmp);
 					return tmp;
 				}
 			}

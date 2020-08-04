@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.5.0.3</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.5.0.4</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -161,6 +161,7 @@
     <Compile Include="GCodeCreation\graphicRelatedTangential.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromCSV.cs" />
     <Compile Include="GCodeCreation\graphicRelated.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromGerber.cs" />
     <Compile Include="GCodeCreation\xmlMarker.cs" />
     <Compile Include="GUI\AboutForm.cs">
       <SubType>Form</SubType>
