@@ -907,7 +907,7 @@ namespace GRBL_Plotter
         }
         private void handleRX_Feedback(string[] dataField)  // dataField = rxString.Trim(charsToTrim).Split(':')
         {
-            if (iamSerial == 1)
+            if (iamSerial == 1 && dataField.Length > 1)
             {   string info = "";
                 if (dataField.Length > 2)
                     info = dataField[2];
