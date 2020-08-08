@@ -393,7 +393,7 @@ namespace GRBL_Plotter
             string msg = " no information found for error-nr. '" + tmp[1] + "'";
             try {   if (messageErrorCodes.ContainsKey(tmp[1].Trim()))
                     {   msg = grbl.messageErrorCodes[tmp[1].Trim()];
-                        if (!short.TryParse(tmp[1], out short errnr))
+                        if (!short.TryParse(tmp[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out short errnr))
                             return msg;
                         if ((errnr >= 32) && (errnr <= 34))
                             msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";
@@ -405,7 +405,7 @@ namespace GRBL_Plotter
         public static bool errorBecauseOfBadCode(string rxString)
         {   string[] tmp = rxString.Split(':');
             try {   int[] notByGCode = {3,5,6,7,8,9,10,12,13,14,15,16,17,18,19};
-                    if (!short.TryParse(tmp[1], out short errnr))
+                    if (!short.TryParse(tmp[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out short errnr))
                         return true;
                     if (Array.Exists(notByGCode, element => element == errnr))
                         return false; 
