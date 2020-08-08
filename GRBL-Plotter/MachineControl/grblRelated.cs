@@ -30,7 +30,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Globalization;
 
 namespace GRBL_Plotter
 {
@@ -131,7 +131,7 @@ namespace GRBL_Plotter
         // store grbl settings https://github.com/gnea/grbl/wiki/Grbl-v1.1-Configuration#grbl-settings
         public static void setSettings(int id, string value)
         {   float tmp = 0;
-            if (float.TryParse(value, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out tmp))
+            if (float.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out tmp))
             {   if (settings.ContainsKey(id))
                     settings[id] = tmp;
                 else
@@ -226,7 +226,7 @@ namespace GRBL_Plotter
                             {   if (cmd != '\0')
                                 {   value = 0;
                                     if (num.Length > 0)
-                                    {   try { value = double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo); }
+                                    {   try { value = double.Parse(num, NumberFormatInfo.InvariantInfo); }
                                         catch { }
                                     }
                                     try { setParserState(cmd, value, ref myParserState); }
@@ -242,7 +242,7 @@ namespace GRBL_Plotter
                         { comment = false; }
                     }
                     if (cmd != '\0')
-                    {   try { setParserState(cmd, double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo), ref myParserState); }
+                    {   try { setParserState(cmd, double.Parse(num, NumberFormatInfo.InvariantInfo), ref myParserState); }
                         catch { }
                     }
                 }
@@ -343,7 +343,7 @@ namespace GRBL_Plotter
         {   if (bufferSize <= 0)    // only get if not done already
             {   string[] dataValue = text.Split(',');
                 if (dataValue.Length > 1)
-                { int.TryParse(dataValue[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out bufferSize); }
+                { int.TryParse(dataValue[1], NumberStyles.Any, CultureInfo.InvariantCulture, out bufferSize); }
                 return true;
             }
             return false;
@@ -356,27 +356,27 @@ namespace GRBL_Plotter
             axisCount = 0;
             if (dataValue.Length == 1)
             {
-                Double.TryParse(dataValue[0], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.Z);
+                Double.TryParse(dataValue[0], NumberStyles.Any, CultureInfo.InvariantCulture, out position.Z);
                 position.X = 0;
                 position.Y = 0;
             }
             if (dataValue.Length > 2)
             {
-                Double.TryParse(dataValue[0], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.X);
-                Double.TryParse(dataValue[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.Y);
-                Double.TryParse(dataValue[2], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.Z);
+                Double.TryParse(dataValue[0], NumberStyles.Any, CultureInfo.InvariantCulture, out position.X);
+                Double.TryParse(dataValue[1], NumberStyles.Any, CultureInfo.InvariantCulture, out position.Y);
+                Double.TryParse(dataValue[2], NumberStyles.Any, CultureInfo.InvariantCulture, out position.Z);
                 axisCount = 3;
             }
             if (dataValue.Length > 3)
-            {   Double.TryParse(dataValue[3], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.A);
+            {   Double.TryParse(dataValue[3], NumberStyles.Any, CultureInfo.InvariantCulture, out position.A);
                 axisA = true; axisCount++;
             }
             if (dataValue.Length > 4)
-            {   Double.TryParse(dataValue[4], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.B);
+            {   Double.TryParse(dataValue[4], NumberStyles.Any, CultureInfo.InvariantCulture, out position.B);
                 axisB = true; axisCount++;
             }
             if (dataValue.Length > 5)
-            {   Double.TryParse(dataValue[5], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out position.C);
+            {   Double.TryParse(dataValue[5], NumberStyles.Any, CultureInfo.InvariantCulture, out position.C);
                 axisC = true; axisCount++;
             }
             //axisA = true; axisB = true; axisC = true;     // for test only
@@ -393,7 +393,7 @@ namespace GRBL_Plotter
             string msg = " no information found for error-nr. '" + tmp[1] + "'";
             try {   if (messageErrorCodes.ContainsKey(tmp[1].Trim()))
                     {   msg = grbl.messageErrorCodes[tmp[1].Trim()];
-                        if (!short.TryParse(tmp[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out short errnr))
+                        if (!short.TryParse(tmp[1], NumberStyles.Any, CultureInfo.InvariantCulture, out short errnr))
                             return msg;
                         if ((errnr >= 32) && (errnr <= 34))
                             msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";
@@ -405,7 +405,7 @@ namespace GRBL_Plotter
         public static bool errorBecauseOfBadCode(string rxString)
         {   string[] tmp = rxString.Split(':');
             try {   int[] notByGCode = {3,5,6,7,8,9,10,12,13,14,15,16,17,18,19};
-                    if (!short.TryParse(tmp[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out short errnr))
+                    if (!short.TryParse(tmp[1], NumberStyles.Any, CultureInfo.InvariantCulture, out short errnr))
                         return true;
                     if (Array.Exists(notByGCode, element => element == errnr))
                         return false; 
