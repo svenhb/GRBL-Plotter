@@ -35,6 +35,8 @@
 /*
  * 2020-07-31 Implementation https://www.ucamco.com/files/downloads/file/81/the_gerber_file_format_specification.pdf
                 https://d1.amobbs.com/bbs_upload782111/files_11/ourdev_450330.pdf
+
+ * 2020-08-15 if aperture is applied (D10...) lines will be drawn as elongated hole segments, applying apertures-radius
  */
 
 using System;
@@ -56,8 +58,6 @@ namespace GRBL_Plotter
         public static string conversionInfo = "";
         private static int shapeCounter = 0;
 
-
-        private static bool isCutterData = false;
         private static double setX = 0;
         private static double setY = 0;
         private static double setI = 0;
@@ -71,18 +71,21 @@ namespace GRBL_Plotter
         private static int gMode = 1;
 
         private static bool isPenDown = false;
-        private static bool isOnlyXY = false;
         private static bool isUnitInch = true;
         private static aperture actualAperture = new aperture();
         private static Dictionary<string,aperture> apertures = new Dictionary<string, aperture>();
-
+		private static bool xyIsGivenInCommand = false;
+		private static bool d1IsGivenInCommand = false;
+		private static bool OutstandingStartPath = false;
+        private static bool SetStartCoordinate = false;
+        private static Point StartCoordinate = new Point();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static uint logFlags = 0;
         private static bool logEnable = false;
         private static bool logDetailed = false;
-
+        private static bool logCoordinate = false;
 
 
         /// <summary>
@@ -124,14 +127,13 @@ namespace GRBL_Plotter
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level1) > 0);
             logDetailed = logEnable && ((logFlags & (uint)LogEnable.Detailed) > 0);
+            logCoordinate = logEnable && ((logFlags & (uint)LogEnable.Coordinates) > 0);
             if (logEnable) Logger.Trace("  logging:{1}", Convert.ToString(logFlags, 2));
 
             conversionInfo = "";
             shapeCounter = 0;
 
-            isCutterData = false;
             isPenDown = false;
-            isOnlyXY = false;
             isUnitInch = true;
             setX = 0; setY = 0; setI = 0; setJ = 0;
             gMode = 1;
@@ -156,17 +158,18 @@ namespace GRBL_Plotter
             // https://github.com/rsmith-nl/nctools/blob/master/doc/GERBER.pdf
 
             char[] charsToTrim = { ' ', '\r', '\n' };
-            string line, cmd, parameter;
+            string line;
 
             string[] lines = gerberCode.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
             string longExtendedCommand = "";
+            bool nextIsInfo = false;
             foreach (string singleLine in lines)
             {
                 line = singleLine.Trim(charsToTrim);
-                #region extended
                 if (line.StartsWith("%"))
                 {
+                    #region extended
                     if (line.EndsWith("%"))
                     {
                         if (line.Length > 2)
@@ -236,50 +239,63 @@ namespace GRBL_Plotter
                     }
                     else
                     { longExtendedCommand = line; }
-
+                    #endregion
                 }
-                #endregion
                 else
                 {   if (longExtendedCommand.Length > 5)
                     { longExtendedCommand += line; continue; }
-                    bool nextIsInfo = false;
                     string[] commands = line.Split('*');
+					
+/*	Process commands lines*/					
                     foreach (string cmdline in commands)
                     {
                         if (cmdline.Length <= 1)
                             continue;
-                        if (logDetailed) Logger.Trace("...cmdline {0}", cmdline);
+                        if (logCoordinate) Logger.Trace("..cmdline {0}", cmdline);
 
                         if (nextIsInfo)
-                        {   Graphic.SetHeaderInfo(" " + cmdline);
+                        {   if (logDetailed) Logger.Trace("   setInfo {0}", cmdline);
+                            Graphic.SetHeaderInfo(" " + cmdline);
                             nextIsInfo = false;
                             continue;
                         }
                         if (cmdline.Contains("M20"))            // Info
-                        { nextIsInfo = true; continue; }
+                        {   if (logDetailed) Logger.Trace("   nextIsInfo ");
+                            nextIsInfo = true; continue;
+                        }
 
                         if (cmdline.StartsWith("G04"))          // Info
                         { Graphic.SetHeaderInfo(" " + cmdline.Substring(3)); continue; }
 
                         string separators = @"(?=[A-Za-z-[e]])";
                         var tokens = Regex.Split(cmdline, separators).Where(t => !string.IsNullOrEmpty(t));
-
+/* Process X,Y,D...*/
+						xyIsGivenInCommand = false; 
+						d1IsGivenInCommand = false;
                         foreach (string token in tokens)
                             if (token.Length > 0)
                                 ParseCommand(token);
 
                         if (cmdline.Contains("X"))
-                        { if (logDetailed) Logger.Trace("....coord  X:{0:0.00}  Y:{1:0.00}  I:{2:0.00}  J:{3:0.00} ", setX, setY, setI, setJ); } 
+                        { if (logCoordinate && logDetailed) Logger.Trace("....coord  X:{0:0.00}  Y:{1:0.00}  I:{2:0.00}  J:{3:0.00} ", setX, setY, setI, setJ); } 
 
                         Point tmp = scalePosition(setX, setY);
 
-                        if (isPenDown && isOnlyXY)
-                        {
-                            if (logDetailed) Logger.Trace("....addLine X:{0:0.00}  Y:{1:0.00}  PenDown:{2}", tmp.X, tmp.Y, isPenDown);
-                            Graphic.AddLine(scalePosition(setX, setY));
-                        }
+						if (xyIsGivenInCommand)
+						{
+                            if (logDetailed) Logger.Trace("   xyIsGivenInCommand");
 
-             //           if (logDetailed) Logger.Trace(" commands {0}  X:{1:0.00}  Y:{2:0.00}  PenDown:{3}", cmdline, tmp.X, tmp.Y, isPenDown);
+                            if (SetStartCoordinate)
+                            {   StartCoordinate = tmp;
+                                SetStartCoordinate = false;
+                                if (logDetailed) Logger.Trace("   SetStartCoordinate {0:0.00}  {1:0.00}", StartCoordinate.X, StartCoordinate.Y);
+                            }
+                            if (OutstandingStartPath && (actualAperture.apType == aperture.type.none))   // if D1 was in prev line
+                            {   penDown(StartCoordinate); }
+
+							if (isPenDown && !d1IsGivenInCommand)	// move to next coordinate
+							{   Draw();		}
+						}
                     }
                 }
             }
@@ -294,25 +310,24 @@ namespace GRBL_Plotter
 
         private static void ParseCommand(string token)
         {
+            if (logDetailed) Logger.Trace("   ParseCommand {0}", token);
             char command = token[0];
             if (token.Length == 1)
             {
- //               Logger.Trace("ParseCommand single command {0}", token);
-                if (command == 'A') penUp();        // knife up
-                if (command == 'B') penDown();      // knife down
+                if (command == 'A') {processD(2);};  	// knife up
+                if (command == 'B') {processD(1);}  	// knife down
                 return;
             }
             string val = token.Substring(1);
             int value = 0;
-            isOnlyXY = false;
 
             if (int.TryParse(val, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out value))
             {
                 //               Logger.Trace("ParseCommand command:{0} value:{1}", token, value);
-                if (command == 'X') { setXValue(val); isOnlyXY = true; }
-                else if (command == 'Y') { setYValue(val); isOnlyXY = true; }
-                else if (command == 'I') { setIValue(val); isOnlyXY = true; }
-                else if (command == 'J') { setJValue(val); isOnlyXY = true; }
+                if (command == 'X') 	 { setXValue(val);  xyIsGivenInCommand = true;}
+                else if (command == 'Y') { setYValue(val);  xyIsGivenInCommand = true;}
+                else if (command == 'I') { setIValue(val);  xyIsGivenInCommand = true;}
+                else if (command == 'J') { setJValue(val);  xyIsGivenInCommand = true;}
 
                 else if (command == 'D')
                 {
@@ -334,9 +349,10 @@ namespace GRBL_Plotter
                 }
 
                 else if (command == 'G')
-                {   if ((value >= 1) || (value <= 3))
-                        gMode = value;
-                    if (logDetailed) Logger.Trace("   set G {0}",value);
+                {   if ((value >= 1) && (value <= 3))
+                    {   gMode = value;
+                        if (logEnable) Logger.Trace("   set G {0}", value);
+                    }
                 }
 
                 else if (command == 'M')
@@ -344,7 +360,7 @@ namespace GRBL_Plotter
 
 
                 else if (command == 'N')
-                { Graphic.SetLayer("Sequence " + val); }
+                { Graphic.SetLayer("Sequence_"+val.ToString().PadLeft(4, '0')) ; }
 
 
                 else if (command == 'R')
@@ -353,7 +369,6 @@ namespace GRBL_Plotter
 
                 else if (command == 'H')
                 {
-                    isCutterData = true;
                     numberFormatIX = 6; numberFormatFX = 2;
                     numberFormatIY = 6; numberFormatFY = 2;
                 }
@@ -368,27 +383,114 @@ namespace GRBL_Plotter
 
         private static void penUp()
         {
-            if (logDetailed) Logger.Trace(" penUp()  isPenDown:{0}", isPenDown);
+            if (logDetailed) Logger.Trace("----penUp()  isPenDown:{0}", isPenDown);
             if (isPenDown)
                 Graphic.StopPath();
             isPenDown = false;
         }
 
-        private static void penDown()
+        private static void penDown(Point tmp)
         {
-            if (logDetailed) Logger.Trace(" penDown()  isPenDown:{0}", isPenDown);
+            //Point tmp = scalePosition(setX, setY);
+            if (logDetailed) Logger.Trace("++++penDown()  X:{0:0.000}  Y:{1:0.000} isPenDown:{2}", tmp.X, tmp.Y, isPenDown);
             if (!isPenDown)
-                Graphic.StartPath(scalePosition(setX, setY));
+                Graphic.StartPath(tmp);
             else
             {
                 Graphic.StopPath();
-                Graphic.StartPath(scalePosition(setX, setY));
+                Graphic.StartPath(tmp);
             }
             isPenDown = true;
             shapeCounter++;
             Graphic.SetGeometry("Gerber_"+shapeCounter.ToString());
+			OutstandingStartPath = false;
         }
 
+        private static void Draw()
+		{
+            Point tmp = scalePosition(setX, setY);
+            if (logDetailed) Logger.Trace("++++Draw()     X:{0:0.000}  Y:{1:0.000} isPenDown:{2}  gMode:{3}", tmp.X, tmp.Y, isPenDown, gMode);
+
+            if (gMode == 1)
+			{	if (actualAperture.apType == aperture.type.none)
+				{	if (logCoordinate) Logger.Trace("....AddLine    X:{0:0.000}  Y:{1:0.000} ", tmp.X, tmp.Y);
+					Graphic.AddLine(tmp); isPenDown = true;                    
+				}
+				else
+					drawSlotLine(StartCoordinate, tmp, actualAperture.XSize);
+			}        // move to with pen down
+			else
+			{
+				if (actualAperture.apType == aperture.type.none)
+				{	if (logCoordinate) Logger.Trace("....AddArc     X:{0:0.000}  Y:{1:0.000}  I:{2:0.00}  J:{3:0.00} ", tmp.X, tmp.Y, setI, setJ);
+					Graphic.AddArc((gMode==2), tmp, scalePosition(setI, setJ));                    
+				}
+				else
+					drawSlotArc(StartCoordinate, (gMode==2), tmp, scalePosition(setI, setJ), actualAperture.XSize);
+			}
+		}
+		
+        private static void drawSlotArc(Point pStart, bool isCW, Point pEnd, Point IJ, double xInch)
+		{
+            double r = scaleValue(xInch)/2;
+            Point center = sub(pEnd, IJ);
+			double angle = gcodeMath.getAlpha(center, pStart); 
+			Point p1out = calcOffsetPoint(pStart, angle, r);
+			Point p1in  = calcOffsetPoint(pStart, angle-Math.PI, r);
+			
+			angle = gcodeMath.getAlpha(center, pEnd); 			
+			Point p2out = calcOffsetPoint(pEnd, angle, r);
+			Point p2in  = calcOffsetPoint(pEnd, angle-Math.PI, r);
+			
+			// isCW?
+			
+            Graphic.StopPath();
+            Graphic.StartPath(p1out);
+			Graphic.AddArc(true, p2out, sub(pEnd,p2out));
+			Graphic.AddArc(true, p2in, sub(pEnd , p2out));                    
+			Graphic.AddArc(true, p1in, sub(pStart, p2in));
+			Graphic.AddArc(true, p1out, sub(pStart, p1in));                    
+            Graphic.StopPath();
+				
+			StartCoordinate = pEnd;
+		}
+        private static void drawSlotLine(Point pStart, Point pEnd, double xInch)
+		{
+            double r = scaleValue(xInch)/2;
+            Logger.Trace("drawSlotLine pStart:x:{0:0.00} y:{1:0.00}  pEnd:x:{2:0.00} y:{3:0.00}  r:{4:0.00} ", pStart.X, pStart.Y, pEnd.X, pEnd.Y, r);
+            double quarter = Math.PI/2;
+			double angle = gcodeMath.getAlpha(pStart, pEnd); 
+			Point p1l = calcOffsetPoint(pStart, angle+quarter, r);
+            Point p1r = calcOffsetPoint(pStart, angle - quarter, r);
+            Point p2l = calcOffsetPoint(pEnd, angle+quarter, r);
+			Point p2r = calcOffsetPoint(pEnd, angle-quarter, r);
+
+            Logger.Trace(" drawSlotLine pStart:x:{0:0.00} y:{1:0.00}  p1l:x:{2:0.00} y:{3:0.00}  p1r:x:{4:0.00} y:{5:0.00}  ",pStart.X,pStart.Y,p1l.X,p1l.Y,p1r.X,p1r.Y);
+			
+            Graphic.StopPath();
+            Graphic.StartPath(p1l);
+			Graphic.AddLine(p2l);
+			Graphic.AddArc(true, p2r, sub(pEnd,p2l));                    
+			Graphic.AddLine(p1r);
+			Graphic.AddArc(true, p1l, sub(pStart,p1r));                    
+            Graphic.StopPath();
+				
+			StartCoordinate = pEnd;
+		}
+        private static Point sub(Point a, Point b)
+        {
+            return new Point(a.X-b.X,a.Y-b.Y);
+        }
+		
+        private static Point calcOffsetPoint(Point P, double angle, double radius)
+        {
+            Point tmp = new Point();
+            tmp.X = P.X + Math.Cos(angle) * radius;
+            tmp.Y = P.Y + Math.Sin(angle) * radius;
+            return tmp;
+        }
+
+		
         private static void applyApertureShape()
         {   double tmpX, tmpY, diameter;
             Point startPos = scalePosition(setX, setY);
@@ -429,32 +531,41 @@ namespace GRBL_Plotter
 
         private static void processD(int value)
         {
-            if (logDetailed) Logger.Trace("processD {0}", value);
-            if (isCutterData) return;
+            if (logDetailed) Logger.Trace("....processD {0}", value);
 
-            if (value == 1)
-            {
-                if (gMode == 1)
-                {   Graphic.AddLine(scalePosition(setX, setY)); isPenDown = true; }        // move to with pen down
-                else
-                {   Graphic.AddArc((gMode==2), scalePosition(setX, setY), scalePosition(setI, setJ)); }
+            if (value == 1)				// D1 Pen down
+            {	d1IsGivenInCommand = true;
+				if (xyIsGivenInCommand)	// no XY? Wait until XY is given
+                {
+					if (!isPenDown && (actualAperture.apType == aperture.type.none))		// Pen is not down? First start path
+					{	penDown(StartCoordinate);}
+					Draw();	  
+				}
+				else
+					OutstandingStartPath = true;
             }
-            else if (value == 2)
-            { penDown(); }              // move to with pen up
-            else if (value == 3)
+            else if (value == 2)		// D2 = Pen up
+            { 	penUp();
+                if (xyIsGivenInCommand)
+                {   StartCoordinate = scalePosition(setX, setY);
+                    if (logDetailed) Logger.Trace("   D2 SetStartCoordinate {0:0.00}  {1:0.00}", StartCoordinate.X, StartCoordinate.Y);
+                }
+                else
+                    SetStartCoordinate = true;
+            }              
+            else if (value == 3)		// D3 = Dot
             {
                 penUp();
-                // Graphic.AddDot(getPosition(setX, setY));
                 applyApertureShape();
                 isPenDown = false;
-            }        // make dot
+            }  
         }
 
         private static void processM(int value)
         {
-            if (logEnable) Logger.Trace("processM {0}", value);
-            if (value == 14) penDown();     // knife down - same as B
-            if (value == 15) penUp();       // knife up - same as A
+            if (logEnable) Logger.Trace("....processM {0}", value);
+            if (value == 14) {processD(1);}	//penDown();     // knife down - same as B
+            if (value == 15) {processD(2);}	//penUp();       // knife up - same as A
         }
 
         private static Point scalePosition(double valX, double valY)
@@ -489,43 +600,46 @@ namespace GRBL_Plotter
         {
             double value = 0;
             int partI = 0, partF = 0;
+            string pflt = "";
+            string pint = "";
 
             if ((val == "0") || (val == ""))
                 return 0.0;
 
             if (val.Length >= f)
             {   int valLen = val.Length;
-                string pflt = val.Substring(valLen - f);
-                string pint = val.Substring(0, valLen - f);
+                pflt = val.Substring(valLen - f);
+                pint = val.Substring(0, valLen - f);
 
                 if (pflt.Length > 0)
                 {
-                    if (!int.TryParse(pflt, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out partF))
+                    if (!int.TryParse(pflt, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out partF))
                     { Logger.Error(" Fail to convert float-part of {0} i:{1} f:{2}",val,i,f); }
                 }
                 if (pint.Length > 0)
                 {   if (pint == "-")
                         partI = -0;
                     else
-                        if (!int.TryParse(pint, NumberStyles.Integer, NumberFormatInfo.InvariantInfo, out partI))
+                        if (!int.TryParse(pint, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out partI))
                         { Logger.Error(" Fail to convert integer-part of {0} i:{1} f:{2}", val, i, f); }
                 }
+                if (logDetailed) Logger.Trace("        pint:'{0}' i:'{1}' pflt:{2}  f:{3}", pint, partI, pflt, partF);
 
-                if (pint == "")
-                    value = ((double)partF * Math.Pow(10, -f));
-                else if (pint == "-")
-                    value = -((double)partF * Math.Pow(10, -f));
-                else
-                    value = partI + Math.Sign(partI)*((double)partF * Math.Pow(10, -f));
-                if (logDetailed) Logger.Trace("  val:{0}  I:'{1}' I:{2}  F:'{3}'  F:{4}   value:{5:0.00000000}", val, pint, partI, pflt, partF, value);
+                value = ((double)partF * Math.Pow(10, -f));
+                if ((pint == "-") || (partI < 0))
+                    value *= -1;
+                value += (double)partI;
+//                if (logDetailed) Logger.Trace("  val:{0}  I:'{1}' I:{2}  F:'{3}'  F:{4}   value:{5:0.00000000}", val, pint, partI, pflt, partF, value);
             }
+            if (logDetailed) Logger.Trace("      convert val:{0}  pint:'{1}' pflt:'{2}' result:{3:0.0000}  final:{4:0.0000}", val, pint, pflt, value, scaleValue(value));
+
             return value;
         }
 
 
         class aperture
         {
-            public enum type { Circle, Rectangle, Obround, Octagon, Polygon };
+            public enum type { none, Circle, Rectangle, Obround, Octagon, Polygon };
             public type apType;
             public double XSize;
             public double YSize;
@@ -533,7 +647,10 @@ namespace GRBL_Plotter
             public string content;
 
             public aperture()
-            { }
+            { 	apType = type.none;
+				XSize = YSize = HoleDiameter = 0;
+				content = "";
+			}
 
             public aperture(string val)
             {   content = val;

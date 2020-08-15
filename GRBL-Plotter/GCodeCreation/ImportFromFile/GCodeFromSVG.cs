@@ -68,6 +68,7 @@
  * 2020-07-20 clean up
  * 2020-08-02 convert to double instead of float, line 567; bug fix line 436 element.Attribute
  * 2020-08-04 fix #138 Descripten CRLF remove
+ * 2020-08-10 fix log output line 1250
 */
 
 using System;
@@ -190,6 +191,7 @@ namespace GRBL_Plotter
             Logger.Info(" convertSVG {0}", filePath);
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level1) > 0);
+            Logger.Info(" logEnable:{0}", logEnable);
 
             svgScaleApply = Properties.Settings.Default.importSVGRezise;
             svgMaxSize = (float)Properties.Settings.Default.importSVGMaxSize;
@@ -1246,7 +1248,7 @@ namespace GRBL_Plotter
         /// </summary>
         private static void SVGStartPath(float x, float y, string cmt)
         {   Point tmp = TranslateXY(x, y);  // convert from SVG-Units to GCode-Units
-            if (logEnable) Logger.Trace("  svgStartPath orig: x:{0:0.00} y:{1:0.00}  translated: x:{0:0.00} y:{1:0.00}", x,y, tmp.X, tmp.Y);
+            if (logEnable) Logger.Trace("  svgStartPath orig: x:{0:0.00} y:{1:0.00}  translated: x:{2:0.00} y:{3:0.00}", x,y, tmp.X, tmp.Y);
             Graphic.SetGeometry(cmt);
             Graphic.StartPath(tmp);  
         }

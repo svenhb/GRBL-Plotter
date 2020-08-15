@@ -164,6 +164,7 @@ namespace GRBL_Plotter //DXFImporter
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level1) > 0);
             logPosition = logEnable && ((logFlags & (uint)LogEnable.Coordinates) > 0);
+            Logger.Info(" logEnable:{0}  logPosition:{1}", logEnable, logPosition);
 
             nodesOnly = Properties.Settings.Default.importSVGNodesOnly;
 			conversionInfo = "";
@@ -654,7 +655,7 @@ namespace GRBL_Plotter //DXFImporter
             }
             #endregion
             else
-                Graphic.SetHeaderInfo("Unknown DXF Entity: " + entity.GetType().ToString());
+                Graphic.SetHeaderInfo(" Unknown DXF Entity: " + entity.GetType().ToString());
         }
 
         private static DXFPoint ApplyOffsetAndAngle(DXFPoint location, DXFPoint offset, double offsetAngleDegree)
