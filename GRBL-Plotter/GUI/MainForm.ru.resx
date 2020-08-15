@@ -1038,4 +1038,10 @@
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Создать штрих-код</value>
   </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>Сортировать по расстоянию</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>Обратить / повернуть выбранный путь</value>
+  </data>
 </root>

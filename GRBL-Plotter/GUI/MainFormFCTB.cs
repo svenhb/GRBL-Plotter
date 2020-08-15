@@ -29,6 +29,7 @@
  * 2020-01-01 improve group handling, new class codeSelection
  * 2020-04-06 improove selection of figures and groups
  * 2020-06-15 add 'Header' tag
+ * 2020-08-12 check index line 524
 */
 
 using System;
@@ -444,6 +445,7 @@ namespace GRBL_Plotter
         {
             if (manualEdit)
                 return;
+            if (logDetailed) Logger.Trace(" findFigureMarkSelection marker:{0}  line:{1}  collapse:{2}",marker, clickedLine, collapse);
             fCTBCode.Selection.ColumnSelectionMode = false;
             statusStripClear(2);
             enableBlockCommands(false);
@@ -519,7 +521,9 @@ namespace GRBL_Plotter
         }
 
         private void clearTextSelection(int line)
-        {   Range mySelection = new Range(fCTBCode,0,line,0,line);
+        {   if (line >= fCTBCode.LinesCount)
+				return;
+			Range mySelection = new Range(fCTBCode,0,line,0,line);
             fCTBCode.Selection = mySelection;
             fCTBCode.SelectionColor = Color.Green;
         }

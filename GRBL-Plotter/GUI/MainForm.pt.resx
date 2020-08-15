@@ -1041,4 +1041,10 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Criar código de barras</value>
   </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>Classificar por distância</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>Inverter / girar o caminho selecionado</value>
+  </data>
 </root>

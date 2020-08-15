@@ -479,6 +479,11 @@ namespace GRBL_Plotter
         private void showImportOptions()
         {
             importOptions = Graphic.graphicInformation.ListOptions() + importOptions;
+            if (Properties.Settings.Default.importGCCompress) importOptions += "<Compress> " ;
+            if (Properties.Settings.Default.importGCRelative) importOptions += "< G91 > " ;
+//            if (Properties.Settings.Default.importRepeatEnable) importOptions += "<Repeat code> " ;
+            if (Properties.Settings.Default.importGCLineSegmentation) importOptions += "<Line segmentation> " ;
+
             if (importOptions.Length > 1)
             {
                 importOptions = "Import options: " + importOptions;

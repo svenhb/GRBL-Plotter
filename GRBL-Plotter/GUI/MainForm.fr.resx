@@ -1014,4 +1014,10 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Créer un code-barres</value>
   </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>Trier par distance</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>Inverser / faire pivoter le chemin sélectionné</value>
+  </data>
 </root>

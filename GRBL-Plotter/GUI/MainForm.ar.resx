@@ -1067,4 +1067,10 @@
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
     <value>إنشاء الباركود</value>
   </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>فرز حسب المسافة</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>عكس / تدوير المسار المحدد</value>
+  </data>
 </root>

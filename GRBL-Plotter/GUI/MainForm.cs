@@ -106,10 +106,17 @@ namespace GRBL_Plotter
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static uint logFlags = 0;
+        private static bool logEnable = false;
+        private static bool logDetailed = false;
 
         public MainForm()
         {
             Logger.Info("++++++ GRBL-Plotter Ver. {0} START ++++++", Application.ProductVersion);
+            logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
+            logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level4) > 0);
+            logDetailed = logEnable && ((logFlags & (uint)LogEnable.Detailed) > 0);
+
             _splashscreen = new splashscreen();
             _splashscreen.Show();
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);

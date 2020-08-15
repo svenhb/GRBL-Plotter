@@ -1030,4 +1030,10 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Crear código de barras</value>
   </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>Ordenar por distancia</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>Invertir / Girar la ruta seleccionada</value>
+  </data>
 </root>

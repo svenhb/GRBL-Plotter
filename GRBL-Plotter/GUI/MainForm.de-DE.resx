@@ -990,4 +990,10 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Barcode erstellen</value>
   </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>Nach Entfernung sortieren</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad umkehren / drehen</value>
+  </data>
 </root>

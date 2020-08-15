@@ -1064,4 +1064,10 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
     <value>バーコードを作成</value>
   </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>距離で並べ替え</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>選択したパスを反転/回転</value>
+  </data>
 </root>

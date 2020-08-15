@@ -391,15 +391,15 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu12</comment>
   </data>
   <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
-    <value>镜子X（水平）</value>
+    <value>镜像X (水平)</value>
     <comment>Menu131</comment>
   </data>
   <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
-    <value>镜子Y（垂直）</value>
+    <value>镜像Y (垂直)</value>
     <comment>Menu131</comment>
   </data>
   <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
-    <value>后视镜旋转轴</value>
+    <value>镜像旋转轴</value>
     <comment>Menu131</comment>
   </data>
   <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
@@ -747,7 +747,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Editor_Menu</comment>
   </data>
   <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
-    <value>扩展代码块</value>
+    <value>展开代码块</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="toolStripViewRuler.Text" xml:space="preserve">
@@ -834,7 +834,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>开始路径模拟</value>
   </data>
   <data name="gBOverrideSSGB.Text" xml:space="preserve">
-    <value>转数</value>
+    <value>主轴转速</value>
     <comment>groupBox_Override3</comment>
   </data>
   <data name="btnJogZeroA.ToolTip" xml:space="preserve">
@@ -865,7 +865,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnHome.Text" xml:space="preserve">
-    <value>家</value>
+    <value>Home</value>
     <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="label13.Text" xml:space="preserve">
@@ -893,7 +893,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>扩展名</value>
   </data>
   <data name="cmsEditMode.Text" xml:space="preserve">
-    <value>删除“组” XML标签</value>
+    <value>切换编辑模式</value>
   </data>
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>显示笔向上/向下</value>
@@ -965,16 +965,16 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>代码块是G代码，周围是XML元素，例如“ Figure”的“ Group”</value>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
-    <value>向上移动所选代码块</value>
+    <value>将所选代码块移至最上</value>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockUp.Text" xml:space="preserve">
     <value>向上移动所选代码块</value>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockDown.Text" xml:space="preserve">
-    <value>下移所选代码块</value>
+    <value>向下移动所选代码块</value>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostDown.Text" xml:space="preserve">
-    <value>将所选代码块最下移</value>
+    <value>将所选代码块移至最下</value>
   </data>
   <data name="cmsCodeBlocksMove.Text" xml:space="preserve">
     <value>移动代码块</value>
@@ -1047,5 +1047,11 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   </data>
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
     <value>创建条形码</value>
+  </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>按距离排序</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>反转/旋转所选路径</value>
   </data>
 </root>

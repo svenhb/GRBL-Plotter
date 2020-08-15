@@ -238,6 +238,7 @@ namespace GRBL_Plotter
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+//            if (logDetailed) Logger.Trace("pictureBox1_MouseMove");
             if (e.Button == MouseButtons.Middle)
             {
                 xyPoint diff = new xyPoint(0, 0);
@@ -268,6 +269,7 @@ namespace GRBL_Plotter
         private static int previousClick = SystemInformation.DoubleClickTime;
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
+            if (logDetailed) Logger.Trace("pictureBox1_MouseUp   e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}", e.X, e.Y, picAbsPos.X, picAbsPos.Y);
             if (posIsMoving)
             {
                 cmsPicBoxMoveSelectedPathInCode.Enabled = true;
@@ -288,7 +290,9 @@ namespace GRBL_Plotter
 
         // find closest coordinate in GCode and mark
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {   pictureBox1.Focus();
+        {
+            if (logDetailed) Logger.Trace("pictureBox1_MouseDown e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}",e.X,e.Y,picAbsPos.X,picAbsPos.Y);
+            pictureBox1.Focus();
             moveTranslationOld = new xyPoint(e.X, e.Y);
             allowZoom = false;
             if (e.Button == MouseButtons.Left)
@@ -332,6 +336,7 @@ namespace GRBL_Plotter
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
+            if (logDetailed) Logger.Trace("pictureBox1_DoubleClick");
             if (_lastButtonUp == MouseButtons.Middle)
             {   pBoxTransform.Reset(); zoomFactor = 1;
                 pictureBox1.Invalidate();
