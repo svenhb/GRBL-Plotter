@@ -20,6 +20,8 @@
 * DXF graphics import via file load, drag & drop (also URL) - tested with [LibreCAD](http://librecad.org/cms/home.html) generated DXFs 
   - few entities are missing
 * Drill file import via file load, drag & drop
+* Gerber file import (rough implementation) via file load, drag & drop 
+* CSV file import via file load, drag & drop  
 * Image import via file load or drag & drop
 * GCode can be edited and saved
 * Recent File List (Files and URLs)
@@ -29,11 +31,22 @@
 * Create Text
   - own created 'Dot Matrix' font [Video 'Dot Matrix'](https://youtu.be/ip_qCQwoufw) 
 * Create simple shapes
+* Barcode, QR-Code 
+* Create GCode via tool extensions 
+ 
+#### Import options:
+* Process pen-width as Z-depth
+* Process circle radius as dot (optional with Z-depth)
+* Modify paths for drag knife
+* Add angle information for tangential axis
+* Add hatch fill to closed paths
+* Repeat closed path for a small distance (for laser cutter) 
     
 #### GCode manipulation:  
 * Transformation of GCodes (scale, rotation, mirror, zero-Offset)  
 * Transformation via camera teaching
 * Axis Substitution for Rotary Axis
+* Radius compensation  
   
 #### Machine control:  
 * Individual commands via user defined Buttons  
