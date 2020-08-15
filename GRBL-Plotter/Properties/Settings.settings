@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRBL_Plotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -119,6 +119,9 @@
     <Setting Name="counterImportGCode" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="counterImportGerber" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="counterImportHPGL" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
@@ -217,6 +220,12 @@
     </Setting>
     <Setting Name="ctrlLaserMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlLineEndEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlLineEndText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">;</Value>
     </Setting>
     <Setting Name="ctrlReplaceEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -433,6 +442,12 @@
     </Setting>
     <Setting Name="gui2DKeepPenWidth" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DPenUpArrow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DPenUpId" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="gui2DPenUpShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -815,6 +830,9 @@
     <Setting Name="importDepthFromWidthMin" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-1</Value>
     </Setting>
+    <Setting Name="importDepthFromWidthRamp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="ImportDXFSize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1044,6 +1062,9 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGraphicSortDistance" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicSortDistanceAllowRotate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGraphicTileX" Type="System.Decimal" Scope="User">
@@ -1408,21 +1429,6 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
-    </Setting>
-    <Setting Name="importGraphicSortDistanceAllowRotate" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="importDepthFromWidthRamp" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="gui2DPenUpArrow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="gui2DPenUpId" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="counterImportGerber" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

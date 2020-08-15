@@ -5710,5 +5710,29 @@ namespace GRBL_Plotter.Properties {
                 this["counterImportGerber"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlLineEndEnable {
+            get {
+                return ((bool)(this["ctrlLineEndEnable"]));
+            }
+            set {
+                this["ctrlLineEndEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(";")]
+        public string ctrlLineEndText {
+            get {
+                return ((string)(this["ctrlLineEndText"]));
+            }
+            set {
+                this["ctrlLineEndText"] = value;
+            }
+        }
     }
 }
