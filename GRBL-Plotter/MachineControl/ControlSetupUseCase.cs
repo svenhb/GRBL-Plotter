@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-12-07 show current settings on start up MyIni.showIniSettings(true)
+ * 2020-08-10
 */
 
 
@@ -58,7 +59,7 @@ namespace GRBL_Plotter
                 return;
             string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
             var MyIni = new IniFile(path);
-            Logger.Trace("Load use case: '{0}'", path);
+            Logger.Trace("▄▄▄▄▄▄▄ Load use case: '{0}'", path);
             MyIni.ReadAll();    // ReadImport();
             Properties.Settings.Default.useCaseLastLoaded = lBUseCase.Text; ;
             lblLastUseCase.Text = lBUseCase.Text;

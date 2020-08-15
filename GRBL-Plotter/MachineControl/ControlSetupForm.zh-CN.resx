@@ -547,7 +547,7 @@ M4动态激光功率模式</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
-    <value>分⼏遍运⾏</value>
+    <value>分为几遍加工</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncEnable.ToolTip" xml:space="preserve">
@@ -1244,7 +1244,7 @@ M4动态激光功率模式</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.Text" xml:space="preserve">
-    <value>通⽤</value>
+    <value>小数位</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.ToolTip" xml:space="preserve">
@@ -1775,10 +1775,10 @@ Z轴将向下移动</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl32.Text" xml:space="preserve">
-    <value>Z 安全⾼度</value>
+    <value>Z 安全的高度</value>
   </data>
   <data name="tab1_2lbl33.Text" xml:space="preserve">
-    <value>Z 雕刻⾼</value>
+    <value>Z雕刻的高</value>
   </data>
   <data name="tab1_2lbl31.Text" xml:space="preserve">
     <value>Z进给速度</value>
@@ -1806,7 +1806,7 @@ Z轴将向下移动</value>
     <value>抬笔</value>
   </data>
   <data name="tab1_3lbl33.Text" xml:space="preserve">
-    <value>最小S，最大Z</value>
+    <value>最小S时最大Z</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tab1_3lbl32.Text" xml:space="preserve">
@@ -2233,5 +2233,17 @@ Z轴将向下移动</value>
   </data>
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
     <value>应用坡道而不是台阶</value>
+  </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>注意：Z-Engrave将限制最大。 深度！</value>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>如果仅找到一种属性（例如一种颜色），则取消分组</value>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>套用文字</value>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>个别线端</value>
   </data>
 </root>

@@ -2121,4 +2121,16 @@ min X, min Y и max Z.
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
     <value>Применить рампу вместо шага</value>
   </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>Внимание: Z-гравировка ограничивает макс. глубина!</value>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>Группировка отменяется, если найдено только одно свойство (например, один цвет).</value>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>Применить текст</value>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>Конец отдельной строки</value>
+  </data>
 </root>

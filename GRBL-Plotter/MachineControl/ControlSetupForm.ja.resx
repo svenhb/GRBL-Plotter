@@ -2251,4 +2251,16 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
     <value>ステップの代わりにランプを適用する</value>
   </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>注意：Z-Engraveは最大値を制限します。 深さ！</value>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>プロパティが1つしか見つからない場合（1つの色など）、グループ化はキャンセルされます。</value>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>テキストを適用</value>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>個々の行の終わり</value>
+  </data>
 </root>

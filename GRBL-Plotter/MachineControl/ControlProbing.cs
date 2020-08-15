@@ -787,7 +787,7 @@ namespace GRBL_Plotter
             probeX = false; probeY = false;
             probingCount = 1;
             probingAction = probingMode.noProbing;
-//            setRBEnable(cBnow, true);
+            setRBEnable(cBnow, true);       // 2020-08-09
         }
 
         private void setProgressTL(decimal maxTravel)

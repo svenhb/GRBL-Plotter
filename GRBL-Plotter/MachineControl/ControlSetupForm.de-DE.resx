@@ -2020,4 +2020,16 @@ Nützlich für Laserschneider.</value>
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
     <value>Rampe anstelle einer Stufe anwenden</value>
   </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>Achtung: Z-Engrave begrenzt die max. Tiefe!</value>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>Die Gruppierung wird abgebrochen, wenn nur eine Eigenschaft gefunden wird (z. B. eine Farbe).</value>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>Text anwenden</value>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>Individuelles Zeilenende</value>
+  </data>
 </root>

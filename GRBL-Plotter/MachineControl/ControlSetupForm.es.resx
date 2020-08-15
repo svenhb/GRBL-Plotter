@@ -2053,4 +2053,16 @@ menos estrés para la mecánica</value>
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
     <value>Aplicar una rampa en lugar de un paso</value>
   </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>Atención: Z-Engrave limitará el máx. ¡profundidad!</value>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>La agrupación se cancela si solo se encuentra una propiedad (por ejemplo, un color)</value>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>Aplicar texto</value>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>Fin de línea individual</value>
+  </data>
 </root>

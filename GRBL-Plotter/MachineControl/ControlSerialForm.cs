@@ -47,6 +47,7 @@
  * 2020-01-22 remove hard reset because of missing status reports
  * 2020-04-02 extend hard-reset dtr-low time, improove rx,tx data display, check 30kHz after reset
  * 2020-07-06 add tool change a axis
+ * 2020-08-08 #144
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -907,7 +908,7 @@ namespace GRBL_Plotter
         }
         private void handleRX_Feedback(string[] dataField)  // dataField = rxString.Trim(charsToTrim).Split(':')
         {
-            if (iamSerial == 1)
+            if (iamSerial == 1 && dataField.Length > 1)
             {   string info = "";
                 if (dataField.Length > 2)
                     info = dataField[2];

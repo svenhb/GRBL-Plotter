@@ -27,6 +27,7 @@
  * 2020-04-04 bug-fix simulation of G2/3 code without tangential line 518 - never ending rotation
  * 2020-07-22 show ProcessedPath
  * 2020-07-25 bug fix in simulaation -> only addArc if r > 0
+ * 2020-08-13 bug fix transformGCodeMirror with G91 
  */
 
 using System;
@@ -39,11 +40,18 @@ namespace GRBL_Plotter
     public static partial class VisuGCode
     {
         public static xyPoint getCenterOfMarkedFigure()
-        {
-            RectangleF selectionBounds = pathMarkSelection.GetBounds();
+        {   RectangleF selectionBounds = pathMarkSelection.GetBounds();
             float centerX = selectionBounds.X + selectionBounds.Width / 2;
             float centerY = selectionBounds.Y + selectionBounds.Height / 2;
             return new xyPoint((double)centerX, (double)centerY); 
+        }
+        public static double getWidthOfMarkedFigure()
+        {   RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            return (double)selectionBounds.Width;
+        }
+        public static double getHeightOfMarkedFigure()
+        {   RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            return (double)selectionBounds.Height;
         }
         private static bool xyMove(gcodeByLine tmp)
         { return ((tmp.x != null) || (tmp.y != null)); }
@@ -60,22 +68,35 @@ namespace GRBL_Plotter
             Logger.Debug("..transformGCodeMirror {0}", shiftToZero);
             if (gcodeList == null) return "";
 
-            xyPoint centerOfFigure = xyzSize.getCenter();
+            xyPoint centerOfFigure = xyzSize.getCenter();		// center of whole graphics
             if (lastFigureNumber > 0)
-                centerOfFigure = getCenterOfMarkedFigure();
+                centerOfFigure = getCenterOfMarkedFigure();		// center of selected figure
 
-            oldLine.resetAll(grbl.posWork);         // reset coordinates and parser modes
-            clearDrawingnPath();                    // reset path, dimensions
+            oldLine.resetAll(grbl.posWork);         			// reset coordinates and parser modes
+            clearDrawingnPath();                    			// reset path, dimensions
 
+            bool offsetApplied = false;
+			double lastAbsPos = 0;
+			
             foreach (gcodeByLine gcline in gcodeList)
             {
-                if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))
-                { continue; }
+                if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))	// process all graphics or selected figure
+                { 	if (!gcline.isdistanceModeG90 && offsetApplied)			// correct relative movement of next figure
+					{	if ((gcline.motionMode == 0) && ((gcline.x != null) || (gcline.y != null)))
+                        {	if (shiftToZero == translate.MirrorX)
+							{	gcline.x = gcline.actualPos.X - lastAbsPos;	}
+							if (shiftToZero == translate.MirrorY)
+							{	gcline.y = gcline.actualPos.Y - lastAbsPos;	}
+							offsetApplied = false;
+						}
+					}				
+					continue; 
+				}
 
                 if (!gcline.ismachineCoordG53)
                 {
                     // switch circle direction
-                    if ((shiftToZero == translate.MirrorX) || (shiftToZero == translate.MirrorY))           // mirror xy 
+                    if ((shiftToZero == translate.MirrorX) || (shiftToZero == translate.MirrorY))	// mirror xy 
                     {
                         if (gcline.motionMode == 2) { gcline.motionMode = 3; }
                         else if (gcline.motionMode == 3) { gcline.motionMode = 2; }
@@ -84,10 +105,16 @@ namespace GRBL_Plotter
                     {
                         if (gcline.x != null)
                         {
-                            //                            if (gcline.isdistanceModeG90)
-                            //                                gcline.x = oldmaxx - gcline.x;
-                            //                            else
-                            gcline.x = -gcline.x + 2 * centerOfFigure.X;
+							if (gcline.isdistanceModeG90)
+								gcline.x = -gcline.x + 2 * centerOfFigure.X;
+							else
+							{	gcline.x = -gcline.x;
+							    if ((gcline.motionMode == 0) && !offsetApplied) 	// at relative movement, apply offset only once on G0
+								{	gcline.x = -gcline.x + 2*(centerOfFigure.X - gcline.actualPos.X);
+									offsetApplied = true;
+								}
+								lastAbsPos = -gcline.actualPos.X + 2 * centerOfFigure.X;
+                            }						
                         }
                         gcline.i = -gcline.i;
                     }
@@ -95,10 +122,16 @@ namespace GRBL_Plotter
                     {
                         if (gcline.y != null)
                         {
-                            //                            if (gcline.isdistanceModeG90)
-                            //                                gcline.y = oldmaxy - gcline.y;
-                            //                            else
-                            gcline.y = -gcline.y + 2 * centerOfFigure.Y;
+							if (gcline.isdistanceModeG90)
+								gcline.y = -gcline.y + 2 * centerOfFigure.Y;
+							else
+							{	gcline.y = -gcline.y;
+							    if ((gcline.motionMode == 0) && !offsetApplied) 
+								{	gcline.y = -gcline.y + 2*(centerOfFigure.Y - centerOfFigure.Y);
+									offsetApplied = true;
+								}
+								lastAbsPos = -gcline.actualPos.Y + 2 * centerOfFigure.Y;
+                            }
                         }
                         gcline.j = -gcline.j;
                     }

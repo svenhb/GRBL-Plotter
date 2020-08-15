@@ -2053,4 +2053,16 @@ Utile pour la découpe laser.</value>
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
     <value>Appliquer une rampe au lieu d'une marche</value>
   </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>Attention: Z-Engrave limitera le max. profondeur!</value>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>Le regroupement est annulé si une seule propriété est trouvée (par exemple une couleur)</value>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>Appliquer du texte</value>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>Fin de ligne individuelle</value>
+  </data>
 </root>

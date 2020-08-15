@@ -2250,4 +2250,16 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
     <value>ضع منحدرًا بدلاً من خطوة</value>
   </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>انتباه: Z-Engrave سيحد من الحد الأقصى. عمق!</value>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>يتم إلغاء التجميع إذا تم العثور على خاصية واحدة فقط (مثل لون واحد)</value>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>تطبيق النص</value>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>نهاية سطر فردي</value>
+  </data>
 </root>
