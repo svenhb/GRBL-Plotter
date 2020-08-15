@@ -1,6 +1,10 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### 2020-08-15 Version 1.5.0.5    
+Some bug fixes  
+Gerber import 
+  
 ### 2020-07-23 Version 1.5.0.0    
 Revision of the graphical import algorithms:   
 * grouping by pen-color, pen-width, layer-name
