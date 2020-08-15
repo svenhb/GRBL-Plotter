@@ -11,7 +11,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.5.0.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-07-23     
+#### [GRBL-Plotter Vers. 1.5.0.5](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-08-15     
 
 ### Requirements for compiling
 * VisualStudio 2015 
@@ -21,7 +21,7 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 #### Import/Export:  
 * Several options to translate Pen Up/Down
   - controlling a Z axis
-  - controlling a servo
+  - controlling a RC-Servo
   - controlling a laser
   - user defined commands
   - Create GCode absolute or relative (for further use as subroutine)  
@@ -38,7 +38,8 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
   - few entities are missing
 * [Drag tool compensation](https://github.com/svenhb/GRBL-Plotter/wiki/Drag-tool-compensation)
 * HPGL graphics import via file load, drag & drop  
-* Drill file import via file load, drag & drop
+* Drill file import via file load, drag & drop 
+* Gerber file import (rough implementation) via file load, drag & drop 
 * CSV file import via file load, drag & drop
 * Image import via file load or drag & drop
 * GCode can be edited and saved
