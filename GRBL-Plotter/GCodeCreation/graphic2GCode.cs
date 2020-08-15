@@ -309,7 +309,7 @@ namespace GRBL_Plotter
 		}
 
         private static string getGroupAttributes(GroupObject groupObject, GraphicInformation graphicInfo)
-		{	string[] groupAttribute = new string[] {"none=", "PenColor=", "PenWidth=", "Layer=", "Tile=", "Type="};
+		{	string[] groupAttribute = new string[] {"none=", "PenColor=", "PenWidth=", "Layer=", "Tile=", "Type="};		// check public enum GroupOptions
 			string groupVal1 = string.Format(" {0}\"{1}\"",groupAttribute[(int)graphicInfo.GroupOption], groupObject.key);
             string groupVal2 = string.Format(" ToolNr=\"{0}\"",groupObject.toolNr);
             string groupVal3 = string.Format(" ToolName=\"{0}\"",groupObject.toolName);
@@ -319,7 +319,18 @@ namespace GRBL_Plotter
 		}
 		private static StringBuilder getFigureAttributes(PathObject pathObject)
 		{	StringBuilder attributes = new StringBuilder();
-			attributes.Append((pathObject.Info.pathGeometry.Length > 0) ? string.Format(" Geometry=\"{0}\"", pathObject.Info.pathGeometry) : "");
+
+			if (pathObject.Info.pathGeometry.Length > 0) 		attributes.Append(string.Format(" Geometry=\"{0}\"", pathObject.Info.pathGeometry));
+            if (pathObject.Info.groupAttributes[1].Length > 0)	attributes.Append(string.Format(" PenColor=\"{0}\"", pathObject.Info.groupAttributes[1]));
+            if (pathObject.Info.groupAttributes[2].Length > 0) 	attributes.Append(string.Format(" PenWidth=\"{0}\"", pathObject.Info.groupAttributes[2]));
+            if (pathObject.Info.groupAttributes[3].Length > 0) 	attributes.Append(string.Format(" Layer=\"{0}\"", pathObject.Info.groupAttributes[3]));
+            if (pathObject.Info.groupAttributes[4].Length > 0) 	attributes.Append(string.Format(" Tile=\"{0}\"", pathObject.Info.groupAttributes[4]));
+            if (pathObject.Info.groupAttributes[5].Length > 0) 	attributes.Append(string.Format(" Type=\"{0}\"", pathObject.Info.groupAttributes[5]));
+            if (pathObject.Info.pathId.Length > 0) 				attributes.Append(string.Format(" PathID=\"{0}\"", pathObject.Info.pathId));
+            if (pathObject.PathLength > 0) 						attributes.Append(string.Format(" PathLength=\"{0:0.0}\"", pathObject.PathLength));						
+
+		
+	/*		attributes.Append((pathObject.Info.pathGeometry.Length > 0) ? string.Format(" Geometry=\"{0}\"", pathObject.Info.pathGeometry) : "");
             attributes.Append((pathObject.Info.groupAttributes[1].Length > 0)? string.Format(" PenColor=\"{0}\"", pathObject.Info.groupAttributes[1]) : "");
             attributes.Append((pathObject.Info.groupAttributes[2].Length > 0) ? string.Format(" PenWidth=\"{0}\"", pathObject.Info.groupAttributes[2]) : "");
             attributes.Append((pathObject.Info.groupAttributes[3].Length > 0) ? string.Format(" Layer=\"{0}\"", pathObject.Info.groupAttributes[3]) : "");
@@ -327,7 +338,7 @@ namespace GRBL_Plotter
             attributes.Append((pathObject.Info.groupAttributes[5].Length > 0) ? string.Format(" Type=\"{0}\"", pathObject.Info.groupAttributes[5]) : "");
             attributes.Append((pathObject.Info.pathId.Length > 0) ? 		string.Format(" PathID=\"{0}\"", pathObject.Info.pathId) : "");
             attributes.Append((pathObject.PathLength > 0) ? 		string.Format(" PathLength=\"{0:0.0}\"", pathObject.PathLength) : "");						
-			return attributes;
+		*/	return attributes;
 		}
 		
 
@@ -615,10 +626,20 @@ namespace GRBL_Plotter
                 for (int i = 0; i<Properties.Settings.Default.importRepeatCnt; i++)
                     output += finalGcodeString.ToString().Replace(',', '.');
 
-                return header + output + footer;
+                //return header + output + footer;
+                header += output + footer;
             }
             else
-                return header + finalGcodeString.ToString().Replace(',', '.') + footer;
+                header += finalGcodeString.ToString().Replace(',', '.') + footer;
+            // return header + finalGcodeString.ToString().Replace(',', '.') + footer;
+
+            if (Properties.Settings.Default.ctrlLineEndEnable)
+            {
+                header = header.Replace("\r", Properties.Settings.Default.ctrlLineEndText + "\r");
+                header = header.Replace(")"+Properties.Settings.Default.ctrlLineEndText, ")");
+//                System.Windows.Forms.MessageBox.Show(header);
+            }
+            return header;
         }
 
         /// <summary>

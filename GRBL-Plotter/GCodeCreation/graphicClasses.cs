@@ -227,7 +227,9 @@ namespace GRBL_Plotter
                 id = tmp.id; //groupId = tmp.groupId;
                 penColorId = tmp.penColorId; pathId = tmp.pathId;
                 pathGeometry = tmp.pathGeometry; //pathComment = tmp.pathComment;
-                groupAttributes = tmp.groupAttributes.ToList();
+//                groupAttributes = tmp.groupAttributes.ToList();
+				for (int i=0; i < groupAttributes.Count; i++)
+					groupAttributes[i] = tmp.groupAttributes[i];
             }
 			public bool IsSameAs(PathInformation tmp)
 			{
