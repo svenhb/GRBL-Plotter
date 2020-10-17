@@ -23,9 +23,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace GRBL_Plotter
 {   public partial class MainForm
@@ -33,19 +35,40 @@ namespace GRBL_Plotter
         #region simulate path
         private static int simuLine = 0;
         private static bool simuEnabled = false;
+		private static xyzPoint codeInfo = new xyzPoint();
+        private static bool simulateA = false;
 
         private void btnSimulate_Click(object sender, EventArgs e)
         {
             if ((!isStreaming) && (fCTBCode.LinesCount > 2))
             {
                 if (!simuEnabled)
-                { simuStart(); }
+                { simuStart(Properties.Settings.Default.gui2DColorSimulation); }
                 else
                 { simuStop(); }
             }
         }
-        private void simuStart()
+        private void simuStart(Color col)
         {
+			label_wx.ForeColor = col;
+			label_wy.ForeColor = col;
+			label_wz.ForeColor = col;
+			label_wa.ForeColor = col;
+			label_wb.ForeColor = col;
+			label_wc.ForeColor = col;
+
+            Color invers = ContrastColor(col);
+            label_wx.BackColor = invers;
+            label_wy.BackColor = invers;
+            label_wz.BackColor = invers;
+            label_wa.BackColor = invers;
+            label_wb.BackColor = invers;
+            label_wc.BackColor = invers;
+
+            simulateA = VisuGCode.containsTangential();
+            if (simulateA)
+                updateLayout();
+
             pbFile.Maximum = fCTBCode.LinesCount;
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
             btnSimulate.Text = Localization.getString("mainSimuStop");
@@ -70,6 +93,25 @@ namespace GRBL_Plotter
         }
         private void simuStop()
         {
+			label_wx.ForeColor = Color.Black;
+			label_wy.ForeColor = Color.Black;
+			label_wz.ForeColor = Color.Black;
+			label_wa.ForeColor = Color.Black;
+			label_wb.ForeColor = Color.Black;
+			label_wc.ForeColor = Color.Black;
+            Color invers = Control.DefaultBackColor;
+            label_wx.BackColor = invers;
+            label_wy.BackColor = invers;
+            label_wz.BackColor = invers;
+            label_wa.BackColor = invers;
+            label_wb.BackColor = invers;
+            label_wc.BackColor = invers;
+
+            if (simulateA)
+            {   simulateA = false;
+                updateLayout();
+            }
+
             bool isConnected = _serial_form.serialPortOpen || grbl.grblSimulate;
             simuEnabled = false;
             simulationTimer.Enabled = false;
@@ -90,7 +132,8 @@ namespace GRBL_Plotter
 
         private void simulationTimer_Tick(object sender, EventArgs e)
         {
-            simuLine = VisuGCode.Simulation.Next();
+            simuLine = VisuGCode.Simulation.Next(ref codeInfo);
+			
             if ((simuLine >= 0) && (simuLine < fCTBCode.Lines.Count()))
                 lbInfo.Text = string.Format("Line {0}: {1}",(simuLine+1), fCTBCode.Lines[simuLine] );
             else
@@ -103,6 +146,11 @@ namespace GRBL_Plotter
                 fCTBCode.DoCaretVisible();
                 fCTBCodeClickedLineLast = simuLine;
                 pictureBox1.Invalidate(); // avoid too much events
+				
+				label_wx.Text = string.Format("{0:0.000}", codeInfo.X);
+				label_wy.Text = string.Format("{0:0.000}", codeInfo.Y);
+				label_wz.Text = string.Format("{0:0.000}", codeInfo.Z);
+				label_wa.Text = string.Format("{0:0.0}", codeInfo.A*180/Math.PI);
             }
             else
             {   simuStop();

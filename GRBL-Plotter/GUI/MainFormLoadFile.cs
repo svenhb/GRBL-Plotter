@@ -87,7 +87,7 @@ namespace GRBL_Plotter
         private List<string> MRUlist = new List<string>();
         private void SaveRecentFile(string path, bool addPath = true)
         {
-            Logger.Trace("SaveRecentFile");
+            Logger.Trace("SaveRecentFile {0}",path);
             saveName = Path.GetFileNameWithoutExtension(path);
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
@@ -95,23 +95,29 @@ namespace GRBL_Plotter
                 MRUlist.Remove(path);
 
             if (addPath)
-            {
-                MRUlist.Insert(0, path);    //insert given path into list on top
+            {   MRUlist.Insert(0, path);    //insert given path into list on top
                 cmsPicBoxReloadFile.ToolTipText = string.Format("Load '{0}'", path);
             }
-                //keep list number not exceeded the given value
-                while (MRUlist.Count > MRUnumber)
+			
+			//keep list number not exceeded the given value
+			while (MRUlist.Count > MRUnumber)
             { MRUlist.RemoveAt(MRUlist.Count - 1); }
-            foreach (string item in MRUlist)
-            {
-                ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
-                toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
-            }
+		
+			if (MRUlist.Count > 0)
+            {	foreach (string item in MRUlist)
+				{   ToolStripMenuItem fileRecent = new ToolStripMenuItem(item, null, RecentFile_click);
+					toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
+				}
+			}
             try
             {
                 StreamWriter stringToWrite = new StreamWriter(Application.StartupPath + "\\Recent.txt"); //System.Environment.CurrentDirectory
-                foreach (string item in MRUlist)
-                { stringToWrite.WriteLine(item); }
+    			if (MRUlist.Count > 0)
+				{	foreach (string item in MRUlist)
+					{ stringToWrite.WriteLine(item); }
+				}
+				else
+				{	stringToWrite.WriteLine("data\\examples\\graphic_grbl.svg"); }
                 stringToWrite.Flush(); //write stream to file
                 stringToWrite.Close(); //close the stream and reclaim memory
             }
@@ -123,13 +129,16 @@ namespace GRBL_Plotter
             MRUlist.Clear();
             try
             {
-                StreamReader listToRead =
-                new StreamReader(Application.StartupPath + "\\Recent.txt");
-                string line;
-                MRUlist.Clear();
-                while ((line = listToRead.ReadLine()) != null) //read each line until end of file
-                    MRUlist.Add(line);      //insert to list
-                listToRead.Close();         //close the stream
+                if (File.Exists(Application.StartupPath + "\\Recent.txt"))
+				{	StreamReader listToRead = new StreamReader(Application.StartupPath + "\\Recent.txt");
+					string line;
+					MRUlist.Clear();
+					while ((line = listToRead.ReadLine()) != null) //read each line until end of file
+						MRUlist.Add(line);      //insert to list
+					listToRead.Close();         //close the stream					
+				}
+				if (MRUlist.Count == 0)
+					MRUlist.Add("data\\examples\\graphic_grbl.svg"); 
             }
             catch (Exception er) { Logger.Error(er, "LoadRecentList "); }
         }
@@ -155,6 +164,7 @@ namespace GRBL_Plotter
             VisuGCode.markSelectedFigure(-1);           // hide highlight
 			VisuGCode.pathBackground.Reset();
             grbl.posMarker = new xyPoint(0, 0);
+			Graphic.CleanUp();	// clear old data
         }
 
         private void newCodeEnd()
@@ -184,7 +194,23 @@ namespace GRBL_Plotter
 
         private bool loadFile(string fileName)
         {   Logger.Info("loadFile ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
-            Logger.Info("Load file {0}", fileName);
+            String ext = Path.GetExtension(fileName).ToLower();
+			MainTimer.Stop();
+			MainTimer.Start();
+
+            if (ext == ".ini")
+			{   var MyIni = new IniFile(fileName);
+				Logger.Info("Load INI: '{0}'", fileName);
+				MyIni.ReadAll();    // ReadImport();
+				updateControls();
+                updateLayout();
+                statusStripSet(2, "INI File loaded", Color.Lime);
+                return true;
+			}
+			else
+				Logger.Info("Load file {0}", fileName);
+				
+			
             statusStripSet(1,string.Format("[{0}: {1}]", Localization.getString("statusStripeFileLoad"), fileName),Color.Lime);
             statusStripSet(2, "Press 'Space bar' to toggle PenUp path", Color.Lime);
 
@@ -218,7 +244,6 @@ namespace GRBL_Plotter
                     return false;
                 }
             }
-            String ext = Path.GetExtension(fileName).ToLower();
             if (ext == ".svg")
             { 	if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
 				startConvert(Graphic.SourceTypes.SVG, fileName); fileLoaded = true; 
@@ -231,7 +256,7 @@ namespace GRBL_Plotter
             { 	startConvert(Graphic.SourceTypes.Drill, fileName); fileLoaded = true; }
 
             else if (extensionGerber.Contains(ext))
-            { startConvert(Graphic.SourceTypes.Gerber, fileName); fileLoaded = true; }
+            { 	startConvert(Graphic.SourceTypes.Gerber, fileName); fileLoaded = true; }
 
             else if (extensionHPGL.Contains(ext))
             { 	startConvert(Graphic.SourceTypes.HPGL, fileName); fileLoaded = true; }
@@ -272,7 +297,7 @@ namespace GRBL_Plotter
                     this.Text = appName + " | Source: " + fileName;
                 }
             }
-
+			
             if (ext == ".url")
             { getURL(fileName); fileLoaded = true; }
 
@@ -328,21 +353,43 @@ namespace GRBL_Plotter
         {
             var parts = tBURL.Text.Split('.');
             string ext = parts[parts.Length - 1].ToLower();   // get extension
-                                                              //   String ext = Path.GetExtension(fileName).ToLower();
-                                                              //   MessageBox.Show("-" + ext + "-");
-            if (ext.IndexOf("svg") >= 0)
+            importOptions = "";                                                  //   String ext = Path.GetExtension(fileName).ToLower();
+                                                                                 //   MessageBox.Show("-" + ext + "-");			
+            Logger.Trace("tBURL_TextChanged: '{0}'", tBURL.Text);
+			Logger.Info("loadFile URL ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+			MainTimer.Stop();
+			MainTimer.Start();
+
+            statusStripSet(1,string.Format("[{0}: {1}]", Localization.getString("statusStripeFileLoad"), tBURL.Text),Color.Lime);
+            statusStripSet(2, "Press 'Space bar' to toggle PenUp path", Color.Lime);
+         
+            if (ext.IndexOf("ini") >= 0)
+            {   Logger.Info("Load INI (URL): '{0}'", tBURL.Text);
+                var MyIni = new IniFile(tBURL.Text, true);
+                MyIni.ReadAll();    // ReadImport();
+				updateControls();
+                updateLayout();
+                statusStripSet(2, "INI File loaded", Color.Lime);
+                return;
+			}
+															  
+            else if (ext.IndexOf("svg") >= 0)
             {
-                startConvert(Graphic.SourceTypes.SVG, tBURL.Text);
+				if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
+		        startConvert(Graphic.SourceTypes.SVG, tBURL.Text);
+                SaveRecentFile(tBURL.Text);
                 setLastLoadedFile("Data from URL", tBURL.Text);
             }
             else if (ext.IndexOf("dxf") >= 0)
             {
                 startConvert(Graphic.SourceTypes.DXF, tBURL.Text);
+                SaveRecentFile(tBURL.Text);
                 setLastLoadedFile("Data from URL", tBURL.Text);
             }
             else if (extensionHPGL.Contains(ext))
             {
                 startConvert(Graphic.SourceTypes.HPGL, tBURL.Text);
+                SaveRecentFile(tBURL.Text);
                 setLastLoadedFile("Data from URL", tBURL.Text);
             }
             else if (extensionGerber.Contains(ext))
@@ -352,7 +399,8 @@ namespace GRBL_Plotter
             }
             else if (extensionCSV.Contains(ext))
             {
-                startConvert(Graphic.SourceTypes.CSV, tBURL.Text);
+                if (Properties.Settings.Default.importCSVAutomatic) importOptions = "<CSV Automatic> " + importOptions;
+				startConvert(Graphic.SourceTypes.CSV, tBURL.Text);
                 setLastLoadedFile("Data from URL", tBURL.Text);
             }
 
@@ -452,8 +500,6 @@ namespace GRBL_Plotter
                 }
                 default: break;
 			}		
-
-//			Graphic.CleanUp();
 		
             newCodeEnd();
             this.Text = appName + " | Source: " + source;
@@ -529,25 +575,30 @@ namespace GRBL_Plotter
 
                 if (tbFile.Text.EndsWith(fileLastProcessed + ".nc"))
                 {
-                    string fileInfo = Path.ChangeExtension(tbFile.Text, ".xml");
+                    string fileInfo = Path.ChangeExtension(tbFile.Text, ".xml");    // see also saveStreamingStatus
                     if (File.Exists(fileInfo))
                     {
                         int lineNr = loadStreamingStatus();
-                        DialogResult dialogResult = MessageBox.Show(Localization.getString("mainPauseStream1") + lineNr + " / " + fCTBCode.LinesCount + Localization.getString("mainPauseStream2"), Localization.getString("mainAttention"), MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
+                        if (lineNr > 0)
                         {
-                            loadStreamingStatus(true);                            //do something
-                            updateControls(true);
-                            btnStreamStart.Image = Properties.Resources.btn_play;
-                            isStreamingPause = true;
-                            lbInfo.Text = Localization.getString("mainPauseStream");    // "Pause streaming - press play ";
-                            signalPlay = 1;
-                            lbInfo.BackColor = Color.Yellow;
+                            DialogResult dialogResult = MessageBox.Show(Localization.getString("mainPauseStream1") + lineNr + " / " + fCTBCode.LinesCount + Localization.getString("mainPauseStream2"), Localization.getString("mainAttention"), MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                loadStreamingStatus(true);                            //do something
+                                updateControls(true);
+                                btnStreamStart.Image = Properties.Resources.btn_play;
+                                isStreamingPause = true;
+                                lbInfo.Text = Localization.getString("mainPauseStream");    // "Pause streaming - press play ";
+                                signalPlay = 1;
+                                lbInfo.BackColor = Color.Yellow;
+                            }
                         }
+                        else
+                            Logger.Trace("loadGcode() check XML lineNr=0");
                     }
                 }
-                else
-                    SaveRecentFile(tbFile.Text);
+ //               else
+//                    SaveRecentFile(tbFile.Text);
                 Logger.Trace(" loadGCode end");
             }
         }
@@ -572,11 +623,11 @@ namespace GRBL_Plotter
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "Machine Ini files (*.ini)|*.ini";
-            sfd.FileName = "GRBL-Plotter.ini";
+            sfd.FileName = "GRBL-Plotter_"+DateTime.Now.ToString("yyyyMMdd_HHmmss")+".ini";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 var MyIni = new IniFile(sfd.FileName);
-                MyIni.WriteAll(_serial_form.GRBLSettings);
+                MyIni.WriteAll(_serial_form.GRBLSettings, true);	// write all properties, even if default
                 Logger.Info("Save machine parameters as {0}", sfd.FileName);
             }
         }
@@ -759,6 +810,7 @@ namespace GRBL_Plotter
                     UseCaseDialog();
                     newCodeStart();
                     fCTBCode.Text = GCodeFromSVG.ConvertFromText(txt.Trim((char)0x00), true);    // import as mm
+					Properties.Settings.Default.counterImportSVG += 1;
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return; }
                     newCodeEnd();
@@ -783,6 +835,7 @@ namespace GRBL_Plotter
                     UseCaseDialog();
                     newCodeStart();
                     fCTBCode.Text = GCodeFromDXF.ConvertFromText(txt);
+					Properties.Settings.Default.counterImportDXF += 1;
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return; }
                     newCodeEnd();
@@ -798,6 +851,7 @@ namespace GRBL_Plotter
                         fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
                     else
                         fCTBCode.Text = text;
+					Properties.Settings.Default.counterImportGCode += 1;
                     newCodeEnd();
                     setLastLoadedFile("Data from " + source+": Text", "");
                     lbInfo.Text = "GCode from " + source;
@@ -818,6 +872,7 @@ namespace GRBL_Plotter
                 UseCaseDialog();
                 newCodeStart();
                 fCTBCode.Text = GCodeFromSVG.ConvertFromText(txt);
+				Properties.Settings.Default.counterImportSVG += 1;
                 if (fCTBCode.LinesCount <= 1)
                 { fCTBCode.Text = "( Code conversion failed )"; return; }
                 newCodeEnd();
@@ -842,6 +897,7 @@ namespace GRBL_Plotter
                 _image_form.Show(this);
                 _image_form.WindowState = FormWindowState.Normal;
                 _image_form.loadClipboard();
+				Properties.Settings.Default.counterImportImage += 1;
                 setLastLoadedFile("Data from Clipboard: Image", "");
             }
             else
@@ -859,270 +915,274 @@ namespace GRBL_Plotter
         {
             Logger.Trace("loadSettings");
             // try
-			
-			if ((_setup_form != null) && (_setup_form.settingsReloaded))
-            {	_setup_form.settingsReloaded = false;
-				Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-				Location = Properties.Settings.Default.locationMForm;
-				if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
-				Size = Properties.Settings.Default.mainFormSize;
-				WindowState = Properties.Settings.Default.mainFormWinState;
-				splitContainer1.SplitterDistance = Properties.Settings.Default.mainFormSplitDistance;
-			}
+
+            if ((_setup_form != null) && (_setup_form.settingsReloaded))
+            { _setup_form.settingsReloaded = false;
+                Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+                Location = Properties.Settings.Default.locationMForm;
+                if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+                Size = Properties.Settings.Default.mainFormSize;
+                WindowState = Properties.Settings.Default.mainFormWinState;
+                splitContainer1.SplitterDistance = Properties.Settings.Default.mainFormSplitDistance;
+            }
+            splitContainer1_SplitterMoved(sender, null);
             pictureBox1.Invalidate();
+
+            updateLayout();
+        }
+        private void updateLayout()
+        {
+            Logger.Trace("updateLayout()");
+            gcode.loggerTrace = Properties.Settings.Default.guiExtendedLoggingEnabled;
+            gcode.loggerTraceImport = gcode.loggerTrace && Properties.Settings.Default.importGCAddComments;
+            if (gcode.loggerTrace)
             {
-                gcode.loggerTrace = Properties.Settings.Default.guiExtendedLoggingEnabled;
-                gcode.loggerTraceImport = gcode.loggerTrace && Properties.Settings.Default.importGCAddComments;
-                if (gcode.loggerTrace)
+                foreach (var rule in NLog.LogManager.Configuration.LoggingRules)
                 {
-                    foreach (var rule in NLog.LogManager.Configuration.LoggingRules)
-                    {
-                        rule.EnableLoggingForLevel(NLog.LogLevel.Trace);
-                        rule.EnableLoggingForLevel(NLog.LogLevel.Debug);
-                    }
-                    NLog.LogManager.ReconfigExistingLoggers();
+                    rule.EnableLoggingForLevel(NLog.LogLevel.Trace);
+                    rule.EnableLoggingForLevel(NLog.LogLevel.Debug);
                 }
-                tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
-                int customButtonUse = 0;
-                setCustomButton(btnCustom1, Properties.Settings.Default.guiCustomBtn1, 1);
-                setCustomButton(btnCustom2, Properties.Settings.Default.guiCustomBtn2, 2);
-                setCustomButton(btnCustom3, Properties.Settings.Default.guiCustomBtn3, 3);
-                setCustomButton(btnCustom4, Properties.Settings.Default.guiCustomBtn4, 4);
-                setCustomButton(btnCustom5, Properties.Settings.Default.guiCustomBtn5, 5);
-                setCustomButton(btnCustom6, Properties.Settings.Default.guiCustomBtn6, 6);
-                setCustomButton(btnCustom7, Properties.Settings.Default.guiCustomBtn7, 7);
-                setCustomButton(btnCustom8, Properties.Settings.Default.guiCustomBtn8, 8);
-                setCustomButton(btnCustom9, Properties.Settings.Default.guiCustomBtn9, 9);
-                setCustomButton(btnCustom10, Properties.Settings.Default.guiCustomBtn10, 10);
-                setCustomButton(btnCustom11, Properties.Settings.Default.guiCustomBtn11, 11);
-                setCustomButton(btnCustom12, Properties.Settings.Default.guiCustomBtn12, 12);
+                NLog.LogManager.ReconfigExistingLoggers();
+            }
+            tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
+            int customButtonUse = 0;
+            setCustomButton(btnCustom1, Properties.Settings.Default.guiCustomBtn1, 1);
+            setCustomButton(btnCustom2, Properties.Settings.Default.guiCustomBtn2, 2);
+            setCustomButton(btnCustom3, Properties.Settings.Default.guiCustomBtn3, 3);
+            setCustomButton(btnCustom4, Properties.Settings.Default.guiCustomBtn4, 4);
+            setCustomButton(btnCustom5, Properties.Settings.Default.guiCustomBtn5, 5);
+            setCustomButton(btnCustom6, Properties.Settings.Default.guiCustomBtn6, 6);
+            setCustomButton(btnCustom7, Properties.Settings.Default.guiCustomBtn7, 7);
+            setCustomButton(btnCustom8, Properties.Settings.Default.guiCustomBtn8, 8);
+            setCustomButton(btnCustom9, Properties.Settings.Default.guiCustomBtn9, 9);
+            setCustomButton(btnCustom10, Properties.Settings.Default.guiCustomBtn10, 10);
+            setCustomButton(btnCustom11, Properties.Settings.Default.guiCustomBtn11, 11);
+            setCustomButton(btnCustom12, Properties.Settings.Default.guiCustomBtn12, 12);
 
-                customButtonUse += setCustomButton(btnCustom13, Properties.Settings.Default.guiCustomBtn13, 13);
-                customButtonUse += setCustomButton(btnCustom14, Properties.Settings.Default.guiCustomBtn14, 14);
-                customButtonUse += setCustomButton(btnCustom15, Properties.Settings.Default.guiCustomBtn15, 15);
-                customButtonUse += setCustomButton(btnCustom16, Properties.Settings.Default.guiCustomBtn16, 16);
+            customButtonUse += setCustomButton(btnCustom13, Properties.Settings.Default.guiCustomBtn13, 13);
+            customButtonUse += setCustomButton(btnCustom14, Properties.Settings.Default.guiCustomBtn14, 14);
+            customButtonUse += setCustomButton(btnCustom15, Properties.Settings.Default.guiCustomBtn15, 15);
+            customButtonUse += setCustomButton(btnCustom16, Properties.Settings.Default.guiCustomBtn16, 16);
 
+            if (customButtonUse == 0)
+            {   tLPCustomButton2.ColumnStyles[0].Width = 33.3f;
+                tLPCustomButton2.ColumnStyles[1].Width = 33.3f;
+                tLPCustomButton2.ColumnStyles[2].Width = 33.3f;
+                tLPCustomButton2.ColumnStyles[3].Width = 0f;
+                tLPCustomButton1.ColumnStyles[0].Width = 100f;
+                tLPCustomButton1.ColumnStyles[1].Width = 0f;
+            }
+            else
+            {   tLPCustomButton2.ColumnStyles[0].Width = 25f;
+                tLPCustomButton2.ColumnStyles[1].Width = 25f;
+                tLPCustomButton2.ColumnStyles[2].Width = 25f;
+                tLPCustomButton2.ColumnStyles[3].Width = 25f;
+                tLPCustomButton1.ColumnStyles[0].Width = 100f;
+                tLPCustomButton1.ColumnStyles[1].Width = 0f;
+			}
+
+            string[] tmp = Properties.Settings.Default.guiCustomBtn17.Split('|');
+            if (tmp[0].Length > 1)      //Properties.Settings.Default.guiCustomBtn17.ToString().Length > 2)
+            {   
                 if (customButtonUse == 0)
+                {   tLPCustomButton1.ColumnStyles[0].Width = 75f;
+                    tLPCustomButton1.ColumnStyles[1].Width = 25f;
+                }
+                else
+                {   tLPCustomButton1.ColumnStyles[0].Width = 80f;
+                    tLPCustomButton1.ColumnStyles[1].Width = 20f;
+                }
+
+                for (int i = 17; i <= 32; i++)
                 {
-                    tLPCustomButton2.ColumnStyles[0].Width = 33.3f;
-                    tLPCustomButton2.ColumnStyles[1].Width = 33.3f;
-                    tLPCustomButton2.ColumnStyles[2].Width = 33.3f;
-                    tLPCustomButton2.ColumnStyles[3].Width = 0f;
-                    tLPCustomButton1.ColumnStyles[0].Width = 100f;
-                    tLPCustomButton1.ColumnStyles[1].Width = 0f;
+                    if (CustomButtons17.ContainsKey(i))
+                    {
+                        Button b = CustomButtons17[i];
+                        b.Width = btnCustom1.Width - 24;
+                        b.Height = btnCustom1.Height;
+                        setCustomButton(b, Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString(), i);
+                    }
+                }
+            }
+
+            fCTBCode.BookmarkColor = Properties.Settings.Default.gui2DColorMarker; ;
+
+            setGraphicProperties();
+
+            joystickXYStep[0] = 0;
+            joystickXYStep[1] = (double)Properties.Settings.Default.guiJoystickXYStep1;
+            joystickXYStep[2] = (double)Properties.Settings.Default.guiJoystickXYStep2;
+            joystickXYStep[3] = (double)Properties.Settings.Default.guiJoystickXYStep3;
+            joystickXYStep[4] = (double)Properties.Settings.Default.guiJoystickXYStep4;
+            joystickXYStep[5] = (double)Properties.Settings.Default.guiJoystickXYStep5;
+            joystickXYSpeed[0] = 0.1;
+            joystickXYSpeed[1] = (double)Properties.Settings.Default.guiJoystickXYSpeed1;
+            joystickXYSpeed[2] = (double)Properties.Settings.Default.guiJoystickXYSpeed2;
+            joystickXYSpeed[3] = (double)Properties.Settings.Default.guiJoystickXYSpeed3;
+            joystickXYSpeed[4] = (double)Properties.Settings.Default.guiJoystickXYSpeed4;
+            joystickXYSpeed[5] = (double)Properties.Settings.Default.guiJoystickXYSpeed5;
+            joystickZStep[0] = 0;
+            joystickZStep[1] = (double)Properties.Settings.Default.guiJoystickZStep1;
+            joystickZStep[2] = (double)Properties.Settings.Default.guiJoystickZStep2;
+            joystickZStep[3] = (double)Properties.Settings.Default.guiJoystickZStep3;
+            joystickZStep[4] = (double)Properties.Settings.Default.guiJoystickZStep4;
+            joystickZStep[5] = (double)Properties.Settings.Default.guiJoystickZStep5;
+            joystickZSpeed[0] = 0.1;
+            joystickZSpeed[1] = (double)Properties.Settings.Default.guiJoystickZSpeed1;
+            joystickZSpeed[2] = (double)Properties.Settings.Default.guiJoystickZSpeed2;
+            joystickZSpeed[3] = (double)Properties.Settings.Default.guiJoystickZSpeed3;
+            joystickZSpeed[4] = (double)Properties.Settings.Default.guiJoystickZSpeed4;
+            joystickZSpeed[5] = (double)Properties.Settings.Default.guiJoystickZSpeed5;
+            joystickAStep[0] = 0;
+            joystickAStep[1] = (double)Properties.Settings.Default.guiJoystickAStep1;
+            joystickAStep[2] = (double)Properties.Settings.Default.guiJoystickAStep2;
+            joystickAStep[3] = (double)Properties.Settings.Default.guiJoystickAStep3;
+            joystickAStep[4] = (double)Properties.Settings.Default.guiJoystickAStep4;
+            joystickAStep[5] = (double)Properties.Settings.Default.guiJoystickAStep5;
+            joystickASpeed[0] = 0.1;
+            joystickASpeed[1] = (double)Properties.Settings.Default.guiJoystickASpeed1;
+            joystickASpeed[2] = (double)Properties.Settings.Default.guiJoystickASpeed2;
+            joystickASpeed[3] = (double)Properties.Settings.Default.guiJoystickASpeed3;
+            joystickASpeed[4] = (double)Properties.Settings.Default.guiJoystickASpeed4;
+            joystickASpeed[5] = (double)Properties.Settings.Default.guiJoystickASpeed5;
+            virtualJoystickXY.JoystickLabel = joystickXYStep;
+            virtualJoystickZ.JoystickLabel = joystickZStep;
+            virtualJoystickA.JoystickLabel = joystickAStep;
+            virtualJoystickB.JoystickLabel = joystickAStep;
+            virtualJoystickC.JoystickLabel = joystickAStep;
+            skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
+            skaliereXAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
+            skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
+            skaliereAufXUnitsToolStripMenuItem.BackColor = SystemColors.Control;
+            skaliereAufXUnitsToolStripMenuItem.ToolTipText = "Enable in Setup - Control";
+            skaliereYAufDrehachseToolStripMenuItem.Enabled = false;
+            skaliereYAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
+            skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
+            skaliereAufYUnitsToolStripMenuItem.BackColor = SystemColors.Control;
+            skaliereAufYUnitsToolStripMenuItem.ToolTipText = "Enable in Setup - Control";
+            toolStrip_tb_rotary_diameter.Text = string.Format("{0:0.00}", Properties.Settings.Default.rotarySubstitutionDiameter);
+
+            if (Properties.Settings.Default.rotarySubstitutionEnable)
+            {
+                string tmptxt = string.Format("Calculating rotary angle depending on part diameter ({0:0.00} units) and desired size.\r\nSet part diameter in Setup - Control.", Properties.Settings.Default.rotarySubstitutionDiameter);
+                if (Properties.Settings.Default.rotarySubstitutionX)
+                {
+                    skaliereXAufDrehachseToolStripMenuItem.Enabled = true;
+                    skaliereXAufDrehachseToolStripMenuItem.BackColor = Color.Yellow;
+                    skaliereAufXUnitsToolStripMenuItem.BackColor = Color.Yellow;
+                    skaliereAufXUnitsToolStripMenuItem.ToolTipText = tmptxt;
+                    skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "";
                 }
                 else
                 {
-                    tLPCustomButton2.ColumnStyles[0].Width = 25f;
-                    tLPCustomButton2.ColumnStyles[1].Width = 25f;
-                    tLPCustomButton2.ColumnStyles[2].Width = 25f;
-                    tLPCustomButton2.ColumnStyles[3].Width = 25f;
-                    tLPCustomButton1.ColumnStyles[0].Width = 100f;
-                    tLPCustomButton1.ColumnStyles[1].Width = 0f;
-
-
-                    if (Properties.Settings.Default.guiCustomBtn17.ToString().Length > 2)
-                    {
-                        tLPCustomButton1.ColumnStyles[0].Width = 80f;
-                        tLPCustomButton1.ColumnStyles[1].Width = 20f;
-
-                        for (int i = 17; i <= 32; i++)
-                        {
-                            if (CustomButtons17.ContainsKey(i))
-                            {
-                                Button b = CustomButtons17[i];
-                                b.Width = btnCustom1.Width - 24;
-                                b.Height = btnCustom1.Height;
-                                setCustomButton(b, Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString(), i);
-                            }
-                        }
-                    }
+                    skaliereYAufDrehachseToolStripMenuItem.Enabled = true;
+                    skaliereYAufDrehachseToolStripMenuItem.BackColor = Color.Yellow;
+                    skaliereAufYUnitsToolStripMenuItem.BackColor = Color.Yellow;
+                    skaliereAufYUnitsToolStripMenuItem.ToolTipText = tmptxt;
+                    skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "";
                 }
-
-                fCTBCode.BookmarkColor = Properties.Settings.Default.gui2DColorMarker; ;
-
-                setGraphicProperties();
-
-                joystickXYStep[0] = 0;
-                joystickXYStep[1] = (double)Properties.Settings.Default.guiJoystickXYStep1;
-                joystickXYStep[2] = (double)Properties.Settings.Default.guiJoystickXYStep2;
-                joystickXYStep[3] = (double)Properties.Settings.Default.guiJoystickXYStep3;
-                joystickXYStep[4] = (double)Properties.Settings.Default.guiJoystickXYStep4;
-                joystickXYStep[5] = (double)Properties.Settings.Default.guiJoystickXYStep5;
-                joystickXYSpeed[0] = 0.1;
-                joystickXYSpeed[1] = (double)Properties.Settings.Default.guiJoystickXYSpeed1;
-                joystickXYSpeed[2] = (double)Properties.Settings.Default.guiJoystickXYSpeed2;
-                joystickXYSpeed[3] = (double)Properties.Settings.Default.guiJoystickXYSpeed3;
-                joystickXYSpeed[4] = (double)Properties.Settings.Default.guiJoystickXYSpeed4;
-                joystickXYSpeed[5] = (double)Properties.Settings.Default.guiJoystickXYSpeed5;
-                joystickZStep[0] = 0;
-                joystickZStep[1] = (double)Properties.Settings.Default.guiJoystickZStep1;
-                joystickZStep[2] = (double)Properties.Settings.Default.guiJoystickZStep2;
-                joystickZStep[3] = (double)Properties.Settings.Default.guiJoystickZStep3;
-                joystickZStep[4] = (double)Properties.Settings.Default.guiJoystickZStep4;
-                joystickZStep[5] = (double)Properties.Settings.Default.guiJoystickZStep5;
-                joystickZSpeed[0] = 0.1;
-                joystickZSpeed[1] = (double)Properties.Settings.Default.guiJoystickZSpeed1;
-                joystickZSpeed[2] = (double)Properties.Settings.Default.guiJoystickZSpeed2;
-                joystickZSpeed[3] = (double)Properties.Settings.Default.guiJoystickZSpeed3;
-                joystickZSpeed[4] = (double)Properties.Settings.Default.guiJoystickZSpeed4;
-                joystickZSpeed[5] = (double)Properties.Settings.Default.guiJoystickZSpeed5;
-                joystickAStep[0] = 0;
-                joystickAStep[1] = (double)Properties.Settings.Default.guiJoystickAStep1;
-                joystickAStep[2] = (double)Properties.Settings.Default.guiJoystickAStep2;
-                joystickAStep[3] = (double)Properties.Settings.Default.guiJoystickAStep3;
-                joystickAStep[4] = (double)Properties.Settings.Default.guiJoystickAStep4;
-                joystickAStep[5] = (double)Properties.Settings.Default.guiJoystickAStep5;
-                joystickASpeed[0] = 0.1;
-                joystickASpeed[1] = (double)Properties.Settings.Default.guiJoystickASpeed1;
-                joystickASpeed[2] = (double)Properties.Settings.Default.guiJoystickASpeed2;
-                joystickASpeed[3] = (double)Properties.Settings.Default.guiJoystickASpeed3;
-                joystickASpeed[4] = (double)Properties.Settings.Default.guiJoystickASpeed4;
-                joystickASpeed[5] = (double)Properties.Settings.Default.guiJoystickASpeed5;
-                virtualJoystickXY.JoystickLabel = joystickXYStep;
-                virtualJoystickZ.JoystickLabel = joystickZStep;
-                virtualJoystickA.JoystickLabel = joystickAStep;
-                virtualJoystickB.JoystickLabel = joystickAStep;
-                virtualJoystickC.JoystickLabel = joystickAStep;
-                skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
-                skaliereXAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
-                skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
-                skaliereAufXUnitsToolStripMenuItem.BackColor = SystemColors.Control;
-                skaliereAufXUnitsToolStripMenuItem.ToolTipText = "Enable in Setup - Control";
-                skaliereYAufDrehachseToolStripMenuItem.Enabled = false;
-                skaliereYAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
-                skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
-                skaliereAufYUnitsToolStripMenuItem.BackColor = SystemColors.Control;
-                skaliereAufYUnitsToolStripMenuItem.ToolTipText = "Enable in Setup - Control";
-                toolStrip_tb_rotary_diameter.Text = string.Format("{0:0.00}", Properties.Settings.Default.rotarySubstitutionDiameter);
-
+            }
+            if (Properties.Settings.Default.rotarySubstitutionEnable && Properties.Settings.Default.rotarySubstitutionSetupEnable)
+            {
+                string[] commands;
                 if (Properties.Settings.Default.rotarySubstitutionEnable)
-                {
-                    string tmp = string.Format("Calculating rotary angle depending on part diameter ({0:0.00} units) and desired size.\r\nSet part diameter in Setup - Control.", Properties.Settings.Default.rotarySubstitutionDiameter);
-                    if (Properties.Settings.Default.rotarySubstitutionX)
+                { commands = Properties.Settings.Default.rotarySubstitutionSetupOn.Split(';'); }
+                else
+                { commands = Properties.Settings.Default.rotarySubstitutionSetupOff.Split(';'); }
+                Logger.Info("rotarySubstitutionSetupEnable {0} [Setup - Program control - Rotary axis control]", string.Join(";", commands));
+                if ((_serial_form != null) && (_serial_form.serialPortOpen))
+                    foreach (string cmd in commands)
                     {
-                        skaliereXAufDrehachseToolStripMenuItem.Enabled = true;
-                        skaliereXAufDrehachseToolStripMenuItem.BackColor = Color.Yellow;
-                        skaliereAufXUnitsToolStripMenuItem.BackColor = Color.Yellow;
-                        skaliereAufXUnitsToolStripMenuItem.ToolTipText = tmp;
-                        skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "";
+                        sendCommand(cmd.Trim());
+                        Thread.Sleep(100);
                     }
-                    else
-                    {
-                        skaliereYAufDrehachseToolStripMenuItem.Enabled = true;
-                        skaliereYAufDrehachseToolStripMenuItem.BackColor = Color.Yellow;
-                        skaliereAufYUnitsToolStripMenuItem.BackColor = Color.Yellow;
-                        skaliereAufYUnitsToolStripMenuItem.ToolTipText = tmp;
-                        skaliereYAufDrehachseToolStripMenuItem.ToolTipText = "";
-                    }
-                }
-                if (Properties.Settings.Default.rotarySubstitutionEnable && Properties.Settings.Default.rotarySubstitutionSetupEnable)
+            }
+
+            ctrl4thAxis = Properties.Settings.Default.ctrl4thUse;
+            ctrl4thName = Properties.Settings.Default.ctrl4thName;
+            label_a.Visible = ctrl4thAxis || grbl.axisA || simulateA;
+            label_a.Text = ctrl4thName;
+            label_wa.Visible = ctrl4thAxis || grbl.axisA || simulateA;
+            label_ma.Visible = ctrl4thAxis || grbl.axisA || simulateA;
+            btnZeroA.Visible = ctrl4thAxis || grbl.axisA ;
+            mirrorRotaryToolStripMenuItem.Visible = ctrl4thAxis;
+            btnZeroA.Text = "Zero " + ctrl4thName;
+            if (Properties.Settings.Default.guiLanguage == "de-DE")
+                btnZeroA.Text = ctrl4thName + " nullen";
+
+            virtualJoystickA.Visible |= ctrl4thAxis || grbl.axisA;
+            if (ctrl4thAxis)
+                virtualJoystickA.JoystickText = ctrl4thName;
+
+            btnJogZeroA.Visible = ctrl4thAxis || grbl.axisA;
+            btnJogZeroA.Text = ctrl4thName + "=0";
+
+            toolTip1.SetToolTip(btnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
+            toolTip1.SetToolTip(btnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
+
+            resizeJoystick();
+
+            if (grbl.axisB || grbl.axisC)
+            {
+                label_a.Location = new Point(230, 14);      // move A controls to upper right
+                label_wa.Location = new Point(251, 14);
+                label_ma.Location = new Point(263, 32);
+                btnZeroA.Location = new Point(335, 14);
+                label_status0.Location = new Point(1, 118); // keep home and status
+                label_status.Location = new Point(1, 138);
+                btnHome.Location = new Point(106, 111);
+                btnHome.Size = new Size(122, 57);
+                groupBoxCoordinates.Width = 394;            // extend width
+                tLPRechtsOben.ColumnStyles[0].Width = 400;
+
+                label_c.Visible = grbl.axisC;
+                label_wc.Visible = grbl.axisC;
+                label_mc.Visible = grbl.axisC;
+                btnZeroC.Visible = grbl.axisC;
+            }
+            else
+            {
+                label_a.Location = new Point(1, 110);      // move A controls to lower left
+                label_wa.Location = new Point(22, 110);
+                label_ma.Location = new Point(34, 128);
+                btnZeroA.Location = new Point(106, 110);
+                groupBoxCoordinates.Width = 230;
+                tLPRechtsOben.ColumnStyles[0].Width = 236;
+
+                if (ctrl4thAxis || grbl.axisA || simulateA)
                 {
-                    string[] commands;
-                    if (Properties.Settings.Default.rotarySubstitutionEnable)
-                    { commands = Properties.Settings.Default.rotarySubstitutionSetupOn.Split(';'); }
-                    else
-                    { commands = Properties.Settings.Default.rotarySubstitutionSetupOff.Split(';'); }
-                    Logger.Info("rotarySubstitutionSetupEnable {0} [Setup - Program control - Rotary axis control]", string.Join(";", commands));
-                    if ((_serial_form != null) && (_serial_form.serialPortOpen))
-                        foreach (string cmd in commands)
-                        {
-                            sendCommand(cmd.Trim());
-                            Thread.Sleep(100);
-                        }
+                    label_status0.Location = new Point(1, 128);
+                    label_status.Location = new Point(1, 148);
+                    btnHome.Location = new Point(106, 138);
+                    btnHome.Size = new Size(122, 30);
                 }
-
-                //grbl.axisA = true; grbl.axisB = true; grbl.axisC = true; // for test only
-                ctrl4thAxis = Properties.Settings.Default.ctrl4thUse;
-                ctrl4thName = Properties.Settings.Default.ctrl4thName;
-                label_a.Visible = ctrl4thAxis || grbl.axisA;
-                label_a.Text = ctrl4thName;
-                label_wa.Visible = ctrl4thAxis || grbl.axisA;
-                label_ma.Visible = ctrl4thAxis || grbl.axisA;
-                btnZeroA.Visible = ctrl4thAxis || grbl.axisA;
-                mirrorRotaryToolStripMenuItem.Visible = ctrl4thAxis;
-                btnZeroA.Text = "Zero " + ctrl4thName;
-                if (Properties.Settings.Default.guiLanguage == "de-DE")
-                    btnZeroA.Text = ctrl4thName + " nullen";
-
-                virtualJoystickA.Visible |= ctrl4thAxis || grbl.axisA;
-                if (ctrl4thAxis)
-                    virtualJoystickA.JoystickText = ctrl4thName;
-                //virtualJoystickB.Visible = ctrl4thAxis;
-                //virtualJoystickC.Visible = ctrl4thAxis;
-                btnJogZeroA.Visible = ctrl4thAxis || grbl.axisA;
-                btnJogZeroA.Text = ctrl4thName + "=0";
-
-                toolTip1.SetToolTip(btnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
-                toolTip1.SetToolTip(btnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
-
-                resizeJoystick();
-
-                if (grbl.axisB || grbl.axisC)
+                else
                 {
-                    label_a.Location = new Point(230, 14);      // move A controls to upper right
-                    label_wa.Location = new Point(251, 14);
-                    label_ma.Location = new Point(263, 32);
-                    btnZeroA.Location = new Point(335, 14);
-                    label_status0.Location = new Point(1, 118); // keep home and status
+                    label_status0.Location = new Point(1, 118);
                     label_status.Location = new Point(1, 138);
                     btnHome.Location = new Point(106, 111);
                     btnHome.Size = new Size(122, 57);
-                    groupBoxCoordinates.Width = 394;            // extend width
-                    tLPRechtsOben.ColumnStyles[0].Width = 400;
-
-                    label_c.Visible = grbl.axisC;
-                    label_wc.Visible = grbl.axisC;
-                    label_mc.Visible = grbl.axisC;
-                    btnZeroC.Visible = grbl.axisC;
                 }
-                else
-                {
-                    label_a.Location = new Point(1, 110);      // move A controls to lower left
-                    label_wa.Location = new Point(22, 110);
-                    label_ma.Location = new Point(34, 128);
-                    btnZeroA.Location = new Point(106, 110);
-                    groupBoxCoordinates.Width = 230;
-                    tLPRechtsOben.ColumnStyles[0].Width = 236;
-
-                    if (ctrl4thAxis || grbl.axisA)
-                    {
-                        label_status0.Location = new Point(1, 128);
-                        label_status.Location = new Point(1, 148);
-                        btnHome.Location = new Point(106, 138);
-                        btnHome.Size = new Size(122, 30);
-                    }
-                    else
-                    {
-                        label_status0.Location = new Point(1, 118);
-                        label_status.Location = new Point(1, 138);
-                        btnHome.Location = new Point(106, 111);
-                        btnHome.Size = new Size(122, 57);
-                    }
-                }
-
-                toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
-                toolStripViewTool.Checked = Properties.Settings.Default.gui2DToolTableShow;
-                toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
-                splitContainer1_SplitterMoved(sender, null);
-
-                if (Properties.Settings.Default.importGCSDirM3)
-                    cBSpindle.Text = "Spindle CW";
-                else
-                    cBSpindle.Text = "Spindle CCW";
-
-                int[] interval = new int[] { 500, 250, 200, 125, 100 };
-                int index = Properties.Settings.Default.grblPollIntervalIndex;
-                if ((index >= 0) && (index < 5))
-                    grbl.pollInterval = interval[index];
-
-                if (_serial_form != null)
-                    _serial_form.updateGrblBufferSettings();
-
-                gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
-                checkMachineLimit();
-                loadHotkeys();
             }
+
+            toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
+            toolStripViewTool.Checked = Properties.Settings.Default.gui2DToolTableShow;
+            toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
+
+            if (Properties.Settings.Default.importGCSDirM3)
+                cBSpindle.Text = "Spindle CW";
+            else
+                cBSpindle.Text = "Spindle CCW";
+
+            int[] interval = new int[] { 500, 250, 200, 125, 100 };
+            int index = Properties.Settings.Default.grblPollIntervalIndex;
+            if ((index >= 0) && (index < 5))
+                grbl.pollInterval = interval[index];
+
+            gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
+            checkMachineLimit();
+            loadHotkeys();
+
             gui.writeSettingsToRegistry();
             fCTBCode.LineInterval = (int)Properties.Settings.Default.FCTBLineInterval;
         }   // end load settings
@@ -1145,42 +1205,27 @@ namespace GRBL_Plotter
         // update controls on Main form
         public void updateControls(bool allowControl = false)
         {
-            //            Logger.Trace("updateControls {0}", allowControl);
             bool isConnected = false;
             if (_serial_form != null)
             {   isConnected = _serial_form.serialPortOpen || grbl.grblSimulate; }
+
+            updateCustomButtons(true);  // isConnected && (!isStreaming || allowControl)
+
+            allowControl = isStreamingPause;
+            Logger.Trace("updateControls isConnected:{0} isStreaming:{1} allowControl:{2} ", isConnected, isStreaming, allowControl);
+
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickB.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickC.Enabled = isConnected && (!isStreaming || allowControl);
-            btnCustom1.Enabled = isConnected && (!isStreaming || allowControl);
-            btnCustom2.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom3.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom4.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom5.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom6.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom7.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom8.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom9.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom10.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom11.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom12.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom13.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom14.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom15.Enabled = isConnected & !isStreaming | allowControl;
-            btnCustom16.Enabled = isConnected & !isStreaming | allowControl;
-            for (int i = 17; i <= 32; i++)
-            {
-                if (CustomButtons17.ContainsKey(i))
-                { CustomButtons17[i].Enabled = isConnected & !isStreaming | allowControl; }
-            }
-
             btnHome.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroX.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroY.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroZ.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroA.Enabled = isConnected & !isStreaming | allowControl;
+            btnZeroB.Enabled = isConnected & !isStreaming | allowControl;
+            btnZeroC.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroXY.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroXYZ.Enabled = isConnected & !isStreaming | allowControl;
             btnJogZeroX.Enabled = isConnected & !isStreaming | allowControl;
@@ -1208,25 +1253,45 @@ namespace GRBL_Plotter
             btnStreamStop.Enabled = isConnected; // & isFileLoaded;
             btnStreamCheck.Enabled = isConnected;// & isFileLoaded;
 
-
-
-            btnJogStop.Visible = !grbl.isVersion_0;
-            btnJogStop.Enabled = isConnected & !isStreaming | allowControl;
-            //gBOverrideFRGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
-            // gBOverrideSSGB.Enabled = !_serial_form.isGrblVers0 & isConnected;// & isStreaming | allowControl;
-
-            gBoxOverride.Enabled = !grbl.isVersion_0 & isConnected;// & isStreaming | allowControl;
             if (!grbl.isVersion_0)
-            {
+            {   btnJogStop.Visible = true;
+                gBoxOverride.Enabled = isConnected;
                 tableLayoutPanel4.RowStyles[0].Height = 30f;
                 tableLayoutPanel4.RowStyles[1].Height = 30f;
                 tableLayoutPanel4.RowStyles[2].Height = 40f;
             }
             else
-            {
+            {   btnJogStop.Visible = false;
+                gBoxOverride.Enabled = false;
                 tableLayoutPanel4.RowStyles[0].Height = 40f;
                 tableLayoutPanel4.RowStyles[1].Height = 0f;
                 tableLayoutPanel4.RowStyles[2].Height = 60f;
+            }
+            enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
+        }
+
+        private void updateCustomButtons(bool enable)
+        {
+            btnCustom1.Enabled = enable;
+            btnCustom2.Enabled = enable;
+            btnCustom3.Enabled = enable;
+            btnCustom4.Enabled = enable;
+            btnCustom5.Enabled = enable;
+            btnCustom6.Enabled = enable;
+            btnCustom7.Enabled = enable;
+            btnCustom8.Enabled = enable;
+            btnCustom9.Enabled = enable;
+            btnCustom10.Enabled = enable;
+            btnCustom11.Enabled = enable;
+            btnCustom12.Enabled = enable;
+            btnCustom13.Enabled = enable;
+            btnCustom14.Enabled = enable;
+            btnCustom15.Enabled = enable;
+            btnCustom16.Enabled = enable;
+            for (int i = 17; i <= 32; i++)
+            {
+                if (CustomButtons17.ContainsKey(i))
+                { CustomButtons17[i].Enabled = enable; }
             }
         }
 
@@ -1449,13 +1514,17 @@ namespace GRBL_Plotter
         private void saveStreamingStatus(int lineNr)
         {
             string fileName = Application.StartupPath + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
+
             XmlWriterSettings set = new XmlWriterSettings();
             set.Indent = true;
             XmlWriter w = XmlWriter.Create(fileName, set);
             w.WriteStartDocument();
             w.WriteStartElement("GCode");
             w.WriteAttributeString("lineNr", lineNr.ToString());
-            w.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]);
+            if (lineNr > 0)
+                w.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]);
+            else
+                w.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
 
             w.WriteStartElement("WPos");
             w.WriteAttributeString("X", grbl.posWork.X.ToString().Replace(',', '.'));
@@ -1474,42 +1543,48 @@ namespace GRBL_Plotter
         private int loadStreamingStatus(bool setPause = false)
         {
             string fileName = Application.StartupPath + "\\" + fileLastProcessed + ".xml";
-            XmlReader r = XmlReader.Create(fileName);
-
-            xyzPoint tmp = new xyzPoint(0, 0, 0);
-            int codeLine = 0;
-            string parserState = "";
-            while (r.Read())
+            FileInfo fi = new FileInfo(fileName);
+            if (fi.Length > 1)
             {
-                if (!r.IsStartElement())
-                    continue;
+                XmlReader r = XmlReader.Create(fileName);
 
-                switch (r.Name)
+                xyzPoint tmp = new xyzPoint(0, 0, 0);
+                int codeLine = 0;
+                string parserState = "";
+                while (r.Read())
                 {
-                    case "GCode":
-                        codeLine = int.Parse(r["lineNr"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                        break;
-                    case "WPos":
-                        tmp.X = double.Parse(r["X"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                        tmp.Y = double.Parse(r["Y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                        tmp.Z = double.Parse(r["Z"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                        break;
-                    case "Parser":
-                        parserState = r["State"];
-                        break;
-                }
-            }
-            r.Close();
+                    if (!r.IsStartElement())
+                        continue;
 
-            if (setPause)
-            {
-                fCTBCodeClickedLineNow = codeLine;
-                fCTBCodeMarkLine();
-                _serial_form.parserStateGC = parserState;
-                _serial_form.posPause = tmp;
-                startStreaming(codeLine);
+                    switch (r.Name)
+                    {
+                        case "GCode":
+                            codeLine = int.Parse(r["lineNr"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+                            break;
+                        case "WPos":
+                            tmp.X = double.Parse(r["X"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+                            tmp.Y = double.Parse(r["Y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+                            tmp.Z = double.Parse(r["Z"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+                            break;
+                        case "Parser":
+                            parserState = r["State"];
+                            break;
+                    }
+                }
+                r.Close();
+
+                if (setPause)
+                {
+                    fCTBCodeClickedLineNow = codeLine;
+                    fCTBCodeMarkLine();
+                    _serial_form.parserStateGC = parserState;
+                    _serial_form.posPause = tmp;
+                    startStreaming(codeLine);
+                }
+                return codeLine;
             }
-            return codeLine;
+            Logger.Trace("loadStreamingStatus fileSize=0 {0}", fileName);
+            return 0;
         }
 
         private void UseCaseDialog()
@@ -1564,14 +1639,20 @@ namespace GRBL_Plotter
             catch (Exception er) { Logger.Error(er, "Start Process {0}", tmp); }
         }
 
-        private void setGcodeVariables()
+        private void setGcodeVariables()	// applied in MainForm.cs, defined in MainFormObjects.cs
         {
             gui.variable["GMIX"] = VisuGCode.xyzSize.minx;
             gui.variable["GMAX"] = VisuGCode.xyzSize.maxx;
+            gui.variable["GCTX"] = (VisuGCode.xyzSize.minx + VisuGCode.xyzSize.maxx)/2;
             gui.variable["GMIY"] = VisuGCode.xyzSize.miny;
             gui.variable["GMAY"] = VisuGCode.xyzSize.maxy;
+            gui.variable["GCTY"] = (VisuGCode.xyzSize.miny + VisuGCode.xyzSize.maxy)/2;
             gui.variable["GMIZ"] = VisuGCode.xyzSize.minz;
             gui.variable["GMAZ"] = VisuGCode.xyzSize.maxz;
+            gui.variable["GCTZ"] = (VisuGCode.xyzSize.minz + VisuGCode.xyzSize.maxz)/2;
+            gui.variable["GMIS"] = (double)Properties.Settings.Default.importGCPWMDown;
+            gui.variable["GMAS"] = (double)Properties.Settings.Default.importGCPWMUp;
+            gui.variable["GCTS"] = (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp)/2; 
         }
     }
 }

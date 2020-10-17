@@ -183,9 +183,9 @@ namespace GRBL_Plotter
             { findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow); }
 
             else if (xmlMarker.isFoldingMarkerFigure(fCTBCodeClickedLineNow))
-            { findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow); }
+            { findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow, (foldLevel>0)); }	// 2020-08-21 add , (foldLevel>0)
             else if (xmlMarker.isFoldingMarkerGroup(fCTBCodeClickedLineNow))
-            { findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow); }
+            { findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow, (foldLevel>0)); }	// 2020-08-21 add , (foldLevel>0)
 
             if (VisuGCode.codeBlocksAvailable())
             {
@@ -410,7 +410,7 @@ namespace GRBL_Plotter
             {
                 _message_form.Visible = false;
             }
-            _message_form.showMessage("Information", text);
+            _message_form.showMessage("Information", text, 0);
             _message_form.Show(this);
             _message_form.WindowState = FormWindowState.Normal;
         }
@@ -472,7 +472,7 @@ namespace GRBL_Plotter
                     markedBlockType = xmlMarkerType.Figure;
                     if (xmlMarker.GetFigure(clickedLine)) 
                     {   enableBlockCommands(setTextSelection(xmlMarker.lastFigure.lineStart, xmlMarker.lastFigure.lineEnd));
-                        VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+                        VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, false);	//!isStreaming);	// 2020-08-24 don't highlight in setPosMarkerLine - was done (or deselect) before in setPosMarkerNearBy
                         statusStripSet(2,string.Format("Marked: {0}", fCTBCode.Lines[xmlMarker.lastFigure.lineStart]), highlight);
                         fCTBCode.Invalidate();
                     }
@@ -489,7 +489,7 @@ namespace GRBL_Plotter
                 }
                 if (xmlMarker.GetFigure(clickedLine))
                 {   enableBlockCommands(setTextSelection(xmlMarker.lastFigure.lineStart, xmlMarker.lastFigure.lineEnd));
-                    VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+                    VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, false);		//!isStreaming);	// 2020-08-24 don't highlight in setPosMarkerLine - was done (or deselect) before in setPosMarkerNearBy
                     statusStripSet(2,string.Format("Marked: {0}", fCTBCode.Lines[xmlMarker.lastFigure.lineStart]), highlight);
                     fCTBCode.Invalidate();
                 }
@@ -589,7 +589,7 @@ namespace GRBL_Plotter
         }
 
         private void expandCodeBlocksToolStripMenuItem_Click(object sender, EventArgs e)
-        {   fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; }
+        {   fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; fCTBCode.DoCaretVisible(); }
 
         private void enableBlockCommands(bool tmp, bool keepSelection=false)
         {
@@ -611,11 +611,15 @@ namespace GRBL_Plotter
         // Move code block upwards
         private void moveSelectedCodeBlockMostUpToolStripMenuItem_Click(object sender, EventArgs e)
         {   fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
+			if (logDetailed) Logger.Trace("moveSelectedCodeBlockMostUpToolStripMenuItem_Click");
             moveSelectedCodeBlockUp(true);
+			xmlMarker.listIDs();
         }
         private void moveSelectedCodeBlockUpToolStripMenuItem_Click(object sender, EventArgs e)
         {   fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
+			if (logDetailed) Logger.Trace("moveSelectedCodeBlockUpToolStripMenuItem_Click");
             moveSelectedCodeBlockUp();
+			xmlMarker.listIDs();
         }
         private void moveSelectedCodeBlockUp(bool mostTop=false)
         {   if (!figureIsMarked)
@@ -677,11 +681,15 @@ namespace GRBL_Plotter
 
         private void moveSelectedCodeBlockMostDownToolStripMenuItem_Click(object sender, EventArgs e)
         {   fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
+			if (logDetailed) Logger.Trace("moveSelectedCodeBlockMostDownToolStripMenuItem_Click");
             moveSelectedCodeBlockDown(true);
+			xmlMarker.listIDs();
         }
         private void moveSelectedCodeBlockDownToolStripMenuItem_Click(object sender, EventArgs e)
         {   fCTBCode.UnbookmarkLine(fCTBCodeClickedLineNow);
+			if (logDetailed) Logger.Trace("moveSelectedCodeBlockDownToolStripMenuItem_Click");
             moveSelectedCodeBlockDown();
+			xmlMarker.listIDs();
         }
 
         private void moveSelectedCodeBlockDown(bool mostBottom = false)
@@ -772,45 +780,46 @@ namespace GRBL_Plotter
         #endregion
 
         #region sort blocks
+		// GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
+		// 
         private void cmsCodeBlocksSortById_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor; xmlMarker.sortById(cmsCodeBlocksSortReverse.Checked);
-            getSortedCode(); Cursor.Current = Cursors.Default;
-        }
-        private void cmsCodeBlocksSortByGeometry_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor;  xmlMarker.sortByGeometry(cmsCodeBlocksSortReverse.Checked);
-            getSortedCode(); Cursor.Current = Cursors.Default;
-        }
-        private void cmsCodeBlocksSortByToolNr_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor; xmlMarker.sortByToolNr(cmsCodeBlocksSortReverse.Checked);
-            getSortedCode(); Cursor.Current = Cursors.Default;
-        }
-        private void cmsCodeBlocksSortByToolName_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor; xmlMarker.sortByToolName(cmsCodeBlocksSortReverse.Checked);
-            getSortedCode(); Cursor.Current = Cursors.Default;
-        }
+        {   CodeBlocksSort(xmlMarker.sortOption.Id);}
         private void cmsCodeBlocksSortByColor_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor; xmlMarker.sortByColor(cmsCodeBlocksSortReverse.Checked);
-            getSortedCode(); Cursor.Current = Cursors.Default;
-        }
+        {   CodeBlocksSort(xmlMarker.sortOption.Color);}
+        private void cmsCodeBlocksSortByWidth_Click(object sender, EventArgs e)
+        {   CodeBlocksSort(xmlMarker.sortOption.Width);}
+        private void cmsCodeBlocksSortByLayer_Click(object sender, EventArgs e)
+        {   CodeBlocksSort(xmlMarker.sortOption.Layer);}
+        private void cmsCodeBlocksSortByType_Click(object sender, EventArgs e)
+        {   CodeBlocksSort(xmlMarker.sortOption.Type);}
+        private void cmsCodeBlocksSortByGeometry_Click(object sender, EventArgs e)
+        {   CodeBlocksSort(xmlMarker.sortOption.Geometry);}
+        private void cmsCodeBlocksSortByToolNr_Click(object sender, EventArgs e)
+        {   CodeBlocksSort(xmlMarker.sortOption.ToolNr);}
+        private void cmsCodeBlocksSortByToolName_Click(object sender, EventArgs e)
+        {   CodeBlocksSort(xmlMarker.sortOption.ToolName);}
         private void cmsCodeBlocksSortByCodeSize_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor; xmlMarker.sortByCodeSize(cmsCodeBlocksSortReverse.Checked);
-            getSortedCode(); Cursor.Current = Cursors.Default;
-        }
+        {   CodeBlocksSort(xmlMarker.sortOption.CodeSize);}
         private void cmsCodeBlocksSortByCodeArea_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor; xmlMarker.sortByCodeArea(cmsCodeBlocksSortReverse.Checked);
-            getSortedCode(); Cursor.Current = Cursors.Default;
-        }
+        {   CodeBlocksSort(xmlMarker.sortOption.CodeArea);}
 
         private void cmsCodeBlocksSortByDistance_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor; xmlMarker.sortByDistance();
-            getSortedCode(); Cursor.Current = Cursors.Default;
-        }
+        {   CodeBlocksSort(xmlMarker.sortOption.Distance); }
 
-        private void getSortedCode()
+		private void CodeBlocksSort(xmlMarker.sortOption tmp)
+		{
+			Cursor.Current = Cursors.WaitCursor; 
+			xmlMarker.sortBy(tmp, cmsCodeBlocksSortReverse.Checked);
+            getSortedCode(tmp); 
+			Cursor.Current = Cursors.Default;
+			xmlMarker.listIDs();
+		}
+
+        private void getSortedCode(xmlMarker.sortOption tmp)
         {   unDo.setCode(fCTBCode.Text, cmsCodeBlocksRemoveAll.Text, this);
             clearTextSelection(0);
             manualEdit = true;
-            if (gcode.loggerTrace && logMain) Logger.Trace(" sortXMLTags by Id");
+            if (gcode.loggerTrace && logMain) Logger.Trace(" sortXMLTags by {0}",tmp.ToString());
             
             fCTBCode.Text = xmlMarker.getSortedCode(fCTBCode.Lines.ToArray<string>());
             transformEnd();

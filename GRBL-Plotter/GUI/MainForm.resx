@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>214, 12</value>
+    <value>191, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>
@@ -232,55 +232,73 @@
     <value>Move Code Blocks</value>
   </data>
   <data name="cmsCodeBlocksSortReverse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="cmsCodeBlocksSortReverse.Text" xml:space="preserve">
     <value>Reverse sort order</value>
   </data>
   <data name="cmsCodeBlocksSortById.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
     <value>Sort by 'Id'</value>
   </data>
+  <data name="cmsCodeBlocksSortByColor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
+  </data>
+  <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
+    <value>Sort by 'Pen Color'</value>
+  </data>
+  <data name="sortByPenWidthToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
+  </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sort by 'Pen Width'</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sort by 'Layer'</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sort by 'Type'</value>
+  </data>
   <data name="cmsCodeBlocksSortByGeometry.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
     <value>Sort by 'Geometry'</value>
   </data>
   <data name="cmsCodeBlocksSortByToolNr.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
     <value>Sort by 'ToolNr'</value>
   </data>
   <data name="cmsCodeBlocksSortByToolName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
     <value>Sort by 'ToolName'</value>
   </data>
-  <data name="cmsCodeBlocksSortByColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
-  </data>
-  <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
-    <value>Sort by 'Color'</value>
-  </data>
   <data name="cmsCodeBlocksSortByCodeSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
     <value>Sort by 'CodeSize'</value>
   </data>
   <data name="cmsCodeBlocksSortByCodeArea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
     <value>Sort by 'CodeArea'</value>
   </data>
   <data name="cmsCodeBlocksSortByDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
     <value>Sort by Distance</value>
@@ -463,7 +481,7 @@
 </value>
   </data>
   <data name="fCTBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 155</value>
+    <value>332, 155</value>
   </data>
   <data name="fCTBCode.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -889,7 +907,7 @@
     <value>3, 3</value>
   </data>
   <data name="gBoxStream.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 110</value>
+    <value>332, 110</value>
   </data>
   <data name="gBoxStream.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -1405,7 +1423,7 @@
     <value>3, 300</value>
   </data>
   <data name="gBoxDimension.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 85</value>
+    <value>332, 85</value>
   </data>
   <data name="gBoxDimension.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -2320,7 +2338,7 @@
     <value>3, 119</value>
   </data>
   <data name="gBoxOverride.Size" type="System.Drawing.Size, System.Drawing">
-    <value>288, 175</value>
+    <value>332, 175</value>
   </data>
   <data name="gBoxOverride.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -2350,7 +2368,7 @@
     <value>4</value>
   </data>
   <data name="tLPLinks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>294, 549</value>
+    <value>338, 549</value>
   </data>
   <data name="tLPLinks.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -3604,7 +3622,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Fill</value>
   </data>
   <data name="tLPRechtsUntenRechts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>342, 0</value>
+    <value>298, 0</value>
   </data>
   <data name="tLPRechtsUntenRechts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -3643,7 +3661,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Stretch</value>
   </data>
   <metadata name="cmsPictureBox.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>366, 51</value>
+    <value>233, 56</value>
   </metadata>
   <data name="unDo2ToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -3811,7 +3829,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>3, 3</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 331</value>
+    <value>286, 331</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -3835,7 +3853,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>3, 340</value>
   </data>
   <data name="tBURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 20</value>
+    <value>286, 20</value>
   </data>
   <data name="tBURL.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3870,7 +3888,7 @@ for SVG files</value>
     <value>2</value>
   </data>
   <data name="tLPMitteUnten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 361</value>
+    <value>292, 361</value>
   </data>
   <data name="tLPMitteUnten.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -3903,7 +3921,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPRechtsUnten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 367</value>
+    <value>534, 367</value>
   </data>
   <data name="tLPRechtsUnten.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -3932,6 +3950,9 @@ for SVG files</value>
   <data name="tLPCustomButton2.ColumnCount" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
+  <data name="btnCustom1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
   <data name="btnCustom1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -3945,7 +3966,7 @@ for SVG files</value>
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
+    <value>7, 35</value>
   </data>
   <data name="btnCustom1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3965,6 +3986,9 @@ for SVG files</value>
   <data name="&gt;&gt;btnCustom1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnCustom2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
   <data name="btnCustom2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -3978,7 +4002,7 @@ for SVG files</value>
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
+    <value>7, 35</value>
   </data>
   <data name="btnCustom2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3998,6 +4022,9 @@ for SVG files</value>
   <data name="&gt;&gt;btnCustom2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnCustom3.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
   <data name="btnCustom3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -4011,7 +4038,7 @@ for SVG files</value>
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
+    <value>7, 35</value>
   </data>
   <data name="btnCustom3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -4044,7 +4071,7 @@ for SVG files</value>
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 36</value>
+    <value>7, 36</value>
   </data>
   <data name="btnCustom4.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -4064,105 +4091,6 @@ for SVG files</value>
   <data name="&gt;&gt;btnCustom4.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="btnCustom8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnCustom8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCustom8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 112</value>
-  </data>
-  <data name="btnCustom8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="btnCustom8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 36</value>
-  </data>
-  <data name="btnCustom8.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="btnCustom8.Text" xml:space="preserve">
-    <value>button8</value>
-  </data>
-  <data name="&gt;&gt;btnCustom8.Name" xml:space="preserve">
-    <value>btnCustom8</value>
-  </data>
-  <data name="&gt;&gt;btnCustom8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCustom8.Parent" xml:space="preserve">
-    <value>tLPCustomButton2</value>
-  </data>
-  <data name="&gt;&gt;btnCustom8.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="btnCustom7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnCustom7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCustom7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 75</value>
-  </data>
-  <data name="btnCustom7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="btnCustom7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
-  </data>
-  <data name="btnCustom7.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="btnCustom7.Text" xml:space="preserve">
-    <value>button7</value>
-  </data>
-  <data name="&gt;&gt;btnCustom7.Name" xml:space="preserve">
-    <value>btnCustom7</value>
-  </data>
-  <data name="&gt;&gt;btnCustom7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCustom7.Parent" xml:space="preserve">
-    <value>tLPCustomButton2</value>
-  </data>
-  <data name="&gt;&gt;btnCustom7.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="btnCustom6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnCustom6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCustom6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 38</value>
-  </data>
-  <data name="btnCustom6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="btnCustom6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
-  </data>
-  <data name="btnCustom6.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="btnCustom6.Text" xml:space="preserve">
-    <value>button6</value>
-  </data>
-  <data name="&gt;&gt;btnCustom6.Name" xml:space="preserve">
-    <value>btnCustom6</value>
-  </data>
-  <data name="&gt;&gt;btnCustom6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCustom6.Parent" xml:space="preserve">
-    <value>tLPCustomButton2</value>
-  </data>
-  <data name="&gt;&gt;btnCustom6.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="btnCustom5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -4170,13 +4098,13 @@ for SVG files</value>
     <value>NoControl</value>
   </data>
   <data name="btnCustom5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 1</value>
+    <value>16, 1</value>
   </data>
   <data name="btnCustom5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
+    <value>7, 35</value>
   </data>
   <data name="btnCustom5.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -4194,106 +4122,106 @@ for SVG files</value>
     <value>tLPCustomButton2</value>
   </data>
   <data name="&gt;&gt;btnCustom5.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnCustom6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnCustom6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCustom6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 38</value>
+  </data>
+  <data name="btnCustom6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 1, 3, 1</value>
+  </data>
+  <data name="btnCustom6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>7, 35</value>
+  </data>
+  <data name="btnCustom6.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnCustom6.Text" xml:space="preserve">
+    <value>button6</value>
+  </data>
+  <data name="&gt;&gt;btnCustom6.Name" xml:space="preserve">
+    <value>btnCustom6</value>
+  </data>
+  <data name="&gt;&gt;btnCustom6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCustom6.Parent" xml:space="preserve">
+    <value>tLPCustomButton2</value>
+  </data>
+  <data name="&gt;&gt;btnCustom6.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnCustom7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnCustom7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCustom7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 75</value>
+  </data>
+  <data name="btnCustom7.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 1, 3, 1</value>
+  </data>
+  <data name="btnCustom7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>7, 35</value>
+  </data>
+  <data name="btnCustom7.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnCustom7.Text" xml:space="preserve">
+    <value>button7</value>
+  </data>
+  <data name="&gt;&gt;btnCustom7.Name" xml:space="preserve">
+    <value>btnCustom7</value>
+  </data>
+  <data name="&gt;&gt;btnCustom7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCustom7.Parent" xml:space="preserve">
+    <value>tLPCustomButton2</value>
+  </data>
+  <data name="&gt;&gt;btnCustom7.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnCustom8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnCustom8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCustom8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 112</value>
+  </data>
+  <data name="btnCustom8.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 1, 3, 1</value>
+  </data>
+  <data name="btnCustom8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>7, 36</value>
+  </data>
+  <data name="btnCustom8.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="btnCustom12.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="btnCustom8.Text" xml:space="preserve">
+    <value>button8</value>
   </data>
-  <data name="btnCustom12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;btnCustom8.Name" xml:space="preserve">
+    <value>btnCustom8</value>
   </data>
-  <data name="btnCustom12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 112</value>
-  </data>
-  <data name="btnCustom12.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="btnCustom12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 36</value>
-  </data>
-  <data name="btnCustom12.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="btnCustom12.Text" xml:space="preserve">
-    <value>button12</value>
-  </data>
-  <data name="&gt;&gt;btnCustom12.Name" xml:space="preserve">
-    <value>btnCustom12</value>
-  </data>
-  <data name="&gt;&gt;btnCustom12.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnCustom8.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnCustom12.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnCustom8.Parent" xml:space="preserve">
     <value>tLPCustomButton2</value>
   </data>
-  <data name="&gt;&gt;btnCustom12.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="btnCustom11.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnCustom11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCustom11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 75</value>
-  </data>
-  <data name="btnCustom11.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="btnCustom11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
-  </data>
-  <data name="btnCustom11.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="btnCustom11.Text" xml:space="preserve">
-    <value>button11</value>
-  </data>
-  <data name="&gt;&gt;btnCustom11.Name" xml:space="preserve">
-    <value>btnCustom11</value>
-  </data>
-  <data name="&gt;&gt;btnCustom11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCustom11.Parent" xml:space="preserve">
-    <value>tLPCustomButton2</value>
-  </data>
-  <data name="&gt;&gt;btnCustom11.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="btnCustom10.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnCustom10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCustom10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 38</value>
-  </data>
-  <data name="btnCustom10.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 1, 3, 1</value>
-  </data>
-  <data name="btnCustom10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
-  </data>
-  <data name="btnCustom10.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="btnCustom10.Text" xml:space="preserve">
-    <value>button10</value>
-  </data>
-  <data name="&gt;&gt;btnCustom10.Name" xml:space="preserve">
-    <value>btnCustom10</value>
-  </data>
-  <data name="&gt;&gt;btnCustom10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCustom10.Parent" xml:space="preserve">
-    <value>tLPCustomButton2</value>
-  </data>
-  <data name="&gt;&gt;btnCustom10.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="&gt;&gt;btnCustom8.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="btnCustom9.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4302,13 +4230,13 @@ for SVG files</value>
     <value>NoControl</value>
   </data>
   <data name="btnCustom9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 1</value>
+    <value>29, 1</value>
   </data>
   <data name="btnCustom9.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>12, 35</value>
+    <value>7, 35</value>
   </data>
   <data name="btnCustom9.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -4326,6 +4254,105 @@ for SVG files</value>
     <value>tLPCustomButton2</value>
   </data>
   <data name="&gt;&gt;btnCustom9.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="btnCustom10.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnCustom10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCustom10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 38</value>
+  </data>
+  <data name="btnCustom10.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 1, 3, 1</value>
+  </data>
+  <data name="btnCustom10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>7, 35</value>
+  </data>
+  <data name="btnCustom10.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="btnCustom10.Text" xml:space="preserve">
+    <value>button10</value>
+  </data>
+  <data name="&gt;&gt;btnCustom10.Name" xml:space="preserve">
+    <value>btnCustom10</value>
+  </data>
+  <data name="&gt;&gt;btnCustom10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCustom10.Parent" xml:space="preserve">
+    <value>tLPCustomButton2</value>
+  </data>
+  <data name="&gt;&gt;btnCustom10.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="btnCustom11.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnCustom11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCustom11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 75</value>
+  </data>
+  <data name="btnCustom11.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 1, 3, 1</value>
+  </data>
+  <data name="btnCustom11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>7, 35</value>
+  </data>
+  <data name="btnCustom11.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btnCustom11.Text" xml:space="preserve">
+    <value>button11</value>
+  </data>
+  <data name="&gt;&gt;btnCustom11.Name" xml:space="preserve">
+    <value>btnCustom11</value>
+  </data>
+  <data name="&gt;&gt;btnCustom11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCustom11.Parent" xml:space="preserve">
+    <value>tLPCustomButton2</value>
+  </data>
+  <data name="&gt;&gt;btnCustom11.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="btnCustom12.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnCustom12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnCustom12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 112</value>
+  </data>
+  <data name="btnCustom12.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 1, 3, 1</value>
+  </data>
+  <data name="btnCustom12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>7, 36</value>
+  </data>
+  <data name="btnCustom12.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="btnCustom12.Text" xml:space="preserve">
+    <value>button12</value>
+  </data>
+  <data name="&gt;&gt;btnCustom12.Name" xml:space="preserve">
+    <value>btnCustom12</value>
+  </data>
+  <data name="&gt;&gt;btnCustom12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCustom12.Parent" xml:space="preserve">
+    <value>tLPCustomButton2</value>
+  </data>
+  <data name="&gt;&gt;btnCustom12.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
   <data name="btnCustom13.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -4335,13 +4362,13 @@ for SVG files</value>
     <value>NoControl</value>
   </data>
   <data name="btnCustom13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 1</value>
+    <value>42, 1</value>
   </data>
   <data name="btnCustom13.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 35</value>
+    <value>7, 35</value>
   </data>
   <data name="btnCustom13.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -4368,13 +4395,13 @@ for SVG files</value>
     <value>NoControl</value>
   </data>
   <data name="btnCustom14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 38</value>
+    <value>42, 38</value>
   </data>
   <data name="btnCustom14.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 35</value>
+    <value>7, 35</value>
   </data>
   <data name="btnCustom14.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -4401,13 +4428,13 @@ for SVG files</value>
     <value>NoControl</value>
   </data>
   <data name="btnCustom15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 75</value>
+    <value>42, 75</value>
   </data>
   <data name="btnCustom15.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 35</value>
+    <value>7, 35</value>
   </data>
   <data name="btnCustom15.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -4434,13 +4461,13 @@ for SVG files</value>
     <value>NoControl</value>
   </data>
   <data name="btnCustom16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 112</value>
+    <value>42, 112</value>
   </data>
   <data name="btnCustom16.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 1, 3, 1</value>
   </data>
   <data name="btnCustom16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 36</value>
+    <value>7, 36</value>
   </data>
   <data name="btnCustom16.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -4473,7 +4500,7 @@ for SVG files</value>
     <value>4</value>
   </data>
   <data name="tLPCustomButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 149</value>
+    <value>52, 149</value>
   </data>
   <data name="tLPCustomButton2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -4491,7 +4518,7 @@ for SVG files</value>
     <value>0</value>
   </data>
   <data name="tLPCustomButton2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnCustom1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom2" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom3" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom4" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom8" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom7" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom6" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom12" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom11" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom10" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom9" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom13" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom14" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom15" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom16" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnCustom1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom2" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom3" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom4" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom6" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom7" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom8" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom9" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom10" Row="1" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom11" Row="2" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom12" Row="3" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom13" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom14" Row="1" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom15" Row="2" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="btnCustom16" Row="3" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;Rows Styles="Percent,25,Percent,25,Percent,25,Percent,25" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="flowLayoutPanel1.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4500,10 +4527,10 @@ for SVG files</value>
     <value>Fill</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>83, 3</value>
+    <value>61, 3</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 145</value>
+    <value>52, 145</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -4530,7 +4557,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPCustomButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 151</value>
+    <value>116, 151</value>
   </data>
   <data name="tLPCustomButton1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -4557,7 +4584,7 @@ for SVG files</value>
     <value>403, 3</value>
   </data>
   <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 170</value>
+    <value>122, 170</value>
   </data>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -5633,7 +5660,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>1</value>
   </data>
   <data name="tLPRechtsOben.Size" type="System.Drawing.Size, System.Drawing">
-    <value>572, 176</value>
+    <value>528, 176</value>
   </data>
   <data name="tLPRechtsOben.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -5663,7 +5690,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>2</value>
   </data>
   <data name="tLPRechts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>578, 549</value>
+    <value>534, 549</value>
   </data>
   <data name="tLPRechts.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -5702,7 +5729,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>880, 551</value>
   </data>
   <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>296</value>
+    <value>340</value>
   </data>
   <data name="splitContainer1.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -5875,6 +5902,12 @@ Langue
 语言
 لغة
 言語</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exit</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
@@ -6412,7 +6445,7 @@ Langue
     <value>521, 17</value>
   </metadata>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>248, 56</value>
+    <value>117, 56</value>
   </metadata>
   <data name="toolStripStatusLabel0.Size" type="System.Drawing.Size, System.Drawing">
     <value>494, 17</value>
@@ -6464,9 +6497,6 @@ Langue
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 601</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>800, 640</value>
@@ -6582,6 +6612,30 @@ Langue
   <data name="&gt;&gt;cmsCodeBlocksSortById.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;cmsCodeBlocksSortByColor.Name" xml:space="preserve">
+    <value>cmsCodeBlocksSortByColor</value>
+  </data>
+  <data name="&gt;&gt;cmsCodeBlocksSortByColor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortByPenWidthToolStripMenuItem.Name" xml:space="preserve">
+    <value>sortByPenWidthToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;sortByPenWidthToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortByLayerToolStripMenuItem.Name" xml:space="preserve">
+    <value>sortByLayerToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;sortByLayerToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sortByTypeToolStripMenuItem.Name" xml:space="preserve">
+    <value>sortByTypeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;sortByTypeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;cmsCodeBlocksSortByGeometry.Name" xml:space="preserve">
     <value>cmsCodeBlocksSortByGeometry</value>
   </data>
@@ -6598,12 +6652,6 @@ Langue
     <value>cmsCodeBlocksSortByToolName</value>
   </data>
   <data name="&gt;&gt;cmsCodeBlocksSortByToolName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmsCodeBlocksSortByColor.Name" xml:space="preserve">
-    <value>cmsCodeBlocksSortByColor</value>
-  </data>
-  <data name="&gt;&gt;cmsCodeBlocksSortByColor.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cmsCodeBlocksSortByCodeSize.Name" xml:space="preserve">
@@ -6964,6 +7012,12 @@ Langue
     <value>japanischToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;japanischToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
+    <value>exitToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;createGCodeToolStripMenuItem.Name" xml:space="preserve">
@@ -7332,6 +7386,24 @@ Langue
   <data name="&gt;&gt;viewToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripViewRuler.Name" xml:space="preserve">
+    <value>toolStripViewRuler</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewRuler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewInfo.Name" xml:space="preserve">
+    <value>toolStripViewInfo</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewPenUp.Name" xml:space="preserve">
+    <value>toolStripViewPenUp</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewPenUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripViewMachineFix.Name" xml:space="preserve">
     <value>toolStripViewMachineFix</value>
   </data>
@@ -7348,6 +7420,18 @@ Langue
     <value>toolStripViewDimension</value>
   </data>
   <data name="&gt;&gt;toolStripViewDimension.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewTool.Name" xml:space="preserve">
+    <value>toolStripViewTool</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewBackground.Name" xml:space="preserve">
+    <value>toolStripViewBackground</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewBackground.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
@@ -7415,36 +7499,6 @@ Langue
   </data>
   <data name="&gt;&gt;SplashScreenTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewRuler.Name" xml:space="preserve">
-    <value>toolStripViewRuler</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewRuler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewInfo.Name" xml:space="preserve">
-    <value>toolStripViewInfo</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewPenUp.Name" xml:space="preserve">
-    <value>toolStripViewPenUp</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewPenUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewTool.Name" xml:space="preserve">
-    <value>toolStripViewTool</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewBackground.Name" xml:space="preserve">
-    <value>toolStripViewBackground</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewBackground.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

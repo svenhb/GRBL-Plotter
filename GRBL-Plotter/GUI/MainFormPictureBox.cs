@@ -25,7 +25,8 @@
  * 2019-01-28 3 digitis for coordinates
  * 2019-12-07 enable/disable show of ruler, info, pen-up
  * 2020-03-22 fix zoom-in -out behavior
- * 
+ * 2020-08-20 linie 313, avoid collapse - findFigureMarkSelection(xmlMarkerType.Line, line, (foldLevel>0));
+ * 2020-09-04 move initial view to lower edge - add maxposY
  */
 
 using System;
@@ -91,28 +92,34 @@ namespace GRBL_Plotter
                 double relposY = (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) - offsetY) / Convert.ToDouble(pictureBox1.Height) / Convert.ToDouble(zoomFactor);
                 double ratioVisu = xRange / yRange;
                 double ratioPic = Convert.ToDouble(pictureBox1.Width) / pictureBox1.Height;
+
+                double maxposY = yRange;
                 if (ratioVisu > ratioPic)
-                    relposY = relposY * ratioVisu / ratioPic;
+                {   relposY = relposY * ratioVisu / ratioPic;
+                    maxposY = xRange * pictureBox1.Height / pictureBox1.Width;
+                }
                 else
-                    relposX = relposX * ratioPic / ratioVisu;
+                {   relposX = relposX * ratioPic / ratioVisu;   }
 
                 picAbsPos.X = relposX * xRange + minx;
-                picAbsPos.Y = yRange - relposY * yRange + miny;
+//                picAbsPos.Y = yRange - relposY * yRange + miny;
+                picAbsPos.Y = maxposY - relposY * yRange + miny;
 
                 if (posIsMoving)
                     posMoveEnd = picAbsPos;
 
-                int offX = +5;
+/* Label position */
+                int offX = +5, offY = -10;
+                if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width / 2))  { offX = -75; }
+                if (pictureBox1.PointToClient(MousePosition).Y > (pictureBox1.Height / 2)) { offY = -30; }
 
-                if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width - 100))
-                { offX = -75; }
-
-                Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y - 10);
+                Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y + offY);
 
                 pBoxOrig = e.Graphics.Transform;
                 try { e.Graphics.Transform = pBoxTransform; } catch { }
                 e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);           // apply scaling (flip Y)
-                e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
+          //      e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
+                e.Graphics.TranslateTransform((float)-minx, (float)(-maxposY-miny));       // apply offset
 
                 try
                 {
@@ -128,7 +135,9 @@ namespace GRBL_Plotter
                         {
                             e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
                             e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 50));
-                        }
+                            if (VisuGCode.selectedFigureInfo.Length > 0)
+                                e.Graphics.FillRectangle(brushBackground, new Rectangle(148, 3, 160, 50));
+						}
                         if (Properties.Settings.Default.gui2DInfoShow)
                         {
                             string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
@@ -165,7 +174,7 @@ namespace GRBL_Plotter
         {
             try
             {
-                if (Properties.Settings.Default.machineLimitsShow)
+     /*           if (Properties.Settings.Default.machineLimitsShow)
                     e.FillPath(brushMachineLimit, VisuGCode.pathMachineLimit);
                 if (Properties.Settings.Default.gui2DToolTableShow)
                     e.DrawPath(penTool, VisuGCode.pathToolTable);
@@ -173,7 +182,7 @@ namespace GRBL_Plotter
                     e.DrawPath(penLandMark, VisuGCode.pathBackground);
                 if (Properties.Settings.Default.guiDimensionShow)
                     e.DrawPath(penLandMark, VisuGCode.pathDimension);
-
+*/
  //               e.DrawPath(penLandMark, Graphic.pathBackground);
 
 
@@ -189,12 +198,31 @@ namespace GRBL_Plotter
                 penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
                 penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
                 penSimulation.Width = (float)Properties.Settings.Default.gui2DWidthSimulation * factorWidth;
+
+
+                if (Properties.Settings.Default.machineLimitsShow)
+                    e.FillPath(brushMachineLimit, VisuGCode.pathMachineLimit);
+                if (Properties.Settings.Default.gui2DToolTableShow)
+                    e.DrawPath(penTool, VisuGCode.pathToolTable);
+                if (Properties.Settings.Default.guiBackgroundShow)
+                    e.DrawPath(penLandMark, VisuGCode.pathBackground);
+                if (Properties.Settings.Default.guiDimensionShow)
+                    e.DrawPath(penLandMark, VisuGCode.pathDimension);
+
+
                 e.DrawPath(penHeightMap, VisuGCode.pathHeightMap);
 
                 if (Properties.Settings.Default.gui2DRulerShow)
                     e.DrawPath(penRuler, VisuGCode.pathRuler);
 
                 e.DrawPath(penDown, VisuGCode.pathPenDown);
+				
+				if(Properties.Settings.Default.gui2DColorPenDownModeEnable)	// Show PenDown path in colors from imported graphics
+				{	if (VisuGCode.pathObject.Count > 0)
+					{	foreach(VisuGCode.pathData tmpPath in VisuGCode.pathObject)
+						{	e.DrawPath(tmpPath.pen, tmpPath.path);	}						
+					}					
+				}
 
                 if (Properties.Settings.Default.ctrl4thUse)
                     e.DrawPath(penRotary, VisuGCode.pathRotaryInfo);
@@ -310,19 +338,19 @@ namespace GRBL_Plotter
                     {
                         line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);         // find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
-                        findFigureMarkSelection(xmlMarkerType.Line, line);
+                        findFigureMarkSelection(xmlMarkerType.Line, line, (foldLevel>0));
                     }
                     else if (Panel.ModifierKeys == Keys.Control) //Keys.Alt)
                     {
                         line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);         // find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
-                        findFigureMarkSelection(xmlMarkerType.Group, line);
+                        findFigureMarkSelection(xmlMarkerType.Group, line, (foldLevel>0));
                     }
                     else
                     {
                         line = VisuGCode.setPosMarkerNearBy(picAbsPos);         // find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
-                        findFigureMarkSelection(xmlMarkerType.Figure, line);
+                        findFigureMarkSelection(xmlMarkerType.Figure, line, (foldLevel>0));
                     }
 
                     cmsPicBoxMoveToMarkedPosition.ToolTipText = "Work X: " + grbl.posMarker.X.ToString() + "   Y: " + grbl.posMarker.Y.ToString();
@@ -371,11 +399,15 @@ namespace GRBL_Plotter
                 xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2 * offset;
                 yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
             }
-
             double ratioVisu = xRange / yRange;
             double ratioPic = Convert.ToDouble(pictureBox1.Width) / pictureBox1.Height;
+            double maxposY = yRange;
+            if (ratioVisu > ratioPic)
+                maxposY = xRange * pictureBox1.Height / pictureBox1.Width;
+
             double relposX = (         picAbsPos.X - minx) / xRange;
-            double relposY = (yRange - picAbsPos.Y + miny) / yRange;
+//            double relposY = (yRange - picAbsPos.Y + miny) / yRange;
+            double relposY = (maxposY - picAbsPos.Y + miny) / yRange;
 
             if (ratioVisu > ratioPic)
                 relposY = relposY * ratioPic / ratioVisu;
@@ -569,7 +601,7 @@ namespace GRBL_Plotter
             if (figureIsMarked)
             {
                 resetView = true;
-                fCTBCode.Text = Graphic.ReDoReversePath(xmlMarker.lastFigure.figureNr, picAbsPos);
+                fCTBCode.Text = Graphic.ReDoReversePath(xmlMarker.lastFigure.figureNr, picAbsPos, xmlMarker.getFigureIdOrder(), xmlMarker.getGroupIdOrder());
                 newCodeEnd();
             }
             return;

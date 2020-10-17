@@ -751,7 +751,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Editor_Menu</comment>
   </data>
   <data name="toolStripViewRuler.Text" xml:space="preserve">
-    <value>统治者</value>
+    <value>标尺</value>
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewInfo.Text" xml:space="preserve">
@@ -759,7 +759,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewPenUp.Text" xml:space="preserve">
-    <value>固定路径</value>
+    <value>笔上升路径(快速定位)</value>
     <comment>Menu151</comment>
   </data>
   <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
@@ -1053,5 +1053,17 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   </data>
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>反转/旋转所选路径</value>
+  </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>按“笔宽”排序</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>按“层”排序</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>按“类型”排序</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>走</value>
   </data>
 </root>

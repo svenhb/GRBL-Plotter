@@ -1020,4 +1020,16 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>Inverser / faire pivoter le chemin sélectionné</value>
   </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trier par "Largeur du stylo"</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trier par «couche»</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trier par 'Type'</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortie</value>
+  </data>
 </root>

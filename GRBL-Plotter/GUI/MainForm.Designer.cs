@@ -98,10 +98,13 @@ namespace GRBL_Plotter
             this.cmsCodeBlocksSort = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortReverse = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortById = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsCodeBlocksSortByColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortByPenWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortByLayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortByTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortByGeometry = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortByToolNr = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortByToolName = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsCodeBlocksSortByColor = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortByCodeSize = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortByCodeArea = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsCodeBlocksSortByDistance = new System.Windows.Forms.ToolStripMenuItem();
@@ -204,6 +207,7 @@ namespace GRBL_Plotter
             this.lblTool = new System.Windows.Forms.Label();
             this.cBTool = new System.Windows.Forms.CheckBox();
             this.lblSpeed = new System.Windows.Forms.Label();
+            this.tBSpeed = new System.Windows.Forms.TextBox();
             this.cBCoolant = new System.Windows.Forms.CheckBox();
             this.cBSpindle = new System.Windows.Forms.CheckBox();
             this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
@@ -213,6 +217,7 @@ namespace GRBL_Plotter
             this.virtualJoystickB = new virtualJoystick.virtualJoystick();
             this.virtualJoystickC = new virtualJoystick.virtualJoystick();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOverrideDoor = new System.Windows.Forms.Button();
@@ -254,14 +259,14 @@ namespace GRBL_Plotter
             this.btnCustom2 = new System.Windows.Forms.Button();
             this.btnCustom3 = new System.Windows.Forms.Button();
             this.btnCustom4 = new System.Windows.Forms.Button();
-            this.btnCustom8 = new System.Windows.Forms.Button();
-            this.btnCustom7 = new System.Windows.Forms.Button();
-            this.btnCustom6 = new System.Windows.Forms.Button();
             this.btnCustom5 = new System.Windows.Forms.Button();
-            this.btnCustom12 = new System.Windows.Forms.Button();
-            this.btnCustom11 = new System.Windows.Forms.Button();
-            this.btnCustom10 = new System.Windows.Forms.Button();
+            this.btnCustom6 = new System.Windows.Forms.Button();
+            this.btnCustom7 = new System.Windows.Forms.Button();
+            this.btnCustom8 = new System.Windows.Forms.Button();
             this.btnCustom9 = new System.Windows.Forms.Button();
+            this.btnCustom10 = new System.Windows.Forms.Button();
+            this.btnCustom11 = new System.Windows.Forms.Button();
+            this.btnCustom12 = new System.Windows.Forms.Button();
             this.btnCustom13 = new System.Windows.Forms.Button();
             this.btnCustom14 = new System.Windows.Forms.Button();
             this.btnCustom15 = new System.Windows.Forms.Button();
@@ -319,6 +324,7 @@ namespace GRBL_Plotter
             this.chinesischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arabischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.japanischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createGCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createBarcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -380,9 +386,14 @@ namespace GRBL_Plotter
             this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewPenUp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachineFix = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewMachine = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewDimension = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewTool = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
@@ -395,13 +406,6 @@ namespace GRBL_Plotter
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
-            this.tBSpeed = new System.Windows.Forms.TextBox();
-            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
-            this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewPenUp = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewTool = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -629,10 +633,13 @@ namespace GRBL_Plotter
             this.cmsCodeBlocksSort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmsCodeBlocksSortReverse,
             this.cmsCodeBlocksSortById,
+            this.cmsCodeBlocksSortByColor,
+            this.sortByPenWidthToolStripMenuItem,
+            this.sortByLayerToolStripMenuItem,
+            this.sortByTypeToolStripMenuItem,
             this.cmsCodeBlocksSortByGeometry,
             this.cmsCodeBlocksSortByToolNr,
             this.cmsCodeBlocksSortByToolName,
-            this.cmsCodeBlocksSortByColor,
             this.cmsCodeBlocksSortByCodeSize,
             this.cmsCodeBlocksSortByCodeArea,
             this.cmsCodeBlocksSortByDistance});
@@ -651,6 +658,30 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.cmsCodeBlocksSortById, "cmsCodeBlocksSortById");
             this.cmsCodeBlocksSortById.Click += new System.EventHandler(this.cmsCodeBlocksSortById_Click);
             // 
+            // cmsCodeBlocksSortByColor
+            // 
+            this.cmsCodeBlocksSortByColor.Name = "cmsCodeBlocksSortByColor";
+            resources.ApplyResources(this.cmsCodeBlocksSortByColor, "cmsCodeBlocksSortByColor");
+            this.cmsCodeBlocksSortByColor.Click += new System.EventHandler(this.cmsCodeBlocksSortByColor_Click);
+            // 
+            // sortByPenWidthToolStripMenuItem
+            // 
+            this.sortByPenWidthToolStripMenuItem.Name = "sortByPenWidthToolStripMenuItem";
+            resources.ApplyResources(this.sortByPenWidthToolStripMenuItem, "sortByPenWidthToolStripMenuItem");
+            this.sortByPenWidthToolStripMenuItem.Click += new System.EventHandler(this.cmsCodeBlocksSortByWidth_Click);
+            // 
+            // sortByLayerToolStripMenuItem
+            // 
+            this.sortByLayerToolStripMenuItem.Name = "sortByLayerToolStripMenuItem";
+            resources.ApplyResources(this.sortByLayerToolStripMenuItem, "sortByLayerToolStripMenuItem");
+            this.sortByLayerToolStripMenuItem.Click += new System.EventHandler(this.cmsCodeBlocksSortByLayer_Click);
+            // 
+            // sortByTypeToolStripMenuItem
+            // 
+            this.sortByTypeToolStripMenuItem.Name = "sortByTypeToolStripMenuItem";
+            resources.ApplyResources(this.sortByTypeToolStripMenuItem, "sortByTypeToolStripMenuItem");
+            this.sortByTypeToolStripMenuItem.Click += new System.EventHandler(this.cmsCodeBlocksSortByType_Click);
+            // 
             // cmsCodeBlocksSortByGeometry
             // 
             this.cmsCodeBlocksSortByGeometry.Name = "cmsCodeBlocksSortByGeometry";
@@ -668,12 +699,6 @@ namespace GRBL_Plotter
             this.cmsCodeBlocksSortByToolName.Name = "cmsCodeBlocksSortByToolName";
             resources.ApplyResources(this.cmsCodeBlocksSortByToolName, "cmsCodeBlocksSortByToolName");
             this.cmsCodeBlocksSortByToolName.Click += new System.EventHandler(this.cmsCodeBlocksSortByToolName_Click);
-            // 
-            // cmsCodeBlocksSortByColor
-            // 
-            this.cmsCodeBlocksSortByColor.Name = "cmsCodeBlocksSortByColor";
-            resources.ApplyResources(this.cmsCodeBlocksSortByColor, "cmsCodeBlocksSortByColor");
-            this.cmsCodeBlocksSortByColor.Click += new System.EventHandler(this.cmsCodeBlocksSortByColor_Click);
             // 
             // cmsCodeBlocksSortByCodeSize
             // 
@@ -1400,6 +1425,13 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.lblSpeed, "lblSpeed");
             this.lblSpeed.Name = "lblSpeed";
             // 
+            // tBSpeed
+            // 
+            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "guiSpindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBSpeed, "tBSpeed");
+            this.tBSpeed.Name = "tBSpeed";
+            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.guiSpindleSpeed;
+            // 
             // cBCoolant
             // 
             resources.ApplyResources(this.cBCoolant, "cBCoolant");
@@ -1557,6 +1589,15 @@ namespace GRBL_Plotter
             this.tableLayoutPanel2.Controls.Add(this.cBSendJogStop, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            // 
+            // cBSendJogStop
+            // 
+            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
+            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
+            this.cBSendJogStop.Name = "cBSendJogStop";
+            this.cBSendJogStop.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
             // 
@@ -1828,14 +1869,14 @@ namespace GRBL_Plotter
             this.tLPCustomButton2.Controls.Add(this.btnCustom2, 0, 1);
             this.tLPCustomButton2.Controls.Add(this.btnCustom3, 0, 2);
             this.tLPCustomButton2.Controls.Add(this.btnCustom4, 0, 3);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom8, 1, 3);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom7, 1, 2);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom6, 1, 1);
             this.tLPCustomButton2.Controls.Add(this.btnCustom5, 1, 0);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom12, 2, 3);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom11, 2, 2);
-            this.tLPCustomButton2.Controls.Add(this.btnCustom10, 2, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom6, 1, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom7, 1, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom8, 1, 3);
             this.tLPCustomButton2.Controls.Add(this.btnCustom9, 2, 0);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom10, 2, 1);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom11, 2, 2);
+            this.tLPCustomButton2.Controls.Add(this.btnCustom12, 2, 3);
             this.tLPCustomButton2.Controls.Add(this.btnCustom13, 3, 0);
             this.tLPCustomButton2.Controls.Add(this.btnCustom14, 3, 1);
             this.tLPCustomButton2.Controls.Add(this.btnCustom15, 3, 2);
@@ -1847,112 +1888,112 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.btnCustom1, "btnCustom1");
             this.btnCustom1.Name = "btnCustom1";
             this.btnCustom1.UseVisualStyleBackColor = true;
-            this.btnCustom1.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom2
             // 
             resources.ApplyResources(this.btnCustom2, "btnCustom2");
             this.btnCustom2.Name = "btnCustom2";
             this.btnCustom2.UseVisualStyleBackColor = true;
-            this.btnCustom2.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom3
             // 
             resources.ApplyResources(this.btnCustom3, "btnCustom3");
             this.btnCustom3.Name = "btnCustom3";
             this.btnCustom3.UseVisualStyleBackColor = true;
-            this.btnCustom3.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom4
             // 
             resources.ApplyResources(this.btnCustom4, "btnCustom4");
             this.btnCustom4.Name = "btnCustom4";
             this.btnCustom4.UseVisualStyleBackColor = true;
-            this.btnCustom4.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom8
-            // 
-            resources.ApplyResources(this.btnCustom8, "btnCustom8");
-            this.btnCustom8.Name = "btnCustom8";
-            this.btnCustom8.UseVisualStyleBackColor = true;
-            this.btnCustom8.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom7
-            // 
-            resources.ApplyResources(this.btnCustom7, "btnCustom7");
-            this.btnCustom7.Name = "btnCustom7";
-            this.btnCustom7.UseVisualStyleBackColor = true;
-            this.btnCustom7.Click += new System.EventHandler(this.btnCustomButton_Click);
-            // 
-            // btnCustom6
-            // 
-            resources.ApplyResources(this.btnCustom6, "btnCustom6");
-            this.btnCustom6.Name = "btnCustom6";
-            this.btnCustom6.UseVisualStyleBackColor = true;
-            this.btnCustom6.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom5
             // 
             resources.ApplyResources(this.btnCustom5, "btnCustom5");
             this.btnCustom5.Name = "btnCustom5";
             this.btnCustom5.UseVisualStyleBackColor = true;
-            this.btnCustom5.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
-            // btnCustom12
+            // btnCustom6
             // 
-            resources.ApplyResources(this.btnCustom12, "btnCustom12");
-            this.btnCustom12.Name = "btnCustom12";
-            this.btnCustom12.UseVisualStyleBackColor = true;
-            this.btnCustom12.Click += new System.EventHandler(this.btnCustomButton_Click);
+            resources.ApplyResources(this.btnCustom6, "btnCustom6");
+            this.btnCustom6.Name = "btnCustom6";
+            this.btnCustom6.UseVisualStyleBackColor = true;
+            this.btnCustom6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
-            // btnCustom11
+            // btnCustom7
             // 
-            resources.ApplyResources(this.btnCustom11, "btnCustom11");
-            this.btnCustom11.Name = "btnCustom11";
-            this.btnCustom11.UseVisualStyleBackColor = true;
-            this.btnCustom11.Click += new System.EventHandler(this.btnCustomButton_Click);
+            resources.ApplyResources(this.btnCustom7, "btnCustom7");
+            this.btnCustom7.Name = "btnCustom7";
+            this.btnCustom7.UseVisualStyleBackColor = true;
+            this.btnCustom7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
-            // btnCustom10
+            // btnCustom8
             // 
-            resources.ApplyResources(this.btnCustom10, "btnCustom10");
-            this.btnCustom10.Name = "btnCustom10";
-            this.btnCustom10.UseVisualStyleBackColor = true;
-            this.btnCustom10.Click += new System.EventHandler(this.btnCustomButton_Click);
+            resources.ApplyResources(this.btnCustom8, "btnCustom8");
+            this.btnCustom8.Name = "btnCustom8";
+            this.btnCustom8.UseVisualStyleBackColor = true;
+            this.btnCustom8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom9
             // 
             resources.ApplyResources(this.btnCustom9, "btnCustom9");
             this.btnCustom9.Name = "btnCustom9";
             this.btnCustom9.UseVisualStyleBackColor = true;
-            this.btnCustom9.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom10
+            // 
+            resources.ApplyResources(this.btnCustom10, "btnCustom10");
+            this.btnCustom10.Name = "btnCustom10";
+            this.btnCustom10.UseVisualStyleBackColor = true;
+            this.btnCustom10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom11
+            // 
+            resources.ApplyResources(this.btnCustom11, "btnCustom11");
+            this.btnCustom11.Name = "btnCustom11";
+            this.btnCustom11.UseVisualStyleBackColor = true;
+            this.btnCustom11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
+            // 
+            // btnCustom12
+            // 
+            resources.ApplyResources(this.btnCustom12, "btnCustom12");
+            this.btnCustom12.Name = "btnCustom12";
+            this.btnCustom12.UseVisualStyleBackColor = true;
+            this.btnCustom12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom13
             // 
             resources.ApplyResources(this.btnCustom13, "btnCustom13");
             this.btnCustom13.Name = "btnCustom13";
             this.btnCustom13.UseVisualStyleBackColor = true;
-            this.btnCustom13.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom14
             // 
             resources.ApplyResources(this.btnCustom14, "btnCustom14");
             this.btnCustom14.Name = "btnCustom14";
             this.btnCustom14.UseVisualStyleBackColor = true;
-            this.btnCustom14.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom15
             // 
             resources.ApplyResources(this.btnCustom15, "btnCustom15");
             this.btnCustom15.Name = "btnCustom15";
             this.btnCustom15.UseVisualStyleBackColor = true;
-            this.btnCustom15.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // btnCustom16
             // 
             resources.ApplyResources(this.btnCustom16, "btnCustom16");
             this.btnCustom16.Name = "btnCustom16";
             this.btnCustom16.UseVisualStyleBackColor = true;
-            this.btnCustom16.Click += new System.EventHandler(this.btnCustomButton_Click);
+            this.btnCustom16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnCustomButton_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -2199,7 +2240,8 @@ namespace GRBL_Plotter
             this.toolStripSeparator7,
             this.saveMachineParametersToolStripMenuItem,
             this.loadMachineParametersToolStripMenuItem,
-            this.toolStripMenuItem3});
+            this.toolStripMenuItem3,
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
@@ -2322,6 +2364,12 @@ namespace GRBL_Plotter
             this.japanischToolStripMenuItem.Name = "japanischToolStripMenuItem";
             resources.ApplyResources(this.japanischToolStripMenuItem, "japanischToolStripMenuItem");
             this.japanischToolStripMenuItem.Click += new System.EventHandler(this.japanischToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // createGCodeToolStripMenuItem
             // 
@@ -2754,6 +2802,33 @@ namespace GRBL_Plotter
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
             // 
+            // toolStripViewRuler
+            // 
+            this.toolStripViewRuler.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DRulerShow;
+            this.toolStripViewRuler.CheckOnClick = true;
+            this.toolStripViewRuler.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewRuler.Name = "toolStripViewRuler";
+            resources.ApplyResources(this.toolStripViewRuler, "toolStripViewRuler");
+            this.toolStripViewRuler.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewInfo
+            // 
+            this.toolStripViewInfo.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DInfoShow;
+            this.toolStripViewInfo.CheckOnClick = true;
+            this.toolStripViewInfo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewInfo.Name = "toolStripViewInfo";
+            resources.ApplyResources(this.toolStripViewInfo, "toolStripViewInfo");
+            this.toolStripViewInfo.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewPenUp
+            // 
+            this.toolStripViewPenUp.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DPenUpShow;
+            this.toolStripViewPenUp.CheckOnClick = true;
+            this.toolStripViewPenUp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewPenUp.Name = "toolStripViewPenUp";
+            resources.ApplyResources(this.toolStripViewPenUp, "toolStripViewPenUp");
+            this.toolStripViewPenUp.Click += new System.EventHandler(this.updateView);
+            // 
             // toolStripViewMachineFix
             // 
             this.toolStripViewMachineFix.CheckOnClick = true;
@@ -2778,6 +2853,23 @@ namespace GRBL_Plotter
             this.toolStripViewDimension.Name = "toolStripViewDimension";
             resources.ApplyResources(this.toolStripViewDimension, "toolStripViewDimension");
             this.toolStripViewDimension.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewTool
+            // 
+            this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DToolTableShow;
+            this.toolStripViewTool.CheckOnClick = true;
+            this.toolStripViewTool.Name = "toolStripViewTool";
+            resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
+            this.toolStripViewTool.Click += new System.EventHandler(this.updateView);
+            // 
+            // toolStripViewBackground
+            // 
+            this.toolStripViewBackground.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundShow;
+            this.toolStripViewBackground.CheckOnClick = true;
+            this.toolStripViewBackground.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripViewBackground.Name = "toolStripViewBackground";
+            resources.ApplyResources(this.toolStripViewBackground, "toolStripViewBackground");
+            this.toolStripViewBackground.Click += new System.EventHandler(this.updateView);
             // 
             // aboutToolStripMenuItem
             // 
@@ -2841,66 +2933,6 @@ namespace GRBL_Plotter
             this.SplashScreenTimer.Interval = 1500;
             this.SplashScreenTimer.Tick += new System.EventHandler(this.SplashScreenTimer_Tick);
             // 
-            // tBSpeed
-            // 
-            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "guiSpindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBSpeed, "tBSpeed");
-            this.tBSpeed.Name = "tBSpeed";
-            this.tBSpeed.Text = global::GRBL_Plotter.Properties.Settings.Default.guiSpindleSpeed;
-            // 
-            // cBSendJogStop
-            // 
-            this.cBSendJogStop.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlSendStopJog;
-            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
-            this.cBSendJogStop.Name = "cBSendJogStop";
-            this.cBSendJogStop.UseVisualStyleBackColor = true;
-            // 
-            // toolStripViewRuler
-            // 
-            this.toolStripViewRuler.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DRulerShow;
-            this.toolStripViewRuler.CheckOnClick = true;
-            this.toolStripViewRuler.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripViewRuler.Name = "toolStripViewRuler";
-            resources.ApplyResources(this.toolStripViewRuler, "toolStripViewRuler");
-            this.toolStripViewRuler.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewInfo
-            // 
-            this.toolStripViewInfo.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DInfoShow;
-            this.toolStripViewInfo.CheckOnClick = true;
-            this.toolStripViewInfo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripViewInfo.Name = "toolStripViewInfo";
-            resources.ApplyResources(this.toolStripViewInfo, "toolStripViewInfo");
-            this.toolStripViewInfo.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewPenUp
-            // 
-            this.toolStripViewPenUp.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DPenUpShow;
-            this.toolStripViewPenUp.CheckOnClick = true;
-            this.toolStripViewPenUp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripViewPenUp.Name = "toolStripViewPenUp";
-            resources.ApplyResources(this.toolStripViewPenUp, "toolStripViewPenUp");
-            this.toolStripViewPenUp.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewTool
-            // 
-            this.toolStripViewTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DToolTableShow;
-            this.toolStripViewTool.CheckOnClick = true;
-            this.toolStripViewTool.Name = "toolStripViewTool";
-            resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
-            this.toolStripViewTool.Click += new System.EventHandler(this.updateView);
-            // 
-            // toolStripViewBackground
-            // 
-            this.toolStripViewBackground.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundShow;
-            this.toolStripViewBackground.CheckOnClick = true;
-            this.toolStripViewBackground.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripViewBackground.Name = "toolStripViewBackground";
-            resources.ApplyResources(this.toolStripViewBackground, "toolStripViewBackground");
-            this.toolStripViewBackground.Click += new System.EventHandler(this.updateView);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2916,6 +2948,7 @@ namespace GRBL_Plotter
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
@@ -3022,6 +3055,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button btnCustom11;
         private System.Windows.Forms.Button btnCustom12;
         private System.Windows.Forms.Button btnCustom13;
+        private System.Windows.Forms.Button btnCustom14;
         private System.Windows.Forms.Button btnCustom15;
         private System.Windows.Forms.Button btnCustom16;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -3244,7 +3278,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem franzToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chinesischToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tLPCustomButton1;
-        private System.Windows.Forms.Button btnCustom14;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ToolStripMenuItem edgeFinderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem workpieceToolStripMenuItem;
@@ -3303,6 +3336,10 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem copyContentTroClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createBarcodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxReverseSelectedPath;
+        private System.Windows.Forms.ToolStripMenuItem sortByLayerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sortByPenWidthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sortByTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

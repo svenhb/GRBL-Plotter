@@ -1044,4 +1044,16 @@
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>Обратить / повернуть выбранный путь</value>
   </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сортировать по ширине пера</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сортировать по слою</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сортировать по типу</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Выход</value>
+  </data>
 </root>

@@ -996,4 +996,16 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>Ausgewählten Pfad umkehren / drehen</value>
   </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortieren nach 'Stiftbreite'</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortieren nach 'Ebene'</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortieren nach 'Typ'</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
 </root>

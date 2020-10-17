@@ -1036,4 +1036,16 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>Invertir / Girar la ruta seleccionada</value>
   </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ordenar por 'Ancho de la pluma'</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ordenar por 'capa'</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ordenar por 'Tipo'</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Salida</value>
+  </data>
 </root>

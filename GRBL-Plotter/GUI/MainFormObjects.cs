@@ -20,6 +20,7 @@
  * 2020-03-11 add gui class
  * 2020-05-01 add setDimensionArc
  * 2020-07-26 fix setDimensionCircle line 371
+ * 2020-09-30 Preset variable GMIZ and GMAZ with Properties.Settings.Default.importGCZUp and -Down
 */
 
 using System;
@@ -47,6 +48,7 @@ namespace GRBL_Plotter
         public const string hotkeys  = "\\data\\hotkeys.xml";
         public const string examples = "\\data\\examples";
         public const string extension= "\\data\\extensions";
+        public const string buttons  = "\\data\\buttons";
     }
 
     public static class gui
@@ -68,25 +70,35 @@ namespace GRBL_Plotter
                         myvar = line.Substring(pos, 5);
                         mykey = myvar.Substring(1);
                         if (variable.ContainsKey(mykey))
-                        { myvalue = variable[mykey]; }
+                        {   myvalue = variable[mykey];
+                            line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
+                        }
+/* if variable not found, perhaps it will be processed in ControlSerialForm 
                         else { line += " (" + mykey + " not found)"; }
                         line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
                         //                  addToLog("replace "+ mykey+" by "+ myvalue.ToString());
+                        */
                     }
                     posold = pos + 5;
                 } while (pos > 0);
             }
             return line.Replace(',', '.');
         }
-        public static void resetVariables()
+        public static void resetVariables()	// used in MainForm-sendCommand-376 and MainFormLoadFile-setGcodeVariables 1617
         {
             variable.Clear();
             variable.Add("GMIX", 0.0); // Graphic Minimum X
             variable.Add("GMAX", 0.0); // Graphic Maximum X
+            variable.Add("GCTX", 0.0); // Graphic Center X
             variable.Add("GMIY", 0.0); // Graphic Minimum Y
             variable.Add("GMAY", 0.0); // Graphic Maximum Y
-            variable.Add("GMIZ", 0.0); // Graphic Minimum Z
-            variable.Add("GMAZ", 0.0); // Graphic Maximum Z
+            variable.Add("GCTY", 0.0); // Graphic Center Y
+            variable.Add("GMIZ", (double)Properties.Settings.Default.importGCZDown); 	// Graphic Minimum Z
+            variable.Add("GMAZ", (double)Properties.Settings.Default.importGCZUp); 		// Graphic Maximum Z
+            variable.Add("GCTZ", (double)(Properties.Settings.Default.importGCZDown + Properties.Settings.Default.importGCZUp)/2); // Graphic Center Z
+            variable.Add("GMIS", (double)Properties.Settings.Default.importGCPWMDown); 	
+            variable.Add("GMAS", (double)Properties.Settings.Default.importGCPWMUp); 		
+            variable.Add("GCTS", (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp)/2); 
         }
 
         public static void writeSettingsToRegistry()
@@ -104,10 +116,33 @@ namespace GRBL_Plotter
                 Registry.SetValue(reg_key, "SpindleDelay", Properties.Settings.Default.importGCSpindleDelay);
                 Registry.SetValue(reg_key, "GcodeHeader", Properties.Settings.Default.importGCHeader);
                 Registry.SetValue(reg_key, "GcodeFooter", Properties.Settings.Default.importGCFooter);
-                Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);
+                Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);		// will be checked in MainForm-MainTimer_Tick
             }
             catch { };//            Logger.Error(er, "writeSettingsToRegistry"); }
         }
+        public static void writePositionToRegistry()
+        {
+//            const string reg_key0 = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
+            const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter\\Position";
+            try
+            {
+                Registry.SetValue(reg_key, "Work_X", grbl.posWork.X);
+                Registry.SetValue(reg_key, "Work_Y", grbl.posWork.Y);
+                Registry.SetValue(reg_key, "Work_Z", grbl.posWork.Z);
+                Registry.SetValue(reg_key, "Work_A", grbl.posWork.A);
+                Registry.SetValue(reg_key, "Work_B", grbl.posWork.B);
+                Registry.SetValue(reg_key, "Work_C", grbl.posWork.C);
+				
+                Registry.SetValue(reg_key, "Machine_X", grbl.posMachine.X);
+                Registry.SetValue(reg_key, "Machine_Y", grbl.posMachine.Y);
+                Registry.SetValue(reg_key, "Machine_Z", grbl.posMachine.Z);
+                Registry.SetValue(reg_key, "Machine_A", grbl.posMachine.A);
+                Registry.SetValue(reg_key, "Machine_B", grbl.posMachine.B);
+                Registry.SetValue(reg_key, "Machine_C", grbl.posMachine.C);
+//                Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);
+            }
+            catch { };//            Logger.Error(er, "writeSettingsToRegistry"); }
+        }				
     }
 
     public struct xyzPoint
@@ -318,7 +353,7 @@ namespace GRBL_Plotter
             n.dimx = old.dimx; n.dimy = old.dimy; n.dimz = old.dimz;
         }
 
-            public Dimensions()
+        public Dimensions()
         { resetDimension(); }
 
         public void addDimensionXY(Dimensions tmp)
@@ -443,6 +478,9 @@ namespace GRBL_Plotter
             dimy = 0;
             dimz = 0;
         }
+		
+		public bool isXYSet()
+		{	return ((dimx != 0) || (dimy != 0));}
 
         public xyPoint getCenter()
         {   double cx = minx + ((maxx - minx) / 2);
@@ -451,18 +489,21 @@ namespace GRBL_Plotter
         }
 
         // return string with dimensions
+        public String getXYString()
+        {   return String.Format("minX:{0:0.000} minY:{1:0.000} maxX:{2:0.000}  maxY:{3:0.000}", minx,miny, maxx, maxy); }
+
         public String getMinMaxString()
         {
-            string x = String.Format("X:{0,8:####0.000} |{1,8:####0.000}\r\n", minx, maxx);
-            string y = String.Format("Y:{0,8:####0.000} |{1,8:####0.000}\r\n", miny, maxy);
-            string z = String.Format("Z:{0,8:####0.000} |{1,8:####0.000}", minz, maxz);
+            string x = String.Format("X:{0,8:####0.000} |{1,8:####0.000} |{2,8:####0.000}\r\n", minx, maxx, dimx);
+            string y = String.Format("Y:{0,8:####0.000} |{1,8:####0.000} |{2,8:####0.000}\r\n", miny, maxy, dimy);
+            string z = String.Format("Z:{0,8:####0.000} |{1,8:####0.000} |{2,8:####0.000}", minz, maxz, dimz);
             if ((minx == Double.MaxValue) || (maxx == Double.MinValue))
                 x = "X: unknown | unknown\r\n";
             if ((miny == Double.MaxValue) || (maxy == Double.MinValue))
                 y = "Y: unknown | unknown\r\n";
             if ((minz == Double.MaxValue) || (maxz == Double.MinValue))
                 z = "";// z = "Z: unknown | unknown";
-            return "    Min.   | Max.\r\n" + x + y + z;
+            return "    Min.   |   Max.  | Dimension\r\n" + x + y + z;
         }
         public bool withinLimits(xyzPoint actualMachine, xyzPoint actualWorld)
         {

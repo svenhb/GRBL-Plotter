@@ -1070,4 +1070,16 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>選択したパスを反転/回転</value>
   </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>「ペン幅」で並べ替え</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>「レイヤー」で並べ替え</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>「タイプ」で並べ替え</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>出口</value>
+  </data>
 </root>

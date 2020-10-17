@@ -1047,4 +1047,16 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>Inverter / girar o caminho selecionado</value>
   </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Classificar por 'largura da caneta'</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Classificar por 'Camada'</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Classificar por 'Tipo'</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Saída</value>
+  </data>
 </root>
