@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRBL_Plotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -450,7 +450,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="gui2DPenUpShow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="gui2DRulerShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -459,28 +459,31 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="gui2DWidthHeightMap" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
-    </Setting>
-    <Setting Name="gui2DWidthMarker" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
-    </Setting>
-    <Setting Name="gui2DWidthPenDown" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.4</Value>
-    </Setting>
-    <Setting Name="gui2DWidthPenUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.2</Value>
     </Setting>
+    <Setting Name="gui2DWidthMarker" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="gui2DWidthPenDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="gui2DWidthPenUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
     <Setting Name="gui2DWidthRotaryInfo" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.4</Value>
+      <Value Profile="(Default)">0.2</Value>
     </Setting>
     <Setting Name="gui2DWidthRuler" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="gui2DWidthSimulation" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1.0</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="gui2DWidthTool" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="gui2DColorPenDownModeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="guiBackgroundImageEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -491,17 +494,20 @@
     <Setting Name="guiCheckUpdate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="guiCheckUpdateURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://GRBL-Plotter.de</Value>
+    </Setting>
     <Setting Name="guiCustomBtn1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Set new coord|G43.1 Z-31.628 ; G92 X140 Y0 Z32</Value>
+      <Value Profile="(Default)">🡴 Graphic Upper-Left|(Move to upper left corner - fast);G90 G0 X#GMIX Y#GMAY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn10" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Move graph dim|data\scripts\script_move_arround_dimension.nc</Value>
+      <Value Profile="(Default)">⇩ Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080</Value>
     </Setting>
     <Setting Name="guiCustomBtn11" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Soft RESET|#RST</Value>
+      <Value Profile="(Default)">🡶 Graphic Bottom-Right|(Move to bottom right corner - fast);G90 G0 X#GMAX Y#GMIY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn12" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Hard RESET|#HRST</Value>
+      <Value Profile="(Default)">⚠ Hard RESET|#HRST|fuchsia</Value>
     </Setting>
     <Setting Name="guiCustomBtn13" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -525,7 +531,7 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Move to 0;0;0|G90 G0 X0 Y0 Z0</Value>
+      <Value Profile="(Default)">⇧ Pen up Zmax|(Move Pen to upper position);G90 G0 Z#GMAZ|#80FF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn20" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -558,7 +564,7 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Tray Out|G91 G53 G0 Z-1;G90 G53 G0 Y-5</Value>
+      <Value Profile="(Default)">🡷 Graphic Bottom-Left|(Move to bottom left corner - fast);G90 G0 X#GMIX Y#GMIY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn30" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -570,22 +576,22 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn4" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Tray In|G90 G53 G0 Y-160</Value>
+      <Value Profile="(Default)">🡷 Homing 0;0;35|(Move to hard stops);$J= G91 F5000 X-40 Y-40 Z40|#FFAAAA</Value>
     </Setting>
     <Setting Name="guiCustomBtn5" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Set Pen 1|T1;</Value>
+      <Value Profile="(Default)">↻ Move around graphic|(Move around graphic dimension - fast);G90G0X#GMIXY#GMIY;Y#GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn6" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Pen take|data\scripts\script_pen2_select.nc</Value>
+      <Value Profile="(Default)">◎ Graphic Center|(Move to graphic center - fast);G90 G0 X#GCTX Y#GCTY|#00FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn7" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Pen remove|data\scripts\script_pen2_remove.nc</Value>
+      <Value Profile="(Default)">Add Logo|data\scripts\script_my_logo.nc|#FFFFC0</Value>
     </Setting>
     <Setting Name="guiCustomBtn8" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Btn 8|(-)</Value>
+      <Value Profile="(Default)">Set Coordinate System| G10 L20 P0 X-1 Y-1 Z23;|#FFAAAA</Value>
     </Setting>
     <Setting Name="guiCustomBtn9" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Move Bottom-Left|$J=G90 X#GMIX Y#GMIY F1000</Value>
+      <Value Profile="(Default)">🡵 Graphic Upper-Right|(Move to upper right corner - fast);G90 G0 X#GMAX Y#GMAY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiDimensionShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1013,6 +1019,18 @@
     <Setting Name="importGraphicClip" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importGerberTypeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGerberTypePen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pen</Value>
+    </Setting>
+    <Setting Name="importGerberTypeKnife" Type="System.String" Scope="User">
+      <Value Profile="(Default)">knife</Value>
+    </Setting>
+    <Setting Name="importGerberTypeM19" Type="System.String" Scope="User">
+      <Value Profile="(Default)">notch</Value>
+    </Setting>
     <Setting Name="importGraphicClipEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1047,16 +1065,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicHatchFillDistance" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="importGraphicHatchFillEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicHatchFillInset" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="importGraphicHatchFillInsetEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGraphicOffsetOrigin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1068,10 +1086,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGraphicTileX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
+      <Value Profile="(Default)">200</Value>
     </Setting>
     <Setting Name="importGraphicTileY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
+      <Value Profile="(Default)">200</Value>
     </Setting>
     <Setting Name="importGroupItem" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -1151,6 +1169,9 @@
     <Setting Name="importSVGNodesOnly" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importSVGApplyFill" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importSVGPathExtend" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1215,40 +1236,40 @@
       <Value Profile="(Default)">100, 200</Value>
     </Setting>
     <Setting Name="locationCamForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 150</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationCntrlCoordForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationHeightForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationImageForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">100, 350</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationMForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationProbingForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationSerForm1" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 50</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationSerForm2" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">300, 50</Value>
+      <Value Profile="(Default)">50, 50</Value>
     </Setting>
     <Setting Name="locationSetForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">200, 150</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationShapeForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">150, 400</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationStreamForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 200</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="locationTextForm" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">50, 300</Value>
+      <Value Profile="(Default)">-30, 0</Value>
     </Setting>
     <Setting Name="machineLimitsAlarm" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1256,26 +1277,20 @@
     <Setting Name="machineLimitsFix" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="machineLimitsHomeX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="machineLimitsHomeY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
     <Setting Name="machineLimitsHomeZ" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="machineLimitsRangeX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">200</Value>
+      <Value Profile="(Default)">220</Value>
     </Setting>
     <Setting Name="machineLimitsRangeY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">180</Value>
+      <Value Profile="(Default)">220</Value>
     </Setting>
     <Setting Name="machineLimitsRangeZ" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="machineLimitsShow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">900, 640</Value>
@@ -1365,7 +1380,7 @@
       <Value Profile="(Default)">G10 L20 P0 X0 Y0 Z0</Value>
     </Setting>
     <Setting Name="resetSendCodeEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="rotarySubstitutionDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
@@ -1429,6 +1444,21 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
+    </Setting>
+    <Setting Name="machineLimitsHomeX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-20</Value>
+    </Setting>
+    <Setting Name="machineLimitsHomeY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-20</Value>
+    </Setting>
+    <Setting Name="guiDisableProgramPause" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="grblStreamingProtocol1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCToolChangeCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Z10 (move upwards)</Value>
     </Setting>
   </Settings>
 </SettingsFile>

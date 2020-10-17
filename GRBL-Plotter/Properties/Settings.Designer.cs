@@ -494,6 +494,18 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public uint counterImportGerber {
+            get {
+                return ((uint)(this["counterImportGerber"]));
+            }
+            set {
+                this["counterImportGerber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public uint counterImportHPGL {
             get {
                 return ((uint)(this["counterImportHPGL"]));
@@ -884,6 +896,30 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["ctrlLaserMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlLineEndEnable {
+            get {
+                return ((bool)(this["ctrlLineEndEnable"]));
+            }
+            set {
+                this["ctrlLineEndEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(";")]
+        public string ctrlLineEndText {
+            get {
+                return ((string)(this["ctrlLineEndText"]));
+            }
+            set {
+                this["ctrlLineEndText"] = value;
             }
         }
         
@@ -1754,6 +1790,30 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DPenUpArrow {
+            get {
+                return ((bool)(this["gui2DPenUpArrow"]));
+            }
+            set {
+                this["gui2DPenUpArrow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DPenUpId {
+            get {
+                return ((bool)(this["gui2DPenUpId"]));
+            }
+            set {
+                this["gui2DPenUpId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool gui2DPenUpShow {
             get {
                 return ((bool)(this["gui2DPenUpShow"]));
@@ -1789,7 +1849,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
         public decimal gui2DWidthHeightMap {
             get {
                 return ((decimal)(this["gui2DWidthHeightMap"]));
@@ -1801,7 +1861,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
         public decimal gui2DWidthMarker {
             get {
                 return ((decimal)(this["gui2DWidthMarker"]));
@@ -1813,7 +1873,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public decimal gui2DWidthPenDown {
             get {
                 return ((decimal)(this["gui2DWidthPenDown"]));
@@ -1825,7 +1885,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public decimal gui2DWidthPenUp {
             get {
                 return ((decimal)(this["gui2DWidthPenUp"]));
@@ -1837,7 +1897,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
         public decimal gui2DWidthRotaryInfo {
             get {
                 return ((decimal)(this["gui2DWidthRotaryInfo"]));
@@ -1861,7 +1921,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public decimal gui2DWidthSimulation {
             get {
                 return ((decimal)(this["gui2DWidthSimulation"]));
@@ -1873,13 +1933,25 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
         public decimal gui2DWidthTool {
             get {
                 return ((decimal)(this["gui2DWidthTool"]));
             }
             set {
                 this["gui2DWidthTool"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DColorPenDownModeEnable {
+            get {
+                return ((bool)(this["gui2DColorPenDownModeEnable"]));
+            }
+            set {
+                this["gui2DColorPenDownModeEnable"] = value;
             }
         }
         
@@ -1921,7 +1993,20 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Set new coord|G43.1 Z-31.628 ; G92 X140 Y0 Z32")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://GRBL-Plotter.de")]
+        public string guiCheckUpdateURL {
+            get {
+                return ((string)(this["guiCheckUpdateURL"]));
+            }
+            set {
+                this["guiCheckUpdateURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡴 Graphic Upper-Left|(Move to upper left corner - fast);G90 G0 X#GMIX Y#GMAY|#80" +
+            "FFFF")]
         public string guiCustomBtn1 {
             get {
                 return ((string)(this["guiCustomBtn1"]));
@@ -1933,7 +2018,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Move graph dim|data\\scripts\\script_move_arround_dimension.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("⇩ Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080")]
         public string guiCustomBtn10 {
             get {
                 return ((string)(this["guiCustomBtn10"]));
@@ -1945,7 +2030,8 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Soft RESET|#RST")]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡶 Graphic Bottom-Right|(Move to bottom right corner - fast);G90 G0 X#GMAX Y#GMIY" +
+            "|#80FFFF")]
         public string guiCustomBtn11 {
             get {
                 return ((string)(this["guiCustomBtn11"]));
@@ -1957,7 +2043,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Hard RESET|#HRST")]
+        [global::System.Configuration.DefaultSettingValueAttribute("⚠ Hard RESET|#HRST|fuchsia")]
         public string guiCustomBtn12 {
             get {
                 return ((string)(this["guiCustomBtn12"]));
@@ -2053,7 +2139,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Move to 0;0;0|G90 G0 X0 Y0 Z0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("⇧ Pen up Zmax|(Move Pen to upper position);G90 G0 Z#GMAZ|#80FF80")]
         public string guiCustomBtn2 {
             get {
                 return ((string)(this["guiCustomBtn2"]));
@@ -2185,7 +2271,8 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Tray Out|G91 G53 G0 Z-1;G90 G53 G0 Y-5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡷 Graphic Bottom-Left|(Move to bottom left corner - fast);G90 G0 X#GMIX Y#GMIY|#" +
+            "80FFFF")]
         public string guiCustomBtn3 {
             get {
                 return ((string)(this["guiCustomBtn3"]));
@@ -2233,7 +2320,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Tray In|G90 G53 G0 Y-160")]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡷 Homing 0;0;35|(Move to hard stops);$J= G91 F5000 X-40 Y-40 Z40|#FFAAAA")]
         public string guiCustomBtn4 {
             get {
                 return ((string)(this["guiCustomBtn4"]));
@@ -2245,7 +2332,8 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Set Pen 1|T1;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("↻ Move around graphic|(Move around graphic dimension - fast);G90G0X#GMIXY#GMIY;Y#" +
+            "GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80")]
         public string guiCustomBtn5 {
             get {
                 return ((string)(this["guiCustomBtn5"]));
@@ -2257,7 +2345,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Pen take|data\\scripts\\script_pen2_select.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("◎ Graphic Center|(Move to graphic center - fast);G90 G0 X#GCTX Y#GCTY|#00FFFF")]
         public string guiCustomBtn6 {
             get {
                 return ((string)(this["guiCustomBtn6"]));
@@ -2269,7 +2357,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Pen remove|data\\scripts\\script_pen2_remove.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Add Logo|data\\scripts\\script_my_logo.nc|#FFFFC0")]
         public string guiCustomBtn7 {
             get {
                 return ((string)(this["guiCustomBtn7"]));
@@ -2281,7 +2369,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Btn 8|(-)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Set Coordinate System| G10 L20 P0 X-1 Y-1 Z23;|#FFAAAA")]
         public string guiCustomBtn8 {
             get {
                 return ((string)(this["guiCustomBtn8"]));
@@ -2293,7 +2381,8 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Move Bottom-Left|$J=G90 X#GMIX Y#GMIY F1000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡵 Graphic Upper-Right|(Move to upper right corner - fast);G90 G0 X#GMAX Y#GMAY|#" +
+            "80FFFF")]
         public string guiCustomBtn9 {
             get {
                 return ((string)(this["guiCustomBtn9"]));
@@ -3277,6 +3366,18 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importDepthFromWidthRamp {
+            get {
+                return ((bool)(this["importDepthFromWidthRamp"]));
+            }
+            set {
+                this["importDepthFromWidthRamp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool ImportDXFSize {
             get {
@@ -3997,6 +4098,54 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGerberTypeEnable {
+            get {
+                return ((bool)(this["importGerberTypeEnable"]));
+            }
+            set {
+                this["importGerberTypeEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pen")]
+        public string importGerberTypePen {
+            get {
+                return ((string)(this["importGerberTypePen"]));
+            }
+            set {
+                this["importGerberTypePen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("knife")]
+        public string importGerberTypeKnife {
+            get {
+                return ((string)(this["importGerberTypeKnife"]));
+            }
+            set {
+                this["importGerberTypeKnife"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("notch")]
+        public string importGerberTypeM19 {
+            get {
+                return ((string)(this["importGerberTypeM19"]));
+            }
+            set {
+                this["importGerberTypeM19"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importGraphicClipEnable {
             get {
@@ -4129,7 +4278,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal importGraphicHatchFillDistance {
             get {
                 return ((decimal)(this["importGraphicHatchFillDistance"]));
@@ -4153,7 +4302,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public decimal importGraphicHatchFillInset {
             get {
                 return ((decimal)(this["importGraphicHatchFillInset"]));
@@ -4165,7 +4314,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importGraphicHatchFillInsetEnable {
             get {
                 return ((bool)(this["importGraphicHatchFillInsetEnable"]));
@@ -4201,7 +4350,19 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicSortDistanceAllowRotate {
+            get {
+                return ((bool)(this["importGraphicSortDistanceAllowRotate"]));
+            }
+            set {
+                this["importGraphicSortDistanceAllowRotate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
         public decimal importGraphicTileX {
             get {
                 return ((decimal)(this["importGraphicTileX"]));
@@ -4213,7 +4374,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
         public decimal importGraphicTileY {
             get {
                 return ((decimal)(this["importGraphicTileY"]));
@@ -4537,6 +4698,18 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importSVGApplyFill {
+            get {
+                return ((bool)(this["importSVGApplyFill"]));
+            }
+            set {
+                this["importSVGApplyFill"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGPathExtend {
             get {
@@ -4789,7 +4962,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50, 150")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationCamForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationCamForm"]));
@@ -4801,7 +4974,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationCntrlCoordForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationCntrlCoordForm"]));
@@ -4813,7 +4986,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationHeightForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationHeightForm"]));
@@ -4825,7 +4998,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100, 350")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationImageForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationImageForm"]));
@@ -4837,7 +5010,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationMForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationMForm"]));
@@ -4849,7 +5022,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationProbingForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationProbingForm"]));
@@ -4861,7 +5034,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationSerForm1 {
             get {
                 return ((global::System.Drawing.Point)(this["locationSerForm1"]));
@@ -4873,7 +5046,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("300, 50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50, 50")]
         public global::System.Drawing.Point locationSerForm2 {
             get {
                 return ((global::System.Drawing.Point)(this["locationSerForm2"]));
@@ -4885,7 +5058,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("200, 150")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationSetForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationSetForm"]));
@@ -4897,7 +5070,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("150, 400")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationShapeForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationShapeForm"]));
@@ -4909,7 +5082,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50, 200")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationStreamForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationStreamForm"]));
@@ -4921,7 +5094,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50, 300")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationTextForm {
             get {
                 return ((global::System.Drawing.Point)(this["locationTextForm"]));
@@ -4957,30 +5130,6 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal machineLimitsHomeX {
-            get {
-                return ((decimal)(this["machineLimitsHomeX"]));
-            }
-            set {
-                this["machineLimitsHomeX"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal machineLimitsHomeY {
-            get {
-                return ((decimal)(this["machineLimitsHomeY"]));
-            }
-            set {
-                this["machineLimitsHomeY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public decimal machineLimitsHomeZ {
             get {
@@ -4993,7 +5142,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("200")]
+        [global::System.Configuration.DefaultSettingValueAttribute("220")]
         public decimal machineLimitsRangeX {
             get {
                 return ((decimal)(this["machineLimitsRangeX"]));
@@ -5005,7 +5154,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("180")]
+        [global::System.Configuration.DefaultSettingValueAttribute("220")]
         public decimal machineLimitsRangeY {
             get {
                 return ((decimal)(this["machineLimitsRangeY"]));
@@ -5029,7 +5178,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool machineLimitsShow {
             get {
                 return ((bool)(this["machineLimitsShow"]));
@@ -5389,7 +5538,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool resetSendCodeEnable {
             get {
                 return ((bool)(this["resetSendCodeEnable"]));
@@ -5653,85 +5802,61 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importGraphicSortDistanceAllowRotate {
+        [global::System.Configuration.DefaultSettingValueAttribute("-20")]
+        public decimal machineLimitsHomeX {
             get {
-                return ((bool)(this["importGraphicSortDistanceAllowRotate"]));
+                return ((decimal)(this["machineLimitsHomeX"]));
             }
             set {
-                this["importGraphicSortDistanceAllowRotate"] = value;
+                this["machineLimitsHomeX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-20")]
+        public decimal machineLimitsHomeY {
+            get {
+                return ((decimal)(this["machineLimitsHomeY"]));
+            }
+            set {
+                this["machineLimitsHomeY"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importDepthFromWidthRamp {
+        public bool guiDisableProgramPause {
             get {
-                return ((bool)(this["importDepthFromWidthRamp"]));
+                return ((bool)(this["guiDisableProgramPause"]));
             }
             set {
-                this["importDepthFromWidthRamp"] = value;
+                this["guiDisableProgramPause"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool gui2DPenUpArrow {
+        public bool grblStreamingProtocol1 {
             get {
-                return ((bool)(this["gui2DPenUpArrow"]));
+                return ((bool)(this["grblStreamingProtocol1"]));
             }
             set {
-                this["gui2DPenUpArrow"] = value;
+                this["grblStreamingProtocol1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool gui2DPenUpId {
+        [global::System.Configuration.DefaultSettingValueAttribute("Z10 (move upwards)")]
+        public string importGCToolChangeCode {
             get {
-                return ((bool)(this["gui2DPenUpId"]));
+                return ((string)(this["importGCToolChangeCode"]));
             }
             set {
-                this["gui2DPenUpId"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public uint counterImportGerber {
-            get {
-                return ((uint)(this["counterImportGerber"]));
-            }
-            set {
-                this["counterImportGerber"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ctrlLineEndEnable {
-            get {
-                return ((bool)(this["ctrlLineEndEnable"]));
-            }
-            set {
-                this["ctrlLineEndEnable"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(";")]
-        public string ctrlLineEndText {
-            get {
-                return ((string)(this["ctrlLineEndText"]));
-            }
-            set {
-                this["ctrlLineEndText"] = value;
+                this["importGCToolChangeCode"] = value;
             }
         }
     }
