@@ -112,7 +112,7 @@ namespace GRBL_Plotter
             originalImage = new Bitmap(Properties.Resources.modell);
             Location = Properties.Settings.Default.locationImageForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
             processLoading();   // reset color corrections
         }
 

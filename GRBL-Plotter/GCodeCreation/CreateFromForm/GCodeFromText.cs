@@ -61,7 +61,7 @@ namespace GRBL_Plotter
 
             Location = Properties.Settings.Default.locationTextForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
             int toolCount = toolTable.init();
             toolProp tmpTool;

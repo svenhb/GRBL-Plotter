@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2018-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 */
 /*
  * 2019-07-08 add xmlMarker.figureStart tag
+ * 2020-09-24 change to PenColor, PenWith
 */
 
 using System;
@@ -174,8 +175,9 @@ namespace GRBL_Plotter
                         toolNr = skipTooNr++;                   // or start tool-nr at 1
 
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
+
                     gcode.Tool(finalString, toolNr, toolTable.indexName());  // + svgPalette.pixelCount());
-                    gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" color=\"{2}\">", xmlMarker.figureStart, (++pathCount), toolTable.indexName()));
+                    gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", xmlMarker.figureStart, (++pathCount), ColorTranslator.ToHtml(toolTable.indexColor()).Substring(1), toolTable.indexName(), toolTable.indexWidth()));		//toolTable.indexName()));
                     gcode.reduceGCode = false;
                     gcode.PenUp(finalString," start ");
 //                    gcode.MoveToRapid(finalString, 0, 0);          // move to start pos
@@ -437,9 +439,10 @@ namespace GRBL_Plotter
                     if (cbSkipToolOrder.Checked)
                         toolNr = skipTooNr++;
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
+
                     gcode.Tool(finalString, toolNr, toolTable.indexName());  // + svgPalette.pixelCount());
 
-                    gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" color=\"{2}\">", xmlMarker.figureStart, (++pathCount), toolTable.indexName()));
+                    gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", xmlMarker.figureStart, (++pathCount), ColorTranslator.ToHtml(toolTable.indexColor()).Substring(1), toolTable.indexName(), toolTable.indexWidth()));	//toolTable.indexName()));
                     gcode.PenUp(finalString);                             // pen up
                     finalString.Append(gcodeByToolNr[key]);
                     gcode.Comment(finalString, string.Format("{0}>", xmlMarker.figureEnd));
