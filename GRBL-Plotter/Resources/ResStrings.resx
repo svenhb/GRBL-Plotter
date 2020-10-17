@@ -190,7 +190,7 @@
     <value>Probing</value>
   </data>
   <data name="mainInfoResume" xml:space="preserve">
-    <value>Press 'Resume' to proceed ('~')</value>
+    <value>Press 'Resume' to proceed</value>
   </data>
   <data name="mainInfoSendCode" xml:space="preserve">
     <value>Send G-Code</value>

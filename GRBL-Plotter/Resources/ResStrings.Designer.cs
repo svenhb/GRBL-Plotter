@@ -277,7 +277,7 @@ namespace GRBL_Plotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Press &apos;Resume&apos; to proceed (&apos;~&apos;) ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Press &apos;Resume&apos; to proceed ähnelt.
         /// </summary>
         public static string mainInfoResume {
             get {
@@ -660,6 +660,15 @@ namespace GRBL_Plotter.Resources {
         public static string statusStripeCheckCOM {
             get {
                 return ResourceManager.GetString("statusStripeCheckCOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &apos;Check for new GRBL-Plotter release on GitHub&apos; - can be disabled in [Setup - Program control]  ähnelt.
+        /// </summary>
+        public static string statusStripeCheckUpdate {
+            get {
+                return ResourceManager.GetString("statusStripeCheckUpdate", resourceCulture);
             }
         }
         
