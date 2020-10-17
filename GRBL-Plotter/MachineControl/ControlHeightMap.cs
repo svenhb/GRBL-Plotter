@@ -50,7 +50,9 @@ namespace GRBL_Plotter
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        // get height information from main-GUI OnRaisePosEvent line 192
+/******************************************************************
+ * get height information from MainFormInterface case grblState.probe: line 285
+ ******************************************************************/
         public xyzPoint setPosProbe
         { set {
                 posProbe = value;
@@ -84,7 +86,7 @@ namespace GRBL_Plotter
                         textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", grbl.posWork.X, grbl.posWork.Y, worldZ);
                         elapsedOld = elapsed;
                     }
-                    if (cntReceived == progressBar1.Maximum)
+                    if (cntReceived >= progressBar1.Maximum)
                     {
                         enableControls(true);
                         scanStarted = false;
@@ -99,6 +101,16 @@ namespace GRBL_Plotter
                 }
             }
         }
+		
+	/*	private void watchDogTimer()	// what's about feed-hold?
+		{
+			if (scanStarted)
+			{
+				setPosProbe = Map.MinHeight;
+				
+			}
+			
+		}*/
 
         public void setBtnApply(bool active)
         { if (active)
@@ -266,6 +278,7 @@ namespace GRBL_Plotter
 
         int cntReceived = 0, cntSent = 0;
 
+#region controls
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -373,7 +386,7 @@ namespace GRBL_Plotter
         {
             Location = Properties.Settings.Default.locationImageForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
             //_event = new eventArgsTemplates();
 
@@ -397,6 +410,7 @@ namespace GRBL_Plotter
         private DateTime timeInit;              //time start to burning file
         private void btnApply_Click(object sender, EventArgs e)
         { }
+#endregion
 
         private void ControlHeightMapForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -406,6 +420,9 @@ namespace GRBL_Plotter
             Properties.Settings.Default.locationImageForm = Location;
         }
 
+/******************************************************************
+ * Send position to GUI
+ ******************************************************************/
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (Map != null)

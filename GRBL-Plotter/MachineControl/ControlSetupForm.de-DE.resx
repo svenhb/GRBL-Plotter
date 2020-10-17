@@ -2032,4 +2032,63 @@ Nützlich für Laserschneider.</value>
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>Individuelles Zeilenende</value>
   </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Typwert für M19 (erweitert)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Typwert für M15 (Messer)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Typwert für D2 (Stift)</value>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>Typwert im G-Code figure-tag angeben</value>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>Gerber Import</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>Schraffurfüllung , wenn das Objekt gefüllt ist</value>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>Deaktiviert den speziellen Pausenmodus und reicht M0 an grbl weiter</value>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>Wenn deaktiviert, wird das Streaming auf M0 gestoppt und der Parser-Status wird gespeichert (M0 wird jedoch nicht an den Controller gesendet). Anschließend kann der Benutzer die Maschine steuern.
+Nach der Pause wird der Parser-Status wiederhergestellt und das Streaming fortgesetzt.</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>Zeigt die ID der nächsten Figur an</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>Pem-Up Pfad zeigen</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>2D-Ansicht</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>Farbmodus</value>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>Der Stiftpfad wird in Farbe und Breite wie bei der importierten Grafik (SVG oder DXF) angezeigt.</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>G-Code vor Werkzeugwechsel</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Der spezielle Pausenmodus ermöglicht es dem Benutzer, das Gerät zu verwenden. Nach Beendigung der Pause werden die letzte Prozesskoordinate und der Maschinenstatus wiederhergestellt und das Streaming fortgesetzt.
+Während ein normaler M0 ein Feedhold initiiert, ohne die Möglichkeit, die Maschine zu benutzen.</value>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>Einfache Send-Antwort</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Streaming-Protokoll:</value>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>Zeichenzählung</value>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>Streaming-Eigenschaften</value>
+  </data>
 </root>

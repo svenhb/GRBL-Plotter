@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbPort.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="cbBaud.Items" xml:space="preserve">
     <value>9600</value>
@@ -189,7 +189,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbBaud.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnOpenPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -220,7 +220,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOpenPort.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="btnScanPort.Location" type="System.Drawing.Point, System.Drawing">
     <value>207, 0</value>
@@ -247,11 +247,41 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnScanPort.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="serialPort.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>239, 17</value>
+  </metadata>
+  <data name="pasteCodeFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="pasteCodeFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paste Code from clipboard</value>
+  </data>
+  <data name="copySelectionToClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="copySelectionToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copy selection to clipboard</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 92</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStrip1.Name" xml:space="preserve">
+    <value>contextMenuStrip1</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="rtbLog.Font" type="System.Drawing.Font, System.Drawing">
     <value>Lucida Console, 8pt</value>
   </data>
@@ -280,7 +310,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rtbLog.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="btnClear.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 393</value>
@@ -307,7 +337,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnClear.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="btnSend.Location" type="System.Drawing.Point, System.Drawing">
     <value>276, 393</value>
@@ -334,7 +364,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSend.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="btnGRBLCommand0.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 417</value>
@@ -361,7 +391,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand0.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="btnGRBLCommand1.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 417</value>
@@ -388,7 +418,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand1.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="btnGRBLCommand2.Location" type="System.Drawing.Point, System.Drawing">
     <value>61, 417</value>
@@ -415,7 +445,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand2.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="btnGRBLCommand3.Location" type="System.Drawing.Point, System.Drawing">
     <value>151, 417</value>
@@ -442,7 +472,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="btnGRBLCommand4.Location" type="System.Drawing.Point, System.Drawing">
     <value>181, 417</value>
@@ -469,7 +499,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand4.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="lblSrPos.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -915,7 +945,7 @@ Not for GRBL Vers. &lt; 1.0</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLReset.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="btnGRBLHardReset.Location" type="System.Drawing.Point, System.Drawing">
     <value>276, 417</value>
@@ -943,7 +973,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLHardReset.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnGRBLCmndParser.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -973,7 +1003,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCmndParser.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnGRBLCmndBuild.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1003,7 +1033,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCmndBuild.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1120,6 +1150,54 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBCommand.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;tBURL.Name" xml:space="preserve">
+    <value>tBURL</value>
+  </data>
+  <data name="&gt;&gt;tBURL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBURL.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;tBURL.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnCheckGRBLResult.Name" xml:space="preserve">
+    <value>btnCheckGRBLResult</value>
+  </data>
+  <data name="&gt;&gt;btnCheckGRBLResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCheckGRBLResult.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;btnCheckGRBLResult.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 94</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Real-time Status Report</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="tBURL.Location" type="System.Drawing.Point, System.Drawing">
@@ -1176,30 +1254,6 @@ Success depends on used hardware (DTR, RTS wired?)</value>
   <data name="&gt;&gt;btnCheckGRBLResult.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 24</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 94</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Real-time Status Report</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="cBTelnet.Location" type="System.Drawing.Point, System.Drawing">
     <value>280, 0</value>
   </data>
@@ -1225,11 +1279,8 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBTelnet.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
-  <metadata name="timerSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>239, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1257,17 +1308,29 @@ Success depends on used hardware (DTR, RTS wired?)</value>
   <data name="&gt;&gt;serialPort.Type" xml:space="preserve">
     <value>System.IO.Ports.SerialPort, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;pasteCodeFromClipboardToolStripMenuItem.Name" xml:space="preserve">
+    <value>pasteCodeFromClipboardToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;pasteCodeFromClipboardToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolTipSerial.Name" xml:space="preserve">
     <value>toolTipSerial</value>
   </data>
   <data name="&gt;&gt;toolTipSerial.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;timerSerial.Name" xml:space="preserve">
-    <value>timerSerial</value>
+  <data name="&gt;&gt;copySelectionToClipboardToolStripMenuItem.Name" xml:space="preserve">
+    <value>copySelectionToClipboardToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;timerSerial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;copySelectionToClipboardToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectAllToolStripMenuItem.Name" xml:space="preserve">
+    <value>selectAllToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;selectAllToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ControlSerialForm</value>

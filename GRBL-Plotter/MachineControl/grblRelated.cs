@@ -152,7 +152,7 @@ namespace GRBL_Plotter
         {   xyzPoint tmp = new xyzPoint();
             string allowed = "PRBG54G55G56G57G58G59G28G30G92TLO";
             if (allowed.Contains(id))
-            {   getPosition("abc:" + value, ref tmp);   // parse string [PRB:-155.000,-160.000,-28.208:1]
+            {   getPosition(0,"abc:" + value, ref tmp);   // parse string [PRB:-155.000,-160.000,-28.208:1]
                 if (coordinates.ContainsKey(id))
                     coordinates[id] = tmp;
                 else
@@ -197,7 +197,7 @@ namespace GRBL_Plotter
         private static void setMessageString(ref Dictionary<string, string> myDict, string resource)
         {   string[] tmp = resource.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             foreach (string s in tmp)
-            {   string[] col = s.Split(',');
+            {   string[] col = s.Split(new[] { "\",\"" }, StringSplitOptions.None);
                 string message = col[col.Length - 1].Trim('"');
                 myDict.Add(col[0].Trim('"'), message);
             }
@@ -207,12 +207,13 @@ namespace GRBL_Plotter
         /// parse single gcode line to set parser state
         /// </summary>
         private static bool getTLO = false;
-        public static void updateParserState(string line, ref pState myParserState)
+        public static void updateParserState(int serNr, string line, ref pState myParserState)
         {
             char cmd = '\0';
             string num = "";
             bool comment = false;
             double value = 0;
+			bool TLO = getTLO;
             getTLO = false;
             myParserState.changed = false;
 
@@ -250,6 +251,8 @@ namespace GRBL_Plotter
                 }
                 catch { }
             }
+			if (serNr != 1)
+				getTLO = TLO;	// restore value;
         }
 
         /// <summary>
@@ -341,21 +344,26 @@ namespace GRBL_Plotter
             }
             return Color.Fuchsia;
         }
-        public static bool getBufferSize(string text)
+        public static bool getBufferSize(int serNr, string text)
         {   if (bufferSize <= 0)    // only get if not done already
             {   string[] dataValue = text.Split(',');
+				int tmp=-1;
                 if (dataValue.Length > 1)
-                { int.TryParse(dataValue[1], NumberStyles.Any, CultureInfo.InvariantCulture, out bufferSize); }
+                { int.TryParse(dataValue[1], NumberStyles.Any, CultureInfo.InvariantCulture, out tmp); }
+				if (tmp > 0)
+					bufferSize = tmp;				
                 return true;
             }
             return false;
         }
-        public static void getPosition(string text, ref xyzPoint position)
+        public static int getPosition(int serNr, string text, ref xyzPoint position)
         {
             string[] dataField = text.Split(':');
+            if (dataField.Length <= 1)
+                return 0;
             string[] dataValue = dataField[1].Split(',');
             //            axisA = false; axisB = false; axisC = false;
-            axisCount = 0;
+            int axisCountLocal = 0;
             if (dataValue.Length == 1)
             {
                 Double.TryParse(dataValue[0], NumberStyles.Any, CultureInfo.InvariantCulture, out position.Z);
@@ -367,20 +375,26 @@ namespace GRBL_Plotter
                 Double.TryParse(dataValue[0], NumberStyles.Any, CultureInfo.InvariantCulture, out position.X);
                 Double.TryParse(dataValue[1], NumberStyles.Any, CultureInfo.InvariantCulture, out position.Y);
                 Double.TryParse(dataValue[2], NumberStyles.Any, CultureInfo.InvariantCulture, out position.Z);
-                axisCount = 3;
+                axisCountLocal = 3;
             }
             if (dataValue.Length > 3)
             {   Double.TryParse(dataValue[3], NumberStyles.Any, CultureInfo.InvariantCulture, out position.A);
-                axisA = true; axisCount++;
+                axisCountLocal++;
+				if (serNr == 1)	axisA = true;
             }
             if (dataValue.Length > 4)
             {   Double.TryParse(dataValue[4], NumberStyles.Any, CultureInfo.InvariantCulture, out position.B);
-                axisB = true; axisCount++;
+                axisCountLocal++;
+				if (serNr == 1)	axisB = true;
             }
             if (dataValue.Length > 5)
             {   Double.TryParse(dataValue[5], NumberStyles.Any, CultureInfo.InvariantCulture, out position.C);
-                axisC = true; axisCount++;
+                axisCountLocal++;
+				if (serNr == 1)	axisC = true;
             }
+			if (serNr == 1)	
+				axisCount = axisCountLocal;
+			return axisCountLocal;
             //axisA = true; axisB = true; axisC = true;     // for test only
         }
 
@@ -392,10 +406,15 @@ namespace GRBL_Plotter
         }
         public static string getErrorDescription(string rxString)
         {   string[] tmp = rxString.Split(':');
-            string msg = " no information found for error-nr. '" + tmp[1] + "'";
-            try {   if (messageErrorCodes.ContainsKey(tmp[1].Trim()))
-                    {   msg = grbl.messageErrorCodes[tmp[1].Trim()];
-                    //int errnr = Convert.ToInt16(tmp[1].Trim());
+            if (tmp.Length > 1)
+            {
+                string msg = " no information found for error-nr. '" + tmp[1] + "'";
+                try
+                {
+                    if (messageErrorCodes.ContainsKey(tmp[1].Trim()))
+                    {
+                        msg = grbl.messageErrorCodes[tmp[1].Trim()];
+                        //int errnr = Convert.ToInt16(tmp[1].Trim());
                         short errnr = 0;
                         if (!short.TryParse(tmp[1], NumberStyles.Any, CultureInfo.InvariantCulture, out errnr))
                             return msg;
@@ -403,8 +422,13 @@ namespace GRBL_Plotter
                             msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";
                     }
                 }
-            catch { }
-            return msg;
+                catch { }
+                return msg;
+            }
+            else
+            {
+                return " no info ";
+            }
         }
         public static bool errorBecauseOfBadCode(string rxString)
         {   string[] tmp = rxString.Split(':');
@@ -484,8 +508,8 @@ namespace GRBL_Plotter
         }
     }
 
-    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, unknown };
-    public enum grblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode };
+    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, reset, unknown };
+    public enum grblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode, waitstop };
 
     public struct sConvert
     {

@@ -2262,4 +2262,66 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>نهاية سطر فردي</value>
   </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>اكتب قيمة M19 (موسعة)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>اكتب القيمة لـ M15 (سكين)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>اكتب قيمة D2 (دبوس)</value>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>حدد قيمة النوع في علامة الشكل G-Code</value>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>استيراد جربر</value>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>قم بتطبيق تعبئة الفتحة إذا تم تعبئة الكائن</value>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>قم بتعطيل وضع الإيقاف المؤقت الخاص ، قم بالمرور عبر M0</value>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>إذا تم تعطيله ، فسيتوقف البث على M0 وسيتم حفظ حالة المحلل اللغوي (لكن M0 لن يرسل إلى وحدة التحكم) ، ثم يمكن للمستخدم التحكم في الجهاز.
+بعد التوقف المؤقت ، ستتم استعادة حالة المحلل اللغوي واستمرار البث.</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>يعرض معرّف الحرف التالي</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>تأشير مسار القلم</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>عرض ثنائي الأبعاد</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>وضع اللون</value>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>سيظهر مسار القلم في اللون والعرض مثل الرسوم المستوردة (SVG أو DXF)</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>G- كود قبل تغيير الأداة</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>يسمح وضع الإيقاف المؤقت الخاص للمستخدم باستخدام الجهاز. بعد الانتهاء من الإيقاف المؤقت ، ستتم استعادة آخر إحداثي للعملية وحالة الجهاز واستمرار التدفق
+في حين أن M0 العادي يبدأ تغذية ، دون إمكانية استخدام الآلة.</value>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>استجابة إرسال بسيطة</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>بروتوكول التدفق:</value>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>عد الأحرف</value>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>خصائص التدفق</value>
+  </data>
 </root>

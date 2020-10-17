@@ -82,16 +82,19 @@ namespace GRBL_Plotter
             int row = 0;
             for (int i = 1; i <= 32; i++)
             {
-                parts = new string[2];
+                parts = new string[] { " "," "," "," " };
                 text = Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString();
                 if (text.IndexOf('|') > 0)
-                { parts = text.Split('|'); }
-                else
-                { parts[0] = " ";parts[1] = " "; }
+                {   string[] tmp = text.Split('|');
+                    for (int k = 0; k < tmp.Length; k++)
+                        parts[k] = tmp[k];
+                }
+
                 dGVCustomBtn.Rows.Add();
                 dGVCustomBtn.Rows[row].Cells[0].Value = i.ToString();
                 dGVCustomBtn.Rows[row].Cells[1].Value = parts[0];
                 dGVCustomBtn.Rows[row].Cells[2].Value = parts[1];
+                dGVCustomBtn.Rows[row].Cells[3].Value = parts[2];
                 row++;
              }
 
@@ -110,7 +113,7 @@ namespace GRBL_Plotter
 
             Location = Properties.Settings.Default.locationSetForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
 //			rBimportGraphicClip0.Checked = Properties.Settings.Default.importGraphicClip;
 			rBImportGraphicClip1.Checked = !Properties.Settings.Default.importGraphicClip;
@@ -120,6 +123,7 @@ namespace GRBL_Plotter
             rBImportSVGGroupItem1.Checked = (group == 1);
             rBImportSVGGroupItem2.Checked = (group == 2);
             rBImportSVGGroupItem3.Checked = (group == 3);
+            rBImportSVGGroupItem4.Checked = (group == 4);
 
             //if (cBImportSVGSort0.Checked)
             int sort = Properties.Settings.Default.importGroupSort;
@@ -202,14 +206,16 @@ namespace GRBL_Plotter
             cBLog6.Checked = (val & (uint)LogEnable.PathModification) > 0;
 
             checkZEngraveExceed();
+			
+			rBStreanProtocoll2.Checked = !Properties.Settings.Default.grblStreamingProtocol1;
         }
 
         private void saveSettings()
         {
             for (int i = 1; i <= 32; i++)
             {
-                try { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value; }
-                catch { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = " | "; }
+                try { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[3].Value; }
+                catch { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = " | | "; }
             }
             Properties.Settings.Default.importGCDecPlaces = nUDImportDecPlaces.Value;
             Properties.Settings.Default.importGCSpindleCmd = rBImportGCSpindleCmd1.Checked;
@@ -219,6 +225,7 @@ namespace GRBL_Plotter
             Properties.Settings.Default.Save();
 
             ExportDgvToCSV(defaultToolList);
+            toolTable.init();
         }
         
         private void btnApplyChangings_Click(object sender, EventArgs e)
@@ -627,8 +634,8 @@ namespace GRBL_Plotter
         private void dGV_SortColor(object sender, DataGridViewSortCompareEventArgs e)
         {
             if (e.Column.Index != 1) return;
-            long lcolor1 = Convert.ToInt32(e.CellValue1.ToString().Substring(0, 6), 16) | 0xff000000;
-            long lcolor2 = Convert.ToInt32(e.CellValue2.ToString().Substring(0, 6), 16) | 0xff000000;
+            long lcolor1 = Convert.ToInt32(e.CellValue1.ToString().ToUpper().Substring(0, 6), 16) | 0xff000000;
+            long lcolor2 = Convert.ToInt32(e.CellValue2.ToString().ToUpper().Substring(0, 6), 16) | 0xff000000;
             Color ccolor1 = Color.FromArgb((int)lcolor1);
             Color ccolor2 = Color.FromArgb((int)lcolor2);
             double brighness1 = (0.299 * ccolor1.R * ccolor1.R + 0.587 * ccolor1.G * ccolor1.G + 0.114 * ccolor1.B * ccolor1.B);
@@ -662,9 +669,6 @@ namespace GRBL_Plotter
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 loadToolList(openFileDialog1.FileName);
-     //           ImportCSVToDgv(openFileDialog1.FileName);
-      //          ExportDgvToCSV(defaultToolList);
-         //       importPath = openFileDialog1.FileName;
             }
         }
         private void loadToolList(string filename)
@@ -759,7 +763,12 @@ namespace GRBL_Plotter
 
         private void highlight_PenOptions_Click(object sender, EventArgs e)
         {
-            if( cBImportGraphicTile.Checked)
+            if (cBImportSVGRepeat.Checked)
+                cBImportSVGRepeat.BackColor = Color.Yellow;
+            else
+                cBImportSVGRepeat.BackColor = Color.Transparent;
+
+            if ( cBImportGraphicTile.Checked)
                 gBClipping.BackColor = Color.Yellow;
             else
                 gBClipping.BackColor = Color.WhiteSmoke;
@@ -985,6 +994,7 @@ namespace GRBL_Plotter
             if (rBImportSVGGroupItem1.Checked) Properties.Settings.Default.importGroupItem = 1;
             if (rBImportSVGGroupItem2.Checked) Properties.Settings.Default.importGroupItem = 2;
             if (rBImportSVGGroupItem3.Checked) Properties.Settings.Default.importGroupItem = 3;
+            if (rBImportSVGGroupItem4.Checked) Properties.Settings.Default.importGroupItem = 4;
         }
 
         private void rBImportSVGSort0_CheckedChanged(object sender, EventArgs e)
@@ -1059,21 +1069,13 @@ namespace GRBL_Plotter
         {   bool enable = cBImportSVGGroup.Checked;
             tab1_1_4gB2.Enabled = enable;
             tab1_1_4gB3.Enabled = enable;
-         /*   cBImportSVGGroupColor.Enabled = enable;
-            rBImportSVGSort0.Enabled = enable;
-            rBImportSVGSort1.Enabled = enable;
-            rBImportSVGSort2.Enabled = enable;
-            rBImportSVGSort3.Enabled = enable;
-            cBImportSVGSortInvert.Enabled = enable;*/
         }
 
         private void cBToolTableUse_CheckedChanged(object sender, EventArgs e)
         {   bool enable = cBToolTableUse.Checked;
             cBImportGCTTSSpeed.Enabled = enable;
             cBImportGCTTXYFeed.Enabled = enable;
-     //       cBImportGCTTZDeepth.Enabled = (enable && cBImportGCUseZ.Checked);
             cBImportGCTTZAxis.Enabled = (enable && cBImportGCUseZ.Checked);
-      //      cBImportGCTTZIncrement.Enabled = (enable && cBImportGCUseZ.Checked && cBImportGCZIncEnable.Checked);
             checkVisibility();
             if (cBToolTableUse.Checked)
                 tab1_1gB5.BackColor = Color.Yellow;
@@ -1225,7 +1227,8 @@ namespace GRBL_Plotter
             sfd.Filter = "Use cases (*.ini)|*.ini";
             sfd.FileName = "new_use_case.ini";
             if (sfd.ShowDialog() == DialogResult.OK)
-            {
+            {   if (File.Exists(sfd.FileName))
+                    File.Delete(sfd.FileName);
                 var MyIni = new IniFile(sfd.FileName);
                 MyIni.WriteImport();
             }
@@ -1351,6 +1354,11 @@ namespace GRBL_Plotter
         private void nUDImportPenWidthToZMin_ValueChanged(object sender, EventArgs e)
         {
             checkZEngraveExceed();
+        }
+
+        private void cBGerberGeometryEnable_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

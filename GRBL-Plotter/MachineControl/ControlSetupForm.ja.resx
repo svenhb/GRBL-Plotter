@@ -2263,4 +2263,66 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>個々の行の終わり</value>
   </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>M19のタイプ値（拡張）</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>M15（ナイフ）のタイプ値</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>D2のタイプ値（ピン）</value>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>タイプ値をGコード図タグで指定します</value>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>ガーバーインポート</value>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>タイプ</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>オブジェクトが塗りつぶされている場合はハッチ塗りつぶしを適用します</value>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>特別な一時停止モードを無効にし、M0を通過させる</value>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>無効にすると、ストリーミングはM0で停止し、パーサーの状態が保存されます（ただし、M0はコントローラーに送信されません）。その後、ユーザーはマシンを制御できます。
+一時停止後、パーサーの状態が復元され、ストリーミングが続行されます。</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>次の文字のIDを表示します</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>ペムアップパスを表示</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>2Dビュー</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>カラーモード</value>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>ペンダウンパスは、インポートされたグラフィック（SVGまたはDXF）のように色と幅で表示されます</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>ツール交換前のGコード</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>特別な一時停止モードにより、ユーザーはマシンを使用できます。 一時停止が終了すると、最後のプロセス座標とマシンステータスが復元され、ストリーミングが続行されます。
+通常のM0はフィードホールドを開始しますが、マシンを使用することはできません。</value>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>単純な送信応答</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>ストリーミングプロトコル：</value>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>文字カウント</value>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>ストリーミングプロパティ</value>
+  </data>
 </root>

@@ -219,11 +219,6 @@
             this.nUDOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "probingOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDOffsetX.DecimalPlaces = 3;
             resources.ApplyResources(this.nUDOffsetX, "nUDOffsetX");
-            this.nUDOffsetX.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
             this.nUDOffsetX.Name = "nUDOffsetX";
             this.toolTip1.SetToolTip(this.nUDOffsetX, resources.GetString("nUDOffsetX.ToolTip"));
             this.nUDOffsetX.Value = global::GRBL_Plotter.Properties.Settings.Default.probingOffsetX;
@@ -233,11 +228,6 @@
             this.nUDOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "probingOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDOffsetY.DecimalPlaces = 3;
             resources.ApplyResources(this.nUDOffsetY, "nUDOffsetY");
-            this.nUDOffsetY.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
             this.nUDOffsetY.Name = "nUDOffsetY";
             this.toolTip1.SetToolTip(this.nUDOffsetY, resources.GetString("nUDOffsetY.ToolTip"));
             this.nUDOffsetY.Value = global::GRBL_Plotter.Properties.Settings.Default.probingOffsetY;
@@ -247,11 +237,6 @@
             this.nUDOffsetZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "probingOffsetZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDOffsetZ.DecimalPlaces = 3;
             resources.ApplyResources(this.nUDOffsetZ, "nUDOffsetZ");
-            this.nUDOffsetZ.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
             this.nUDOffsetZ.Name = "nUDOffsetZ";
             this.toolTip1.SetToolTip(this.nUDOffsetZ, resources.GetString("nUDOffsetZ.ToolTip"));
             this.nUDOffsetZ.Value = global::GRBL_Plotter.Properties.Settings.Default.probingOffsetZ;

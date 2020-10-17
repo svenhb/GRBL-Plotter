@@ -2074,4 +2074,66 @@ menos estresse para a mecânica</value>
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>Fim de linha individual</value>
   </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Digite o valor para M19 (estendido)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Digite o valor para M15 (faca)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Digite o valor para D2 (pino)</value>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>Especifique o valor do tipo na figura-tag G-Code</value>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>Importação Gerber</value>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>Aplicar preenchimento de hachura se o objeto estiver preenchido</value>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>Desative o modo de pausa especial, passe por M0</value>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>Se desativado, o streaming será interrompido em M0 e o estado do analisador será salvo (mas M0 não será enviado ao controlador), então o usuário pode controlar a máquina.
+Após a pausa, o estado do analisador será restaurado e o streamin continuará.</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>Mostra o ID do próximo personagem</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>Mostrar caminho do pem-up</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>Vista 2D</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>Modo de cor</value>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>O caminho da caneta será mostrado em cor e largura como gráfico importado (SVG ou DXF)</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Código G antes da troca de ferramenta</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>O modo de pausa especial permite que o usuário use a máquina. Depois de terminar a pausa, a última coordenada do processo e o status da máquina serão restaurados e o streaming continuará.
+Considerando que um M0 normal inicia um feedhold, sem a possibilidade de usar a máquina.</value>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>Resposta de envio simples</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Protocolo de streaming:</value>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>Contagem de caracteres</value>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>Propriedades de streaming</value>
+  </data>
 </root>

@@ -766,7 +766,7 @@ M4动态激光功率模式</value>
     <comment>TabPage3</comment>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>敏</value>
+    <value>最小</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="label30.Text" xml:space="preserve">
@@ -2245,5 +2245,67 @@ Z轴将向下移动</value>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>个别线端</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>M19的类型值（扩展）</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>M15（刀）的类型值</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>D2的类型值（引脚）</value>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>在G代码图标签中指定类型值</value>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>格柏进口</value>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>如果填充了对象，则应用填充填充</value>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>禁用特殊暂停模式，通过M0</value>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>如果禁用，流将在M0处停止并且解析器状态将被保存（但M0不会发送到控制器），然后用户可以控制计算机。
+暂停后，解析器状态将恢复并继续进行流式处理。</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>显示下一个字符的ID</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>显示启动路径</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>2D视图</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>色彩模式</value>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>笔沿路径将以颜色和宽度显示，如导入的图形（SVG或DXF）</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>换刀前的G代码</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>特殊的暂停模式允许用户使用机器。 暂停完成后，将恢复最后的过程坐标和机器状态，并且继续进行流式传输。
+而正常的M0会启动进给保持，而不会使用机器。</value>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>简单的发送响应</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>流协议：</value>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>字符计数</value>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>流媒体属性</value>
   </data>
 </root>

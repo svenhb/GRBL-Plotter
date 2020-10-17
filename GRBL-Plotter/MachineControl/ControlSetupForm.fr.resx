@@ -2065,4 +2065,66 @@ Utile pour la découpe laser.</value>
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>Fin de ligne individuelle</value>
   </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Valeur de type pour M19 (étendu)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Valeur de type pour M15 (couteau)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Valeur de type pour D2 (broche)</value>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>Spécifiez la valeur de type dans l'étiquette-figure G-Code</value>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>Importation Gerber</value>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>Appliquer un remplissage de hachures si l'objet est rempli</value>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>Désactiver le mode de pause spécial, passer par M0</value>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>Si elle est désactivée, la diffusion en continu s'arrêtera sur M0 et l'état de l'analyseur sera enregistré (mais M0 ne sera pas envoyé au contrôleur), alors l'utilisateur peut contrôler la machine.
+Après la pause, l'état de l'analyseur sera restauré et la diffusion continue.</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>Affiche l'ID du caractère suivant</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>Afficher le chemin de pem-up</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>Vue 2D</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>Mode de couleur</value>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>Le chemin descendant du stylo sera affiché en couleur et en largeur comme le graphique importé (SVG ou DXF)</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>G-Code avant le changement d'outil</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Le mode de pause spécial permet à l'utilisateur d'utiliser la machine. Une fois la pause terminée, la dernière coordonnée de processus et l'état de la machine sont restaurés et la diffusion continue.
+Alors qu'une prise M0 normale démarre, sans possibilité d'utiliser la machine.</value>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>Réponse d'envoi simple</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Protocole de streaming:</value>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>Comptage de caractères</value>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>Propriétés de streaming</value>
+  </data>
 </root>

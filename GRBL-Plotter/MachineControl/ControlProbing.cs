@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,16 +19,12 @@
 
 /* 2019-11-10 new
  * 2019-11-24 save 'checked' properties for edge-Z, edge-center, coordinate G10
+ * 2020-08-23 set min. offset to 0 (for touch plate)
 */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GRBL_Plotter
@@ -116,12 +112,24 @@ namespace GRBL_Plotter
         public grblState setGrblSaState
         {   set
             {   grblStateNow = value;
+                Logger.Trace("setGrblSaState {0}", grblStateNow);
                 if (grblStateNow == grblState.idle)
                     isIdle = true;
-                if (grblStateNow == grblState.alarm)
-                {   lblEFProgress.Text = "ALARM";
+                else if (grblStateNow == grblState.alarm)
+                {
+                    lblEFProgress.Text = "ALARM";
                     updateProgress = false;
                     probingCount = -1;
+                }
+                else if (grblStateNow == grblState.reset)
+                {
+                    lblEFProgress.Text = "";
+                    lblCFProgress.Text = "";
+                    btnCancelEF.Enabled = false;
+                    btnCancelCF.Enabled = false;
+                    probingFinishCF();
+                    probingFinishEF();
+                    probingFinishTL();
                 }
             }
         }
@@ -132,6 +140,8 @@ namespace GRBL_Plotter
             set
             {
                 probePos = value;   // grbl.getCoord("PRB");
+                Logger.Trace("setPosProbe updateProgress:{0}", updateProgress);
+
                 if (updateProgress)
                 {
                     if (grbl.getPRBStatus())
@@ -296,6 +306,8 @@ namespace GRBL_Plotter
         private bool stateMachineEF()
         {
             bool goon = false;
+            Logger.Trace("stateMachineEF probingCount:{0}", probingCount);
+
             switch (probingCount)
             {
                 case 0:
@@ -338,6 +350,7 @@ namespace GRBL_Plotter
         private bool stateMachineCF()
         {
             sendCommandEvent(new CmdEventArgs(stateCommands[probingCount].Replace(',', '.')));
+            Logger.Trace("stateMachineCF probingCount:{0}", probingCount);
             if (rBCF1.Checked)
             {
                 if (probingCount==3)
@@ -424,6 +437,7 @@ namespace GRBL_Plotter
         #region edgeFinder
         private void btnStartEF_Click(object sender, EventArgs e)
         {
+            Logger.Trace("Start Edge Finder");
             timer1.Enabled = false;
             probeX = false; probeY = false;
             probingCount = 1;
@@ -433,16 +447,16 @@ namespace GRBL_Plotter
             lblEFStatus.Text = "";
             ZatX = 0; ZatY = 0;
 
-            fillStrings();
+            fillStrings();      // check which axis to probe, set probeX, probeY, CMD-Strings
             sendCommandEvent(new CmdEventArgs("G91"));
 
-            if (!probeAxisX())
+            if (!probeAxisX())          // if X, then Y and Z will started via Timer / stateMachine
             {
                 probingCount += 2;
-                if (!probeAxisY())
+                if (!probeAxisY())      // if not X but Y, then Z will started via Timer / stateMachine
                 {
                     probingCount += 2;
-                    probeAxisZ();
+                    probeAxisZ();       // only Z
                 }
             }
             timer1.Enabled = true;
@@ -505,6 +519,9 @@ namespace GRBL_Plotter
         private void fillStrings()
         {
             string probeString = "";
+            if (rB5.Checked)
+            { probeString = ProbeToward_Z(); }
+
             if ((rB1.Checked) || (rB4.Checked) || (rB7.Checked))        // probe from left to right
             { probeString = ProbeToward_E(); probeX = true; ZatX = nUDDiameter.Value; }
             else if ((rB3.Checked) || (rB6.Checked) || (rB9.Checked))   // probe from right to left
@@ -553,6 +570,7 @@ namespace GRBL_Plotter
                 sendCommandEvent(new CmdEventArgs(probingAxisX.Replace(',', '.')));
                 lblEFProgressInfo.Text = Localization.getString("probingProbingOn") + " X"; //"Probing on X";
                 lblEFProgress.Text = "";
+                Logger.Trace("probeAxisX()");
             }
             return probeX;
         }
@@ -565,6 +583,7 @@ namespace GRBL_Plotter
                 sendCommandEvent(new CmdEventArgs(probingAxisY.Replace(',', '.')));
                 lblEFProgressInfo.Text = Localization.getString("probingProbingOn") + " Y"; //"Probing on Y";
                 lblEFProgress.Text = "";
+                Logger.Trace("probeAxisY()");
             }
             return probeY;
         }
@@ -576,6 +595,7 @@ namespace GRBL_Plotter
             sendCommandEvent(new CmdEventArgs(probeString.Replace(',', '.')));
             lblEFProgressInfo.Text = Localization.getString("probingProbingOn") + " Z"; //"Probing on Z";
             lblEFProgress.Text = "";
+            Logger.Trace("probeAxisZ()");
             return probeY;
         }
 

@@ -207,7 +207,7 @@ namespace GRBL_Plotter
                 while (sameXYPos(gcodeList[i], gcodeList[i + 1]) && (i < (gcodeList.Count - 1)))  // remove double coordinates
                 { gcodeList.RemoveAt(i + 1); }
 
-                Logger.Trace("   ----- {0} -----",i);
+//                Logger.Trace("   ----- {0} -----",i);
 
                 if (gcodeList[i].motionMode > 1)
                 {   double tmpR = Math.Sqrt((double)gcodeList[i].i * (double)gcodeList[i].i + (double)gcodeList[i].j * (double)gcodeList[i].j);
@@ -222,7 +222,7 @@ namespace GRBL_Plotter
                     if (remove)
                     {   gcodeList[i].i = null; gcodeList[i].j = null;
                         gcodeList[i].motionMode = 1;
-                        Logger.Trace("   Radius too small, do G1 {0}",gcodeList[act].codeLine);
+                        Logger.Trace("   transformGCodeRadiusCorrection - Radius too small, do G1 {0}", gcodeList[act].codeLine);
                     }
                 }
                 figureProcessed = true;                 // must stay before jump label
@@ -249,16 +249,16 @@ namespace GRBL_Plotter
                     if ((gcodeList[act].actualPos.X == gcodeList[figureStart].actualPos.X) && (gcodeList[act].actualPos.Y == gcodeList[figureStart].actualPos.Y))
                     { next = figure2nd; closeFigure = true; }//                    gcodeList[act].info += " closefig "; }
 
-                    Logger.Trace("   {0}",gcodeList[act].codeLine);
+//                    Logger.Trace("   {0}",gcodeList[act].codeLine);
 
                     offType = createOffsetedPath((isFirst++ == 0), (endFigure && !closeFigure), figureStart, prev, act, next, radius, ref offset);
 
-                    Logger.Trace(" typ {0} {1} {2} {3} {4} {5} ", offType, endFigure, figureStart, prev, act, next);
+ //                   Logger.Trace(" typ {0} {1} {2} {3} {4} {5} ", offType, endFigure, figureStart, prev, act, next);
 
                     if (closeFigure)// && !endFigure)
                     {
 
-                        Logger.Trace(" close Figure {0:0.00} {1:0.00}  ", offset[2].X, offset[2].Y);
+  //                      Logger.Trace(" close Figure {0:0.00} {1:0.00}  ", offset[2].X, offset[2].Y);
 
                         gcodeList[figureStart].x = offset[2].X; gcodeList[figureStart].y = offset[2].Y;    // close figure
                         if (gcodeList[figure2nd].motionMode > 1)    // act
@@ -270,7 +270,7 @@ namespace GRBL_Plotter
                                 gcodeList[figure2nd].i = p3.CX - offset[2].X;
                                 gcodeList[figure2nd].j = p3.CY - offset[2].Y;   // offset radius
 
-                                Logger.Trace(" correct Arc center of f2nd {0} origX {1:0.00} origY {2:0.00}  ", figure2nd, p3.CX, p3.CY);
+ //                               Logger.Trace(" correct Arc center of f2nd {0} origX {1:0.00} origY {2:0.00}  ", figure2nd, p3.CX, p3.CY);
 
                             }
                         }
@@ -311,7 +311,7 @@ namespace GRBL_Plotter
             bool isFullCircle = ((p1.X==p2.X)&&(p1.Y==p2.Y));
             int offsetType = crc.getPointOffsets(ref offset, p1, p2, p3, radius, isEnd);
 
-            Logger.Trace(" offset typ{0} x{1:0.000} y{2:0.000}", offsetType, offset[1].X, offset[1].Y);
+ //           Logger.Trace(" offset typ{0} x{1:0.000} y{2:0.000}", offsetType, offset[1].X, offset[1].Y);
 
      /*       if (offsetType == -2)   // intersection not successfull
             {
@@ -340,7 +340,7 @@ namespace GRBL_Plotter
 
             gcodeList[act].x = offset[1].X; gcodeList[act].y = offset[1].Y;         // offset point
 
-            Logger.Trace(" createOffsetedPath Offset x{0:0.000} y{1:0.000}", gcodeList[act].x, gcodeList[act].y);
+  //          Logger.Trace(" createOffsetedPath Offset x{0:0.000} y{1:0.000}", gcodeList[act].x, gcodeList[act].y);
 
             if (isArc)                                                              // offset radius     
             {   double iNew = p2.CX - (double)gcodeList[prev].x;
@@ -368,7 +368,7 @@ namespace GRBL_Plotter
                 else
                     gcodeList[insert].motionMode = 1;
 
-                Logger.Trace(" createOffsetedPath Insert G{0} x{1:0.000} y{2:0.000}", gcodeList[insert].motionMode, gcodeList[insert].x, gcodeList[insert].y);
+   //             Logger.Trace(" createOffsetedPath Insert G{0} x{1:0.000} y{2:0.000}", gcodeList[insert].motionMode, gcodeList[insert].x, gcodeList[insert].y);
 
             }
             return offsetType;
@@ -455,7 +455,7 @@ namespace GRBL_Plotter
             { return posZ; }
             public static double getA()
             { return posA; }
-            public static int Next()
+            public static int Next(ref xyzPoint coord)
             {   if (isIntermediate)
                 {   isIntermediate = calcIntermediatePos(); }
                 if (!isIntermediate)
@@ -464,7 +464,7 @@ namespace GRBL_Plotter
                     {   grbl.posMarker = (xyPoint)codeNext.actualPos;
                         grbl.posMarkerAngle = codeNext.alpha;
                         createMarkerPath(false, (xyPoint)codeNext.actualPos);
-                        return -1;
+                        return -1;		// < 0 = stop
                     }
                     if (remainingStep <= 0)
                         remainingStep += stepWidth;
@@ -479,6 +479,10 @@ namespace GRBL_Plotter
                         createMarkerPath(false, (xyPoint)codeNext.actualPos);
                         posXY = grbl.posMarker;
                         posA = grbl.posMarkerAngle;
+						coord.X = codeNext.actualPos.X;
+                        coord.Y = codeNext.actualPos.Y;
+                        coord.Z = codeNext.actualPos.Z;
+                        coord.A = codeNext.alpha;
                         return codeNext.lineNumber;    
                     }
                     else if (remainingStep > 0)             // move too short, get next gcode
@@ -491,7 +495,7 @@ namespace GRBL_Plotter
                             {   grbl.posMarker = (xyPoint)codeNext.actualPos;
                                 grbl.posMarkerAngle = codeNext.alpha;
                                 createMarkerPath(false, (xyPoint)codeNext.actualPos);
-                                return -codeNext.lineNumber;
+                                return -codeNext.lineNumber;	// < 0 = stop
                             }
                             remainingStep -= distance;
                         }
@@ -503,6 +507,10 @@ namespace GRBL_Plotter
                             createMarkerPath(false, (xyPoint)codeNext.actualPos);
                             posXY = grbl.posMarker;
                             posA = grbl.posMarkerAngle;
+                            coord.X = codeNext.actualPos.X;
+                            coord.Y = codeNext.actualPos.Y;
+                            coord.Z = codeNext.actualPos.Z;
+                            coord.A = codeNext.alpha;
                             return codeNext.lineNumber;   
                         }
                     }
@@ -523,6 +531,10 @@ namespace GRBL_Plotter
                 isPenDownNow = codeNext.motionMode > 0;
                 createSimulationPath(posXY);
                 createMarkerPath(false, posXY);
+				coord.X = posXY.X;
+				coord.Y = posXY.Y;
+				coord.Z = posZ;
+				coord.A = posA;
                 return codeNext.lineNumber;    
             }
 
@@ -757,6 +769,9 @@ namespace GRBL_Plotter
 
                 if ((lastPos.X == newPos.X) && (lastPos.Y == newPos.Y))
                     return;
+
+				if ((simuList == null) || (simuList.Count == 0) || ((maxLine+1) >= simuList.Count))
+					return;
 
                 for (iStart = lastLine; iStart < maxLine; iStart++)
                 {

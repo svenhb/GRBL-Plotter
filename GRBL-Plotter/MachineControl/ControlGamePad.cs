@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 */
 /* https://stackoverflow.com/questions/3929764/taking-input-from-a-joystick-with-c-sharp-net
  * 
+ * 2020-09-02 check joystickGuid before Instantiate the joystick
  * */
 
 using System;
@@ -28,7 +29,7 @@ namespace GRBL_Plotter
     class ControlGamePad
     {
         public static Joystick gamePad;
-        public static void Initialize()
+        public static bool Initialize()
         {
             // Initialize DirectInput
             var directInput = new DirectInput();
@@ -49,20 +50,25 @@ namespace GRBL_Plotter
             {
                 logstring += ("No joystick/Gamepad found.");
             }
+			else
+			{
+				// Instantiate the joystick
+				gamePad = new Joystick(directInput, joystickGuid);
 
-            // Instantiate the joystick
-            gamePad = new Joystick(directInput, joystickGuid);
+				// Query all suported ForceFeedback effects
+				var allEffects = gamePad.GetEffects();
+				foreach (var effectInfo in allEffects)
+					logstring += string.Format("Effect available {0}", effectInfo.Name);
 
-            // Query all suported ForceFeedback effects
-            var allEffects = gamePad.GetEffects();
-            foreach (var effectInfo in allEffects)
-                logstring += string.Format("Effect available {0}", effectInfo.Name);
+				// Set BufferSize in order to use buffered data.
+				gamePad.Properties.BufferSize = 128;
 
-            // Set BufferSize in order to use buffered data.
-            gamePad.Properties.BufferSize = 128;
-
-            // Acquire the joystick
-            gamePad.Acquire();
+				// Acquire the joystick
+				gamePad.Acquire();
+				
+				return true;
+			}
+			return false;
         }
     }
 }

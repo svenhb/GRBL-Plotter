@@ -2065,4 +2065,66 @@ menos estrés para la mecánica</value>
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>Fin de línea individual</value>
   </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Valor de tipo para M19 (ampliado)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Valor de tipo para M15 (cuchillo)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Valor de tipo para D2 (pin)</value>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>Especifique el valor del tipo en la etiqueta de figura del código G</value>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>Importación de Gerber</value>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>Aplicar relleno de sombreado si el objeto está relleno</value>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>Deshabilitar el modo de pausa especial, pasar por M0</value>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>Si está deshabilitado, la transmisión se detendrá en M0 y se guardará el estado del analizador (pero M0 no se enviará al controlador), luego el usuario puede controlar la máquina.
+Después de la pausa, el estado del analizador se restaurará y la transmisión continuará.</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>Muestra el ID del siguiente carácter</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>Mostrar ruta de pem-up</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>Vista 2D</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>Modo de color</value>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>La ruta hacia abajo del lápiz se mostrará en color y ancho como un gráfico importado (SVG o DXF)</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Código G antes del cambio de herramienta</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>El modo de pausa especial permite al usuario utilizar la máquina. Después de finalizar la pausa, se restaurarán las últimas coordenadas del proceso y el estado de la máquina y se continuará la transmisión.
+Mientras que se inicia un feedhold normal M0, sin posibilidad de utilizar la máquina.</value>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>Respuesta de envío simple</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Protocolo de transmisión:</value>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>Cuenta de caracteres</value>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>Propiedades de transmisión</value>
+  </data>
 </root>

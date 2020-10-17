@@ -49,6 +49,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing.Drawing2D;
 using System.Drawing;
+using System.Globalization;
 
 namespace GRBL_Plotter
 {
@@ -70,6 +71,49 @@ namespace GRBL_Plotter
         public static GraphicsPath pathRotaryInfo = new GraphicsPath();
         public static GraphicsPath pathDimension= new GraphicsPath();
         public static GraphicsPath path = pathPenUp;
+		
+        public static GraphicsPath pathActualDown = pathPenDown;
+
+
+		public class pathData
+		{
+			public GraphicsPath path;
+			public Color color;
+			public float width;
+			public Pen pen;
+			public pathData()
+			{	path = new GraphicsPath();
+				color = Properties.Settings.Default.gui2DColorPenDown;
+				width = (float)Properties.Settings.Default.gui2DWidthPenDown;
+				pen = new Pen(color, width);
+			}
+			public pathData(string pencolor, double penwidth)
+			{	path = new GraphicsPath();
+				uint clr = 0;
+//                Logger.Trace("pathData color:{0}  width:{1}",pencolor,penwidth);
+                if (pencolor == "")
+                {   color = Properties.Settings.Default.gui2DColorPenDown; }
+				else if (UInt32.TryParse(pencolor, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out clr))	// try Hex code #00ff00
+				{	clr = clr | 0xff000000;	// remove alpha
+					color = System.Drawing.Color.FromArgb((int)clr);
+				}
+				else
+				{	color = Color.FromName(pencolor);
+					if (color == System.Drawing.Color.FromArgb(0))
+					{	color = Properties.Settings.Default.gui2DColorPenDown; }
+				}
+				
+				width = (float)penwidth;
+				if (width <= 0)
+					width = (float)Properties.Settings.Default.gui2DWidthPenDown;
+				pen = new Pen(color, width);
+				pen.LineJoin = LineJoin.Round;
+				pen.StartCap = LineCap.Round;
+				pen.EndCap = LineCap.Round;				
+			}
+		}
+		public static List<pathData> pathObject = new List<pathData>();
+
 
         public struct pathInfo
         {
@@ -100,7 +144,7 @@ namespace GRBL_Plotter
 
         private static bool tangentialAxisEnable = false;
         private static string tangentialAxisName = "C";
-
+		
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public static bool logEnable = false;
@@ -175,17 +219,25 @@ namespace GRBL_Plotter
             float rx = (float)Properties.Settings.Default.machineLimitsRangeX;
             float ry = (float)Properties.Settings.Default.machineLimitsRangeY;
             float extend = 2 * rx;
+			Matrix matrix = new Matrix();
+			matrix.Scale(1, -1);
+			
             RectangleF pathRect1 = new RectangleF(x1, y1, rx, ry);
             RectangleF pathRect2 = new RectangleF(x1- extend, y1- extend, rx + 2 * extend, ry + 2 * extend); //(float.MinValue, float.MinValue, float.MaxValue, float.MaxValue);
+            RectangleF pathRect3 = new RectangleF(x1, y1-30, rx, ry + 20); //(float.MinValue, float.MinValue, float.MaxValue, float.MaxValue);
             pathMachineLimit.Reset();
             pathMachineLimit.StartFigure();
-            pathMachineLimit.AddRectangle(pathRect1);
+            pathMachineLimit.AddRectangle(pathRect1);			
             pathMachineLimit.AddRectangle(pathRect2);
+    /*        pathMachineLimit.AddRectangle(pathRect3);
+
+            pathMachineLimit.Transform(matrix);
+            pathMachineLimit.AddString("Set limitation in setup", new FontFamily("Arial"), (int)FontStyle.Regular, rx/20, new Point((int)x1,(int)-(y1-10)), StringFormat.GenericDefault);
+			pathMachineLimit.Transform(matrix);
+			*/
             pathToolTable.Reset();
             if ((toolTable != null) && (toolTable.Length >= 1))
             {
-                Matrix matrix = new Matrix();
-                matrix.Scale(1, -1);
                 float wx, wy;
                 foreach (toolPos tpos in toolTable)
                 {
@@ -274,7 +326,7 @@ namespace GRBL_Plotter
             string singleLine;
             modal = new modalGroup();               // clear
 
-            Logger.Trace("getGCodeLines count:{0}",GCode.Count());
+//            Logger.Trace("getGCodeLines count:{0}",GCode.Count());
 
             gcodeList = new List<gcodeByLine>();    //.Clear();
             simuList = new List<gcodeByLine>();    //.Clear();
@@ -284,6 +336,10 @@ namespace GRBL_Plotter
             clearDrawingnPath();                    // reset path, dimensions
             figureMarkerCount = 0;
             lastFigureNumber = -1;
+
+	//		codeContainsXMLGroup = false;
+	//		codeContainsXMLFigure= false;
+			pathActualDown = null;
 
             bool figureActive = false;
             gcodeMinutes = 0;
@@ -312,23 +368,22 @@ namespace GRBL_Plotter
                 modal.resetSubroutine();                            // reset m, p, o, l Word
                 singleLine = GCode[lineNr].ToUpper().Trim();        // get line, remove unneeded chars
 
-//                Logger.Trace(" Process: {0}", GCode[lineNr]);
-
                 if (processSubs && programEnd)
                 { singleLine = "( " + singleLine + " )"; }          // don't process subroutine itself when processed
 
                 newLine.parseLine(lineNr, singleLine, ref modal);
                 xyPosChanged = calcAbsPosition(newLine, oldLine);                  // Calc. absolute positions and set object dimension: xyzSize.setDimension
 
+/* Process Group marker */
                 if (GCode[lineNr].Contains(xmlMarker.groupStart))                   // check if marker available
                 {
                     string clean = GCode[lineNr].Replace("'", "\"");
                     figureMarkerCount++;
                     xmlMarker.AddGroup(lineNr, clean, figureMarkerCount);
                     figureActive = true;
-                    if (logCoordinates) Logger.Trace(" Set Group figureMarkerCount:{0}", figureMarkerCount);
+                    if (logCoordinates) Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, GCode[lineNr]);
 				}
-
+/* Process Figure marker */
                 if (GCode[lineNr].Contains(xmlMarker.figureStart))                  // check if marker available
                 {   if (!figureActive)
                         figureMarkerCount++;
@@ -337,7 +392,12 @@ namespace GRBL_Plotter
                     xyPosChanged = false;
                     string clean = GCode[lineNr].Replace("'", "\"");
                     xmlMarker.AddFigure(lineNr, clean, figureMarkerCount);
-                    if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}", figureMarkerCount);
+                    if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, GCode[lineNr]);
+					if(Properties.Settings.Default.gui2DColorPenDownModeEnable)	// enable color mode
+					{ 	pathData tmp = new pathData(xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);		// set color, width, pendownpath
+						pathObject.Add(tmp);
+						pathActualDown = pathObject[pathObject.Count -1].path;
+					}					
                 }
                 if (GCode[lineNr].Contains(xmlMarker.tangentialAxis))                    
                 {   tangentialAxisEnable = true;
@@ -398,14 +458,17 @@ namespace GRBL_Plotter
                     else
                         findAddSubroutine(modal.pWord, GCode, modal.lWord, processSubs);      // scan complete GCode for matching O-word
                 }
-
+/* Process Figure end */
                 if (GCode[lineNr].Contains(xmlMarker.figureEnd))                    // check if marker available
                 {   figureActive = false;
                     xmlMarker.tmpFigure.posEnd = (xyPoint)newLine.actualPos;
                     xmlMarker.FinishFigure(lineNr);
+					pathActualDown = null;
                 }
+/* Process Group end */
                 if (GCode[lineNr].Contains(xmlMarker.groupEnd))                    // check if marker available
-                {   xmlMarker.FinishGroup(lineNr); }
+                {   xmlMarker.FinishGroup(lineNr); 
+				}
 
             }   // finish reading lines
 
@@ -1294,6 +1357,7 @@ namespace GRBL_Plotter
             pathMarker.Reset();
             pathMarkSelection.Reset();
             Simulation.pathSimulation.Reset();
+			pathObject.Clear();
             path = pathPenUp;
             onlyZ = 0;
             figureCount = 0;
@@ -1309,9 +1373,7 @@ namespace GRBL_Plotter
         private static bool createDrawingPathFromGCode(gcodeByLine newL, gcodeByLine oldL)
         {
             bool passLimit = false;
-//            bool figureStart = false;
             var pathOld = path;
-//            bool xyMove = ((newL.x != null) || (newL.y != 0));
 
             if (newL.isSubroutine && (!oldL.isSubroutine))
                 markPath(pathPenUp, (float)newL.actualPos.X, (float)newL.actualPos.Y, 2); // 2=rectangle
@@ -1319,19 +1381,17 @@ namespace GRBL_Plotter
             if (!newL.ismachineCoordG53)
             {
                 if (((newL.motionMode > 0) && (oldL.motionMode == 0)) || (newL.actualPos.Z < 0))  // G0 = PenUp
-                { path = pathPenDown; path.StartFigure(); }
+                { 	path = pathPenDown; 
+					path.StartFigure();
+                    if (pathActualDown != null)
+                        pathActualDown.StartFigure();
+                }
                 if (((newL.motionMode == 0) && (oldL.motionMode > 0)) || (newL.actualPos.Z > 0))
                 {   path = pathPenUp; path.StartFigure();
                     tempPathInfo = new pathInfo();
                     tempPathInfo.position = new PointF((float)newL.actualPos.X, (float)newL.actualPos.Y);
                     tempPathInfo.angle = gcodeMath.getAlpha((xyPoint)oldL.actualPos, (xyPoint)newL.actualPos);
-      //              addArrow(pathPenUp, oldL, newL, figureCount+1);
                 }
-
-                /*      if ((newL.z != null) && (newL.actualPos.Z < 0))         // Z > 0 = PenUp
-                      { path = pathPenDown; path.StartFigure(); }
-                      if ((newL.z != null) && (newL.actualPos.Z > 0))
-                      { path = pathPenUp; path.StartFigure(); }*/
 
             if ((path != pathOld))
                 {
@@ -1346,7 +1406,6 @@ namespace GRBL_Plotter
 
                     if (path == pathPenDown)    // this means pathPenUp ended
                     {
-                        //                       figureStart = true;
                         if (figureMarkerCount <= 0)
                         {
                             if (pathPenDown.PointCount > 0)
@@ -1399,6 +1458,8 @@ namespace GRBL_Plotter
                             }
                         }
                         path.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
+						if ((path == pathPenDown) && (pathActualDown != null))
+							pathActualDown.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
                         onlyZ = 0;  // x or y has changed
                     }
                     if (newL.actualPos.Z != oldL.actualPos.Z)  //else
@@ -1411,6 +1472,8 @@ namespace GRBL_Plotter
                         if (!Properties.Settings.Default.importUnitmm)
                         { markerSize /= 25.4F; }
                         createMarker(pathPenDown, (xyPoint)newL.actualPos, markerSize, 1, false);       // draw cross
+                        if ((path == pathPenDown) && (pathActualDown != null))
+                            createMarker(pathActualDown, (xyPoint)newL.actualPos, markerSize, 1, false);       // draw cross
                         createMarker(pathPenUp, (xyPoint)newL.actualPos, markerSize, 4, false);       // draw circle
                         path = pathPenUp;
                         onlyZ = 0;
@@ -1436,7 +1499,10 @@ namespace GRBL_Plotter
                     float aStart = (float)(arcMove.angleStart * 180 / Math.PI);
                     float aDiff = (float)(arcMove.angleDiff * 180 / Math.PI);
                     if (arcMove.radius > 0)
-                        path.AddArc(x1, y1, r2, r2, aStart, aDiff);
+                    {   path.AddArc(x1, y1, r2, r2, aStart, aDiff);
+						if ((path == pathPenDown) && (pathActualDown != null))
+							pathActualDown.AddArc(x1, y1, r2, r2, aStart, aDiff);			
+					}
                     else
                     {   if (errorString.Length == 0) errorString += "ERROR ";
                         errorString += string.Format("Line:{0} radius=0 '{1}' | ", (newL.lineNumber + 1), newL.codeLine);
@@ -1453,7 +1519,6 @@ namespace GRBL_Plotter
             return true;// figureStart;
         }
 
-  //      private static void addArrow(GraphicsPath path, gcodeByLine p1, gcodeByLine p2, int id)
         private static void addArrow(GraphicsPath path, PointF p2, double angle, string info, bool showArrow, bool showInfo)
         {
             double msize = (float)Math.Max(Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 80f, 0.5);
@@ -1589,6 +1654,7 @@ namespace GRBL_Plotter
         public static void createMarkerPath(bool showCenter, xyPoint center, xyPoint last)
         {
             float msize = (float) Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 40f;
+            msize = Math.Max(msize, 2);
 //            createMarker(pathTool,   (xyPoint)grbl.posWork, msize, 2);
 
             if (tangentialAxisEnable)

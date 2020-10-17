@@ -35,7 +35,7 @@ namespace GRBL_Plotter
             //      SetRange_ValueChanged(sender, e);
             Location = Properties.Settings.Default.locationStreamForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
+            if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
             tBOverrideFR.Minimum = (int)nUDOverrideFRBtm.Value;
             tBOverrideFR.Maximum = (int)nUDOverrideFRTop.Value;

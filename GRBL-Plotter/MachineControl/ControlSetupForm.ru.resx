@@ -2133,4 +2133,66 @@ min X, min Y и max Z.
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>Конец отдельной строки</value>
   </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Типовое значение для M19 (расширенное)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Типовое значение для M15 (нож)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Значение типа для D2 (контакт)</value>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>Укажите значение типа в теге цифры G-кода</value>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>Гербер импорт</value>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>Применить заливку штриховкой, если объект залит</value>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>Отключить режим специальной паузы, пройти через M0</value>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>Если этот параметр отключен, потоковая передача будет остановлена на M0, и состояние анализатора будет сохранено (но M0 не будет отправлять в контроллер), тогда пользователь может управлять машиной.
+После паузы состояние парсера будет восстановлено и потоковая передача продолжится.</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>Отображает идентификатор следующего символа</value>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>Показать путь улучшения</value>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>2D вид</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>Цветовой режим</value>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>Путь вниз пером будет показан в цвете и ширине, как импортированная графика (SVG или DXF).</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>G-код перед сменой инструмента</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Специальный режим паузы позволяет пользователю использовать машину. После завершения паузы последняя координата процесса и состояние станка будут восстановлены, а потоковая передача продолжится.
+В то время как нормальный M0 запускается, без возможности использовать машину.</value>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>Простой отправка-ответ</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Протокол потоковой передачи:</value>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>Подсчет символов</value>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>Потоковые свойства</value>
+  </data>
 </root>

@@ -57,7 +57,10 @@ namespace GRBL_Plotter
         public void set2ndSerial(ControlSerialForm handle = null)
         {   _serial_form2 = handle;
             if (handle != null)
+            {
                 _serial_form2.RaisePosEvent += OnRaisePosEvent;
+                Logger.Trace("add handler RaisePosEvent");
+            }
         }
 
         // send command via serial form

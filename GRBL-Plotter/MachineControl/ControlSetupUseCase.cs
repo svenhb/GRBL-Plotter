@@ -62,7 +62,7 @@ namespace GRBL_Plotter
             Logger.Trace("▄▄▄▄▄▄▄ Load use case: '{0}'", path);
             MyIni.ReadAll();    // ReadImport();
             Properties.Settings.Default.useCaseLastLoaded = lBUseCase.Text; ;
-            lblLastUseCase.Text = lBUseCase.Text;
+            lblLastUseCase.Text = Path.GetFileName(path);
 
             bool laseruse = Properties.Settings.Default.importGCSpindleToggleLaser;
             float lasermode = grbl.getSetting(32);

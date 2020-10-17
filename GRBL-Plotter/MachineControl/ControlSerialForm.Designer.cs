@@ -54,6 +54,8 @@ namespace GRBL_Plotter
             this.btnScanPort = new System.Windows.Forms.Button();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pasteCodeFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnGRBLCommand0 = new System.Windows.Forms.Button();
@@ -88,7 +90,9 @@ namespace GRBL_Plotter
             this.tBURL = new System.Windows.Forms.TextBox();
             this.btnCheckGRBLResult = new System.Windows.Forms.Button();
             this.cBTelnet = new System.Windows.Forms.CheckBox();
-            this.timerSerial = new System.Windows.Forms.Timer(this.components);
+            this.copySelectionToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -138,8 +142,24 @@ namespace GRBL_Plotter
             // 
             // rtbLog
             // 
+            this.rtbLog.ContextMenuStrip = this.contextMenuStrip1;
             resources.ApplyResources(this.rtbLog, "rtbLog");
             this.rtbLog.Name = "rtbLog";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteCodeFromClipboardToolStripMenuItem,
+            this.copySelectionToClipboardToolStripMenuItem,
+            this.selectAllToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
+            // 
+            // pasteCodeFromClipboardToolStripMenuItem
+            // 
+            this.pasteCodeFromClipboardToolStripMenuItem.Name = "pasteCodeFromClipboardToolStripMenuItem";
+            resources.ApplyResources(this.pasteCodeFromClipboardToolStripMenuItem, "pasteCodeFromClipboardToolStripMenuItem");
+            this.pasteCodeFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteCodeFromClipboardToolStripMenuItem_Click);
             // 
             // btnClear
             // 
@@ -387,15 +407,23 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.cBTelnet, "cBTelnet");
             this.cBTelnet.Name = "cBTelnet";
             // 
-            // timerSerial
+            // copySelectionToClipboardToolStripMenuItem
             // 
-            this.timerSerial.Interval = 500;
-            this.timerSerial.Tick += new System.EventHandler(this.timerSerial_Tick);
+            this.copySelectionToClipboardToolStripMenuItem.Name = "copySelectionToClipboardToolStripMenuItem";
+            resources.ApplyResources(this.copySelectionToClipboardToolStripMenuItem, "copySelectionToClipboardToolStripMenuItem");
+            this.copySelectionToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectionToClipboardToolStripMenuItem_Click);
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // ControlSerialForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.btnScanPort);
             this.Controls.Add(this.cBTelnet);
             this.Controls.Add(this.btnGRBLCmndBuild);
@@ -415,11 +443,13 @@ namespace GRBL_Plotter
             this.Controls.Add(this.btnOpenPort);
             this.Controls.Add(this.cbBaud);
             this.Controls.Add(this.cbPort);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "ControlSerialForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SerialForm_FormClosing);
             this.Load += new System.EventHandler(this.SerialForm_Load);
             this.Resize += new System.EventHandler(this.SerialForm_Resize);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -441,7 +471,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolTip toolTipSerial;
         private System.Windows.Forms.Button btnGRBLCommand2;
         private System.Windows.Forms.Button btnGRBLCommand3;
-        private System.Windows.Forms.Timer timerSerial;
+//        private System.Windows.Forms.Timer timerSerial;
         private System.Windows.Forms.Button btnGRBLCommand4;
         private System.Windows.Forms.Button btnGRBLReset;
         private System.Windows.Forms.Label lblSrState;
@@ -469,5 +499,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBTelnet;
         private System.Windows.Forms.TextBox tBURL;
         private System.Windows.Forms.CheckBox cBStatus1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem pasteCodeFromClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copySelectionToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
     }
 }
