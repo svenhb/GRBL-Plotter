@@ -1,0 +1,36 @@
+----- Possible levels: Trace, Debug, Info, Warn, Error, Fatal ----|
+
+2020-10-17 16:37:23.3011 | Info  | GRBL_Plotter.MainForm          | ###### GRBL-Plotter Ver. 1.5.2.0 START ######
+2020-10-17 16:37:24.4801 | Info  | GRBL_Plotter.MainForm          | Language: en
+2020-10-17 16:37:26.4171 | Info  | GRBL_Plotter.MainForm          | MainForm_Load start
+2020-10-17 16:37:27.3741 | Trace | GRBL_Plotter.MainForm          | loadHotkeys
+2020-10-17 16:37:27.4251 | Trace | GRBL_Plotter.MainForm          | LoadRecentList
+2020-10-17 16:37:27.4441 | Trace | GRBL_Plotter.MainForm          | LoadExtensionList
+2020-10-17 16:37:27.4441 | Trace | GRBL_Plotter.MainForm          |   - Add Extension GCode_Conic_Spiral.hta
+2020-10-17 16:37:27.4561 | Trace | GRBL_Plotter.MainForm          |   - Add Extension GCode_Nut_Recess.hta
+2020-10-17 16:37:27.4561 | Trace | GRBL_Plotter.MainForm          |   - Add Extension GCode_Spherical_Bowl.hta
+2020-10-17 16:37:27.4561 | Trace | GRBL_Plotter.MainForm          |   - Add Extension SVG_simple_example.html
+2020-10-17 16:37:27.8671 | Info  | GRBL_Plotter.checkUpdate       | CheckVersion
+2020-10-17 16:37:27.9211 | Trace | GRBL_Plotter.toolTable         | Init tool table
+2020-10-17 16:37:27.9571 | Trace | GRBL_Plotter.MainForm          | MainForm_Load finish, start splashScreen timer
+2020-10-17 16:37:29.5061 | Info  | GRBL_Plotter.ControlSerialForm | ====== SerialForm 1 COM CNC START ======
+2020-10-17 16:37:29.6711 | Info  | GRBL_Plotter.ControlSerialForm | Ser:1, openPort COM3 115200
+2020-10-17 16:37:29.6761 | Warn  | GRBL_Plotter.ControlSerialForm | Ser:1, Port COM3 not available
+2020-10-17 16:37:29.6761 | Trace | GRBL_Plotter.ControlSerialForm | resetVariables
+2020-10-17 16:37:29.7251 | Info  | GRBL_Plotter.MainForm          | ++++++ MainForm SplashScreen closed          -> mainTimer:3
+2020-10-17 16:37:29.9671 | Trace | GRBL_Plotter.checkUpdate       |  Vers.:1.5.2.0  ID:3e4d80cfe9bd5b56e98d00de0b7ff23b37d721ec  LangSet:en  LangOri:de-DE  url:https://GRBL-Plotter.de
+2020-10-17 16:37:31.0180 | Trace | GRBL_Plotter.checkUpdate       |  getCounters import 1-80-0-0-0-0-0_0-0-0-0-0  gc,svg,dxf,hpgl,csv,drill,gerber _ img,barc,txt,shape,ext
+2020-10-17 16:37:31.0180 | Trace | GRBL_Plotter.checkUpdate       |  getCounters usage 19-70-0   laser,probe,height
+2020-10-17 16:37:31.0180 | Trace | GRBL_Plotter.checkUpdate       | CheckSite2 https://GRBL-Plotter.de/GRBL-Plotter.php?vers=1.5.2.0&hwid=3e4d80cfe9bd5b56e98d00de0b7ff23b37d721ec&langset=en&langori=de-DE&import=1-80-0-0-0-0-0_0-0-0-0-0&usage=19-70-0
+2020-10-17 16:37:31.2680 | Trace | GRBL_Plotter.checkUpdate       | CheckSite2 1.5.1.0 |  |  | 
+
+2020-10-17 16:37:31.2680 | Info  | GRBL_Plotter.checkUpdate       | CheckVersion: current:1.5.2.0 latest:1.5.1.0  info:
+2020-10-17 16:37:32.7380 | Info  | GRBL_Plotter.MainForm          | ++++++ MainForm SplashScreen Timer disabled  -> mainTimer:10
+2020-10-17 16:37:32.7380 | Trace | GRBL_Plotter.MainForm          | updateControls isConnected:False isStreaming:False allowControl:False 
+2020-10-17 16:37:32.8200 | Trace | GRBL_Plotter.MainForm          | updateLayout()
+2020-10-17 16:37:33.0080 | Trace | GRBL_Plotter.MainForm          | loadHotkeys
+2020-10-17 16:37:36.8170 | Trace | GRBL_Plotter.ControlSerialForm | ====== Try closing SerialForm 1 FormOwnerClosing
+2020-10-17 16:37:37.6780 | Info  | GRBL_Plotter.ControlSerialForm | ====== SerialForm 1 STOP ======
+2020-10-17 16:37:37.6780 | Trace | GRBL_Plotter.MainForm          | ###### FormClosing 
+2020-10-17 16:37:38.0610 | Info  | GRBL_Plotter.MainForm          | ###### GRBL-Plotter STOP ######
+2020-10-17 16:37:38.0610 | Info  | GRBL_Plotter.MainForm          | ###+++ GRBL-Plotter FormClosed +++###
