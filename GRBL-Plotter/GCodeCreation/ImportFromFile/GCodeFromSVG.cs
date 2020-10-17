@@ -396,7 +396,7 @@ namespace GRBL_Plotter
                 }
 
                 ParseTransform(groupElement,true, level);   // transform will be applied in gcodeMove
-                ParseAttributs(groupElement);               // process color and stroke-dasharray
+                ParseAttributs(groupElement, true);               // process color and stroke-dasharray
                 ParseBasicElements(groupElement, level);
                 ParsePath(groupElement, level);
                 ParseGroup(groupElement, level+1);
@@ -407,8 +407,10 @@ namespace GRBL_Plotter
         /// <summary>
         /// Parse stroke attributes
         /// </summary>
-        private static void ParseAttributs(XElement element)
+        private static void ParseAttributs(XElement element, bool isGroup = false)
         {
+            if (isGroup) Graphic.SetDash(new double[0]);     // clear dash
+
             if (element.Attribute("style") != null)
             {   string pathColor = GetStyleProperty(element, "stroke");
                 logSource = "ParseAttributs: pathColor";

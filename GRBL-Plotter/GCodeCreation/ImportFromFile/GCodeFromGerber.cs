@@ -35,8 +35,10 @@
 /*
  * 2020-07-31 Implementation https://www.ucamco.com/files/downloads/file/81/the_gerber_file_format_specification.pdf
                 https://d1.amobbs.com/bbs_upload782111/files_11/ourdev_450330.pdf
+	            https://github.com/rsmith-nl/nctools/blob/master/doc/GERBER.pdf
 
  * 2020-08-15 if aperture is applied (D10...) lines will be drawn as elongated hole segments, applying apertures-radius
+ * seperate M19 'advanced' (for notch) to get closed path
  */
 
 using System;
@@ -79,6 +81,16 @@ namespace GRBL_Plotter
 		private static bool OutstandingStartPath = false;
         private static bool SetStartCoordinate = false;
         private static Point StartCoordinate = new Point();
+        private static Point lastMove = new Point();
+
+        private static bool handleM19 = true;
+	//	private static string colorDefault = "black";
+	//	private static string colorM19 = "red";
+		
+		private static string geometryPen = "pen";
+		private static string geometryKnife = "knife";
+		private static string geometryM19 = "notch";
+
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -86,7 +98,6 @@ namespace GRBL_Plotter
         private static bool logEnable = false;
         private static bool logDetailed = false;
         private static bool logCoordinate = false;
-
 
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
@@ -144,6 +155,11 @@ namespace GRBL_Plotter
             numberFormatFY = 5;
             actualAperture = new aperture();
             apertures = new Dictionary<string, aperture>();
+			
+			handleM19 = Properties.Settings.Default.importGerberTypeEnable;		
+			geometryPen = Properties.Settings.Default.importGerberTypePen;		
+			geometryKnife = Properties.Settings.Default.importGerberTypeKnife;
+			geometryM19 = Properties.Settings.Default.importGerberTypeM19;
 
             messageList.Clear();
 
@@ -290,12 +306,12 @@ namespace GRBL_Plotter
                                 SetStartCoordinate = false;
                                 if (logDetailed) Logger.Trace("   SetStartCoordinate {0:0.00}  {1:0.00}", StartCoordinate.X, StartCoordinate.Y);
                             }
-                            if (OutstandingStartPath && (actualAperture.apType == aperture.type.none))   // if D1 was in prev line
+                            if (OutstandingStartPath && ((actualAperture.apType == aperture.type.none) || (actualAperture.XSize == 0)))   // if D1 was in prev line
                             {   penDown(StartCoordinate); }
 
-							if (isPenDown && !d1IsGivenInCommand)	// move to next coordinate
-							{   Draw();		}
-						}
+                            if (isPenDown && !d1IsGivenInCommand)   // move to next coordinate
+                            {   Draw(); }
+                        }
                     }
                 }
             }
@@ -315,7 +331,7 @@ namespace GRBL_Plotter
             if (token.Length == 1)
             {
                 if (command == 'A') {processD(2);};  	// knife up
-                if (command == 'B') {processD(1);}  	// knife down
+                if (command == 'B') {setType(geometryKnife);processD(1);}  	// knife down
                 return;
             }
             string val = token.Substring(1);
@@ -332,7 +348,9 @@ namespace GRBL_Plotter
                 else if (command == 'D')
                 {
                     if (value < 10)
-                        processD(value);
+                    {   setType(geometryPen);
+						processD(value);
+					}
                     else
                     {
                         if (apertures.ContainsKey(token))
@@ -381,165 +399,19 @@ namespace GRBL_Plotter
             }
         }
 
-        private static void penUp()
-        {
-            if (logDetailed) Logger.Trace("----penUp()  isPenDown:{0}", isPenDown);
-            if (isPenDown)
-                Graphic.StopPath();
-            isPenDown = false;
-        }
-
-        private static void penDown(Point tmp)
-        {
-            //Point tmp = scalePosition(setX, setY);
-            if (logDetailed) Logger.Trace("++++penDown()  X:{0:0.000}  Y:{1:0.000} isPenDown:{2}", tmp.X, tmp.Y, isPenDown);
-            if (!isPenDown)
-                Graphic.StartPath(tmp);
-            else
-            {
-                Graphic.StopPath();
-                Graphic.StartPath(tmp);
-            }
-            isPenDown = true;
-            shapeCounter++;
-            Graphic.SetGeometry("Gerber_"+shapeCounter.ToString());
-			OutstandingStartPath = false;
-        }
-
-        private static void Draw()
-		{
-            Point tmp = scalePosition(setX, setY);
-            if (logDetailed) Logger.Trace("++++Draw()     X:{0:0.000}  Y:{1:0.000} isPenDown:{2}  gMode:{3}", tmp.X, tmp.Y, isPenDown, gMode);
-
-            if (gMode == 1)
-			{	if (actualAperture.apType == aperture.type.none)
-				{	if (logCoordinate) Logger.Trace("....AddLine    X:{0:0.000}  Y:{1:0.000} ", tmp.X, tmp.Y);
-					Graphic.AddLine(tmp); isPenDown = true;                    
-				}
-				else
-					drawSlotLine(StartCoordinate, tmp, actualAperture.XSize);
-			}        // move to with pen down
-			else
-			{
-				if (actualAperture.apType == aperture.type.none)
-				{	if (logCoordinate) Logger.Trace("....AddArc     X:{0:0.000}  Y:{1:0.000}  I:{2:0.00}  J:{3:0.00} ", tmp.X, tmp.Y, setI, setJ);
-					Graphic.AddArc((gMode==2), tmp, scalePosition(setI, setJ));                    
-				}
-				else
-					drawSlotArc(StartCoordinate, (gMode==2), tmp, scalePosition(setI, setJ), actualAperture.XSize);
-			}
-		}
-		
-        private static void drawSlotArc(Point pStart, bool isCW, Point pEnd, Point IJ, double xInch)
-		{
-            double r = scaleValue(xInch)/2;
-            Point center = sub(pEnd, IJ);
-			double angle = gcodeMath.getAlpha(center, pStart); 
-			Point p1out = calcOffsetPoint(pStart, angle, r);
-			Point p1in  = calcOffsetPoint(pStart, angle-Math.PI, r);
-			
-			angle = gcodeMath.getAlpha(center, pEnd); 			
-			Point p2out = calcOffsetPoint(pEnd, angle, r);
-			Point p2in  = calcOffsetPoint(pEnd, angle-Math.PI, r);
-			
-			// isCW?
-			
-            Graphic.StopPath();
-            Graphic.StartPath(p1out);
-			Graphic.AddArc(true, p2out, sub(pEnd,p2out));
-			Graphic.AddArc(true, p2in, sub(pEnd , p2out));                    
-			Graphic.AddArc(true, p1in, sub(pStart, p2in));
-			Graphic.AddArc(true, p1out, sub(pStart, p1in));                    
-            Graphic.StopPath();
-				
-			StartCoordinate = pEnd;
-		}
-        private static void drawSlotLine(Point pStart, Point pEnd, double xInch)
-		{
-            double r = scaleValue(xInch)/2;
-            Logger.Trace("drawSlotLine pStart:x:{0:0.00} y:{1:0.00}  pEnd:x:{2:0.00} y:{3:0.00}  r:{4:0.00} ", pStart.X, pStart.Y, pEnd.X, pEnd.Y, r);
-            double quarter = Math.PI/2;
-			double angle = gcodeMath.getAlpha(pStart, pEnd); 
-			Point p1l = calcOffsetPoint(pStart, angle+quarter, r);
-            Point p1r = calcOffsetPoint(pStart, angle - quarter, r);
-            Point p2l = calcOffsetPoint(pEnd, angle+quarter, r);
-			Point p2r = calcOffsetPoint(pEnd, angle-quarter, r);
-
-            Logger.Trace(" drawSlotLine pStart:x:{0:0.00} y:{1:0.00}  p1l:x:{2:0.00} y:{3:0.00}  p1r:x:{4:0.00} y:{5:0.00}  ",pStart.X,pStart.Y,p1l.X,p1l.Y,p1r.X,p1r.Y);
-			
-            Graphic.StopPath();
-            Graphic.StartPath(p1l);
-			Graphic.AddLine(p2l);
-			Graphic.AddArc(true, p2r, sub(pEnd,p2l));                    
-			Graphic.AddLine(p1r);
-			Graphic.AddArc(true, p1l, sub(pStart,p1r));                    
-            Graphic.StopPath();
-				
-			StartCoordinate = pEnd;
-		}
-        private static Point sub(Point a, Point b)
-        {
-            return new Point(a.X-b.X,a.Y-b.Y);
-        }
-		
-        private static Point calcOffsetPoint(Point P, double angle, double radius)
-        {
-            Point tmp = new Point();
-            tmp.X = P.X + Math.Cos(angle) * radius;
-            tmp.Y = P.Y + Math.Sin(angle) * radius;
-            return tmp;
-        }
-
-		
-        private static void applyApertureShape()
-        {   double tmpX, tmpY, diameter;
-            Point startPos = scalePosition(setX, setY);
-            tmpX = actualAperture.XSize;
-            tmpY = actualAperture.YSize;
-            diameter = actualAperture.HoleDiameter;
-            if (logDetailed) Logger.Trace("    Dot: applyApertureShape() {0}", actualAperture.apType.ToString());
-
-            if (actualAperture.apType == aperture.type.Circle)
-            {
-                tmpX /= 2;
-                Graphic.StartPath(scalePosition(setX + tmpX, setY));
-                Graphic.AddCircle(2, startPos.X, startPos.Y, scaleValue( tmpX));
-                Graphic.StopPath();
-            }
-            else if (actualAperture.apType == aperture.type.Rectangle)
-            {
-                tmpX /= 2; tmpY /= 2;
-                Graphic.StartPath(scalePosition(setX - tmpX, setY - tmpY));
-                Graphic.AddLine(scalePosition(setX - tmpX, setY + tmpY));
-                Graphic.AddLine(scalePosition(setX + tmpX, setY + tmpY));
-                Graphic.AddLine(scalePosition(setX + tmpX, setY - tmpY));
-                Graphic.AddLine(scalePosition(setX - tmpX, setY - tmpY));
-                Graphic.StopPath();
-            }
-            else if (actualAperture.apType == aperture.type.Octagon)
-            {
-                tmpX /= 2; tmpY /= 2;
-                Graphic.StartPath(scalePosition(setX - tmpX, setY - tmpY));
-                Graphic.AddLine(scalePosition(setX - tmpX, setY + tmpY));
-                Graphic.AddLine(scalePosition(setX + tmpX, setY + tmpY));
-                Graphic.AddLine(scalePosition(setX + tmpX, setY - tmpY));
-                Graphic.AddLine(scalePosition(setX - tmpX, setY - tmpY));
-                Graphic.StopPath();
-            }
-
-        }
-
         private static void processD(int value)
         {
             if (logDetailed) Logger.Trace("....processD {0}", value);
 
             if (value == 1)				// D1 Pen down
             {	d1IsGivenInCommand = true;
-				if (xyIsGivenInCommand)	// no XY? Wait until XY is given
+
+                if (xyIsGivenInCommand)	// no XY? Wait until XY is given
                 {
-					if (!isPenDown && (actualAperture.apType == aperture.type.none))		// Pen is not down? First start path
-					{	penDown(StartCoordinate);}
-					Draw();	  
+					if (!isPenDown && ((actualAperture.apType == aperture.type.none) || (actualAperture.XSize == 0)))
+					{	penDown(StartCoordinate); }
+						
+					Draw();	 					
 				}
 				else
 					OutstandingStartPath = true;
@@ -564,9 +436,184 @@ namespace GRBL_Plotter
         private static void processM(int value)
         {
             if (logEnable) Logger.Trace("....processM {0}", value);
-            if (value == 14) {processD(1);}	//penDown();     // knife down - same as B
-            if (value == 15) {processD(2);}	//penUp();       // knife up - same as A
+            if (value == 14) {setType(geometryKnife); processD(1);}	//knife down - same as B
+            if (value == 15) {processD(2);}							//knife up - same as A
+			
+			if (value == 19) 
+			{
+				Graphic.StopPath(); isPenDown = false;
+                setType(geometryM19);
+				//Graphic.StartPath(lastMove);	// start at last position
+                penDown(lastMove);
+                isPenDown = true;
+            }
         }
+
+		private static void setType(string geometry)
+		{	if (handleM19)
+//				Graphic.SetPenColor(geometry);
+				if (logDetailed) Logger.Trace("    setType {0}",geometry);
+                Graphic.SetType(geometry);
+//                Graphic.SetGeometry(geometry);
+        }
+
+        private static void penUp()
+        {
+            if (logDetailed) Logger.Trace("----penUp()  isPenDown:{0}", isPenDown);
+            if (isPenDown)
+                Graphic.StopPath();
+            isPenDown = false;
+        }
+
+        private static void penDown(Point tmp)
+        {
+			string geo = "Gerber_"+shapeCounter.ToString();
+//            Graphic.SetGeometry(geo);
+            if (logDetailed) Logger.Trace("++++penDown()  X:{0:0.000}  Y:{1:0.000} isPenDown:{2}  geometry:{3}", tmp.X, tmp.Y, isPenDown, geo);
+
+            if (!isPenDown)
+            {   Graphic.StartPath(tmp); }
+            else
+            {   Graphic.StopPath();
+                Graphic.StartPath(tmp);
+            }
+            isPenDown = true;
+            shapeCounter++;
+			OutstandingStartPath = false;
+        }
+
+        private static void Draw()
+		{
+            Point tmp = scalePosition(setX, setY);
+            if (logDetailed) Logger.Trace("++++Draw()     X:{0:0.000}  Y:{1:0.000} isPenDown:{2}  gMode:{3}", tmp.X, tmp.Y, isPenDown, gMode);
+
+            if (gMode == 1)
+			{	if ((actualAperture.apType == aperture.type.none) || (actualAperture.XSize == 0))
+				{	if (logCoordinate) Logger.Trace("....AddLine    X:{0:0.000}  Y:{1:0.000} ", tmp.X, tmp.Y);
+					Graphic.AddLine(tmp); isPenDown = true;                    
+				}
+				else
+					drawSlotLine(StartCoordinate, tmp, actualAperture.XSize);
+			}        // move to with pen down
+			else
+			{
+				if ((actualAperture.apType == aperture.type.none) || (actualAperture.XSize == 0))
+				{	if (logCoordinate) Logger.Trace("....AddArc     X:{0:0.000}  Y:{1:0.000}  I:{2:0.00}  J:{3:0.00} ", tmp.X, tmp.Y, setI, setJ);
+					Graphic.AddArc((gMode==2), tmp, scalePosition(setI, setJ));                    
+				}
+				else
+					drawSlotArc(StartCoordinate, (gMode==2), tmp, scalePosition(setI, setJ), actualAperture.XSize);
+			}
+            lastMove = tmp;
+		}
+		
+        private static void drawSlotArc(Point pStart, bool isCW, Point pEnd, Point IJ, double xInch)
+		{
+            double r = scaleValue(xInch)/2;
+            if (logCoordinate) Logger.Trace("drawSlotArc pStart:x:{0:0.00} y:{1:0.00}  pEnd:x:{2:0.00} y:{3:0.00}  r:{4:0.00} ", pStart.X, pStart.Y, pEnd.X, pEnd.Y, r);
+            Point center = sub(pEnd, IJ);
+			double angle = gcodeMath.getAlpha(center, pStart); 
+			Point p1out = calcOffsetPoint(pStart, angle, r);
+			Point p1in  = calcOffsetPoint(pStart, angle-Math.PI, r);
+			
+			angle = gcodeMath.getAlpha(center, pEnd); 			
+			Point p2out = calcOffsetPoint(pEnd, angle, r);
+			Point p2in  = calcOffsetPoint(pEnd, angle-Math.PI, r);
+			
+			// isCW?
+			
+            Graphic.StopPath(); isPenDown = false;
+            //Graphic.StartPath(p1out);
+            penDown(p1out);
+			Graphic.AddArc(true, p2out, sub(pEnd,p2out));
+			Graphic.AddArc(true, p2in, sub(pEnd , p2out));                    
+			Graphic.AddArc(true, p1in, sub(pStart, p2in));
+			Graphic.AddArc(true, p1out, sub(pStart, p1in));                    
+            Graphic.StopPath(); isPenDown = false;
+
+            StartCoordinate = pEnd;
+		}
+        private static void drawSlotLine(Point pStart, Point pEnd, double xInch)
+		{
+            double r = scaleValue(xInch)/2;
+            if (logCoordinate) Logger.Trace("drawSlotLine pStart:x:{0:0.00} y:{1:0.00}  pEnd:x:{2:0.00} y:{3:0.00}  r:{4:0.00} ", pStart.X, pStart.Y, pEnd.X, pEnd.Y, r);
+            if (pStart == pEnd)
+            {   Logger.Error("..same coordinates x:{0}  y:{1}, nothing to do", pStart.X, pStart.Y);
+                return;
+            }
+            double quarter = Math.PI/2;
+			double angle = gcodeMath.getAlpha(pStart, pEnd); 
+			Point p1l = calcOffsetPoint(pStart, angle+quarter, r);
+            Point p1r = calcOffsetPoint(pStart, angle - quarter, r);
+            Point p2l = calcOffsetPoint(pEnd, angle+quarter, r);
+			Point p2r = calcOffsetPoint(pEnd, angle-quarter, r);
+
+            //Logger.Trace(" drawSlotLine pStart:x:{0:0.00} y:{1:0.00}  p1l:x:{2:0.00} y:{3:0.00}  p1r:x:{4:0.00} y:{5:0.00}  ",pStart.X,pStart.Y,p1l.X,p1l.Y,p1r.X,p1r.Y);
+			
+            Graphic.StopPath(); isPenDown = false;
+            //   Graphic.StartPath(p1l);
+            penDown(p1l);
+            Graphic.AddLine(p2l);
+			Graphic.AddArc(true, p2r, sub(pEnd,p2l));                    
+			Graphic.AddLine(p1r);
+			Graphic.AddArc(true, p1l, sub(pStart,p1r));                    
+            Graphic.StopPath(); isPenDown = false;
+
+            StartCoordinate = pEnd;
+		}
+        private static Point sub(Point a, Point b)
+        {
+            return new Point(a.X-b.X,a.Y-b.Y);
+        }
+		
+        private static Point calcOffsetPoint(Point P, double angle, double radius)
+        {
+            Point tmp = new Point();
+            tmp.X = P.X + Math.Cos(angle) * radius;
+            tmp.Y = P.Y + Math.Sin(angle) * radius;
+            return tmp;
+        }
+
+		
+        private static void applyApertureShape()
+        {   double tmpX, tmpY, diameter;
+            Point startPos = scalePosition(setX, setY);
+            StartCoordinate = startPos;
+            tmpX = actualAperture.XSize;
+            tmpY = actualAperture.YSize;
+            diameter = actualAperture.HoleDiameter;
+            if (logDetailed) Logger.Trace("    Dot: applyApertureShape() {0}", actualAperture.apType.ToString());
+
+            if (actualAperture.apType == aperture.type.Circle)
+            {
+                tmpX /= 2;
+                Graphic.StartPath(scalePosition(setX + tmpX, setY));
+                Graphic.AddCircle(2, startPos.X, startPos.Y, scaleValue( tmpX));
+                Graphic.StopPath(); isPenDown = false;
+            }
+            else if (actualAperture.apType == aperture.type.Rectangle)
+            {
+                tmpX /= 2; tmpY /= 2;
+                Graphic.StartPath(scalePosition(setX - tmpX, setY - tmpY));
+                Graphic.AddLine(scalePosition(setX - tmpX, setY + tmpY));
+                Graphic.AddLine(scalePosition(setX + tmpX, setY + tmpY));
+                Graphic.AddLine(scalePosition(setX + tmpX, setY - tmpY));
+                Graphic.AddLine(scalePosition(setX - tmpX, setY - tmpY));
+                Graphic.StopPath(); isPenDown = false;
+            }
+            else if (actualAperture.apType == aperture.type.Octagon)
+            {
+                tmpX /= 2; tmpY /= 2;
+                Graphic.StartPath(scalePosition(setX - tmpX, setY - tmpY));
+                Graphic.AddLine(scalePosition(setX - tmpX, setY + tmpY));
+                Graphic.AddLine(scalePosition(setX + tmpX, setY + tmpY));
+                Graphic.AddLine(scalePosition(setX + tmpX, setY - tmpY));
+                Graphic.AddLine(scalePosition(setX - tmpX, setY - tmpY));
+                Graphic.StopPath(); isPenDown = false;
+            }
+
+        }
+
 
         private static Point scalePosition(double valX, double valY)
         {   double x = valX, y = valY;
@@ -585,6 +632,7 @@ namespace GRBL_Plotter
             else
                 return valX;
         }
+
 
 
         private static void setXValue(string val)

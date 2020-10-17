@@ -81,6 +81,7 @@ namespace GRBL_Plotter //DXFImporter
         private static int dxfBlockColorNr = -1;
         private static int dxfBlockLineWeigth = 0;
 
+        private static string dxfColorFill = "";
         private static string dxfColorHex = "";
         private static bool nodesOnly = false;              // if true only do pen-down -up on given coordinates
         private static Point lastUsedCoord = new Point();
@@ -220,6 +221,7 @@ namespace GRBL_Plotter //DXFImporter
                 layerColor.Add(record.LayerName, record.Color);
                 layerLType.Add(record.LayerName, record.LineType);
                 layerLineWeigth.Add(record.LayerName, record.LineWeight);
+  //              record.
             }
 
             List<DXFLineTypeRecord> ltypes = doc.Tables.LineTypes;
@@ -330,19 +332,22 @@ namespace GRBL_Plotter //DXFImporter
             Graphic.SetLayer(layerName);
             Graphic.SetPenColor(dxfColorHex);
             Graphic.SetPenColorId(dxfColorNr);
-			Graphic.SetPenWidth(string.Format("{0:0.00}",((double)dxfLineWeigth/100)));	// convert to mm, then to string
+            Graphic.SetPenFill(dxfColorFill);
+            Graphic.SetPenWidth(string.Format("{0:0.00}",((double)dxfLineWeigth/100)));	// convert to mm, then to string
 
             #region DXFPoint
             if (entity.GetType() == typeof(DXFPointEntity))
-            {   DXFPointEntity point = (DXFPointEntity)entity;
-				position = ApplyOffsetAndAngle(point.Location, offset, offsetAngle);
+            {
+                DXFPointEntity point = (DXFPointEntity)entity;
+                position = ApplyOffsetAndAngle(point.Location, offset, offsetAngle);
                 if (logPosition) Logger.Trace(" Point: {0:0.00};{1:0.00} ", position.X, position.Y);
                 GCodeDotOnly(position, "Start Point");
             }
-			#endregion
+            #endregion
             #region DXFLWPolyline
             else if (entity.GetType() == typeof(DXFLWPolyLine))
-            {   Graphic.SetGeometry("Polyline");
+            {
+                Graphic.SetGeometry("Polyline");
                 DXFLWPolyLine lp = (DXFLWPolyLine)entity;
                 index = 0;
                 double bulge = 0;
@@ -352,18 +357,21 @@ namespace GRBL_Plotter //DXFImporter
                 {
                     coordinate = lp.Elements[i];
                     bulge = coordinate.Bulge;
-					position = ApplyOffsetAndAngle(coordinate.Vertex, offset, offsetAngle);
+                    position = ApplyOffsetAndAngle(coordinate.Vertex, offset, offsetAngle);
 
                     if (i == 0)
-                    {   if (!nodesOnly)
-                        {   DXFStartPath(position, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString());
+                    {
+                        if (!nodesOnly)
+                        {
+                            DXFStartPath(position, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString());
                         }
                         else { GCodeDotOnly(position, "Start LWPolyLine"); }
                         if (logPosition) Logger.Trace("Start LWPolyLine {0}", lp.VertexCount);
                     }
 
                     if ((!roundcorner) && (i > 0))
-                    {   if (logPosition) Logger.Trace(" dxfMoveTo {0}",i);
+                    {
+                        if (logPosition) Logger.Trace(" dxfMoveTo {0}", i);
                         DXFMoveTo(position, "");
                     }
                     if (bulge != 0)
@@ -374,22 +382,24 @@ namespace GRBL_Plotter //DXFImporter
                             AddRoundCorner(lp.Elements[i], lp.Elements[i + 1], offset, offsetAngle);
                         else
                             if (lp.Flags == DXFLWPolyLine.FlagsEnum.closed)
-                                AddRoundCorner(lp.Elements[i], lp.Elements[0], offset, offsetAngle);
+                            AddRoundCorner(lp.Elements[i], lp.Elements[0], offset, offsetAngle);
                         roundcorner = true;
                     }
                     else
                         roundcorner = false;
                 }
                 if ((lp.Flags > 0))// && (x2 != x) && (y2 != y))   // only move if prev pos is differnent
-                {	position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle);
-					DXFMoveTo(position, "End LWPolyLine "+lp.Flags.ToString());
-				}
+                {
+                    position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle);
+                    DXFMoveTo(position, "End LWPolyLine " + lp.Flags.ToString());
+                }
                 DXFStopPath();
             }
             #endregion
             #region DXFPolyline
             else if (entity.GetType() == typeof(DXFPolyLine))
-            {   Graphic.SetGeometry("Polyline");
+            {
+                Graphic.SetGeometry("Polyline");
                 DXFPolyLine lp = (DXFPolyLine)entity;
                 index = 0;
                 DXFPoint start = new DXFPoint();
@@ -400,8 +410,10 @@ namespace GRBL_Plotter //DXFImporter
                         {
                             position = ApplyOffsetAndAngle(coordinate.Location, offset, offsetAngle);
                             if (!nodesOnly)
-                            {   if (index == 0)
-                                {   start = position;
+                            {
+                                if (index == 0)
+                                {
+                                    start = position;
                                     DXFStartPath(position, "Start PolyLine");
                                 }
                                 else
@@ -418,16 +430,19 @@ namespace GRBL_Plotter //DXFImporter
             #endregion
             #region DXFLine
             else if (entity.GetType() == typeof(DXFLine))
-            {   Graphic.SetGeometry("Line");
+            {
+                Graphic.SetGeometry("Line");
                 DXFLine line = (DXFLine)entity;
                 position = ApplyOffsetAndAngle(line.Start, offset, offsetAngle);
                 DXFPoint pos2 = ApplyOffsetAndAngle(line.End, offset, offsetAngle);
                 if (logPosition) Logger.Trace(" Line from: {0};{1}  To: {2};{3}", position.X, position.Y, pos2.X, pos2.Y);
                 if (!nodesOnly)
-                {   DXFStartPath(position, "Start Line");
+                {
+                    DXFStartPath(position, "Start Line");
                     DXFMoveTo(pos2, "");
                 }
-                else {
+                else
+                {
                     GCodeDotOnly(position, "Start Line");
                     GCodeDotOnly(pos2, "End Line");
                 }
@@ -448,10 +463,14 @@ namespace GRBL_Plotter //DXFImporter
                 if (logPosition) Logger.Trace(" Spline ControlPointCnt: {0} KnotsCount: {1}", ctrls, knots);
 
                 if ((ctrls > 3) && (knots == ctrls + 4))    //  # cubic
-                {   if (ctrls > 4)
-                    {   for (int i = (knots - 5); i > 3; i--)
-                        {   if ((spline.KnotValues[i] != spline.KnotValues[i - 1]) && (spline.KnotValues[i] != spline.KnotValues[i + 1]))
-                            {   double a0 = (spline.KnotValues[i] - spline.KnotValues[i - 2]) / (spline.KnotValues[i + 1] - spline.KnotValues[i - 2]);
+                {
+                    if (ctrls > 4)
+                    {
+                        for (int i = (knots - 5); i > 3; i--)
+                        {
+                            if ((spline.KnotValues[i] != spline.KnotValues[i - 1]) && (spline.KnotValues[i] != spline.KnotValues[i + 1]))
+                            {
+                                double a0 = (spline.KnotValues[i] - spline.KnotValues[i - 2]) / (spline.KnotValues[i + 1] - spline.KnotValues[i - 2]);
                                 double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
                                 DXFPoint tmp = new DXFPoint();
                                 tmp.X = (double)((1.0 - a1) * spline.ControlPoints[i - 2].X + a1 * spline.ControlPoints[i - 1].X);
@@ -463,29 +482,32 @@ namespace GRBL_Plotter //DXFImporter
                             }
                         }
                         knots = spline.KnotValues.Count;
-                        for (int i=(knots - 6); i> 3; i-=2)
-                        {   if ((spline.KnotValues[i] != spline.KnotValues[i - 2]) && (spline.KnotValues[i-1] != spline.KnotValues[i + 1]) && (spline.KnotValues[i - 2] != spline.KnotValues[i]))
-                            {   double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
+                        for (int i = (knots - 6); i > 3; i -= 2)
+                        {
+                            if ((spline.KnotValues[i] != spline.KnotValues[i - 2]) && (spline.KnotValues[i - 1] != spline.KnotValues[i + 1]) && (spline.KnotValues[i - 2] != spline.KnotValues[i]))
+                            {
+                                double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
                                 DXFPoint tmp = new DXFPoint();
                                 tmp.X = (double)((1.0 - a1) * spline.ControlPoints[i - 2].X + a1 * spline.ControlPoints[i - 1].X);
                                 tmp.Y = (double)((1.0 - a1) * spline.ControlPoints[i - 2].Y + a1 * spline.ControlPoints[i - 1].Y);
                                 spline.ControlPoints.Insert(i - 1, tmp);
                             }
-                        }        
+                        }
                     }
                     ctrls = spline.ControlPoints.Count;
                     DXFStartPath(last, cmt);
                     for (int i = 0; i < Math.Floor((ctrls - 1) / 3d); i++)     // for i in range(0, (ctrls - 1) // 3):
                     {
                         if (!nodesOnly)
-                            importMath.calcCubicBezier( ToWindowsSystemPoint(last), 
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 1], offset, offsetAngle)), 
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 2], offset, offsetAngle)), 
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 3], offset, offsetAngle)), 
+                            importMath.calcCubicBezier(ToWindowsSystemPoint(last),
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 1], offset, offsetAngle)),
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 2], offset, offsetAngle)),
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 3], offset, offsetAngle)),
                                                         DXFMoveTo, "C");
-                      else
-                        {   GCodeDotOnly(last, "");
-                            GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 3], offset,offsetAngle)), "");
+                        else
+                        {
+                            GCodeDotOnly(last, "");
+                            GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 3], offset, offsetAngle)), "");
                         }
                         last = ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 3], offset, offsetAngle);
                     }
@@ -494,14 +516,16 @@ namespace GRBL_Plotter //DXFImporter
                 if ((ctrls == 3) && (knots == 6))           //  # quadratic
                 {   //  path = 'M %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2])
                     if (!nodesOnly)
-                    {   DXFStartPath(last, cmt);
-                        importMath.calcQuadraticBezier( ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[0], offset,offsetAngle)),
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[1], offset,offsetAngle)),
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset,offsetAngle)), 
+                    {
+                        DXFStartPath(last, cmt);
+                        importMath.calcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[0], offset, offsetAngle)),
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[1], offset, offsetAngle)),
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle)),
                                                         DXFMoveTo, "Q");
                     }
                     else
-                    {   GCodeDotOnly(last, "");
+                    {
+                        GCodeDotOnly(last, "");
                         GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle)), "");
                     }
                     DXFStopPath(true);
@@ -509,18 +533,20 @@ namespace GRBL_Plotter //DXFImporter
                 if ((ctrls == 5) && (knots == 8))           //  # spliced quadratic
                 {   //  path = 'M %f,%f Q %f,%f %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2], vals[groups['10']][3], vals[groups['20']][3], vals[groups['10']][4], vals[groups['20']][4])
                     if (!nodesOnly)
-                    {   DXFStartPath(last, cmt);
-                        importMath.calcQuadraticBezier( ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[0], offset,offsetAngle)),
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[1], offset,offsetAngle)),
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset,offsetAngle)), DXFMoveTo, "SQ");
-                        importMath.calcQuadraticBezier( ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3], offset,offsetAngle)),
+                    {
+                        DXFStartPath(last, cmt);
+                        importMath.calcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[0], offset, offsetAngle)),
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[1], offset, offsetAngle)),
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle)), DXFMoveTo, "SQ");
+                        importMath.calcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3], offset, offsetAngle)),
                                                         ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[4], offset, offsetAngle)),
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[5], offset,offsetAngle)), DXFMoveTo, "SQ");
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[5], offset, offsetAngle)), DXFMoveTo, "SQ");
                     }
                     else
-                    {   GCodeDotOnly(last, "");
-                        GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset,offsetAngle)), "");
-                        GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[5], offset,offsetAngle)), "");
+                    {
+                        GCodeDotOnly(last, "");
+                        GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle)), "");
+                        GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[5], offset, offsetAngle)), "");
                     }
                     DXFStopPath(true);
                 }
@@ -528,21 +554,23 @@ namespace GRBL_Plotter //DXFImporter
             #endregion
             #region DXFCircle
             else if (entity.GetType() == typeof(DXFCircle))
-            {   DXFCircle circle = (DXFCircle)entity;
+            {
+                DXFCircle circle = (DXFCircle)entity;
                 position = ApplyOffsetAndAngle(circle.Center, offset, offsetAngle);
                 if (logPosition) Logger.Trace(" Circle center: {0:0.000};{1:0.000}  R: {2:0.000}", position.X, position.Y, circle.Radius);
                 if (!nodesOnly)
-                {   DXFStartPath((double)position.X + circle.Radius, (double)position.Y, "Start Circle");
+                {
+                    DXFStartPath((double)position.X + circle.Radius, (double)position.Y, "Start Circle");
                     Graphic.SetGeometry("Circle");
                     Graphic.AddCircle(2, (double)position.X, (double)position.Y, circle.Radius);
                 }
                 else
                 {   //DXFStartPath((double)position.X, (double)position.Y, "Start Circle");
                     Graphic.SetGeometry("Circle");
-					if (Properties.Settings.Default.importSVGCircleToDotZ)
+                    if (Properties.Settings.Default.importSVGCircleToDotZ)
                         GCodeDotOnlyWithZ((double)position.X, (double)position.Y, (double)circle.Radius, "Dot r=Z");
                     else
-						GCodeDotOnly((double)position.X, (double)position.Y, "Circle");
+                        GCodeDotOnly((double)position.X, (double)position.Y, "Circle");
                 }
                 DXFStopPath();
             }
@@ -567,7 +595,7 @@ namespace GRBL_Plotter //DXFImporter
                 double a = Math.Atan2(-ym, xm);
                 float diff = (float)((a2 - a1 + 2 * Math.PI) % (2 * Math.PI));
 
-                if (logPosition) Logger.Trace(" Ellipse center: {0:0.000};{1:0.000}  R1: {2:0.000} R2: {3:000} Start: {4:0.000} End: {5:000}", xc, yc, rm, w * rm, ellipse.StartParam, ellipse.EndParam);
+                if (logPosition) Logger.Trace(" Ellipse center: {0:0.000};{1:0.000}  R1: {2:0.000} R2: {3:000} Start: {4:0.000} End: {5:000} Handle:{6}", xc, yc, rm, w * rm, ellipse.StartParam, ellipse.EndParam, ellipse.Handle);
                 if ((Math.Abs(diff) > 0.0001) && (Math.Abs(diff - 2 * Math.PI) > 0.0001))
                 {
                     int large = 0;
@@ -599,14 +627,15 @@ namespace GRBL_Plotter //DXFImporter
             else if (entity.GetType() == typeof(DXFArc))
             {
                 Graphic.SetGeometry("Arc");
-                DXFArc arc = (DXFArc)entity;                
+                DXFArc arc = (DXFArc)entity;
                 double X = (double)arc.Center.X + (double)offset.X;
                 double Y = (double)arc.Center.Y + (double)offset.Y;
                 double R = arc.Radius;
 
                 // ARC entites are always conter-clockwise.
                 if (!nodesOnly)
-                {   double startA = arc.StartAngle * Math.PI / 180;
+                {
+                    double startA = arc.StartAngle * Math.PI / 180;
                     double endA = arc.EndAngle * Math.PI / 180;
                     double startX = (double)(X + R * Math.Cos(startA));
                     double startY = (double)(Y + R * Math.Sin(startA));
@@ -615,12 +644,21 @@ namespace GRBL_Plotter //DXFImporter
 
                     if (logEnable) Logger.Trace(" Arc center: {0:0.000};{1:0.000}  R: {2:0.000}  start:{3:0.0}   end:{4:0.0}", X, Y, R, arc.StartAngle, arc.EndAngle);
                     DXFStartPath(startX, startY, "Start Arc");
-                    Graphic.AddArc(false, endX, endY, X-startX, Y-startY, "Arc");
+                    Graphic.AddArc(false, endX, endY, X - startX, Y - startY, "Arc");
                     DXFStopPath();
                 }
                 else
-                {   GCodeDotOnly(X, Y, "Arc");      }
+                { GCodeDotOnly(X, Y, "Arc"); }
 
+            }
+            #endregion
+            #region Hatch
+            else if (entity.GetType() == typeof(DXFHatch))
+            {
+                DXFHatch hatch = (DXFHatch)entity;
+
+                Graphic.SetGeometry("Hatch");
+                if (logEnable) Logger.Trace(" Hatch: Layer:{0} ColorNr.:{1} LineWeight:{2} Handle:{3}", hatch.LayerName, hatch.ColorNumber, hatch.LineWeight, hatch.Handle                    );
             }
             #endregion
             #region DXFMText
@@ -628,11 +666,12 @@ namespace GRBL_Plotter //DXFImporter
             {   // https://www.autodesk.com/techpubs/autocad/acad2000/dxf/mtext_dxf_06.htm
                 Graphic.SetGeometry("Text");
                 DXFMText txt = (DXFMText)entity;
-                xyPoint origin = new xyPoint(0,0);
+                xyPoint origin = new xyPoint(0, 0);
                 GCodeFromFont.reset();
                 double angle = 0;
                 foreach (var entry in txt.Entries)
-                {        if (entry.GroupCode == 1) { GCodeFromFont.gcText = entry.Value.ToString(); }
+                {
+                    if (entry.GroupCode == 1) { GCodeFromFont.gcText = entry.Value.ToString(); }
                     else if (entry.GroupCode == 40) { GCodeFromFont.gcHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
                     else if (entry.GroupCode == 41) { GCodeFromFont.gcWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
                     else if (entry.GroupCode == 71) { GCodeFromFont.gcAttachPoint = Convert.ToInt16(entry.Value); }

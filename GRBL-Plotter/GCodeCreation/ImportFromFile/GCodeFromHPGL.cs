@@ -230,7 +230,7 @@ namespace GRBL_Plotter
             }
         }
         private static void HPGL_PW(string cmd, string coord)
-        {   Graphic.SetPenWidth(cmd);
+        {   //Graphic.SetPenWidth(cmd);
 			if (!messageList.Contains(cmd))
             {   Graphic.SetHeaderInfo(string.Format("PW - 'Pen Width' not supported"));
                 messageList.Add(cmd);
