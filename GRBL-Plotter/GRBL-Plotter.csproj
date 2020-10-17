@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
-    <ApplicationVersion>1.5.0.5</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.5.2.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -180,10 +180,30 @@
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageOutline.cs" />
     <Compile Include="GCodeCreation\importMath.cs" />
     <Compile Include="GCodeCreation\graphic2GCode.cs" />
+    <Compile Include="GUI\ButtonEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ButtonEdit.Designer.cs">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\MainFormGamePad.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainFormInterface.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainFormOtherForms.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainFormSimulatePath.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainFormStreaming.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\splashscreen.cs">
@@ -217,6 +237,14 @@
     <Compile Include="MachineControl\ControlProbing.Designer.cs">
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineControl\ControlSerialFormInterface.cs">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\ControlSerialFormStreaming.cs">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MachineControl\ControlSetupUseCase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +256,7 @@
     <Compile Include="MachineControl\NativeMethods.cs" />
     <Compile Include="MachineControl\SerialPortFixer.cs" />
     <Compile Include="GUI\MainFormGetCodeTransform.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainFormObjects.cs" />
@@ -269,12 +298,15 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\MainFormFCTB.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainFormLoadFile.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainFormPictureBox.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MessageForm.cs">
@@ -338,6 +370,9 @@
     <Content Include="data\extensions\GCode_Conic_Spiral.hta">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\extensions\GCode_Nut_Recess.hta">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\extensions\GCode_Spherical_Bowl.hta">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -347,10 +382,10 @@
     <Content Include="data\extensions\_script_functions.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\usecases\example_plotter_automatic_pen_changer.ini">
+    <Content Include="data\usecases\example_plotter_pen_changer_automatic.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\usecases\example_plotter_manual_pen_change.ini">
+    <Content Include="data\usecases\example_plotter_pen_change_manual.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\usecases\example_router.ini">
@@ -377,6 +412,87 @@
     <Content Include="data\tools\test_layer.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\usecases\example_plotter.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_find_Z_set_zero.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\scripts\script_my_logo.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\tools\paint_StabiloPoint88.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Find_Z_set_zero.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_around_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_around_slow.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_bottom_left_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_bottom_left_slow.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_bottom_right_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_bottom_right_slow.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_center_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_center_slow.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_upper_left_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_upper_left_slow.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_upper_right_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_upper_right_slow.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Laser_off.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Laser_on_weak.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Pen_down_Servo.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Pen_down_Z.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Pen_up_Servo.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Pen_up_Z.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Reset_hard.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Reset_soft.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Add_logo.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="data\buttons\Pen_down_up_Z.ini" />
+    <None Include="data\usecases\example_micro_plotter.ini" />
+    <None Include="Pen_down_up_Z.ini" />
     <None Include="Resources\qrcode.png" />
     <None Include="Resources\logo.png" />
     <None Include="Resources\tlOn.png" />
@@ -519,6 +635,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.zh-CN.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.de-DE.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\splashscreen.resx">
       <DependentUpon>splashscreen.cs</DependentUpon>
@@ -946,7 +1068,7 @@
     <Content Include="data\fonts\unicode.lff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\usecases\example_plotter.ini">
+    <Content Include="data\usecases\example_plotter_image.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Resources\ResStrings.ar.resx" />
@@ -1108,12 +1230,12 @@
   <ItemGroup>
     <PublishFile Include="data\hotkeys.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

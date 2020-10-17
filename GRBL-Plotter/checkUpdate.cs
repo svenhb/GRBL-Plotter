@@ -28,6 +28,7 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Management;
 using System.Linq;
+using System.Net;
 
 namespace GRBL_Plotter
 {
@@ -50,27 +51,43 @@ namespace GRBL_Plotter
         private static void AsyncCheckVersion(object foo)
         {
             try
-            {   CheckSite1(@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest"); } //official https
+            {   TryCheckSite2();
+            } //official https
             catch
             {
-                try
-                {
-                    CultureInfo ci = CultureInfo.InstalledUICulture;
-                    ci = CultureInfo.CurrentUICulture;
-                    string get = "";
-                    get += "?vers=" + Application.ProductVersion;
-                    get += "&hwid=" + getID();
-                    get += "&langset=" + Properties.Settings.Default.guiLanguage; // add next get with &
-                    get += "&langori=" + ci.Name;
-					get += "&import=" + getCounters(counterType.import);
-					get += "&usage=" + getCounters(counterType.usage);
-                    CheckSite2(@"http://svenhb.bplaced.net/GRBL-Plotter.php"+get);   // get Version-Nr and count individual ip to get an idea of amount of users
-                }
-                catch (Exception ex)
-                { Logger.Error(ex, "AsyncCheckVersion - CheckSite2"); }
+                CheckSite1(@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest");
             }
         }
-		private static string getCounters(counterType type)
+
+        private static void TryCheckSite2()
+        {
+            try
+            {
+                CultureInfo ci = CultureInfo.InstalledUICulture;
+                ci = CultureInfo.CurrentUICulture;
+                Logger.Trace(" Vers.:{0}  ID:{1}  LangSet:{2}  LangOri:{3}  url:{4}", Application.ProductVersion, getID(), Properties.Settings.Default.guiLanguage, ci.Name, Properties.Settings.Default.guiCheckUpdateURL);
+                string get = "";
+                get += "?vers=" + Application.ProductVersion;
+                get += "&hwid=" + getID();
+                get += "&langset=" + Properties.Settings.Default.guiLanguage; // add next get with &
+                get += "&langori=" + ci.Name;
+                get += "&import=" + getCounters(counterType.import);
+                get += "&usage=" + getCounters(counterType.usage);
+                if (!Properties.Settings.Default.guiCheckUpdateURL.StartsWith("http"))
+                {
+                    Properties.Settings.Default.guiCheckUpdateURL = "https://GRBL-Plotter.de";
+                    Properties.Settings.Default.Save();
+                    Logger.Info("Reset URL:{0}", Properties.Settings.Default.guiCheckUpdateURL);
+                }
+                CheckSite2(Properties.Settings.Default.guiCheckUpdateURL + "/GRBL-Plotter.php" + get);   // get Version-Nr and count individual ip to get an idea of amount of users
+            }
+            catch (Exception ex)
+            {   Logger.Error(ex, "AsyncCheckVersion - CheckSite2"); }
+
+        }
+
+
+        private static string getCounters(counterType type)
 		{	try
             {
 				if (type == counterType.import)
@@ -109,16 +126,26 @@ namespace GRBL_Plotter
 
         private static void CheckSite2(string site)
         {
-           using (System.Net.WebClient wc = new System.Net.WebClient())
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            using (System.Net.WebClient wc = new System.Net.WebClient())
             {   try
                 {
-                    string vers = wc.DownloadString(site);
+                    Logger.Trace("CheckSite2 {0}", site);
+                    string[] lines = wc.DownloadString(site).Split(';');
+                    string vers = lines[0];
+                    Logger.Trace("CheckSite2 {0}", String.Join(" | ", lines));
                     Version current = typeof(checkUpdate).Assembly.GetName().Version;
                     Version latest = new Version(vers);
-                    showResult(current, latest);
-                } catch (Exception ex)
-                { Logger.Error(ex,"CheckSite2"); }
-
+					
+					String info ="";
+					if (lines.Length > 1)
+						info = lines[1];
+                    showResult(current, latest, info);
+                }
+                catch (Exception ex)
+                { Logger.Error(ex,"CheckSite2 "); }
             }
         }
 
@@ -126,6 +153,7 @@ namespace GRBL_Plotter
         {
             using (System.Net.WebClient wc = new System.Net.WebClient())
             {
+                Logger.Trace("CheckSite1 {0}", site);
                 wc.Headers.Add("User-Agent: .Net WebClient");
                 string json = wc.DownloadString(site);
 
@@ -146,28 +174,32 @@ namespace GRBL_Plotter
                 Version current = typeof(checkUpdate).Assembly.GetName().Version;
                 Version latest = new Version(versionstr);
 
-                showResult(current, latest);
+                showResult(current, latest, "");
+                Logger.Trace("CheckSite1 {0}", json);
             }
         }
 
-        private static void showResult(Version current, Version latest)
+        private static void showResult(Version current, Version latest, String info)
         {
-            if ((current < latest) || showAny)
-            {
-                String txt = "A new GRBL-Plotter version is available";
-                String title = "New Version";
-                if (current >= latest)
-                {
-                    txt = "Installed version is up to date - nothing to do";
-                    title = "Information";
-                }
-
-                if (MessageBox.Show(txt + "\r\nInstalled Version: " + current + "\r\nLatest Version     : " + latest + "\r\n\r\nCheck: https://github.com/svenhb/GRBL-Plotter/releases \r\n\r\nOpen website?", title,
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly, false) == DialogResult.Yes)    // (MessageBoxOptions)0x40000);
-                {
-                    System.Diagnostics.Process.Start(@"https://github.com/svenhb/GRBL-Plotter/releases");
-                }
-            }
+			String txt = "A new GRBL-Plotter version is available";
+			String title = "New Version";
+			if (current >= latest)
+			{
+				txt = "Installed version is up to date - nothing to do";
+				title = "Information";
+			}
+			Logger.Info("CheckVersion: current:{0} latest:{1}  info:{2}",current,latest,info);
+			
+			if (info != "")
+				info = "\r\n"+info+"\r\n";
+			if ((current < latest) || showAny)
+			{
+				if (MessageBox.Show(txt + "\r\nInstalled Version: " + current + "\r\nLatest Version     : " + latest + "\r\n"+info+"\r\nCheck: https://github.com/svenhb/GRBL-Plotter/releases \r\n\r\nOpen website?", title,
+				MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly, false) == DialogResult.Yes)    // (MessageBoxOptions)0x40000);
+				{
+					System.Diagnostics.Process.Start(@"https://github.com/svenhb/GRBL-Plotter/releases");
+				}
+			}
         }
 
         private static string getID()
