@@ -76,28 +76,108 @@ namespace GRBL_Plotter
             public string penColor;
             public string toolName;
             public string layer;
+            public string type;
         };
 
         private static List<BlockData> listFigures = new List<BlockData>();
         private static List<BlockData> listGroups = new List<BlockData>();
+		
         public static BlockData tmpFigure = new BlockData();
-        private static BlockData tmpGroup = new BlockData();
+        public static BlockData tmpGroup = new BlockData();
+		
         public static BlockData lastFigure = new BlockData();
         public static BlockData lastGroup = new BlockData();
         public static BlockData header = new BlockData();
         public static BlockData footer = new BlockData();
 
-//        public enum sortItem { id, geometry, toolNr, toolName, layer, color, codeSize, codeArea };
+        public enum sortOption { Id, Color, Width, Layer, Type, Geometry, ToolNr, ToolName, CodeSize, CodeArea, Distance };
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static uint logFlags = 0;
+        private static bool logEnable = false;
+
 
         public static void Reset()
         {
             listFigures.Clear(); listGroups.Clear();
             header.lineStart = 0; header.lineEnd = 999999;
             footer.lineStart = footer.lineEnd = 0;
+			
+			logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
+            logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level4) > 0);			
         }
+
+
+        public static void sortBy(sortOption sort, bool reverse = false)
+		{
+			switch (sort)
+			{
+				case sortOption.Id:
+					if (reverse) { listFigures.Sort((x, y) => y.id.CompareTo(x.id)); }
+					else { listFigures.Sort((x, y) => x.id.CompareTo(y.id)); }
+					return;
+
+                case sortOption.Color:
+                    if (reverse) listFigures.Sort((x, y) => y.penColor.CompareTo(x.penColor));
+                    else listFigures.Sort((x, y) => x.penColor.CompareTo(y.penColor));
+                    return;
+
+                case sortOption.Width:
+                    if (reverse) listFigures.Sort((x, y) => y.penWidth.CompareTo(x.penWidth));
+                    else listFigures.Sort((x, y) => x.penWidth.CompareTo(y.penWidth));
+                    return;
+
+                case sortOption.Layer:
+                    if (reverse) listGroups.Sort((x, y) => y.layer.CompareTo(x.layer));
+                    else listGroups.Sort((x, y) => x.layer.CompareTo(y.layer));
+                    sortFigureById(reverse);
+                    return;
+
+                case sortOption.Type:
+                    if (reverse) listFigures.Sort((x, y) => y.type.CompareTo(x.type));
+                    else listFigures.Sort((x, y) => x.type.CompareTo(y.type));
+                    sortFigureById(reverse);
+                    return;
+
+                case sortOption.Geometry:
+					if (reverse) listFigures.Sort((x, y) => y.geometry.CompareTo(x.geometry));
+					else listFigures.Sort((x, y) => x.geometry.CompareTo(y.geometry));
+					return;
+		
+				case sortOption.ToolNr:
+				    if (reverse) { listFigures.Sort((x, y) => y.toolNr.CompareTo(x.toolNr)); listGroups.Sort((x, y) => y.toolNr.CompareTo(x.toolNr)); }
+					else { listFigures.Sort((x, y) => y.toolNr.CompareTo(x.toolNr)); listGroups.Sort((x, y) => y.toolNr.CompareTo(x.toolNr)); }
+					return;
+							
+				case sortOption.ToolName:
+					    if (listGroups.Count > 0)
+						{ sortGroupByToolName(reverse); sortFigureById(reverse); }
+						else
+							sortFigureByToolName(reverse);
+						return;										
+
+                case sortOption.CodeSize:
+						if (reverse) listGroups.Sort((x, y) => y.codeSize.CompareTo(x.codeSize));
+						else listGroups.Sort((x, y) => x.codeSize.CompareTo(y.codeSize));
+						sortFigureById(reverse);
+						return;
+
+				case sortOption.CodeArea:
+						if (reverse) listGroups.Sort((x, y) => y.codeArea.CompareTo(x.codeArea));
+						else listGroups.Sort((x, y) => x.codeArea.CompareTo(y.codeArea));
+						sortFigureById(reverse);
+						return;
+
+				case sortOption.Distance:
+						sortByDistance();
+						return;
+								
+				default:
+					return;
+			}						
+		}
+
 
         public static void sortById(bool reverse = false)
         {
@@ -109,23 +189,6 @@ namespace GRBL_Plotter
             if (reverse) { listFigures.Sort((x, y) => y.id.CompareTo(x.id)); }
             else { listFigures.Sort((x, y) => x.id.CompareTo(y.id)); }
         }
-        public static void sortByGeometry(bool reverse = false)
-        {
-            if (reverse) listFigures.Sort((x, y) => y.geometry.CompareTo(x.geometry));
-            else listFigures.Sort((x, y) => x.geometry.CompareTo(y.geometry));
-        }
-        public static void sortByToolNr(bool reverse = false)
-        {
-            if (reverse) { listFigures.Sort((x, y) => y.toolNr.CompareTo(x.toolNr)); listGroups.Sort((x, y) => y.toolNr.CompareTo(x.toolNr)); }
-            else { listFigures.Sort((x, y) => y.toolNr.CompareTo(x.toolNr)); listGroups.Sort((x, y) => y.toolNr.CompareTo(x.toolNr)); }
-        }
-        public static void sortByToolName(bool reverse = false)
-        {
-            if (listGroups.Count > 0)
-            { sortGroupByToolName(reverse); sortFigureById(reverse); }
-            else
-                sortFigureByToolName(reverse);
-        }
         public static void sortFigureByToolName(bool reverse = false)
         {
             if (reverse) { listFigures.Sort((x, y) => y.toolName.CompareTo(x.toolName)); }
@@ -136,29 +199,28 @@ namespace GRBL_Plotter
             if (reverse) { listGroups.Sort((x, y) => y.toolName.CompareTo(x.toolName)); }
             else { listGroups.Sort((x, y) => x.toolName.CompareTo(y.toolName)); }
         }
-        public static void sortByLayer(bool reverse = false)
-        {
-            if (reverse) listGroups.Sort((x, y) => y.layer.CompareTo(x.layer));
-            else listGroups.Sort((x, y) => x.layer.CompareTo(y.layer));
-            sortFigureById(reverse);
-        }
-        public static void sortByColor(bool reverse = false)
-        {
-            if (reverse) listFigures.Sort((x, y) => y.penColor.CompareTo(x.penColor));
-            else listFigures.Sort((x, y) => x.penColor.CompareTo(y.penColor));
-        }
-        public static void sortByCodeSize(bool reverse = false)
-        {
-            if (reverse) listGroups.Sort((x, y) => y.codeSize.CompareTo(x.codeSize));
-            else listGroups.Sort((x, y) => x.codeSize.CompareTo(y.codeSize));
-            sortFigureById(reverse);
-        }
-        public static void sortByCodeArea(bool reverse = false)
-        {
-            if (reverse) listGroups.Sort((x, y) => y.codeArea.CompareTo(x.codeArea));
-            else listGroups.Sort((x, y) => x.codeArea.CompareTo(y.codeArea));
-            sortFigureById(reverse);
-        }
+
+		public static void listIDs()
+		{
+			for(int i=0; i< listGroups.Count; i++)
+			{	Logger.Trace("	xmlMarker Group  {0}  Id:{1}",i, listGroups[i].id);	}
+		
+			for(int i=0; i< listFigures.Count; i++)
+			{	Logger.Trace("	xmlMarker Figure {0}  Id:{1}",i, listFigures[i].id);}	
+		}
+		
+		public static int[] getFigureIdOrder()
+		{	int[] tmp = new int[listFigures.Count];
+			for(int i=0; i< listFigures.Count; i++)
+			{	tmp[i] = listFigures[i].id;}
+			return tmp;
+		}
+		public static int[] getGroupIdOrder()
+		{	int[] tmp = new int[listGroups.Count];
+			for(int i=0; i< listGroups.Count; i++)
+			{	tmp[i] = listGroups[i].id;}
+			return tmp;
+		}
 
         public static void sortByDistance()
         {
@@ -280,6 +342,7 @@ namespace GRBL_Plotter
         public static void AddFigure(int lineStart, string element, int figureNr)
         {
             tmpFigure = setBlockData(lineStart, element, figureNr);
+        //    if (logEnable) Logger.Trace("AddFigure color:{0}  width{1}", tmpFigure.penColor, tmpFigure.penWidth);
             //           if (gcode.loggerTrace) Logger.Trace("AddFigure Line {0}  Id {1}  Geometry {2}", lineStart, tmpFigure.id, tmpFigure.geometry);
         }
 
@@ -291,7 +354,7 @@ namespace GRBL_Plotter
             tmp.lineStart = lineStart; tmp.reverse = false;
             tmp.id = tmp.toolNr = tmp.codeSize = tmp.codeArea = tmp.pathId = - 1;
             tmp.penWidth = tmp.pathLength  = tmp.pathArea  = - 1;
-            tmp.geometry = tmp.layer = tmp.penColor = tmp.toolName = "";
+            tmp.geometry = tmp.layer = tmp.type = tmp.penColor = tmp.toolName = "";
             tmp.figureNr = figNr;
             //            if (gcode.loggerTrace) Logger.Trace("setBlockData {0}", element);
             if (element.Contains("Id"))       { tmp.id = getAttributeValueInt(element, "Id"); }
@@ -301,6 +364,7 @@ namespace GRBL_Plotter
             if (element.Contains("PathArea")) { tmp.pathArea = getAttributeValueDouble(element, "PathArea"); }
             if (element.Contains("PathId"))   { tmp.pathId = getAttributeValueInt(element, "PathId"); }
             if (element.Contains("Layer"))    { tmp.layer = getAttributeValue(element, "Layer"); }
+            if (element.Contains("Type"))     { tmp.type = getAttributeValue(element, "Type"); }
             if (element.Contains("CodeSize")) { tmp.codeSize = getAttributeValueInt(element, "CodeSize"); }
             if (element.Contains("CodeArea")) { tmp.codeArea = getAttributeValueInt(element, "CodeArea"); }
             if (element.Contains("Geometry")) { tmp.geometry = getAttributeValue(element, "Geometry"); }
@@ -455,7 +519,9 @@ namespace GRBL_Plotter
         }
 
         public static void AddGroup(int lineStart, string element, int figureNr)
-        {   tmpGroup = setBlockData(lineStart, element, figureNr);   }
+        {   tmpGroup = setBlockData(lineStart, element, figureNr);
+            if (logEnable) Logger.Trace("AddGroup color:{0}  width{1}",tmpGroup.penColor, tmpGroup.penWidth);
+        }
 
         public static void FinishGroup(int lineEnd)
         {

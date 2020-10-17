@@ -100,10 +100,10 @@ namespace GRBL_Plotter
             gcode.setup();                              // initialize GCode creation (get stored settings for export)
 			pathInfo = new PathInformation();
 			
-            if (!Properties.Settings.Default.importGroupObjects)       // Load initial tool
+    /*        if (!Properties.Settings.Default.importGroupObjects)       // Load initial tool
             {   toolProp tmpTool = toolTable.getToolProperties((int)Properties.Settings.Default.importGCToolDefNr);
                 gcode.Tool(gcodeString, tmpTool.toolnr, tmpTool.name);    // add tool change commands (if enabled) and set XYFeed etc.
-            }
+            }*/
         }
 
         /// <summary>
@@ -112,43 +112,57 @@ namespace GRBL_Plotter
         public static string CreateGCode(List<Graphic.GroupObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformation graphicInfo)    //("DXF import", txt); 
         {
             Init();                                 // initalize variables, toolTable.init(), gcode.setup()
+			overWriteId = graphicInfo.ReProcess;	// keep IDs from previous conversion
             useIndividualZ = graphicInfo.OptionZFromWidth;
             foreach (string info in headerInfo)		// set header info
             { 	gcode.AddToHeader(info); }
 
             int groupID = 0;
+			int iDToSet = 0;
 			string groupAttributes;
 			
 			if (logEnable) Logger.Trace("-CreateGCode from Groups");
-			
+            gcode.jobStart(finalGcodeString, "StartJob");
+
             foreach (GroupObject groupObject in completeGraphic)
             {	groupAttributes = getGroupAttributes(groupObject, graphicInfo);
 				
-				groupID++;
-				gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\"{2}>", xmlMarker.groupStart, groupID, groupAttributes));
-                if (logEnable) Logger.Trace("-CreateGCode {0} Id=\"{1}\"{2}>", xmlMarker.groupStart, groupID, groupAttributes);
+				groupID++;			
+				iDToSet = groupID;	
+				
+				if (overWriteId && (groupObject.GroupId > 0))
+					iDToSet = groupObject.GroupId;
 
-				if (graphicInfo.GroupOption == GroupOptions.ByTile)
-				{	if (logEnable) Logger.Trace("-CreateGCode  try to insert Tile command {0}", groupObject.key);
+                groupObject.GroupId = iDToSet;	// track id
+				gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\"{2}>", xmlMarker.groupStart, iDToSet, groupAttributes));
+                if (logEnable) Logger.Trace("-CreateGCode {0} Id=\"{1}\"{2}>", xmlMarker.groupStart, iDToSet, groupAttributes);
+
+                if (graphicInfo.GroupOption == GroupOptions.ByTile)
+                {
+                    if (logEnable) Logger.Trace("-CreateGCode  try to insert Tile command {0}", groupObject.key);
                     if (Graphic.tileCommands.ContainsKey(groupObject.key))
-                    {   finalGcodeString.AppendLine(Graphic.tileCommands[groupObject.key]);  }
+                    { finalGcodeString.AppendLine(Graphic.tileCommands[groupObject.key]); }
                 }
-				else
-					gcode.Tool(finalGcodeString, groupObject.toolNr, groupObject.toolName); // add tool change commands (if enabled) and set XYFeed etc.
-		
+                else
+                {
+                    if (logEnable) Logger.Trace("CreateGCode-Group  toolNr:{0}  name:{1}", groupObject.toolNr, groupObject.toolName);
+
+                    ToolChange(groupObject.toolNr, groupObject.toolName);   // add tool change commands (if enabled) and set XYFeed etc.
+                }
                 foreach (PathObject pathObject in groupObject.groupPath)
                 {
                     if (logEnable) Logger.Trace(" ProcessPathObject id:{0} ", pathObject.Info.id);
-                    ProcessPathObject(pathObject, graphicInfo);	// create Dot or Path GCode
+                    ProcessPathObject(pathObject, graphicInfo, -1, "");	// create Dot or Path GCode, but no tool change
                 }
                 PenUp(" CreateGCode 1", true);      // set xmlMarker.figureEnd
 
                 finalGcodeString.Append(gcodeString);
-                gcodeString.Clear();                // don't add gcode a 2nd time
+                gcodeString.Clear();                            // don't add gcode a 2nd time
 
                 gcode.Comment(finalGcodeString, xmlMarker.groupEnd + ">"); 
                 if (logEnable) Logger.Trace("-CreateGCode {0} >", xmlMarker.groupEnd);
             }
+            gcode.jobEnd(finalGcodeString, "EndJob");       // Spindle / laser off
             return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
         }
 
@@ -158,7 +172,8 @@ namespace GRBL_Plotter
         public static string CreateGCode(List<Graphic.PathObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformation graphicInfo)    //("DXF import", txt); 
         {
             Init();        							// initalize variables, toolTable.init(), gcode.setup()
-            useIndividualZ = graphicInfo.OptionZFromWidth;
+			overWriteId = graphicInfo.ReProcess;	// keep IDs from previous conversion
+			useIndividualZ = graphicInfo.OptionZFromWidth;
             foreach (string info in headerInfo)		// set header info
             {   gcode.AddToHeader(info);  }         
 
@@ -166,26 +181,29 @@ namespace GRBL_Plotter
 
             int toolNr = 1;
             string toolName = "";
+            string toolColor = "";
             foreach (PathObject pathObject in completeGraphic)		// go through all graphics elements
             {				
 // get tool-nr by color or use color-id		 
                 if (Properties.Settings.Default.importDXFToolIndex)
                 {   toolNr = pathObject.Info.penColorId + 1; }     // avoid ID=0 to start tool-table with index 1
                 else
-                {   toolNr = toolTable.getToolNrByToolColor(pathObject.Info.groupAttributes[(int)GroupOptions.ByColor], 0);
-		            toolName = toolTable.getToolName(toolNr);
-				}
+                {
+                    toolColor = pathObject.Info.groupAttributes[(int)GroupOptions.ByColor];
+                    toolNr = toolTable.getToolNrByToolColor(toolColor, 0);
+                }
 
-// real tool to use: default or from graphic	   
+                // real tool to use: default or from graphic	   
                 int toolToUse = toolNr;
                 if (Properties.Settings.Default.importGCToolTableUse && Properties.Settings.Default.importGCToolDefNrUse)
                     toolToUse = (int)Properties.Settings.Default.importGCToolDefNr;
 
 		        toolName = toolTable.getToolName(toolToUse);
+                toolColor = toolTable.getToolColor(toolNr);
 
-                ToolChange(toolToUse, toolName);   // add tool change commands (if enabled) and set XYFeed etc.
-	   
-				ProcessPathObject(pathObject, graphicInfo);	// create Dot or Path GCode
+                if (logEnable) Logger.Trace("CreateGCode2  toolNr:{0}  name:{1}",toolToUse,toolName);
+// add tool change after <Figure tag	   
+				ProcessPathObject(pathObject, graphicInfo, toolToUse, toolName + " = " + toolColor);	// create Dot or Path GCode
             }
             PenUp(" CreateGCode 2", true);    // set xmlMarker.figureEnd
 
@@ -197,7 +215,7 @@ namespace GRBL_Plotter
         }
 
 //convert graphic to gcode ##################################################################
-		private static void ProcessPathObject(PathObject pathObject, Graphic.GraphicInformation graphicInfo)
+		private static void ProcessPathObject(PathObject pathObject, Graphic.GraphicInformation graphicInfo, int toolNr, string toolCmt)
 		{
             if (logDetailed) Logger.Trace("ProcessPathObject start");
             figureEnable = graphicInfo.FigureEnable;
@@ -225,7 +243,7 @@ namespace GRBL_Plotter
                     penIsDown = false;
                 }
 
-                pathObject.FigureId = StartPath(DotData);
+                pathObject.FigureId = StartPath(DotData,toolNr,toolCmt);
 				PenDown();
                 StopPath();
                 gcode.gcodeZDown = origZ;
@@ -242,10 +260,11 @@ namespace GRBL_Plotter
 				{	if (logEnable) Logger.Trace("--ProcessPathObject: Empty path ID:{0}", PathData.Info.id);
 				    return;
 				}
-                pathObject.FigureId = StartPath(PathData);
-				PathDashArray = PathData.dashArray;				
-				
-				double newZ = gcode.gcodeZDown;		// default
+                pathObject.FigureId = StartPath(PathData,toolNr,toolCmt);
+                PathDashArray = new double[PathData.dashArray.Length];
+                PathData.dashArray.CopyTo(PathDashArray, 0);
+
+                double newZ = gcode.gcodeZDown;		// default
 			
                 for (int index=1; index < PathData.path.Count; index++) // 0 was already processed in StartPath
 				{
@@ -324,21 +343,12 @@ namespace GRBL_Plotter
             if (pathObject.Info.groupAttributes[1].Length > 0)	attributes.Append(string.Format(" PenColor=\"{0}\"", pathObject.Info.groupAttributes[1]));
             if (pathObject.Info.groupAttributes[2].Length > 0) 	attributes.Append(string.Format(" PenWidth=\"{0}\"", pathObject.Info.groupAttributes[2]));
             if (pathObject.Info.groupAttributes[3].Length > 0) 	attributes.Append(string.Format(" Layer=\"{0}\"", pathObject.Info.groupAttributes[3]));
-            if (pathObject.Info.groupAttributes[4].Length > 0) 	attributes.Append(string.Format(" Tile=\"{0}\"", pathObject.Info.groupAttributes[4]));
-            if (pathObject.Info.groupAttributes[5].Length > 0) 	attributes.Append(string.Format(" Type=\"{0}\"", pathObject.Info.groupAttributes[5]));
+            if (pathObject.Info.groupAttributes[4].Length > 0) 	attributes.Append(string.Format(" Type=\"{0}\"", pathObject.Info.groupAttributes[4]));
+            if (pathObject.Info.groupAttributes[5].Length > 0) 	attributes.Append(string.Format(" Tile=\"{0}\"", pathObject.Info.groupAttributes[5]));
             if (pathObject.Info.pathId.Length > 0) 				attributes.Append(string.Format(" PathID=\"{0}\"", pathObject.Info.pathId));
             if (pathObject.PathLength > 0) 						attributes.Append(string.Format(" PathLength=\"{0:0.0}\"", pathObject.PathLength));						
-
 		
-	/*		attributes.Append((pathObject.Info.pathGeometry.Length > 0) ? string.Format(" Geometry=\"{0}\"", pathObject.Info.pathGeometry) : "");
-            attributes.Append((pathObject.Info.groupAttributes[1].Length > 0)? string.Format(" PenColor=\"{0}\"", pathObject.Info.groupAttributes[1]) : "");
-            attributes.Append((pathObject.Info.groupAttributes[2].Length > 0) ? string.Format(" PenWidth=\"{0}\"", pathObject.Info.groupAttributes[2]) : "");
-            attributes.Append((pathObject.Info.groupAttributes[3].Length > 0) ? string.Format(" Layer=\"{0}\"", pathObject.Info.groupAttributes[3]) : "");
-            attributes.Append((pathObject.Info.groupAttributes[4].Length > 0) ? string.Format(" Tile=\"{0}\"", pathObject.Info.groupAttributes[4]) : "");
-            attributes.Append((pathObject.Info.groupAttributes[5].Length > 0) ? string.Format(" Type=\"{0}\"", pathObject.Info.groupAttributes[5]) : "");
-            attributes.Append((pathObject.Info.pathId.Length > 0) ? 		string.Format(" PathID=\"{0}\"", pathObject.Info.pathId) : "");
-            attributes.Append((pathObject.PathLength > 0) ? 		string.Format(" PathLength=\"{0:0.0}\"", pathObject.PathLength) : "");						
-		*/	return attributes;
+			return attributes;
 		}
 		
 
@@ -346,12 +356,15 @@ namespace GRBL_Plotter
         /// Set start tag, move to beginning of path via G0, finish old path
         /// </summary>
 		private static PathInformation pathInfo = new PathInformation();
-        public static int StartPath(PathObject pathObject)//string cmt)
+		private static bool overWriteId = false;
+        public static int StartPath(PathObject pathObject, int toolNr, string toolCmt)//string cmt)
         {
 			Point coordxy = pathObject.Start;
-			double angle = 0;
-			angle = pathObject.StartAngle;
-
+			double angle = pathObject.StartAngle;
+			int iDToSet = PathCount;
+			if (overWriteId && (pathObject.FigureId > 0))
+				iDToSet = pathObject.FigureId;
+			
             PenUp();   // Don't set xmlMarker.figureEnd
 
             if (!pathInfo.IsSameAs(pathObject.Info) || FigureEndTagWasSet)
@@ -359,7 +372,11 @@ namespace GRBL_Plotter
 				{   SetFigureEndTag(); }
 				FigureEndTagWasSet = true;
 
-				string xml = string.Format("{0} Id=\"{1}\"{2}> ", xmlMarker.figureStart, (++PathCount), getFigureAttributes(pathObject).ToString());//attributeGeometry, attributeId, attributeColor, attributeToolNr);
+				iDToSet = ++PathCount;
+				if (overWriteId && (pathObject.FigureId > 0))
+					iDToSet = pathObject.FigureId;
+				
+				string xml = string.Format("{0} Id=\"{1}\"{2}> ", xmlMarker.figureStart, iDToSet, getFigureAttributes(pathObject).ToString());//attributeGeometry, attributeId, attributeColor, attributeToolNr);
 				if (figureEnable)
 					Comment(xml);
                 if (logCoordinates) Logger.Trace(" StartPath Option:{0}  {1}", pathObject.Options, xml);
@@ -368,7 +385,11 @@ namespace GRBL_Plotter
 				pathInfo = pathObject.Info.Copy();
 
                 if ((pathObject.Options & CreationOptions.AddPause) > 0)
-                    gcode.Pause(gcodeString);
+                    gcode.Pause(gcodeString,"StartPath");
+                if (pauseBeforePath) { gcode.Pause(gcodeString, "Pause before path"); }
+
+                if (toolNr >= 0)
+                    ToolChange(toolNr, toolCmt);   // add tool change commands (if enabled) and set XYFeed etc.
             }
 
             double setangle = 180 * angle / Math.PI;
@@ -379,7 +400,7 @@ namespace GRBL_Plotter
             if (logCoordinates) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", coordxy.X, coordxy.Y, setangle);
 
             lastGC = coordxy;
-            return PathCount;
+            return iDToSet;	//PathCount;
         }
 
         public static void SetFigureEndTag()
@@ -423,7 +444,7 @@ namespace GRBL_Plotter
             bool showDashInfo = false;
             string dashInfo = "";
 
-            if (logCoordinates) Logger.Trace("  MoveToDashed enabled:{0} length:{1}", Properties.Settings.Default.importLineDashPattern, PathDashArray.Length);
+            if (logCoordinates)  Logger.Trace("  MoveToDashed enabled:{0} length:{1}", Properties.Settings.Default.importLineDashPattern, PathDashArray.Length);
             if (!Properties.Settings.Default.importLineDashPattern || (PathDashArray.Length <= 1))
             {   gcode.MoveTo(gcodeString, coordxy, cmt); }
             else
@@ -711,7 +732,7 @@ namespace GRBL_Plotter
         /// Insert tool change command
         /// </summary>
         public static void ToolChange(int toolnr, string cmt = "")
-        { gcode.Tool(gcodeString, toolnr, cmt + " plotter toolchange"); }  // add tool change commands (if enabled) and set XYFeed etc.
+        {   gcode.Tool(gcodeString, toolnr, cmt ); }  // add tool change commands (if enabled) and set XYFeed etc.
 
 
         /// <summary>

@@ -21,6 +21,7 @@
  * 2019-09 add logger, change sub-path
  * 2020-04 add codeSize (line-count), codeDimension (xSize * ySize)
  * 2020-07-06 add axis A
+ * 2020-09-24 add indexWidth()
 */
 
 using System;
@@ -108,23 +109,35 @@ namespace GRBL_Plotter
             }
             return "not defined";
         }
+        public static string getToolColor(int index)
+        {
+            foreach (toolProp tool in toolTableArray)
+            {
+                if (index == tool.toolnr)
+                    return ColorTranslator.ToHtml(tool.color);
+            }
+            return "not defined";
+        }
 
         public static int getIndexByToolNr(int toolNr)
         {
-            for (int i = 0; i < toolTableIndex; i++)
+            for (int i = 0; i < toolTableArray.Length; i++)
+  //              for (int i = 0; i < toolTableIndex; i++)
             {   if (toolTableArray[i].toolnr == toolNr)
                     return i;
             }
             return -1;
          }
 
-        public static toolProp getToolProperties(int index)
-        {   foreach (toolProp tool in toolTableArray)
-            {   if (index == tool.toolnr)
-                { tmpIndex = index; return tool; }
+        public static toolProp getToolProperties(int toolNr)
+        {
+            int index = 0;
+            foreach (toolProp tool in toolTableArray)
+            {   if (toolNr == tool.toolnr)
+                { index = toolNr; return tool; }
             }
-            tmpIndex = toolTableArray.Length - 1;// 2;
-            return toolTableArray[tmpIndex]; // return 1st regular tool;
+            index = toolTableArray.Length - 1;// 2;
+            return toolTableArray[index]; // return 1st regular tool;
         }
 
         public static void indexSetCodeSize(int size)
@@ -166,6 +179,11 @@ namespace GRBL_Plotter
         { return toolTableArray[tmpIndex].toolSelected; }
         public static string indexName()
         { return toolTableArray[tmpIndex].name; }
+		
+		public static float indexWidth()
+        { return toolTableArray[tmpIndex].diameter; }
+
+		
 
         public static void sortByToolNr(bool invert)
         {   if (invert)
@@ -208,7 +226,7 @@ namespace GRBL_Plotter
         /// </summary>
         public static int init()    // return number of entries
         {
-            Logger.Debug("Init tool table");
+            Logger.Trace("Init tool table");
             init_done = true;
             useException=false;
             Array.Resize(ref toolTableArray, toolTableMax);
@@ -283,8 +301,10 @@ namespace GRBL_Plotter
         }
         public static int clear()
         {   //sortByToolNr();
-            for (int i = 0; i < toolTableIndex; i++)
-            {   toolTableArray[i].colorPresent = false;
+     //       for (int i = 0; i < toolTableIndex; i++)
+            for (int i = 0; i < toolTableArray.Length; i++)
+            {
+                toolTableArray[i].colorPresent = false;
                 toolTableArray[i].toolSelected = true;
                 toolTableArray[i].pixelCount = 0;
                 toolTableArray[i].diff = int.MaxValue;
@@ -292,7 +312,8 @@ namespace GRBL_Plotter
             return toolTableIndex;
         }
         public static void setAllSelected(bool val)
-        {   for (int i = 0; i < toolTableIndex; i++)   // add colors to AForge filter
+        {  // for (int i = 0; i < toolTableIndex; i++)   // add colors to AForge filter
+            for (int i = 0; i < toolTableArray.Length; i++)   // add colors to AForge filter
             { toolTableArray[i].toolSelected = val; }
         }
 
@@ -312,8 +333,9 @@ namespace GRBL_Plotter
             toolTableArray[0].colorPresent = true; 
             toolTableArray[0].diff = int.MaxValue;
             toolTableArray[0].name = "No " + ColorTranslator.ToHtml(Color.FromArgb(mycolor.ToArgb()));
-    //        bool nameFound = false;
-            for (int i = 1; i < toolTableIndex; i++)
+            //        bool nameFound = false;
+//            for (int i = 1; i < toolTableIndex; i++)
+            for (int i = 1; i < toolTableArray.Length; i++)
             {   if (toolTableArray[i].color == mycolor)
                 {   toolTableArray[0].name = "No " + toolTableArray[i].name;
    //                 nameFound = true;
@@ -346,7 +368,10 @@ namespace GRBL_Plotter
                 int cr, cg, cb;
                 int num = int.Parse(mycolor, System.Globalization.NumberStyles.AllowHexSpecifier);
                 cb = num & 255; cg = num >> 8 & 255; cr = num >> 16 & 255;
-                return getToolNrByColor(Color.FromArgb(255, cr, cg, cb), mode);
+                if (!mycolor.StartsWith("#"))
+                    mycolor = "#" + mycolor;
+                return getToolNrByColor(ColorTranslator.FromHtml(mycolor), mode);
+       //         return getToolNrByColor(Color.FromArgb(255, cr, cg, cb), mode);
             }
             else
                 return getToolNrByColor(Color.FromName(mycolor),mode);
@@ -360,7 +385,8 @@ namespace GRBL_Plotter
             int i,start=1;
             Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
             if (useException) start=0;  // first element is exception
-            for (i = start; i < toolTableIndex; i++)
+//            for (i = start; i < toolTableIndex; i++)
+            for (i = start; i < toolTableArray.Length; i++)
             {
                 if (mycolor == toolTableArray[i].color)         // direct hit
                 {
@@ -388,9 +414,10 @@ namespace GRBL_Plotter
 
             Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
 
-            for (int i = 1; i < toolTableIndex; i++)
+//            for (int i = 1; i < toolTableIndex; i++)
+            for (int i = 1; i < toolTableArray.Length; i++)
             {
-                if (width == toolTableArray[i].diameter)         // direct hit
+                    if (width == toolTableArray[i].diameter)         // direct hit
                 {
                     tmpIndex = i;
                     return toolTableArray[i].toolnr;
@@ -406,7 +433,8 @@ namespace GRBL_Plotter
         {
             Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
             int diff = 0;
-            for (int i = 1; i < toolTableIndex; i++)
+//            for (int i = 1; i < toolTableIndex; i++)
+            for (int i = 1; i < toolTableArray.Length; i++)
             {
                 if (layer == toolTableArray[i].name)         // direct hit
                 {

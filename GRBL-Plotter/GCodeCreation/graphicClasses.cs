@@ -35,9 +35,9 @@ namespace GRBL_Plotter
         /// General information about imported graphic
         /// </summary>		
         public enum SourceTypes { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode };
-        public enum GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByTile = 4, ByType = 5};
+        public enum GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6};
         public enum SortOptions { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4 };
-		public enum CreationOptions { none = 0, AddPause = 1};
+		public enum CreationOptions { none = 0, AddPause = 1, AddPauseBeforePath = 2};
         public class GraphicInformation
         {
             public string Title;
@@ -47,6 +47,9 @@ namespace GRBL_Plotter
             public SortOptions SortOption;       // public enum SortOptions  { none=0, ByToolNr=1, ByCodeSize=2, ByGraphicDimension=3};
 			public bool GroupEnable;
 			public bool FigureEnable;
+			public bool ReProcess;
+			public bool ApplyHatchFill;
+			public bool PauseBeforePath;
 			public double PenWidthMin = 0;
 			public double PenWidthMax = 0;
             public double DotZMin = 0;
@@ -76,6 +79,9 @@ namespace GRBL_Plotter
                 SortOption = (SortOptions)Properties.Settings.Default.importGroupSort;	//SortOption.ByToolNr;
 				GroupEnable = Properties.Settings.Default.importGroupObjects;
 				FigureEnable = true;
+				ReProcess = false;
+				ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
+				PauseBeforePath = Properties.Settings.Default.importPauseElement;
 				PenWidthMin = 999999;
 				PenWidthMax = 0;
                 DotZMin = 999999;
@@ -95,7 +101,7 @@ namespace GRBL_Plotter
 				OptionExtendPath = Properties.Settings.Default.importGraphicExtendPathEnable;
 				OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
-                ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill;
+                ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill || ApplyHatchFill;
             }
             public void ResetOptions(bool enableFigures = true)
 			{	FigureEnable = enableFigures;
@@ -105,6 +111,7 @@ namespace GRBL_Plotter
                 OptionRepeatCode = false;
 				OptionSortCode = false;
 				OptionOffsetCode = false;
+                ApplyHatchFill = false;
                 OptionHatchFill = false;
                 OptionClipCode = false;
 				OptionNodesOnly = false;	
@@ -140,6 +147,7 @@ namespace GRBL_Plotter
                 if (OptionZFromRadius) importOptions += "<Dot depth from circle radius> ";
                 if (OptionOffsetCode) importOptions += "<Remove offset> ";
                 if (OptionSortCode) importOptions += "<Sort objects> ";
+                if (ApplyHatchFill) importOptions += "<SVG fill> ";
                 if (OptionHatchFill) importOptions += "<Hatch fill> ";
                 if (OptionRepeatCode && !Properties.Settings.Default.importRepeatComplete) importOptions += "<Repeat paths> ";
                 if (OptionRepeatCode && Properties.Settings.Default.importRepeatComplete) importOptions += "<Repeat code> ";
@@ -170,12 +178,14 @@ namespace GRBL_Plotter
             public string groupRelatedGCode = "";
             public Dimensions pathDimension;
             public List<PathObject> groupPath;
+            protected int groupId;		// track GCode group-id
 
             public GroupObject()
             {
                 pathDimension = new Dimensions();
                 groupPath = new List<PathObject>();
                 groupRelatedGCode = "";
+				groupId = -1;
             }
             public GroupObject(string tmpKey, int tnr, string tname, PathObject pathObject)
             {
@@ -185,6 +195,7 @@ namespace GRBL_Plotter
                 groupRelatedGCode = "";
                 pathDimension = new Dimensions();
                 pathDimension.addDimensionXY(pathObject.Dimension);
+				groupId = -1;
 
                 groupPath = new List<PathObject>();
                 groupPath.Add(pathObject);
@@ -196,6 +207,11 @@ namespace GRBL_Plotter
                 pathLength += pathObject.PathLength;
                 pathDimension.addDimensionXY(pathObject.Dimension);
                 pathArea = pathDimension.getArea();
+            }
+			
+            public int GroupId             // Group Id from graphic2Gcode
+            {   get { return groupId; }
+                set { groupId = value; }
             }
         }
 
@@ -220,7 +236,7 @@ namespace GRBL_Plotter
             {
                 id = penColorId = 0; // toolNr = codeSize = codeArea = 0;
                 pathGeometry = pathId = "";// pathComment = "";
-                groupAttributes = new List<string>(new string[] { "", "", "", "", "", "" });        // to use with 		public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
+                groupAttributes = new List<string>(new string[] { "", "", "", "", "", "", "" });        // to use with 		public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
             }
             public void CopyData(PathInformation tmp)
             {
@@ -267,10 +283,11 @@ namespace GRBL_Plotter
             protected double startAngle;
             protected double distance;				// needed to sort paths by distance to a given start-point
             protected double pathLength;			// length of the path
+            protected int tmpIndex;
             protected PathInformation info;
             protected Dimensions dimension;
 			protected CreationOptions options;
-            protected int figureId;
+            protected int figureId;					// track GCode figure-id
 
             public PathObject Copy()
             {
@@ -338,6 +355,10 @@ namespace GRBL_Plotter
             public double PathLength
             {   get { return pathLength; }
                 set { pathLength = value; }
+            }
+            public int TmpIndex
+            {   get { return tmpIndex; }
+                set { tmpIndex = value; }
             }
             public PathInformation Info
             {   get { return info; }

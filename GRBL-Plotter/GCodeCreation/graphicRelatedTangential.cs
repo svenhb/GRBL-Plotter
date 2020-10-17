@@ -31,7 +31,7 @@ namespace GRBL_Plotter
     {
 
         public static void CalculateTangentialAxis()
-        { const uint loggerSelect = (uint)LogEnable.PathModification;
+        {   const uint loggerSelect = (uint)LogEnable.PathModification;
             double maxAngleChangeDeg = (double)Properties.Settings.Default.importGCTangentialAngle;
             bool limitRange = Properties.Settings.Default.importGCTangentialRange;
 

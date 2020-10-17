@@ -196,9 +196,6 @@ namespace GRBL_Plotter
             gcodeIndividualUp = Properties.Settings.Default.importGCIndPenUp;
             gcodeIndividualDown = Properties.Settings.Default.importGCIndPenDown;
 
-            gcodeReduce = Properties.Settings.Default.importRemoveShortMovesEnable;
-            gcodeReduceVal = (float)Properties.Settings.Default.importRemoveShortMovesLimit;
-
             gcodeToolChange = Properties.Settings.Default.importGCTool;
             gcodeToolChangeM0 = Properties.Settings.Default.importGCToolM0;
 
@@ -207,13 +204,6 @@ namespace GRBL_Plotter
             gcodeNoArcs = Properties.Settings.Default.importGCNoArcs;        // reduce code by 
             gcodeAngleStep = (float)Properties.Settings.Default.importGCSegment;
 
-   /*         gcodeDragCompensation = false;// Properties.Settings.Default.importGCDragKnifeEnable;
-            gcodeDragRadius = (float)Properties.Settings.Default.importGCDragKnifeLength;
-            if (Properties.Settings.Default.importGCDragKnifePercentEnable)
-            {   gcodeDragRadius = Math.Abs(gcodeZDown * (float)Properties.Settings.Default.importGCDragKnifePercent / 100); }
-
-            gcodeDragAngle = (float)Properties.Settings.Default.importGCDragKnifeAngle;
-*/
             gcodeInsertSubroutine = Properties.Settings.Default.importGCSubEnable;
             gcodeSubroutineCount = 0;
             lastMovewasG0 = true;
@@ -326,8 +316,6 @@ namespace GRBL_Plotter
         public static string frmtNum(decimal number)   // convert decimal to string using format pattern
         { return number.ToString(formatNumber); }
 
-        private static bool gcodeReduce = false;        // if true remove G1 commands if distance is < limit
-        private static float gcodeReduceVal = 0.1f;     // limit when to remove G1 commands
         private static StringBuilder secondMove = new StringBuilder();
         private static bool applyXYFeedRate = true; // apply XY feed after each Pen-move
 
@@ -343,7 +331,7 @@ namespace GRBL_Plotter
         {
             if (gcodeSpindleToolTable && gcodeComments) { cmt += " spindle speed from tool table"; }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-            if (gcodeUseLasermode)
+            if (gcodeUseLasermode)  // in SpindleOn
                 gcodeString.AppendFormat("S{0} {1}\r\n", gcodeSpindleSpeed, cmt);
             else
             { 
@@ -361,7 +349,7 @@ namespace GRBL_Plotter
         public static void SpindleOff(StringBuilder gcodeString, string cmt="")
         {
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
-            if (gcodeUseLasermode)
+            if (gcodeUseLasermode)  // in SpindleOff
                 gcodeString.AppendFormat("S{0} {1}\r\n", 0, cmt);
             else
                 gcodeString.AppendFormat("M{0} {1}\r\n", frmtCode(5), cmt);
@@ -389,7 +377,7 @@ namespace GRBL_Plotter
 
             if (gcodeZApply || gcodeSpindleToggle)
             {
-                if (gcodeUseLasermode)
+                if (gcodeUseLasermode)  // in jobStart
                 {   if (gcodeComments) cmt = " (" + cmto + " lasermode )";
                     else cmt = "";
                     gcodeString.AppendFormat("M{0} S{1}{2}\r\n", gcodeSpindleCmd, 0, cmt); // switch on laser with power=0
@@ -418,7 +406,6 @@ namespace GRBL_Plotter
             StringBuilder tmpString = new StringBuilder();
             string cmt = cmto;
             if (Properties.Settings.Default.importGCTTZAxis && gcodeComments && useValueFromToolTable) { cmt += " Z values from tool table"; }
-  //          drag1stMove = true;
             origFinalX = lastx;
             origFinalY = lasty;
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
@@ -462,11 +449,6 @@ namespace GRBL_Plotter
                 {
                     if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Laser-On");
                     SpindleOn(tmpString, cmto);
-   /*                 if (!gcodeZApply)
-                    {
-                        Move(tmpString, 1, lastx + 0.001f, lasty + 0.001f, false, ""); // lastz = tz;
-                        Move(tmpString, 1, lastx - 0.001f, lasty - 0.001f, false, ""); // lastz = tz;
-                    }*/
                 }
                 if (gcodePWMEnable)
                 {
@@ -496,12 +478,9 @@ namespace GRBL_Plotter
 
             string cmt = cmto;
             string comment = "";
-     //       drag1stMove = true;
             origFinalX = lastx;
             origFinalY = lasty;
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
-            //          if (cmt.Length >0) { cmt = string.Format("({0})", cmt); }
-            //cmt = string.Format("({0} {1})", xmlMarker.penUp,cmt);
 
             if (!(gcodeZApply && repeatZ))  // if true, do action in intermediateZ
             {
@@ -536,7 +515,6 @@ namespace GRBL_Plotter
             }
             if (gcodeZApply)
             {
-//                Logger.Trace("  PenUp repeatZ {0}  figurestring {1}", repeatZ, figureString.Length);
                 if (repeatZ)
                 {   if (figureString.Length > 0)
                         intermediateZ(gcodeString);      // figure finished, repeat code for several depth++ per pass
@@ -572,7 +550,6 @@ namespace GRBL_Plotter
                     SpindleOff(gcodeString, cmto);
                 }
             }
-  //          dragCompi = 0; dragCompj = 0;
         }
 
         public static float lastx, lasty, lastz, lastg, lastf;
@@ -587,22 +564,11 @@ namespace GRBL_Plotter
         public static void MoveTo(StringBuilder gcodeString, float x, float y, float z, string cmt = "")
         {   MoveSplit(gcodeString, 1, x, y, z, applyXYFeedRate, cmt); }
 
-    /*    public static void MoveToRapid(StringBuilder gcodeString, xyPoint coord, string cmt = "")
-        {   figureStart = coord;
-            segLastFinalX = segFinalX; segLastFinalY = segFinalY;
-            segFinalX = (float)coord.X; segFinalY = (float)coord.X;
-            if (!(gcodeZApply && repeatZ))
-            { Move(gcodeString, 0, (float)coord.X, (float)coord.Y, false, cmt); lastMovewasG0 = true; }
-            else
-            {
-                lastx = (float)coord.X; lasty = (float)coord.Y; lastg = 0;
-            }
-        }*/
         public static void MoveToRapid(StringBuilder gcodeString, Point coord, string cmt = "")
         {   figureStart.X = coord.X; figureStart.Y = coord.Y;
             segLastFinalX = segFinalX; segLastFinalY = segFinalY;
             segFinalX = (float)coord.X; segFinalY = (float)coord.X;
-	//		setTangential(gcodeString, angle);
+
             figureStartAlpha = gcodeTangentialCommand;
             if (!(gcodeZApply && repeatZ))
             { Move(gcodeString, 0, (float)coord.X, (float)coord.Y, false, cmt); lastMovewasG0 = true; }
@@ -615,7 +581,7 @@ namespace GRBL_Plotter
         {   figureStart.X = x; figureStart.Y = y;
             segLastFinalX = segFinalX; segLastFinalY = segFinalY;
             segFinalX = x; segFinalY = y;
-	//		setTangential(gcodeString, angle);
+
             figureStartAlpha = gcodeTangentialCommand;
             if (!(gcodeZApply && repeatZ))
             { Move(gcodeString, 0, x, y, false, cmt); lastMovewasG0 = true; }
@@ -634,15 +600,10 @@ namespace GRBL_Plotter
         private static int lastCharCount = 0;
         private static void MoveSplit(StringBuilder gcodeStringFinal, int gnr, float finalx, float finaly, float? z, bool applyFeed, string cmt)
         {
-//            if (loggerTraceImport) Logger.Trace("  MoveSplit G{0} X{1:0.000} Y{2:0.000}", gnr,finalx,finaly);
-
             if (lastMovewasG0)
             {   if ((finalx == lastx) && (finaly == lasty)) // discard G1 without any move
                 { return; }
             }
-   //         segLastFinalX = segFinalX; segLastFinalY = segFinalY;
-  //          segFinalX = finalx; segFinalY = finaly;
-
 
             StringBuilder gcodeString = gcodeStringFinal;
 
@@ -655,32 +616,8 @@ namespace GRBL_Plotter
                 { gcodeString = figureString; }// if (loggerTrace) Logger.Trace("    gcodeString = figureString"); }
             }
 
-
-    /*        if (gcodeDragCompensation)  // start next move with an arc and end with extended move
-            {   if (lastMovewasG0)      // start this line earlier - fix coordinates
-                {   float dx = finalx - lastx;       // distance from old point
-                    float dy = finaly - lasty;       // lastXY is global
-                    float moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
-                    if (moveLength > 0)
-                    {
-                        float correctedStartx = lastx - gcodeDragRadius * dx / moveLength;    // calc corrected start pos
-                        float correctedStarty = lasty - gcodeDragRadius * dy / moveLength;
-                        StringBuilder tmpString = new StringBuilder(); ;
-                        Move(tmpString, 0, correctedStartx, correctedStarty, z, applyXYFeedRate, "correct start pos.");
-                        gcodeString.Insert(gcodeString.Length - lastCharCount,tmpString);
-                    }
-                } 
-
-                Point tmp = dragToolCompensation(gcodeString, finalx, finaly);
-                finalx = (float)tmp.X; finaly = (float)tmp.Y;   // get extended final position
-            }*/
-
             if (gcodeLineSegmentation)       // apply segmentation
             {   float segFinalX = finalx, segFinalY = finaly;
-          /*      if (gcodeDragCompensation)
-                {   lastx = segLastFinalX;// origLastX;
-                    lasty = segLastFinalY;
-                }*/
                 float dx = finalx -  lastx;       // remaining distance until full move
                 float dy = finaly -  lasty;       // lastXY is global
                 float moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
@@ -701,8 +638,6 @@ namespace GRBL_Plotter
                         cmt += string.Format("{0:0.0} until subroutine",remainingC);
                     Move(gcodeString, 1, finalx, finaly, z, applyXYFeedRate, cmt);      // remainingC.ToString()
                     remainingC -= moveLength;
-                //    if (gcodeDragCompensation)
-               //         remainingC += gcodeDragRadius;
                 }
                 else
                 {
@@ -756,58 +691,7 @@ namespace GRBL_Plotter
             lastMovewasG0 = false;
         }
 
-  //      private static bool dragArc = false, drag1stMove = true;
         private static float origLastX, origLastY, origFinalX, origFinalY;
- //       private static float dragCompi = 0, dragCompj = 0;
-    /*    private static Point dragToolCompensation(StringBuilder gcodeString, float finalx, float finaly)
-        {
-            float dx = finalx - origFinalX;// lastx;       // remaining distance until full move
-            float dy = finaly - origFinalY;// lasty;       // lastXY is global
-            float moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
-            if (moveLength == 0)
-                return new Point(finalx, finaly);
-
-// calc arc angle between last move and current move, dragCompx y = lastrealpos, dragCompi j = centerofcircle
-     /*       float rx = origFinalX + gcodeDragRadius * dx / moveLength;     // calc end-pos of arc
-            float ry = origFinalY + gcodeDragRadius * dy / moveLength;
-            ArcProperties arcMove;
-            arcMove = gcodeMath.getArcMoveAngle(new xyPoint(lastx, lasty), new xyPoint(rx, ry), dragCompi, dragCompj);
-    *//*
-            float rx = origFinalX + gcodeDragRadius * dx / moveLength;     // calc end-pos of arc
-            float ry = origFinalY + gcodeDragRadius * dy / moveLength;
-            float[] angle = getAngle(lastx, lasty, rx, ry, dragCompi, dragCompj); // get start-,end- and diff-angle
-            if (angle[2] > 180) { angle[2] = angle[2] - 360; }
-            if (angle[2] < -180) { angle[2] = 360 + angle[2]; }
-            int gcnr = 2;
-            if (angle[2] > 0)
-                gcnr = 3;
-            dragArc = (Math.Abs(angle[2]) > gcodeDragAngle);
-
-// draw arc before move
-            if (dragArc)        // add arc to connect next move
-            {   
-                origLastX = lastx; origLastY = lasty;
-                if ((angle[2] != 0) && !drag1stMove)
-                {   MoveArc(gcodeString, gcnr, rx, ry, dragCompi, dragCompj, applyXYFeedRate, "Drag t. comp.");// + angle[2].ToString());
-                }
-                lastx = origLastX; lasty = origLastY;
-            }
-            else
-            {               // connect first extend move with end of next extend move
-            }
-// calc end-pos with added offset and center of new arc
-            origLastX = lastx;
-            origLastY = lasty;
-            origFinalX = finalx;
-            origFinalY = finaly;
-            finalx = finalx + gcodeDragRadius * dx / moveLength;    // set new finalx for move command
-            finaly = finaly + gcodeDragRadius * dy / moveLength;
-            dragCompi = origFinalX - finalx;                              // calc center of arc to connect to next move
-            dragCompj = origFinalY - finaly;
-
-            drag1stMove = false;
-            return new Point(finalx, finaly);
-        }*/
 
         // process subroutine, afterwards move back to last regular position before subroutine        
         private static bool insertSubroutine(StringBuilder gcodeString, float lX, float lY, float lZ, bool applyFeed)
@@ -834,8 +718,6 @@ namespace GRBL_Plotter
         {   Move(gcodeString, gnr, x, y, null, applyFeed, cmt); }
         public static void Move(StringBuilder gcodeStringFinal, int gnr, float x, float y, float? z, bool applyFeed, string cmt)
         {
-//            if (loggerTraceImport) Logger.Trace("  Move G{0} X{1:0.000} Y{2:0.000}  {3}", gnr, x, y, gcodeTangentialCommand);
-
             StringBuilder gcodeString = gcodeStringFinal;
 
             if (gnr == 0)
@@ -972,8 +854,6 @@ namespace GRBL_Plotter
         { MoveArc(gcodeString, gnr, x, y, i, j, applyXYFeedRate, cmt, avoidG23); }
         private static void MoveArc(StringBuilder gcodeStringFinal, int gnr, float x, float y, float i, float j, bool applyFeed, string cmt="", bool avoidG23 = false)
         {
- //           if (loggerTraceImport) Logger.Trace("  MoveArc G{0} X{1:0.000} Y{2:0.000}", gnr, x, y);
-
             StringBuilder gcodeString = gcodeStringFinal;
             if (gcodeZApply && repeatZ)
             {   gcodeString = figureString; if (loggerTraceImport) Logger.Trace("    gcodeString = figureString"); }
@@ -982,24 +862,6 @@ namespace GRBL_Plotter
             float x_relative = x - lastx;
             float y_relative = y - lasty;
             float a_relative = gcodeTangentialAngle - gcodeTangentialAngleLast;
-
-       /*     if (gcodeDragCompensation && lastMovewasG0)  // start this line earlier - fix coordinates
-            {
-                float moveLength = (float)Math.Sqrt(i * i + j * j);
-                if (moveLength > 0)
-                {
-                    float tmpx = lastx, tmpy = lasty;
-                    float correctedStartx = lastx - gcodeDragRadius * j / moveLength;    // switch i/j for 90°
-                    float correctedStarty = lasty - gcodeDragRadius * i / moveLength;
-                    if (gnr==3)
-                        correctedStarty = lasty + gcodeDragRadius * i / moveLength;
-                    StringBuilder correctedStartString = new StringBuilder(); ;
-                    Move(correctedStartString, 0, correctedStartx, correctedStarty, applyXYFeedRate, "correct start pos.");
-                    gcodeString.Insert(gcodeString.Length - lastCharCount, correctedStartString);  // before pen down
-                    lastx = tmpx; lasty = tmpy;
-                    Move(gcodeString, 1, lastx, lasty, applyXYFeedRate, "correct start pos.");  // move to orig pos
-                }
-            }*/
 
             if (applyFeed)
             {   feed = string.Format("F{0}", gcodeXYFeed);
@@ -1132,10 +994,11 @@ namespace GRBL_Plotter
                 string cmtx = "";
                 if (cmt.Length > 0) cmtx = string.Format("({0})", cmt);
                 toolCmd = string.Format("T{0:D2} M{1} {2}", toolnr, frmtCode(6), cmtx);
+
                 if (gcodeToolChangeM0)
-                { gcodeString.AppendFormat("M0 ({0})\r\n", toolCmd); gcodeLines++; }
+                {   gcodeString.AppendFormat("M0 (Tool: {0}  Color: {1})\r\n", toolnr, cmt); gcodeLines++; }
                 else
-                { gcodeString.AppendFormat("{0}\r\n", toolCmd); gcodeLines++; }
+                {   gcodeString.AppendFormat("{0}\r\n", toolCmd); gcodeLines++; }
                 gcodeToolCounter++;
                 gcodeLines++;
                 gcodeToolText += string.Format("( {0} ToolNr: {1:D2}, Name: {2})\r\n", gcodeToolCounter, toolnr, cmt);
@@ -1154,8 +1017,11 @@ namespace GRBL_Plotter
                 {   string[] commands = toolInfo.gcode.Split(';');
                     string comment = "";
                     if (gcodeComments) { comment = "(gcode from tool table)"; }
+
+                    gcodeString.AppendFormat("G4 P0.5\r\n");
                     foreach (string btncmd in commands)
                     { gcodeString.AppendFormat("{0} {1}\r\n", btncmd.Trim(), comment); }
+                    gcodeString.AppendFormat("G4 P0.5\r\n");
 
                     if (gcodeZApply)
                     { gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), "(after tool table gcode)"); }
@@ -1274,13 +1140,14 @@ namespace GRBL_Plotter
         public static string GetFooter()
         {
             string footer = "";
+
+            if (gcodeToolChange && Properties.Settings.Default.ctrlToolChangeEmpty)
+            { footer += string.Format("T{0} M{1} (Remove tool)\r\n", frmtCode((int)Properties.Settings.Default.ctrlToolChangeEmptyNr), frmtCode(6)); }
+
             string[] commands = Properties.Settings.Default.importGCFooter.Split(';');
             foreach (string cmd in commands)
                 if (cmd.Length > 1)
                 {   footer += string.Format("{0} (Setup - GCode-Footer)\r\n", cmd.Trim());}
-
-            if (gcodeToolChange && Properties.Settings.Default.ctrlToolChangeEmpty)
-            {   footer += string.Format("T{0} M{1} (Remove tool)\r\n", frmtCode((int)Properties.Settings.Default.ctrlToolChangeEmptyNr), frmtCode(6)); }
 
             if (gcodeComments)
                 footer += "M30 (Program end)\r\n";

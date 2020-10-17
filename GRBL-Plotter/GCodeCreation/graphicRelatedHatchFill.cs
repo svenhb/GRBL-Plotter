@@ -38,8 +38,9 @@ namespace GRBL_Plotter
             bool incrementAngle = Properties.Settings.Default.importGraphicHatchFillAngleInc;
 
             bool nextIsSameHatch;
+			bool fillColor = graphicInformation.ApplyHatchFill;	// only hatch if fillColor is set
 
-            Logger.Trace("...HatchFill distance:{0} angle:{1} cross:{3}", distance, angle, cross);
+            Logger.Trace("...HatchFill distance:{0} angle:{1} cross:{2}", distance, angle, cross);
             List<Point[]> hatchPattern = new List<Point[]>();
             List<Point[]> finalPattern = new List<Point[]>();
 
@@ -56,13 +57,23 @@ namespace GRBL_Plotter
 
                     if (isEqual(PathData.Start, PathData.End) && (PathData.path.Count > 2))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
                     {
+                        string fill = PathData.Info.groupAttributes[(int)GroupOptions.ByFill];
+                        if (fillColor && ((fill == "") || (fill == "none")))	// SVG: only hatch if fillColor is set
+                        {
+                            Logger.Trace("no fill"); continue;  }
+						else
+
+                            countProperty((int)GroupOptions.ByColor, fill);		// now fill-color is also penColor -> for grouping
 						
                         tmpPath.Add(PathData);					// collect paths
 						pathDimension.addDimensionXY(PathData.Dimension);	// adapt overall size
+						if (!pathDimension.isXYSet())						// no dimension - nothing to do
+                        { Logger.Trace("no dim"); continue;  }
 						
                         // collect paths of same id, process if id changes
-                        nextIsSameHatch = ((index != (maxObject - 1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
-                        if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1} ", PathData.Info.id, nextIsSameHatch);
+//                        nextIsSameHatch = ((index != (maxObject - 1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
+                        nextIsSameHatch = ((index < (maxObject-1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
+                        if (logModification) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}", PathData.Info.id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.id, graphicToFill[index + 1].Info.id);
                         if (nextIsSameHatch)   
                         {   continue;  }
 
@@ -80,7 +91,6 @@ namespace GRBL_Plotter
                         {   ClipLineByPolygone(hatchLine[0], hatchLine[1], tmpPath, finalPattern); }
 
                         // add processed hatch lines to final graphic
-						if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("  Add hatch lines, clear tmpPath");
                         AddLinesToGraphic(finalPattern, PathData);
 
 						// tidy up for next object with new id
@@ -90,11 +100,12 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace(" is Dot ID:{0} Length:{1:0.00}  start x:{2:0.00} y:{3:0.00} end x:{4:0.00} y:{5:0.00} ", item.Info.id, item.PathLength, item.Start.X, item.Start.Y, item.End.X, item.End.Y);
+                    if (logModification) Logger.Trace(" is Dot ID:{0} Length:{1:0.00}  start x:{2:0.00} y:{3:0.00} end x:{4:0.00} y:{5:0.00} ", item.Info.id, item.PathLength, item.Start.X, item.Start.Y, item.End.X, item.End.Y);
                 }
             }
-            if ((logFlags) > 0) Logger.Trace("HatchFill End --------------------------------------", actualDimension.minx, actualDimension.miny);
+            if (logModification) Logger.Trace("HatchFill End --------------------------------------", actualDimension.minx, actualDimension.miny);
         }
+
 
         private static List<Point[]> CreateLinePattern(Dimensions dim, double angle, double distance)
 		{	return CreateLinePattern(dim.minx, dim.miny, dim.maxx, dim.maxy, angle, distance);}
@@ -135,7 +146,9 @@ namespace GRBL_Plotter
 
 		private static void AddLinesToGraphic(List<Point[]> HatchLines, ItemPath PathData)
 		{
+            if (logModification) Logger.Trace("  AddLinesToGraphic");
             Point start, end;
+			bool switchColor = graphicInformation.ApplyHatchFill;
             for (int i = 0; i < HatchLines.Count; i++)
 			{
                 if ((i % 2) > 0)
@@ -146,6 +159,8 @@ namespace GRBL_Plotter
                 StartPath(start);
                 actualPath.Info.id = PathData.Info.id;
                 actualPath.Info.CopyData(PathData.Info);    // preset global info for GROUP
+				if (switchColor)
+					actualPath.Info.groupAttributes[(int)GroupOptions.ByColor] = actualPath.Info.groupAttributes[(int)GroupOptions.ByFill];
                 actualPath.Info.pathGeometry += "_hatch";
                 AddLine(end);
 				StopPath();
@@ -195,7 +210,7 @@ namespace GRBL_Plotter
 		{	Point p3, p4;
 			double intersect;
 
-			List<intersectionInfo> d_and_a = new List<intersectionInfo>();
+            List<intersectionInfo> d_and_a = new List<intersectionInfo>();
 
 			double holdBack = (double)Properties.Settings.Default.importGraphicHatchFillInset;
             bool holdBackEnable = Properties.Settings.Default.importGraphicHatchFillInsetEnable;
