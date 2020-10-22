@@ -1,6 +1,9 @@
 ## History
 Needs to be read from the bottom up ;-)  
-
+ 
+### 2020-10-22 Version 1.5.2.1    
+Custom-Buttons in color, right-click for edit, predefinitions
+  
 ### 2020-08-15 Version 1.5.0.5    
 Some bug fixes  
 Gerber import 
