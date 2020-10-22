@@ -333,7 +333,7 @@ namespace GRBL_Plotter //DXFImporter
             Graphic.SetPenColor(dxfColorHex);
             Graphic.SetPenColorId(dxfColorNr);
             Graphic.SetPenFill(dxfColorFill);
-            Graphic.SetPenWidth(string.Format("{0:0.00}",((double)dxfLineWeigth/100)));	// convert to mm, then to string
+            Graphic.SetPenWidth(string.Format("{0:0.00}",((double)dxfLineWeigth/100)).Replace(',', '.'));	// convert to mm, then to string
 
             #region DXFPoint
             if (entity.GetType() == typeof(DXFPointEntity))

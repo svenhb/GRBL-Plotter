@@ -455,7 +455,7 @@ namespace GRBL_Plotter
             {   nr = ConvertToPixel(txt);
                 Logger.Error("Convert stroke-width via ConvertToPixel '{0}' result '{1}'", txt, nr);
             }
-			Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale,3).ToString());
+			Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale,3).ToString().Replace(',', '.'));
 		}
         /// <summary>
         /// Parse Transform information - more information here: http://www.w3.org/TR/SVG/coords.html

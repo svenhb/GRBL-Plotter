@@ -358,7 +358,7 @@ namespace GRBL_Plotter
                             actualAperture = apertures[token];
                             Graphic.SetLayer(token);// + " " + actualAperture.content);
                             Graphic.SetHeaderInfo(token + " = " + actualAperture.content);
-                            Graphic.SetPenWidth(actualAperture.XSize.ToString());
+                            Graphic.SetPenWidth(actualAperture.XSize.ToString().Replace(',', '.'));
                             if (logEnable) Logger.Trace("   apply aperture {0}  {1}",token, actualAperture.apType.ToString());
                         }
                         else
