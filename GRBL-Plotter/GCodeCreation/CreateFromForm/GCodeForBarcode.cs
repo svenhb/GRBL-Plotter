@@ -113,7 +113,7 @@ namespace GRBL_Plotter
 			Graphic.SetType("Barcode");
 			Graphic.SetLayer(textBox1.Text);
 			Graphic.SetPenColor("black");
-            Graphic.SetPenWidth(scanGap.ToString());
+            Graphic.SetPenWidth(scanGap.ToString().Replace(',','.'));
 
             Graphic.SetGeometry(type);
 
@@ -235,7 +235,7 @@ namespace GRBL_Plotter
 			Graphic.SetType("QR-Code");
 			Graphic.SetLayer(tBQRText.Text);
 			Graphic.SetPenColor("black");
-            Graphic.SetPenWidth(scanGap.ToString());
+            Graphic.SetPenWidth(scanGap.ToString().Replace(',', '.'));
             Graphic.SetGeometry("QR-Code");
 
             int xi = 0, yi = 0;
