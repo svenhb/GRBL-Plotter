@@ -109,7 +109,7 @@ namespace GRBL_Plotter
                     }
                     statusStripClear(1, 2);
                     toolTip1.SetToolTip(lbInfo, lbInfo.Text);
-                    timerUpdateControls = true; //updateControls();
+                    timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.reset";//updateControls();
                     if (_coordSystem_form != null)
                         _coordSystem_form.showValues();
 
@@ -154,7 +154,7 @@ namespace GRBL_Plotter
                     }
                     MainTimer.Stop();
                     MainTimer.Start();
-                    timerUpdateControls = true; //updateControls();
+                    timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.finish";//updateControls();
                     saveStreamingStatus(0);
                     showPicBoxBgImage = false;                     // don't show background image anymore
                     pictureBox1.BackgroundImage = null;
@@ -162,7 +162,7 @@ namespace GRBL_Plotter
                     break;
 
                 case grblStreaming.waitidle:
-                    timerUpdateControls = true; //updateControls();// true);
+                    timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.waitidle";//updateControls();// true);
                     btnStreamStart.Image = Properties.Resources.btn_play;
   //                  isStreamingPause = true;
                     lbInfo.Text = Localization.getString("mainInfoWaitIdle") + e.CodeLineSent.ToString() + ")";
@@ -179,7 +179,7 @@ namespace GRBL_Plotter
                         isStreamingPause = true;
                         MainTimer.Stop();
                         MainTimer.Start();
-                        timerUpdateControls = true; //updateControls(true);
+                        timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.pause";//updateControls(true);
 
                         saveStreamingStatus(e.CodeLineSent);
 
@@ -197,7 +197,7 @@ namespace GRBL_Plotter
                     break;
 
                 case grblStreaming.toolchange:
-                    timerUpdateControls = true; // updateControls();
+                    timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.toolchange";// updateControls();
                     btnStreamStart.Image = Properties.Resources.btn_play;
                     lbInfo.Text = Localization.getString("mainInfoToolChange");
                     lbInfo.BackColor = Color.Yellow;
@@ -205,7 +205,7 @@ namespace GRBL_Plotter
                     break;
 
                 case grblStreaming.stop:
-                    timerUpdateControls = true; // updateControls();
+                    timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.stop";// updateControls();
                     lbInfo.Text = Localization.getString("mainInfoStopStream") + e.CodeLineSent.ToString() + ")";
                     lbInfo.BackColor = Color.Fuchsia;
 
@@ -277,6 +277,7 @@ namespace GRBL_Plotter
                         gBoxOverrideBig = true;
                     }
 
+                    timerUpdateControlSource = "startStreaming";
                     updateControls();
                     timeInit = DateTime.UtcNow;
                     elapsed = TimeSpan.Zero;
@@ -312,7 +313,7 @@ namespace GRBL_Plotter
                     }
                     else
                     {
-                        Logger.Info("Pause streaming - continue stream  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+                        Logger.Info("Pause streaming - continue stream  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
                         btnStreamStart.Image = Properties.Resources.btn_pause;
                         _serial_form.pauseStreaming();
                         isStreamingPause = false;
@@ -329,6 +330,7 @@ namespace GRBL_Plotter
                 isStreaming = true;
                 isStreamingCheck = true;
                 isStreamingOk = true;
+                timerUpdateControlSource = "btnStreamCheck_Click";
                 updateControls();
                 timeInit = DateTime.UtcNow;
                 elapsed = TimeSpan.Zero;
@@ -373,6 +375,7 @@ namespace GRBL_Plotter
             btnStreamStart.BackColor = SystemColors.Control;
             btnStreamStart.Enabled = true;
             btnStreamCheck.Enabled = true;
+            timerUpdateControlSource = "resetStreaming";
             updateControls();
             pictureBox1.Invalidate();
             ControlPowerSaving.EnableStandby();

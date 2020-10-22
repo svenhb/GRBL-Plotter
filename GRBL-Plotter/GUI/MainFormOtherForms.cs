@@ -399,6 +399,7 @@ namespace GRBL_Plotter
                 sendCommand(btncmd.Trim());
             }
 
+            timerUpdateControlSource = "OnRaiseProbingEvent";
             updateControls();
             Properties.Settings.Default.counterUseProbing += 1;
         }

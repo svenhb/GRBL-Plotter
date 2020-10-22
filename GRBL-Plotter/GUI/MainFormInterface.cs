@@ -52,6 +52,7 @@ namespace GRBL_Plotter
         private string actualSS = "";
 
         private bool timerUpdateControls = false;
+        private string timerUpdateControlSource = "";
 
         /************************************************************
          * handle status report and position event from serial form
@@ -306,6 +307,7 @@ namespace GRBL_Plotter
                         break;
 
                     case grblState.unknown:
+                        timerUpdateControlSource = "grblState.unknown";
                         updateControls();
 //                        if (Properties.Settings.Default.serialMinimize && _serial_form.serialPortOpen)
 //                            _serial_form.WindowState = FormWindowState.Minimized;
@@ -363,6 +365,7 @@ namespace GRBL_Plotter
 
 		private void processReset()
         {
+            timerUpdateControlSource = "processReset";
             updateControls();
             if (logPosEvent) Logger.Trace("processReset");
             if (!_serial_form.checkGRBLSettingsOk())   // check 30 kHz limit
@@ -413,7 +416,7 @@ namespace GRBL_Plotter
 			flagResetOffset = false;
             MainTimer.Stop();
             MainTimer.Start();
-            timerUpdateControls = true;
+            timerUpdateControls = true; timerUpdateControlSource = "process Reset";
             if (logPosEvent) Logger.Trace("ResetEvent()  connect {0}", _serial_form.serialPortOpen);
             resetStreaming();
         }

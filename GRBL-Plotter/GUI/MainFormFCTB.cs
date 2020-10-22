@@ -162,6 +162,9 @@ namespace GRBL_Plotter
             }
         }
 
+        private void setfCTBCodeText(string code)
+        {   fCTBCode.Text = code;   }
+
         // mark clicked line in editor
         private int fCTBCodeClickedLineNow = 0;
         private int fCTBCodeClickedLineLast = 0;

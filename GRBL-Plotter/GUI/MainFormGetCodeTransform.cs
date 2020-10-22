@@ -226,6 +226,7 @@ namespace GRBL_Plotter
             VisuGCode.drawMachineLimit(toolTable.getToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
             update_GCode_Depending_Controls();                          // update GUI controls
+            timerUpdateControlSource = "transformEnd";
             updateControls();                                           // update control enable 
             enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
             this.Cursor = Cursors.Default;

@@ -180,6 +180,7 @@ namespace GRBL_Plotter
             VisuGCode.drawMachineLimit(toolTable.getToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
             update_GCode_Depending_Controls();                          // update GUI controls
+            timerUpdateControlSource = "newCodeEnd";
             updateControls();                                           // update control enable 
             lbInfo.BackColor = SystemColors.Control;
             this.Cursor = Cursors.Default;
@@ -193,7 +194,7 @@ namespace GRBL_Plotter
 	//	public enum ConversionType { SVG, DXF, HPGL, CSV, Drill }; 
 
         private bool loadFile(string fileName)
-        {   Logger.Info("loadFile ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+        {   Logger.Info("loadFile ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
             String ext = Path.GetExtension(fileName).ToLower();
 			MainTimer.Stop();
 			MainTimer.Start();
@@ -202,7 +203,8 @@ namespace GRBL_Plotter
 			{   var MyIni = new IniFile(fileName);
 				Logger.Info("Load INI: '{0}'", fileName);
 				MyIni.ReadAll();    // ReadImport();
-				updateControls();
+                timerUpdateControlSource = "loadFile";
+                updateControls();
                 updateLayout();
                 statusStripSet(2, "INI File loaded", Color.Lime);
                 return true;
@@ -356,7 +358,7 @@ namespace GRBL_Plotter
             importOptions = "";                                                  //   String ext = Path.GetExtension(fileName).ToLower();
                                                                                  //   MessageBox.Show("-" + ext + "-");			
             Logger.Trace("tBURL_TextChanged: '{0}'", tBURL.Text);
-			Logger.Info("loadFile URL ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+			Logger.Info("loadFile URL ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
 			MainTimer.Stop();
 			MainTimer.Start();
 
@@ -367,7 +369,8 @@ namespace GRBL_Plotter
             {   Logger.Info("Load INI (URL): '{0}'", tBURL.Text);
                 var MyIni = new IniFile(tBURL.Text, true);
                 MyIni.ReadAll();    // ReadImport();
-				updateControls();
+                timerUpdateControlSource = "tBURL_TextChanged";
+                updateControls();
                 updateLayout();
                 statusStripSet(2, "INI File loaded", Color.Lime);
                 return;
@@ -474,27 +477,27 @@ namespace GRBL_Plotter
 			string conversionInfo = "";
 			switch (type)
 			{   case Graphic.SourceTypes.SVG:
-				{	fCTBCode.Text = GCodeFromSVG.ConvertFromFile(source); conversionInfo = GCodeFromSVG.conversionInfo; 
+				{   setfCTBCodeText(GCodeFromSVG.ConvertFromFile(source)); conversionInfo = GCodeFromSVG.conversionInfo; 
 					Properties.Settings.Default.counterImportSVG += 1;
 					break;  }
                 case Graphic.SourceTypes.DXF:
-				{	fCTBCode.Text = GCodeFromDXF.ConvertFromFile(source); conversionInfo = GCodeFromDXF.conversionInfo;
+				{   setfCTBCodeText(GCodeFromDXF.ConvertFromFile(source)); conversionInfo = GCodeFromDXF.conversionInfo;
 					Properties.Settings.Default.counterImportDXF += 1;
 					break; }
                 case Graphic.SourceTypes.HPGL:
-				{	fCTBCode.Text = GCodeFromHPGL.ConvertFromFile(source); conversionInfo = GCodeFromHPGL.conversionInfo;
+				{   setfCTBCodeText(GCodeFromHPGL.ConvertFromFile(source)); conversionInfo = GCodeFromHPGL.conversionInfo;
 					Properties.Settings.Default.counterImportHPGL += 1;
 					break;  }
                 case Graphic.SourceTypes.CSV:
-				{	fCTBCode.Text = GCodeFromCSV.ConvertFromFile(source); conversionInfo = GCodeFromCSV.conversionInfo;
+				{   setfCTBCodeText(GCodeFromCSV.ConvertFromFile(source)); conversionInfo = GCodeFromCSV.conversionInfo;
 					Properties.Settings.Default.counterImportCSV += 1;
 					break;     }
                 case Graphic.SourceTypes.Drill:
-				{	fCTBCode.Text = GCodeFromDrill.ConvertFromFile(source); conversionInfo = GCodeFromDrill.conversionInfo;
+				{   setfCTBCodeText(GCodeFromDrill.ConvertFromFile(source)); conversionInfo = GCodeFromDrill.conversionInfo;
 					Properties.Settings.Default.counterImportDrill += 1;
 					break;   }
                 case Graphic.SourceTypes.Gerber:
-                {   fCTBCode.Text = GCodeFromGerber.ConvertFromFile(source); conversionInfo = GCodeFromGerber.conversionInfo;
+                {   setfCTBCodeText(GCodeFromGerber.ConvertFromFile(source)); conversionInfo = GCodeFromGerber.conversionInfo;
                     Properties.Settings.Default.counterImportGerber += 1;
                     break;
                 }
@@ -527,15 +530,12 @@ namespace GRBL_Plotter
             importOptions = Graphic.graphicInformation.ListOptions() + importOptions;
             if (Properties.Settings.Default.importGCCompress) importOptions += "<Compress> " ;
             if (Properties.Settings.Default.importGCRelative) importOptions += "< G91 > " ;
-//            if (Properties.Settings.Default.importRepeatEnable) importOptions += "<Repeat code> " ;
             if (Properties.Settings.Default.importGCLineSegmentation) importOptions += "<Line segmentation> " ;
 
             if (importOptions.Length > 1)
             {
                 importOptions = "Import options: " + importOptions;
                 statusStripSet(1, importOptions, Color.Yellow);
-//                string tmp = "<Arc to Line> in [Setup - Graphics import - Path import - General options - 'Avoid G2/3 commands']";
-//                statusStripSetToolTip(1, tmp);
                 Logger.Info(" {0}", importOptions);
             }
         }
@@ -556,9 +556,7 @@ namespace GRBL_Plotter
             if (File.Exists(tbFile.Text))
             {
                 newCodeStart();
-//                fCTBCode.TextChanged -= fCTBCode_TextChanged;       // disable textChanged events
                 fCTBCode.OpenFile(tbFile.Text);                 
-//                fCTBCode.TextChanged += fCTBCode_TextChanged;       // enable textChanged events
                 
                 if (_serial_form.isLasermode && Properties.Settings.Default.ctrlReplaceEnable)
                 {
@@ -585,6 +583,7 @@ namespace GRBL_Plotter
                             if (dialogResult == DialogResult.Yes)
                             {
                                 loadStreamingStatus(true);                            //do something
+                                timerUpdateControlSource = "loadGcode";
                                 updateControls(true);
                                 btnStreamStart.Image = Properties.Resources.btn_play;
                                 isStreamingPause = true;
@@ -1212,7 +1211,8 @@ namespace GRBL_Plotter
             updateCustomButtons(true);  // isConnected && (!isStreaming || allowControl)
 
             allowControl = isStreamingPause;
-            Logger.Trace("updateControls isConnected:{0} isStreaming:{1} allowControl:{2} ", isConnected, isStreaming, allowControl);
+            Logger.Trace("updateControls isConnected:{0} isStreaming:{1} allowControl:{2} source:{3}", isConnected, isStreaming, allowControl, timerUpdateControlSource);
+            timerUpdateControlSource = "";
 
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
@@ -1543,6 +1543,8 @@ namespace GRBL_Plotter
         private int loadStreamingStatus(bool setPause = false)
         {
             string fileName = Application.StartupPath + "\\" + fileLastProcessed + ".xml";
+            if (!File.Exists(fileName))
+                return 0;
             FileInfo fi = new FileInfo(fileName);
             if (fi.Length > 1)
             {
