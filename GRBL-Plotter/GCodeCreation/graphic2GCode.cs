@@ -643,22 +643,28 @@ namespace GRBL_Plotter
 
 
             if (Properties.Settings.Default.importRepeatEnable && Properties.Settings.Default.importRepeatComplete)      // repeat code x times
-            {
-                for (int i = 0; i<Properties.Settings.Default.importRepeatCnt; i++)
+            {   for (int i = 0; i<Properties.Settings.Default.importRepeatCnt; i++)
                     output += finalGcodeString.ToString().Replace(',', '.');
 
-                //return header + output + footer;
                 header += output + footer;
             }
             else
                 header += finalGcodeString.ToString().Replace(',', '.') + footer;
-            // return header + finalGcodeString.ToString().Replace(',', '.') + footer;
 
-            if (Properties.Settings.Default.ctrlLineEndEnable)
-            {
-                header = header.Replace("\r", Properties.Settings.Default.ctrlLineEndText + "\r");
-                header = header.Replace(")"+Properties.Settings.Default.ctrlLineEndText, ")");
-//                System.Windows.Forms.MessageBox.Show(header);
+            if (Properties.Settings.Default.ctrlLineNumbers || Properties.Settings.Default.ctrlLineEndEnable)
+            {   int n = 1;
+                string[] lines = header.Split('\n');
+                string end = "";
+                if (Properties.Settings.Default.ctrlLineEndEnable)
+                    end = Properties.Settings.Default.ctrlLineEndText;
+                bool addNr = Properties.Settings.Default.ctrlLineNumbers;
+                for (int i = 0; i < lines.Count(); i++)
+                {   if (addNr)
+                        lines[i] = string.Format("N{0} {1}{2}", n++, lines[i].Trim(),end);
+                    else
+                        lines[i] = string.Format("{0}{1}", lines[i].Trim(), end);
+                }
+                header = String.Join("\n", lines);
             }
             return header;
         }

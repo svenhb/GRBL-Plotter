@@ -1069,6 +1069,8 @@ namespace GRBL_Plotter
                 {   header_end += string.Format("{0} (Setup - GCode-Header)\r\n", cmd.Trim()); gcodeLines++; }
             if (gcodeRelative)
             {   header_end += string.Format("G91 (Setup relative movement)\r\n"); gcodeLines++; }
+            else
+            {   header_end += string.Format("G90\r\n"); gcodeLines++; }
 
             if (Properties.Settings.Default.importUnitGCode)
             {

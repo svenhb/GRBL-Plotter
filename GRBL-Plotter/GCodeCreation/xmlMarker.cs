@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -322,7 +323,7 @@ namespace GRBL_Plotter
             string tmp = getAttributeValue(Element, Attribute);
             if (tmp == "") return -1;
             int att;
-            if (int.TryParse(tmp, out att))
+            if (int.TryParse(tmp, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out att))
                 return att;
             Logger.Error("getAttributeValueInt Element:{0} Attribut:{1}",Element, Attribute);
             return -1;
@@ -333,7 +334,7 @@ namespace GRBL_Plotter
             string tmp = getAttributeValue(Element, Attribute);
             if (tmp == "") return -1;
             double att;
-            if (double.TryParse(tmp, out att))
+            if (double.TryParse(tmp, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out att))
                 return att;
             Logger.Error("getAttributeValueDouble Element:{0} Attribut:{1}", Element, Attribute);
             return -1;

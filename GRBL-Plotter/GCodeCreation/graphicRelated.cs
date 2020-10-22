@@ -181,15 +181,15 @@ namespace GRBL_Plotter
             if (logCoordinates) Logger.Trace("StopPath  cnt:{0}  cmt:{1} {2}", (objectCount-1), cmt, actualPath.Info.List());
             if (logEnable) Logger.Trace("    StopPath Dimension  {0}", actualPath.Dimension.getXYString());
 
+            if (actualPath.path.Count > 0)
+            { actualDimension.addDimensionXY(actualPath.Dimension); }
+
             continuePath = false;
 //            actualDashArray = new double[0];
             actualPath = new ItemPath();                    // reset path
             actualPathInfo.id = objectCount;
             actualPath.Info.CopyData(actualPathInfo);       // preset global info for GROUP
             actualPath.Options = lastOption;
-
-            if (actualPath.path.Count > 0)
-            {   actualDimension.addDimensionXY(actualPath.Dimension);  }
         }
 
         public static void AddLine(Point xy, string cmt = "")
@@ -371,6 +371,7 @@ namespace GRBL_Plotter
 /* remove offset */
             if (graphicInformation.OptionOffsetCode)  // || (Properties.Settings.Default.importGraphicTile) 
             {   SetHeaderInfo(string.Format(" Original graphic dimension min:{0:0.000};{1:0.000}  max:{2:0.000};{3:0.000}", actualDimension.minx, actualDimension.miny, actualDimension.maxx, actualDimension.maxy));
+                if (logEnable) Logger.Trace("call RemoveOffset");
                 RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny);
             }
 
@@ -655,8 +656,8 @@ namespace GRBL_Plotter
             if (logEnable) Logger.Trace("  ListGraphicObjects          ##########################################", graphicToShow.Count);
         }
 
-		# region clipPath
-        public static void ClipCode(double tileSizeX, double tileSizeY)//xyPoint p1, xyPoint p2)      // set dot only extra behandeln
+        #region clipPath
+        private static void ClipCode(double tileSizeX, double tileSizeY)//xyPoint p1, xyPoint p2)      // set dot only extra behandeln
         {	//const uint loggerSelect = (uint)LogEnable.ClipCode;
 			bool log = logEnable && ((logFlags & (uint)LogEnable.ClipCode) > 0);
             finalPathList = new List<PathObject>();    // figures of one tile
@@ -958,9 +959,9 @@ namespace GRBL_Plotter
         #endregion
 
         #region remove short moves
-        public static void RemoveShortMoves(List<PathObject> graphicToOffset, double minDistance)
+        private static void RemoveShortMoves(List<PathObject> graphicToOffset, double minDistance)
         {
-            if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} --------------------------------------", actualDimension.minx, actualDimension.miny);
+            if (logEnable) Logger.Trace("...RemoveShortMoves before min X:{0:0.00} Y:{1:0.00} --------------------------------------", actualDimension.minx, actualDimension.miny);
             foreach (PathObject item in graphicToOffset)    // dot or path
             {
                 if (item is ItemPath)
@@ -992,9 +993,12 @@ namespace GRBL_Plotter
         #endregion
 
         #region remove offset
-        public static void RemoveOffset(List<PathObject> graphicToOffset, double offsetX, double offsetY)
+        private static void RemoveOffset(List<PathObject> graphicToOffset, double offsetX, double offsetY)
         {
-            if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} --------------------------------------", actualDimension.minx, actualDimension.miny);
+            System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
+
+ //           MessageBox.Show("Methode B wurde von Methode " + s.GetFrame(1).GetMethod().Name + " aufgerufen");
+            if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} caller:{2} --------------------------------------", actualDimension.minx, actualDimension.miny, s.GetFrame(1).GetMethod().Name);
             foreach (PathObject item in graphicToOffset)    // dot or path
             {
                 item.Start = new Point(item.Start.X - offsetX, item.Start.Y - offsetY);
@@ -1009,11 +1013,11 @@ namespace GRBL_Plotter
             }
             actualDimension.offsetXY(-offsetX, -offsetY);
         }
-		# endregion
-		
+        #endregion
+
         public static void ScaleXY(double scaleX, double scaleY)	// scaleX != scaleY will not work for arc!
         {   Scale(completeGraphic, scaleX, scaleY); }
-        public static void Scale(List<PathObject> graphicToOffset, double scaleX, double scaleY)
+        private static void Scale(List<PathObject> graphicToOffset, double scaleX, double scaleY)
         {
             if (logEnable) Logger.Trace("...Scale scaleX:{0:0.00} scaleY:{1:0.00} ", scaleX, scaleY);
             foreach (PathObject item in graphicToOffset)    // dot or path
@@ -1031,7 +1035,7 @@ namespace GRBL_Plotter
             }
         }
 
-        public static void RepeatPaths(List<PathObject> graphicToRepeat, int repetitions)
+        private static void RepeatPaths(List<PathObject> graphicToRepeat, int repetitions)
         {
             if (logEnable) Logger.Trace("...RepeatPaths({0})",repetitions);
             if (logDetailed) ListGraphicObjects(graphicToRepeat, true);
@@ -1051,7 +1055,7 @@ namespace GRBL_Plotter
 			if (logDetailed) ListGraphicObjects(graphicToRepeat,true);
         }
 
-		public static void ExtendClosedPaths(List<PathObject> graphicToExtend, double extensionOrig)
+        private static void ExtendClosedPaths(List<PathObject> graphicToExtend, double extensionOrig)
 		{	
 			//const uint loggerSelect = (uint)LogEnable.PathModification;
 			bool log = logEnable && ((logFlags & (uint)LogEnable.ClipCode) > 0);
@@ -1129,7 +1133,7 @@ namespace GRBL_Plotter
 			}			
 		}
 
-        public static void SortByDistance(List<PathObject> graphicToSort, bool preventReversal = false)
+        private static void SortByDistance(List<PathObject> graphicToSort, bool preventReversal = false)
         {
             if (logEnable) Logger.Trace("...SortByDistance() count:{0}",graphicToSort.Count);
 
@@ -1371,7 +1375,7 @@ namespace GRBL_Plotter
             if (logDetailed) ListGraphicObjects(graphicToMerge, true);
             if (logEnable) Logger.Trace("...MergeFigures after :{0}    ------------------------------------", graphicToMerge.Count);
         }
-        public static bool isEqual(System.Windows.Point a, System.Windows.Point b)
+        private static bool isEqual(System.Windows.Point a, System.Windows.Point b)
         {   return ((Math.Abs(a.X - b.X) < equalPrecision) && (Math.Abs(a.Y - b.Y) < equalPrecision));    }
         private static void MergePaths(ItemPath addAtEnd, ItemPath toMerge)
         {
