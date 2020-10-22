@@ -851,11 +851,11 @@ Supprimez 'M6' de la file d'envoi, car grbl ne peut pas gérer cette commande.</
     <comment>TabPage9</comment>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
-    <value>trier les groupes par numéro d'outil - croissant</value>
+    <value>Trier les groupes par propriété de groupe - par ordre croissant</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
-    <value>trier les groupes par taille de code - décroissant</value>
+    <value>Trier les groupes par numéro d'outil - par ordre croissant</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
@@ -1064,7 +1064,7 @@ Ou assignez un nom de fichier contenant G-Code.</value>
     <comment>TabPage5</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>Boutons personnal.</value>
+    <value>Joystick virtuel</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
@@ -1100,7 +1100,7 @@ Ou assignez un nom de fichier contenant G-Code.</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
-    <value>Joystick / Couleurs</value>
+    <value>Caméra</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
@@ -1712,7 +1712,7 @@ Déplacez le joystick après avoir modifié le décalage.</value>
     <value>Commandes d'axe tangentiel</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
-    <value>trier les groupes par dimension d'objet - croissant</value>
+    <value>Trier les groupes par longueur de chemin - décroissant</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
@@ -1930,7 +1930,7 @@ Par exemple. 'M0' pour interrompre le déplacement manuel du papier, ou '(^ 2 G9
     <value>Réglez l'origine de la région / des tuiles écrêtées sur 0; 0</value>
   </data>
   <data name="rBImportSVGSort4.Text" xml:space="preserve">
-    <value>trier les groupes par dimension d'objet - croissant</value>
+    <value>Trier les groupes par dimension d'objet - par ordre croissant</value>
   </data>
   <data name="tab1_1_4gB2.Text" xml:space="preserve">
     <value>Propriété à grouper et sélectionnez Tool-Nr. via</value>
@@ -2063,7 +2063,7 @@ Utile pour la découpe laser.</value>
     <value>Appliquer du texte</value>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
-    <value>Fin de ligne individuelle</value>
+    <value>Création de G-Code</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Valeur de type pour M19 (étendu)</value>
@@ -2126,5 +2126,8 @@ Alors qu'une prise M0 normale démarre, sans possibilité d'utiliser la machine.
   </data>
   <data name="tab4gB7.Text" xml:space="preserve">
     <value>Propriétés de streaming</value>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>Ajouter des numéros de ligne</value>
   </data>
 </root>

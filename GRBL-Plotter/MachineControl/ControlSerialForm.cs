@@ -103,9 +103,12 @@ namespace GRBL_Plotter
         private int countShutdown = 0;
         private int countPreventInterlock = 100;
         private int countPreventWaitForOkLock = 5;
+        private int countLoggerUpdate = 0;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+//        private static readonly NLog.Logger LogPos = NLog.LogManager.GetLogger("LogPos");
+
         private static bool logReceiveStatus = false;	// send '?' get '< Idle | MPos:0.000,0.000,0.000 | FS:0,0 | WCO:0.000,0.000,0.000 >'
         private static bool logReceive = false;			// any other RX data
         private static bool logTransmit = false;			// TX data
@@ -136,10 +139,9 @@ namespace GRBL_Plotter
             Thread.CurrentThread.CurrentUICulture = ci;
             this.Icon = Properties.Resources.Icon;
             this.Invalidate();
-            AppDomain currentDomain = AppDomain.CurrentDomain;
 
             timerSerial.Elapsed += timerSerial_Tick;
-            timerSerial.Enabled = true;
+            timerSerial.Interval = 1000;
         }
         public void set2ndSerial(ControlSerialForm handle = null)
         {   _serial_form2 = handle;
@@ -169,6 +171,8 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.serialMinimize)
 				addToLog("Form will be reduced after connecting");
 
+            timerSerial.Enabled = true;
+            timerSerial.Start();
         }
 
         private void SerialForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -333,13 +337,20 @@ namespace GRBL_Plotter
                     {   grblStateLast = grblState.unknown;   }
                 }
 
-                if (isStreaming && !isStreamingRequestPause && !isStreamingPause)
-                    preProcessStreaming();
-
-                if (!waitForIdle)
-                {   processSend();
+                if (isStreaming)
+                {   if (countLoggerUpdate-- <= 0)
+                    {   Logger.Info("timer update infoStream:{0}", listInfoStream());
+                        Logger.Info("timer update infoSend:  {0}", listInfoSend());
+                        countLoggerUpdate = (int)(10000 / timerSerial.Interval);
+                    }
+                    if (!isStreamingRequestPause && !isStreamingPause)
+                    {   preProcessStreaming(); }
                 }
-		    }
+/* preProcessStreaming and  processSend may block further timer-code */                
+                if (!waitForIdle)
+                {   processSend(); }                
+            }
+
             if (countShutdown > 0)		//(flag_closeForm)
             {   Logger.Trace("Ser:{0} timer: countShutdown:{1}",iamSerial,countShutdown);
 				countShutdown--;

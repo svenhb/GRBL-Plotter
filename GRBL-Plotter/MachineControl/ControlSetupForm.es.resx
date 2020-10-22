@@ -851,11 +851,11 @@ Elimine 'M6' de la cola de envío, porque grbl no puede manejar este comando.</v
     <comment>TabPage9</comment>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
-    <value>ordenar grupos por herramienta nr - ascendente</value>
+    <value>Ordenar grupos por propiedad de grupo - en orden ascendente</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
-    <value>ordenar grupos por tamaño de código - descendente</value>
+    <value>Clasifique los grupos por número de herramienta, en orden ascendente</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
@@ -1064,7 +1064,7 @@ O asigne un nombre de archivo que contenga G-Code.</value>
     <comment>TabPage5</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>Botones personal.</value>
+    <value>Joystick virtuel</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
@@ -1100,7 +1100,7 @@ O asigne un nombre de archivo que contenga G-Code.</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
-    <value>Joystick / Colores</value>
+    <value>Cámara</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
@@ -1712,7 +1712,7 @@ Mueva el joystick después de cambiar el desplazamiento.</value>
     <value>Comandos de eje tangencial</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
-    <value>ordenar grupos por dimensión de objeto - ascendente</value>
+    <value>Ordenar grupos por longitud de ruta - descendente</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
@@ -1930,7 +1930,7 @@ P.ej. 'M0' para pausar el movimiento manual del papel, o '(^ 2 G91 X100)' para m
     <value>Establezca el origen de la región / mosaicos recortados en 0; 0</value>
   </data>
   <data name="rBImportSVGSort4.Text" xml:space="preserve">
-    <value>ordenar grupos por dimensión de objeto - ascendente</value>
+    <value>Ordenar grupos por dimensión de objeto, en orden ascendente</value>
   </data>
   <data name="tab1_1_4gB2.Text" xml:space="preserve">
     <value>Propiedad para agrupar y seleccionar Tool-Nr. vía</value>
@@ -2063,7 +2063,7 @@ menos estrés para la mecánica</value>
     <value>Aplicar texto</value>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
-    <value>Fin de línea individual</value>
+    <value>Creación de código G</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Valor de tipo para M19 (ampliado)</value>
@@ -2126,5 +2126,8 @@ Mientras que se inicia un feedhold normal M0, sin posibilidad de utilizar la má
   </data>
   <data name="tab4gB7.Text" xml:space="preserve">
     <value>Propiedades de transmisión</value>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>Agregar números de línea</value>
   </data>
 </root>

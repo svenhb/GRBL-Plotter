@@ -78,8 +78,8 @@ namespace GRBL_Plotter
 		public class pathData
 		{
 			public GraphicsPath path;
-			public Color color;
-			public float width;
+            public Color color = Color.White;
+			public float width = 0;
 			public Pen pen;
 			public pathData()
 			{	path = new GraphicsPath();
@@ -326,8 +326,6 @@ namespace GRBL_Plotter
             string singleLine;
             modal = new modalGroup();               // clear
 
-//            Logger.Trace("getGCodeLines count:{0}",GCode.Count());
-
             gcodeList = new List<gcodeByLine>();    //.Clear();
             simuList = new List<gcodeByLine>();    //.Clear();
             coordList = new List<coordByLine>();    //.Clear();
@@ -336,9 +334,6 @@ namespace GRBL_Plotter
             clearDrawingnPath();                    // reset path, dimensions
             figureMarkerCount = 0;
             lastFigureNumber = -1;
-
-	//		codeContainsXMLGroup = false;
-	//		codeContainsXMLFigure= false;
 			pathActualDown = null;
 
             bool figureActive = false;
@@ -395,6 +390,7 @@ namespace GRBL_Plotter
                     if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, GCode[lineNr]);
 					if(Properties.Settings.Default.gui2DColorPenDownModeEnable)	// enable color mode
 					{ 	pathData tmp = new pathData(xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);		// set color, width, pendownpath
+                        //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
 						pathObject.Add(tmp);
 						pathActualDown = pathObject[pathObject.Count -1].path;
 					}					
@@ -1819,47 +1815,52 @@ namespace GRBL_Plotter
         }
         private static void createMarker(GraphicsPath path, xyPoint center, float dimension, int style, bool rst = true)
         {   createMarker(path, (float)center.X, (float)center.Y, dimension, style, rst); }
+
+        static readonly object pathDrawLock = new object();
         private static void createMarker(GraphicsPath path, float centerX,float centerY, float dimension,int style,bool rst=true)
         {
             if (dimension == 0) { return; }
-            if (rst)
-                path.Reset();
-            if (style == 0)   // horizontal cross
+            lock (pathDrawLock)
             {
-                path.StartFigure(); path.AddLine(centerX , centerY + dimension, centerX , centerY - dimension);
-                path.StartFigure(); path.AddLine(centerX + dimension, centerY , centerX - dimension, centerY );
-            }
-            else if (style == 1)   // diagonal cross
-            {
-                path.StartFigure(); path.AddLine(centerX - dimension, centerY + dimension, centerX + dimension, centerY - dimension);
-                path.StartFigure(); path.AddLine(centerX - dimension, centerY - dimension, centerX + dimension, centerY + dimension);
-            }
-            else if (style == 2)            // box
-            {
-                path.StartFigure();
-                path.AddLine(centerX - dimension, centerY + dimension, centerX + dimension, centerY + dimension);
-                path.AddLine(centerX + dimension, centerY + dimension, centerX + dimension, centerY - dimension);
+                if (rst)
+                    path.Reset();
+                if (style == 0)   // horizontal cross
+                {
+                    path.StartFigure(); path.AddLine(centerX, centerY + dimension, centerX, centerY - dimension);
+                    path.StartFigure(); path.AddLine(centerX + dimension, centerY, centerX - dimension, centerY);
+                }
+                else if (style == 1)   // diagonal cross
+                {
+                    path.StartFigure(); path.AddLine(centerX - dimension, centerY + dimension, centerX + dimension, centerY - dimension);
+                    path.StartFigure(); path.AddLine(centerX - dimension, centerY - dimension, centerX + dimension, centerY + dimension);
+                }
+                else if (style == 2)            // box
+                {
+                    path.StartFigure();
+                    path.AddLine(centerX - dimension, centerY + dimension, centerX + dimension, centerY + dimension);
+                    path.AddLine(centerX + dimension, centerY + dimension, centerX + dimension, centerY - dimension);
 
-                path.AddLine(centerX + dimension, centerY - dimension, centerX, centerY);
-                path.AddLine(centerX, centerY, centerX - dimension, centerY - dimension);
+                    path.AddLine(centerX + dimension, centerY - dimension, centerX, centerY);
+                    path.AddLine(centerX, centerY, centerX - dimension, centerY - dimension);
 
-                path.AddLine(centerX + dimension, centerY - dimension, centerX - dimension, centerY - dimension);
-                path.AddLine(centerX - dimension, centerY - dimension, centerX - dimension, centerY + dimension);
-                path.CloseFigure();
-            }
-            else if (style == 3)            // marker
-            {
-                path.StartFigure();
-                path.AddLine(centerX, centerY, centerX, centerY - dimension);
-                path.AddLine(centerX, centerY - dimension, centerX + dimension, centerY);
-                path.AddLine(centerX + dimension, centerY, centerX, centerY + dimension);
-                path.AddLine(centerX, centerY + dimension, centerX - dimension, centerY);
-                path.AddLine(centerX - dimension, centerY, centerX, centerY - dimension);
-                path.CloseFigure();
-            }
-            else
-            {
-                path.StartFigure(); path.AddArc(centerX - dimension, centerY - dimension, 2 * dimension, 2 * dimension, 0, 360);
+                    path.AddLine(centerX + dimension, centerY - dimension, centerX - dimension, centerY - dimension);
+                    path.AddLine(centerX - dimension, centerY - dimension, centerX - dimension, centerY + dimension);
+                    path.CloseFigure();
+                }
+                else if (style == 3)            // marker
+                {
+                    path.StartFigure();
+                    path.AddLine(centerX, centerY, centerX, centerY - dimension);
+                    path.AddLine(centerX, centerY - dimension, centerX + dimension, centerY);
+                    path.AddLine(centerX + dimension, centerY, centerX, centerY + dimension);
+                    path.AddLine(centerX, centerY + dimension, centerX - dimension, centerY);
+                    path.AddLine(centerX - dimension, centerY, centerX, centerY - dimension);
+                    path.CloseFigure();
+                }
+                else
+                {
+                    path.StartFigure(); path.AddArc(centerX - dimension, centerY - dimension, 2 * dimension, 2 * dimension, 0, 360);
+                }
             }
         }				
     }

@@ -75,18 +75,24 @@ namespace GRBL_Plotter
         public void startStreaming(IList<string> gCodeList, int startAtLine, bool check = false)
         {
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1;
-            Logger.Info("Ser:{0} *************** startStreaming at line:{1} **************", iamSerial, startAtLine);
-			updateLogging();
+            Logger.Info("Ser:{0} startStreaming at line:{1} ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine);
+            if (grblCharacterCounting)
+                Logger.Info("Streaming Protocol: Character-Counting");
+            else
+                Logger.Info("Streaming Protocol: Simple Send-Response");
+
+            updateLogging();
 
             grblBufferSize = grbl.RX_BUFFER_SIZE;  //rx bufer size of grbl on arduino 127
             grblBufferFree = grbl.RX_BUFFER_SIZE;
-            Logger.Trace("Set Buffer Free:{0}  Size:{1}", grblBufferFree, grblBufferSize);
+            Logger.Info("Set Buffer Free:{0}  Size:{1}", grblBufferFree, grblBufferSize);
 
             if (Properties.Settings.Default.grblPollIntervalReduce)
             { timerSerial.Interval = grbl.pollInterval * 2; }
             else
             { timerSerial.Interval = grbl.pollInterval; }
             countMissingStatusReport = (int)(10000 / timerSerial.Interval);
+            Logger.Info("Timer interval:{0}  {1}", timerSerial.Interval, countMissingStatusReport);
 
             lastError = "";
             lastSentToCOM.Clear();
@@ -106,22 +112,23 @@ namespace GRBL_Plotter
             isStreamingCheck = check;
             streamingStateNow = grblStreaming.ok;
             lineStreamingPause = -1;                // save line were M0 appeared for main GUI to show notification
-            string[] gCode = gCodeList.ToArray<string>();
             streamingBuffer.Clear(); // = new List<string>();
             resetStreaming();       // startStreaming
             if (isStreamingCheck)
-            { sendLine("$C");
+            {   sendLine("$C");
                 grblBufferSize = 100;  //reduce size to avoid fake errors
             }
+            countLoggerUpdate = (int)(10000 / timerSerial.Interval);
 
-            string tmp;
-            double pWord, lWord, oWord;
-            string subline;
-            bool tmpToolInSpindle = toolInSpindle;
-            int cmdTNr = -1; 
-            bool foundM30 = false;
-            lock (this)
+            lock (sendDataLock)
             {
+                string[] gCode = gCodeList.ToArray<string>();
+                string tmp;
+                double pWord, lWord, oWord;
+                string subline;
+                bool tmpToolInSpindle = toolInSpindle;
+                int cmdTNr = -1;
+                bool foundM30 = false;
                 for (int i = startAtLine; i < gCode.Length; i++)
                 {
                     tmp = cleanUpCodeLine(gCode[i]);
@@ -175,21 +182,17 @@ namespace GRBL_Plotter
                         else
                         {
                             if (grbl.unknownG.Contains(cmdGNr))
-                            {
-                                streamingBuffer.SetSentLine("(" + tmp + " - unknown)");    // don't pass unkown GCode to GRBL because is unknown
+                            {   streamingBuffer.SetSentLine("(" + tmp + " - unknown)");    // don't pass unkown GCode to GRBL because is unknown
                                 tmp = streamingBuffer.GetSentLine();
                                 streamingBuffer.LineWasReceived();
                                 addToLog(tmp);
                             }
                             if (cmdTNr >= 0)    // T-word is allowed by grbl - no need to filter
-                            {   //if (!Properties.Settings.Default.ctrlToolChangeEmpty || (cmdTNr != (int)Properties.Settings.Default.ctrlToolChangeEmptyNr))
-                                setToolChangeCoordinates(cmdTNr, tmp);
+                            {   setToolChangeCoordinates(cmdTNr, tmp);
                             }
                             if (cmdMNr == 6)    //M06 is not allowed - remove
-                            {
-                                if (Properties.Settings.Default.ctrlToolChange)
-                                {
-                                    insertToolChangeCode(i, ref tmpToolInSpindle);
+                            {   if (Properties.Settings.Default.ctrlToolChange)
+                                {   insertToolChangeCode(i, ref tmpToolInSpindle);
                                     tmp = "(" + tmp + ")";
                                 }
                             }
@@ -205,21 +208,20 @@ namespace GRBL_Plotter
                 }
                 if (!foundM30) streamingBuffer.Add("M30", gCode.Length - 1);    // add end
                 streamingBuffer.Add("()", gCode.Length - 1);                    // add gcode line to list to send
-            }
+            }   // lock
+
             isStreaming = true;
             updateControls();
             if (startAtLine > 0)
-            { pauseStreaming();
+            {   pauseStreaming();
                 isStreamingPause = true;
             }
             else
-            {
-                waitForIdle = false;
+            {   waitForIdle = false;
                 preProcessStreaming();  // 411 
             }
         }   // startStreaming
     
-
         private void insertToolChangeCode(int line, ref bool inSpindle)
         {
             streamingBuffer.Add("($TS)", line);
@@ -297,7 +299,7 @@ namespace GRBL_Plotter
             {   isStreamingRequestPause = true;     // wait until buffer is empty before switch to pause
                 addToLog("[Pause streaming - wait for IDLE]");
                 addToLog("[Save Settings]");
-
+                Logger.Info("pauseStreaming RequestPause ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
                 streamingStateNow = grblStreaming.waitidle;
                 getParserState = true;
             }
@@ -310,8 +312,7 @@ namespace GRBL_Plotter
                 {   parserStateGC = parserStateGC.Replace("F0", "F100");            // Avoid missing feed rate
                     addToLog(string.Format("[Fix F0: {0}]", parserStateGC));
                 }
-				
-				
+							
                 if (!xyzPoint.AlmostEqual(posPause, posWork))	// restore position
                 {
                     if (logStartStop) Logger.Trace("AlmostEqual posPause X{0:0.000} Y{1:0.000}  posWork X{2:0.000} Y{3:0.000}", posPause.X, posPause.Y, posWork.X, posWork.Y);
@@ -324,6 +325,7 @@ namespace GRBL_Plotter
 				
                 addToLog("[Start streaming - no echo]");
                 addToLog("[Restore Settings: "+ parserStateGC+" ]");
+                Logger.Info("pauseStreaming start streaming ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼");
                 streamingStateNow = grblStreaming.ok;
                 lineStreamingPause = -1;				// save line were M0 appeared for main GUI to show notification
 
@@ -348,7 +350,7 @@ namespace GRBL_Plotter
                 isStreamingRequestPause = false;
 
                 preProcessStreaming();
-                processSend();
+ //               processSend();
             }
             updateControls();
         }   // pauseStreaming
@@ -372,7 +374,7 @@ namespace GRBL_Plotter
                 resetStreaming(false);      // stopStreaming
                 isStreamingRequestStopp = true;         // 20200717
                 isStreamingRequestPause = true;     // 20200717
-                if (logStartStop) Logger.Trace(" stopStreaming() - wait for IDLE - sent:{0}  received:{1}", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed);
+                Logger.Info(" stopStreaming() - wait for IDLE - sent:{0}  received:{1}  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed);
             }
         }
 		
@@ -483,7 +485,8 @@ namespace GRBL_Plotter
         private void preProcessStreaming()
         {
             int lengthToSend = streamingBuffer.LengthSent() + 1;
-            if (waitForIdle)
+
+            if (waitForIdle || isStreamingRequestPause)
             {   return;    }
 
             while ((streamingBuffer.IndexSent <= streamingBuffer.Count) && (grblBufferFree >= lengthToSend) && !waitForIdle && (streamingStateNow != grblStreaming.pause))
@@ -598,6 +601,7 @@ namespace GRBL_Plotter
             countPreventEvent = 0; countPreventOutput = 0;
 
             addToLog("\r[Streaming finish]");
+            Logger.Info("streamingFinish ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
             streamingStateNow = grblStreaming.finish;
             if (isStreamingCheck)
             { requestSend("$C"); isStreamingCheck = false; }

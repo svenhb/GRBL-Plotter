@@ -146,15 +146,15 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
-    <value>مجموعات الفرز حسب الأداة العدد - تصاعدي</value>
+    <value>فرز المجموعات حسب خاصية المجموعة - بترتيب تصاعدي</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
-    <value>مجموعات الفرز حسب حجم الرمز - تنازلي</value>
+    <value>ترتيب المجموعات حسب رقم الأداة - بترتيب تصاعدي</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
-    <value>لا الفرز</value>
+    <value>لا يوجد فرز</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGGroup.Text" xml:space="preserve">
@@ -1392,7 +1392,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>أزرار مخصصة</value>
+    <value>عصا التحكم الافتراضية</value>
     <comment>TabPage6</comment>
   </data>
   <data name="cBGPEnable.Text" xml:space="preserve">
@@ -1561,7 +1561,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
-    <value>عصا التحكم / الألوان</value>
+    <value>الة تصوير</value>
     <comment>TabPage8</comment>
   </data>
   <data name="btnOpenHotkeys.Text" xml:space="preserve">
@@ -1774,13 +1774,13 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>TabPage6</comment>
   </data>
   <data name="Column20.HeaderText" xml:space="preserve">
-    <value>برنامج التحكم</value>
+    <value>لا.</value>
   </data>
   <data name="Column21.HeaderText" xml:space="preserve">
-    <value>يتم إخفاء الأزرار 13 إلى 16 عندما تكون الحقول فارغة</value>
+    <value>ضع الكلمة المناسبة</value>
   </data>
   <data name="Column22.HeaderText" xml:space="preserve">
-    <value>العدد.</value>
+    <value>جي كود</value>
   </data>
   <data name="tab7gB2lbl3.Text" xml:space="preserve">
     <value>الحد الأدنى لعرض الخطوة أدناه قيمة معينة</value>
@@ -1878,7 +1878,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <value>أوامر المحور العرضي</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
-    <value>مجموعات الفرز حسب بعد الكائن - تصاعدي</value>
+    <value>فرز المجموعات حسب طول المسار - تنازليًا</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
@@ -2128,7 +2128,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <value>تعيين أصل المنطقة / البلاط المقطوع إلى 0 ؛ 0</value>
   </data>
   <data name="rBImportSVGSort4.Text" xml:space="preserve">
-    <value>فرز المجموعات حسب أبعاد الكائن - تصاعدي</value>
+    <value>فرز المجموعات حسب بُعد الكائن - بترتيب تصاعدي</value>
   </data>
   <data name="tab1_1_4gB2.Text" xml:space="preserve">
     <value>خاصية التجميع وحدد Tool-Nr. عبر</value>
@@ -2260,7 +2260,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <value>تطبيق النص</value>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
-    <value>نهاية سطر فردي</value>
+    <value>إنشاء G- كود</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>اكتب قيمة M19 (موسعة)</value>
@@ -2323,5 +2323,8 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   </data>
   <data name="tab4gB7.Text" xml:space="preserve">
     <value>خصائص التدفق</value>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>أضف أرقام الأسطر</value>
   </data>
 </root>

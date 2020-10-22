@@ -308,19 +308,19 @@ Não use com "Movimentos relativos"</value>
     <comment>TabPage4</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>Botões personalizados</value>
+    <value>Joystick Virtual</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
-    <value>Joystick / Cores</value>
+    <value>Câmera</value>
     <comment>TabPage8</comment>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
-    <value>sort groups by tool nr - ascending</value>
+    <value>Classificar grupos por propriedade de grupo - em ordem crescente</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
-    <value>sort groups by code size - descending</value>
+    <value>Classifique os grupos por número de ferramenta - em ordem crescente</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
@@ -1713,7 +1713,7 @@ Mova o joystick após alterar o deslocamento.</value>
     <value>Comandos do eixo tangencial</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
-    <value>classificar grupos por dimensão de objeto - crescente</value>
+    <value>Classificar grupos por comprimento do caminho - decrescente</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
@@ -1935,7 +1935,7 @@ Por exemplo. 'M0' para pausar a movimentação manual do papel ou '(^ 2 G91 X100
     <value>Defina a origem da região cortada / blocos como 0; 0</value>
   </data>
   <data name="rBImportSVGSort4.Text" xml:space="preserve">
-    <value>classificar grupos por dimensão de objeto - crescente</value>
+    <value>Classifique os grupos por dimensão do objeto - em ordem crescente</value>
   </data>
   <data name="tab1_1_4gB2.Text" xml:space="preserve">
     <value>Propriedade para agrupar e selecione Tool-Nr. através da</value>
@@ -2072,7 +2072,7 @@ menos estresse para a mecânica</value>
     <value>Aplicar texto</value>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
-    <value>Fim de linha individual</value>
+    <value>Criação de código G</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Digite o valor para M19 (estendido)</value>
@@ -2135,5 +2135,8 @@ Considerando que um M0 normal inicia um feedhold, sem a possibilidade de usar a 
   </data>
   <data name="tab4gB7.Text" xml:space="preserve">
     <value>Propriedades de streaming</value>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>Adicionar números de linha</value>
   </data>
 </root>

@@ -138,7 +138,7 @@
     <comment>TabPage5</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>Пользовательские кнопки</value>
+    <value>Виртуальный джойстик</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
@@ -146,7 +146,7 @@
     <comment>TabPage7</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
-    <value>Джойстик / Цвета</value>
+    <value>Камера</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
@@ -175,15 +175,15 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
-    <value>сортировать группы по инструменту по возрастанию</value>
+    <value>Сортировать группы по свойствам группы - в порядке возрастания</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
-    <value>сортировать группы по размеру кода - по убыванию</value>
+    <value>Сортировка групп по номеру инструмента - в порядке возрастания</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
-    <value>нет сортировки</value>
+    <value>без сортировки</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGGroup.Text" xml:space="preserve">
@@ -1720,7 +1720,7 @@ min X, min Y и max Z.
     <value>Команды касательной оси</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
-    <value>сортировка групп по размеру объекта - по возрастанию</value>
+    <value>Сортировать группы по длине пути - по убыванию</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
@@ -1974,7 +1974,7 @@ min X, min Y и max Z.
     <value>Установите начало отсеченного региона / тайлов на 0; 0</value>
   </data>
   <data name="rBImportSVGSort4.Text" xml:space="preserve">
-    <value>сортировать группы по размеру объекта - по возрастанию</value>
+    <value>Сортировать группы по размерности объекта - в порядке возрастания</value>
   </data>
   <data name="tab1_1_4gB2.Text" xml:space="preserve">
     <value>Свойство для группировки и выберите Tool-Nr. через</value>
@@ -2131,7 +2131,7 @@ min X, min Y и max Z.
     <value>Применить текст</value>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
-    <value>Конец отдельной строки</value>
+    <value>Создание G-кода</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Типовое значение для M19 (расширенное)</value>
@@ -2194,5 +2194,8 @@ min X, min Y и max Z.
   </data>
   <data name="tab4gB7.Text" xml:space="preserve">
     <value>Потоковые свойства</value>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>Добавить номера строк</value>
   </data>
 </root>

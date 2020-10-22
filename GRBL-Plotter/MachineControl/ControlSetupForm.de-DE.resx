@@ -143,11 +143,11 @@ wähle Eigenschaften auf dem nächsten Tab.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
-    <value>sortiere Gruppen nach Wkzg.nummer - aufsteigend</value>
+    <value>Gruppen nach Gruppeneigenschaft sortieren - aufsteigend</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
-    <value>sortiere Gruppen nach Codegröße  - absteigend</value>
+    <value>Gruppen nach Werkzeug Nr. sortieren - aufsteigend</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
@@ -908,7 +908,7 @@ Zweiter Versuch auf svenhb.bplaced.net </value>
     <comment>TabPage5</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>User Buttons</value>
+    <value>Virtueller Joystick</value>
     <comment>TabPage6</comment>
   </data>
   <data name="cBGPEnable.Text" xml:space="preserve">
@@ -1000,7 +1000,7 @@ Zweiter Versuch auf svenhb.bplaced.net </value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
-    <value>Joystick / Farben</value>
+    <value>Kamera</value>
     <comment>TabPage8</comment>
   </data>
   <data name="btnOpenHotkeys.Text" xml:space="preserve">
@@ -1572,15 +1572,6 @@ Das Setup-Fenster muss geschlossen werden, damit das GamePad in der GUI verwende
     <value>Nützliche Erweiterungen für Inkscape</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="Column20.HeaderText" xml:space="preserve">
-    <value>العدد.</value>
-  </data>
-  <data name="Column21.HeaderText" xml:space="preserve">
-    <value>ضع الكلمة المناسبة</value>
-  </data>
-  <data name="Column22.HeaderText" xml:space="preserve">
-    <value>G-كود</value>
-  </data>
   <data name="tab7gB2lbl3.Text" xml:space="preserve">
     <value>Minimale Schrittweite unter dem angegebenen Wert</value>
   </data>
@@ -1674,7 +1665,7 @@ Bewegen Sie den Joystick, nachdem Sie den Versatz geändert haben.</value>
     <value>Tangentialachsenbefehle</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
-    <value>Gruppen nach Objektdimension sortieren - aufsteigend</value>
+    <value>Gruppen nach Pfadlänge sortieren - absteigend</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
@@ -2030,7 +2021,7 @@ Nützlich für Laserschneider.</value>
     <value>Text anwenden</value>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
-    <value>Individuelles Zeilenende</value>
+    <value>G-Code-Erstellung</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Typwert für M19 (erweitert)</value>
@@ -2090,5 +2081,8 @@ Während ein normaler M0 ein Feedhold initiiert, ohne die Möglichkeit, die Masc
   </data>
   <data name="tab4gB7.Text" xml:space="preserve">
     <value>Streaming-Eigenschaften</value>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>Zeilennummern hinzufügen</value>
   </data>
 </root>

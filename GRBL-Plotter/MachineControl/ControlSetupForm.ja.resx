@@ -146,15 +146,15 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
-    <value>ツールnrでグループをソート-昇順</value>
+    <value>グループをグループプロパティで並べ替える-昇順</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
-    <value>コードサイズでグループをソート-降順</value>
+    <value>グループをツール番号で並べ替える-昇順</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
-    <value>ソートなし</value>
+    <value>並べ替えなし</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGGroup.Text" xml:space="preserve">
@@ -1399,7 +1399,7 @@ CPU負荷を節約し、ストリーミング中のズームを無効にしま�
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>カスタムボタン</value>
+    <value>仮想ジョイスティック</value>
     <comment>TabPage6</comment>
   </data>
   <data name="cBGPEnable.Text" xml:space="preserve">
@@ -1568,7 +1568,7 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
-    <value>ジョイスティック/色</value>
+    <value>カメラ</value>
     <comment>TabPage8</comment>
   </data>
   <data name="btnOpenHotkeys.Text" xml:space="preserve">
@@ -1885,7 +1885,7 @@ svenhb.bplaced.netでの2回目の試行</value>
     <value>接線軸コマンド</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
-    <value>オブジェクトの次元でグループをソート-昇順</value>
+    <value>パスの長さでグループを並べ替える-降順</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
@@ -2128,7 +2128,7 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
     <value>クリッピング領域/タイルの原点を0に設定; 0</value>
   </data>
   <data name="rBImportSVGSort4.Text" xml:space="preserve">
-    <value>オブジェクトディメンションでグループを並べ替え-昇順</value>
+    <value>グループをオブジェクトの寸法で並べ替える-昇順</value>
   </data>
   <data name="tab1_1_4gB2.Text" xml:space="preserve">
     <value>グループ化してTool-Nrを選択するプロパティ。 経由して</value>
@@ -2261,7 +2261,7 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
     <value>テキストを適用</value>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
-    <value>個々の行の終わり</value>
+    <value>Gコードの作成</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>M19のタイプ値（拡張）</value>
@@ -2324,5 +2324,8 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
   </data>
   <data name="tab4gB7.Text" xml:space="preserve">
     <value>ストリーミングプロパティ</value>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>行番号を追加する</value>
   </data>
 </root>
