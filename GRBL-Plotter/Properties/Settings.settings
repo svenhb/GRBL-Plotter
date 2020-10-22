@@ -1460,5 +1460,8 @@
     <Setting Name="importGCToolChangeCode" Type="System.String" Scope="User">
       <Value Profile="(Default)">Z10 (move upwards)</Value>
     </Setting>
+    <Setting Name="ctrlLineNumbers" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

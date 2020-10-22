@@ -5859,5 +5859,17 @@ namespace GRBL_Plotter.Properties {
                 this["importGCToolChangeCode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlLineNumbers {
+            get {
+                return ((bool)(this["ctrlLineNumbers"]));
+            }
+            set {
+                this["ctrlLineNumbers"] = value;
+            }
+        }
     }
 }
