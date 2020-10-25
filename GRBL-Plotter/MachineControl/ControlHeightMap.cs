@@ -97,6 +97,7 @@ namespace GRBL_Plotter
                         progressBar1.Value = cntReceived;
                         lblProgress.Text = string.Format("{0}% {1} / {2}  {3}", (100 * cntReceived / progressBar1.Maximum), cntReceived, progressBar1.Maximum, elapsed.ToString(@"hh\:mm\:ss"));
                         textBox1.Text += string.Format("x: {0:0.000} y: {1:0.00} z: {2:0.000}\r\n", grbl.posWork.X, grbl.posWork.Y, worldZ);
+                        ControlPowerSaving.EnableStandby();
                     }
                 }
             }
@@ -543,14 +544,17 @@ namespace GRBL_Plotter
                 scanCode.AppendFormat("G0 X{0} Y{1}\r\n", gcode.frmtNum((float)tmp.X), gcode.frmtNum((float)tmp.Y));
                 scanCode.AppendLine("M30");     // finish
 
-                textBox1.Text += "Code sent\r\n"+ scanCode.ToString();
+                textBox1.Text += "Code sent\r\n" + scanCode.ToString();
                 progressBar1.Maximum = cntSent;
                 lblProgress.Text = string.Format("{0}%", (100 * cntReceived / progressBar1.Maximum));
                 pictureBox1.Image = new Bitmap(heightMapBMP);
                 pictureBox1.Refresh();
+                ControlPowerSaving.SuppressStandby();
             }
             else
-                btnStartHeightScan.Text = "Generate Height Map";
+            {   btnStartHeightScan.Text = "Generate Height Map";
+                ControlPowerSaving.EnableStandby();
+            }
             scanStarted = !scanStarted;
         }
 

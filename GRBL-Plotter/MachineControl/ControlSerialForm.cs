@@ -88,6 +88,7 @@ namespace GRBL_Plotter
         private string logMessage;
 
         public string lastError = "";
+        private int countGrblError = 0;
         private bool flag_closeForm = false;
         private bool useSerial2 = false;
 		
@@ -161,7 +162,11 @@ namespace GRBL_Plotter
             refreshPorts();         // scan for COMs
             openPort();             // open COM
             if (iamSerial == 1)
-            {   Location = Properties.Settings.Default.locationSerForm1;}
+            {   Location = Properties.Settings.Default.locationSerForm1;
+                Size = Properties.Settings.Default.sizeSerForm1;
+                if ((Size.Width < 342) || (Size.Height < 480))
+                { Size = new Size(342, 480); }
+            }
             else
             {   Location = Properties.Settings.Default.locationSerForm2;}
             Text = formTitle;
@@ -379,6 +384,7 @@ namespace GRBL_Plotter
         {   try
             {   if (iamSerial == 1)
                 {   Properties.Settings.Default.locationSerForm1 = Location;
+                    Properties.Settings.Default.sizeSerForm1 = Size;
                     Properties.Settings.Default.ctrlLaserMode = isLasermode;
                     Properties.Settings.Default.serialPort1 = cbPort.Text;
                     Properties.Settings.Default.serialBaud1 = cbBaud.Text;

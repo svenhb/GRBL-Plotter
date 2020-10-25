@@ -404,19 +404,27 @@ namespace GRBL_Plotter
             catch { }
             return msg;
         }
-        public static string getErrorDescription(string rxString)
-        {   string[] tmp = rxString.Split(':');
+        public static string getMsgNr(string msg)
+        {
+            string[] tmp = msg.Split(':');
             if (tmp.Length > 1)
+            {   return tmp[1].Trim(); }
+            return "";
+        }
+        public static string getErrorDescription(string rxString)
+        {   //string[] tmp = rxString.Split(':');
+            string msgNr = getMsgNr(rxString);
+            if (msgNr.Length >= 1)
             {
-                string msg = " no information found for error-nr. '" + tmp[1] + "'";
+                string msg = " no information found for error-nr. '" + msgNr + "'";
                 try
                 {
-                    if (messageErrorCodes.ContainsKey(tmp[1].Trim()))
+                    if (messageErrorCodes.ContainsKey(msgNr))
                     {
-                        msg = grbl.messageErrorCodes[tmp[1].Trim()];
+                        msg = grbl.messageErrorCodes[msgNr];
                         //int errnr = Convert.ToInt16(tmp[1].Trim());
                         short errnr = 0;
-                        if (!short.TryParse(tmp[1], NumberStyles.Any, CultureInfo.InvariantCulture, out errnr))
+                        if (!short.TryParse(msgNr, NumberStyles.Any, CultureInfo.InvariantCulture, out errnr))
                             return msg;
                         if ((errnr >= 32) && (errnr <= 34))
                             msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";

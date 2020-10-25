@@ -95,6 +95,7 @@ namespace GRBL_Plotter
             Logger.Info("Timer interval:{0}  {1}", timerSerial.Interval, countMissingStatusReport);
 
             lastError = "";
+            countGrblError = 0;
             lastSentToCOM.Clear();
             toolTable.init();       // fill structure
             rtbLog.Clear();
@@ -120,6 +121,7 @@ namespace GRBL_Plotter
             }
             countLoggerUpdate = (int)(10000 / timerSerial.Interval);
 
+            timerSerial.Stop();
             lock (sendDataLock)
             {
                 string[] gCode = gCodeList.ToArray<string>();
@@ -209,6 +211,7 @@ namespace GRBL_Plotter
                 if (!foundM30) streamingBuffer.Add("M30", gCode.Length - 1);    // add end
                 streamingBuffer.Add("()", gCode.Length - 1);                    // add gcode line to list to send
             }   // lock
+            timerSerial.Start();
 
             isStreaming = true;
             updateControls();
@@ -458,10 +461,10 @@ namespace GRBL_Plotter
             if (linePause > 0)
                 lineNrSent = linePause;
 
-//            Logger.Trace("sendStreamEvent line:{0}  status:{1}   {2}", lineNrSent, status, new StackFrame(1, true).GetMethod().Name);
-
             int lineNrConfirmed = streamingBuffer.GetConfirmedLineNr();
-			
+            if (status == grblStreaming.error)
+                lineNrConfirmed = sendBuffer.GetConfirmedLineNr() +1;
+
             float codeFinish = 0;
 			if (streamingBuffer.Count != 0)
 				codeFinish = (float)streamingBuffer.IndexConfirmed * 100 / (float)streamingBuffer.Count;
@@ -538,7 +541,7 @@ namespace GRBL_Plotter
                 }
                 #endregion
 
-                requestSend(line);                                  // fill sendBuffer, 
+                requestSend(line, streamingBuffer.GetSentLineNr(), false);                                  // fill sendBuffer, 
                 streamingBuffer.LineWasSent();
                 streamingStateOld = streamingStateNow;
                 lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
@@ -612,6 +615,8 @@ namespace GRBL_Plotter
                 timerSerial.Interval = grbl.pollInterval;
                 countMissingStatusReport = (int)(10000 / timerSerial.Interval);
             }
+            sendBuffer.Clear();
+            streamingBuffer.Clear();
             resetStreaming();
             updateControls();
         }
