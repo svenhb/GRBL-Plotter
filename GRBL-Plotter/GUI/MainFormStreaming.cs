@@ -118,17 +118,17 @@ namespace GRBL_Plotter
                     break;
 
                 case grblStreaming.error:
-                    Logger.Info("streaming error at line {0}", e.CodeLineSent);
+                    Logger.Info("streaming error at line {0}", e.CodeLineConfirmed);
                     statusStripSet(1, grbl.lastMessage, Color.Fuchsia);
-                    isStreaming = false;
-                    isStreamingCheck = false;
+      //              isStreaming = false;
+      //              isStreamingCheck = false;
                     pbFile.ForeColor = Color.Red;
                     lbInfo.Text = Localization.getString("mainInfoErrorLine") + e.CodeLineSent.ToString();
                     lbInfo.BackColor = Color.Fuchsia;
                     fCTBCode.BookmarkLine(actualCodeLine - 1);
                     fCTBCode.DoSelectionVisible();
                     fCTBCode.CurrentLineColor = Color.Red;
-                    isStreamingOk = false;
+     //               isStreamingOk = false;
                     break;
 
                 case grblStreaming.ok:

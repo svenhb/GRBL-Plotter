@@ -324,12 +324,18 @@ namespace GRBL_Plotter
             {
                 if ((fCTBCodeClickedLineNow != fCTBCodeClickedLineLast) || markAnyway)
                 {
-                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);           // remove marker from old line
-                    fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
-                    fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
-                    VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
-                    pictureBox1.Invalidate(); // avoid too much events
-                    toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
+                    try
+                    {
+                        fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);           // remove marker from old line
+                        fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
+                        fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
+                        VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+                        pictureBox1.Invalidate(); // avoid too much events
+                        toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
+                    }
+                    catch (Exception er)
+                    {   Logger.Error(er, "fCTBCodeMarkLine fCTBCodeClickedLineLast:{0} fCTBCodeClickedLineNow:{1}", fCTBCodeClickedLineLast, fCTBCodeClickedLineNow);
+                    }
                 }
             }
         }
