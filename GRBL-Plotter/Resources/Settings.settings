@@ -1,0 +1,1470 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRBL_Plotter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="cameraColorCross" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="cameraColorText" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Lime</Value>
+    </Setting>
+    <Setting Name="cameraIndex" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraPosBot" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-50</Value>
+    </Setting>
+    <Setting Name="cameraPosTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraRotation" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
+    <Setting Name="cameraScalingBot" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="cameraScalingTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="cameraTeachRadiusBot" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="cameraTeachRadiusTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="cameraToolOffsetX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraToolOffsetY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camFilterBlue1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camFilterBlue2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="camFilterGreen1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camFilterGreen2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="camFilterOutside" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="camFilterRed1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camFilterRed2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="camShapeCircle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="camShapeDist" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="camShapeDistMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.03</Value>
+    </Setting>
+    <Setting Name="camShapeRect" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="camShapeSet1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Paper|0|100|0|100|0|100|True|True|True|20|200|0.5|1|</Value>
+    </Setting>
+    <Setting Name="camShapeSet2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PCB|0|150|0|150|0|150|False|False|True|20|100|0.5|1|</Value>
+    </Setting>
+    <Setting Name="camShapeSet3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Wood|0|106|0|237|123|246|True|True|False|10|100|0.5|2.0|</Value>
+    </Setting>
+    <Setting Name="camShapeSet4" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="camShapeSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="camShapeSizeMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="camShapeSizeMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="convertZtoSMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="convertZtoSMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="convertZtoSOff" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportBarcode" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportCSV" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportDrill" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportDXF" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportExtension" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportGCode" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportGerber" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportHPGL" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportImage" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportShape" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportSVG" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportText" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterUseHeightMap" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterUseLaserSetup" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterUseProbing" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="crcValue" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2.5</Value>
+    </Setting>
+    <Setting Name="createShapeOrigin" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="createShapeR" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="createShapeToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="createShapeToolFeedXY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="createShapeToolFeedZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="createShapeToolOverlap" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="createShapeToolPath" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="createShapeToolSpindleSpeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20000</Value>
+    </Setting>
+    <Setting Name="createShapeToolZStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="createShapeType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="createShapeX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="createShapeY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="createTextFontDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="createTextFontIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="createTextFontSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="createTextFontText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Test</Value>
+    </Setting>
+    <Setting Name="createTextLineDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="ctrl4thInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrl4thName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="ctrl4thOverX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ctrl4thUse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlCommentOut" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ctrlDIYShowFeedback" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ctrlLaserMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlLineEndEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlLineEndText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">;</Value>
+    </Setting>
+    <Setting Name="ctrlReplaceEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlReplaceM3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ctrlSendStopJog" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ctrlToolChange" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlToolChangeEmpty" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlToolChangeEmptyNr" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ctrlToolScriptGet" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data\scripts\</Value>
+    </Setting>
+    <Setting Name="ctrlToolScriptProbe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data\scripts\</Value>
+    </Setting>
+    <Setting Name="ctrlToolScriptPut" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data\scripts\script_pen2_remove.nc</Value>
+    </Setting>
+    <Setting Name="ctrlToolScriptSelect" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data\scripts\script_pen2_select.nc</Value>
+    </Setting>
+    <Setting Name="ctrlUpgradeRequired" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ctrlUseSerial2" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlUseSerialDIY" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlUseSerialPortFixer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FCTBLineInterval" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="flowCheckRegistryChange" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="flowControlEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="flowControlText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M5; M9</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogDead" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinimum" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogMinStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.010</Value>
+    </Setting>
+    <Setting Name="gamePadAnalogOffset" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">32757</Value>
+    </Setting>
+    <Setting Name="gamePadButtons0" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#Start (Start streaming)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#F+10 (Feedrate +10%)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 X0 Y0 (Zero X and Y)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons11" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gamePadButtons12" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gamePadButtons13" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gamePadButtons14" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gamePadButtons15" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="gamePadButtons2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#F100 (Feedrate =100%)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#F-10 (Feedrate -10%)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 X0 (Zero X)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 Z0 (Zero Z)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 Y0 (Zero Y)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G92 X0 Y0 Z0 (Zero all)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$H (Homing)</Value>
+    </Setting>
+    <Setting Name="gamePadButtons9" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#Start (Start streaming)</Value>
+    </Setting>
+    <Setting Name="gamePadEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gamePadRAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="gamePadRInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gamePadXAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">X</Value>
+    </Setting>
+    <Setting Name="gamePadXInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gamePadYAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Y</Value>
+    </Setting>
+    <Setting Name="gamePadYInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gamePadZAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Z</Value>
+    </Setting>
+    <Setting Name="gamePadZInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="grblBufferAutomatic" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="grblBufferSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">127</Value>
+    </Setting>
+    <Setting Name="grblLastOffsetA" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="grblLastOffsetB" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="grblLastOffsetC" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="grblLastOffsetCoord" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">54</Value>
+    </Setting>
+    <Setting Name="grblLastOffsetX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="grblLastOffsetY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="grblLastOffsetZ" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="grblPollIntervalIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="grblPollIntervalReduce" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="grblTranslateMessage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DColorBackground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">224, 224, 224</Value>
+    </Setting>
+    <Setting Name="gui2DColorHeightMap" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="gui2DColorMachineLimit" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Fuchsia</Value>
+    </Setting>
+    <Setting Name="gui2DColorMarker" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="gui2DColorPenDown" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="gui2DColorPenUp" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Green</Value>
+    </Setting>
+    <Setting Name="gui2DColorRotaryInfo" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 192, 192</Value>
+    </Setting>
+    <Setting Name="gui2DColorRuler" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 0, 192</Value>
+    </Setting>
+    <Setting Name="gui2DColorSimulation" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Lime</Value>
+    </Setting>
+    <Setting Name="gui2DColorTool" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="gui2DInfoShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DKeepPenWidth" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DPenUpArrow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DPenUpId" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DPenUpShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DRulerShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DToolTableShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DWidthHeightMap" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="gui2DWidthMarker" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="gui2DWidthPenDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="gui2DWidthPenUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="gui2DWidthRotaryInfo" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="gui2DWidthRuler" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="gui2DWidthSimulation" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="gui2DWidthTool" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="gui2DColorPenDownModeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiBackgroundImageEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="guiBackgroundShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiCheckUpdate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiCheckUpdateURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://GRBL-Plotter.de</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">🡴 Graphic Upper-Left|(Move to upper left corner - fast);G90 G0 X#GMIX Y#GMAY|#80FFFF</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">⇩ Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn11" Type="System.String" Scope="User">
+      <Value Profile="(Default)">🡶 Graphic Bottom-Right|(Move to bottom right corner - fast);G90 G0 X#GMAX Y#GMIY|#80FFFF</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn12" Type="System.String" Scope="User">
+      <Value Profile="(Default)">⚠ Hard RESET|#HRST|fuchsia</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn13" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn14" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn15" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn16" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn17" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> |</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn18" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn19" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">⇧ Pen up Zmax|(Move Pen to upper position);G90 G0 Z#GMAZ|#80FF80</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn20" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn21" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn22" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn23" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn24" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn25" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn26" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn27" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn28" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn29" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">🡷 Graphic Bottom-Left|(Move to bottom left corner - fast);G90 G0 X#GMIX Y#GMIY|#80FFFF</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn30" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn31" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn32" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> | </Value>
+    </Setting>
+    <Setting Name="guiCustomBtn4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">🡷 Homing 0;0;35|(Move to hard stops);$J= G91 F5000 X-40 Y-40 Z40|#FFAAAA</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">↻ Move around graphic|(Move around graphic dimension - fast);G90G0X#GMIXY#GMIY;Y#GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">◎ Graphic Center|(Move to graphic center - fast);G90 G0 X#GCTX Y#GCTY|#00FFFF</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Add Logo|data\scripts\script_my_logo.nc|#FFFFC0</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Set Coordinate System| G10 L20 P0 X-1 Y-1 Z23;|#FFAAAA</Value>
+    </Setting>
+    <Setting Name="guiCustomBtn9" Type="System.String" Scope="User">
+      <Value Profile="(Default)">🡵 Graphic Upper-Right|(Move to upper right corner - fast);G90 G0 X#GMAX Y#GMAY|#80FFFF</Value>
+    </Setting>
+    <Setting Name="guiDimensionShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiExtendedLoggingEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="guiJoystickASpeed1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="guiJoystickASpeed2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="guiJoystickASpeed3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="guiJoystickASpeed4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="guiJoystickASpeed5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="guiJoystickAStep1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="guiJoystickAStep2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="guiJoystickAStep3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="guiJoystickAStep4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+    <Setting Name="guiJoystickAStep5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
+    <Setting Name="guiJoystickSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">180</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYSpeed1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYSpeed2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYSpeed3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYSpeed4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYSpeed5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYStep1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYStep2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYStep3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYStep4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="guiJoystickXYStep5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="guiJoystickZSpeed1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="guiJoystickZSpeed2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="guiJoystickZSpeed3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="guiJoystickZSpeed4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="guiJoystickZSpeed5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="guiJoystickZStep1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="guiJoystickZStep2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="guiJoystickZStep3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="guiJoystickZStep4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="guiJoystickZStep5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="guiLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="guiLastFileLoaded" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\</Value>
+    </Setting>
+    <Setting Name="guiProgressShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiSpindleSpeed" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="heightMapDeltaX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="heightMapDeltaY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="heightMapGridX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="heightMapGridY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="heightMapProbeDepth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-5</Value>
+    </Setting>
+    <Setting Name="heightMapProbeHeight" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="heightMapProbeSpeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="heightMapX1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="heightMapX2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="heightMapY1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="heightMapY2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="importAssumeAsEqualDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.0001</Value>
+    </Setting>
+    <Setting Name="importBarcode1DHeight" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="importBarcode1DLines" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="importBarcode1DScanGap" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="importBarcode1DText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123</Value>
+    </Setting>
+    <Setting Name="importBarcode1DType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">31</Value>
+    </Setting>
+    <Setting Name="importBarcode2DBorder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importBarcode2DFacebook" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="importBarcode2DHeight" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="importBarcode2DLines" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="importBarcode2DScanGap" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="importBarcode2DText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123</Value>
+    </Setting>
+    <Setting Name="importBarcode2DTwitter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#plottertwitter</Value>
+    </Setting>
+    <Setting Name="importBarcode2DURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/svenhb/GRBL-Plotter</Value>
+    </Setting>
+    <Setting Name="importBarcode2DWlanPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)">unknown</Value>
+    </Setting>
+    <Setting Name="importBarcode2DWlanSSID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">my_wlan</Value>
+    </Setting>
+    <Setting Name="importBarcode2DYoutube" Type="System.String" Scope="User">
+      <Value Profile="(Default)">UCxiLZDTcWmNzBk5ksgC7_Rg</Value>
+    </Setting>
+    <Setting Name="importBezierLineSegmentsCnt" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">12</Value>
+    </Setting>
+    <Setting Name="importCodeFold" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importCSVAutomatic" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importCSVColumnX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importCSVColumnY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importCSVColumnZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importCSVDelimeter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">;</Value>
+    </Setting>
+    <Setting Name="importCSVProzessAsLine" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importCSVProzessZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importCSVScaleX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importCSVScaleY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importCSVScaleZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importCSVStartLine" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importDepthFromWidth" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importDepthFromWidthMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-5</Value>
+    </Setting>
+    <Setting Name="importDepthFromWidthMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="importDepthFromWidthRamp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ImportDXFSize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importDXFSwitchWhite" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importDXFToolIndex" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCAddComments" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCCompress" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCDecPlaces" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="importGCDragKnifeAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="importGCDragKnifeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCDragKnifeLength" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGCDragKnifePercent" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="importGCDragKnifePercentEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCFooter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M30</Value>
+    </Setting>
+    <Setting Name="importGCHeader" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G54; </Value>
+    </Setting>
+    <Setting Name="importGCIndEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCIndPenDown" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(Pen Down command);(Cmd2)</Value>
+    </Setting>
+    <Setting Name="importGCIndPenUp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(Pen Up command);(Cmd2)</Value>
+    </Setting>
+    <Setting Name="importGCLineSegmentation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCLineSegmentEquidistant" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCLineSegmentLength" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="importGCNoArcs" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCPWMDlyDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGCPWMDlyUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGCPWMDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="importGCPWMEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCPWMUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="importGCRelative" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCSDirM3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCSegment" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCSpindleCmd" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCSpindleDelay" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGCSpindleToggle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCSpindleToggleLaser" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCSSpeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="importGCSubEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCSubFirst" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCSubroutine" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data\scripts\subroutine.nc</Value>
+    </Setting>
+    <Setting Name="importGCTangentialAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="importGCTangentialAngleDevi" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGCTangentialAxis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="importGCTangentialEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTangentialRange" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTangentialTurn" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">360</Value>
+    </Setting>
+    <Setting Name="importGCTool" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCToolDefNr" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCToolDefNrUse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCToolM0" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCToolTableUse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCToolUseRouter" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTTSSpeed" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTTXYFeed" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTTZAxis" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCXYFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="importGCZDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-2</Value>
+    </Setting>
+    <Setting Name="importGCZEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCZFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="importGCZIncEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCZIncrement" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCZIncStartZero" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCZUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGraphicClip" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGerberTypeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGerberTypePen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pen</Value>
+    </Setting>
+    <Setting Name="importGerberTypeKnife" Type="System.String" Scope="User">
+      <Value Profile="(Default)">knife</Value>
+    </Setting>
+    <Setting Name="importGerberTypeM19" Type="System.String" Scope="User">
+      <Value Profile="(Default)">notch</Value>
+    </Setting>
+    <Setting Name="importGraphicClipEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicClipGCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(^2 G0 X#OFFX Y#OFFY)  (set offset via 2nd grbl)</Value>
+    </Setting>
+    <Setting Name="importGraphicClipOffsetApply" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicClipOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGraphicClipOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGraphicExtendPathEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicExtendPathValue" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillAngle2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillAngleInc" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillCross" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillInset" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillInsetEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicOffsetOrigin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicSortDistance" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicSortDistanceAllowRotate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicTileX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="importGraphicTileY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="importGroupItem" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGroupObjects" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGroupSort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGroupSortInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importImageHeight" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="importImageKeepRatio" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importImageReso" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.4</Value>
+    </Setting>
+    <Setting Name="importImageResoApply" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importImageWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="importLineDashPattern" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importLineDashPatternG0" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importLoggerSettings" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importPauseElement" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importPausePenDown" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importRemoveShortMovesEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importRemoveShortMovesLimit" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="importRepeatCnt" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importRepeatComplete" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importRepeatEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importShowUseCaseDialog" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importSVGAddComments" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGCircleToDot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGCircleToDotZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGDPI96" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importSVGMaxSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="importSVGNodesOnly" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGApplyFill" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importSVGPathExtend" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGRezise" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importUnitGCode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importUnitmm" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importUseCaseInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Information about current use case</Value>
+    </Setting>
+    <Setting Name="laserMotionDelay" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="laserMotionDelayPower" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="laserMotionX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="laserMotionY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="laserScanPowerFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="laserScanPowerFrom" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2500</Value>
+    </Setting>
+    <Setting Name="laserScanPowerStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="laserScanPowerTo" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2500</Value>
+    </Setting>
+    <Setting Name="laserScanSpeedFrom" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2500</Value>
+    </Setting>
+    <Setting Name="laserScanSpeedPower" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="laserScanSpeedStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="laserScanSpeedTo" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="laserScanZFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="laserScanZPower" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="laserScanZRange" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="location2ndGRBLForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 200</Value>
+    </Setting>
+    <Setting Name="locationCamForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationCntrlCoordForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationHeightForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationImageForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationMForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationProbingForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationSerForm1" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationSerForm2" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="locationSetForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationShapeForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationStreamForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="locationTextForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">-30, 0</Value>
+    </Setting>
+    <Setting Name="machineLimitsAlarm" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="machineLimitsFix" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="machineLimitsHomeZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="machineLimitsRangeX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">220</Value>
+    </Setting>
+    <Setting Name="machineLimitsRangeY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">220</Value>
+    </Setting>
+    <Setting Name="machineLimitsRangeZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="machineLimitsShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">900, 640</Value>
+    </Setting>
+    <Setting Name="mainFormSplitDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">296</Value>
+    </Setting>
+    <Setting Name="mainFormWinState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="overrideFRBtm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="overrideFRTop" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="overrideFRValue" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="overrideSSBtm" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="overrideSSTop" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="overrideSSValue" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="probingCoordG10" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="probingEdgeCenter" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="probingEdgeZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="probingFeed" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="probingFinalX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingFinalY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingFinalZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingOffsetZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="probingSaveX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingSaveY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingSaveZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="probingToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="probingTravelX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingTravelY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingTravelZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="probingWorkpieceDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="resetRestoreWorkCoordinates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="resetSendCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G10 L20 P0 X0 Y0 Z0</Value>
+    </Setting>
+    <Setting Name="resetSendCodeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionScale" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">360</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionSetupEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionSetupOff" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$100=1600;$110=1000;$120=50</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionSetupOn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$100=4.444;$110=10000;$120=1000</Value>
+    </Setting>
+    <Setting Name="rotarySubstitutionX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="serialBaud1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">115200</Value>
+    </Setting>
+    <Setting Name="serialBaud2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">115200</Value>
+    </Setting>
+    <Setting Name="serialBaudDIY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">115200</Value>
+    </Setting>
+    <Setting Name="serialMinimize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="serialPort1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+    <Setting Name="serialPort2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM2</Value>
+    </Setting>
+    <Setting Name="serialPortDIY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM9</Value>
+    </Setting>
+    <Setting Name="toolTableLastLoaded" Type="System.String" Scope="User">
+      <Value Profile="(Default)">empty</Value>
+    </Setting>
+    <Setting Name="toolTableOffsetA" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="toolTableOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="toolTableOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">120</Value>
+    </Setting>
+    <Setting Name="toolTableOffsetZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="toolTableOriginal" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
+      <Value Profile="(Default)">?</Value>
+    </Setting>
+    <Setting Name="machineLimitsHomeX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-20</Value>
+    </Setting>
+    <Setting Name="machineLimitsHomeY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-20</Value>
+    </Setting>
+    <Setting Name="guiDisableProgramPause" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="grblStreamingProtocol1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGCToolChangeCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Z10 (move upwards)</Value>
+    </Setting>
+    <Setting Name="ctrlLineNumbers" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="sizeSerForm1" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">342, 480</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
