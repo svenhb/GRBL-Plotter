@@ -1463,5 +1463,8 @@
     <Setting Name="ctrlLineNumbers" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="sizeSerForm1" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">342, 480</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -5871,5 +5871,17 @@ namespace GRBL_Plotter.Properties {
                 this["ctrlLineNumbers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("342, 480")]
+        public global::System.Drawing.Size sizeSerForm1 {
+            get {
+                return ((global::System.Drawing.Size)(this["sizeSerForm1"]));
+            }
+            set {
+                this["sizeSerForm1"] = value;
+            }
+        }
     }
 }
