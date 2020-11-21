@@ -59,10 +59,8 @@ namespace GRBL_Plotter
                     {
                         string fill = PathData.Info.groupAttributes[(int)GroupOptions.ByFill];
                         if (fillColor && ((fill == "") || (fill == "none")))	// SVG: only hatch if fillColor is set
-                        {
-                            Logger.Trace("no fill"); continue;  }
+                        {   Logger.Trace("no fill"); continue;  }
 						else
-
                             countProperty((int)GroupOptions.ByColor, fill);		// now fill-color is also penColor -> for grouping
 						
                         tmpPath.Add(PathData);					// collect paths
@@ -73,7 +71,7 @@ namespace GRBL_Plotter
                         // collect paths of same id, process if id changes
 //                        nextIsSameHatch = ((index != (maxObject - 1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
                         nextIsSameHatch = ((index < (maxObject-1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
-                        if (logModification) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}", PathData.Info.id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.id, graphicToFill[index + 1].Info.id);
+                        if (logModification) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}", PathData.Info.id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.id, graphicToFill[index + 1].Info.id, fill);
                         if (nextIsSameHatch)   
                         {   continue;  }
 
@@ -87,6 +85,7 @@ namespace GRBL_Plotter
 						
 						// process single hatch lines - shorten to match inside polygone
 						finalPattern.Clear();
+
                         foreach (Point[] hatchLine in hatchPattern)
                         {   ClipLineByPolygone(hatchLine[0], hatchLine[1], tmpPath, finalPattern); }
 
@@ -225,7 +224,7 @@ namespace GRBL_Plotter
                     ItemPath ipath = (ItemPath)path;
 
                     p3 = ipath.path[0].MoveTo;
-                    if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("   ClipLineByPolygone p3.x:{0:0.00} p3.y:{1:0.00}    {2}", p3.X,p3.Y, ipath.Info.id);
+//                    if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("   ClipLineByPolygone p3.x:{0:0.00} p3.y:{1:0.00}    {2}", p3.X,p3.Y, ipath.Info.id);
 
                     for (int k = 1; k < ipath.path.Count; k++)
                     {

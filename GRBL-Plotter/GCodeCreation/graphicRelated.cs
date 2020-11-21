@@ -22,10 +22,12 @@
 			  clipping/tilig: show tiling cuts only for tiling
  * 2020-07-28 bug fix in ReversePath() add depth information to line, clipping background raster
  * 2020-08-10 createGraphicsPath logDetailed
+ * 2020-11-10 line 1565 also reverse last item in sortOrderFigure
 */
 
 using System;
 using System.Collections.Generic;
+//using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Linq;
@@ -51,8 +53,8 @@ namespace GRBL_Plotter
         private static Dictionary<string, int>[] groupPropertiesCount = new Dictionary<string, int>[10];
 
         private static Dimensions actualDimension = new Dimensions();
-        private static Point lastPoint = new Point();
-		private static PathObject lastPath = new ItemPath();
+        private static Point lastPoint = new Point();       // System.Windows
+        private static PathObject lastPath = new ItemPath();
 		private static CreationOptions lastOption = CreationOptions.none;
 
         private static int objectCount = 0;
@@ -135,7 +137,9 @@ namespace GRBL_Plotter
         public static void StartPath(Point xy, CreationOptions addFunction = CreationOptions.none)
         {   // preset informations
             if (completeGraphic.Count() > 0)
-            {   lastPath = completeGraphic[completeGraphic.Count() - 1];			}
+            { lastPath = completeGraphic[completeGraphic.Count() - 1]; }
+            else
+            { lastPath = actualPath; }
 
             actualPath.Info.CopyData(actualPathInfo);       // preset global info for GROUP
 
@@ -143,7 +147,7 @@ namespace GRBL_Plotter
             if ((lastPath is ItemPath) && (objectCount > 0) && hasSameProperties((ItemPath)lastPath, (ItemPath)actualPath) && (isEqual(xy,lastPoint))) 
             {   actualPath = (ItemPath)lastPath;
 				actualPath.Options = lastOption;
-                if (logCoordinates) Logger.Trace("AddToPath Id:{0} at X:{1:0.00} Y:{2:0.00} {3}", objectCount, xy.X, xy.Y, actualPath.Info.List());
+                if (logCoordinates) Logger.Trace("AddToPath Id:{0} at X:{1:0.00} Y:{2:0.00} {3}  start.X:{4:0.00} start.Y:{5:0.00}", objectCount, xy.X, xy.Y, actualPath.Info.List(), actualPath.Start.X, actualPath.Start.Y);
                 continuePath = true;
             }
             else
@@ -160,36 +164,44 @@ namespace GRBL_Plotter
                 {   actualPath.dashArray = new double[actualDashArray.Length];
                     actualDashArray.CopyTo(actualPath.dashArray, 0);
                 }
-//                actualDashArray = new double[0];
-                if (logCoordinates) Logger.Trace("StartPath Id:{0} at X:{1:0.00} Y:{2:0.00} {3}", objectCount, xy.X, xy.Y, actualPath.Info.List());
+
+                if (logCoordinates) Logger.Trace("StartPath Id:{0} at X:{1:0.00} Y:{2:0.00} {3}  start.X:{4:0.00} start.Y:{5:0.00}", objectCount, xy.X, xy.Y, actualPath.Info.List(), actualPath.Start.X, actualPath.Start.Y);
             }
+            
+            actualPath.Dimension.setDimensionXY(xy.X,xy.Y);
             lastPoint = xy;
             setNewId = false;
 			lastOption = CreationOptions.none;
         }
         public static void StopPath(string cmt = "")
         {
+            if (!actualPath.Dimension.isXYSet())                    // 2020-10-31
+                return;
+
+            actualPath.Dimension.addDimensionXY(actualDimension);   // 2020-10-25
+
             if (continuePath && (completeGraphic.Count() > 0))
                 completeGraphic[completeGraphic.Count() - 1] = actualPath;
             else
             {
                 if (actualPath.Dimension.isXYSet())
-                { completeGraphic.Add(actualPath); }
+                { completeGraphic.Add(actualPath); if (logEnable) Logger.Trace("   StopPath completeGraphic.Add {0}", completeGraphic.Count()); }
                 else
                 { if (logEnable) Logger.Trace("   StopPath dimension not set - skip"); }
             }
             if (logCoordinates) Logger.Trace("StopPath  cnt:{0}  cmt:{1} {2}", (objectCount-1), cmt, actualPath.Info.List());
-            if (logEnable) Logger.Trace("    StopPath Dimension  {0}", actualPath.Dimension.getXYString());
+            if (logEnable) Logger.Trace("    StopPath Dimension  {0}  cmt:{1} {2}", actualPath.Dimension.getXYString(), cmt, actualPath.Info.List());
 
             if (actualPath.path.Count > 0)
             { actualDimension.addDimensionXY(actualPath.Dimension); }
 
             continuePath = false;
-//            actualDashArray = new double[0];
+
             actualPath = new ItemPath();                    // reset path
             actualPathInfo.id = objectCount;
             actualPath.Info.CopyData(actualPathInfo);       // preset global info for GROUP
             actualPath.Options = lastOption;
+            actualPath.Dimension.resetDimension();          // 2020-10-31
         }
 
         public static void AddLine(Point xy, string cmt = "")
@@ -199,7 +211,7 @@ namespace GRBL_Plotter
 			{	if (logCoordinates) Logger.Trace("  AddLine SKIP, same coordinates! X:{0:0.00} Y:{1:0.00}", xy.X, xy.Y);	}
 			else
 			{	actualPath.Add(xy,z,0);
-				if (logCoordinates) Logger.Trace("  AddLine to X:{0:0.00} Y:{1:0.00}  Z:{2:0.00} new dist {3:0.00}", xy.X, xy.Y, z, actualPath.PathLength);
+				if (logCoordinates) Logger.Trace("  AddLine to X:{0:0.00} Y:{1:0.00}  Z:{2:0.00} new dist {3:0.00}   start.X:{4:0.00}  start.Y:{5:0.00}", xy.X, xy.Y, z, actualPath.PathLength, actualPath.Start.X, actualPath.Start.Y);
 				actualDimension.setDimensionXY(xy.X, xy.Y);
 				lastPoint = xy;
 			}
@@ -277,7 +289,7 @@ namespace GRBL_Plotter
 
         public static void SetPenWidth(string txt)	// DXF: 0 - 2.11mm = 0 - 211		SVG: 0.000 - ?  Convert with to mm, then to string in importClass
         {   if (logProperties) Logger.Trace("Set PenWidth '{0}'",txt);
- //           setNewId = true;
+ //           setNewId = true;        // active 2020-10-25
 			int tmpIndex = (int)GroupOptions.ByWidth;
 			countProperty(tmpIndex, txt);
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
@@ -286,7 +298,16 @@ namespace GRBL_Plotter
 		}
 
         public static void SetPenColor(string txt)
-        {   if (logProperties) Logger.Trace("Set PenColor '{0}'",txt);
+        {   if (txt.StartsWith("rgb("))
+            {   String[] colors = txt.Substring(4, txt.Length - 5).Split(',');
+                System.Drawing.Color color = System.Drawing.Color.FromArgb(
+                    Int32.Parse(colors[0].Trim()),
+                    Int32.Parse(colors[1].Trim()),
+                    Int32.Parse(colors[2].Trim())
+                    );
+                txt = System.Drawing.ColorTranslator.ToHtml(color);
+            }
+            if (logProperties) Logger.Trace("Set PenColor '{0}'",txt);
             setNewId = true;
 			int tmpIndex = (int)GroupOptions.ByColor;
 			countProperty(tmpIndex, txt);
@@ -379,6 +400,8 @@ namespace GRBL_Plotter
 
 /* show original graphics in 2D-view */
             createGraphicsPath(completeGraphic, pathBackground);
+
+            if (logModification) ListGraphicObjects(completeGraphic);
 
 /* hatch fill */
             if (graphicInformation.ApplyHatchFill || graphicInformation.OptionHatchFill)
@@ -1519,9 +1542,9 @@ namespace GRBL_Plotter
 
 		private static void setOrderOfFigures(List<PathObject> tmp, int[] sortOrder)
 		{   tileGraphicAll = new List<PathObject>();    // 
-			foreach(int figureId in sortOrder)
-			{	foreach (PathObject graphicItem in tmp)
-				{	if (graphicItem.FigureId == figureId)
+			foreach(int figureId in sortOrder)                  // go through all figures in 2D-view
+			{	foreach (PathObject graphicItem in tmp)         // go through all graphic figures
+				{	if (graphicItem.FigureId == figureId)       // if match, add to return graphics
 					{	tileGraphicAll.Add(graphicItem);
                         if (logSortMerge) Logger.Trace(" setOrder {0}", figureId);
                     }
@@ -1532,17 +1555,18 @@ namespace GRBL_Plotter
                 tmp.Add(fig);          
 		}
 
-
         public static string ReDoReversePath(int figureNr, xyPoint aP, int[] sortOrderFigure, int[] sortOrderGroup)	// called in MainFormPictureBox
         {
             Logger.Info("ReDoReversePath  figure:{0}  posX:{1:0.00}  posY:{2:0.00}   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",figureNr, aP.X,aP.Y);
 
             if (graphicInformation.GroupEnable && groupedGraphic.Count > 0)
-            { foreach (GroupObject tmpGrp in groupedGraphic)
+            {   foreach (GroupObject tmpGrp in groupedGraphic)
                 {
                     for (int i = 0; i < tmpGrp.groupPath.Count; i++)
-                    { if (tmpGrp.groupPath[i].FigureId == figureNr)
-                        { if (tmpGrp.groupPath[i] is ItemPath)
+                    {
+                        if ((figureNr > 0) && (figureNr <= sortOrderFigure.Count()) && (tmpGrp.groupPath[i].FigureId == sortOrderFigure[figureNr - 1]))
+//                        if (tmpGrp.groupPath[i].FigureId == figureNr)     
+                        {   if (tmpGrp.groupPath[i] is ItemPath)
                             { ReverseOrRotatePath((ItemPath)tmpGrp.groupPath[i], aP); }
                         }
                     }
@@ -1563,16 +1587,14 @@ namespace GRBL_Plotter
                 foreach (GroupObject tmpGrp in groupedGraphicTmp)
                     groupedGraphic.Add(tmpGrp);
 
-     //           List<int> codeValueSortOrder = new List<int>(sortOrderGroup);
-    //            for (int k = 0; k < sortOrderGroup.Count(); k++)
-    //                Logger.Trace("sortOrderGroup {0}  ->  {1}", k, sortOrderGroup[k]);
-	//			groupedGraphic.OrderBy(i=> codeValueSortOrder.IndexOf(i.GroupId));
                 for (int k = 0; k < groupedGraphic.Count(); k++)
                     Logger.Trace("sortOrderGroup {0}  ->  {1}", k, groupedGraphic[k].GroupId);
             }
             else
 			{	foreach (PathObject tmp in completeGraphic)
-				{   if (tmp.FigureId == figureNr)
+				{
+                    if ((figureNr > 0) && (figureNr <= sortOrderFigure.Count()) && (tmp.FigureId == sortOrderFigure[figureNr-1]))
+//                    if (tmp.FigureId == figureNr)       
 					{	if (tmp is ItemPath)
 						{	ReverseOrRotatePath((ItemPath)tmp, aP);		}
 					}
