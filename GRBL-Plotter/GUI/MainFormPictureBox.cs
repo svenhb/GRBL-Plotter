@@ -33,8 +33,6 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using FastColoredTextBoxNS;
-using System.Collections.Generic;
 
 namespace GRBL_Plotter
 {
@@ -102,7 +100,6 @@ namespace GRBL_Plotter
                 {   relposX = relposX * ratioPic / ratioVisu;   }
 
                 picAbsPos.X = relposX * xRange + minx;
-//                picAbsPos.Y = yRange - relposY * yRange + miny;
                 picAbsPos.Y = maxposY - relposY * yRange + miny;
 
                 if (posIsMoving)
@@ -118,7 +115,6 @@ namespace GRBL_Plotter
                 pBoxOrig = e.Graphics.Transform;
                 try { e.Graphics.Transform = pBoxTransform; } catch { }
                 e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);           // apply scaling (flip Y)
-          //      e.Graphics.TranslateTransform((float)-minx, (float)(-yRange - miny));       // apply offset
                 e.Graphics.TranslateTransform((float)-minx, (float)(-maxposY-miny));       // apply offset
 
                 try
@@ -174,18 +170,6 @@ namespace GRBL_Plotter
         {
             try
             {
-     /*           if (Properties.Settings.Default.machineLimitsShow)
-                    e.FillPath(brushMachineLimit, VisuGCode.pathMachineLimit);
-                if (Properties.Settings.Default.gui2DToolTableShow)
-                    e.DrawPath(penTool, VisuGCode.pathToolTable);
-                if (Properties.Settings.Default.guiBackgroundShow)
-                    e.DrawPath(penLandMark, VisuGCode.pathBackground);
-                if (Properties.Settings.Default.guiDimensionShow)
-                    e.DrawPath(penLandMark, VisuGCode.pathDimension);
-*/
- //               e.DrawPath(penLandMark, Graphic.pathBackground);
-
-
                 float factorWidth = 1;
                 if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
                 if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
@@ -266,7 +250,6 @@ namespace GRBL_Plotter
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-//            if (logDetailed) Logger.Trace("pictureBox1_MouseMove");
             if (e.Button == MouseButtons.Middle)
             {
                 xyPoint diff = new xyPoint(0, 0);
@@ -406,7 +389,6 @@ namespace GRBL_Plotter
                 maxposY = xRange * pictureBox1.Height / pictureBox1.Width;
 
             double relposX = (         picAbsPos.X - minx) / xRange;
-//            double relposY = (yRange - picAbsPos.Y + miny) / yRange;
             double relposY = (maxposY - picAbsPos.Y + miny) / yRange;
 
             if (ratioVisu > ratioPic)
@@ -474,7 +456,7 @@ namespace GRBL_Plotter
             penUp.LineJoin = LineJoin.Round;
             penDown.LineJoin = LineJoin.Round;
             penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
-//            penDown.LineJoin = LineJoin.Round;
+
             penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
             penRotary.LineJoin = LineJoin.Round;
             penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
@@ -508,7 +490,6 @@ namespace GRBL_Plotter
         private void cmsPicBoxZeroXYAtMarkedPosition_Click(object sender, EventArgs e)
         {   xyPoint tmp = (xyPoint)(grbl.posWork) - grbl.posMarker;
             sendCommand(String.Format(zeroCmd + " X{0} Y{1}", gcode.frmtNum(tmp.X), gcode.frmtNum(tmp.Y)).Replace(',', '.'));
-        //    grbl.posMarker = new xyPoint(0, 0);
         }
         private void cmsPicBoxMoveGraphicsOrigin_Click(object sender, EventArgs e)
         {   unDo.setCode(fCTBCode.Text, cmsPicBoxMoveGraphicsOrigin.Text, this);
@@ -533,8 +514,6 @@ namespace GRBL_Plotter
 
         private void cmsPicBoxMoveToFirstPos_Click(object sender, EventArgs e)
         {
-            //      int start = findFigureMarkSelection(xmlMarkerType.Figure, 0);
-            //     fCTBCodeClickedLineNow = start;
             fCTBCodeMarkLine();
             fCTBCode.DoCaretVisible();
             return;
@@ -595,12 +574,12 @@ namespace GRBL_Plotter
             cmsPicBoxMoveSelectedPathInCode.BackColor = SystemColors.Control;
         }
 
-
         private void cmsPicBoxReverseSelectedPath_Click(object sender, EventArgs e)
         {
             if (figureIsMarked)
             {
                 resetView = true;
+                if (logEnable) Logger.Trace("Reverse path figureNr:{0}  figureOrder:{1}  GroupIdOrder:{2}", xmlMarker.lastFigure.figureNr, string.Join(",",xmlMarker.getFigureIdOrder()), string.Join(",", xmlMarker.getGroupIdOrder()));
                 fCTBCode.Text = Graphic.ReDoReversePath(xmlMarker.lastFigure.figureNr, picAbsPos, xmlMarker.getFigureIdOrder(), xmlMarker.getGroupIdOrder());
                 newCodeEnd();
             }

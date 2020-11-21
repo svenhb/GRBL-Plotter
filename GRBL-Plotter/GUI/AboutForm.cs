@@ -62,5 +62,9 @@ namespace GRBL_Plotter
             Process.Start(System.Windows.Forms.Application.StartupPath);// (@"c:\test");
         }
 
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(@"https://GRBL-Plotter.de/?setlang=en");
+        }
     }
 }

@@ -32,6 +32,7 @@
  * 2020-03-05 export some settings to registry
  * 2020-05-06 add *.tap as gcode file extension
  * 2020-05-29 add CSV support
+ * 2020-11-18 line 794, change search range from 100 to 200
 */
 
 using System;
@@ -790,7 +791,7 @@ namespace GRBL_Plotter
                     checkContent = text;
                 string[] checkLines = checkContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 int posSVG = checkContent.IndexOf("<svg ");
-                if ((posSVG >= 0) && (posSVG < 100))
+                if ((posSVG >= 0) && (posSVG < 200))
                 {
                     string txt = "";
                     if (!(checkContent.IndexOf("<?xml version") >= 0))

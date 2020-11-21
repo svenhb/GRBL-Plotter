@@ -478,9 +478,10 @@ namespace GRBL_Plotter
             dimy = 0;
             dimz = 0;
         }
-		
-		public bool isXYSet()
-		{	return ((dimx != 0) || (dimy != 0));}
+
+        public bool isXYSet()
+        { return ((minx!= Double.MaxValue)&& (miny != Double.MaxValue)&& (maxx != Double.MinValue) && (maxy != Double.MinValue)); }
+//		{	return ((dimx != 0) || (dimy != 0));}
 
         public xyPoint getCenter()
         {   double cx = minx + ((maxx - minx) / 2);
