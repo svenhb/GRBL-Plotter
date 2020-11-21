@@ -69,6 +69,8 @@
  * 2020-08-02 convert to double instead of float, line 567; bug fix line 436 element.Attribute
  * 2020-08-04 fix #138 Descripten CRLF remove
  * 2020-08-10 fix log output line 1250
+ * 2020-11-13 fix bad point list - not separated by ' ', but by ','  line 678
+ *              created by https://github.com/LingDong-/linedraw
 */
 
 using System;
@@ -671,8 +673,17 @@ namespace GRBL_Plotter
                         if (pathElement.Attribute("cx") != null)    cx=ConvertToPixel(pathElement.Attribute("cx").Value);
                         if (pathElement.Attribute("cy") != null)    cy=ConvertToPixel(pathElement.Attribute("cy").Value);
                         if (pathElement.Attribute("r") != null)     r=ConvertToPixel(pathElement.Attribute("r").Value);
-                        if (pathElement.Attribute("points") != null) points = pathElement.Attribute("points").Value.Split(' ');
-
+                        if (pathElement.Attribute("points") != null) 
+						{	points = pathElement.Attribute("points").Value.Split(' ');
+							if (points.Length == 1)		// not separated by ' '
+							{	string[] values = pathElement.Attribute("points").Value.Split(',');
+                                List<string> list = new List<string>();
+                                for (int i=0;i<values.Length;i+=2)
+								{ list.Add(values[i]+","+values[i+1]);   }
+                                points = list.ToArray();
+							}
+						}
+						
                         if (form == "rect")
                         {
                             if (ry == 0) { ry = rx; }
@@ -709,7 +720,7 @@ namespace GRBL_Plotter
                                 GCodeDotOnly(x, y + height - ry, form + " b2");                       // lower left
                                 if (rx > 0) GCodeDotOnly(x + rx, y + height, form);
                             }
-                            Graphic.StopPath();//Plotter.StopPath(form);
+                            Graphic.StopPath(form);//Plotter.StopPath(form);
                         }
                         else if (form == "circle")
                         {
@@ -734,7 +745,7 @@ namespace GRBL_Plotter
                                     GCodeDotOnly(cx, cy, form);
                                 }
                             }
-                            Graphic.StopPath();//Plotter.StopPath(form);
+                            Graphic.StopPath(form);//Plotter.StopPath(form);
                         }
                         else if (form == "ellipse")
                         {
@@ -751,7 +762,7 @@ namespace GRBL_Plotter
                             {
                                 GCodeDotOnly(cx + rx, cy, form);
                             }*/
-                            Graphic.StopPath();//Plotter.StopPath(form);
+                            Graphic.StopPath(form);//Plotter.StopPath(form);
                         }
                         else if (form == "line")
                         {
@@ -768,7 +779,7 @@ namespace GRBL_Plotter
                                 GCodeDotOnly(x1, y1, form);
                                 GCodeDotOnly(x2, y2, form);
                             }
-                            Graphic.StopPath();//Plotter.StopPath(form);
+                            Graphic.StopPath(form);//Plotter.StopPath(form);
                         }
                         else if ((form == "polyline") || (form == "polygon"))
                         {
@@ -803,7 +814,7 @@ namespace GRBL_Plotter
 //                                else
 //                                    gcodeDotOnly(x1, y1, form);
                             }
-                            Graphic.StopPath();//Plotter.StopPath(form);
+                            Graphic.StopPath(form);//Plotter.StopPath(form);
                         }
                         else if ((form == "text") || (form == "image"))
                         {   if (form == "text")
@@ -874,7 +885,7 @@ namespace GRBL_Plotter
                         foreach (string token in tokens)
                             objCount += ParsePathCommand(token);
 
-                        Graphic.StopPath(); // if path has no z
+                        Graphic.StopPath("if path has no z"); // if path has no z
                     }
                     matrixElement = oldMatrixElement;
                 }
@@ -968,7 +979,7 @@ namespace GRBL_Plotter
                     lastX = (float)firstX; lastY = (float)firstY;
                     firstX = null; firstY = null;
                     startSubPath = true;
-                    Graphic.StopPath();//Plotter.StopPath("Z");
+                    Graphic.StopPath("Z");//Plotter.StopPath("Z");
                     break;
                 #endregion
                 case 'L':       // Draw a line from the current point to the given (x,y) coordinate
@@ -1195,6 +1206,9 @@ namespace GRBL_Plotter
                     startSubPath = true;
                     break;
                 #endregion
+                case ' ':
+                    if (logEnable) Logger.Trace("ParsePathCommand Element ' ', nothing to do floatArgs.Length:{0}", floatArgs.Length);
+                    break;
                 default:
                     if (svgComments) Graphic.SetComment(" *********** unknown: " + command.ToString()+ " ***** ");
                     Graphic.SetHeaderInfo(" Unknown element: '"+ command.ToString() + "'");
