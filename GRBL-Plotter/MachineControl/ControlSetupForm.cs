@@ -323,11 +323,15 @@ namespace GRBL_Plotter
         {   LinkLabel clickedLink = sender as LinkLabel;
             Process.Start(clickedLink.Tag.ToString()); }
 
-        private void tabPage6_Enter(object sender, EventArgs e)
-        { timer1.Enabled = true; }
+        private void tabPage24_Enter(object sender, EventArgs e)
+        {   timer1.Enabled = true;
+            try { ControlGamePad.Initialize(); timer1.Interval = 200; }
+            catch { }
+        }
 
-        private void tabPage6_Leave(object sender, EventArgs e)
-        { timer1.Enabled = false; }
+        private void tabPage24_Leave(object sender, EventArgs e)
+        {   timer1.Enabled = false;
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -959,7 +963,8 @@ namespace GRBL_Plotter
 
         private void cBGPEnable_CheckedChanged(object sender, EventArgs e)
         {   if (cBGPEnable.Checked)
-            {   try { ControlGamePad.Initialize(); }
+            {
+                try { ControlGamePad.Initialize(); }
                 catch { }
             }
         }
