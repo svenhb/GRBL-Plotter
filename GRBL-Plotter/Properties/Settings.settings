@@ -1466,5 +1466,53 @@
     <Setting Name="sizeSerForm1" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">342, 480</Value>
     </Setting>
+    <Setting Name="notifierMailClientAdr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+    <Setting Name="notifierMailClientPort" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="notifierMailClientUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">user</Value>
+    </Setting>
+    <Setting Name="notifierMailClientPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pass</Value>
+    </Setting>
+    <Setting Name="notifierMailSendFrom" Type="System.String" Scope="User">
+      <Value Profile="(Default)">from@gmail.com</Value>
+    </Setting>
+    <Setting Name="notifierMailSendTo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">to@gmail.com</Value>
+    </Setting>
+    <Setting Name="notifierMailSendSubject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GRBL-Plotter </Value>
+    </Setting>
+    <Setting Name="notifierMailEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="notifierMessageFinish" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Streaming via GRBL-Plotter finished</Value>
+    </Setting>
+    <Setting Name="notifierMessageProgress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Progress</Value>
+    </Setting>
+    <Setting Name="notifierMessageProgressEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="notifierMessageProgressInterval" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="notifierMessageProgressTitle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="notifierPushbulletEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="notifierPushbulletChannel" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="notifierPushbulletToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

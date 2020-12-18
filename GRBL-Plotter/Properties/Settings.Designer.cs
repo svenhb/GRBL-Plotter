@@ -5883,5 +5883,197 @@ namespace GRBL_Plotter.Properties {
                 this["sizeSerForm1"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.gmail.com")]
+        public string notifierMailClientAdr {
+            get {
+                return ((string)(this["notifierMailClientAdr"]));
+            }
+            set {
+                this["notifierMailClientAdr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("587")]
+        public decimal notifierMailClientPort {
+            get {
+                return ((decimal)(this["notifierMailClientPort"]));
+            }
+            set {
+                this["notifierMailClientPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("user")]
+        public string notifierMailClientUser {
+            get {
+                return ((string)(this["notifierMailClientUser"]));
+            }
+            set {
+                this["notifierMailClientUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pass")]
+        public string notifierMailClientPass {
+            get {
+                return ((string)(this["notifierMailClientPass"]));
+            }
+            set {
+                this["notifierMailClientPass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("from@gmail.com")]
+        public string notifierMailSendFrom {
+            get {
+                return ((string)(this["notifierMailSendFrom"]));
+            }
+            set {
+                this["notifierMailSendFrom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("to@gmail.com")]
+        public string notifierMailSendTo {
+            get {
+                return ((string)(this["notifierMailSendTo"]));
+            }
+            set {
+                this["notifierMailSendTo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GRBL-Plotter ")]
+        public string notifierMailSendSubject {
+            get {
+                return ((string)(this["notifierMailSendSubject"]));
+            }
+            set {
+                this["notifierMailSendSubject"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool notifierMailEnable {
+            get {
+                return ((bool)(this["notifierMailEnable"]));
+            }
+            set {
+                this["notifierMailEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Streaming via GRBL-Plotter finished")]
+        public string notifierMessageFinish {
+            get {
+                return ((string)(this["notifierMessageFinish"]));
+            }
+            set {
+                this["notifierMessageFinish"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Progress")]
+        public string notifierMessageProgress {
+            get {
+                return ((string)(this["notifierMessageProgress"]));
+            }
+            set {
+                this["notifierMessageProgress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool notifierMessageProgressEnable {
+            get {
+                return ((bool)(this["notifierMessageProgressEnable"]));
+            }
+            set {
+                this["notifierMessageProgressEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal notifierMessageProgressInterval {
+            get {
+                return ((decimal)(this["notifierMessageProgressInterval"]));
+            }
+            set {
+                this["notifierMessageProgressInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool notifierMessageProgressTitle {
+            get {
+                return ((bool)(this["notifierMessageProgressTitle"]));
+            }
+            set {
+                this["notifierMessageProgressTitle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool notifierPushbulletEnable {
+            get {
+                return ((bool)(this["notifierPushbulletEnable"]));
+            }
+            set {
+                this["notifierPushbulletEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string notifierPushbulletChannel {
+            get {
+                return ((string)(this["notifierPushbulletChannel"]));
+            }
+            set {
+                this["notifierPushbulletChannel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string notifierPushbulletToken {
+            get {
+                return ((string)(this["notifierPushbulletToken"]));
+            }
+            set {
+                this["notifierPushbulletToken"] = value;
+            }
+        }
     }
 }
