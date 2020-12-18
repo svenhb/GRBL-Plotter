@@ -59,6 +59,8 @@
  * 2020-04-26 Replace class Plotter by class Graphic for sorting
  * 2020-04-27 DXFArc implement G3 instead of line segments
  * 2020-07-20 clean up
+ * 2020-11-30 don't set layer, pen etc. if there is no change (to avoid starting a new object in 'graphicRelated.cs') line 339
+ * 2020-12-08 add BackgroundWorker updates
 */
 
 using System;
@@ -70,17 +72,31 @@ using DXFLib;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Windows;
+using System.ComponentModel;
 
 namespace GRBL_Plotter //DXFImporter
 {
     public static class GCodeFromDXF
     {
+        private static DXFDocument doc;
+
         private static int dxfColorNr = -1;
         private static int dxfColorIDold = -1;
         private static int dxfLineWeigth = 0;
         private static int dxfBlockColorNr = -1;
         private static int dxfBlockLineWeigth = 0;
 
+        private static string wasSetLayer="";
+        private static string wasSetPenColor="";
+        private static int wasSetPenColorId=-1;
+        private static string wasSetPenFill="";
+        private static int wasSetPenWidth=-1;
+        
+        private static int countDXFLayers = 0;
+        private static int countDXFEntities = 0;
+        private static int countDXFBlocks = 0;
+        private static int countDXFEntity = 0;
+        
         private static string dxfColorFill = "";
         private static string dxfColorHex = "";
         private static bool nodesOnly = false;              // if true only do pen-down -up on given coordinates
@@ -99,29 +115,36 @@ namespace GRBL_Plotter //DXFImporter
         private static uint logFlags = 0;
         private static bool logEnable = false;
         private static bool logPosition = false;
-
+        
+        private static BackgroundWorker backgroundWorker = null;
+        private static DoWorkEventArgs backgroundEvent = null;
+        
+        
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
         /// </summary>
         /// <param name="file">String keeping file-name or URL</param>
         /// <returns>String with GCode of imported data</returns>
-        public static string ConvertFromText(string text)
+        public static bool ConvertFromText(string text)
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(text);
             MemoryStream stream = new MemoryStream(byteArray);
             LoadDXF(stream);
             return ConvertDXF("from Clipboard");                  
         }
-        public static string ConvertFromFile(string filePath)
+        public static bool ConvertFromFile(string filePath, BackgroundWorker worker, DoWorkEventArgs e)
         {   if (filePath == "")
-            { MessageBox.Show("Empty file name"); return ""; }
-
+            { MessageBox.Show("Empty file name"); return false; }
+    
+            backgroundWorker = worker;
+            backgroundEvent = e;
+    
             if (filePath.Substring(0, 4) == "http")
             {
                 string content = "";
                 using (var wc = new System.Net.WebClient())
                 { try { content = wc.DownloadString(filePath); }
-                    catch { MessageBox.Show("Could not load content from " + filePath); return ""; }
+                    catch { MessageBox.Show("Could not load content from " + filePath); return false; }
                 }
                 int pos = content.IndexOf("dxfrw");
                 if ((content != "") && (pos >= 0) && (pos < 8))
@@ -131,10 +154,10 @@ namespace GRBL_Plotter //DXFImporter
                         MemoryStream stream = new MemoryStream(byteArray);
                         Logger.Info(" load from stream");
                         if (!LoadDXF(stream))
-                            return "(File could not be loaded)";
+                            return false;// "(File could not be loaded)";
                     }
-                    catch (Exception e)
-                    {   MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + filePath); }
+                    catch (Exception err)
+                    {   MessageBox.Show("Error '" + err.ToString() + "' in DXF file " + filePath); }
                 }
                 else
                     MessageBox.Show("This is probably not a DXF document.\r\nFirst line: " + content.Substring(0, 50));
@@ -146,12 +169,12 @@ namespace GRBL_Plotter //DXFImporter
                     Logger.Info(" load from file");
                     try
                     {   if (!LoadDXF(filePath))
-                            return "(File could not be loaded)";
+                            return false;// "(File could not be loaded)";
                     }
-                    catch (Exception e)
-                    {   MessageBox.Show("Error '" + e.ToString() + "' in DXF file " + filePath); return ""; }
+                    catch (Exception err)
+                    {   MessageBox.Show("Error '" + err.ToString() + "' in DXF file " + filePath); return false; }
                 }
-                else { MessageBox.Show("File does not exist: " + filePath); return ""; }
+                else { MessageBox.Show("File does not exist: " + filePath); return false; }
             }
             return ConvertDXF(filePath);
         }
@@ -159,13 +182,13 @@ namespace GRBL_Plotter //DXFImporter
         /// <summary>
         /// Convert DXF and create GCode
         /// </summary>
-        private static string ConvertDXF(string filePath)
+        private static bool ConvertDXF(string filePath)
         {
             Logger.Info(" convertDXF {0}", filePath);
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level1) > 0);
             logPosition = logEnable && ((logFlags & (uint)LogEnable.Coordinates) > 0);
-            Logger.Info(" logEnable:{0}  logPosition:{1}", logEnable, logPosition);
+            Logger.Trace(" logEnable:{0}  logPosition:{1}", logEnable, logPosition);
 
             nodesOnly = Properties.Settings.Default.importSVGNodesOnly;
 			conversionInfo = "";
@@ -174,11 +197,12 @@ namespace GRBL_Plotter //DXFImporter
             dxfColorNr = 259;
             dxfColorIDold = dxfColorNr;
 
-            if (gcode.loggerTrace) Logger.Trace("convertDXF init");
-            Graphic.Init(Graphic.SourceTypes.DXF, filePath);
+            Graphic.Init(Graphic.SourceTypes.DXF, filePath, backgroundWorker, backgroundEvent); 
             GetVectorDXF();                     // convert graphics
 			conversionInfo += string.Format("{0} elements imported", shapeCounter);
             Logger.Info(" convertDXF finish <- Graphic.CreateGCode()", filePath);
+            doc = null;
+            GC.Collect();
             return Graphic.CreateGCode(); 
         }
 
@@ -187,7 +211,6 @@ namespace GRBL_Plotter //DXFImporter
         /// </summary>
         /// <param name="filename">String keeping file-name</param>
         /// <returns></returns>
-        private static DXFDocument doc;
         private static bool LoadDXF(string filename)
         {   doc = new DXFDocument();
             try { doc.Load(filename); }
@@ -215,13 +238,26 @@ namespace GRBL_Plotter //DXFImporter
             lineTypes.Clear();
             layerLineWeigth.Clear();
 
+            wasSetLayer="";
+            wasSetPenColor="";
+            wasSetPenColorId=-1;
+            wasSetPenFill="";
+            wasSetPenWidth=-1;
+
             List<DXFLayerRecord> tst = doc.Tables.Layers;
+            countDXFLayers = tst.Count;
+            countDXFEntities = doc.Entities.Count;
+            countDXFBlocks = doc.Blocks.Count;
+            countDXFEntity = 0;
+            
+            Logger.Info(" Amount Layers:{0}  Entities:{1}  Blocks:{2}", countDXFLayers, countDXFEntities, countDXFBlocks);
+            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + countDXFEntities.ToString() + " elements" });
+                           
             foreach (DXFLayerRecord record in tst)
             {   Graphic.SetHeaderInfo(string.Format(" Layer: {0} , color: {1} , line type: {2}", record.LayerName, record.Color, record.LineType));
                 layerColor.Add(record.LayerName, record.Color);
                 layerLType.Add(record.LayerName, record.LineType);
                 layerLineWeigth.Add(record.LayerName, record.LineWeight);
-  //              record.
             }
 
             List<DXFLineTypeRecord> ltypes = doc.Tables.LineTypes;
@@ -243,6 +279,11 @@ namespace GRBL_Plotter //DXFImporter
 
             foreach (DXFEntity dxfEntity in doc.Entities)				// process all entities
             {
+                if ((backgroundWorker != null) && backgroundWorker.CancellationPending)
+                {   backgroundEvent.Cancel = true;
+                    break;
+                }               
+
                 if (dxfEntity.GetType() == typeof(DXFInsert))			// any block to insert?
                 {
                     DXFInsert ins = (DXFInsert)dxfEntity;               // get block coordinates
@@ -287,6 +328,8 @@ namespace GRBL_Plotter //DXFImporter
 			DXFPoint position = new DXFPoint();
             position.X = 0; position.Y = 0;
 			shapeCounter++;
+
+            if (backgroundWorker != null) backgroundWorker.ReportProgress(countDXFEntity++ * 100 / countDXFEntities);
 			
 /* get color        */
             dxfColorNr = entity.ColorNumber;
@@ -328,12 +371,12 @@ namespace GRBL_Plotter //DXFImporter
             }
 
             if (logEnable) Logger.Trace("ProcessEntity Layer:{0}{1} EntityColorNumber:{2} -use:{3} EntityLineWeight:{4} -use:{5}", layerName, "", entity.ColorNumber, dxfColorNr, entity.LineWeight, dxfLineWeigth);
-            Graphic.SetComment("Layer:" + layerName);
-            Graphic.SetLayer(layerName);
-            Graphic.SetPenColor(dxfColorHex);
-            Graphic.SetPenColorId(dxfColorNr);
-            Graphic.SetPenFill(dxfColorFill);
-            Graphic.SetPenWidth(string.Format("{0:0.00}",((double)dxfLineWeigth/100)).Replace(',', '.'));	// convert to mm, then to string
+            
+            if (layerName != wasSetLayer)       {Graphic.SetLayer(layerName); Graphic.SetComment("Layer:" + layerName);      wasSetLayer = layerName;}
+            if (dxfColorHex != wasSetPenColor)  {Graphic.SetPenColor(dxfColorHex);  wasSetPenColor = dxfColorHex;}
+            if (dxfColorNr != wasSetPenColorId) {Graphic.SetPenColorId(dxfColorNr); wasSetPenColorId = dxfColorNr;}
+            if (dxfColorFill != wasSetPenFill) {Graphic.SetPenFill(dxfColorFill);   wasSetPenFill = dxfColorFill;}
+            if (dxfLineWeigth != wasSetPenWidth) {Graphic.SetPenWidth(string.Format("{0:0.00}",((double)dxfLineWeigth/100)).Replace(',', '.'));	wasSetPenWidth = dxfLineWeigth;}//convert to mm, then to string
 
             #region DXFPoint
             if (entity.GetType() == typeof(DXFPointEntity))

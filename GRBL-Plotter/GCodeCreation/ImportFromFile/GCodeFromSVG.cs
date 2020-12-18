@@ -71,6 +71,7 @@
  * 2020-08-10 fix log output line 1250
  * 2020-11-13 fix bad point list - not separated by ' ', but by ','  line 678
  *              created by https://github.com/LingDong-/linedraw
+ * 2020-12-08 add BackgroundWorker updates
 */
 
 using System;
@@ -84,6 +85,7 @@ using System.Xml.Linq;
 using System.IO;
 using System.Globalization;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace GRBL_Plotter
 {
@@ -117,6 +119,10 @@ namespace GRBL_Plotter
         private static bool logEnable = false;
         private static string logSource = "";
 
+        private static BackgroundWorker backgroundWorker = null;
+        private static DoWorkEventArgs backgroundEvent  = null;
+
+
         /// <summary>
         /// Entrypoint for conversion: apply file-path or file-URL
         /// </summary>
@@ -125,7 +131,7 @@ namespace GRBL_Plotter
         private static XElement svgCode;
         private static bool fromClipboard = false;
         private static bool unitIsPixel = false;
-        public static string ConvertFromText(string svgText, bool replaceUnitByPixel = false)
+        public static bool ConvertFromText(string svgText, bool replaceUnitByPixel = false)
         {
             byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
             MemoryStream stream = new MemoryStream(byteArray);
@@ -141,23 +147,26 @@ namespace GRBL_Plotter
             catch (Exception e)
             {
                 Logger.Error(e, "Error loading SVG-Code");
-                MessageBox.Show("Error '" + e.ToString() + "' in XML string "); return "( No valid SVG data found)";
+                MessageBox.Show("Error '" + e.ToString() + "' in XML string "); return false;// "( No valid SVG data found)";
             }
         }
-        public static string ConvertFromFile(string filePath)
+        public static bool ConvertFromFile(string filePath, BackgroundWorker worker, DoWorkEventArgs e)
         {
             unitIsPixel = false;
             fromClipboard = false;
 
+            backgroundWorker = worker;
+            backgroundEvent  = e;
+
             if (filePath == "")
-            { MessageBox.Show("Empty file name"); return ""; }
+            { MessageBox.Show("Empty file name"); return false; }
             if (filePath.Substring(0, 4) == "http")
             {
                 string content = "";
                 using (var wc = new System.Net.WebClient())
                 {
                     try { content = wc.DownloadString(filePath); }
-                    catch { MessageBox.Show("Could not load content from " + filePath); return ""; }
+                    catch { MessageBox.Show("Could not load content from " + filePath); return false; }
                 }
                 if ((content != "") && (content.IndexOf("<?xml") == 0))
                 {
@@ -177,23 +186,23 @@ namespace GRBL_Plotter
                     {   svgCode = XElement.Load(filePath, LoadOptions.None);    // PreserveWhitespace);
                         return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                     }
-                    catch (Exception e)
+                    catch (Exception err)
                     {
-                        Logger.Error(e,"Error loading SVG-Code");
-                        MessageBox.Show("Error '" + e.ToString() + "' in XML file " + filePath + "\r\n\r\nTry to save file with other encoding e.g. UTF-8"); return "";
+                        Logger.Error(err,"Error loading SVG-Code");
+                        MessageBox.Show("Error '" + e.ToString() + "' in XML file " + filePath + "\r\n\r\nTry to save file with other encoding e.g. UTF-8"); return false;
                     }
                 }
-                else { MessageBox.Show("File does not exist: " + filePath); return ""; }
+                else { MessageBox.Show("File does not exist: " + filePath); return false; }
             }
-            return "";
+            return false;
         }
 
-        private static string ConvertSVG(XElement svgCode, string filePath)
+        private static bool ConvertSVG(XElement svgCode, string filePath)
         {
             Logger.Info(" convertSVG {0}", filePath);
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level1) > 0);
-            Logger.Info(" logEnable:{0}", logEnable);
+            Logger.Trace(" logEnable:{0}", logEnable);
 
             svgScaleApply = Properties.Settings.Default.importSVGRezise;
             svgMaxSize = (float)Properties.Settings.Default.importSVGMaxSize;
@@ -204,10 +213,11 @@ namespace GRBL_Plotter
 			conversionInfo = "";
 			shapeCounter = 0;
 			
-            Graphic.Init(Graphic.SourceTypes.SVG, filePath); 
+            Graphic.Init(Graphic.SourceTypes.SVG, filePath, backgroundWorker, backgroundEvent); 
             GetVectorSVG(svgCode);                  // convert graphics
 			conversionInfo += string.Format("{0} elements imported", shapeCounter);
             Logger.Info(" convertSVG finish <- Graphic.CreateGCode()", filePath);
+            svgCode.RemoveAll();
             return Graphic.CreateGCode(); 
         }
 
@@ -235,6 +245,11 @@ namespace GRBL_Plotter
             lastX = 0;
             lastY = 0;
 
+            int count = svgCode.Descendants("path").Count();
+
+            Logger.Info(" Amount Paths:{0}", count);
+            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read SVG vector data of " + count.ToString() + " elements "});
+
             matrixElement.SetIdentity();                // preset transform matrix
             oldMatrixElement.SetIdentity();             // preset backup of transform matrix
             for (int i=0; i<matrixGroup.Length;i++)     // preset sub transform matrixes
@@ -245,7 +260,9 @@ namespace GRBL_Plotter
             ParseBasicElements(svgCode,1);
             ParsePath(svgCode,1);                       // 1st level paths
             if (svgCode != null)
-                ParseGroup(svgCode,1);                      // parse groups (recursive)
+            {   
+                ParseGroup(svgCode,1);                      // parse groups (recursive)            
+            }
             return;
         }
 
@@ -455,7 +472,7 @@ namespace GRBL_Plotter
 		{	double nr = 0;
 			if (!double.TryParse(txt, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out nr))
             {   nr = ConvertToPixel(txt);
-                Logger.Error("Convert stroke-width via ConvertToPixel '{0}' result '{1}'", txt, nr);
+                Logger.Trace("Convert stroke-width via ConvertToPixel '{0}' result '{1}'", txt, nr);
             }
 			Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale,3).ToString().Replace(',', '.'));
 		}
@@ -548,8 +565,7 @@ namespace GRBL_Plotter
             }
             return source.Substring(start,source.Length-start-1);
         }
-		
-		
+				
         private static float Convert(string str, float fail)        // return value 
 		{   str = str.Replace("pt", "").Replace("pc", "").Replace("mm", "").Replace("cm", "").Replace("in", "").Replace("em ", "").Replace("%", "").Replace("px", "");
             float test = fail;
@@ -636,8 +652,18 @@ namespace GRBL_Plotter
             if (logEnable) Logger.Debug("parseBasicElements Level:{0}", level);
             foreach (var form in forms)
             {
+                int maxCount = svgCode.Elements(nspace + form).Count();
+                int pathCount = 0;
+
                 foreach (var pathElement in svgCode.Elements(nspace + form))
                 {
+                    if (backgroundWorker != null) 
+                    {   backgroundWorker.ReportProgress(pathCount++ * 100 / maxCount);
+                        if (backgroundWorker.CancellationPending)
+                        {   backgroundEvent.Cancel = true;
+                            break;
+                        } 
+                    }
                     pathElementString = pathElement.ToString();
                     pathElementString = pathElementString.Substring(0, Math.Min(100, pathElementString.Length));
                     if (logEnable) Logger.Debug("parseBasicElements Elements:{0}", pathElementString);
@@ -849,8 +875,18 @@ namespace GRBL_Plotter
         private static void ParsePath(XElement svgCode, int level)
         {
             if (logEnable) Logger.Debug("parsePath Level:{0} Elements:{1}", level, svgCode.Elements(nspace + "path").Count());
+            
+            int maxCount = svgCode.Elements(nspace + "path").Count();
+            int pathCount = 0;
             foreach (var pathElement in svgCode.Elements(nspace + "path"))
             {
+                if (backgroundWorker != null) 
+                {   backgroundWorker.ReportProgress(pathCount++ * 100 / maxCount);
+                    if (backgroundWorker.CancellationPending)
+                    {   backgroundEvent.Cancel = true;
+                        break;
+                    } 
+                }
                 if (pathElement != null)
                 {
                     offsetX = 0;// (float)matrixElement.OffsetX;

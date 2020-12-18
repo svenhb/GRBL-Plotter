@@ -19,9 +19,11 @@
 /*
  * 2019-08-15 add logger
  * 2020-06-19 add conversionInfo
+ * 2020-12-08 add BackgroundWorker updates
 */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -48,18 +50,25 @@ namespace GRBL_Plotter
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
+        private static BackgroundWorker backgroundWorker = null;
+        private static DoWorkEventArgs backgroundEvent  = null;
+
+
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
         /// </summary>
         /// <param name="file">String keeping file-name</param>
         /// <returns>String with GCode of imported data</returns>
-        public static string ConvertFromFile(string file)
+        public static string ConvertFromFile(string file, BackgroundWorker worker, DoWorkEventArgs e)
         {
             Logger.Info(" Create GCode from {0}",file);
             if (file == "")
             {   MessageBox.Show("Empty file name");
                 return "";
             }
+
+            backgroundWorker = worker;
+            backgroundEvent  = e;
 
             gcode.setup();      // initialize GCode creation (get stored settings for export)
             gcodeToolChange = Properties.Settings.Default.importGCTool;         // Add tool change command
@@ -107,8 +116,8 @@ namespace GRBL_Plotter
                     {   string[] drillCoordinates = File.ReadAllLines(file_drd);     // get drill coordinates
                         ConvertDrill(drillCoordinates, file_drd);
                     }
-                    catch (Exception e)
-                    {   MessageBox.Show("Error '" + e.ToString() + "' in file " + file_drd); return ""; }
+                    catch (Exception err)
+                    {   MessageBox.Show("Error '" + err.ToString() + "' in file " + file_drd); return ""; }
                 }
                 else {  conversionInfo += "Error: DRD-File not found ";
 						MessageBox.Show("Drill file does not exist: " + file_drd); return ""; }
@@ -163,8 +172,20 @@ namespace GRBL_Plotter
             string attDiameter = "";
             string xmlString = "";
 
+            Logger.Info(" Amount Lines:{0}", drillCode.Length);
+            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + drillCode.Length.ToString() + " lines" });
+
+            int lineNr = 0;
             foreach (string line in drillCode)
             {
+                if (backgroundWorker != null) 
+                {   backgroundWorker.ReportProgress(lineNr++ * 100 / drillCode.Length);
+                    if (backgroundWorker.CancellationPending)
+                    {   backgroundEvent.Cancel = true;
+                        break;
+                    } 
+                }
+
                 if (line.IndexOf("%") >= 0)
                 {   isHeader = (isHeader)? false:true; }
 

@@ -36,10 +36,12 @@
     GCode will be written to gcodeString[gcodeStringIndex] where gcodeStringIndex corresponds with color of element to draw
 */
 /* 2020-06-03 new implementation
+ * 2020-12-08 add BackgroundWorker updates
  *
 */
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -68,17 +70,23 @@ namespace GRBL_Plotter
         public static string conversionInfo = "";
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
+        private static BackgroundWorker backgroundWorker = null;
+        private static DoWorkEventArgs backgroundEvent = null;
+
 
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
         /// </summary>
         /// <param name="filePath">String keeping file-name</param>
         /// <returns>String with GCode of imported data</returns>
-        public static string ConvertFromFile(string filePath)
+        public static bool ConvertFromFile(string filePath, BackgroundWorker worker, DoWorkEventArgs e)
         {
             Logger.Info(" Create GCode from {0}", filePath);
             if (filePath == "")
-            { MessageBox.Show("Empty file name"); return ""; }
+            { MessageBox.Show("Empty file name"); return false; }
+
+            backgroundWorker = worker;
+            backgroundEvent = e;
 
             if (filePath.Substring(0, 4) == "http")
             { MessageBox.Show("Load via http is not supported up to now"); }
@@ -88,19 +96,19 @@ namespace GRBL_Plotter
                     {   string[] CSVCode = File.ReadAllLines(filePath);
                         return ConvertCSV(CSVCode, filePath);
                     }
-                    catch (Exception e)
-                    {   Logger.Error(e, "Error loading CSV Code");
-                        MessageBox.Show("Error '" + e.ToString() + "' in CSV file " + filePath); return "";
+                    catch (Exception err)
+                    {   Logger.Error(err, "Error loading CSV Code");
+                        MessageBox.Show("Error '" + e.ToString() + "' in CSV file " + filePath); return false;
                     }
                 }
-                else { MessageBox.Show("CSV file does not exist: " + filePath); return ""; }
+                else { MessageBox.Show("CSV file does not exist: " + filePath); return false; }
             }
-            return "";
+            return false;
         }
 
-        private static string ConvertCSV(string[] csvCode, string filePath)
+        private static bool ConvertCSV(string[] csvCode, string filePath)
         {
-            Graphic.Init(Graphic.SourceTypes.CSV, filePath);
+            Graphic.Init(Graphic.SourceTypes.CSV, filePath, backgroundWorker, backgroundEvent); 
             Logger.Info(" convertCSV {0}", filePath);
             dimension = new Dimensions();
             int size = csvCode.Length;
@@ -132,7 +140,7 @@ namespace GRBL_Plotter
 
                 if (columns <= 1)
 				{	string errorTxt = string.Format("(Automatic CSV import failed!)\r\n(Delimeter '{0}' in sample '{1}' from line {2})",delimeter,sample, sampleLine);
-					return errorTxt;					
+                    return false;// errorTxt;					
 				}
                 columnY = columns - 1;
                 columnX = columns - 2;
@@ -179,9 +187,20 @@ namespace GRBL_Plotter
 			bool zOk = true;
 			int blockCount=0;
 			int indexX = 0;
+
+            Logger.Info(" Amount Lines:{0}", size);
+            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read CSV data of " + size.ToString() + " lines" });
 			
 			for (int i = startAtLine; i < size; i++)
 			{
+                if (backgroundWorker != null) 
+                {   backgroundWorker.ReportProgress(i * 100 / size);
+                    if (backgroundWorker.CancellationPending)
+                    {   backgroundEvent.Cancel = true;
+                        break;
+                    } 
+                }
+
 				splitSample = csvCode[i].Trim().Split(delimeter);
 				if (splitSample.Length > maxCol)
 				{	

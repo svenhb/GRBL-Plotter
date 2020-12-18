@@ -39,10 +39,12 @@
 
  * 2020-08-15 if aperture is applied (D10...) lines will be drawn as elongated hole segments, applying apertures-radius
  * seperate M19 'advanced' (for notch) to get closed path
+ * 2020-12-08 add BackgroundWorker updates
  */
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -99,16 +101,23 @@ namespace GRBL_Plotter
         private static bool logDetailed = false;
         private static bool logCoordinate = false;
 
+        private static BackgroundWorker backgroundWorker = null;
+        private static DoWorkEventArgs backgroundEvent  = null;
+
+
         /// <summary>
         /// Entrypoint for conversion: apply file-path 
         /// </summary>
         /// <param name="file">String keeping file-name</param>
         /// <returns>String with GCode of imported data</returns>
-        public static string ConvertFromFile(string file)
+        public static bool ConvertFromFile(string file, BackgroundWorker worker, DoWorkEventArgs e)
         {
             Logger.Info(" Create GCode from {0}", file);
             if (file == "")
-            { MessageBox.Show("Empty file name"); return ""; }
+            { MessageBox.Show("Empty file name"); return false; }
+
+            backgroundWorker = worker;
+            backgroundEvent  = e;
 
             if (file.Substring(0, 4) == "http")
             { MessageBox.Show("Load via http is not supported up to now"); }
@@ -121,18 +130,18 @@ namespace GRBL_Plotter
                         string GerberCode = File.ReadAllText(file);
                         return ConvertGerber(GerberCode, file);
                     }
-                    catch (Exception e)
+                    catch (Exception err)
                     {
-                        Logger.Error(e, "Error loading Gerber Code");
-                        MessageBox.Show("Error '" + e.ToString() + "' in Gerber file " + file); return "";
+                        Logger.Error(err, "Error loading Gerber Code");
+                        MessageBox.Show("Error '" + e.ToString() + "' in Gerber file " + file); return false;
                     }
                 }
-                else { MessageBox.Show("Gerber file does not exist: " + file); return ""; }
+                else { MessageBox.Show("Gerber file does not exist: " + file); return false; }
             }
-            return "";
+            return false;
         }
 
-        private static string ConvertGerber(string gerberCode, string filePath)
+        private static bool ConvertGerber(string gerberCode, string filePath)
         {
             Logger.Info(" convertGerber {0}", filePath);
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
@@ -163,7 +172,7 @@ namespace GRBL_Plotter
 
             messageList.Clear();
 
-            Graphic.Init(Graphic.SourceTypes.Gerber, filePath);
+            Graphic.Init(Graphic.SourceTypes.Gerber, filePath, backgroundWorker, backgroundEvent); 
             GetVectorGerber(gerberCode);                        // convert graphics
             conversionInfo += string.Format("{0} elements imported", shapeCounter);
             return Graphic.CreateGCode();
@@ -180,9 +189,23 @@ namespace GRBL_Plotter
 
             string longExtendedCommand = "";
             bool nextIsInfo = false;
+            
+            Logger.Info(" Amount Lines:{0}", lines.Length);
+            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read Gerber vector data of " + lines.Length.ToString() + " length" });
+
+            int lineNr = 0;
             foreach (string singleLine in lines)
             {
                 line = singleLine.Trim(charsToTrim);
+
+                if (backgroundWorker != null) 
+                {   backgroundWorker.ReportProgress(lineNr++ * 100 / lines.Length);
+                    if (backgroundWorker.CancellationPending)
+                    {   backgroundEvent.Cancel = true;
+                        break;
+                    } 
+                }
+
                 if (line.StartsWith("%"))
                 {
                     #region extended

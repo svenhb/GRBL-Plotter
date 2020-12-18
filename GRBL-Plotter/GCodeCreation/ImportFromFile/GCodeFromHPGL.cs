@@ -41,10 +41,12 @@
 /*
  * 2020-02-18 Implementation
  * 2020-05-26 Replace class Plotter by class Graphic for sorting
+ * 2020-12-08 add BackgroundWorker updates
 */
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -67,6 +69,10 @@ namespace GRBL_Plotter
         public static string conversionInfo = "";
 		private static int shapeCounter = 0;
 
+        private static BackgroundWorker backgroundWorker = null;
+        private static DoWorkEventArgs backgroundEvent  = null;
+
+
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -75,11 +81,14 @@ namespace GRBL_Plotter
         /// </summary>
         /// <param name="file">String keeping file-name</param>
         /// <returns>String with GCode of imported data</returns>
-        public static string ConvertFromFile(string file)
+        public static bool ConvertFromFile(string file, BackgroundWorker worker, DoWorkEventArgs e)
         {
             Logger.Info(" Create GCode from {0}", file);
             if (file == "")
-            { MessageBox.Show("Empty file name"); return ""; }
+            { MessageBox.Show("Empty file name"); return false; }
+
+            backgroundWorker = worker;
+            backgroundEvent  = e;
 
             if (file.Substring(0, 4) == "http")
             { MessageBox.Show("Load via http is not supported up to now"); }
@@ -89,17 +98,17 @@ namespace GRBL_Plotter
                     { string HPGLCode = File.ReadAllText(file);     // get drill coordinates
                         return ConvertHPGL(HPGLCode, file);
                     }
-                    catch (Exception e)
-                    {   Logger.Error(e, "Error loading HPGL Code");
-                        MessageBox.Show("Error '" + e.ToString() + "' in HPGL file " + file); return "";
+                    catch (Exception err)
+                    {   Logger.Error(err, "Error loading HPGL Code");
+                        MessageBox.Show("Error '" + e.ToString() + "' in HPGL file " + file); return false;
                     }
                 }
-                else { MessageBox.Show("HPGL file does not exist: " + file); return ""; }
+                else { MessageBox.Show("HPGL file does not exist: " + file); return false; }
             }
-            return "";
+            return false;
         }
 
-        private static string ConvertHPGL(string hpglCode, string filePath)
+        private static bool ConvertHPGL(string hpglCode, string filePath)
         {
             Logger.Info(" convertHPGL {0}", filePath);
             absoluteCoordinates = true;
@@ -110,7 +119,7 @@ namespace GRBL_Plotter
 
             messageList.Clear();
 
-            Graphic.Init(Graphic.SourceTypes.HPGL, filePath); 
+            Graphic.Init(Graphic.SourceTypes.HPGL, filePath, backgroundWorker, backgroundEvent); 
             GetVectorHPGL(hpglCode);      	                // convert graphics
 			conversionInfo += string.Format("{0} elements imported", shapeCounter);
             return Graphic.CreateGCode(); 
@@ -120,8 +129,22 @@ namespace GRBL_Plotter
         {   string[] commands = hpglCode.Split(';');
             char[] charsToTrim = { ' ', '\r', '\n' };
             string line, cmd, parameter;
+
+            Logger.Info(" Amount Lines:{0}  ", commands.Count());
+            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read HPGL vector data of " + commands.Count().ToString() + " lines" });
+
+            int lineNr = 0;
             foreach (string cmdline in commands)
             {
+
+                if (backgroundWorker != null) 
+                {   backgroundWorker.ReportProgress(lineNr++ * 100 / commands.Count());
+                    if (backgroundWorker.CancellationPending)
+                    {   backgroundEvent.Cancel = true;
+                        break;
+                    } 
+                }
+
                 line = cmdline.Trim(charsToTrim);
                 if (line.Length >= 2)
                 {
