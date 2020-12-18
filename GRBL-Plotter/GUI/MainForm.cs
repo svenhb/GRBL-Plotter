@@ -223,7 +223,7 @@ namespace GRBL_Plotter
             toolStrip_tBRadiusCompValue.Text = string.Format("{0:0.000}", Properties.Settings.Default.crcValue);
 
             this.gBoxOverride.Click += gBoxOverride_Click;
-
+            
             gBoxOverride.Height = 15;
             gBoxOverrideBig = false;
 
@@ -231,8 +231,7 @@ namespace GRBL_Plotter
 
             CustomButtons17.Clear();
             for (int i = 17; i <= 32; i++)
-            {
-                Button b = new Button();
+            {   Button b = new Button();
                 b.Text = "b" + i;
                 b.Name = "btnCustom" + i.ToString();
                 b.Width = btnCustom1.Width - 20;
@@ -242,11 +241,12 @@ namespace GRBL_Plotter
                 flowLayoutPanel1.Controls.Add(b);
             }
 			
-
             loadSettings(sender, e);    // includes loadHotkeys();
-                                        //           loadHotkeys();
+
             cmsPicBoxEnable(false);
-//            updateControls();
+            
+            updateControls();           // default: all disabled (_serial_form = null) 2020-12-11
+            
             LoadRecentList();
             cmsPicBoxReloadFile.ToolTipText = string.Format("Load '{0}'", MRUlist[0]);
             LoadExtensionList();
@@ -454,6 +454,12 @@ namespace GRBL_Plotter
                         enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
 						Properties.Settings.Default.counterImportExtension += 1;
                     }
+                }
+
+                if (loadTimerStep == 0)
+                {
+                    pictureBox1.Invalidate();   // vector graphic is loading
+                    Application.DoEvents();
                 }
             }
             if (signalResume > 0)   // activate blinking buttob
@@ -1197,18 +1203,30 @@ namespace GRBL_Plotter
         {
             if (nr == 0)
             {
-                toolStripStatusLabel0.Text = "[ " + text + " ]";
+//                toolStripStatusLabel0.Text = "[ " + text + " ]";
+                if (this.toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
+                { this.toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; }); }
+                else
+                { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; }
                 toolStripStatusLabel0.BackColor = color;
             }
             else if (nr == 1)
 
             {
-                toolStripStatusLabel1.Text = "[ " + text + " ]";
-                toolStripStatusLabel1.BackColor = color;
+//                toolStripStatusLabel1.Text = "[ " + text + " ]";
+                if (this.toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
+                { this.toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; }); toolStripStatusLabel1.BackColor = color; }
+                else
+                { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
+ //               toolStripStatusLabel1.BackColor = color;
             }
             else if (nr == 2)
             {
-                toolStripStatusLabel2.Text = "[ " + text + " ]";
+//                toolStripStatusLabel2.Text = "[ " + text + " ]";
+                if (this.toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
+                { this.toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; }); }
+                else
+                { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; }
                 toolStripStatusLabel2.BackColor = color;
             }
         }

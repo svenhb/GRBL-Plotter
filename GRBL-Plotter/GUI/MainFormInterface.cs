@@ -366,7 +366,12 @@ namespace GRBL_Plotter
 		private void processReset()
         {
             timerUpdateControlSource = "processReset";
-            updateControls();
+   //         updateControls();
+            if (this.virtualJoystickXY.InvokeRequired)
+            { this.virtualJoystickXY.BeginInvoke((MethodInvoker)delegate () { updateControls(); }); }
+            else
+            { updateControls(); }
+            
             if (logPosEvent) Logger.Trace("processReset");
             if (!_serial_form.checkGRBLSettingsOk())   // check 30 kHz limit
 			{	statusStripSet(1, grbl.lastMessage, Color.Orange);

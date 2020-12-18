@@ -30,6 +30,7 @@
  * 2020-04-06 improove selection of figures and groups
  * 2020-06-15 add 'Header' tag
  * 2020-08-12 check index line 524
+ * 2020-12-16 add Tile handling
 */
 
 using System;
@@ -90,6 +91,7 @@ namespace GRBL_Plotter
             e.ChangedRange.SetFoldingMarkers(xmlMarker.passStart, xmlMarker.passEnd);
             e.ChangedRange.SetFoldingMarkers(xmlMarker.figureStart, xmlMarker.figureEnd);
             e.ChangedRange.SetFoldingMarkers(xmlMarker.groupStart, xmlMarker.groupEnd);
+            e.ChangedRange.SetFoldingMarkers(xmlMarker.tileStart, xmlMarker.tileEnd);
 
             if (!manualEdit)
             {   if (Properties.Settings.Default.importCodeFold)
@@ -162,8 +164,8 @@ namespace GRBL_Plotter
             }
         }
 
-        private void setfCTBCodeText(string code)
-        {   fCTBCode.Text = code;   }
+        private bool setfCTBCodeText(string code)
+        {   fCTBCode.Text = code;  return true; }
 
         // mark clicked line in editor
         private int fCTBCodeClickedLineNow = 0;
@@ -181,23 +183,23 @@ namespace GRBL_Plotter
             fCTBCode.DoCaretVisible();
 
             if (Panel.ModifierKeys == Keys.Alt)
-            { findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow); }
+            { findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow); }  // Alt = Figure
             else if (Panel.ModifierKeys == Keys.Control)
-            { findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow); }
+            { findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow); }   // Control = Group
+            else if (Panel.ModifierKeys == Keys.Shift)
+            { findFigureMarkSelection(xmlMarkerType.Tile, fCTBCodeClickedLineNow); }    // Shift = Tile
 
             else if (xmlMarker.isFoldingMarkerFigure(fCTBCodeClickedLineNow))
             { findFigureMarkSelection(xmlMarkerType.Figure, fCTBCodeClickedLineNow, (foldLevel>0)); }	// 2020-08-21 add , (foldLevel>0)
             else if (xmlMarker.isFoldingMarkerGroup(fCTBCodeClickedLineNow))
             { findFigureMarkSelection(xmlMarkerType.Group, fCTBCodeClickedLineNow, (foldLevel>0)); }	// 2020-08-21 add , (foldLevel>0)
+            else if (xmlMarker.isFoldingMarkerTile(fCTBCodeClickedLineNow))
+            { findFigureMarkSelection(xmlMarkerType.Tile, fCTBCodeClickedLineNow, (foldLevel>0)); }	    // 2020-12-16 add tile
 
             if (VisuGCode.codeBlocksAvailable())
-            {
-                statusStripSet(1, Localization.getString("statusStripeClickKeys"), Color.LightGreen);
-   //             statusStripSet(2, fCTBCode.Lines[fCTBCodeClickedLineNow], Color.Orange);
-            }
+            {   statusStripSet(1, Localization.getString("statusStripeClickKeys"), Color.LightGreen); }
 
             fCTBCodeMarkLine(true);             // set Bookmark and marker in 2D-View
-  //          statusStripSet(2, fCTBCode.Lines[fCTBCodeClickedLineNow], Color.Orange);
         }
         private void fCTBCode_KeyDown(object sender, KeyEventArgs e)    // key up down 
         {
@@ -320,7 +322,7 @@ namespace GRBL_Plotter
 
         private void fCTBCodeMarkLine(bool markAnyway=false)     // after click on gcode line, mark text and graphics
         {
-            if ((fCTBCodeClickedLineNow <= fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
+            if ((fCTBCodeClickedLineNow < fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
             {
                 if ((fCTBCodeClickedLineNow != fCTBCodeClickedLineLast) || markAnyway)
                 {
@@ -452,6 +454,7 @@ namespace GRBL_Plotter
         private static xmlMarkerType markedBlockType = xmlMarkerType.none;
         private void findFigureMarkSelection(xmlMarkerType marker, int clickedLine, bool collapse=true)   // called by click on figure in 2D view
         {
+            bool expand = expandGCode;
             if (manualEdit)
                 return;
             if (logDetailed) Logger.Trace(" findFigureMarkSelection marker:{0}  line:{1}  collapse:{2}",marker, clickedLine, collapse);
@@ -461,12 +464,28 @@ namespace GRBL_Plotter
             markedBlockType = marker;
             Color highlight = Color.GreenYellow;
 
+            if (marker == xmlMarkerType.Tile)
+            {
+                if (xmlMarker.GetTileCount() > 0)
+                {   if (collapse) { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
+                    if (xmlMarker.GetTile(clickedLine))
+                    {   if (expand) fCTBCode.ExpandFoldedBlock(xmlMarker.lastTile.lineStart);
+                        enableBlockCommands(setTextSelection(xmlMarker.lastTile.lineStart, xmlMarker.lastTile.lineEnd));
+                        VisuGCode.markSelectedTile(xmlMarker.lastTile.lineStart);
+                        statusStripSet(2,string.Format("Marked: {0}", fCTBCode.Lines[xmlMarker.lastTile.lineStart]), highlight);
+                        pictureBox1.Invalidate();
+                        fCTBCode.Invalidate();
+                    }
+
+                }
+            }
             if (marker == xmlMarkerType.Group)
             {
                 if (xmlMarker.GetGroupCount() > 0)
                 {   if (collapse) { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
                     if (xmlMarker.GetGroup(clickedLine))
-                    {   fCTBCode.ExpandFoldedBlock(xmlMarker.lastGroup.lineStart);
+                    {
+                        if (expand) fCTBCode.ExpandFoldedBlock(xmlMarker.lastGroup.lineStart);
                         enableBlockCommands(setTextSelection(xmlMarker.lastGroup.lineStart, xmlMarker.lastGroup.lineEnd));
                         VisuGCode.markSelectedGroup(xmlMarker.lastGroup.lineStart);
                         statusStripSet(2,string.Format("Marked: {0}", fCTBCode.Lines[xmlMarker.lastGroup.lineStart]), highlight);
@@ -576,7 +595,11 @@ namespace GRBL_Plotter
         private void foldBlocks2ndToolStripMenuItem1_Click(object sender, EventArgs e)  // fold 2nd level blocks
         { foldBlocks2(); }
         private void foldBlocks2()
-        {   string tmp;
+        {
+            if (!expandGCode)
+                return;
+
+            string tmp;
             fCTBCode.ExpandAllFoldingBlocks();
             for (int i = 0; i < fCTBCode.LinesCount; i++)
             {   tmp = fCTBCode.GetLine(i).Text;
@@ -612,7 +635,7 @@ namespace GRBL_Plotter
 
             cmsPicBoxDeletePath.Enabled = tmp;
             cmsPicBoxCropSelectedPath.Enabled = tmp;
-            cmsPicBoxReverseSelectedPath.Enabled = tmp;
+            cmsPicBoxReverseSelectedPath.Enabled = tmp && Graphic.SizeOk(); // Data in Graphic-class is needed
         }
         #endregion
 

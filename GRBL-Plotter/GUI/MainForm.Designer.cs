@@ -406,6 +406,7 @@ namespace GRBL_Plotter
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
+            this.loadTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2933,6 +2934,10 @@ namespace GRBL_Plotter
             this.SplashScreenTimer.Interval = 1500;
             this.SplashScreenTimer.Tick += new System.EventHandler(this.SplashScreenTimer_Tick);
             // 
+            // loadTimer
+            // 
+            this.loadTimer.Tick += new System.EventHandler(this.loadTimer_Tick);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3340,6 +3345,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem sortByPenWidthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sortByTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Timer loadTimer;
     }
 }
 

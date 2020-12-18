@@ -64,6 +64,7 @@ namespace GRBL_Plotter
         private xyPoint moveTranslationOld = new xyPoint(0, 0);
         private bool posIsMoving = false;
 
+        object lockObject = new object();
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             double minx = VisuGCode.drawingSize.minX;                  // extend dimensions
@@ -121,11 +122,13 @@ namespace GRBL_Plotter
                 {
                     if (showPaths)          // only show graphics path if something is loaded
                     {
-                        if (!showPicBoxBgImage)
-                            onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
-                        e.Graphics.DrawPath(penTool, VisuGCode.pathTool);
-                        e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
-
+                        lock (lockObject)
+                        {
+                            if (!showPicBoxBgImage)
+                                onPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
+                            e.Graphics.DrawPath(penTool, VisuGCode.pathTool);
+                            e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
+                        }
                         e.Graphics.Transform = pBoxOrig;
                         if (Properties.Settings.Default.machineLimitsShow)
                         {
@@ -133,7 +136,7 @@ namespace GRBL_Plotter
                             e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 50));
                             if (VisuGCode.selectedFigureInfo.Length > 0)
                                 e.Graphics.FillRectangle(brushBackground, new Rectangle(148, 3, 160, 50));
-						}
+                        }
                         if (Properties.Settings.Default.gui2DInfoShow)
                         {
                             string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
@@ -148,6 +151,7 @@ namespace GRBL_Plotter
                             if (VisuGCode.selectedFigureInfo.Length > 0)
                                 e.Graphics.DrawString(VisuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
                         }
+                        
                     }
                 }
                 catch { }
@@ -300,6 +304,7 @@ namespace GRBL_Plotter
         }
 
         // find closest coordinate in GCode and mark
+        private bool expandGCode = true;
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (logDetailed) Logger.Trace("pictureBox1_MouseDown e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}",e.X,e.Y,picAbsPos.X,picAbsPos.Y);
@@ -315,25 +320,31 @@ namespace GRBL_Plotter
                     posMoveTmp = posMoveStart;
                     posMoveEnd = posMoveStart;
 
+                    int fold = foldLevel;
+                    if (!expandGCode)
+                        fold = 0;
+
                     if (manualEdit)
                         newCodeEnd();
                     if (Panel.ModifierKeys == Keys.Alt)
-                    {
-                        line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);         // find line with coord nearby, mark / unmark figure
+                    {   line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);           // find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
-                        findFigureMarkSelection(xmlMarkerType.Line, line, (foldLevel>0));
+                        findFigureMarkSelection(xmlMarkerType.Line, line, (fold>0));    // collapse=true
                     }
-                    else if (Panel.ModifierKeys == Keys.Control) //Keys.Alt)
-                    {
-                        line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);         // find line with coord nearby, mark / unmark figure
+                    else if (Panel.ModifierKeys == Keys.Control) 
+                    {   line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);           // find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
-                        findFigureMarkSelection(xmlMarkerType.Group, line, (foldLevel>0));
+                        findFigureMarkSelection(xmlMarkerType.Group, line, (fold>0));
+                    }
+                    else if (Panel.ModifierKeys == Keys.Shift) 
+                    {   line = VisuGCode.setPosMarkerNearBy(picAbsPos,false);           // find line with coord nearby, mark / unmark figure
+                        fCTBCodeClickedLineNow = line;
+                        findFigureMarkSelection(xmlMarkerType.Tile, line, (fold>0));
                     }
                     else
-                    {
-                        line = VisuGCode.setPosMarkerNearBy(picAbsPos);         // find line with coord nearby, mark / unmark figure
+                    {   line = VisuGCode.setPosMarkerNearBy(picAbsPos);                 // find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
-                        findFigureMarkSelection(xmlMarkerType.Figure, line, (foldLevel>0));
+                        findFigureMarkSelection(xmlMarkerType.Figure, line, (fold>0));
                     }
 
                     cmsPicBoxMoveToMarkedPosition.ToolTipText = "Work X: " + grbl.posMarker.X.ToString() + "   Y: " + grbl.posMarker.Y.ToString();
@@ -579,9 +590,12 @@ namespace GRBL_Plotter
             if (figureIsMarked)
             {
                 resetView = true;
-                if (logEnable) Logger.Trace("Reverse path figureNr:{0}  figureOrder:{1}  GroupIdOrder:{2}", xmlMarker.lastFigure.figureNr, string.Join(",",xmlMarker.getFigureIdOrder()), string.Join(",", xmlMarker.getGroupIdOrder()));
-                fCTBCode.Text = Graphic.ReDoReversePath(xmlMarker.lastFigure.figureNr, picAbsPos, xmlMarker.getFigureIdOrder(), xmlMarker.getGroupIdOrder());
-                newCodeEnd();
+                if (Graphic.SizeOk())
+                {   if (logEnable) Logger.Trace("Reverse path figureNr:{0}  figureOrder:{1}  GroupIdOrder:{2}", xmlMarker.lastFigure.figureNr, string.Join(",", xmlMarker.getFigureIdOrder()), string.Join(",", xmlMarker.getGroupIdOrder()));
+                    Graphic.ReDoReversePath(xmlMarker.lastFigure.figureNr, picAbsPos, xmlMarker.getFigureIdOrder(), xmlMarker.getGroupIdOrder());
+                    fCTBCode.Text = Graphic.GCode.ToString();
+                    newCodeEnd();
+                }
             }
             return;
         }

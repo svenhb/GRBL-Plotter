@@ -33,6 +33,7 @@
  * 2020-05-06 add *.tap as gcode file extension
  * 2020-05-29 add CSV support
  * 2020-11-18 line 794, change search range from 100 to 200
+ * 2020-12-01 newCodeEnd line 174 add Application.DoEvents()
 */
 
 using System;
@@ -45,6 +46,8 @@ using System.Threading;
 using System.Xml;
 using System.Globalization;
 using System.Text;
+using System.Diagnostics;
+//using System.Diagnostics;
 //using Microsoft.Win32;
 
 namespace GRBL_Plotter
@@ -150,45 +153,91 @@ namespace GRBL_Plotter
             }
         }
 
+        private static Stopwatch stopwatch = new Stopwatch();
         private void newCodeStart()
         {
+            Logger.Trace("----newCodeStart++++");
+            stopwatch.Start();
+            Cursor.Current = Cursors.WaitCursor;
+            pBoxTransform.Reset(); zoomFactor = 1; 
+            showPicBoxBgImage = false;                  // don't show background image anymore
+            pictureBox1.BackgroundImage = null;
+            pictureBox1.Image = null;
+            VisuGCode.clearDrawingnPath();
+            pictureBox1.Invalidate();                   // resfresh view
+
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
-			
+            fCTBCode.Clear();
+
             setEditMode(false);
 
-            Cursor.Current = Cursors.WaitCursor;
-            pBoxTransform.Reset(); zoomFactor = 1; //zoomOffsetX = 0; zoomOffsetY = 0;
-            showPicBoxBgImage = false;                  // don't show background image anymore
-            pictureBox1.BackgroundImage = null;
             VisuGCode.markSelectedFigure(-1);           // hide highlight
 			VisuGCode.pathBackground.Reset();
             grbl.posMarker = new xyPoint(0, 0);
-			Graphic.CleanUp();	// clear old data
+			Graphic.CleanUp();  // clear old data
+            statusStripSet(0, "Start import", Color.LightYellow);
+            Application.DoEvents();
         }
 
-        private void newCodeEnd()
+        private void newCodeEnd(bool imported = false)
         {
+            int objectCount = Graphic.getObjectCount();
+            Logger.Trace("---- newCodeEnd ++++");
+            
+            if (!imported) objectCount = 0;     // no extra handling for GCode
+            
+            int maxObjects = 20000;
+
+            if (objectCount > maxObjects)
+                statusStripSet(0, "Display GCode, huge amount of objects ("+ objectCount .ToString()+ ") - takes more time", Color.Fuchsia);
+            else
+                statusStripSet(0, "Display GCode", Color.YellowGreen);
+                
             setEditMode(false);
 
-            Logger.Trace("----newCodeEnd++++");
+            if (!imported && Properties.Settings.Default.ctrlCommentOut)
+            {   fCTB_CheckUnknownCode(); }                              // check code
 
-            if (Properties.Settings.Default.ctrlCommentOut)
-            {   fCTB_CheckUnknownCode(); }                                // check code
-            VisuGCode.getGCodeLines(fCTBCode.Lines);                    // get code path
-            VisuGCode.calcDrawingArea();                                 // calc ruler dimension
+            Logger.Info("Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
+            
+            if (objectCount <= maxObjects)
+            {   if (imported) setfCTBCodeText(Graphic.GCode.ToString());
+                VisuGCode.getGCodeLines(fCTBCode.Lines, null, null);                    // get code path
+            }
+            else
+            {   using (VisuWorker f = new VisuWorker())
+                {   if (!imported) 
+                    {   f.setTmpGCode(fCTBCode.Lines);}
+                    else
+                    {   f.setTmpGCode();}
+                    f.ShowDialog(this);
+                    fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds.";
+                }
+            }
+            VisuGCode.calcDrawingArea();                                // calc ruler dimension
             VisuGCode.drawMachineLimit(toolTable.getToolCordinates());
-            pictureBox1.Invalidate();                                   // resfresh view
+
+            if (loadTimerStep > 0)
+            {   loadTimerStep++;
+                loadTimer.Stop();
+                loadTimer.Start();
+            }
+
+            statusStripClear(0);
             update_GCode_Depending_Controls();                          // update GUI controls
             timerUpdateControlSource = "newCodeEnd";
             updateControls();                                           // update control enable 
             lbInfo.BackColor = SystemColors.Control;
             this.Cursor = Cursors.Default;
+
             if (VisuGCode.errorString.Length > 1)
                 statusStripSet(0, VisuGCode.errorString, Color.OrangeRed);
-            //            showPaths = true;
-            Logger.Trace("----newCodeEnd----");
+            cmsPicBoxReverseSelectedPath.Enabled = false;
+
+            pictureBox1.Invalidate();                                   // resfresh view
+            Application.DoEvents();                                     // after creating drawing paths
         }
 
         string importOptions = "";
@@ -242,7 +291,7 @@ namespace GRBL_Plotter
             }
             else
             {   if (!File.Exists(fileName))
-                {   Logger.Error(" File not found {0}", fileName);
+                {   Logger.Error("▄▄▄▄▄ File not found {0}", fileName);
                     MessageBox.Show(Localization.getString("mainLoadError1") + fileName + "'", Localization.getString("mainAttention"));
                     return false;
                 }
@@ -313,6 +362,7 @@ namespace GRBL_Plotter
                 pBoxTransform.Reset();
                 enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
                 cmsPicBoxEnable();
+                pictureBox1.Invalidate();
 //                showImportOptions();
                 return true;
             }
@@ -472,62 +522,139 @@ namespace GRBL_Plotter
 
         private void startConvert(Graphic.SourceTypes type, string source)
         {
-            Logger.Info("startConvert"+type.ToString());
+            Logger.Info("startConvert" + type.ToString());
             UseCaseDialog();
             newCodeStart();
-			string conversionInfo = "";
-			switch (type)
-			{   case Graphic.SourceTypes.SVG:
-				{   setfCTBCodeText(GCodeFromSVG.ConvertFromFile(source)); conversionInfo = GCodeFromSVG.conversionInfo; 
-					Properties.Settings.Default.counterImportSVG += 1;
-					break;  }
-                case Graphic.SourceTypes.DXF:
-				{   setfCTBCodeText(GCodeFromDXF.ConvertFromFile(source)); conversionInfo = GCodeFromDXF.conversionInfo;
-					Properties.Settings.Default.counterImportDXF += 1;
-					break; }
-                case Graphic.SourceTypes.HPGL:
-				{   setfCTBCodeText(GCodeFromHPGL.ConvertFromFile(source)); conversionInfo = GCodeFromHPGL.conversionInfo;
-					Properties.Settings.Default.counterImportHPGL += 1;
-					break;  }
-                case Graphic.SourceTypes.CSV:
-				{   setfCTBCodeText(GCodeFromCSV.ConvertFromFile(source)); conversionInfo = GCodeFromCSV.conversionInfo;
-					Properties.Settings.Default.counterImportCSV += 1;
-					break;     }
-                case Graphic.SourceTypes.Drill:
-				{   setfCTBCodeText(GCodeFromDrill.ConvertFromFile(source)); conversionInfo = GCodeFromDrill.conversionInfo;
-					Properties.Settings.Default.counterImportDrill += 1;
-					break;   }
-                case Graphic.SourceTypes.Gerber:
-                {   setfCTBCodeText(GCodeFromGerber.ConvertFromFile(source)); conversionInfo = GCodeFromGerber.conversionInfo;
-                    Properties.Settings.Default.counterImportGerber += 1;
-                    break;
+            statusStripSet(0, "Start import of vector graphic, read graphic elements, process options", Color.Yellow);
+            Application.DoEvents();
+            string conversionInfo = "";
+
+            /* Show modal progress Dialog if file size is too big */
+            FileInfo fs = new FileInfo(source);
+            int sizeLimit = 250;
+            long filesize = fs.Length / 1024;
+            bool showProgress = filesize > sizeLimit;
+
+            Logger.Info("File size:{0} KB  sizeLimit:{1} KB  Import-showProgress:{2}", filesize, sizeLimit, showProgress);
+            loadTimerStep = 0;
+
+            if (showProgress)
+            {
+                using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
+                {
+                    f.SetImport(type, source);  // set e.Result = GCodeFromDXF.ConvertFromFile(source, worker, e)
+                    f.ShowDialog(this);
                 }
+            }
+            switch (type)
+            {
+                case Graphic.SourceTypes.SVG:
+                    {
+                        if (!showProgress) GCodeFromSVG.ConvertFromFile(source, null, null);
+                        conversionInfo = GCodeFromSVG.conversionInfo;
+                        Properties.Settings.Default.counterImportSVG += 1;
+                        break;
+                    }
+                case Graphic.SourceTypes.DXF:
+                    {
+                        if (!showProgress) GCodeFromDXF.ConvertFromFile(source, null, null);
+                        conversionInfo = GCodeFromDXF.conversionInfo;
+                        Properties.Settings.Default.counterImportDXF += 1;
+                        break;
+                    }
+                case Graphic.SourceTypes.HPGL:
+                    {
+                        if (!showProgress) GCodeFromHPGL.ConvertFromFile(source, null, null);
+                        conversionInfo = GCodeFromHPGL.conversionInfo;
+                        Properties.Settings.Default.counterImportHPGL += 1;
+                        break;
+                    }
+                case Graphic.SourceTypes.CSV:
+                    {
+                        if (!showProgress) GCodeFromCSV.ConvertFromFile(source, null, null);
+                        conversionInfo = GCodeFromCSV.conversionInfo;
+                        Properties.Settings.Default.counterImportCSV += 1;
+                        break;
+                    }
+                case Graphic.SourceTypes.Drill:
+                    {
+                        if (!showProgress) GCodeFromDrill.ConvertFromFile(source, null, null);
+                        conversionInfo = GCodeFromDrill.conversionInfo;
+                        Properties.Settings.Default.counterImportDrill += 1;
+                        break;
+                    }
+                case Graphic.SourceTypes.Gerber:
+                    {
+                        if (!showProgress) GCodeFromGerber.ConvertFromFile(source, null, null);
+                        conversionInfo = GCodeFromGerber.conversionInfo;
+                        Properties.Settings.Default.counterImportGerber += 1;
+                        break;
+                    }
                 default: break;
-			}		
-		
-            newCodeEnd();
+            }
+
+            if (!showProgress)
+            {   VisuGCode.xyzSize.addDimensionXY(Graphic.actualDimension);
+                VisuGCode.calcDrawingArea();                                // calc ruler dimension
+            }
+
+            pictureBox1.Invalidate();                                   // resfresh view
+            Application.DoEvents();
+            this.Invalidate();
+
             this.Text = appName + " | Source: " + source;
-			
-            lbInfo.Text = type.ToString()+"-Code loaded";
+
+            lbInfo.Text = type.ToString() + "-Code loaded";
             showImportOptions();
 
             if (conversionInfo.Length > 1)
-			{	if (conversionInfo.Contains("Error"))
-					statusStripSet(2, conversionInfo, Color.Fuchsia);
-				else
-					statusStripSet(2, conversionInfo, Color.YellowGreen);					
-			}
+            {
+                stopwatch.Stop();
+                TimeSpan ts = stopwatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}.{2:00} minutes",
+                    ts.Minutes, ts.Seconds,
+                    ts.Milliseconds / 10);
+                conversionInfo += ", duration: " + elapsedTime;
+
+                if (conversionInfo.Contains("Error"))
+                    statusStripSet(2, conversionInfo, Color.Fuchsia);
+                else
+                    statusStripSet(2, conversionInfo, Color.YellowGreen);
+            }
             Logger.Info(" Conversion info: {0}", conversionInfo);
 
-            if (fCTBCode.LinesCount <= 1)
-            { fCTBCode.Text = "( Code conversion failed )"; return; }
-
-            VisuGCode.pathBackground = Graphic.pathBackground;
-            this.Invalidate();
+            if (showProgress)   //  start timer delayed process
+            {
+                loadTimerStep++;
+                loadTimer.Start();
+                return;
+            }
+            newCodeEnd(true);               // code was imported, no need to check for bad GCode
             foldCode();
+            Logger.Trace("foldCode");
         }
+
+        int loadTimerStep = -1;
+        private void loadTimer_Tick(object sender, EventArgs e)
+        {   switch (loadTimerStep)
+            {   case 1:
+                    loadTimer.Stop();
+                    newCodeEnd(true);   // read code line 187
+                    break;
+                case 2:
+                    fCTBCode.Text = Graphic.GCode.ToString();   // display code
+                    foldCode();
+                    loadTimerStep++;
+                    break;
+                default:
+                    loadTimer.Stop();
+                    break;
+            }
+        }
+
         private void showImportOptions()
         {
+            Logger.Trace(" showImportOptions {0}", importOptions);
             importOptions = Graphic.graphicInformation.ListOptions() + importOptions;
             if (Properties.Settings.Default.importGCCompress) importOptions += "<Compress> " ;
             if (Properties.Settings.Default.importGCRelative) importOptions += "< G91 > " ;
@@ -539,6 +666,7 @@ namespace GRBL_Plotter
                 statusStripSet(1, importOptions, Color.Yellow);
                 Logger.Info(" {0}", importOptions);
             }
+            Logger.Trace(" showImportOptions {0}", importOptions);
         }
         private void foldCode()
         {
@@ -739,6 +867,9 @@ namespace GRBL_Plotter
                 e.SuppressKeyPress = true;
             }
 
+            else if ((e.KeyCode == Keys.E) && (pictureBox1.Focused))    
+            {   expandGCode = !expandGCode;}
+            
             else if (e.KeyCode == Keys.NumLock)
             {
                 virtualJoystickXY.Focus();
@@ -774,6 +905,7 @@ namespace GRBL_Plotter
         {
    //         Logger.Info(" loadFromClipboard");
             newCodeStart();
+            importOptions = "";    
             bool fromClipboard = true;
             if (text.Length > 1)
                 fromClipboard = false;
@@ -809,14 +941,17 @@ namespace GRBL_Plotter
 
                     UseCaseDialog();
                     newCodeStart();
-                    fCTBCode.Text = GCodeFromSVG.ConvertFromText(txt.Trim((char)0x00), true);    // import as mm
-					Properties.Settings.Default.counterImportSVG += 1;
+                    GCodeFromSVG.ConvertFromText(txt.Trim((char)0x00), true);    // import as mm
+                    fCTBCode.Text = Graphic.GCode.ToString();
+                    Properties.Settings.Default.counterImportSVG += 1;
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return; }
-                    newCodeEnd();
+                    newCodeEnd(true);               // code was imported, no need to check for bad GCode
+                    
                     this.Text = appName + " | Source: from "+source;
                     setLastLoadedFile("Data from " + source + ": SVG", "");
                     lbInfo.Text = "SVG from "+source;
+                    if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
                     showImportOptions();
                 }
                 else if ((checkLines[0].Trim() == "0") && (checkLines[1].Trim() == "SECTION"))
@@ -834,11 +969,14 @@ namespace GRBL_Plotter
 
                     UseCaseDialog();
                     newCodeStart();
-                    fCTBCode.Text = GCodeFromDXF.ConvertFromText(txt);
-					Properties.Settings.Default.counterImportDXF += 1;
+                    GCodeFromDXF.ConvertFromText(txt);
+                    fCTBCode.Text = Graphic.GCode.ToString();
+
+                    Properties.Settings.Default.counterImportDXF += 1;
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return; }
-                    newCodeEnd();
+                    newCodeEnd(true);               // code was imported, no need to check for bad GCode
+                    
                     this.Text = appName + " | Source: from " + source;
                     setLastLoadedFile("Data from " + source+": DXF", "");
                     lbInfo.Text = "DXF from " + source;
@@ -871,14 +1009,18 @@ namespace GRBL_Plotter
 
                 UseCaseDialog();
                 newCodeStart();
-                fCTBCode.Text = GCodeFromSVG.ConvertFromText(txt);
-				Properties.Settings.Default.counterImportSVG += 1;
+                GCodeFromSVG.ConvertFromText(txt);
+                fCTBCode.Text = Graphic.GCode.ToString();
+
+                Properties.Settings.Default.counterImportSVG += 1;
                 if (fCTBCode.LinesCount <= 1)
                 { fCTBCode.Text = "( Code conversion failed )"; return; }
-                newCodeEnd();
+                newCodeEnd(true);               // code was imported, no need to check for bad GCode
+                
                 this.Text = appName + " | Source: from Clipboard";
                 setLastLoadedFile("Data from Clipboard: SVG", "");
                 lbInfo.Text = "SVG from clipboard";
+                if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
                 showImportOptions();
             }
             else if (iData.GetDataPresent(DataFormats.Bitmap))

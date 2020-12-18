@@ -16,7 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/* * 2020-09-13 split file
+/*
+ * 2020-09-13 split file
+ * 2020-12-03 Bug fix invoke required in line 59
+ * 2020-12-16 line 183 remove lock
  */
 
 using System;
@@ -28,8 +31,6 @@ namespace GRBL_Plotter
 {
     public partial class MainForm : Form
     {
-
-
         #region Streaming
 
         TimeSpan elapsed;               //elapsed time 
@@ -54,8 +55,15 @@ namespace GRBL_Plotter
             int bPrgs = buffProgress;
             if (bPrgs < 0) bPrgs = 0; if (bPrgs > 100) bPrgs = 100;
 
-            pbFile.Value = cPrgs;
-            pbBuffer.Value = bPrgs;
+            if (this.pbFile.InvokeRequired)
+            {   this.pbFile.BeginInvoke((MethodInvoker)delegate () { this.pbFile.Value = cPrgs; }); }
+            else
+            {   this.pbFile.Value = cPrgs;   }
+
+            if (this.pbBuffer.InvokeRequired)
+            {   this.pbBuffer.BeginInvoke((MethodInvoker)delegate () { this.pbBuffer.Value = bPrgs; }); }
+            else
+            {   this.pbBuffer.Value = bPrgs;   }
 
             string txt =string.Format("Progress {0:0.0}%", codeProgress);
             if (this.lblFileProgress.InvokeRequired)
@@ -63,13 +71,34 @@ namespace GRBL_Plotter
             else
             {   this.lblFileProgress.Text = txt;   }
         }
-		
-/***** Receive streaming status from serial COM *****/		
+
+        /***** Receive streaming status from serial COM *****/
+        private bool notifierUpdateMarker = false;
+        private bool notifierUpdateMarkerFinish = false;
         private void OnRaiseStreamEvent(object sender, StreamEventArgs e)
         {
             if (isStreaming)
+            {
                 updateProgressBar((int)e.CodeProgress, (int)e.BuffProgress);
-			
+                if (Properties.Settings.Default.notifierMessageProgressEnable)
+                {
+                    if ((elapsed.Seconds % (int)(60*Properties.Settings.Default.notifierMessageProgressInterval)) == 5) // offset 5 sec. to get message at start
+                    {
+                        if (notifierUpdateMarker)
+                        {
+                            notifierUpdateMarker = false;
+                            string msg = string.Format("{0}Duration   : {1} min.\r\nCode line  : {2}\r\nProcessed: {3:0.0} %\r\nGrbl Buffer: {4:0.0} %", "", elapsed.Minutes, e.CodeLineSent, e.CodeProgress, e.BuffProgress);//Properties.Settings.Default.notifierMessageProgress
+                            if (Properties.Settings.Default.notifierMessageProgressTitle)
+                                Notifier.sendMessage(msg, string.Format("{0:0.0} %", e.CodeProgress));    
+                            else
+                                Notifier.sendMessage(msg);                             
+                        }
+                    }
+                    else
+                        notifierUpdateMarker = true;
+                }
+            }
+
             int actualCodeLine = e.CodeLineSent;
             if (actualCodeLine < 0) actualCodeLine = 0;
             if (e.CodeLineSent > fCTBCode.LinesCount)
@@ -78,8 +107,12 @@ namespace GRBL_Plotter
 
             fCTBCodeClickedLineNow = e.CodeLineSent-1;// - 1;
             fCTBCodeMarkLine();         // set Bookmark and marker in 2D-View
-            fCTBCode.DoCaretVisible();
-			
+//            fCTBCode.DoCaretVisible();
+            if (this.fCTBCode.InvokeRequired)
+            { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
+            else
+            { this.fCTBCode.DoCaretVisible(); }
+
             if (_diyControlPad != null)
                 _diyControlPad.sendFeedback("[" + e.Status.ToString() + "]");
 
@@ -120,22 +153,23 @@ namespace GRBL_Plotter
                 case grblStreaming.error:
                     Logger.Info("streaming error at line {0}", e.CodeLineConfirmed);
                     statusStripSet(1, grbl.lastMessage, Color.Fuchsia);
-      //              isStreaming = false;
-      //              isStreamingCheck = false;
                     pbFile.ForeColor = Color.Red;
                     lbInfo.Text = Localization.getString("mainInfoErrorLine") + e.CodeLineSent.ToString();
                     lbInfo.BackColor = Color.Fuchsia;
                     fCTBCode.BookmarkLine(actualCodeLine - 1);
                     fCTBCode.DoSelectionVisible();
                     fCTBCode.CurrentLineColor = Color.Red;
-     //               isStreamingOk = false;
                     break;
 
                 case grblStreaming.ok:
                     if (!isStreamingCheck)
                     {
-//                        updateControls();
-                        lbInfo.Text = lblInfoOkString + "(" + (e.CodeLineSent+1).ToString() + ")";
+//                        lbInfo.Text = lblInfoOkString + "(" + (e.CodeLineSent+1).ToString() + ")";
+                        if (this.lbInfo.InvokeRequired)
+                        { this.lbInfo.BeginInvoke((MethodInvoker)delegate () { this.lbInfo.Text = lblInfoOkString + "(" + (e.CodeLineSent + 1).ToString() + ")"; }); }
+                        else
+                        { this.lbInfo.Text = lblInfoOkString + "(" + (e.CodeLineSent + 1).ToString() + ")"; }
+
                         lbInfo.BackColor = Color.Lime;
                         signalPlay = 0;
                         btnStreamStart.BackColor = SystemColors.Control;
@@ -159,18 +193,26 @@ namespace GRBL_Plotter
                     showPicBoxBgImage = false;                     // don't show background image anymore
                     pictureBox1.BackgroundImage = null;
                     resetStreaming();
+                    
+                    if (!notifierUpdateMarkerFinish)    // just notify once
+                    {   notifierUpdateMarkerFinish = true;
+                        string msg = string.Format("{0}\r\nDuration  :{1} (hh:mm:ss)\r\nCode line :{2}", Properties.Settings.Default.notifierMessageFinish, elapsed.ToString(@"hh\:mm\:ss"), e.CodeLineSent);
+                        if (Properties.Settings.Default.notifierMessageProgressTitle)
+                            Notifier.sendMessage(msg, "100 %");
+                        else
+                            Notifier.sendMessage(msg);
+                    }
                     break;
 
                 case grblStreaming.waitidle:
                     timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.waitidle";//updateControls();// true);
                     btnStreamStart.Image = Properties.Resources.btn_play;
-  //                  isStreamingPause = true;
                     lbInfo.Text = Localization.getString("mainInfoWaitIdle") + e.CodeLineSent.ToString() + ")";
                     lbInfo.BackColor = Color.Yellow;
                     break;
 
                 case grblStreaming.pause:
-                    lock (this)
+          //          lock (this)       2020-12-15 removed
                     {
                         signalPlay = 1;
                         lbInfo.BackColor = Color.Yellow;
@@ -211,7 +253,6 @@ namespace GRBL_Plotter
 
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
                         delayedSend = 2;
-                    //                  VisuGCode.ProcessedPath.processedPathClear();
                     break;
 
                 default:
@@ -219,7 +260,11 @@ namespace GRBL_Plotter
             }
 
             lastLabelInfoText = lbInfo.Text;
-            lbInfo.Text += overrideMessage;
+  //          lbInfo.Text += overrideMessage;
+            if (this.lbInfo.InvokeRequired)
+            { this.lbInfo.BeginInvoke((MethodInvoker)delegate () { this.lbInfo.Text += overrideMessage; }); }
+            else
+            { this.lbInfo.Text += overrideMessage; }
         }
         public delegate void Del();
 
@@ -251,11 +296,14 @@ namespace GRBL_Plotter
         {
             isStreamingRequestStop = false;
             lblInfoOkString = Localization.getString("mainInfoSendCode");
+            notifierUpdateMarker = false;
+            notifierUpdateMarkerFinish = false;
             if (fCTBCode.LinesCount > 1)
             {
                 if (!isStreaming)
                 {
                     Logger.Info("Start streaming at line:{0}  showProgress:{1}  backgroundImage:{2}", startLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
+                    expandCodeBlocksToolStripMenuItem_Click(null, null);
                     VisuGCode.ProcessedPath.processedPathClear();
 					MainTimer.Stop();
 					MainTimer.Start();

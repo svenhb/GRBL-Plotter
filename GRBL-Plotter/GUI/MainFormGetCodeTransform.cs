@@ -92,7 +92,7 @@ namespace GRBL_Plotter
                     if (codeline.Length > 0)
                         codeBeforeHeightMap.AppendLine(codeline);
                 }
-                VisuGCode.getGCodeLines(fCTBCode.Lines);
+                VisuGCode.getGCodeLines(fCTBCode.Lines, null, null);
                 fCTBCode.Text = VisuGCode.applyHeightMap(fCTBCode.Lines, _heightmap_form.Map);
                 update_GCode_Depending_Controls();
                 _heightmap_form.setBtnApply(isHeightMapApplied);
@@ -117,7 +117,8 @@ namespace GRBL_Plotter
                 importOptions = "";
                 simuStop();
                 newCodeStart();
-                fCTBCode.Text = _text_form.textGCode;
+                //fCTBCode.Text = _text_form.textGCode;
+                setfCTBCodeText(Graphic.GCode.ToString());
                 setLastLoadedFile("from text", "");
                 newCodeEnd();
                 foldCode();
@@ -156,7 +157,8 @@ namespace GRBL_Plotter
             {
                 simuStop();
                 newCodeStart();
-                fCTBCode.Text = _barcode_form.barcodeGCode;
+             //   fCTBCode.Text = _barcode_form.barcodeGCode;
+                setfCTBCodeText(Graphic.GCode.ToString());
                 setLastLoadedFile("from barcode", "");
                 newCodeEnd();
                 Properties.Settings.Default.counterImportBarcode += 1;
@@ -221,7 +223,7 @@ namespace GRBL_Plotter
         }
 
         private void transformEnd()
-        {   VisuGCode.getGCodeLines(fCTBCode.Lines);                    // get code path
+        {   VisuGCode.getGCodeLines(fCTBCode.Lines, null, null);                    // get code path
             VisuGCode.calcDrawingArea();                                 // calc ruler dimension
             VisuGCode.drawMachineLimit(toolTable.getToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
