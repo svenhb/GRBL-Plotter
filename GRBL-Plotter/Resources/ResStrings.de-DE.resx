@@ -253,10 +253,10 @@
     <value>Überprüfen Sie das COM-Fenster für weitere Informationen</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>Klicken Sie bei gedrückter Ctrl-Taste, um Abbildung auszuwählen. Alt-Klicken, um Gruppe auszuwählen. Oder klicken Sie auf XML-Tag</value>
+    <value>Alt-Mausklick, um Figur auszuwählen; Ctrl-Mausklick, um Gruppe auszuwählen. Umschalttaste-Mausklick, um Kachel auszuwählen, oder klicken Sie auf XML-Tag</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>Klicken Sie auf: Markieren Sie Abbildung; Control-Click: Gruppe markieren; Alt-Klick: GCode-Zeile anzeigen</value>
+    <value>Mausklick markiert die Figur; Control-Mausklick: Gruppe markieren; Umschalt-Mausklick: Kachel markieren; Alt-Klick: GCode-Zeile anzeigen</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
     <value>Strg-Ab, um den ausgewählten Block 1 nach unten zu verschieben; Strg-Umschalt-Ab, um zum Ende zu gelangen</value>

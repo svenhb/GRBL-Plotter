@@ -319,10 +319,10 @@
     <value>Consulte la ventana COM para obtener más información.</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>Control-Clic para seleccionar Figura; Alt-Click para seleccionar Grupo; O haga clic en Etiqueta XML</value>
+    <value>Alt-Click para seleccionar Figura; Control-clic para seleccionar Grupo; Shift-Click para seleccionar Tile; O haga clic en XML-Tag</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>Haga clic en: marcar Figura; Control-Clic: marcar Grupo; Alt-Click: muestra la línea GCode</value>
+    <value>Haga clic en: marque la figura; Control-clic: grupo de marcas; Shift-Click: marcar Tile; Alt-Click: mostrar la línea GCode</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
     <value>Control-Abajo para mover el bloque seleccionado hacia abajo; Control-Shift-Down para moverse hasta el final</value>

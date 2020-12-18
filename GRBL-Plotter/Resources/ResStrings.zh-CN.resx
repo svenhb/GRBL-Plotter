@@ -319,10 +319,10 @@
     <value>检查COM窗口以获取更多信息</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>按住Control键并单击以选择Figure； Alt单击以选择“组”； 或点击XML标签</value>
+    <value>Alt单击以选择“地物”；按住Control键并单击以选择“组”；按住Shift键并单击以选择图块；或单击XML-Tag</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>点击：标记图； 按住Control键并单击：标记组； Alt单击：显示GCode行</value>
+    <value>点击：标记图；按住Control键并单击：标记组；按住Shift的同时单击：标记图块；按Alt的同时单击：显示GCode行</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
     <value>Control-Down键将选定的块向下移动一格； 按住Control-Shift-Down移至结尾</value>

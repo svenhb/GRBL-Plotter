@@ -319,10 +319,10 @@
     <value>Проверьте COM-окно для получения дополнительной информации</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>Control-Click, чтобы выбрать рисунок; Alt-Click, чтобы выбрать группу; Или нажмите на XML-тег</value>
+    <value>Alt-щелчок, чтобы выбрать рисунок; Щелкните, удерживая клавишу Control, чтобы выбрать группу; Щелкните мышью, удерживая клавишу Shift, чтобы выбрать плитку; или щелкните XML-тег</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>Нажмите: пометить рисунок; Control-Click: пометить группу; Alt-Click: показать строку GCode</value>
+    <value>Щелкните: отметьте рисунок; Control-Click: отметить группу; Shift-Click: отметить плитку; Alt-Click: показать строку GCode</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
     <value>Control-Down для перемещения выбранного блока один вниз; Control-Shift-Down для перехода в конец</value>

@@ -319,10 +319,10 @@
     <value>詳細については、COMウィンドウを確認してください</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>Ctrlキーを押しながらクリックして図を選択します。 Alt-クリックしてグループを選択します。 またはXMLタグをクリックします</value>
+    <value>Altキーを押しながらクリックして図を選択します。 Control-クリックしてグループを選択します。 Shiftキーを押しながらクリックしてタイルを選択するか、XMLタグをクリックします</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>クリック：図をマーク; Control-クリック：グループをマーク; Alt-クリック：GCodeラインを表示</value>
+    <value>クリック：図をマークします。 Controlキーを押しながらクリック：グループをマークします。 Shiftキーを押しながらクリック：タイルをマーク; Altキーを押しながらクリック：Gコード行を表示</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
     <value>Ctrlキーを押しながら選択したブロックを1つ下に移動します。 Ctrl-Shift-Downで最後に移動</value>

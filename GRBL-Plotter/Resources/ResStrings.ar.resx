@@ -319,10 +319,10 @@
     <value>تحقق من نافذة COM للحصول على مزيد من المعلومات</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>انقر مع الضغط على مفتاح Control لتحديد الشكل ؛ Alt- نقر لتحديد مجموعة ؛ أو انقر على علامة XML</value>
+    <value>Alt- انقر لتحديد الشكل ؛ انقر لتحديد المجموعة ؛ انقر مع الضغط على مفتاح Shift لتحديد لوحة ؛ أو انقر على علامة XML</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>انقر فوق: علامة الشكل ؛ انقر مع الضغط على Control: mark Group؛ Alt- نقر: إظهار خط GCode</value>
+    <value>انقر فوق: علامة الشكل؛ انقر فوق التحكم: علامة المجموعة ؛ Shift-Click: علامة Tile ؛ Alt-Click: إظهار خط GCode</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
     <value>Control-Down لتحريك الكتلة المحددة لأسفل ؛ Control-Shift-Down للانتقال إلى النهاية</value>

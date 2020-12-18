@@ -313,10 +313,10 @@
     <value>Consultez la fenêtre COM pour plus d'informations</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>Contrôle-cliquez pour sélectionner la figure; Alt-Cliquez pour sélectionner Groupe; Ou cliquez sur XML-Tag</value>
+    <value>Alt-clic pour sélectionner Figure; Contrôle-cliquez pour sélectionner Groupe; Shift-Click pour sélectionner Tile; Ou cliquez sur XML-Tag</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>Cliquez: marquez la figure; Ctrl-clic: marquer le groupe; Alt-Click: afficher la ligne GCode</value>
+    <value>Cliquez sur: marquez la figure; Contrôle-clic: marque le groupe; Maj-clic: marque la vignette; Alt-clic: affiche la ligne GCode</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
     <value>Contrôle-Bas pour déplacer le bloc sélectionné d'un vers le bas; Control-Shift-Down pour aller jusqu'à la fin</value>

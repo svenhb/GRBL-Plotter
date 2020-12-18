@@ -319,10 +319,10 @@
     <value>Check COM-window for further information</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>Control-Click to select Figure; Alt-Click to select Group; Or click on XML-Tag</value>
+    <value>Alt-Click to select Figure; Control-Click to select Group; Shift-Click to select Tile;Or click on XML-Tag</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>Click: mark Figure; Control-Click: mark Group; Alt-Click: show GCode line</value>
+    <value>Click: mark Figure; Control-Click: mark Group; Shift-Click: mark Tile;Alt-Click: show GCode line</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
     <value>Control-Down to move selected Block one down; Control-Shift-Down to move to end</value>
