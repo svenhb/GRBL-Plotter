@@ -1997,7 +1997,7 @@ Nützlich für Laserschneider.</value>
     <value>Verschiedenes</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>Spezial</value>
+    <value>Email</value>
   </data>
   <data name="cBShowStreamingProgress.Text" xml:space="preserve">
     <value>Streaming-Fortschritt in 2D-Ansicht anzeigen</value>
@@ -2084,5 +2084,77 @@ Während ein normaler M0 ein Feedhold initiiert, ohne die Möglichkeit, die Masc
   </data>
   <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
     <value>Zeilennummern hinzufügen</value>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>Häufige Fortschrittsaktualisierung (Minuten)</value>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>Nachricht beenden</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Benachrichtigungen</value>
+  </data>
+  <data name="cbNotifierEnable.Text" xml:space="preserve">
+    <value>Aktivieren Sie die E-Mail-Benachrichtigung</value>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>Testmail senden</value>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>Gegenstand</value>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>Eine E-Mail schicken</value>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>Aus der Email</value>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>Hafen</value>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>Nutzername</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>SMTP-Server</value>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>Richten Sie den SMTP-Server-Zugriff für Ihr E-Mail-Konto ein
+Hinweis: "Aus E-Mail" muss häufig mit SMTP-Postfach-E-Mail identisch sein.</value>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>Notifier</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>E-Mail: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -E-Mail-Konto verwenden. Das Kennwort kann nicht verschlüsselt gespeichert werden.
+
+Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwenden. Das Zugriffstoken kann nicht in verschlüsselter Form gespeichert werden.</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>Sicherheitshinweise</value>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>Titel für Streaming-Fortschritt</value>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>API-Zugriffstoken</value>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>Kanal (leer lassen, um eine Notiz zu senden)</value>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>E-Mail-Benachrichtigung aktivieren</value>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>Pushbullet-Benachrichtigung aktivieren</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Testnachricht senden</value>
   </data>
 </root>

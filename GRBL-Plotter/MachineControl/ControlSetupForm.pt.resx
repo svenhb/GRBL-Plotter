@@ -2048,7 +2048,7 @@ menos estresse para a mecânica</value>
     <value>Diversos</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>Especial</value>
+    <value>O email</value>
   </data>
   <data name="cBShowStreamingProgress.Text" xml:space="preserve">
     <value>Mostrar o progresso do streaming no modo de exibição 2D</value>
@@ -2138,5 +2138,77 @@ Considerando que um M0 normal inicia um feedhold, sem a possibilidade de usar a 
   </data>
   <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
     <value>Adicionar números de linha</value>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>Atualização de progresso frequente (minutos)</value>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>Terminar mensagem</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Notificações</value>
+  </data>
+  <data name="cbNotifierEnable.Text" xml:space="preserve">
+    <value>Ativar notificação por email</value>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>Enviar e-mail de teste</value>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>Sujeito</value>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>Para email</value>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>Do email</value>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>Porta</value>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>Senha</value>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>Endereço</value>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>Nome do usuário</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Servidor SMTP</value>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>Configure o acesso ao servidor SMTP para sua conta de e-mail
+Nota: geralmente "de e-mail" deve ser igual ao e-mail da caixa de correio SMTP.</value>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>Notificador</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>E-mail: por razões de segurança você deve usar uma conta de e-mail 'lixo', a senha não pode ser salva de forma criptografada.
+
+Pushbullet: por razões de segurança, você deve usar uma conta 'lixo', o token de acesso não pode ser salvo de forma criptografada.</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>Notas de Segurança</value>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>Adicionar o andamento da transmissão ao título</value>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>Token de acesso API</value>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>Canal (mantenha vazio para enviar uma nota)</value>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>Ativar notificação por email</value>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>Ativar notificação pushbullet</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Enviar mensagem de teste</value>
   </data>
 </root>

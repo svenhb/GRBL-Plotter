@@ -2039,7 +2039,7 @@ Utile pour la découpe laser.</value>
     <value>Divers</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>Spécial</value>
+    <value>Email</value>
   </data>
   <data name="cBShowStreamingProgress.Text" xml:space="preserve">
     <value>Afficher la progression de la diffusion en 2D-View</value>
@@ -2129,5 +2129,77 @@ Alors qu'une prise M0 normale démarre, sans possibilité d'utiliser la machine.
   </data>
   <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
     <value>Ajouter des numéros de ligne</value>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>Mise à jour fréquente des progrès (minutes)</value>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>Terminer le message</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="cbNotifierEnable.Text" xml:space="preserve">
+    <value>Activer la notification par e-mail</value>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>Envoyer un e-mail de test</value>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>Matière</value>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>Envoyer un email</value>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>De l'email</value>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Serveur SMTP</value>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>Configurer l'accès au serveur SMTP pour votre compte de messagerie
+Remarque: souvent «à partir de l'e-mail» doit être identique à l'e-mail de la boîte aux lettres SMTP.</value>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>Notifier</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>Email: pour des raisons de sécurité, vous devez utiliser un compte de messagerie «corbeille», le mot de passe ne peut pas être enregistré sous forme cryptée.
+
+Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbeille', le jeton d'accès ne peut pas être enregistré sous forme cryptée.</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>Notes de sécurité</value>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>Ajouter la progression de la diffusion au titre</value>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>Jeton d'accès API</value>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>Chaîne (restez vide pour envoyer une note)</value>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>Activer la notification par e-mail</value>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>Activer la notification pushbullet</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Envoyer un message de test</value>
   </data>
 </root>

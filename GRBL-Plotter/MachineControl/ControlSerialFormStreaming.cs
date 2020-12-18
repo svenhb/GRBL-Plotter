@@ -24,8 +24,8 @@
     This project was my starting point
 */
 /* 2020-09-18 split file
-
-*/
+ * 2020-12-18 fix OnRaiseStreamEvent %
+ */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
 // OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
@@ -467,7 +467,7 @@ namespace GRBL_Plotter
 
             float codeFinish = 0;
 			if (streamingBuffer.Count != 0)
-				codeFinish = (float)streamingBuffer.IndexConfirmed * 100 / (float)streamingBuffer.Count;
+				codeFinish = (float)lineNrConfirmed * 100 / (float)streamingBuffer.Max;
             float buffFinish = 0;
 			if (grblBufferSize != 0)
 				buffFinish = (float)(grblBufferSize - grblBufferFree) * 100 / (float)grblBufferSize;

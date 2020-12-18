@@ -2220,7 +2220,7 @@ Z轴将向下移动</value>
     <value>杂</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>特别</value>
+    <value>电子邮件</value>
   </data>
   <data name="cBShowStreamingProgress.Text" xml:space="preserve">
     <value>在2D视图中显示流式处理进度</value>
@@ -2310,5 +2310,77 @@ Z轴将向下移动</value>
   </data>
   <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
     <value>添加行号</value>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>进度经常更新（分钟）</value>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>完成留言</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>通知事项</value>
+  </data>
+  <data name="cbNotifierEnable.Text" xml:space="preserve">
+    <value>启用电子邮件通知</value>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>发送测试邮件</value>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>学科</value>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>发邮件</value>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>来自电子邮件</value>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>港口</value>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>SMTP服务器</value>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>为您的电子邮件帐户设置SMTP服务器访问
+注意：通常，“来自电子邮件”必须与SMTP邮箱电子邮件相同。</value>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>通知者</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>电子邮件：出于安全原因，您应该使用“垃圾邮件”电子邮件帐户，密码无法以加密形式保存。
+
+Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问令牌无法以加密形式保存。</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>安全须知</value>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>将流媒体进度添加到标题</value>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>API访问令牌</value>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>频道（保持空白以发送便笺）</value>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>启用电子邮件通知</value>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>启用推送通知</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>发送测试信息</value>
   </data>
 </root>

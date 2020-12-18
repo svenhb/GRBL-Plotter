@@ -24,8 +24,8 @@
     This project was my starting point
 */
 /* 2020-09-18 split file
-
-*/
+ * 2020-12-18 add CodeBuffer max
+ */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
 // OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
@@ -35,10 +35,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System.IO;
-using System.Globalization;
-using System.Threading;
-using System.Runtime.Remoting.Messaging;
 
 namespace GRBL_Plotter
 {
@@ -94,7 +90,7 @@ namespace GRBL_Plotter
         private string listInfoSend()
         { return string.Format("{0}sendBuffer snt:{1,3}  cnfrmnd:{2,3}  cnt:{3,3}  BFree:{4,3}  lineNr:{5}  code:'{6}' state:{7}", "", sendBuffer.IndexSent, sendBuffer.IndexConfirmed, sendBuffer.Count, grblBufferFree, sendBuffer.GetConfirmedLineNr(), sendBuffer.GetConfirmedLine(), grblStateNow.ToString()); }
 
-    #region processGRBL
+#region processGRBL
 /********************************************************************************* 
 * processGrblMessages - called in RX event chain, from serialPort1_DataReceived()
 * 1) processGrblOkMessage() processOkStreaming();   			process 'ok'
@@ -374,12 +370,14 @@ namespace GRBL_Plotter
             waitForIdle = false;
             waitForOk = false;
             externalProbe = false;
-            countStateReset = 8;         // reset message received
+            countStateReset = 8;    // reset message received
             rxErrorCount = 0;
             rtsrResponse = 0;       // real time status report sent / receive differnence                    
             isHoming = false;
             resetStreaming();       // handleRX_Reset
             addToLog("* RESET\r\n< " + rxString);
+            isGrblVers0 = false;    // default, if no welcome message received
+            
             if (rxString.ToLower().IndexOf("grbl 0") >= 0)
             { isGrblVers0 = true; isLasermode = false; }
             if (rxString.ToLower().IndexOf("grbl 1") >= 0)
@@ -943,6 +941,7 @@ namespace GRBL_Plotter
             private List<int> lineNr = new List<int>();
             private int sent = 0;              // actual sent line
             private int confirmed = 0;         // already received line
+            private int max = 0;
 
             public CodeBuffer()
             {   buffer = new List<string>();
@@ -968,6 +967,9 @@ namespace GRBL_Plotter
 			public int Count
 			{	get { return buffer.Count();}
 			}
+            public int Max
+            {   get { return max; }
+            }
             public void Clear()
             {   sent = 0;
                 confirmed = 0;
@@ -981,6 +983,7 @@ namespace GRBL_Plotter
             public void Add(string txt, int nr)
             {   buffer.Add(txt);
                 lineNr.Add(nr);
+                max = Math.Max(max,nr);
             }
             public bool DeleteLine()	// ReleaseMemory
             {   if ((buffer.Count > 2) && (confirmed == sent) && (sent > 1)) //(sent > 1) && (confirmed > 1))		//(confirmed == sent) &&(sent > 1))

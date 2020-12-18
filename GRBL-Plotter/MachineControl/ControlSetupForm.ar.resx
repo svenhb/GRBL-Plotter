@@ -2236,7 +2236,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <value>متنوع</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>مميز</value>
+    <value>البريد الإلكتروني</value>
   </data>
   <data name="cBShowStreamingProgress.Text" xml:space="preserve">
     <value>إظهار تقدم التدفق في عرض ثنائي الأبعاد</value>
@@ -2326,5 +2326,77 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   </data>
   <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
     <value>أضف أرقام الأسطر</value>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>تحديث متكرر للتقدم (بالدقائق)</value>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>إنهاء الرسالة</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>إشعارات</value>
+  </data>
+  <data name="cbNotifierEnable.Text" xml:space="preserve">
+    <value>تمكين إعلام البريد الإلكتروني</value>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>إرسال بريد تجريبي</value>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>موضوع</value>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>لإرسال بريد إلكتروني</value>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>من البريد الإلكترونى</value>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>ميناء</value>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>كلمه السر</value>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>خادم SMTP</value>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>قم بإعداد وصول خادم SMTP لحساب بريدك الإلكتروني
+ملاحظة: غالبًا ما يجب أن يكون "من البريد الإلكتروني" هو نفس البريد الإلكتروني لصندوق بريد SMTP.</value>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>المخطر</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>البريد الإلكتروني: لأسباب تتعلق بالسلامة ، يجب عليك استخدام حساب بريد إلكتروني "مهملات" ، ولا يمكن حفظ كلمة المرور بصيغة مشفرة.
+
+Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخدام حساب "سلة المهملات" ، ولا يمكن حفظ رمز الوصول في شكل مشفر.</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>ملاحظات الأمان</value>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>إضافة تدفق التقدم إلى العنوان</value>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>رمز الوصول إلى API</value>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>القناة (اتركها فارغة لإرسال ملاحظة)</value>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>تمكين إعلام البريد الإلكتروني</value>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>تفعيل إعلام الدفع</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>إرسال رسالة تجريبية</value>
   </data>
 </root>

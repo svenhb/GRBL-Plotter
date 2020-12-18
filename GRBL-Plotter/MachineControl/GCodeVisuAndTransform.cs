@@ -41,6 +41,7 @@
  * 2020-07-24 pathBackground.Reset() after code-rotation, -scaling, -offset
  * 2020-07-27 clean line - replace ' by "  313, 327
  * 2020-08-13 bug fix transformGCodeRotate, transformGCodeScale with G91 
+ * 2020-12-16 add markSelectedTile 
 */
 
 using System;
@@ -50,6 +51,7 @@ using System.Text;
 using System.Drawing.Drawing2D;
 using System.Drawing;
 using System.Globalization;
+using System.ComponentModel;
 
 namespace GRBL_Plotter
 {
@@ -75,8 +77,8 @@ namespace GRBL_Plotter
         public static GraphicsPath pathActualDown = pathPenDown;
 
 
-		public class pathData
-		{
+		public class pathData : IDisposable
+        {
 			public GraphicsPath path;
             public Color color = Color.White;
 			public float width = 0;
@@ -111,8 +113,31 @@ namespace GRBL_Plotter
 				pen.StartCap = LineCap.Round;
 				pen.EndCap = LineCap.Round;				
 			}
-		}
-		public static List<pathData> pathObject = new List<pathData>();
+
+
+            // To detect redundant calls
+            private bool _disposed = false;
+            // Public implementation of Dispose pattern callable by consumers.
+            public void Dispose()
+            {   Dispose(true);
+                GC.SuppressFinalize(this);
+            }
+            // Protected implementation of Dispose pattern.
+            protected virtual void Dispose(bool disposing)
+            {
+                if (_disposed)
+                {   return; }
+
+                if (disposing)
+                {
+                    // Dispose managed state (managed objects).
+                    path.Dispose();
+                    pen.Dispose();
+                }
+                _disposed = true;
+            }
+        }
+        public static List<pathData> pathObject = new List<pathData>();
 
 
         public struct pathInfo
@@ -290,9 +315,9 @@ namespace GRBL_Plotter
         public static string applyHeightMap(IList<string> oldCode, HeightMap Map)
         {
             maxStep = (float)Map.GridX;
-            getGCodeLines(oldCode,true);                // read gcode and process subroutines
+            getGCodeLines(oldCode, null, null ,true);                // read gcode and process subroutines
             IList<string> tmp=createGCodeProg(true,true,false, convertMode.nothing).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
-            getGCodeLines(tmp, false);                  // reload code
+            getGCodeLines(tmp, null, null, false);                  // reload code
             return createGCodeProg(false, false, true, convertMode.nothing, Map);        // apply new Z-value;
         }
 
@@ -320,7 +345,7 @@ namespace GRBL_Plotter
         /// <summary>
         /// Entrypoint for generating drawing path from given gcode
         /// </summary>
-        public static void getGCodeLines(IList<string> oldCode, bool processSubs=false)
+        public static bool getGCodeLines(IList<string> oldCode, BackgroundWorker worker, DoWorkEventArgs e, bool processSubs=false)
         {
             string[] GCode = oldCode.ToArray<string>();
             string singleLine;
@@ -358,10 +383,33 @@ namespace GRBL_Plotter
             bool xyPosChanged;
             bool updateFigureLineNeeded = false;
             errorString = "";
+
+            bool showArrow = Properties.Settings.Default.gui2DPenUpArrow;
+            bool showId = Properties.Settings.Default.gui2DPenUpId;
+
+            if (worker != null) worker.ReportProgress(0, new MyUserState { Value = 0, Content = "Analyse GCode..." });
+            int progressMain = 0;
+            float progressMainFactor = 1;
+            if (showArrow || showId) progressMainFactor = 0.5f;
+            int progressSub = 0;
+            int progressSubOld = 0;
+           
             for (int lineNr = 0; lineNr < GCode.Length; lineNr++)   // go through all gcode lines
             {
                 modal.resetSubroutine();                            // reset m, p, o, l Word
                 singleLine = GCode[lineNr].ToUpper().Trim();        // get line, remove unneeded chars
+
+                if (worker != null)
+                {   progressSub = (lineNr * 100) / GCode.Length;
+                    progressMain = (int)(progressSub * progressMainFactor);
+                    if (progressSub != progressSubOld)
+                    {   //worker.ReportProgress(progressSub);
+                        worker.ReportProgress(progressSub, new MyUserState { Value = progressMain, Content = "Analyse GCode " + progressSub.ToString() + " %" });
+                        progressSubOld = progressSub;
+                    }
+                    if (worker.CancellationPending)
+                    {    break;  }
+                }
 
                 if (processSubs && programEnd)
                 { singleLine = "( " + singleLine + " )"; }          // don't process subroutine itself when processed
@@ -369,6 +417,10 @@ namespace GRBL_Plotter
                 newLine.parseLine(lineNr, singleLine, ref modal);
                 xyPosChanged = calcAbsPosition(newLine, oldLine);                  // Calc. absolute positions and set object dimension: xyzSize.setDimension
 
+
+/* Process Tile marker */
+                if (GCode[lineNr].Contains(xmlMarker.tileStart))                   // check if marker available
+                {   xmlMarker.AddTile(lineNr, GCode[lineNr], figureMarkerCount); }
 /* Process Group marker */
                 if (GCode[lineNr].Contains(xmlMarker.groupStart))                   // check if marker available
                 {
@@ -388,7 +440,7 @@ namespace GRBL_Plotter
                     string clean = GCode[lineNr].Replace("'", "\"");
                     xmlMarker.AddFigure(lineNr, clean, figureMarkerCount);
                     if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, GCode[lineNr]);
-					if(Properties.Settings.Default.gui2DColorPenDownModeEnable)	// enable color mode
+					if(Properties.Settings.Default.gui2DColorPenDownModeEnable  &&  Graphic.SizeOk())	// enable color mode
 					{ 	pathData tmp = new pathData(xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);		// set color, width, pendownpath
                         //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
 						pathObject.Add(tmp);
@@ -463,17 +515,35 @@ namespace GRBL_Plotter
                 }
 /* Process Group end */
                 if (GCode[lineNr].Contains(xmlMarker.groupEnd))                    // check if marker available
-                {   xmlMarker.FinishGroup(lineNr); 
-				}
+                {   xmlMarker.FinishGroup(lineNr); }
+/* Process Tile end */
+                if (GCode[lineNr].Contains(xmlMarker.tileEnd))                    // check if marker available
+                {   xmlMarker.FinishTile(lineNr);  }
 
             }   // finish reading lines
 
-            bool showArrow = Properties.Settings.Default.gui2DPenUpArrow;
-            bool showId = Properties.Settings.Default.gui2DPenUpId;
             if (showArrow || showId)
-            {   foreach (pathInfo tmp in pathInfoMarker)
-                {   addArrow(pathPenUp, tmp.position, tmp.angle, tmp.info, showArrow, showId); }
+            {   if (worker != null) worker.ReportProgress(0, new MyUserState { Value = 50, Content = "Pen-up path: Add dir-arrows and figure-Ids" });
+                int count = 0;
+                foreach (pathInfo tmp in pathInfoMarker)
+                {
+                    if (worker != null)
+                    {   progressSub = (count++ * 100) / pathInfoMarker.Count;
+                        progressMain = (int)(50+ progressSub * progressMainFactor);
+                        if (progressSub != progressSubOld)
+                        {   worker.ReportProgress(progressSub, new MyUserState { Value = progressMain, Content = "Pen-up path: Add dir-arrows and figure-Ids " + progressSub + " %" });
+                            progressSubOld = progressSub;
+                        }
+                        if (worker.CancellationPending)
+                        {   e.Cancel = true;
+                            break;
+                        }
+                    }
+                    addArrow(pathPenUp, tmp.position, tmp.angle, tmp.info, showArrow, showId);
+                }
             }
+            if (worker != null) worker.ReportProgress(100, new MyUserState { Value = 100, Content = "Wait for update of text editor" });
+            return true;
         }
         /// <summary>
         /// Find and add subroutine within given gcode
@@ -861,6 +931,36 @@ namespace GRBL_Plotter
 
             for (int line = start+1; line < gcodeList.Count; line++)
             {   if (gcodeList[line].codeLine.Contains(xmlMarker.groupEnd))
+                    break;
+                figNr = gcodeList[line].figureNumber;
+                if (!figures.Contains(figNr) && (figNr > 0))
+                {
+                    figures.Add(figNr);
+                    myPathIterator.Rewind();
+                    for (int i = 1; i <= figNr; i++)
+                        myPathIterator.NextMarker(tmpPath);
+                    pathMarkSelection.AddPath(tmpPath, false);
+                }
+            }
+
+            RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            float centerX = selectionBounds.X + selectionBounds.Width / 2;
+            float centerY = selectionBounds.Y + selectionBounds.Height / 2;
+        }
+
+        public static void markSelectedTile(int start = 0)
+        {   List<int> figures = new List<int>();
+            int figNr = 0;
+
+            pathMarkSelection.Reset();
+            GraphicsPath tmpPath = new GraphicsPath();
+            tmpPath.Reset();
+
+            GraphicsPathIterator myPathIterator = new GraphicsPathIterator(pathPenDown);
+            myPathIterator.Rewind();
+
+            for (int line = start+1; line < gcodeList.Count; line++)
+            {   if (gcodeList[line].codeLine.Contains(xmlMarker.tileEnd))
                     break;
                 figNr = gcodeList[line].figureNumber;
                 if (!figures.Contains(figNr) && (figNr > 0))
@@ -1341,7 +1441,7 @@ namespace GRBL_Plotter
             return newCode.ToString().Replace(',','.');
         }
 
-        private static void clearDrawingnPath()
+        public static void clearDrawingnPath()
         {
             xyzSize.resetDimension();
             G0Size.resetDimension();
@@ -1816,7 +1916,8 @@ namespace GRBL_Plotter
         private static void createMarker(GraphicsPath path, xyPoint center, float dimension, int style, bool rst = true)
         {   createMarker(path, (float)center.X, (float)center.Y, dimension, style, rst); }
 
-        static readonly object pathDrawLock = new object();
+        //     static readonly object pathDrawLock = new object();
+        private static object pathDrawLock = new object();
         private static void createMarker(GraphicsPath path, float centerX,float centerY, float dimension,int style,bool rst=true)
         {
             if (dimension == 0) { return; }

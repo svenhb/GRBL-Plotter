@@ -2107,7 +2107,7 @@ min X, min Y и max Z.
     <value>Разное</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>Специальный</value>
+    <value>Эл. адрес</value>
   </data>
   <data name="cBShowStreamingProgress.Text" xml:space="preserve">
     <value>Показать прогресс потоковой передачи в 2D-виде</value>
@@ -2197,5 +2197,77 @@ min X, min Y и max Z.
   </data>
   <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
     <value>Добавить номера строк</value>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>Частое обновление прогресса (минут)</value>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>Завершить сообщение</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Уведомления</value>
+  </data>
+  <data name="cbNotifierEnable.Text" xml:space="preserve">
+    <value>Включить уведомление по электронной почте</value>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>Отправить тестовое письмо</value>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>На электронную почту</value>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>Из электронной почты</value>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>пароль</value>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>SMTP-сервер</value>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>Настройте доступ к SMTP-серверу для вашей учетной записи электронной почты
+Примечание: часто «из электронной почты» должно быть таким же, как электронная почта почтового ящика SMTP.</value>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>Уведомитель</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>Электронная почта: в целях безопасности следует использовать учетную запись электронной почты «мусор», пароль нельзя сохранить в зашифрованном виде.
+
+Pushbullet: из соображений безопасности следует использовать «мусорную» учетную запись, токен доступа нельзя сохранить в зашифрованном виде.</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>Примечания по безопасности</value>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>Добавить прогресс трансляции в заголовок</value>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>Токен доступа к API</value>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>Канал (оставьте пустым, чтобы отправить заметку)</value>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>Включить уведомление по электронной почте</value>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>Включить pushbullet-уведомление</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Отправить тестовое сообщение</value>
   </data>
 </root>

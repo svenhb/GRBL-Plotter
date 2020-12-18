@@ -51,6 +51,7 @@
  * 2020-09-06 Missing xx Real-time Status Reports per 10 seconds during MessageBox for Tool exchange
  *            change to System.Timers.Timer
  * 2020-09-18 split file
+ * 2020-12-01 try Marlin support
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -105,6 +106,8 @@ namespace GRBL_Plotter
         private int countPreventInterlock = 100;
         private int countPreventWaitForOkLock = 5;
         private int countLoggerUpdate = 0;
+
+        private bool isMarlin = false;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -278,8 +281,14 @@ namespace GRBL_Plotter
 
             if (serialPortOpen = serialPort.IsOpen)
             {   try
-                {   var dataArray = new byte[] { Convert.ToByte('?') };
-                    serialPort.Write(dataArray, 0, 1);
+                {   
+                    if (isMarlin) {
+                        serialPort.Write("M114\n");
+                    }
+                    else {
+                        var dataArray = new byte[] { Convert.ToByte('?') };
+                        serialPort.Write(dataArray, 0, 1);
+                    }
                     rtsrResponse++;     						// real time status report was sent  / will be decreased in processGrblMessages()                  
                 }
                 catch (Exception er)
@@ -344,8 +353,8 @@ namespace GRBL_Plotter
 
                 if (isStreaming)
                 {   if (countLoggerUpdate-- <= 0)
-                    {   Logger.Info("timer update infoStream:{0}", listInfoStream());
-                        Logger.Info("timer update infoSend:  {0}", listInfoSend());
+                    {   //Logger.Info("timer update infoStream:{0}", listInfoStream());
+                        //Logger.Info("timer update infoSend:  {0}", listInfoSend());
                         countLoggerUpdate = (int)(10000 / timerSerial.Interval);
                     }
                     if (!isStreamingRequestPause && !isStreamingPause)

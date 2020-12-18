@@ -56,6 +56,8 @@ namespace GRBL_Plotter
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteCodeFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copySelectionToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnGRBLCommand0 = new System.Windows.Forms.Button();
@@ -90,8 +92,6 @@ namespace GRBL_Plotter
             this.tBURL = new System.Windows.Forms.TextBox();
             this.btnCheckGRBLResult = new System.Windows.Forms.Button();
             this.cBTelnet = new System.Windows.Forms.CheckBox();
-            this.copySelectionToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -111,7 +111,8 @@ namespace GRBL_Plotter
             resources.GetString("cbBaud.Items1"),
             resources.GetString("cbBaud.Items2"),
             resources.GetString("cbBaud.Items3"),
-            resources.GetString("cbBaud.Items4")});
+            resources.GetString("cbBaud.Items4"),
+            resources.GetString("cbBaud.Items5")});
             resources.ApplyResources(this.cbBaud, "cbBaud");
             this.cbBaud.Name = "cbBaud";
             this.toolTipSerial.SetToolTip(this.cbBaud, resources.GetString("cbBaud.ToolTip"));
@@ -160,6 +161,18 @@ namespace GRBL_Plotter
             this.pasteCodeFromClipboardToolStripMenuItem.Name = "pasteCodeFromClipboardToolStripMenuItem";
             resources.ApplyResources(this.pasteCodeFromClipboardToolStripMenuItem, "pasteCodeFromClipboardToolStripMenuItem");
             this.pasteCodeFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteCodeFromClipboardToolStripMenuItem_Click);
+            // 
+            // copySelectionToClipboardToolStripMenuItem
+            // 
+            this.copySelectionToClipboardToolStripMenuItem.Name = "copySelectionToClipboardToolStripMenuItem";
+            resources.ApplyResources(this.copySelectionToClipboardToolStripMenuItem, "copySelectionToClipboardToolStripMenuItem");
+            this.copySelectionToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectionToClipboardToolStripMenuItem_Click);
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // btnClear
             // 
@@ -406,18 +419,6 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.cBTelnet, "cBTelnet");
             this.cBTelnet.Name = "cBTelnet";
-            // 
-            // copySelectionToClipboardToolStripMenuItem
-            // 
-            this.copySelectionToClipboardToolStripMenuItem.Name = "copySelectionToClipboardToolStripMenuItem";
-            resources.ApplyResources(this.copySelectionToClipboardToolStripMenuItem, "copySelectionToClipboardToolStripMenuItem");
-            this.copySelectionToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectionToClipboardToolStripMenuItem_Click);
-            // 
-            // selectAllToolStripMenuItem
-            // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
-            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // ControlSerialForm
             // 

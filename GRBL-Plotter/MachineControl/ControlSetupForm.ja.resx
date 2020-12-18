@@ -2237,7 +2237,7 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
     <value>雑多</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>特殊な</value>
+    <value>Eメール</value>
   </data>
   <data name="cBShowStreamingProgress.Text" xml:space="preserve">
     <value>2D-Viewでストリーミングの進行状況を表示する</value>
@@ -2327,5 +2327,77 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
   </data>
   <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
     <value>行番号を追加する</value>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>頻繁な進捗状況の更新（分）</value>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>終了メッセージ</value>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="cbNotifierEnable.Text" xml:space="preserve">
+    <value>電子メール通知を有効にする</value>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>テストメールを送信する</value>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>件名</value>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>メールする</value>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>メールから</value>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>港</value>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>住所</value>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>SMTPサーバー</value>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>メールアカウントのSMTPサーバーアクセスを設定する
+注：多くの場合、「電子メールから」はSMTPメールボックスの電子メールと同じである必要があります。</value>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>通知機能</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>メール：安全上の理由から、「ゴミ箱」メールアカウントを使用する必要があります。パスワードを暗号化された形式で保存することはできません。
+
+Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用する必要があります。アクセストークンを暗号化された形式で保存することはできません。</value>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>安全上の注意</value>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>タイトルにストリーミングの進行状況を追加する</value>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>APIアクセストークン</value>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>チャネル（メモを送信するには空のままにします）</value>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>電子メール通知を有効にする</value>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>プッシュビュレット通知を有効にする</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>テストメッセージを送信する</value>
   </data>
 </root>

@@ -1361,9 +1361,14 @@ namespace GRBL_Plotter
             checkZEngraveExceed();
         }
 
-        private void cBGerberGeometryEnable_CheckedChanged(object sender, EventArgs e)
+        private void btn_notifierMail_Test_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(Notifier.sendMail("Mail sent via GRBL-Plotter [Setup - Program behavior - Notifier] at "+ DateTime.Now.ToString("yyyy-dd-MM h:mm:ss")));    // in Notifier.cs
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Notifier.pushBullet("Note sent via GRBL-Plotter [Setup - Program behavior - Notifier] at " + DateTime.Now.ToString("yyyy-dd-MM h:mm:ss")));    // in Notifier.cs
         }
     }
 }
