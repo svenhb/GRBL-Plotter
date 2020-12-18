@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.5.2.4</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.5.3.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -159,6 +159,9 @@
     <Compile Include="GCodeCreation\graphicClasses.cs" />
     <Compile Include="GCodeCreation\graphicRelatedHatchFill.cs" />
     <Compile Include="GCodeCreation\graphicRelatedTangential.cs" />
+    <Compile Include="GCodeCreation\graphicWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromCSV.cs" />
     <Compile Include="GCodeCreation\graphicRelated.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromGerber.cs" />
@@ -190,6 +193,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\MainFormImportWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\MainFormInterface.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
@@ -206,6 +212,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\Notifier.cs" />
     <Compile Include="GUI\splashscreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +260,9 @@
     </Compile>
     <Compile Include="MachineControl\GCodeParser.cs" />
     <Compile Include="MachineControl\GCodeTransform.cs" />
+    <Compile Include="MachineControl\GCodeVisuWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MachineControl\NativeMethods.cs" />
     <Compile Include="MachineControl\SerialPortFixer.cs" />
     <Compile Include="GUI\MainFormGetCodeTransform.cs">
@@ -1230,12 +1240,12 @@
   <ItemGroup>
     <PublishFile Include="data\hotkeys.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
