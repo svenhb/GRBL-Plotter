@@ -21,6 +21,7 @@
  * 2019-09-07 use plotter class
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2020-07-05 use new Graphic class
+ * 2020-12-09 line 127 no return of Gcode, must be picked up at Graphic.GCode
 */
 
 using System;
@@ -47,10 +48,10 @@ namespace GRBL_Plotter
             InitializeComponent();
         }
 
-        private string textgcode = "";
+//        private string textgcode = "";
 
-        public string textGCode
-        { get { return textgcode; } }
+//        public string textGCode
+//        { get { return textgcode; } }
 
         private void TextForm_Load(object sender, EventArgs e)
         {
@@ -118,13 +119,13 @@ namespace GRBL_Plotter
             GCodeFromFont.gcPauseLine = cBPauseLine.Checked;
             GCodeFromFont.gcConnectLetter = cBConnectLetter.Checked;
 
-            Graphic.Init(Graphic.SourceTypes.Text, "");
+            Graphic.Init(Graphic.SourceTypes.Text, "", null, null);
             Graphic.graphicInformation.OptionNodesOnly = false;
             Graphic.graphicInformation.OptionSortCode = false;
             Graphic.graphicInformation.OptionZFromWidth = false;
             
             GCodeFromFont.getCode();
-            textgcode = Graphic.CreateGCode();
+            Graphic.CreateGCode();      // result is saved as stringbuilder in Graphic.GCode;
         }
 
         // adapt line distance depending on font size

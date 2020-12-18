@@ -10,8 +10,9 @@
  *  barcode images from a string of data.            *
  * ***************************************************
  */
-
-
+/*
+ * 2020-12-16 Add dispose function for class Code93 and class Code128
+ */
 
 using System;
 using System.Collections;
@@ -1886,7 +1887,7 @@ namespace GRBL_Plotter.BarcodeCreation
     ///  Code 128 encoding
     ///  Written by: Brad Barnhill
     /// </summary>
-    class Code128 : BarcodeCommon, IBarcode
+    class Code128 : BarcodeCommon, IBarcode, IDisposable
     {
         public static char FNC1 = Convert.ToChar(200);
         public static char FNC2 = Convert.ToChar(201);
@@ -2379,6 +2380,29 @@ namespace GRBL_Plotter.BarcodeCreation
         }
 
         #endregion
+
+        // To detect redundant calls
+        private bool _disposed = false;
+        // Public implementation of Dispose pattern callable by consumers.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            { return; }
+
+            if (disposing)
+            {
+                // Dispose managed state (managed objects).
+                C128_Code.Dispose();
+            }
+            _disposed = true;
+        }
+
     }//class
 
     /// <summary>
@@ -2484,7 +2508,7 @@ namespace GRBL_Plotter.BarcodeCreation
     ///  Code 93 encoding
     ///  Written by: Brad Barnhill
     /// </summary>
-    class Code93 : BarcodeCommon, IBarcode
+    class Code93 : BarcodeCommon, IBarcode, IDisposable
     {
         private System.Data.DataTable C93_Code = new System.Data.DataTable("C93_Code");
 
@@ -2640,6 +2664,29 @@ namespace GRBL_Plotter.BarcodeCreation
         }
 
         #endregion
+
+        // To detect redundant calls
+        private bool _disposed = false;
+        // Public implementation of Dispose pattern callable by consumers.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            { return; }
+
+            if (disposing)
+            {
+                // Dispose managed state (managed objects).
+                C93_Code.Dispose();
+            }
+            _disposed = true;
+        }
+
     }//class
 
     /// <summary>

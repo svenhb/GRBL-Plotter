@@ -19,6 +19,7 @@
 /*
  * 2020-06-24 First version, using https://github.com/barnhill/barcodelib (but removed unneeded functions)
 				and using https://github.com/codebude/QRCoder
+ * 2020-12-09 line 166, 264 no return of Gcode, must be picked up at Graphic.GCode
 */
 
 using System;
@@ -33,9 +34,9 @@ namespace GRBL_Plotter
 {
     public partial class GCodeForBarcode : Form
     {
-        private  string barcodegcode = "";
-        public  string barcodeGCode
-        { get { return barcodegcode; } }
+//        private  string barcodegcode = "";
+//        public  string barcodeGCode
+//        { get { return barcodegcode; } }
 
         private System.Drawing.Bitmap qrCodeImage = null;
         private System.Drawing.Image barcodeImage = null;
@@ -63,7 +64,7 @@ namespace GRBL_Plotter
 
         private void btnCheckBarcode1D_Click(object sender, EventArgs e)
         {   Logger.Trace("Check Barcode Type:{0} Text:{1}", ((BarcodeCreation.TYPE)comboBox1.SelectedIndex).ToString(), textBox1.Text);
-            barcodegcode = "";
+ //           barcodegcode = "";
             BarcodeCreation.Barcode b = new BarcodeCreation.Barcode();
             barcodeImage = b.Encode((BarcodeCreation.TYPE)comboBox1.SelectedIndex, textBox1.Text);//, Color.Black, Color.White, 200, 100);
 
@@ -76,7 +77,7 @@ namespace GRBL_Plotter
         }
         public void btnGenerateBarcode_Click(object sender, EventArgs e)
         {   Logger.Trace("Generate Barcode Type:{0} Text:{1}", ((BarcodeCreation.TYPE)comboBox1.SelectedIndex).ToString(), textBox1.Text);
-            barcodegcode = "";
+//            barcodegcode = "";
             BarcodeCreation.Barcode b = new BarcodeCreation.Barcode();
             barcodeImage = b.Encode((BarcodeCreation.TYPE)comboBox1.SelectedIndex, textBox1.Text);//, Color.Black, Color.White, 200, 100);
 
@@ -91,7 +92,7 @@ namespace GRBL_Plotter
 
         private void generateGCode1D(string code, string type, double width, double height)
         { 	
-			Graphic.Init(Graphic.SourceTypes.Barcode, "");
+			Graphic.Init(Graphic.SourceTypes.Barcode, "", null, null);
 			Graphic.graphicInformation.ResetOptions(false);
             Graphic.graphicInformation.SetGroup(Graphic.GroupOptions.ByType, Graphic.SortOptions.none);
 
@@ -162,7 +163,7 @@ namespace GRBL_Plotter
                     last1 = false;
                 }
             }
-            barcodegcode = Graphic.CreateGCode();
+            Graphic.CreateGCode();      // result is saved as stringbuilder in Graphic.GCode;
         }
 
         private void btnCheckBarcode2D_Click(object sender, EventArgs e)
@@ -176,7 +177,7 @@ namespace GRBL_Plotter
             generateGCode2D();
         }
         private void generateQR()
-        {   barcodegcode = "";
+        {   //barcodegcode = "";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData;
 
@@ -217,7 +218,7 @@ namespace GRBL_Plotter
         public void generateGCode2D()
         {
             Cursor.Current = Cursors.WaitCursor;
-            Graphic.Init(Graphic.SourceTypes.Barcode, "");
+            Graphic.Init(Graphic.SourceTypes.Barcode, "", null, null);
 			Graphic.graphicInformation.ResetOptions(false);
             Graphic.graphicInformation.SetGroup(Graphic.GroupOptions.ByType, Graphic.SortOptions.none);
 
@@ -260,7 +261,7 @@ namespace GRBL_Plotter
 				Graphic.AddLine(new System.Windows.Point(-scanGap, -scanGap)); 
 				Graphic.StopPath();
 			}
-            barcodegcode = Graphic.CreateGCode();
+            Graphic.CreateGCode();      // result is saved as stringbuilder in Graphic.GCode;
         }
 
         private  bool lastWasBlack = false;

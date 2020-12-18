@@ -14,6 +14,7 @@
 /*
  * 2020-06-22 removed unneeded functions
  * 2020-06-22 replaced Exceptions by MyException
+ * 2020-12-16 Line 1278 'repair' dispose function
  */
 
 
@@ -964,7 +965,7 @@ namespace GRBL_Plotter.BarcodeCreation
                         SaveImage(ms, savetype);
                         imageData = ms.ToArray();
                         ms.Flush();
-                        ms.Close();
+          //              ms.Close();
                     }//using
                 }//if
             }//try
@@ -1271,11 +1272,19 @@ namespace GRBL_Plotter.BarcodeCreation
         }
 
         #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        // To detect redundant calls
+        private bool _disposed = false;
+        // Public implementation of Dispose pattern callable by consumers.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (_disposed)
+            { return; }
             {
                 if (disposing)
                 {
@@ -1284,8 +1293,8 @@ namespace GRBL_Plotter.BarcodeCreation
 
                 // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
                 // TODO: set large fields to null.
+                _LabelFont.Dispose();
 
-                disposedValue = true;
                 LabelFont?.Dispose();
                 LabelFont = null;
 
@@ -1298,21 +1307,7 @@ namespace GRBL_Plotter.BarcodeCreation
                 _Country_Assigning_Manufacturer_Code = null;
                 _ImageFormat = null;
             }
-        }
-
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        // ~Barcode() {
-        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-        //   Dispose(false);
-        // }
-
-        // This code added to correctly implement the disposable pattern.
-        void IDisposable.Dispose()
-        {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(true);
-            // TODO: uncomment the following line if the finalizer is overridden above.
-            // GC.SuppressFinalize(this);
+            _disposed = true;
         }
         #endregion
 
