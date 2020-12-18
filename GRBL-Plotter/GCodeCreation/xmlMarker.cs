@@ -20,6 +20,7 @@
  * 2020-06-14 move class into sperate file
  * 2020-06-15 add 'Header'
  * 2020-08-04 add figureNr, penWidth
+ * 2020-12-16 add Tile
 */
 
 using System;
@@ -30,9 +31,11 @@ using System.Text;
 
 namespace GRBL_Plotter
 {
-    public enum xmlMarkerType { none, Group, Figure, Path, Pass, Contour, Fill, Line };
+    public enum xmlMarkerType { none, Tile, Group, Figure, Path, Pass, Contour, Fill, Line };
     public static class xmlMarker
-    {
+    {   // order by hierachy / importance
+        public const string tileStart = "<Tile";
+        public const string tileEnd = "</Tile";
         public const string groupStart = "<Group";
         public const string groupEnd = "</Group";
         public const string figureStart = "<Figure";
@@ -82,12 +85,15 @@ namespace GRBL_Plotter
 
         private static List<BlockData> listFigures = new List<BlockData>();
         private static List<BlockData> listGroups = new List<BlockData>();
+        private static List<BlockData> listTiles = new List<BlockData>();
 		
         public static BlockData tmpFigure = new BlockData();
         public static BlockData tmpGroup = new BlockData();
+        public static BlockData tmpTile = new BlockData();
 		
         public static BlockData lastFigure = new BlockData();
         public static BlockData lastGroup = new BlockData();
+        public static BlockData lastTile = new BlockData();
         public static BlockData header = new BlockData();
         public static BlockData footer = new BlockData();
 
@@ -101,7 +107,7 @@ namespace GRBL_Plotter
 
         public static void Reset()
         {
-            listFigures.Clear(); listGroups.Clear();
+            listFigures.Clear(); listGroups.Clear(); listTiles.Clear();
             header.lineStart = 0; header.lineEnd = 999999;
             footer.lineStart = footer.lineEnd = 0;
 			
@@ -340,6 +346,9 @@ namespace GRBL_Plotter
             return -1;
         }
 
+
+
+/*************************************************************************************/
         public static void AddFigure(int lineStart, string element, int figureNr)
         {
             tmpFigure = setBlockData(lineStart, element, figureNr);
@@ -519,6 +528,7 @@ namespace GRBL_Plotter
             return false;
         }
 
+/**********************************************************************************/
         public static void AddGroup(int lineStart, string element, int figureNr)
         {   tmpGroup = setBlockData(lineStart, element, figureNr);
             if (logEnable) Logger.Trace("AddGroup color:{0}  width{1}",tmpGroup.penColor, tmpGroup.penWidth);
@@ -634,6 +644,83 @@ namespace GRBL_Plotter
             return false;
         }
 
+/*************************************************************************************/
+        public static void AddTile(int lineStart, string element, int figureNr)
+        {   tmpTile = setBlockData(lineStart, element, figureNr);
+            if (logEnable) Logger.Trace("AddTile ");
+        }
+
+        public static void FinishTile(int lineEnd)
+        {   tmpTile.lineEnd = lineEnd;
+            listTiles.Add(tmpTile);
+            footer.lineStart = footer.lineEnd = Math.Max(footer.lineStart, lineEnd);   // highest block-line = start of footer
+        }
+        public static int GetTileCount()
+        { return listTiles.Count; }
+
+        public static bool GetTile(int lineNr, int search = 0)
+        {
+            if (listTiles.Count > 0)
+            {
+                if (search <= -1)     // search start/end before actual block
+                {
+                    BlockData tmp = listTiles[0];
+                    if ((lineNr >= tmp.lineStart) && (lineNr <= tmp.lineEnd))   // actual block is first block
+                        return false;
+
+                    lastTile.lineStart = listTiles[0].lineStart;
+                    for (int i = 1; i < listTiles.Count; i++)
+                    {
+                        if ((lineNr >= listTiles[i].lineStart) && (lineNr <= listTiles[i].lineEnd))
+                        {
+                            lastTile.lineEnd = listTiles[i - 1].lineEnd;
+                            if (search == -1)
+                                lastTile.lineStart = listTiles[i - 1].lineStart;
+                            return true;
+                        }
+                    }
+                }
+                else if (search >= 1)     // search start/end before actual block
+                {
+                    BlockData tmp = listTiles[listTiles.Count - 1];
+                    if ((lineNr >= tmp.lineStart) && (lineNr <= tmp.lineEnd))   // actual block is last block
+                        return false;
+
+                    lastTile.lineEnd = listTiles[listTiles.Count - 1].lineEnd;
+                    for (int i = listTiles.Count - 1; i >= 0; i--)
+                    {
+                        if ((lineNr >= listTiles[i].lineStart) && (lineNr <= listTiles[i].lineEnd))
+                        {
+                            lastTile.lineStart = listTiles[i + 1].lineStart;
+                            if (search == 1)
+                                lastTile.lineEnd = listTiles[i + 1].lineEnd;
+                            return true;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (BlockData tmp in listTiles)
+                    {
+                        if ((lineNr >= tmp.lineStart) && (lineNr <= tmp.lineEnd))
+                        {
+                            lastTile = tmp;
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        public static bool isFoldingMarkerTile(int line)
+        {
+            foreach (BlockData tmp in listTiles)
+            {
+                if ((line == tmp.lineStart) || (line == tmp.lineEnd))
+                { return true; }
+            }
+            return false;
+        }
 
     }
 }

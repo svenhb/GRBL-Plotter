@@ -74,13 +74,12 @@ namespace GRBL_Plotter
         public static void CleanUp()
 		{	Logger.Trace("CleanUp()");
 			gcodeString.Clear();
-			finalGcodeString.Clear();
+            gcodeString.Length = 0;
+            finalGcodeString.Clear();
 		}
 
         public static void Init()
-        {
-
-            logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
+        {   logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level3) > 0);
             logDetailed = logEnable && ((logFlags & (uint)LogEnable.Detailed) > 0);
             logCoordinates = logEnable && ((logFlags & (uint)LogEnable.Coordinates) > 0);
@@ -99,30 +98,75 @@ namespace GRBL_Plotter
             FigureEndTagWasSet  = true;
             gcode.setup();                              // initialize GCode creation (get stored settings for export)
 			pathInfo = new PathInformation();
-			
-    /*        if (!Properties.Settings.Default.importGroupObjects)       // Load initial tool
-            {   toolProp tmpTool = toolTable.getToolProperties((int)Properties.Settings.Default.importGCToolDefNr);
-                gcode.Tool(gcodeString, tmpTool.toolnr, tmpTool.name);    // add tool change commands (if enabled) and set XYFeed etc.
-            }*/
+        }
+
+        /// <summary>
+        /// Create GCode from tiles, no further sorting needed.
+        /// </summary>		
+        private static int mainGroupID = 0;
+        public static bool CreateGCode(List<Graphic.TileObject> tiledGraphic, List<string> headerInfo, Graphic.GraphicInformation graphicInfo)    
+        {   string xmlTag = "";
+            int iDToSet = 1;
+            mainGroupID = 0;
+            
+			if (logEnable) Logger.Trace("-CreateGCode from Tiles");
+            
+            Init();                                         // initalize variables, toolTable.init(), gcode.setup()
+            foreach (string info in headerInfo)		        // set header info
+            {   gcode.AddToHeader(info); }
+            gcode.jobStart(finalGcodeString, "StartJob");
+
+            foreach (TileObject tileObject in tiledGraphic)
+            {   
+                xmlTag = string.Format("{0} Id=\"{1}\" Pos=\"{2}\">", xmlMarker.tileStart, iDToSet, tileObject.key);
+				gcode.Comment(finalGcodeString, xmlTag);
+                if (logEnable) Logger.Trace("-CreateGCode {0} ", xmlTag);
+
+                if (tileObject.tileRelatedGCode != "")
+                {   string[] commands= { };
+                    commands = tileObject.tileRelatedGCode.Split(';'); 
+                    foreach (string cmd in commands)
+                    {   
+                        finalGcodeString.AppendLine(cmd);
+                    }
+                }
+                
+                if (graphicInfo.GroupEnable)
+                    CreateGCode(tileObject.tile, headerInfo, graphicInfo, true);      // create grouped code
+                else
+                    CreateGCode(tileObject.groupPath, headerInfo, graphicInfo, true);      // create grouped code
+                
+                gcode.Comment(finalGcodeString, xmlMarker.tileEnd + ">"); 
+                iDToSet++;                
+            }      
+            
+            gcode.jobEnd(finalGcodeString, "EndJob");       // Spindle / laser off
+            
+            return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
         }
 
         /// <summary>
         /// Create GCode from already sorted groups, no further sorting needed.
         /// </summary>		
-        public static string CreateGCode(List<Graphic.GroupObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformation graphicInfo)    //("DXF import", txt); 
+        public static bool CreateGCode(List<Graphic.GroupObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformation graphicInfo, bool useTiles = false)    
         {
-            Init();                                 // initalize variables, toolTable.init(), gcode.setup()
+//            Init();                                 // initalize variables, toolTable.init(), gcode.setup()
 			overWriteId = graphicInfo.ReProcess;	// keep IDs from previous conversion
             useIndividualZ = graphicInfo.OptionZFromWidth;
-            foreach (string info in headerInfo)		// set header info
-            { 	gcode.AddToHeader(info); }
+		
+			if (logEnable) Logger.Trace("-CreateGCode from Groups");
+            
+            if (!useTiles)
+            {   Init();                                 // initalize variables, toolTable.init(), gcode.setup()
+                foreach (string info in headerInfo)		// set header info
+                {   gcode.AddToHeader(info); }
+                gcode.jobStart(finalGcodeString, "StartJob");
+                mainGroupID = 0;
+            }
 
-            int groupID = 0;
+            int groupID = mainGroupID;
 			int iDToSet = 0;
 			string groupAttributes;
-			
-			if (logEnable) Logger.Trace("-CreateGCode from Groups");
-            gcode.jobStart(finalGcodeString, "StartJob");
 
             foreach (GroupObject groupObject in completeGraphic)
             {	groupAttributes = getGroupAttributes(groupObject, graphicInfo);
@@ -137,18 +181,9 @@ namespace GRBL_Plotter
 				gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\"{2}>", xmlMarker.groupStart, iDToSet, groupAttributes));
                 if (logEnable) Logger.Trace("-CreateGCode {0} Id=\"{1}\"{2}>", xmlMarker.groupStart, iDToSet, groupAttributes);
 
-                if (graphicInfo.GroupOption == GroupOptions.ByTile)
-                {
-                    if (logEnable) Logger.Trace("-CreateGCode  try to insert Tile command {0}", groupObject.key);
-                    if (Graphic.tileCommands.ContainsKey(groupObject.key))
-                    { finalGcodeString.AppendLine(Graphic.tileCommands[groupObject.key]); }
-                }
-                else
-                {
-                    if (logEnable) Logger.Trace("CreateGCode-Group  toolNr:{0}  name:{1}", groupObject.toolNr, groupObject.toolName);
+                if (logEnable) Logger.Trace("CreateGCode-Group  toolNr:{0}  name:{1}", groupObject.toolNr, groupObject.toolName);
+                ToolChange(groupObject.toolNr, groupObject.toolName);   // add tool change commands (if enabled) and set XYFeed etc.
 
-                    ToolChange(groupObject.toolNr, groupObject.toolName);   // add tool change commands (if enabled) and set XYFeed etc.
-                }
                 foreach (PathObject pathObject in groupObject.groupPath)
                 {
                     if (logEnable) Logger.Trace(" ProcessPathObject id:{0} ", pathObject.Info.id);
@@ -162,22 +197,31 @@ namespace GRBL_Plotter
                 gcode.Comment(finalGcodeString, xmlMarker.groupEnd + ">"); 
                 if (logEnable) Logger.Trace("-CreateGCode {0} >", xmlMarker.groupEnd);
             }
-            gcode.jobEnd(finalGcodeString, "EndJob");       // Spindle / laser off
-            return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
+            mainGroupID = groupID;
+            if (!useTiles)
+            {   gcode.jobEnd(finalGcodeString, "EndJob");       // Spindle / laser off
+                return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
+            }
+            else
+                return true;        // go on with next tile
         }
 
         /// <summary>
         /// Create GCode from already sorted paths, no further sorting needed.
         /// </summary>		
-        public static string CreateGCode(List<Graphic.PathObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformation graphicInfo)    //("DXF import", txt); 
+        public static bool CreateGCode(List<Graphic.PathObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformation graphicInfo, bool useTiles = false)    
         {
-            Init();        							// initalize variables, toolTable.init(), gcode.setup()
+//            Init();        							// initalize variables, toolTable.init(), gcode.setup()
 			overWriteId = graphicInfo.ReProcess;	// keep IDs from previous conversion
 			useIndividualZ = graphicInfo.OptionZFromWidth;
-            foreach (string info in headerInfo)		// set header info
-            {   gcode.AddToHeader(info);  }         
 
 			if (logEnable) Logger.Trace("-CreateGCode from paths");
+
+            if (!useTiles)
+            {   Init();                                 // initalize variables, toolTable.init(), gcode.setup()
+                foreach (string info in headerInfo)		// set header info
+                {   gcode.AddToHeader(info); }
+            }
 
             int toolNr = 1;
             string toolName = "";
@@ -188,8 +232,7 @@ namespace GRBL_Plotter
                 if (Properties.Settings.Default.importDXFToolIndex)
                 {   toolNr = pathObject.Info.penColorId + 1; }     // avoid ID=0 to start tool-table with index 1
                 else
-                {
-                    toolColor = pathObject.Info.groupAttributes[(int)GroupOptions.ByColor];
+                {   toolColor = pathObject.Info.groupAttributes[(int)GroupOptions.ByColor];
                     toolNr = toolTable.getToolNrByToolColor(toolColor, 0);
                 }
 
@@ -207,11 +250,18 @@ namespace GRBL_Plotter
             }
             PenUp(" CreateGCode 2", true);    // set xmlMarker.figureEnd
 
-            gcode.jobStart(finalGcodeString, "StartJob");
-            finalGcodeString.Append(gcodeString);
-            gcode.jobEnd(finalGcodeString, "EndJob");      // Spindle / laser off
-
-            return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
+            if (!useTiles)
+            {
+                gcode.jobStart(finalGcodeString, "StartJob");
+                finalGcodeString.Append(gcodeString);
+                gcode.jobEnd(finalGcodeString, "EndJob");      // Spindle / laser off
+                return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
+            }
+            else
+            {
+                finalGcodeString.Append(gcodeString);
+                return true;    // go on with next tile
+            }
         }
 
 //convert graphic to gcode ##################################################################
@@ -632,28 +682,30 @@ namespace GRBL_Plotter
         /// <summary>
         /// add header and footer, return string of gcode
         /// </summary>
-        public static string FinalGCode(string titel, string file)
+        public static bool FinalGCode(string titel, string file)
         {
             Logger.Trace("FinalGCode() ");
-            string header = string.Format("( Use case: {0} )\r\n", Properties.Settings.Default.useCaseLastLoaded);
-            header += gcode.GetHeader(titel, file);
-
-            string footer = gcode.GetFooter();
-            string output = "";
-
+            StringBuilder header = new StringBuilder();
+            StringBuilder footer = new StringBuilder(gcode.GetFooter());
+            StringBuilder output = new StringBuilder();
+            
+            header.AppendFormat("( Use case: {0} )\r\n", Properties.Settings.Default.useCaseLastLoaded);
+            header.Append(gcode.GetHeader(titel, file));
 
             if (Properties.Settings.Default.importRepeatEnable && Properties.Settings.Default.importRepeatComplete)      // repeat code x times
             {   for (int i = 0; i<Properties.Settings.Default.importRepeatCnt; i++)
-                    output += finalGcodeString.ToString().Replace(',', '.');
-
-                header += output + footer;
+                    output.Append(finalGcodeString);
+                header.Append(output);
+                header.Append(footer);
             }
             else
-                header += finalGcodeString.ToString().Replace(',', '.') + footer;
+            {   header.Append(finalGcodeString);
+                header.Append(footer);
+            }
 
             if (Properties.Settings.Default.ctrlLineNumbers || Properties.Settings.Default.ctrlLineEndEnable)
             {   int n = 1;
-                string[] lines = header.Split('\n');
+                string[] lines = header.ToString().Split('\n');
                 string end = "";
                 if (Properties.Settings.Default.ctrlLineEndEnable)
                     end = Properties.Settings.Default.ctrlLineEndText;
@@ -664,9 +716,11 @@ namespace GRBL_Plotter
                     else
                         lines[i] = string.Format("{0}{1}", lines[i].Trim(), end);
                 }
-                header = String.Join("\n", lines);
+                header.Clear();
+                header.Append(String.Join("\n", lines));
             }
-            return header;
+            Graphic.GCode = header.Replace(',', '.');
+            return true;  
         }
 
         /// <summary>

@@ -18,6 +18,7 @@
 */
 /*
  * 2020-07-05 new class to collect graphic primitives
+ * 2020-12-03 add notification event args
 */
 
 using System;
@@ -28,6 +29,11 @@ using System.Globalization;
 
 namespace GRBL_Plotter
 {
+    public class MyUserState
+    {
+        public int Value { get; set; }
+        public string Content { get; set; }
+    }
 
     public static partial class Graphic
     {
@@ -166,6 +172,42 @@ namespace GRBL_Plotter
         }
 
         /// <summary>
+        /// Collect 'GroupObject' to build a tile
+        /// </summary>		
+        public class TileObject
+        {
+            public string key = "";     // value of collected penColor, penWidth, Layer or TileNr
+            public string tileRelatedGCode = "";
+            public List<GroupObject> tile;      // either collect groups 
+            public List<PathObject> groupPath;  // or paths
+            protected int tileId;		// track GCode group-id
+
+            public TileObject()
+            {
+                tile = new List<GroupObject>();
+                groupPath = new List<PathObject>();
+                tileRelatedGCode = "";
+				tileId = -1;
+            }
+            public TileObject(string tmpKey, string comand)//, PathObject pathObject)
+            {
+                key = tmpKey;
+                tileRelatedGCode = comand;
+				tileId = -1;
+
+                tile = new List<GroupObject>();
+                groupPath = new List<PathObject>();
+        //        groupPath = new List<PathObject>();
+        //        groupPath.Add(pathObject);
+            }
+			
+            public int TileId             // Tile Id from graphic2Gcode?
+            {   get { return tileId; }
+                set { tileId = value; }
+            }
+        }
+
+        /// <summary>
         /// Collect 'PathObject' to build a group
         /// </summary>		
         public class GroupObject
@@ -200,6 +242,20 @@ namespace GRBL_Plotter
                 groupPath = new List<PathObject>();
                 groupPath.Add(pathObject);
                 AddInfo(pathObject);
+            }
+            public GroupObject(GroupObject tmp)
+            {
+                key = tmp.key;
+                toolNr = tmp.toolNr;
+                toolName = tmp.toolName;
+                groupRelatedGCode = tmp.groupRelatedGCode;
+                pathDimension = new Dimensions();
+                pathDimension.addDimensionXY(tmp.pathDimension);
+				groupId = tmp.groupId;
+
+                groupPath = new List<PathObject>();
+                foreach(PathObject tmpPath in tmp.groupPath)
+                {   groupPath.Add(tmpPath);  }                            
             }
 
             public void AddInfo(PathObject pathObject)
