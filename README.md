@@ -11,7 +11,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.5.2.4](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-11-22     
+#### [GRBL-Plotter Vers. 1.5.3.0](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2020-12-19     
 
 ### Requirements for compiling
 * VisualStudio 2015 
@@ -60,6 +60,8 @@ Zip folder contains ClickOnce application setup. Exe can be found in sub-folder 
 * Add angle information for tangential axis 
 * Add hatch fill to closed paths 
 * Repeat closed path for a small distance (for laser cutter)
+* Group code by graphic-properties: layers, colors, pen-widths  
+* Tile the graphic 
  
 #### GCode manipulation:  
 * Transformation of GCodes (scale, rotation, mirror, zero-Offset)  
@@ -84,7 +86,8 @@ any A,B,C,U,V,W commands will stay in place.
 * Internal variable to support probing, e.g.:
   - G38.3 Z-50		(probe toward tool length sensor, stop on contact - because of deceleration stop-pos. is not trigger-pos.)
   - G43.1 Z@PRBZ	(Offset Tool with value stored on trigger of sensor switch)
-  - examine SerialForm.cs for implementation
+  - examine SerialForm.cs for implementation  
+* Progress notification via email or pushbullet 
   
 #### GRBL:  
 * Automatic reconnect on program start  
