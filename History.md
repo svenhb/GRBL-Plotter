@@ -1,6 +1,11 @@
 ## History
 Needs to be read from the bottom up ;-)  
  
+### 2020-12-19 Version 1.5.3.0    
+* Add XML-Tag for tiles 
+* Notification via email or pushbullet about streaming process [Setup - Program behavior - Notifier] 
+* Improoved handling when importing large graphic files 
+ 
 ### 2020-10-22 Version 1.5.2.1    
 Custom-Buttons in color, right-click for edit, predefinitions
   
