@@ -119,6 +119,7 @@ namespace GRBL_Plotter
             GCodeFromFont.gcPauseLine = cBPauseLine.Checked;
             GCodeFromFont.gcConnectLetter = cBConnectLetter.Checked;
 
+            Graphic.CleanUp();
             Graphic.Init(Graphic.SourceTypes.Text, "", null, null);
             Graphic.graphicInformation.OptionNodesOnly = false;
             Graphic.graphicInformation.OptionSortCode = false;

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
  * 2019-06-14 add code markers: xmlMarker.figureStart
  * 2019-08-15 add logger
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+ * 2020-12-20 bug fix: missing xmlMarker.passEnd if cBNoZUp.Checked
+ * 2020-12-23 bug fix: rect-pocket innerst path some times missing
 */
 
 using System;
@@ -83,7 +85,7 @@ namespace GRBL_Plotter
             dTool = (float)nUDToolDiameter.Value;               // tool diameter;
             overlap = dTool * (float)nUDToolOverlap.Value/100;  // tool overlap
             if (rBToolpath1.Checked) { dTool = 0; }             // engrave
-            if (rBToolpath3.Checked) { dTool = -dTool; }        // outside
+            if (rBToolpath3.Checked) { dTool = -dTool; }        // inside
             rTool = dTool / 2;                                  // tool radius
 
             int counter=0,safety = 100;
@@ -113,8 +115,9 @@ namespace GRBL_Plotter
                     {    overlap = (float)(Math.Min(x, y) / 2.1); }
 
                     //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
-                    if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
-                    {   gcode.PenUp(gcodeString);
+                    if (!(zStepCount++ == 0) )     // move up the 1st time 
+                    {
+                        if(!cBNoZUp.Checked) gcode.PenUp(gcodeString);
                         if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ "  " + passCount.ToString() + ">");
                     }
                     passCount++;
@@ -134,11 +137,11 @@ namespace GRBL_Plotter
                     {   if ((x > Math.Abs(dTool)) && (y > Math.Abs(dTool)))      // wide enough for pocket
                         {
                             dx = overlap; dy = overlap;
-                            while (((dx < x / 2) && (dy < y / 2)) && (counter++ < safety))
+                            while (((dx < (x + overlap)/ 2) && (dy < (y + overlap) / 2)) && (counter++ < safety))
                             {
                                 makeRect(offsetX + dx, offsetY + dy, offsetX + x - dx, offsetY + y - dy, 0, false);  // rectangle clockwise
                                 dx += overlap; dy += overlap;
-                                if ((dx < x / 2) && (dy < y / 2))
+                                if ((dx < (x + overlap) / 2) && (dy < (y + overlap) / 2))
                                     gcode.MoveTo(gcodeString, offsetX + dx, offsetY + dy, "Pocket");
                             }
                             if (cBNoZUp.Checked)
@@ -175,8 +178,9 @@ namespace GRBL_Plotter
                         zStep = (float)nUDImportGCZDown.Value;
 
                     //                    if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
-                    if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
-                    {   gcode.PenUp(gcodeString);
+                    if (!(zStepCount++ == 0))     // move up the 1st time 
+                    {
+                        if (!cBNoZUp.Checked) gcode.PenUp(gcodeString);
                         if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
                     }
                     passCount++;
@@ -195,14 +199,14 @@ namespace GRBL_Plotter
                     if (cBToolpathPocket.Checked)
                     {
                         dx = overlap; dy = overlap; rDelta = rShape - overlap;
-                        while (((dx < x / 2) && (dy < y / 2)) && (counter++ < safety))
+                        while (((dx < (x + overlap) / 2) && (dy < (y + overlap) / 2)) && (counter++ < safety))
                         {
                             makeRect(offsetX + dx, offsetY + dy, offsetX + x - dx, offsetY + y - dy, rDelta, false);  // rectangle clockwise
                             dx += overlap; dy += overlap; rDelta -= overlap;
-                            if (dx > x / 2) { dx = x / 2; }
-                            if (dy > x / 2) { dy = y / 2; }
-                            if (rDelta < 0) { rDelta = 0; }
-                            if ((dx < x / 2) && (dy < y / 2))
+                            if (dx > (x + overlap) / 2) { dx = (x + overlap) / 2; }
+                            if (dy > (x + overlap) / 2) { dy = (y + overlap) / 2; }
+                            if (rDelta < overlap) { rDelta = 0; }
+                            if ((dx < (x + overlap) / 2) && (dy < (y + overlap) / 2))
                                 gcode.MoveTo(gcodeString, offsetX + dx, offsetY + dy + rDelta, "");
                         }
                         if (cBNoZUp.Checked)
@@ -233,8 +237,9 @@ namespace GRBL_Plotter
                 while (zStep > (float)nUDImportGCZDown.Value)
                 {
                     //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
-                    if (!(zStepCount++ == 0) && !cBNoZUp.Checked)     // move up the 1st time 
-                    {   gcode.PenUp(gcodeString);
+                    if (!(zStepCount++ == 0) )     // move up the 1st time 
+                    {
+                        if (!cBNoZUp.Checked) gcode.PenUp(gcodeString);
                         if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
                     }
                     passCount++;

@@ -34,10 +34,6 @@ namespace GRBL_Plotter
 {
     public partial class GCodeForBarcode : Form
     {
-//        private  string barcodegcode = "";
-//        public  string barcodeGCode
-//        { get { return barcodegcode; } }
-
         private System.Drawing.Bitmap qrCodeImage = null;
         private System.Drawing.Image barcodeImage = null;
 
@@ -91,8 +87,9 @@ namespace GRBL_Plotter
         }
 
         private void generateGCode1D(string code, string type, double width, double height)
-        { 	
-			Graphic.Init(Graphic.SourceTypes.Barcode, "", null, null);
+        {
+            Graphic.CleanUp();
+            Graphic.Init(Graphic.SourceTypes.Barcode, "", null, null);
 			Graphic.graphicInformation.ResetOptions(false);
             Graphic.graphicInformation.SetGroup(Graphic.GroupOptions.ByType, Graphic.SortOptions.none);
 
@@ -218,12 +215,12 @@ namespace GRBL_Plotter
         public void generateGCode2D()
         {
             Cursor.Current = Cursors.WaitCursor;
+            Graphic.CleanUp();
             Graphic.Init(Graphic.SourceTypes.Barcode, "", null, null);
 			Graphic.graphicInformation.ResetOptions(false);
             Graphic.graphicInformation.SetGroup(Graphic.GroupOptions.ByType, Graphic.SortOptions.none);
 
             Graphic.SetHeaderInfo(string.Format(" QR-Code text :{0} ", tBQRText.Text));
-  //          Graphic.SetHeaderInfo(string.Format(" QR-Code width:{0} height:{1}", width, height));
 
             lastWasBlack = false;
             int xwidth = (int)nUDLines2D.Value;
