@@ -47,26 +47,26 @@ namespace GRBL_Plotter
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle108 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle109 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle110 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle111 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle112 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle113 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle114 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlSetupForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl_Level1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl1_Level2 = new System.Windows.Forms.TabControl();
@@ -77,60 +77,143 @@ namespace GRBL_Plotter
             this.label26 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.tBGerberGeometryM19 = new System.Windows.Forms.TextBox();
+            this.tBGerberGeometryKnife = new System.Windows.Forms.TextBox();
+            this.tBGerberGeometryPen = new System.Windows.Forms.TextBox();
+            this.cBGerberGeometryEnable = new System.Windows.Forms.CheckBox();
             this.tab1_3gB6 = new System.Windows.Forms.GroupBox();
+            this.tBLineEndText = new System.Windows.Forms.TextBox();
+            this.cBLineEndEnable = new System.Windows.Forms.CheckBox();
+            this.cBCodeCreationLineNumbers = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.tab1_1gB3 = new System.Windows.Forms.GroupBox();
+            this.cBImportDXFSwitchWhite = new System.Windows.Forms.CheckBox();
+            this.cBImportDXFIndexToolNr = new System.Windows.Forms.CheckBox();
             this.tab1_1gB2 = new System.Windows.Forms.GroupBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.nUDSVGScale = new System.Windows.Forms.NumericUpDown();
             this.tab1_1lbl3 = new System.Windows.Forms.Label();
             this.cBImportSVG_DPI_72 = new System.Windows.Forms.RadioButton();
+            this.cBImportSVG_DPI_96 = new System.Windows.Forms.RadioButton();
+            this.cBImportSVGResize = new System.Windows.Forms.CheckBox();
             this.lblSVGScale = new System.Windows.Forms.Label();
             this.tabPage17 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.gBCreateZValue = new System.Windows.Forms.GroupBox();
             this.lblImportPenWidthToZWarning = new System.Windows.Forms.Label();
+            this.cBImportPenWidthToZRamp = new System.Windows.Forms.CheckBox();
+            this.cBImportSVGCircleToDotZ = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.cBImportSVGCircleToDot = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.cBImportPenWidthToZ = new System.Windows.Forms.CheckBox();
+            this.nUDImportPenWidthToZMin = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
+            this.nUDImportPenWidthToZMax = new System.Windows.Forms.NumericUpDown();
+            this.cBDashedLine2 = new System.Windows.Forms.CheckBox();
+            this.cBImportSVGNodesOnly = new System.Windows.Forms.CheckBox();
+            this.cBDashedLine1 = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.nUDImportRepeat = new System.Windows.Forms.NumericUpDown();
             this.rBImportSVGRepeat2 = new System.Windows.Forms.RadioButton();
+            this.rBImportSVGRepeat1 = new System.Windows.Forms.RadioButton();
+            this.cBImportSVGRepeat = new System.Windows.Forms.CheckBox();
             this.label58 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.cBImportSVGComments = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cBImportSVGPauseE = new System.Windows.Forms.CheckBox();
+            this.cBImportSVGPauseP = new System.Windows.Forms.CheckBox();
             this.tab1_1gB1 = new System.Windows.Forms.GroupBox();
+            this.cBImportGraphicSortDistanceRotatePath = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.nUDImportGCSegment = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportReduce = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportSVGSegemnts = new System.Windows.Forms.NumericUpDown();
             this.tab1_1_2lbl2 = new System.Windows.Forms.Label();
+            this.cBImportGCNoArcs = new System.Windows.Forms.CheckBox();
+            this.cBImportGraphicOffsetOrigin = new System.Windows.Forms.CheckBox();
+            this.cBImportGraphicSortDistance = new System.Windows.Forms.CheckBox();
+            this.cBImportUnitGCode = new System.Windows.Forms.CheckBox();
             this.rBImportUnitInch = new System.Windows.Forms.RadioButton();
             this.tab1_1lbl1 = new System.Windows.Forms.Label();
+            this.rBImportUnitmm = new System.Windows.Forms.RadioButton();
+            this.cBImportSVGReduce = new System.Windows.Forms.CheckBox();
             this.tab1_1lbl2 = new System.Windows.Forms.Label();
             this.tabPage20 = new System.Windows.Forms.TabPage();
             this.tab1_3gB8 = new System.Windows.Forms.GroupBox();
+            this.nUDPathOverlapValue = new System.Windows.Forms.NumericUpDown();
+            this.cBPathOverlapEnable = new System.Windows.Forms.CheckBox();
             this.lblPathModification = new System.Windows.Forms.Label();
             this.gBHatchFill = new System.Windows.Forms.GroupBox();
+            this.nUDHatchFillInset = new System.Windows.Forms.NumericUpDown();
+            this.nUDHatchFillAngle2 = new System.Windows.Forms.NumericUpDown();
+            this.nUDHatchFillAngle = new System.Windows.Forms.NumericUpDown();
+            this.nUDHatchFillDist = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGraphicHatchFillInset = new System.Windows.Forms.CheckBox();
+            this.cBImportGraphicHatchFillChangeAngle = new System.Windows.Forms.CheckBox();
+            this.cBImportGraphicHatchFillCross = new System.Windows.Forms.CheckBox();
             this.lblHatchFill2 = new System.Windows.Forms.Label();
             this.lblHatchFill1 = new System.Windows.Forms.Label();
+            this.cBImportGraphicHatchFill = new System.Windows.Forms.CheckBox();
             this.tab1_3gB5 = new System.Windows.Forms.GroupBox();
+            this.nUDImportGCTangentialUnits = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCTangentialSwivel2 = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCTangentialSwivel = new System.Windows.Forms.NumericUpDown();
+            this.cBoxImportGCTangentialName = new System.Windows.Forms.ComboBox();
             this.lblDImportGCTangential4 = new System.Windows.Forms.Label();
+            this.cBImportGCTangentialRange = new System.Windows.Forms.CheckBox();
             this.lblDImportGCTangential3 = new System.Windows.Forms.Label();
             this.lblDImportGCTangential2 = new System.Windows.Forms.Label();
             this.lblDImportGCTangential1 = new System.Windows.Forms.Label();
+            this.cBImportGCTangential = new System.Windows.Forms.CheckBox();
             this.tab1_3gB2 = new System.Windows.Forms.GroupBox();
+            this.nUDImportGCDragKnifeAngle = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCDragKnifePercent = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCDragKnifeLength = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGCDragKnifePercent = new System.Windows.Forms.CheckBox();
             this.lblDrag2 = new System.Windows.Forms.Label();
             this.lblDrag1 = new System.Windows.Forms.Label();
+            this.cBImportGCDragKnife = new System.Windows.Forms.CheckBox();
             this.tabPage18 = new System.Windows.Forms.TabPage();
             this.gBClipping = new System.Windows.Forms.GroupBox();
+            this.nUDImportGraphicClipOffsetY = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGraphicClipHeight = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGraphicClipOffsetX = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGraphicTileClipWidth = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.rBImportGraphicClip1 = new System.Windows.Forms.RadioButton();
+            this.rBImportGraphicClip0 = new System.Windows.Forms.RadioButton();
+            this.cBImportGraphicTile = new System.Windows.Forms.CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cBImportGraphicClipOffsetApply = new System.Windows.Forms.CheckBox();
             this.tabPage19 = new System.Windows.Forms.TabPage();
             this.tab1_1gB5 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.cBToolTableDefault = new System.Windows.Forms.CheckBox();
+            this.cBToolTableUse = new System.Windows.Forms.CheckBox();
             this.tab1_1gB4 = new System.Windows.Forms.GroupBox();
             this.lblGroupInfo = new System.Windows.Forms.Label();
             this.tab1_1_4gB3 = new System.Windows.Forms.GroupBox();
@@ -139,54 +222,98 @@ namespace GRBL_Plotter
             this.rBImportSVGSort3 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGSort4 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGSort2 = new System.Windows.Forms.RadioButton();
+            this.cBImportSVGSortInvert = new System.Windows.Forms.CheckBox();
             this.tab1_1_4gB2 = new System.Windows.Forms.GroupBox();
             this.rBImportSVGGroupItem4 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGGroupItem3 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGGroupItem2 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGGroupItem1 = new System.Windows.Forms.RadioButton();
+            this.cBImportSVGGroup = new System.Windows.Forms.CheckBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tab1_2gB1 = new System.Windows.Forms.GroupBox();
             this.label32 = new System.Windows.Forms.Label();
+            this.tBImportGCToolChange = new System.Windows.Forms.TextBox();
+            this.nUDImportGCFeedXY = new System.Windows.Forms.NumericUpDown();
             this.tab1_2gB2 = new System.Windows.Forms.GroupBox();
             this.btnCheckSpindle = new System.Windows.Forms.Button();
+            this.nUDImportGCSSpeed = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCSpindleDelay = new System.Windows.Forms.NumericUpDown();
+            this.cBImportLasermode = new System.Windows.Forms.CheckBox();
             this.rBImportGCSpindleCmd2 = new System.Windows.Forms.RadioButton();
             this.tab1_2lbl6 = new System.Windows.Forms.Label();
+            this.rBImportGCSpindleCmd1 = new System.Windows.Forms.RadioButton();
             this.tab1_2lbl7 = new System.Windows.Forms.Label();
             this.tab1_2lbl5 = new System.Windows.Forms.Label();
+            this.cBImportGCTTSSpeed = new System.Windows.Forms.CheckBox();
+            this.cBImportGCToolM0 = new System.Windows.Forms.CheckBox();
+            this.cBImportGCTool = new System.Windows.Forms.CheckBox();
+            this.cBImportGCComments = new System.Windows.Forms.CheckBox();
+            this.cBImportGCTTXYFeed = new System.Windows.Forms.CheckBox();
             this.tab1_2lbl1 = new System.Windows.Forms.Label();
+            this.tBImportGCHeader = new System.Windows.Forms.TextBox();
             this.tab1_2lbl4 = new System.Windows.Forms.Label();
             this.tab1_2lbl2 = new System.Windows.Forms.Label();
+            this.tBImportGCFooter = new System.Windows.Forms.TextBox();
             this.tab1_2lbl3 = new System.Windows.Forms.Label();
             this.nUDImportDecPlaces = new System.Windows.Forms.NumericUpDown();
             this.tab1_2gB7 = new System.Windows.Forms.GroupBox();
             this.tab1_2gB3 = new System.Windows.Forms.GroupBox();
+            this.cBImportGCTTZAxis = new System.Windows.Forms.CheckBox();
+            this.nUDImportGCFeedZ = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCZUp = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCZDown = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGCZIncStartZero = new System.Windows.Forms.CheckBox();
+            this.nUDImportGCZIncrement = new System.Windows.Forms.NumericUpDown();
             this.tab1_2lbl35 = new System.Windows.Forms.Label();
+            this.cBImportGCZIncEnable = new System.Windows.Forms.CheckBox();
+            this.cBImportGCUseZ = new System.Windows.Forms.CheckBox();
             this.tab1_2lbl32 = new System.Windows.Forms.Label();
             this.tab1_2lbl33 = new System.Windows.Forms.Label();
             this.tab1_2lbl31 = new System.Windows.Forms.Label();
             this.tab1_2gB5 = new System.Windows.Forms.GroupBox();
             this.tab1_2lbl51 = new System.Windows.Forms.Label();
+            this.cBImportGCUseSpindle = new System.Windows.Forms.CheckBox();
             this.tab1_2gB6 = new System.Windows.Forms.GroupBox();
+            this.tBImportGCIPD = new System.Windows.Forms.TextBox();
+            this.tBImportGCIPU = new System.Windows.Forms.TextBox();
             this.tab1_2lbl62 = new System.Windows.Forms.Label();
             this.tab1_2lbl61 = new System.Windows.Forms.Label();
+            this.cBImportGCUseIndividual = new System.Windows.Forms.CheckBox();
             this.tab1_2gB4 = new System.Windows.Forms.GroupBox();
+            this.nUDImportGCPWMUp = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCDlyUp = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCPWMDown = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGCDlyDown = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGCUsePWM = new System.Windows.Forms.CheckBox();
             this.tab1_2lbl44 = new System.Windows.Forms.Label();
             this.tab1_2lbl42 = new System.Windows.Forms.Label();
             this.tab1_2lbl43 = new System.Windows.Forms.Label();
             this.tab1_2lbl41 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tab1_3gB3 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.tab1_3lbl34 = new System.Windows.Forms.Label();
             this.tab1_3lbl31 = new System.Windows.Forms.Label();
             this.tab1_3lbl33 = new System.Windows.Forms.Label();
             this.tab1_3lbl32 = new System.Windows.Forms.Label();
             this.tab1_3gB4 = new System.Windows.Forms.GroupBox();
             this.tab1_3lbl41 = new System.Windows.Forms.Label();
+            this.cBImportGCRelative = new System.Windows.Forms.CheckBox();
+            this.cBImportGCCompress = new System.Windows.Forms.CheckBox();
             this.tab1_3gB1 = new System.Windows.Forms.GroupBox();
+            this.nUDImportGCLineSegment = new System.Windows.Forms.NumericUpDown();
             this.btnFileDialogSubR = new System.Windows.Forms.Button();
+            this.cBImportGCSubFirst = new System.Windows.Forms.CheckBox();
             this.btnShowScriptSub = new System.Windows.Forms.Button();
+            this.cBImportGCLineSegmentsEquidistant = new System.Windows.Forms.CheckBox();
+            this.tBImportGCSubroutine = new System.Windows.Forms.TextBox();
+            this.cBImportGCSubEnable = new System.Windows.Forms.CheckBox();
+            this.cBImportGCLineSegments = new System.Windows.Forms.CheckBox();
             this.tabPage15 = new System.Windows.Forms.TabPage();
             this.tab1_4gB1 = new System.Windows.Forms.GroupBox();
+            this.lblLastUseCase = new System.Windows.Forms.Label();
             this.tab1_4lbl1 = new System.Windows.Forms.Label();
             this.tBUseCaseSetting2 = new System.Windows.Forms.TextBox();
             this.tBUseCaseSetting1 = new System.Windows.Forms.TextBox();
@@ -194,6 +321,7 @@ namespace GRBL_Plotter
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUseCaseSave = new System.Windows.Forms.Button();
             this.btnUseCaseLoad = new System.Windows.Forms.Button();
+            this.tBUseCaseInfo = new System.Windows.Forms.TextBox();
             this.lBUseCase = new System.Windows.Forms.ListBox();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.tab2gB1 = new System.Windows.Forms.GroupBox();
@@ -211,6 +339,9 @@ namespace GRBL_Plotter
             this.btnReNumberTools = new System.Windows.Forms.Button();
             this.btnMoveToolXY = new System.Windows.Forms.Button();
             this.tab2gB2lbl1 = new System.Windows.Forms.Label();
+            this.nUDToolOffsetZ = new System.Windows.Forms.NumericUpDown();
+            this.nUDToolOffsetX = new System.Windows.Forms.NumericUpDown();
+            this.nUDToolOffsetY = new System.Windows.Forms.NumericUpDown();
             this.dGVToolList = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -230,15 +361,22 @@ namespace GRBL_Plotter
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.gBToolChange = new System.Windows.Forms.GroupBox();
+            this.nUDToolChangeEmpty = new System.Windows.Forms.NumericUpDown();
             this.btnFileDialogTT4 = new System.Windows.Forms.Button();
             this.btnFileDialogTT3 = new System.Windows.Forms.Button();
             this.btnFileDialogTT2 = new System.Windows.Forms.Button();
             this.btnFileDialogTT1 = new System.Windows.Forms.Button();
+            this.cBToolChangeEmpty = new System.Windows.Forms.CheckBox();
             this.label61 = new System.Windows.Forms.Label();
             this.lbl_4 = new System.Windows.Forms.Label();
+            this.tBToolChangeScriptProbe = new System.Windows.Forms.TextBox();
             this.lbl_2 = new System.Windows.Forms.Label();
+            this.tBToolChangeScriptSelect = new System.Windows.Forms.TextBox();
             this.lbl_1 = new System.Windows.Forms.Label();
+            this.tBToolChangeScriptPut = new System.Windows.Forms.TextBox();
             this.lbl_3 = new System.Windows.Forms.Label();
+            this.tBToolChangeScriptGet = new System.Windows.Forms.TextBox();
+            this.cBToolChange = new System.Windows.Forms.CheckBox();
             this.tabPage21 = new System.Windows.Forms.TabPage();
             this.tabControl4_Level2 = new System.Windows.Forms.TabControl();
             this.tabPage13 = new System.Windows.Forms.TabPage();
@@ -248,6 +386,7 @@ namespace GRBL_Plotter
             this.cBLogLevel3 = new System.Windows.Forms.CheckBox();
             this.cBLogLevel2 = new System.Windows.Forms.CheckBox();
             this.cBLogLevel1 = new System.Windows.Forms.CheckBox();
+            this.cBExtendedLogging = new System.Windows.Forms.CheckBox();
             this.gBLoggingOptions = new System.Windows.Forms.GroupBox();
             this.cBLog3 = new System.Windows.Forms.CheckBox();
             this.cBLog0 = new System.Windows.Forms.CheckBox();
@@ -257,31 +396,56 @@ namespace GRBL_Plotter
             this.cBLog5 = new System.Windows.Forms.CheckBox();
             this.cBLog4 = new System.Windows.Forms.CheckBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cBcheckupdate = new System.Windows.Forms.CheckBox();
             this.tab5gB3 = new System.Windows.Forms.GroupBox();
+            this.cBCtrlCommentOut = new System.Windows.Forms.CheckBox();
             this.tab5gB4 = new System.Windows.Forms.GroupBox();
             this.rBCtrlReplaceM4 = new System.Windows.Forms.RadioButton();
             this.rBCtrlReplaceM3 = new System.Windows.Forms.RadioButton();
+            this.cBCtrlMCmd = new System.Windows.Forms.CheckBox();
             this.tab5gB1 = new System.Windows.Forms.GroupBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.cBSerialMinimize = new System.Windows.Forms.CheckBox();
+            this.cBSerial2 = new System.Windows.Forms.CheckBox();
             this.tab5gB2 = new System.Windows.Forms.GroupBox();
+            this.cBSerialDIY = new System.Windows.Forms.CheckBox();
+            this.cBSerialPortFixer = new System.Windows.Forms.CheckBox();
             this.tabPage26 = new System.Windows.Forms.TabPage();
             this.tab5gB5 = new System.Windows.Forms.GroupBox();
+            this.nUDMachineHomeZ = new System.Windows.Forms.NumericUpDown();
+            this.nUDMachineHomeY = new System.Windows.Forms.NumericUpDown();
+            this.nUDMachineHomeX = new System.Windows.Forms.NumericUpDown();
+            this.nUDMachineRangeZ = new System.Windows.Forms.NumericUpDown();
+            this.nUDMachineRangeY = new System.Windows.Forms.NumericUpDown();
+            this.nUDMachineRangeX = new System.Windows.Forms.NumericUpDown();
             this.btnMachineRangeGet = new System.Windows.Forms.Button();
             this.label66 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
             this.tab5gB5lbl4 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
+            this.cBMachineLimitsAlarm = new System.Windows.Forms.CheckBox();
+            this.cBMachineLimitsShow = new System.Windows.Forms.CheckBox();
             this.tab5gB5lbl3 = new System.Windows.Forms.Label();
             this.tab5gB5lbl2 = new System.Windows.Forms.Label();
             this.tab5gB5lbl1 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tab5gB6 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tab5gB6lbl2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.cB4thUse = new System.Windows.Forms.CheckBox();
             this.tab5gB6lbl1 = new System.Windows.Forms.Label();
             this.tab5gB7 = new System.Windows.Forms.GroupBox();
+            this.nUDRotaryScale = new System.Windows.Forms.NumericUpDown();
+            this.nUDRotaryDiameter = new System.Windows.Forms.NumericUpDown();
             this.tab5gB8 = new System.Windows.Forms.GroupBox();
+            this.tBRotarySetupOff = new System.Windows.Forms.TextBox();
+            this.tBRotarySetupOn = new System.Windows.Forms.TextBox();
             this.tab5gB8lbl2 = new System.Windows.Forms.Label();
+            this.cBRotarySetupApply = new System.Windows.Forms.CheckBox();
             this.tab5gB8lbl1 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.tab5gB7lbl2 = new System.Windows.Forms.Label();
@@ -289,21 +453,35 @@ namespace GRBL_Plotter
             this.tab5gB7lbl1 = new System.Windows.Forms.Label();
             this.rBRotaryY = new System.Windows.Forms.RadioButton();
             this.rBRotaryX = new System.Windows.Forms.RadioButton();
+            this.cBRotarySubstitute = new System.Windows.Forms.CheckBox();
             this.tabPage25 = new System.Windows.Forms.TabPage();
             this.tab4gB7 = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
             this.rBStreanProtocoll2 = new System.Windows.Forms.RadioButton();
             this.label31 = new System.Windows.Forms.Label();
+            this.rBStreanProtocoll1 = new System.Windows.Forms.RadioButton();
+            this.cBDisableProgramPause = new System.Windows.Forms.CheckBox();
             this.tab4gB6 = new System.Windows.Forms.GroupBox();
+            this.cBgrblTranslate = new System.Windows.Forms.CheckBox();
             this.cBsimulation = new System.Windows.Forms.CheckBox();
             this.tab4gB5 = new System.Windows.Forms.GroupBox();
+            this.cBShowStreamingProgress = new System.Windows.Forms.CheckBox();
+            this.cBBackgroundImage = new System.Windows.Forms.CheckBox();
             this.tab4gB1 = new System.Windows.Forms.GroupBox();
+            this.cBpollIntervalReduce = new System.Windows.Forms.CheckBox();
             this.tab4gB1lbl1 = new System.Windows.Forms.Label();
             this.cBoxPollInterval = new System.Windows.Forms.ComboBox();
             this.tab4gB3 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
             this.tab4gB3lbl1 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.tab4gB2 = new System.Windows.Forms.GroupBox();
+            this.cBresetSendCode = new System.Windows.Forms.CheckBox();
+            this.tBresetSendCode = new System.Windows.Forms.TextBox();
+            this.cBrestoreCoordReset = new System.Windows.Forms.CheckBox();
             this.tab4gB4 = new System.Windows.Forms.GroupBox();
+            this.tBflowControl = new System.Windows.Forms.TextBox();
+            this.cBflowControl = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tab10gB1 = new System.Windows.Forms.GroupBox();
             this.tab10lbl1 = new System.Windows.Forms.Label();
@@ -325,33 +503,66 @@ namespace GRBL_Plotter
             this.btnShapeSetSave1 = new System.Windows.Forms.Button();
             this.btnShapeSetLoad1 = new System.Windows.Forms.Button();
             this.tab10gB2 = new System.Windows.Forms.GroupBox();
+            this.cBFilterOuside = new System.Windows.Forms.CheckBox();
             this.lblFilterBlue2 = new System.Windows.Forms.Label();
             this.lblFilterGreen2 = new System.Windows.Forms.Label();
             this.lblFilterRed2 = new System.Windows.Forms.Label();
             this.lblFilterBlue1 = new System.Windows.Forms.Label();
             this.lblFilterGreen1 = new System.Windows.Forms.Label();
             this.lblFilterRed1 = new System.Windows.Forms.Label();
+            this.hSFilterBlue2 = new System.Windows.Forms.HScrollBar();
             this.tab10gB2lbl3 = new System.Windows.Forms.Label();
+            this.hSFilterBlue1 = new System.Windows.Forms.HScrollBar();
+            this.hSFilterGreen2 = new System.Windows.Forms.HScrollBar();
             this.tab10gB2lbl2 = new System.Windows.Forms.Label();
+            this.hSFilterGreen1 = new System.Windows.Forms.HScrollBar();
+            this.hSFilterRed2 = new System.Windows.Forms.HScrollBar();
             this.tab10gB2lbl1 = new System.Windows.Forms.Label();
+            this.hSFilterRed1 = new System.Windows.Forms.HScrollBar();
             this.tab10gB3 = new System.Windows.Forms.GroupBox();
+            this.nUDShapeSizeMax = new System.Windows.Forms.NumericUpDown();
+            this.nUDShapeDistMax = new System.Windows.Forms.NumericUpDown();
             this.tab10gB3lbl6 = new System.Windows.Forms.Label();
             this.tab10gB3lbl3 = new System.Windows.Forms.Label();
             this.tab10gB3lbl5 = new System.Windows.Forms.Label();
             this.tab10gB3lbl4 = new System.Windows.Forms.Label();
             this.tab10gB3lbl2 = new System.Windows.Forms.Label();
+            this.nUDShapeDistMin = new System.Windows.Forms.NumericUpDown();
+            this.nUDShapeSizeMin = new System.Windows.Forms.NumericUpDown();
             this.tab10gB3lbl1 = new System.Windows.Forms.Label();
+            this.cBShapeRect = new System.Windows.Forms.CheckBox();
+            this.cBShapeCircle = new System.Windows.Forms.CheckBox();
             this.tabControl5_Level2 = new System.Windows.Forms.TabPage();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tbNotifierPBChannel = new System.Windows.Forms.TextBox();
+            this.lblNotifierPBChannel = new System.Windows.Forms.Label();
+            this.tbNotifierPBToken = new System.Windows.Forms.TextBox();
+            this.cbNotifierPBEnable = new System.Windows.Forms.CheckBox();
+            this.lblNotifierPBToken = new System.Windows.Forms.Label();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.label33 = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.cbNotifierTitle = new System.Windows.Forms.CheckBox();
+            this.tbNotifierMsg2 = new System.Windows.Forms.TextBox();
+            this.tbNotifier6 = new System.Windows.Forms.TextBox();
+            this.nudNotifierMsg1 = new System.Windows.Forms.NumericUpDown();
+            this.cbNotifierMsg1 = new System.Windows.Forms.CheckBox();
+            this.tbNotifierMsg1 = new System.Windows.Forms.TextBox();
             this.lblNotifier8 = new System.Windows.Forms.Label();
             this.lblNotifierMsg1 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.cbNotifierEmailEnable = new System.Windows.Forms.CheckBox();
             this.btn_notifierMail_Test = new System.Windows.Forms.Button();
+            this.tbNotifier5 = new System.Windows.Forms.TextBox();
+            this.tbNotifier4 = new System.Windows.Forms.TextBox();
             this.lblNotifier7 = new System.Windows.Forms.Label();
             this.lblNotifier6 = new System.Windows.Forms.Label();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.nudNotifier1 = new System.Windows.Forms.NumericUpDown();
+            this.tbNotifier3 = new System.Windows.Forms.TextBox();
+            this.tbNotifier2 = new System.Windows.Forms.TextBox();
+            this.tbNotifier1 = new System.Windows.Forms.TextBox();
             this.lblNotifier3 = new System.Windows.Forms.Label();
             this.lblNotifier5 = new System.Windows.Forms.Label();
             this.lblNotifier2 = new System.Windows.Forms.Label();
@@ -382,14 +593,43 @@ namespace GRBL_Plotter
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tab7gB2lbl3 = new System.Windows.Forms.Label();
             this.tab7gB2lbl5 = new System.Windows.Forms.Label();
+            this.nUDFeedrate = new System.Windows.Forms.NumericUpDown();
+            this.nUDStepwidth = new System.Windows.Forms.NumericUpDown();
             this.tab7gB2lbl4 = new System.Windows.Forms.Label();
+            this.nUDMinimum = new System.Windows.Forms.NumericUpDown();
             this.tab7gB2lbl2 = new System.Windows.Forms.Label();
             this.tab7gB2lbl1 = new System.Windows.Forms.Label();
+            this.nUDOffset = new System.Windows.Forms.NumericUpDown();
+            this.nUDDead = new System.Windows.Forms.NumericUpDown();
             this.lblValR = new System.Windows.Forms.Label();
             this.lblValY = new System.Windows.Forms.Label();
             this.lblValZ = new System.Windows.Forms.Label();
             this.lblValX = new System.Windows.Forms.Label();
+            this.cBGPEnable = new System.Windows.Forms.CheckBox();
+            this.cBRInvert = new System.Windows.Forms.CheckBox();
+            this.cBZInvert = new System.Windows.Forms.CheckBox();
+            this.cBYInvert = new System.Windows.Forms.CheckBox();
+            this.cBXInvert = new System.Windows.Forms.CheckBox();
+            this.tBRAxis = new System.Windows.Forms.TextBox();
+            this.tBZAxis = new System.Windows.Forms.TextBox();
+            this.tBYAxis = new System.Windows.Forms.TextBox();
+            this.tBXAxis = new System.Windows.Forms.TextBox();
             this.tab7gB1lbl1 = new System.Windows.Forms.Label();
+            this.tBGP15 = new System.Windows.Forms.TextBox();
+            this.tBGP14 = new System.Windows.Forms.TextBox();
+            this.tBGP13 = new System.Windows.Forms.TextBox();
+            this.tBGP12 = new System.Windows.Forms.TextBox();
+            this.tBGP11 = new System.Windows.Forms.TextBox();
+            this.tBGP10 = new System.Windows.Forms.TextBox();
+            this.tBGP9 = new System.Windows.Forms.TextBox();
+            this.tBGP8 = new System.Windows.Forms.TextBox();
+            this.tBGP7 = new System.Windows.Forms.TextBox();
+            this.tBGP6 = new System.Windows.Forms.TextBox();
+            this.tBGP5 = new System.Windows.Forms.TextBox();
+            this.tBGP4 = new System.Windows.Forms.TextBox();
+            this.tBGP3 = new System.Windows.Forms.TextBox();
+            this.tBGP2 = new System.Windows.Forms.TextBox();
+            this.tBGP1 = new System.Windows.Forms.TextBox();
             this.lblgp = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.trackBarR = new System.Windows.Forms.TrackBar();
@@ -402,6 +642,7 @@ namespace GRBL_Plotter
             this.lblButtons15 = new System.Windows.Forms.Label();
             this.lblButtons0 = new System.Windows.Forms.Label();
             this.lblButtons14 = new System.Windows.Forms.Label();
+            this.tBGP0 = new System.Windows.Forms.TextBox();
             this.lblButtons13 = new System.Windows.Forms.Label();
             this.lblButtons1 = new System.Windows.Forms.Label();
             this.lblButtons12 = new System.Windows.Forms.Label();
@@ -418,11 +659,32 @@ namespace GRBL_Plotter
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tab8gB1 = new System.Windows.Forms.GroupBox();
             this.label77 = new System.Windows.Forms.Label();
+            this.nUDJoyASpeed5 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyASpeed4 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyASpeed3 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyASpeed2 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyASpeed1 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyAStep5 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyAStep4 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyAStep3 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyAStep2 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyAStep1 = new System.Windows.Forms.NumericUpDown();
             this.tab8gB1lbl2 = new System.Windows.Forms.Label();
             this.lblJoystickSize = new System.Windows.Forms.Label();
             this.tab8gB1lbl1 = new System.Windows.Forms.Label();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.btnJoyZCalc = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
+            this.nUDJoyZSpeed5 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZSpeed4 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZSpeed3 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZSpeed2 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZSpeed1 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZStep5 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZStep4 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZStep3 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZStep2 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyZStep1 = new System.Windows.Forms.NumericUpDown();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -430,21 +692,44 @@ namespace GRBL_Plotter
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.btnJoyXYCalc = new System.Windows.Forms.Button();
+            this.nUDJoyXYSpeed5 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYSpeed4 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYSpeed3 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYSpeed2 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYSpeed1 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYStep5 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYStep4 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYStep3 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYStep2 = new System.Windows.Forms.NumericUpDown();
+            this.nUDJoyXYStep1 = new System.Windows.Forms.NumericUpDown();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.cB2DViewFigureId = new System.Windows.Forms.CheckBox();
+            this.cB2DViewDirectionArrow = new System.Windows.Forms.CheckBox();
             this.btnReloadSettings = new System.Windows.Forms.Button();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.nUDFCTBLineInterval = new System.Windows.Forms.NumericUpDown();
             this.tab5gB9 = new System.Windows.Forms.GroupBox();
             this.tBPasteSpecial = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tab8gB2 = new System.Windows.Forms.GroupBox();
+            this.cBColorModeEnable = new System.Windows.Forms.CheckBox();
+            this.nUDSimulation = new System.Windows.Forms.NumericUpDown();
             this.btnColorSimulation = new System.Windows.Forms.Button();
+            this.cBKeepPenWidth = new System.Windows.Forms.CheckBox();
+            this.nUDRotaryInfo = new System.Windows.Forms.NumericUpDown();
             this.btnColorRotaryInfo = new System.Windows.Forms.Button();
             this.btnColorMachineLimit = new System.Windows.Forms.Button();
             this.tab8gB2lbl2 = new System.Windows.Forms.Label();
             this.tab8gB2lbl1 = new System.Windows.Forms.Label();
+            this.nUDHeightMap = new System.Windows.Forms.NumericUpDown();
             this.btnColorHeightMap = new System.Windows.Forms.Button();
+            this.nUDMarker = new System.Windows.Forms.NumericUpDown();
             this.btnColorMarker = new System.Windows.Forms.Button();
+            this.nUDTool = new System.Windows.Forms.NumericUpDown();
+            this.nUDPenDown = new System.Windows.Forms.NumericUpDown();
+            this.nUDPenUp = new System.Windows.Forms.NumericUpDown();
+            this.nUDRuler = new System.Windows.Forms.NumericUpDown();
             this.btnColorTool = new System.Windows.Forms.Button();
             this.btnColorPenDown = new System.Windows.Forms.Button();
             this.btnColorPenUp = new System.Windows.Forms.Button();
@@ -488,292 +773,9 @@ namespace GRBL_Plotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.lblNotifierPBToken = new System.Windows.Forms.Label();
-            this.lblNotifierPBChannel = new System.Windows.Forms.Label();
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
-            this.tBGerberGeometryM19 = new System.Windows.Forms.TextBox();
-            this.tBGerberGeometryKnife = new System.Windows.Forms.TextBox();
-            this.tBGerberGeometryPen = new System.Windows.Forms.TextBox();
-            this.cBGerberGeometryEnable = new System.Windows.Forms.CheckBox();
-            this.tBLineEndText = new System.Windows.Forms.TextBox();
-            this.cBLineEndEnable = new System.Windows.Forms.CheckBox();
-            this.cBCodeCreationLineNumbers = new System.Windows.Forms.CheckBox();
-            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.cBImportDXFSwitchWhite = new System.Windows.Forms.CheckBox();
-            this.cBImportDXFIndexToolNr = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.nUDSVGScale = new System.Windows.Forms.NumericUpDown();
-            this.cBImportSVG_DPI_96 = new System.Windows.Forms.RadioButton();
-            this.cBImportSVGResize = new System.Windows.Forms.CheckBox();
-            this.cBImportPenWidthToZRamp = new System.Windows.Forms.CheckBox();
-            this.cBImportSVGCircleToDotZ = new System.Windows.Forms.CheckBox();
-            this.cBImportSVGCircleToDot = new System.Windows.Forms.CheckBox();
-            this.cBImportPenWidthToZ = new System.Windows.Forms.CheckBox();
-            this.nUDImportPenWidthToZMin = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportPenWidthToZMax = new System.Windows.Forms.NumericUpDown();
-            this.cBDashedLine2 = new System.Windows.Forms.CheckBox();
-            this.cBImportSVGNodesOnly = new System.Windows.Forms.CheckBox();
-            this.cBDashedLine1 = new System.Windows.Forms.CheckBox();
-            this.nUDImportRepeat = new System.Windows.Forms.NumericUpDown();
-            this.rBImportSVGRepeat1 = new System.Windows.Forms.RadioButton();
-            this.cBImportSVGRepeat = new System.Windows.Forms.CheckBox();
-            this.cBImportSVGComments = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.cBImportSVGPauseE = new System.Windows.Forms.CheckBox();
-            this.cBImportSVGPauseP = new System.Windows.Forms.CheckBox();
-            this.cBImportGraphicSortDistanceRotatePath = new System.Windows.Forms.CheckBox();
-            this.nUDImportGCSegment = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportReduce = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportSVGSegemnts = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCNoArcs = new System.Windows.Forms.CheckBox();
-            this.cBImportGraphicOffsetOrigin = new System.Windows.Forms.CheckBox();
-            this.cBImportGraphicSortDistance = new System.Windows.Forms.CheckBox();
-            this.cBImportUnitGCode = new System.Windows.Forms.CheckBox();
-            this.rBImportUnitmm = new System.Windows.Forms.RadioButton();
-            this.cBImportSVGReduce = new System.Windows.Forms.CheckBox();
-            this.nUDPathOverlapValue = new System.Windows.Forms.NumericUpDown();
-            this.cBPathOverlapEnable = new System.Windows.Forms.CheckBox();
-            this.nUDHatchFillInset = new System.Windows.Forms.NumericUpDown();
-            this.nUDHatchFillAngle2 = new System.Windows.Forms.NumericUpDown();
-            this.nUDHatchFillAngle = new System.Windows.Forms.NumericUpDown();
-            this.nUDHatchFillDist = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGraphicHatchFillInset = new System.Windows.Forms.CheckBox();
-            this.cBImportGraphicHatchFillChangeAngle = new System.Windows.Forms.CheckBox();
-            this.cBImportGraphicHatchFillCross = new System.Windows.Forms.CheckBox();
-            this.cBImportGraphicHatchFill = new System.Windows.Forms.CheckBox();
-            this.nUDImportGCTangentialUnits = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCTangentialSwivel2 = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCTangentialSwivel = new System.Windows.Forms.NumericUpDown();
-            this.cBoxImportGCTangentialName = new System.Windows.Forms.ComboBox();
-            this.tbNotifierPBToken = new System.Windows.Forms.TextBox();
-            this.tbNotifierPBChannel = new System.Windows.Forms.TextBox();
-            this.cBImportGCTangentialRange = new System.Windows.Forms.CheckBox();
-            this.cBImportGCTangential = new System.Windows.Forms.CheckBox();
-            this.nUDImportGCDragKnifeAngle = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCDragKnifePercent = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCDragKnifeLength = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCDragKnifePercent = new System.Windows.Forms.CheckBox();
-            this.cBImportGCDragKnife = new System.Windows.Forms.CheckBox();
-            this.nUDImportGraphicClipOffsetY = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGraphicClipHeight = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGraphicClipOffsetX = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGraphicTileClipWidth = new System.Windows.Forms.NumericUpDown();
-            this.rBImportGraphicClip0 = new System.Windows.Forms.RadioButton();
-            this.cBImportGraphicTile = new System.Windows.Forms.CheckBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.cBImportGraphicClipOffsetApply = new System.Windows.Forms.CheckBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.cBToolTableDefault = new System.Windows.Forms.CheckBox();
-            this.cBToolTableUse = new System.Windows.Forms.CheckBox();
-            this.cBImportSVGSortInvert = new System.Windows.Forms.CheckBox();
-            this.cBImportSVGGroup = new System.Windows.Forms.CheckBox();
-            this.tBImportGCToolChange = new System.Windows.Forms.TextBox();
-            this.nUDImportGCFeedXY = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCSSpeed = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCSpindleDelay = new System.Windows.Forms.NumericUpDown();
-            this.cBImportLasermode = new System.Windows.Forms.CheckBox();
-            this.rBImportGCSpindleCmd1 = new System.Windows.Forms.RadioButton();
-            this.cBImportGCTTSSpeed = new System.Windows.Forms.CheckBox();
-            this.cBImportGCToolM0 = new System.Windows.Forms.CheckBox();
-            this.cBImportGCTool = new System.Windows.Forms.CheckBox();
-            this.cBImportGCComments = new System.Windows.Forms.CheckBox();
-            this.cBImportGCTTXYFeed = new System.Windows.Forms.CheckBox();
-            this.tBImportGCHeader = new System.Windows.Forms.TextBox();
-            this.tBImportGCFooter = new System.Windows.Forms.TextBox();
-            this.cBImportGCTTZAxis = new System.Windows.Forms.CheckBox();
-            this.nUDImportGCFeedZ = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCZUp = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCZDown = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCZIncStartZero = new System.Windows.Forms.CheckBox();
-            this.nUDImportGCZIncrement = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCZIncEnable = new System.Windows.Forms.CheckBox();
-            this.cBImportGCUseZ = new System.Windows.Forms.CheckBox();
-            this.cBImportGCUseSpindle = new System.Windows.Forms.CheckBox();
-            this.tBImportGCIPD = new System.Windows.Forms.TextBox();
-            this.tBImportGCIPU = new System.Windows.Forms.TextBox();
-            this.cBImportGCUseIndividual = new System.Windows.Forms.CheckBox();
-            this.nUDImportGCPWMUp = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCDlyUp = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCPWMDown = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGCDlyDown = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCUsePWM = new System.Windows.Forms.CheckBox();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCRelative = new System.Windows.Forms.CheckBox();
-            this.cBImportGCCompress = new System.Windows.Forms.CheckBox();
-            this.nUDImportGCLineSegment = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCSubFirst = new System.Windows.Forms.CheckBox();
-            this.cBImportGCLineSegmentsEquidistant = new System.Windows.Forms.CheckBox();
-            this.tBImportGCSubroutine = new System.Windows.Forms.TextBox();
-            this.cBImportGCSubEnable = new System.Windows.Forms.CheckBox();
-            this.cBImportGCLineSegments = new System.Windows.Forms.CheckBox();
-            this.lblLastUseCase = new System.Windows.Forms.Label();
-            this.tBUseCaseInfo = new System.Windows.Forms.TextBox();
-            this.nUDToolOffsetZ = new System.Windows.Forms.NumericUpDown();
-            this.nUDToolOffsetX = new System.Windows.Forms.NumericUpDown();
-            this.nUDToolOffsetY = new System.Windows.Forms.NumericUpDown();
-            this.nUDToolChangeEmpty = new System.Windows.Forms.NumericUpDown();
-            this.cBToolChangeEmpty = new System.Windows.Forms.CheckBox();
-            this.tBToolChangeScriptProbe = new System.Windows.Forms.TextBox();
-            this.tBToolChangeScriptSelect = new System.Windows.Forms.TextBox();
-            this.tBToolChangeScriptPut = new System.Windows.Forms.TextBox();
-            this.tBToolChangeScriptGet = new System.Windows.Forms.TextBox();
-            this.cBToolChange = new System.Windows.Forms.CheckBox();
-            this.cBExtendedLogging = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.cBcheckupdate = new System.Windows.Forms.CheckBox();
-            this.cBCtrlCommentOut = new System.Windows.Forms.CheckBox();
-            this.cBCtrlMCmd = new System.Windows.Forms.CheckBox();
-            this.cBSerialMinimize = new System.Windows.Forms.CheckBox();
-            this.cBSerial2 = new System.Windows.Forms.CheckBox();
-            this.cBSerialDIY = new System.Windows.Forms.CheckBox();
-            this.cBSerialPortFixer = new System.Windows.Forms.CheckBox();
-            this.nUDMachineHomeZ = new System.Windows.Forms.NumericUpDown();
-            this.nUDMachineHomeY = new System.Windows.Forms.NumericUpDown();
-            this.nUDMachineHomeX = new System.Windows.Forms.NumericUpDown();
-            this.nUDMachineRangeZ = new System.Windows.Forms.NumericUpDown();
-            this.nUDMachineRangeY = new System.Windows.Forms.NumericUpDown();
-            this.nUDMachineRangeX = new System.Windows.Forms.NumericUpDown();
-            this.cBMachineLimitsAlarm = new System.Windows.Forms.CheckBox();
-            this.cBMachineLimitsShow = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.cB4thUse = new System.Windows.Forms.CheckBox();
-            this.nUDRotaryScale = new System.Windows.Forms.NumericUpDown();
-            this.nUDRotaryDiameter = new System.Windows.Forms.NumericUpDown();
-            this.tBRotarySetupOff = new System.Windows.Forms.TextBox();
-            this.tBRotarySetupOn = new System.Windows.Forms.TextBox();
-            this.cBRotarySetupApply = new System.Windows.Forms.CheckBox();
-            this.cBRotarySubstitute = new System.Windows.Forms.CheckBox();
-            this.rBStreanProtocoll1 = new System.Windows.Forms.RadioButton();
-            this.cBDisableProgramPause = new System.Windows.Forms.CheckBox();
-            this.cBgrblTranslate = new System.Windows.Forms.CheckBox();
-            this.cBShowStreamingProgress = new System.Windows.Forms.CheckBox();
-            this.cBBackgroundImage = new System.Windows.Forms.CheckBox();
-            this.cBpollIntervalReduce = new System.Windows.Forms.CheckBox();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.cBresetSendCode = new System.Windows.Forms.CheckBox();
-            this.tBresetSendCode = new System.Windows.Forms.TextBox();
-            this.cBrestoreCoordReset = new System.Windows.Forms.CheckBox();
-            this.tBflowControl = new System.Windows.Forms.TextBox();
-            this.cBflowControl = new System.Windows.Forms.CheckBox();
-            this.cBFilterOuside = new System.Windows.Forms.CheckBox();
-            this.hSFilterBlue2 = new System.Windows.Forms.HScrollBar();
-            this.hSFilterBlue1 = new System.Windows.Forms.HScrollBar();
-            this.hSFilterGreen2 = new System.Windows.Forms.HScrollBar();
-            this.hSFilterGreen1 = new System.Windows.Forms.HScrollBar();
-            this.hSFilterRed2 = new System.Windows.Forms.HScrollBar();
-            this.hSFilterRed1 = new System.Windows.Forms.HScrollBar();
-            this.nUDShapeSizeMax = new System.Windows.Forms.NumericUpDown();
-            this.nUDShapeDistMax = new System.Windows.Forms.NumericUpDown();
-            this.nUDShapeDistMin = new System.Windows.Forms.NumericUpDown();
-            this.nUDShapeSizeMin = new System.Windows.Forms.NumericUpDown();
-            this.cBShapeRect = new System.Windows.Forms.CheckBox();
-            this.cBShapeCircle = new System.Windows.Forms.CheckBox();
-            this.cbNotifierTitle = new System.Windows.Forms.CheckBox();
-            this.tbNotifierMsg2 = new System.Windows.Forms.TextBox();
-            this.tbNotifier6 = new System.Windows.Forms.TextBox();
-            this.nudNotifierMsg1 = new System.Windows.Forms.NumericUpDown();
-            this.cbNotifierMsg1 = new System.Windows.Forms.CheckBox();
-            this.tbNotifierMsg1 = new System.Windows.Forms.TextBox();
-            this.cbNotifierEmailEnable = new System.Windows.Forms.CheckBox();
-            this.tbNotifier5 = new System.Windows.Forms.TextBox();
-            this.tbNotifier4 = new System.Windows.Forms.TextBox();
-            this.nudNotifier1 = new System.Windows.Forms.NumericUpDown();
-            this.tbNotifier3 = new System.Windows.Forms.TextBox();
-            this.tbNotifier2 = new System.Windows.Forms.TextBox();
-            this.tbNotifier1 = new System.Windows.Forms.TextBox();
-            this.nUDFeedrate = new System.Windows.Forms.NumericUpDown();
-            this.nUDStepwidth = new System.Windows.Forms.NumericUpDown();
-            this.nUDMinimum = new System.Windows.Forms.NumericUpDown();
-            this.nUDOffset = new System.Windows.Forms.NumericUpDown();
-            this.nUDDead = new System.Windows.Forms.NumericUpDown();
-            this.cBGPEnable = new System.Windows.Forms.CheckBox();
-            this.cBRInvert = new System.Windows.Forms.CheckBox();
-            this.cBZInvert = new System.Windows.Forms.CheckBox();
-            this.cBYInvert = new System.Windows.Forms.CheckBox();
-            this.cBXInvert = new System.Windows.Forms.CheckBox();
-            this.tBRAxis = new System.Windows.Forms.TextBox();
-            this.tBZAxis = new System.Windows.Forms.TextBox();
-            this.tBYAxis = new System.Windows.Forms.TextBox();
-            this.tBXAxis = new System.Windows.Forms.TextBox();
-            this.tBGP15 = new System.Windows.Forms.TextBox();
-            this.tBGP14 = new System.Windows.Forms.TextBox();
-            this.tBGP13 = new System.Windows.Forms.TextBox();
-            this.tBGP12 = new System.Windows.Forms.TextBox();
-            this.tBGP11 = new System.Windows.Forms.TextBox();
-            this.tBGP10 = new System.Windows.Forms.TextBox();
-            this.tBGP9 = new System.Windows.Forms.TextBox();
-            this.tBGP8 = new System.Windows.Forms.TextBox();
-            this.tBGP7 = new System.Windows.Forms.TextBox();
-            this.tBGP6 = new System.Windows.Forms.TextBox();
-            this.tBGP5 = new System.Windows.Forms.TextBox();
-            this.tBGP4 = new System.Windows.Forms.TextBox();
-            this.tBGP3 = new System.Windows.Forms.TextBox();
-            this.tBGP2 = new System.Windows.Forms.TextBox();
-            this.tBGP1 = new System.Windows.Forms.TextBox();
-            this.tBGP0 = new System.Windows.Forms.TextBox();
-            this.nUDJoyASpeed5 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyASpeed4 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyASpeed3 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyASpeed2 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyASpeed1 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyAStep5 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyAStep4 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyAStep3 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyAStep2 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyAStep1 = new System.Windows.Forms.NumericUpDown();
-            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
-            this.nUDJoyZSpeed5 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZSpeed4 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZSpeed3 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZSpeed2 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZSpeed1 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZStep5 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZStep4 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZStep3 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZStep2 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyZStep1 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYSpeed5 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYSpeed4 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYSpeed3 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYSpeed2 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYSpeed1 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYStep5 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYStep4 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYStep3 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYStep2 = new System.Windows.Forms.NumericUpDown();
-            this.nUDJoyXYStep1 = new System.Windows.Forms.NumericUpDown();
-            this.cB2DViewFigureId = new System.Windows.Forms.CheckBox();
-            this.cB2DViewDirectionArrow = new System.Windows.Forms.CheckBox();
-            this.nUDFCTBLineInterval = new System.Windows.Forms.NumericUpDown();
-            this.cBColorModeEnable = new System.Windows.Forms.CheckBox();
-            this.nUDSimulation = new System.Windows.Forms.NumericUpDown();
-            this.cBKeepPenWidth = new System.Windows.Forms.CheckBox();
-            this.nUDRotaryInfo = new System.Windows.Forms.NumericUpDown();
-            this.nUDHeightMap = new System.Windows.Forms.NumericUpDown();
-            this.nUDMarker = new System.Windows.Forms.NumericUpDown();
-            this.nUDTool = new System.Windows.Forms.NumericUpDown();
-            this.nUDPenDown = new System.Windows.Forms.NumericUpDown();
-            this.nUDPenUp = new System.Windows.Forms.NumericUpDown();
-            this.nUDRuler = new System.Windows.Forms.NumericUpDown();
-            this.cbNotifierPBEnable = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label34 = new System.Windows.Forms.Label();
+            this.cBImportGraphicClipSkipCode = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -783,49 +785,99 @@ namespace GRBL_Plotter
             this.tab1_3gB7.SuspendLayout();
             this.tab1_3gB6.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tab1_1gB3.SuspendLayout();
             this.tab1_1gB2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).BeginInit();
             this.tabPage17.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.gBCreateZValue.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMax)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportRepeat)).BeginInit();
             this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tab1_1gB1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSegment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportSVGSegemnts)).BeginInit();
             this.tabPage20.SuspendLayout();
             this.tab1_3gB8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDPathOverlapValue)).BeginInit();
             this.gBHatchFill.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillInset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillDist)).BeginInit();
             this.tab1_3gB5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialUnits)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel)).BeginInit();
             this.tab1_3gB2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeAngle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifePercent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeLength)).BeginInit();
             this.tabPage18.SuspendLayout();
             this.gBClipping.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipWidth)).BeginInit();
             this.groupBox7.SuspendLayout();
             this.tabPage19.SuspendLayout();
             this.tab1_1gB5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.tab1_1gB4.SuspendLayout();
             this.tab1_1_4gB3.SuspendLayout();
             this.tab1_1_4gB2.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tab1_2gB1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).BeginInit();
             this.tab1_2gB2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSpindleDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportDecPlaces)).BeginInit();
             this.tab1_2gB7.SuspendLayout();
             this.tab1_2gB3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZIncrement)).BeginInit();
             this.tab1_2gB5.SuspendLayout();
             this.tab1_2gB6.SuspendLayout();
             this.tab1_2gB4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyDown)).BeginInit();
             this.tabPage11.SuspendLayout();
             this.tab1_3gB3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.tab1_3gB4.SuspendLayout();
             this.tab1_3gB1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).BeginInit();
             this.tabPage15.SuspendLayout();
             this.tab1_4gB1.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.tab2gB1.SuspendLayout();
             this.tab2gB2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVToolList)).BeginInit();
             this.tabPage8.SuspendLayout();
             this.gBToolChange.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).BeginInit();
             this.tabPage21.SuspendLayout();
             this.tabControl4_Level2.SuspendLayout();
             this.tabPage13.SuspendLayout();
@@ -839,8 +891,16 @@ namespace GRBL_Plotter
             this.tab5gB2.SuspendLayout();
             this.tabPage26.SuspendLayout();
             this.tab5gB5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeX)).BeginInit();
             this.tab5gB6.SuspendLayout();
             this.tab5gB7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryScale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryDiameter)).BeginInit();
             this.tab5gB8.SuspendLayout();
             this.tabPage25.SuspendLayout();
             this.tab4gB7.SuspendLayout();
@@ -848,6 +908,7 @@ namespace GRBL_Plotter
             this.tab4gB5.SuspendLayout();
             this.tab4gB1.SuspendLayout();
             this.tab4gB3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             this.tab4gB2.SuspendLayout();
             this.tab4gB4.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -858,11 +919,18 @@ namespace GRBL_Plotter
             this.tab10gB4.SuspendLayout();
             this.tab10gB2.SuspendLayout();
             this.tab10gB3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeSizeMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeDistMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeDistMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeSizeMin)).BeginInit();
             this.tabControl5_Level2.SuspendLayout();
+            this.groupBox18.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNotifierMsg1)).BeginInit();
             this.groupBox10.SuspendLayout();
             this.groupBox15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNotifier1)).BeginInit();
             this.tabPage22.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage23.SuspendLayout();
@@ -872,95 +940,17 @@ namespace GRBL_Plotter
             this.tabPage24.SuspendLayout();
             this.tab7gB1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDFeedrate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDStepwidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMinimum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDOffset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tab8gB1.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.groupBox14.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.tab5gB9.SuspendLayout();
-            this.tab8gB2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.tab11gB1.SuspendLayout();
-            this.tab11gB3.SuspendLayout();
-            this.tab11gB4.SuspendLayout();
-            this.tab11gB5.SuspendLayout();
-            this.tab11gB2.SuspendLayout();
-            this.groupBox18.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportRepeat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSegment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportSVGSegemnts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDPathOverlapValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillInset)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillDist)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialUnits)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeAngle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifePercent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeLength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipHeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSpindleDelay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZUp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZIncrement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMUp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyUp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryScale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryDiameter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeSizeMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeDistMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeDistMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeSizeMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNotifierMsg1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNotifier1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDFeedrate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDStepwidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMinimum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDOffset)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDDead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed3)).BeginInit();
@@ -991,7 +981,12 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep1)).BeginInit();
+            this.tabPage6.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFCTBLineInterval)).BeginInit();
+            this.tab5gB9.SuspendLayout();
+            this.tab8gB2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSimulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeightMap)).BeginInit();
@@ -1000,6 +995,13 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRuler)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.tab11gB1.SuspendLayout();
+            this.tab11gB3.SuspendLayout();
+            this.tab11gB4.SuspendLayout();
+            this.tab11gB5.SuspendLayout();
+            this.tab11gB2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_Level1
@@ -1090,6 +1092,36 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
             // 
+            // tBGerberGeometryM19
+            // 
+            this.tBGerberGeometryM19.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGerberTypeM19", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGerberGeometryM19, "tBGerberGeometryM19");
+            this.tBGerberGeometryM19.Name = "tBGerberGeometryM19";
+            this.tBGerberGeometryM19.Text = global::GRBL_Plotter.Properties.Settings.Default.importGerberTypeM19;
+            // 
+            // tBGerberGeometryKnife
+            // 
+            this.tBGerberGeometryKnife.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGerberTypeKnife", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGerberGeometryKnife, "tBGerberGeometryKnife");
+            this.tBGerberGeometryKnife.Name = "tBGerberGeometryKnife";
+            this.tBGerberGeometryKnife.Text = global::GRBL_Plotter.Properties.Settings.Default.importGerberTypeKnife;
+            // 
+            // tBGerberGeometryPen
+            // 
+            this.tBGerberGeometryPen.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGerberTypePen", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGerberGeometryPen, "tBGerberGeometryPen");
+            this.tBGerberGeometryPen.Name = "tBGerberGeometryPen";
+            this.tBGerberGeometryPen.Text = global::GRBL_Plotter.Properties.Settings.Default.importGerberTypePen;
+            // 
+            // cBGerberGeometryEnable
+            // 
+            resources.ApplyResources(this.cBGerberGeometryEnable, "cBGerberGeometryEnable");
+            this.cBGerberGeometryEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGerberTypeEnable;
+            this.cBGerberGeometryEnable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBGerberGeometryEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGerberTypeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBGerberGeometryEnable.Name = "cBGerberGeometryEnable";
+            this.cBGerberGeometryEnable.UseVisualStyleBackColor = true;
+            // 
             // tab1_3gB6
             // 
             this.tab1_3gB6.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1099,6 +1131,29 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_3gB6, "tab1_3gB6");
             this.tab1_3gB6.Name = "tab1_3gB6";
             this.tab1_3gB6.TabStop = false;
+            // 
+            // tBLineEndText
+            // 
+            this.tBLineEndText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlLineEndText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBLineEndText, "tBLineEndText");
+            this.tBLineEndText.Name = "tBLineEndText";
+            this.tBLineEndText.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlLineEndText;
+            // 
+            // cBLineEndEnable
+            // 
+            resources.ApplyResources(this.cBLineEndEnable, "cBLineEndEnable");
+            this.cBLineEndEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlLineEndEnable;
+            this.cBLineEndEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlLineEndEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBLineEndEnable.Name = "cBLineEndEnable";
+            this.cBLineEndEnable.UseVisualStyleBackColor = true;
+            // 
+            // cBCodeCreationLineNumbers
+            // 
+            resources.ApplyResources(this.cBCodeCreationLineNumbers, "cBCodeCreationLineNumbers");
+            this.cBCodeCreationLineNumbers.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlLineNumbers;
+            this.cBCodeCreationLineNumbers.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlLineNumbers", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBCodeCreationLineNumbers.Name = "cBCodeCreationLineNumbers";
+            this.cBCodeCreationLineNumbers.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -1124,6 +1179,100 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
+            // 
+            // numericUpDown12
+            // 
+            this.numericUpDown12.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVScaleZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown12.DecimalPlaces = 1;
+            resources.ApplyResources(this.numericUpDown12, "numericUpDown12");
+            this.numericUpDown12.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown12.Name = "numericUpDown12";
+            this.numericUpDown12.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVScaleZ;
+            // 
+            // numericUpDown11
+            // 
+            this.numericUpDown11.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVScaleY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown11.DecimalPlaces = 1;
+            resources.ApplyResources(this.numericUpDown11, "numericUpDown11");
+            this.numericUpDown11.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown11.Name = "numericUpDown11";
+            this.numericUpDown11.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVScaleY;
+            // 
+            // numericUpDown10
+            // 
+            this.numericUpDown10.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVScaleX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown10.DecimalPlaces = 1;
+            resources.ApplyResources(this.numericUpDown10, "numericUpDown10");
+            this.numericUpDown10.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown10.Name = "numericUpDown10";
+            this.numericUpDown10.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVScaleX;
+            // 
+            // numericUpDown9
+            // 
+            this.numericUpDown9.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVColumnZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.numericUpDown9, "numericUpDown9");
+            this.numericUpDown9.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Name = "numericUpDown9";
+            this.numericUpDown9.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVColumnZ;
+            // 
+            // numericUpDown8
+            // 
+            this.numericUpDown8.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVColumnY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.numericUpDown8, "numericUpDown8");
+            this.numericUpDown8.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Name = "numericUpDown8";
+            this.numericUpDown8.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVColumnY;
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVColumnX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.numericUpDown7, "numericUpDown7");
+            this.numericUpDown7.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVColumnX;
+            // 
+            // textBox1
+            // 
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importCSVDelimeter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Text = global::GRBL_Plotter.Properties.Settings.Default.importCSVDelimeter;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVStartLine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVStartLine;
             // 
             // label10
             // 
@@ -1151,6 +1300,15 @@ namespace GRBL_Plotter
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
+            // radioButton3
+            // 
+            resources.ApplyResources(this.radioButton3, "radioButton3");
+            this.radioButton3.Checked = global::GRBL_Plotter.Properties.Settings.Default.importCSVProzessAsLine;
+            this.radioButton3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importCSVProzessAsLine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.TabStop = true;
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
@@ -1161,6 +1319,23 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // checkBox8
+            // 
+            resources.ApplyResources(this.checkBox8, "checkBox8");
+            this.checkBox8.Checked = global::GRBL_Plotter.Properties.Settings.Default.importCSVProzessZ;
+            this.checkBox8.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importCSVProzessZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            resources.ApplyResources(this.checkBox7, "checkBox7");
+            this.checkBox7.Checked = global::GRBL_Plotter.Properties.Settings.Default.importCSVAutomatic;
+            this.checkBox7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox7.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importCSVAutomatic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
             // tab1_1gB3
             // 
             this.tab1_1gB3.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1169,6 +1344,25 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_1gB3, "tab1_1gB3");
             this.tab1_1gB3.Name = "tab1_1gB3";
             this.tab1_1gB3.TabStop = false;
+            // 
+            // cBImportDXFSwitchWhite
+            // 
+            resources.ApplyResources(this.cBImportDXFSwitchWhite, "cBImportDXFSwitchWhite");
+            this.cBImportDXFSwitchWhite.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDXFSwitchWhite;
+            this.cBImportDXFSwitchWhite.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportDXFSwitchWhite.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDXFSwitchWhite", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportDXFSwitchWhite.Name = "cBImportDXFSwitchWhite";
+            this.toolTip1.SetToolTip(this.cBImportDXFSwitchWhite, resources.GetString("cBImportDXFSwitchWhite.ToolTip"));
+            this.cBImportDXFSwitchWhite.UseVisualStyleBackColor = true;
+            // 
+            // cBImportDXFIndexToolNr
+            // 
+            resources.ApplyResources(this.cBImportDXFIndexToolNr, "cBImportDXFIndexToolNr");
+            this.cBImportDXFIndexToolNr.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDXFToolIndex;
+            this.cBImportDXFIndexToolNr.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDXFToolIndex", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportDXFIndexToolNr.Name = "cBImportDXFIndexToolNr";
+            this.toolTip1.SetToolTip(this.cBImportDXFIndexToolNr, resources.GetString("cBImportDXFIndexToolNr.ToolTip"));
+            this.cBImportDXFIndexToolNr.UseVisualStyleBackColor = true;
             // 
             // tab1_1gB2
             // 
@@ -1184,6 +1378,39 @@ namespace GRBL_Plotter
             this.tab1_1gB2.Name = "tab1_1gB2";
             this.tab1_1gB2.TabStop = false;
             // 
+            // checkBox5
+            // 
+            resources.ApplyResources(this.checkBox5, "checkBox5");
+            this.checkBox5.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGApplyFill;
+            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGApplyFill", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // nUDSVGScale
+            // 
+            this.nUDSVGScale.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importSVGMaxSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDSVGScale.DecimalPlaces = 1;
+            this.nUDSVGScale.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDSVGScale, "nUDSVGScale");
+            this.nUDSVGScale.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDSVGScale.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDSVGScale.Name = "nUDSVGScale";
+            this.toolTip1.SetToolTip(this.nUDSVGScale, resources.GetString("nUDSVGScale.ToolTip"));
+            this.nUDSVGScale.Value = global::GRBL_Plotter.Properties.Settings.Default.importSVGMaxSize;
+            // 
             // tab1_1lbl3
             // 
             resources.ApplyResources(this.tab1_1lbl3, "tab1_1lbl3");
@@ -1195,6 +1422,26 @@ namespace GRBL_Plotter
             this.cBImportSVG_DPI_72.Name = "cBImportSVG_DPI_72";
             this.toolTip1.SetToolTip(this.cBImportSVG_DPI_72, resources.GetString("cBImportSVG_DPI_72.ToolTip"));
             this.cBImportSVG_DPI_72.UseVisualStyleBackColor = true;
+            // 
+            // cBImportSVG_DPI_96
+            // 
+            resources.ApplyResources(this.cBImportSVG_DPI_96, "cBImportSVG_DPI_96");
+            this.cBImportSVG_DPI_96.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGDPI96;
+            this.cBImportSVG_DPI_96.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGDPI96", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVG_DPI_96.Name = "cBImportSVG_DPI_96";
+            this.cBImportSVG_DPI_96.TabStop = true;
+            this.toolTip1.SetToolTip(this.cBImportSVG_DPI_96, resources.GetString("cBImportSVG_DPI_96.ToolTip"));
+            this.cBImportSVG_DPI_96.UseVisualStyleBackColor = true;
+            // 
+            // cBImportSVGResize
+            // 
+            this.cBImportSVGResize.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGRezise;
+            this.cBImportSVGResize.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGRezise", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBImportSVGResize, "cBImportSVGResize");
+            this.cBImportSVGResize.Name = "cBImportSVGResize";
+            this.toolTip1.SetToolTip(this.cBImportSVGResize, resources.GetString("cBImportSVGResize.ToolTip"));
+            this.cBImportSVGResize.UseVisualStyleBackColor = true;
+            this.cBImportSVGResize.CheckedChanged += new System.EventHandler(this.cBImportSVGResize_CheckedChanged);
             // 
             // lblSVGScale
             // 
@@ -1245,20 +1492,131 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.lblImportPenWidthToZWarning, "lblImportPenWidthToZWarning");
             this.lblImportPenWidthToZWarning.Name = "lblImportPenWidthToZWarning";
             // 
+            // cBImportPenWidthToZRamp
+            // 
+            resources.ApplyResources(this.cBImportPenWidthToZRamp, "cBImportPenWidthToZRamp");
+            this.cBImportPenWidthToZRamp.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidthRamp;
+            this.cBImportPenWidthToZRamp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidthRamp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportPenWidthToZRamp.Name = "cBImportPenWidthToZRamp";
+            this.cBImportPenWidthToZRamp.UseVisualStyleBackColor = true;
+            // 
+            // cBImportSVGCircleToDotZ
+            // 
+            resources.ApplyResources(this.cBImportSVGCircleToDotZ, "cBImportSVGCircleToDotZ");
+            this.cBImportSVGCircleToDotZ.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGCircleToDotZ;
+            this.cBImportSVGCircleToDotZ.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGCircleToDotZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGCircleToDotZ.Name = "cBImportSVGCircleToDotZ";
+            this.toolTip1.SetToolTip(this.cBImportSVGCircleToDotZ, resources.GetString("cBImportSVGCircleToDotZ.ToolTip"));
+            this.cBImportSVGCircleToDotZ.UseVisualStyleBackColor = true;
+            // 
             // label17
             // 
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
+            // 
+            // cBImportSVGCircleToDot
+            // 
+            resources.ApplyResources(this.cBImportSVGCircleToDot, "cBImportSVGCircleToDot");
+            this.cBImportSVGCircleToDot.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGCircleToDot;
+            this.cBImportSVGCircleToDot.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGCircleToDot", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGCircleToDot.Name = "cBImportSVGCircleToDot";
+            this.toolTip1.SetToolTip(this.cBImportSVGCircleToDot, resources.GetString("cBImportSVGCircleToDot.ToolTip"));
+            this.cBImportSVGCircleToDot.UseVisualStyleBackColor = true;
+            this.cBImportSVGCircleToDot.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
             // 
             // label16
             // 
             resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
             // 
+            // cBImportPenWidthToZ
+            // 
+            resources.ApplyResources(this.cBImportPenWidthToZ, "cBImportPenWidthToZ");
+            this.cBImportPenWidthToZ.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidth;
+            this.cBImportPenWidthToZ.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportPenWidthToZ.Name = "cBImportPenWidthToZ";
+            this.toolTip1.SetToolTip(this.cBImportPenWidthToZ, resources.GetString("cBImportPenWidthToZ.ToolTip"));
+            this.cBImportPenWidthToZ.UseVisualStyleBackColor = true;
+            this.cBImportPenWidthToZ.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
+            // 
+            // nUDImportPenWidthToZMin
+            // 
+            this.nUDImportPenWidthToZMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidthMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportPenWidthToZMin.DecimalPlaces = 1;
+            this.nUDImportPenWidthToZMin.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportPenWidthToZMin, "nUDImportPenWidthToZMin");
+            this.nUDImportPenWidthToZMin.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147418112});
+            this.nUDImportPenWidthToZMin.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nUDImportPenWidthToZMin.Name = "nUDImportPenWidthToZMin";
+            this.toolTip1.SetToolTip(this.nUDImportPenWidthToZMin, resources.GetString("nUDImportPenWidthToZMin.ToolTip"));
+            this.nUDImportPenWidthToZMin.Value = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidthMin;
+            this.nUDImportPenWidthToZMin.ValueChanged += new System.EventHandler(this.nUDImportPenWidthToZMin_ValueChanged);
+            // 
             // label14
             // 
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
+            // 
+            // nUDImportPenWidthToZMax
+            // 
+            this.nUDImportPenWidthToZMax.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidthMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportPenWidthToZMax.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDImportPenWidthToZMax, "nUDImportPenWidthToZMax");
+            this.nUDImportPenWidthToZMax.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147418112});
+            this.nUDImportPenWidthToZMax.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nUDImportPenWidthToZMax.Name = "nUDImportPenWidthToZMax";
+            this.toolTip1.SetToolTip(this.nUDImportPenWidthToZMax, resources.GetString("nUDImportPenWidthToZMax.ToolTip"));
+            this.nUDImportPenWidthToZMax.Value = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidthMax;
+            this.nUDImportPenWidthToZMax.ValueChanged += new System.EventHandler(this.nUDImportPenWidthToZMin_ValueChanged);
+            // 
+            // cBDashedLine2
+            // 
+            resources.ApplyResources(this.cBDashedLine2, "cBDashedLine2");
+            this.cBDashedLine2.Checked = global::GRBL_Plotter.Properties.Settings.Default.importLineDashPatternG0;
+            this.cBDashedLine2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importLineDashPatternG0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBDashedLine2.Name = "cBDashedLine2";
+            this.toolTip1.SetToolTip(this.cBDashedLine2, resources.GetString("cBDashedLine2.ToolTip"));
+            this.cBDashedLine2.UseVisualStyleBackColor = true;
+            // 
+            // cBImportSVGNodesOnly
+            // 
+            resources.ApplyResources(this.cBImportSVGNodesOnly, "cBImportSVGNodesOnly");
+            this.cBImportSVGNodesOnly.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGNodesOnly;
+            this.cBImportSVGNodesOnly.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGNodesOnly", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGNodesOnly.Name = "cBImportSVGNodesOnly";
+            this.toolTip1.SetToolTip(this.cBImportSVGNodesOnly, resources.GetString("cBImportSVGNodesOnly.ToolTip"));
+            this.cBImportSVGNodesOnly.UseVisualStyleBackColor = true;
+            this.cBImportSVGNodesOnly.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
+            // 
+            // cBDashedLine1
+            // 
+            resources.ApplyResources(this.cBDashedLine1, "cBDashedLine1");
+            this.cBDashedLine1.Checked = global::GRBL_Plotter.Properties.Settings.Default.importLineDashPattern;
+            this.cBDashedLine1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importLineDashPattern", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBDashedLine1.Name = "cBDashedLine1";
+            this.toolTip1.SetToolTip(this.cBDashedLine1, resources.GetString("cBDashedLine1.ToolTip"));
+            this.cBDashedLine1.UseVisualStyleBackColor = true;
+            this.cBDashedLine1.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
             // 
             // groupBox5
             // 
@@ -1272,11 +1630,48 @@ namespace GRBL_Plotter
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
             // 
+            // nUDImportRepeat
+            // 
+            this.nUDImportRepeat.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importRepeatCnt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDImportRepeat, "nUDImportRepeat");
+            this.nUDImportRepeat.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nUDImportRepeat.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nUDImportRepeat.Name = "nUDImportRepeat";
+            this.toolTip1.SetToolTip(this.nUDImportRepeat, resources.GetString("nUDImportRepeat.ToolTip"));
+            this.nUDImportRepeat.Value = global::GRBL_Plotter.Properties.Settings.Default.importRepeatCnt;
+            // 
             // rBImportSVGRepeat2
             // 
             resources.ApplyResources(this.rBImportSVGRepeat2, "rBImportSVGRepeat2");
             this.rBImportSVGRepeat2.Name = "rBImportSVGRepeat2";
             this.rBImportSVGRepeat2.UseVisualStyleBackColor = true;
+            // 
+            // rBImportSVGRepeat1
+            // 
+            resources.ApplyResources(this.rBImportSVGRepeat1, "rBImportSVGRepeat1");
+            this.rBImportSVGRepeat1.Checked = global::GRBL_Plotter.Properties.Settings.Default.importRepeatComplete;
+            this.rBImportSVGRepeat1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importRepeatComplete", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rBImportSVGRepeat1.Name = "rBImportSVGRepeat1";
+            this.rBImportSVGRepeat1.TabStop = true;
+            this.rBImportSVGRepeat1.UseVisualStyleBackColor = true;
+            // 
+            // cBImportSVGRepeat
+            // 
+            resources.ApplyResources(this.cBImportSVGRepeat, "cBImportSVGRepeat");
+            this.cBImportSVGRepeat.Checked = global::GRBL_Plotter.Properties.Settings.Default.importRepeatEnable;
+            this.cBImportSVGRepeat.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importRepeatEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGRepeat.Name = "cBImportSVGRepeat";
+            this.toolTip1.SetToolTip(this.cBImportSVGRepeat, resources.GetString("cBImportSVGRepeat.ToolTip"));
+            this.cBImportSVGRepeat.UseVisualStyleBackColor = true;
+            this.cBImportSVGRepeat.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
             // 
             // label58
             // 
@@ -1292,6 +1687,25 @@ namespace GRBL_Plotter
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.TabStop = false;
             // 
+            // cBImportSVGComments
+            // 
+            resources.ApplyResources(this.cBImportSVGComments, "cBImportSVGComments");
+            this.cBImportSVGComments.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGAddComments;
+            this.cBImportSVGComments.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGAddComments", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGComments.Name = "cBImportSVGComments";
+            this.toolTip1.SetToolTip(this.cBImportSVGComments, resources.GetString("cBImportSVGComments.ToolTip"));
+            this.cBImportSVGComments.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            resources.ApplyResources(this.checkBox4, "checkBox4");
+            this.checkBox4.Checked = global::GRBL_Plotter.Properties.Settings.Default.importCodeFold;
+            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importCodeFold", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox4.Name = "checkBox4";
+            this.toolTip1.SetToolTip(this.checkBox4, resources.GetString("checkBox4.ToolTip"));
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1300,6 +1714,22 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            // 
+            // cBImportSVGPauseE
+            // 
+            resources.ApplyResources(this.cBImportSVGPauseE, "cBImportSVGPauseE");
+            this.cBImportSVGPauseE.Checked = global::GRBL_Plotter.Properties.Settings.Default.importPauseElement;
+            this.cBImportSVGPauseE.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importPauseElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGPauseE.Name = "cBImportSVGPauseE";
+            this.cBImportSVGPauseE.UseVisualStyleBackColor = true;
+            // 
+            // cBImportSVGPauseP
+            // 
+            resources.ApplyResources(this.cBImportSVGPauseP, "cBImportSVGPauseP");
+            this.cBImportSVGPauseP.Checked = global::GRBL_Plotter.Properties.Settings.Default.importPausePenDown;
+            this.cBImportSVGPauseP.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importPausePenDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGPauseP.Name = "cBImportSVGPauseP";
+            this.cBImportSVGPauseP.UseVisualStyleBackColor = true;
             // 
             // tab1_1gB1
             // 
@@ -1324,16 +1754,138 @@ namespace GRBL_Plotter
             this.tab1_1gB1.Name = "tab1_1gB1";
             this.tab1_1gB1.TabStop = false;
             // 
+            // cBImportGraphicSortDistanceRotatePath
+            // 
+            resources.ApplyResources(this.cBImportGraphicSortDistanceRotatePath, "cBImportGraphicSortDistanceRotatePath");
+            this.cBImportGraphicSortDistanceRotatePath.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicSortDistanceAllowRotate;
+            this.cBImportGraphicSortDistanceRotatePath.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportGraphicSortDistanceRotatePath.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicSortDistanceAllowRotate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicSortDistanceRotatePath.Name = "cBImportGraphicSortDistanceRotatePath";
+            this.cBImportGraphicSortDistanceRotatePath.UseVisualStyleBackColor = true;
+            // 
             // label15
             // 
             resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
+            // 
+            // nUDImportGCSegment
+            // 
+            this.nUDImportGCSegment.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSegment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCSegment.DecimalPlaces = 2;
+            this.nUDImportGCSegment.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCSegment, "nUDImportGCSegment");
+            this.nUDImportGCSegment.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDImportGCSegment.Name = "nUDImportGCSegment";
+            this.toolTip1.SetToolTip(this.nUDImportGCSegment, resources.GetString("nUDImportGCSegment.ToolTip"));
+            this.nUDImportGCSegment.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSegment;
+            // 
+            // numericUpDown13
+            // 
+            this.numericUpDown13.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importAssumeAsEqualDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown13.DecimalPlaces = 6;
+            resources.ApplyResources(this.numericUpDown13, "numericUpDown13");
+            this.numericUpDown13.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown13.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            393216});
+            this.numericUpDown13.Name = "numericUpDown13";
+            this.numericUpDown13.Value = global::GRBL_Plotter.Properties.Settings.Default.importAssumeAsEqualDistance;
+            // 
+            // nUDImportReduce
+            // 
+            this.nUDImportReduce.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importRemoveShortMovesLimit", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportReduce.DecimalPlaces = 2;
+            this.nUDImportReduce.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportReduce, "nUDImportReduce");
+            this.nUDImportReduce.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDImportReduce.Name = "nUDImportReduce";
+            this.toolTip1.SetToolTip(this.nUDImportReduce, resources.GetString("nUDImportReduce.ToolTip"));
+            this.nUDImportReduce.Value = global::GRBL_Plotter.Properties.Settings.Default.importRemoveShortMovesLimit;
+            // 
+            // nUDImportSVGSegemnts
+            // 
+            this.nUDImportSVGSegemnts.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importBezierLineSegmentsCnt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDImportSVGSegemnts, "nUDImportSVGSegemnts");
+            this.nUDImportSVGSegemnts.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.nUDImportSVGSegemnts.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.nUDImportSVGSegemnts.Name = "nUDImportSVGSegemnts";
+            this.toolTip1.SetToolTip(this.nUDImportSVGSegemnts, resources.GetString("nUDImportSVGSegemnts.ToolTip"));
+            this.nUDImportSVGSegemnts.Value = global::GRBL_Plotter.Properties.Settings.Default.importBezierLineSegmentsCnt;
             // 
             // tab1_1_2lbl2
             // 
             resources.ApplyResources(this.tab1_1_2lbl2, "tab1_1_2lbl2");
             this.tab1_1_2lbl2.Name = "tab1_1_2lbl2";
             this.toolTip1.SetToolTip(this.tab1_1_2lbl2, resources.GetString("tab1_1_2lbl2.ToolTip"));
+            // 
+            // cBImportGCNoArcs
+            // 
+            resources.ApplyResources(this.cBImportGCNoArcs, "cBImportGCNoArcs");
+            this.cBImportGCNoArcs.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCNoArcs;
+            this.cBImportGCNoArcs.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCNoArcs", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCNoArcs.Name = "cBImportGCNoArcs";
+            this.toolTip1.SetToolTip(this.cBImportGCNoArcs, resources.GetString("cBImportGCNoArcs.ToolTip"));
+            this.cBImportGCNoArcs.UseVisualStyleBackColor = true;
+            this.cBImportGCNoArcs.CheckedChanged += new System.EventHandler(this.cBImportGCNoArcs_CheckedChanged);
+            // 
+            // cBImportGraphicOffsetOrigin
+            // 
+            resources.ApplyResources(this.cBImportGraphicOffsetOrigin, "cBImportGraphicOffsetOrigin");
+            this.cBImportGraphicOffsetOrigin.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicOffsetOrigin;
+            this.cBImportGraphicOffsetOrigin.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportGraphicOffsetOrigin.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicOffsetOrigin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicOffsetOrigin.Name = "cBImportGraphicOffsetOrigin";
+            this.toolTip1.SetToolTip(this.cBImportGraphicOffsetOrigin, resources.GetString("cBImportGraphicOffsetOrigin.ToolTip"));
+            this.cBImportGraphicOffsetOrigin.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGraphicSortDistance
+            // 
+            resources.ApplyResources(this.cBImportGraphicSortDistance, "cBImportGraphicSortDistance");
+            this.cBImportGraphicSortDistance.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicSortDistance;
+            this.cBImportGraphicSortDistance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportGraphicSortDistance.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicSortDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicSortDistance.Name = "cBImportGraphicSortDistance";
+            this.toolTip1.SetToolTip(this.cBImportGraphicSortDistance, resources.GetString("cBImportGraphicSortDistance.ToolTip"));
+            this.cBImportGraphicSortDistance.UseVisualStyleBackColor = true;
+            // 
+            // cBImportUnitGCode
+            // 
+            this.cBImportUnitGCode.Checked = global::GRBL_Plotter.Properties.Settings.Default.importUnitGCode;
+            this.cBImportUnitGCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importUnitGCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBImportUnitGCode, "cBImportUnitGCode");
+            this.cBImportUnitGCode.Name = "cBImportUnitGCode";
+            this.toolTip1.SetToolTip(this.cBImportUnitGCode, resources.GetString("cBImportUnitGCode.ToolTip"));
+            this.cBImportUnitGCode.UseVisualStyleBackColor = true;
             // 
             // rBImportUnitInch
             // 
@@ -1347,6 +1899,26 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_1lbl1, "tab1_1lbl1");
             this.tab1_1lbl1.Name = "tab1_1lbl1";
             this.toolTip1.SetToolTip(this.tab1_1lbl1, resources.GetString("tab1_1lbl1.ToolTip"));
+            // 
+            // rBImportUnitmm
+            // 
+            resources.ApplyResources(this.rBImportUnitmm, "rBImportUnitmm");
+            this.rBImportUnitmm.Checked = global::GRBL_Plotter.Properties.Settings.Default.importUnitmm;
+            this.rBImportUnitmm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importUnitmm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rBImportUnitmm.Name = "rBImportUnitmm";
+            this.rBImportUnitmm.TabStop = true;
+            this.toolTip1.SetToolTip(this.rBImportUnitmm, resources.GetString("rBImportUnitmm.ToolTip"));
+            this.rBImportUnitmm.UseVisualStyleBackColor = true;
+            // 
+            // cBImportSVGReduce
+            // 
+            resources.ApplyResources(this.cBImportSVGReduce, "cBImportSVGReduce");
+            this.cBImportSVGReduce.Checked = global::GRBL_Plotter.Properties.Settings.Default.importRemoveShortMovesEnable;
+            this.cBImportSVGReduce.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportSVGReduce.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importRemoveShortMovesEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGReduce.Name = "cBImportSVGReduce";
+            this.toolTip1.SetToolTip(this.cBImportSVGReduce, resources.GetString("cBImportSVGReduce.ToolTip"));
+            this.cBImportSVGReduce.UseVisualStyleBackColor = true;
             // 
             // tab1_1lbl2
             // 
@@ -1374,6 +1946,39 @@ namespace GRBL_Plotter
             this.tab1_3gB8.Name = "tab1_3gB8";
             this.tab1_3gB8.TabStop = false;
             // 
+            // nUDPathOverlapValue
+            // 
+            this.nUDPathOverlapValue.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicExtendPathValue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDPathOverlapValue.DecimalPlaces = 2;
+            this.nUDPathOverlapValue.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDPathOverlapValue, "nUDPathOverlapValue");
+            this.nUDPathOverlapValue.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDPathOverlapValue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUDPathOverlapValue.Name = "nUDPathOverlapValue";
+            this.nUDPathOverlapValue.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicExtendPathValue;
+            // 
+            // cBPathOverlapEnable
+            // 
+            resources.ApplyResources(this.cBPathOverlapEnable, "cBPathOverlapEnable");
+            this.cBPathOverlapEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicExtendPathEnable;
+            this.cBPathOverlapEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicExtendPathEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBPathOverlapEnable.Name = "cBPathOverlapEnable";
+            this.toolTip1.SetToolTip(this.cBPathOverlapEnable, resources.GetString("cBPathOverlapEnable.ToolTip"));
+            this.cBPathOverlapEnable.UseVisualStyleBackColor = true;
+            this.cBPathOverlapEnable.CheckStateChanged += new System.EventHandler(this.cBPathOverlapEnable_CheckStateChanged);
+            // 
             // lblPathModification
             // 
             resources.ApplyResources(this.lblPathModification, "lblPathModification");
@@ -1396,6 +2001,91 @@ namespace GRBL_Plotter
             this.gBHatchFill.Name = "gBHatchFill";
             this.gBHatchFill.TabStop = false;
             // 
+            // nUDHatchFillInset
+            // 
+            this.nUDHatchFillInset.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillInset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDHatchFillInset.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDHatchFillInset, "nUDHatchFillInset");
+            this.nUDHatchFillInset.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDHatchFillInset.Name = "nUDHatchFillInset";
+            this.nUDHatchFillInset.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillInset;
+            // 
+            // nUDHatchFillAngle2
+            // 
+            this.nUDHatchFillAngle2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillAngle2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDHatchFillAngle2.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDHatchFillAngle2, "nUDHatchFillAngle2");
+            this.nUDHatchFillAngle2.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDHatchFillAngle2.Name = "nUDHatchFillAngle2";
+            this.nUDHatchFillAngle2.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillAngle2;
+            // 
+            // nUDHatchFillAngle
+            // 
+            this.nUDHatchFillAngle.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDHatchFillAngle.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDHatchFillAngle, "nUDHatchFillAngle");
+            this.nUDHatchFillAngle.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDHatchFillAngle.Name = "nUDHatchFillAngle";
+            this.nUDHatchFillAngle.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillAngle;
+            // 
+            // nUDHatchFillDist
+            // 
+            this.nUDHatchFillDist.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDHatchFillDist.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDHatchFillDist, "nUDHatchFillDist");
+            this.nUDHatchFillDist.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDHatchFillDist.Name = "nUDHatchFillDist";
+            this.nUDHatchFillDist.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillDistance;
+            // 
+            // cBImportGraphicHatchFillInset
+            // 
+            resources.ApplyResources(this.cBImportGraphicHatchFillInset, "cBImportGraphicHatchFillInset");
+            this.cBImportGraphicHatchFillInset.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillInsetEnable;
+            this.cBImportGraphicHatchFillInset.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportGraphicHatchFillInset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillInsetEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicHatchFillInset.Name = "cBImportGraphicHatchFillInset";
+            this.cBImportGraphicHatchFillInset.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGraphicHatchFillChangeAngle
+            // 
+            resources.ApplyResources(this.cBImportGraphicHatchFillChangeAngle, "cBImportGraphicHatchFillChangeAngle");
+            this.cBImportGraphicHatchFillChangeAngle.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillAngleInc;
+            this.cBImportGraphicHatchFillChangeAngle.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillAngleInc", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicHatchFillChangeAngle.Name = "cBImportGraphicHatchFillChangeAngle";
+            this.cBImportGraphicHatchFillChangeAngle.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGraphicHatchFillCross
+            // 
+            resources.ApplyResources(this.cBImportGraphicHatchFillCross, "cBImportGraphicHatchFillCross");
+            this.cBImportGraphicHatchFillCross.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillCross;
+            this.cBImportGraphicHatchFillCross.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillCross", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicHatchFillCross.Name = "cBImportGraphicHatchFillCross";
+            this.cBImportGraphicHatchFillCross.UseVisualStyleBackColor = true;
+            // 
             // lblHatchFill2
             // 
             resources.ApplyResources(this.lblHatchFill2, "lblHatchFill2");
@@ -1405,6 +2095,15 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.lblHatchFill1, "lblHatchFill1");
             this.lblHatchFill1.Name = "lblHatchFill1";
+            // 
+            // cBImportGraphicHatchFill
+            // 
+            resources.ApplyResources(this.cBImportGraphicHatchFill, "cBImportGraphicHatchFill");
+            this.cBImportGraphicHatchFill.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillEnable;
+            this.cBImportGraphicHatchFill.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicHatchFill.Name = "cBImportGraphicHatchFill";
+            this.cBImportGraphicHatchFill.UseVisualStyleBackColor = true;
+            this.cBImportGraphicHatchFill.CheckStateChanged += new System.EventHandler(this.cBImportGraphicHatchFill_CheckStateChanged);
             // 
             // tab1_3gB5
             // 
@@ -1423,11 +2122,89 @@ namespace GRBL_Plotter
             this.tab1_3gB5.Name = "tab1_3gB5";
             this.tab1_3gB5.TabStop = false;
             // 
+            // nUDImportGCTangentialUnits
+            // 
+            this.nUDImportGCTangentialUnits.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialTurn", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCTangentialUnits.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDImportGCTangentialUnits, "nUDImportGCTangentialUnits");
+            this.nUDImportGCTangentialUnits.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.nUDImportGCTangentialUnits.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDImportGCTangentialUnits.Name = "nUDImportGCTangentialUnits";
+            this.nUDImportGCTangentialUnits.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialTurn;
+            // 
+            // nUDImportGCTangentialSwivel2
+            // 
+            this.nUDImportGCTangentialSwivel2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialAngleDevi", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCTangentialSwivel2.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCTangentialSwivel2, "nUDImportGCTangentialSwivel2");
+            this.nUDImportGCTangentialSwivel2.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.nUDImportGCTangentialSwivel2.Name = "nUDImportGCTangentialSwivel2";
+            this.toolTip1.SetToolTip(this.nUDImportGCTangentialSwivel2, resources.GetString("nUDImportGCTangentialSwivel2.ToolTip"));
+            this.nUDImportGCTangentialSwivel2.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAngleDevi;
+            // 
+            // nUDImportGCTangentialSwivel
+            // 
+            this.nUDImportGCTangentialSwivel.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCTangentialSwivel.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCTangentialSwivel, "nUDImportGCTangentialSwivel");
+            this.nUDImportGCTangentialSwivel.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.nUDImportGCTangentialSwivel.Name = "nUDImportGCTangentialSwivel";
+            this.toolTip1.SetToolTip(this.nUDImportGCTangentialSwivel, resources.GetString("nUDImportGCTangentialSwivel.ToolTip"));
+            this.nUDImportGCTangentialSwivel.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAngle;
+            // 
+            // cBoxImportGCTangentialName
+            // 
+            this.cBoxImportGCTangentialName.AllowDrop = true;
+            this.cBoxImportGCTangentialName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBoxImportGCTangentialName.FormattingEnabled = true;
+            this.cBoxImportGCTangentialName.Items.AddRange(new object[] {
+            resources.GetString("cBoxImportGCTangentialName.Items"),
+            resources.GetString("cBoxImportGCTangentialName.Items1"),
+            resources.GetString("cBoxImportGCTangentialName.Items2"),
+            resources.GetString("cBoxImportGCTangentialName.Items3")});
+            resources.ApplyResources(this.cBoxImportGCTangentialName, "cBoxImportGCTangentialName");
+            this.cBoxImportGCTangentialName.Name = "cBoxImportGCTangentialName";
+            this.cBoxImportGCTangentialName.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAxis;
+            // 
             // lblDImportGCTangential4
             // 
             resources.ApplyResources(this.lblDImportGCTangential4, "lblDImportGCTangential4");
             this.lblDImportGCTangential4.Name = "lblDImportGCTangential4";
             this.toolTip1.SetToolTip(this.lblDImportGCTangential4, resources.GetString("lblDImportGCTangential4.ToolTip"));
+            // 
+            // cBImportGCTangentialRange
+            // 
+            resources.ApplyResources(this.cBImportGCTangentialRange, "cBImportGCTangentialRange");
+            this.cBImportGCTangentialRange.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialRange;
+            this.cBImportGCTangentialRange.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialRange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTangentialRange.Name = "cBImportGCTangentialRange";
+            this.toolTip1.SetToolTip(this.cBImportGCTangentialRange, resources.GetString("cBImportGCTangentialRange.ToolTip"));
+            this.cBImportGCTangentialRange.UseVisualStyleBackColor = true;
+            this.cBImportGCTangentialRange.CheckStateChanged += new System.EventHandler(this.cBImportGCTangentialRange_CheckStateChanged);
             // 
             // lblDImportGCTangential3
             // 
@@ -1445,6 +2222,15 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.lblDImportGCTangential1, "lblDImportGCTangential1");
             this.lblDImportGCTangential1.Name = "lblDImportGCTangential1";
             // 
+            // cBImportGCTangential
+            // 
+            resources.ApplyResources(this.cBImportGCTangential, "cBImportGCTangential");
+            this.cBImportGCTangential.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialEnable;
+            this.cBImportGCTangential.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTangential.Name = "cBImportGCTangential";
+            this.cBImportGCTangential.UseVisualStyleBackColor = true;
+            this.cBImportGCTangential.CheckStateChanged += new System.EventHandler(this.cBImportGCTangential_CheckStateChanged);
+            // 
             // tab1_3gB2
             // 
             this.tab1_3gB2.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1459,6 +2245,60 @@ namespace GRBL_Plotter
             this.tab1_3gB2.Name = "tab1_3gB2";
             this.tab1_3gB2.TabStop = false;
             // 
+            // nUDImportGCDragKnifeAngle
+            // 
+            this.nUDImportGCDragKnifeAngle.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifeAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDImportGCDragKnifeAngle, "nUDImportGCDragKnifeAngle");
+            this.nUDImportGCDragKnifeAngle.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDImportGCDragKnifeAngle.Name = "nUDImportGCDragKnifeAngle";
+            this.toolTip1.SetToolTip(this.nUDImportGCDragKnifeAngle, resources.GetString("nUDImportGCDragKnifeAngle.ToolTip"));
+            this.nUDImportGCDragKnifeAngle.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifeAngle;
+            // 
+            // nUDImportGCDragKnifePercent
+            // 
+            this.nUDImportGCDragKnifePercent.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifePercent", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDImportGCDragKnifePercent, "nUDImportGCDragKnifePercent");
+            this.nUDImportGCDragKnifePercent.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nUDImportGCDragKnifePercent.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDImportGCDragKnifePercent.Name = "nUDImportGCDragKnifePercent";
+            this.toolTip1.SetToolTip(this.nUDImportGCDragKnifePercent, resources.GetString("nUDImportGCDragKnifePercent.ToolTip"));
+            this.nUDImportGCDragKnifePercent.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifePercent;
+            // 
+            // nUDImportGCDragKnifeLength
+            // 
+            this.nUDImportGCDragKnifeLength.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifeLength", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCDragKnifeLength.DecimalPlaces = 2;
+            resources.ApplyResources(this.nUDImportGCDragKnifeLength, "nUDImportGCDragKnifeLength");
+            this.nUDImportGCDragKnifeLength.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUDImportGCDragKnifeLength.Name = "nUDImportGCDragKnifeLength";
+            this.toolTip1.SetToolTip(this.nUDImportGCDragKnifeLength, resources.GetString("nUDImportGCDragKnifeLength.ToolTip"));
+            this.nUDImportGCDragKnifeLength.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifeLength;
+            // 
+            // cBImportGCDragKnifePercent
+            // 
+            resources.ApplyResources(this.cBImportGCDragKnifePercent, "cBImportGCDragKnifePercent");
+            this.cBImportGCDragKnifePercent.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifePercentEnable;
+            this.cBImportGCDragKnifePercent.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifePercentEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCDragKnifePercent.Name = "cBImportGCDragKnifePercent";
+            this.toolTip1.SetToolTip(this.cBImportGCDragKnifePercent, resources.GetString("cBImportGCDragKnifePercent.ToolTip"));
+            this.cBImportGCDragKnifePercent.UseVisualStyleBackColor = true;
+            // 
             // lblDrag2
             // 
             resources.ApplyResources(this.lblDrag2, "lblDrag2");
@@ -1470,6 +2310,16 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.lblDrag1, "lblDrag1");
             this.lblDrag1.Name = "lblDrag1";
             this.toolTip1.SetToolTip(this.lblDrag1, resources.GetString("lblDrag1.ToolTip"));
+            // 
+            // cBImportGCDragKnife
+            // 
+            resources.ApplyResources(this.cBImportGCDragKnife, "cBImportGCDragKnife");
+            this.cBImportGCDragKnife.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifeEnable;
+            this.cBImportGCDragKnife.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCDragKnife.Name = "cBImportGCDragKnife";
+            this.toolTip1.SetToolTip(this.cBImportGCDragKnife, resources.GetString("cBImportGCDragKnife.ToolTip"));
+            this.cBImportGCDragKnife.UseVisualStyleBackColor = true;
+            this.cBImportGCDragKnife.CheckedChanged += new System.EventHandler(this.cBImportGCDragKnife_CheckedChanged);
             // 
             // tabPage18
             // 
@@ -1494,6 +2344,102 @@ namespace GRBL_Plotter
             this.gBClipping.Name = "gBClipping";
             this.gBClipping.TabStop = false;
             // 
+            // nUDImportGraphicClipOffsetY
+            // 
+            this.nUDImportGraphicClipOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGraphicClipOffsetY.DecimalPlaces = 1;
+            this.nUDImportGraphicClipOffsetY.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGraphicClipOffsetY, "nUDImportGraphicClipOffsetY");
+            this.nUDImportGraphicClipOffsetY.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nUDImportGraphicClipOffsetY.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.nUDImportGraphicClipOffsetY.Name = "nUDImportGraphicClipOffsetY";
+            this.toolTip1.SetToolTip(this.nUDImportGraphicClipOffsetY, resources.GetString("nUDImportGraphicClipOffsetY.ToolTip"));
+            this.nUDImportGraphicClipOffsetY.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipOffsetY;
+            // 
+            // nUDImportGraphicClipHeight
+            // 
+            this.nUDImportGraphicClipHeight.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicTileY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGraphicClipHeight.DecimalPlaces = 1;
+            this.nUDImportGraphicClipHeight.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGraphicClipHeight, "nUDImportGraphicClipHeight");
+            this.nUDImportGraphicClipHeight.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nUDImportGraphicClipHeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDImportGraphicClipHeight.Name = "nUDImportGraphicClipHeight";
+            this.toolTip1.SetToolTip(this.nUDImportGraphicClipHeight, resources.GetString("nUDImportGraphicClipHeight.ToolTip"));
+            this.nUDImportGraphicClipHeight.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicTileY;
+            // 
+            // nUDImportGraphicClipOffsetX
+            // 
+            this.nUDImportGraphicClipOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGraphicClipOffsetX.DecimalPlaces = 1;
+            this.nUDImportGraphicClipOffsetX.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGraphicClipOffsetX, "nUDImportGraphicClipOffsetX");
+            this.nUDImportGraphicClipOffsetX.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nUDImportGraphicClipOffsetX.Minimum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            -2147483648});
+            this.nUDImportGraphicClipOffsetX.Name = "nUDImportGraphicClipOffsetX";
+            this.toolTip1.SetToolTip(this.nUDImportGraphicClipOffsetX, resources.GetString("nUDImportGraphicClipOffsetX.ToolTip"));
+            this.nUDImportGraphicClipOffsetX.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipOffsetX;
+            // 
+            // nUDImportGraphicTileClipWidth
+            // 
+            this.nUDImportGraphicTileClipWidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicTileX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGraphicTileClipWidth.DecimalPlaces = 1;
+            this.nUDImportGraphicTileClipWidth.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGraphicTileClipWidth, "nUDImportGraphicTileClipWidth");
+            this.nUDImportGraphicTileClipWidth.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nUDImportGraphicTileClipWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDImportGraphicTileClipWidth.Name = "nUDImportGraphicTileClipWidth";
+            this.toolTip1.SetToolTip(this.nUDImportGraphicTileClipWidth, resources.GetString("nUDImportGraphicTileClipWidth.ToolTip"));
+            this.nUDImportGraphicTileClipWidth.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicTileX;
+            // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
@@ -1505,8 +2451,30 @@ namespace GRBL_Plotter
             this.rBImportGraphicClip1.Name = "rBImportGraphicClip1";
             this.rBImportGraphicClip1.UseVisualStyleBackColor = true;
             // 
+            // rBImportGraphicClip0
+            // 
+            resources.ApplyResources(this.rBImportGraphicClip0, "rBImportGraphicClip0");
+            this.rBImportGraphicClip0.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClip;
+            this.rBImportGraphicClip0.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClip", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rBImportGraphicClip0.Name = "rBImportGraphicClip0";
+            this.rBImportGraphicClip0.TabStop = true;
+            this.toolTip1.SetToolTip(this.rBImportGraphicClip0, resources.GetString("rBImportGraphicClip0.ToolTip"));
+            this.rBImportGraphicClip0.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGraphicTile
+            // 
+            resources.ApplyResources(this.cBImportGraphicTile, "cBImportGraphicTile");
+            this.cBImportGraphicTile.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipEnable;
+            this.cBImportGraphicTile.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicTile.Name = "cBImportGraphicTile";
+            this.toolTip1.SetToolTip(this.cBImportGraphicTile, resources.GetString("cBImportGraphicTile.ToolTip"));
+            this.cBImportGraphicTile.UseVisualStyleBackColor = true;
+            this.cBImportGraphicTile.CheckedChanged += new System.EventHandler(this.cBImportGraphicTile_CheckedChanged);
+            // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.cBImportGraphicClipSkipCode);
+            this.groupBox7.Controls.Add(this.label34);
             this.groupBox7.Controls.Add(this.label11);
             this.groupBox7.Controls.Add(this.textBox2);
             this.groupBox7.Controls.Add(this.cBImportGraphicClipOffsetApply);
@@ -1519,6 +2487,22 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             this.toolTip1.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
+            // 
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipGCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.textBox2, "textBox2");
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Text = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipGCode;
+            // 
+            // cBImportGraphicClipOffsetApply
+            // 
+            resources.ApplyResources(this.cBImportGraphicClipOffsetApply, "cBImportGraphicClipOffsetApply");
+            this.cBImportGraphicClipOffsetApply.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipOffsetApply;
+            this.cBImportGraphicClipOffsetApply.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportGraphicClipOffsetApply.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipOffsetApply", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicClipOffsetApply.Name = "cBImportGraphicClipOffsetApply";
+            this.cBImportGraphicClipOffsetApply.UseVisualStyleBackColor = true;
             // 
             // tabPage19
             // 
@@ -1537,6 +2521,41 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_1gB5, "tab1_1gB5");
             this.tab1_1gB5.Name = "tab1_1gB5";
             this.tab1_1gB5.TabStop = false;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolDefNr", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.numericUpDown2, "numericUpDown2");
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCToolDefNr;
+            // 
+            // cBToolTableDefault
+            // 
+            resources.ApplyResources(this.cBToolTableDefault, "cBToolTableDefault");
+            this.cBToolTableDefault.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolDefNrUse;
+            this.cBToolTableDefault.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolDefNrUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolTableDefault.Name = "cBToolTableDefault";
+            this.cBToolTableDefault.UseVisualStyleBackColor = true;
+            this.cBToolTableDefault.CheckedChanged += new System.EventHandler(this.cBToolTableUse_CheckedChanged);
+            // 
+            // cBToolTableUse
+            // 
+            resources.ApplyResources(this.cBToolTableUse, "cBToolTableUse");
+            this.cBToolTableUse.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolTableUse;
+            this.cBToolTableUse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolTableUse.Name = "cBToolTableUse";
+            this.cBToolTableUse.UseVisualStyleBackColor = true;
+            this.cBToolTableUse.CheckedChanged += new System.EventHandler(this.cBToolTableUse_CheckedChanged);
             // 
             // tab1_1gB4
             // 
@@ -1602,6 +2621,14 @@ namespace GRBL_Plotter
             this.rBImportSVGSort2.UseVisualStyleBackColor = true;
             this.rBImportSVGSort2.CheckedChanged += new System.EventHandler(this.rBImportSVGSort0_CheckedChanged);
             // 
+            // cBImportSVGSortInvert
+            // 
+            resources.ApplyResources(this.cBImportSVGSortInvert, "cBImportSVGSortInvert");
+            this.cBImportSVGSortInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGroupSortInvert;
+            this.cBImportSVGSortInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGroupSortInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGSortInvert.Name = "cBImportSVGSortInvert";
+            this.cBImportSVGSortInvert.UseVisualStyleBackColor = true;
+            // 
             // tab1_1_4gB2
             // 
             this.tab1_1_4gB2.Controls.Add(this.rBImportSVGGroupItem4);
@@ -1648,6 +2675,16 @@ namespace GRBL_Plotter
             this.rBImportSVGGroupItem1.UseVisualStyleBackColor = true;
             this.rBImportSVGGroupItem1.CheckedChanged += new System.EventHandler(this.rBImportSVGGroupItem0_CheckedChanged);
             // 
+            // cBImportSVGGroup
+            // 
+            resources.ApplyResources(this.cBImportSVGGroup, "cBImportSVGGroup");
+            this.cBImportSVGGroup.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGroupObjects;
+            this.cBImportSVGGroup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGroupObjects", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGGroup.Name = "cBImportSVGGroup";
+            this.toolTip1.SetToolTip(this.cBImportSVGGroup, resources.GetString("cBImportSVGGroup.ToolTip"));
+            this.cBImportSVGGroup.UseVisualStyleBackColor = true;
+            this.cBImportSVGGroup.CheckedChanged += new System.EventHandler(this.cBImportSVGGroup_CheckedChanged);
+            // 
             // tabPage10
             // 
             this.tabPage10.Controls.Add(this.tab1_2gB1);
@@ -1683,6 +2720,36 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.label32, "label32");
             this.label32.Name = "label32";
             // 
+            // tBImportGCToolChange
+            // 
+            this.tBImportGCToolChange.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolChangeCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBImportGCToolChange, "tBImportGCToolChange");
+            this.tBImportGCToolChange.Name = "tBImportGCToolChange";
+            this.tBImportGCToolChange.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCToolChangeCode;
+            // 
+            // nUDImportGCFeedXY
+            // 
+            this.nUDImportGCFeedXY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCXYFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCFeedXY.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCFeedXY, "nUDImportGCFeedXY");
+            this.nUDImportGCFeedXY.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.nUDImportGCFeedXY.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDImportGCFeedXY.Name = "nUDImportGCFeedXY";
+            this.toolTip1.SetToolTip(this.nUDImportGCFeedXY, resources.GetString("nUDImportGCFeedXY.ToolTip"));
+            this.nUDImportGCFeedXY.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCXYFeed;
+            // 
             // tab1_2gB2
             // 
             this.tab1_2gB2.Controls.Add(this.btnCheckSpindle);
@@ -1706,6 +2773,47 @@ namespace GRBL_Plotter
             this.btnCheckSpindle.UseVisualStyleBackColor = true;
             this.btnCheckSpindle.Click += new System.EventHandler(this.btnCheckSpindle_Click);
             // 
+            // nUDImportGCSSpeed
+            // 
+            this.nUDImportGCSSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCSSpeed.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCSSpeed, "nUDImportGCSSpeed");
+            this.nUDImportGCSSpeed.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nUDImportGCSSpeed.Name = "nUDImportGCSSpeed";
+            this.toolTip1.SetToolTip(this.nUDImportGCSSpeed, resources.GetString("nUDImportGCSSpeed.ToolTip"));
+            this.nUDImportGCSSpeed.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSSpeed;
+            // 
+            // nUDImportGCSpindleDelay
+            // 
+            this.nUDImportGCSpindleDelay.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleDelay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCSpindleDelay.DecimalPlaces = 2;
+            this.nUDImportGCSpindleDelay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCSpindleDelay, "nUDImportGCSpindleDelay");
+            this.nUDImportGCSpindleDelay.Name = "nUDImportGCSpindleDelay";
+            this.toolTip1.SetToolTip(this.nUDImportGCSpindleDelay, resources.GetString("nUDImportGCSpindleDelay.ToolTip"));
+            this.nUDImportGCSpindleDelay.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleDelay;
+            // 
+            // cBImportLasermode
+            // 
+            resources.ApplyResources(this.cBImportLasermode, "cBImportLasermode");
+            this.cBImportLasermode.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleToggleLaser;
+            this.cBImportLasermode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleToggleLaser", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportLasermode.Name = "cBImportLasermode";
+            this.cBImportLasermode.UseVisualStyleBackColor = true;
+            this.cBImportLasermode.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
+            // 
             // rBImportGCSpindleCmd2
             // 
             resources.ApplyResources(this.rBImportGCSpindleCmd2, "rBImportGCSpindleCmd2");
@@ -1718,6 +2826,16 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_2lbl6, "tab1_2lbl6");
             this.tab1_2lbl6.Name = "tab1_2lbl6";
             // 
+            // rBImportGCSpindleCmd1
+            // 
+            resources.ApplyResources(this.rBImportGCSpindleCmd1, "rBImportGCSpindleCmd1");
+            this.rBImportGCSpindleCmd1.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSDirM3;
+            this.rBImportGCSpindleCmd1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSDirM3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rBImportGCSpindleCmd1.Name = "rBImportGCSpindleCmd1";
+            this.rBImportGCSpindleCmd1.TabStop = true;
+            this.toolTip1.SetToolTip(this.rBImportGCSpindleCmd1, resources.GetString("rBImportGCSpindleCmd1.ToolTip"));
+            this.rBImportGCSpindleCmd1.UseVisualStyleBackColor = true;
+            // 
             // tab1_2lbl7
             // 
             resources.ApplyResources(this.tab1_2lbl7, "tab1_2lbl7");
@@ -1729,11 +2847,70 @@ namespace GRBL_Plotter
             this.tab1_2lbl5.Name = "tab1_2lbl5";
             this.toolTip1.SetToolTip(this.tab1_2lbl5, resources.GetString("tab1_2lbl5.ToolTip"));
             // 
+            // cBImportGCTTSSpeed
+            // 
+            resources.ApplyResources(this.cBImportGCTTSSpeed, "cBImportGCTTSSpeed");
+            this.cBImportGCTTSSpeed.BackColor = System.Drawing.Color.Transparent;
+            this.cBImportGCTTSSpeed.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTTSSpeed;
+            this.cBImportGCTTSSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTTSSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTTSSpeed.Name = "cBImportGCTTSSpeed";
+            this.toolTip1.SetToolTip(this.cBImportGCTTSSpeed, resources.GetString("cBImportGCTTSSpeed.ToolTip"));
+            this.cBImportGCTTSSpeed.UseVisualStyleBackColor = false;
+            this.cBImportGCTTSSpeed.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            this.cBImportGCTTSSpeed.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            // 
+            // cBImportGCToolM0
+            // 
+            resources.ApplyResources(this.cBImportGCToolM0, "cBImportGCToolM0");
+            this.cBImportGCToolM0.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolM0;
+            this.cBImportGCToolM0.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolM0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCToolM0.Name = "cBImportGCToolM0";
+            this.toolTip1.SetToolTip(this.cBImportGCToolM0, resources.GetString("cBImportGCToolM0.ToolTip"));
+            this.cBImportGCToolM0.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGCTool
+            // 
+            resources.ApplyResources(this.cBImportGCTool, "cBImportGCTool");
+            this.cBImportGCTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTool;
+            this.cBImportGCTool.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTool", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTool.Name = "cBImportGCTool";
+            this.toolTip1.SetToolTip(this.cBImportGCTool, resources.GetString("cBImportGCTool.ToolTip"));
+            this.cBImportGCTool.UseVisualStyleBackColor = true;
+            this.cBImportGCTool.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            // 
+            // cBImportGCComments
+            // 
+            resources.ApplyResources(this.cBImportGCComments, "cBImportGCComments");
+            this.cBImportGCComments.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCAddComments;
+            this.cBImportGCComments.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCAddComments", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCComments.Name = "cBImportGCComments";
+            this.toolTip1.SetToolTip(this.cBImportGCComments, resources.GetString("cBImportGCComments.ToolTip"));
+            this.cBImportGCComments.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGCTTXYFeed
+            // 
+            resources.ApplyResources(this.cBImportGCTTXYFeed, "cBImportGCTTXYFeed");
+            this.cBImportGCTTXYFeed.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTTXYFeed;
+            this.cBImportGCTTXYFeed.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTTXYFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTTXYFeed.Name = "cBImportGCTTXYFeed";
+            this.toolTip1.SetToolTip(this.cBImportGCTTXYFeed, resources.GetString("cBImportGCTTXYFeed.ToolTip"));
+            this.cBImportGCTTXYFeed.UseVisualStyleBackColor = true;
+            this.cBImportGCTTXYFeed.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            this.cBImportGCTTXYFeed.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            // 
             // tab1_2lbl1
             // 
             resources.ApplyResources(this.tab1_2lbl1, "tab1_2lbl1");
             this.tab1_2lbl1.Name = "tab1_2lbl1";
             this.toolTip1.SetToolTip(this.tab1_2lbl1, resources.GetString("tab1_2lbl1.ToolTip"));
+            // 
+            // tBImportGCHeader
+            // 
+            this.tBImportGCHeader.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCHeader", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBImportGCHeader, "tBImportGCHeader");
+            this.tBImportGCHeader.Name = "tBImportGCHeader";
+            this.tBImportGCHeader.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCHeader;
+            this.toolTip1.SetToolTip(this.tBImportGCHeader, resources.GetString("tBImportGCHeader.ToolTip"));
             // 
             // tab1_2lbl4
             // 
@@ -1746,6 +2923,13 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_2lbl2, "tab1_2lbl2");
             this.tab1_2lbl2.Name = "tab1_2lbl2";
             this.toolTip1.SetToolTip(this.tab1_2lbl2, resources.GetString("tab1_2lbl2.ToolTip"));
+            // 
+            // tBImportGCFooter
+            // 
+            this.tBImportGCFooter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCFooter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBImportGCFooter, "tBImportGCFooter");
+            this.tBImportGCFooter.Name = "tBImportGCFooter";
+            this.tBImportGCFooter.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCFooter;
             // 
             // tab1_2lbl3
             // 
@@ -1799,11 +2983,137 @@ namespace GRBL_Plotter
             this.tab1_2gB3.TabStop = false;
             this.toolTip1.SetToolTip(this.tab1_2gB3, resources.GetString("tab1_2gB3.ToolTip"));
             // 
+            // cBImportGCTTZAxis
+            // 
+            resources.ApplyResources(this.cBImportGCTTZAxis, "cBImportGCTTZAxis");
+            this.cBImportGCTTZAxis.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTTZAxis;
+            this.cBImportGCTTZAxis.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTTZAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTTZAxis.Name = "cBImportGCTTZAxis";
+            this.toolTip1.SetToolTip(this.cBImportGCTTZAxis, resources.GetString("cBImportGCTTZAxis.ToolTip"));
+            this.cBImportGCTTZAxis.UseVisualStyleBackColor = true;
+            this.cBImportGCTTZAxis.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            this.cBImportGCTTZAxis.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            // 
+            // nUDImportGCFeedZ
+            // 
+            this.nUDImportGCFeedZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCZFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCFeedZ.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCFeedZ, "nUDImportGCFeedZ");
+            this.nUDImportGCFeedZ.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.nUDImportGCFeedZ.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDImportGCFeedZ.Name = "nUDImportGCFeedZ";
+            this.toolTip1.SetToolTip(this.nUDImportGCFeedZ, resources.GetString("nUDImportGCFeedZ.ToolTip"));
+            this.nUDImportGCFeedZ.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCZFeed;
+            // 
+            // nUDImportGCZUp
+            // 
+            this.nUDImportGCZUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCZUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCZUp.DecimalPlaces = 2;
+            this.nUDImportGCZUp.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCZUp, "nUDImportGCZUp");
+            this.nUDImportGCZUp.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDImportGCZUp.Name = "nUDImportGCZUp";
+            this.toolTip1.SetToolTip(this.nUDImportGCZUp, resources.GetString("nUDImportGCZUp.ToolTip"));
+            this.nUDImportGCZUp.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCZUp;
+            // 
+            // nUDImportGCZDown
+            // 
+            this.nUDImportGCZDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCZDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCZDown.DecimalPlaces = 2;
+            this.nUDImportGCZDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
+            this.nUDImportGCZDown.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nUDImportGCZDown.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nUDImportGCZDown.Name = "nUDImportGCZDown";
+            this.toolTip1.SetToolTip(this.nUDImportGCZDown, resources.GetString("nUDImportGCZDown.ToolTip"));
+            this.nUDImportGCZDown.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCZDown;
+            this.nUDImportGCZDown.ValueChanged += new System.EventHandler(this.nUDImportPenWidthToZMin_ValueChanged);
+            // 
+            // cBImportGCZIncStartZero
+            // 
+            resources.ApplyResources(this.cBImportGCZIncStartZero, "cBImportGCZIncStartZero");
+            this.cBImportGCZIncStartZero.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCZIncStartZero;
+            this.cBImportGCZIncStartZero.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCZIncStartZero", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCZIncStartZero.Name = "cBImportGCZIncStartZero";
+            this.toolTip1.SetToolTip(this.cBImportGCZIncStartZero, resources.GetString("cBImportGCZIncStartZero.ToolTip"));
+            this.cBImportGCZIncStartZero.UseVisualStyleBackColor = true;
+            // 
+            // nUDImportGCZIncrement
+            // 
+            this.nUDImportGCZIncrement.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCZIncrement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCZIncrement.DecimalPlaces = 2;
+            this.nUDImportGCZIncrement.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCZIncrement, "nUDImportGCZIncrement");
+            this.nUDImportGCZIncrement.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUDImportGCZIncrement.Name = "nUDImportGCZIncrement";
+            this.nUDImportGCZIncrement.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCZIncrement;
+            // 
             // tab1_2lbl35
             // 
             resources.ApplyResources(this.tab1_2lbl35, "tab1_2lbl35");
             this.tab1_2lbl35.Name = "tab1_2lbl35";
             this.toolTip1.SetToolTip(this.tab1_2lbl35, resources.GetString("tab1_2lbl35.ToolTip"));
+            // 
+            // cBImportGCZIncEnable
+            // 
+            resources.ApplyResources(this.cBImportGCZIncEnable, "cBImportGCZIncEnable");
+            this.cBImportGCZIncEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCZIncEnable;
+            this.cBImportGCZIncEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCZIncEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCZIncEnable.Name = "cBImportGCZIncEnable";
+            this.toolTip1.SetToolTip(this.cBImportGCZIncEnable, resources.GetString("cBImportGCZIncEnable.ToolTip"));
+            this.cBImportGCZIncEnable.UseVisualStyleBackColor = true;
+            this.cBImportGCZIncEnable.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            // 
+            // cBImportGCUseZ
+            // 
+            resources.ApplyResources(this.cBImportGCUseZ, "cBImportGCUseZ");
+            this.cBImportGCUseZ.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCZEnable;
+            this.cBImportGCUseZ.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportGCUseZ.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCZEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCUseZ.Name = "cBImportGCUseZ";
+            this.toolTip1.SetToolTip(this.cBImportGCUseZ, resources.GetString("cBImportGCUseZ.ToolTip"));
+            this.cBImportGCUseZ.UseVisualStyleBackColor = true;
+            this.cBImportGCUseZ.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
             // 
             // tab1_2lbl32
             // 
@@ -1838,6 +3148,16 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_2lbl51, "tab1_2lbl51");
             this.tab1_2lbl51.Name = "tab1_2lbl51";
             // 
+            // cBImportGCUseSpindle
+            // 
+            resources.ApplyResources(this.cBImportGCUseSpindle, "cBImportGCUseSpindle");
+            this.cBImportGCUseSpindle.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleToggle;
+            this.cBImportGCUseSpindle.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleToggle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCUseSpindle.Name = "cBImportGCUseSpindle";
+            this.toolTip1.SetToolTip(this.cBImportGCUseSpindle, resources.GetString("cBImportGCUseSpindle.ToolTip"));
+            this.cBImportGCUseSpindle.UseVisualStyleBackColor = true;
+            this.cBImportGCUseSpindle.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
+            // 
             // tab1_2gB6
             // 
             this.tab1_2gB6.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1850,6 +3170,20 @@ namespace GRBL_Plotter
             this.tab1_2gB6.Name = "tab1_2gB6";
             this.tab1_2gB6.TabStop = false;
             // 
+            // tBImportGCIPD
+            // 
+            this.tBImportGCIPD.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCIndPenDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBImportGCIPD, "tBImportGCIPD");
+            this.tBImportGCIPD.Name = "tBImportGCIPD";
+            this.tBImportGCIPD.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCIndPenDown;
+            // 
+            // tBImportGCIPU
+            // 
+            this.tBImportGCIPU.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCIndPenUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBImportGCIPU, "tBImportGCIPU");
+            this.tBImportGCIPU.Name = "tBImportGCIPU";
+            this.tBImportGCIPU.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCIndPenUp;
+            // 
             // tab1_2lbl62
             // 
             resources.ApplyResources(this.tab1_2lbl62, "tab1_2lbl62");
@@ -1859,6 +3193,15 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.tab1_2lbl61, "tab1_2lbl61");
             this.tab1_2lbl61.Name = "tab1_2lbl61";
+            // 
+            // cBImportGCUseIndividual
+            // 
+            resources.ApplyResources(this.cBImportGCUseIndividual, "cBImportGCUseIndividual");
+            this.cBImportGCUseIndividual.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCIndEnable;
+            this.cBImportGCUseIndividual.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCIndEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCUseIndividual.Name = "cBImportGCUseIndividual";
+            this.cBImportGCUseIndividual.UseVisualStyleBackColor = true;
+            this.cBImportGCUseIndividual.CheckedChanged += new System.EventHandler(this.cBImportGCUseIndividual_CheckedChanged);
             // 
             // tab1_2gB4
             // 
@@ -1876,6 +3219,80 @@ namespace GRBL_Plotter
             this.tab1_2gB4.Name = "tab1_2gB4";
             this.tab1_2gB4.TabStop = false;
             this.toolTip1.SetToolTip(this.tab1_2gB4, resources.GetString("tab1_2gB4.ToolTip"));
+            // 
+            // nUDImportGCPWMUp
+            // 
+            this.nUDImportGCPWMUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCPWMUp.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCPWMUp, "nUDImportGCPWMUp");
+            this.nUDImportGCPWMUp.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDImportGCPWMUp.Name = "nUDImportGCPWMUp";
+            this.toolTip1.SetToolTip(this.nUDImportGCPWMUp, resources.GetString("nUDImportGCPWMUp.ToolTip"));
+            this.nUDImportGCPWMUp.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMUp;
+            // 
+            // nUDImportGCDlyUp
+            // 
+            this.nUDImportGCDlyUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMDlyUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCDlyUp.DecimalPlaces = 2;
+            this.nUDImportGCDlyUp.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCDlyUp, "nUDImportGCDlyUp");
+            this.nUDImportGCDlyUp.Name = "nUDImportGCDlyUp";
+            this.toolTip1.SetToolTip(this.nUDImportGCDlyUp, resources.GetString("nUDImportGCDlyUp.ToolTip"));
+            this.nUDImportGCDlyUp.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMDlyUp;
+            // 
+            // nUDImportGCPWMDown
+            // 
+            this.nUDImportGCPWMDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCPWMDown.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCPWMDown, "nUDImportGCPWMDown");
+            this.nUDImportGCPWMDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDImportGCPWMDown.Name = "nUDImportGCPWMDown";
+            this.toolTip1.SetToolTip(this.nUDImportGCPWMDown, resources.GetString("nUDImportGCPWMDown.ToolTip"));
+            this.nUDImportGCPWMDown.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMDown;
+            // 
+            // nUDImportGCDlyDown
+            // 
+            this.nUDImportGCDlyDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMDlyDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCDlyDown.DecimalPlaces = 2;
+            this.nUDImportGCDlyDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCDlyDown, "nUDImportGCDlyDown");
+            this.nUDImportGCDlyDown.Name = "nUDImportGCDlyDown";
+            this.toolTip1.SetToolTip(this.nUDImportGCDlyDown, resources.GetString("nUDImportGCDlyDown.ToolTip"));
+            this.nUDImportGCDlyDown.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMDlyDown;
+            // 
+            // cBImportGCUsePWM
+            // 
+            resources.ApplyResources(this.cBImportGCUsePWM, "cBImportGCUsePWM");
+            this.cBImportGCUsePWM.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMEnable;
+            this.cBImportGCUsePWM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCUsePWM.Name = "cBImportGCUsePWM";
+            this.toolTip1.SetToolTip(this.cBImportGCUsePWM, resources.GetString("cBImportGCUsePWM.ToolTip"));
+            this.cBImportGCUsePWM.UseVisualStyleBackColor = true;
+            this.cBImportGCUsePWM.CheckedChanged += new System.EventHandler(this.cBImportGCUsePWM_CheckedChanged);
             // 
             // tab1_2lbl44
             // 
@@ -1924,6 +3341,57 @@ namespace GRBL_Plotter
             this.tab1_3gB3.Name = "tab1_3gB3";
             this.tab1_3gB3.TabStop = false;
             // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "convertZtoSOff", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown5.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.numericUpDown5, "numericUpDown5");
+            this.numericUpDown5.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Value = global::GRBL_Plotter.Properties.Settings.Default.convertZtoSOff;
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "convertZtoSMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown4.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.numericUpDown4, "numericUpDown4");
+            this.numericUpDown4.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Value = global::GRBL_Plotter.Properties.Settings.Default.convertZtoSMin;
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "convertZtoSMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown3.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.numericUpDown3, "numericUpDown3");
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Value = global::GRBL_Plotter.Properties.Settings.Default.convertZtoSMax;
+            // 
             // tab1_3lbl34
             // 
             resources.ApplyResources(this.tab1_3lbl34, "tab1_3lbl34");
@@ -1958,6 +3426,24 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_3lbl41, "tab1_3lbl41");
             this.tab1_3lbl41.Name = "tab1_3lbl41";
             // 
+            // cBImportGCRelative
+            // 
+            resources.ApplyResources(this.cBImportGCRelative, "cBImportGCRelative");
+            this.cBImportGCRelative.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCRelative;
+            this.cBImportGCRelative.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCRelative", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCRelative.Name = "cBImportGCRelative";
+            this.toolTip1.SetToolTip(this.cBImportGCRelative, resources.GetString("cBImportGCRelative.ToolTip"));
+            this.cBImportGCRelative.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGCCompress
+            // 
+            resources.ApplyResources(this.cBImportGCCompress, "cBImportGCCompress");
+            this.cBImportGCCompress.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCCompress;
+            this.cBImportGCCompress.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCCompress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCCompress.Name = "cBImportGCCompress";
+            this.toolTip1.SetToolTip(this.cBImportGCCompress, resources.GetString("cBImportGCCompress.ToolTip"));
+            this.cBImportGCCompress.UseVisualStyleBackColor = true;
+            // 
             // tab1_3gB1
             // 
             this.tab1_3gB1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -1973,12 +3459,43 @@ namespace GRBL_Plotter
             this.tab1_3gB1.Name = "tab1_3gB1";
             this.tab1_3gB1.TabStop = false;
             // 
+            // nUDImportGCLineSegment
+            // 
+            this.nUDImportGCLineSegment.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCLineSegmentLength", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCLineSegment.DecimalPlaces = 1;
+            this.nUDImportGCLineSegment.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDImportGCLineSegment, "nUDImportGCLineSegment");
+            this.nUDImportGCLineSegment.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDImportGCLineSegment.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDImportGCLineSegment.Name = "nUDImportGCLineSegment";
+            this.nUDImportGCLineSegment.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCLineSegmentLength;
+            // 
             // btnFileDialogSubR
             // 
             resources.ApplyResources(this.btnFileDialogSubR, "btnFileDialogSubR");
             this.btnFileDialogSubR.Name = "btnFileDialogSubR";
             this.btnFileDialogSubR.UseVisualStyleBackColor = true;
             this.btnFileDialogSubR.Click += new System.EventHandler(this.btnFileDialogTT1_Click);
+            // 
+            // cBImportGCSubFirst
+            // 
+            resources.ApplyResources(this.cBImportGCSubFirst, "cBImportGCSubFirst");
+            this.cBImportGCSubFirst.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSubFirst;
+            this.cBImportGCSubFirst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSubFirst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCSubFirst.Name = "cBImportGCSubFirst";
+            this.cBImportGCSubFirst.UseVisualStyleBackColor = true;
             // 
             // btnShowScriptSub
             // 
@@ -1987,6 +3504,42 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.btnShowScriptSub, resources.GetString("btnShowScriptSub.ToolTip"));
             this.btnShowScriptSub.UseVisualStyleBackColor = true;
             this.btnShowScriptSub.Click += new System.EventHandler(this.btnShowScriptSub_Click);
+            // 
+            // cBImportGCLineSegmentsEquidistant
+            // 
+            resources.ApplyResources(this.cBImportGCLineSegmentsEquidistant, "cBImportGCLineSegmentsEquidistant");
+            this.cBImportGCLineSegmentsEquidistant.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCLineSegmentEquidistant;
+            this.cBImportGCLineSegmentsEquidistant.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCLineSegmentEquidistant", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCLineSegmentsEquidistant.Name = "cBImportGCLineSegmentsEquidistant";
+            this.toolTip1.SetToolTip(this.cBImportGCLineSegmentsEquidistant, resources.GetString("cBImportGCLineSegmentsEquidistant.ToolTip"));
+            this.cBImportGCLineSegmentsEquidistant.UseVisualStyleBackColor = true;
+            // 
+            // tBImportGCSubroutine
+            // 
+            this.tBImportGCSubroutine.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCSubroutine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBImportGCSubroutine, "tBImportGCSubroutine");
+            this.tBImportGCSubroutine.Name = "tBImportGCSubroutine";
+            this.tBImportGCSubroutine.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCSubroutine;
+            this.toolTip1.SetToolTip(this.tBImportGCSubroutine, resources.GetString("tBImportGCSubroutine.ToolTip"));
+            // 
+            // cBImportGCSubEnable
+            // 
+            resources.ApplyResources(this.cBImportGCSubEnable, "cBImportGCSubEnable");
+            this.cBImportGCSubEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSubEnable;
+            this.cBImportGCSubEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSubEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCSubEnable.Name = "cBImportGCSubEnable";
+            this.toolTip1.SetToolTip(this.cBImportGCSubEnable, resources.GetString("cBImportGCSubEnable.ToolTip"));
+            this.cBImportGCSubEnable.UseVisualStyleBackColor = true;
+            // 
+            // cBImportGCLineSegments
+            // 
+            resources.ApplyResources(this.cBImportGCLineSegments, "cBImportGCLineSegments");
+            this.cBImportGCLineSegments.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCLineSegmentation;
+            this.cBImportGCLineSegments.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCLineSegmentation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCLineSegments.Name = "cBImportGCLineSegments";
+            this.toolTip1.SetToolTip(this.cBImportGCLineSegments, resources.GetString("cBImportGCLineSegments.ToolTip"));
+            this.cBImportGCLineSegments.UseVisualStyleBackColor = true;
+            this.cBImportGCLineSegments.CheckedChanged += new System.EventHandler(this.cBImportGCLineSegments_CheckedChanged);
             // 
             // tabPage15
             // 
@@ -2010,6 +3563,13 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_4gB1, "tab1_4gB1");
             this.tab1_4gB1.Name = "tab1_4gB1";
             this.tab1_4gB1.TabStop = false;
+            // 
+            // lblLastUseCase
+            // 
+            resources.ApplyResources(this.lblLastUseCase, "lblLastUseCase");
+            this.lblLastUseCase.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "useCaseLastLoaded", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.lblLastUseCase.Name = "lblLastUseCase";
+            this.lblLastUseCase.Text = global::GRBL_Plotter.Properties.Settings.Default.useCaseLastLoaded;
             // 
             // tab1_4lbl1
             // 
@@ -2056,6 +3616,13 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.btnUseCaseLoad, resources.GetString("btnUseCaseLoad.ToolTip"));
             this.btnUseCaseLoad.UseVisualStyleBackColor = true;
             this.btnUseCaseLoad.Click += new System.EventHandler(this.btnLoadUseCase_Click);
+            // 
+            // tBUseCaseInfo
+            // 
+            this.tBUseCaseInfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importUseCaseInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBUseCaseInfo, "tBUseCaseInfo");
+            this.tBUseCaseInfo.Name = "tBUseCaseInfo";
+            this.tBUseCaseInfo.Text = global::GRBL_Plotter.Properties.Settings.Default.importUseCaseInfo;
             // 
             // lBUseCase
             // 
@@ -2189,6 +3756,75 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab2gB2lbl1, "tab2gB2lbl1");
             this.tab2gB2lbl1.Name = "tab2gB2lbl1";
             // 
+            // nUDToolOffsetZ
+            // 
+            this.nUDToolOffsetZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "toolTableOffsetZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDToolOffsetZ.DecimalPlaces = 1;
+            this.nUDToolOffsetZ.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDToolOffsetZ, "nUDToolOffsetZ");
+            this.nUDToolOffsetZ.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDToolOffsetZ.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.nUDToolOffsetZ.Name = "nUDToolOffsetZ";
+            this.nUDToolOffsetZ.Value = global::GRBL_Plotter.Properties.Settings.Default.toolTableOffsetZ;
+            // 
+            // nUDToolOffsetX
+            // 
+            this.nUDToolOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "toolTableOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDToolOffsetX.DecimalPlaces = 1;
+            this.nUDToolOffsetX.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDToolOffsetX, "nUDToolOffsetX");
+            this.nUDToolOffsetX.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDToolOffsetX.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.nUDToolOffsetX.Name = "nUDToolOffsetX";
+            this.nUDToolOffsetX.Value = global::GRBL_Plotter.Properties.Settings.Default.toolTableOffsetX;
+            // 
+            // nUDToolOffsetY
+            // 
+            this.nUDToolOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "toolTableOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDToolOffsetY.DecimalPlaces = 1;
+            this.nUDToolOffsetY.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDToolOffsetY, "nUDToolOffsetY");
+            this.nUDToolOffsetY.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDToolOffsetY.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.nUDToolOffsetY.Name = "nUDToolOffsetY";
+            this.nUDToolOffsetY.Value = global::GRBL_Plotter.Properties.Settings.Default.toolTableOffsetY;
+            // 
             // dGVToolList
             // 
             this.dGVToolList.AllowUserToResizeColumns = false;
@@ -2221,155 +3857,155 @@ namespace GRBL_Plotter
             // 
             // Column1
             // 
-            dataGridViewCellStyle96.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle96.Format = "N0";
-            dataGridViewCellStyle96.NullValue = "2";
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "2";
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
             resources.ApplyResources(this.Column1, "Column1");
             this.Column1.MaxInputLength = 3;
             this.Column1.Name = "Column1";
             // 
             // Column2
             // 
-            dataGridViewCellStyle97.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle97.NullValue = "FFFFFF";
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle97;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "FFFFFF";
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             resources.ApplyResources(this.Column2, "Column2");
             this.Column2.MaxInputLength = 6;
             this.Column2.Name = "Column2";
             // 
             // Column3
             // 
-            dataGridViewCellStyle98.NullValue = "edit to add new entry";
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle98;
+            dataGridViewCellStyle3.NullValue = "edit to add new entry";
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
             resources.ApplyResources(this.Column3, "Column3");
             this.Column3.MaxInputLength = 20;
             this.Column3.Name = "Column3";
             // 
             // Column4
             // 
-            dataGridViewCellStyle99.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle99.Format = "N2";
-            dataGridViewCellStyle99.NullValue = "0";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle99;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
             resources.ApplyResources(this.Column4, "Column4");
             this.Column4.MaxInputLength = 8;
             this.Column4.Name = "Column4";
             // 
             // Column5
             // 
-            dataGridViewCellStyle100.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle100.Format = "N2";
-            dataGridViewCellStyle100.NullValue = "0";
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle100;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle5;
             resources.ApplyResources(this.Column5, "Column5");
             this.Column5.MaxInputLength = 8;
             this.Column5.Name = "Column5";
             // 
             // Column6
             // 
-            dataGridViewCellStyle101.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle101.Format = "N2";
-            dataGridViewCellStyle101.NullValue = "0";
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle101;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle6;
             resources.ApplyResources(this.Column6, "Column6");
             this.Column6.MaxInputLength = 8;
             this.Column6.Name = "Column6";
             // 
             // Column16
             // 
-            dataGridViewCellStyle102.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle102.Format = "N2";
-            dataGridViewCellStyle102.NullValue = "0";
-            this.Column16.DefaultCellStyle = dataGridViewCellStyle102;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = "0";
+            this.Column16.DefaultCellStyle = dataGridViewCellStyle7;
             resources.ApplyResources(this.Column16, "Column16");
             this.Column16.MaxInputLength = 8;
             this.Column16.Name = "Column16";
             // 
             // Column7
             // 
-            dataGridViewCellStyle103.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle103.Format = "N2";
-            dataGridViewCellStyle103.NullValue = "3,0";
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle103;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.NullValue = "3,0";
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle8;
             resources.ApplyResources(this.Column7, "Column7");
             this.Column7.MaxInputLength = 8;
             this.Column7.Name = "Column7";
             // 
             // Column8
             // 
-            dataGridViewCellStyle104.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle104.Format = "N0";
-            dataGridViewCellStyle104.NullValue = "800";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle104;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = "800";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle9;
             resources.ApplyResources(this.Column8, "Column8");
             this.Column8.MaxInputLength = 6;
             this.Column8.Name = "Column8";
             // 
             // Column10
             // 
-            dataGridViewCellStyle105.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle105.Format = "N0";
-            dataGridViewCellStyle105.NullValue = "500";
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle105;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N0";
+            dataGridViewCellStyle10.NullValue = "500";
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle10;
             resources.ApplyResources(this.Column10, "Column10");
             this.Column10.MaxInputLength = 6;
             this.Column10.Name = "Column10";
             // 
             // Column15
             // 
-            dataGridViewCellStyle106.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle106.Format = "N2";
-            dataGridViewCellStyle106.NullValue = "2";
-            this.Column15.DefaultCellStyle = dataGridViewCellStyle106;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = "2";
+            this.Column15.DefaultCellStyle = dataGridViewCellStyle11;
             resources.ApplyResources(this.Column15, "Column15");
             this.Column15.MaxInputLength = 8;
             this.Column15.Name = "Column15";
             // 
             // Column9
             // 
-            dataGridViewCellStyle107.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle107.Format = "N2";
-            dataGridViewCellStyle107.NullValue = "-3";
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle107;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = "-3";
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle12;
             resources.ApplyResources(this.Column9, "Column9");
             this.Column9.MaxInputLength = 8;
             this.Column9.Name = "Column9";
             // 
             // Column13
             // 
-            dataGridViewCellStyle108.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle108.Format = "N2";
-            dataGridViewCellStyle108.NullValue = "1";
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle108;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "N2";
+            dataGridViewCellStyle13.NullValue = "1";
+            this.Column13.DefaultCellStyle = dataGridViewCellStyle13;
             resources.ApplyResources(this.Column13, "Column13");
             this.Column13.MaxInputLength = 8;
             this.Column13.Name = "Column13";
             // 
             // Column11
             // 
-            dataGridViewCellStyle109.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle109.Format = "N0";
-            dataGridViewCellStyle109.NullValue = "10000";
-            this.Column11.DefaultCellStyle = dataGridViewCellStyle109;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "N0";
+            dataGridViewCellStyle14.NullValue = "10000";
+            this.Column11.DefaultCellStyle = dataGridViewCellStyle14;
             resources.ApplyResources(this.Column11, "Column11");
             this.Column11.MaxInputLength = 8;
             this.Column11.Name = "Column11";
             // 
             // Column12
             // 
-            dataGridViewCellStyle110.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle110.Format = "N0";
-            dataGridViewCellStyle110.NullValue = "100";
-            this.Column12.DefaultCellStyle = dataGridViewCellStyle110;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.Format = "N0";
+            dataGridViewCellStyle15.NullValue = "100";
+            this.Column12.DefaultCellStyle = dataGridViewCellStyle15;
             resources.ApplyResources(this.Column12, "Column12");
             this.Column12.MaxInputLength = 6;
             this.Column12.Name = "Column12";
             // 
             // Column14
             // 
-            dataGridViewCellStyle111.NullValue = " ";
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle111;
+            dataGridViewCellStyle16.NullValue = " ";
+            this.Column14.DefaultCellStyle = dataGridViewCellStyle16;
             resources.ApplyResources(this.Column14, "Column14");
             this.Column14.MaxInputLength = 32;
             this.Column14.Name = "Column14";
@@ -2403,6 +4039,19 @@ namespace GRBL_Plotter
             this.gBToolChange.Name = "gBToolChange";
             this.gBToolChange.TabStop = false;
             // 
+            // nUDToolChangeEmpty
+            // 
+            this.nUDToolChangeEmpty.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolChangeEmptyNr", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDToolChangeEmpty, "nUDToolChangeEmpty");
+            this.nUDToolChangeEmpty.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nUDToolChangeEmpty.Name = "nUDToolChangeEmpty";
+            this.toolTip1.SetToolTip(this.nUDToolChangeEmpty, resources.GetString("nUDToolChangeEmpty.ToolTip"));
+            this.nUDToolChangeEmpty.Value = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolChangeEmptyNr;
+            // 
             // btnFileDialogTT4
             // 
             resources.ApplyResources(this.btnFileDialogTT4, "btnFileDialogTT4");
@@ -2431,6 +4080,15 @@ namespace GRBL_Plotter
             this.btnFileDialogTT1.UseVisualStyleBackColor = true;
             this.btnFileDialogTT1.Click += new System.EventHandler(this.btnFileDialogTT1_Click);
             // 
+            // cBToolChangeEmpty
+            // 
+            this.cBToolChangeEmpty.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolChangeEmpty;
+            this.cBToolChangeEmpty.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolChangeEmpty", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBToolChangeEmpty, "cBToolChangeEmpty");
+            this.cBToolChangeEmpty.Name = "cBToolChangeEmpty";
+            this.toolTip1.SetToolTip(this.cBToolChangeEmpty, resources.GetString("cBToolChangeEmpty.ToolTip"));
+            this.cBToolChangeEmpty.UseVisualStyleBackColor = true;
+            // 
             // label61
             // 
             resources.ApplyResources(this.label61, "label61");
@@ -2443,12 +4101,28 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.lbl_4, resources.GetString("lbl_4.ToolTip"));
             this.lbl_4.Click += new System.EventHandler(this.lbl_4_Click);
             // 
+            // tBToolChangeScriptProbe
+            // 
+            this.tBToolChangeScriptProbe.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptProbe", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBToolChangeScriptProbe, "tBToolChangeScriptProbe");
+            this.tBToolChangeScriptProbe.Name = "tBToolChangeScriptProbe";
+            this.tBToolChangeScriptProbe.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptProbe;
+            this.toolTip1.SetToolTip(this.tBToolChangeScriptProbe, resources.GetString("tBToolChangeScriptProbe.ToolTip"));
+            // 
             // lbl_2
             // 
             resources.ApplyResources(this.lbl_2, "lbl_2");
             this.lbl_2.Name = "lbl_2";
             this.toolTip1.SetToolTip(this.lbl_2, resources.GetString("lbl_2.ToolTip"));
             this.lbl_2.Click += new System.EventHandler(this.lbl_2_Click);
+            // 
+            // tBToolChangeScriptSelect
+            // 
+            this.tBToolChangeScriptSelect.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptSelect", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBToolChangeScriptSelect, "tBToolChangeScriptSelect");
+            this.tBToolChangeScriptSelect.Name = "tBToolChangeScriptSelect";
+            this.tBToolChangeScriptSelect.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptSelect;
+            this.toolTip1.SetToolTip(this.tBToolChangeScriptSelect, resources.GetString("tBToolChangeScriptSelect.ToolTip"));
             // 
             // lbl_1
             // 
@@ -2457,12 +4131,39 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.lbl_1, resources.GetString("lbl_1.ToolTip"));
             this.lbl_1.Click += new System.EventHandler(this.lbl_1_Click);
             // 
+            // tBToolChangeScriptPut
+            // 
+            this.tBToolChangeScriptPut.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptPut", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBToolChangeScriptPut, "tBToolChangeScriptPut");
+            this.tBToolChangeScriptPut.Name = "tBToolChangeScriptPut";
+            this.tBToolChangeScriptPut.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptPut;
+            this.toolTip1.SetToolTip(this.tBToolChangeScriptPut, resources.GetString("tBToolChangeScriptPut.ToolTip"));
+            // 
             // lbl_3
             // 
             resources.ApplyResources(this.lbl_3, "lbl_3");
             this.lbl_3.Name = "lbl_3";
             this.toolTip1.SetToolTip(this.lbl_3, resources.GetString("lbl_3.ToolTip"));
             this.lbl_3.Click += new System.EventHandler(this.lbl_3_Click);
+            // 
+            // tBToolChangeScriptGet
+            // 
+            this.tBToolChangeScriptGet.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptGet", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBToolChangeScriptGet, "tBToolChangeScriptGet");
+            this.tBToolChangeScriptGet.Name = "tBToolChangeScriptGet";
+            this.tBToolChangeScriptGet.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptGet;
+            this.toolTip1.SetToolTip(this.tBToolChangeScriptGet, resources.GetString("tBToolChangeScriptGet.ToolTip"));
+            // 
+            // cBToolChange
+            // 
+            resources.ApplyResources(this.cBToolChange, "cBToolChange");
+            this.cBToolChange.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolChange;
+            this.cBToolChange.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolChange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolChange.Name = "cBToolChange";
+            this.toolTip1.SetToolTip(this.cBToolChange, resources.GetString("cBToolChange.ToolTip"));
+            this.cBToolChange.UseVisualStyleBackColor = true;
+            this.cBToolChange.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
+            this.cBToolChange.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
             // 
             // tabPage21
             // 
@@ -2543,6 +4244,15 @@ namespace GRBL_Plotter
             this.cBLogLevel1.UseVisualStyleBackColor = true;
             this.cBLogLevel1.CheckedChanged += new System.EventHandler(this.cBLog1_CheckedChanged);
             // 
+            // cBExtendedLogging
+            // 
+            resources.ApplyResources(this.cBExtendedLogging, "cBExtendedLogging");
+            this.cBExtendedLogging.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiExtendedLoggingEnabled;
+            this.cBExtendedLogging.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiExtendedLoggingEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBExtendedLogging.Name = "cBExtendedLogging";
+            this.cBExtendedLogging.UseVisualStyleBackColor = true;
+            this.cBExtendedLogging.CheckStateChanged += new System.EventHandler(this.cBExtendedLogging_CheckStateChanged);
+            // 
             // gBLoggingOptions
             // 
             this.gBLoggingOptions.Controls.Add(this.cBLog3);
@@ -2614,6 +4324,25 @@ namespace GRBL_Plotter
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.TabStop = false;
             // 
+            // checkBox2
+            // 
+            resources.ApplyResources(this.checkBox2, "checkBox2");
+            this.checkBox2.Checked = global::GRBL_Plotter.Properties.Settings.Default.flowCheckRegistryChange;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "flowCheckRegistryChange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // cBcheckupdate
+            // 
+            resources.ApplyResources(this.cBcheckupdate, "cBcheckupdate");
+            this.cBcheckupdate.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiCheckUpdate;
+            this.cBcheckupdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBcheckupdate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiCheckUpdate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBcheckupdate.Name = "cBcheckupdate";
+            this.toolTip1.SetToolTip(this.cBcheckupdate, resources.GetString("cBcheckupdate.ToolTip"));
+            this.cBcheckupdate.UseVisualStyleBackColor = true;
+            // 
             // tab5gB3
             // 
             this.tab5gB3.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -2622,6 +4351,16 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab5gB3, "tab5gB3");
             this.tab5gB3.Name = "tab5gB3";
             this.tab5gB3.TabStop = false;
+            // 
+            // cBCtrlCommentOut
+            // 
+            resources.ApplyResources(this.cBCtrlCommentOut, "cBCtrlCommentOut");
+            this.cBCtrlCommentOut.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlCommentOut;
+            this.cBCtrlCommentOut.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBCtrlCommentOut.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlCommentOut", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBCtrlCommentOut.Name = "cBCtrlCommentOut";
+            this.toolTip1.SetToolTip(this.cBCtrlCommentOut, resources.GetString("cBCtrlCommentOut.ToolTip"));
+            this.cBCtrlCommentOut.UseVisualStyleBackColor = true;
             // 
             // tab5gB4
             // 
@@ -2648,6 +4387,15 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.rBCtrlReplaceM3, resources.GetString("rBCtrlReplaceM3.ToolTip"));
             this.rBCtrlReplaceM3.UseVisualStyleBackColor = true;
             // 
+            // cBCtrlMCmd
+            // 
+            resources.ApplyResources(this.cBCtrlMCmd, "cBCtrlMCmd");
+            this.cBCtrlMCmd.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlReplaceEnable;
+            this.cBCtrlMCmd.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlReplaceEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBCtrlMCmd.Name = "cBCtrlMCmd";
+            this.toolTip1.SetToolTip(this.cBCtrlMCmd, resources.GetString("cBCtrlMCmd.ToolTip"));
+            this.cBCtrlMCmd.UseVisualStyleBackColor = true;
+            // 
             // tab5gB1
             // 
             this.tab5gB1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -2666,12 +4414,49 @@ namespace GRBL_Plotter
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.TabStop = false;
             // 
+            // cBSerialMinimize
+            // 
+            resources.ApplyResources(this.cBSerialMinimize, "cBSerialMinimize");
+            this.cBSerialMinimize.Checked = global::GRBL_Plotter.Properties.Settings.Default.serialMinimize;
+            this.cBSerialMinimize.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSerialMinimize.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "serialMinimize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSerialMinimize.Name = "cBSerialMinimize";
+            this.toolTip1.SetToolTip(this.cBSerialMinimize, resources.GetString("cBSerialMinimize.ToolTip"));
+            this.cBSerialMinimize.UseVisualStyleBackColor = true;
+            // 
+            // cBSerial2
+            // 
+            resources.ApplyResources(this.cBSerial2, "cBSerial2");
+            this.cBSerial2.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerial2;
+            this.cBSerial2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerial2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSerial2.Name = "cBSerial2";
+            this.toolTip1.SetToolTip(this.cBSerial2, resources.GetString("cBSerial2.ToolTip"));
+            this.cBSerial2.UseVisualStyleBackColor = true;
+            // 
             // tab5gB2
             // 
             this.tab5gB2.Controls.Add(this.cBSerialDIY);
             resources.ApplyResources(this.tab5gB2, "tab5gB2");
             this.tab5gB2.Name = "tab5gB2";
             this.tab5gB2.TabStop = false;
+            // 
+            // cBSerialDIY
+            // 
+            resources.ApplyResources(this.cBSerialDIY, "cBSerialDIY");
+            this.cBSerialDIY.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerialDIY;
+            this.cBSerialDIY.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerialDIY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSerialDIY.Name = "cBSerialDIY";
+            this.cBSerialDIY.UseVisualStyleBackColor = true;
+            // 
+            // cBSerialPortFixer
+            // 
+            resources.ApplyResources(this.cBSerialPortFixer, "cBSerialPortFixer");
+            this.cBSerialPortFixer.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerialPortFixer;
+            this.cBSerialPortFixer.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSerialPortFixer.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerialPortFixer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBSerialPortFixer.Name = "cBSerialPortFixer";
+            this.toolTip1.SetToolTip(this.cBSerialPortFixer, resources.GetString("cBSerialPortFixer.ToolTip"));
+            this.cBSerialPortFixer.UseVisualStyleBackColor = true;
             // 
             // tabPage26
             // 
@@ -2706,6 +4491,144 @@ namespace GRBL_Plotter
             this.tab5gB5.Name = "tab5gB5";
             this.tab5gB5.TabStop = false;
             // 
+            // nUDMachineHomeZ
+            // 
+            this.nUDMachineHomeZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsHomeZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMachineHomeZ.DecimalPlaces = 1;
+            this.nUDMachineHomeZ.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDMachineHomeZ, "nUDMachineHomeZ");
+            this.nUDMachineHomeZ.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDMachineHomeZ.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.nUDMachineHomeZ.Name = "nUDMachineHomeZ";
+            this.nUDMachineHomeZ.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsHomeZ;
+            // 
+            // nUDMachineHomeY
+            // 
+            this.nUDMachineHomeY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsHomeY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMachineHomeY.DecimalPlaces = 1;
+            this.nUDMachineHomeY.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDMachineHomeY, "nUDMachineHomeY");
+            this.nUDMachineHomeY.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDMachineHomeY.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.nUDMachineHomeY.Name = "nUDMachineHomeY";
+            this.nUDMachineHomeY.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsHomeY;
+            // 
+            // nUDMachineHomeX
+            // 
+            this.nUDMachineHomeX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsHomeX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMachineHomeX.DecimalPlaces = 1;
+            this.nUDMachineHomeX.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDMachineHomeX, "nUDMachineHomeX");
+            this.nUDMachineHomeX.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDMachineHomeX.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.nUDMachineHomeX.Name = "nUDMachineHomeX";
+            this.nUDMachineHomeX.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsHomeX;
+            // 
+            // nUDMachineRangeZ
+            // 
+            this.nUDMachineRangeZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsRangeZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMachineRangeZ.DecimalPlaces = 1;
+            this.nUDMachineRangeZ.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDMachineRangeZ, "nUDMachineRangeZ");
+            this.nUDMachineRangeZ.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDMachineRangeZ.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDMachineRangeZ.Name = "nUDMachineRangeZ";
+            this.nUDMachineRangeZ.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsRangeZ;
+            // 
+            // nUDMachineRangeY
+            // 
+            this.nUDMachineRangeY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsRangeY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMachineRangeY.DecimalPlaces = 1;
+            this.nUDMachineRangeY.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDMachineRangeY, "nUDMachineRangeY");
+            this.nUDMachineRangeY.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDMachineRangeY.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDMachineRangeY.Name = "nUDMachineRangeY";
+            this.nUDMachineRangeY.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsRangeY;
+            // 
+            // nUDMachineRangeX
+            // 
+            this.nUDMachineRangeX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsRangeX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMachineRangeX.DecimalPlaces = 1;
+            this.nUDMachineRangeX.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDMachineRangeX, "nUDMachineRangeX");
+            this.nUDMachineRangeX.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDMachineRangeX.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDMachineRangeX.Name = "nUDMachineRangeX";
+            this.nUDMachineRangeX.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsRangeX;
+            // 
             // btnMachineRangeGet
             // 
             resources.ApplyResources(this.btnMachineRangeGet, "btnMachineRangeGet");
@@ -2732,6 +4655,22 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label63, "label63");
             this.label63.Name = "label63";
+            // 
+            // cBMachineLimitsAlarm
+            // 
+            resources.ApplyResources(this.cBMachineLimitsAlarm, "cBMachineLimitsAlarm");
+            this.cBMachineLimitsAlarm.Checked = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsAlarm;
+            this.cBMachineLimitsAlarm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsAlarm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBMachineLimitsAlarm.Name = "cBMachineLimitsAlarm";
+            this.cBMachineLimitsAlarm.UseVisualStyleBackColor = true;
+            // 
+            // cBMachineLimitsShow
+            // 
+            resources.ApplyResources(this.cBMachineLimitsShow, "cBMachineLimitsShow");
+            this.cBMachineLimitsShow.Checked = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsShow;
+            this.cBMachineLimitsShow.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsShow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBMachineLimitsShow.Name = "cBMachineLimitsShow";
+            this.cBMachineLimitsShow.UseVisualStyleBackColor = true;
             // 
             // tab5gB5lbl3
             // 
@@ -2767,16 +4706,57 @@ namespace GRBL_Plotter
             this.tab5gB6.Name = "tab5gB6";
             this.tab5gB6.TabStop = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.AllowDrop = true;
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrl4thName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            resources.GetString("comboBox1.Items"),
+            resources.GetString("comboBox1.Items1"),
+            resources.GetString("comboBox1.Items2"),
+            resources.GetString("comboBox1.Items3"),
+            resources.GetString("comboBox1.Items4"),
+            resources.GetString("comboBox1.Items5")});
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thName;
+            // 
             // tab5gB6lbl2
             // 
             resources.ApplyResources(this.tab5gB6lbl2, "tab5gB6lbl2");
             this.tab5gB6lbl2.Name = "tab5gB6lbl2";
+            // 
+            // checkBox1
+            // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thInvert;
+            this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrl4thInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
             resources.ApplyResources(this.radioButton2, "radioButton2");
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            resources.ApplyResources(this.radioButton1, "radioButton1");
+            this.radioButton1.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thOverX;
+            this.radioButton1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrl4thOverX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.TabStop = true;
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // cB4thUse
+            // 
+            resources.ApplyResources(this.cB4thUse, "cB4thUse");
+            this.cB4thUse.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thUse;
+            this.cB4thUse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrl4thUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cB4thUse.Name = "cB4thUse";
+            this.cB4thUse.UseVisualStyleBackColor = true;
             // 
             // tab5gB6lbl1
             // 
@@ -2800,6 +4780,32 @@ namespace GRBL_Plotter
             this.tab5gB7.Name = "tab5gB7";
             this.tab5gB7.TabStop = false;
             // 
+            // nUDRotaryScale
+            // 
+            this.nUDRotaryScale.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionScale", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDRotaryScale.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDRotaryScale, "nUDRotaryScale");
+            this.nUDRotaryScale.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDRotaryScale.Name = "nUDRotaryScale";
+            this.nUDRotaryScale.Value = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionScale;
+            // 
+            // nUDRotaryDiameter
+            // 
+            this.nUDRotaryDiameter.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionDiameter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDRotaryDiameter.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDRotaryDiameter, "nUDRotaryDiameter");
+            this.nUDRotaryDiameter.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDRotaryDiameter.Name = "nUDRotaryDiameter";
+            this.nUDRotaryDiameter.Value = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionDiameter;
+            // 
             // tab5gB8
             // 
             this.tab5gB8.Controls.Add(this.tBRotarySetupOff);
@@ -2811,11 +4817,36 @@ namespace GRBL_Plotter
             this.tab5gB8.Name = "tab5gB8";
             this.tab5gB8.TabStop = false;
             // 
+            // tBRotarySetupOff
+            // 
+            this.tBRotarySetupOff.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionSetupOff", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBRotarySetupOff, "tBRotarySetupOff");
+            this.tBRotarySetupOff.Name = "tBRotarySetupOff";
+            this.tBRotarySetupOff.Text = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionSetupOff;
+            this.toolTip1.SetToolTip(this.tBRotarySetupOff, resources.GetString("tBRotarySetupOff.ToolTip"));
+            // 
+            // tBRotarySetupOn
+            // 
+            this.tBRotarySetupOn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionSetupOn", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBRotarySetupOn, "tBRotarySetupOn");
+            this.tBRotarySetupOn.Name = "tBRotarySetupOn";
+            this.tBRotarySetupOn.Text = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionSetupOn;
+            this.toolTip1.SetToolTip(this.tBRotarySetupOn, resources.GetString("tBRotarySetupOn.ToolTip"));
+            // 
             // tab5gB8lbl2
             // 
             resources.ApplyResources(this.tab5gB8lbl2, "tab5gB8lbl2");
             this.tab5gB8lbl2.Name = "tab5gB8lbl2";
             this.toolTip1.SetToolTip(this.tab5gB8lbl2, resources.GetString("tab5gB8lbl2.ToolTip"));
+            // 
+            // cBRotarySetupApply
+            // 
+            resources.ApplyResources(this.cBRotarySetupApply, "cBRotarySetupApply");
+            this.cBRotarySetupApply.Checked = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionSetupEnable;
+            this.cBRotarySetupApply.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionSetupEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBRotarySetupApply.Name = "cBRotarySetupApply";
+            this.toolTip1.SetToolTip(this.cBRotarySetupApply, resources.GetString("cBRotarySetupApply.ToolTip"));
+            this.cBRotarySetupApply.UseVisualStyleBackColor = true;
             // 
             // tab5gB8lbl1
             // 
@@ -2855,6 +4886,14 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.rBRotaryX, "rBRotaryX");
             this.rBRotaryX.Name = "rBRotaryX";
             this.rBRotaryX.UseVisualStyleBackColor = true;
+            // 
+            // cBRotarySubstitute
+            // 
+            resources.ApplyResources(this.cBRotarySubstitute, "cBRotarySubstitute");
+            this.cBRotarySubstitute.Checked = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionEnable;
+            this.cBRotarySubstitute.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBRotarySubstitute.Name = "cBRotarySubstitute";
+            this.cBRotarySubstitute.UseVisualStyleBackColor = true;
             // 
             // tabPage25
             // 
@@ -2898,6 +4937,24 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.label31, "label31");
             this.label31.Name = "label31";
             // 
+            // rBStreanProtocoll1
+            // 
+            resources.ApplyResources(this.rBStreanProtocoll1, "rBStreanProtocoll1");
+            this.rBStreanProtocoll1.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblStreamingProtocol1;
+            this.rBStreanProtocoll1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblStreamingProtocol1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rBStreanProtocoll1.Name = "rBStreanProtocoll1";
+            this.rBStreanProtocoll1.TabStop = true;
+            this.rBStreanProtocoll1.UseVisualStyleBackColor = true;
+            // 
+            // cBDisableProgramPause
+            // 
+            resources.ApplyResources(this.cBDisableProgramPause, "cBDisableProgramPause");
+            this.cBDisableProgramPause.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiDisableProgramPause;
+            this.cBDisableProgramPause.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiDisableProgramPause", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBDisableProgramPause.Name = "cBDisableProgramPause";
+            this.toolTip1.SetToolTip(this.cBDisableProgramPause, resources.GetString("cBDisableProgramPause.ToolTip"));
+            this.cBDisableProgramPause.UseVisualStyleBackColor = true;
+            // 
             // tab4gB6
             // 
             this.tab4gB6.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -2906,6 +4963,15 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab4gB6, "tab4gB6");
             this.tab4gB6.Name = "tab4gB6";
             this.tab4gB6.TabStop = false;
+            // 
+            // cBgrblTranslate
+            // 
+            resources.ApplyResources(this.cBgrblTranslate, "cBgrblTranslate");
+            this.cBgrblTranslate.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblTranslateMessage;
+            this.cBgrblTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblTranslateMessage", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBgrblTranslate.Name = "cBgrblTranslate";
+            this.toolTip1.SetToolTip(this.cBgrblTranslate, resources.GetString("cBgrblTranslate.ToolTip"));
+            this.cBgrblTranslate.UseVisualStyleBackColor = true;
             // 
             // cBsimulation
             // 
@@ -2922,6 +4988,23 @@ namespace GRBL_Plotter
             this.tab4gB5.Name = "tab4gB5";
             this.tab4gB5.TabStop = false;
             // 
+            // cBShowStreamingProgress
+            // 
+            resources.ApplyResources(this.cBShowStreamingProgress, "cBShowStreamingProgress");
+            this.cBShowStreamingProgress.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiProgressShow;
+            this.cBShowStreamingProgress.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBShowStreamingProgress.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiProgressShow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBShowStreamingProgress.Name = "cBShowStreamingProgress";
+            this.cBShowStreamingProgress.UseVisualStyleBackColor = true;
+            // 
+            // cBBackgroundImage
+            // 
+            resources.ApplyResources(this.cBBackgroundImage, "cBBackgroundImage");
+            this.cBBackgroundImage.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundImageEnable;
+            this.cBBackgroundImage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiBackgroundImageEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBBackgroundImage.Name = "cBBackgroundImage";
+            this.cBBackgroundImage.UseVisualStyleBackColor = true;
+            // 
             // tab4gB1
             // 
             this.tab4gB1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -2931,6 +5014,14 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab4gB1, "tab4gB1");
             this.tab4gB1.Name = "tab4gB1";
             this.tab4gB1.TabStop = false;
+            // 
+            // cBpollIntervalReduce
+            // 
+            resources.ApplyResources(this.cBpollIntervalReduce, "cBpollIntervalReduce");
+            this.cBpollIntervalReduce.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblPollIntervalReduce;
+            this.cBpollIntervalReduce.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblPollIntervalReduce", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBpollIntervalReduce.Name = "cBpollIntervalReduce";
+            this.cBpollIntervalReduce.UseVisualStyleBackColor = true;
             // 
             // tab4gB1lbl1
             // 
@@ -2960,10 +5051,41 @@ namespace GRBL_Plotter
             this.tab4gB3.Name = "tab4gB3";
             this.tab4gB3.TabStop = false;
             // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "grblBufferSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown6.Increment = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.numericUpDown6, "numericUpDown6");
+            this.numericUpDown6.Maximum = new decimal(new int[] {
+            2047,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Minimum = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Value = global::GRBL_Plotter.Properties.Settings.Default.grblBufferSize;
+            // 
             // tab4gB3lbl1
             // 
             resources.ApplyResources(this.tab4gB3lbl1, "tab4gB3lbl1");
             this.tab4gB3lbl1.Name = "tab4gB3lbl1";
+            // 
+            // checkBox3
+            // 
+            resources.ApplyResources(this.checkBox3, "checkBox3");
+            this.checkBox3.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblBufferAutomatic;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblBufferAutomatic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // tab4gB2
             // 
@@ -2975,6 +5097,30 @@ namespace GRBL_Plotter
             this.tab4gB2.Name = "tab4gB2";
             this.tab4gB2.TabStop = false;
             // 
+            // cBresetSendCode
+            // 
+            resources.ApplyResources(this.cBresetSendCode, "cBresetSendCode");
+            this.cBresetSendCode.Checked = global::GRBL_Plotter.Properties.Settings.Default.resetSendCodeEnable;
+            this.cBresetSendCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "resetSendCodeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBresetSendCode.Name = "cBresetSendCode";
+            this.cBresetSendCode.UseVisualStyleBackColor = true;
+            // 
+            // tBresetSendCode
+            // 
+            this.tBresetSendCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "resetSendCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBresetSendCode, "tBresetSendCode");
+            this.tBresetSendCode.Name = "tBresetSendCode";
+            this.tBresetSendCode.Text = global::GRBL_Plotter.Properties.Settings.Default.resetSendCode;
+            this.toolTip1.SetToolTip(this.tBresetSendCode, resources.GetString("tBresetSendCode.ToolTip"));
+            // 
+            // cBrestoreCoordReset
+            // 
+            this.cBrestoreCoordReset.Checked = global::GRBL_Plotter.Properties.Settings.Default.resetRestoreWorkCoordinates;
+            this.cBrestoreCoordReset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "resetRestoreWorkCoordinates", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBrestoreCoordReset, "cBrestoreCoordReset");
+            this.cBrestoreCoordReset.Name = "cBrestoreCoordReset";
+            this.cBrestoreCoordReset.UseVisualStyleBackColor = true;
+            // 
             // tab4gB4
             // 
             this.tab4gB4.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -2983,6 +5129,23 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab4gB4, "tab4gB4");
             this.tab4gB4.Name = "tab4gB4";
             this.tab4gB4.TabStop = false;
+            // 
+            // tBflowControl
+            // 
+            this.tBflowControl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "flowControlText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBflowControl, "tBflowControl");
+            this.tBflowControl.Name = "tBflowControl";
+            this.tBflowControl.Text = global::GRBL_Plotter.Properties.Settings.Default.flowControlText;
+            this.toolTip1.SetToolTip(this.tBflowControl, resources.GetString("tBflowControl.ToolTip"));
+            // 
+            // cBflowControl
+            // 
+            resources.ApplyResources(this.cBflowControl, "cBflowControl");
+            this.cBflowControl.Checked = global::GRBL_Plotter.Properties.Settings.Default.flowControlEnable;
+            this.cBflowControl.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBflowControl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "flowControlEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBflowControl.Name = "cBflowControl";
+            this.cBflowControl.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
@@ -3150,6 +5313,14 @@ namespace GRBL_Plotter
             this.tab10gB2.Name = "tab10gB2";
             this.tab10gB2.TabStop = false;
             // 
+            // cBFilterOuside
+            // 
+            resources.ApplyResources(this.cBFilterOuside, "cBFilterOuside");
+            this.cBFilterOuside.Checked = global::GRBL_Plotter.Properties.Settings.Default.camFilterOutside;
+            this.cBFilterOuside.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "camFilterOutside", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBFilterOuside.Name = "cBFilterOuside";
+            this.cBFilterOuside.UseVisualStyleBackColor = true;
+            // 
             // lblFilterBlue2
             // 
             resources.ApplyResources(this.lblFilterBlue2, "lblFilterBlue2");
@@ -3180,20 +5351,74 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.lblFilterRed1, "lblFilterRed1");
             this.lblFilterRed1.Name = "lblFilterRed1";
             // 
+            // hSFilterBlue2
+            // 
+            this.hSFilterBlue2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterBlue2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.hSFilterBlue2, "hSFilterBlue2");
+            this.hSFilterBlue2.Maximum = 264;
+            this.hSFilterBlue2.Name = "hSFilterBlue2";
+            this.hSFilterBlue2.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterBlue2;
+            this.hSFilterBlue2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
+            // 
             // tab10gB2lbl3
             // 
             resources.ApplyResources(this.tab10gB2lbl3, "tab10gB2lbl3");
             this.tab10gB2lbl3.Name = "tab10gB2lbl3";
+            // 
+            // hSFilterBlue1
+            // 
+            this.hSFilterBlue1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterBlue1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.hSFilterBlue1, "hSFilterBlue1");
+            this.hSFilterBlue1.Maximum = 264;
+            this.hSFilterBlue1.Name = "hSFilterBlue1";
+            this.hSFilterBlue1.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterBlue1;
+            this.hSFilterBlue1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
+            // 
+            // hSFilterGreen2
+            // 
+            this.hSFilterGreen2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterGreen2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.hSFilterGreen2, "hSFilterGreen2");
+            this.hSFilterGreen2.Maximum = 264;
+            this.hSFilterGreen2.Name = "hSFilterGreen2";
+            this.hSFilterGreen2.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterGreen2;
+            this.hSFilterGreen2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
             // 
             // tab10gB2lbl2
             // 
             resources.ApplyResources(this.tab10gB2lbl2, "tab10gB2lbl2");
             this.tab10gB2lbl2.Name = "tab10gB2lbl2";
             // 
+            // hSFilterGreen1
+            // 
+            this.hSFilterGreen1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterGreen1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.hSFilterGreen1, "hSFilterGreen1");
+            this.hSFilterGreen1.Maximum = 264;
+            this.hSFilterGreen1.Name = "hSFilterGreen1";
+            this.hSFilterGreen1.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterGreen1;
+            this.hSFilterGreen1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
+            // 
+            // hSFilterRed2
+            // 
+            this.hSFilterRed2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterRed2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.hSFilterRed2, "hSFilterRed2");
+            this.hSFilterRed2.Maximum = 264;
+            this.hSFilterRed2.Name = "hSFilterRed2";
+            this.hSFilterRed2.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterRed2;
+            this.hSFilterRed2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
+            // 
             // tab10gB2lbl1
             // 
             resources.ApplyResources(this.tab10gB2lbl1, "tab10gB2lbl1");
             this.tab10gB2lbl1.Name = "tab10gB2lbl1";
+            // 
+            // hSFilterRed1
+            // 
+            this.hSFilterRed1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterRed1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.hSFilterRed1, "hSFilterRed1");
+            this.hSFilterRed1.Maximum = 264;
+            this.hSFilterRed1.Name = "hSFilterRed1";
+            this.hSFilterRed1.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterRed1;
+            this.hSFilterRed1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
             // 
             // tab10gB3
             // 
@@ -3212,6 +5437,41 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab10gB3, "tab10gB3");
             this.tab10gB3.Name = "tab10gB3";
             this.tab10gB3.TabStop = false;
+            // 
+            // nUDShapeSizeMax
+            // 
+            this.nUDShapeSizeMax.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camShapeSizeMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDShapeSizeMax.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDShapeSizeMax, "nUDShapeSizeMax");
+            this.nUDShapeSizeMax.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nUDShapeSizeMax.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDShapeSizeMax.Name = "nUDShapeSizeMax";
+            this.nUDShapeSizeMax.Value = global::GRBL_Plotter.Properties.Settings.Default.camShapeSizeMax;
+            // 
+            // nUDShapeDistMax
+            // 
+            this.nUDShapeDistMax.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camShapeDistMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDShapeDistMax.DecimalPlaces = 2;
+            this.nUDShapeDistMax.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDShapeDistMax, "nUDShapeDistMax");
+            this.nUDShapeDistMax.Name = "nUDShapeDistMax";
+            this.nUDShapeDistMax.Value = global::GRBL_Plotter.Properties.Settings.Default.camShapeDistMax;
             // 
             // tab10gB3lbl6
             // 
@@ -3238,10 +5498,63 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab10gB3lbl2, "tab10gB3lbl2");
             this.tab10gB3lbl2.Name = "tab10gB3lbl2";
             // 
+            // nUDShapeDistMin
+            // 
+            this.nUDShapeDistMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camShapeDist", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDShapeDistMin.DecimalPlaces = 1;
+            this.nUDShapeDistMin.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDShapeDistMin, "nUDShapeDistMin");
+            this.nUDShapeDistMin.Name = "nUDShapeDistMin";
+            this.nUDShapeDistMin.Value = global::GRBL_Plotter.Properties.Settings.Default.camShapeDist;
+            // 
+            // nUDShapeSizeMin
+            // 
+            this.nUDShapeSizeMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camShapeSizeMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDShapeSizeMin.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDShapeSizeMin, "nUDShapeSizeMin");
+            this.nUDShapeSizeMin.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nUDShapeSizeMin.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDShapeSizeMin.Name = "nUDShapeSizeMin";
+            this.nUDShapeSizeMin.Value = global::GRBL_Plotter.Properties.Settings.Default.camShapeSizeMin;
+            // 
             // tab10gB3lbl1
             // 
             resources.ApplyResources(this.tab10gB3lbl1, "tab10gB3lbl1");
             this.tab10gB3lbl1.Name = "tab10gB3lbl1";
+            // 
+            // cBShapeRect
+            // 
+            resources.ApplyResources(this.cBShapeRect, "cBShapeRect");
+            this.cBShapeRect.Checked = global::GRBL_Plotter.Properties.Settings.Default.camShapeRect;
+            this.cBShapeRect.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBShapeRect.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "camShapeRect", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBShapeRect.Name = "cBShapeRect";
+            this.cBShapeRect.UseVisualStyleBackColor = true;
+            // 
+            // cBShapeCircle
+            // 
+            resources.ApplyResources(this.cBShapeCircle, "cBShapeCircle");
+            this.cBShapeCircle.Checked = global::GRBL_Plotter.Properties.Settings.Default.camShapeCircle;
+            this.cBShapeCircle.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBShapeCircle.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "camShapeCircle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBShapeCircle.Name = "cBShapeCircle";
+            this.cBShapeCircle.UseVisualStyleBackColor = true;
             // 
             // tabControl5_Level2
             // 
@@ -3252,6 +5565,57 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tabControl5_Level2, "tabControl5_Level2");
             this.tabControl5_Level2.Name = "tabControl5_Level2";
             this.tabControl5_Level2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.button1);
+            this.groupBox18.Controls.Add(this.tbNotifierPBChannel);
+            this.groupBox18.Controls.Add(this.lblNotifierPBChannel);
+            this.groupBox18.Controls.Add(this.tbNotifierPBToken);
+            this.groupBox18.Controls.Add(this.cbNotifierPBEnable);
+            this.groupBox18.Controls.Add(this.lblNotifierPBToken);
+            resources.ApplyResources(this.groupBox18, "groupBox18");
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.TabStop = false;
+            // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tbNotifierPBChannel
+            // 
+            this.tbNotifierPBChannel.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierPushbulletChannel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifierPBChannel, "tbNotifierPBChannel");
+            this.tbNotifierPBChannel.Name = "tbNotifierPBChannel";
+            this.tbNotifierPBChannel.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierPushbulletChannel;
+            // 
+            // lblNotifierPBChannel
+            // 
+            resources.ApplyResources(this.lblNotifierPBChannel, "lblNotifierPBChannel");
+            this.lblNotifierPBChannel.Name = "lblNotifierPBChannel";
+            // 
+            // tbNotifierPBToken
+            // 
+            this.tbNotifierPBToken.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierPushbulletToken", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifierPBToken, "tbNotifierPBToken");
+            this.tbNotifierPBToken.Name = "tbNotifierPBToken";
+            this.tbNotifierPBToken.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierPushbulletToken;
+            // 
+            // cbNotifierPBEnable
+            // 
+            resources.ApplyResources(this.cbNotifierPBEnable, "cbNotifierPBEnable");
+            this.cbNotifierPBEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.notifierPushbulletEnable;
+            this.cbNotifierPBEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "notifierPushbulletEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbNotifierPBEnable.Name = "cbNotifierPBEnable";
+            this.cbNotifierPBEnable.UseVisualStyleBackColor = true;
+            // 
+            // lblNotifierPBToken
+            // 
+            resources.ApplyResources(this.lblNotifierPBToken, "lblNotifierPBToken");
+            this.lblNotifierPBToken.Name = "lblNotifierPBToken";
             // 
             // groupBox17
             // 
@@ -3280,6 +5644,67 @@ namespace GRBL_Plotter
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.TabStop = false;
             // 
+            // cbNotifierTitle
+            // 
+            resources.ApplyResources(this.cbNotifierTitle, "cbNotifierTitle");
+            this.cbNotifierTitle.Checked = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageProgressTitle;
+            this.cbNotifierTitle.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbNotifierTitle.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageProgressTitle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbNotifierTitle.Name = "cbNotifierTitle";
+            this.cbNotifierTitle.UseVisualStyleBackColor = true;
+            // 
+            // tbNotifierMsg2
+            // 
+            this.tbNotifierMsg2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageProgress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifierMsg2, "tbNotifierMsg2");
+            this.tbNotifierMsg2.Name = "tbNotifierMsg2";
+            this.tbNotifierMsg2.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageProgress;
+            // 
+            // tbNotifier6
+            // 
+            this.tbNotifier6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailSendSubject", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifier6, "tbNotifier6");
+            this.tbNotifier6.Name = "tbNotifier6";
+            this.tbNotifier6.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailSendSubject;
+            // 
+            // nudNotifierMsg1
+            // 
+            this.nudNotifierMsg1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageProgressInterval", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nudNotifierMsg1.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nudNotifierMsg1, "nudNotifierMsg1");
+            this.nudNotifierMsg1.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nudNotifierMsg1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNotifierMsg1.Name = "nudNotifierMsg1";
+            this.nudNotifierMsg1.Value = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageProgressInterval;
+            // 
+            // cbNotifierMsg1
+            // 
+            resources.ApplyResources(this.cbNotifierMsg1, "cbNotifierMsg1");
+            this.cbNotifierMsg1.Checked = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageProgressEnable;
+            this.cbNotifierMsg1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbNotifierMsg1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageProgressEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbNotifierMsg1.Name = "cbNotifierMsg1";
+            this.cbNotifierMsg1.UseVisualStyleBackColor = true;
+            // 
+            // tbNotifierMsg1
+            // 
+            this.tbNotifierMsg1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageFinish", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifierMsg1, "tbNotifierMsg1");
+            this.tbNotifierMsg1.Name = "tbNotifierMsg1";
+            this.tbNotifierMsg1.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageFinish;
+            // 
             // lblNotifier8
             // 
             resources.ApplyResources(this.lblNotifier8, "lblNotifier8");
@@ -3304,12 +5729,34 @@ namespace GRBL_Plotter
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.TabStop = false;
             // 
+            // cbNotifierEmailEnable
+            // 
+            resources.ApplyResources(this.cbNotifierEmailEnable, "cbNotifierEmailEnable");
+            this.cbNotifierEmailEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.notifierMailEnable;
+            this.cbNotifierEmailEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cbNotifierEmailEnable.Name = "cbNotifierEmailEnable";
+            this.cbNotifierEmailEnable.UseVisualStyleBackColor = true;
+            // 
             // btn_notifierMail_Test
             // 
             resources.ApplyResources(this.btn_notifierMail_Test, "btn_notifierMail_Test");
             this.btn_notifierMail_Test.Name = "btn_notifierMail_Test";
             this.btn_notifierMail_Test.UseVisualStyleBackColor = true;
             this.btn_notifierMail_Test.Click += new System.EventHandler(this.btn_notifierMail_Test_Click);
+            // 
+            // tbNotifier5
+            // 
+            this.tbNotifier5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailSendTo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifier5, "tbNotifier5");
+            this.tbNotifier5.Name = "tbNotifier5";
+            this.tbNotifier5.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailSendTo;
+            // 
+            // tbNotifier4
+            // 
+            this.tbNotifier4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailSendFrom", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifier4, "tbNotifier4");
+            this.tbNotifier4.Name = "tbNotifier4";
+            this.tbNotifier4.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailSendFrom;
             // 
             // lblNotifier7
             // 
@@ -3334,6 +5781,39 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox15, "groupBox15");
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.TabStop = false;
+            // 
+            // nudNotifier1
+            // 
+            this.nudNotifier1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailClientPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nudNotifier1, "nudNotifier1");
+            this.nudNotifier1.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.nudNotifier1.Name = "nudNotifier1";
+            this.nudNotifier1.Value = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientPort;
+            // 
+            // tbNotifier3
+            // 
+            this.tbNotifier3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailClientPass", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifier3, "tbNotifier3");
+            this.tbNotifier3.Name = "tbNotifier3";
+            this.tbNotifier3.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientPass;
+            // 
+            // tbNotifier2
+            // 
+            this.tbNotifier2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailClientUser", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifier2, "tbNotifier2");
+            this.tbNotifier2.Name = "tbNotifier2";
+            this.tbNotifier2.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientUser;
+            // 
+            // tbNotifier1
+            // 
+            this.tbNotifier1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailClientAdr", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tbNotifier1, "tbNotifier1");
+            this.tbNotifier1.Name = "tbNotifier1";
+            this.tbNotifier1.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientAdr;
             // 
             // lblNotifier3
             // 
@@ -3421,8 +5901,8 @@ namespace GRBL_Plotter
             // 
             // Column20
             // 
-            dataGridViewCellStyle112.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column20.DefaultCellStyle = dataGridViewCellStyle112;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column20.DefaultCellStyle = dataGridViewCellStyle17;
             resources.ApplyResources(this.Column20, "Column20");
             this.Column20.MaxInputLength = 2;
             this.Column20.Name = "Column20";
@@ -3432,8 +5912,8 @@ namespace GRBL_Plotter
             // 
             // Column21
             // 
-            dataGridViewCellStyle113.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column21.DefaultCellStyle = dataGridViewCellStyle113;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column21.DefaultCellStyle = dataGridViewCellStyle18;
             resources.ApplyResources(this.Column21, "Column21");
             this.Column21.MaxInputLength = 100;
             this.Column21.Name = "Column21";
@@ -3442,8 +5922,8 @@ namespace GRBL_Plotter
             // 
             // Column22
             // 
-            dataGridViewCellStyle114.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column22.DefaultCellStyle = dataGridViewCellStyle114;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column22.DefaultCellStyle = dataGridViewCellStyle19;
             resources.ApplyResources(this.Column22, "Column22");
             this.Column22.MaxInputLength = 300;
             this.Column22.Name = "Column22";
@@ -3614,10 +6094,76 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab7gB2lbl5, "tab7gB2lbl5");
             this.tab7gB2lbl5.Name = "tab7gB2lbl5";
             // 
+            // nUDFeedrate
+            // 
+            this.nUDFeedrate.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDFeedrate.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDFeedrate, "nUDFeedrate");
+            this.nUDFeedrate.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDFeedrate.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDFeedrate.Name = "nUDFeedrate";
+            this.toolTip1.SetToolTip(this.nUDFeedrate, resources.GetString("nUDFeedrate.ToolTip"));
+            this.nUDFeedrate.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinFeed;
+            // 
+            // nUDStepwidth
+            // 
+            this.nUDStepwidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinStep", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDStepwidth.DecimalPlaces = 3;
+            this.nUDStepwidth.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            resources.ApplyResources(this.nUDStepwidth, "nUDStepwidth");
+            this.nUDStepwidth.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDStepwidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDStepwidth.Name = "nUDStepwidth";
+            this.toolTip1.SetToolTip(this.nUDStepwidth, resources.GetString("nUDStepwidth.ToolTip"));
+            this.nUDStepwidth.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinStep;
+            // 
             // tab7gB2lbl4
             // 
             resources.ApplyResources(this.tab7gB2lbl4, "tab7gB2lbl4");
             this.tab7gB2lbl4.Name = "tab7gB2lbl4";
+            // 
+            // nUDMinimum
+            // 
+            this.nUDMinimum.BackColor = System.Drawing.Color.Yellow;
+            this.nUDMinimum.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinimum", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMinimum.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDMinimum, "nUDMinimum");
+            this.nUDMinimum.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.nUDMinimum.Name = "nUDMinimum";
+            this.toolTip1.SetToolTip(this.nUDMinimum, resources.GetString("nUDMinimum.ToolTip"));
+            this.nUDMinimum.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinimum;
             // 
             // tab7gB2lbl2
             // 
@@ -3628,6 +6174,43 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.tab7gB2lbl1, "tab7gB2lbl1");
             this.tab7gB2lbl1.Name = "tab7gB2lbl1";
+            // 
+            // nUDOffset
+            // 
+            this.nUDOffset.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogOffset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDOffset, "nUDOffset");
+            this.nUDOffset.Maximum = new decimal(new int[] {
+            34757,
+            0,
+            0,
+            0});
+            this.nUDOffset.Minimum = new decimal(new int[] {
+            30757,
+            0,
+            0,
+            0});
+            this.nUDOffset.Name = "nUDOffset";
+            this.toolTip1.SetToolTip(this.nUDOffset, resources.GetString("nUDOffset.ToolTip"));
+            this.nUDOffset.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogOffset;
+            // 
+            // nUDDead
+            // 
+            this.nUDDead.BackColor = System.Drawing.Color.Lime;
+            this.nUDDead.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogDead", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDDead.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDDead, "nUDDead");
+            this.nUDDead.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDDead.Name = "nUDDead";
+            this.toolTip1.SetToolTip(this.nUDDead, resources.GetString("nUDDead.ToolTip"));
+            this.nUDDead.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogDead;
             // 
             // lblValR
             // 
@@ -3653,10 +6236,192 @@ namespace GRBL_Plotter
             this.lblValX.Name = "lblValX";
             this.toolTip1.SetToolTip(this.lblValX, resources.GetString("lblValX.ToolTip"));
             // 
+            // cBGPEnable
+            // 
+            resources.ApplyResources(this.cBGPEnable, "cBGPEnable");
+            this.cBGPEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadEnable;
+            this.cBGPEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBGPEnable.Name = "cBGPEnable";
+            this.cBGPEnable.UseVisualStyleBackColor = true;
+            this.cBGPEnable.CheckedChanged += new System.EventHandler(this.cBGPEnable_CheckedChanged);
+            // 
+            // cBRInvert
+            // 
+            resources.ApplyResources(this.cBRInvert, "cBRInvert");
+            this.cBRInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadRInvert;
+            this.cBRInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadRInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBRInvert.Name = "cBRInvert";
+            this.cBRInvert.UseVisualStyleBackColor = true;
+            // 
+            // cBZInvert
+            // 
+            resources.ApplyResources(this.cBZInvert, "cBZInvert");
+            this.cBZInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadZInvert;
+            this.cBZInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadZInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBZInvert.Name = "cBZInvert";
+            this.cBZInvert.UseVisualStyleBackColor = true;
+            // 
+            // cBYInvert
+            // 
+            resources.ApplyResources(this.cBYInvert, "cBYInvert");
+            this.cBYInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadYInvert;
+            this.cBYInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadYInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBYInvert.Name = "cBYInvert";
+            this.cBYInvert.UseVisualStyleBackColor = true;
+            // 
+            // cBXInvert
+            // 
+            resources.ApplyResources(this.cBXInvert, "cBXInvert");
+            this.cBXInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadXInvert;
+            this.cBXInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadXInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBXInvert.Name = "cBXInvert";
+            this.cBXInvert.UseVisualStyleBackColor = true;
+            // 
+            // tBRAxis
+            // 
+            this.tBRAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tBRAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadRAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBRAxis, "tBRAxis");
+            this.tBRAxis.Name = "tBRAxis";
+            this.tBRAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadRAxis;
+            this.toolTip1.SetToolTip(this.tBRAxis, resources.GetString("tBRAxis.ToolTip"));
+            // 
+            // tBZAxis
+            // 
+            this.tBZAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tBZAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadZAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBZAxis, "tBZAxis");
+            this.tBZAxis.Name = "tBZAxis";
+            this.tBZAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadZAxis;
+            this.toolTip1.SetToolTip(this.tBZAxis, resources.GetString("tBZAxis.ToolTip"));
+            // 
+            // tBYAxis
+            // 
+            this.tBYAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tBYAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadYAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBYAxis, "tBYAxis");
+            this.tBYAxis.Name = "tBYAxis";
+            this.tBYAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadYAxis;
+            this.toolTip1.SetToolTip(this.tBYAxis, resources.GetString("tBYAxis.ToolTip"));
+            // 
+            // tBXAxis
+            // 
+            this.tBXAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tBXAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadXAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBXAxis, "tBXAxis");
+            this.tBXAxis.Name = "tBXAxis";
+            this.tBXAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadXAxis;
+            this.toolTip1.SetToolTip(this.tBXAxis, resources.GetString("tBXAxis.ToolTip"));
+            // 
             // tab7gB1lbl1
             // 
             resources.ApplyResources(this.tab7gB1lbl1, "tab7gB1lbl1");
             this.tab7gB1lbl1.Name = "tab7gB1lbl1";
+            // 
+            // tBGP15
+            // 
+            this.tBGP15.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons15", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP15, "tBGP15");
+            this.tBGP15.Name = "tBGP15";
+            this.tBGP15.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons15;
+            // 
+            // tBGP14
+            // 
+            this.tBGP14.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons14", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP14, "tBGP14");
+            this.tBGP14.Name = "tBGP14";
+            this.tBGP14.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons14;
+            // 
+            // tBGP13
+            // 
+            this.tBGP13.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons13", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP13, "tBGP13");
+            this.tBGP13.Name = "tBGP13";
+            this.tBGP13.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons13;
+            // 
+            // tBGP12
+            // 
+            this.tBGP12.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons12", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP12, "tBGP12");
+            this.tBGP12.Name = "tBGP12";
+            this.tBGP12.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons12;
+            // 
+            // tBGP11
+            // 
+            this.tBGP11.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons11", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP11, "tBGP11");
+            this.tBGP11.Name = "tBGP11";
+            this.tBGP11.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons11;
+            // 
+            // tBGP10
+            // 
+            this.tBGP10.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons10", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP10, "tBGP10");
+            this.tBGP10.Name = "tBGP10";
+            this.tBGP10.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons10;
+            // 
+            // tBGP9
+            // 
+            this.tBGP9.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons9", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP9, "tBGP9");
+            this.tBGP9.Name = "tBGP9";
+            this.tBGP9.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons9;
+            // 
+            // tBGP8
+            // 
+            this.tBGP8.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons8", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP8, "tBGP8");
+            this.tBGP8.Name = "tBGP8";
+            this.tBGP8.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons8;
+            // 
+            // tBGP7
+            // 
+            this.tBGP7.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons7", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP7, "tBGP7");
+            this.tBGP7.Name = "tBGP7";
+            this.tBGP7.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons7;
+            // 
+            // tBGP6
+            // 
+            this.tBGP6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons6", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP6, "tBGP6");
+            this.tBGP6.Name = "tBGP6";
+            this.tBGP6.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons6;
+            // 
+            // tBGP5
+            // 
+            this.tBGP5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP5, "tBGP5");
+            this.tBGP5.Name = "tBGP5";
+            this.tBGP5.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons5;
+            // 
+            // tBGP4
+            // 
+            this.tBGP4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP4, "tBGP4");
+            this.tBGP4.Name = "tBGP4";
+            this.tBGP4.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons4;
+            // 
+            // tBGP3
+            // 
+            this.tBGP3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP3, "tBGP3");
+            this.tBGP3.Name = "tBGP3";
+            this.tBGP3.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons3;
+            // 
+            // tBGP2
+            // 
+            this.tBGP2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP2, "tBGP2");
+            this.tBGP2.Name = "tBGP2";
+            this.tBGP2.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons2;
+            // 
+            // tBGP1
+            // 
+            this.tBGP1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP1, "tBGP1");
+            this.tBGP1.Name = "tBGP1";
+            this.tBGP1.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons1;
             // 
             // lblgp
             // 
@@ -3733,6 +6498,13 @@ namespace GRBL_Plotter
             this.lblButtons14.BackColor = System.Drawing.Color.LightGray;
             resources.ApplyResources(this.lblButtons14, "lblButtons14");
             this.lblButtons14.Name = "lblButtons14";
+            // 
+            // tBGP0
+            // 
+            this.tBGP0.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGP0, "tBGP0");
+            this.tBGP0.Name = "tBGP0";
+            this.tBGP0.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons0;
             // 
             // lblButtons13
             // 
@@ -3874,6 +6646,171 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.label77, "label77");
             this.label77.Name = "label77";
             // 
+            // nUDJoyASpeed5
+            // 
+            this.nUDJoyASpeed5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyASpeed5, "nUDJoyASpeed5");
+            this.nUDJoyASpeed5.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed5.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed5.Name = "nUDJoyASpeed5";
+            this.nUDJoyASpeed5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed5;
+            // 
+            // nUDJoyASpeed4
+            // 
+            this.nUDJoyASpeed4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyASpeed4, "nUDJoyASpeed4");
+            this.nUDJoyASpeed4.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed4.Name = "nUDJoyASpeed4";
+            this.nUDJoyASpeed4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed4;
+            // 
+            // nUDJoyASpeed3
+            // 
+            this.nUDJoyASpeed3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyASpeed3, "nUDJoyASpeed3");
+            this.nUDJoyASpeed3.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed3.Name = "nUDJoyASpeed3";
+            this.nUDJoyASpeed3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed3;
+            // 
+            // nUDJoyASpeed2
+            // 
+            this.nUDJoyASpeed2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyASpeed2, "nUDJoyASpeed2");
+            this.nUDJoyASpeed2.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed2.Name = "nUDJoyASpeed2";
+            this.nUDJoyASpeed2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed2;
+            // 
+            // nUDJoyASpeed1
+            // 
+            this.nUDJoyASpeed1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyASpeed1, "nUDJoyASpeed1");
+            this.nUDJoyASpeed1.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyASpeed1.Name = "nUDJoyASpeed1";
+            this.nUDJoyASpeed1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed1;
+            // 
+            // nUDJoyAStep5
+            // 
+            this.nUDJoyAStep5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyAStep5.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyAStep5, "nUDJoyAStep5");
+            this.nUDJoyAStep5.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.nUDJoyAStep5.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyAStep5.Name = "nUDJoyAStep5";
+            this.nUDJoyAStep5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep5;
+            // 
+            // nUDJoyAStep4
+            // 
+            this.nUDJoyAStep4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyAStep4.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyAStep4, "nUDJoyAStep4");
+            this.nUDJoyAStep4.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.nUDJoyAStep4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyAStep4.Name = "nUDJoyAStep4";
+            this.nUDJoyAStep4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep4;
+            // 
+            // nUDJoyAStep3
+            // 
+            this.nUDJoyAStep3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyAStep3.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyAStep3, "nUDJoyAStep3");
+            this.nUDJoyAStep3.Maximum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            0});
+            this.nUDJoyAStep3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyAStep3.Name = "nUDJoyAStep3";
+            this.nUDJoyAStep3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep3;
+            // 
+            // nUDJoyAStep2
+            // 
+            this.nUDJoyAStep2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyAStep2.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyAStep2, "nUDJoyAStep2");
+            this.nUDJoyAStep2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyAStep2.Name = "nUDJoyAStep2";
+            this.nUDJoyAStep2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep2;
+            // 
+            // nUDJoyAStep1
+            // 
+            this.nUDJoyAStep1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyAStep1.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyAStep1, "nUDJoyAStep1");
+            this.nUDJoyAStep1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyAStep1.Name = "nUDJoyAStep1";
+            this.nUDJoyAStep1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep1;
+            // 
             // tab8gB1lbl2
             // 
             resources.ApplyResources(this.tab8gB1lbl2, "tab8gB1lbl2");
@@ -3889,6 +6826,16 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab8gB1lbl1, "tab8gB1lbl1");
             this.tab8gB1lbl1.Name = "tab8gB1lbl1";
             // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.hScrollBar1, "hScrollBar1");
+            this.hScrollBar1.Maximum = 400;
+            this.hScrollBar1.Minimum = 180;
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickSize;
+            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
+            // 
             // btnJoyZCalc
             // 
             resources.ApplyResources(this.btnJoyZCalc, "btnJoyZCalc");
@@ -3901,6 +6848,181 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label28, "label28");
             this.label28.Name = "label28";
+            // 
+            // nUDJoyZSpeed5
+            // 
+            this.nUDJoyZSpeed5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyZSpeed5, "nUDJoyZSpeed5");
+            this.nUDJoyZSpeed5.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed5.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed5.Name = "nUDJoyZSpeed5";
+            this.nUDJoyZSpeed5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed5;
+            // 
+            // nUDJoyZSpeed4
+            // 
+            this.nUDJoyZSpeed4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyZSpeed4, "nUDJoyZSpeed4");
+            this.nUDJoyZSpeed4.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed4.Name = "nUDJoyZSpeed4";
+            this.nUDJoyZSpeed4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed4;
+            // 
+            // nUDJoyZSpeed3
+            // 
+            this.nUDJoyZSpeed3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyZSpeed3, "nUDJoyZSpeed3");
+            this.nUDJoyZSpeed3.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed3.Name = "nUDJoyZSpeed3";
+            this.nUDJoyZSpeed3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed3;
+            // 
+            // nUDJoyZSpeed2
+            // 
+            this.nUDJoyZSpeed2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyZSpeed2, "nUDJoyZSpeed2");
+            this.nUDJoyZSpeed2.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed2.Name = "nUDJoyZSpeed2";
+            this.nUDJoyZSpeed2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed2;
+            // 
+            // nUDJoyZSpeed1
+            // 
+            this.nUDJoyZSpeed1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyZSpeed1, "nUDJoyZSpeed1");
+            this.nUDJoyZSpeed1.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyZSpeed1.Name = "nUDJoyZSpeed1";
+            this.nUDJoyZSpeed1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed1;
+            // 
+            // nUDJoyZStep5
+            // 
+            this.nUDJoyZStep5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyZStep5.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyZStep5, "nUDJoyZStep5");
+            this.nUDJoyZStep5.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZStep5.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyZStep5.Name = "nUDJoyZStep5";
+            this.nUDJoyZStep5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep5;
+            // 
+            // nUDJoyZStep4
+            // 
+            this.nUDJoyZStep4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyZStep4.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyZStep4, "nUDJoyZStep4");
+            this.nUDJoyZStep4.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZStep4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyZStep4.Name = "nUDJoyZStep4";
+            this.nUDJoyZStep4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep4;
+            // 
+            // nUDJoyZStep3
+            // 
+            this.nUDJoyZStep3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyZStep3.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyZStep3, "nUDJoyZStep3");
+            this.nUDJoyZStep3.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZStep3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyZStep3.Name = "nUDJoyZStep3";
+            this.nUDJoyZStep3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep3;
+            // 
+            // nUDJoyZStep2
+            // 
+            this.nUDJoyZStep2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyZStep2.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyZStep2, "nUDJoyZStep2");
+            this.nUDJoyZStep2.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZStep2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyZStep2.Name = "nUDJoyZStep2";
+            this.nUDJoyZStep2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep2;
+            // 
+            // nUDJoyZStep1
+            // 
+            this.nUDJoyZStep1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyZStep1.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyZStep1, "nUDJoyZStep1");
+            this.nUDJoyZStep1.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyZStep1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyZStep1.Name = "nUDJoyZStep1";
+            this.nUDJoyZStep1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep1;
             // 
             // label25
             // 
@@ -3940,6 +7062,181 @@ namespace GRBL_Plotter
             this.btnJoyXYCalc.UseVisualStyleBackColor = true;
             this.btnJoyXYCalc.Click += new System.EventHandler(this.btnJoyXYCalc_Click);
             // 
+            // nUDJoyXYSpeed5
+            // 
+            this.nUDJoyXYSpeed5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyXYSpeed5, "nUDJoyXYSpeed5");
+            this.nUDJoyXYSpeed5.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed5.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed5.Name = "nUDJoyXYSpeed5";
+            this.nUDJoyXYSpeed5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed5;
+            // 
+            // nUDJoyXYSpeed4
+            // 
+            this.nUDJoyXYSpeed4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyXYSpeed4, "nUDJoyXYSpeed4");
+            this.nUDJoyXYSpeed4.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed4.Name = "nUDJoyXYSpeed4";
+            this.nUDJoyXYSpeed4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed4;
+            // 
+            // nUDJoyXYSpeed3
+            // 
+            this.nUDJoyXYSpeed3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyXYSpeed3, "nUDJoyXYSpeed3");
+            this.nUDJoyXYSpeed3.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed3.Name = "nUDJoyXYSpeed3";
+            this.nUDJoyXYSpeed3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed3;
+            // 
+            // nUDJoyXYSpeed2
+            // 
+            this.nUDJoyXYSpeed2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyXYSpeed2, "nUDJoyXYSpeed2");
+            this.nUDJoyXYSpeed2.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed2.Name = "nUDJoyXYSpeed2";
+            this.nUDJoyXYSpeed2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed2;
+            // 
+            // nUDJoyXYSpeed1
+            // 
+            this.nUDJoyXYSpeed1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDJoyXYSpeed1, "nUDJoyXYSpeed1");
+            this.nUDJoyXYSpeed1.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nUDJoyXYSpeed1.Name = "nUDJoyXYSpeed1";
+            this.nUDJoyXYSpeed1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed1;
+            // 
+            // nUDJoyXYStep5
+            // 
+            this.nUDJoyXYStep5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyXYStep5.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyXYStep5, "nUDJoyXYStep5");
+            this.nUDJoyXYStep5.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYStep5.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyXYStep5.Name = "nUDJoyXYStep5";
+            this.nUDJoyXYStep5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep5;
+            // 
+            // nUDJoyXYStep4
+            // 
+            this.nUDJoyXYStep4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyXYStep4.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyXYStep4, "nUDJoyXYStep4");
+            this.nUDJoyXYStep4.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYStep4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyXYStep4.Name = "nUDJoyXYStep4";
+            this.nUDJoyXYStep4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep4;
+            // 
+            // nUDJoyXYStep3
+            // 
+            this.nUDJoyXYStep3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyXYStep3.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyXYStep3, "nUDJoyXYStep3");
+            this.nUDJoyXYStep3.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYStep3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyXYStep3.Name = "nUDJoyXYStep3";
+            this.nUDJoyXYStep3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep3;
+            // 
+            // nUDJoyXYStep2
+            // 
+            this.nUDJoyXYStep2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyXYStep2.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyXYStep2, "nUDJoyXYStep2");
+            this.nUDJoyXYStep2.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYStep2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyXYStep2.Name = "nUDJoyXYStep2";
+            this.nUDJoyXYStep2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep2;
+            // 
+            // nUDJoyXYStep1
+            // 
+            this.nUDJoyXYStep1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDJoyXYStep1.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDJoyXYStep1, "nUDJoyXYStep1");
+            this.nUDJoyXYStep1.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nUDJoyXYStep1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.nUDJoyXYStep1.Name = "nUDJoyXYStep1";
+            this.nUDJoyXYStep1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep1;
+            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.groupBox14);
@@ -3958,6 +7255,24 @@ namespace GRBL_Plotter
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.TabStop = false;
             // 
+            // cB2DViewFigureId
+            // 
+            resources.ApplyResources(this.cB2DViewFigureId, "cB2DViewFigureId");
+            this.cB2DViewFigureId.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DPenUpId;
+            this.cB2DViewFigureId.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cB2DViewFigureId.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gui2DPenUpId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cB2DViewFigureId.Name = "cB2DViewFigureId";
+            this.cB2DViewFigureId.UseVisualStyleBackColor = true;
+            // 
+            // cB2DViewDirectionArrow
+            // 
+            resources.ApplyResources(this.cB2DViewDirectionArrow, "cB2DViewDirectionArrow");
+            this.cB2DViewDirectionArrow.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DPenUpArrow;
+            this.cB2DViewDirectionArrow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cB2DViewDirectionArrow.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gui2DPenUpArrow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cB2DViewDirectionArrow.Name = "cB2DViewDirectionArrow";
+            this.cB2DViewDirectionArrow.UseVisualStyleBackColor = true;
+            // 
             // btnReloadSettings
             // 
             resources.ApplyResources(this.btnReloadSettings, "btnReloadSettings");
@@ -3973,6 +7288,13 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox12, "groupBox12");
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.TabStop = false;
+            // 
+            // nUDFCTBLineInterval
+            // 
+            this.nUDFCTBLineInterval.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "FCTBLineInterval", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDFCTBLineInterval, "nUDFCTBLineInterval");
+            this.nUDFCTBLineInterval.Name = "nUDFCTBLineInterval";
+            this.nUDFCTBLineInterval.Value = global::GRBL_Plotter.Properties.Settings.Default.FCTBLineInterval;
             // 
             // tab5gB9
             // 
@@ -4019,12 +7341,78 @@ namespace GRBL_Plotter
             this.tab8gB2.Name = "tab8gB2";
             this.tab8gB2.TabStop = false;
             // 
+            // cBColorModeEnable
+            // 
+            resources.ApplyResources(this.cBColorModeEnable, "cBColorModeEnable");
+            this.cBColorModeEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DColorPenDownModeEnable;
+            this.cBColorModeEnable.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBColorModeEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gui2DColorPenDownModeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBColorModeEnable.Name = "cBColorModeEnable";
+            this.toolTip1.SetToolTip(this.cBColorModeEnable, resources.GetString("cBColorModeEnable.ToolTip"));
+            this.cBColorModeEnable.UseVisualStyleBackColor = true;
+            // 
+            // nUDSimulation
+            // 
+            this.nUDSimulation.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthSimulation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDSimulation.DecimalPlaces = 1;
+            this.nUDSimulation.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDSimulation, "nUDSimulation");
+            this.nUDSimulation.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDSimulation.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDSimulation.Name = "nUDSimulation";
+            this.toolTip1.SetToolTip(this.nUDSimulation, resources.GetString("nUDSimulation.ToolTip"));
+            this.nUDSimulation.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthSimulation;
+            // 
             // btnColorSimulation
             // 
             resources.ApplyResources(this.btnColorSimulation, "btnColorSimulation");
             this.btnColorSimulation.Name = "btnColorSimulation";
             this.btnColorSimulation.UseVisualStyleBackColor = true;
             this.btnColorSimulation.Click += new System.EventHandler(this.btnColorSimulation_Click);
+            // 
+            // cBKeepPenWidth
+            // 
+            resources.ApplyResources(this.cBKeepPenWidth, "cBKeepPenWidth");
+            this.cBKeepPenWidth.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DKeepPenWidth;
+            this.cBKeepPenWidth.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gui2DKeepPenWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBKeepPenWidth.Name = "cBKeepPenWidth";
+            this.cBKeepPenWidth.UseVisualStyleBackColor = true;
+            // 
+            // nUDRotaryInfo
+            // 
+            this.nUDRotaryInfo.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthRotaryInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDRotaryInfo.DecimalPlaces = 1;
+            this.nUDRotaryInfo.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRotaryInfo, "nUDRotaryInfo");
+            this.nUDRotaryInfo.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDRotaryInfo.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDRotaryInfo.Name = "nUDRotaryInfo";
+            this.toolTip1.SetToolTip(this.nUDRotaryInfo, resources.GetString("nUDRotaryInfo.ToolTip"));
+            this.nUDRotaryInfo.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRotaryInfo;
             // 
             // btnColorRotaryInfo
             // 
@@ -4050,6 +7438,30 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab8gB2lbl1, "tab8gB2lbl1");
             this.tab8gB2lbl1.Name = "tab8gB2lbl1";
             // 
+            // nUDHeightMap
+            // 
+            this.nUDHeightMap.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthHeightMap", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDHeightMap.DecimalPlaces = 1;
+            this.nUDHeightMap.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDHeightMap, "nUDHeightMap");
+            this.nUDHeightMap.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDHeightMap.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDHeightMap.Name = "nUDHeightMap";
+            this.toolTip1.SetToolTip(this.nUDHeightMap, resources.GetString("nUDHeightMap.ToolTip"));
+            this.nUDHeightMap.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthHeightMap;
+            // 
             // btnColorHeightMap
             // 
             resources.ApplyResources(this.btnColorHeightMap, "btnColorHeightMap");
@@ -4057,12 +7469,132 @@ namespace GRBL_Plotter
             this.btnColorHeightMap.UseVisualStyleBackColor = true;
             this.btnColorHeightMap.Click += new System.EventHandler(this.btnColorHeightMap_Click);
             // 
+            // nUDMarker
+            // 
+            this.nUDMarker.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthMarker", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDMarker.DecimalPlaces = 1;
+            this.nUDMarker.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDMarker, "nUDMarker");
+            this.nUDMarker.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDMarker.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDMarker.Name = "nUDMarker";
+            this.toolTip1.SetToolTip(this.nUDMarker, resources.GetString("nUDMarker.ToolTip"));
+            this.nUDMarker.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthMarker;
+            // 
             // btnColorMarker
             // 
             resources.ApplyResources(this.btnColorMarker, "btnColorMarker");
             this.btnColorMarker.Name = "btnColorMarker";
             this.btnColorMarker.UseVisualStyleBackColor = true;
             this.btnColorMarker.Click += new System.EventHandler(this.btnColorMarker_Click);
+            // 
+            // nUDTool
+            // 
+            this.nUDTool.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthTool", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDTool.DecimalPlaces = 1;
+            this.nUDTool.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDTool, "nUDTool");
+            this.nUDTool.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDTool.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDTool.Name = "nUDTool";
+            this.toolTip1.SetToolTip(this.nUDTool, resources.GetString("nUDTool.ToolTip"));
+            this.nUDTool.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthTool;
+            // 
+            // nUDPenDown
+            // 
+            this.nUDPenDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthPenDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDPenDown.DecimalPlaces = 1;
+            this.nUDPenDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDPenDown, "nUDPenDown");
+            this.nUDPenDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDPenDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDPenDown.Name = "nUDPenDown";
+            this.toolTip1.SetToolTip(this.nUDPenDown, resources.GetString("nUDPenDown.ToolTip"));
+            this.nUDPenDown.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthPenDown;
+            // 
+            // nUDPenUp
+            // 
+            this.nUDPenUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthPenUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDPenUp.DecimalPlaces = 1;
+            this.nUDPenUp.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDPenUp, "nUDPenUp");
+            this.nUDPenUp.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDPenUp.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDPenUp.Name = "nUDPenUp";
+            this.toolTip1.SetToolTip(this.nUDPenUp, resources.GetString("nUDPenUp.ToolTip"));
+            this.nUDPenUp.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthPenUp;
+            // 
+            // nUDRuler
+            // 
+            this.nUDRuler.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthRuler", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDRuler.DecimalPlaces = 1;
+            this.nUDRuler.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRuler, "nUDRuler");
+            this.nUDRuler.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDRuler.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDRuler.Name = "nUDRuler";
+            this.toolTip1.SetToolTip(this.nUDRuler, resources.GetString("nUDRuler.ToolTip"));
+            this.nUDRuler.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRuler;
             // 
             // btnColorTool
             // 
@@ -4378,28 +7910,6 @@ namespace GRBL_Plotter
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // groupBox18
-            // 
-            this.groupBox18.Controls.Add(this.button1);
-            this.groupBox18.Controls.Add(this.tbNotifierPBChannel);
-            this.groupBox18.Controls.Add(this.lblNotifierPBChannel);
-            this.groupBox18.Controls.Add(this.tbNotifierPBToken);
-            this.groupBox18.Controls.Add(this.cbNotifierPBEnable);
-            this.groupBox18.Controls.Add(this.lblNotifierPBToken);
-            resources.ApplyResources(this.groupBox18, "groupBox18");
-            this.groupBox18.Name = "groupBox18";
-            this.groupBox18.TabStop = false;
-            // 
-            // lblNotifierPBToken
-            // 
-            resources.ApplyResources(this.lblNotifierPBToken, "lblNotifierPBToken");
-            this.lblNotifierPBToken.Name = "lblNotifierPBToken";
-            // 
-            // lblNotifierPBChannel
-            // 
-            resources.ApplyResources(this.lblNotifierPBChannel, "lblNotifierPBChannel");
-            this.lblNotifierPBChannel.Name = "lblNotifierPBChannel";
-            // 
             // cBshowImportDialog
             // 
             resources.ApplyResources(this.cBshowImportDialog, "cBshowImportDialog");
@@ -4409,3511 +7919,18 @@ namespace GRBL_Plotter
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 
-            // tBGerberGeometryM19
+            // label34
             // 
-            this.tBGerberGeometryM19.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGerberTypeM19", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGerberGeometryM19, "tBGerberGeometryM19");
-            this.tBGerberGeometryM19.Name = "tBGerberGeometryM19";
-            this.tBGerberGeometryM19.Text = global::GRBL_Plotter.Properties.Settings.Default.importGerberTypeM19;
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.Name = "label34";
             // 
-            // tBGerberGeometryKnife
+            // cBImportGraphicClipSkipCode
             // 
-            this.tBGerberGeometryKnife.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGerberTypeKnife", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGerberGeometryKnife, "tBGerberGeometryKnife");
-            this.tBGerberGeometryKnife.Name = "tBGerberGeometryKnife";
-            this.tBGerberGeometryKnife.Text = global::GRBL_Plotter.Properties.Settings.Default.importGerberTypeKnife;
-            // 
-            // tBGerberGeometryPen
-            // 
-            this.tBGerberGeometryPen.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGerberTypePen", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGerberGeometryPen, "tBGerberGeometryPen");
-            this.tBGerberGeometryPen.Name = "tBGerberGeometryPen";
-            this.tBGerberGeometryPen.Text = global::GRBL_Plotter.Properties.Settings.Default.importGerberTypePen;
-            // 
-            // cBGerberGeometryEnable
-            // 
-            resources.ApplyResources(this.cBGerberGeometryEnable, "cBGerberGeometryEnable");
-            this.cBGerberGeometryEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGerberTypeEnable;
-            this.cBGerberGeometryEnable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBGerberGeometryEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGerberTypeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBGerberGeometryEnable.Name = "cBGerberGeometryEnable";
-            this.cBGerberGeometryEnable.UseVisualStyleBackColor = true;
-            // 
-            // tBLineEndText
-            // 
-            this.tBLineEndText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlLineEndText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBLineEndText, "tBLineEndText");
-            this.tBLineEndText.Name = "tBLineEndText";
-            this.tBLineEndText.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlLineEndText;
-            // 
-            // cBLineEndEnable
-            // 
-            resources.ApplyResources(this.cBLineEndEnable, "cBLineEndEnable");
-            this.cBLineEndEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlLineEndEnable;
-            this.cBLineEndEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlLineEndEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBLineEndEnable.Name = "cBLineEndEnable";
-            this.cBLineEndEnable.UseVisualStyleBackColor = true;
-            // 
-            // cBCodeCreationLineNumbers
-            // 
-            resources.ApplyResources(this.cBCodeCreationLineNumbers, "cBCodeCreationLineNumbers");
-            this.cBCodeCreationLineNumbers.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlLineNumbers;
-            this.cBCodeCreationLineNumbers.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlLineNumbers", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBCodeCreationLineNumbers.Name = "cBCodeCreationLineNumbers";
-            this.cBCodeCreationLineNumbers.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown12
-            // 
-            this.numericUpDown12.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVScaleZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown12.DecimalPlaces = 1;
-            resources.ApplyResources(this.numericUpDown12, "numericUpDown12");
-            this.numericUpDown12.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVScaleZ;
-            // 
-            // numericUpDown11
-            // 
-            this.numericUpDown11.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVScaleY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown11.DecimalPlaces = 1;
-            resources.ApplyResources(this.numericUpDown11, "numericUpDown11");
-            this.numericUpDown11.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown11.Name = "numericUpDown11";
-            this.numericUpDown11.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVScaleY;
-            // 
-            // numericUpDown10
-            // 
-            this.numericUpDown10.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVScaleX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown10.DecimalPlaces = 1;
-            resources.ApplyResources(this.numericUpDown10, "numericUpDown10");
-            this.numericUpDown10.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown10.Name = "numericUpDown10";
-            this.numericUpDown10.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVScaleX;
-            // 
-            // numericUpDown9
-            // 
-            this.numericUpDown9.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVColumnZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.numericUpDown9, "numericUpDown9");
-            this.numericUpDown9.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVColumnZ;
-            // 
-            // numericUpDown8
-            // 
-            this.numericUpDown8.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVColumnY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.numericUpDown8, "numericUpDown8");
-            this.numericUpDown8.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVColumnY;
-            // 
-            // numericUpDown7
-            // 
-            this.numericUpDown7.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVColumnX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.numericUpDown7, "numericUpDown7");
-            this.numericUpDown7.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVColumnX;
-            // 
-            // textBox1
-            // 
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importCSVDelimeter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Text = global::GRBL_Plotter.Properties.Settings.Default.importCSVDelimeter;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importCSVStartLine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Value = global::GRBL_Plotter.Properties.Settings.Default.importCSVStartLine;
-            // 
-            // radioButton3
-            // 
-            resources.ApplyResources(this.radioButton3, "radioButton3");
-            this.radioButton3.Checked = global::GRBL_Plotter.Properties.Settings.Default.importCSVProzessAsLine;
-            this.radioButton3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importCSVProzessAsLine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.TabStop = true;
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            resources.ApplyResources(this.checkBox8, "checkBox8");
-            this.checkBox8.Checked = global::GRBL_Plotter.Properties.Settings.Default.importCSVProzessZ;
-            this.checkBox8.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importCSVProzessZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            resources.ApplyResources(this.checkBox7, "checkBox7");
-            this.checkBox7.Checked = global::GRBL_Plotter.Properties.Settings.Default.importCSVAutomatic;
-            this.checkBox7.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox7.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importCSVAutomatic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // cBImportDXFSwitchWhite
-            // 
-            resources.ApplyResources(this.cBImportDXFSwitchWhite, "cBImportDXFSwitchWhite");
-            this.cBImportDXFSwitchWhite.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDXFSwitchWhite;
-            this.cBImportDXFSwitchWhite.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportDXFSwitchWhite.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDXFSwitchWhite", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportDXFSwitchWhite.Name = "cBImportDXFSwitchWhite";
-            this.toolTip1.SetToolTip(this.cBImportDXFSwitchWhite, resources.GetString("cBImportDXFSwitchWhite.ToolTip"));
-            this.cBImportDXFSwitchWhite.UseVisualStyleBackColor = true;
-            // 
-            // cBImportDXFIndexToolNr
-            // 
-            resources.ApplyResources(this.cBImportDXFIndexToolNr, "cBImportDXFIndexToolNr");
-            this.cBImportDXFIndexToolNr.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDXFToolIndex;
-            this.cBImportDXFIndexToolNr.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDXFToolIndex", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportDXFIndexToolNr.Name = "cBImportDXFIndexToolNr";
-            this.toolTip1.SetToolTip(this.cBImportDXFIndexToolNr, resources.GetString("cBImportDXFIndexToolNr.ToolTip"));
-            this.cBImportDXFIndexToolNr.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            resources.ApplyResources(this.checkBox5, "checkBox5");
-            this.checkBox5.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGApplyFill;
-            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox5.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGApplyFill", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // nUDSVGScale
-            // 
-            this.nUDSVGScale.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importSVGMaxSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDSVGScale.DecimalPlaces = 1;
-            this.nUDSVGScale.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDSVGScale, "nUDSVGScale");
-            this.nUDSVGScale.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDSVGScale.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDSVGScale.Name = "nUDSVGScale";
-            this.toolTip1.SetToolTip(this.nUDSVGScale, resources.GetString("nUDSVGScale.ToolTip"));
-            this.nUDSVGScale.Value = global::GRBL_Plotter.Properties.Settings.Default.importSVGMaxSize;
-            // 
-            // cBImportSVG_DPI_96
-            // 
-            resources.ApplyResources(this.cBImportSVG_DPI_96, "cBImportSVG_DPI_96");
-            this.cBImportSVG_DPI_96.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGDPI96;
-            this.cBImportSVG_DPI_96.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGDPI96", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVG_DPI_96.Name = "cBImportSVG_DPI_96";
-            this.cBImportSVG_DPI_96.TabStop = true;
-            this.toolTip1.SetToolTip(this.cBImportSVG_DPI_96, resources.GetString("cBImportSVG_DPI_96.ToolTip"));
-            this.cBImportSVG_DPI_96.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGResize
-            // 
-            this.cBImportSVGResize.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGRezise;
-            this.cBImportSVGResize.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGRezise", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.cBImportSVGResize, "cBImportSVGResize");
-            this.cBImportSVGResize.Name = "cBImportSVGResize";
-            this.toolTip1.SetToolTip(this.cBImportSVGResize, resources.GetString("cBImportSVGResize.ToolTip"));
-            this.cBImportSVGResize.UseVisualStyleBackColor = true;
-            this.cBImportSVGResize.CheckedChanged += new System.EventHandler(this.cBImportSVGResize_CheckedChanged);
-            // 
-            // cBImportPenWidthToZRamp
-            // 
-            resources.ApplyResources(this.cBImportPenWidthToZRamp, "cBImportPenWidthToZRamp");
-            this.cBImportPenWidthToZRamp.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidthRamp;
-            this.cBImportPenWidthToZRamp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidthRamp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportPenWidthToZRamp.Name = "cBImportPenWidthToZRamp";
-            this.cBImportPenWidthToZRamp.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGCircleToDotZ
-            // 
-            resources.ApplyResources(this.cBImportSVGCircleToDotZ, "cBImportSVGCircleToDotZ");
-            this.cBImportSVGCircleToDotZ.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGCircleToDotZ;
-            this.cBImportSVGCircleToDotZ.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGCircleToDotZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGCircleToDotZ.Name = "cBImportSVGCircleToDotZ";
-            this.toolTip1.SetToolTip(this.cBImportSVGCircleToDotZ, resources.GetString("cBImportSVGCircleToDotZ.ToolTip"));
-            this.cBImportSVGCircleToDotZ.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGCircleToDot
-            // 
-            resources.ApplyResources(this.cBImportSVGCircleToDot, "cBImportSVGCircleToDot");
-            this.cBImportSVGCircleToDot.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGCircleToDot;
-            this.cBImportSVGCircleToDot.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGCircleToDot", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGCircleToDot.Name = "cBImportSVGCircleToDot";
-            this.toolTip1.SetToolTip(this.cBImportSVGCircleToDot, resources.GetString("cBImportSVGCircleToDot.ToolTip"));
-            this.cBImportSVGCircleToDot.UseVisualStyleBackColor = true;
-            this.cBImportSVGCircleToDot.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
-            // 
-            // cBImportPenWidthToZ
-            // 
-            resources.ApplyResources(this.cBImportPenWidthToZ, "cBImportPenWidthToZ");
-            this.cBImportPenWidthToZ.Checked = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidth;
-            this.cBImportPenWidthToZ.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportPenWidthToZ.Name = "cBImportPenWidthToZ";
-            this.toolTip1.SetToolTip(this.cBImportPenWidthToZ, resources.GetString("cBImportPenWidthToZ.ToolTip"));
-            this.cBImportPenWidthToZ.UseVisualStyleBackColor = true;
-            this.cBImportPenWidthToZ.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
-            // 
-            // nUDImportPenWidthToZMin
-            // 
-            this.nUDImportPenWidthToZMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidthMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportPenWidthToZMin.DecimalPlaces = 1;
-            this.nUDImportPenWidthToZMin.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportPenWidthToZMin, "nUDImportPenWidthToZMin");
-            this.nUDImportPenWidthToZMin.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147418112});
-            this.nUDImportPenWidthToZMin.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.nUDImportPenWidthToZMin.Name = "nUDImportPenWidthToZMin";
-            this.toolTip1.SetToolTip(this.nUDImportPenWidthToZMin, resources.GetString("nUDImportPenWidthToZMin.ToolTip"));
-            this.nUDImportPenWidthToZMin.Value = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidthMin;
-            this.nUDImportPenWidthToZMin.ValueChanged += new System.EventHandler(this.nUDImportPenWidthToZMin_ValueChanged);
-            // 
-            // nUDImportPenWidthToZMax
-            // 
-            this.nUDImportPenWidthToZMax.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importDepthFromWidthMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportPenWidthToZMax.DecimalPlaces = 1;
-            resources.ApplyResources(this.nUDImportPenWidthToZMax, "nUDImportPenWidthToZMax");
-            this.nUDImportPenWidthToZMax.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147418112});
-            this.nUDImportPenWidthToZMax.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.nUDImportPenWidthToZMax.Name = "nUDImportPenWidthToZMax";
-            this.toolTip1.SetToolTip(this.nUDImportPenWidthToZMax, resources.GetString("nUDImportPenWidthToZMax.ToolTip"));
-            this.nUDImportPenWidthToZMax.Value = global::GRBL_Plotter.Properties.Settings.Default.importDepthFromWidthMax;
-            this.nUDImportPenWidthToZMax.ValueChanged += new System.EventHandler(this.nUDImportPenWidthToZMin_ValueChanged);
-            // 
-            // cBDashedLine2
-            // 
-            resources.ApplyResources(this.cBDashedLine2, "cBDashedLine2");
-            this.cBDashedLine2.Checked = global::GRBL_Plotter.Properties.Settings.Default.importLineDashPatternG0;
-            this.cBDashedLine2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importLineDashPatternG0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBDashedLine2.Name = "cBDashedLine2";
-            this.toolTip1.SetToolTip(this.cBDashedLine2, resources.GetString("cBDashedLine2.ToolTip"));
-            this.cBDashedLine2.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGNodesOnly
-            // 
-            resources.ApplyResources(this.cBImportSVGNodesOnly, "cBImportSVGNodesOnly");
-            this.cBImportSVGNodesOnly.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGNodesOnly;
-            this.cBImportSVGNodesOnly.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGNodesOnly", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGNodesOnly.Name = "cBImportSVGNodesOnly";
-            this.toolTip1.SetToolTip(this.cBImportSVGNodesOnly, resources.GetString("cBImportSVGNodesOnly.ToolTip"));
-            this.cBImportSVGNodesOnly.UseVisualStyleBackColor = true;
-            this.cBImportSVGNodesOnly.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
-            // 
-            // cBDashedLine1
-            // 
-            resources.ApplyResources(this.cBDashedLine1, "cBDashedLine1");
-            this.cBDashedLine1.Checked = global::GRBL_Plotter.Properties.Settings.Default.importLineDashPattern;
-            this.cBDashedLine1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importLineDashPattern", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBDashedLine1.Name = "cBDashedLine1";
-            this.toolTip1.SetToolTip(this.cBDashedLine1, resources.GetString("cBDashedLine1.ToolTip"));
-            this.cBDashedLine1.UseVisualStyleBackColor = true;
-            this.cBDashedLine1.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
-            // 
-            // nUDImportRepeat
-            // 
-            this.nUDImportRepeat.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importRepeatCnt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDImportRepeat, "nUDImportRepeat");
-            this.nUDImportRepeat.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nUDImportRepeat.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.nUDImportRepeat.Name = "nUDImportRepeat";
-            this.toolTip1.SetToolTip(this.nUDImportRepeat, resources.GetString("nUDImportRepeat.ToolTip"));
-            this.nUDImportRepeat.Value = global::GRBL_Plotter.Properties.Settings.Default.importRepeatCnt;
-            // 
-            // rBImportSVGRepeat1
-            // 
-            resources.ApplyResources(this.rBImportSVGRepeat1, "rBImportSVGRepeat1");
-            this.rBImportSVGRepeat1.Checked = global::GRBL_Plotter.Properties.Settings.Default.importRepeatComplete;
-            this.rBImportSVGRepeat1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importRepeatComplete", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rBImportSVGRepeat1.Name = "rBImportSVGRepeat1";
-            this.rBImportSVGRepeat1.TabStop = true;
-            this.rBImportSVGRepeat1.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGRepeat
-            // 
-            resources.ApplyResources(this.cBImportSVGRepeat, "cBImportSVGRepeat");
-            this.cBImportSVGRepeat.Checked = global::GRBL_Plotter.Properties.Settings.Default.importRepeatEnable;
-            this.cBImportSVGRepeat.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importRepeatEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGRepeat.Name = "cBImportSVGRepeat";
-            this.toolTip1.SetToolTip(this.cBImportSVGRepeat, resources.GetString("cBImportSVGRepeat.ToolTip"));
-            this.cBImportSVGRepeat.UseVisualStyleBackColor = true;
-            this.cBImportSVGRepeat.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
-            // 
-            // cBImportSVGComments
-            // 
-            resources.ApplyResources(this.cBImportSVGComments, "cBImportSVGComments");
-            this.cBImportSVGComments.Checked = global::GRBL_Plotter.Properties.Settings.Default.importSVGAddComments;
-            this.cBImportSVGComments.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importSVGAddComments", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGComments.Name = "cBImportSVGComments";
-            this.toolTip1.SetToolTip(this.cBImportSVGComments, resources.GetString("cBImportSVGComments.ToolTip"));
-            this.cBImportSVGComments.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            resources.ApplyResources(this.checkBox4, "checkBox4");
-            this.checkBox4.Checked = global::GRBL_Plotter.Properties.Settings.Default.importCodeFold;
-            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importCodeFold", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox4.Name = "checkBox4";
-            this.toolTip1.SetToolTip(this.checkBox4, resources.GetString("checkBox4.ToolTip"));
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGPauseE
-            // 
-            resources.ApplyResources(this.cBImportSVGPauseE, "cBImportSVGPauseE");
-            this.cBImportSVGPauseE.Checked = global::GRBL_Plotter.Properties.Settings.Default.importPauseElement;
-            this.cBImportSVGPauseE.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importPauseElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGPauseE.Name = "cBImportSVGPauseE";
-            this.cBImportSVGPauseE.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGPauseP
-            // 
-            resources.ApplyResources(this.cBImportSVGPauseP, "cBImportSVGPauseP");
-            this.cBImportSVGPauseP.Checked = global::GRBL_Plotter.Properties.Settings.Default.importPausePenDown;
-            this.cBImportSVGPauseP.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importPausePenDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGPauseP.Name = "cBImportSVGPauseP";
-            this.cBImportSVGPauseP.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGraphicSortDistanceRotatePath
-            // 
-            resources.ApplyResources(this.cBImportGraphicSortDistanceRotatePath, "cBImportGraphicSortDistanceRotatePath");
-            this.cBImportGraphicSortDistanceRotatePath.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicSortDistanceAllowRotate;
-            this.cBImportGraphicSortDistanceRotatePath.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportGraphicSortDistanceRotatePath.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicSortDistanceAllowRotate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicSortDistanceRotatePath.Name = "cBImportGraphicSortDistanceRotatePath";
-            this.cBImportGraphicSortDistanceRotatePath.UseVisualStyleBackColor = true;
-            // 
-            // nUDImportGCSegment
-            // 
-            this.nUDImportGCSegment.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSegment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCSegment.DecimalPlaces = 2;
-            this.nUDImportGCSegment.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCSegment, "nUDImportGCSegment");
-            this.nUDImportGCSegment.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDImportGCSegment.Name = "nUDImportGCSegment";
-            this.toolTip1.SetToolTip(this.nUDImportGCSegment, resources.GetString("nUDImportGCSegment.ToolTip"));
-            this.nUDImportGCSegment.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSegment;
-            // 
-            // numericUpDown13
-            // 
-            this.numericUpDown13.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importAssumeAsEqualDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown13.DecimalPlaces = 6;
-            resources.ApplyResources(this.numericUpDown13, "numericUpDown13");
-            this.numericUpDown13.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown13.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            393216});
-            this.numericUpDown13.Name = "numericUpDown13";
-            this.numericUpDown13.Value = global::GRBL_Plotter.Properties.Settings.Default.importAssumeAsEqualDistance;
-            // 
-            // nUDImportReduce
-            // 
-            this.nUDImportReduce.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importRemoveShortMovesLimit", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportReduce.DecimalPlaces = 2;
-            this.nUDImportReduce.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportReduce, "nUDImportReduce");
-            this.nUDImportReduce.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDImportReduce.Name = "nUDImportReduce";
-            this.toolTip1.SetToolTip(this.nUDImportReduce, resources.GetString("nUDImportReduce.ToolTip"));
-            this.nUDImportReduce.Value = global::GRBL_Plotter.Properties.Settings.Default.importRemoveShortMovesLimit;
-            // 
-            // nUDImportSVGSegemnts
-            // 
-            this.nUDImportSVGSegemnts.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importBezierLineSegmentsCnt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDImportSVGSegemnts, "nUDImportSVGSegemnts");
-            this.nUDImportSVGSegemnts.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.nUDImportSVGSegemnts.Minimum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.nUDImportSVGSegemnts.Name = "nUDImportSVGSegemnts";
-            this.toolTip1.SetToolTip(this.nUDImportSVGSegemnts, resources.GetString("nUDImportSVGSegemnts.ToolTip"));
-            this.nUDImportSVGSegemnts.Value = global::GRBL_Plotter.Properties.Settings.Default.importBezierLineSegmentsCnt;
-            // 
-            // cBImportGCNoArcs
-            // 
-            resources.ApplyResources(this.cBImportGCNoArcs, "cBImportGCNoArcs");
-            this.cBImportGCNoArcs.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCNoArcs;
-            this.cBImportGCNoArcs.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCNoArcs", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCNoArcs.Name = "cBImportGCNoArcs";
-            this.toolTip1.SetToolTip(this.cBImportGCNoArcs, resources.GetString("cBImportGCNoArcs.ToolTip"));
-            this.cBImportGCNoArcs.UseVisualStyleBackColor = true;
-            this.cBImportGCNoArcs.CheckedChanged += new System.EventHandler(this.cBImportGCNoArcs_CheckedChanged);
-            // 
-            // cBImportGraphicOffsetOrigin
-            // 
-            resources.ApplyResources(this.cBImportGraphicOffsetOrigin, "cBImportGraphicOffsetOrigin");
-            this.cBImportGraphicOffsetOrigin.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicOffsetOrigin;
-            this.cBImportGraphicOffsetOrigin.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportGraphicOffsetOrigin.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicOffsetOrigin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicOffsetOrigin.Name = "cBImportGraphicOffsetOrigin";
-            this.toolTip1.SetToolTip(this.cBImportGraphicOffsetOrigin, resources.GetString("cBImportGraphicOffsetOrigin.ToolTip"));
-            this.cBImportGraphicOffsetOrigin.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGraphicSortDistance
-            // 
-            resources.ApplyResources(this.cBImportGraphicSortDistance, "cBImportGraphicSortDistance");
-            this.cBImportGraphicSortDistance.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicSortDistance;
-            this.cBImportGraphicSortDistance.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportGraphicSortDistance.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicSortDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicSortDistance.Name = "cBImportGraphicSortDistance";
-            this.toolTip1.SetToolTip(this.cBImportGraphicSortDistance, resources.GetString("cBImportGraphicSortDistance.ToolTip"));
-            this.cBImportGraphicSortDistance.UseVisualStyleBackColor = true;
-            // 
-            // cBImportUnitGCode
-            // 
-            this.cBImportUnitGCode.Checked = global::GRBL_Plotter.Properties.Settings.Default.importUnitGCode;
-            this.cBImportUnitGCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importUnitGCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.cBImportUnitGCode, "cBImportUnitGCode");
-            this.cBImportUnitGCode.Name = "cBImportUnitGCode";
-            this.toolTip1.SetToolTip(this.cBImportUnitGCode, resources.GetString("cBImportUnitGCode.ToolTip"));
-            this.cBImportUnitGCode.UseVisualStyleBackColor = true;
-            // 
-            // rBImportUnitmm
-            // 
-            resources.ApplyResources(this.rBImportUnitmm, "rBImportUnitmm");
-            this.rBImportUnitmm.Checked = global::GRBL_Plotter.Properties.Settings.Default.importUnitmm;
-            this.rBImportUnitmm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importUnitmm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rBImportUnitmm.Name = "rBImportUnitmm";
-            this.rBImportUnitmm.TabStop = true;
-            this.toolTip1.SetToolTip(this.rBImportUnitmm, resources.GetString("rBImportUnitmm.ToolTip"));
-            this.rBImportUnitmm.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGReduce
-            // 
-            resources.ApplyResources(this.cBImportSVGReduce, "cBImportSVGReduce");
-            this.cBImportSVGReduce.Checked = global::GRBL_Plotter.Properties.Settings.Default.importRemoveShortMovesEnable;
-            this.cBImportSVGReduce.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportSVGReduce.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importRemoveShortMovesEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGReduce.Name = "cBImportSVGReduce";
-            this.toolTip1.SetToolTip(this.cBImportSVGReduce, resources.GetString("cBImportSVGReduce.ToolTip"));
-            this.cBImportSVGReduce.UseVisualStyleBackColor = true;
-            // 
-            // nUDPathOverlapValue
-            // 
-            this.nUDPathOverlapValue.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicExtendPathValue", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDPathOverlapValue.DecimalPlaces = 2;
-            this.nUDPathOverlapValue.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDPathOverlapValue, "nUDPathOverlapValue");
-            this.nUDPathOverlapValue.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDPathOverlapValue.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nUDPathOverlapValue.Name = "nUDPathOverlapValue";
-            this.nUDPathOverlapValue.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicExtendPathValue;
-            // 
-            // cBPathOverlapEnable
-            // 
-            resources.ApplyResources(this.cBPathOverlapEnable, "cBPathOverlapEnable");
-            this.cBPathOverlapEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicExtendPathEnable;
-            this.cBPathOverlapEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicExtendPathEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBPathOverlapEnable.Name = "cBPathOverlapEnable";
-            this.toolTip1.SetToolTip(this.cBPathOverlapEnable, resources.GetString("cBPathOverlapEnable.ToolTip"));
-            this.cBPathOverlapEnable.UseVisualStyleBackColor = true;
-            this.cBPathOverlapEnable.CheckStateChanged += new System.EventHandler(this.cBPathOverlapEnable_CheckStateChanged);
-            // 
-            // nUDHatchFillInset
-            // 
-            this.nUDHatchFillInset.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillInset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDHatchFillInset.DecimalPlaces = 1;
-            resources.ApplyResources(this.nUDHatchFillInset, "nUDHatchFillInset");
-            this.nUDHatchFillInset.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDHatchFillInset.Name = "nUDHatchFillInset";
-            this.nUDHatchFillInset.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillInset;
-            // 
-            // nUDHatchFillAngle2
-            // 
-            this.nUDHatchFillAngle2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillAngle2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDHatchFillAngle2.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDHatchFillAngle2, "nUDHatchFillAngle2");
-            this.nUDHatchFillAngle2.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.nUDHatchFillAngle2.Name = "nUDHatchFillAngle2";
-            this.nUDHatchFillAngle2.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillAngle2;
-            // 
-            // nUDHatchFillAngle
-            // 
-            this.nUDHatchFillAngle.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDHatchFillAngle.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDHatchFillAngle, "nUDHatchFillAngle");
-            this.nUDHatchFillAngle.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.nUDHatchFillAngle.Name = "nUDHatchFillAngle";
-            this.nUDHatchFillAngle.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillAngle;
-            // 
-            // nUDHatchFillDist
-            // 
-            this.nUDHatchFillDist.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDHatchFillDist.DecimalPlaces = 1;
-            resources.ApplyResources(this.nUDHatchFillDist, "nUDHatchFillDist");
-            this.nUDHatchFillDist.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDHatchFillDist.Name = "nUDHatchFillDist";
-            this.nUDHatchFillDist.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillDistance;
-            // 
-            // cBImportGraphicHatchFillInset
-            // 
-            resources.ApplyResources(this.cBImportGraphicHatchFillInset, "cBImportGraphicHatchFillInset");
-            this.cBImportGraphicHatchFillInset.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillInsetEnable;
-            this.cBImportGraphicHatchFillInset.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportGraphicHatchFillInset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillInsetEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicHatchFillInset.Name = "cBImportGraphicHatchFillInset";
-            this.cBImportGraphicHatchFillInset.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGraphicHatchFillChangeAngle
-            // 
-            resources.ApplyResources(this.cBImportGraphicHatchFillChangeAngle, "cBImportGraphicHatchFillChangeAngle");
-            this.cBImportGraphicHatchFillChangeAngle.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillAngleInc;
-            this.cBImportGraphicHatchFillChangeAngle.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillAngleInc", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicHatchFillChangeAngle.Name = "cBImportGraphicHatchFillChangeAngle";
-            this.cBImportGraphicHatchFillChangeAngle.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGraphicHatchFillCross
-            // 
-            resources.ApplyResources(this.cBImportGraphicHatchFillCross, "cBImportGraphicHatchFillCross");
-            this.cBImportGraphicHatchFillCross.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillCross;
-            this.cBImportGraphicHatchFillCross.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillCross", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicHatchFillCross.Name = "cBImportGraphicHatchFillCross";
-            this.cBImportGraphicHatchFillCross.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGraphicHatchFill
-            // 
-            resources.ApplyResources(this.cBImportGraphicHatchFill, "cBImportGraphicHatchFill");
-            this.cBImportGraphicHatchFill.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicHatchFillEnable;
-            this.cBImportGraphicHatchFill.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicHatchFillEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicHatchFill.Name = "cBImportGraphicHatchFill";
-            this.cBImportGraphicHatchFill.UseVisualStyleBackColor = true;
-            this.cBImportGraphicHatchFill.CheckStateChanged += new System.EventHandler(this.cBImportGraphicHatchFill_CheckStateChanged);
-            // 
-            // nUDImportGCTangentialUnits
-            // 
-            this.nUDImportGCTangentialUnits.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialTurn", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCTangentialUnits.DecimalPlaces = 1;
-            resources.ApplyResources(this.nUDImportGCTangentialUnits, "nUDImportGCTangentialUnits");
-            this.nUDImportGCTangentialUnits.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.nUDImportGCTangentialUnits.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDImportGCTangentialUnits.Name = "nUDImportGCTangentialUnits";
-            this.nUDImportGCTangentialUnits.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialTurn;
-            // 
-            // nUDImportGCTangentialSwivel2
-            // 
-            this.nUDImportGCTangentialSwivel2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialAngleDevi", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCTangentialSwivel2.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCTangentialSwivel2, "nUDImportGCTangentialSwivel2");
-            this.nUDImportGCTangentialSwivel2.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.nUDImportGCTangentialSwivel2.Name = "nUDImportGCTangentialSwivel2";
-            this.toolTip1.SetToolTip(this.nUDImportGCTangentialSwivel2, resources.GetString("nUDImportGCTangentialSwivel2.ToolTip"));
-            this.nUDImportGCTangentialSwivel2.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAngleDevi;
-            // 
-            // nUDImportGCTangentialSwivel
-            // 
-            this.nUDImportGCTangentialSwivel.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCTangentialSwivel.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCTangentialSwivel, "nUDImportGCTangentialSwivel");
-            this.nUDImportGCTangentialSwivel.Maximum = new decimal(new int[] {
-            90,
-            0,
-            0,
-            0});
-            this.nUDImportGCTangentialSwivel.Name = "nUDImportGCTangentialSwivel";
-            this.toolTip1.SetToolTip(this.nUDImportGCTangentialSwivel, resources.GetString("nUDImportGCTangentialSwivel.ToolTip"));
-            this.nUDImportGCTangentialSwivel.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAngle;
-            // 
-            // cBoxImportGCTangentialName
-            // 
-            this.cBoxImportGCTangentialName.AllowDrop = true;
-            this.cBoxImportGCTangentialName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBoxImportGCTangentialName.FormattingEnabled = true;
-            this.cBoxImportGCTangentialName.Items.AddRange(new object[] {
-            resources.GetString("cBoxImportGCTangentialName.Items"),
-            resources.GetString("cBoxImportGCTangentialName.Items1"),
-            resources.GetString("cBoxImportGCTangentialName.Items2"),
-            resources.GetString("cBoxImportGCTangentialName.Items3")});
-            resources.ApplyResources(this.cBoxImportGCTangentialName, "cBoxImportGCTangentialName");
-            this.cBoxImportGCTangentialName.Name = "cBoxImportGCTangentialName";
-            this.cBoxImportGCTangentialName.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAxis;
-            // 
-            // tbNotifierPBToken
-            // 
-            this.tbNotifierPBToken.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierPushbulletToken", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifierPBToken, "tbNotifierPBToken");
-            this.tbNotifierPBToken.Name = "tbNotifierPBToken";
-            this.tbNotifierPBToken.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierPushbulletToken;
-            // 
-            // tbNotifierPBChannel
-            // 
-            this.tbNotifierPBChannel.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierPushbulletChannel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifierPBChannel, "tbNotifierPBChannel");
-            this.tbNotifierPBChannel.Name = "tbNotifierPBChannel";
-            this.tbNotifierPBChannel.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierPushbulletChannel;
-            // 
-            // cBImportGCTangentialRange
-            // 
-            resources.ApplyResources(this.cBImportGCTangentialRange, "cBImportGCTangentialRange");
-            this.cBImportGCTangentialRange.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialRange;
-            this.cBImportGCTangentialRange.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialRange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCTangentialRange.Name = "cBImportGCTangentialRange";
-            this.toolTip1.SetToolTip(this.cBImportGCTangentialRange, resources.GetString("cBImportGCTangentialRange.ToolTip"));
-            this.cBImportGCTangentialRange.UseVisualStyleBackColor = true;
-            this.cBImportGCTangentialRange.CheckStateChanged += new System.EventHandler(this.cBImportGCTangentialRange_CheckStateChanged);
-            // 
-            // cBImportGCTangential
-            // 
-            resources.ApplyResources(this.cBImportGCTangential, "cBImportGCTangential");
-            this.cBImportGCTangential.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialEnable;
-            this.cBImportGCTangential.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTangentialEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCTangential.Name = "cBImportGCTangential";
-            this.cBImportGCTangential.UseVisualStyleBackColor = true;
-            this.cBImportGCTangential.CheckStateChanged += new System.EventHandler(this.cBImportGCTangential_CheckStateChanged);
-            // 
-            // nUDImportGCDragKnifeAngle
-            // 
-            this.nUDImportGCDragKnifeAngle.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifeAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDImportGCDragKnifeAngle, "nUDImportGCDragKnifeAngle");
-            this.nUDImportGCDragKnifeAngle.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.nUDImportGCDragKnifeAngle.Name = "nUDImportGCDragKnifeAngle";
-            this.toolTip1.SetToolTip(this.nUDImportGCDragKnifeAngle, resources.GetString("nUDImportGCDragKnifeAngle.ToolTip"));
-            this.nUDImportGCDragKnifeAngle.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifeAngle;
-            // 
-            // nUDImportGCDragKnifePercent
-            // 
-            this.nUDImportGCDragKnifePercent.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifePercent", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDImportGCDragKnifePercent, "nUDImportGCDragKnifePercent");
-            this.nUDImportGCDragKnifePercent.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nUDImportGCDragKnifePercent.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDImportGCDragKnifePercent.Name = "nUDImportGCDragKnifePercent";
-            this.toolTip1.SetToolTip(this.nUDImportGCDragKnifePercent, resources.GetString("nUDImportGCDragKnifePercent.ToolTip"));
-            this.nUDImportGCDragKnifePercent.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifePercent;
-            // 
-            // nUDImportGCDragKnifeLength
-            // 
-            this.nUDImportGCDragKnifeLength.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifeLength", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCDragKnifeLength.DecimalPlaces = 2;
-            resources.ApplyResources(this.nUDImportGCDragKnifeLength, "nUDImportGCDragKnifeLength");
-            this.nUDImportGCDragKnifeLength.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nUDImportGCDragKnifeLength.Name = "nUDImportGCDragKnifeLength";
-            this.toolTip1.SetToolTip(this.nUDImportGCDragKnifeLength, resources.GetString("nUDImportGCDragKnifeLength.ToolTip"));
-            this.nUDImportGCDragKnifeLength.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifeLength;
-            // 
-            // cBImportGCDragKnifePercent
-            // 
-            resources.ApplyResources(this.cBImportGCDragKnifePercent, "cBImportGCDragKnifePercent");
-            this.cBImportGCDragKnifePercent.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifePercentEnable;
-            this.cBImportGCDragKnifePercent.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifePercentEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCDragKnifePercent.Name = "cBImportGCDragKnifePercent";
-            this.toolTip1.SetToolTip(this.cBImportGCDragKnifePercent, resources.GetString("cBImportGCDragKnifePercent.ToolTip"));
-            this.cBImportGCDragKnifePercent.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGCDragKnife
-            // 
-            resources.ApplyResources(this.cBImportGCDragKnife, "cBImportGCDragKnife");
-            this.cBImportGCDragKnife.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCDragKnifeEnable;
-            this.cBImportGCDragKnife.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCDragKnifeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCDragKnife.Name = "cBImportGCDragKnife";
-            this.toolTip1.SetToolTip(this.cBImportGCDragKnife, resources.GetString("cBImportGCDragKnife.ToolTip"));
-            this.cBImportGCDragKnife.UseVisualStyleBackColor = true;
-            this.cBImportGCDragKnife.CheckedChanged += new System.EventHandler(this.cBImportGCDragKnife_CheckedChanged);
-            // 
-            // nUDImportGraphicClipOffsetY
-            // 
-            this.nUDImportGraphicClipOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicClipOffsetY.DecimalPlaces = 1;
-            this.nUDImportGraphicClipOffsetY.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGraphicClipOffsetY, "nUDImportGraphicClipOffsetY");
-            this.nUDImportGraphicClipOffsetY.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.nUDImportGraphicClipOffsetY.Minimum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            -2147483648});
-            this.nUDImportGraphicClipOffsetY.Name = "nUDImportGraphicClipOffsetY";
-            this.toolTip1.SetToolTip(this.nUDImportGraphicClipOffsetY, resources.GetString("nUDImportGraphicClipOffsetY.ToolTip"));
-            this.nUDImportGraphicClipOffsetY.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipOffsetY;
-            // 
-            // nUDImportGraphicClipHeight
-            // 
-            this.nUDImportGraphicClipHeight.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicTileY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicClipHeight.DecimalPlaces = 1;
-            this.nUDImportGraphicClipHeight.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGraphicClipHeight, "nUDImportGraphicClipHeight");
-            this.nUDImportGraphicClipHeight.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.nUDImportGraphicClipHeight.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDImportGraphicClipHeight.Name = "nUDImportGraphicClipHeight";
-            this.toolTip1.SetToolTip(this.nUDImportGraphicClipHeight, resources.GetString("nUDImportGraphicClipHeight.ToolTip"));
-            this.nUDImportGraphicClipHeight.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicTileY;
-            // 
-            // nUDImportGraphicClipOffsetX
-            // 
-            this.nUDImportGraphicClipOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicClipOffsetX.DecimalPlaces = 1;
-            this.nUDImportGraphicClipOffsetX.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGraphicClipOffsetX, "nUDImportGraphicClipOffsetX");
-            this.nUDImportGraphicClipOffsetX.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.nUDImportGraphicClipOffsetX.Minimum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            -2147483648});
-            this.nUDImportGraphicClipOffsetX.Name = "nUDImportGraphicClipOffsetX";
-            this.toolTip1.SetToolTip(this.nUDImportGraphicClipOffsetX, resources.GetString("nUDImportGraphicClipOffsetX.ToolTip"));
-            this.nUDImportGraphicClipOffsetX.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipOffsetX;
-            // 
-            // nUDImportGraphicTileClipWidth
-            // 
-            this.nUDImportGraphicTileClipWidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicTileX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicTileClipWidth.DecimalPlaces = 1;
-            this.nUDImportGraphicTileClipWidth.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGraphicTileClipWidth, "nUDImportGraphicTileClipWidth");
-            this.nUDImportGraphicTileClipWidth.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.nUDImportGraphicTileClipWidth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDImportGraphicTileClipWidth.Name = "nUDImportGraphicTileClipWidth";
-            this.toolTip1.SetToolTip(this.nUDImportGraphicTileClipWidth, resources.GetString("nUDImportGraphicTileClipWidth.ToolTip"));
-            this.nUDImportGraphicTileClipWidth.Value = global::GRBL_Plotter.Properties.Settings.Default.importGraphicTileX;
-            // 
-            // rBImportGraphicClip0
-            // 
-            resources.ApplyResources(this.rBImportGraphicClip0, "rBImportGraphicClip0");
-            this.rBImportGraphicClip0.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClip;
-            this.rBImportGraphicClip0.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClip", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rBImportGraphicClip0.Name = "rBImportGraphicClip0";
-            this.rBImportGraphicClip0.TabStop = true;
-            this.toolTip1.SetToolTip(this.rBImportGraphicClip0, resources.GetString("rBImportGraphicClip0.ToolTip"));
-            this.rBImportGraphicClip0.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGraphicTile
-            // 
-            resources.ApplyResources(this.cBImportGraphicTile, "cBImportGraphicTile");
-            this.cBImportGraphicTile.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipEnable;
-            this.cBImportGraphicTile.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicTile.Name = "cBImportGraphicTile";
-            this.toolTip1.SetToolTip(this.cBImportGraphicTile, resources.GetString("cBImportGraphicTile.ToolTip"));
-            this.cBImportGraphicTile.UseVisualStyleBackColor = true;
-            this.cBImportGraphicTile.CheckedChanged += new System.EventHandler(this.cBImportGraphicTile_CheckedChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipGCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.textBox2, "textBox2");
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Text = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipGCode;
-            // 
-            // cBImportGraphicClipOffsetApply
-            // 
-            resources.ApplyResources(this.cBImportGraphicClipOffsetApply, "cBImportGraphicClipOffsetApply");
-            this.cBImportGraphicClipOffsetApply.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipOffsetApply;
-            this.cBImportGraphicClipOffsetApply.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportGraphicClipOffsetApply.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipOffsetApply", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicClipOffsetApply.Name = "cBImportGraphicClipOffsetApply";
-            this.cBImportGraphicClipOffsetApply.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolDefNr", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.numericUpDown2, "numericUpDown2");
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCToolDefNr;
-            // 
-            // cBToolTableDefault
-            // 
-            resources.ApplyResources(this.cBToolTableDefault, "cBToolTableDefault");
-            this.cBToolTableDefault.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolDefNrUse;
-            this.cBToolTableDefault.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolDefNrUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBToolTableDefault.Name = "cBToolTableDefault";
-            this.cBToolTableDefault.UseVisualStyleBackColor = true;
-            this.cBToolTableDefault.CheckedChanged += new System.EventHandler(this.cBToolTableUse_CheckedChanged);
-            // 
-            // cBToolTableUse
-            // 
-            resources.ApplyResources(this.cBToolTableUse, "cBToolTableUse");
-            this.cBToolTableUse.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolTableUse;
-            this.cBToolTableUse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBToolTableUse.Name = "cBToolTableUse";
-            this.cBToolTableUse.UseVisualStyleBackColor = true;
-            this.cBToolTableUse.CheckedChanged += new System.EventHandler(this.cBToolTableUse_CheckedChanged);
-            // 
-            // cBImportSVGSortInvert
-            // 
-            resources.ApplyResources(this.cBImportSVGSortInvert, "cBImportSVGSortInvert");
-            this.cBImportSVGSortInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGroupSortInvert;
-            this.cBImportSVGSortInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGroupSortInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGSortInvert.Name = "cBImportSVGSortInvert";
-            this.cBImportSVGSortInvert.UseVisualStyleBackColor = true;
-            // 
-            // cBImportSVGGroup
-            // 
-            resources.ApplyResources(this.cBImportSVGGroup, "cBImportSVGGroup");
-            this.cBImportSVGGroup.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGroupObjects;
-            this.cBImportSVGGroup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGroupObjects", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportSVGGroup.Name = "cBImportSVGGroup";
-            this.toolTip1.SetToolTip(this.cBImportSVGGroup, resources.GetString("cBImportSVGGroup.ToolTip"));
-            this.cBImportSVGGroup.UseVisualStyleBackColor = true;
-            this.cBImportSVGGroup.CheckedChanged += new System.EventHandler(this.cBImportSVGGroup_CheckedChanged);
-            // 
-            // tBImportGCToolChange
-            // 
-            this.tBImportGCToolChange.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolChangeCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBImportGCToolChange, "tBImportGCToolChange");
-            this.tBImportGCToolChange.Name = "tBImportGCToolChange";
-            this.tBImportGCToolChange.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCToolChangeCode;
-            // 
-            // nUDImportGCFeedXY
-            // 
-            this.nUDImportGCFeedXY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCXYFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCFeedXY.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCFeedXY, "nUDImportGCFeedXY");
-            this.nUDImportGCFeedXY.Maximum = new decimal(new int[] {
-            20000,
-            0,
-            0,
-            0});
-            this.nUDImportGCFeedXY.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDImportGCFeedXY.Name = "nUDImportGCFeedXY";
-            this.toolTip1.SetToolTip(this.nUDImportGCFeedXY, resources.GetString("nUDImportGCFeedXY.ToolTip"));
-            this.nUDImportGCFeedXY.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCXYFeed;
-            // 
-            // nUDImportGCSSpeed
-            // 
-            this.nUDImportGCSSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCSSpeed.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCSSpeed, "nUDImportGCSSpeed");
-            this.nUDImportGCSSpeed.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.nUDImportGCSSpeed.Name = "nUDImportGCSSpeed";
-            this.toolTip1.SetToolTip(this.nUDImportGCSSpeed, resources.GetString("nUDImportGCSSpeed.ToolTip"));
-            this.nUDImportGCSSpeed.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSSpeed;
-            // 
-            // nUDImportGCSpindleDelay
-            // 
-            this.nUDImportGCSpindleDelay.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleDelay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCSpindleDelay.DecimalPlaces = 2;
-            this.nUDImportGCSpindleDelay.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCSpindleDelay, "nUDImportGCSpindleDelay");
-            this.nUDImportGCSpindleDelay.Name = "nUDImportGCSpindleDelay";
-            this.toolTip1.SetToolTip(this.nUDImportGCSpindleDelay, resources.GetString("nUDImportGCSpindleDelay.ToolTip"));
-            this.nUDImportGCSpindleDelay.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleDelay;
-            // 
-            // cBImportLasermode
-            // 
-            resources.ApplyResources(this.cBImportLasermode, "cBImportLasermode");
-            this.cBImportLasermode.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleToggleLaser;
-            this.cBImportLasermode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleToggleLaser", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportLasermode.Name = "cBImportLasermode";
-            this.cBImportLasermode.UseVisualStyleBackColor = true;
-            this.cBImportLasermode.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
-            // 
-            // rBImportGCSpindleCmd1
-            // 
-            resources.ApplyResources(this.rBImportGCSpindleCmd1, "rBImportGCSpindleCmd1");
-            this.rBImportGCSpindleCmd1.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSDirM3;
-            this.rBImportGCSpindleCmd1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSDirM3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rBImportGCSpindleCmd1.Name = "rBImportGCSpindleCmd1";
-            this.rBImportGCSpindleCmd1.TabStop = true;
-            this.toolTip1.SetToolTip(this.rBImportGCSpindleCmd1, resources.GetString("rBImportGCSpindleCmd1.ToolTip"));
-            this.rBImportGCSpindleCmd1.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGCTTSSpeed
-            // 
-            resources.ApplyResources(this.cBImportGCTTSSpeed, "cBImportGCTTSSpeed");
-            this.cBImportGCTTSSpeed.BackColor = System.Drawing.Color.Transparent;
-            this.cBImportGCTTSSpeed.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTTSSpeed;
-            this.cBImportGCTTSSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTTSSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCTTSSpeed.Name = "cBImportGCTTSSpeed";
-            this.toolTip1.SetToolTip(this.cBImportGCTTSSpeed, resources.GetString("cBImportGCTTSSpeed.ToolTip"));
-            this.cBImportGCTTSSpeed.UseVisualStyleBackColor = false;
-            this.cBImportGCTTSSpeed.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            this.cBImportGCTTSSpeed.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            // 
-            // cBImportGCToolM0
-            // 
-            resources.ApplyResources(this.cBImportGCToolM0, "cBImportGCToolM0");
-            this.cBImportGCToolM0.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolM0;
-            this.cBImportGCToolM0.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolM0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCToolM0.Name = "cBImportGCToolM0";
-            this.toolTip1.SetToolTip(this.cBImportGCToolM0, resources.GetString("cBImportGCToolM0.ToolTip"));
-            this.cBImportGCToolM0.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGCTool
-            // 
-            resources.ApplyResources(this.cBImportGCTool, "cBImportGCTool");
-            this.cBImportGCTool.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTool;
-            this.cBImportGCTool.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTool", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCTool.Name = "cBImportGCTool";
-            this.toolTip1.SetToolTip(this.cBImportGCTool, resources.GetString("cBImportGCTool.ToolTip"));
-            this.cBImportGCTool.UseVisualStyleBackColor = true;
-            this.cBImportGCTool.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            // 
-            // cBImportGCComments
-            // 
-            resources.ApplyResources(this.cBImportGCComments, "cBImportGCComments");
-            this.cBImportGCComments.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCAddComments;
-            this.cBImportGCComments.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCAddComments", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCComments.Name = "cBImportGCComments";
-            this.toolTip1.SetToolTip(this.cBImportGCComments, resources.GetString("cBImportGCComments.ToolTip"));
-            this.cBImportGCComments.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGCTTXYFeed
-            // 
-            resources.ApplyResources(this.cBImportGCTTXYFeed, "cBImportGCTTXYFeed");
-            this.cBImportGCTTXYFeed.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTTXYFeed;
-            this.cBImportGCTTXYFeed.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTTXYFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCTTXYFeed.Name = "cBImportGCTTXYFeed";
-            this.toolTip1.SetToolTip(this.cBImportGCTTXYFeed, resources.GetString("cBImportGCTTXYFeed.ToolTip"));
-            this.cBImportGCTTXYFeed.UseVisualStyleBackColor = true;
-            this.cBImportGCTTXYFeed.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            this.cBImportGCTTXYFeed.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            // 
-            // tBImportGCHeader
-            // 
-            this.tBImportGCHeader.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCHeader", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBImportGCHeader, "tBImportGCHeader");
-            this.tBImportGCHeader.Name = "tBImportGCHeader";
-            this.tBImportGCHeader.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCHeader;
-            this.toolTip1.SetToolTip(this.tBImportGCHeader, resources.GetString("tBImportGCHeader.ToolTip"));
-            // 
-            // tBImportGCFooter
-            // 
-            this.tBImportGCFooter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCFooter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBImportGCFooter, "tBImportGCFooter");
-            this.tBImportGCFooter.Name = "tBImportGCFooter";
-            this.tBImportGCFooter.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCFooter;
-            // 
-            // cBImportGCTTZAxis
-            // 
-            resources.ApplyResources(this.cBImportGCTTZAxis, "cBImportGCTTZAxis");
-            this.cBImportGCTTZAxis.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCTTZAxis;
-            this.cBImportGCTTZAxis.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCTTZAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCTTZAxis.Name = "cBImportGCTTZAxis";
-            this.toolTip1.SetToolTip(this.cBImportGCTTZAxis, resources.GetString("cBImportGCTTZAxis.ToolTip"));
-            this.cBImportGCTTZAxis.UseVisualStyleBackColor = true;
-            this.cBImportGCTTZAxis.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            this.cBImportGCTTZAxis.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            // 
-            // nUDImportGCFeedZ
-            // 
-            this.nUDImportGCFeedZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCZFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCFeedZ.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCFeedZ, "nUDImportGCFeedZ");
-            this.nUDImportGCFeedZ.Maximum = new decimal(new int[] {
-            20000,
-            0,
-            0,
-            0});
-            this.nUDImportGCFeedZ.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDImportGCFeedZ.Name = "nUDImportGCFeedZ";
-            this.toolTip1.SetToolTip(this.nUDImportGCFeedZ, resources.GetString("nUDImportGCFeedZ.ToolTip"));
-            this.nUDImportGCFeedZ.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCZFeed;
-            // 
-            // nUDImportGCZUp
-            // 
-            this.nUDImportGCZUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCZUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCZUp.DecimalPlaces = 2;
-            this.nUDImportGCZUp.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCZUp, "nUDImportGCZUp");
-            this.nUDImportGCZUp.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDImportGCZUp.Name = "nUDImportGCZUp";
-            this.toolTip1.SetToolTip(this.nUDImportGCZUp, resources.GetString("nUDImportGCZUp.ToolTip"));
-            this.nUDImportGCZUp.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCZUp;
-            // 
-            // nUDImportGCZDown
-            // 
-            this.nUDImportGCZDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCZDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCZDown.DecimalPlaces = 2;
-            this.nUDImportGCZDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
-            this.nUDImportGCZDown.Maximum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.nUDImportGCZDown.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-            this.nUDImportGCZDown.Name = "nUDImportGCZDown";
-            this.toolTip1.SetToolTip(this.nUDImportGCZDown, resources.GetString("nUDImportGCZDown.ToolTip"));
-            this.nUDImportGCZDown.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCZDown;
-            this.nUDImportGCZDown.ValueChanged += new System.EventHandler(this.nUDImportPenWidthToZMin_ValueChanged);
-            // 
-            // cBImportGCZIncStartZero
-            // 
-            resources.ApplyResources(this.cBImportGCZIncStartZero, "cBImportGCZIncStartZero");
-            this.cBImportGCZIncStartZero.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCZIncStartZero;
-            this.cBImportGCZIncStartZero.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCZIncStartZero", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCZIncStartZero.Name = "cBImportGCZIncStartZero";
-            this.toolTip1.SetToolTip(this.cBImportGCZIncStartZero, resources.GetString("cBImportGCZIncStartZero.ToolTip"));
-            this.cBImportGCZIncStartZero.UseVisualStyleBackColor = true;
-            // 
-            // nUDImportGCZIncrement
-            // 
-            this.nUDImportGCZIncrement.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCZIncrement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCZIncrement.DecimalPlaces = 2;
-            this.nUDImportGCZIncrement.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCZIncrement, "nUDImportGCZIncrement");
-            this.nUDImportGCZIncrement.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nUDImportGCZIncrement.Name = "nUDImportGCZIncrement";
-            this.nUDImportGCZIncrement.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCZIncrement;
-            // 
-            // cBImportGCZIncEnable
-            // 
-            resources.ApplyResources(this.cBImportGCZIncEnable, "cBImportGCZIncEnable");
-            this.cBImportGCZIncEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCZIncEnable;
-            this.cBImportGCZIncEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCZIncEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCZIncEnable.Name = "cBImportGCZIncEnable";
-            this.toolTip1.SetToolTip(this.cBImportGCZIncEnable, resources.GetString("cBImportGCZIncEnable.ToolTip"));
-            this.cBImportGCZIncEnable.UseVisualStyleBackColor = true;
-            this.cBImportGCZIncEnable.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            // 
-            // cBImportGCUseZ
-            // 
-            resources.ApplyResources(this.cBImportGCUseZ, "cBImportGCUseZ");
-            this.cBImportGCUseZ.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCZEnable;
-            this.cBImportGCUseZ.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBImportGCUseZ.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCZEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCUseZ.Name = "cBImportGCUseZ";
-            this.toolTip1.SetToolTip(this.cBImportGCUseZ, resources.GetString("cBImportGCUseZ.ToolTip"));
-            this.cBImportGCUseZ.UseVisualStyleBackColor = true;
-            this.cBImportGCUseZ.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            // 
-            // cBImportGCUseSpindle
-            // 
-            resources.ApplyResources(this.cBImportGCUseSpindle, "cBImportGCUseSpindle");
-            this.cBImportGCUseSpindle.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSpindleToggle;
-            this.cBImportGCUseSpindle.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSpindleToggle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCUseSpindle.Name = "cBImportGCUseSpindle";
-            this.toolTip1.SetToolTip(this.cBImportGCUseSpindle, resources.GetString("cBImportGCUseSpindle.ToolTip"));
-            this.cBImportGCUseSpindle.UseVisualStyleBackColor = true;
-            this.cBImportGCUseSpindle.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
-            // 
-            // tBImportGCIPD
-            // 
-            this.tBImportGCIPD.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCIndPenDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBImportGCIPD, "tBImportGCIPD");
-            this.tBImportGCIPD.Name = "tBImportGCIPD";
-            this.tBImportGCIPD.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCIndPenDown;
-            // 
-            // tBImportGCIPU
-            // 
-            this.tBImportGCIPU.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCIndPenUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBImportGCIPU, "tBImportGCIPU");
-            this.tBImportGCIPU.Name = "tBImportGCIPU";
-            this.tBImportGCIPU.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCIndPenUp;
-            // 
-            // cBImportGCUseIndividual
-            // 
-            resources.ApplyResources(this.cBImportGCUseIndividual, "cBImportGCUseIndividual");
-            this.cBImportGCUseIndividual.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCIndEnable;
-            this.cBImportGCUseIndividual.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCIndEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCUseIndividual.Name = "cBImportGCUseIndividual";
-            this.cBImportGCUseIndividual.UseVisualStyleBackColor = true;
-            this.cBImportGCUseIndividual.CheckedChanged += new System.EventHandler(this.cBImportGCUseIndividual_CheckedChanged);
-            // 
-            // nUDImportGCPWMUp
-            // 
-            this.nUDImportGCPWMUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCPWMUp.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCPWMUp, "nUDImportGCPWMUp");
-            this.nUDImportGCPWMUp.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDImportGCPWMUp.Name = "nUDImportGCPWMUp";
-            this.toolTip1.SetToolTip(this.nUDImportGCPWMUp, resources.GetString("nUDImportGCPWMUp.ToolTip"));
-            this.nUDImportGCPWMUp.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMUp;
-            // 
-            // nUDImportGCDlyUp
-            // 
-            this.nUDImportGCDlyUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMDlyUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCDlyUp.DecimalPlaces = 2;
-            this.nUDImportGCDlyUp.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCDlyUp, "nUDImportGCDlyUp");
-            this.nUDImportGCDlyUp.Name = "nUDImportGCDlyUp";
-            this.toolTip1.SetToolTip(this.nUDImportGCDlyUp, resources.GetString("nUDImportGCDlyUp.ToolTip"));
-            this.nUDImportGCDlyUp.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMDlyUp;
-            // 
-            // nUDImportGCPWMDown
-            // 
-            this.nUDImportGCPWMDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCPWMDown.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCPWMDown, "nUDImportGCPWMDown");
-            this.nUDImportGCPWMDown.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDImportGCPWMDown.Name = "nUDImportGCPWMDown";
-            this.toolTip1.SetToolTip(this.nUDImportGCPWMDown, resources.GetString("nUDImportGCPWMDown.ToolTip"));
-            this.nUDImportGCPWMDown.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMDown;
-            // 
-            // nUDImportGCDlyDown
-            // 
-            this.nUDImportGCDlyDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMDlyDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCDlyDown.DecimalPlaces = 2;
-            this.nUDImportGCDlyDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCDlyDown, "nUDImportGCDlyDown");
-            this.nUDImportGCDlyDown.Name = "nUDImportGCDlyDown";
-            this.toolTip1.SetToolTip(this.nUDImportGCDlyDown, resources.GetString("nUDImportGCDlyDown.ToolTip"));
-            this.nUDImportGCDlyDown.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMDlyDown;
-            // 
-            // cBImportGCUsePWM
-            // 
-            resources.ApplyResources(this.cBImportGCUsePWM, "cBImportGCUsePWM");
-            this.cBImportGCUsePWM.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMEnable;
-            this.cBImportGCUsePWM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCUsePWM.Name = "cBImportGCUsePWM";
-            this.toolTip1.SetToolTip(this.cBImportGCUsePWM, resources.GetString("cBImportGCUsePWM.ToolTip"));
-            this.cBImportGCUsePWM.UseVisualStyleBackColor = true;
-            this.cBImportGCUsePWM.CheckedChanged += new System.EventHandler(this.cBImportGCUsePWM_CheckedChanged);
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "convertZtoSOff", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown5.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.numericUpDown5, "numericUpDown5");
-            this.numericUpDown5.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Value = global::GRBL_Plotter.Properties.Settings.Default.convertZtoSOff;
-            // 
-            // numericUpDown4
-            // 
-            this.numericUpDown4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "convertZtoSMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown4.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.numericUpDown4, "numericUpDown4");
-            this.numericUpDown4.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Value = global::GRBL_Plotter.Properties.Settings.Default.convertZtoSMin;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "convertZtoSMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown3.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.numericUpDown3, "numericUpDown3");
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Value = global::GRBL_Plotter.Properties.Settings.Default.convertZtoSMax;
-            // 
-            // cBImportGCRelative
-            // 
-            resources.ApplyResources(this.cBImportGCRelative, "cBImportGCRelative");
-            this.cBImportGCRelative.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCRelative;
-            this.cBImportGCRelative.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCRelative", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCRelative.Name = "cBImportGCRelative";
-            this.toolTip1.SetToolTip(this.cBImportGCRelative, resources.GetString("cBImportGCRelative.ToolTip"));
-            this.cBImportGCRelative.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGCCompress
-            // 
-            resources.ApplyResources(this.cBImportGCCompress, "cBImportGCCompress");
-            this.cBImportGCCompress.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCCompress;
-            this.cBImportGCCompress.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCCompress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCCompress.Name = "cBImportGCCompress";
-            this.toolTip1.SetToolTip(this.cBImportGCCompress, resources.GetString("cBImportGCCompress.ToolTip"));
-            this.cBImportGCCompress.UseVisualStyleBackColor = true;
-            // 
-            // nUDImportGCLineSegment
-            // 
-            this.nUDImportGCLineSegment.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCLineSegmentLength", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCLineSegment.DecimalPlaces = 1;
-            this.nUDImportGCLineSegment.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDImportGCLineSegment, "nUDImportGCLineSegment");
-            this.nUDImportGCLineSegment.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDImportGCLineSegment.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDImportGCLineSegment.Name = "nUDImportGCLineSegment";
-            this.nUDImportGCLineSegment.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCLineSegmentLength;
-            // 
-            // cBImportGCSubFirst
-            // 
-            resources.ApplyResources(this.cBImportGCSubFirst, "cBImportGCSubFirst");
-            this.cBImportGCSubFirst.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSubFirst;
-            this.cBImportGCSubFirst.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSubFirst", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCSubFirst.Name = "cBImportGCSubFirst";
-            this.cBImportGCSubFirst.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGCLineSegmentsEquidistant
-            // 
-            resources.ApplyResources(this.cBImportGCLineSegmentsEquidistant, "cBImportGCLineSegmentsEquidistant");
-            this.cBImportGCLineSegmentsEquidistant.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCLineSegmentEquidistant;
-            this.cBImportGCLineSegmentsEquidistant.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCLineSegmentEquidistant", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCLineSegmentsEquidistant.Name = "cBImportGCLineSegmentsEquidistant";
-            this.toolTip1.SetToolTip(this.cBImportGCLineSegmentsEquidistant, resources.GetString("cBImportGCLineSegmentsEquidistant.ToolTip"));
-            this.cBImportGCLineSegmentsEquidistant.UseVisualStyleBackColor = true;
-            // 
-            // tBImportGCSubroutine
-            // 
-            this.tBImportGCSubroutine.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importGCSubroutine", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBImportGCSubroutine, "tBImportGCSubroutine");
-            this.tBImportGCSubroutine.Name = "tBImportGCSubroutine";
-            this.tBImportGCSubroutine.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCSubroutine;
-            this.toolTip1.SetToolTip(this.tBImportGCSubroutine, resources.GetString("tBImportGCSubroutine.ToolTip"));
-            // 
-            // cBImportGCSubEnable
-            // 
-            resources.ApplyResources(this.cBImportGCSubEnable, "cBImportGCSubEnable");
-            this.cBImportGCSubEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCSubEnable;
-            this.cBImportGCSubEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCSubEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCSubEnable.Name = "cBImportGCSubEnable";
-            this.toolTip1.SetToolTip(this.cBImportGCSubEnable, resources.GetString("cBImportGCSubEnable.ToolTip"));
-            this.cBImportGCSubEnable.UseVisualStyleBackColor = true;
-            // 
-            // cBImportGCLineSegments
-            // 
-            resources.ApplyResources(this.cBImportGCLineSegments, "cBImportGCLineSegments");
-            this.cBImportGCLineSegments.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCLineSegmentation;
-            this.cBImportGCLineSegments.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCLineSegmentation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCLineSegments.Name = "cBImportGCLineSegments";
-            this.toolTip1.SetToolTip(this.cBImportGCLineSegments, resources.GetString("cBImportGCLineSegments.ToolTip"));
-            this.cBImportGCLineSegments.UseVisualStyleBackColor = true;
-            this.cBImportGCLineSegments.CheckedChanged += new System.EventHandler(this.cBImportGCLineSegments_CheckedChanged);
-            // 
-            // lblLastUseCase
-            // 
-            resources.ApplyResources(this.lblLastUseCase, "lblLastUseCase");
-            this.lblLastUseCase.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "useCaseLastLoaded", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.lblLastUseCase.Name = "lblLastUseCase";
-            this.lblLastUseCase.Text = global::GRBL_Plotter.Properties.Settings.Default.useCaseLastLoaded;
-            // 
-            // tBUseCaseInfo
-            // 
-            this.tBUseCaseInfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "importUseCaseInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBUseCaseInfo, "tBUseCaseInfo");
-            this.tBUseCaseInfo.Name = "tBUseCaseInfo";
-            this.tBUseCaseInfo.Text = global::GRBL_Plotter.Properties.Settings.Default.importUseCaseInfo;
-            // 
-            // nUDToolOffsetZ
-            // 
-            this.nUDToolOffsetZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "toolTableOffsetZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDToolOffsetZ.DecimalPlaces = 1;
-            this.nUDToolOffsetZ.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDToolOffsetZ, "nUDToolOffsetZ");
-            this.nUDToolOffsetZ.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDToolOffsetZ.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.nUDToolOffsetZ.Name = "nUDToolOffsetZ";
-            this.nUDToolOffsetZ.Value = global::GRBL_Plotter.Properties.Settings.Default.toolTableOffsetZ;
-            // 
-            // nUDToolOffsetX
-            // 
-            this.nUDToolOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "toolTableOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDToolOffsetX.DecimalPlaces = 1;
-            this.nUDToolOffsetX.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDToolOffsetX, "nUDToolOffsetX");
-            this.nUDToolOffsetX.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDToolOffsetX.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.nUDToolOffsetX.Name = "nUDToolOffsetX";
-            this.nUDToolOffsetX.Value = global::GRBL_Plotter.Properties.Settings.Default.toolTableOffsetX;
-            // 
-            // nUDToolOffsetY
-            // 
-            this.nUDToolOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "toolTableOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDToolOffsetY.DecimalPlaces = 1;
-            this.nUDToolOffsetY.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDToolOffsetY, "nUDToolOffsetY");
-            this.nUDToolOffsetY.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDToolOffsetY.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.nUDToolOffsetY.Name = "nUDToolOffsetY";
-            this.nUDToolOffsetY.Value = global::GRBL_Plotter.Properties.Settings.Default.toolTableOffsetY;
-            // 
-            // nUDToolChangeEmpty
-            // 
-            this.nUDToolChangeEmpty.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolChangeEmptyNr", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDToolChangeEmpty, "nUDToolChangeEmpty");
-            this.nUDToolChangeEmpty.Maximum = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nUDToolChangeEmpty.Name = "nUDToolChangeEmpty";
-            this.toolTip1.SetToolTip(this.nUDToolChangeEmpty, resources.GetString("nUDToolChangeEmpty.ToolTip"));
-            this.nUDToolChangeEmpty.Value = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolChangeEmptyNr;
-            // 
-            // cBToolChangeEmpty
-            // 
-            this.cBToolChangeEmpty.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolChangeEmpty;
-            this.cBToolChangeEmpty.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolChangeEmpty", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.cBToolChangeEmpty, "cBToolChangeEmpty");
-            this.cBToolChangeEmpty.Name = "cBToolChangeEmpty";
-            this.toolTip1.SetToolTip(this.cBToolChangeEmpty, resources.GetString("cBToolChangeEmpty.ToolTip"));
-            this.cBToolChangeEmpty.UseVisualStyleBackColor = true;
-            // 
-            // tBToolChangeScriptProbe
-            // 
-            this.tBToolChangeScriptProbe.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptProbe", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBToolChangeScriptProbe, "tBToolChangeScriptProbe");
-            this.tBToolChangeScriptProbe.Name = "tBToolChangeScriptProbe";
-            this.tBToolChangeScriptProbe.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptProbe;
-            this.toolTip1.SetToolTip(this.tBToolChangeScriptProbe, resources.GetString("tBToolChangeScriptProbe.ToolTip"));
-            // 
-            // tBToolChangeScriptSelect
-            // 
-            this.tBToolChangeScriptSelect.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptSelect", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBToolChangeScriptSelect, "tBToolChangeScriptSelect");
-            this.tBToolChangeScriptSelect.Name = "tBToolChangeScriptSelect";
-            this.tBToolChangeScriptSelect.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptSelect;
-            this.toolTip1.SetToolTip(this.tBToolChangeScriptSelect, resources.GetString("tBToolChangeScriptSelect.ToolTip"));
-            // 
-            // tBToolChangeScriptPut
-            // 
-            this.tBToolChangeScriptPut.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptPut", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBToolChangeScriptPut, "tBToolChangeScriptPut");
-            this.tBToolChangeScriptPut.Name = "tBToolChangeScriptPut";
-            this.tBToolChangeScriptPut.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptPut;
-            this.toolTip1.SetToolTip(this.tBToolChangeScriptPut, resources.GetString("tBToolChangeScriptPut.ToolTip"));
-            // 
-            // tBToolChangeScriptGet
-            // 
-            this.tBToolChangeScriptGet.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptGet", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBToolChangeScriptGet, "tBToolChangeScriptGet");
-            this.tBToolChangeScriptGet.Name = "tBToolChangeScriptGet";
-            this.tBToolChangeScriptGet.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptGet;
-            this.toolTip1.SetToolTip(this.tBToolChangeScriptGet, resources.GetString("tBToolChangeScriptGet.ToolTip"));
-            // 
-            // cBToolChange
-            // 
-            resources.ApplyResources(this.cBToolChange, "cBToolChange");
-            this.cBToolChange.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolChange;
-            this.cBToolChange.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolChange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBToolChange.Name = "cBToolChange";
-            this.toolTip1.SetToolTip(this.cBToolChange, resources.GetString("cBToolChange.ToolTip"));
-            this.cBToolChange.UseVisualStyleBackColor = true;
-            this.cBToolChange.CheckedChanged += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            this.cBToolChange.Click += new System.EventHandler(this.cBImportGCTool_CheckedChanged);
-            // 
-            // cBExtendedLogging
-            // 
-            resources.ApplyResources(this.cBExtendedLogging, "cBExtendedLogging");
-            this.cBExtendedLogging.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiExtendedLoggingEnabled;
-            this.cBExtendedLogging.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiExtendedLoggingEnabled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBExtendedLogging.Name = "cBExtendedLogging";
-            this.cBExtendedLogging.UseVisualStyleBackColor = true;
-            this.cBExtendedLogging.CheckStateChanged += new System.EventHandler(this.cBExtendedLogging_CheckStateChanged);
-            // 
-            // checkBox2
-            // 
-            resources.ApplyResources(this.checkBox2, "checkBox2");
-            this.checkBox2.Checked = global::GRBL_Plotter.Properties.Settings.Default.flowCheckRegistryChange;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "flowCheckRegistryChange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // cBcheckupdate
-            // 
-            resources.ApplyResources(this.cBcheckupdate, "cBcheckupdate");
-            this.cBcheckupdate.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiCheckUpdate;
-            this.cBcheckupdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBcheckupdate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiCheckUpdate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBcheckupdate.Name = "cBcheckupdate";
-            this.toolTip1.SetToolTip(this.cBcheckupdate, resources.GetString("cBcheckupdate.ToolTip"));
-            this.cBcheckupdate.UseVisualStyleBackColor = true;
-            // 
-            // cBCtrlCommentOut
-            // 
-            resources.ApplyResources(this.cBCtrlCommentOut, "cBCtrlCommentOut");
-            this.cBCtrlCommentOut.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlCommentOut;
-            this.cBCtrlCommentOut.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBCtrlCommentOut.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlCommentOut", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBCtrlCommentOut.Name = "cBCtrlCommentOut";
-            this.toolTip1.SetToolTip(this.cBCtrlCommentOut, resources.GetString("cBCtrlCommentOut.ToolTip"));
-            this.cBCtrlCommentOut.UseVisualStyleBackColor = true;
-            // 
-            // cBCtrlMCmd
-            // 
-            resources.ApplyResources(this.cBCtrlMCmd, "cBCtrlMCmd");
-            this.cBCtrlMCmd.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlReplaceEnable;
-            this.cBCtrlMCmd.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlReplaceEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBCtrlMCmd.Name = "cBCtrlMCmd";
-            this.toolTip1.SetToolTip(this.cBCtrlMCmd, resources.GetString("cBCtrlMCmd.ToolTip"));
-            this.cBCtrlMCmd.UseVisualStyleBackColor = true;
-            // 
-            // cBSerialMinimize
-            // 
-            resources.ApplyResources(this.cBSerialMinimize, "cBSerialMinimize");
-            this.cBSerialMinimize.Checked = global::GRBL_Plotter.Properties.Settings.Default.serialMinimize;
-            this.cBSerialMinimize.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSerialMinimize.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "serialMinimize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSerialMinimize.Name = "cBSerialMinimize";
-            this.toolTip1.SetToolTip(this.cBSerialMinimize, resources.GetString("cBSerialMinimize.ToolTip"));
-            this.cBSerialMinimize.UseVisualStyleBackColor = true;
-            // 
-            // cBSerial2
-            // 
-            resources.ApplyResources(this.cBSerial2, "cBSerial2");
-            this.cBSerial2.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerial2;
-            this.cBSerial2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerial2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSerial2.Name = "cBSerial2";
-            this.toolTip1.SetToolTip(this.cBSerial2, resources.GetString("cBSerial2.ToolTip"));
-            this.cBSerial2.UseVisualStyleBackColor = true;
-            // 
-            // cBSerialDIY
-            // 
-            resources.ApplyResources(this.cBSerialDIY, "cBSerialDIY");
-            this.cBSerialDIY.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerialDIY;
-            this.cBSerialDIY.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerialDIY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSerialDIY.Name = "cBSerialDIY";
-            this.cBSerialDIY.UseVisualStyleBackColor = true;
-            // 
-            // cBSerialPortFixer
-            // 
-            resources.ApplyResources(this.cBSerialPortFixer, "cBSerialPortFixer");
-            this.cBSerialPortFixer.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerialPortFixer;
-            this.cBSerialPortFixer.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSerialPortFixer.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerialPortFixer", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBSerialPortFixer.Name = "cBSerialPortFixer";
-            this.toolTip1.SetToolTip(this.cBSerialPortFixer, resources.GetString("cBSerialPortFixer.ToolTip"));
-            this.cBSerialPortFixer.UseVisualStyleBackColor = true;
-            // 
-            // nUDMachineHomeZ
-            // 
-            this.nUDMachineHomeZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsHomeZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMachineHomeZ.DecimalPlaces = 1;
-            this.nUDMachineHomeZ.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDMachineHomeZ, "nUDMachineHomeZ");
-            this.nUDMachineHomeZ.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDMachineHomeZ.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.nUDMachineHomeZ.Name = "nUDMachineHomeZ";
-            this.nUDMachineHomeZ.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsHomeZ;
-            // 
-            // nUDMachineHomeY
-            // 
-            this.nUDMachineHomeY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsHomeY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMachineHomeY.DecimalPlaces = 1;
-            this.nUDMachineHomeY.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDMachineHomeY, "nUDMachineHomeY");
-            this.nUDMachineHomeY.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDMachineHomeY.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.nUDMachineHomeY.Name = "nUDMachineHomeY";
-            this.nUDMachineHomeY.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsHomeY;
-            // 
-            // nUDMachineHomeX
-            // 
-            this.nUDMachineHomeX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsHomeX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMachineHomeX.DecimalPlaces = 1;
-            this.nUDMachineHomeX.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDMachineHomeX, "nUDMachineHomeX");
-            this.nUDMachineHomeX.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDMachineHomeX.Minimum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            -2147483648});
-            this.nUDMachineHomeX.Name = "nUDMachineHomeX";
-            this.nUDMachineHomeX.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsHomeX;
-            // 
-            // nUDMachineRangeZ
-            // 
-            this.nUDMachineRangeZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsRangeZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMachineRangeZ.DecimalPlaces = 1;
-            this.nUDMachineRangeZ.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDMachineRangeZ, "nUDMachineRangeZ");
-            this.nUDMachineRangeZ.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDMachineRangeZ.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDMachineRangeZ.Name = "nUDMachineRangeZ";
-            this.nUDMachineRangeZ.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsRangeZ;
-            // 
-            // nUDMachineRangeY
-            // 
-            this.nUDMachineRangeY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsRangeY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMachineRangeY.DecimalPlaces = 1;
-            this.nUDMachineRangeY.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDMachineRangeY, "nUDMachineRangeY");
-            this.nUDMachineRangeY.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDMachineRangeY.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDMachineRangeY.Name = "nUDMachineRangeY";
-            this.nUDMachineRangeY.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsRangeY;
-            // 
-            // nUDMachineRangeX
-            // 
-            this.nUDMachineRangeX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsRangeX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMachineRangeX.DecimalPlaces = 1;
-            this.nUDMachineRangeX.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDMachineRangeX, "nUDMachineRangeX");
-            this.nUDMachineRangeX.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDMachineRangeX.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDMachineRangeX.Name = "nUDMachineRangeX";
-            this.nUDMachineRangeX.Value = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsRangeX;
-            // 
-            // cBMachineLimitsAlarm
-            // 
-            resources.ApplyResources(this.cBMachineLimitsAlarm, "cBMachineLimitsAlarm");
-            this.cBMachineLimitsAlarm.Checked = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsAlarm;
-            this.cBMachineLimitsAlarm.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsAlarm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBMachineLimitsAlarm.Name = "cBMachineLimitsAlarm";
-            this.cBMachineLimitsAlarm.UseVisualStyleBackColor = true;
-            // 
-            // cBMachineLimitsShow
-            // 
-            resources.ApplyResources(this.cBMachineLimitsShow, "cBMachineLimitsShow");
-            this.cBMachineLimitsShow.Checked = global::GRBL_Plotter.Properties.Settings.Default.machineLimitsShow;
-            this.cBMachineLimitsShow.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "machineLimitsShow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBMachineLimitsShow.Name = "cBMachineLimitsShow";
-            this.cBMachineLimitsShow.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.AllowDrop = true;
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "ctrl4thName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            resources.GetString("comboBox1.Items"),
-            resources.GetString("comboBox1.Items1"),
-            resources.GetString("comboBox1.Items2"),
-            resources.GetString("comboBox1.Items3"),
-            resources.GetString("comboBox1.Items4"),
-            resources.GetString("comboBox1.Items5")});
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thName;
-            // 
-            // checkBox1
-            // 
-            resources.ApplyResources(this.checkBox1, "checkBox1");
-            this.checkBox1.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thInvert;
-            this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrl4thInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            resources.ApplyResources(this.radioButton1, "radioButton1");
-            this.radioButton1.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thOverX;
-            this.radioButton1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrl4thOverX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // cB4thUse
-            // 
-            resources.ApplyResources(this.cB4thUse, "cB4thUse");
-            this.cB4thUse.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thUse;
-            this.cB4thUse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrl4thUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cB4thUse.Name = "cB4thUse";
-            this.cB4thUse.UseVisualStyleBackColor = true;
-            // 
-            // nUDRotaryScale
-            // 
-            this.nUDRotaryScale.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionScale", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDRotaryScale.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDRotaryScale, "nUDRotaryScale");
-            this.nUDRotaryScale.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDRotaryScale.Name = "nUDRotaryScale";
-            this.nUDRotaryScale.Value = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionScale;
-            // 
-            // nUDRotaryDiameter
-            // 
-            this.nUDRotaryDiameter.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionDiameter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDRotaryDiameter.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDRotaryDiameter, "nUDRotaryDiameter");
-            this.nUDRotaryDiameter.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDRotaryDiameter.Name = "nUDRotaryDiameter";
-            this.nUDRotaryDiameter.Value = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionDiameter;
-            // 
-            // tBRotarySetupOff
-            // 
-            this.tBRotarySetupOff.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionSetupOff", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBRotarySetupOff, "tBRotarySetupOff");
-            this.tBRotarySetupOff.Name = "tBRotarySetupOff";
-            this.tBRotarySetupOff.Text = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionSetupOff;
-            this.toolTip1.SetToolTip(this.tBRotarySetupOff, resources.GetString("tBRotarySetupOff.ToolTip"));
-            // 
-            // tBRotarySetupOn
-            // 
-            this.tBRotarySetupOn.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionSetupOn", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBRotarySetupOn, "tBRotarySetupOn");
-            this.tBRotarySetupOn.Name = "tBRotarySetupOn";
-            this.tBRotarySetupOn.Text = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionSetupOn;
-            this.toolTip1.SetToolTip(this.tBRotarySetupOn, resources.GetString("tBRotarySetupOn.ToolTip"));
-            // 
-            // cBRotarySetupApply
-            // 
-            resources.ApplyResources(this.cBRotarySetupApply, "cBRotarySetupApply");
-            this.cBRotarySetupApply.Checked = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionSetupEnable;
-            this.cBRotarySetupApply.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionSetupEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBRotarySetupApply.Name = "cBRotarySetupApply";
-            this.toolTip1.SetToolTip(this.cBRotarySetupApply, resources.GetString("cBRotarySetupApply.ToolTip"));
-            this.cBRotarySetupApply.UseVisualStyleBackColor = true;
-            // 
-            // cBRotarySubstitute
-            // 
-            resources.ApplyResources(this.cBRotarySubstitute, "cBRotarySubstitute");
-            this.cBRotarySubstitute.Checked = global::GRBL_Plotter.Properties.Settings.Default.rotarySubstitutionEnable;
-            this.cBRotarySubstitute.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "rotarySubstitutionEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBRotarySubstitute.Name = "cBRotarySubstitute";
-            this.cBRotarySubstitute.UseVisualStyleBackColor = true;
-            // 
-            // rBStreanProtocoll1
-            // 
-            resources.ApplyResources(this.rBStreanProtocoll1, "rBStreanProtocoll1");
-            this.rBStreanProtocoll1.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblStreamingProtocol1;
-            this.rBStreanProtocoll1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblStreamingProtocol1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rBStreanProtocoll1.Name = "rBStreanProtocoll1";
-            this.rBStreanProtocoll1.TabStop = true;
-            this.rBStreanProtocoll1.UseVisualStyleBackColor = true;
-            // 
-            // cBDisableProgramPause
-            // 
-            resources.ApplyResources(this.cBDisableProgramPause, "cBDisableProgramPause");
-            this.cBDisableProgramPause.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiDisableProgramPause;
-            this.cBDisableProgramPause.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiDisableProgramPause", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBDisableProgramPause.Name = "cBDisableProgramPause";
-            this.toolTip1.SetToolTip(this.cBDisableProgramPause, resources.GetString("cBDisableProgramPause.ToolTip"));
-            this.cBDisableProgramPause.UseVisualStyleBackColor = true;
-            // 
-            // cBgrblTranslate
-            // 
-            resources.ApplyResources(this.cBgrblTranslate, "cBgrblTranslate");
-            this.cBgrblTranslate.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblTranslateMessage;
-            this.cBgrblTranslate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblTranslateMessage", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBgrblTranslate.Name = "cBgrblTranslate";
-            this.toolTip1.SetToolTip(this.cBgrblTranslate, resources.GetString("cBgrblTranslate.ToolTip"));
-            this.cBgrblTranslate.UseVisualStyleBackColor = true;
-            // 
-            // cBShowStreamingProgress
-            // 
-            resources.ApplyResources(this.cBShowStreamingProgress, "cBShowStreamingProgress");
-            this.cBShowStreamingProgress.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiProgressShow;
-            this.cBShowStreamingProgress.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBShowStreamingProgress.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiProgressShow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBShowStreamingProgress.Name = "cBShowStreamingProgress";
-            this.cBShowStreamingProgress.UseVisualStyleBackColor = true;
-            // 
-            // cBBackgroundImage
-            // 
-            resources.ApplyResources(this.cBBackgroundImage, "cBBackgroundImage");
-            this.cBBackgroundImage.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiBackgroundImageEnable;
-            this.cBBackgroundImage.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiBackgroundImageEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBBackgroundImage.Name = "cBBackgroundImage";
-            this.cBBackgroundImage.UseVisualStyleBackColor = true;
-            // 
-            // cBpollIntervalReduce
-            // 
-            resources.ApplyResources(this.cBpollIntervalReduce, "cBpollIntervalReduce");
-            this.cBpollIntervalReduce.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblPollIntervalReduce;
-            this.cBpollIntervalReduce.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblPollIntervalReduce", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBpollIntervalReduce.Name = "cBpollIntervalReduce";
-            this.cBpollIntervalReduce.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown6
-            // 
-            this.numericUpDown6.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "grblBufferSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.numericUpDown6.Increment = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.numericUpDown6, "numericUpDown6");
-            this.numericUpDown6.Maximum = new decimal(new int[] {
-            2047,
-            0,
-            0,
-            0});
-            this.numericUpDown6.Minimum = new decimal(new int[] {
-            7,
-            0,
-            0,
-            0});
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Value = global::GRBL_Plotter.Properties.Settings.Default.grblBufferSize;
-            // 
-            // checkBox3
-            // 
-            resources.ApplyResources(this.checkBox3, "checkBox3");
-            this.checkBox3.Checked = global::GRBL_Plotter.Properties.Settings.Default.grblBufferAutomatic;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "grblBufferAutomatic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // cBresetSendCode
-            // 
-            resources.ApplyResources(this.cBresetSendCode, "cBresetSendCode");
-            this.cBresetSendCode.Checked = global::GRBL_Plotter.Properties.Settings.Default.resetSendCodeEnable;
-            this.cBresetSendCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "resetSendCodeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBresetSendCode.Name = "cBresetSendCode";
-            this.cBresetSendCode.UseVisualStyleBackColor = true;
-            // 
-            // tBresetSendCode
-            // 
-            this.tBresetSendCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "resetSendCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBresetSendCode, "tBresetSendCode");
-            this.tBresetSendCode.Name = "tBresetSendCode";
-            this.tBresetSendCode.Text = global::GRBL_Plotter.Properties.Settings.Default.resetSendCode;
-            this.toolTip1.SetToolTip(this.tBresetSendCode, resources.GetString("tBresetSendCode.ToolTip"));
-            // 
-            // cBrestoreCoordReset
-            // 
-            this.cBrestoreCoordReset.Checked = global::GRBL_Plotter.Properties.Settings.Default.resetRestoreWorkCoordinates;
-            this.cBrestoreCoordReset.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "resetRestoreWorkCoordinates", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.cBrestoreCoordReset, "cBrestoreCoordReset");
-            this.cBrestoreCoordReset.Name = "cBrestoreCoordReset";
-            this.cBrestoreCoordReset.UseVisualStyleBackColor = true;
-            // 
-            // tBflowControl
-            // 
-            this.tBflowControl.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "flowControlText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBflowControl, "tBflowControl");
-            this.tBflowControl.Name = "tBflowControl";
-            this.tBflowControl.Text = global::GRBL_Plotter.Properties.Settings.Default.flowControlText;
-            this.toolTip1.SetToolTip(this.tBflowControl, resources.GetString("tBflowControl.ToolTip"));
-            // 
-            // cBflowControl
-            // 
-            resources.ApplyResources(this.cBflowControl, "cBflowControl");
-            this.cBflowControl.Checked = global::GRBL_Plotter.Properties.Settings.Default.flowControlEnable;
-            this.cBflowControl.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBflowControl.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "flowControlEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBflowControl.Name = "cBflowControl";
-            this.cBflowControl.UseVisualStyleBackColor = true;
-            // 
-            // cBFilterOuside
-            // 
-            resources.ApplyResources(this.cBFilterOuside, "cBFilterOuside");
-            this.cBFilterOuside.Checked = global::GRBL_Plotter.Properties.Settings.Default.camFilterOutside;
-            this.cBFilterOuside.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "camFilterOutside", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBFilterOuside.Name = "cBFilterOuside";
-            this.cBFilterOuside.UseVisualStyleBackColor = true;
-            // 
-            // hSFilterBlue2
-            // 
-            this.hSFilterBlue2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterBlue2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.hSFilterBlue2, "hSFilterBlue2");
-            this.hSFilterBlue2.Maximum = 264;
-            this.hSFilterBlue2.Name = "hSFilterBlue2";
-            this.hSFilterBlue2.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterBlue2;
-            this.hSFilterBlue2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
-            // 
-            // hSFilterBlue1
-            // 
-            this.hSFilterBlue1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterBlue1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.hSFilterBlue1, "hSFilterBlue1");
-            this.hSFilterBlue1.Maximum = 264;
-            this.hSFilterBlue1.Name = "hSFilterBlue1";
-            this.hSFilterBlue1.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterBlue1;
-            this.hSFilterBlue1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
-            // 
-            // hSFilterGreen2
-            // 
-            this.hSFilterGreen2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterGreen2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.hSFilterGreen2, "hSFilterGreen2");
-            this.hSFilterGreen2.Maximum = 264;
-            this.hSFilterGreen2.Name = "hSFilterGreen2";
-            this.hSFilterGreen2.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterGreen2;
-            this.hSFilterGreen2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
-            // 
-            // hSFilterGreen1
-            // 
-            this.hSFilterGreen1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterGreen1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.hSFilterGreen1, "hSFilterGreen1");
-            this.hSFilterGreen1.Maximum = 264;
-            this.hSFilterGreen1.Name = "hSFilterGreen1";
-            this.hSFilterGreen1.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterGreen1;
-            this.hSFilterGreen1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
-            // 
-            // hSFilterRed2
-            // 
-            this.hSFilterRed2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterRed2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.hSFilterRed2, "hSFilterRed2");
-            this.hSFilterRed2.Maximum = 264;
-            this.hSFilterRed2.Name = "hSFilterRed2";
-            this.hSFilterRed2.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterRed2;
-            this.hSFilterRed2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
-            // 
-            // hSFilterRed1
-            // 
-            this.hSFilterRed1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camFilterRed1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.hSFilterRed1, "hSFilterRed1");
-            this.hSFilterRed1.Maximum = 264;
-            this.hSFilterRed1.Name = "hSFilterRed1";
-            this.hSFilterRed1.Value = global::GRBL_Plotter.Properties.Settings.Default.camFilterRed1;
-            this.hSFilterRed1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsFilterScroll);
-            // 
-            // nUDShapeSizeMax
-            // 
-            this.nUDShapeSizeMax.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camShapeSizeMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDShapeSizeMax.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDShapeSizeMax, "nUDShapeSizeMax");
-            this.nUDShapeSizeMax.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nUDShapeSizeMax.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDShapeSizeMax.Name = "nUDShapeSizeMax";
-            this.nUDShapeSizeMax.Value = global::GRBL_Plotter.Properties.Settings.Default.camShapeSizeMax;
-            // 
-            // nUDShapeDistMax
-            // 
-            this.nUDShapeDistMax.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camShapeDistMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDShapeDistMax.DecimalPlaces = 2;
-            this.nUDShapeDistMax.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDShapeDistMax, "nUDShapeDistMax");
-            this.nUDShapeDistMax.Name = "nUDShapeDistMax";
-            this.nUDShapeDistMax.Value = global::GRBL_Plotter.Properties.Settings.Default.camShapeDistMax;
-            // 
-            // nUDShapeDistMin
-            // 
-            this.nUDShapeDistMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camShapeDist", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDShapeDistMin.DecimalPlaces = 1;
-            this.nUDShapeDistMin.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDShapeDistMin, "nUDShapeDistMin");
-            this.nUDShapeDistMin.Name = "nUDShapeDistMin";
-            this.nUDShapeDistMin.Value = global::GRBL_Plotter.Properties.Settings.Default.camShapeDist;
-            // 
-            // nUDShapeSizeMin
-            // 
-            this.nUDShapeSizeMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "camShapeSizeMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDShapeSizeMin.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDShapeSizeMin, "nUDShapeSizeMin");
-            this.nUDShapeSizeMin.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nUDShapeSizeMin.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDShapeSizeMin.Name = "nUDShapeSizeMin";
-            this.nUDShapeSizeMin.Value = global::GRBL_Plotter.Properties.Settings.Default.camShapeSizeMin;
-            // 
-            // cBShapeRect
-            // 
-            resources.ApplyResources(this.cBShapeRect, "cBShapeRect");
-            this.cBShapeRect.Checked = global::GRBL_Plotter.Properties.Settings.Default.camShapeRect;
-            this.cBShapeRect.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBShapeRect.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "camShapeRect", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBShapeRect.Name = "cBShapeRect";
-            this.cBShapeRect.UseVisualStyleBackColor = true;
-            // 
-            // cBShapeCircle
-            // 
-            resources.ApplyResources(this.cBShapeCircle, "cBShapeCircle");
-            this.cBShapeCircle.Checked = global::GRBL_Plotter.Properties.Settings.Default.camShapeCircle;
-            this.cBShapeCircle.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBShapeCircle.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "camShapeCircle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBShapeCircle.Name = "cBShapeCircle";
-            this.cBShapeCircle.UseVisualStyleBackColor = true;
-            // 
-            // cbNotifierTitle
-            // 
-            resources.ApplyResources(this.cbNotifierTitle, "cbNotifierTitle");
-            this.cbNotifierTitle.Checked = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageProgressTitle;
-            this.cbNotifierTitle.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbNotifierTitle.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageProgressTitle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbNotifierTitle.Name = "cbNotifierTitle";
-            this.cbNotifierTitle.UseVisualStyleBackColor = true;
-            // 
-            // tbNotifierMsg2
-            // 
-            this.tbNotifierMsg2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageProgress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifierMsg2, "tbNotifierMsg2");
-            this.tbNotifierMsg2.Name = "tbNotifierMsg2";
-            this.tbNotifierMsg2.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageProgress;
-            // 
-            // tbNotifier6
-            // 
-            this.tbNotifier6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailSendSubject", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifier6, "tbNotifier6");
-            this.tbNotifier6.Name = "tbNotifier6";
-            this.tbNotifier6.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailSendSubject;
-            // 
-            // nudNotifierMsg1
-            // 
-            this.nudNotifierMsg1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageProgressInterval", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nudNotifierMsg1.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nudNotifierMsg1, "nudNotifierMsg1");
-            this.nudNotifierMsg1.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.nudNotifierMsg1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNotifierMsg1.Name = "nudNotifierMsg1";
-            this.nudNotifierMsg1.Value = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageProgressInterval;
-            // 
-            // cbNotifierMsg1
-            // 
-            resources.ApplyResources(this.cbNotifierMsg1, "cbNotifierMsg1");
-            this.cbNotifierMsg1.Checked = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageProgressEnable;
-            this.cbNotifierMsg1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbNotifierMsg1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageProgressEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbNotifierMsg1.Name = "cbNotifierMsg1";
-            this.cbNotifierMsg1.UseVisualStyleBackColor = true;
-            // 
-            // tbNotifierMsg1
-            // 
-            this.tbNotifierMsg1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMessageFinish", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifierMsg1, "tbNotifierMsg1");
-            this.tbNotifierMsg1.Name = "tbNotifierMsg1";
-            this.tbNotifierMsg1.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMessageFinish;
-            // 
-            // cbNotifierEmailEnable
-            // 
-            resources.ApplyResources(this.cbNotifierEmailEnable, "cbNotifierEmailEnable");
-            this.cbNotifierEmailEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.notifierMailEnable;
-            this.cbNotifierEmailEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbNotifierEmailEnable.Name = "cbNotifierEmailEnable";
-            this.cbNotifierEmailEnable.UseVisualStyleBackColor = true;
-            // 
-            // tbNotifier5
-            // 
-            this.tbNotifier5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailSendTo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifier5, "tbNotifier5");
-            this.tbNotifier5.Name = "tbNotifier5";
-            this.tbNotifier5.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailSendTo;
-            // 
-            // tbNotifier4
-            // 
-            this.tbNotifier4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailSendFrom", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifier4, "tbNotifier4");
-            this.tbNotifier4.Name = "tbNotifier4";
-            this.tbNotifier4.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailSendFrom;
-            // 
-            // nudNotifier1
-            // 
-            this.nudNotifier1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailClientPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nudNotifier1, "nudNotifier1");
-            this.nudNotifier1.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.nudNotifier1.Name = "nudNotifier1";
-            this.nudNotifier1.Value = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientPort;
-            // 
-            // tbNotifier3
-            // 
-            this.tbNotifier3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailClientPass", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifier3, "tbNotifier3");
-            this.tbNotifier3.Name = "tbNotifier3";
-            this.tbNotifier3.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientPass;
-            // 
-            // tbNotifier2
-            // 
-            this.tbNotifier2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailClientUser", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifier2, "tbNotifier2");
-            this.tbNotifier2.Name = "tbNotifier2";
-            this.tbNotifier2.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientUser;
-            // 
-            // tbNotifier1
-            // 
-            this.tbNotifier1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "notifierMailClientAdr", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tbNotifier1, "tbNotifier1");
-            this.tbNotifier1.Name = "tbNotifier1";
-            this.tbNotifier1.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientAdr;
-            // 
-            // nUDFeedrate
-            // 
-            this.nUDFeedrate.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDFeedrate.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDFeedrate, "nUDFeedrate");
-            this.nUDFeedrate.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDFeedrate.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDFeedrate.Name = "nUDFeedrate";
-            this.toolTip1.SetToolTip(this.nUDFeedrate, resources.GetString("nUDFeedrate.ToolTip"));
-            this.nUDFeedrate.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinFeed;
-            // 
-            // nUDStepwidth
-            // 
-            this.nUDStepwidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinStep", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDStepwidth.DecimalPlaces = 3;
-            this.nUDStepwidth.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            resources.ApplyResources(this.nUDStepwidth, "nUDStepwidth");
-            this.nUDStepwidth.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDStepwidth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDStepwidth.Name = "nUDStepwidth";
-            this.toolTip1.SetToolTip(this.nUDStepwidth, resources.GetString("nUDStepwidth.ToolTip"));
-            this.nUDStepwidth.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinStep;
-            // 
-            // nUDMinimum
-            // 
-            this.nUDMinimum.BackColor = System.Drawing.Color.Yellow;
-            this.nUDMinimum.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinimum", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMinimum.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDMinimum, "nUDMinimum");
-            this.nUDMinimum.Maximum = new decimal(new int[] {
-            20000,
-            0,
-            0,
-            0});
-            this.nUDMinimum.Name = "nUDMinimum";
-            this.toolTip1.SetToolTip(this.nUDMinimum, resources.GetString("nUDMinimum.ToolTip"));
-            this.nUDMinimum.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogMinimum;
-            // 
-            // nUDOffset
-            // 
-            this.nUDOffset.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogOffset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDOffset, "nUDOffset");
-            this.nUDOffset.Maximum = new decimal(new int[] {
-            34757,
-            0,
-            0,
-            0});
-            this.nUDOffset.Minimum = new decimal(new int[] {
-            30757,
-            0,
-            0,
-            0});
-            this.nUDOffset.Name = "nUDOffset";
-            this.toolTip1.SetToolTip(this.nUDOffset, resources.GetString("nUDOffset.ToolTip"));
-            this.nUDOffset.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogOffset;
-            // 
-            // nUDDead
-            // 
-            this.nUDDead.BackColor = System.Drawing.Color.Lime;
-            this.nUDDead.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogDead", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDDead.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.nUDDead, "nUDDead");
-            this.nUDDead.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nUDDead.Name = "nUDDead";
-            this.toolTip1.SetToolTip(this.nUDDead, resources.GetString("nUDDead.ToolTip"));
-            this.nUDDead.Value = global::GRBL_Plotter.Properties.Settings.Default.gamePadAnalogDead;
-            // 
-            // cBGPEnable
-            // 
-            resources.ApplyResources(this.cBGPEnable, "cBGPEnable");
-            this.cBGPEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadEnable;
-            this.cBGPEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBGPEnable.Name = "cBGPEnable";
-            this.cBGPEnable.UseVisualStyleBackColor = true;
-            this.cBGPEnable.CheckedChanged += new System.EventHandler(this.cBGPEnable_CheckedChanged);
-            // 
-            // cBRInvert
-            // 
-            resources.ApplyResources(this.cBRInvert, "cBRInvert");
-            this.cBRInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadRInvert;
-            this.cBRInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadRInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBRInvert.Name = "cBRInvert";
-            this.cBRInvert.UseVisualStyleBackColor = true;
-            // 
-            // cBZInvert
-            // 
-            resources.ApplyResources(this.cBZInvert, "cBZInvert");
-            this.cBZInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadZInvert;
-            this.cBZInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadZInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBZInvert.Name = "cBZInvert";
-            this.cBZInvert.UseVisualStyleBackColor = true;
-            // 
-            // cBYInvert
-            // 
-            resources.ApplyResources(this.cBYInvert, "cBYInvert");
-            this.cBYInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadYInvert;
-            this.cBYInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadYInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBYInvert.Name = "cBYInvert";
-            this.cBYInvert.UseVisualStyleBackColor = true;
-            // 
-            // cBXInvert
-            // 
-            resources.ApplyResources(this.cBXInvert, "cBXInvert");
-            this.cBXInvert.Checked = global::GRBL_Plotter.Properties.Settings.Default.gamePadXInvert;
-            this.cBXInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gamePadXInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBXInvert.Name = "cBXInvert";
-            this.cBXInvert.UseVisualStyleBackColor = true;
-            // 
-            // tBRAxis
-            // 
-            this.tBRAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tBRAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadRAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBRAxis, "tBRAxis");
-            this.tBRAxis.Name = "tBRAxis";
-            this.tBRAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadRAxis;
-            this.toolTip1.SetToolTip(this.tBRAxis, resources.GetString("tBRAxis.ToolTip"));
-            // 
-            // tBZAxis
-            // 
-            this.tBZAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tBZAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadZAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBZAxis, "tBZAxis");
-            this.tBZAxis.Name = "tBZAxis";
-            this.tBZAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadZAxis;
-            this.toolTip1.SetToolTip(this.tBZAxis, resources.GetString("tBZAxis.ToolTip"));
-            // 
-            // tBYAxis
-            // 
-            this.tBYAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tBYAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadYAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBYAxis, "tBYAxis");
-            this.tBYAxis.Name = "tBYAxis";
-            this.tBYAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadYAxis;
-            this.toolTip1.SetToolTip(this.tBYAxis, resources.GetString("tBYAxis.ToolTip"));
-            // 
-            // tBXAxis
-            // 
-            this.tBXAxis.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tBXAxis.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadXAxis", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBXAxis, "tBXAxis");
-            this.tBXAxis.Name = "tBXAxis";
-            this.tBXAxis.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadXAxis;
-            this.toolTip1.SetToolTip(this.tBXAxis, resources.GetString("tBXAxis.ToolTip"));
-            // 
-            // tBGP15
-            // 
-            this.tBGP15.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons15", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP15, "tBGP15");
-            this.tBGP15.Name = "tBGP15";
-            this.tBGP15.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons15;
-            // 
-            // tBGP14
-            // 
-            this.tBGP14.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons14", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP14, "tBGP14");
-            this.tBGP14.Name = "tBGP14";
-            this.tBGP14.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons14;
-            // 
-            // tBGP13
-            // 
-            this.tBGP13.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons13", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP13, "tBGP13");
-            this.tBGP13.Name = "tBGP13";
-            this.tBGP13.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons13;
-            // 
-            // tBGP12
-            // 
-            this.tBGP12.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons12", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP12, "tBGP12");
-            this.tBGP12.Name = "tBGP12";
-            this.tBGP12.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons12;
-            // 
-            // tBGP11
-            // 
-            this.tBGP11.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons11", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP11, "tBGP11");
-            this.tBGP11.Name = "tBGP11";
-            this.tBGP11.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons11;
-            // 
-            // tBGP10
-            // 
-            this.tBGP10.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons10", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP10, "tBGP10");
-            this.tBGP10.Name = "tBGP10";
-            this.tBGP10.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons10;
-            // 
-            // tBGP9
-            // 
-            this.tBGP9.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons9", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP9, "tBGP9");
-            this.tBGP9.Name = "tBGP9";
-            this.tBGP9.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons9;
-            // 
-            // tBGP8
-            // 
-            this.tBGP8.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons8", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP8, "tBGP8");
-            this.tBGP8.Name = "tBGP8";
-            this.tBGP8.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons8;
-            // 
-            // tBGP7
-            // 
-            this.tBGP7.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons7", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP7, "tBGP7");
-            this.tBGP7.Name = "tBGP7";
-            this.tBGP7.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons7;
-            // 
-            // tBGP6
-            // 
-            this.tBGP6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons6", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP6, "tBGP6");
-            this.tBGP6.Name = "tBGP6";
-            this.tBGP6.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons6;
-            // 
-            // tBGP5
-            // 
-            this.tBGP5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP5, "tBGP5");
-            this.tBGP5.Name = "tBGP5";
-            this.tBGP5.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons5;
-            // 
-            // tBGP4
-            // 
-            this.tBGP4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP4, "tBGP4");
-            this.tBGP4.Name = "tBGP4";
-            this.tBGP4.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons4;
-            // 
-            // tBGP3
-            // 
-            this.tBGP3.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP3, "tBGP3");
-            this.tBGP3.Name = "tBGP3";
-            this.tBGP3.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons3;
-            // 
-            // tBGP2
-            // 
-            this.tBGP2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP2, "tBGP2");
-            this.tBGP2.Name = "tBGP2";
-            this.tBGP2.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons2;
-            // 
-            // tBGP1
-            // 
-            this.tBGP1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP1, "tBGP1");
-            this.tBGP1.Name = "tBGP1";
-            this.tBGP1.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons1;
-            // 
-            // tBGP0
-            // 
-            this.tBGP0.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadButtons0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGP0, "tBGP0");
-            this.tBGP0.Name = "tBGP0";
-            this.tBGP0.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadButtons0;
-            // 
-            // nUDJoyASpeed5
-            // 
-            this.nUDJoyASpeed5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyASpeed5, "nUDJoyASpeed5");
-            this.nUDJoyASpeed5.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed5.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed5.Name = "nUDJoyASpeed5";
-            this.nUDJoyASpeed5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed5;
-            // 
-            // nUDJoyASpeed4
-            // 
-            this.nUDJoyASpeed4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyASpeed4, "nUDJoyASpeed4");
-            this.nUDJoyASpeed4.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed4.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed4.Name = "nUDJoyASpeed4";
-            this.nUDJoyASpeed4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed4;
-            // 
-            // nUDJoyASpeed3
-            // 
-            this.nUDJoyASpeed3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyASpeed3, "nUDJoyASpeed3");
-            this.nUDJoyASpeed3.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed3.Name = "nUDJoyASpeed3";
-            this.nUDJoyASpeed3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed3;
-            // 
-            // nUDJoyASpeed2
-            // 
-            this.nUDJoyASpeed2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyASpeed2, "nUDJoyASpeed2");
-            this.nUDJoyASpeed2.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed2.Name = "nUDJoyASpeed2";
-            this.nUDJoyASpeed2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed2;
-            // 
-            // nUDJoyASpeed1
-            // 
-            this.nUDJoyASpeed1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickASpeed1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyASpeed1, "nUDJoyASpeed1");
-            this.nUDJoyASpeed1.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyASpeed1.Name = "nUDJoyASpeed1";
-            this.nUDJoyASpeed1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickASpeed1;
-            // 
-            // nUDJoyAStep5
-            // 
-            this.nUDJoyAStep5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyAStep5.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyAStep5, "nUDJoyAStep5");
-            this.nUDJoyAStep5.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.nUDJoyAStep5.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyAStep5.Name = "nUDJoyAStep5";
-            this.nUDJoyAStep5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep5;
-            // 
-            // nUDJoyAStep4
-            // 
-            this.nUDJoyAStep4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyAStep4.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyAStep4, "nUDJoyAStep4");
-            this.nUDJoyAStep4.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.nUDJoyAStep4.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyAStep4.Name = "nUDJoyAStep4";
-            this.nUDJoyAStep4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep4;
-            // 
-            // nUDJoyAStep3
-            // 
-            this.nUDJoyAStep3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyAStep3.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyAStep3, "nUDJoyAStep3");
-            this.nUDJoyAStep3.Maximum = new decimal(new int[] {
-            360,
-            0,
-            0,
-            0});
-            this.nUDJoyAStep3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyAStep3.Name = "nUDJoyAStep3";
-            this.nUDJoyAStep3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep3;
-            // 
-            // nUDJoyAStep2
-            // 
-            this.nUDJoyAStep2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyAStep2.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyAStep2, "nUDJoyAStep2");
-            this.nUDJoyAStep2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyAStep2.Name = "nUDJoyAStep2";
-            this.nUDJoyAStep2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep2;
-            // 
-            // nUDJoyAStep1
-            // 
-            this.nUDJoyAStep1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickAStep1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyAStep1.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyAStep1, "nUDJoyAStep1");
-            this.nUDJoyAStep1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyAStep1.Name = "nUDJoyAStep1";
-            this.nUDJoyAStep1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickAStep1;
-            // 
-            // hScrollBar1
-            // 
-            this.hScrollBar1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.hScrollBar1, "hScrollBar1");
-            this.hScrollBar1.Maximum = 400;
-            this.hScrollBar1.Minimum = 180;
-            this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickSize;
-            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
-            // 
-            // nUDJoyZSpeed5
-            // 
-            this.nUDJoyZSpeed5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyZSpeed5, "nUDJoyZSpeed5");
-            this.nUDJoyZSpeed5.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed5.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed5.Name = "nUDJoyZSpeed5";
-            this.nUDJoyZSpeed5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed5;
-            // 
-            // nUDJoyZSpeed4
-            // 
-            this.nUDJoyZSpeed4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyZSpeed4, "nUDJoyZSpeed4");
-            this.nUDJoyZSpeed4.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed4.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed4.Name = "nUDJoyZSpeed4";
-            this.nUDJoyZSpeed4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed4;
-            // 
-            // nUDJoyZSpeed3
-            // 
-            this.nUDJoyZSpeed3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyZSpeed3, "nUDJoyZSpeed3");
-            this.nUDJoyZSpeed3.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed3.Name = "nUDJoyZSpeed3";
-            this.nUDJoyZSpeed3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed3;
-            // 
-            // nUDJoyZSpeed2
-            // 
-            this.nUDJoyZSpeed2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyZSpeed2, "nUDJoyZSpeed2");
-            this.nUDJoyZSpeed2.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed2.Name = "nUDJoyZSpeed2";
-            this.nUDJoyZSpeed2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed2;
-            // 
-            // nUDJoyZSpeed1
-            // 
-            this.nUDJoyZSpeed1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZSpeed1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyZSpeed1, "nUDJoyZSpeed1");
-            this.nUDJoyZSpeed1.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyZSpeed1.Name = "nUDJoyZSpeed1";
-            this.nUDJoyZSpeed1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZSpeed1;
-            // 
-            // nUDJoyZStep5
-            // 
-            this.nUDJoyZStep5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyZStep5.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyZStep5, "nUDJoyZStep5");
-            this.nUDJoyZStep5.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZStep5.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyZStep5.Name = "nUDJoyZStep5";
-            this.nUDJoyZStep5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep5;
-            // 
-            // nUDJoyZStep4
-            // 
-            this.nUDJoyZStep4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyZStep4.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyZStep4, "nUDJoyZStep4");
-            this.nUDJoyZStep4.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZStep4.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyZStep4.Name = "nUDJoyZStep4";
-            this.nUDJoyZStep4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep4;
-            // 
-            // nUDJoyZStep3
-            // 
-            this.nUDJoyZStep3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyZStep3.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyZStep3, "nUDJoyZStep3");
-            this.nUDJoyZStep3.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZStep3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyZStep3.Name = "nUDJoyZStep3";
-            this.nUDJoyZStep3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep3;
-            // 
-            // nUDJoyZStep2
-            // 
-            this.nUDJoyZStep2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyZStep2.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyZStep2, "nUDJoyZStep2");
-            this.nUDJoyZStep2.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZStep2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyZStep2.Name = "nUDJoyZStep2";
-            this.nUDJoyZStep2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep2;
-            // 
-            // nUDJoyZStep1
-            // 
-            this.nUDJoyZStep1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickZStep1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyZStep1.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyZStep1, "nUDJoyZStep1");
-            this.nUDJoyZStep1.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyZStep1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyZStep1.Name = "nUDJoyZStep1";
-            this.nUDJoyZStep1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickZStep1;
-            // 
-            // nUDJoyXYSpeed5
-            // 
-            this.nUDJoyXYSpeed5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyXYSpeed5, "nUDJoyXYSpeed5");
-            this.nUDJoyXYSpeed5.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed5.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed5.Name = "nUDJoyXYSpeed5";
-            this.nUDJoyXYSpeed5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed5;
-            // 
-            // nUDJoyXYSpeed4
-            // 
-            this.nUDJoyXYSpeed4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyXYSpeed4, "nUDJoyXYSpeed4");
-            this.nUDJoyXYSpeed4.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed4.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed4.Name = "nUDJoyXYSpeed4";
-            this.nUDJoyXYSpeed4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed4;
-            // 
-            // nUDJoyXYSpeed3
-            // 
-            this.nUDJoyXYSpeed3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyXYSpeed3, "nUDJoyXYSpeed3");
-            this.nUDJoyXYSpeed3.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed3.Name = "nUDJoyXYSpeed3";
-            this.nUDJoyXYSpeed3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed3;
-            // 
-            // nUDJoyXYSpeed2
-            // 
-            this.nUDJoyXYSpeed2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyXYSpeed2, "nUDJoyXYSpeed2");
-            this.nUDJoyXYSpeed2.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed2.Name = "nUDJoyXYSpeed2";
-            this.nUDJoyXYSpeed2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed2;
-            // 
-            // nUDJoyXYSpeed1
-            // 
-            this.nUDJoyXYSpeed1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYSpeed1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDJoyXYSpeed1, "nUDJoyXYSpeed1");
-            this.nUDJoyXYSpeed1.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nUDJoyXYSpeed1.Name = "nUDJoyXYSpeed1";
-            this.nUDJoyXYSpeed1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYSpeed1;
-            // 
-            // nUDJoyXYStep5
-            // 
-            this.nUDJoyXYStep5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep5", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyXYStep5.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyXYStep5, "nUDJoyXYStep5");
-            this.nUDJoyXYStep5.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYStep5.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyXYStep5.Name = "nUDJoyXYStep5";
-            this.nUDJoyXYStep5.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep5;
-            // 
-            // nUDJoyXYStep4
-            // 
-            this.nUDJoyXYStep4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep4", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyXYStep4.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyXYStep4, "nUDJoyXYStep4");
-            this.nUDJoyXYStep4.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYStep4.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyXYStep4.Name = "nUDJoyXYStep4";
-            this.nUDJoyXYStep4.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep4;
-            // 
-            // nUDJoyXYStep3
-            // 
-            this.nUDJoyXYStep3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyXYStep3.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyXYStep3, "nUDJoyXYStep3");
-            this.nUDJoyXYStep3.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYStep3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyXYStep3.Name = "nUDJoyXYStep3";
-            this.nUDJoyXYStep3.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep3;
-            // 
-            // nUDJoyXYStep2
-            // 
-            this.nUDJoyXYStep2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep2", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyXYStep2.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyXYStep2, "nUDJoyXYStep2");
-            this.nUDJoyXYStep2.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYStep2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyXYStep2.Name = "nUDJoyXYStep2";
-            this.nUDJoyXYStep2.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep2;
-            // 
-            // nUDJoyXYStep1
-            // 
-            this.nUDJoyXYStep1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "guiJoystickXYStep1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDJoyXYStep1.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDJoyXYStep1, "nUDJoyXYStep1");
-            this.nUDJoyXYStep1.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nUDJoyXYStep1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            196608});
-            this.nUDJoyXYStep1.Name = "nUDJoyXYStep1";
-            this.nUDJoyXYStep1.Value = global::GRBL_Plotter.Properties.Settings.Default.guiJoystickXYStep1;
-            // 
-            // cB2DViewFigureId
-            // 
-            resources.ApplyResources(this.cB2DViewFigureId, "cB2DViewFigureId");
-            this.cB2DViewFigureId.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DPenUpId;
-            this.cB2DViewFigureId.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cB2DViewFigureId.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gui2DPenUpId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cB2DViewFigureId.Name = "cB2DViewFigureId";
-            this.cB2DViewFigureId.UseVisualStyleBackColor = true;
-            // 
-            // cB2DViewDirectionArrow
-            // 
-            resources.ApplyResources(this.cB2DViewDirectionArrow, "cB2DViewDirectionArrow");
-            this.cB2DViewDirectionArrow.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DPenUpArrow;
-            this.cB2DViewDirectionArrow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cB2DViewDirectionArrow.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gui2DPenUpArrow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cB2DViewDirectionArrow.Name = "cB2DViewDirectionArrow";
-            this.cB2DViewDirectionArrow.UseVisualStyleBackColor = true;
-            // 
-            // nUDFCTBLineInterval
-            // 
-            this.nUDFCTBLineInterval.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "FCTBLineInterval", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.nUDFCTBLineInterval, "nUDFCTBLineInterval");
-            this.nUDFCTBLineInterval.Name = "nUDFCTBLineInterval";
-            this.nUDFCTBLineInterval.Value = global::GRBL_Plotter.Properties.Settings.Default.FCTBLineInterval;
-            // 
-            // cBColorModeEnable
-            // 
-            resources.ApplyResources(this.cBColorModeEnable, "cBColorModeEnable");
-            this.cBColorModeEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DColorPenDownModeEnable;
-            this.cBColorModeEnable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBColorModeEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gui2DColorPenDownModeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBColorModeEnable.Name = "cBColorModeEnable";
-            this.toolTip1.SetToolTip(this.cBColorModeEnable, resources.GetString("cBColorModeEnable.ToolTip"));
-            this.cBColorModeEnable.UseVisualStyleBackColor = true;
-            // 
-            // nUDSimulation
-            // 
-            this.nUDSimulation.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthSimulation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDSimulation.DecimalPlaces = 1;
-            this.nUDSimulation.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDSimulation, "nUDSimulation");
-            this.nUDSimulation.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDSimulation.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDSimulation.Name = "nUDSimulation";
-            this.toolTip1.SetToolTip(this.nUDSimulation, resources.GetString("nUDSimulation.ToolTip"));
-            this.nUDSimulation.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthSimulation;
-            // 
-            // cBKeepPenWidth
-            // 
-            resources.ApplyResources(this.cBKeepPenWidth, "cBKeepPenWidth");
-            this.cBKeepPenWidth.Checked = global::GRBL_Plotter.Properties.Settings.Default.gui2DKeepPenWidth;
-            this.cBKeepPenWidth.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "gui2DKeepPenWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBKeepPenWidth.Name = "cBKeepPenWidth";
-            this.cBKeepPenWidth.UseVisualStyleBackColor = true;
-            // 
-            // nUDRotaryInfo
-            // 
-            this.nUDRotaryInfo.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthRotaryInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDRotaryInfo.DecimalPlaces = 1;
-            this.nUDRotaryInfo.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRotaryInfo, "nUDRotaryInfo");
-            this.nUDRotaryInfo.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDRotaryInfo.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDRotaryInfo.Name = "nUDRotaryInfo";
-            this.toolTip1.SetToolTip(this.nUDRotaryInfo, resources.GetString("nUDRotaryInfo.ToolTip"));
-            this.nUDRotaryInfo.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRotaryInfo;
-            // 
-            // nUDHeightMap
-            // 
-            this.nUDHeightMap.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthHeightMap", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDHeightMap.DecimalPlaces = 1;
-            this.nUDHeightMap.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDHeightMap, "nUDHeightMap");
-            this.nUDHeightMap.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDHeightMap.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDHeightMap.Name = "nUDHeightMap";
-            this.toolTip1.SetToolTip(this.nUDHeightMap, resources.GetString("nUDHeightMap.ToolTip"));
-            this.nUDHeightMap.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthHeightMap;
-            // 
-            // nUDMarker
-            // 
-            this.nUDMarker.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthMarker", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMarker.DecimalPlaces = 1;
-            this.nUDMarker.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDMarker, "nUDMarker");
-            this.nUDMarker.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDMarker.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDMarker.Name = "nUDMarker";
-            this.toolTip1.SetToolTip(this.nUDMarker, resources.GetString("nUDMarker.ToolTip"));
-            this.nUDMarker.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthMarker;
-            // 
-            // nUDTool
-            // 
-            this.nUDTool.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthTool", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDTool.DecimalPlaces = 1;
-            this.nUDTool.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDTool, "nUDTool");
-            this.nUDTool.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDTool.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDTool.Name = "nUDTool";
-            this.toolTip1.SetToolTip(this.nUDTool, resources.GetString("nUDTool.ToolTip"));
-            this.nUDTool.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthTool;
-            // 
-            // nUDPenDown
-            // 
-            this.nUDPenDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthPenDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDPenDown.DecimalPlaces = 1;
-            this.nUDPenDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDPenDown, "nUDPenDown");
-            this.nUDPenDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDPenDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDPenDown.Name = "nUDPenDown";
-            this.toolTip1.SetToolTip(this.nUDPenDown, resources.GetString("nUDPenDown.ToolTip"));
-            this.nUDPenDown.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthPenDown;
-            // 
-            // nUDPenUp
-            // 
-            this.nUDPenUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthPenUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDPenUp.DecimalPlaces = 1;
-            this.nUDPenUp.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDPenUp, "nUDPenUp");
-            this.nUDPenUp.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDPenUp.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDPenUp.Name = "nUDPenUp";
-            this.toolTip1.SetToolTip(this.nUDPenUp, resources.GetString("nUDPenUp.ToolTip"));
-            this.nUDPenUp.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthPenUp;
-            // 
-            // nUDRuler
-            // 
-            this.nUDRuler.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthRuler", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDRuler.DecimalPlaces = 1;
-            this.nUDRuler.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDRuler, "nUDRuler");
-            this.nUDRuler.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nUDRuler.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDRuler.Name = "nUDRuler";
-            this.toolTip1.SetToolTip(this.nUDRuler, resources.GetString("nUDRuler.ToolTip"));
-            this.nUDRuler.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRuler;
-            // 
-            // cbNotifierPBEnable
-            // 
-            resources.ApplyResources(this.cbNotifierPBEnable, "cbNotifierPBEnable");
-            this.cbNotifierPBEnable.Checked = global::GRBL_Plotter.Properties.Settings.Default.notifierPushbulletEnable;
-            this.cbNotifierPBEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "notifierPushbulletEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cbNotifierPBEnable.Name = "cbNotifierPBEnable";
-            this.cbNotifierPBEnable.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            resources.ApplyResources(this.cBImportGraphicClipSkipCode, "cBImportGraphicClipSkipCode");
+            this.cBImportGraphicClipSkipCode.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipSkipCode;
+            this.cBImportGraphicClipSkipCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipSkipCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicClipSkipCode.Name = "cBImportGraphicClipSkipCode";
+            this.cBImportGraphicClipSkipCode.UseVisualStyleBackColor = true;
             // 
             // ControlSetupForm
             // 
@@ -7939,41 +7956,72 @@ namespace GRBL_Plotter
             this.tab1_3gB6.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tab1_1gB3.ResumeLayout(false);
             this.tab1_1gB3.PerformLayout();
             this.tab1_1gB2.ResumeLayout(false);
             this.tab1_1gB2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).EndInit();
             this.tabPage17.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.gBCreateZValue.ResumeLayout(false);
             this.gBCreateZValue.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMax)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportRepeat)).EndInit();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tab1_1gB1.ResumeLayout(false);
             this.tab1_1gB1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSegment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportSVGSegemnts)).EndInit();
             this.tabPage20.ResumeLayout(false);
             this.tabPage20.PerformLayout();
             this.tab1_3gB8.ResumeLayout(false);
             this.tab1_3gB8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDPathOverlapValue)).EndInit();
             this.gBHatchFill.ResumeLayout(false);
             this.gBHatchFill.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillInset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillDist)).EndInit();
             this.tab1_3gB5.ResumeLayout(false);
             this.tab1_3gB5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialUnits)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel)).EndInit();
             this.tab1_3gB2.ResumeLayout(false);
             this.tab1_3gB2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeAngle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifePercent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeLength)).EndInit();
             this.tabPage18.ResumeLayout(false);
             this.gBClipping.ResumeLayout(false);
             this.gBClipping.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipWidth)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.tabPage19.ResumeLayout(false);
             this.tab1_1gB5.ResumeLayout(false);
             this.tab1_1gB5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.tab1_1gB4.ResumeLayout(false);
             this.tab1_1gB4.PerformLayout();
             this.tab1_1_4gB3.ResumeLayout(false);
@@ -7983,25 +8031,40 @@ namespace GRBL_Plotter
             this.tabPage10.ResumeLayout(false);
             this.tab1_2gB1.ResumeLayout(false);
             this.tab1_2gB1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).EndInit();
             this.tab1_2gB2.ResumeLayout(false);
             this.tab1_2gB2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSpindleDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportDecPlaces)).EndInit();
             this.tab1_2gB7.ResumeLayout(false);
             this.tab1_2gB3.ResumeLayout(false);
             this.tab1_2gB3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZIncrement)).EndInit();
             this.tab1_2gB5.ResumeLayout(false);
             this.tab1_2gB5.PerformLayout();
             this.tab1_2gB6.ResumeLayout(false);
             this.tab1_2gB6.PerformLayout();
             this.tab1_2gB4.ResumeLayout(false);
             this.tab1_2gB4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyDown)).EndInit();
             this.tabPage11.ResumeLayout(false);
             this.tab1_3gB3.ResumeLayout(false);
             this.tab1_3gB3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.tab1_3gB4.ResumeLayout(false);
             this.tab1_3gB4.PerformLayout();
             this.tab1_3gB1.ResumeLayout(false);
             this.tab1_3gB1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).EndInit();
             this.tabPage15.ResumeLayout(false);
             this.tab1_4gB1.ResumeLayout(false);
             this.tab1_4gB1.PerformLayout();
@@ -8010,10 +8073,14 @@ namespace GRBL_Plotter
             this.tab2gB1.PerformLayout();
             this.tab2gB2.ResumeLayout(false);
             this.tab2gB2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVToolList)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.gBToolChange.ResumeLayout(false);
             this.gBToolChange.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).EndInit();
             this.tabPage21.ResumeLayout(false);
             this.tabControl4_Level2.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
@@ -8037,10 +8104,18 @@ namespace GRBL_Plotter
             this.tabPage26.ResumeLayout(false);
             this.tab5gB5.ResumeLayout(false);
             this.tab5gB5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeX)).EndInit();
             this.tab5gB6.ResumeLayout(false);
             this.tab5gB6.PerformLayout();
             this.tab5gB7.ResumeLayout(false);
             this.tab5gB7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryScale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryDiameter)).EndInit();
             this.tab5gB8.ResumeLayout(false);
             this.tab5gB8.PerformLayout();
             this.tabPage25.ResumeLayout(false);
@@ -8054,6 +8129,7 @@ namespace GRBL_Plotter
             this.tab4gB1.PerformLayout();
             this.tab4gB3.ResumeLayout(false);
             this.tab4gB3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             this.tab4gB2.ResumeLayout(false);
             this.tab4gB2.PerformLayout();
             this.tab4gB4.ResumeLayout(false);
@@ -8073,14 +8149,22 @@ namespace GRBL_Plotter
             this.tab10gB2.PerformLayout();
             this.tab10gB3.ResumeLayout(false);
             this.tab10gB3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeSizeMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeDistMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeDistMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeSizeMin)).EndInit();
             this.tabControl5_Level2.ResumeLayout(false);
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
             this.groupBox17.ResumeLayout(false);
             this.groupBox16.ResumeLayout(false);
             this.groupBox16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNotifierMsg1)).EndInit();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNotifier1)).EndInit();
             this.tabPage22.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
             this.tabPage23.ResumeLayout(false);
@@ -8094,6 +8178,11 @@ namespace GRBL_Plotter
             this.tab7gB1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDFeedrate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDStepwidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDMinimum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDOffset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDDead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarY)).EndInit();
@@ -8101,100 +8190,6 @@ namespace GRBL_Plotter
             this.tabPage1.ResumeLayout(false);
             this.tab8gB1.ResumeLayout(false);
             this.tab8gB1.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            this.tab5gB9.ResumeLayout(false);
-            this.tab5gB9.PerformLayout();
-            this.tab8gB2.ResumeLayout(false);
-            this.tab8gB2.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.tab11gB1.ResumeLayout(false);
-            this.tab11gB1.PerformLayout();
-            this.tab11gB3.ResumeLayout(false);
-            this.tab11gB3.PerformLayout();
-            this.tab11gB4.ResumeLayout(false);
-            this.tab11gB4.PerformLayout();
-            this.tab11gB5.ResumeLayout(false);
-            this.tab11gB5.PerformLayout();
-            this.tab11gB2.ResumeLayout(false);
-            this.tab11gB2.PerformLayout();
-            this.groupBox18.ResumeLayout(false);
-            this.groupBox18.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportRepeat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSegment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportSVGSegemnts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDPathOverlapValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillInset)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillDist)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialUnits)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeAngle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifePercent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeLength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipHeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCSpindleDelay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZUp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZIncrement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMUp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyUp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCPWMDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMachineRangeX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryScale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryDiameter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeSizeMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeDistMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeDistMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDShapeSizeMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNotifierMsg1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNotifier1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDFeedrate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDStepwidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDMinimum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDOffset)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDDead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed3)).EndInit();
@@ -8225,7 +8220,16 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep1)).EndInit();
+            this.tabPage6.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFCTBLineInterval)).EndInit();
+            this.tab5gB9.ResumeLayout(false);
+            this.tab5gB9.PerformLayout();
+            this.tab8gB2.ResumeLayout(false);
+            this.tab8gB2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSimulation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRotaryInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHeightMap)).EndInit();
@@ -8234,6 +8238,19 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRuler)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.tab11gB1.ResumeLayout(false);
+            this.tab11gB1.PerformLayout();
+            this.tab11gB3.ResumeLayout(false);
+            this.tab11gB3.PerformLayout();
+            this.tab11gB4.ResumeLayout(false);
+            this.tab11gB4.PerformLayout();
+            this.tab11gB5.ResumeLayout(false);
+            this.tab11gB5.PerformLayout();
+            this.tab11gB2.ResumeLayout(false);
+            this.tab11gB2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -8948,5 +8965,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cbNotifierPBEnable;
         private System.Windows.Forms.Label lblNotifierPBToken;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.CheckBox cBImportGraphicClipSkipCode;
     }
 }

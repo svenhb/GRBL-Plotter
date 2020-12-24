@@ -455,6 +455,7 @@ namespace GRBL_Plotter
                 {   if ((isStreaming) || (isHeightProbing))
                     {
                         streamingFinish();
+                        requestSend("$G");
                     }
                 }
             }

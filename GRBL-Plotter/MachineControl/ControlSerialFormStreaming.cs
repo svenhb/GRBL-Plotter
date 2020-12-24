@@ -66,12 +66,12 @@ namespace GRBL_Plotter
         private string listInfoStream()
         { return string.Format("{0}strmBuffer snt:{1,3}  cnfrmnd:{2,3}  cnt:{3,3}  BFree:{4,3}  lineNr:{5}  code:'{6}' state:{7}", "", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed, streamingBuffer.Count, grblBufferFree, streamingBuffer.GetConfirmedLineNr(), streamingBuffer.GetConfirmedLine(), grblStateNow.ToString()); }
 
-        /****************************************************************************
-         *  startStreaming called by main-Prog
-         *  get complete GCode list and copy to streamingBuffer
-         *  initialize streaming
-         *  if startAtLine > 0 start with pause
-         ****************************************************************************/
+/****************************************************************************
+*  startStreaming called by main-Prog
+*  get complete GCode list and copy to streamingBuffer
+*  initialize streaming
+*  if startAtLine > 0 start with pause
+****************************************************************************/
         public void startStreaming(IList<string> gCodeList, int startAtLine, bool check = false)
         {
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1;
@@ -606,10 +606,8 @@ namespace GRBL_Plotter
             addToLog("\r[Streaming finish]");
             Logger.Info("streamingFinish ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
             streamingStateNow = grblStreaming.finish;
-            if (isStreamingCheck)
-            { requestSend("$C"); isStreamingCheck = false; }
 
-            OnRaiseStreamEvent(new StreamEventArgs(0, 0, 0, 0, grblStreaming.finish));
+            OnRaiseStreamEvent(new StreamEventArgs(streamingBuffer.Max, streamingBuffer.Max, 100, 0, grblStreaming.finish));
             if (Properties.Settings.Default.grblPollIntervalReduce)
             {
                 timerSerial.Interval = grbl.pollInterval;
@@ -619,6 +617,8 @@ namespace GRBL_Plotter
             streamingBuffer.Clear();
             resetStreaming();
             updateControls();
+            if (isStreamingCheck)
+            { requestSend("$C"); isStreamingCheck = false; }
         }
 
         private void setToolChangeCoordinates(int cmdTNr, string line="")
