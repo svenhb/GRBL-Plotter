@@ -486,7 +486,9 @@ namespace GRBL_Plotter
 
         #region cmsPictureBox events
         private void cmsPicBoxEnable(bool enable = true)
-        {   cmsPicBoxMoveToMarkedPosition.Enabled = enable;
+        {
+            Logger.Trace("cmsPicBoxEnable {0}",enable);
+            cmsPicBoxMoveToMarkedPosition.Enabled = enable;
             cmsPicBoxZeroXYAtMarkedPosition.Enabled = enable;
             cmsPicBoxMoveGraphicsOrigin.Enabled = enable;
             cmsPicBoxResetZooming.Enabled = enable;
@@ -593,7 +595,7 @@ namespace GRBL_Plotter
                 if (Graphic.SizeOk())
                 {   if (logEnable) Logger.Trace("Reverse path figureNr:{0}  figureOrder:{1}  GroupIdOrder:{2}", xmlMarker.lastFigure.figureNr, string.Join(",", xmlMarker.getFigureIdOrder()), string.Join(",", xmlMarker.getGroupIdOrder()));
                     Graphic.ReDoReversePath(xmlMarker.lastFigure.figureNr, picAbsPos, xmlMarker.getFigureIdOrder(), xmlMarker.getGroupIdOrder());
-                    fCTBCode.Text = Graphic.GCode.ToString();
+                    setfCTBCodeText(Graphic.GCode.ToString());      // cmsPicBoxReverseSelectedPath_Click
                     newCodeEnd();
                 }
             }

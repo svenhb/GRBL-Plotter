@@ -20,6 +20,7 @@
  * 2020-09-13 split file
  * 2020-12-03 Bug fix invoke required in line 59
  * 2020-12-16 line 183 remove lock
+ * 2020-12-23 adjust notifier handling: only notify if estimated process time > notifier intervall
  */
 
 using System;
@@ -72,22 +73,27 @@ namespace GRBL_Plotter
             {   this.lblFileProgress.Text = txt;   }
         }
 
+        private string getTimeStampString()
+        { return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); }
+
         /***** Receive streaming status from serial COM *****/
         private bool notifierUpdateMarker = false;
         private bool notifierUpdateMarkerFinish = false;
         private void OnRaiseStreamEvent(object sender, StreamEventArgs e)
         {
+            // only notify if estimated process-time > notifier intervall
+            bool notifierEnable = ((double)Properties.Settings.Default.notifierMessageProgressInterval < VisuGCode.gcodeMinutes);
             if (isStreaming)
             {
                 updateProgressBar((int)e.CodeProgress, (int)e.BuffProgress);
-                if (Properties.Settings.Default.notifierMessageProgressEnable)
+                if (notifierEnable && Properties.Settings.Default.notifierMessageProgressEnable)
                 {
                     if ((elapsed.Seconds % (int)(60*Properties.Settings.Default.notifierMessageProgressInterval)) == 5) // offset 5 sec. to get message at start
                     {
                         if (notifierUpdateMarker)
                         {
                             notifierUpdateMarker = false;
-                            string msg = string.Format("{0}Duration   : {1} min.\r\nCode line  : {2}\r\nProcessed: {3:0.0} %\r\nGrbl Buffer: {4:0.0} %", "", elapsed.Minutes, e.CodeLineSent, e.CodeProgress, e.BuffProgress);//Properties.Settings.Default.notifierMessageProgress
+                            string msg = string.Format("{0}Duration   : {1} min.\r\nCode line  : {2}\r\nProcessed: {3:0.0} %\r\nGrbl Buffer: {4:0.0} %\r\nTime stamp: {5}", "", elapsed.Minutes, e.CodeLineSent, e.CodeProgress, e.BuffProgress, getTimeStampString());//Properties.Settings.Default.notifierMessageProgress
                             if (Properties.Settings.Default.notifierMessageProgressTitle)
                                 Notifier.sendMessage(msg, string.Format("{0:0.0} %", e.CodeProgress));    
                             else
@@ -159,6 +165,7 @@ namespace GRBL_Plotter
                     fCTBCode.BookmarkLine(actualCodeLine - 1);
                     fCTBCode.DoSelectionVisible();
                     fCTBCode.CurrentLineColor = Color.Red;
+                    if (notifierEnable) Notifier.sendMessage(string.Format("Streaming error at line {0}\r\nTime stamp: {1}", e.CodeLineConfirmed, getTimeStampString()), "Error");
                     break;
 
                 case grblStreaming.ok:
@@ -194,9 +201,9 @@ namespace GRBL_Plotter
                     pictureBox1.BackgroundImage = null;
                     resetStreaming();
                     
-                    if (!notifierUpdateMarkerFinish)    // just notify once
+                    if (notifierEnable && !notifierUpdateMarkerFinish)    // just notify once
                     {   notifierUpdateMarkerFinish = true;
-                        string msg = string.Format("{0}\r\nDuration  :{1} (hh:mm:ss)\r\nCode line :{2}", Properties.Settings.Default.notifierMessageFinish, elapsed.ToString(@"hh\:mm\:ss"), e.CodeLineSent);
+                        string msg = string.Format("{0}\r\nDuration  : {1} (hh:mm:ss)\r\nCode line : {2}\r\nTime stamp: {3}", Properties.Settings.Default.notifierMessageFinish, elapsed.ToString(@"hh\:mm\:ss"), fCTBCode.LinesCount, getTimeStampString());
                         if (Properties.Settings.Default.notifierMessageProgressTitle)
                             Notifier.sendMessage(msg, "100 %");
                         else
@@ -231,8 +238,9 @@ namespace GRBL_Plotter
                         if (logStreaming) Logger.Trace("OnRaiseStreamEvent - pause: {0}  in line:{1}", fCTBCode.Lines[fCTBCodeClickedLineNow], fCTBCodeClickedLineNow);
 
                         if (fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("M0") && fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("Tool"))  // keyword set in gcodeRelated 1132
-                        {   signalShowToolExchangeMessage = true;   if (logStreaming) Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage");}
-
+                        { signalShowToolExchangeMessage = true; if (logStreaming) Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); }
+                        else
+                        { if (notifierEnable) Notifier.sendMessage("grbl Pause", "Pause"); }
                         //  if (Properties.Settings.Default.importGCToolChangeCode.Length > 1)
                         //  {   processCommands(Properties.Settings.Default.importGCToolChangeCode); }
                     }
@@ -283,6 +291,7 @@ namespace GRBL_Plotter
                     tool = tool.Replace("Color", "\r  Color");
                 }
                 string msg = Localization.getString("mainToolChange1") + "  " + tool + "\r" + Localization.getString("mainToolChange2");
+                Notifier.sendMessage(msg,"Tool change");
                 f.showMessage(Localization.getString("mainToolChange"), msg, 1);
                 var result = f.ShowDialog(this);
                 if (result == DialogResult.Yes)

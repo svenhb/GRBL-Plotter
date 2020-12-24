@@ -154,7 +154,7 @@ namespace GRBL_Plotter
         }
 
         private static Stopwatch stopwatch = new Stopwatch();
-        private void newCodeStart()
+        private void newCodeStart(bool cleanupGraphic = true)
         {
             Logger.Trace("----newCodeStart++++");
             stopwatch.Start();
@@ -176,7 +176,7 @@ namespace GRBL_Plotter
             VisuGCode.markSelectedFigure(-1);           // hide highlight
 			VisuGCode.pathBackground.Reset();
             grbl.posMarker = new xyPoint(0, 0);
-			Graphic.CleanUp();  // clear old data
+			if (cleanupGraphic) Graphic.CleanUp();  // clear old data
             statusStripSet(0, "Start import", Color.LightYellow);
             Application.DoEvents();
         }
@@ -203,7 +203,7 @@ namespace GRBL_Plotter
             Logger.Info("Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
             
             if (objectCount <= maxObjects)
-            {   if (imported) setfCTBCodeText(Graphic.GCode.ToString());
+            {   if (imported) setfCTBCodeText(Graphic.GCode.ToString());    // newCodeEnd
                 VisuGCode.getGCodeLines(fCTBCode.Lines, null, null);                    // get code path
             }
             else
@@ -361,9 +361,7 @@ namespace GRBL_Plotter
                 Cursor.Current = Cursors.Default;
                 pBoxTransform.Reset();
                 enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
-                cmsPicBoxEnable();
                 pictureBox1.Invalidate();
-//                showImportOptions();
                 return true;
             }
             else
@@ -642,7 +640,7 @@ namespace GRBL_Plotter
                     newCodeEnd(true);   // read code line 187
                     break;
                 case 2:
-                    fCTBCode.Text = Graphic.GCode.ToString();   // display code
+                    setfCTBCodeText(Graphic.GCode.ToString());  // loadTimer_Tick
                     foldCode();
                     loadTimerStep++;
                     break;
@@ -942,7 +940,7 @@ namespace GRBL_Plotter
                     UseCaseDialog();
                     newCodeStart();
                     GCodeFromSVG.ConvertFromText(txt.Trim((char)0x00), true);    // import as mm
-                    fCTBCode.Text = Graphic.GCode.ToString();
+                    setfCTBCodeText(Graphic.GCode.ToString());      // loadFromClipboard
                     Properties.Settings.Default.counterImportSVG += 1;
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return; }
@@ -970,7 +968,7 @@ namespace GRBL_Plotter
                     UseCaseDialog();
                     newCodeStart();
                     GCodeFromDXF.ConvertFromText(txt);
-                    fCTBCode.Text = Graphic.GCode.ToString();
+                    setfCTBCodeText(Graphic.GCode.ToString());      // loadFromClipboard
 
                     Properties.Settings.Default.counterImportDXF += 1;
                     if (fCTBCode.LinesCount <= 1)
@@ -1010,7 +1008,7 @@ namespace GRBL_Plotter
                 UseCaseDialog();
                 newCodeStart();
                 GCodeFromSVG.ConvertFromText(txt);
-                fCTBCode.Text = Graphic.GCode.ToString();
+                setfCTBCodeText(Graphic.GCode.ToString());      // loadFromClipboard
 
                 Properties.Settings.Default.counterImportSVG += 1;
                 if (fCTBCode.LinesCount <= 1)

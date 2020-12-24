@@ -116,9 +116,8 @@ namespace GRBL_Plotter
             {
                 importOptions = "";
                 simuStop();
-                newCodeStart();
-                //fCTBCode.Text = _text_form.textGCode;
-                setfCTBCodeText(Graphic.GCode.ToString());
+                newCodeStart(false);                        // don't clear graphics
+                setfCTBCodeText(Graphic.GCode.ToString());  // getGCodeFromText
                 setLastLoadedFile("from text", "");
                 newCodeEnd();
                 foldCode();
@@ -140,7 +139,7 @@ namespace GRBL_Plotter
             {
                 simuStop();
                 newCodeStart();
-                fCTBCode.Text = _shape_form.shapeGCode;
+                setfCTBCodeText(_shape_form.shapeGCode);
                 setLastLoadedFile("from shape", "");
                 newCodeEnd();
                 Properties.Settings.Default.counterImportShape += 1;
@@ -156,13 +155,11 @@ namespace GRBL_Plotter
             if (!isStreaming)
             {
                 simuStop();
-                newCodeStart();
-             //   fCTBCode.Text = _barcode_form.barcodeGCode;
-                setfCTBCodeText(Graphic.GCode.ToString());
+                newCodeStart(false);                        // don't clear graphics
+                setfCTBCodeText(Graphic.GCode.ToString());  // getGCodeFromBarcode
                 setLastLoadedFile("from barcode", "");
                 newCodeEnd();
                 Properties.Settings.Default.counterImportBarcode += 1;
-
             }
             else
                 MessageBox.Show(Localization.getString("mainStreamingActive"));
@@ -178,8 +175,8 @@ namespace GRBL_Plotter
             {
                 simuStop();
                 newCodeStart();
-                fCTBCode.Text = _image_form.imageGCode;
-                if(Properties.Settings.Default.importImageResoApply)
+                setfCTBCodeText(_image_form.imageGCode);
+                if (Properties.Settings.Default.importImageResoApply)
                     penDown.Width = (float)Properties.Settings.Default.importImageReso;
                 else
                     penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
@@ -199,9 +196,8 @@ namespace GRBL_Plotter
                 simuStop();
                 VisuGCode.clearHeightMap();
                 newCodeStart();
-                fCTBCode.Text = _heightmap_form.scanCode.ToString().Replace(',', '.');
+                setfCTBCodeText(_heightmap_form.scanCode.ToString().Replace(',', '.'));
                 setLastLoadedFile("from height map", "");
-//                lastLoadSource = "from height map"; 
                 newCodeEnd();
             }
         }

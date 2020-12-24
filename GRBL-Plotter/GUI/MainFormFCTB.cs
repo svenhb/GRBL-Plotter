@@ -165,7 +165,10 @@ namespace GRBL_Plotter
         }
 
         private bool setfCTBCodeText(string code)
-        {   fCTBCode.Text = code;  return true; }
+        {   cmsPicBoxEnable();
+            fCTBCode.Text = code;
+            return true;
+        }
 
         // mark clicked line in editor
         private int fCTBCodeClickedLineNow = 0;
