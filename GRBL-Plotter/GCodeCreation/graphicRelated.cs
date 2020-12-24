@@ -826,10 +826,9 @@ namespace GRBL_Plotter
         private static void ClipCode(double tileSizeX, double tileSizeY)//xyPoint p1, xyPoint p2)      // set dot only extra behandeln
         {	//const uint loggerSelect = (uint)LogEnable.ClipCode;
 			bool log = logEnable && ((logFlags & (uint)LogEnable.ClipCode) > 0);
-            finalPathList = new List<PathObject>();    // figures of one tile
+            finalPathList = new List<PathObject>();     // figures of one tile
             tileGraphicAll = new List<PathObject>();    // figures of all tiles  // PathObject contains List<grblMotion>, PathInformation, pathStart, pathEnd, dimension
             Dimensions tileOneDimension = new Dimensions();
-			//tileCommands = new Dictionary<string,string>();
 
             ItemPath tilePath = new ItemPath();
 
@@ -915,7 +914,8 @@ namespace GRBL_Plotter
 					tileID = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
                     countProperty((int)GroupOptions.ByTile, tileID);
                     tileCommand = getTileCommand(indexX, indexY, tileSizeX, tileSizeY);// new 2020-12-14
-                    //tileCommands.Add(tileID, tileCommand);
+                    if ((indexX == 0) && (indexY == 0) && Properties.Settings.Default.importGraphicClipSkipCode)
+                    { tileCommand = ""; }
 					
                     if (log) Logger.Trace("New tile {0} +++++++++++++++++++++++++++++++++++++++", tileID);
                     int foreachcnt = 1;
