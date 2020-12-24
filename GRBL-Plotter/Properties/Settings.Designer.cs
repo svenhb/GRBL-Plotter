@@ -6075,5 +6075,17 @@ namespace GRBL_Plotter.Properties {
                 this["notifierPushbulletToken"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicClipSkipCode {
+            get {
+                return ((bool)(this["importGraphicClipSkipCode"]));
+            }
+            set {
+                this["importGraphicClipSkipCode"] = value;
+            }
+        }
     }
 }
