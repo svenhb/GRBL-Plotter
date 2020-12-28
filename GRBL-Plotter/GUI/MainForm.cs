@@ -45,6 +45,7 @@
  * 2020-03-12 outsourcing GamePad, SimulatePath
  * 2020-05-06 add status strip info during check for Prog-update
  * 2020-09-18 split
+ * 2020-12-28 add Marlin support
  */
 
 using System;
@@ -308,7 +309,7 @@ namespace GRBL_Plotter
                     loadFile(args[1]);
                 }
                 SplashScreenTimer.Stop();
-                SplashScreenTimer.Interval = 3000;
+                SplashScreenTimer.Interval = 2000;
                 SplashScreenTimer.Start();
             }
             else
@@ -364,6 +365,18 @@ namespace GRBL_Plotter
             if ((txt.Contains("G92") || txt.Contains("G10") || txt.Contains("G43")) && (_coordSystem_form != null))
                 _coordSystem_form.refreshValues();
         }
+
+        private void sendCommands(string txt, bool jogging = false)
+        {
+            if (txt.Contains(";"))
+            {   string[] commands = txt.Split(';');
+                foreach (string cmd in commands)
+                { sendCommand(cmd.Trim(), jogging); }
+            }
+            else
+                sendCommand(txt, jogging);
+        }
+
         private void sendCommand(string txt, bool jogging = false)
         {
             if ((jogging) && (grbl.isVersion_0 == false))
@@ -377,6 +390,7 @@ namespace GRBL_Plotter
             if ((txt.Contains("G92") || txt.Contains("G10") || txt.Contains("G43")) && (_coordSystem_form != null))
                 _coordSystem_form.refreshValues();
         }
+
 
         private void OnRaiseOverrideMessage(object sender, OverrideMsgArgs e)   // command from streaming_form2 - Override
         { sendRealtimeCommand(e.MSG); }
@@ -416,8 +430,11 @@ namespace GRBL_Plotter
         {
             if (timerUpdateControls)
             {   timerUpdateControls = false;
-                updateControls();
+                Logger.Trace("MainTimer_Tick - timerUpdateControls");
                 updateLayout();
+                updateControls();       // enable controls if serial connected
+//                resizeJoystick();       // shows / hide A,B,C joystick controls
+                Invalidate();
             }
 
             if (isStreaming)
@@ -512,14 +529,14 @@ namespace GRBL_Plotter
         {
             if (e.Command.IndexOf("G91") >= 0)
             {
-                string final = e.Command;
+                string final = e.Command+";G1 ";
                 if (e.PosX != null)
                     final += string.Format(" X{0}", gcode.frmtNum((float)e.PosX));
                 if (e.PosY != null)
                     final += string.Format(" Y{0}", gcode.frmtNum((float)e.PosY));
                 if (e.PosZ != null)
                     final += string.Format(" Z{0}", gcode.frmtNum((float)e.PosZ));
-                sendCommand(final.Replace(',', '.'), true);
+                sendCommands(final.Replace(',', '.'), true);
             }
         }
         private void OnRaiseCameraClickEvent(object sender, XYEventArgs e)
@@ -554,8 +571,8 @@ namespace GRBL_Plotter
                     else if ((cmd.Trim().IndexOf("G90") == 0) || (cmd.Trim().IndexOf("G91") == 0))      // no G0 G1, then jogging
                     {
                         speed = 100 + (int)Math.Sqrt(realStepX * realStepX + realStepY * realStepY) * 120;
-                        s = String.Format("F{0} " + cmd + " X{1} Y{2}", speed, realStepX, realStepY).Replace(',', '.');
-                        sendCommand(s, true);
+                        s = String.Format("{0}; X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
+                        sendCommands(s, true);
                     }
                     else
                     {
@@ -697,7 +714,6 @@ namespace GRBL_Plotter
             int speed = (int)Math.Max(joystickXYSpeed[indexX], joystickXYSpeed[indexY]);
             String strX = gcode.frmtNum(joystickXYStep[indexX] * dirX);
             String strY = gcode.frmtNum(joystickXYStep[indexY] * dirY);
-            String s = "";
             if (speed > 0)
             { if (Properties.Settings.Default.machineLimitsAlarm && Properties.Settings.Default.machineLimitsShow)
                 {
@@ -718,13 +734,16 @@ namespace GRBL_Plotter
                 }
                 //if ((e.JogPosX == 0) && (e.JogPosY == 0))
                 //    s = String.Format("(stop)");// sendRealtimeCommand(133); 
+                String s = "G91 ";
+                if (grbl.isMarlin) { s += ";G1 "; }
                 if (index_X == 0)
-                    s = String.Format("G91 Y{0} F{1}", strY, speed).Replace(',', '.');
+                    s += String.Format("Y{0} F{1}", strY, speed).Replace(',', '.');
                 else if (index_Y == 0)
-                    s = String.Format("G91 X{0} F{1}", strX, speed).Replace(',', '.');
+                    s += String.Format("X{0} F{1}", strX, speed).Replace(',', '.');
                 else
-                    s = String.Format("G91 X{0} Y{1} F{2}", strX, strY, speed).Replace(',', '.');
-                sendCommand(s, true);
+                    s += String.Format("X{0} Y{1} F{2}", strX, strY, speed).Replace(',', '.');
+
+                sendCommands(s, true);
             }
         }
         private void virtualJoystickXY_MouseUp(object sender, MouseEventArgs e)
@@ -733,7 +752,7 @@ namespace GRBL_Plotter
         { if (!grbl.isVersion_0) sendRealtimeCommand(133); }    //0x85
 
         private void virtualJoystickXY_Enter(object sender, EventArgs e)
-        { if (grbl.isVersion_0) sendCommand("G91G1F100");
+        { if (grbl.isVersion_0) sendCommands("G91;G1F100");
             gB_Jogging.BackColor = Color.LightGreen;
         }
         private void virtualJoystickXY_Leave(object sender, EventArgs e)
@@ -761,8 +780,10 @@ namespace GRBL_Plotter
             String strZ = gcode.frmtNum(joystickZStep[indexZ] * dirZ);
             if (speed > 0)
             {
-                String s = String.Format("G91 Z{0} F{1}", strZ, speed).Replace(',', '.');
-                sendCommand(s, true);
+                String s = "G91 ";
+                if (grbl.isMarlin) { s += ";G1 "; }
+                s += String.Format("Z{0} F{1}", strZ, speed).Replace(',', '.');
+                sendCommands(s, true);
             }
         }
         private void virtualJoystickA_JoyStickEvent(object sender, JogEventArgs e)
@@ -780,8 +801,10 @@ namespace GRBL_Plotter
             String strZ = gcode.frmtNum(joystickAStep[indexA] * dirA);
             if (speed > 0)
             {
-                String s = String.Format("G91 {0}{1} F{2}", name, strZ, speed).Replace(',', '.');
-                sendCommand(s, true);
+                String s = "G91 ";
+                if (grbl.isMarlin) { s += ";G1 "; }
+                s += String.Format("{0}{1} F{2}", name, strZ, speed).Replace(',', '.');
+                sendCommands(s, true);
             }
         }
         private void virtualJoystickB_JoyStickEvent(object sender, JogEventArgs e)
@@ -817,53 +840,47 @@ namespace GRBL_Plotter
             { sendCommand("M9"); }
         }
         private void btnHome_Click(object sender, EventArgs e)
-        { sendCommand("$H"); }
+        {   if (grbl.isMarlin)
+                sendCommand("G28");
+            else
+                sendCommand("$H"); }
         private void btnZeroX_Click(object sender, EventArgs e)
-        { sendCommand(zeroCmd + " X0"); }
+        { sendCommands((grbl.isMarlin?"G92":zeroCmd) + " X0"); }
         private void btnZeroY_Click(object sender, EventArgs e)
-        { sendCommand(zeroCmd + " Y0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " Y0"); }
         private void btnZeroZ_Click(object sender, EventArgs e)
-        { sendCommand(zeroCmd + " Z0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " Z0"); }
         private void btnZeroA_Click(object sender, EventArgs e)
-        { sendCommand(zeroCmd + " " + ctrl4thName + "0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " " + ctrl4thName + "0"); }
         private void btnZeroB_Click(object sender, EventArgs e)
-        { sendCommand(zeroCmd + " B0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " B0"); }
         private void btnZeroC_Click(object sender, EventArgs e)
-        { sendCommand(zeroCmd + " C0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " C0"); }
         private void btnZeroXY_Click(object sender, EventArgs e)
-        { sendCommand(zeroCmd + " X0 Y0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " X0 Y0"); }
         private void btnZeroXYZ_Click(object sender, EventArgs e)
-        { sendCommand(zeroCmd + " X0 Y0 Z0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " X0 Y0 Z0"); }
 
         private void btnJogX_Click(object sender, EventArgs e)
-        {   if (cBMoveG0.Checked)
-                sendCommand("G0 G90 X0");
-            else
-                sendCommand("G90 X0 F" + joystickXYSpeed[5].ToString(), true); }
+        { btnMoveZero("X0", joystickXYSpeed[5].ToString()); }
         private void btnJogY_Click(object sender, EventArgs e)
-        {
-            if (cBMoveG0.Checked)
-                sendCommand("G0 G90 Y0");
-            else
-                sendCommand("G90 Y0 F" + joystickXYSpeed[5].ToString(), true); }
+        { btnMoveZero("Y0", joystickXYSpeed[5].ToString()); }
         private void btnJogZ_Click(object sender, EventArgs e)
-        {
-            if (cBMoveG0.Checked)
-                sendCommand("G0 G90 Z0");
-            else
-                sendCommand("G90 Z0 F" + joystickZSpeed[5].ToString(), true); }
+        { btnMoveZero("Z0", joystickZSpeed[5].ToString()); }
         private void btnJogZeroA_Click(object sender, EventArgs e)
-        {
-            if (cBMoveG0.Checked)
-                sendCommand("G0 G90 " + ctrl4thName + "0");
-            else
-                sendCommand("G90 " + ctrl4thName + "0 F" + joystickZSpeed[5].ToString(), true); }
+        { btnMoveZero(ctrl4thName+"0", joystickZSpeed[5].ToString()); }
         private void btnJogXY_Click(object sender, EventArgs e)
-        {
-            if (cBMoveG0.Checked)
-                sendCommand("G0 G90 X0 Y0");
-            else
-                sendCommand("G90 X0 Y0 F" + joystickXYSpeed[5].ToString(), true); }
+        { btnMoveZero("X0Y0", joystickXYSpeed[5].ToString()); }
+
+        private void btnMoveZero(string axis, string fed){
+            string seperate = "";
+            if (grbl.isMarlin) seperate += ";";
+            string mode = "G1";
+            string feed = "F" + fed;
+            if (cBMoveG0.Checked) { mode = "G0"; feed = ""; }
+            string cmd = string.Format("G90{0}{1}{2}{3}",seperate,mode,axis,feed);
+            sendCommands(cmd, true);
+        }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
@@ -1090,6 +1107,8 @@ namespace GRBL_Plotter
         {   int virtualJoystickSize = Properties.Settings.Default.guiJoystickSize;
             int zRatio = 25;                    // 20% of xyJoystick width
             int zCount = 1;
+            Logger.Trace("resizeJoystick() visible:  A:{0} B:{1} C:{2}", grbl.axisA, grbl.axisB, grbl.axisC);
+
             // grbl.axisB = true;
             // grbl.axisC = true;
             if (ctrl4thAxis || grbl.axisA) zCount = 2;
@@ -1136,7 +1155,12 @@ namespace GRBL_Plotter
             virtualJoystickA.Size = new Size(aWidth, xyWidth);
             virtualJoystickB.Size = new Size(bWidth, xyWidth);
             virtualJoystickC.Size = new Size(cWidth, xyWidth);
-//            toolStripStatusLabel1.Text = string.Format("[Resize Form XY:{0} Z:{1} A:{2} B:{3} C:{4} spaceX:{5}]", xyWidth, zWidth, aWidth, bWidth, cWidth, spaceX);
+            virtualJoystickXY.Invalidate();
+            virtualJoystickZ.Invalidate();
+            virtualJoystickA.Invalidate();
+            virtualJoystickB.Invalidate();
+            virtualJoystickC.Invalidate();
+            //            toolStripStatusLabel1.Text = string.Format("[Resize Form XY:{0} Z:{1} A:{2} B:{3} C:{4} spaceX:{5}]", xyWidth, zWidth, aWidth, bWidth, cWidth, spaceX);
         }
 
 

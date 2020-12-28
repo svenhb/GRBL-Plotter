@@ -144,9 +144,9 @@ namespace GRBL_Plotter
 
                                 if (_serial_form.getFreeBuffer() >= 99)
                                 {
-                                    gamePadSendString = "G91" + gamePadSendString;
+                                    gamePadSendString = "G91;" + gamePadSendString;
                                     gamePadSendString += string.Format("F{0:0}", feedRate);
-                                    sendCommand(gamePadSendString.Replace(",", "."), true);
+                                    sendCommands(gamePadSendString.Replace(",", "."), true);
                                 }
                             }
                             else
@@ -159,7 +159,7 @@ namespace GRBL_Plotter
                     else
                     {   // if (datas.Length > 0)
                         if ((gamePadSendString.Length > 0) && (_serial_form.getFreeBuffer() >= 99))     // keep sending commands if joystick is still on full speed
-                        { sendCommand(gamePadSendString.Replace(",", "."), true); }
+                        { sendCommands(gamePadSendString.Replace(",", "."), true); }
                     }
                 }
                 else

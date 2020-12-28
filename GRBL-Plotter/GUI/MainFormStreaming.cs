@@ -419,7 +419,7 @@ namespace GRBL_Plotter
 
             resetStreaming();
         }
-        private void resetStreaming()
+        private void resetStreaming(bool updateCtrls=true)
         {
             isStreaming = false;
             isStreamingCheck = false;
@@ -433,8 +433,10 @@ namespace GRBL_Plotter
             btnStreamStart.Enabled = true;
             btnStreamCheck.Enabled = true;
             timerUpdateControlSource = "resetStreaming";
-            updateControls();
-            pictureBox1.Invalidate();
+            if (updateCtrls)
+            {   updateControls();
+                pictureBox1.Invalidate();
+            }
             ControlPowerSaving.EnableStandby();
         }
         private void btnStreamPause_Click(object sender, EventArgs e)

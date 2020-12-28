@@ -514,7 +514,7 @@ namespace GRBL_Plotter
         }
         public void moveToPickup(object sender, EventArgs e)   // event from setup form
         {
-            sendCommand(_setup_form.commandToSend);
+            sendCommands(_setup_form.commandToSend);
             _setup_form.commandToSend = "";
         }
 
@@ -1251,8 +1251,7 @@ namespace GRBL_Plotter
                 btnZeroA.Text = ctrl4thName + " nullen";
 
             virtualJoystickA.Visible |= ctrl4thAxis || grbl.axisA;
-            if (ctrl4thAxis)
-                virtualJoystickA.JoystickText = ctrl4thName;
+            virtualJoystickA.JoystickText = ctrl4thName;
 
             btnJogZeroA.Visible = ctrl4thAxis || grbl.axisA;
             btnJogZeroA.Text = ctrl4thName + "=0";

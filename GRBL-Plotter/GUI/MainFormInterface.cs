@@ -16,7 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/* * 2020-09-18 split file
+/* 
+ * 2020-09-18 split file
+ * 2020-12-28 add Marlin support (replace commands)
  */
 
 using System;
@@ -366,13 +368,8 @@ namespace GRBL_Plotter
 		private void processReset()
         {
             timerUpdateControlSource = "processReset";
-   //         updateControls();
-            if (this.virtualJoystickXY.InvokeRequired)
-            { this.virtualJoystickXY.BeginInvoke((MethodInvoker)delegate () { updateControls(); }); }
-            else
-            { updateControls(); }
             
-            if (logPosEvent) Logger.Trace("processReset");
+            Logger.Trace("processReset");
             if (!_serial_form.checkGRBLSettingsOk())   // check 30 kHz limit
 			{	statusStripSet(1, grbl.lastMessage, Color.Orange);
 				statusStripSet(2, Localization.getString("statusStripeCheckCOM"), Color.Yellow);
@@ -393,7 +390,7 @@ namespace GRBL_Plotter
 				sendCommand(String.Format("G{0}", coordinateG));
 
 				_serial_form.addToLog("* Restore saved position after reset\r\n* and set initial feed rate:");
-				string setAxis = String.Format("{0} X{1} Y{2} Z{3} ", zeroCmd, x, y, z);
+				string setAxis = String.Format("{0} X{1} Y{2} Z{3} ", (grbl.isMarlin ? "G92 " : zeroCmd), x, y, z);
 
 				if (grbl.axisA)
 				{
@@ -409,21 +406,19 @@ namespace GRBL_Plotter
 
 				setAxis += String.Format("F{0}", Properties.Settings.Default.importGCXYFeed);
 
-				sendCommand(setAxis.Replace(',', '.'));
-			}
+				sendCommands(setAxis.Replace(',', '.'));
+            }
 
             if (Properties.Settings.Default.resetSendCodeEnable)
 			{   _serial_form.addToLog("* Code after reset: " + Properties.Settings.Default.resetSendCode + " in [Setup - Program behavior - Flow control]");
 				processCommands(Properties.Settings.Default.resetSendCode);
 			}
 
-			setGRBLBuffer();
-			flagResetOffset = false;
-            MainTimer.Stop();
-            MainTimer.Start();
-            timerUpdateControls = true; timerUpdateControlSource = "process Reset";
-            if (logPosEvent) Logger.Trace("ResetEvent()  connect {0}", _serial_form.serialPortOpen);
-            resetStreaming();
+            flagResetOffset = false;
+            timerUpdateControls = true;
+            setGRBLBuffer();
+            Logger.Trace("ResetEvent()  connect {0}", _serial_form.serialPortOpen);
+            resetStreaming(false);
         }
 
         private void setGRBLBuffer()
@@ -436,7 +431,7 @@ namespace GRBL_Plotter
                     if (grbl.bufferSize > 0)
                     {
                         grbl.RX_BUFFER_SIZE = (grbl.bufferSize != 128) ? grbl.bufferSize : 127;
-                        _serial_form.addToLog("* Read buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
+                        if (!grbl.isMarlin) _serial_form.addToLog("* Read buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
                         Logger.Info("Read buffer size of {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
                     }
                     else
@@ -446,16 +441,17 @@ namespace GRBL_Plotter
                         else
                             grbl.RX_BUFFER_SIZE = 127;
 
-                        _serial_form.addToLog("* Assume buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
+                        if (!grbl.isMarlin) _serial_form.addToLog("* Assume buffer size of " + grbl.RX_BUFFER_SIZE + " bytes");
                         Logger.Info("Assume buffer size of {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
                     }
                 }
                 else
                 {  //if (grbl.RX_BUFFER_SIZE != 127)
-                    _serial_form.addToLog("* Buffer size was manually set to " + grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
+                    if (!grbl.isMarlin) _serial_form.addToLog("* Buffer size was manually set to " + grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
                     Logger.Info("Buffer size was manually set to {0} [Setup - Flow control - grbl buffer size]", grbl.RX_BUFFER_SIZE);
                 }
-                statusStripSet(1, string.Format("grbl-controller connected: vers: {0}, axis: {1}, buffer: {2}", _serial_form.grblVers, grbl.axisCount, grbl.RX_BUFFER_SIZE), Color.Lime);
+                if (!grbl.isMarlin) statusStripSet(1, string.Format("grbl-controller connected: vers: {0}, axis: {1}, buffer: {2}", _serial_form.grblVers, grbl.axisCount, grbl.RX_BUFFER_SIZE), Color.Lime);
+                else statusStripSet(1, string.Format("Marlin connected: axis: {0}", grbl.axisCount), Color.Lime);
             }
         }
 
