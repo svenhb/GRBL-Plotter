@@ -206,6 +206,8 @@ namespace GRBL_Plotter
             this.rBImportGraphicClip0 = new System.Windows.Forms.RadioButton();
             this.cBImportGraphicTile = new System.Windows.Forms.CheckBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cBImportGraphicClipSkipCode = new System.Windows.Forms.CheckBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.cBImportGraphicClipOffsetApply = new System.Windows.Forms.CheckBox();
@@ -774,8 +776,6 @@ namespace GRBL_Plotter
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.cBImportGraphicClipSkipCode = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -2481,6 +2481,19 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.groupBox7, "groupBox7");
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
+            // 
+            // cBImportGraphicClipSkipCode
+            // 
+            resources.ApplyResources(this.cBImportGraphicClipSkipCode, "cBImportGraphicClipSkipCode");
+            this.cBImportGraphicClipSkipCode.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipSkipCode;
+            this.cBImportGraphicClipSkipCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipSkipCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicClipSkipCode.Name = "cBImportGraphicClipSkipCode";
+            this.cBImportGraphicClipSkipCode.UseVisualStyleBackColor = true;
+            // 
+            // label34
+            // 
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.Name = "label34";
             // 
             // label11
             // 
@@ -4717,7 +4730,8 @@ namespace GRBL_Plotter
             resources.GetString("comboBox1.Items2"),
             resources.GetString("comboBox1.Items3"),
             resources.GetString("comboBox1.Items4"),
-            resources.GetString("comboBox1.Items5")});
+            resources.GetString("comboBox1.Items5"),
+            resources.GetString("comboBox1.Items6")});
             resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Text = global::GRBL_Plotter.Properties.Settings.Default.ctrl4thName;
@@ -7918,19 +7932,6 @@ namespace GRBL_Plotter
             this.cBshowImportDialog.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importShowUseCaseDialog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
-            // 
-            // label34
-            // 
-            resources.ApplyResources(this.label34, "label34");
-            this.label34.Name = "label34";
-            // 
-            // cBImportGraphicClipSkipCode
-            // 
-            resources.ApplyResources(this.cBImportGraphicClipSkipCode, "cBImportGraphicClipSkipCode");
-            this.cBImportGraphicClipSkipCode.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGraphicClipSkipCode;
-            this.cBImportGraphicClipSkipCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGraphicClipSkipCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGraphicClipSkipCode.Name = "cBImportGraphicClipSkipCode";
-            this.cBImportGraphicClipSkipCode.UseVisualStyleBackColor = true;
             // 
             // ControlSetupForm
             // 

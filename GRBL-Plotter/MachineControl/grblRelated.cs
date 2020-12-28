@@ -45,6 +45,7 @@ namespace GRBL_Plotter
         public static bool wcoChanged = true;
 
         public static bool isVersion_0 = true;  // note if grbl version <=0.9 or >=1.1
+        public static bool isMarlin = false;  
 
         public static int axisCount = 0;
         public static bool axisA = false;       // axis A available?
@@ -98,7 +99,7 @@ namespace GRBL_Plotter
         public static Dictionary<string, string> messageAlarmCodes = new Dictionary<string, string>();
         public static Dictionary<string, string> messageErrorCodes = new Dictionary<string, string>();
         public static Dictionary<string, string> messageSettingCodes = new Dictionary<string, string>();
-        private static sConvert[] statusConvert = new sConvert[10];
+        private static sConvert[] statusConvert = new sConvert[11];
 
         public static void init()   // initialize lists
         {
@@ -117,6 +118,7 @@ namespace GRBL_Plotter
             statusConvert[7].msg = "Home";  statusConvert[7].text = Localization.getString("grblHome");  statusConvert[7].state = grblState.home; statusConvert[7].color = Color.Magenta;
             statusConvert[8].msg = "Sleep"; statusConvert[8].text = Localization.getString("grblSleep"); statusConvert[8].state = grblState.sleep;statusConvert[8].color = Color.Yellow;
             statusConvert[9].msg = "Probe"; statusConvert[9].text = Localization.getString("grblProbe"); statusConvert[9].state = grblState.probe;statusConvert[9].color = Color.LightBlue;
+            statusConvert[10].msg = "Marlin"; statusConvert[10].text = "Marlin mode"; statusConvert[10].state = grblState.Marlin; statusConvert[10].color = Color.Yellow;
 
             settings.Clear();
             coordinates.Clear();
@@ -516,7 +518,7 @@ namespace GRBL_Plotter
         }
     }
 
-    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, reset, unknown };
+    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, reset, unknown, Marlin };
     public enum grblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode, waitstop };
 
     public struct sConvert

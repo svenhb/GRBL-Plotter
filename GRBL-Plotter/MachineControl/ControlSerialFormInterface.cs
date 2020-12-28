@@ -25,6 +25,7 @@
 */
 /* 2020-09-18 split file
  * 2020-12-18 add CodeBuffer max
+ * 2020-12-27 add Marlin support
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -90,27 +91,102 @@ namespace GRBL_Plotter
         private string listInfoSend()
         { return string.Format("{0}sendBuffer snt:{1,3}  cnfrmnd:{2,3}  cnt:{3,3}  BFree:{4,3}  lineNr:{5}  code:'{6}' state:{7}", "", sendBuffer.IndexSent, sendBuffer.IndexConfirmed, sendBuffer.Count, grblBufferFree, sendBuffer.GetConfirmedLineNr(), sendBuffer.GetConfirmedLine(), grblStateNow.ToString()); }
 
+
 #region processGRBL
-/********************************************************************************* 
-* processGrblMessages - called in RX event chain, from serialPort1_DataReceived()
-* 1) processGrblOkMessage() processOkStreaming();   			process 'ok'
-* 2) processGrblRealTimeStatus, processGrblPositionUpdate, 	process '< Idle | MPos:0.000,0.000,0.000 | FS:0,0 | WCO:0.000,0.000,0.000 >'
-*    processGrblStateChange
-* 3) processGrblWelcomeMessage		'Reset'
-* 4) processGrblFeedbackMessage	'[GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]'
-* 5) processGrblAlarmMessage
-* 6) processGrblErrorMessage
-* 7) processGrblUserQuery			'$$'
-*********************************************************************************/
-		private void processGrblMessages(object sender, EventArgs e)	// https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#message-summary
+/***** Seperate grbl / Marlin support *****/
+        private void processMessages(object sender, EventArgs e)	// https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#message-summary
         {
-            if (rxString == "")    { isDataProcessing = false; return; }     // unlock serialPort1_DataReceived
-			if (countShutdown > 0) { isDataProcessing = false; return; }  
-			
+            if (rxString == "") { isDataProcessing = false; return; }     // unlock serialPort1_DataReceived
+            if (countShutdown > 0) { isDataProcessing = false; return; }
+
+            if (!isMarlin)
+                processGrblMessages(sender, e);
+            else
+                processMarlinMessages(sender, e);
+
+            isDataProcessing = false;                   // unlock serialPort1_DataReceived
+        }
+
+        private void processMarlinMessages(object sender, EventArgs e)	// https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#message-summary
+        {
+            bool isOk = rxString.StartsWith("ok");
+            bool isMarlinEcho = rxString.StartsWith("echo:") || rxString.StartsWith("start");
+
+/***** buffer processed *****/
+            if (isOk)
+            {   processGrblOkMessage();
+                processOkStreaming();                          // process all other messages
+                if (!getMarlinPositionWasSent)
+                {   if (!isStreaming || isStreamingPause)
+                    {   if (!(isHeightProbing || (cBStatus1.Checked || cBStatus.Checked || (countPreventOutput > 0))))
+                            addToLog("< ok");   // string.Format("< {0}", rxString)); // < ok
+                    }
+                }
+                else
+                    getMarlinPositionWasSent = false;
+
+                if (isStreaming)
+                {
+                    if (streamingBuffer.IndexConfirmed >= streamingBuffer.Count)
+                    { streamingFinish(); }
+                }
+            }
+/***** Marlin start up *****/
+            else if (isMarlinEcho)
+            {   if (rxString.Contains("Marlin"))
+                {   marlinReset();
+                }    // set global flag
+                addToLog(rxString);
+            }
+
+            else
+            {   
+                // M114 response: X:0.00 Y:0.00 Z:0.00 E:0.00 Count X:0 Y:0 Z:0
+                if (rxString.Contains("X:") && rxString.Contains("Y:") && rxString.Contains("Z:"))
+                {   string[] axis = rxString.Split(' ');
+                    axisCount = grbl.getPosition(iamSerial, "WPOS:" + axis[0].Substring(2) + "," + axis[1].Substring(2) + "," + axis[2].Substring(2) + "," + axis[3].Substring(2) + " ", ref posWork);
+                    posMachine = posWork;
+                    processGrblPositionUpdate();        // 1st status would be reset
+                    grblStateNow = grblState.Marlin;
+                    rtsrResponse--;
+                    if (cBStatus.Checked) addToLog(rxString);
+//                    timerSerial.Interval = 250;
+                }
+                else
+                    addToLog(rxString);
+            }
+
+            isDataProcessing = false;                   // unlock serialPort1_DataReceived
+        }
+
+        private void marlinReset()
+        {
+            isMarlin = true;
+            grblStateNow = grblState.reset;
+            if (iamSerial == 1) { grbl.isMarlin = true; }
+            addToLog("Set Marlin mode");
+            processWelcomeMessage();
+            serialPort.Write("M114\n"); getMarlinPositionWasSent = true;
+        }
+
+        /********************************************************************************* 
+        * processGrblMessages - called in RX event chain, from serialPort1_DataReceived()
+        * 1) processGrblOkMessage() processOkStreaming();   			process 'ok'
+        * 2) processGrblRealTimeStatus, processGrblPositionUpdate, 	process '< Idle | MPos:0.000,0.000,0.000 | FS:0,0 | WCO:0.000,0.000,0.000 >'
+        *    processGrblStateChange
+        * 3) processGrblWelcomeMessage		'Reset'
+        * 4) processGrblFeedbackMessage	'[GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]'
+        * 5) processGrblAlarmMessage
+        * 6) processGrblErrorMessage
+        * 7) processGrblUserQuery			'$$'
+        *********************************************************************************/
+        private void processGrblMessages(object sender, EventArgs e)	// https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#message-summary
+        {			
             int tmp;
             char[] charsToTrim = { '<', '>', '[', ']', ' ' };
             bool isStatusReport = (((tmp = rxString.IndexOf('<')) >= 0) && (rxString.IndexOf('>') > tmp));
-			bool  isOk = rxString.StartsWith("ok");
+			bool isOk = rxString.StartsWith("ok");
+            bool isMarlinEcho = false;
 
             if (isStatusReport)
             { 	if (logReceiveStatus) Logger.Trace("s{0} RX '{1}'", iamSerial, rxString); }
@@ -118,7 +194,9 @@ namespace GRBL_Plotter
             { 	if (isOk)   // sendBuffer.GetConfirmedLine = index = sinnlos wg. FeedbackMessage
                 {	} //if (logReceive) Logger.Trace("Ser:{0} RX '{1}'  sent:'{2}'  line:{3}   BufferFree:{4}", iamSerial, rxString, sendBuffer.GetConfirmedLine(), streamingBuffer.GetConfirmedLineNr(), grblBufferFree); }
 				else
-				{	if (logReceive) Logger.Trace("s{0} RX '{1}'", iamSerial, rxString); }
+				{	if (logReceive) Logger.Trace("s{0} RX '{1}'", iamSerial, rxString);
+                    isMarlinEcho = rxString.StartsWith("echo:") || rxString.StartsWith("start");
+                }
 			}
 		
 /***** action by occurance / importance *****/
@@ -132,6 +210,12 @@ namespace GRBL_Plotter
                         addToLog("< ok");   // string.Format("< {0}", rxString)); // < ok
                 }
             }
+/***** Marlin start up *****/
+            else if (isMarlinEcho)
+            {   if (rxString.Contains("Marlin") || rxString.Contains("Unknown command:"))
+                {   marlinReset();                }    // set global flag
+                addToLog(rxString);
+            }
 
 /***** Process status message with coordinates *****/
             else if (isStatusReport)
@@ -144,7 +228,11 @@ namespace GRBL_Plotter
 
 /***** reset message *****/
             else if (rxString.ToLower().IndexOf("['$' for help]") >= 0)
-            {   processGrblWelcomeMessage(rxString); }	                // https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#welcome-message
+            {
+                isMarlin = false;
+                grbl.isMarlin = false;
+                processGrblWelcomeMessage(rxString);    // https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#welcome-message
+            }
 
 /***** Process feedback message with coordinates  *****/
             else if (((tmp = rxString.IndexOf('[')) >= 0) && (rxString.IndexOf(']') > tmp))
@@ -211,7 +299,7 @@ namespace GRBL_Plotter
             else if (rxLine.Contains("($TI"))     { addToLog("[Tool " + rxLine.Substring(4).Trim(')') + " selected]"); toolInSpindle = true; }
             else if (rxLine == "($TE)")    { addToLog("[Tool change finished]"); }
 
-            if (cBStatus1.Checked || cBStatus.Checked)  // TX in line 737
+            if ((cBStatus1.Checked || cBStatus.Checked) && (!isMarlin || isStreaming))  // TX in line 737
             {   addToLog(string.Format("RX< {0,-30} {1,2} {2,3}  line-Nr:{3}", sendBuffer.GetConfirmedLine(), receivedByteCount, grblBufferFree, (sendBuffer.GetConfirmedLineNr()+1)));  }
 
             if ((mParserState.changed) && (grblStateNow != grblState.probe))    // probe will be send later
@@ -366,15 +454,8 @@ namespace GRBL_Plotter
 /***** processGrblWelcomeMessage  RESET *****/
 		private void processGrblWelcomeMessage(string rxString)
         {
-            countMissingStatusReport = 100;     // reset error counter
-            waitForIdle = false;
-            waitForOk = false;
-            externalProbe = false;
-            countStateReset = 8;    // reset message received
-            rxErrorCount = 0;
-            rtsrResponse = 0;       // real time status report sent / receive differnence                    
-            isHoming = false;
-            resetStreaming();       // handleRX_Reset
+            processWelcomeMessage();
+
             addToLog("* RESET\r\n< " + rxString);
             isGrblVers0 = false;    // default, if no welcome message received
             
@@ -387,25 +468,38 @@ namespace GRBL_Plotter
             {	grbl.axisCount = 0;
 				grbl.isVersion_0 = isGrblVers0;
 			}
-//            sendResetEvent();
-            resetProcessed = false;
 
             grblVers = rxString.Substring(0, rxString.IndexOf('['));
 
+			addToLog("* Read grbl settings, hide response from '$$', '$#'");
+			readSettings();
+			requestSend("$10=2"); //if (grbl.getSetting(10) != 2) { requestSend("$10=2"); } // to get buffer size
+            return;
+        }
+        private void processWelcomeMessage()
+        {
+            countMissingStatusReport = 10;     // reset error counter
+            waitForIdle = false;
+            waitForOk = false;
+            externalProbe = false;
+            countStateReset = 8;    // reset message received
+            rxErrorCount = 0;
+            rtsrResponse = 0;       // real time status report sent / receive differnence                    
+            isHoming = false;
+            resetStreaming();       // handleRX_Reset
+            isGrblVers0 = true;
+            resetProcessed = false;
             lblSrBf.Text = "";
             lblSrFS.Text = "";
             lblSrPn.Text = "";
             lblSrLn.Text = "";
             lblSrOv.Text = "";
             lblSrA.Text = "";
-            timerSerial.Enabled = true;
             lastError = "";
-			addToLog("* Read grbl settings, hide response from '$$', '$#'");
-			readSettings();
-			requestSend("$10=2"); //if (grbl.getSetting(10) != 2) { requestSend("$10=2"); } // to get buffer size
-            return;
+            timerSerial.Enabled = true;
         }
-		public void readSettings()
+
+        public void readSettings()
         {   countPreventOutput = 10; countPreventEvent = 10;
             requestSend("$$");  // get setup
             requestSend("$#");  // get parameter

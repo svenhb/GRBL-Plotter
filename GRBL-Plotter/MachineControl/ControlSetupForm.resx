@@ -10223,12 +10223,15 @@ Note machine coordinates</value>
     <value>C</value>
   </data>
   <data name="comboBox1.Items3" xml:space="preserve">
-    <value>U</value>
+    <value>E</value>
   </data>
   <data name="comboBox1.Items4" xml:space="preserve">
-    <value>V</value>
+    <value>U</value>
   </data>
   <data name="comboBox1.Items5" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="comboBox1.Items6" xml:space="preserve">
     <value>W</value>
   </data>
   <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">

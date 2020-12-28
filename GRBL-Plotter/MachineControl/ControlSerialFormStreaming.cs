@@ -74,7 +74,7 @@ namespace GRBL_Plotter
 ****************************************************************************/
         public void startStreaming(IList<string> gCodeList, int startAtLine, bool check = false)
         {
-            grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1;
+            grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
             Logger.Info("Ser:{0} startStreaming at line:{1} ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine);
             if (grblCharacterCounting)
                 Logger.Info("Streaming Protocol: Character-Counting");
@@ -541,7 +541,18 @@ namespace GRBL_Plotter
                 }
                 #endregion
 
-                requestSend(line, streamingBuffer.GetSentLineNr(), false);                                  // fill sendBuffer, 
+                if (isMarlin)
+                {   if (updateMarlinPosition || (--insertMarlinCounter <= 0))
+                    {   requestSend("M114", streamingBuffer.GetSentLineNr(), false);    // insert getPosition commands
+                        getMarlinPositionWasSent = true;
+                        streamingBuffer.LineWasSent();
+                        streamingStateOld = streamingStateNow;
+                        lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
+                        insertMarlinCounter = insertMarlinCounterReload;
+                    }
+                    updateMarlinPosition = false;
+                }
+                requestSend(line, streamingBuffer.GetSentLineNr(), false);   // fill sendBuffer, 
                 streamingBuffer.LineWasSent();
                 streamingStateOld = streamingStateNow;
                 lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable

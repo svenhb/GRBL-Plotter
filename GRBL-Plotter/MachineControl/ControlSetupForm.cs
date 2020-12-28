@@ -735,6 +735,8 @@ namespace GRBL_Plotter
             commandToSend = "";
             if (result == DialogResult.Yes)
             {   commandToSend = String.Format("G53 G91 G0 X{0} Y{1}",x,y).Replace(',', '.');
+                if (grbl.isMarlin)
+                    commandToSend = String.Format("G53;G91;G0 X{0} Y{1}", x, y).Replace(',', '.');
             }
         }
 

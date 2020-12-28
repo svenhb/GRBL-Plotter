@@ -51,7 +51,7 @@
  * 2020-09-06 Missing xx Real-time Status Reports per 10 seconds during MessageBox for Tool exchange
  *            change to System.Timers.Timer
  * 2020-09-18 split file
- * 2020-12-01 try Marlin support
+ * 2020-12-27 add Marlin support
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -95,7 +95,7 @@ namespace GRBL_Plotter
 		
         /* counters will be decreased in timer event - action on 0 */
         private int countMinimizeForm = 0;              // timer to minimize form
-        private int countMissingStatusReport = 100;     // count missing status reports after sending ?
+        private int countMissingStatusReport = 20;      // count missing status reports after sending ?
         private int countCallCheckGRBL = 0;             // timer to check result after start check
         private int countStateReset = 10;               // 
         private int countPreventOutput = 0;             // prevent log output e.g. during startup $$
@@ -108,6 +108,10 @@ namespace GRBL_Plotter
         private int countLoggerUpdate = 0;
 
         private bool isMarlin = false;
+        private bool updateMarlinPosition = false;
+        private bool getMarlinPositionWasSent = false;
+        private int insertMarlinCounterReload = 10;
+        private int insertMarlinCounter = 10;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -283,13 +287,14 @@ namespace GRBL_Plotter
             {   try
                 {   
                     if (isMarlin) {
-                        serialPort.Write("M114\n");
+                        if (!isStreaming) { serialPort.Write("M114\n"); getMarlinPositionWasSent = true; }
+                        updateMarlinPosition = true;
                     }
                     else {
                         var dataArray = new byte[] { Convert.ToByte('?') };
                         serialPort.Write(dataArray, 0, 1);
+                        rtsrResponse++;     						// real time status report was sent  / will be decreased in processGrblMessages()                  
                     }
-                    rtsrResponse++;     						// real time status report was sent  / will be decreased in processGrblMessages()                  
                 }
                 catch (Exception er)
                 {   Logger.Error(er, "Ser:{0} GRBL status not received ",iamSerial);
@@ -297,14 +302,19 @@ namespace GRBL_Plotter
                     serialPort.Close();
                 }
 				
-                if (!isHoming && (countMissingStatusReport-- <= 0))
+                if (!isMarlin && !isHoming && (countMissingStatusReport-- <= 0))
                 {   if (Math.Abs(rtsrResponse) > 10)
-                    {   lastError = string.Format("Missing {0} Real-time Status Reports per 10 seconds",rtsrResponse);
+                    {   if (resetProcessed) lastError = string.Format("Missing {0} Real-time Status Reports per 10 seconds",rtsrResponse);
 						if (iamSerial == 1)
 							grbl.lastMessage = lastError;
-                        addToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                        addToLog(lastError);
+                        if (resetProcessed) addToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        if (resetProcessed) addToLog(lastError);
                         Logger.Error("Ser:{0}  {1}",iamSerial, lastError);
+
+                        if (!resetProcessed)    // try to get Marlin response
+                        {   addToLog("Correct baud rate? Try Marlin response...");
+                            requestSend("\r\nM115\n");
+                        }
                     }
                     countMissingStatusReport = (int)(10000 / timerSerial.Interval);
                     rtsrResponse = 0;
@@ -483,7 +493,7 @@ namespace GRBL_Plotter
                         countMinimizeForm = (int)(3000 / timerSerial.Interval); 	// minimize window after 5 sec.
 
                     timerSerial.Interval = grbl.pollInterval;       		// timerReload;
-                    countMissingStatusReport = (int)(10000 / timerSerial.Interval);
+                    countMissingStatusReport = (int)(2000 / timerSerial.Interval);
 
                     countPreventOutput = 0; countPreventEvent = 0;
                     isHeightProbing = false;
@@ -514,6 +524,8 @@ namespace GRBL_Plotter
                 updateControls();
             }
         }
+        private void closePort(object sender, EventArgs e)
+        {   closePort(); }
         public void closePort()
         {   try
             {   if (serialPort.IsOpen)
@@ -561,8 +573,8 @@ namespace GRBL_Plotter
             { saveLastPos(); }
             countStateReset = 10;
             timerSerial.Interval = grbl.pollInterval;
-            countMissingStatusReport = (int)(10000 / timerSerial.Interval);
             updateGrblBufferSettings();
+            countMissingStatusReport = (int)(2000 / timerSerial.Interval);
             waitForIdle = false;
             waitForOk = false;
             rtbLog.Clear();
@@ -588,6 +600,8 @@ namespace GRBL_Plotter
 
         public void grblHardReset(bool savePos = true)      //Stop/reset button
         {
+            isMarlin = false;
+            grbl.isMarlin = false;
             if (serialPort.IsOpen)
             {
                 timerSerial.Enabled = false;
@@ -624,22 +638,24 @@ namespace GRBL_Plotter
             while ((serialPort.IsOpen) && (serialPort.BytesToRead > 0))// && !blockSend)
             {   rxString = string.Empty;
                 try
-                {   rxString = serialPort.ReadTo("\r\n");              //read line from grbl, discard CR LF
+                {   rxString = serialPort.ReadTo("\n").Trim();  //read line from grbl, discard CR LF
+                    //rxString = serialPort.ReadTo("\r\n");     //read line from grbl, discard CR LF
                     isDataProcessing = true;
-                    this.BeginInvoke(new EventHandler(processGrblMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
+                    this.BeginInvoke(new EventHandler(processMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
                     while ((serialPort.IsOpen) && isDataProcessing)// && !blockSend)   //wait previous data line processed done
 					{}
                 }
                 catch (Exception err)
                 {
-                    logMessage = "Error reading line from serial port";
+                    logMessage = "Error reading line from serial port - correct baud rate?";
                     addToLog(logMessage);
-                    if (rxErrorCount++ > 5)
-                    {   closePort();
-                        this.WindowState = FormWindowState.Minimized;
-                        this.Show();
-                        this.WindowState = FormWindowState.Normal;
-                        Logger.Error(err, "Ser:{0} -DataReceived- Close port after 5 retries",iamSerial);
+                    if (++rxErrorCount > 2)
+                    {   //this.WindowState = FormWindowState.Minimized;
+                        //this.Show();
+                        //this.WindowState = FormWindowState.Normal;
+                        addToLog("Close port after 3 retries");
+                        Logger.Error(err, "Ser:{0} -DataReceived- Close port after 3 retries",iamSerial);
+                        this.BeginInvoke(new EventHandler(closePort));    //closePort();
                     }
                     else
                         Logger.Error(err, "Ser:{0} -DataReceived- ",iamSerial);
