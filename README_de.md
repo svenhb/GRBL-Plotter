@@ -4,6 +4,9 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+### Neu in Version 1.5.4.x  
+* Unterstützung des Marlin Protokolls  
+
 ### Neu in Version 1.5.3.x  
 * XML-Tags für Kacheln 
 * Benachrichtigung über den Streamingfortschritt, via Email oder Pushbullet  
