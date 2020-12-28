@@ -777,7 +777,7 @@
       <Value Profile="(Default)">#plottertwitter</Value>
     </Setting>
     <Setting Name="importBarcode2DURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://github.com/svenhb/GRBL-Plotter</Value>
+      <Value Profile="(Default)">https://grbl-plotter.de/</Value>
     </Setting>
     <Setting Name="importBarcode2DWlanPass" Type="System.String" Scope="User">
       <Value Profile="(Default)">unknown</Value>

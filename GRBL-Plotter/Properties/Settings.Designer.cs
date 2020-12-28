@@ -3126,7 +3126,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/svenhb/GRBL-Plotter")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://grbl-plotter.de/")]
         public string importBarcode2DURL {
             get {
                 return ((string)(this["importBarcode2DURL"]));
