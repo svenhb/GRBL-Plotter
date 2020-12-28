@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>262, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 419</value>
@@ -339,18 +336,6 @@
   <data name="lblInfo1.Text" xml:space="preserve">
     <value>Info</value>
   </data>
-  <data name="&gt;&gt;lblInfo1.Name" xml:space="preserve">
-    <value>lblInfo1</value>
-  </data>
-  <data name="&gt;&gt;lblInfo1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblInfo1.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblInfo1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="btnKeepSizeReso.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -368,18 +353,6 @@
   </data>
   <data name="btnKeepSizeReso.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeReso.Name" xml:space="preserve">
-    <value>btnKeepSizeReso</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeReso.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeReso.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeReso.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="btnKeepSizeWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -399,18 +372,6 @@
   <data name="btnKeepSizeWidth.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;btnKeepSizeWidth.Name" xml:space="preserve">
-    <value>btnKeepSizeWidth</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeWidth.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeWidth.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="lblSizeOrig.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -429,21 +390,6 @@
   <data name="lblSizeOrig.Text" xml:space="preserve">
     <value>Size</value>
   </data>
-  <data name="&gt;&gt;lblSizeOrig.Name" xml:space="preserve">
-    <value>lblSizeOrig</value>
-  </data>
-  <data name="&gt;&gt;lblSizeOrig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSizeOrig.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblSizeOrig.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>378, 17</value>
-  </metadata>
   <data name="nUDReso.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 36</value>
   </data>
@@ -458,18 +404,6 @@
   </data>
   <data name="nUDReso.ToolTip" xml:space="preserve">
     <value>Distance between lines, should match pen width</value>
-  </data>
-  <data name="&gt;&gt;nUDReso.Name" xml:space="preserve">
-    <value>nUDReso</value>
-  </data>
-  <data name="&gt;&gt;nUDReso.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDReso.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDReso.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="lblSizeResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -489,18 +423,6 @@
   <data name="lblSizeResult.Text" xml:space="preserve">
     <value>Size</value>
   </data>
-  <data name="&gt;&gt;lblSizeResult.Name" xml:space="preserve">
-    <value>lblSizeResult</value>
-  </data>
-  <data name="&gt;&gt;lblSizeResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSizeResult.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblSizeResult.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="nUDHeight.Location" type="System.Drawing.Point, System.Drawing">
     <value>42, 36</value>
   </data>
@@ -513,18 +435,6 @@
   <data name="nUDHeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;nUDHeight.Name" xml:space="preserve">
-    <value>nUDHeight</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="nUDWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>42, 16</value>
   </data>
@@ -536,18 +446,6 @@
   </data>
   <data name="nUDWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Name" xml:space="preserve">
-    <value>nUDWidth</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -567,18 +465,6 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Width</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -596,18 +482,6 @@
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Resolution</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -627,18 +501,6 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Height</value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
   <data name="cbLockRatio.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -656,18 +518,6 @@
   </data>
   <data name="cbLockRatio.Text" xml:space="preserve">
     <value>keep ratio</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Name" xml:space="preserve">
-    <value>cbLockRatio</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.ZOrder" xml:space="preserve">
-    <value>11</value>
   </data>
   <data name="lblGamma.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -927,18 +777,6 @@
   <data name="cbGrayscale.Text" xml:space="preserve">
     <value>Grayscale</value>
   </data>
-  <data name="&gt;&gt;cbGrayscale.Name" xml:space="preserve">
-    <value>cbGrayscale</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="rbModeDither.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -957,18 +795,6 @@
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>Dithering</value>
   </data>
-  <data name="&gt;&gt;rbModeDither.Name" xml:space="preserve">
-    <value>rbModeDither</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="rbModeGray.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -986,18 +812,6 @@
   </data>
   <data name="rbModeGray.Text" xml:space="preserve">
     <value>Grayscale</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Name" xml:space="preserve">
-    <value>rbModeGray</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="btnInvert.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -1299,18 +1113,6 @@
   <data name="rbEngravingPattern2.Text" xml:space="preserve">
     <value>diagonal</value>
   </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Name" xml:space="preserve">
-    <value>rbEngravingPattern2</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Parent" xml:space="preserve">
-    <value>gBgcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="rbEngravingPattern1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1328,18 +1130,6 @@
   </data>
   <data name="rbEngravingPattern1.Text" xml:space="preserve">
     <value>horizontal </value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Name" xml:space="preserve">
-    <value>rbEngravingPattern1</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Parent" xml:space="preserve">
-    <value>gBgcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="btnGenerate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1368,9 +1158,6 @@
   <data name="&gt;&gt;btnGenerate.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>677, 17</value>
-  </metadata>
   <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 48</value>
   </data>
@@ -1475,18 +1262,6 @@
   </data>
   <data name="lblImageSource.Text" xml:space="preserve">
     <value>original</value>
-  </data>
-  <data name="&gt;&gt;lblImageSource.Name" xml:space="preserve">
-    <value>lblImageSource</value>
-  </data>
-  <data name="&gt;&gt;lblImageSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblImageSource.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;lblImageSource.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="lblHueShift.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1635,9 +1410,6 @@
   <data name="&gt;&gt;lblColors.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>378, 17</value>
-  </metadata>
   <data name="cbExceptColor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2404,9 +2176,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>475, 17</value>
-  </metadata>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -2623,18 +2392,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="rBGrayS.Text" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="&gt;&gt;rBGrayS.Name" xml:space="preserve">
-    <value>rBGrayS</value>
-  </data>
-  <data name="&gt;&gt;rBGrayS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBGrayS.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;rBGrayS.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="rBGrayZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2652,18 +2409,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="rBGrayZ.Text" xml:space="preserve">
     <value>Z</value>
-  </data>
-  <data name="&gt;&gt;rBGrayZ.Name" xml:space="preserve">
-    <value>rBGrayZ</value>
-  </data>
-  <data name="&gt;&gt;rBGrayZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBGrayZ.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;rBGrayZ.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="label22.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2683,18 +2428,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="label22.Text" xml:space="preserve">
     <value>S min (white)</value>
   </data>
-  <data name="&gt;&gt;label22.Name" xml:space="preserve">
-    <value>label22</value>
-  </data>
-  <data name="&gt;&gt;label22.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label22.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="nUDSMin.Location" type="System.Drawing.Point, System.Drawing">
     <value>110, 71</value>
   </data>
@@ -2706,18 +2439,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="nUDSMin.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
-  </data>
-  <data name="&gt;&gt;nUDSMin.Name" xml:space="preserve">
-    <value>nUDSMin</value>
-  </data>
-  <data name="&gt;&gt;nUDSMin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSMin.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;nUDSMin.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="label23.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2737,18 +2458,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="label23.Text" xml:space="preserve">
     <value>S max (black)</value>
   </data>
-  <data name="&gt;&gt;label23.Name" xml:space="preserve">
-    <value>label23</value>
-  </data>
-  <data name="&gt;&gt;label23.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2767,18 +2476,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="label8.Text" xml:space="preserve">
     <value>Z max (white)</value>
   </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="nUDZTop.Location" type="System.Drawing.Point, System.Drawing">
     <value>110, 14</value>
   </data>
@@ -2790,18 +2487,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="nUDZTop.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.Name" xml:space="preserve">
-    <value>nUDZTop</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2820,18 +2505,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Z min (black)</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <data name="cBCompress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2853,18 +2526,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="cBCompress.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Name" xml:space="preserve">
-    <value>cBCompress</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.ZOrder" xml:space="preserve">
-    <value>10</value>
   </data>
   <data name="rBProcessZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3442,18 +3103,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Color reduction</value>
   </data>
-  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
-    <value>tabPage4</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="cBReduceColorsToolTable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3471,18 +3120,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
     <value>Reduce colors</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Name" xml:space="preserve">
-    <value>cBReduceColorsToolTable</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="cBReduceColorsDithering.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3502,18 +3139,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="cBReduceColorsDithering.Text" xml:space="preserve">
     <value>Dithering</value>
   </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Name" xml:space="preserve">
-    <value>cBReduceColorsDithering</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3531,18 +3156,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Tool list</value>
-  </data>
-  <data name="&gt;&gt;label10.Name" xml:space="preserve">
-    <value>label10</value>
-  </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>tabPage4</value>
-  </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection4.Name" xml:space="preserve">
     <value>btnPresetCorrection4</value>
@@ -3616,18 +3229,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Conversion Wizard</value>
   </data>
-  <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
-    <value>tabPage4</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="btnPresetCorrection4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -3645,18 +3246,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="btnPresetCorrection4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Name" xml:space="preserve">
-    <value>btnPresetCorrection4</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection4.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="label20.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3676,18 +3265,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="label20.Text" xml:space="preserve">
     <value>%</value>
   </data>
-  <data name="&gt;&gt;label20.Name" xml:space="preserve">
-    <value>label20</value>
-  </data>
-  <data name="&gt;&gt;label20.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="btnPresetCorrection2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -3706,18 +3283,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="btnPresetCorrection2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Name" xml:space="preserve">
-    <value>btnPresetCorrection2</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="btnResetCorrection.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -3732,18 +3297,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="btnResetCorrection.Text" xml:space="preserve">
     <value>RESET values</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Name" xml:space="preserve">
-    <value>btnResetCorrection</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="btnPresetCorrection1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3763,18 +3316,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="btnPresetCorrection1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Name" xml:space="preserve">
-    <value>btnPresetCorrection1</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="tBToolList.Font" type="System.Drawing.Font, System.Drawing">
     <value>Lucida Console, 7pt</value>
   </data>
@@ -3792,18 +3333,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="tBToolList.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
-  </data>
-  <data name="&gt;&gt;tBToolList.Name" xml:space="preserve">
-    <value>tBToolList</value>
-  </data>
-  <data name="&gt;&gt;tBToolList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBToolList.Parent" xml:space="preserve">
-    <value>tabPage4</value>
-  </data>
-  <data name="&gt;&gt;tBToolList.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3823,18 +3352,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="label11.Text" xml:space="preserve">
     <value>Saturation</value>
   </data>
-  <data name="&gt;&gt;label11.Name" xml:space="preserve">
-    <value>label11</value>
-  </data>
-  <data name="&gt;&gt;label11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="lblSaturation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3853,18 +3370,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="lblSaturation.Text" xml:space="preserve">
     <value>123</value>
   </data>
-  <data name="&gt;&gt;lblSaturation.Name" xml:space="preserve">
-    <value>lblSaturation</value>
-  </data>
-  <data name="&gt;&gt;lblSaturation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSaturation.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;lblSaturation.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="tBarSaturation.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -3879,18 +3384,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="tBarSaturation.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
-  </data>
-  <data name="&gt;&gt;tBarSaturation.Name" xml:space="preserve">
-    <value>tBarSaturation</value>
-  </data>
-  <data name="&gt;&gt;tBarSaturation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBarSaturation.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;tBarSaturation.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="cBFilterRemoveArtefact.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3910,18 +3403,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
     <value>Remove single pixels</value>
   </data>
-  <data name="&gt;&gt;cBFilterRemoveArtefact.Name" xml:space="preserve">
-    <value>cBFilterRemoveArtefact</value>
-  </data>
-  <data name="&gt;&gt;cBFilterRemoveArtefact.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFilterRemoveArtefact.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;cBFilterRemoveArtefact.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="cBFilterHistogram.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3939,18 +3420,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="cBFilterHistogram.Text" xml:space="preserve">
     <value>Histogram Equalization</value>
-  </data>
-  <data name="&gt;&gt;cBFilterHistogram.Name" xml:space="preserve">
-    <value>cBFilterHistogram</value>
-  </data>
-  <data name="&gt;&gt;cBFilterHistogram.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFilterHistogram.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;cBFilterHistogram.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="lblCFB.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3970,18 +3439,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="lblCFB.Text" xml:space="preserve">
     <value>123</value>
   </data>
-  <data name="&gt;&gt;lblCFB.Name" xml:space="preserve">
-    <value>lblCFB</value>
-  </data>
-  <data name="&gt;&gt;lblCFB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCFB.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;lblCFB.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="lblCFG.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3999,18 +3456,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="lblCFG.Text" xml:space="preserve">
     <value>123</value>
-  </data>
-  <data name="&gt;&gt;lblCFG.Name" xml:space="preserve">
-    <value>lblCFG</value>
-  </data>
-  <data name="&gt;&gt;lblCFG.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCFG.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;lblCFG.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="lblCFR.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4030,18 +3475,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="lblCFR.Text" xml:space="preserve">
     <value>123</value>
   </data>
-  <data name="&gt;&gt;lblCFR.Name" xml:space="preserve">
-    <value>lblCFR</value>
-  </data>
-  <data name="&gt;&gt;lblCFR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCFR.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;lblCFR.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="cBFilterEdge.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4059,18 +3492,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="cBFilterEdge.Text" xml:space="preserve">
     <value>Edge filter</value>
-  </data>
-  <data name="&gt;&gt;cBFilterEdge.Name" xml:space="preserve">
-    <value>cBFilterEdge</value>
-  </data>
-  <data name="&gt;&gt;cBFilterEdge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFilterEdge.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;cBFilterEdge.ZOrder" xml:space="preserve">
-    <value>14</value>
   </data>
   <data name="cBPosterize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4090,18 +3511,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="cBPosterize.Text" xml:space="preserve">
     <value>Posterization</value>
   </data>
-  <data name="&gt;&gt;cBPosterize.Name" xml:space="preserve">
-    <value>cBPosterize</value>
-  </data>
-  <data name="&gt;&gt;cBPosterize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBPosterize.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;cBPosterize.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
   <data name="label21.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4120,18 +3529,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="label21.Text" xml:space="preserve">
     <value>Deselect colors if not needed</value>
   </data>
-  <data name="&gt;&gt;label21.Name" xml:space="preserve">
-    <value>label21</value>
-  </data>
-  <data name="&gt;&gt;label21.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label21.Parent" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="cLBTools.Location" type="System.Drawing.Point, System.Drawing">
     <value>224, 22</value>
   </data>
@@ -4140,18 +3537,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="cLBTools.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
-  </data>
-  <data name="&gt;&gt;cLBTools.Name" xml:space="preserve">
-    <value>cLBTools</value>
-  </data>
-  <data name="&gt;&gt;cLBTools.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cLBTools.Parent" xml:space="preserve">
-    <value>tabPage3</value>
-  </data>
-  <data name="&gt;&gt;cLBTools.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="cBGCodeFill.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4171,18 +3556,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="cBGCodeFill.Text" xml:space="preserve">
     <value>Fill areas</value>
   </data>
-  <data name="&gt;&gt;cBGCodeFill.Name" xml:space="preserve">
-    <value>cBGCodeFill</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeFill.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeFill.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeFill.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="cBGCodeOutline.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4201,18 +3574,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="cBGCodeOutline.Text" xml:space="preserve">
     <value>Draw outline</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutline.Name" xml:space="preserve">
-    <value>cBGCodeOutline</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutline.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutline.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="cBGCodeOutlineSmooth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4230,18 +3591,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
     <value>smooth</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Name" xml:space="preserve">
-    <value>cBGCodeOutlineSmooth</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="label24.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4378,15 +3727,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;lblLastUseCase.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>590, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>55</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -4450,4 +3790,25 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>262, 17</value>
+  </metadata>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>378, 17</value>
+  </metadata>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>677, 17</value>
+  </metadata>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>475, 17</value>
+  </metadata>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>590, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>55</value>
+  </metadata>
 </root>

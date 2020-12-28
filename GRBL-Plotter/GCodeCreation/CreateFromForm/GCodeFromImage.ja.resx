@@ -448,4 +448,7 @@
   <data name="rBMode2.Text" xml:space="preserve">
     <value>色相、彩度、明度での距離。</value>
   </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>ペンダウンカラーモードは、ツールテーブルのペン幅を使用します[セットアップ-プログラムの外観-2Dビュー]</value>
+  </data>
 </root>

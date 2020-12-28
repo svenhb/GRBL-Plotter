@@ -417,4 +417,7 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Asigna colores de imagen a colores de tabla de herramientas</value>
   </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>El modo de color de lápiz hacia abajo utiliza el ancho de lápiz de la tabla de herramientas [Configuración - Apariencia del programa - Vista 2D]</value>
+  </data>
 </root>

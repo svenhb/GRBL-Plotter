@@ -417,4 +417,7 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Z мин (черный)</value>
   </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>В цветном режиме «Перо вниз» используется ширина пера из таблицы инструментов [Настройка - Внешний вид программы - 2D-вид]</value>
+  </data>
 </root>

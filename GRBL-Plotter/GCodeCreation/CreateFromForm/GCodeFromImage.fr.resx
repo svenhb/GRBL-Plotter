@@ -417,4 +417,7 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Z min (noir)</value>
   </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Le mode de couleur du stylet bas utilise la largeur du stylet de la table d'outils [Configuration - Apparence du programme - Vue 2D]</value>
+  </data>
 </root>

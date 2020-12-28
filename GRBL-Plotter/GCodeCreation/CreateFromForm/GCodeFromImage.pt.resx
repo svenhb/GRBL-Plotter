@@ -417,4 +417,7 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   <data name="rBMode2.Text" xml:space="preserve">
     <value>Distância na cor-matiz, -sat., - brilhante.</value>
   </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>O modo de cor da caneta para baixo usa a largura da caneta da tabela de ferramentas [Configuração - Aparência do programa - visualização 2D]</value>
+  </data>
 </root>

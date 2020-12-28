@@ -218,7 +218,7 @@
     <value>Bild um 90° gegen den Uhrzeigersinn drehen</value>
   </data>
   <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>Richtung Zeichnen</value>
+    <value>Zeichenrichtung</value>
   </data>
   <data name="btnGenerate.Text" xml:space="preserve">
     <value>Erzeuge G-Code</value>
@@ -580,5 +580,8 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   </data>
   <data name="nUDMaxColors.ToolTip" xml:space="preserve">
     <value>Max. Menge = max. Werkzeugtabelleneinträge</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Der Pen-Down-Farbmodus verwendet die Stiftbreite aus der Werkzeugtabelle [Setup - Programmdarstellung - 2D-Ansicht]</value>
   </data>
 </root>

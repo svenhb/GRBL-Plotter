@@ -417,4 +417,7 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Z分钟（黑色）</value>
   </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>落笔彩色模式使用工具表中的笔宽度[设置-程序外观-2D视图]</value>
+  </data>
 </root>
