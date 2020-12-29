@@ -366,7 +366,7 @@ namespace GRBL_Plotter
                 _coordSystem_form.refreshValues();
         }
 
-        private void sendCommands(string txt, bool jogging = false)
+        private void sendCommands(string txt, bool jogging = false) 
         {
             if (txt.Contains(";"))
             {   string[] commands = txt.Split(';');
@@ -379,7 +379,7 @@ namespace GRBL_Plotter
 
         private void sendCommand(string txt, bool jogging = false)
         {
-            if ((jogging) && (grbl.isVersion_0 == false))
+            if ((jogging) && (grbl.isVersion_0 == false))   // includes (grbl.isMarlin == false)
                 txt = "$J=" + txt;
             txt = gui.insertVariable(txt);			// will be filled in MainFormLoadFile.cs 1617, defined in MainFormObjects.cs
             if (!_serial_form.requestSend(txt))     // check if COM is still open
@@ -529,7 +529,8 @@ namespace GRBL_Plotter
         {
             if (e.Command.IndexOf("G91") >= 0)
             {
-                string final = e.Command+";G1 ";
+                string final = e.Command;
+                if (grbl.isMarlin) final += ";G1 ";
                 if (e.PosX != null)
                     final += string.Format(" X{0}", gcode.frmtNum((float)e.PosX));
                 if (e.PosY != null)
@@ -571,7 +572,10 @@ namespace GRBL_Plotter
                     else if ((cmd.Trim().IndexOf("G90") == 0) || (cmd.Trim().IndexOf("G91") == 0))      // no G0 G1, then jogging
                     {
                         speed = 100 + (int)Math.Sqrt(realStepX * realStepX + realStepY * realStepY) * 120;
-                        s = String.Format("{0}; X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
+                        s = String.Format("{0} X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
+                        if (grbl.isMarlin)
+                            s = String.Format("{0}; G1 X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
+
                         sendCommands(s, true);
                     }
                     else
@@ -874,12 +878,14 @@ namespace GRBL_Plotter
 
         private void btnMoveZero(string axis, string fed){
             string seperate = "";
-            if (grbl.isMarlin) seperate += ";";
-            string mode = "G1";
+            string mode = "";
+            if (grbl.isMarlin) { seperate += ";"; mode = "G1"; }
             string feed = "F" + fed;
-            if (cBMoveG0.Checked) { mode = "G0"; feed = ""; }
-            string cmd = string.Format("G90{0}{1}{2}{3}",seperate,mode,axis,feed);
-            sendCommands(cmd, true);
+
+            if (cBMoveG0.Checked){
+                sendCommands(string.Format("G90{0} G0 {1}", seperate, axis)); }
+            else{
+                sendCommands(string.Format("G90{0}{1} {2} {3}", seperate, mode, axis, feed), true); }
         }
 
         private void btnReset_Click(object sender, EventArgs e)

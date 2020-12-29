@@ -144,7 +144,8 @@ namespace GRBL_Plotter
 
                                 if (_serial_form.getFreeBuffer() >= 99)
                                 {
-                                    gamePadSendString = "G91;" + gamePadSendString;
+                                    gamePadSendString = "G91" + gamePadSendString;
+                                    if (grbl.isMarlin) gamePadSendString += ";";
                                     gamePadSendString += string.Format("F{0:0}", feedRate);
                                     sendCommands(gamePadSendString.Replace(",", "."), true);
                                 }
