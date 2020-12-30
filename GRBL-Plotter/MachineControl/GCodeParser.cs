@@ -17,7 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// 2020-01-10 line 113 set x,y,z=null
+/*
+ * 2020-01-10 line 113 set x,y,z=null
+ * 2020-12-30 add N-number
+ */ 
+
 
 using System;
 using System.Windows.Forms;
@@ -65,6 +69,7 @@ namespace GRBL_Plotter
     class gcodeByLine
     {   // ModalGroups
         public int lineNumber;          // line number in fCTBCode
+        public int nNumber;             // n number in GCode if given
         public int figureNumber;
         public string codeLine;         // copy of original gcode line
         public byte motionMode;         // G0,1,2,3
@@ -72,6 +77,7 @@ namespace GRBL_Plotter
         public bool ismachineCoordG53;  // don't apply transform to machine coordinates
         public bool isSubroutine;
         public bool isSetCoordinateSystem;  // don't process x,y,z if set coordinate system
+        public bool isNoMove;               // don't process x,y,z if G10, G17, G43...
 
         public byte spindleState;       // M3,4,5
         public byte coolantState;       // M7,8,9
@@ -92,13 +98,13 @@ namespace GRBL_Plotter
         public gcodeByLine(gcodeByLine tmp)
         {
             resetAll();
-            lineNumber = tmp.lineNumber; figureNumber = tmp.figureNumber; codeLine = tmp.codeLine;
+            lineNumber = tmp.lineNumber; nNumber = tmp.nNumber; figureNumber = tmp.figureNumber; codeLine = tmp.codeLine;
             motionMode = tmp.motionMode; isdistanceModeG90 = tmp.isdistanceModeG90; ismachineCoordG53 = tmp.ismachineCoordG53;
             isSubroutine = tmp.isSubroutine; spindleState = tmp.spindleState; coolantState = tmp.coolantState;
             spindleSpeed = tmp.spindleSpeed; feedRate = tmp.feedRate;
             x = tmp.x; y = tmp.y; z = tmp.z; i = tmp.i; j = tmp.j; a = tmp.a; b = tmp.b; c = tmp.c; u = tmp.u; v = tmp.v; w = tmp.w;
             actualPos = tmp.actualPos; distance = tmp.distance; alpha = tmp.alpha;
-            isSetCoordinateSystem = tmp.isSetCoordinateSystem;  otherCode = tmp.otherCode;
+            isSetCoordinateSystem = tmp.isSetCoordinateSystem; isNoMove = tmp.isNoMove; otherCode = tmp.otherCode;
         }
 
         public string listData()
@@ -109,9 +115,9 @@ namespace GRBL_Plotter
         /// </summary>
         public void resetAll()
         {
-            lineNumber = 0; figureNumber = 0; codeLine = "";
+            lineNumber = 0; nNumber = -1; figureNumber = 0; codeLine = "";
             motionMode = 0; isdistanceModeG90 = true; ismachineCoordG53 = false; isSubroutine = false;
-            isSetCoordinateSystem = false; spindleState = 5; coolantState = 9; spindleSpeed = 0; feedRate = 0;
+            isSetCoordinateSystem = false; isNoMove = false; spindleState = 5; coolantState = 9; spindleSpeed = 0; feedRate = 0;
 
             actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
@@ -136,6 +142,7 @@ namespace GRBL_Plotter
             ismachineCoordG53 = false; isSubroutine = false;
             otherCode = "";
             lineNumber = lineNr;
+            nNumber = -1;
             codeLine = line;
         }
 
@@ -151,6 +158,7 @@ namespace GRBL_Plotter
             double value = 0;
             line = line.ToUpper().Trim();   // 2020-07-26
             isSetCoordinateSystem = false;
+            isNoMove = false;
             #region parse
             if ((!(line.StartsWith("$") || line.StartsWith("("))) && (line.Length > 1))//do not parse grbl comments
             {
@@ -236,6 +244,9 @@ namespace GRBL_Plotter
                 case 'J':
                     j = value;
                     break;
+                case 'N':
+                    nNumber = (int)value;
+                    break;
                 case 'F':
                     modalState.feedRate = feedRate = (int)value;
                     break;
@@ -253,22 +264,26 @@ namespace GRBL_Plotter
                     }
 
                     if (value == 10)
-                    { isSetCoordinateSystem = true; }
+                    { isSetCoordinateSystem = true; isNoMove = true; }
 
                     else if ((value == 20) || (value == 21))             // Units Mode
-                    { modalState.unitsMode = (byte)value; }
+                    { modalState.unitsMode = (byte)value; isNoMove = true; }
+
+                    else if ((value >= 43) && (value < 53))
+                    { isNoMove = true; }
 
                     else if (value == 53)                                // move in machine coord.
                     { ismachineCoordG53 = true; }
 
                     else if ((value >= 54) && (value <= 59))             // Coordinate System Select
-                    { modalState.coordinateSystem = (byte)value; }
+                    { modalState.coordinateSystem = (byte)value; isNoMove = true; }
 
                     else if (value == 90)                                // Distance Mode
                     { modalState.distanceMode = (byte)value; modalState.isdistanceModeG90 = true; }
                     else if (value == 91)
-                    { modalState.distanceMode = (byte)value; modalState.isdistanceModeG90 = false;
-                      modalState.containsG91 = true;
+                    {
+                        modalState.distanceMode = (byte)value; modalState.isdistanceModeG90 = false;
+                        modalState.containsG91 = true;
                     }
                     else if ((value == 93) || (value == 94))             // Feed Rate Mode
                     { modalState.feedRateMode = (byte)value; }

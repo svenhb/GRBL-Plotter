@@ -42,6 +42,7 @@
  * 2020-07-27 clean line - replace ' by "  313, 327
  * 2020-08-13 bug fix transformGCodeRotate, transformGCodeScale with G91 
  * 2020-12-16 add markSelectedTile 
+ * 2020-12-30 add N-Number
 */
 
 using System;
@@ -313,10 +314,9 @@ namespace GRBL_Plotter
         /// apply new z-value to all gcode coordinates
         /// </summary>
         public static string applyHeightMap(IList<string> oldCode, HeightMap Map)
-        {
-            maxStep = (float)Map.GridX;
+        {   maxStep = (float)Map.GridX;
             getGCodeLines(oldCode, null, null ,true);                // read gcode and process subroutines
-            IList<string> tmp=createGCodeProg(true,true,false, convertMode.nothing).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            IList<string> tmp = createGCodeProg(true, true, false, convertMode.nothing).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
             getGCodeLines(tmp, null, null, false);                  // reload code
             return createGCodeProg(false, false, true, convertMode.nothing, Map);        // apply new Z-value;
         }
@@ -1293,7 +1293,7 @@ namespace GRBL_Plotter
             double spindleSpeed=-1; // force change
             byte spindleState = 5;
             byte coolantState = 9;
-            double lastActualX = 0, lastActualY = 0,i,j;
+            double lastActualX = 0, lastActualY = 0, lastActualZ = 0, i,j;
             double newZ = 0;
             int lastMotionMode = 0;
             double convertMinZ = xyzSize.minz;          // 1st get last minimum
@@ -1318,26 +1318,37 @@ namespace GRBL_Plotter
                 if (gcline.codeLine.IndexOf("%STOP_HIDECODE") >= 0) { hide_code = false; }
 
                 #region replace circle by lines
+                // replace code-line G1,G2,G3 by new codelines and add to newCode
                 if ((!hide_code) && (replaceG23))                   // replace circles
                 {
                     gcode.setup(false);                             // don't apply intermediate Z steps in certain sub functions
                     gcode.lastx = (float)lastActualX;
                     gcode.lasty = (float)lastActualY;
+                    gcode.lastz = (float)lastActualZ;
                     gcode.gcodeXYFeed = gcline.feedRate;
                     if (gcline.isdistanceModeG90)
                         gcode.gcodeRelative = false;
                     else
                         gcode.gcodeRelative = true;
-                    if (gcline.motionMode > 1)
+                    if ((gcline.motionMode > 1) && (gcline.motionMode <= 3))    // handle arc
                     {
                         i = (double)((gcline.i != null) ? gcline.i : 0.0);
                         j = (double)((gcline.j != null) ? gcline.j : 0.0);
                         gcode.splitArc(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)i, (float)j, true, gcline.codeLine);
                     }
-                    else if (gcline.motionMode == 1)
-                    {   if (((gcline.x != null) || (gcline.y != null)) && splitMoves)
-                        {   
-                                gcode.splitLine(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, maxStep, true, gcline.codeLine);
+                    else if (gcline.motionMode == 1)                            // handle straight move
+                    {
+                        if (((gcline.x != null) || (gcline.y != null) || (gcline.z != null)) && splitMoves)
+                        {
+                            if (gcline.z != null)
+                            {
+                                if ((gcline.x != null) || (gcline.y != null))
+                                { gcode.splitLineZ(newCode, gcline.nNumber, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)lastActualZ, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)gcline.actualPos.Z, maxStep, true, gcline.codeLine); }
+                                else
+                                { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
+                            }
+                            else
+                                gcode.splitLine(newCode, gcline.nNumber, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, maxStep, true, gcline.codeLine);
                         }
                         else
                         { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
@@ -1347,87 +1358,110 @@ namespace GRBL_Plotter
 
                 }
                 #endregion
+                // if no replacement, stitch code together
                 else
                 {
-                    if (gcline.x != null)
-                    { tmpCode.AppendFormat(" X{0}", gcode.frmtNum((double)gcline.x)); getCoordinateXY = true; }
-                    if (gcline.y != null)
-                    { tmpCode.AppendFormat(" Y{0}", gcode.frmtNum((double)gcline.y)); getCoordinateXY = true; }
-                    if ((getCoordinateXY || (gcline.z != null)) && applyNewZ && (Map != null))  //(gcline.motionMode != 0) &&       if (getCoordinateXY && applyNewZ && (Map != null))
-                    {   newZ = Map.InterpolateZ(gcline.actualPos.X, gcline.actualPos.Y);
-                        if ((gcline.motionMode != 0) || (newZ > 0))
-                            gcline.z = gcline.actualPos.Z + newZ;
-                    }
-
-                    if (specialCmd == convertMode.convertZToS)
-                    {   gcline.spindleSpeed = 0;                //  reset old speed
-                        spindleSpeed = -1;                      // force output
-                        if (gcline.spindleState < 5)            // if spindle on
-                            forceM = true;
-                    }
-
-                    if (gcline.z != null)
-                    {   if (specialCmd == convertMode.nothing)               //  !removeZ
-                        {   tmpCode.AppendFormat(" Z{0}", gcode.frmtNum((double)gcline.z)); }
-                        else if ((specialCmd == convertMode.convertZToS) && (convertMinZ != 0))
-                        {   double convertTmp = (double)gcline.z * convertSpeedRange / convertMinZ + convertMinSpeed;
-                            if (gcline.z > 0)
-                                convertTmp = convertOffSpeed;
-                            gcline.spindleSpeed = (int)convertTmp;
-                            //tmpCode.AppendFormat(" S{0}", Math.Round(convertTmp));
-                        }
-                        getCoordinateZ = true;
-                    }
-                    if (gcline.a != null)
-                    { tmpCode.AppendFormat(" A{0}", gcode.frmtNum((double)gcline.a)); getCoordinateZ = true; }
-                    if (gcline.b != null)
-                    { tmpCode.AppendFormat(" B{0}", gcode.frmtNum((double)gcline.b)); getCoordinateZ = true; }
-                    if (gcline.c != null)
-                    { tmpCode.AppendFormat(" C{0}", gcode.frmtNum((double)gcline.c)); getCoordinateZ = true; }
-                    if (gcline.u != null)
-                    { tmpCode.AppendFormat(" U{0}", gcode.frmtNum((double)gcline.u)); getCoordinateZ = true; }
-                    if (gcline.v != null)
-                    { tmpCode.AppendFormat(" V{0}", gcode.frmtNum((double)gcline.v)); getCoordinateZ = true; }
-                    if (gcline.w != null)
-                    { tmpCode.AppendFormat(" W{0}", gcode.frmtNum((double)gcline.w)); getCoordinateZ = true; }
-                    if (gcline.i != null)
-                    { tmpCode.AppendFormat(" I{0}", gcode.frmtNum((double)gcline.i)); getCoordinateXY = true; }
-                    if (gcline.j != null)
-                    { tmpCode.AppendFormat(" J{0}", gcode.frmtNum((double)gcline.j)); getCoordinateXY = true; }
-
-                    if ((getCoordinateXY || getCoordinateZ) && (!gcline.ismachineCoordG53) && (!hide_code))
+                    if (gcline.isNoMove)
                     {
-                        if ((gcline.motionMode > 0) && (feedRate != gcline.feedRate) && (getCoordinateXY || getCoordinateZ)) //((getCoordinateXY && !getCoordinateZ) || (!getCoordinateXY && getCoordinateZ)))
-                        { tmpCode.AppendFormat(" F{0,0}", gcline.feedRate); }       // feed
-                        if (spindleState != gcline.spindleState)
-                        { tmpCode.AppendFormat(" M{0,0}", gcline.spindleState); }   // state
-                        if (spindleSpeed != gcline.spindleSpeed)
-                        { tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed); }   // speed
-                        if (coolantState != gcline.coolantState)
-                        { tmpCode.AppendFormat(" M{0,0}", gcline.coolantState); }   // state
-
-                        tmpCode.Replace(',', '.');
-                        if (gcline.codeLine.IndexOf("(Setup - GCode") > 1)  // ignore coordinates from setup footer
-                            newCode.AppendLine(gcline.codeLine);
-                        else
-                            newCode.AppendLine(gcline.otherCode + "G" + gcode.frmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
+                        newCode.AppendLine(gcline.codeLine.Trim('\r', '\n') + infoCode);    // add orignal code-line
                     }
                     else
                     {
-                        if (forceM && ((spindleState != gcline.spindleState)||(spindleSpeed != gcline.spindleSpeed)))
-                        {   tmpCode.AppendFormat("M{0,0} S{1,0}", gcode.frmtCode(gcline.spindleState), gcline.spindleSpeed);    // state
-                            newCode.AppendLine(tmpCode.ToString());
+                        if (gcline.x != null)
+                        { tmpCode.AppendFormat(" X{0}", gcode.frmtNum((double)gcline.x)); getCoordinateXY = true; }
+                        if (gcline.y != null)
+                        { tmpCode.AppendFormat(" Y{0}", gcode.frmtNum((double)gcline.y)); getCoordinateXY = true; }
+
+                        if ((getCoordinateXY || (gcline.z != null)) && applyNewZ && (Map != null))  //(gcline.motionMode != 0) &&       if (getCoordinateXY && applyNewZ && (Map != null))
+                        {
+                            newZ = Map.InterpolateZ(gcline.actualPos.X, gcline.actualPos.Y);
+                            if (gcline.z == null)
+                                gcline.z = gcline.actualPos.Z;
+                            //      infoCode = string.Format("( dZ:{0:0.000} actZ:{1:0.000} )", newZ, gcline.z);
+                            if (gcline.motionMode != 0)
+                            { gcline.z += newZ; }
+                        }
+
+                        if (specialCmd == convertMode.convertZToS)
+                        {
+                            gcline.spindleSpeed = 0;                //  reset old speed
+                            spindleSpeed = -1;                      // force output
+                            if (gcline.spindleState < 5)            // if spindle on
+                                forceM = true;
+                        }
+
+                        if (gcline.z != null)
+                        {
+                            if (specialCmd == convertMode.nothing)               //  !removeZ
+                            { tmpCode.AppendFormat(" Z{0}", gcode.frmtNum((double)gcline.z)); }
+                            else if ((specialCmd == convertMode.convertZToS) && (convertMinZ != 0))
+                            {
+                                double convertTmp = (double)gcline.z * convertSpeedRange / convertMinZ + convertMinSpeed;
+                                if (gcline.z > 0)
+                                    convertTmp = convertOffSpeed;
+                                gcline.spindleSpeed = (int)convertTmp;
+                                //tmpCode.AppendFormat(" S{0}", Math.Round(convertTmp));
+                            }
+                            getCoordinateZ = true;
+                        }
+                        if (gcline.a != null)
+                        { tmpCode.AppendFormat(" A{0}", gcode.frmtNum((double)gcline.a)); getCoordinateZ = true; }
+                        if (gcline.b != null)
+                        { tmpCode.AppendFormat(" B{0}", gcode.frmtNum((double)gcline.b)); getCoordinateZ = true; }
+                        if (gcline.c != null)
+                        { tmpCode.AppendFormat(" C{0}", gcode.frmtNum((double)gcline.c)); getCoordinateZ = true; }
+                        if (gcline.u != null)
+                        { tmpCode.AppendFormat(" U{0}", gcode.frmtNum((double)gcline.u)); getCoordinateZ = true; }
+                        if (gcline.v != null)
+                        { tmpCode.AppendFormat(" V{0}", gcode.frmtNum((double)gcline.v)); getCoordinateZ = true; }
+                        if (gcline.w != null)
+                        { tmpCode.AppendFormat(" W{0}", gcode.frmtNum((double)gcline.w)); getCoordinateZ = true; }
+                        if (gcline.i != null)
+                        { tmpCode.AppendFormat(" I{0}", gcode.frmtNum((double)gcline.i)); getCoordinateXY = true; }
+                        if (gcline.j != null)
+                        { tmpCode.AppendFormat(" J{0}", gcode.frmtNum((double)gcline.j)); getCoordinateXY = true; }
+
+                        if ((getCoordinateXY || getCoordinateZ) && (!gcline.ismachineCoordG53) && (!hide_code))
+                        {
+                            if ((gcline.motionMode > 0) && (feedRate != gcline.feedRate) && (getCoordinateXY || getCoordinateZ)) //((getCoordinateXY && !getCoordinateZ) || (!getCoordinateXY && getCoordinateZ)))
+                            { tmpCode.AppendFormat(" F{0,0}", gcline.feedRate); }       // feed
+                            if (spindleState != gcline.spindleState)
+                            { tmpCode.AppendFormat(" M{0,0}", gcline.spindleState); }   // state
+                            if (spindleSpeed != gcline.spindleSpeed)
+                            { tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed); }   // speed
+                            if (coolantState != gcline.coolantState)
+                            { tmpCode.AppendFormat(" M{0,0}", gcline.coolantState); }   // state
+
+                            tmpCode.Replace(',', '.');
+                            if (gcline.codeLine.IndexOf("(Setup - GCode") > 1)  // ignore coordinates from setup footer
+                                newCode.AppendLine(gcline.codeLine);
+                            else
+                            {
+                                // newCode.AppendLine(gcline.otherCode + "G" + gcode.frmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
+                                if (gcline.nNumber >= 0)
+                                    newCode.AppendLine("N" + gcline.nNumber + " " + gcline.otherCode + "G" + gcode.frmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
+                                else
+                                    newCode.AppendLine(gcline.otherCode + "G" + gcode.frmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
+                            }
                         }
                         else
-                            newCode.AppendLine(gcline.codeLine.Trim('\r', '\n') + infoCode);    // add orignal code-line
+                        {
+                            if (forceM && ((spindleState != gcline.spindleState) || (spindleSpeed != gcline.spindleSpeed)))
+                            {
+                                tmpCode.AppendFormat("M{0,0} S{1,0}", gcode.frmtCode(gcline.spindleState), gcline.spindleSpeed);    // state
+                                newCode.AppendLine(tmpCode.ToString());
+                            }
+                            else
+                                newCode.AppendLine(gcline.codeLine.Trim('\r', '\n') + infoCode);    // add orignal code-line
+                        }
+                        lastMotionMode = gcline.motionMode;
                     }
-                    lastMotionMode = gcline.motionMode;
                 }
                 feedRate = gcline.feedRate;
                 spindleSpeed = gcline.spindleSpeed;
                 spindleState = gcline.spindleState;
                 coolantState = gcline.coolantState;
-                lastActualX = gcline.actualPos.X; lastActualY = gcline.actualPos.Y;
+                lastActualX = gcline.actualPos.X; lastActualY = gcline.actualPos.Y; lastActualZ = gcline.actualPos.Z;
 
                 if ((!hide_code) && (!gcline.ismachineCoordG53) && (gcline.codeLine.IndexOf("(Setup - GCode") < 1)) // ignore coordinates from setup footer
                 {
