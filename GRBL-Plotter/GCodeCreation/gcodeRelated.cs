@@ -24,6 +24,7 @@
 * 2019-09 add toolInfo.gcode
 * 2020-01 add trace level loggerTraceImport to hide log of any gcode command during import
 * 2020-01 add tiny G1 moves for Pen down/up in lasermode only - to be able making dots
+* 2020-12-30 add N-Number
 */
 
 using System;
@@ -791,19 +792,22 @@ namespace GRBL_Plotter
             }
             else
             {
+                string nnr = "";
+                if (nNumber >= 0) nnr = string.Format("N{0} ", nNumber);
+
                 if (z != null)
                 {
                     if (gcodeRelative)
-                        gcodeString.AppendFormat("G{0} X{1} Y{2} Z{3} {4} {5}\r\n", frmtCode(gnr), frmtNum(x_relative), frmtNum(y_relative), frmtNum(z_relative), feed, cmt);
+                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3} Z{4} {5} {6}\r\n", nnr, frmtCode(gnr), frmtNum(x_relative), frmtNum(y_relative), frmtNum(z_relative), feed, cmt);
                     else
-                        gcodeString.AppendFormat("G{0} X{1} Y{2} Z{3}{4} {5} {6}\r\n", frmtCode(gnr), frmtNum(x), frmtNum(y), frmtNum((float)z), gcodeTangentialCommand, feed, cmt);
+                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3} Z{4}{5} {6} {7}\r\n", nnr, frmtCode(gnr), frmtNum(x), frmtNum(y), frmtNum((float)z), gcodeTangentialCommand, feed, cmt);
                 }
                 else
                 {
                     if (gcodeRelative)
-                        gcodeString.AppendFormat("G{0} X{1} Y{2} {3} {4}\r\n", frmtCode(gnr), frmtNum(x_relative), frmtNum(y_relative), feed, cmt);
+                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3} {4} {5}\r\n", nnr, frmtCode(gnr), frmtNum(x_relative), frmtNum(y_relative), feed, cmt);
                     else
-                        gcodeString.AppendFormat("G{0} X{1} Y{2}{3} {4} {5}\r\n", frmtCode(gnr), frmtNum(x), frmtNum(y), gcodeTangentialCommand, feed, cmt);
+                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3}{4} {5} {6}\r\n", nnr, frmtCode(gnr), frmtNum(x), frmtNum(y), gcodeTangentialCommand, feed, cmt);
                 }
             }
             if (gcodeZApply && repeatZ)
@@ -817,8 +821,10 @@ namespace GRBL_Plotter
             lastx = x; lasty = y; lastg = gnr; // lastz = tz;
         }
 
-        public static void splitLine(StringBuilder gcodeString, int gnr, float x1, float y1, float x2, float y2, float maxStep, bool applyFeed, string cmt = "")
+        private static int nNumber = -1;
+        public static void splitLine(StringBuilder gcodeString, int nnr, int gnr, float x1, float y1, float x2, float y2, float maxStep, bool applyFeed, string cmt = "")
         {
+            nNumber = nnr;
             float dx = x2 - x1;
             float dy = y2 - y1;
             float c = (float)Math.Sqrt(dx * dx + dy * dy);
@@ -834,6 +840,29 @@ namespace GRBL_Plotter
                 { Move(gcodeString, gnr, tmpX, tmpY, false, cmt); }
                 else
                 { Move(gcodeString, gnr, tmpX, tmpY, applyFeed, cmt); }
+            }
+        }
+        public static void splitLineZ(StringBuilder gcodeString, int nnr, int gnr, float x1, float y1, float z1, float x2, float y2, float z2 ,float maxStep, bool applyFeed, string cmt = "")
+        {
+            nNumber = nnr;
+            float dx = x2 - x1;
+            float dy = y2 - y1;
+            float dz = z2 - z1;
+            float c = (float)Math.Sqrt(dx * dx + dy * dy + dz * dz);
+
+            float tmpX, tmpY, tmpZ;
+            int divid = (int)Math.Ceiling(c / maxStep);
+            lastg = -1;
+            for (int i = 1; i <= divid; i++)
+            {
+                tmpX = x1 + i * dx / divid;
+                tmpY = y1 + i * dy / divid;
+                tmpZ = z1 + i * dz / divid;
+                if (i > 1) { applyFeed = false; cmt = ""; }
+                if (gnr == 0)
+                { Move(gcodeString, gnr, tmpX, tmpY, tmpZ, false, cmt); }
+                else
+                { Move(gcodeString, gnr, tmpX, tmpY, tmpZ, applyFeed, cmt); }
             }
         }
 
