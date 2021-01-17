@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
  * 2020-04-09 extend class xmlMarker
  * 2020-04-11 fix splitting problem for attributes in element-string (if value contains ' ')
  * 2020-04-13 add splitArc to support tangential axis
+ * 2021-01-16 bug fix: code from tiles without grouping are generated multiple times -> line 264 add gcodeString.Clear(); 
 */
 
 using System;
@@ -132,9 +133,9 @@ namespace GRBL_Plotter
                 }
                 
                 if (graphicInfo.GroupEnable)
-                    CreateGCode(tileObject.tile, headerInfo, graphicInfo, true);      // create grouped code
+                    CreateGCode(tileObject.tile, headerInfo, graphicInfo, true);        // create grouped code
                 else
-                    CreateGCode(tileObject.groupPath, headerInfo, graphicInfo, true);      // create grouped code
+                    CreateGCode(tileObject.groupPath, headerInfo, graphicInfo, true);   // create path code
                 
                 gcode.Comment(finalGcodeString, xmlMarker.tileEnd + ">"); 
                 iDToSet++;                
@@ -260,7 +261,8 @@ namespace GRBL_Plotter
             else
             {
                 finalGcodeString.Append(gcodeString);
-                return true;    // go on with next tile
+                gcodeString.Clear();                            // don't add gcode a 2nd time
+                return true;                                    // go on with next tile
             }
         }
 

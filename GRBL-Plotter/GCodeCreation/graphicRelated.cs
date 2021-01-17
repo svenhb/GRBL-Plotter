@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -441,9 +441,9 @@ namespace GRBL_Plotter
 
         #endregion
 
-        // #######################################################################
-        // Do modifications, then create GCode in graphic2GCode
-        // #######################################################################
+// #######################################################################
+// Do modifications, then create GCode in graphic2GCode
+// #######################################################################
 
         public static bool CreateGCode()//Final(BackgroundWorker backgroundWorker, DoWorkEventArgs e)
         {
