@@ -204,4 +204,25 @@
   <data name="rBToolpath3.Text" xml:space="preserve">
     <value>Dentro da forma</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Retângulo / Círculo</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Raio / Distância</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Chanfro / arredondamento</value>
+  </data>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>Arredondar</value>
+  </data>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>Bisel</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Forma da borda</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Profundidade</value>
+  </data>
 </root>

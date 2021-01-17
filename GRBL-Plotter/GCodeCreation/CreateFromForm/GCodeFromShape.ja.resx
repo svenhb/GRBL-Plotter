@@ -222,4 +222,25 @@
   <data name="label15.Text" xml:space="preserve">
     <value>スピンドル-Spd</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>長方形/円</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>半径/距離</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>ベベル/四捨五入</value>
+  </data>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>四捨五入</value>
+  </data>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>ベベル</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>エッジ形状</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>深さ</value>
+  </data>
 </root>

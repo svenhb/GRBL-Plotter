@@ -204,4 +204,25 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Создать G-Code из фигур</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Прямоугольник / Круг</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Радиус / Расстояние</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Скос / закругление</value>
+  </data>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>Округлять</value>
+  </data>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>Скос</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Форма края</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Глубина</value>
+  </data>
 </root>

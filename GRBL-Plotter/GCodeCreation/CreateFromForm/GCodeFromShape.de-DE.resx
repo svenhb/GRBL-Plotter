@@ -166,18 +166,6 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Werkzeug</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Form</value>
-  </data>
-  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
-    <value>Endgültige Tiefe der Form</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Tiefe (Z)</value>
-  </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 13</value>
   </data>
@@ -211,11 +199,35 @@
   <data name="rBShape3.Text" xml:space="preserve">
     <value>Kreis</value>
   </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Form</value>
+  </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value>Endgültige Tiefe der Form</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Tiefe (Z)</value>
+  </data>
   <data name="rBToolpath2.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 17</value>
   </data>
   <data name="rBToolpath2.Text" xml:space="preserve">
     <value>Ausserhalb der Kontur</value>
+  </data>
+  <data name="rBToolpath3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 17</value>
+  </data>
+  <data name="rBToolpath3.Text" xml:space="preserve">
+    <value>Innerhalb der Kontur</value>
+  </data>
+  <data name="rBToolpath1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 17</value>
+  </data>
+  <data name="rBToolpath1.Text" xml:space="preserve">
+    <value>Auf der Kontur (Gravieren)</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Werkzeugpfad</value>
@@ -232,23 +244,8 @@
   <data name="cBToolpathPocket.Text" xml:space="preserve">
     <value>Tasche erzeugen</value>
   </data>
-  <data name="rBToolpath3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 17</value>
-  </data>
-  <data name="rBToolpath3.Text" xml:space="preserve">
-    <value>Innerhalb der Kontur</value>
-  </data>
-  <data name="rBToolpath1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 17</value>
-  </data>
-  <data name="rBToolpath1.Text" xml:space="preserve">
-    <value>Auf der Kontur (Gravieren)</value>
-  </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Erzeuge G-Code</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Nullpunkt</value>
   </data>
   <data name="rBOrigin9.Location" type="System.Drawing.Point, System.Drawing">
     <value>49, 59</value>
@@ -277,7 +274,43 @@
   <data name="rBOrigin1.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 21</value>
   </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Nullpunkt</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Rechteck / Kreis</value>
+  </data>
+  <data name="rBBevel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
+  </data>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>Abrunden</value>
+  </data>
+  <data name="rBBevel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 17</value>
+  </data>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>Fase</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Radius / Abstand</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Kantenform</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Abschrägen / Abrunden</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Tiefe</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Erzeuge G-Code aus Formen</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

@@ -117,20 +117,144 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cBNoZUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 17</value>
+  </data>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>تجنب Z المتابعة</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>أداة:</value>
+  </data>
+  <data name="cBToolSet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 17</value>
+  </data>
   <data name="cBToolSet.Text" xml:space="preserve">
     <value>الحصول على القيم من جدول الأدوات</value>
   </data>
-  <data name="rBToolpath2.Text" xml:space="preserve">
-    <value>خارج الشكل</value>
+  <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
+    <value>المسافة بين مسارين (عند القيام بجيب) كقطر للأداة. 100 ٪ = أداة قطرها خطوة العرض.</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 13</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>تداخل ٪</value>
+  </data>
+  <data name="label16.ToolTip" xml:space="preserve">
+    <value>المسافة بين مسارين (عند القيام بجيب) كقطر للأداة. 100 ٪ = أداة قطرها خطوة العرض.</value>
+  </data>
+  <data name="nUDToolSpindleSpeed.ToolTip" xml:space="preserve">
+    <value>سرعة المغزل</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>مغزل SPD</value>
+  </data>
+  <data name="nUDToolFeedZ.ToolTip" xml:space="preserve">
+    <value>معدل التغذية ل Z</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>تغذية Z</value>
+  </data>
+  <data name="nUDToolFeedXY.ToolTip" xml:space="preserve">
+    <value>معدل التغذية لاتجاه XY</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>تغذية XY</value>
+  </data>
+  <data name="nUDToolZStep.ToolTip" xml:space="preserve">
+    <value>العمق لكل تمريرة (وليس العمق النهائي)</value>
+  </data>
+  <data name="nUDToolDiameter.ToolTip" xml:space="preserve">
+    <value>قطر أداة لحساب إزاحة مسار الإزاحة</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>قطر الدائرة</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>أداة</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>Y-البعد</value>
   </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>X-البعد</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>نصف القطر</value>
+  </data>
+  <data name="rBShape2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 17</value>
+  </data>
+  <data name="rBShape2.Text" xml:space="preserve">
+    <value>مستطيل حافة مستديرة</value>
+  </data>
+  <data name="rBShape1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="rBShape1.Text" xml:space="preserve">
+    <value>المستطيل</value>
+  </data>
+  <data name="rBShape3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 17</value>
+  </data>
+  <data name="rBShape3.Text" xml:space="preserve">
+    <value>دائرة</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>شكل</value>
+  </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value>العمق النهائي للشكل</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>العمق (ي)</value>
+  </data>
+  <data name="rBToolpath2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 17</value>
+  </data>
+  <data name="rBToolpath2.Text" xml:space="preserve">
+    <value>خارج الشكل</value>
+  </data>
+  <data name="rBToolpath3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 17</value>
+  </data>
+  <data name="rBToolpath3.Text" xml:space="preserve">
+    <value>داخل الشكل</value>
+  </data>
+  <data name="rBToolpath1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 17</value>
+  </data>
   <data name="rBToolpath1.Text" xml:space="preserve">
     <value>على الشكل (النقش)</value>
   </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>تداخل ٪</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>جيب</value>
+  </data>
+  <data name="cBToolpathPocket.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 17</value>
   </data>
   <data name="cBToolpathPocket.Text" xml:space="preserve">
     <value>إنشاء الجيب</value>
@@ -138,88 +262,46 @@
   <data name="btnApply.Text" xml:space="preserve">
     <value>قم بإنشاء G-Code</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>إنشاء G- كود من الأشكال</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>الأصل</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>قريب</value>
   </data>
-  <data name="nUDToolFeedZ.ToolTip" xml:space="preserve">
-    <value>معدل التغذية ل Z</value>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>مستطيل / دائرة</value>
   </data>
-  <data name="nUDToolDiameter.ToolTip" xml:space="preserve">
-    <value>قطر أداة لحساب إزاحة مسار الإزاحة</value>
+  <data name="rBBevel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 17</value>
   </data>
-  <data name="nUDToolZStep.ToolTip" xml:space="preserve">
-    <value>العمق لكل تمريرة (وليس العمق النهائي)</value>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>نهاية الجولة</value>
   </data>
-  <data name="nUDToolSpindleSpeed.ToolTip" xml:space="preserve">
-    <value>سرعة المغزل</value>
+  <data name="rBBevel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 17</value>
   </data>
-  <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
-    <value>المسافة بين مسارين (عند القيام بجيب) كقطر للأداة. 100 ٪ = أداة قطرها خطوة العرض.</value>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>شطبة</value>
   </data>
-  <data name="rBShape2.Text" xml:space="preserve">
-    <value>مستطيل حافة مستديرة</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 13</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>قطر الدائرة</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>نصف القطر / المسافة</value>
   </data>
-  <data name="label16.ToolTip" xml:space="preserve">
-    <value>المسافة بين مسارين (عند القيام بجيب) كقطر للأداة. 100 ٪ = أداة قطرها خطوة العرض.</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>شكل الحافة</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>أداة:</value>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>شطبة / جولة قبالة</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>جيب</value>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>عمق</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>أداة</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>إنشاء G- كود من الأشكال</value>
   </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>نصف القطر</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>X-البعد</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>شكل</value>
-  </data>
-  <data name="rBShape3.Text" xml:space="preserve">
-    <value>دائرة</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>العمق (ي)</value>
-  </data>
-  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
-    <value>العمق النهائي للشكل</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>تغذية XY</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>الأصل</value>
-  </data>
-  <data name="rBShape1.Text" xml:space="preserve">
-    <value>المستطيل</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Toolpath</value>
-  </data>
-  <data name="nUDToolFeedXY.ToolTip" xml:space="preserve">
-    <value>معدل التغذية لاتجاه XY</value>
-  </data>
-  <data name="cBNoZUp.Text" xml:space="preserve">
-    <value>تجنب Z المتابعة</value>
-  </data>
-  <data name="rBToolpath3.Text" xml:space="preserve">
-    <value>داخل الشكل</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>تغذية Z</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>مغزل SPD</value>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

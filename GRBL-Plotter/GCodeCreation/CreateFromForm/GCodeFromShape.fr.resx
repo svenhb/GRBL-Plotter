@@ -204,4 +204,25 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Créer un G-Code à partir de formes</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Rectangle / Cercle</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Rayon / Distance</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Biseau / arrondi</value>
+  </data>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>Compléter</value>
+  </data>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>Biseau</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Forme du bord</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Profondeur</value>
+  </data>
 </root>

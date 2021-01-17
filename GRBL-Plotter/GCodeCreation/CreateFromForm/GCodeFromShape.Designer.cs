@@ -16,6 +16,7 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                pathBackground.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -48,8 +49,6 @@
             this.nUDToolDiameter = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.nUDImportGCZDown = new System.Windows.Forms.NumericUpDown();
-            this.label20 = new System.Windows.Forms.Label();
             this.nUDShapeY = new System.Windows.Forms.NumericUpDown();
             this.label19 = new System.Windows.Forms.Label();
             this.nUDShapeX = new System.Windows.Forms.NumericUpDown();
@@ -59,12 +58,14 @@
             this.rBShape2 = new System.Windows.Forms.RadioButton();
             this.rBShape1 = new System.Windows.Forms.RadioButton();
             this.rBShape3 = new System.Windows.Forms.RadioButton();
+            this.nUDImportGCZDown = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
             this.rBToolpath2 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cBToolpathPocket = new System.Windows.Forms.CheckBox();
             this.rBToolpath3 = new System.Windows.Forms.RadioButton();
             this.rBToolpath1 = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cBToolpathPocket = new System.Windows.Forms.CheckBox();
             this.btnApply = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.rBOrigin9 = new System.Windows.Forms.RadioButton();
@@ -78,6 +79,19 @@
             this.rBOrigin1 = new System.Windows.Forms.RadioButton();
             this.btnCancel = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.rBBevel1 = new System.Windows.Forms.RadioButton();
+            this.rBBevel2 = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nUDBevelR = new System.Windows.Forms.NumericUpDown();
+            this.rB4 = new System.Windows.Forms.RadioButton();
+            this.rB3 = new System.Windows.Forms.RadioButton();
+            this.rB2 = new System.Windows.Forms.RadioButton();
+            this.rB1 = new System.Windows.Forms.RadioButton();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolSpindleSpeed)).BeginInit();
@@ -86,13 +100,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolZStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolDiameter)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDShapeY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDShapeX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDShapeR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDBevelR)).BeginInit();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -320,8 +339,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.nUDImportGCZDown);
-            this.groupBox2.Controls.Add(this.label20);
             this.groupBox2.Controls.Add(this.nUDShapeY);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.nUDShapeX);
@@ -334,38 +351,6 @@
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            // 
-            // nUDImportGCZDown
-            // 
-            this.nUDImportGCZDown.DecimalPlaces = 2;
-            this.nUDImportGCZDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
-            this.nUDImportGCZDown.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147418112});
-            this.nUDImportGCZDown.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-            this.nUDImportGCZDown.Name = "nUDImportGCZDown";
-            this.toolTip1.SetToolTip(this.nUDImportGCZDown, resources.GetString("nUDImportGCZDown.ToolTip"));
-            this.nUDImportGCZDown.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            -2147483648});
-            // 
-            // label20
-            // 
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.Name = "label20";
             // 
             // nUDShapeY
             // 
@@ -471,6 +456,38 @@
             this.rBShape3.UseVisualStyleBackColor = true;
             this.rBShape3.CheckedChanged += new System.EventHandler(this.nUDShapeR_ValueChanged);
             // 
+            // nUDImportGCZDown
+            // 
+            this.nUDImportGCZDown.DecimalPlaces = 2;
+            this.nUDImportGCZDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
+            this.nUDImportGCZDown.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147418112});
+            this.nUDImportGCZDown.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nUDImportGCZDown.Name = "nUDImportGCZDown";
+            this.toolTip1.SetToolTip(this.nUDImportGCZDown, resources.GetString("nUDImportGCZDown.ToolTip"));
+            this.nUDImportGCZDown.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            -2147483648});
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
+            // 
             // rBToolpath2
             // 
             resources.ApplyResources(this.rBToolpath2, "rBToolpath2");
@@ -479,26 +496,12 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Controls.Add(this.rBToolpath3);
             this.groupBox3.Controls.Add(this.rBToolpath1);
             this.groupBox3.Controls.Add(this.rBToolpath2);
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.cBToolpathPocket);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
-            // cBToolpathPocket
-            // 
-            resources.ApplyResources(this.cBToolpathPocket, "cBToolpathPocket");
-            this.cBToolpathPocket.Name = "cBToolpathPocket";
-            this.cBToolpathPocket.UseVisualStyleBackColor = true;
             // 
             // rBToolpath3
             // 
@@ -513,6 +516,18 @@
             this.rBToolpath1.Name = "rBToolpath1";
             this.rBToolpath1.TabStop = true;
             this.rBToolpath1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // cBToolpathPocket
+            // 
+            resources.ApplyResources(this.cBToolpathPocket, "cBToolpathPocket");
+            this.cBToolpathPocket.Name = "cBToolpathPocket";
+            this.cBToolpathPocket.UseVisualStyleBackColor = true;
             // 
             // btnApply
             // 
@@ -599,15 +614,137 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.cBToolpathPocket);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.groupBox6);
+            this.tabPage2.Controls.Add(this.rB4);
+            this.tabPage2.Controls.Add(this.rB3);
+            this.tabPage2.Controls.Add(this.rB2);
+            this.tabPage2.Controls.Add(this.rB1);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.rBBevel1);
+            this.groupBox6.Controls.Add(this.rBBevel2);
+            this.groupBox6.Controls.Add(this.label2);
+            this.groupBox6.Controls.Add(this.nUDBevelR);
+            resources.ApplyResources(this.groupBox6, "groupBox6");
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.TabStop = false;
+            // 
+            // rBBevel1
+            // 
+            resources.ApplyResources(this.rBBevel1, "rBBevel1");
+            this.rBBevel1.Checked = true;
+            this.rBBevel1.Name = "rBBevel1";
+            this.rBBevel1.TabStop = true;
+            this.rBBevel1.UseVisualStyleBackColor = true;
+            this.rBBevel1.CheckedChanged += new System.EventHandler(this.rBBevel1_CheckedChanged);
+            // 
+            // rBBevel2
+            // 
+            resources.ApplyResources(this.rBBevel2, "rBBevel2");
+            this.rBBevel2.Name = "rBBevel2";
+            this.rBBevel2.UseVisualStyleBackColor = true;
+            this.rBBevel2.CheckedChanged += new System.EventHandler(this.rBBevel1_CheckedChanged);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // nUDBevelR
+            // 
+            this.nUDBevelR.DecimalPlaces = 2;
+            resources.ApplyResources(this.nUDBevelR, "nUDBevelR");
+            this.nUDBevelR.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDBevelR.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDBevelR.Name = "nUDBevelR";
+            this.nUDBevelR.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // rB4
+            // 
+            resources.ApplyResources(this.rB4, "rB4");
+            this.rB4.Name = "rB4";
+            this.rB4.TabStop = true;
+            this.rB4.UseVisualStyleBackColor = true;
+            this.rB4.CheckedChanged += new System.EventHandler(this.rB1_CheckedChanged);
+            // 
+            // rB3
+            // 
+            resources.ApplyResources(this.rB3, "rB3");
+            this.rB3.Name = "rB3";
+            this.rB3.TabStop = true;
+            this.rB3.UseVisualStyleBackColor = true;
+            this.rB3.CheckedChanged += new System.EventHandler(this.rB1_CheckedChanged);
+            // 
+            // rB2
+            // 
+            resources.ApplyResources(this.rB2, "rB2");
+            this.rB2.Name = "rB2";
+            this.rB2.TabStop = true;
+            this.rB2.UseVisualStyleBackColor = true;
+            this.rB2.CheckedChanged += new System.EventHandler(this.rB1_CheckedChanged);
+            // 
+            // rB1
+            // 
+            resources.ApplyResources(this.rB1, "rB1");
+            this.rB1.Name = "rB1";
+            this.rB1.TabStop = true;
+            this.rB1.UseVisualStyleBackColor = true;
+            this.rB1.CheckedChanged += new System.EventHandler(this.rB1_CheckedChanged);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.nUDImportGCZDown);
+            this.groupBox7.Controls.Add(this.label20);
+            resources.ApplyResources(this.groupBox7, "groupBox7");
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.TabStop = false;
+            // 
             // GCodeFromShape
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "GCodeFromShape";
@@ -623,16 +760,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolDiameter)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDShapeY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDShapeX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDShapeR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDBevelR)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -687,5 +831,18 @@
         private System.Windows.Forms.CheckBox cBToolSet;
         private System.Windows.Forms.ComboBox cBTool;
         private System.Windows.Forms.CheckBox cBNoZUp;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.NumericUpDown nUDBevelR;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton rB4;
+        private System.Windows.Forms.RadioButton rB3;
+        private System.Windows.Forms.RadioButton rB2;
+        private System.Windows.Forms.RadioButton rB1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.RadioButton rBBevel1;
+        private System.Windows.Forms.RadioButton rBBevel2;
+        private System.Windows.Forms.GroupBox groupBox7;
     }
 }

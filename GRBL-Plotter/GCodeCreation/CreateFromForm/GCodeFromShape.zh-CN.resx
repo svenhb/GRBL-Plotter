@@ -204,4 +204,25 @@
   <data name="$this.Text" xml:space="preserve">
     <value>从形状创建G代码</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>矩形/圆</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>半径/距离</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>斜角/四舍五入</value>
+  </data>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>四舍五入</value>
+  </data>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>斜角</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>边缘形状</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>深度</value>
+  </data>
 </root>
