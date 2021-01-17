@@ -613,6 +613,30 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal createJogPathFeedrate {
+            get {
+                return ((decimal)(this["createJogPathFeedrate"]));
+            }
+            set {
+                this["createJogPathFeedrate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal createJogPathRaster {
+            get {
+                return ((decimal)(this["createJogPathRaster"]));
+            }
+            set {
+                this["createJogPathRaster"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int createShapeOrigin {
             get {
@@ -926,6 +950,18 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlLineNumbers {
+            get {
+                return ((bool)(this["ctrlLineNumbers"]));
+            }
+            set {
+                this["ctrlLineNumbers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool ctrlReplaceEnable {
             get {
                 return ((bool)(this["ctrlReplaceEnable"]));
@@ -1064,6 +1100,18 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["ctrlUseSerial2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlUseSerial3 {
+            get {
+                return ((bool)(this["ctrlUseSerial3"]));
+            }
+            set {
+                this["ctrlUseSerial3"] = value;
             }
         }
         
@@ -1633,6 +1681,18 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool grblStreamingProtocol1 {
+            get {
+                return ((bool)(this["grblStreamingProtocol1"]));
+            }
+            set {
+                this["grblStreamingProtocol1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool grblTranslateMessage {
             get {
@@ -1700,6 +1760,18 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["gui2DColorPenDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DColorPenDownModeEnable {
+            get {
+                return ((bool)(this["gui2DColorPenDownModeEnable"]));
+            }
+            set {
+                this["gui2DColorPenDownModeEnable"] = value;
             }
         }
         
@@ -1940,18 +2012,6 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["gui2DWidthTool"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool gui2DColorPenDownModeEnable {
-            get {
-                return ((bool)(this["gui2DColorPenDownModeEnable"]));
-            }
-            set {
-                this["gui2DColorPenDownModeEnable"] = value;
             }
         }
         
@@ -2401,6 +2461,18 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["guiDimensionShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool guiDisableProgramPause {
+            get {
+                return ((bool)(this["guiDisableProgramPause"]));
+            }
+            set {
+                this["guiDisableProgramPause"] = value;
             }
         }
         
@@ -3894,6 +3966,18 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Z10 (move upwards)")]
+        public string importGCToolChangeCode {
+            get {
+                return ((string)(this["importGCToolChangeCode"]));
+            }
+            set {
+                this["importGCToolChangeCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal importGCToolDefNr {
             get {
@@ -4087,36 +4171,12 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importGraphicClip {
-            get {
-                return ((bool)(this["importGraphicClip"]));
-            }
-            set {
-                this["importGraphicClip"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importGerberTypeEnable {
             get {
                 return ((bool)(this["importGerberTypeEnable"]));
             }
             set {
                 this["importGerberTypeEnable"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pen")]
-        public string importGerberTypePen {
-            get {
-                return ((string)(this["importGerberTypePen"]));
-            }
-            set {
-                this["importGerberTypePen"] = value;
             }
         }
         
@@ -4141,6 +4201,30 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["importGerberTypeM19"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pen")]
+        public string importGerberTypePen {
+            get {
+                return ((string)(this["importGerberTypePen"]));
+            }
+            set {
+                this["importGerberTypePen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicClip {
+            get {
+                return ((bool)(this["importGraphicClip"]));
+            }
+            set {
+                this["importGraphicClip"] = value;
             }
         }
         
@@ -4201,6 +4285,18 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["importGraphicClipOffsetY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicClipSkipCode {
+            get {
+                return ((bool)(this["importGraphicClipSkipCode"]));
+            }
+            set {
+                this["importGraphicClipSkipCode"] = value;
             }
         }
         
@@ -4638,6 +4734,18 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importSVGApplyFill {
+            get {
+                return ((bool)(this["importSVGApplyFill"]));
+            }
+            set {
+                this["importSVGApplyFill"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGCircleToDot {
             get {
@@ -4693,18 +4801,6 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["importSVGNodesOnly"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importSVGApplyFill {
-            get {
-                return ((bool)(this["importSVGApplyFill"]));
-            }
-            set {
-                this["importSVGApplyFill"] = value;
             }
         }
         
@@ -5010,6 +5106,18 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("250, 0")]
+        public global::System.Drawing.Point locationJogCreatorForm {
+            get {
+                return ((global::System.Drawing.Point)(this["locationJogCreatorForm"]));
+            }
+            set {
+                this["locationJogCreatorForm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-30, 0")]
         public global::System.Drawing.Point locationMForm {
             get {
@@ -5053,6 +5161,18 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["locationSerForm2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("250, 50")]
+        public global::System.Drawing.Point locationSerForm3 {
+            get {
+                return ((global::System.Drawing.Point)(this["locationSerForm3"]));
+            }
+            set {
+                this["locationSerForm3"] = value;
             }
         }
         
@@ -5125,6 +5245,30 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["machineLimitsFix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-20")]
+        public decimal machineLimitsHomeX {
+            get {
+                return ((decimal)(this["machineLimitsHomeX"]));
+            }
+            set {
+                this["machineLimitsHomeX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-20")]
+        public decimal machineLimitsHomeY {
+            get {
+                return ((decimal)(this["machineLimitsHomeY"]));
+            }
+            set {
+                this["machineLimitsHomeY"] = value;
             }
         }
         
@@ -5221,6 +5365,198 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["mainFormWinState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.gmail.com")]
+        public string notifierMailClientAdr {
+            get {
+                return ((string)(this["notifierMailClientAdr"]));
+            }
+            set {
+                this["notifierMailClientAdr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pass")]
+        public string notifierMailClientPass {
+            get {
+                return ((string)(this["notifierMailClientPass"]));
+            }
+            set {
+                this["notifierMailClientPass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("587")]
+        public decimal notifierMailClientPort {
+            get {
+                return ((decimal)(this["notifierMailClientPort"]));
+            }
+            set {
+                this["notifierMailClientPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("user")]
+        public string notifierMailClientUser {
+            get {
+                return ((string)(this["notifierMailClientUser"]));
+            }
+            set {
+                this["notifierMailClientUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool notifierMailEnable {
+            get {
+                return ((bool)(this["notifierMailEnable"]));
+            }
+            set {
+                this["notifierMailEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("from@gmail.com")]
+        public string notifierMailSendFrom {
+            get {
+                return ((string)(this["notifierMailSendFrom"]));
+            }
+            set {
+                this["notifierMailSendFrom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GRBL-Plotter ")]
+        public string notifierMailSendSubject {
+            get {
+                return ((string)(this["notifierMailSendSubject"]));
+            }
+            set {
+                this["notifierMailSendSubject"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("to@gmail.com")]
+        public string notifierMailSendTo {
+            get {
+                return ((string)(this["notifierMailSendTo"]));
+            }
+            set {
+                this["notifierMailSendTo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Streaming via GRBL-Plotter finished")]
+        public string notifierMessageFinish {
+            get {
+                return ((string)(this["notifierMessageFinish"]));
+            }
+            set {
+                this["notifierMessageFinish"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Progress")]
+        public string notifierMessageProgress {
+            get {
+                return ((string)(this["notifierMessageProgress"]));
+            }
+            set {
+                this["notifierMessageProgress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool notifierMessageProgressEnable {
+            get {
+                return ((bool)(this["notifierMessageProgressEnable"]));
+            }
+            set {
+                this["notifierMessageProgressEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal notifierMessageProgressInterval {
+            get {
+                return ((decimal)(this["notifierMessageProgressInterval"]));
+            }
+            set {
+                this["notifierMessageProgressInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool notifierMessageProgressTitle {
+            get {
+                return ((bool)(this["notifierMessageProgressTitle"]));
+            }
+            set {
+                this["notifierMessageProgressTitle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string notifierPushbulletChannel {
+            get {
+                return ((string)(this["notifierPushbulletChannel"]));
+            }
+            set {
+                this["notifierPushbulletChannel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool notifierPushbulletEnable {
+            get {
+                return ((bool)(this["notifierPushbulletEnable"]));
+            }
+            set {
+                this["notifierPushbulletEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string notifierPushbulletToken {
+            get {
+                return ((string)(this["notifierPushbulletToken"]));
+            }
+            set {
+                this["notifierPushbulletToken"] = value;
             }
         }
         
@@ -5659,6 +5995,18 @@ namespace GRBL_Plotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("115200")]
+        public string serialBaud3 {
+            get {
+                return ((string)(this["serialBaud3"]));
+            }
+            set {
+                this["serialBaud3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("115200")]
         public string serialBaudDIY {
             get {
                 return ((string)(this["serialBaudDIY"]));
@@ -5706,6 +6054,42 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM3")]
+        public string serialPort3 {
+            get {
+                return ((string)(this["serialPort3"]));
+            }
+            set {
+                this["serialPort3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ready")]
+        public string serial3Ready {
+            get {
+                return ((string)(this["serial3Ready"]));
+            }
+            set {
+                this["serial3Ready"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int serial3Timeout {
+            get {
+                return ((int)(this["serial3Timeout"]));
+            }
+            set {
+                this["serial3Timeout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM9")]
         public string serialPortDIY {
             get {
@@ -5713,6 +6097,18 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["serialPortDIY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("342, 480")]
+        public global::System.Drawing.Size sizeSerForm1 {
+            get {
+                return ((global::System.Drawing.Size)(this["sizeSerForm1"]));
+            }
+            set {
+                this["sizeSerForm1"] = value;
             }
         }
         
@@ -5797,294 +6193,6 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-20")]
-        public decimal machineLimitsHomeX {
-            get {
-                return ((decimal)(this["machineLimitsHomeX"]));
-            }
-            set {
-                this["machineLimitsHomeX"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-20")]
-        public decimal machineLimitsHomeY {
-            get {
-                return ((decimal)(this["machineLimitsHomeY"]));
-            }
-            set {
-                this["machineLimitsHomeY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool guiDisableProgramPause {
-            get {
-                return ((bool)(this["guiDisableProgramPause"]));
-            }
-            set {
-                this["guiDisableProgramPause"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool grblStreamingProtocol1 {
-            get {
-                return ((bool)(this["grblStreamingProtocol1"]));
-            }
-            set {
-                this["grblStreamingProtocol1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Z10 (move upwards)")]
-        public string importGCToolChangeCode {
-            get {
-                return ((string)(this["importGCToolChangeCode"]));
-            }
-            set {
-                this["importGCToolChangeCode"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ctrlLineNumbers {
-            get {
-                return ((bool)(this["ctrlLineNumbers"]));
-            }
-            set {
-                this["ctrlLineNumbers"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("342, 480")]
-        public global::System.Drawing.Size sizeSerForm1 {
-            get {
-                return ((global::System.Drawing.Size)(this["sizeSerForm1"]));
-            }
-            set {
-                this["sizeSerForm1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("smtp.gmail.com")]
-        public string notifierMailClientAdr {
-            get {
-                return ((string)(this["notifierMailClientAdr"]));
-            }
-            set {
-                this["notifierMailClientAdr"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("587")]
-        public decimal notifierMailClientPort {
-            get {
-                return ((decimal)(this["notifierMailClientPort"]));
-            }
-            set {
-                this["notifierMailClientPort"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("user")]
-        public string notifierMailClientUser {
-            get {
-                return ((string)(this["notifierMailClientUser"]));
-            }
-            set {
-                this["notifierMailClientUser"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pass")]
-        public string notifierMailClientPass {
-            get {
-                return ((string)(this["notifierMailClientPass"]));
-            }
-            set {
-                this["notifierMailClientPass"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("from@gmail.com")]
-        public string notifierMailSendFrom {
-            get {
-                return ((string)(this["notifierMailSendFrom"]));
-            }
-            set {
-                this["notifierMailSendFrom"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("to@gmail.com")]
-        public string notifierMailSendTo {
-            get {
-                return ((string)(this["notifierMailSendTo"]));
-            }
-            set {
-                this["notifierMailSendTo"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("GRBL-Plotter ")]
-        public string notifierMailSendSubject {
-            get {
-                return ((string)(this["notifierMailSendSubject"]));
-            }
-            set {
-                this["notifierMailSendSubject"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool notifierMailEnable {
-            get {
-                return ((bool)(this["notifierMailEnable"]));
-            }
-            set {
-                this["notifierMailEnable"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Streaming via GRBL-Plotter finished")]
-        public string notifierMessageFinish {
-            get {
-                return ((string)(this["notifierMessageFinish"]));
-            }
-            set {
-                this["notifierMessageFinish"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Progress")]
-        public string notifierMessageProgress {
-            get {
-                return ((string)(this["notifierMessageProgress"]));
-            }
-            set {
-                this["notifierMessageProgress"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool notifierMessageProgressEnable {
-            get {
-                return ((bool)(this["notifierMessageProgressEnable"]));
-            }
-            set {
-                this["notifierMessageProgressEnable"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public decimal notifierMessageProgressInterval {
-            get {
-                return ((decimal)(this["notifierMessageProgressInterval"]));
-            }
-            set {
-                this["notifierMessageProgressInterval"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool notifierMessageProgressTitle {
-            get {
-                return ((bool)(this["notifierMessageProgressTitle"]));
-            }
-            set {
-                this["notifierMessageProgressTitle"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool notifierPushbulletEnable {
-            get {
-                return ((bool)(this["notifierPushbulletEnable"]));
-            }
-            set {
-                this["notifierPushbulletEnable"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string notifierPushbulletChannel {
-            get {
-                return ((string)(this["notifierPushbulletChannel"]));
-            }
-            set {
-                this["notifierPushbulletChannel"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string notifierPushbulletToken {
-            get {
-                return ((string)(this["notifierPushbulletToken"]));
-            }
-            set {
-                this["notifierPushbulletToken"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGraphicClipSkipCode {
-            get {
-                return ((bool)(this["importGraphicClipSkipCode"]));
-            }
-            set {
-                this["importGraphicClipSkipCode"] = value;
             }
         }
     }

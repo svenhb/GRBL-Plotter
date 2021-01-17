@@ -149,6 +149,12 @@
     <Setting Name="crcValue" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2.5</Value>
     </Setting>
+    <Setting Name="createJogPathFeedrate" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="createJogPathRaster" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
     <Setting Name="createShapeOrigin" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
@@ -227,6 +233,9 @@
     <Setting Name="ctrlLineEndText" Type="System.String" Scope="User">
       <Value Profile="(Default)">;</Value>
     </Setting>
+    <Setting Name="ctrlLineNumbers" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="ctrlReplaceEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -261,6 +270,9 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ctrlUseSerial2" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlUseSerial3" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ctrlUseSerialDIY" Type="System.Boolean" Scope="User">
@@ -404,6 +416,9 @@
     <Setting Name="grblPollIntervalReduce" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="grblStreamingProtocol1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="grblTranslateMessage" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -421,6 +436,9 @@
     </Setting>
     <Setting Name="gui2DColorPenDown" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="gui2DColorPenDownModeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="gui2DColorPenUp" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Green</Value>
@@ -481,9 +499,6 @@
     </Setting>
     <Setting Name="gui2DWidthTool" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.2</Value>
-    </Setting>
-    <Setting Name="gui2DColorPenDownModeEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="guiBackgroundImageEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -595,6 +610,9 @@
     </Setting>
     <Setting Name="guiDimensionShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="guiDisableProgramPause" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="guiExtendedLoggingEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -968,6 +986,9 @@
     <Setting Name="importGCTool" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGCToolChangeCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Z10 (move upwards)</Value>
+    </Setting>
     <Setting Name="importGCToolDefNr" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -1016,20 +1037,20 @@
     <Setting Name="importGCZUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="importGraphicClip" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="importGerberTypeEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="importGerberTypePen" Type="System.String" Scope="User">
-      <Value Profile="(Default)">pen</Value>
     </Setting>
     <Setting Name="importGerberTypeKnife" Type="System.String" Scope="User">
       <Value Profile="(Default)">knife</Value>
     </Setting>
     <Setting Name="importGerberTypeM19" Type="System.String" Scope="User">
       <Value Profile="(Default)">notch</Value>
+    </Setting>
+    <Setting Name="importGerberTypePen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pen</Value>
+    </Setting>
+    <Setting Name="importGraphicClip" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGraphicClipEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1045,6 +1066,9 @@
     </Setting>
     <Setting Name="importGraphicClipOffsetY" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGraphicClipSkipCode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicExtendPathEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1154,6 +1178,9 @@
     <Setting Name="importSVGAddComments" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importSVGApplyFill" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importSVGCircleToDot" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1168,9 +1195,6 @@
     </Setting>
     <Setting Name="importSVGNodesOnly" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importSVGApplyFill" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importSVGPathExtend" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1247,6 +1271,9 @@
     <Setting Name="locationImageForm" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">-30, 0</Value>
     </Setting>
+    <Setting Name="locationJogCreatorForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">250, 0</Value>
+    </Setting>
     <Setting Name="locationMForm" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">-30, 0</Value>
     </Setting>
@@ -1258,6 +1285,9 @@
     </Setting>
     <Setting Name="locationSerForm2" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">50, 50</Value>
+    </Setting>
+    <Setting Name="locationSerForm3" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">250, 50</Value>
     </Setting>
     <Setting Name="locationSetForm" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">-30, 0</Value>
@@ -1276,6 +1306,12 @@
     </Setting>
     <Setting Name="machineLimitsFix" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="machineLimitsHomeX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-20</Value>
+    </Setting>
+    <Setting Name="machineLimitsHomeY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-20</Value>
     </Setting>
     <Setting Name="machineLimitsHomeZ" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
@@ -1300,6 +1336,54 @@
     </Setting>
     <Setting Name="mainFormWinState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="notifierMailClientAdr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+    <Setting Name="notifierMailClientPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pass</Value>
+    </Setting>
+    <Setting Name="notifierMailClientPort" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="notifierMailClientUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">user</Value>
+    </Setting>
+    <Setting Name="notifierMailEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="notifierMailSendFrom" Type="System.String" Scope="User">
+      <Value Profile="(Default)">from@gmail.com</Value>
+    </Setting>
+    <Setting Name="notifierMailSendSubject" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GRBL-Plotter </Value>
+    </Setting>
+    <Setting Name="notifierMailSendTo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">to@gmail.com</Value>
+    </Setting>
+    <Setting Name="notifierMessageFinish" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Streaming via GRBL-Plotter finished</Value>
+    </Setting>
+    <Setting Name="notifierMessageProgress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Progress</Value>
+    </Setting>
+    <Setting Name="notifierMessageProgressEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="notifierMessageProgressInterval" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="notifierMessageProgressTitle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="notifierPushbulletChannel" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="notifierPushbulletEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="notifierPushbulletToken" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="overrideFRBtm" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
@@ -1409,6 +1493,9 @@
     <Setting Name="serialBaud2" Type="System.String" Scope="User">
       <Value Profile="(Default)">115200</Value>
     </Setting>
+    <Setting Name="serialBaud3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">115200</Value>
+    </Setting>
     <Setting Name="serialBaudDIY" Type="System.String" Scope="User">
       <Value Profile="(Default)">115200</Value>
     </Setting>
@@ -1421,8 +1508,20 @@
     <Setting Name="serialPort2" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM2</Value>
     </Setting>
+    <Setting Name="serialPort3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM3</Value>
+    </Setting>
+    <Setting Name="serial3Ready" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ready</Value>
+    </Setting>
+    <Setting Name="serial3Timeout" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
     <Setting Name="serialPortDIY" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM9</Value>
+    </Setting>
+    <Setting Name="sizeSerForm1" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">342, 480</Value>
     </Setting>
     <Setting Name="toolTableLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">empty</Value>
@@ -1444,78 +1543,6 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
-    </Setting>
-    <Setting Name="machineLimitsHomeX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-20</Value>
-    </Setting>
-    <Setting Name="machineLimitsHomeY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-20</Value>
-    </Setting>
-    <Setting Name="guiDisableProgramPause" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="grblStreamingProtocol1" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="importGCToolChangeCode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Z10 (move upwards)</Value>
-    </Setting>
-    <Setting Name="ctrlLineNumbers" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="sizeSerForm1" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">342, 480</Value>
-    </Setting>
-    <Setting Name="notifierMailClientAdr" Type="System.String" Scope="User">
-      <Value Profile="(Default)">smtp.gmail.com</Value>
-    </Setting>
-    <Setting Name="notifierMailClientPort" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">587</Value>
-    </Setting>
-    <Setting Name="notifierMailClientUser" Type="System.String" Scope="User">
-      <Value Profile="(Default)">user</Value>
-    </Setting>
-    <Setting Name="notifierMailClientPass" Type="System.String" Scope="User">
-      <Value Profile="(Default)">pass</Value>
-    </Setting>
-    <Setting Name="notifierMailSendFrom" Type="System.String" Scope="User">
-      <Value Profile="(Default)">from@gmail.com</Value>
-    </Setting>
-    <Setting Name="notifierMailSendTo" Type="System.String" Scope="User">
-      <Value Profile="(Default)">to@gmail.com</Value>
-    </Setting>
-    <Setting Name="notifierMailSendSubject" Type="System.String" Scope="User">
-      <Value Profile="(Default)">GRBL-Plotter </Value>
-    </Setting>
-    <Setting Name="notifierMailEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="notifierMessageFinish" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Streaming via GRBL-Plotter finished</Value>
-    </Setting>
-    <Setting Name="notifierMessageProgress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Progress</Value>
-    </Setting>
-    <Setting Name="notifierMessageProgressEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="notifierMessageProgressInterval" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="notifierMessageProgressTitle" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="notifierPushbulletEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="notifierPushbulletChannel" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="notifierPushbulletToken" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="importGraphicClipSkipCode" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
