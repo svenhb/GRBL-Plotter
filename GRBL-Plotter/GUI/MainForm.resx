@@ -5945,6 +5945,12 @@ Langue
   <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Circle or rectangle, optionally with rounded corners, optionally as a bag</value>
   </data>
+  <data name="createJogPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Create Jog path</value>
+  </data>
   <data name="startExtensionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
@@ -6231,6 +6237,15 @@ Langue
   <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Surface scan / Height map</value>
   </data>
+  <data name="jogPathCreatorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Jog path creator</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="workpieceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
   </data>
@@ -6238,7 +6253,7 @@ Langue
     <value>&amp;Workpiece</value>
   </data>
   <data name="edgeFinderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
     <value>Probing</value>
@@ -6247,7 +6262,7 @@ Langue
     <value>False</value>
   </data>
   <data name="heightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Surface scan</value>
@@ -6256,19 +6271,19 @@ Langue
     <value>False</value>
   </data>
   <data name="laserToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
     <value>Laser tools</value>
   </data>
   <data name="coordinateSystemsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
     <value>Coordinate Systems</value>
   </data>
   <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="setupToolStripMenuItem.Text" xml:space="preserve">
     <value>DIY control</value>
@@ -6277,7 +6292,7 @@ Langue
     <value>Setup GUI and import parameters</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
     <value>Show Camera</value>
@@ -6295,7 +6310,7 @@ Langue
     <value>Marked line</value>
   </data>
   <data name="startStreamingAtLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="startStreamingAtLineToolStripMenuItem.Text" xml:space="preserve">
     <value>Start Streaming at line</value>
@@ -6307,7 +6322,7 @@ Langue
     <value>False</value>
   </data>
   <data name="controlStreamingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
     <value>Control Streaming</value>
@@ -6316,13 +6331,19 @@ Langue
     <value>Override Feed rate and Spindle speed</value>
   </data>
   <data name="control2ndGRBLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
     <value>Control 2nd GRBL</value>
   </data>
   <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Opens a simple window to control a second GRBL controller</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Control 3rd serial COM</value>
   </data>
   <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 20</value>
@@ -6511,7 +6532,10 @@ Langue
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>GRBL Plotter</value>
+    <value>GRBL-Plotter</value>
+  </data>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value>GRBL-Plotter</value>
   </data>
   <data name="&gt;&gt;unDo3ToolStripMenuItem.Name" xml:space="preserve">
     <value>unDo3ToolStripMenuItem</value>
@@ -7053,6 +7077,12 @@ Langue
   <data name="&gt;&gt;createSimpleShapesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;createJogPathToolStripMenuItem.Name" xml:space="preserve">
+    <value>createJogPathToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;createJogPathToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;startExtensionToolStripMenuItem.Name" xml:space="preserve">
     <value>startExtensionToolStripMenuItem</value>
   </data>
@@ -7317,6 +7347,12 @@ Langue
   <data name="&gt;&gt;surfaceScanHeightMapToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;jogPathCreatorToolStripMenuItem.Name" xml:space="preserve">
+    <value>jogPathCreatorToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;jogPathCreatorToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;machineToolStripMenuItem.Name" xml:space="preserve">
     <value>machineToolStripMenuItem</value>
   </data>
@@ -7381,6 +7417,12 @@ Langue
     <value>control2ndGRBLToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;control2ndGRBLToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;control3rdGRBLToolStripMenuItem.Name" xml:space="preserve">
+    <value>control3rdGRBLToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;control3rdGRBLToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;viewToolStripMenuItem.Name" xml:space="preserve">

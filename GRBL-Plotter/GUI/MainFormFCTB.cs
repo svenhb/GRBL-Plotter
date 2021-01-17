@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -65,10 +65,13 @@ namespace GRBL_Plotter
         private Style StyleAAxis = new TextStyle(Brushes.DarkCyan, null, FontStyle.Bold);
         private Style StyleFail  = new TextStyle(Brushes.Black, Brushes.LightCyan, FontStyle.Bold);
 
+        private Style ErrorStyle = new TextStyle(Brushes.Red, Brushes.Yellow, FontStyle.Underline);
+        private List<int> ErrorLines = new List<int>();
+
         private void fCTBCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
             if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit:{0}",manualEdit);
-            e.ChangedRange.ClearStyle(StyleComment);
+            e.ChangedRange.ClearStyle(StyleComment, ErrorStyle);
             e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleCommentxml, "(\\(<.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleGWord, "(G\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -99,6 +102,30 @@ namespace GRBL_Plotter
 
                 enableCmsCodeBlocks(VisuGCode.codeBlocksAvailable());
             }
+
+            if (ErrorLines.Count > 0)
+            {   foreach (int myline in ErrorLines)
+                {   markErrorLine(myline);  }
+            }
+        }
+        private void markErrorLine(int line)
+        {   setTextSelection(line, line);
+            fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
+            fCTBCode.Selection.SetStyle(ErrorStyle);
+        }
+        private void clearErrorLines()
+        {   if (ErrorLines.Count > 0)
+            {   foreach (int myline in ErrorLines)
+                {   if (myline < fCTBCode.LinesCount)
+                    {   setTextSelection(myline, myline);
+                        fCTBCode.Selection.ClearStyle(ErrorStyle);
+                        fCTBCode.Selection.SetStyle(StyleGWord);
+                        fCTBCode.Selection.SetStyle(StyleXAxis);
+                        fCTBCode.Selection.SetStyle(StyleYAxis);
+                    }
+                }
+            }
+            ErrorLines.Clear();
         }
         private void fCTBCode_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
@@ -166,6 +193,7 @@ namespace GRBL_Plotter
 
         private bool setfCTBCodeText(string code)
         {   cmsPicBoxEnable();
+            clearErrorLines();
             fCTBCode.Text = code;
             return true;
         }
@@ -203,6 +231,10 @@ namespace GRBL_Plotter
             {   statusStripSet(1, Localization.getString("statusStripeClickKeys"), Color.LightGreen); }
 
             fCTBCodeMarkLine(true);             // set Bookmark and marker in 2D-View
+
+            /* Test new feature
+            ErrorLines.Add(fCTBCodeClickedLineNow);
+            markErrorLine(fCTBCodeClickedLineNow);  */
         }
         private void fCTBCode_KeyDown(object sender, KeyEventArgs e)    // key up down 
         {
@@ -367,10 +399,12 @@ namespace GRBL_Plotter
                 lbInfo.Text = "GCode from clipboard";
             }
             else if (e.ClickedItem.Name == "cmsEditMode")
-            {   if (!manualEdit)
-                {   setEditMode(true);  }
+            {
+                if (!manualEdit)
+                { setEditMode(true); }
                 else
-                {   newCodeEnd(); }
+                { newCodeEnd(); }
+                clearErrorLines();
             }
             else if (e.ClickedItem.Name == "cmsCodePasteSpecial1")  // Pen up
             {
@@ -379,7 +413,7 @@ namespace GRBL_Plotter
                 StringBuilder gcodeString = new StringBuilder();
                 gcode.PenUp(gcodeString, "pasted");
                 setTextSelection(fCTBCodeClickedLineNow, fCTBCodeClickedLineNow);
-                gcodeString.Append(fCTBCode.SelectedText.Replace("G01","G00")+" (modified)");
+                gcodeString.Append(fCTBCode.SelectedText.Replace("G01", "G00") + " (modified)");
                 Clipboard.SetText(gcodeString.ToString());
                 fCTBCode.Paste();
                 fCTBCodeMarkLine();
@@ -391,7 +425,7 @@ namespace GRBL_Plotter
                 StringBuilder gcodeString = new StringBuilder();
                 gcode.PenDown(gcodeString, "pasted");
                 setTextSelection(fCTBCodeClickedLineNow, fCTBCodeClickedLineNow);
-                gcodeString.Append(fCTBCode.SelectedText.Replace("G00", "G01")+" F"+gcode.gcodeXYFeed + " (modified)");
+                gcodeString.Append(fCTBCode.SelectedText.Replace("G00", "G01") + " F" + gcode.gcodeXYFeed + " (modified)");
                 Clipboard.SetText(gcodeString.ToString());
                 fCTBCode.Paste();
                 fCTBCodeMarkLine();
@@ -404,7 +438,7 @@ namespace GRBL_Plotter
             else if (e.ClickedItem.Name == "cmsCommentOut")
                 fCTB_CheckUnknownCode();
             else if (e.ClickedItem.Name == "cmsUpdate2DView")
-                newCodeEnd();
+            { clearErrorLines(); newCodeEnd(); }
             else if (e.ClickedItem.Name == "cmsReplaceDialog")
                 fCTBCode.ShowReplaceDialog();
             else if (e.ClickedItem.Name == "cmsFindDialog")
@@ -440,7 +474,7 @@ namespace GRBL_Plotter
             if (set)
                 statusStripSet(1, Localization.getString("statusStripeEditModeOn"), Color.FromArgb(255, 255, 255, 100));
             else
-                statusStripClear(1, 2);
+                statusStripClear(1, 2, "setEditMode");
         }
 
         private void enableCmsCodeBlocks(bool enable)
@@ -450,6 +484,8 @@ namespace GRBL_Plotter
             cmsCodeBlocksSort.Enabled = enable;
             cmsCodeBlocksRemoveAll.Enabled = enable;
             cmsCodeBlocksRemoveGroup.Enabled = enable;
+            if (!enable)
+            { fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; fCTBCode.DoCaretVisible(); }
         }
 
         #region find blocks
@@ -574,6 +610,10 @@ namespace GRBL_Plotter
             fCTBCode.Selection = mySelection;
             fCTBCode.SelectionColor = Color.Red;
             return true;
+        }
+        private Range setRange(int start, int end)
+        {   Range mySelection = new Range(fCTBCode,0,start, fCTBCode.Lines[end].Length, end);
+            return mySelection;
         }
 
         private bool deleteMarkedCode = false;
@@ -861,7 +901,6 @@ namespace GRBL_Plotter
             if      (foldLevel == 1) { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
             else if (foldLevel == 2) foldBlocks2();
         }
-
 
         #endregion
     }

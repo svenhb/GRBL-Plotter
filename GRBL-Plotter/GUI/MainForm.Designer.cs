@@ -63,6 +63,8 @@ namespace GRBL_Plotter
                 StyleLineN.Dispose();
                 pBoxOrig.Dispose();
                 pBoxTransform.Dispose();
+
+                ErrorStyle.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -330,6 +332,7 @@ namespace GRBL_Plotter
             this.createBarcodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createSimpleShapesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createJogPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unDoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -374,6 +377,7 @@ namespace GRBL_Plotter
             this.workpieceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.probingToolLengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surfaceScanHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jogPathCreatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edgeFinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.heightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -385,6 +389,7 @@ namespace GRBL_Plotter
             this.toolStrip_tb_StreamLine = new System.Windows.Forms.ToolStripTextBox();
             this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.control3rdGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
@@ -2379,6 +2384,7 @@ namespace GRBL_Plotter
             this.createBarcodeToolStripMenuItem,
             this.imageToolStripMenuItem,
             this.createSimpleShapesToolStripMenuItem,
+            this.createJogPathToolStripMenuItem,
             this.startExtensionToolStripMenuItem});
             this.createGCodeToolStripMenuItem.Name = "createGCodeToolStripMenuItem";
             resources.ApplyResources(this.createGCodeToolStripMenuItem, "createGCodeToolStripMenuItem");
@@ -2406,6 +2412,12 @@ namespace GRBL_Plotter
             this.createSimpleShapesToolStripMenuItem.Name = "createSimpleShapesToolStripMenuItem";
             resources.ApplyResources(this.createSimpleShapesToolStripMenuItem, "createSimpleShapesToolStripMenuItem");
             this.createSimpleShapesToolStripMenuItem.Click += new System.EventHandler(this.createSimpleShapesToolStripMenuItem_Click);
+            // 
+            // createJogPathToolStripMenuItem
+            // 
+            this.createJogPathToolStripMenuItem.Name = "createJogPathToolStripMenuItem";
+            resources.ApplyResources(this.createJogPathToolStripMenuItem, "createJogPathToolStripMenuItem");
+            this.createJogPathToolStripMenuItem.Click += new System.EventHandler(this.jogCreatorToolStripMenuItem_Click);
             // 
             // startExtensionToolStripMenuItem
             // 
@@ -2697,7 +2709,8 @@ namespace GRBL_Plotter
             // 
             this.workpieceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.probingToolLengthToolStripMenuItem,
-            this.surfaceScanHeightMapToolStripMenuItem});
+            this.surfaceScanHeightMapToolStripMenuItem,
+            this.jogPathCreatorToolStripMenuItem});
             this.workpieceToolStripMenuItem.Name = "workpieceToolStripMenuItem";
             resources.ApplyResources(this.workpieceToolStripMenuItem, "workpieceToolStripMenuItem");
             // 
@@ -2713,6 +2726,12 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.surfaceScanHeightMapToolStripMenuItem, "surfaceScanHeightMapToolStripMenuItem");
             this.surfaceScanHeightMapToolStripMenuItem.Click += new System.EventHandler(this.heightMapToolStripMenuItem_Click);
             // 
+            // jogPathCreatorToolStripMenuItem
+            // 
+            this.jogPathCreatorToolStripMenuItem.Name = "jogPathCreatorToolStripMenuItem";
+            resources.ApplyResources(this.jogPathCreatorToolStripMenuItem, "jogPathCreatorToolStripMenuItem");
+            this.jogPathCreatorToolStripMenuItem.Click += new System.EventHandler(this.jogCreatorToolStripMenuItem_Click);
+            // 
             // machineToolStripMenuItem
             // 
             this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2724,7 +2743,8 @@ namespace GRBL_Plotter
             this.toolStripMenuItem1,
             this.startStreamingAtLineToolStripMenuItem,
             this.controlStreamingToolStripMenuItem,
-            this.control2ndGRBLToolStripMenuItem});
+            this.control2ndGRBLToolStripMenuItem,
+            this.control3rdGRBLToolStripMenuItem});
             this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
             resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
             // 
@@ -2788,6 +2808,12 @@ namespace GRBL_Plotter
             this.control2ndGRBLToolStripMenuItem.Name = "control2ndGRBLToolStripMenuItem";
             resources.ApplyResources(this.control2ndGRBLToolStripMenuItem, "control2ndGRBLToolStripMenuItem");
             this.control2ndGRBLToolStripMenuItem.Click += new System.EventHandler(this.control2ndGRBLToolStripMenuItem_Click);
+            // 
+            // control3rdGRBLToolStripMenuItem
+            // 
+            this.control3rdGRBLToolStripMenuItem.Name = "control3rdGRBLToolStripMenuItem";
+            resources.ApplyResources(this.control3rdGRBLToolStripMenuItem, "control3rdGRBLToolStripMenuItem");
+            this.control3rdGRBLToolStripMenuItem.Click += new System.EventHandler(this.control3rdSerialCOMToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -2951,6 +2977,7 @@ namespace GRBL_Plotter
             this.Name = "MainForm";
             this.Opacity = 0D;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -3346,6 +3373,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.ToolStripMenuItem sortByTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Timer loadTimer;
+        private System.Windows.Forms.ToolStripMenuItem jogPathCreatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createJogPathToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem control3rdGRBLToolStripMenuItem;
     }
 }
 

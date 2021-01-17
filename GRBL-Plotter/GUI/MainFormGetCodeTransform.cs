@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@
 /*
  * 2019-07-08 add foldCode() to text and image import 
  * 2020-01-01 replace #if debuginfo by Logger.Info
+ * 2021-01-15 import code from jog path creator
 */
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
 
@@ -139,6 +141,7 @@ namespace GRBL_Plotter
             {
                 simuStop();
                 newCodeStart();
+                VisuGCode.pathBackground = (GraphicsPath)_shape_form.pathBackground.Clone();
                 setfCTBCodeText(_shape_form.shapeGCode);
                 setLastLoadedFile("from shape", "");
                 newCodeEnd();
@@ -200,6 +203,32 @@ namespace GRBL_Plotter
                 setLastLoadedFile("from height map", "");
                 newCodeEnd();
             }
+        }
+
+        private void getGCodeJogCreator(object sender, EventArgs e)
+        {
+            Logger.Info("getGCodeJogCreator");
+            if (!isStreaming)
+            {   sendCommands(_jogPathCreator_form.jogGCode,true); }
+            else
+                MessageBox.Show(Localization.getString("mainStreamingActive"));
+        }
+        
+        private void getGCodeJogCreator2(object sender, EventArgs e)
+        {
+            Logger.Info("getGCodeJogCreator2");
+            if (!isStreaming)
+            {
+                simuStop();
+                importOptions = "";
+                newCodeStart();
+                setfCTBCodeText(_jogPathCreator_form.jogGCode);
+                setLastLoadedFile("from jog path creator", "");
+                newCodeEnd();
+                showImportOptions();
+            }
+            else
+                MessageBox.Show(Localization.getString("mainStreamingActive"));
         }
 
 

@@ -49,6 +49,7 @@ namespace GRBL_Plotter
         public const string examples = "\\data\\examples";
         public const string extension= "\\data\\extensions";
         public const string buttons  = "\\data\\buttons";
+        public const string jogpath = "\\data\\jogpaths";
     }
 
     public static class gui

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@
  * 2020-05-06 add status strip info during check for Prog-update
  * 2020-09-18 split
  * 2020-12-28 add Marlin support
+ * 2021-01-13 add 3rd serial com
  */
 
 using System;
@@ -202,6 +203,7 @@ namespace GRBL_Plotter
 				splitContainer1.SplitterDistance = splitDist;
 
             this.Text = appName + " Ver. " + System.Windows.Forms.Application.ProductVersion.ToString();
+            toolTip1.SetToolTip(this, this.Text);
 
             loadToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
             saveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
@@ -246,7 +248,7 @@ namespace GRBL_Plotter
 
             cmsPicBoxEnable(false);
             
-            updateControls();           // default: all disabled (_serial_form = null) 2020-12-11
+//            updateControls();           // default: all disabled (_serial_form = null) 2020-12-11
             
             LoadRecentList();
             cmsPicBoxReloadFile.ToolTipText = string.Format("Load '{0}'", MRUlist[0]);
@@ -286,11 +288,14 @@ namespace GRBL_Plotter
                 if (_serial_form == null)
                 {
                     if (Properties.Settings.Default.ctrlUseSerial2)
-                    {
-                        _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
+                    {   _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
                         _serial_form2.Show(this);
                     }
-                    _serial_form = new ControlSerialForm("COM CNC", 1, _serial_form2);
+                    if (Properties.Settings.Default.ctrlUseSerial3)
+                    { _serial_form3 = new SimpleSerialForm();// "COM simple", 3);
+                        _serial_form3.Show(this);
+                    }
+                    _serial_form = new ControlSerialForm("COM CNC", 1, _serial_form2, _serial_form3);
                     _serial_form.Show(this);
                     _serial_form.RaisePosEvent += OnRaisePosEvent;
                     _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
@@ -311,14 +316,16 @@ namespace GRBL_Plotter
                 SplashScreenTimer.Stop();
                 SplashScreenTimer.Interval = 2000;
                 SplashScreenTimer.Start();
+                resetStreaming(false);
+                timerUpdateControls = true;
             }
             else
             {   SplashScreenTimer.Enabled = false;      // 1st occurance, show splashscreen windows
                 statusStripClear(2, 2);
                 Logger.Info("++++++ MainForm SplashScreen Timer disabled  -> mainTimer:{0}", mainTimerCount);
                 timerUpdateControlSource = "SplashScreenTimer_Tick";
-                updateControls();
-				updateLayout();
+    //            updateControls();
+	//			updateLayout();
                 MainTimer.Stop();
                 MainTimer.Start();
             }
@@ -328,6 +335,8 @@ namespace GRBL_Plotter
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
             Logger.Trace("###### FormClosing ");
+            //_jogPathCreator_form.Close();
+            //_serial_form3.Close();
 
             Properties.Settings.Default.mainFormWinState = WindowState;
             WindowState = FormWindowState.Normal;
@@ -371,7 +380,7 @@ namespace GRBL_Plotter
             if (txt.Contains(";"))
             {   string[] commands = txt.Split(';');
                 foreach (string cmd in commands)
-                { sendCommand(cmd.Trim(), jogging); }
+                { if (cmd.Length > 0) sendCommand(cmd.Trim(), jogging); }
             }
             else
                 sendCommand(txt, jogging);
@@ -430,7 +439,7 @@ namespace GRBL_Plotter
         {
             if (timerUpdateControls)
             {   timerUpdateControls = false;
-                Logger.Trace("MainTimer_Tick - timerUpdateControls");
+                Logger.Trace("MainTimer_Tick - timerUpdateControls {0}", timerUpdateControlSource);
                 updateLayout();
                 updateControls();       // enable controls if serial connected
 //                resizeJoystick();       // shows / hide A,B,C joystick controls
@@ -917,7 +926,8 @@ namespace GRBL_Plotter
             updateControls(true);
         }
         private void btnResume_Click(object sender, EventArgs e)
-        { grblResume(); }
+        { grblResume(); statusStripClear(); }
+
         private void grblResume()
         {   sendRealtimeCommand('~');
             Logger.Trace("Resume");
@@ -1245,7 +1255,7 @@ namespace GRBL_Plotter
             {
 //                toolStripStatusLabel1.Text = "[ " + text + " ]";
                 if (this.toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
-                { this.toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; }); toolStripStatusLabel1.BackColor = color; }
+                { this.toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel1.Text = "[ " + text + " ]";  toolStripStatusLabel1.BackColor = color; }); }
                 else
                 { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
  //               toolStripStatusLabel1.BackColor = color;
@@ -1254,11 +1264,12 @@ namespace GRBL_Plotter
             {
 //                toolStripStatusLabel2.Text = "[ " + text + " ]";
                 if (this.toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
-                { this.toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; }); }
+                { this.toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }); }
                 else
-                { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; }
-                toolStripStatusLabel2.BackColor = color;
+                { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }
+        //        toolStripStatusLabel2.BackColor = color;
             }
+//            Logger.Trace("statusStripSet nr {0} text {1}", nr, text);
         }
         private void statusStripSetToolTip(int nr, string text)
         {
@@ -1270,13 +1281,14 @@ namespace GRBL_Plotter
             {   toolStripStatusLabel2.ToolTipText = text; }
         }
 
-        private void statusStripClear(int nr1, int nr2=-1)
+        private void statusStripClear(int nr1, int nr2=-1, string rem="")
         {   if ((nr1 == 0) || (nr2 == 0))
             { toolStripStatusLabel0.Text = ""; toolStripStatusLabel0.BackColor = SystemColors.Control; toolStripStatusLabel0.ToolTipText = ""; }
             if ((nr1 == 1) || (nr2 == 1))
             { toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; toolStripStatusLabel1.ToolTipText = ""; }
             if ((nr1 == 2) || (nr2 == 2))
             { toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; toolStripStatusLabel2.ToolTipText = ""; }
+//            Logger.Trace("statusStripClear {0} {1} {2}",nr1,nr2, rem);
         }
         private void statusStripClear()
         {   toolStripStatusLabel0.Text = toolStripStatusLabel1.Text = toolStripStatusLabel2.Text = "";

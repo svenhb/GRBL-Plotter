@@ -195,7 +195,7 @@ namespace GRBL_Plotter
             else
                 statusStripSet(0, "Display GCode", Color.YellowGreen);
                 
-            setEditMode(false);
+ //           setEditMode(false);
 
             if (!imported && Properties.Settings.Default.ctrlCommentOut)
             {   fCTB_CheckUnknownCode(); }                              // check code
@@ -233,7 +233,28 @@ namespace GRBL_Plotter
             this.Cursor = Cursors.Default;
 
             if (VisuGCode.errorString.Length > 1)
-                statusStripSet(0, VisuGCode.errorString, Color.OrangeRed);
+            {
+                string err = VisuGCode.errorString;
+                if (err.Contains("\n"))
+                {   statusStripSet(0, err.Substring(0, err.IndexOf("\n")-1), Color.OrangeRed);
+                    string[] errlines = err.Split('\n');
+                    foreach (string errline in errlines)
+                    {
+                        int strt = errline.IndexOf("[");
+                        int end = errline.IndexOf("]");
+                        if ((strt >= 0) && (end > strt))
+                        {
+                            int errorLine = 0;
+                            int.TryParse(errline.Substring(strt + 1, end - 1), out errorLine);
+                            ErrorLines.Add(errorLine-1);
+                            markErrorLine(errorLine-1);
+                        }
+                    }
+                    MessageBox.Show("Errors in GCode, please check:\r\n\r\n" + VisuGCode.errorString,"Attention");
+                }
+                else
+                    statusStripSet(0, VisuGCode.errorString, Color.OrangeRed);
+            }
             cmsPicBoxReverseSelectedPath.Enabled = false;
 
             pictureBox1.Invalidate();                                   // resfresh view

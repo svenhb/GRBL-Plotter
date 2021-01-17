@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,7 +16,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/* * 2020-09-18 split file
+/* 
+ * 2020-09-18 split file
+ * 2021-01-13 add 3rd serial com
  */
 
 using System;
@@ -50,6 +52,7 @@ namespace GRBL_Plotter
         ControlStreamingForm _streaming_form = null;
         ControlStreamingForm2 _streaming_form2 = null;
         ControlSerialForm _serial_form2 = null;
+        SimpleSerialForm _serial_form3 = null;
         Control2ndGRBL _2ndGRBL_form = null;
         ControlCameraForm _camera_form = null;
         ControlDIYControlPad _diyControlPad = null;
@@ -58,14 +61,15 @@ namespace GRBL_Plotter
         ControlProbing _probing_form = null;
         ControlHeightMapForm _heightmap_form = null;
         ControlSetupForm _setup_form = null;
+        ControlJogPathCreator _jogPathCreator_form = null;
 
 
 
-#region MAIN-MENU GCode creation
-/********************************************************************
- * Text
- * _text_form
- ********************************************************************/
+        #region MAIN-MENU GCode creation
+        /********************************************************************
+         * Text
+         * _text_form
+         ********************************************************************/
         private void textWizzardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_text_form == null)
@@ -231,11 +235,37 @@ namespace GRBL_Plotter
         private void formClosed_2ndGRBLForm(object sender, FormClosedEventArgs e)
         { _2ndGRBL_form = null; }
 		
-		
 /********************************************************************
- * Camera 
- * _camera_form
+ * Control 3rd serial COM
+ * _serial_form3
  ********************************************************************/
+        private void control3rdSerialCOMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((_serial_form3 == null) || (_serial_form3.Disposing) || (_serial_form3.IsDisposed))
+            {
+                _serial_form3 = new SimpleSerialForm();// "COM Tool changer", 3);
+                _serial_form3.FormClosed += formClosed_3rdSerialCOMForm;
+            }
+            else
+            {
+                _serial_form3.Visible = false;
+            }
+            Logger.Info("control3rdSerialCOMToolStripMenuItem_Click {0}", _serial_form3);
+            _serial_form.set3rdSerial(_serial_form3);
+            _serial_form3.Show(this);
+            _serial_form3.WindowState = FormWindowState.Normal;
+        }
+        private void formClosed_3rdSerialCOMForm(object sender, FormClosedEventArgs e)
+        {
+            _serial_form3 = null;
+            _serial_form.set3rdSerial();    // sign out
+            Logger.Info("formClosed_3rdSerialCOMForm {0}", _serial_form3);
+        }
+
+/********************************************************************
+* Camera 
+* _camera_form
+********************************************************************/
         private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_camera_form == null)
@@ -468,15 +498,41 @@ namespace GRBL_Plotter
             gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
         }
 
+/********************************************************************
+ * Jog Path creator
+ * _setup_form
+ ********************************************************************/
+        private void jogCreatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_jogPathCreator_form == null)
+            {
+                _jogPathCreator_form = new ControlJogPathCreator();
+                _jogPathCreator_form.FormClosed += formClosed_JogCreator;
+                _jogPathCreator_form.btnJogStart.Click += getGCodeJogCreator;      // assign btn-click event
+                _jogPathCreator_form.btnExport.Click += getGCodeJogCreator2;      // assign btn-click event
+                _jogPathCreator_form.btnJogStop.Click += btnJogStop_Click;      // assign btn-click event
+            }
+            else
+            {
+                _jogPathCreator_form.Visible = false;
+            }
+            _jogPathCreator_form.Show(null);// this);
+            _jogPathCreator_form.WindowState = FormWindowState.Normal;
+        }
+        private void formClosed_JogCreator(object sender, FormClosedEventArgs e)
+        { _jogPathCreator_form = null; }
 
 /********************************************************************
- * About Form
- ********************************************************************/
+* About Form
+********************************************************************/
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frmAbout = new AboutForm();
             frmAbout.ShowDialog();
         }
+
+
+
 #endregion
 
     }

@@ -65,14 +65,14 @@ namespace GRBL_Plotter
          //  if (logPosEvent)  Logger.Trace("OnRaisePosEvent  {0}  connect {1}  status {2}", e.Status.ToString(), _serial_form.serialPortOpen, e.Status.ToString());
             machineStatus = e.Status;
             machineStatusMessage = e.StatMsg;
-            machineParserState = e.parserState;
+            machineParserState = e.parserState; 
 
 /***** Restore saved position after reset and set initial feed rate: *****/
             if (flagResetOffset || (e.Status == grblState.reset))
             { processReset(); }
 
 /***** process grblState {idle, run, hold, home, alarm, check, door} *****/
-            processStatus();
+            processStatus(e.Raw);
 
 /***** check and submit override values, set labels, checkbox *****/
             processStatusMessage(e.StatMsg);
@@ -176,8 +176,15 @@ namespace GRBL_Plotter
 		}
 
 
-		private void updateDRO()
-		{   label_mx.Text = string.Format("{0:0.000}", grbl.posMachine.X);
+        private void updateDRO()
+        {
+            if (label_mx.InvokeRequired)
+            {   label_mx.BeginInvoke((MethodInvoker)delegate () { updateDROText(); });   }
+            else
+            {   updateDROText();  }
+        }
+        private void updateDROText()
+        {   label_mx.Text = string.Format("{0:0.000}", grbl.posMachine.X);
             label_my.Text = string.Format("{0:0.000}", grbl.posMachine.Y);
             label_mz.Text = string.Format("{0:0.000}", grbl.posMachine.Z);
             label_wx.Text = string.Format("{0:0.000}", grbl.posWork.X);
@@ -202,22 +209,28 @@ namespace GRBL_Plotter
  * {idle, run, hold, home, alarm, check, door}
  * only action on status change
  ***************************************************************/
-        private void processStatus() 
+        private void processStatus(string msg) 
         {
+            string lblInfo = "";
+            Color lblInfoColor = Color.Black;
             if (logPosEvent) Logger.Trace("processStatus  Status:{0}", machineStatus.ToString());
             if ((machineStatus != lastMachineStatus) || (grbl.lastMessage.Length > 5))
             {
-				// label at DRO
-                label_status.Text = grbl.statusToText(machineStatus);
+                // label at DRO
+                if (label_status.InvokeRequired)
+                { label_status.BeginInvoke((MethodInvoker)delegate () { label_status.Text = grbl.statusToText(machineStatus); }); }
+                else
+                { label_status.Text = grbl.statusToText(machineStatus); }
                 label_status.BackColor = grbl.grblStateColor(machineStatus);
+
                 switch (machineStatus)
                 {
                     case grblState.idle:
                         if ((lastMachineStatus == grblState.hold) || (lastMachineStatus == grblState.alarm))
                         {
-                            statusStripClear(1,2);
-                            lbInfo.Text = lastInfoText;
-                            lbInfo.BackColor = SystemColors.Control;
+                            statusStripClear(1,2, "grblState.idle");
+                            setInfoLabel(lastInfoText, SystemColors.Control);
+
                             if (!_serial_form.checkGRBLSettingsOk())   // check 30 kHz limit
                             {   statusStripSet(1,grbl.lastMessage, Color.Fuchsia);
                                 statusStripSet(2,Localization.getString("statusStripeCheckCOM"), Color.Yellow);
@@ -230,16 +243,15 @@ namespace GRBL_Plotter
                         { btnKillAlarm.BackColor = SystemColors.Control; signalLock = 0; }
                         if (!isStreaming)                       // update drawing if G91 is used
                             updateDrawingPath = true;
-  //                      statusStripClear(1,2);
+                        statusStripClear(1,2, "grblState.idle2");
                         grbl.lastMessage = "";
                         break;
 
                     case grblState.run:
                         if (lastMachineStatus == grblState.hold)
                         {
-                            statusStripClear();
-                            lbInfo.Text = lastInfoText;
-                            lbInfo.BackColor = SystemColors.Control;
+         //           statusStripClear();
+                            setInfoLabel(lastInfoText, SystemColors.Control);
                         }
                         signalResume = 0;
                         btnResume.BackColor = SystemColors.Control;
@@ -248,11 +260,17 @@ namespace GRBL_Plotter
                     case grblState.hold:
                         btnResume.BackColor = Color.Yellow;
                         lastInfoText = lbInfo.Text;
-                        lbInfo.Text = Localization.getString("mainInfoResume");     //"Press 'Resume' to proceed";
-                        lbInfo.BackColor = Color.Yellow;
-                        statusStripClear();
+                        lblInfo = Localization.getString("mainInfoResume");     //"Press 'Resume' to proceed";
+
+                        if (grbl.lastErrorNr > 0)
+                            lblInfoColor = Color.Fuchsia;
+                        else
+                            lblInfoColor = Color.Yellow;
+
+                        setInfoLabel(lblInfo, lblInfoColor);
+            //       statusStripClear();
                         statusStripSet(1,grbl.statusToText(machineStatus), grbl.grblStateColor(machineStatus));
-                        statusStripSet(2,lbInfo.Text, lbInfo.BackColor);
+                        statusStripSet(2, lblInfo, lblInfoColor);
                         if (signalResume == 0) { signalResume = 1; }
                         break;
 
@@ -262,11 +280,11 @@ namespace GRBL_Plotter
                     case grblState.alarm:
                         signalLock = 1;
                         btnKillAlarm.BackColor = Color.Yellow;
-                        lbInfo.Text = Localization.getString("mainInfoKill");     //"Press 'Kill Alarm' to proceed";
-                        lbInfo.BackColor = Color.Yellow;
-      //                  statusStripClear(1,2);
+                        lblInfo = Localization.getString("mainInfoKill");     //"Press 'Kill Alarm' to proceed";
+                        setInfoLabel(lblInfo, Color.Yellow);
+
                         statusStripSet(1,grbl.statusToText(machineStatus) + " " + grbl.lastMessage, grbl.grblStateColor(machineStatus));
-                        statusStripSet(2,lbInfo.Text, lbInfo.BackColor);
+                        statusStripSet(2, lblInfo, Color.Yellow);
                         grbl.lastMessage = "";
                         if (_heightmap_form != null)
                             _heightmap_form.stopScan();
@@ -278,11 +296,11 @@ namespace GRBL_Plotter
                     case grblState.door:
                         btnResume.BackColor = Color.Yellow;
                         lastInfoText = lbInfo.Text;
-                        lbInfo.Text = Localization.getString("mainInfoResume");     //"Press 'Resume' to proceed";
-                        lbInfo.BackColor = Color.Yellow;
-        //                statusStripClear(1,2);
+                        lblInfo = Localization.getString("mainInfoResume");     //"Press 'Resume' to proceed";
+                        setInfoLabel(lblInfo, Color.Yellow);
+
                         statusStripSet(1,grbl.statusToText(machineStatus), grbl.grblStateColor(machineStatus));
-                        statusStripSet(2,lbInfo.Text, lbInfo.BackColor);
+                        statusStripSet(2, lblInfo, Color.Yellow);
                         if (signalResume == 0) { signalResume = 1; }
                         break;
 
@@ -304,15 +322,18 @@ namespace GRBL_Plotter
                         }
 
                         lastInfoText = lbInfo.Text;
-                        lbInfo.Text = string.Format("{0}: X:{1:0.00} Y:{2:0.00} Z:{3:0.00}", Localization.getString("mainInfoProbing"), posProbe.X, posProbe.Y, posProbe.Z);
-                        lbInfo.BackColor = Color.Yellow;
+                        setInfoLabel(string.Format("{0}: X:{1:0.00} Y:{2:0.00} Z:{3:0.00}", Localization.getString("mainInfoProbing"), posProbe.X, posProbe.Y, posProbe.Z), Color.Yellow);
                         break;
 
                     case grblState.unknown:
-                        timerUpdateControlSource = "grblState.unknown";
-                        updateControls();
-//                        if (Properties.Settings.Default.serialMinimize && _serial_form.serialPortOpen)
-//                            _serial_form.WindowState = FormWindowState.Minimized;
+                  //      timerUpdateControlSource = "grblState.unknown";
+                  //      updateControls();
+                        break;
+
+                    case grblState.notConnected:
+                        setInfoLabel("No connection", Color.Fuchsia);
+                        statusStripSet(1, "No connection", Color.Fuchsia);
+                        statusStripSet(2, msg, Color.Fuchsia);
                         break;
 
                     default:
@@ -324,13 +345,19 @@ namespace GRBL_Plotter
             }
             lastMachineStatus = machineStatus;
         }
+        private void setInfoLabel(string txt, Color clr)
+        {   if (lbInfo.InvokeRequired)
+            { lbInfo.BeginInvoke((MethodInvoker)delegate () { lbInfo.Text = txt; }); }
+            else
+            { lbInfo.Text = txt; }
+            lbInfo.BackColor = clr;
+        }
 
-
-/********************************************************
- * handle last sent commands from serial form
- * FeedRate, SpindleSpeed, Spinde/Coolant on/off, G54-Coord
- * update other forms
- ********************************************************/
+        /********************************************************
+         * handle last sent commands from serial form
+         * FeedRate, SpindleSpeed, Spinde/Coolant on/off, G54-Coord
+         * update other forms
+         ********************************************************/
         private void processParserState(pState cmd)
         {
             if (logPosEvent) Logger.Trace("processParserState FR:{0}  SS:{1}  spindle:{2}  coolant:{3}  Tool:{4}  Coord:{5}",cmd.FR.ToString(), cmd.SS.ToString(), cmd.spindle, cmd.coolant, cmd.tool.ToString(), cmd.coord_select.ToString());

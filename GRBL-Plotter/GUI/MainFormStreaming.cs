@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ namespace GRBL_Plotter
             else
             {   this.pbBuffer.Value = bPrgs;   }
 
-            string txt =string.Format("Progress {0:0.0}%", codeProgress);
+            string txt =string.Format("Progress {0}%", codeProgress);
             if (this.lblFileProgress.InvokeRequired)
             {   this.lblFileProgress.BeginInvoke((MethodInvoker)delegate () { this.lblFileProgress.Text = txt; }); }
             else
@@ -85,7 +85,7 @@ namespace GRBL_Plotter
             bool notifierEnable = ((double)Properties.Settings.Default.notifierMessageProgressInterval < VisuGCode.gcodeMinutes);
             if (isStreaming)
             {
-                updateProgressBar((int)e.CodeProgress, (int)e.BuffProgress);
+                updateProgressBar(e.CodeProgress, e.BuffProgress);
                 if (notifierEnable && Properties.Settings.Default.notifierMessageProgressEnable)
                 {
                     if ((elapsed.Seconds % (int)(60*Properties.Settings.Default.notifierMessageProgressInterval)) == 5) // offset 5 sec. to get message at start
@@ -137,16 +137,10 @@ namespace GRBL_Plotter
                     flagResetOffset = true;
                     stopStreaming(false);
                     if (e.CodeProgress < 0)
-                    {
-                        lbInfo.Text = _serial_form.lastError;
-                        lbInfo.BackColor = Color.Fuchsia;
-                    }
+                    {   setInfoLabel(_serial_form.lastError, Color.Fuchsia);  }
                     else
-                    {
-                        lbInfo.Text = "Vers. " + _serial_form.grblVers;
-                        lbInfo.BackColor = Color.Lime;
-                    }
-                    statusStripClear(1, 2);
+                    {   setInfoLabel("Vers. " + _serial_form.grblVers, Color.Lime); }
+                    statusStripClear(1, 2, "grblStreaming.reset");
                     toolTip1.SetToolTip(lbInfo, lbInfo.Text);
                     timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.reset";//updateControls();
                     if (_coordSystem_form != null)
@@ -158,28 +152,33 @@ namespace GRBL_Plotter
 
                 case grblStreaming.error:
                     Logger.Info("streaming error at line {0}", e.CodeLineConfirmed);
-                    statusStripSet(1, grbl.lastMessage, Color.Fuchsia);
+                    statusStripSet(0, grbl.lastMessage, Color.Fuchsia);
                     pbFile.ForeColor = Color.Red;
-                    lbInfo.Text = Localization.getString("mainInfoErrorLine") + e.CodeLineSent.ToString();
-                    lbInfo.BackColor = Color.Fuchsia;
+
+                    int errorLine = e.CodeLineConfirmed - 1;
+                    if (isStreamingCheck)
+                        errorLine = e.CodeLineConfirmed - 2;
+                    ErrorLines.Add(errorLine);
+                    markErrorLine(errorLine);
+
+                    setInfoLabel(Localization.getString("mainInfoErrorLine") + errorLine.ToString(),Color.Fuchsia);
+
                     fCTBCode.BookmarkLine(actualCodeLine - 1);
                     fCTBCode.DoSelectionVisible();
-                    fCTBCode.CurrentLineColor = Color.Red;
+
                     if (notifierEnable) Notifier.sendMessage(string.Format("Streaming error at line {0}\r\nTime stamp: {1}", e.CodeLineConfirmed, getTimeStampString()), "Error");
                     break;
 
                 case grblStreaming.ok:
                     if (!isStreamingCheck)
                     {
-//                        lbInfo.Text = lblInfoOkString + "(" + (e.CodeLineSent+1).ToString() + ")";
-                        if (this.lbInfo.InvokeRequired)
-                        { this.lbInfo.BeginInvoke((MethodInvoker)delegate () { this.lbInfo.Text = lblInfoOkString + "(" + (e.CodeLineSent + 1).ToString() + ")"; }); }
-                        else
-                        { this.lbInfo.Text = lblInfoOkString + "(" + (e.CodeLineSent + 1).ToString() + ")"; }
+                        if (grbl.lastErrorNr <= 0)
+                        {
+                            setInfoLabel(lblInfoOkString + "(" + (e.CodeLineSent + 1).ToString() + ")", Color.Lime);
 
-                        lbInfo.BackColor = Color.Lime;
-                        signalPlay = 0;
-                        btnStreamStart.BackColor = SystemColors.Control;
+                            signalPlay = 0;
+                            btnStreamStart.BackColor = SystemColors.Control;
+                        }
                     }
                     break;
 
@@ -188,10 +187,9 @@ namespace GRBL_Plotter
                     if (isStreamingOk)
                     {
                         if (isStreamingCheck)
-                        { lbInfo.Text = Localization.getString("mainInfoFinishCheck"); }   // "Finish checking G-Code"; }
+                        {   setInfoLabel(Localization.getString("mainInfoFinishCheck"), Color.Lime); }   // "Finish checking G-Code"; }
                         else
-                        { lbInfo.Text = Localization.getString("mainInfoFinishSend"); }   // "Finish sending G-Code"; }
-                        lbInfo.BackColor = Color.Lime;
+                        {   setInfoLabel(Localization.getString("mainInfoFinishSend"), Color.Lime); }   // "Finish sending G-Code"; }
                     }
                     MainTimer.Stop();
                     MainTimer.Start();
@@ -212,18 +210,16 @@ namespace GRBL_Plotter
                     break;
 
                 case grblStreaming.waitidle:
-                    timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.waitidle";//updateControls();// true);
+          //          timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.waitidle";//updateControls();// true);
                     btnStreamStart.Image = Properties.Resources.btn_play;
-                    lbInfo.Text = Localization.getString("mainInfoWaitIdle") + e.CodeLineSent.ToString() + ")";
-                    lbInfo.BackColor = Color.Yellow;
+                    setInfoLabel(Localization.getString("mainInfoWaitIdle") + e.CodeLineSent.ToString() + ")", Color.Yellow);
                     break;
 
                 case grblStreaming.pause:
           //          lock (this)       2020-12-15 removed
                     {
                         signalPlay = 1;
-                        lbInfo.BackColor = Color.Yellow;
-                        lbInfo.Text = Localization.getString("mainInfoPause") + e.CodeLineSent.ToString() + ")";
+                        setInfoLabel(Localization.getString("mainInfoPause") + e.CodeLineSent.ToString() + ")", Color.Yellow);
                         btnStreamStart.Image = Properties.Resources.btn_play;
                         isStreamingPause = true;
                         MainTimer.Stop();
@@ -249,15 +245,13 @@ namespace GRBL_Plotter
                 case grblStreaming.toolchange:
                     timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.toolchange";// updateControls();
                     btnStreamStart.Image = Properties.Resources.btn_play;
-                    lbInfo.Text = Localization.getString("mainInfoToolChange");
-                    lbInfo.BackColor = Color.Yellow;
+                    setInfoLabel(Localization.getString("mainInfoToolChange"), Color.Yellow);
                     cBTool.Checked = _serial_form.toolInSpindle;
                     break;
 
                 case grblStreaming.stop:
                     timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.stop";// updateControls();
-                    lbInfo.Text = Localization.getString("mainInfoStopStream") + e.CodeLineSent.ToString() + ")";
-                    lbInfo.BackColor = Color.Fuchsia;
+                    setInfoLabel(Localization.getString("mainInfoStopStream") + e.CodeLineSent.ToString() + ")", Color.Fuchsia);
 
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
                         delayedSend = 2;
@@ -268,7 +262,7 @@ namespace GRBL_Plotter
             }
 
             lastLabelInfoText = lbInfo.Text;
-  //          lbInfo.Text += overrideMessage;
+            //          lbInfo.Text += overrideMessage;
             if (this.lbInfo.InvokeRequired)
             { this.lbInfo.BeginInvoke((MethodInvoker)delegate () { this.lbInfo.Text += overrideMessage; }); }
             else
@@ -311,6 +305,7 @@ namespace GRBL_Plotter
             {
                 if (!isStreaming)
                 {
+                    clearErrorLines();
                     Logger.Info("Start streaming at line:{0}  showProgress:{1}  backgroundImage:{2}", startLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
                     expandCodeBlocksToolStripMenuItem_Click(null, null);
                     VisuGCode.ProcessedPath.processedPathClear();
@@ -338,8 +333,7 @@ namespace GRBL_Plotter
                     updateControls();
                     timeInit = DateTime.UtcNow;
                     elapsed = TimeSpan.Zero;
-                    lbInfo.Text = Localization.getString("mainInfoSendCode");// "Send G-Code";
-                    lbInfo.BackColor = Color.Lime;
+                    setInfoLabel(Localization.getString("mainInfoSendCode"), Color.Lime);
                     for (int i = 0; i < fCTBCode.LinesCount; i++)
                         fCTBCode.UnbookmarkLine(i);
 
@@ -383,6 +377,7 @@ namespace GRBL_Plotter
         {
             if ((fCTBCode.LinesCount > 1) && (!isStreaming))
             {
+                clearErrorLines();
                 Logger.Info("check code");
                 isStreaming = true;
                 isStreamingCheck = true;
@@ -391,8 +386,7 @@ namespace GRBL_Plotter
                 updateControls();
                 timeInit = DateTime.UtcNow;
                 elapsed = TimeSpan.Zero;
-                lbInfo.Text = Localization.getString("mainInfoCheckCode");// "Check G-Code";
-                lbInfo.BackColor = SystemColors.Control;
+                setInfoLabel(Localization.getString("mainInfoCheckCode"), SystemColors.Control);
                 for (int i = 0; i < fCTBCode.LinesCount; i++)
                     fCTBCode.UnbookmarkLine(i);
                 _serial_form.startStreaming(fCTBCode.Lines, 0, true);
@@ -413,8 +407,7 @@ namespace GRBL_Plotter
             _serial_form.stopStreaming(showMessage);
 						
             if (isStreaming || isStreamingCheck)
-            {   lbInfo.Text = Localization.getString("mainInfoStopStream2") + (fCTBCodeClickedLineNow + 1).ToString() + " )";
-                lbInfo.BackColor = Color.Fuchsia;
+            {   setInfoLabel(Localization.getString("mainInfoStopStream2") + (fCTBCodeClickedLineNow + 1).ToString() + " )", Color.Fuchsia);
             }
 
             resetStreaming();
