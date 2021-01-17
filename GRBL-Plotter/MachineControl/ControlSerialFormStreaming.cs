@@ -99,8 +99,30 @@ namespace GRBL_Plotter
             lastSentToCOM.Clear();
             toolTable.init();       // fill structure
             rtbLog.Clear();
+
+            // check if other serial are still alive
+            if (useSerial2)
+            {   try
+                {   if (!_serial_form2.serialPortOpen)
+                    { addToLog("[2nd serial port is not open]"); useSerial2 = false; }
+                }
+                catch
+                { useSerial2 = false; }
+            }
+            if (useSerial3)
+            {   try
+                {   if (!_serial_form3.serialPortOpen)
+                    { addToLog("[3rd serial port is not open]"); useSerial3 = false; }
+                }
+                catch
+                { useSerial3 = false; }
+            }
+
             if (!check)
-                addToLog("[Start streaming - no echo]");
+            {   addToLog("[Start streaming - no echo]");
+                if (useSerial2) addToLog("[Use serial 2]");
+                if (useSerial3) addToLog("[Use serial 3]");
+            }
             else
                 addToLog("[Start code check]");
             saveLastPos();
@@ -113,11 +135,11 @@ namespace GRBL_Plotter
             isStreamingCheck = check;
             streamingStateNow = grblStreaming.ok;
             lineStreamingPause = -1;                // save line were M0 appeared for main GUI to show notification
-            streamingBuffer.Clear(); // = new List<string>();
-            resetStreaming();       // startStreaming
+            streamingBuffer.Clear();    // = new List<string>();
+            resetStreaming();           // startStreaming
             if (isStreamingCheck)
-            {   sendLine("$C");
-                grblBufferSize = 100;  //reduce size to avoid fake errors
+            {   sendLine("$C");         // startStreaming check
+                grblBufferSize = 100;   // reduce size to avoid fake errors
             }
             countLoggerUpdate = (int)(10000 / timerSerial.Interval);
 
@@ -365,7 +387,7 @@ namespace GRBL_Plotter
         public void stopStreaming(bool isNotStartup = true)
         {
             if (isStreamingCheck)
-            {   sendLine("$C");
+            {   sendLine("$C");         // stopStreaming check
                 isStreamingCheck = false;
             }
 
@@ -390,15 +412,15 @@ namespace GRBL_Plotter
             int line = 0;
             line = streamingBuffer.GetSentLineNr();
             if (logStartStop) Logger.Trace(" stopStreamingFinal() gCodeLinesSent {0}  gCodeLineNr.Count {1}", streamingBuffer.IndexSent, streamingBuffer.Count);
-            sendStreamEvent(grblStreaming.stop);   // stopStreamingFinal
+            sendStreamEvent(grblStreaming.stop);        // stopStreamingFinal
 
             isHeightProbing = false;
 			
-            resetStreaming(true);   // stopStreamingFinal()
+            resetStreaming(true);       // stopStreamingFinal()
             if (logStartStop) Logger.Trace(" stopStreamingFinal() - lines in buffer {0}", (streamingBuffer.IndexSent - streamingBuffer.IndexConfirmed));
 
             if (isStreamingCheck)
-            {   sendLine("$C");
+            {   sendLine("$C");         // stopStreamingFinal check
                 isStreamingCheck = false;
             }
             updateControls();
@@ -423,6 +445,7 @@ namespace GRBL_Plotter
                 grblBufferFree = grblBufferSize;
             }
             grbl.lastMessage = "";
+            grbl.lastErrorNr = 0;
         }
 
 /********************************************************
@@ -447,8 +470,8 @@ namespace GRBL_Plotter
                 if ((streamingStateOld != streamingStateNow) || allowStreamingEvent)
                 {
                     if (streamingStateNow != grblStreaming.pause)
-                        sendStreamEvent(streamingStateNow);    // streaming processOkStreaming
-                    streamingStateOld = streamingStateNow;     //grblStatus = oldStatus;
+                        sendStreamEvent(streamingStateNow);     // streaming processOkStreaming
+                    streamingStateOld = streamingStateNow;      //grblStatus = oldStatus;
                     allowStreamingEvent = false;
                 }
             }
@@ -465,16 +488,18 @@ namespace GRBL_Plotter
             if (status == grblStreaming.error)
                 lineNrConfirmed = sendBuffer.GetConfirmedLineNr() +1;
 
-            float codeFinish = 0;
+            // progressbar.value is int
+            int codeFinish = 0;
 			if (streamingBuffer.Count != 0)
-				codeFinish = (float)lineNrConfirmed * 100 / (float)streamingBuffer.Max;
-            float buffFinish = 0;
+				codeFinish = (int)Math.Ceiling((float)lineNrConfirmed * 100 / streamingBuffer.MaxLineNr) +1;      // to reach 100%
+            int buffFinish = 0;
 			if (grblBufferSize != 0)
-				buffFinish = (float)(grblBufferSize - grblBufferFree) * 100 / (float)grblBufferSize;
-			
+				buffFinish = (int)Math.Ceiling((float)(grblBufferSize - grblBufferFree) * 100 / grblBufferSize) +1; // to reach 100%
+
             if (codeFinish > 100) { codeFinish = 100; }
             if (buffFinish > 100) { buffFinish = 100; }
 
+//            Logger.Trace("OnRaiseStreamEvent {0} {1} {2} {3} {4}", lineNrSent, lineNrConfirmed, codeFinish, buffFinish, status);
             OnRaiseStreamEvent(new StreamEventArgs(lineNrSent, lineNrConfirmed, codeFinish, buffFinish, status));
         }
 
@@ -489,10 +514,10 @@ namespace GRBL_Plotter
         {
             int lengthToSend = streamingBuffer.LengthSent() + 1;
 
-            if (waitForIdle || isStreamingRequestPause)
+            if (waitForIdle || isStreamingRequestPause || (countPreventIdle > 0))
             {   return;    }
 
-            while ((streamingBuffer.IndexSent <= streamingBuffer.Count) && (grblBufferFree >= lengthToSend) && !waitForIdle && (streamingStateNow != grblStreaming.pause))
+            while ((streamingBuffer.IndexSent <= streamingBuffer.Count) && (grblBufferFree >= lengthToSend) && !waitForIdle && (streamingStateNow != grblStreaming.pause) && externalCOMReady())
             {
                 string line = streamingBuffer.GetSentLine();
                 streamingStateNow = grblStreaming.ok;       // default status
@@ -556,6 +581,7 @@ namespace GRBL_Plotter
                 streamingBuffer.LineWasSent();
                 streamingStateOld = streamingStateNow;
                 lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
+//                Logger.Trace("preProcessStreaming sent {0}  lengthToSend {1}  grblBufferFree {2} 3busy {3} countPreventIdle {4} line {5}", streamingBuffer.IndexSent, lengthToSend, grblBufferFree, serial3Busy, countPreventIdle, line);
             }   // while
 
             if (streamingStateNow != grblStreaming.pause)
@@ -563,10 +589,10 @@ namespace GRBL_Plotter
         }
 
 
-        /***************************************************************
-         * streamingIDLE()
-         * called in RX event chain, from processGrblStateChange()
-         ***************************************************************/
+/***************************************************************
+* streamingIDLE()
+* called in RX event chain, from processGrblStateChange()
+***************************************************************/
         private void streamingIDLE()
         {
             // in main GUI: send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
@@ -601,7 +627,7 @@ namespace GRBL_Plotter
                 }
 
                 if (streamingStateOld != streamingStateNow)
-                    sendStreamEvent(streamingStateNow);    // streaming in streamingIDLE()
+                    sendStreamEvent(streamingStateNow);     // streaming in streamingIDLE()
                 streamingStateOld = streamingStateNow;
 
                 if (streamingBuffer.IndexConfirmed >= streamingBuffer.Count)
@@ -616,9 +642,10 @@ namespace GRBL_Plotter
 
             addToLog("\r[Streaming finish]");
             Logger.Info("streamingFinish ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
+            sendStreamEvent(streamingStateNow);     // streaming in streamingFinish()
             streamingStateNow = grblStreaming.finish;
 
-            OnRaiseStreamEvent(new StreamEventArgs(streamingBuffer.Max, streamingBuffer.Max, 100, 0, grblStreaming.finish));
+            OnRaiseStreamEvent(new StreamEventArgs(streamingBuffer.MaxLineNr, streamingBuffer.MaxLineNr, 100, 0, grblStreaming.finish));
             if (Properties.Settings.Default.grblPollIntervalReduce)
             {
                 timerSerial.Interval = grbl.pollInterval;

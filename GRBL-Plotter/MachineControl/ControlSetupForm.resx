@@ -9286,10 +9286,10 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>1</value>
   </data>
   <data name="groupBox11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 188</value>
+    <value>6, 225</value>
   </data>
   <data name="groupBox11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>562, 128</value>
+    <value>562, 91</value>
   </data>
   <data name="groupBox11.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -9472,7 +9472,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>290, 6</value>
   </data>
   <data name="tab5gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>278, 160</value>
+    <value>278, 213</value>
   </data>
   <data name="tab5gB3.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -9492,6 +9492,39 @@ M4 Dynamic Laser Power Mode</value>
   <data name="&gt;&gt;tab5gB3.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="checkBox6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 39</value>
+  </data>
+  <data name="checkBox6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 17</value>
+  </data>
+  <data name="checkBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>Open 3rd serial port on prog. start</value>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>Opens a 2nd COM port to control a 2nd GRBL. Usefull for tool changer or 4th axis.</value>
+  </data>
+  <data name="&gt;&gt;checkBox6.Name" xml:space="preserve">
+    <value>checkBox6</value>
+  </data>
+  <data name="&gt;&gt;checkBox6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox6.Parent" xml:space="preserve">
+    <value>groupBox13</value>
+  </data>
+  <data name="&gt;&gt;checkBox6.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBSerialMinimize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -9499,7 +9532,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>NoControl</value>
   </data>
   <data name="cBSerialMinimize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 36</value>
+    <value>6, 63</value>
   </data>
   <data name="cBSerialMinimize.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 17</value>
@@ -9523,7 +9556,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>groupBox13</value>
   </data>
   <data name="&gt;&gt;cBSerialMinimize.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBSerial2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9556,13 +9589,13 @@ M4 Dynamic Laser Power Mode</value>
     <value>groupBox13</value>
   </data>
   <data name="&gt;&gt;cBSerial2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="groupBox13.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 40</value>
   </data>
   <data name="groupBox13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 65</value>
+    <value>266, 111</value>
   </data>
   <data name="groupBox13.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -9613,7 +9646,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>0</value>
   </data>
   <data name="tab5gB2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 111</value>
+    <value>6, 157</value>
   </data>
   <data name="tab5gB2.Size" type="System.Drawing.Size, System.Drawing">
     <value>266, 39</value>
@@ -9673,7 +9706,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>6, 6</value>
   </data>
   <data name="tab5gB1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>278, 160</value>
+    <value>278, 213</value>
   </data>
   <data name="tab5gB1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>

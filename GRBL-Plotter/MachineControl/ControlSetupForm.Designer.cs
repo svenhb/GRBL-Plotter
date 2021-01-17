@@ -776,6 +776,7 @@ namespace GRBL_Plotter
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -4421,6 +4422,7 @@ namespace GRBL_Plotter
             // 
             // groupBox13
             // 
+            this.groupBox13.Controls.Add(this.checkBox6);
             this.groupBox13.Controls.Add(this.cBSerialMinimize);
             this.groupBox13.Controls.Add(this.cBSerial2);
             resources.ApplyResources(this.groupBox13, "groupBox13");
@@ -7933,6 +7935,15 @@ namespace GRBL_Plotter
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 
+            // checkBox6
+            // 
+            resources.ApplyResources(this.checkBox6, "checkBox6");
+            this.checkBox6.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlUseSerial3;
+            this.checkBox6.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlUseSerial3", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox6.Name = "checkBox6";
+            this.toolTip1.SetToolTip(this.checkBox6, resources.GetString("checkBox6.ToolTip"));
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -8968,5 +8979,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.CheckBox cBImportGraphicClipSkipCode;
+        private System.Windows.Forms.CheckBox checkBox6;
     }
 }

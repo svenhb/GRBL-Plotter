@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,6 +43,9 @@
  * 2020-08-13 bug fix transformGCodeRotate, transformGCodeScale with G91 
  * 2020-12-16 add markSelectedTile 
  * 2020-12-30 add N-Number
+ * 2021-01-06 add G2/3 radius check (grbl error:33); createDrawingPathFromGCode: if ((aDiff < 0.1) && (arcMove.radius > 1000)) 
+ *            use path.AddLine instead of path.AddArc to avoid float unprecision in drawing (https://github.com/arkypita/LaserGRBL/issues/1248)
+ * 2021-01-12 extend drawingProperties
 */
 
 using System;
@@ -173,7 +176,7 @@ namespace GRBL_Plotter
 		
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        public static bool logEnable = false;
+        public static bool logEnable = true;
         public static bool logDetailed = false;
         public static bool logCoordinates = false;
 
@@ -415,38 +418,46 @@ namespace GRBL_Plotter
                 { singleLine = "( " + singleLine + " )"; }          // don't process subroutine itself when processed
 
                 newLine.parseLine(lineNr, singleLine, ref modal);
+//                Logger.Trace("getGCodeLines: {0} {1}  x:{2:0.000}  y:{3:0.000}  i:{4:0.000}  j:{5:0.000}",lineNr, singleLine, newLine.x, newLine.y, newLine.i, newLine.j);
+                
                 xyPosChanged = calcAbsPosition(newLine, oldLine);                  // Calc. absolute positions and set object dimension: xyzSize.setDimension
 
-
+                if (GCode[lineNr].Contains("<")) {
 /* Process Tile marker */
-                if (GCode[lineNr].Contains(xmlMarker.tileStart))                   // check if marker available
-                {   xmlMarker.AddTile(lineNr, GCode[lineNr], figureMarkerCount); }
+                    if (GCode[lineNr].Contains(xmlMarker.tileStart))                   // check if marker available
+                    {   xmlMarker.AddTile(lineNr, GCode[lineNr], figureMarkerCount); }
 /* Process Group marker */
-                if (GCode[lineNr].Contains(xmlMarker.groupStart))                   // check if marker available
-                {
-                    string clean = GCode[lineNr].Replace("'", "\"");
-                    figureMarkerCount++;
-                    xmlMarker.AddGroup(lineNr, clean, figureMarkerCount);
-                    figureActive = true;
-                    if (logCoordinates) Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, GCode[lineNr]);
-				}
-/* Process Figure marker */
-                if (GCode[lineNr].Contains(xmlMarker.figureStart))                  // check if marker available
-                {   if (!figureActive)
+                    else if (GCode[lineNr].Contains(xmlMarker.groupStart))                   // check if marker available
+                    {
+                        string clean = GCode[lineNr].Replace("'", "\"");
                         figureMarkerCount++;
-                    figureActive = true;
-                    updateFigureLineNeeded = true;                                  // update coordList.actualPos of this line later on
-                    xyPosChanged = false;
-                    string clean = GCode[lineNr].Replace("'", "\"");
-                    xmlMarker.AddFigure(lineNr, clean, figureMarkerCount);
-                    if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, GCode[lineNr]);
-					if(Properties.Settings.Default.gui2DColorPenDownModeEnable  &&  Graphic.SizeOk())	// enable color mode
-					{ 	pathData tmp = new pathData(xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);		// set color, width, pendownpath
-                        //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
-						pathObject.Add(tmp);
-						pathActualDown = pathObject[pathObject.Count -1].path;
-					}					
+                        xmlMarker.AddGroup(lineNr, clean, figureMarkerCount);
+                        figureActive = true;
+                        if (logCoordinates) Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, GCode[lineNr]);
+                    }
+/* Process Figure marker */
+                    else if (GCode[lineNr].Contains(xmlMarker.figureStart))                  // check if marker available
+                    {   if (!figureActive)
+                            figureMarkerCount++;
+                        figureActive = true;
+                        updateFigureLineNeeded = true;                                  // update coordList.actualPos of this line later on
+                        xyPosChanged = false;
+                        string clean = GCode[lineNr].Replace("'", "\"");
+                        xmlMarker.AddFigure(lineNr, clean, figureMarkerCount);
+                        if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, GCode[lineNr]);
+                        if (Properties.Settings.Default.gui2DColorPenDownModeEnable && Graphic.SizeOk())    // enable color mode
+                        {   pathData tmp = new pathData(xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);      // set color, width, pendownpath
+                                                                                                                        //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
+                            pathObject.Add(tmp);
+                            pathActualDown = pathObject[pathObject.Count - 1].path;
+                        }
+                    }
+    /*                else if (GCode[lineNr].Contains(xmlMarker.pathStart) 
+                        || GCode[lineNr].Contains(xmlMarker.passStart)
+                        || GCode[lineNr].Contains(xmlMarker.contourStart))                  // check if marker available
+                    { figureActive = true; }*/
                 }
+
                 if (GCode[lineNr].Contains(xmlMarker.tangentialAxis))                    
                 {   tangentialAxisEnable = true;
                     tangentialAxisName = xmlMarker.getAttributeValue(GCode[lineNr],"Axis");
@@ -506,20 +517,24 @@ namespace GRBL_Plotter
                     else
                         findAddSubroutine(modal.pWord, GCode, modal.lWord, processSubs);      // scan complete GCode for matching O-word
                 }
-/* Process Figure end */
-                if (GCode[lineNr].Contains(xmlMarker.figureEnd))                    // check if marker available
-                {   figureActive = false;
-                    xmlMarker.tmpFigure.posEnd = (xyPoint)newLine.actualPos;
-                    xmlMarker.FinishFigure(lineNr);
-					pathActualDown = null;
-                }
-/* Process Group end */
-                if (GCode[lineNr].Contains(xmlMarker.groupEnd))                    // check if marker available
-                {   xmlMarker.FinishGroup(lineNr); }
-/* Process Tile end */
-                if (GCode[lineNr].Contains(xmlMarker.tileEnd))                    // check if marker available
-                {   xmlMarker.FinishTile(lineNr);  }
 
+                if (GCode[lineNr].Contains("</"))
+                {
+/* Process Figure end */
+                    if (GCode[lineNr].Contains(xmlMarker.figureEnd))                    // check if marker available
+                    {
+                        figureActive = false;
+                        xmlMarker.tmpFigure.posEnd = (xyPoint)newLine.actualPos;
+                        xmlMarker.FinishFigure(lineNr);
+                        pathActualDown = null;
+                    }
+/* Process Group end */
+                    else if (GCode[lineNr].Contains(xmlMarker.groupEnd))                    // check if marker available
+                    { xmlMarker.FinishGroup(lineNr); }
+/* Process Tile end */
+                    else if (GCode[lineNr].Contains(xmlMarker.tileEnd))                    // check if marker available
+                    { xmlMarker.FinishTile(lineNr); }
+                }
             }   // finish reading lines
 
             if (showArrow || showId)
@@ -737,6 +752,30 @@ namespace GRBL_Plotter
                 }
                 else
                     newLine.actualPos.W = oldLine.actualPos.W;
+                    
+                    
+/* Error 33: When the arc is projected on the selected plane, the distance from the current point to the center 
+   differs from the distance from the end point to the center by more than (.05 inch/.5 mm) OR 
+   ((.0005 inch/.005mm) AND .1% of radius).                    */
+                if ((newLine.motionMode == 2) || (newLine.motionMode == 3))
+                {
+                    double i=0, j=0;
+                    if (newLine.i != null) i = (double)newLine.i;
+                    if (newLine.j != null) j = (double)newLine.j;
+                    double r = Math.Sqrt(i*i + j*j);
+                    double centerX = oldLine.actualPos.X + i;
+                    double centerY = oldLine.actualPos.Y + j;
+                    double newi = newLine.actualPos.X - centerX;
+                    double newj = newLine.actualPos.Y - centerY;
+                    double newr = Math.Sqrt(newi*newi + newj*newj);
+                    if (Math.Abs(r - newr) > 0.005)
+                    {   string err1 = string.Format("i,j not ok: r-old:{0:0.000} r-new:{1:0.000}",r,newr);
+                        string err2 = string.Format("[{0}]  '{1}' would cause error:33: Radii are not equal between start ({2:0.000}) and end pos ({3:0.000}) \r\n", (newLine.lineNumber + 1), newLine.codeLine, r, newr);
+                        errorString += err2;
+                        Logger.Error("{0}", err2);
+                        newLine.codeLine += string.Format("({0})",err1);
+                    }
+               }
             }
             newLine.alpha = oldLine.alpha;
             if (((xyPoint)oldLine.actualPos).DistanceTo((xyPoint)newLine.actualPos) != 0)
@@ -1621,21 +1660,36 @@ namespace GRBL_Plotter
                     centerList.Add(new coordByLine(newL.lineNumber, figureCount, arcMove.center, 0, true));
 
                     newL.distance = Math.Abs(arcMove.radius * arcMove.angleDiff);
-                    float x1 = (float)(arcMove.center.X - arcMove.radius);
-                    float x2 = (float)(arcMove.center.X + arcMove.radius);
-                    float y1 = (float)(arcMove.center.Y - arcMove.radius);
-                    float y2 = (float)(arcMove.center.Y + arcMove.radius);
-                    float r2 = 2 * (float)arcMove.radius;
-                    float aStart = (float)(arcMove.angleStart * 180 / Math.PI);
-                    float aDiff = (float)(arcMove.angleDiff * 180 / Math.PI);
-                    if (arcMove.radius > 0)
-                    {   path.AddArc(x1, y1, r2, r2, aStart, aDiff);
-						if ((path == pathPenDown) && (pathActualDown != null))
-							pathActualDown.AddArc(x1, y1, r2, r2, aStart, aDiff);			
-					}
+
+                    double x1 = (arcMove.center.X - arcMove.radius);
+                    double x2 = (arcMove.center.X + arcMove.radius);
+                    double y1 = (arcMove.center.Y - arcMove.radius);
+                    double y2 = (arcMove.center.Y + arcMove.radius);
+                    double r2 = 2 * arcMove.radius;
+                    double aStart = (arcMove.angleStart * 180 / Math.PI);
+                    double aDiff = (arcMove.angleDiff * 180 / Math.PI);
+
+                    if ((aDiff < 0.1) && (arcMove.radius > 1000))
+                    {   // just draw a line
+                        path.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
+                        if ((path == pathPenDown) && (pathActualDown != null))
+                            pathActualDown.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
+                    }
                     else
-                    {   if (errorString.Length == 0) errorString += "ERROR ";
-                        errorString += string.Format("Line:{0} radius=0 '{1}' | ", (newL.lineNumber + 1), newL.codeLine);
+                    {   // Draw real arc
+                        if (arcMove.radius > 0)
+                        {
+                            path.AddArc((float)x1, (float)y1, (float)r2, (float)r2, (float)aStart, (float)aDiff);
+                            if ((path == pathPenDown) && (pathActualDown != null))
+                                pathActualDown.AddArc((float)x1, (float)y1, (float)r2, (float)r2, (float)aStart, (float)aDiff);
+//                            Logger.Trace("[{0}] {1} x1:{2}  y1:{3}  r2:{4}  aStart:{5}  aDiff:{6}", newL.lineNumber, newL.codeLine, x1, y1, r2, aStart, aDiff);
+//                            Logger.Trace("[{0}] {1} x1:{2}  y1:{3}  r2:{4}  aStart:{5}  aDiff:{6}", newL.lineNumber, newL.codeLine, (float)x1, (float)y1, (float)r2, aStart, aDiff);
+                        }
+                        else
+                        {
+                            if (errorString.Length == 0) errorString += "ERROR ";
+                            errorString += string.Format("Line:{0} radius=0 '{1}' | ", (newL.lineNumber + 1), newL.codeLine);
+                        }
                     }
                     if (!newL.ismachineCoordG53)
                         xyzSize.setDimensionCircle(arcMove.center.X, arcMove.center.Y, arcMove.radius, aStart, aDiff);        // calculate new dimensions
@@ -1751,14 +1805,15 @@ namespace GRBL_Plotter
             if ((xyzSize.miny == 0) && (xyzSize.maxy == 0))
             {   xyzSize.miny = -1; xyzSize.maxy = 1; }
 
-            drawingSize.minX = Math.Floor(xyzSize.minx* extend / roundTo)* roundTo;                  // extend dimensions
-            if (drawingSize.minX >= 0) { drawingSize.minX = -roundTo; }                                          // be sure to show 0;0 position
-            drawingSize.maxX = Math.Ceiling(xyzSize.maxx* extend / roundTo) * roundTo;
-            drawingSize.minY = Math.Floor(xyzSize.miny* extend / roundTo) * roundTo;
-            if (drawingSize.minY >= 0) { drawingSize.minY = -roundTo; }
-            drawingSize.maxY = Math.Ceiling(xyzSize.maxy* extend / roundTo) * roundTo;
+            drawingSize.minX = (float)(Math.Floor(xyzSize.minx* extend / roundTo)* roundTo);                  // extend dimensions
+            if (drawingSize.minX >= 0) { drawingSize.minX = (float)- roundTo; }                                          // be sure to show 0;0 position
+            drawingSize.maxX = (float)(Math.Ceiling(xyzSize.maxx* extend / roundTo) * roundTo);
+            drawingSize.minY = (float)(Math.Floor(xyzSize.miny* extend / roundTo) * roundTo);
+            if (drawingSize.minY >= 0) { drawingSize.minY = (float)-roundTo; }
+            drawingSize.maxY = (float)(Math.Ceiling(xyzSize.maxy* extend / roundTo) * roundTo);
 
-            createRuler(drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
+ //           createRuler(pathRuler, drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
+            createRuler(pathRuler, drawingSize);
 
             createMarkerPath();
 
@@ -1861,7 +1916,64 @@ namespace GRBL_Plotter
 			}
         }
 
-        private static void createRuler(double minX, double maxX, double minY, double maxY)
+        public static void createRuler(GraphicsPath path, drawingProperties dP)
+        {
+            path.Reset();
+            float unit = 1;
+            int divider = 1;
+            int divider_long    = 100;
+            int divider_med     = 10;
+            int divider_short   = 5;
+            int show_short      = 500;
+            int show_smallest   = 200;
+            float length1 = 1F, length2 = 2F, length3 = 3F, length5 = 5F;
+            if (!Properties.Settings.Default.importUnitmm)
+            {   divider = 16;
+                divider_long    = divider; 
+                divider_med     = 8;
+                divider_short   = 4;
+                show_short      = 20*divider;
+                show_smallest   = 6*divider;
+                dP.minX = dP.minX * divider; // unit;
+                dP.maxX = dP.maxX * divider; // unit;
+                dP.minY = dP.minY * divider; // unit;
+                dP.maxY = dP.maxY * divider; // unit;
+                length1 = 0.05F; length2 = 0.1F; length3 = 0.15F; length5 = 0.25F;
+            }
+            double rangeX = dP.maxX - dP.minX;
+            double rangeY = dP.maxY - dP.minY;
+            
+            float x = 0, y = 0;
+            for (float i = dP.minX; i < dP.maxX; i++)          // horizontal ruler
+            {   path.StartFigure();
+                x = (float)i*unit / (float)divider;
+                if (i % divider_short == 0)
+                {   if (i % divider_long == 0)
+                    { path.AddLine(x, 0, x, -length5); }  // 100                    
+                    else if ((i % divider_med == 0) && (rangeX < (2* show_short)))
+                    { path.AddLine(x, 0, x, -length3); }  // 10                  
+                    else if (rangeX < show_short)
+                    { path.AddLine(x, 0, x, -length2); }  // 5
+                }
+                else if (dP.maxX < show_smallest)
+                { path.AddLine(x, 0, x, -length1); }  // 1
+            }
+            for (float i = dP.minY; i < dP.maxY; i++)          // vertical ruler
+            {   path.StartFigure();
+                y = (float)i*unit / (float)divider;
+                if (i % divider_short == 0)
+                {   if (i % divider_long == 0)
+                    { path.AddLine(0, y, -length5, y); } // 100                   
+                    else if ((i % divider_med == 0) && (rangeY < (2* show_short)))
+                    { path.AddLine(0, y, -length3, y); } // 10           
+                    else if (rangeY < show_short)
+                    { path.AddLine(0, y, -length2, y); } // 5
+                }
+                else if (dP.maxY < show_smallest)
+                { path.AddLine(0, y, -length1, y); }     // 1
+            }
+        }
+     /*           private static void createRuler2(GraphicsPath path, double minX, double maxX, double minY, double maxY)
         {
             pathRuler.Reset();
             float unit = 1;
@@ -1946,7 +2058,8 @@ namespace GRBL_Plotter
                 else if (Math.Abs(minY) < show_smallest)
                 { pathRuler.AddLine(0, y, -length1, y); }     // 1
             }
-        }
+        }*/
+
         private static void createMarker(GraphicsPath path, xyPoint center, float dimension, int style, bool rst = true)
         {   createMarker(path, (float)center.X, (float)center.Y, dimension, style, rst); }
 
@@ -2002,9 +2115,13 @@ namespace GRBL_Plotter
 
     public struct drawingProperties
     {
-        public double minX,minY,maxX,maxY;
+        public float minX,minY,maxX,maxY,rangeX,rangeY;
         public void drawingProperty()
-         { minX = 0;minY = 0;maxX = 0;maxY=0; }
+        {   minX = 0;minY = 0;maxX = 0;maxY=0; rangeX = 0; rangeY = 0;}
+        public void setX(float min, float max)
+        {   minX = Math.Min(min,max); maxX = Math.Max(min,max); rangeX = maxX - minX;}
+        public void setY(float min, float max)
+        {   minY = Math.Min(min,max); maxY = Math.Max(min,max); rangeY = maxY - minY;}
     };
 
 }

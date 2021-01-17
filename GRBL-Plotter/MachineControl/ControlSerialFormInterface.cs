@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@
 /* 2020-09-18 split file
  * 2020-12-18 add CodeBuffer max
  * 2020-12-27 add Marlin support
+ * 2021-01-15 add lineEndRXTX
+ * 2021-01-16 don't apply toUpper to comment (^2, (^3
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -166,20 +168,21 @@ namespace GRBL_Plotter
             if (iamSerial == 1) { grbl.isMarlin = true; }
             addToLog("Set Marlin mode");
             processWelcomeMessage();
-            serialPort.Write("M114\n"); getMarlinPositionWasSent = true;
+            serialPort.Write("M114" + lineEndTXgrbl);       // marlin
+            getMarlinPositionWasSent = true;
         }
 
-        /********************************************************************************* 
-        * processGrblMessages - called in RX event chain, from serialPort1_DataReceived()
-        * 1) processGrblOkMessage() processOkStreaming();   			process 'ok'
-        * 2) processGrblRealTimeStatus, processGrblPositionUpdate, 	process '< Idle | MPos:0.000,0.000,0.000 | FS:0,0 | WCO:0.000,0.000,0.000 >'
-        *    processGrblStateChange
-        * 3) processGrblWelcomeMessage		'Reset'
-        * 4) processGrblFeedbackMessage	'[GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]'
-        * 5) processGrblAlarmMessage
-        * 6) processGrblErrorMessage
-        * 7) processGrblUserQuery			'$$'
-        *********************************************************************************/
+/********************************************************************************* 
+* processGrblMessages - called in RX event chain, from serialPort1_DataReceived()
+* 1) processGrblOkMessage() processOkStreaming();   			process 'ok'
+* 2) processGrblRealTimeStatus, processGrblPositionUpdate, 	process '< Idle | MPos:0.000,0.000,0.000 | FS:0,0 | WCO:0.000,0.000,0.000 >'
+*    processGrblStateChange
+* 3) processGrblWelcomeMessage		'Reset'
+* 4) processGrblFeedbackMessage	'[GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]'
+* 5) processGrblAlarmMessage
+* 6) processGrblErrorMessage
+* 7) processGrblUserQuery			'$$'
+*********************************************************************************/
         private void processGrblMessages(object sender, EventArgs e)	// https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#message-summary
         {			
             int tmp;
@@ -614,6 +617,9 @@ namespace GRBL_Plotter
             }
 
             OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblStateNow, machineState, mParserState, rxString));// lastCmd));
+
+            if (errNr == "33")
+            { realtimeCommand((byte)'!'); }
 			return;			
 		}
 		
@@ -708,18 +714,22 @@ namespace GRBL_Plotter
             {   var orig = line;
                 int start = orig.IndexOf('(');
                 int end = orig.LastIndexOf(')');
-                if (start >= 0) line = orig.Substring(0, start);
+                if (start >= 0) line = orig.Substring(0, start);    // get line without comment
                 if (end >= 0) line += orig.Substring(end + 1);
-                // extract GCode for 2nd COM Port
+                line = line.ToUpper();                              //all uppercase
+
+// extract GCode for 2nd / 3rd COM Port
                 if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
                 {   var cmt = orig.Substring(start, end - start + 1);
-                    if ((cmt.IndexOf("(^2") >= 0) || (cmt.IndexOf("($") == 0))
-                    {   line += cmt;                // keep 2nd COM port data for further use
+                    if ((cmt.IndexOf("(^2") >= 0) || (cmt.IndexOf("(^3") >= 0) || (cmt.IndexOf("($") == 0))
+                    {   line += cmt;                // keep 2nd / 3rd COM port data for further use
                     }
                 }
-            }
+            } 
+            else
+                line = line.ToUpper();              //all uppercase
+
             line = line.TrimEnd(';', ' ');
-            line = line.ToUpper();              //all uppercase
             line = line.Trim();
             return line;
         }
@@ -804,26 +814,40 @@ namespace GRBL_Plotter
 // If connected and command is for 2nd grbl						
                         if (useSerial2 && (iamSerial == 1) && line.Contains("(^2"))// && (grblStateNow == grblState.idle))
                         {
+                            serial2Busy = true;                 // avoid further copy from streamingBuffer to sendBuffer
                             if (grblStateNow != grblState.idle)	// only send if 1st grbl is IDLE
                                 break;
                             lock (sendDataLock)
                             {   sendTo2ndGrbl(line);			// send to 2nd grbl
                                 sendBuffer.LineWasSent();		// mark as sent
                                 sendBuffer.LineWasReceived();   // mark as received, because will not get 'ok'
-                            }
-					// wait 1 sec, give 2nd grbl a chance to change from IDLE
-                            countPreventIdle = (int)(1000 / timerSerial.Interval); 
+                            }					
+                            countPreventIdle = (int)(1000 / timerSerial.Interval); // wait 1 sec, give 2nd grbl a chance to change from IDLE to run
+                            serial2Busy = false;
+                        }
+// If connected and command is for 3rd serial com 					
+                        if (useSerial3 && (iamSerial == 1) && line.Contains("(^3"))// && (grblStateNow == grblState.idle))
+                        {
+                            serial3Busy = true;                 // avoid further copy from streamingBuffer to sendBuffer
+                            if (grblStateNow != grblState.idle)	// only send if 1st grbl is IDLE
+                                break;
+                            lock (sendDataLock)
+                            {   sendTo3rdCOM(line);			    // send to 3rd serial
+                                sendBuffer.LineWasSent();		// mark as sent
+                                sendBuffer.LineWasReceived();   // mark as received, because will not get 'ok'
+                            }					
+                            countPreventIdle = (int)(1000 / timerSerial.Interval); // wait 1 sec, give 3rd com a chance to change from IDLE to busy
+                            serial3Busy = false;
                         }
 // If one grbl, or 2 grbl and command is for 1st						
-                        else if ((!useSerial2) || (useSerial2 && (_serial_form2.grblStateNow == grblState.idle) && (countPreventIdle <= 0)))
+                        else if (externalCOMReady() && (countPreventIdle <= 0))
                         {
-                            //timerSerial.Stop();
                             lock (sendDataLock)
 							{
                                 line = sendBuffer.GetSentLine();
                                 int len = (line.Length + 1);
                                 if (serialPort.IsOpen && (grblBufferFree >= len) && (line != "OV") && (!waitForOk))// && !blockSend)
-								{	serialPort.Write(line + "\r");							
+								{   serialPort.Write(line + lineEndTXgrbl);	        // grbl accepts '\n' or '\r'			
 									grblBufferFree -= len;
 									if (!grblCharacterCounting)
 										grblBufferFree = 0;
@@ -833,7 +857,6 @@ namespace GRBL_Plotter
                                 else
                                     break;
                             }
-                            //timerSerial.Start();
 
                             if (!isHeightProbing && (!(isStreaming && !isStreamingPause)))// || (cBStatus1.Checked || cBStatus.Checked))
 							{   if (!(cBStatus1.Checked || cBStatus.Checked || (countPreventOutput > 0))                   )
@@ -870,10 +893,11 @@ namespace GRBL_Plotter
                                 lastSentToCOM.Dequeue();            // store last sent commands via COM for error analysis
 
 					// wait 1 sec, give 1st grbl a chance to change from IDLE
-                            if (useSerial2)
-                                countPreventIdle2nd = (int)(1000/timerSerial.Interval); // wait 1 sec
+         //                   if (useSerial2 || useSerial3)
+          //                      countPreventIdle2nd = (int)(1000/timerSerial.Interval); // wait 1 sec
                         }
-                        if (useSerial2 && (_serial_form2.grblStateNow != grblState.idle))
+                        if ((useSerial2 && (_serial_form2.grblStateNow != grblState.idle)) 
+                            || (useSerial3 && _serial_form3.busy))
                         { break; }
                     }
                     else
@@ -890,15 +914,32 @@ namespace GRBL_Plotter
 
         private void sendTo2ndGrbl(string line)
         {
-            int start = line.IndexOf('(');
-            int end = line.LastIndexOf(')');
-            if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
-            {
-                var cmt = line.Substring(start, end - start + 1);
+            if ((_serial_form2 != null) && (_serial_form2.serialPortOpen))
+            {   int start = line.IndexOf('(');
+                int end = line.LastIndexOf(')');
+                if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
+                {
+                    var cmt = line.Substring(start, end - start + 1);
 
-                string txt = cmt.Substring(start + 3, cmt.Length - 4);
-                if (log2ndGrbl) Logger.Trace("processSend 2nd '{0}' ", txt);
-                _serial_form2.requestSend(txt);
+                    string txt = cmt.Substring(start + 3, cmt.Length - 4);
+                    if (log2ndGrbl) Logger.Trace("processSend 2nd '{0}' ", txt);
+                    _serial_form2.requestSend(txt);
+                }
+            }
+        }
+        private void sendTo3rdCOM(string line)
+        {
+            if ((_serial_form3 != null) && (_serial_form3.serialPortOpen))
+            {   int start = line.IndexOf('(');
+                int end = line.LastIndexOf(')');
+                if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
+                {
+                    var cmt = line.Substring(start, end - start + 1);
+
+                    string txt = cmt.Substring(start + 3, cmt.Length - 4);
+                    if (log3rdCOM) Logger.Trace("processSend 3rd '{0}' ", txt);
+                    _serial_form3.send(txt);
+                }
             }
         }
 
@@ -910,15 +951,14 @@ namespace GRBL_Plotter
         {
             try
             {   if (serialPort.IsOpen)// && !blockSend)
-                    serialPort.Write(data + "\r");
+                    serialPort.Write(data + lineEndTXgrbl);         // sendLine
                 if (!isHeightProbing && (!(isStreaming && !isStreamingPause)))// || (cBStatus1.Checked || cBStatus.Checked))
                 {   if (!(cBStatus1.Checked || cBStatus.Checked || (countPreventOutput > 0))                   )
-                        addToLog(string.Format("> {0}", data));     //if not in transfer log the txLine
+                        addToLog(string.Format("> {0}", data));     // if not in transfer log the txLine
                 }
             }
             catch (Exception err)
             {   Logger.Error(err, "Ser:{0} -sendLine-",iamSerial);
-                logMessage = "Error reading line from serial port";
                 if (!grbl.grblSimulate)
                     logError("! Sending line", err);
                 updateControls();
@@ -1062,7 +1102,7 @@ namespace GRBL_Plotter
 			public int Count
 			{	get { return buffer.Count();}
 			}
-            public int Max
+            public int MaxLineNr
             {   get { return max; }
             }
             public void Clear()

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -52,6 +52,7 @@
  *            change to System.Timers.Timer
  * 2020-09-18 split file
  * 2020-12-27 add Marlin support
+ * 2021-01-15 add 3rd serial com and lineEndRXTX
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -72,6 +73,7 @@ namespace GRBL_Plotter
     {
 
         ControlSerialForm _serial_form2;
+        SimpleSerialForm _serial_form3;
 
         public bool serialPortOpen { get; private set; } = false;
 
@@ -86,13 +88,20 @@ namespace GRBL_Plotter
 		private string actualPort = "";     
         private string formTitle = "";
         private string strCheckResult = "";		// result from grbl-setup check
-        private string logMessage;
 
         public string lastError = "";
         private int countGrblError = 0;
         private bool flag_closeForm = false;
+
         private bool useSerial2 = false;
-		
+        private bool serial2Busy = false;
+        private bool useSerial3 = false;
+        private bool serial3Busy = false;
+
+        // Note: receive-event waits for line-end char, if missing -> timeout exception
+        private const string lineEndRX = "\n";      // read - grbl accepts '\n' or '\r' and sends "\r\n", but Marlin sends '\n'
+        private const string lineEndTXgrbl = "\r";    // send - grbl accepts '\n' or '\r' and sends "\r\n", but Marlin sends '\n'
+
         /* counters will be decreased in timer event - action on 0 */
         private int countMinimizeForm = 0;              // timer to minimize form
         private int countMissingStatusReport = 20;      // count missing status reports after sending ?
@@ -121,7 +130,8 @@ namespace GRBL_Plotter
         private static bool logReceive = false;			// any other RX data
         private static bool logTransmit = false;			// TX data
 		private static bool logStartStop = false;
-        private static bool log2ndGrbl =false;
+        private static bool log2ndGrbl = false;
+        private static bool log3rdCOM = false;
 
 		private void updateLogging()
 		{	// LogEnable { Level1=1, Level2=2, Level3=4, Level4=8, Detailed=16, Coordinates=32, Properties=64, Sort = 128, GroupAllGraphics = 256, ClipCode = 512, PathModification = 1024 }
@@ -133,13 +143,14 @@ namespace GRBL_Plotter
 			logStartStop = logEnable && ((logFlags & (uint)LogEnable.Sort) > 0);
         }
 		
-        public ControlSerialForm(string txt, int nr, ControlSerialForm handle = null)
+        public ControlSerialForm(string txt, int nr, ControlSerialForm handle2 = null, SimpleSerialForm handle3 = null)
         {
             iamSerial = nr;
             updateLogging();
             Logger.Info("====== SerialForm {0} {1} START ======", iamSerial, txt);
             formTitle = txt;
-            set2ndSerial(handle);
+            set2ndSerial(handle2);
+            set3rdSerial(handle3);
             InitializeComponent();
             mParserState.reset();
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
@@ -157,6 +168,27 @@ namespace GRBL_Plotter
             {   useSerial2 = true;
                 if (log2ndGrbl) Logger.Trace("set2ndSerial {0}", handle);
             }
+            else
+                useSerial2 = false;
+       }
+        public void set3rdSerial(SimpleSerialForm handle = null)
+        {   _serial_form3 = handle;
+            if (handle != null)
+            {   useSerial3 = true;
+                if (log3rdCOM) Logger.Trace("set3rdSerial {0}", handle);
+            }
+            else
+                useSerial3 = false;
+        }
+
+        private bool externalCOMReady()
+        {
+            if (!useSerial2 && !useSerial3)
+                return true;
+            bool c2 = true, c3 = true;
+            if (useSerial2) c2 = !serial2Busy && (_serial_form2.grblStateNow == grblState.idle);
+            if (useSerial3) c3 = !serial3Busy && !_serial_form3.busy;
+            return c2 && c3;
         }
 
         private void SerialForm_Load(object sender, EventArgs e)
@@ -287,7 +319,7 @@ namespace GRBL_Plotter
             {   try
                 {   
                     if (isMarlin) {
-                        if (!isStreaming) { serialPort.Write("M114\n"); getMarlinPositionWasSent = true; }
+                        if (!isStreaming) { serialPort.Write("M114" + lineEndTXgrbl); getMarlinPositionWasSent = true; }    // marlin pos request
                         updateMarlinPosition = true;
                     }
                     else {
@@ -353,7 +385,7 @@ namespace GRBL_Plotter
                 }
                 if (countPreventOutput > 0) { countPreventOutput--; }
                 if (countPreventEvent > 0) { countPreventEvent--; }
-                if (countPreventIdle > 0) { countPreventIdle--; }
+                if (countPreventIdle > 0) { if (--countPreventIdle == 0) serial2Busy = serial3Busy = false; }
                 if (countPreventIdle2nd > 0) { countPreventIdle2nd--; }
                 if (countPreventInterlock > 0)
                 {   countPreventInterlock--;
@@ -533,18 +565,19 @@ namespace GRBL_Plotter
                     serialPort.Close();
                 }
                 serialPort.Dispose();
-                addToLog("\r* Close " + actualPort + "\r");
-                btnOpenPort.Text = Localization.getString("serialOpen");  // "Open";
                 saveSettings();
                 if (!flag_closeForm)
+                {   addToLog("\r* Close " + actualPort + "\r");
+                    btnOpenPort.Text = Localization.getString("serialOpen");  // "Open";
                     updateControls();
+                }
                 timerSerial.Interval = 1000;
             }
             catch (Exception err)
             {   Logger.Error(err, "Ser:{0} -closePort- ",iamSerial);
                 logError("! Closing port", err);
                 if (!flag_closeForm)
-                    updateControls();
+                { updateControls(); }
                 timerSerial.Enabled = false;
             }
             serialPortOpen = false;
@@ -638,27 +671,37 @@ namespace GRBL_Plotter
             while ((serialPort.IsOpen) && (serialPort.BytesToRead > 0))// && !blockSend)
             {   rxString = string.Empty;
                 try
-                {   rxString = serialPort.ReadTo("\n").Trim();  //read line from grbl, discard CR LF
-                    //rxString = serialPort.ReadTo("\r\n");     //read line from grbl, discard CR LF
+                {
+                    rxString = serialPort.ReadTo(lineEndRX).Trim();  //read line from grbl, discard CR LF
                     isDataProcessing = true;
                     this.BeginInvoke(new EventHandler(processMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
                     while ((serialPort.IsOpen) && isDataProcessing)// && !blockSend)   //wait previous data line processed done
-					{}
+                    { }
+                }
+                catch (TimeoutException err1)
+                {   Logger.Error(err1, "TimeoutException");
+                    addToLog("Error reading line from serial port - correct baud rate?");
+                    rxString = serialPort.ReadExisting().Trim();
+                    Logger.Error("ReadExisting '{0}'",rxString);
+                    this.BeginInvoke(new EventHandler(closePort));    //closePort();
+
+                    grblStateNow = grblState.notConnected;
+                    grbl.lastMessage = "Serial timeout exception - correct baud rate?";
+                    OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblState.notConnected, machineState, mParserState, grbl.lastMessage));
                 }
                 catch (Exception err)
                 {
-                    logMessage = "Error reading line from serial port - correct baud rate?";
-                    addToLog(logMessage);
                     if (++rxErrorCount > 2)
-                    {   //this.WindowState = FormWindowState.Minimized;
-                        //this.Show();
-                        //this.WindowState = FormWindowState.Normal;
-                        addToLog("Close port after 3 retries");
-                        Logger.Error(err, "Ser:{0} -DataReceived- Close port after 3 retries",iamSerial);
+                    {   addToLog("Close port after 3 retries");
+                        Logger.Error(err, "Ser:{0} -DataReceived- Close port after 3 retries", iamSerial);
                         this.BeginInvoke(new EventHandler(closePort));    //closePort();
                     }
                     else
-                        Logger.Error(err, "Ser:{0} -DataReceived- ",iamSerial);
+                        Logger.Error(err, "Ser:{0} -DataReceived- ", iamSerial);
+
+                    grblStateNow = grblState.notConnected;
+                    grbl.lastMessage = "Serial exception - correct baud rate?";
+                    OnRaisePosEvent(new PosEventArgs(posWork, posMachine, grblState.notConnected, machineState, mParserState, grbl.lastMessage));
                 }
             }
         }

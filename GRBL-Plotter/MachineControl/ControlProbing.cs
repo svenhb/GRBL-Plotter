@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 /* 2019-11-10 new
  * 2019-11-24 save 'checked' properties for edge-Z, edge-center, coordinate G10
  * 2020-08-23 set min. offset to 0 (for touch plate)
+ * 2021-01-05 clear progress bar when finished line 490
 */
 
 using System;
@@ -487,6 +488,7 @@ namespace GRBL_Plotter
             //           btnCancelCF.Enabled = false;
             //           btnStartCF.Enabled = true;
             probingAction = probingMode.noProbing;
+            progressBarEF.Value = 0;        // 2021-01-05
             setRBEnable(cBnow, true);
         }
 
@@ -760,6 +762,7 @@ namespace GRBL_Plotter
             btnCancelCF.Enabled = false;
             btnStartCF.Enabled = true;
             probingAction = probingMode.noProbing;
+            progressBarCF.Value = 0;        // 2021-01-05
             setRBEnable(cBnow, true);
         }
 
@@ -807,6 +810,7 @@ namespace GRBL_Plotter
             probeX = false; probeY = false;
             probingCount = 1;
             probingAction = probingMode.noProbing;
+            progressBarTL.Value = 0;        // 2021-01-05
             setRBEnable(cBnow, true);       // 2020-08-09
         }
 

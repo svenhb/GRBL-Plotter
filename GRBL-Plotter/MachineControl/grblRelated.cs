@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
  * 2020-01-04   add "errorBecauseOfBadCode"
  * 2020-01-13   localization of grblStatus (Idle, run, hold...)
  * 2020-08-08   #145
+ * 2021-01-16   StreamEventArgs : EventArgs -> switch from float to int for codeFinish, buffFinish %
 */
 
 using System;
@@ -56,6 +57,7 @@ namespace GRBL_Plotter
         public static int pollInterval = 200;
         public static int bufferSize = -1;
         public static string lastMessage = "";
+        public static short lastErrorNr = 0;
 
         public static bool grblSimulate = false;
         private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
@@ -130,6 +132,8 @@ namespace GRBL_Plotter
             bufferSize = -1;        // readout buffer size
             settings.Clear();       // clear $$ values
             coordinates.Clear();    // clear gcode parameters
+            lastErrorNr = 0;
+            lastMessage = "";
         }
 
         // store grbl settings https://github.com/gnea/grbl/wiki/Grbl-v1.1-Configuration#grbl-settings
@@ -425,10 +429,11 @@ namespace GRBL_Plotter
                     {
                         msg = grbl.messageErrorCodes[msgNr];
                         //int errnr = Convert.ToInt16(tmp[1].Trim());
-                        short errnr = 0;
-                        if (!short.TryParse(msgNr, NumberStyles.Any, CultureInfo.InvariantCulture, out errnr))
+                        lastErrorNr = 0;
+                        lastMessage = rxString + " " + msg;
+                        if (!short.TryParse(msgNr, NumberStyles.Any, CultureInfo.InvariantCulture, out lastErrorNr))
                             return msg;
-                        if ((errnr >= 32) && (errnr <= 34))
+                        if ((lastErrorNr >= 32) && (lastErrorNr <= 34))
                             msg += "\r\n\r\nPossible reason: scale down of GCode with G2/3 commands.\r\nSolution: use more decimal places.";
                     }
                 }
@@ -518,7 +523,7 @@ namespace GRBL_Plotter
         }
     }
 
-    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, reset, unknown, Marlin };
+    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, reset, unknown, Marlin, notConnected };
     public enum grblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode, waitstop };
 
     public struct sConvert
@@ -575,11 +580,11 @@ namespace GRBL_Plotter
 
     public class StreamEventArgs : EventArgs
     {
-        private float codeFinish, buffFinish;
+        private int codeFinish, buffFinish;
         private int codeLineSent;
         private int codeLineConfirmed;
         private grblStreaming status;
-        public StreamEventArgs(int c1, int c2, float a1, float a2, grblStreaming stat)
+        public StreamEventArgs(int c1, int c2, int a1, int a2, grblStreaming stat)
         {
             codeLineSent = c1;
             codeLineConfirmed = c2;
@@ -591,9 +596,9 @@ namespace GRBL_Plotter
         { get { return codeLineSent; } }
         public int CodeLineConfirmed
         { get { return codeLineConfirmed; } }
-        public float CodeProgress
+        public int CodeProgress
         { get { return codeFinish; } }
-        public float BuffProgress
+        public int BuffProgress
         { get { return buffFinish; } }
         public grblStreaming Status
         { get { return status; } }

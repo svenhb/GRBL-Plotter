@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 /*
  * 2020-01-10 line 113 set x,y,z=null
  * 2020-12-30 add N-number
+ * 2021-01-06 find parsing problem
  */ 
 
 
@@ -192,7 +193,7 @@ namespace GRBL_Plotter
                         {   comment = false;  }
                     }
                     if (cmd != '\0')                                    // finally after for-each process final command and number
-                    {
+                    {   //Logger.Trace("parseLine {0}  {1}",cmd, num);
                         if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
                             parseGCodeToken(cmd, value, ref modalState);
                     }
@@ -209,6 +210,7 @@ namespace GRBL_Plotter
         /// </summary>
         private void parseGCodeToken(char cmd, double value, ref modalGroup modalState)
         {
+//            Logger.Trace("parseGCodeToken {0}  {1}",cmd, value);
             switch (Char.ToUpper(cmd))
             {
                 case 'X':
@@ -389,6 +391,8 @@ namespace GRBL_Plotter
 
         public static double distancePointToPoint(System.Windows.Point a, System.Windows.Point b)
         {   return Math.Sqrt(((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y)));        }
+        public static double distancePointToPoint(xyPoint a, xyPoint b)
+        { return Math.Sqrt(((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y))); }
 
         public static ArcProperties getArcMoveProperties(System.Windows.Point pOld, System.Windows.Point pNew, System.Windows.Point centerIJ, bool isG2)
         { return getArcMoveProperties(new xyPoint(pOld), new xyPoint(pNew), centerIJ.X, centerIJ.Y, isG2); }
