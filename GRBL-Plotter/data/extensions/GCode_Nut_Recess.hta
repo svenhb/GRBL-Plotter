@@ -1,7 +1,8 @@
 <!--    Name:        GCode_Nut_Recess.hta
-        Version:     2020-09-01
+        Version:     2021-01-06
         Function:    Milling a conical spiral 
 		
+// 2021-01-06 add M2, fix offset bug (use now parseFloat)
 // 2020-09-01 add offset
 // 2020-08-25 Initial version
 		
@@ -120,8 +121,8 @@ function create_GCode()
 	offset_x = 0;
 	offset_y = 0;
 	if (use_offset)
-	{	offset_x = GRBL_Plt_work_x;
-		offset_y = GRBL_Plt_work_y;
+	{	offset_x = parseFloat(GRBL_Plt_work_x);
+	    offset_y = parseFloat(GRBL_Plt_work_y);
 	}
 	
 	finalGCode += PenUp();
@@ -283,6 +284,7 @@ select, input { font-size:12px;  }
 	GCode can be checked in 3D online on <a href="https://ncviewer.com/" target="_blank">https://ncviewer.com/</a><br>- click 'New File', 'Paste (ctrl-V)' and 'PLOT'.</td></tr>
     <tr><td colspan="2" ><b><font color="red">Usage of the script and the generated GCode is on you own risk!</font></b></td></tr>
 	<tr><td width="30%">Metric nut preselection</td><td><select name="preselect" onchange="preselect_OnClick();">
+			<option value="4.0;1.6;2.1">Nut M2</option>
 			<option value="5.5;2.5;3.2">Nut M3</option>
 			<option value="7;3;4.3">Nut M4</option>
 			<option value="8;4;5.3">Nut M5</option>
@@ -294,8 +296,8 @@ select, input { font-size:12px;  }
 	</td></tr>
 
 
-	<tr><td width="30%">Wrench size</td><td><input type="text" name="d_inner" value="5.5" size="4" style="text-align:right;"> M3 = 5.5; M4 = 7; M5 = 8; M6 = 10; M8 = 13</td></tr>
-	<tr><td>Depth</td><td><input type="text" name="z_max" value="2.5" size="4" style="text-align:right;"> M3 = 2.5;   M4 = 3; M5 = 4; M6 =  5;  M8 =  6.5</td></tr>
+	<tr><td width="30%">Wrench size</td><td><input type="text" name="d_inner" value="5.5" size="4" style="text-align:right;">M2 = 4.0; M3 = 5.5; M4 = 7; M5 = 8; M6 = 10; M8 = 13</td></tr>
+	<tr><td>Depth</td><td><input type="text" name="z_max" value="2.5" size="4" style="text-align:right;">M2 = 1.6; M3 = 2.5;   M4 = 3; M5 = 4; M6 = &nbsp&nbsp5;  M8 = &nbsp&nbsp6.5</td></tr>
 	<tr><td>Drill screw hole</td><td><input type="checkbox" id="drill_enable" name="drill_enable" value=""> 
 		<input type="text" name="d_drill" value="3.2" size="4" style="text-align:right;">Diameter   
 		<input type="text" name="drill_max" value="6" size="4" style="text-align:right;">Final depth</td></tr>
