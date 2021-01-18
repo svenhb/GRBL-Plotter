@@ -1,6 +1,20 @@
 ## History
 Needs to be read from the bottom up ;-)  
  
+### 2021-01-17 Version 1.5.5.0    
+New features: 
+- Added a 3rd serial com - without grbl handling [Menu - Machine control - Control 3rd serial COM] needed for #159 
+- Check GCode for bad G2/3 code which causes grbl error 33  
+- Added Arduino-Nano binary 'grbl_v1.1f_Servo_switch_dir_step.hex' for use with cheap nano-cnc-shield where dir and step pins are switched,
+ 
+Features to simplify manual work: 
+- Added a jog path creator - [Menu - G-Code Creation - Create jog path] 
+- Added bevel / round off in [Menu - G-Code Creation - Create simple shapes] 
+- Added M2 nut to [Menu - G-Code Creation - Extensions - GCode-Nut-Recess]  
+
+### 2020-12-30 Version 1.5.4.0    
+* Add Marlin support 
+
 ### 2020-12-19 Version 1.5.3.0    
 * Add XML-Tag for tiles 
 * Notification via email or pushbullet about streaming process [Setup - Program behavior - Notifier] 
