@@ -598,6 +598,7 @@ namespace GRBL_Plotter
         {
             fCTBCode.Text = VisuGCode.transformGCodeRotate(angle, scale, offset);
             update_GCode_Depending_Controls();
+            transformEnd();
             return;
         }
 
