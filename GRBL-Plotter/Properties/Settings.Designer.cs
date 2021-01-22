@@ -4218,6 +4218,78 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicAddFrameApplyRadius {
+            get {
+                return ((bool)(this["importGraphicAddFrameApplyRadius"]));
+            }
+            set {
+                this["importGraphicAddFrameApplyRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal importGraphicAddFrameDistance {
+            get {
+                return ((decimal)(this["importGraphicAddFrameDistance"]));
+            }
+            set {
+                this["importGraphicAddFrameDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicAddFrameEnable {
+            get {
+                return ((bool)(this["importGraphicAddFrameEnable"]));
+            }
+            set {
+                this["importGraphicAddFrameEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("black")]
+        public string importGraphicAddFramePenColor {
+            get {
+                return ((string)(this["importGraphicAddFramePenColor"]));
+            }
+            set {
+                this["importGraphicAddFramePenColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Frame")]
+        public string importGraphicAddFramePenLayer {
+            get {
+                return ((string)(this["importGraphicAddFramePenLayer"]));
+            }
+            set {
+                this["importGraphicAddFramePenLayer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal importGraphicAddFramePenWidth {
+            get {
+                return ((decimal)(this["importGraphicAddFramePenWidth"]));
+            }
+            set {
+                this["importGraphicAddFramePenWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importGraphicClip {
             get {
@@ -4417,6 +4489,54 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["importGraphicHatchFillInsetEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal importGraphicMultiplyGraphicsDimX {
+            get {
+                return ((decimal)(this["importGraphicMultiplyGraphicsDimX"]));
+            }
+            set {
+                this["importGraphicMultiplyGraphicsDimX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal importGraphicMultiplyGraphicsDimY {
+            get {
+                return ((decimal)(this["importGraphicMultiplyGraphicsDimY"]));
+            }
+            set {
+                this["importGraphicMultiplyGraphicsDimY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal importGraphicMultiplyGraphicsDistance {
+            get {
+                return ((decimal)(this["importGraphicMultiplyGraphicsDistance"]));
+            }
+            set {
+                this["importGraphicMultiplyGraphicsDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicMultiplyGraphicsEnable {
+            get {
+                return ((bool)(this["importGraphicMultiplyGraphicsEnable"]));
+            }
+            set {
+                this["importGraphicMultiplyGraphicsEnable"] = value;
             }
         }
         
@@ -5970,6 +6090,30 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ready")]
+        public string serial3Ready {
+            get {
+                return ((string)(this["serial3Ready"]));
+            }
+            set {
+                this["serial3Ready"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int serial3Timeout {
+            get {
+                return ((int)(this["serial3Timeout"]));
+            }
+            set {
+                this["serial3Timeout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("115200")]
         public string serialBaud1 {
             get {
@@ -6061,30 +6205,6 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["serialPort3"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ready")]
-        public string serial3Ready {
-            get {
-                return ((string)(this["serial3Ready"]));
-            }
-            set {
-                this["serial3Ready"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int serial3Timeout {
-            get {
-                return ((int)(this["serial3Timeout"]));
-            }
-            set {
-                this["serial3Timeout"] = value;
             }
         }
         
@@ -6193,6 +6313,18 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool cameraRotateArround0 {
+            get {
+                return ((bool)(this["cameraRotateArround0"]));
+            }
+            set {
+                this["cameraRotateArround0"] = value;
             }
         }
     }

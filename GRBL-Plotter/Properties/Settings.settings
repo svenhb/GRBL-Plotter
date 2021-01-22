@@ -1049,6 +1049,24 @@
     <Setting Name="importGerberTypePen" Type="System.String" Scope="User">
       <Value Profile="(Default)">pen</Value>
     </Setting>
+    <Setting Name="importGraphicAddFrameApplyRadius" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicAddFrameDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGraphicAddFrameEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicAddFramePenColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">black</Value>
+    </Setting>
+    <Setting Name="importGraphicAddFramePenLayer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Frame</Value>
+    </Setting>
+    <Setting Name="importGraphicAddFramePenWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
     <Setting Name="importGraphicClip" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1099,6 +1117,18 @@
     </Setting>
     <Setting Name="importGraphicHatchFillInsetEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicMultiplyGraphicsDimX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGraphicMultiplyGraphicsDimY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGraphicMultiplyGraphicsDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGraphicMultiplyGraphicsEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicOffsetOrigin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1487,6 +1517,12 @@
     <Setting Name="rotarySubstitutionX" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="serial3Ready" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ready</Value>
+    </Setting>
+    <Setting Name="serial3Timeout" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
     <Setting Name="serialBaud1" Type="System.String" Scope="User">
       <Value Profile="(Default)">115200</Value>
     </Setting>
@@ -1510,12 +1546,6 @@
     </Setting>
     <Setting Name="serialPort3" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM3</Value>
-    </Setting>
-    <Setting Name="serial3Ready" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ready</Value>
-    </Setting>
-    <Setting Name="serial3Timeout" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="serialPortDIY" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM9</Value>
@@ -1543,6 +1573,9 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
+    </Setting>
+    <Setting Name="cameraRotateArround0" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
