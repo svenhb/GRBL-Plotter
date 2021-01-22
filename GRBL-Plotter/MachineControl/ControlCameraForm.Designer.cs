@@ -102,6 +102,8 @@ namespace GRBL_Plotter
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnAutoCenter = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.resetOffsetG921ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cBRotateArround0 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVideo)).BeginInit();
             this.cmsPictureBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDCameraZoom)).BeginInit();
@@ -119,7 +121,6 @@ namespace GRBL_Plotter
             this.pictureBoxVideo.Cursor = System.Windows.Forms.Cursors.Cross;
             this.pictureBoxVideo.Name = "pictureBoxVideo";
             this.pictureBoxVideo.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBoxVideo, resources.GetString("pictureBoxVideo.ToolTip"));
             this.pictureBoxVideo.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxVideo_Paint);
             this.pictureBoxVideo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVideo_Click);
             this.pictureBoxVideo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVideo_MouseDown);
@@ -130,38 +131,38 @@ namespace GRBL_Plotter
             // 
             // cmsPictureBox
             // 
-            resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetOffsetG921ToolStripMenuItem,
             this.moveMarkerToCenterToolStripMenuItem,
             this.compensateAngleToolStripMenuItem,
             this.toolStripSeparator1,
             this.showOverlayGraphicsToolStripMenuItem});
             this.cmsPictureBox.Name = "cmsPictureBox";
-            this.toolTip1.SetToolTip(this.cmsPictureBox, resources.GetString("cmsPictureBox.ToolTip"));
+            resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
             // 
             // moveMarkerToCenterToolStripMenuItem
             // 
-            resources.ApplyResources(this.moveMarkerToCenterToolStripMenuItem, "moveMarkerToCenterToolStripMenuItem");
             this.moveMarkerToCenterToolStripMenuItem.Name = "moveMarkerToCenterToolStripMenuItem";
+            resources.ApplyResources(this.moveMarkerToCenterToolStripMenuItem, "moveMarkerToCenterToolStripMenuItem");
             this.moveMarkerToCenterToolStripMenuItem.Click += new System.EventHandler(this.teachpoint1_process_Click);
             // 
             // compensateAngleToolStripMenuItem
             // 
-            resources.ApplyResources(this.compensateAngleToolStripMenuItem, "compensateAngleToolStripMenuItem");
             this.compensateAngleToolStripMenuItem.Name = "compensateAngleToolStripMenuItem";
+            resources.ApplyResources(this.compensateAngleToolStripMenuItem, "compensateAngleToolStripMenuItem");
             this.compensateAngleToolStripMenuItem.Click += new System.EventHandler(this.teachpoint2_process_Click);
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // showOverlayGraphicsToolStripMenuItem
             // 
-            resources.ApplyResources(this.showOverlayGraphicsToolStripMenuItem, "showOverlayGraphicsToolStripMenuItem");
             this.showOverlayGraphicsToolStripMenuItem.Checked = true;
             this.showOverlayGraphicsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showOverlayGraphicsToolStripMenuItem.Name = "showOverlayGraphicsToolStripMenuItem";
+            resources.ApplyResources(this.showOverlayGraphicsToolStripMenuItem, "showOverlayGraphicsToolStripMenuItem");
             this.showOverlayGraphicsToolStripMenuItem.Click += new System.EventHandler(this.showOverlayGraphicsToolStripMenuItem_Click);
             // 
             // nUDCameraZoom
@@ -179,7 +180,6 @@ namespace GRBL_Plotter
             0});
             this.nUDCameraZoom.Name = "nUDCameraZoom";
             this.nUDCameraZoom.ReadOnly = true;
-            this.toolTip1.SetToolTip(this.nUDCameraZoom, resources.GetString("nUDCameraZoom.ToolTip"));
             this.nUDCameraZoom.Value = new decimal(new int[] {
             1,
             0,
@@ -191,21 +191,18 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // menuStripCamera
             // 
-            resources.ApplyResources(this.menuStripCamera, "menuStripCamera");
             this.menuStripCamera.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setupToolStripMenuItem,
             this.setZeroToolStripMenuItem});
+            resources.ApplyResources(this.menuStripCamera, "menuStripCamera");
             this.menuStripCamera.Name = "menuStripCamera";
             this.menuStripCamera.ShowItemToolTips = true;
-            this.toolTip1.SetToolTip(this.menuStripCamera, resources.GetString("menuStripCamera.ToolTip"));
             // 
             // setupToolStripMenuItem
             // 
-            resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
             this.setupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.camSourceToolStripMenuItem,
             this.setRotationAngleToolStripMenuItem,
@@ -213,19 +210,20 @@ namespace GRBL_Plotter
             this.teachOffsetToolStripMenuItem,
             this.colorsToolStripMenuItem});
             this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
+            resources.ApplyResources(this.setupToolStripMenuItem, "setupToolStripMenuItem");
             // 
             // camSourceToolStripMenuItem
             // 
-            resources.ApplyResources(this.camSourceToolStripMenuItem, "camSourceToolStripMenuItem");
             this.camSourceToolStripMenuItem.AutoToolTip = true;
             this.camSourceToolStripMenuItem.Name = "camSourceToolStripMenuItem";
+            resources.ApplyResources(this.camSourceToolStripMenuItem, "camSourceToolStripMenuItem");
             // 
             // setRotationAngleToolStripMenuItem
             // 
-            resources.ApplyResources(this.setRotationAngleToolStripMenuItem, "setRotationAngleToolStripMenuItem");
             this.setRotationAngleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTextBox1});
             this.setRotationAngleToolStripMenuItem.Name = "setRotationAngleToolStripMenuItem";
+            resources.ApplyResources(this.setRotationAngleToolStripMenuItem, "setRotationAngleToolStripMenuItem");
             // 
             // toolStripTextBox1
             // 
@@ -235,7 +233,6 @@ namespace GRBL_Plotter
             // 
             // teachScalingToolStripMenuItem
             // 
-            resources.ApplyResources(this.teachScalingToolStripMenuItem, "teachScalingToolStripMenuItem");
             this.teachScalingToolStripMenuItem.AutoToolTip = true;
             this.teachScalingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.upperPositionToolStripMenuItem,
@@ -243,19 +240,20 @@ namespace GRBL_Plotter
             this.lowerPositionToolStripMenuItem,
             this.teachRadiusBottomToolStripMenuItem});
             this.teachScalingToolStripMenuItem.Name = "teachScalingToolStripMenuItem";
+            resources.ApplyResources(this.teachScalingToolStripMenuItem, "teachScalingToolStripMenuItem");
             // 
             // upperPositionToolStripMenuItem
             // 
-            resources.ApplyResources(this.upperPositionToolStripMenuItem, "upperPositionToolStripMenuItem");
             this.upperPositionToolStripMenuItem.Name = "upperPositionToolStripMenuItem";
+            resources.ApplyResources(this.upperPositionToolStripMenuItem, "upperPositionToolStripMenuItem");
             this.upperPositionToolStripMenuItem.Click += new System.EventHandler(this.upperPositionToolStripMenuItem_Click);
             // 
             // teachRadiusTopToolStripMenuItem
             // 
-            resources.ApplyResources(this.teachRadiusTopToolStripMenuItem, "teachRadiusTopToolStripMenuItem");
             this.teachRadiusTopToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTextBox2});
             this.teachRadiusTopToolStripMenuItem.Name = "teachRadiusTopToolStripMenuItem";
+            resources.ApplyResources(this.teachRadiusTopToolStripMenuItem, "teachRadiusTopToolStripMenuItem");
             // 
             // toolStripTextBox2
             // 
@@ -265,16 +263,16 @@ namespace GRBL_Plotter
             // 
             // lowerPositionToolStripMenuItem
             // 
-            resources.ApplyResources(this.lowerPositionToolStripMenuItem, "lowerPositionToolStripMenuItem");
             this.lowerPositionToolStripMenuItem.Name = "lowerPositionToolStripMenuItem";
+            resources.ApplyResources(this.lowerPositionToolStripMenuItem, "lowerPositionToolStripMenuItem");
             this.lowerPositionToolStripMenuItem.Click += new System.EventHandler(this.lowerPositionToolStripMenuItem_Click);
             // 
             // teachRadiusBottomToolStripMenuItem
             // 
-            resources.ApplyResources(this.teachRadiusBottomToolStripMenuItem, "teachRadiusBottomToolStripMenuItem");
             this.teachRadiusBottomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTextBox3});
             this.teachRadiusBottomToolStripMenuItem.Name = "teachRadiusBottomToolStripMenuItem";
+            resources.ApplyResources(this.teachRadiusBottomToolStripMenuItem, "teachRadiusBottomToolStripMenuItem");
             // 
             // toolStripTextBox3
             // 
@@ -285,57 +283,57 @@ namespace GRBL_Plotter
             // 
             // teachOffsetToolStripMenuItem
             // 
-            resources.ApplyResources(this.teachOffsetToolStripMenuItem, "teachOffsetToolStripMenuItem");
             this.teachOffsetToolStripMenuItem.AutoToolTip = true;
             this.teachOffsetToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.teachToolStripMenuItem});
             this.teachOffsetToolStripMenuItem.Name = "teachOffsetToolStripMenuItem";
+            resources.ApplyResources(this.teachOffsetToolStripMenuItem, "teachOffsetToolStripMenuItem");
             // 
             // teachToolStripMenuItem
             // 
-            resources.ApplyResources(this.teachToolStripMenuItem, "teachToolStripMenuItem");
             this.teachToolStripMenuItem.Name = "teachToolStripMenuItem";
+            resources.ApplyResources(this.teachToolStripMenuItem, "teachToolStripMenuItem");
             this.teachToolStripMenuItem.Click += new System.EventHandler(this.teachToolStripMenuItem_Click);
             // 
             // colorsToolStripMenuItem
             // 
-            resources.ApplyResources(this.colorsToolStripMenuItem, "colorsToolStripMenuItem");
             this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.textToolStripMenuItem,
             this.crossHairsToolStripMenuItem});
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
+            resources.ApplyResources(this.colorsToolStripMenuItem, "colorsToolStripMenuItem");
             // 
             // textToolStripMenuItem
             // 
-            resources.ApplyResources(this.textToolStripMenuItem, "textToolStripMenuItem");
             this.textToolStripMenuItem.Name = "textToolStripMenuItem";
+            resources.ApplyResources(this.textToolStripMenuItem, "textToolStripMenuItem");
             this.textToolStripMenuItem.Click += new System.EventHandler(this.textToolStripMenuItem_Click);
             // 
             // crossHairsToolStripMenuItem
             // 
-            resources.ApplyResources(this.crossHairsToolStripMenuItem, "crossHairsToolStripMenuItem");
             this.crossHairsToolStripMenuItem.Name = "crossHairsToolStripMenuItem";
+            resources.ApplyResources(this.crossHairsToolStripMenuItem, "crossHairsToolStripMenuItem");
             this.crossHairsToolStripMenuItem.Click += new System.EventHandler(this.crossHairsToolStripMenuItem_Click);
             // 
             // setZeroToolStripMenuItem
             // 
-            resources.ApplyResources(this.setZeroToolStripMenuItem, "setZeroToolStripMenuItem");
             this.setZeroToolStripMenuItem.AutoToolTip = true;
             this.setZeroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.teachZeroPositionToolStripMenuItem,
             this.teachMarkerPositionToolStripMenuItem});
             this.setZeroToolStripMenuItem.Name = "setZeroToolStripMenuItem";
+            resources.ApplyResources(this.setZeroToolStripMenuItem, "setZeroToolStripMenuItem");
             // 
             // teachZeroPositionToolStripMenuItem
             // 
-            resources.ApplyResources(this.teachZeroPositionToolStripMenuItem, "teachZeroPositionToolStripMenuItem");
             this.teachZeroPositionToolStripMenuItem.Name = "teachZeroPositionToolStripMenuItem";
+            resources.ApplyResources(this.teachZeroPositionToolStripMenuItem, "teachZeroPositionToolStripMenuItem");
             this.teachZeroPositionToolStripMenuItem.Click += new System.EventHandler(this.btnSetOffsetZero_Click);
             // 
             // teachMarkerPositionToolStripMenuItem
             // 
-            resources.ApplyResources(this.teachMarkerPositionToolStripMenuItem, "teachMarkerPositionToolStripMenuItem");
             this.teachMarkerPositionToolStripMenuItem.Name = "teachMarkerPositionToolStripMenuItem";
+            resources.ApplyResources(this.teachMarkerPositionToolStripMenuItem, "teachMarkerPositionToolStripMenuItem");
             this.teachMarkerPositionToolStripMenuItem.Click += new System.EventHandler(this.btnSetOffsetMarker_Click);
             // 
             // btnApplyAngle
@@ -348,8 +346,8 @@ namespace GRBL_Plotter
             // 
             // btnCamCoordTool
             // 
-            resources.ApplyResources(this.btnCamCoordTool, "btnCamCoordTool");
             this.btnCamCoordTool.BackColor = System.Drawing.Color.Lime;
+            resources.ApplyResources(this.btnCamCoordTool, "btnCamCoordTool");
             this.btnCamCoordTool.Name = "btnCamCoordTool";
             this.toolTip1.SetToolTip(this.btnCamCoordTool, resources.GetString("btnCamCoordTool.ToolTip"));
             this.btnCamCoordTool.UseVisualStyleBackColor = false;
@@ -380,79 +378,70 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.lblOffset, "lblOffset");
             this.lblOffset.Name = "lblOffset";
-            this.toolTip1.SetToolTip(this.lblOffset, resources.GetString("lblOffset.ToolTip"));
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.nUDCameraZoom);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox1, resources.GetString("groupBox1.ToolTip"));
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.btnCamCoordTool);
             this.groupBox2.Controls.Add(this.btnCamCoordCam);
             this.groupBox2.Controls.Add(this.cBCamCoordMove);
             this.groupBox2.Controls.Add(this.lblOffset);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox2, resources.GetString("groupBox2.ToolTip"));
             // 
             // lblCenterPos
             // 
             resources.ApplyResources(this.lblCenterPos, "lblCenterPos");
             this.lblCenterPos.Name = "lblCenterPos";
-            this.toolTip1.SetToolTip(this.lblCenterPos, resources.GetString("lblCenterPos.ToolTip"));
             // 
             // groupBox3
             // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Controls.Add(this.cBRotateArround0);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.lblAngle);
             this.groupBox3.Controls.Add(this.btnApplyAngle);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox3, resources.GetString("groupBox3.ToolTip"));
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // cBShapeDetection
             // 
             resources.ApplyResources(this.cBShapeDetection, "cBShapeDetection");
             this.cBShapeDetection.Name = "cBShapeDetection";
-            this.toolTip1.SetToolTip(this.cBShapeDetection, resources.GetString("cBShapeDetection.ToolTip"));
             this.cBShapeDetection.UseVisualStyleBackColor = true;
             this.cBShapeDetection.CheckedChanged += new System.EventHandler(this.cBShapeDetection_CheckedChanged);
             // 
             // groupBox4
             // 
-            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.lblCenterPos);
             this.groupBox4.Controls.Add(this.comboBox1);
             this.groupBox4.Controls.Add(this.btnAutoCenter);
             this.groupBox4.Controls.Add(this.cBShapeDetection);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
-            this.toolTip1.SetToolTip(this.groupBox4, resources.GetString("groupBox4.ToolTip"));
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.toolTip1.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
             // 
             // comboBox1
             // 
-            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
@@ -460,17 +449,31 @@ namespace GRBL_Plotter
             resources.GetString("comboBox1.Items1"),
             resources.GetString("comboBox1.Items2"),
             resources.GetString("comboBox1.Items3")});
+            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
-            this.toolTip1.SetToolTip(this.comboBox1, resources.GetString("comboBox1.ToolTip"));
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btnAutoCenter
             // 
             resources.ApplyResources(this.btnAutoCenter, "btnAutoCenter");
             this.btnAutoCenter.Name = "btnAutoCenter";
-            this.toolTip1.SetToolTip(this.btnAutoCenter, resources.GetString("btnAutoCenter.ToolTip"));
             this.btnAutoCenter.UseVisualStyleBackColor = true;
             this.btnAutoCenter.Click += new System.EventHandler(this.btnAutoCenter_Click);
+            // 
+            // resetOffsetG921ToolStripMenuItem
+            // 
+            this.resetOffsetG921ToolStripMenuItem.Name = "resetOffsetG921ToolStripMenuItem";
+            resources.ApplyResources(this.resetOffsetG921ToolStripMenuItem, "resetOffsetG921ToolStripMenuItem");
+            this.resetOffsetG921ToolStripMenuItem.Click += new System.EventHandler(this.resetOffsetG921ToolStripMenuItem_Click);
+            // 
+            // cBRotateArround0
+            // 
+            resources.ApplyResources(this.cBRotateArround0, "cBRotateArround0");
+            this.cBRotateArround0.Checked = global::GRBL_Plotter.Properties.Settings.Default.cameraRotateArround0;
+            this.cBRotateArround0.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBRotateArround0.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "cameraRotateArround0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBRotateArround0.Name = "cBRotateArround0";
+            this.cBRotateArround0.UseVisualStyleBackColor = true;
             // 
             // ControlCameraForm
             // 
@@ -487,7 +490,6 @@ namespace GRBL_Plotter
             this.MainMenuStrip = this.menuStripCamera;
             this.MaximizeBox = false;
             this.Name = "ControlCameraForm";
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.camera_form_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.camera_form_FormClosed);
             this.Load += new System.EventHandler(this.camera_form_Load);
@@ -559,5 +561,7 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem showOverlayGraphicsToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cBRotateArround0;
+        private System.Windows.Forms.ToolStripMenuItem resetOffsetG921ToolStripMenuItem;
     }
 }

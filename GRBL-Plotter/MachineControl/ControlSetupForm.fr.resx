@@ -2202,4 +2202,52 @@ Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbe
   <data name="button1.Text" xml:space="preserve">
     <value>Envoyer un message de test</value>
   </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Nombre dans la direction Y</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Nombre dans la direction X</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Distance entre les graphiques</value>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>Multiplier les graphiques</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Multiplier</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>couche</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Largeur du stylo</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Couleur du stylo</value>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Propriétés du regroupement</value>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>Arrondissez le coin</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Distance au graphique</value>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>Dessinez le cadre</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Cadre</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Modules complémentaires de chemin</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>Ouvre une 3e interface série au démarrage du programme</value>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>Ouvre un 2ème port COM pour contrôler un 2ème GRBL. Utile pour les changeurs d'outils ou 4ème axe.</value>
+  </data>
 </root>

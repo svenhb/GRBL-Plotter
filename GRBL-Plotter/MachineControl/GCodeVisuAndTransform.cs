@@ -1055,7 +1055,7 @@ namespace GRBL_Plotter
         /// <summary>
         /// rotate and scale arround offset
         /// </summary>
-        public static string transformGCodeRotate(double angle, double scale, xyPoint offset)
+        public static string transformGCodeRotate(double angle, double scale, xyPoint offset, bool calcCenter=true)
         {
             Logger.Debug("Rotate angle: {0}", angle);
             if (gcodeList == null) return "";
@@ -1063,7 +1063,8 @@ namespace GRBL_Plotter
             if (lastFigureNumber > 0)
                 centerOfFigure = getCenterOfMarkedFigure();
 
-            offset = centerOfFigure;
+            if (calcCenter)
+                offset = centerOfFigure;
 
             double? newvalx, newvaly, newvali, newvalj;
             oldLine.resetAll(grbl.posWork);         // reset coordinates and parser modes
@@ -1549,13 +1550,13 @@ namespace GRBL_Plotter
 
             if (!newL.ismachineCoordG53)
             {
-                if (((newL.motionMode > 0) && (oldL.motionMode == 0)) || (newL.actualPos.Z < 0))  // G0 = PenUp
+                if (((newL.motionMode > 0) && (oldL.motionMode == 0)) || (newL.actualPos.Z < 0) || (newL.codeLine.Contains("(PD)")))  // G0 = PenUp
                 { 	path = pathPenDown; 
 					path.StartFigure();
                     if (pathActualDown != null)
                         pathActualDown.StartFigure();
                 }
-                if (((newL.motionMode == 0) && (oldL.motionMode > 0)) || (newL.actualPos.Z > 0))
+                if (((newL.motionMode == 0) && (oldL.motionMode > 0)) || (newL.actualPos.Z > 0) || (oldL.codeLine.Contains("(PU)")))
                 {   path = pathPenUp; path.StartFigure();
                     tempPathInfo = new pathInfo();
                     tempPathInfo.position = new PointF((float)newL.actualPos.X, (float)newL.actualPos.Y);
@@ -1635,7 +1636,7 @@ namespace GRBL_Plotter
                     { onlyZ++; }
 
                     // mark Z-only movements - could be drills
-                    if ((onlyZ > 1) && (passLimit) && (path == pathPenUp))  // pen moved from -z to +z
+                    if ((onlyZ > 1) && (passLimit) && (path == pathPenUp) || (oldL.codeLine.Contains("(PU)")))  // pen moved from -z to +z
                     {
                         float markerSize = 1;
                         if (!Properties.Settings.Default.importUnitmm)

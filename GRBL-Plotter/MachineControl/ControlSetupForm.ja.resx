@@ -2400,4 +2400,52 @@ Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用�
   <data name="button1.Text" xml:space="preserve">
     <value>テストメッセージを送信する</value>
   </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Y方向の番号</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>X方向の番号</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>グラフィック間の距離</value>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>グラフィックを増やす</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>かける</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>層</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>ペン幅</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>ペンの色</value>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>グループ化のプロパティ</value>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>角を丸める</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>グラフィックまでの距離</value>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>フレームを描く</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>フレーム</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>パスアドオン</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>プログラムの起動時に3番目のシリアルインターフェイスを開きます</value>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>2番目のGRBLを制御するために2番目のCOMポートを開きます。 ツールチェンジャーまたは4番目の軸に役立ちます。</value>
+  </data>
 </root>

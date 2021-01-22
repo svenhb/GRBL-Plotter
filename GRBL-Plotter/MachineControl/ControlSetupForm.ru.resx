@@ -2270,4 +2270,52 @@ Pushbullet: из соображений безопасности следует 
   <data name="button1.Text" xml:space="preserve">
     <value>Отправить тестовое сообщение</value>
   </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Число по оси Y</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Число по оси X</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Расстояние между графикой</value>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>Умножить графику</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Умножить</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>слой</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Ширина пера</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Цвет пера</value>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Свойства для группировки</value>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>За углом</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Расстояние до графика</value>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>Нарисуйте рамку</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Рамка</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Надстройки пути</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>Открывает третий последовательный интерфейс при запуске программы</value>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>Открывает второй COM-порт для управления вторым GRBL. Подходит для устройств смены инструмента или 4-й оси.</value>
+  </data>
 </root>

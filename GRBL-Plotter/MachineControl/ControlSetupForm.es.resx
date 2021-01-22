@@ -2202,4 +2202,52 @@ Pushbullet: por razones de seguridad, debe utilizar una cuenta "basura", el toke
   <data name="button1.Text" xml:space="preserve">
     <value>Enviar mensaje de prueba</value>
   </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Número en la dirección Y</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Número en la dirección X</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Distancia entre los gráficos</value>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>Multiplica los gráficos</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Multiplicar</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>capa</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Ancho de la pluma</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Color de la pluma</value>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Propiedades de la agrupación</value>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>Redondea la esquina</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Distancia al gráfico</value>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>Dibuja el marco</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>marco</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Complementos de ruta</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>Abre una tercera interfaz serial cuando se inicia el programa</value>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>Abre un segundo puerto COM para controlar un segundo GRBL. Útil para cambiadores de herramientas o 4º eje.</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
  * 2020-07-08 add hatch fill
  * 2020-09-21 add 'Button' at end of last used button 1-32 line 790
  * 2020-10-05 add 2D-view widths and colors
+ * 2021-01-22 add missing settings
 */
 
 using System;
@@ -174,6 +175,24 @@ namespace GRBL_Plotter
                 Write("Circle to dot with Z", setup.importSVGCircleToDotZ.ToString(), section);
             }
 
+/* Path add on */
+            if (setup.importGraphicAddFrameEnable || all)
+            {   Write("Add Frame enable", setup.importGraphicAddFrameEnable.ToString(), section);
+                Write("Add Frame distance", setup.importGraphicAddFrameDistance.ToString(), section);
+                Write("Add Frame add radius", setup.importGraphicAddFrameApplyRadius.ToString(), section);
+                Write("Add Frame pen color", setup.importGraphicAddFramePenColor.ToString(), section);
+                Write("Add Frame pen width", setup.importGraphicAddFramePenWidth.ToString(), section);
+                Write("Add Frame pen layer", setup.importGraphicAddFramePenLayer.ToString(), section);
+            }
+            
+/* Muliply graphics */
+            if (setup.importGraphicMultiplyGraphicsEnable || all)
+            {   Write("Multiply enable", setup.importGraphicMultiplyGraphicsEnable.ToString(), section);
+                Write("Multiply distance", setup.importGraphicMultiplyGraphicsDistance.ToString(), section);
+                Write("Multiply number x", setup.importGraphicMultiplyGraphicsDimX.ToString(), section);
+                Write("Multiply number y", setup.importGraphicMultiplyGraphicsDimY.ToString(), section);
+            }
+
 /* Path repetion */
             if (setup.importRepeatEnable || all)
             {   Write("Repeat Code enable", setup.importRepeatEnable.ToString(), section);
@@ -227,6 +246,7 @@ namespace GRBL_Plotter
                 Write("Clipping", setup.importGraphicClip.ToString(), section);
                 Write("Clipping tile offset", setup.importGraphicClipOffsetApply.ToString(), section);
                 Write("Clipping tile command", setup.importGraphicClipGCode.ToString(), section);
+                Write("Clipping tile skip 1st", setup.importGraphicClipSkipCode.ToString(), section);
             }
 
 /* Grouping */
@@ -503,6 +523,18 @@ namespace GRBL_Plotter
             Write("Color HeightMap", ColorTranslator.ToHtml(setup.gui2DColorHeightMap), section);
             Write("Color Simulation", ColorTranslator.ToHtml(setup.gui2DColorSimulation), section);
 
+            section = "Connections";    
+            Write("1st COM Port", setup.serialPort1.ToString(), section);
+            Write("1st COM Baud", setup.serialBaud1.ToString(), section);
+            Write("2nd COM Port", setup.serialPort2.ToString(), section);
+            Write("2nd COM Baud", setup.serialBaud2.ToString(), section);
+            Write("3rd COM Port", setup.serialPort2.ToString(), section);
+            Write("3rd COM Baud", setup.serialBaud3.ToString(), section);
+            Write("3rd COM Ready", setup.serial3Ready.ToString(), section);
+            Write("3rd COM Timeout", setup.serial3Timeout.ToString(), section);           
+            Write("DIY COM Port", setup.serialPortDIY.ToString(), section);
+            Write("DIY COM Baud", setup.serialBaudDIY.ToString(), section);
+
             if (setup.guiExtendedLoggingEnabled)
             {   section = "Logging";
 				Write("Log Enable", setup.guiExtendedLoggingEnabled.ToString(), section);
@@ -550,6 +582,9 @@ namespace GRBL_Plotter
             setup.importSVGCircleToDotZ = false;
             setup.importDepthFromWidth = false;
 
+            setup.importGraphicAddFrameEnable = false;
+            setup.importGraphicMultiplyGraphicsEnable = false;
+            
 /* Path repetion */
             setup.importRepeatEnable = false;
             setup.importPauseElement = false;
@@ -647,6 +682,20 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpbool, section, "Circle to dot")) { setup.importSVGCircleToDot = tmpbool; }
             if (setVariable(ref tmpbool, section, "Circle to dot with Z")) { setup.importSVGCircleToDotZ = tmpbool; }
 
+/* Path add on */
+            if (setVariable(ref tmpbool, section, "Add Frame enable"))        { setup.importGraphicAddFrameEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Add Frame distance"))        { setup.importGraphicAddFrameDistance = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "Add Frame add radius"))        { setup.importGraphicAddFrameApplyRadius = tmpbool; }
+            if (setVariable(ref tmpstr, section, "Add Frame pen color"))        { setup.importGraphicAddFramePenColor = tmpstr; }
+            if (setVariable(ref tmpdeci, section, "Add Frame pen width"))        { setup.importGraphicAddFramePenWidth = tmpdeci; }
+            if (setVariable(ref tmpstr, section, "Add Frame pen layer"))        { setup.importGraphicAddFramePenLayer = tmpstr; }
+            
+/* Muliply graphics */
+            if (setVariable(ref tmpbool, section, "Multiply enable"))        { setup.importGraphicMultiplyGraphicsEnable = tmpbool; }
+            if (setVariable(ref tmpdeci, section, "Multiply distance"))        { setup.importGraphicMultiplyGraphicsDistance = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Multiply number x"))        { setup.importGraphicMultiplyGraphicsDimX = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "Multiply number y"))        { setup.importGraphicMultiplyGraphicsDimY = tmpdeci; }
+
 /* Path repetion */
             if (setVariable(ref tmpbool, section, "Repeat Code enable"))        { setup.importRepeatEnable = tmpbool; }
             if (setVariable(ref tmpdeci, section, "Repeat Code count"))         { setup.importRepeatCnt = tmpdeci; }
@@ -691,6 +740,8 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpbool, section, "Clipping"))          { setup.importGraphicClip = tmpbool; }
             if (setVariable(ref tmpbool, section, "Clipping tile offset")) { setup.importGraphicClipOffsetApply = tmpbool; }
             if (setVariable(ref tmpstr, section, "Clipping tile command")){ setup.importGraphicClipGCode = tmpstr; }
+            if (setVariable(ref tmpbool, section, "Clipping tile skip 1st")){ setup.importGraphicClipSkipCode = tmpbool; }
+            
 
 /* Grouping */
             if (setVariable(ref tmpbool, section, "Grouping enable"))           { setup.importGroupObjects= tmpbool; }
@@ -994,6 +1045,18 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpcolor, section, "Color HeightMap"))   { setup.gui2DColorHeightMap = tmpcolor; }
             if (setVariable(ref tmpcolor, section, "Color Simulation"))   { setup.gui2DColorSimulation = tmpcolor; }
 
+            section = "Connections";
+            if (setVariable(ref tmpstr, section, "1st COM Port")) { setup.serialPort1 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "1st COM Baud")) { setup.serialBaud1 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "2nd COM Port")) { setup.serialPort2 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "2nd COM Baud")) { setup.serialBaud2 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "3rd COM Port")) { setup.serialPort3 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "3rd COM Baud")) { setup.serialBaud3 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "3rd COM Ready")) { setup.serial3Ready = tmpstr; }
+            if (setVariable(ref tmpint, section, "3rd COM Timeout")) { setup.serial3Timeout = tmpint; }            
+            if (setVariable(ref tmpstr, section, "DIY COM Port")) { setup.serialPortDIY = tmpstr; }
+            if (setVariable(ref tmpstr, section, "DIY COM Baud")) { setup.serialBaudDIY = tmpstr; }
+                       
             section = "Logging";
             if (setVariable(ref tmpbool, section, "Log Enable")) { setup.guiExtendedLoggingEnabled = tmpbool; }
             if (setVariable(ref tmpint, section, "Log Flags"))   { setup.importLoggerSettings = Convert.ToByte(tmpint); }

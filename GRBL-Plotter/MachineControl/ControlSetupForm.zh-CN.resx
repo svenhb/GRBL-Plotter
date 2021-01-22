@@ -2383,4 +2383,52 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="button1.Text" xml:space="preserve">
     <value>发送测试信息</value>
   </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Y方向上的数字</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>X方向上的数字</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>图形之间的距离</value>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>乘法图形</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>乘</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>层</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>笔宽</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>笔颜色</value>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>分组的属性</value>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>四舍五入</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>到图形的距离</value>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>画框</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>帧</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>路径附件</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>程序启动时打开第三个串行接口</value>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>打开第二个COM端口以控制第二个GRBL。 对于换刀或第四轴很有用。</value>
+  </data>
 </root>

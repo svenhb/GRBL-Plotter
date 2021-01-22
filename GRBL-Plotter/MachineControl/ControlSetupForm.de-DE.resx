@@ -2157,4 +2157,52 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
   <data name="button1.Text" xml:space="preserve">
     <value>Testnachricht senden</value>
   </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Anzahl in Y-Richtung</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Anzahl in X-Richtung</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Abstand zwischen den Grafiken</value>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>Grafiken multiplizieren</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Multiplizieren</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>Schicht</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Stiftbreite</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Stiftfarbe</value>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Eigenschaften für die Gruppierung</value>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>Ecke abrunden</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Abstand zur Grafik</value>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>Rahmen zeichnen</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Rahmen</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Pfad-Add-Ons</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>Öffnet eine 3. serielle Schnittstelle bei Programstart</value>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>Öffnet einen 2. COM-Port zur Steuerung eines 2. GRBL. Nützlich für Werkzeugwechsler oder 4. Achse.</value>
+  </data>
 </root>

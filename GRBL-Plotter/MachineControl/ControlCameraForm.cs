@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
  * 2019-04-17 Line 391, 393 Convert.ToByte by Rob Zeilinga
  * 2019-08-15 add logger
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+ * 2021-01-22 hide pathPenUp, if set
 */
 
 using System;
@@ -331,7 +332,8 @@ namespace GRBL_Plotter
                 e.Graphics.DrawPath(penRuler, VisuGCode.pathRuler);
                 e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
                 e.Graphics.DrawPath(penDown, VisuGCode.pathPenDown);
-                e.Graphics.DrawPath(penUp, VisuGCode.pathPenUp);
+                if (Properties.Settings.Default.gui2DPenUpShow)
+                    e.Graphics.DrawPath(penUp, VisuGCode.pathPenUp);
                 //           e.Graphics.DrawEllipse(penTeach, new Rectangle((int)actualPosMarker.X-2, (int)actualPosMarker.Y - 2, (int)actualPosMarker.X + 2, (int)actualPosMarker.Y + 2));
             }
         }
@@ -477,12 +479,14 @@ namespace GRBL_Plotter
         private bool measureAngle = false;
         private xyPoint measureAngleStart = new xyPoint(0, 0);
         private xyPoint measureAngleStop = new xyPoint(0, 0);
+        private xyPoint angleRotationCenter = new xyPoint(0, 0);
         private void pictureBoxVideo_MouseDown(object sender, MouseEventArgs e)
         {
             //cmsPictureBox.Visible = true;
             if (e.Button == MouseButtons.Right)
             {
                 measureAngleStart = (xyPoint)pictureBoxVideo.PointToClient(MousePosition);
+                angleRotationCenter = (xyPoint)grbl.posWork + realPosition;
                 measureAngle = true;
             }
             if (e.Delta > 0)
@@ -523,8 +527,13 @@ namespace GRBL_Plotter
 
         private void btnApplyAngle_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(angle, 1, new xyPoint(0,0), "a"));
+            if (cBRotateArround0.Checked)
+                OnRaiseXYEvent(new XYEventArgs(angle, 1, new xyPoint(0,0), "a"));
+            else
+                OnRaiseXYEvent(new XYEventArgs(angle, 1, angleRotationCenter, "a"));
+
         }
+        
         // change camera rotation
         private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -805,6 +814,11 @@ namespace GRBL_Plotter
         {
             string txt="";
             MessageBox.Show(txt);
+        }
+
+        private void resetOffsetG921ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)grbl.posWork, "G92.1"));       // rotate arround TP1
         }
 
         private void fillComboBox(int index, string txt)

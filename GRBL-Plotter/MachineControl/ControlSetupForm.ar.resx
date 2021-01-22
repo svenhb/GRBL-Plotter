@@ -2399,4 +2399,52 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="button1.Text" xml:space="preserve">
     <value>إرسال رسالة تجريبية</value>
   </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>رقم في الاتجاه ص</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>رقم في الاتجاه X</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>المسافة بين الرسومات</value>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>ضاعف الرسومات</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>تتضاعف</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>طبقة</value>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>عرض القلم</value>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>لون القلم</value>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>خصائص التجمع</value>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>تقريب الزاوية</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>المسافة إلى الرسم</value>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>ارسم الإطار</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>الإطار</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>الوظائف الإضافية للمسار</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>يفتح واجهة تسلسلية ثالثة عند بدء تشغيل البرنامج</value>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>يفتح منفذ COM الثاني للتحكم في GRBL الثاني. مفيد لمبدلات الأدوات أو المحور الرابع.</value>
+  </data>
 </root>

@@ -16,8 +16,8 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*  2021-01-15 First version
- *
+/* 2021-01-15 First version
+ * 2021-01-19 dont apply .toUpper for send box - line 95 
  */
 
 using System;
@@ -91,7 +91,7 @@ namespace GRBL_Plotter
         private void sendCommand()
         {
             {
-                string cmd = cBCommand.Text.ToUpper();
+                string cmd = cBCommand.Text;    //.ToUpper();
                 send(cmd.Trim());
                 cBCommand.Items.Remove(cBCommand.SelectedItem);
                 cBCommand.Items.Insert(0, cmd);
