@@ -27,6 +27,7 @@
  * 2020-12-02 bug fix missing tile-commands, because of no grouping in line 476
  * 2020-12-08 add BackgroundWorker updates
  * 2020-12-16 line 440 lock (lockObject) to protect VisuGCode.pathBackground from other access
+ * 2021-01-21 addFrame, MultiplyGraphics
 */
 
 using System;
@@ -453,23 +454,39 @@ namespace GRBL_Plotter
             Logger.Trace("CreateGCode() count:{0}", completeGraphic.Count());
 
             int maxOpt = getOptionsAmount();
-            int actOpt = 0;
+            int actOpt = 0;           
 
 /* remove short moves*/
             if (!cancelByWorker && Properties.Settings.Default.importRemoveShortMovesEnable)
-            { if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove short moves" });
+            {   if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove short moves" });
                 RemoveIntermediateSteps(completeGraphic);
                 RemoveShortMoves(completeGraphic, (double)Properties.Settings.Default.importRemoveShortMovesLimit);
             }
 
+/* add frame */
+            if (Properties.Settings.Default.importGraphicAddFrameEnable)
+            {
+                AddFrame(completeGraphic, actualDimension,
+                          (double)Properties.Settings.Default.importGraphicAddFrameDistance,
+                          Properties.Settings.Default.importGraphicAddFrameApplyRadius);
+            } // distance from graphics dimension, corner radius
+
 
 /* remove offset */
             if (!cancelByWorker && graphicInformation.OptionOffsetCode)  // || (Properties.Settings.Default.importGraphicTile) 
-            { SetHeaderInfo(string.Format(" Original graphic dimension min:{0:0.000};{1:0.000}  max:{2:0.000};{3:0.000}", actualDimension.minx, actualDimension.miny, actualDimension.maxx, actualDimension.maxy));
+            {   SetHeaderInfo(string.Format(" Original graphic dimension min:{0:0.000};{1:0.000}  max:{2:0.000};{3:0.000}", actualDimension.minx, actualDimension.miny, actualDimension.maxx, actualDimension.maxy));
                 if (logEnable) Logger.Trace("call RemoveOffset");
                 if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove Offset..." });
                 RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny);
             }
+            
+/* multiply graphics */
+            if (Properties.Settings.Default.importGraphicMultiplyGraphicsEnable)
+            { MultiplyGraphics(completeGraphic, actualDimension, 
+                        (double)Properties.Settings.Default.importGraphicMultiplyGraphicsDistance,
+                        (int)Properties.Settings.Default.importGraphicMultiplyGraphicsDimX, 
+                        (int)Properties.Settings.Default.importGraphicMultiplyGraphicsDimY);
+            }     // repititions in x and y direction
 
             //           if (Properties.Settings.Default.importSVGNodesOnly)         { SetDotOnly(); }
 
@@ -1283,7 +1300,89 @@ namespace GRBL_Plotter
             repeatedGraphic.Clear();
 			if (logDetailed) ListGraphicObjects(graphicToRepeat,true);
         }
+        
+        private static void AddFrame(List<PathObject> graphicToRepeat, Dimensions dim, double distance, bool applyRadius)
+        {
+            if (logEnable) Logger.Trace("...AddFrame({0}  {1})",distance, applyRadius);
 
+            double minX = dim.minx - distance;
+            double maxX = dim.maxx + distance;
+            double minY = dim.miny - distance;
+            double maxY = dim.maxy + distance;
+            double radius = 0;
+            if (applyRadius)
+                radius = distance;
+
+            SetGeometry("Frame");
+            SetPenColor(Properties.Settings.Default.importGraphicAddFramePenColor);
+            SetPenWidth(Properties.Settings.Default.importGraphicAddFramePenWidth.ToString());
+            SetLayer(Properties.Settings.Default.importGraphicAddFramePenLayer);
+
+            StartPath(new Point(minX, minY + radius));      // start bottom-left
+            AddLine(new Point(minX, maxY - radius));        // move to top-left
+            if (radius > 0)AddArc(true, minX + radius, maxY, radius, 0);
+            AddLine(new Point(maxX - radius, maxY));        // move to top-right
+            if (radius > 0)AddArc(true, maxX, maxY - radius, 0, -radius);
+            AddLine(new Point(maxX, minY + radius));        // move to bottom-right
+            if (radius > 0)AddArc(true, maxX - radius, minY, -radius, 0);
+            AddLine(new Point(minX + radius, minY));        // move to bottom-left
+            if (radius > 0)AddArc(true, minX, minY + radius, 0, radius);
+            StopPath();
+
+            actualDimension.setDimensionXY(minX, minY);
+            actualDimension.setDimensionXY(maxX, maxY);
+        }
+
+        private static void MultiplyGraphics(List<PathObject> graphicToRepeat, Dimensions dim, double distance, int x, int y)     // repititions in x and y direction
+        {
+            if (logEnable) Logger.Trace("...MultiplyGraphics(distance:{0} x:{1}  y:{2})",distance, x, y);
+
+            List<PathObject> repeatedGraphic = new List<PathObject>();
+            
+            double startx = dim.minx;
+            double starty = dim.miny;
+            double dx = dim.dimx + distance;
+            double dy = dim.dimy + distance;
+            double offsetX, offsetY;
+            
+            // add code wie bei tiling?
+            
+            for (int my=0; my < y; my++)
+            {   for (int mx=0; mx < x; mx++)
+                {   
+                    offsetX = (mx * dx);
+                    offsetY = (my * dy);
+                    foreach (PathObject item in graphicToRepeat)    // dot or path
+                    {
+                        PathObject itemCopy;// = new PathObject();
+                        if (item is ItemPath)
+                        {
+                            itemCopy = new ItemPath();
+                            itemCopy = item.Copy();
+                            itemCopy.Start = new Point(item.Start.X + offsetX, item.Start.Y + offsetY);
+                            itemCopy.End = new Point(item.End.X + offsetX, item.End.Y + offsetY);
+                            ItemPath PathData = (ItemPath)itemCopy;
+                            foreach (GCodeMotion entity in PathData.path)
+                            { entity.MoveTo = new Point(entity.MoveTo.X + offsetX, entity.MoveTo.Y + offsetY); }
+                            PathData.Dimension.offsetXY(offsetX, offsetY);
+                        }
+                        else
+                        { itemCopy = new ItemDot(item.Start.X + offsetX, item.Start.Y + offsetY); }
+
+                        repeatedGraphic.Add(itemCopy); 
+                    }
+                }
+            }
+            actualDimension.setDimensionXY(x*dx,y*dy);
+			
+            graphicToRepeat.Clear();
+            foreach (PathObject item in repeatedGraphic)      // replace original list
+                graphicToRepeat.Add(item);
+
+            repeatedGraphic.Clear();
+        }
+            
+            
         private static void ExtendClosedPaths(List<PathObject> graphicToExtend, double extensionOrig)
 		{	
 			//const uint loggerSelect = (uint)LogEnable.PathModification;

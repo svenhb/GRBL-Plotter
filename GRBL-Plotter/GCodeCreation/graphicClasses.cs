@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2020-07-05 new class to collect graphic primitives
  * 2020-12-03 add notification event args
+ * 2021-01-22 ListOptions() add frame and multiply
 */
 
 using System;
@@ -151,7 +152,9 @@ namespace GRBL_Plotter
                 if (OptionZFromWidth) importOptions += "<Depth from width> ";
                 if (OptionDotFromCircle) importOptions += "<Dot from circle> ";
                 if (OptionZFromRadius) importOptions += "<Dot depth from circle radius> ";
+                if (Properties.Settings.Default.importGraphicAddFrameEnable) importOptions += "<Add frame> ";
                 if (OptionOffsetCode) importOptions += "<Remove offset> ";
+                if (Properties.Settings.Default.importGraphicMultiplyGraphicsEnable) importOptions += "<Multiply> ";
                 if (OptionSortCode) importOptions += "<Sort objects> ";
                 if (ApplyHatchFill) importOptions += "<SVG fill> ";
                 if (OptionHatchFill) importOptions += "<Hatch fill> ";

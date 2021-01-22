@@ -410,7 +410,7 @@ namespace GRBL_Plotter
             origFinalX = lastx;
             origFinalY = lasty;
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
-            if (cmt.Length >0) { cmt = string.Format("({0})", cmt); }
+            if (cmt.Length > 0) { cmt = string.Format("({0})", cmt); }
 
             applyXYFeedRate = true;     // apply XY Feed Rate after each PenDown command (not just after Z-axis)
 

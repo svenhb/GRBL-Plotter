@@ -295,9 +295,9 @@ namespace GRBL_Plotter
                     penIsDown = false;
                 }
 
-                pathObject.FigureId = StartPath(DotData,toolNr,toolCmt);
-				PenDown();
-                StopPath();
+                pathObject.FigureId = StartPath(DotData,toolNr,toolCmt, "PD");
+                PenDown("PD");
+                StopPath("PU");
                 gcode.gcodeZDown = origZ;
             }
             else
@@ -409,7 +409,7 @@ namespace GRBL_Plotter
         /// </summary>
 		private static PathInformation pathInfo = new PathInformation();
 		private static bool overWriteId = false;
-        public static int StartPath(PathObject pathObject, int toolNr, string toolCmt)//string cmt)
+        private static int StartPath(PathObject pathObject, int toolNr, string toolCmt, string penCmt="")//string cmt)
         {
 			Point coordxy = pathObject.Start;
 			double angle = pathObject.StartAngle;
@@ -447,7 +447,7 @@ namespace GRBL_Plotter
             double setangle = 180 * angle / Math.PI;
             gcode.setTangential(gcodeString, setangle);
 			gcode.MoveToRapid(gcodeString, coordxy);
-			PenDown("");
+			PenDown(penCmt);
 
             if (logCoordinates) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", coordxy.X, coordxy.Y, setangle);
 
@@ -455,7 +455,7 @@ namespace GRBL_Plotter
             return iDToSet;	//PathCount;
         }
 
-        public static void SetFigureEndTag()
+        private static void SetFigureEndTag()
         {   if (figureEnable)
             {   string xml = string.Format("{0}>", xmlMarker.figureEnd);//, nr);    //string.Format("{0} nr=\"{1}\" >", xmlMarker.figureEnd, nr);
                 Comment(xml);
@@ -466,16 +466,16 @@ namespace GRBL_Plotter
         /// <summary>
         /// Finish path
         /// </summary>
-        public static void StopPath(string cmt="")
+        private static void StopPath(string cmt)
         {
             if (logCoordinates) Logger.Trace("  StopPath {0}",cmt);
-            PenUp(cmt + " Stop path"); 
+            PenUp(cmt); 
         }
 
         /// <summary>
         /// Move to next coordinate
         /// </summary>
-        public static void MoveTo(Point coordxy, double newZ, double tangAngle, string cmt)
+        private static void MoveTo(Point coordxy, double newZ, double tangAngle, string cmt)
         {
             if (!Properties.Settings.Default.importDepthFromWidthRamp)
                 PenDown(cmt);   //  + " moveto"                      // also process tangetial axis
@@ -646,17 +646,17 @@ namespace GRBL_Plotter
             }
         }
 
-        public static void Arc(bool isG2, Point endPos, Point centerPos, double newZ, double tangStart, double tangEnd, string cmt)
+        private static void Arc(bool isG2, Point endPos, Point centerPos, double newZ, double tangStart, double tangEnd, string cmt)
         {
             int gnr = 2; if (!isG2) { gnr = 3; }
             Arc(gnr, endPos.X, endPos.Y, centerPos.X, centerPos.Y, newZ, tangStart,  tangEnd, "");
         }
-        public static void Arc(bool isG2, xyPoint endPos, xyPoint centerPos, double newZ, double tangStart, double tangEnd, string cmt)
+        private static void Arc(bool isG2, xyPoint endPos, xyPoint centerPos, double newZ, double tangStart, double tangEnd, string cmt)
         {   int gnr = 2; if (!isG2) { gnr = 3; }
             Arc(gnr, endPos.X, endPos.Y, centerPos.X, centerPos.Y, newZ, tangStart, tangEnd, "");
 
         }
-        public static void Arc(int gnr, double x, double y, double i, double j, double newZ, double tangStartRad, double tangEndRad, string cmt = "")
+        private static void Arc(int gnr, double x, double y, double i, double j, double newZ, double tangStartRad, double tangEndRad, string cmt = "")
         {
             Point coordxy = new Point(x,y);
 			Point center = new Point(lastGC.X + i, lastGC.Y + j);
@@ -684,7 +684,7 @@ namespace GRBL_Plotter
         /// <summary>
         /// add header and footer, return string of gcode
         /// </summary>
-        public static bool FinalGCode(string titel, string file)
+        private static bool FinalGCode(string titel, string file)
         {
             Logger.Trace("FinalGCode() ");
             StringBuilder header = new StringBuilder();
@@ -728,7 +728,7 @@ namespace GRBL_Plotter
         /// <summary>
         /// add additional header info
         /// </summary>
-        public static void AddToHeader(string cmt)
+        private static void AddToHeader(string cmt)
         {   gcode.AddToHeader(cmt);
             if (logEnable) Logger.Trace("AddToHeader: {0}", cmt);
         }
@@ -742,11 +742,11 @@ namespace GRBL_Plotter
         /// <summary>
         /// Insert Pen-up gcode command
         /// </summary>
-        public static bool PenUp(string cmt = "", bool setEndFigureTag = false)
+        private static bool PenUp(string cmt = "", bool setEndFigureTag = false)
         {
             if (logCoordinates) Logger.Trace("  PenUp {0}",cmt);
 
-            if (!comments)
+            if (!comments && (cmt != "PU"))
                 cmt = "";
             bool penWasDown = penIsDown;
             if (penIsDown)
@@ -766,7 +766,7 @@ namespace GRBL_Plotter
         /// <summary>
         /// Insert Pen-down gcode command
         /// </summary>
-        public static void PenDownWithZ(float z, string cmt)
+        private static void PenDownWithZ(float z, string cmt)
         {   float orig = gcode.gcodeZDown;
             float setZ = -Math.Abs(z);      // be sure for right sign
             setZ = Math.Max(orig, setZ);    // don't go deeper than set Z
@@ -776,10 +776,10 @@ namespace GRBL_Plotter
             PenDown(cmt);
             gcode.gcodeZDown = orig;
         }
-        public static void PenDown(string cmt="")
+        private static void PenDown(string cmt)
         {
             if (logCoordinates) Logger.Trace("   PenDown penIsDown:{0}  cmt:{1}", penIsDown, cmt);
-            if (!comments)
+            if (!comments && (cmt != "PD"))
                 cmt = "";
 
             if (!penIsDown)
@@ -793,17 +793,17 @@ namespace GRBL_Plotter
         /// <summary>
         /// Insert tool change command
         /// </summary>
-        public static void ToolChange(int toolnr, string cmt = "")
+        private static void ToolChange(int toolnr, string cmt = "")
         {   gcode.Tool(gcodeString, toolnr, cmt ); }  // add tool change commands (if enabled) and set XYFeed etc.
 
 
         /// <summary>
         /// set comment
         /// </summary>
-        public static void Comment(string cmt)
+        private static void Comment(string cmt)
         {   gcode.Comment(gcodeString, cmt); }
-		
-        public static void Comment(StringBuilder cmt)
+
+        private static void Comment(StringBuilder cmt)
         {   gcodeString.Append("(");
 			gcodeString.Append(cmt);
 			gcodeString.AppendLine(")");			
