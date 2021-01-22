@@ -20,6 +20,8 @@
  * 2019-07-08 add foldCode() to text and image import 
  * 2020-01-01 replace #if debuginfo by Logger.Info
  * 2021-01-15 import code from jog path creator
+ * 2021-01-20 move code for camera handling from 'MainForm' to here
+ * 2021-01-20 bug fix rotation from camera form
 */
 using System;
 using System.Drawing;
@@ -33,6 +35,7 @@ namespace GRBL_Plotter
     {
 
         // handle event from create Height Map form
+        #region heightmap
         private void getGCodeScanHeightMap(object sender, EventArgs e)
         {
             if (!isStreaming && _serial_form.serialPortOpen)
@@ -109,8 +112,24 @@ namespace GRBL_Plotter
             }
             Cursor.Current = Cursors.Default;
         }
-
-        // handle event from create Text form
+        
+        private void getGCodeFromHeightMap(object sender, EventArgs e)
+        {
+            if (!isStreaming)
+            {
+                simuStop();
+                VisuGCode.clearHeightMap();
+                newCodeStart();
+                setfCTBCodeText(_heightmap_form.scanCode.ToString().Replace(',', '.'));
+                setLastLoadedFile("from height map", "");
+                newCodeEnd();
+            }
+        }
+        
+        #endregion
+        
+        // handle event from create Text,  shape, barcode, image, jog path creator
+        #region create_from_form
         private void getGCodeFromText(object sender, EventArgs e)
         {
             Logger.Info("getGCodeFromText");
@@ -133,6 +152,7 @@ namespace GRBL_Plotter
             else
                 MessageBox.Show(Localization.getString("mainStreamingActive"), Localization.getString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
+
         // handle event from create Shape
         private void getGCodeFromShape(object sender, EventArgs e)
         {
@@ -150,7 +170,6 @@ namespace GRBL_Plotter
             else
                 MessageBox.Show(Localization.getString("mainStreamingActive"));
         }
-
 
         private void getGCodeFromBarcode(object sender, EventArgs e)
         {
@@ -191,20 +210,7 @@ namespace GRBL_Plotter
             else
                 MessageBox.Show(Localization.getString("mainStreamingActive"));
         }
-
-        private void getGCodeFromHeightMap(object sender, EventArgs e)
-        {
-            if (!isStreaming)
-            {
-                simuStop();
-                VisuGCode.clearHeightMap();
-                newCodeStart();
-                setfCTBCodeText(_heightmap_form.scanCode.ToString().Replace(',', '.'));
-                setLastLoadedFile("from height map", "");
-                newCodeEnd();
-            }
-        }
-
+        
         private void getGCodeJogCreator(object sender, EventArgs e)
         {
             Logger.Info("getGCodeJogCreator");
@@ -230,8 +236,74 @@ namespace GRBL_Plotter
             else
                 MessageBox.Show(Localization.getString("mainStreamingActive"));
         }
+        
+        #endregion
 
+        // handle positon click event from camera form
+        #region camera
+        private void OnRaisePositionClickEvent(object sender, XYZEventArgs e)
+        {
+            if (e.Command.IndexOf("G91") >= 0)
+            {
+                string final = e.Command;
+                if (grbl.isMarlin) final += ";G1 ";
+                if (e.PosX != null)
+                    final += string.Format(" X{0}", gcode.frmtNum((float)e.PosX));
+                if (e.PosY != null)
+                    final += string.Format(" Y{0}", gcode.frmtNum((float)e.PosY));
+                if (e.PosZ != null)
+                    final += string.Format(" Z{0}", gcode.frmtNum((float)e.PosZ));
+                sendCommands(final.Replace(',', '.'), true);
+            }
+        }
+        private void OnRaiseCameraClickEvent(object sender, XYEventArgs e)
+        {
+            if (e.Command == "a")
+            {
+                if (fCTBCode.LinesCount > 1)
+                {
+                    VisuGCode.markSelectedFigure(-1);           // rotate all figures
+                    transformStart(string.Format("Rotate {0:0.00}", e.Angle));
+                    fCTBCode.Text = VisuGCode.transformGCodeRotate(e.Angle, e.Scale, e.Point, false);     // use given center
+                    transformEnd();
+                }
+            }
+            else
+            {
+                double realStepX = Math.Round(e.Point.X, 3);
+                double realStepY = Math.Round(e.Point.Y, 3);
+                int speed = 1000;
+                string s = "";
+                string[] line = e.Command.Split(';');
+                foreach (string cmd in line)
+                {
+                    if (cmd.Trim() == "G92")
+                    {
+                        s = String.Format(cmd + " X{0} Y{1}", realStepX, realStepY).Replace(',', '.');
+                        sendCommand(s);
+                    }
+                    else if ((cmd.Trim().IndexOf("G0") >= 0) || (cmd.Trim().IndexOf("G1") >= 0))        // no jogging
+                    {
+                        s = String.Format(cmd + " X{0} Y{1}", realStepX, realStepY).Replace(',', '.');
+                        sendCommand(s);
+                    }
+                    else if ((cmd.Trim().IndexOf("G90") == 0) || (cmd.Trim().IndexOf("G91") == 0))      // no G0 G1, then jogging
+                    {
+                        speed = 100 + (int)Math.Sqrt(realStepX * realStepX + realStepY * realStepY) * 120;
+                        s = String.Format("{0} X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
+                        if (grbl.isMarlin)
+                            s = String.Format("{0}; G1 X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
 
+                        sendCommands(s, true);
+                    }
+                    else
+                    {
+                        sendCommand(cmd.Trim());
+                    }
+                }
+            }
+        }        
+        #endregion
 
         #region MAIN-MENU GCode Transform
 

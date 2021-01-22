@@ -414,7 +414,7 @@ namespace GRBL_Plotter
             if ((VisuGCode.xyzSize.dimx > 0) && (VisuGCode.xyzSize.dimy > 0))
             {
                 transformStart("Rotate");
-                fCTBCode.Text = VisuGCode.transformGCodeRotate(_probing_form.getAngle, 1, new xyPoint(0, 0));
+                fCTBCode.Text = VisuGCode.transformGCodeRotate(_probing_form.getAngle, 1, new xyPoint(0, 0), false);    // use given center
                 transformEnd();
             }
         }

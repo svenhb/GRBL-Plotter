@@ -567,28 +567,28 @@ namespace GRBL_Plotter
             }
             switch (type)
             {
-                case Graphic.SourceTypes.SVG:
+                case Graphic.SourceTypes.SVG:   // uses Graphic-Class, get result from Graphic.GCode
                     {
                         if (!showProgress) GCodeFromSVG.ConvertFromFile(source, null, null);
                         conversionInfo = GCodeFromSVG.conversionInfo;
                         Properties.Settings.Default.counterImportSVG += 1;
                         break;
                     }
-                case Graphic.SourceTypes.DXF:
+                case Graphic.SourceTypes.DXF:   // uses Graphic-Class, get result from Graphic.GCode
                     {
                         if (!showProgress) GCodeFromDXF.ConvertFromFile(source, null, null);
                         conversionInfo = GCodeFromDXF.conversionInfo;
                         Properties.Settings.Default.counterImportDXF += 1;
                         break;
                     }
-                case Graphic.SourceTypes.HPGL:
+                case Graphic.SourceTypes.HPGL:  // uses Graphic-Class, get result from Graphic.GCode
                     {
                         if (!showProgress) GCodeFromHPGL.ConvertFromFile(source, null, null);
                         conversionInfo = GCodeFromHPGL.conversionInfo;
                         Properties.Settings.Default.counterImportHPGL += 1;
                         break;
                     }
-                case Graphic.SourceTypes.CSV:
+                case Graphic.SourceTypes.CSV:   // uses Graphic-Class, get result from Graphic.GCode
                     {
                         if (!showProgress) GCodeFromCSV.ConvertFromFile(source, null, null);
                         conversionInfo = GCodeFromCSV.conversionInfo;
@@ -602,7 +602,7 @@ namespace GRBL_Plotter
                         Properties.Settings.Default.counterImportDrill += 1;
                         break;
                     }
-                case Graphic.SourceTypes.Gerber:
+                case Graphic.SourceTypes.Gerber:    // uses Graphic-Class, get result from Graphic.GCode
                     {
                         if (!showProgress) GCodeFromGerber.ConvertFromFile(source, null, null);
                         conversionInfo = GCodeFromGerber.conversionInfo;

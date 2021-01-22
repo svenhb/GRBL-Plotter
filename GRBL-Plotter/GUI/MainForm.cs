@@ -47,6 +47,7 @@
  * 2020-09-18 split
  * 2020-12-28 add Marlin support
  * 2021-01-13 add 3rd serial com
+ * 2021-01-20 move code for camera handling from here to 'MainFormGetCodetransform'
  */
 
 using System;
@@ -533,73 +534,6 @@ namespace GRBL_Plotter
 
 		
 		
-        // handle positon click event from camera form
-        private void OnRaisePositionClickEvent(object sender, XYZEventArgs e)
-        {
-            if (e.Command.IndexOf("G91") >= 0)
-            {
-                string final = e.Command;
-                if (grbl.isMarlin) final += ";G1 ";
-                if (e.PosX != null)
-                    final += string.Format(" X{0}", gcode.frmtNum((float)e.PosX));
-                if (e.PosY != null)
-                    final += string.Format(" Y{0}", gcode.frmtNum((float)e.PosY));
-                if (e.PosZ != null)
-                    final += string.Format(" Z{0}", gcode.frmtNum((float)e.PosZ));
-                sendCommands(final.Replace(',', '.'), true);
-            }
-        }
-        private void OnRaiseCameraClickEvent(object sender, XYEventArgs e)
-        {
-            if (e.Command == "a")
-            {
-                if (fCTBCode.LinesCount > 1)
-                {
-                    routeTransformCode(e.Angle, e.Scale, e.Point);
-                    VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow);
-                }
-            }
-            else
-            {
-                double realStepX = Math.Round(e.Point.X, 3);
-                double realStepY = Math.Round(e.Point.Y, 3);
-                int speed = 1000;
-                string s = "";
-                string[] line = e.Command.Split(';');
-                foreach (string cmd in line)
-                {
-                    if (cmd.Trim() == "G92")
-                    {
-                        s = String.Format(cmd + " X{0} Y{1}", realStepX, realStepY).Replace(',', '.');
-                        sendCommand(s);
-                    }
-                    else if ((cmd.Trim().IndexOf("G0") >= 0) || (cmd.Trim().IndexOf("G1") >= 0))        // no jogging
-                    {
-                        s = String.Format(cmd + " X{0} Y{1}", realStepX, realStepY).Replace(',', '.');
-                        sendCommand(s);
-                    }
-                    else if ((cmd.Trim().IndexOf("G90") == 0) || (cmd.Trim().IndexOf("G91") == 0))      // no G0 G1, then jogging
-                    {
-                        speed = 100 + (int)Math.Sqrt(realStepX * realStepX + realStepY * realStepY) * 120;
-                        s = String.Format("{0} X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
-                        if (grbl.isMarlin)
-                            s = String.Format("{0}; G1 X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
-
-                        sendCommands(s, true);
-                    }
-                    else
-                    {
-                        sendCommand(cmd.Trim());
-                    }
-                }
-            }
-        }
-        public void routeTransformCode(double angle, double scale, xyPoint offset)
-        {
-            fCTBCode.Text = VisuGCode.transformGCodeRotate(angle, scale, offset);
-            update_GCode_Depending_Controls();
-            return;
-        }
 
 
         #region GUI Objects
