@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2018-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2018-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2019-08-15 add logger
  * 2020-06-19 add conversionInfo
  * 2020-12-08 add BackgroundWorker updates
+ * 2021-01-22 bug fix: the use of Graphic-Class is needed, to get result from Graphic.GCode
 */
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,6 @@ namespace GRBL_Plotter
 {
     class GCodeFromDrill
     {
-        private static StringBuilder finalString = new StringBuilder();
-        private static StringBuilder gcodeString = new StringBuilder();
         private static bool gcodeUseSpindle = false;            // Switch on/off spindle for Pen down/up (M3/M5)
         private static bool gcodeToolChange = false;            // Apply tool exchange command
         private static bool importComments = true;              // if true insert additional comments into GCode
@@ -59,23 +58,22 @@ namespace GRBL_Plotter
         /// </summary>
         /// <param name="file">String keeping file-name</param>
         /// <returns>String with GCode of imported data</returns>
-        public static string ConvertFromFile(string file, BackgroundWorker worker, DoWorkEventArgs e)
+        public static bool ConvertFromFile(string file, BackgroundWorker worker, DoWorkEventArgs e)
         {
             Logger.Info(" Create GCode from {0}",file);
             if (file == "")
             {   MessageBox.Show("Empty file name");
-                return "";
+                return false;
             }
 
             backgroundWorker = worker;
             backgroundEvent  = e;
 
-            gcode.setup();      // initialize GCode creation (get stored settings for export)
-            gcodeToolChange = Properties.Settings.Default.importGCTool;         // Add tool change command
-            importComments = Properties.Settings.Default.importSVGAddComments;
-            importUnitmm  = Properties.Settings.Default.importUnitmm;
+            Graphic.Init(Graphic.SourceTypes.Drill, file, backgroundWorker, backgroundEvent); 
+            Logger.Info(" convertDrill {0}", file);
+
 			conversionInfo = "";
-			
+
             for (int i = 0; i < 20; i++)
                 infoDrill[i] = "";
 
@@ -117,24 +115,14 @@ namespace GRBL_Plotter
                         ConvertDrill(drillCoordinates, file_drd);
                     }
                     catch (Exception err)
-                    {   MessageBox.Show("Error '" + err.ToString() + "' in file " + file_drd); return ""; }
+                    {   MessageBox.Show("Error '" + err.ToString() + "' in file " + file_drd); return false; }
                 }
                 else {  conversionInfo += "Error: DRD-File not found ";
-						MessageBox.Show("Drill file does not exist: " + file_drd); return ""; }
+						MessageBox.Show("Drill file does not exist: " + file_drd); return false; }
             }
-
-            string header = gcode.GetHeader("Drill import", file);
-            string footer = gcode.GetFooter();
             gcodeUseSpindle = Properties.Settings.Default.importGCZEnable;
 
-            finalString.Clear();
-
-            if (gcodeUseSpindle && !gcodeToolChange) gcode.SpindleOn(finalString, "Start spindle - Option Z-Axis");
-
-            finalString.Append(gcodeString);     
-            if (gcodeUseSpindle) gcode.SpindleOff(finalString, "Stop spindle - Option Z-Axis");
-
-            return header + finalString.ToString().Replace(',', '.') + footer;
+            return Graphic.CreateGCode(); 
         }
 
         private static void GetDrillInfos(string[] drillInfo)
@@ -156,14 +144,6 @@ namespace GRBL_Plotter
         private static void ConvertDrill(string[] drillCode, string info)
         {
             Logger.Info(" ConvertDrill {0}", info);
-            gcodeString.Clear();
-            if (importComments)
-            {
-                gcodeString.AppendFormat("( Import Unit    : {0} )\r\n", infoUnits);
-                gcodeString.AppendFormat("( Import Fraction: {0} )\r\n", infoFraction);
-                gcodeString.Append("( Numbers exported to mm )\r\n");
-            }
-            gcode.PenUp(gcodeString, "Drill Start ");
             bool isHeader = false;
 			int holeCount = 0;
 			int drillCount = 0;
@@ -187,12 +167,10 @@ namespace GRBL_Plotter
                 }
 
                 if (line.IndexOf("%") >= 0)
-                {   isHeader = (isHeader)? false:true; }
+                {   isHeader = (isHeader)? false:true; }    // Header is between two %
 
                 if (isHeader)
-                {   if (importComments)
-                        gcodeString.AppendLine("( " + line + " )");
-                    if ((line.IndexOf("T") >= 0) && (line.IndexOf("C") >= 0))
+                {   if ((line.IndexOf("T") >= 0) && (line.IndexOf("C") >= 0))
                     {
                         string[] part = line.Split('C');
                         int tnr = 0;
@@ -202,7 +180,7 @@ namespace GRBL_Plotter
                         Double.TryParse(part[1].Substring(0), out dinch);
                         dmm = dinch * 25.4;
                         infoDrill[tnr] = part[1] + " Inch = " + dmm.ToString() + " mm";
-						gcode.AddToHeader(string.Format(" Tool-Nr.:{0} Diameter:{1:0.00} mm  ({2:0.000} inch)",tnr, dmm, dinch));
+                        Graphic.SetHeaderInfo(string.Format(" Tool-Nr.:{0} Diameter:{1:0.00} mm  ({2:0.000} inch)",tnr, dmm, dinch));
 						Logger.Debug(" Tool-Nr.:{0} Diameter:{1:0.00} mm  ({2:0.000} inch)",tnr, dmm, dinch);
 						drillCount++;
                         if (!tNrToDiameter.ContainsKey(part[0].Trim()))
@@ -213,28 +191,15 @@ namespace GRBL_Plotter
                 {
                     if (line.IndexOf("T") >= 0)
                     {
-                        gcodeString.AppendLine(" ");        // add empty line for better view
-						if (groupCount != 0)
-						{	gcodeString.AppendFormat("({0}>)\r\n", xmlMarker.groupEnd);
-							Logger.Debug("({0}>)", xmlMarker.groupEnd);
-						}
-
                         attDiameter = "";
                         if (tNrToDiameter.ContainsKey(line))
                             attDiameter = tNrToDiameter[line];
 
-                        xmlString = string.Format("({0} Id=\"{1}\"{2}>)\r\n", xmlMarker.groupStart, line, attDiameter);
-                        gcodeString.Append(xmlString);
-						Logger.Debug("{0}", xmlString);
 						groupCount++;
-
-                        if (gcodeToolChange)
-                        {   int tnr = 0;
-                            Int32.TryParse(line.Substring(1), out tnr);
-                            gcode.Tool(gcodeString, tnr, infoDrill[tnr]);
-                        }
-                        else
-                        {   gcodeString.AppendLine("( " + line + " tool change not enabled)"); }
+                        int tnr = 0;
+                        Int32.TryParse(line.Substring(1), out tnr);
+                        Graphic.SetPenWidth(infoDrill[tnr].ToString());
+                        Graphic.SetPenColor(line);
                     }
 
                     if ((line.IndexOf("X") >= 0) && (line.IndexOf("Y") >= 0))
@@ -254,14 +219,13 @@ namespace GRBL_Plotter
                         string cmt = "";
                         if (importComments)
                             cmt = line;
-                        gcode.MoveToRapid(gcodeString, (float)x, (float)y, cmt);
-                        gcode.PenDown(gcodeString);
-                        gcode.PenUp(gcodeString);
+						Graphic.StartPath(new System.Windows.Point(x, y));     								
+                        Graphic.AddDot(x, y);
+                        Graphic.StopPath();
 						holeCount++;
                     }
                 }
             }
-			gcodeString.AppendFormat("({0}>)\r\n", xmlMarker.groupEnd);
 
 			conversionInfo += string.Format("Drills:{0} Holes:{1}",drillCount, holeCount);
         }
