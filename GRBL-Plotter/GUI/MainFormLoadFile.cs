@@ -175,7 +175,7 @@ namespace GRBL_Plotter
 
             VisuGCode.markSelectedFigure(-1);           // hide highlight
 			VisuGCode.pathBackground.Reset();
-            grbl.posMarker = new xyPoint(0, 0);
+            grbl.posMarker = new xyzPoint(0, 0, 0);
 			if (cleanupGraphic) Graphic.CleanUp();  // clear old data
             statusStripSet(0, "Start import", Color.LightYellow);
             Application.DoEvents();
@@ -288,8 +288,8 @@ namespace GRBL_Plotter
             statusStripSet(2, "Press 'Space bar' to toggle PenUp path", Color.Lime);
 
             importOptions = "";
-            statusStripClear(0, 1);
-            statusStripClear(2);
+//            statusStripClear(0, 1);
+//            statusStripClear(2);
             this.Invalidate();      // force gui update
 
             showPathPenUp = true;
@@ -685,7 +685,7 @@ namespace GRBL_Plotter
                 statusStripSet(1, importOptions, Color.Yellow);
                 Logger.Info(" {0}", importOptions);
             }
-            Logger.Trace(" showImportOptions {0}", importOptions);
+            Logger.Info(" ImportOptions: {0}", importOptions);
         }
         private void foldCode()
         {

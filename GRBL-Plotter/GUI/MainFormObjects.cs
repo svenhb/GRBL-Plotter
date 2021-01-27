@@ -149,8 +149,12 @@ namespace GRBL_Plotter
     public struct xyzPoint
     {
         public double X, Y, Z, A, B, C;
+        public xyzPoint(xyPoint xy, double z, double a = 0)
+        { X = xy.X; Y = xy.Y; Z = z; A = a; B = 0; C = 0; }
         public xyzPoint(double x, double y, double z, double a = 0)
         { X = x; Y = y; Z = z; A = a; B = 0; C = 0; }
+        public xyzPoint(double x, double y, double z, double a, double b, double c)
+        { X = x; Y = y; Z = z; A = a; B = b; C = c; }
         // Overload + operator 
         public static xyzPoint operator +(xyzPoint b, xyzPoint c)
         {

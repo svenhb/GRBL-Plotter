@@ -142,11 +142,23 @@ namespace GRBL_Plotter
                             string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
                             e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
                             if (simuEnabled)
-                                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}\r\n Z:{4,7:0.000}\r\n a:{5,7:0.000}°", 100 * zoomFactor, unit,
-                                grbl.posMarker.X, grbl.posMarker.Y, VisuGCode.Simulation.getZ(), 180 * grbl.posMarkerAngle / Math.PI), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
+                                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\n"+
+                                                                    "Ruler Unit: {1}\r\n"+
+                                                                    "Marker-Pos:\r\n"+
+                                                                    " X:{2,7:0.000}\r\n"+
+                                                                    " Y:{3,7:0.000}\r\n"+
+                                                                    " Z:{4,7:0.000}\r\n"+
+                                                                    " a:{5,7:0.000}°", 100 * zoomFactor, unit,
+                                grbl.posMarker.X, grbl.posMarker.Y, VisuGCode.Simulation.getZ(), 180 * grbl.posMarkerAngle / Math.PI), 
+                                new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
                             else
-                                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\nRuler Unit: {1}\r\nMarker-Pos:\r\n X:{2,7:0.000}\r\n Y:{3,7:0.000}", 100 * zoomFactor, unit,
-                                grbl.posMarker.X, grbl.posMarker.Y), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
+                                e.Graphics.DrawString(String.Format("Zooming   : {0,2:0.00}%\r\n"+
+                                                                    "Ruler Unit: {1}\r\n"+
+                                                                    "Marker-Pos:\r\n"+
+                                                                    " X:{2,7:0.000}\r\n"+
+                                                                    " Y:{3,7:0.000}\r\n"+
+                                                                    " Z:{4,7:0.000}", 100 * zoomFactor, unit,
+                                grbl.posMarker.X, grbl.posMarker.Y, grbl.posMarker.Z), new Font("Lucida Console", 7), Brushes.Black, new Point(20, 5));
 
                             if (VisuGCode.selectedFigureInfo.Length > 0)
                                 e.Graphics.DrawString(VisuGCode.selectedFigureInfo, new Font("Lucida Console", 7), Brushes.Black, new Point(150, 5));
@@ -501,7 +513,7 @@ namespace GRBL_Plotter
         }
 
         private void cmsPicBoxZeroXYAtMarkedPosition_Click(object sender, EventArgs e)
-        {   xyPoint tmp = (xyPoint)(grbl.posWork) - grbl.posMarker;
+        {   xyzPoint tmp = grbl.posWork - grbl.posMarker;
             sendCommand(String.Format(zeroCmd + " X{0} Y{1}", gcode.frmtNum(tmp.X), gcode.frmtNum(tmp.Y)).Replace(',', '.'));
         }
         private void cmsPicBoxMoveGraphicsOrigin_Click(object sender, EventArgs e)
@@ -510,7 +522,7 @@ namespace GRBL_Plotter
             VisuGCode.markSelectedFigure(-1);
             fCTBCode.Text = VisuGCode.transformGCodeOffset(grbl.posMarker.X, grbl.posMarker.Y, VisuGCode.translate.None);
             transformEnd();
-            grbl.posMarker = new xyPoint(0, 0);
+            grbl.posMarker = new xyzPoint(0, 0, 0);
         }
 
         private void cmsPicBoxResetZooming_Click(object sender, EventArgs e)

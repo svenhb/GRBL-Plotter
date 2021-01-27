@@ -403,7 +403,7 @@ namespace GRBL_Plotter
                 if (!manualEdit)
                 { setEditMode(true); }
                 else
-                { newCodeEnd(); }
+                { newCodeEnd(); setEditMode(false); }
                 clearErrorLines();
             }
             else if (e.ClickedItem.Name == "cmsCodePasteSpecial1")  // Pen up
@@ -438,7 +438,7 @@ namespace GRBL_Plotter
             else if (e.ClickedItem.Name == "cmsCommentOut")
                 fCTB_CheckUnknownCode();
             else if (e.ClickedItem.Name == "cmsUpdate2DView")
-            { clearErrorLines(); newCodeEnd(); }
+            { clearErrorLines(); newCodeEnd(); setEditMode(false); }
             else if (e.ClickedItem.Name == "cmsReplaceDialog")
                 fCTBCode.ShowReplaceDialog();
             else if (e.ClickedItem.Name == "cmsFindDialog")

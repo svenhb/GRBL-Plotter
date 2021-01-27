@@ -669,7 +669,7 @@ namespace GRBL_Plotter
                         showPicBoxBgImage = false;                  // don't show background image anymore
                         pictureBox1.BackgroundImage = null;
                         pBoxTransform.Reset();
-                        grbl.posMarker = new xyPoint(0, 0);
+                        grbl.posMarker = new xyzPoint(0, 0, 0);
 
                         fCTBCode.Text = VisuGCode.transformGCodeRadiusCorrection(radius);
 //                        showMessageForm(log.get());

@@ -389,8 +389,18 @@ namespace GRBL_Plotter
 
         private void sendCommand(string txt, bool jogging = false)
         {
-            if ((jogging) && (grbl.isVersion_0 == false))   // includes (grbl.isMarlin == false)
-                txt = "$J=" + txt;
+            if ((jogging) && (grbl.isVersion_0 == false))   // includes (grbl.isMarlin == false) https://github.com/gnea/grbl/wiki/Grbl-v1.1-Jogging
+            {
+                string[] stringArray = { "G90", "G91", "G20", "G21", "G53" };
+                if (txt.Contains("X") || txt.Contains("Y") || txt.Contains("Z") || txt.Contains("A") || txt.Contains("B") || txt.Contains("C"))
+                {   foreach (string x in stringArray)
+                    {   if (txt.Contains(x))
+                        {   txt = "$J=" + txt;
+                            break;
+                        }
+                    }
+                }
+            }
             txt = gui.insertVariable(txt);			// will be filled in MainFormLoadFile.cs 1617, defined in MainFormObjects.cs
             if (!_serial_form.requestSend(txt))     // check if COM is still open
             {   timerUpdateControlSource = "sendCommand";
