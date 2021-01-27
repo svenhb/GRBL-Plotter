@@ -1577,5 +1577,20 @@
     <Setting Name="cameraRotateArround0" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="createJogPathCodeStart" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M3 S1000;G4 P1;</Value>
+    </Setting>
+    <Setting Name="createJogPathCodeEnd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">STOP</Value>
+    </Setting>
+    <Setting Name="createShapeMovo00" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="createShapeNoZUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ctrlToolScriptDelay" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

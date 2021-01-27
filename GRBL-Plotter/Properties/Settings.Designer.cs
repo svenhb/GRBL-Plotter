@@ -6327,5 +6327,65 @@ namespace GRBL_Plotter.Properties {
                 this["cameraRotateArround0"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("M3 S1000;G4 P1;")]
+        public string createJogPathCodeStart {
+            get {
+                return ((string)(this["createJogPathCodeStart"]));
+            }
+            set {
+                this["createJogPathCodeStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("STOP")]
+        public string createJogPathCodeEnd {
+            get {
+                return ((string)(this["createJogPathCodeEnd"]));
+            }
+            set {
+                this["createJogPathCodeEnd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool createShapeMovo00 {
+            get {
+                return ((bool)(this["createShapeMovo00"]));
+            }
+            set {
+                this["createShapeMovo00"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool createShapeNoZUp {
+            get {
+                return ((bool)(this["createShapeNoZUp"]));
+            }
+            set {
+                this["createShapeNoZUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal ctrlToolScriptDelay {
+            get {
+                return ((decimal)(this["ctrlToolScriptDelay"]));
+            }
+            set {
+                this["ctrlToolScriptDelay"] = value;
+            }
+        }
     }
 }
