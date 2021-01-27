@@ -297,7 +297,7 @@ namespace GRBL_Plotter
 
                 pathObject.FigureId = StartPath(DotData,toolNr,toolCmt, "PD");
                 PenDown("PD");
-                StopPath("PU");
+                StopPath("PU DOT");
                 gcode.gcodeZDown = origZ;
             }
             else
@@ -312,7 +312,7 @@ namespace GRBL_Plotter
 				{	if (logEnable) Logger.Trace("--ProcessPathObject: Empty path ID:{0}", PathData.Info.id);
 				    return;
 				}
-                pathObject.FigureId = StartPath(PathData,toolNr,toolCmt);
+                pathObject.FigureId = StartPath(PathData,toolNr,toolCmt, "PD");
                 PathDashArray = new double[PathData.dashArray.Length];
                 PathData.dashArray.CopyTo(PathDashArray, 0);
 
@@ -341,7 +341,7 @@ namespace GRBL_Plotter
 						Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, newZ, ArcData.AngleStart, ArcData.Angle, "");// entity.comment);
 					}
 				}
-				StopPath("");
+				StopPath("PU");
 			}
             gcode.gcodeZDown = origZ;
             if (logDetailed) Logger.Trace("ProcessPathObject end");
@@ -746,7 +746,7 @@ namespace GRBL_Plotter
         {
             if (logCoordinates) Logger.Trace("  PenUp {0}",cmt);
 
-            if (!comments && (cmt != "PU"))
+            if (!comments && !cmt.Contains("PU"))
                 cmt = "";
             bool penWasDown = penIsDown;
             if (penIsDown)
@@ -779,7 +779,7 @@ namespace GRBL_Plotter
         private static void PenDown(string cmt)
         {
             if (logCoordinates) Logger.Trace("   PenDown penIsDown:{0}  cmt:{1}", penIsDown, cmt);
-            if (!comments && (cmt != "PD"))
+            if (!comments && !cmt.Contains("PD"))
                 cmt = "";
 
             if (!penIsDown)
