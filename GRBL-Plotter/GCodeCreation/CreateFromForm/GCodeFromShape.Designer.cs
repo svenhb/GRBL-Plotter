@@ -64,7 +64,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rBToolpath3 = new System.Windows.Forms.RadioButton();
             this.rBToolpath1 = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cBToolpathPocket = new System.Windows.Forms.CheckBox();
             this.btnApply = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -92,6 +91,7 @@
             this.rB2 = new System.Windows.Forms.RadioButton();
             this.rB1 = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cBMoveTo00 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolSpindleSpeed)).BeginInit();
@@ -517,12 +517,6 @@
             this.rBToolpath1.TabStop = true;
             this.rBToolpath1.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
-            // 
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
             // cBToolpathPocket
             // 
             resources.ApplyResources(this.cBToolpathPocket, "cBToolpathPocket");
@@ -734,13 +728,19 @@
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
             // 
+            // cBMoveTo00
+            // 
+            resources.ApplyResources(this.cBMoveTo00, "cBMoveTo00");
+            this.cBMoveTo00.Name = "cBMoveTo00";
+            this.cBMoveTo00.UseVisualStyleBackColor = true;
+            // 
             // GCodeFromShape
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cBMoveTo00);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnApply);
@@ -778,6 +778,7 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -810,7 +811,6 @@
         private System.Windows.Forms.RadioButton rBShape3;
         private System.Windows.Forms.RadioButton rBToolpath2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox cBToolpathPocket;
         private System.Windows.Forms.RadioButton rBToolpath3;
         private System.Windows.Forms.RadioButton rBToolpath1;
@@ -844,5 +844,6 @@
         private System.Windows.Forms.RadioButton rBBevel1;
         private System.Windows.Forms.RadioButton rBBevel2;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.CheckBox cBMoveTo00;
     }
 }

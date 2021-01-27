@@ -416,7 +416,10 @@ namespace GRBL_Plotter
                 }
 
             }
-            gcode.Comment(gcodeString, Graphic2GCode.SetFigureEnd(figureCount));
+            gcode.Comment(gcodeString, string.Format("{0}>", xmlMarker.figureEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
+
+            if (cBMoveTo00.Checked)
+                gcode.MoveToRapid(gcodeString, 0, 0, "");
 
             gcode.jobEnd(gcodeString, "EndJob");      // Spindle / laser off
         //    if (Properties.Settings.Default.importGCZEnable)
@@ -509,6 +512,9 @@ namespace GRBL_Plotter
             nUDShapeX.Value = Properties.Settings.Default.createShapeX;
             nUDShapeY.Value = Properties.Settings.Default.createShapeY;
             nUDShapeR.Value = Properties.Settings.Default.createShapeR;
+            cBMoveTo00.Checked = Properties.Settings.Default.createShapeMovo00;
+            cBNoZUp.Checked = Properties.Settings.Default.createShapeNoZUp;
+
             switch (Properties.Settings.Default.createShapeType)
             {
                 case 2:
@@ -608,6 +614,9 @@ namespace GRBL_Plotter
             Properties.Settings.Default.createShapeX = nUDShapeX.Value;
             Properties.Settings.Default.createShapeY = nUDShapeY.Value;
             Properties.Settings.Default.createShapeR = nUDShapeR.Value;
+            Properties.Settings.Default.createShapeMovo00 =cBMoveTo00.Checked;
+            Properties.Settings.Default.createShapeNoZUp = cBNoZUp.Checked;
+
             if (rBShape1.Checked) Properties.Settings.Default.createShapeType = 1;
             if (rBShape2.Checked) Properties.Settings.Default.createShapeType = 2;
             if (rBShape3.Checked) Properties.Settings.Default.createShapeType = 3;
