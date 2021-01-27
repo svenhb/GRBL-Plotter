@@ -53,6 +53,7 @@
  * 2020-09-18 split file
  * 2020-12-27 add Marlin support
  * 2021-01-15 add 3rd serial com and lineEndRXTX
+ * 2021-01-23 add trgEvent to "sendStreamEvent" in time with the status query
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -393,6 +394,7 @@ namespace GRBL_Plotter
                     {   grblStateLast = grblState.unknown;   }
                 }
 
+                trgEvent = true;
                 if (isStreaming)
                 {   if (countLoggerUpdate-- <= 0)
                     {   //Logger.Info("timer update infoStream:{0}", listInfoStream());
@@ -413,8 +415,8 @@ namespace GRBL_Plotter
                 Application.Exit();
             }
         }
-		
-		
+
+
         private void loadSettings()
         {   try
             {   if (iamSerial == 1)

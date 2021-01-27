@@ -2741,7 +2741,7 @@ As more segments as more prezice the curve is.</value>
     <value>6, 59</value>
   </data>
   <data name="label38.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 13</value>
+    <value>126, 13</value>
   </data>
   <data name="label38.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2771,7 +2771,7 @@ As more segments as more prezice the curve is.</value>
     <value>6, 34</value>
   </data>
   <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 13</value>
+    <value>126, 13</value>
   </data>
   <data name="label37.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3119,7 +3119,7 @@ As more segments as more prezice the curve is.</value>
     <value>9, 59</value>
   </data>
   <data name="cBimportGraphicAddFrameRadius.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 17</value>
+    <value>124, 17</value>
   </data>
   <data name="cBimportGraphicAddFrameRadius.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3149,7 +3149,7 @@ As more segments as more prezice the curve is.</value>
     <value>6, 34</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 13</value>
+    <value>117, 13</value>
   </data>
   <data name="label35.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -8971,6 +8971,84 @@ Don't use with "Relative movements"</value>
   <data name="&gt;&gt;tabPage14.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="label47.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
+    <value>620, 97</value>
+  </data>
+  <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="label47.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="&gt;&gt;label47.Name" xml:space="preserve">
+    <value>label47</value>
+  </data>
+  <data name="&gt;&gt;label47.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label47.Parent" xml:space="preserve">
+    <value>gBToolChange</value>
+  </data>
+  <data name="&gt;&gt;label47.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label46.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
+    <value>334, 97</value>
+  </data>
+  <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="label46.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Delay after script</value>
+  </data>
+  <data name="&gt;&gt;label46.Name" xml:space="preserve">
+    <value>label46</value>
+  </data>
+  <data name="&gt;&gt;label46.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label46.Parent" xml:space="preserve">
+    <value>gBToolChange</value>
+  </data>
+  <data name="&gt;&gt;label46.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDToolChangeScriptDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>549, 95</value>
+  </data>
+  <data name="nUDToolChangeScriptDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="nUDToolChangeScriptDelay.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="nUDToolChangeScriptDelay.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDToolChangeScriptDelay.Name" xml:space="preserve">
+    <value>nUDToolChangeScriptDelay</value>
+  </data>
+  <data name="&gt;&gt;nUDToolChangeScriptDelay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDToolChangeScriptDelay.Parent" xml:space="preserve">
+    <value>gBToolChange</value>
+  </data>
+  <data name="&gt;&gt;nUDToolChangeScriptDelay.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="nUDToolChangeEmpty.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 38</value>
   </data>
@@ -8997,7 +9075,7 @@ Don't use with "Relative movements"</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;nUDToolChangeEmpty.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="btnFileDialogTT4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -9024,7 +9102,7 @@ Don't use with "Relative movements"</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT4.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="btnFileDialogTT3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -9051,7 +9129,7 @@ Don't use with "Relative movements"</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="btnFileDialogTT2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -9078,7 +9156,7 @@ Don't use with "Relative movements"</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="btnFileDialogTT1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -9105,7 +9183,7 @@ Don't use with "Relative movements"</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;btnFileDialogTT1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="cBToolChangeEmpty.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -9137,7 +9215,7 @@ Don't use with "Relative movements"</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;cBToolChangeEmpty.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="label61.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -9179,7 +9257,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;label61.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="lbl_4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9214,7 +9292,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;lbl_4.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="tBToolChangeScriptProbe.Location" type="System.Drawing.Point, System.Drawing">
     <value>549, 69</value>
@@ -9239,7 +9317,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptProbe.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="lbl_2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9274,7 +9352,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;lbl_2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="tBToolChangeScriptSelect.Location" type="System.Drawing.Point, System.Drawing">
     <value>549, 29</value>
@@ -9299,7 +9377,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptSelect.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="lbl_1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9334,7 +9412,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;lbl_1.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="tBToolChangeScriptPut.Location" type="System.Drawing.Point, System.Drawing">
     <value>549, 9</value>
@@ -9359,7 +9437,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptPut.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="lbl_3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9394,7 +9472,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;lbl_3.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="tBToolChangeScriptGet.Location" type="System.Drawing.Point, System.Drawing">
     <value>549, 49</value>
@@ -9419,7 +9497,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptGet.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="cBToolChange.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9454,7 +9532,7 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
     <value>gBToolChange</value>
   </data>
   <data name="&gt;&gt;cBToolChange.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="gBToolChange.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 6</value>
@@ -10257,7 +10335,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>6, 39</value>
   </data>
   <data name="checkBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 17</value>
+    <value>271, 17</value>
   </data>
   <data name="checkBox6.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -20509,6 +20587,9 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 411</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>

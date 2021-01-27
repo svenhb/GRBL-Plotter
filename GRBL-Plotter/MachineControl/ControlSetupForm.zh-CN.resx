@@ -2431,4 +2431,18 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>打开第二个COM端口以控制第二个GRBL。 对于换刀或第四轴很有用。</value>
   </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>第1个图块的跳过代码（xy = 0; 0）</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>变量：
+#INDX #INDY x或y方向的图块索引（例如0、1、2 ...）
+#OFFX #OFFY瓷砖在x或y方向上的偏移量（例如0、200、400 ...）</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>脚本后延迟</value>
+  </data>
 </root>

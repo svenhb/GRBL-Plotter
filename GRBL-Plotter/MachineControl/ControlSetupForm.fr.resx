@@ -2250,4 +2250,18 @@ Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbe
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>Ouvre un 2ème port COM pour contrôler un 2ème GRBL. Utile pour les changeurs d'outils ou 4ème axe.</value>
   </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>Ignorer le code pour la 1ère tuile (xy = 0; 0)</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Variables:
+#INDX #INDY index de la tuile pour la direction x ou y (par exemple 0, 1, 2 ...)
+#OFFX #OFFY offset du carreau pour la direction x ou y (par exemple 0, 200, 400 ...)</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>secondes</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Délai après le script</value>
+  </data>
 </root>

@@ -109,6 +109,17 @@ namespace GRBL_Plotter
             this.rBImportUnitInch = new System.Windows.Forms.RadioButton();
             this.tab1_1lbl1 = new System.Windows.Forms.Label();
             this.tab1_1lbl2 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
             this.tabPage20 = new System.Windows.Forms.TabPage();
             this.tab1_3gB8 = new System.Windows.Forms.GroupBox();
             this.lblPathModification = new System.Windows.Forms.Label();
@@ -493,17 +504,6 @@ namespace GRBL_Plotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.groupBox19 = new System.Windows.Forms.GroupBox();
-            this.groupBox20 = new System.Windows.Forms.GroupBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.groupBox21 = new System.Windows.Forms.GroupBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
             this.tBGerberGeometryM19 = new System.Windows.Forms.TextBox();
             this.tBGerberGeometryKnife = new System.Windows.Forms.TextBox();
@@ -798,6 +798,9 @@ namespace GRBL_Plotter
             this.nUDPenDown = new System.Windows.Forms.NumericUpDown();
             this.nUDPenUp = new System.Windows.Forms.NumericUpDown();
             this.nUDRuler = new System.Windows.Forms.NumericUpDown();
+            this.nUDToolChangeScriptDelay = new System.Windows.Forms.NumericUpDown();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -816,6 +819,10 @@ namespace GRBL_Plotter
             this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tab1_1gB1.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.groupBox20.SuspendLayout();
+            this.groupBox19.SuspendLayout();
+            this.groupBox21.SuspendLayout();
             this.tabPage20.SuspendLayout();
             this.tab1_3gB8.SuspendLayout();
             this.gBHatchFill.SuspendLayout();
@@ -915,10 +922,6 @@ namespace GRBL_Plotter
             this.tab11gB4.SuspendLayout();
             this.tab11gB5.SuspendLayout();
             this.tab11gB2.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.groupBox19.SuspendLayout();
-            this.groupBox20.SuspendLayout();
-            this.groupBox21.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
@@ -1033,6 +1036,7 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRuler)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl_Level1
@@ -1387,6 +1391,87 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.tab1_1lbl2, "tab1_1lbl2");
             this.tab1_1lbl2.Name = "tab1_1lbl2";
             this.toolTip1.SetToolTip(this.tab1_1lbl2, resources.GetString("tab1_1lbl2.ToolTip"));
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.groupBox20);
+            this.tabPage7.Controls.Add(this.groupBox19);
+            resources.ApplyResources(this.tabPage7, "tabPage7");
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // groupBox20
+            // 
+            this.groupBox20.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox20.Controls.Add(this.nUDimportGraphicMultiplyGraphicsDimY);
+            this.groupBox20.Controls.Add(this.label38);
+            this.groupBox20.Controls.Add(this.label37);
+            this.groupBox20.Controls.Add(this.nUDimportGraphicMultiplyGraphicsDimX);
+            this.groupBox20.Controls.Add(this.label36);
+            this.groupBox20.Controls.Add(this.nUDimportGraphicMultiplyGraphicsDistance);
+            this.groupBox20.Controls.Add(this.cBimportGraphicMultiplyGraphicsEnable);
+            resources.ApplyResources(this.groupBox20, "groupBox20");
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.TabStop = false;
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // label36
+            // 
+            resources.ApplyResources(this.label36, "label36");
+            this.label36.Name = "label36";
+            // 
+            // groupBox19
+            // 
+            this.groupBox19.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox19.Controls.Add(this.groupBox21);
+            this.groupBox19.Controls.Add(this.cBimportGraphicAddFrameRadius);
+            this.groupBox19.Controls.Add(this.label35);
+            this.groupBox19.Controls.Add(this.nUDimportGraphicAddFrameDistance);
+            this.groupBox19.Controls.Add(this.cBimportGraphicAddFrameEnable);
+            resources.ApplyResources(this.groupBox19, "groupBox19");
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.TabStop = false;
+            // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.tBimportGraphicAddFramePenLayer);
+            this.groupBox21.Controls.Add(this.nUDimportGraphicAddFramePenWidth);
+            this.groupBox21.Controls.Add(this.tBimportGraphicAddFramePenColor);
+            this.groupBox21.Controls.Add(this.label45);
+            this.groupBox21.Controls.Add(this.label40);
+            this.groupBox21.Controls.Add(this.label39);
+            resources.ApplyResources(this.groupBox21, "groupBox21");
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.TabStop = false;
+            // 
+            // label45
+            // 
+            resources.ApplyResources(this.label45, "label45");
+            this.label45.Name = "label45";
+            // 
+            // label40
+            // 
+            resources.ApplyResources(this.label40, "label40");
+            this.label40.Name = "label40";
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.Name = "label35";
             // 
             // tabPage20
             // 
@@ -2424,6 +2509,9 @@ namespace GRBL_Plotter
             // 
             // gBToolChange
             // 
+            this.gBToolChange.Controls.Add(this.label47);
+            this.gBToolChange.Controls.Add(this.label46);
+            this.gBToolChange.Controls.Add(this.nUDToolChangeScriptDelay);
             this.gBToolChange.Controls.Add(this.nUDToolChangeEmpty);
             this.gBToolChange.Controls.Add(this.btnFileDialogTT4);
             this.gBToolChange.Controls.Add(this.btnFileDialogTT3);
@@ -4448,87 +4536,6 @@ namespace GRBL_Plotter
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.groupBox20);
-            this.tabPage7.Controls.Add(this.groupBox19);
-            resources.ApplyResources(this.tabPage7, "tabPage7");
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // groupBox19
-            // 
-            this.groupBox19.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox19.Controls.Add(this.groupBox21);
-            this.groupBox19.Controls.Add(this.cBimportGraphicAddFrameRadius);
-            this.groupBox19.Controls.Add(this.label35);
-            this.groupBox19.Controls.Add(this.nUDimportGraphicAddFrameDistance);
-            this.groupBox19.Controls.Add(this.cBimportGraphicAddFrameEnable);
-            resources.ApplyResources(this.groupBox19, "groupBox19");
-            this.groupBox19.Name = "groupBox19";
-            this.groupBox19.TabStop = false;
-            // 
-            // groupBox20
-            // 
-            this.groupBox20.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox20.Controls.Add(this.nUDimportGraphicMultiplyGraphicsDimY);
-            this.groupBox20.Controls.Add(this.label38);
-            this.groupBox20.Controls.Add(this.label37);
-            this.groupBox20.Controls.Add(this.nUDimportGraphicMultiplyGraphicsDimX);
-            this.groupBox20.Controls.Add(this.label36);
-            this.groupBox20.Controls.Add(this.nUDimportGraphicMultiplyGraphicsDistance);
-            this.groupBox20.Controls.Add(this.cBimportGraphicMultiplyGraphicsEnable);
-            resources.ApplyResources(this.groupBox20, "groupBox20");
-            this.groupBox20.Name = "groupBox20";
-            this.groupBox20.TabStop = false;
-            // 
-            // label35
-            // 
-            resources.ApplyResources(this.label35, "label35");
-            this.label35.Name = "label35";
-            // 
-            // label36
-            // 
-            resources.ApplyResources(this.label36, "label36");
-            this.label36.Name = "label36";
-            // 
-            // label37
-            // 
-            resources.ApplyResources(this.label37, "label37");
-            this.label37.Name = "label37";
-            // 
-            // label38
-            // 
-            resources.ApplyResources(this.label38, "label38");
-            this.label38.Name = "label38";
-            // 
-            // groupBox21
-            // 
-            this.groupBox21.Controls.Add(this.tBimportGraphicAddFramePenLayer);
-            this.groupBox21.Controls.Add(this.nUDimportGraphicAddFramePenWidth);
-            this.groupBox21.Controls.Add(this.tBimportGraphicAddFramePenColor);
-            this.groupBox21.Controls.Add(this.label45);
-            this.groupBox21.Controls.Add(this.label40);
-            this.groupBox21.Controls.Add(this.label39);
-            resources.ApplyResources(this.groupBox21, "groupBox21");
-            this.groupBox21.Name = "groupBox21";
-            this.groupBox21.TabStop = false;
-            // 
-            // label39
-            // 
-            resources.ApplyResources(this.label39, "label39");
-            this.label39.Name = "label39";
-            // 
-            // label40
-            // 
-            resources.ApplyResources(this.label40, "label40");
-            this.label40.Name = "label40";
-            // 
-            // label45
-            // 
-            resources.ApplyResources(this.label45, "label45");
-            this.label45.Name = "label45";
             // 
             // cBshowImportDialog
             // 
@@ -8157,6 +8164,24 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.nUDRuler, resources.GetString("nUDRuler.ToolTip"));
             this.nUDRuler.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRuler;
             // 
+            // nUDToolChangeScriptDelay
+            // 
+            this.nUDToolChangeScriptDelay.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptDelay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDToolChangeScriptDelay.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDToolChangeScriptDelay, "nUDToolChangeScriptDelay");
+            this.nUDToolChangeScriptDelay.Name = "nUDToolChangeScriptDelay";
+            this.nUDToolChangeScriptDelay.Value = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptDelay;
+            // 
+            // label46
+            // 
+            resources.ApplyResources(this.label46, "label46");
+            this.label46.Name = "label46";
+            // 
+            // label47
+            // 
+            resources.ApplyResources(this.label47, "label47");
+            this.label47.Name = "label47";
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -8198,6 +8223,13 @@ namespace GRBL_Plotter
             this.groupBox4.PerformLayout();
             this.tab1_1gB1.ResumeLayout(false);
             this.tab1_1gB1.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
+            this.groupBox19.ResumeLayout(false);
+            this.groupBox19.PerformLayout();
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
             this.tabPage20.ResumeLayout(false);
             this.tabPage20.PerformLayout();
             this.tab1_3gB8.ResumeLayout(false);
@@ -8367,13 +8399,6 @@ namespace GRBL_Plotter
             this.tab11gB5.PerformLayout();
             this.tab11gB2.ResumeLayout(false);
             this.tab11gB2.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
-            this.groupBox19.ResumeLayout(false);
-            this.groupBox19.PerformLayout();
-            this.groupBox20.ResumeLayout(false);
-            this.groupBox20.PerformLayout();
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
@@ -8488,6 +8513,7 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRuler)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -9226,5 +9252,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox tBimportGraphicAddFramePenLayer;
+        private System.Windows.Forms.NumericUpDown nUDToolChangeScriptDelay;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label46;
     }
 }

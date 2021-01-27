@@ -2259,4 +2259,18 @@ Pushbullet: por razões de segurança, você deve usar uma conta 'lixo', o token
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>Abre uma segunda porta COM para controlar um segundo GRBL. Útil para trocadores de ferramentas ou 4º eixo.</value>
   </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>Código de salto para o primeiro bloco (xy = 0; 0)</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Variáveis:
+#INDX #INDY índice do bloco para a direção x ou y (por exemplo, 0, 1, 2 ...)
+#OFFX #OFFY deslocamento do bloco para a direção x ou y (por exemplo, 0, 200, 400 ...)</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>segundos</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Atraso após o script</value>
+  </data>
 </root>

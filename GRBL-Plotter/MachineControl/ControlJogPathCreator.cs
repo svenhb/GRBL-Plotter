@@ -17,6 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /*  2021-01-13 First version
+ *  2021-01-23 Bug fix create jog path - wrong size
  *
  */
  
@@ -352,25 +353,25 @@ namespace GRBL_Plotter
 
         private void btnJogStart_Click(object sender, EventArgs e)
         {
-            float x, y, factor = (float)nUDRaster.Value / 10;
+            float x, y, factor = 1;
             float lastX = 0, lastY = 0;
             int i = 0;
-            joggcode = "";
+            joggcode = tBCodeStart.Text + ";";
 
             PointF[] list = jogPath.PathPoints;
             foreach (PointF pnt in list)
             {
                 if (i++ == 0)
-                { lastX = pnt.X * factor; lastY = pnt.Y * factor; }
+                {   lastX = pnt.X * factor; lastY = pnt.Y * factor; }
                 else
-                {
-                    x = (pnt.X * factor) - lastX;
+                {   x = (pnt.X * factor) - lastX;
                     y = (pnt.Y * factor) - lastY;
                     lastX = (pnt.X * factor); lastY = (pnt.Y * factor);
                     if ((x != 0) || (y != 0))
-                        joggcode += String.Format("G91 X{0:0.00} Y{1:0.00} F{2};", x, -y, nUDFeedrate.Value).Replace(',', '.');
+                        joggcode += String.Format("G91 X{0:0.00} Y{1:0.00} F{2};", x, y, nUDFeedrate.Value).Replace(',', '.');
                 }
             }
+//            joggcode += tBCodeEnd.Text;
         }
 
         private void ControlJogPathCreator_SizeChanged(object sender, EventArgs e)

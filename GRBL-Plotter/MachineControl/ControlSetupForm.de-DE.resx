@@ -1880,7 +1880,7 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
     <value>Schneiden Sie die gesamte Grafik in Kacheln, um sie separat zu entleeren</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>GCode vor der Fliese</value>
+    <value>GCode vor der Kachel</value>
   </data>
   <data name="label11.ToolTip" xml:space="preserve">
     <value>Der vor der nächsten Kachel anzuwendende GCode wird verarbeitet.
@@ -2204,5 +2204,19 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
   </data>
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>Öffnet einen 2. COM-Port zur Steuerung eines 2. GRBL. Nützlich für Werkzeugwechsler oder 4. Achse.</value>
+  </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>Code für 1. Kachel überspringen (xy = 0; 0)</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Variablen:
+#INDX #INDY Kachelindex für x- oder y-Richtung (z. B. 0, 1, 2 ...)
+#OFFX #OFFY Versatz der Kachel in x- oder y-Richtung (z. B. 0, 200, 400 ...)</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>Sekunden</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Verzögerung nach Skript</value>
   </data>
 </root>

@@ -450,7 +450,7 @@ namespace GRBL_Plotter
         // send event to teach Marker offset
         private void btnSetOffsetMarker_Click(object sender, EventArgs e)
         {
-            OnRaiseXYEvent(new XYEventArgs(0, 1, grbl.posMarker, "G92"));        // set new coordinates
+            OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)grbl.posMarker, "G92"));        // set new coordinates
         }
         // sent event to apply offset
         private void btnCamCoordTool_Click(object sender, EventArgs e)
@@ -766,15 +766,15 @@ namespace GRBL_Plotter
         }
 
         private void teachpoint1_process_Click(object sender, EventArgs e)
-        {   teachPoint1 = grbl.posMarker;
+        {   teachPoint1 = (xyPoint)grbl.posMarker;
             teachPoint2 = teachPoint1; teachPoint3 = teachPoint1;
             measureAngleStart = teachPoint1;
-            OnRaiseXYEvent(new XYEventArgs(0, 1, grbl.posMarker, "G92"));        // set new coordinates
+            OnRaiseXYEvent(new XYEventArgs(0, 1, (xyPoint)grbl.posMarker, "G92"));        // set new coordinates
         }
 
         private void teachpoint2_process_Click(object sender, EventArgs e)
         {
-            teachPoint2 = grbl.posMarker;
+            teachPoint2 = (xyPoint)grbl.posMarker;
             double angle1 = teachPoint1.AngleTo(teachPoint2);
             double dist1  = teachPoint1.DistanceTo(teachPoint2);
             double angle2 = teachPoint1.AngleTo((xyPoint)grbl.posWork);

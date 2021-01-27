@@ -214,7 +214,7 @@ namespace GRBL_Plotter
             foreach (coordByLine gcline in coordList)        // copy coordList and add WCO
             {
                 isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
-                coordListLandMark.Add(new coordByLine(0, -1, gcline.actualPos + (xyPoint)grbl.posWCO, gcline.alpha, isArc));
+                coordListLandMark.Add(new coordByLine(0, -1, gcline.actualPos + grbl.posWCO, gcline.alpha, isArc));
             }
             origWCOLandMark = (xyPoint)grbl.posWCO;
         }
@@ -500,12 +500,12 @@ namespace GRBL_Plotter
                 oldLine = new gcodeByLine(newLine);                     // get copy of newLine      
                 gcodeList.Add(new gcodeByLine(newLine));                // add parsed line to list
                 simuList.Add(new gcodeByLine(newLine));                // add parsed line to list
-                coordList.Add(new coordByLine(lineNr, newLine.figureNumber, (xyPoint)newLine.actualPos, newLine.alpha, isArc));
+                coordList.Add(new coordByLine(lineNr, newLine.figureNumber, (xyzPoint)newLine.actualPos, newLine.alpha, isArc));
 
                 if (updateFigureLineNeeded && xyPosChanged)
                 {   updateFigureLineNeeded = false;
                     xmlMarker.tmpFigure.posStart = (xyPoint)newLine.actualPos;
-                    coordList[xmlMarker.tmpFigure.lineStart].actualPos = (xyPoint)newLine.actualPos;
+                    coordList[xmlMarker.tmpFigure.lineStart].actualPos = (xyzPoint)newLine.actualPos;
                     coordList[xmlMarker.tmpFigure.lineStart].alpha = newLine.alpha;
 //                    Logger.Debug("updateFigureLine {0}  at {1}  X {2:0.000}  Y {3:0.000}", lineNr, xmlMarker.tmpFigure.lineStart, newLine.actualPos.X, newLine.actualPos.Y);
                 }
@@ -617,7 +617,7 @@ namespace GRBL_Plotter
                     if (!newLine.ismachineCoordG53)
                     {
                         isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
-                        coordList.Add(new coordByLine(subLineNr, newLine.figureNumber, (xyPoint)newLine.actualPos, newLine.alpha, isArc));
+                        coordList.Add(new coordByLine(subLineNr, newLine.figureNumber, (xyzPoint)newLine.actualPos, newLine.alpha, isArc));
                         if (((newLine.motionMode > 0) || (newLine.z != null)) && !((newLine.x == grbl.posWork.X) && (newLine.y == grbl.posWork.Y)))
                             xyzSize.setDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
                     }                                                                                                       // add data to drawing path
@@ -800,15 +800,15 @@ namespace GRBL_Plotter
                 {
                     if (line == coordList[line].lineNumber)
                     {
-                        grbl.posMarker = (xyPoint)coordList[line].actualPos;
+                        grbl.posMarker = (xyzPoint)coordList[line].actualPos;
                         grbl.posMarkerAngle = coordList[line].alpha;
                         if (coordList[line].isArc)
                         {   foreach (coordByLine point in centerList)
                             {   if (point.lineNumber == coordList[line].lineNumber)
-                                {   center = point.actualPos; showCenter = true; break; }
+                                {   center = (xyPoint)point.actualPos; showCenter = true; break; }
                             }
                         }
-                        createMarkerPath(showCenter,center, coordList[line].actualPos);// line-1
+                        createMarkerPath(showCenter,center, (xyPoint)coordList[line].actualPos);// line-1
                         figureNr = coordList[line].figureNumber;
                         if ((figureNr != lastFigureNumber) && (markFigure))
                             markSelectedFigure(figureNr);
@@ -821,12 +821,12 @@ namespace GRBL_Plotter
                         {
                             if (line == gcline.lineNumber)
                             {
-                                grbl.posMarker = (xyPoint)gcline.actualPos;
+                                grbl.posMarker = gcline.actualPos;
                                 grbl.posMarkerAngle = gcline.alpha;
                                 if (gcline.isArc)
                                 {   foreach (coordByLine point in centerList)
                                     {   if (point.lineNumber == gcline.lineNumber) // ==line
-                                        {   center = point.actualPos; showCenter = true;  break; }
+                                        {   center = (xyPoint)point.actualPos; showCenter = true;  break; }
                                     }
                                 }
                                 createMarkerPath(showCenter, center, last);
@@ -837,7 +837,7 @@ namespace GRBL_Plotter
 
                                 break;
                             }
-                            last = gcline.actualPos;
+                            last = (xyPoint)gcline.actualPos;
                         }
                     }
                 }
@@ -864,14 +864,14 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.guiBackgroundShow && (coordListLandMark.Count > 1))
             {   foreach (coordByLine gcline in coordListLandMark)
                 {   gcline.calcDistance(pos+(xyPoint)grbl.posWCO);      // calculate distance machine coordinates
-                    tmpList.Add(new coordByLine(0, gcline.figureNumber, gcline.actualPos - (xyPoint)grbl.posWCO, gcline.alpha, gcline.distance)); // add as work coord.
+                    tmpList.Add(new coordByLine(0, gcline.figureNumber, gcline.actualPos - grbl.posWCO, gcline.alpha, gcline.distance)); // add as work coord.
                 }
             }
 
             /* sort list by distance, get associated linenr. */
             int line = 0;
             List<coordByLine> SortedList = tmpList.OrderBy(o => o.distance).ToList();
-            grbl.posMarker = (xyPoint)SortedList[line].actualPos;
+            grbl.posMarker = SortedList[line].actualPos;
             grbl.posMarkerAngle = SortedList[line].alpha;
             figureNr = SortedList[line].figureNumber;
 
@@ -879,7 +879,7 @@ namespace GRBL_Plotter
             if (SortedList[line].isArc)
             {   foreach (coordByLine point in centerList)
                 {   if (point.lineNumber == SortedList[line].lineNumber)
-                    {   center = point.actualPos; showCenter = true; break; }
+                    {   center = (xyPoint)point.actualPos; showCenter = true; break; }
                 }
             }
 
@@ -1510,7 +1510,7 @@ namespace GRBL_Plotter
                 }
 
                 isArc = ((gcline.motionMode == 2) || (gcline.motionMode == 3));
-                coordList.Add( new coordByLine(iCode, gcline.figureNumber, (xyPoint)gcline.actualPos, gcline.alpha, isArc));
+                coordList.Add( new coordByLine(iCode, gcline.figureNumber, (xyzPoint)gcline.actualPos, gcline.alpha, isArc));
             }
             return newCode.ToString().Replace(',','.');
         }
@@ -1543,6 +1543,7 @@ namespace GRBL_Plotter
         private static bool createDrawingPathFromGCode(gcodeByLine newL, gcodeByLine oldL)
         {
             bool passLimit = false;
+            bool zUp, zDown;
             var pathOld = path;
 
             if (newL.isSubroutine && (!oldL.isSubroutine))
@@ -1550,20 +1551,22 @@ namespace GRBL_Plotter
 
             if (!newL.ismachineCoordG53)
             {
-                if (((newL.motionMode > 0) && (oldL.motionMode == 0)) || (newL.actualPos.Z < 0) || (newL.codeLine.Contains("(PD)")))  // G0 = PenUp
-                { 	path = pathPenDown; 
+                zDown = (newL.actualPos.Z < 0) || (newL.codeLine.Contains("(PD"));
+                if (((newL.motionMode > 0) && (oldL.motionMode == 0)) || zDown)  // G0 = PenUp
+                { 	path = pathPenDown;
 					path.StartFigure();
                     if (pathActualDown != null)
                         pathActualDown.StartFigure();
                 }
-                if (((newL.motionMode == 0) && (oldL.motionMode > 0)) || (newL.actualPos.Z > 0) || (oldL.codeLine.Contains("(PU)")))
+                zUp = oldL.codeLine.Contains("(PU") || ((newL.actualPos.Z > 0) && (oldL.actualPos.Z < 0));
+                if (((newL.motionMode == 0) && (oldL.motionMode > 0)) || zUp)
                 {   path = pathPenUp; path.StartFigure();
                     tempPathInfo = new pathInfo();
                     tempPathInfo.position = new PointF((float)newL.actualPos.X, (float)newL.actualPos.Y);
                     tempPathInfo.angle = gcodeMath.getAlpha((xyPoint)oldL.actualPos, (xyPoint)newL.actualPos);
                 }
 
-            if ((path != pathOld))
+                if ((path != pathOld))
                 {
                     passLimit = true;
                     if (figureMarkerCount <= 0)
@@ -1636,7 +1639,7 @@ namespace GRBL_Plotter
                     { onlyZ++; }
 
                     // mark Z-only movements - could be drills
-                    if ((onlyZ > 1) && (passLimit) && (path == pathPenUp) || (oldL.codeLine.Contains("(PU)")))  // pen moved from -z to +z
+                    if ((onlyZ > 1) && (passLimit) && (path == pathPenUp) || (oldL.codeLine.Contains("DOT")))  // pen moved from -z to +z
                     {
                         float markerSize = 1;
                         if (!Properties.Settings.Default.importUnitmm)
@@ -1658,7 +1661,7 @@ namespace GRBL_Plotter
 
                     ArcProperties arcMove;
                     arcMove = gcodeMath.getArcMoveProperties((xyPoint)oldL.actualPos, (xyPoint)newL.actualPos, newL.i, newL.j, (newL.motionMode == 2));
-                    centerList.Add(new coordByLine(newL.lineNumber, figureCount, arcMove.center, 0, true));
+                    centerList.Add(new coordByLine(newL.lineNumber, figureCount, new xyzPoint(arcMove.center,0), 0, true));
 
                     newL.distance = Math.Abs(arcMove.radius * arcMove.angleDiff);
 
@@ -1851,11 +1854,11 @@ namespace GRBL_Plotter
                 else if (tangentialAxisName == "A") { posAngle = factor * grbl.posWork.A; }
                 else if (tangentialAxisName == "Z") { posAngle = factor * grbl.posWork.Z; }
                 createMarkerArrow(pathTool, msize, (xyPoint)grbl.posWork, posAngle, 1);
-				createMarkerArrow(pathMarker, msize, grbl.posMarker, grbl.posMarkerAngle * 360 / (double)Properties.Settings.Default.importGCTangentialTurn);
+				createMarkerArrow(pathMarker, msize, (xyPoint)grbl.posMarker, grbl.posMarkerAngle * 360 / (double)Properties.Settings.Default.importGCTangentialTurn);
 			}
             else
             {   createMarker(pathTool,   (xyPoint)grbl.posWork, msize, 2);
-				createMarker(pathMarker, grbl.posMarker, msize, 3);
+				createMarker(pathMarker, (xyPoint)grbl.posMarker, msize, 3);
 			}
 
             if (showCenter)

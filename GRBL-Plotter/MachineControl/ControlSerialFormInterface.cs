@@ -606,7 +606,7 @@ namespace GRBL_Plotter
 			{   Logger.Warn("! Last RX '{0}'  BufferFree:{1,3}  Index:{2,3}  max:{3,3}  lineNr:{4}", sendBuffer.GetConfirmedLine(), grblBufferFree, sendBuffer.IndexConfirmed, sendBuffer.Count, (sendBuffer.GetConfirmedLineNr()+1));
                 addToLog(string.Format("! Last processed '{0}'  line-Nr:{1}", sendBuffer.GetConfirmedLine(), (sendBuffer.GetConfirmedLineNr() + 1)));
                 addToLog(string.Format("Try to continue err-count:{0}",++countGrblError));
-                sendStreamEvent(streamingStateNow);
+                sendStreamEvent(streamingStateNow);         // processGrblErrorMessage
             }
 
             lock (receiveDataLock)  // error appears instead of ok, keep counting characters

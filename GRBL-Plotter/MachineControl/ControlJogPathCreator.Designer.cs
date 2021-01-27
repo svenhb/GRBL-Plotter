@@ -57,6 +57,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.gBJogParameter = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tBCodeEnd = new System.Windows.Forms.TextBox();
+            this.tBCodeStart = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnJogStop = new System.Windows.Forms.Button();
             this.btnJogStart = new System.Windows.Forms.Button();
@@ -162,6 +166,10 @@
             // 
             // gBJogParameter
             // 
+            this.gBJogParameter.Controls.Add(this.label4);
+            this.gBJogParameter.Controls.Add(this.label3);
+            this.gBJogParameter.Controls.Add(this.tBCodeEnd);
+            this.gBJogParameter.Controls.Add(this.tBCodeStart);
             this.gBJogParameter.Controls.Add(this.btnExport);
             this.gBJogParameter.Controls.Add(this.btnJogStop);
             this.gBJogParameter.Controls.Add(this.btnJogStart);
@@ -170,6 +178,30 @@
             resources.ApplyResources(this.gBJogParameter, "gBJogParameter");
             this.gBJogParameter.Name = "gBJogParameter";
             this.gBJogParameter.TabStop = false;
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // tBCodeEnd
+            // 
+            resources.ApplyResources(this.tBCodeEnd, "tBCodeEnd");
+            this.tBCodeEnd.Name = "tBCodeEnd";
+            this.toolTip1.SetToolTip(this.tBCodeEnd, resources.GetString("tBCodeEnd.ToolTip"));
+            // 
+            // tBCodeStart
+            // 
+            this.tBCodeStart.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "createJogPathCodeStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBCodeStart, "tBCodeStart");
+            this.tBCodeStart.Name = "tBCodeStart";
+            this.tBCodeStart.Text = global::GRBL_Plotter.Properties.Settings.Default.createJogPathCodeStart;
+            this.toolTip1.SetToolTip(this.tBCodeStart, resources.GetString("tBCodeStart.ToolTip"));
             // 
             // btnExport
             // 
@@ -181,17 +213,21 @@
             // 
             // btnJogStop
             // 
+            this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "createJogPathCodeEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.btnJogStop, "btnJogStop");
             this.btnJogStop.Name = "btnJogStop";
+            this.btnJogStop.Text = global::GRBL_Plotter.Properties.Settings.Default.createJogPathCodeEnd;
             this.toolTip1.SetToolTip(this.btnJogStop, resources.GetString("btnJogStop.ToolTip"));
-            this.btnJogStop.UseVisualStyleBackColor = true;
+            this.btnJogStop.UseVisualStyleBackColor = false;
             // 
             // btnJogStart
             // 
+            this.btnJogStart.BackColor = System.Drawing.Color.GreenYellow;
             resources.ApplyResources(this.btnJogStart, "btnJogStart");
             this.btnJogStart.Name = "btnJogStart";
             this.toolTip1.SetToolTip(this.btnJogStart, resources.GetString("btnJogStart.ToolTip"));
-            this.btnJogStart.UseVisualStyleBackColor = true;
+            this.btnJogStart.UseVisualStyleBackColor = false;
             this.btnJogStart.Click += new System.EventHandler(this.btnJogStart_Click);
             // 
             // label2
@@ -262,5 +298,9 @@
         public System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.CheckBox cBSnap;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tBCodeEnd;
+        private System.Windows.Forms.TextBox tBCodeStart;
     }
 }

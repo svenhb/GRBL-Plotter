@@ -21,6 +21,7 @@
  * 2020-01-10 line 113 set x,y,z=null
  * 2020-12-30 add N-number
  * 2021-01-06 find parsing problem
+ * 2021-01-24 extend actualPos to xyzPoint
  */ 
 
 
@@ -35,19 +36,19 @@ namespace GRBL_Plotter
     class coordByLine
     {   public int lineNumber;          // line number in fCTBCode
         public int figureNumber;
-        public xyPoint actualPos;       // accumulates position
+        public xyzPoint actualPos;       // accumulates position
         public double alpha;            // angle between old and this position
         public double distance;         // distance to specific point
         public bool isArc;
 
-        public coordByLine(int line, int figure, xyPoint p, double a, bool isarc)
+        public coordByLine(int line, int figure, xyzPoint p, double a, bool isarc)
         { lineNumber = line; figureNumber = figure; actualPos = p; alpha = a; distance = -1; isArc = isarc; }
 
-        public coordByLine(int line, int figure, xyPoint p, double a, double dist)
+        public coordByLine(int line, int figure, xyzPoint p, double a, double dist)
         { lineNumber = line; figureNumber = figure; actualPos = p; alpha = a; distance = dist; isArc = false; }
 
         public void calcDistance(xyPoint tmp)
-        {   xyPoint delta = new xyPoint(tmp - actualPos);
+        {   xyPoint delta = new xyPoint(tmp - (xyPoint)actualPos);
             distance = Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
         }
     }
@@ -60,6 +61,8 @@ namespace GRBL_Plotter
 
         public static explicit operator xyPoint(xyzabcuvwPoint tmp)
         { return new xyPoint(tmp.X,tmp.Y); }
+        public static explicit operator xyzPoint(xyzabcuvwPoint tmp)
+        { return new xyzPoint(tmp.X, tmp.Y, tmp.Z, tmp.A, tmp.B, tmp.C); }
         public static explicit operator xyArcPoint(xyzabcuvwPoint tmp)
         { return new xyArcPoint(tmp.X, tmp.Y,0 ,0 ,0); }
     }

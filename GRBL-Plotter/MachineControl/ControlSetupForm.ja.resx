@@ -2448,4 +2448,18 @@ Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用�
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>2番目のGRBLを制御するために2番目のCOMポートを開きます。 ツールチェンジャーまたは4番目の軸に役立ちます。</value>
   </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>最初のタイルのコードをスキップします（xy = 0; 0）</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>変数：
+#INDX #INDY xまたはy方向のタイルのインデックス（例：0、1、2 ...）
+#OFFX #OFFY xまたはy方向のタイルのオフセット（例：0、200、400 ...）</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>スクリプト後の遅延</value>
+  </data>
 </root>

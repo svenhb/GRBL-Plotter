@@ -406,7 +406,7 @@ namespace GRBL_Plotter
         {
             private static int lineNr = 0;  // actual code line
             public static int dt = 50;    // step width
-            private static xyPoint posXY = new xyPoint();
+            private static xyzPoint posXY = new xyzPoint();
             private static double posZ = 0;
             private static double posA = 0;
             private static double posAngle = 0;
@@ -440,7 +440,7 @@ namespace GRBL_Plotter
                 diff.XY = diff.Z = diff.A = diff.Arc = 0;
                 distance = 0; dt = 50; posZ = 0; posA = 0;
                 remainingStep = stepWidth = 10;
-                lastPosMarker = posXY = grbl.posMarker = new xyPoint();
+                lastPosMarker = posXY = grbl.posMarker = new xyzPoint();
                 posAngle = grbl.posMarkerAngle = 0;
                 codeNext = new gcodeByLine(simuList[lineNr]);
                 createMarkerPath();
@@ -461,7 +461,7 @@ namespace GRBL_Plotter
                 if (!isIntermediate)
                 {
                     if (!getNextPos())                      //  finish simu if nextPos = false
-                    {   grbl.posMarker = (xyPoint)codeNext.actualPos;
+                    {   grbl.posMarker = (xyzPoint)codeNext.actualPos;
                         grbl.posMarkerAngle = codeNext.alpha;
                         createMarkerPath(false, (xyPoint)codeNext.actualPos);
                         return -1;		// < 0 = stop
@@ -472,10 +472,10 @@ namespace GRBL_Plotter
 
                     if (remainingStep == 0)                 // just next full pos
                     {
-                        grbl.posMarker = (xyPoint)codeNext.actualPos;
+                        grbl.posMarker = (xyzPoint)codeNext.actualPos;
                         grbl.posMarkerAngle = codeNext.alpha;
                         isPenDownNow = codeNext.motionMode > 0;
-                        createSimulationPath((xyPoint)codeNext.actualPos);
+                        createSimulationPath((xyzPoint)codeNext.actualPos);
                         createMarkerPath(false, (xyPoint)codeNext.actualPos);
                         posXY = grbl.posMarker;
                         posA = grbl.posMarkerAngle;
@@ -488,11 +488,11 @@ namespace GRBL_Plotter
                     else if (remainingStep > 0)             // move too short, get next gcode
                     {
                         isPenDownNow = codeNext.motionMode > 0;
-                        createSimulationPath((xyPoint)codeNext.actualPos);
+                        createSimulationPath((xyzPoint)codeNext.actualPos);
                         while (remainingStep > 0)
                         {
                             if (!getNextPos())              //  finish simu if nextPos = false //  calc distance & remaining steps
-                            {   grbl.posMarker = (xyPoint)codeNext.actualPos;
+                            {   grbl.posMarker = (xyzPoint)codeNext.actualPos;
                                 grbl.posMarkerAngle = codeNext.alpha;
                                 createMarkerPath(false, (xyPoint)codeNext.actualPos);
                                 return -codeNext.lineNumber;	// < 0 = stop
@@ -500,10 +500,10 @@ namespace GRBL_Plotter
                             remainingStep -= distance;
                         }
                         if (remainingStep == 0)             // just next full pos
-                        {   grbl.posMarker = (xyPoint)codeNext.actualPos;
+                        {   grbl.posMarker = (xyzPoint)codeNext.actualPos;
                             grbl.posMarkerAngle = codeNext.alpha;
                             isPenDownNow = codeNext.motionMode > 0;
-                            createSimulationPath((xyPoint)codeNext.actualPos);
+                            createSimulationPath((xyzPoint)codeNext.actualPos);
                             createMarkerPath(false, (xyPoint)codeNext.actualPos);
                             posXY = grbl.posMarker;
                             posA = grbl.posMarkerAngle;
@@ -515,7 +515,7 @@ namespace GRBL_Plotter
                         }
                     }
                     // remainingStep < 0 calc intermediate steps
-                    posXY = (xyPoint)codeLast.actualPos;
+                    posXY = (xyzPoint)codeLast.actualPos;
                     posAngle = codeLast.alpha;
                     posZ = codeLast.actualPos.Z;
                     posA = codeLast.alpha;
@@ -530,7 +530,7 @@ namespace GRBL_Plotter
                 grbl.posMarkerAngle = posA ; // posAngle;
                 isPenDownNow = codeNext.motionMode > 0;
                 createSimulationPath(posXY);
-                createMarkerPath(false, posXY);
+                createMarkerPath(false, (xyPoint)posXY);
 				coord.X = posXY.X;
 				coord.Y = posXY.Y;
 				coord.Z = posZ;
@@ -548,13 +548,13 @@ namespace GRBL_Plotter
                 isPenDownNow = codeNext.motionMode > 0;
                 isG2G3 = codeNext.motionMode > 1;
                 if (!isG2G3)
-                {   double deltaS = posXY.DistanceTo((xyPoint)codeNext.actualPos);      // XY remaining max distance
+                {   double deltaS = ((xyPoint)(posXY)).DistanceTo((xyPoint)codeNext.actualPos);      // XY remaining max distance
                     if (tangentialAxisName != "Z")
                         deltaS = Math.Max(deltaS, Math.Abs(codeNext.actualPos.Z - posZ));   // Z  remaining max distance
 
                     if ((deltaS < remainingStep) && ((deltaA) < 0.1))       // return false if finish with intermediate
                     {   remainingStep -= deltaS;
-                        createSimulationPath((xyPoint)codeNext.actualPos);
+                        createSimulationPath((xyzPoint)codeNext.actualPos);
                         return false;
                     }
                     double deltaX = codeNext.actualPos.X - posXY.X;     // get remaining distance
@@ -570,8 +570,8 @@ namespace GRBL_Plotter
                     }
                     posXY.X += dX;
                     posXY.Y += dY;
-                    if (!checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, posXY))  // avoid going too far
-                        posXY = (xyPoint)codeNext.actualPos;
+                    if (!checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, (xyPoint)posXY))  // avoid going too far
+                        posXY = (xyzPoint)codeNext.actualPos;
 
                     posA += (codeNext.alpha - codeLast.alpha) / aStep;	// step width = 1/10	dA;
                     if ((codeNext.z != null) && !isTangentialZ)
@@ -605,7 +605,7 @@ namespace GRBL_Plotter
                         if ((angleTmp >= (arcMove.angleStart + arcMove.angleDiff)) && (posA >= codeNext.alpha)) // return false if finish with intermediate
                         {
                             drawAngleNow = (float)((arcMove.angleStart + arcMove.angleDiff) * 180 / Math.PI);
-                            createSimulationPath((xyPoint)codeNext.actualPos);
+                            createSimulationPath((xyzPoint)codeNext.actualPos);
                             return false;
                         }
                     }
@@ -618,7 +618,7 @@ namespace GRBL_Plotter
                         if ((angleTmp <= (arcMove.angleStart + arcMove.angleDiff)) && (posA <= codeNext.alpha)) // return false if finish with intermediate
                         {
                             drawAngleNow = (float)((arcMove.angleStart + arcMove.angleDiff) * 180 / Math.PI);
-                            createSimulationPath((xyPoint)codeNext.actualPos);
+                            createSimulationPath((xyzPoint)codeNext.actualPos);
                             return false;
                         }
                     }
@@ -639,10 +639,10 @@ namespace GRBL_Plotter
                     return false;
                 updateFeedRate();
                 distance = getDistance();
-                lastPosMarker = (xyPoint)codeLast.actualPos;
+                lastPosMarker = (xyzPoint)codeLast.actualPos;
                 if ((remainingStep - distance) > 0)
                 {   isG2G3 = codeNext.motionMode > 1;
-                    createSimulationPath((xyPoint)codeNext.actualPos);
+                    createSimulationPath((xyzPoint)codeNext.actualPos);
                 }
                 return true;
             }
@@ -688,8 +688,8 @@ namespace GRBL_Plotter
                 return diff.Max;
             }
 
-            private static xyPoint lastPosMarker = new xyPoint();
-            public static void createSimulationPath(xyPoint moveto)
+            private static xyzPoint lastPosMarker = new xyzPoint();
+            public static void createSimulationPath(xyzPoint moveto)
             {
                 PointF start = new PointF((float)lastPosMarker.X,(float)lastPosMarker.Y);
                 PointF end = new PointF((float)moveto.X, (float)moveto.Y);
@@ -709,7 +709,7 @@ namespace GRBL_Plotter
                             pathSimulation.AddArc(x1, y1, r2, r2, drawAngleOld, (drawAngleNow- drawAngleOld));
                         lastPosMarker = moveto;
                     }
-                    else if (checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, moveto))
+                    else if (checkWithin((xyPoint)codeLast.actualPos, (xyPoint)codeNext.actualPos, (xyPoint)moveto))
                     {   pathSimulation.AddLine(start, end);
                         lastPosMarker = moveto;
                     }

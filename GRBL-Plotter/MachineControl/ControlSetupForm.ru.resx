@@ -2318,4 +2318,18 @@ Pushbullet: из соображений безопасности следует 
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>Открывает второй COM-порт для управления вторым GRBL. Подходит для устройств смены инструмента или 4-й оси.</value>
   </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>Код пропуска для 1-й плитки (xy = 0; 0)</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Переменные:
+#INDX #INDY индекс плитки для направления x или y (например, 0, 1, 2 ...)
+#OFFX #OFFY смещение плитки для направления x или y (например, 0, 200, 400 ...)</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>секунды</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Задержка после сценария</value>
+  </data>
 </root>

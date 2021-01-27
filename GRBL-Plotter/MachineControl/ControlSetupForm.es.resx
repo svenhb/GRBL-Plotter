@@ -2250,4 +2250,18 @@ Pushbullet: por razones de seguridad, debe utilizar una cuenta "basura", el toke
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>Abre un segundo puerto COM para controlar un segundo GRBL. Útil para cambiadores de herramientas o 4º eje.</value>
   </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>Omitir código para el primer mosaico (xy = 0; 0)</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Variables:
+#INDX #INDY índice de mosaico para la dirección xoy (por ejemplo, 0, 1, 2 ...)
+#OFFX #OFFY desplazamiento del mosaico para la dirección xoy (por ejemplo, 0, 200, 400 ...)</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>segundos</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Retraso después del guión</value>
+  </data>
 </root>

@@ -63,10 +63,10 @@ namespace GRBL_Plotter
         private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
         private static Dictionary<string, xyzPoint> coordinates = new Dictionary<string, xyzPoint>();    // keep []-settings
 
-        private static xyPoint _posMarker = new xyPoint(0, 0);
+        private static xyzPoint _posMarker = new xyzPoint(0, 0, 0);
         private static double _posMarkerAngle = 0;
-        private static xyPoint _posMarkerOld = new xyPoint(0, 0);
-        public static xyPoint posMarker
+        private static xyzPoint _posMarkerOld = new xyzPoint(0, 0, 0);
+        public static xyzPoint posMarker
         {   get
             {   return _posMarker;  }
             set
@@ -74,7 +74,7 @@ namespace GRBL_Plotter
                 _posMarker = value;
             }
         }
-        public static xyPoint posMarkerOld
+        public static xyzPoint posMarkerOld
         {   get
             {   return _posMarkerOld; }
             set

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@
 */
 /* 2020-09-18 split file
  * 2020-12-18 fix OnRaiseStreamEvent %
+ * 2021-01-23 add trgEvent to "sendStreamEvent" in time with the status query
+ * 2021-01-26 line 270 make delay between probe exchange scripts variable
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -58,6 +60,7 @@ namespace GRBL_Plotter
         private grblStreaming streamingStateNow = grblStreaming.ok;
         private grblStreaming streamingStateOld = grblStreaming.ok;
         private int lineStreamingPause = 0;
+        private bool trgEvent = false;
 
         public event EventHandler<StreamEventArgs> RaiseStreamEvent;
         protected virtual void OnRaiseStreamEvent(StreamEventArgs e)
@@ -249,22 +252,24 @@ namespace GRBL_Plotter
     
         private void insertToolChangeCode(int line, ref bool inSpindle)
         {
-            streamingBuffer.Add("($TS)", line);
+            streamingBuffer.Add("($TS)", line);         // keyword for receiving-buffer (sendBuffer.GetConfirmedLine();) "Tool change start"
             if (inSpindle)
             {   addCodeFromFile(Properties.Settings.Default.ctrlToolScriptPut, line);
                 inSpindle = false;
-                streamingBuffer.Add("($TO T"+ gcodeVariable["TOLN"]+")", line);
+                streamingBuffer.Add("($TO T"+ gcodeVariable["TOLN"]+")", line);     // keyword for receiving-buffer "Tool removed"
             }
             if (!Properties.Settings.Default.ctrlToolChangeEmpty || (gcodeVariable["TOAN"] != (int)Properties.Settings.Default.ctrlToolChangeEmptyNr))
             {   addCodeFromFile(Properties.Settings.Default.ctrlToolScriptSelect, line);
                 addCodeFromFile(Properties.Settings.Default.ctrlToolScriptGet, line);
                 inSpindle = true;
-                streamingBuffer.Add("($TI T" + gcodeVariable["TOAN"] + ")", line);
+                streamingBuffer.Add("($TI T" + gcodeVariable["TOAN"] + ")", line);  // keyword for receiving-buffer "Tool inserted"
                 addCodeFromFile(Properties.Settings.Default.ctrlToolScriptProbe, line);
             }
 
-            streamingBuffer.Add("($TE)", line);
-            streamingBuffer.Add("G4 P1", line);
+            streamingBuffer.Add("($TE)", line);         // keyword for receiving-buffer "Tool change finished"
+
+            if (Properties.Settings.Default.ctrlToolScriptDelay > 0)
+                streamingBuffer.Add(string.Format("G4 P{0:0.00}",Properties.Settings.Default.ctrlToolScriptDelay), line);
 
             // save actual tool info as last tool info
             gcodeVariable["TOLN"] = gcodeVariable["TOAN"];
@@ -344,8 +349,8 @@ namespace GRBL_Plotter
                     addToLog("[Restore Position]");
                     requestSend(string.Format("G90 G0 X{0:0.000} Y{1:0.000}", posPause.X, posPause.Y).Replace(',', '.'));  // restore last position
                     if (logStartStop) Logger.Trace("[Restore] X{0:0.000} Y{1:0.000}  State:{2}", posPause.X, posPause.Y, parserStateGC);
-					requestSend("G4 P1");       // wait 1 second
-					requestSend(string.Format("G0 Z{0:0.000}", posPause.Z).Replace(',', '.'));                      // restore last position
+					requestSend("G4 P0.5");       // wait 1 second // changed from 1 to 0,5 2021-01-26
+                    requestSend(string.Format("G0 Z{0:0.000}", posPause.Z).Replace(',', '.'));                      // restore last position
                 }
 				
                 addToLog("[Start streaming - no echo]");
@@ -470,7 +475,7 @@ namespace GRBL_Plotter
                 if ((streamingStateOld != streamingStateNow) || allowStreamingEvent)
                 {
                     if (streamingStateNow != grblStreaming.pause)
-                        sendStreamEvent(streamingStateNow);     // streaming processOkStreaming
+                    { if (trgEvent) sendStreamEvent(streamingStateNow); trgEvent = false; }  // streaming processOkStreaming
                     streamingStateOld = streamingStateNow;      //grblStatus = oldStatus;
                     allowStreamingEvent = false;
                 }
@@ -551,7 +556,7 @@ namespace GRBL_Plotter
 
                         if (grblStateNow == grblState.idle)
                         {
-                            requestSend("G4 P2");
+                            requestSend("G4 P1");   // changed from 2 to 1 2021-01-26
                             grblStateNow = grblStateLast = grblState.unknown;
                             countPreventInterlock = 10;
                         }
@@ -585,7 +590,7 @@ namespace GRBL_Plotter
             }   // while
 
             if (streamingStateNow != grblStreaming.pause)
-                sendStreamEvent(streamingStateNow);                 // streaming in preProcessStreaming
+            { if (trgEvent) sendStreamEvent(streamingStateNow); trgEvent = false; }    // streaming in preProcessStreaming
         }
 
 

@@ -2447,4 +2447,18 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>يفتح منفذ COM الثاني للتحكم في GRBL الثاني. مفيد لمبدلات الأدوات أو المحور الرابع.</value>
   </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>رمز التخطي للبلاط الأول (س ص = 0 ؛ 0)</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>المتغيرات:
+# INDX # فهرس INDY للتجانب لاتجاه x أو y (على سبيل المثال 0 ، 1 ، 2 ...)
+#OFFX #OFFY إزاحة التجانب لاتجاه x أو y (على سبيل المثال 0 ، 200 ، 400 ...)</value>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>ثواني</value>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>التأخير بعد النص</value>
+  </data>
 </root>
