@@ -34,7 +34,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cBNoZUp = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cBToolSet = new System.Windows.Forms.CheckBox();
             this.cBTool = new System.Windows.Forms.ComboBox();
             this.nUDToolOverlap = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
@@ -90,8 +89,23 @@
             this.rB3 = new System.Windows.Forms.RadioButton();
             this.rB2 = new System.Windows.Forms.RadioButton();
             this.rB1 = new System.Windows.Forms.RadioButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nUDRZRadius = new System.Windows.Forms.NumericUpDown();
+            this.nUDRZWidth = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nUDRZStep = new System.Windows.Forms.NumericUpDown();
+            this.rBRoundZXL = new System.Windows.Forms.RadioButton();
+            this.rBRoundZYB = new System.Windows.Forms.RadioButton();
+            this.rBRoundZXR = new System.Windows.Forms.RadioButton();
+            this.rBRoundZYT = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cBMoveTo00 = new System.Windows.Forms.CheckBox();
+            this.cBToolSet = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolSpindleSpeed)).BeginInit();
@@ -111,7 +125,13 @@
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDBevelR)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRZRadius)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRZWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRZStep)).BeginInit();
             this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -146,15 +166,6 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // cBToolSet
-            // 
-            resources.ApplyResources(this.cBToolSet, "cBToolSet");
-            this.cBToolSet.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolUseRouter;
-            this.cBToolSet.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolUseRouter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBToolSet.Name = "cBToolSet";
-            this.cBToolSet.UseVisualStyleBackColor = true;
-            this.cBToolSet.CheckedChanged += new System.EventHandler(this.cBToolSet_CheckedChanged);
             // 
             // cBTool
             // 
@@ -612,6 +623,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -720,6 +732,138 @@
             this.rB1.UseVisualStyleBackColor = true;
             this.rB1.CheckedChanged += new System.EventHandler(this.rB1_CheckedChanged);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.groupBox8);
+            this.tabPage3.Controls.Add(this.groupBox4);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.nUDRZRadius);
+            this.groupBox4.Controls.Add(this.nUDRZWidth);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.nUDRZStep);
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // nUDRZRadius
+            // 
+            this.nUDRZRadius.DecimalPlaces = 2;
+            this.nUDRZRadius.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRZRadius, "nUDRZRadius");
+            this.nUDRZRadius.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDRZRadius.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDRZRadius.Name = "nUDRZRadius";
+            this.toolTip1.SetToolTip(this.nUDRZRadius, resources.GetString("nUDRZRadius.ToolTip"));
+            this.nUDRZRadius.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // nUDRZWidth
+            // 
+            this.nUDRZWidth.DecimalPlaces = 2;
+            resources.ApplyResources(this.nUDRZWidth, "nUDRZWidth");
+            this.nUDRZWidth.Name = "nUDRZWidth";
+            this.toolTip1.SetToolTip(this.nUDRZWidth, resources.GetString("nUDRZWidth.ToolTip"));
+            this.nUDRZWidth.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // nUDRZStep
+            // 
+            this.nUDRZStep.DecimalPlaces = 2;
+            this.nUDRZStep.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDRZStep, "nUDRZStep");
+            this.nUDRZStep.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDRZStep.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUDRZStep.Name = "nUDRZStep";
+            this.toolTip1.SetToolTip(this.nUDRZStep, resources.GetString("nUDRZStep.ToolTip"));
+            this.nUDRZStep.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
+            // rBRoundZXL
+            // 
+            resources.ApplyResources(this.rBRoundZXL, "rBRoundZXL");
+            this.rBRoundZXL.Name = "rBRoundZXL";
+            this.rBRoundZXL.UseVisualStyleBackColor = true;
+            this.rBRoundZXL.CheckedChanged += new System.EventHandler(this.rBRoundZYT_CheckedChanged);
+            // 
+            // rBRoundZYB
+            // 
+            resources.ApplyResources(this.rBRoundZYB, "rBRoundZYB");
+            this.rBRoundZYB.Name = "rBRoundZYB";
+            this.rBRoundZYB.UseVisualStyleBackColor = true;
+            this.rBRoundZYB.CheckedChanged += new System.EventHandler(this.rBRoundZYT_CheckedChanged);
+            // 
+            // rBRoundZXR
+            // 
+            resources.ApplyResources(this.rBRoundZXR, "rBRoundZXR");
+            this.rBRoundZXR.Name = "rBRoundZXR";
+            this.rBRoundZXR.UseVisualStyleBackColor = true;
+            this.rBRoundZXR.CheckedChanged += new System.EventHandler(this.rBRoundZYT_CheckedChanged);
+            // 
+            // rBRoundZYT
+            // 
+            resources.ApplyResources(this.rBRoundZYT, "rBRoundZYT");
+            this.rBRoundZYT.Checked = true;
+            this.rBRoundZYT.Name = "rBRoundZYT";
+            this.rBRoundZYT.TabStop = true;
+            this.rBRoundZYT.UseVisualStyleBackColor = true;
+            this.rBRoundZYT.CheckedChanged += new System.EventHandler(this.rBRoundZYT_CheckedChanged);
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.nUDImportGCZDown);
@@ -733,6 +877,30 @@
             resources.ApplyResources(this.cBMoveTo00, "cBMoveTo00");
             this.cBMoveTo00.Name = "cBMoveTo00";
             this.cBMoveTo00.UseVisualStyleBackColor = true;
+            // 
+            // cBToolSet
+            // 
+            resources.ApplyResources(this.cBToolSet, "cBToolSet");
+            this.cBToolSet.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCToolUseRouter;
+            this.cBToolSet.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCToolUseRouter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolSet.Name = "cBToolSet";
+            this.cBToolSet.UseVisualStyleBackColor = true;
+            this.cBToolSet.CheckedChanged += new System.EventHandler(this.cBToolSet_CheckedChanged);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.rBRoundZYT);
+            this.groupBox8.Controls.Add(this.rBRoundZYB);
+            this.groupBox8.Controls.Add(this.rBRoundZXL);
+            this.groupBox8.Controls.Add(this.rBRoundZXR);
+            resources.ApplyResources(this.groupBox8, "groupBox8");
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.TabStop = false;
             // 
             // GCodeFromShape
             // 
@@ -775,8 +943,17 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDBevelR)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRZRadius)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRZWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDRZStep)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -845,5 +1022,19 @@
         private System.Windows.Forms.RadioButton rBBevel2;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.CheckBox cBMoveTo00;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.RadioButton rBRoundZXR;
+        private System.Windows.Forms.RadioButton rBRoundZYT;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown nUDRZWidth;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown nUDRZRadius;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown nUDRZStep;
+        private System.Windows.Forms.RadioButton rBRoundZYB;
+        private System.Windows.Forms.RadioButton rBRoundZXL;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox8;
     }
 }

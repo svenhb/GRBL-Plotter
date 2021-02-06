@@ -181,7 +181,7 @@
     <value>创建口袋</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>口袋</value>
+    <value>外型尺寸</value>
   </data>
   <data name="rBToolpath3.Text" xml:space="preserve">
     <value>里面的形状</value>
@@ -224,5 +224,47 @@
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>深度</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>半径</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>偏差</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>宽度</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>半径在Z-X-左，宽度在Y</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>Z-Y底部的半径，X的宽度</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>半径在Z-X-右，宽度在Y</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>半径在Z-Y顶部，宽度在X上</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>四舍五入</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>最终移到0； 0</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Z方向的半径</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>舍入宽度</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>最高允许偏差到1/4圆单位</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>圆柱铣刀的路径计算</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>四舍五入位置</value>
   </data>
 </root>

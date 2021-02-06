@@ -88,17 +88,18 @@ namespace GRBL_Plotter
             gcode.Tool(gcodeString, tprop.toolnr, tprop.name);
      //       if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
 
-            float x, y, rShape,d,dTool,overlap,rTool,zStep;
+            float x, y, rShape,d,dTool, dToolOffset,overlap,rTool, rToolOffset,zStep;
             float zStart = 0;
             x = (float)nUDShapeX.Value;
             y = (float)nUDShapeY.Value;
             rShape = (float)nUDShapeR.Value;
             d = 2 * rShape;
-            dTool = (float)nUDToolDiameter.Value;               // tool diameter;
-            overlap = dTool * (float)nUDToolOverlap.Value/100;  // tool overlap
-            if (rBToolpath1.Checked) { dTool = 0; }             // engrave
-            if (rBToolpath3.Checked) { dTool = -dTool; }        // inside
-            rTool = dTool / 2;                                  // tool radius
+            dTool = dToolOffset = (float)nUDToolDiameter.Value;               // tool diameter;
+            rTool = dTool / 2;
+            overlap = dToolOffset * (float)nUDToolOverlap.Value/100;  // tool overlap
+            if (rBToolpath1.Checked) { dToolOffset = 0; }             // engrave
+            if (rBToolpath3.Checked) { dToolOffset = -dToolOffset; }        // inside
+            rToolOffset = dToolOffset / 2;                                  // tool radius
 
             int counter=0,safety = 100;
             int zStepCount = 0;
@@ -114,7 +115,7 @@ namespace GRBL_Plotter
             if (tabControl1.SelectedTab == tabPage1)
             {
                 #region shape
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 if (rBShape1.Checked)                               // rectangle
                 {
                     getOffset(x, y);
@@ -124,8 +125,8 @@ namespace GRBL_Plotter
                     path.AddLine(offsetX + x, offsetY + y, offsetX, offsetY + y);
                     path.AddLine(offsetX, offsetY + y, offsetX, offsetY);
 
-                    offsetX -= rTool; offsetY -= rTool;
-                    x += dTool;y += dTool;                          // width +/- tool diameter (outline / inline)
+                    offsetX -= rToolOffset; offsetY -= rToolOffset;
+                    x += dToolOffset; y += dToolOffset;                          // width +/- tool diameter (outline / inline)
                     zStep = zStart;
 
                     while (zStep > (float)nUDImportGCZDown.Value)   // nUDImportGCZDown.Value e.g. -2
@@ -135,32 +136,33 @@ namespace GRBL_Plotter
                             zStep = (float)nUDImportGCZDown.Value;
 
                         if ((overlap > x / 2) || (overlap > y / 2))
-                        {    overlap = (float)(Math.Min(x, y) / 2.1); }
+                        { overlap = (float)(Math.Min(x, y) / 2.1); }
 
                         //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
-                        if (!(zStepCount++ == 0) )     // move up the 1st time 
+                        if (!(zStepCount++ == 0))     // move up the 1st time 
                         {
-                            if(!cBNoZUp.Checked) gcode.PenUp(gcodeString);
+                            if (!cBNoZUp.Checked) gcode.PenUp(gcodeString);
                             if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ "  " + passCount.ToString() + ">");
                         }
                         passCount++;
 
-                        if(gcodeTangEnable)
+                        if (gcodeTangEnable)
                             gcode.setTangential(gcodeString, 90, true);
 
-                        if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart,passCount, zStep, nUDImportGCZDown.Value));
+                        if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                         if (cBToolpathPocket.Checked)
-                            gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + overlap, ""); 
+                            gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + overlap, "");
                         else
                             gcode.MoveToRapid(gcodeString, offsetX, offsetY, "");
                         gcode.gcodeZDown = zStep;               // adapt Z-deepth
                         gcode.PenDown(gcodeString);
                         if (cBToolpathPocket.Checked)           // 1st pocket
-                        {   if ((x > Math.Abs(dTool)) && (y > Math.Abs(dTool)))      // wide enough for pocket
+                        {
+                            if ((x > Math.Abs(dToolOffset)) && (y > Math.Abs(dToolOffset)))      // wide enough for pocket
                             {
                                 dx = overlap; dy = overlap;
-                                while (((dx < (x + overlap)/ 2) && (dy < (y + overlap) / 2)) && (counter++ < safety))
+                                while (((dx < (x + overlap) / 2) && (dy < (y + overlap) / 2)) && (counter++ < safety))
                                 {
                                     makeRect(offsetX + dx, offsetY + dy, offsetX + x - dx, offsetY + y - dy, 0, false);  // rectangle clockwise
                                     dx += overlap; dy += overlap;
@@ -171,7 +173,7 @@ namespace GRBL_Plotter
                                     gcode.MoveTo(gcodeString, offsetX, offsetY, "Pocket finish");
                                 else
                                 {
-                                    gcode.PenUp(gcodeString,"Pocket finish");
+                                    gcode.PenUp(gcodeString, "Pocket finish");
                                     gcode.MoveToRapid(gcodeString, offsetX, offsetY, "Pocket finish");
                                     gcode.PenDown(gcodeString);
                                 }
@@ -183,7 +185,7 @@ namespace GRBL_Plotter
                     gcode.PenUp(gcodeString);
                     if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
                 }
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 else if (rBShape2.Checked)           // rectangle with round edge
                 {
                     getOffset(x, y);
@@ -195,13 +197,13 @@ namespace GRBL_Plotter
                     path.AddArc(offsetX + x - d, offsetY + y - d, d, d, 0, 90);
 
                     path.AddLine(offsetX + x - rShape, offsetY + y, offsetX + rShape, offsetY + y);
-                    path.AddArc(offsetX , offsetY + y - d, d, d, 90, 90);
+                    path.AddArc(offsetX, offsetY + y - d, d, d, 90, 90);
 
                     path.AddLine(offsetX, offsetY + y - rShape, offsetX, offsetY + rShape);
-                    path.AddArc(offsetX , offsetY , d, d, 180, 90);
+                    path.AddArc(offsetX, offsetY, d, d, 180, 90);
 
-                    offsetX -= rTool; offsetY -= rTool;
-                    x += dTool; y += dTool;
+                    offsetX -= rToolOffset; offsetY -= rToolOffset;
+                    x += dToolOffset; y += dToolOffset;
 
                     if ((overlap > x / 2) || (overlap > y / 2))
                     { overlap = (float)(Math.Min(x, y) / 2.1); }
@@ -228,7 +230,7 @@ namespace GRBL_Plotter
                         if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                         if (cBToolpathPocket.Checked)
-                            gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + rShape , "");
+                            gcode.MoveToRapid(gcodeString, offsetX + overlap, offsetY + rShape, "");
                         else
                             gcode.MoveToRapid(gcodeString, offsetX, offsetY + rShape, "");
                         gcode.gcodeZDown = zStep;               // adapt Z-deepth
@@ -260,14 +262,14 @@ namespace GRBL_Plotter
                     gcode.PenUp(gcodeString);
                     if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
                 }
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 else if (rBShape3.Checked)           // circle
                 {
                     getOffset(d, d);
-                    path.AddArc(offsetX , offsetY , d, d, 0, 360);
+                    path.AddArc(offsetX, offsetY, d, d, 0, 360);
 
-                    offsetX -= rTool; offsetY -= rTool;
-                    rShape += rTool;                    // take care of tool diameter if set
+                    offsetX -= rToolOffset; offsetY -= rToolOffset;
+                    rShape += rToolOffset;                    // take care of tool diameter if set
 
                     if (overlap > rShape)
                     { overlap = (float)(rShape / 2.1); }
@@ -277,7 +279,7 @@ namespace GRBL_Plotter
                     while (zStep > (float)nUDImportGCZDown.Value)
                     {
                         //if ((zStepCount++ == 0) || !cBNoZUp.Checked)    // move up the 1st time 
-                        if (!(zStepCount++ == 0) )     // move up the 1st time 
+                        if (!(zStepCount++ == 0))     // move up the 1st time 
                         {
                             if (!cBNoZUp.Checked) gcode.PenUp(gcodeString);
                             if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
@@ -291,7 +293,7 @@ namespace GRBL_Plotter
                         if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
 
                         if (cBToolpathPocket.Checked)
-                            gcode.MoveToRapid(gcodeString, offsetX + rShape-overlap, offsetY + rShape, "");
+                            gcode.MoveToRapid(gcodeString, offsetX + rShape - overlap, offsetY + rShape, "");
                         else
                             gcode.MoveToRapid(gcodeString, offsetX, offsetY + rShape, "");
                         zStep -= (float)nUDToolZStep.Value;
@@ -301,8 +303,9 @@ namespace GRBL_Plotter
                         gcode.PenDown(gcodeString);
                         rDelta = overlap;
                         counter = 0;
-                        if ((cBToolpathPocket.Checked) && (rShape > 2*rTool))
-                        {   while ((rDelta < rShape) && (counter++ < safety))
+                        if ((cBToolpathPocket.Checked) && (rShape > 2 * rToolOffset))
+                        {
+                            while ((rDelta < rShape) && (counter++ < safety))
                             {
                                 gcode.setTangential(gcodeString, -270, false);  //
                                 gcode.Arc(gcodeString, 2, offsetX + rShape - rDelta, offsetY + rShape, rDelta, 0, "");
@@ -310,7 +313,7 @@ namespace GRBL_Plotter
                                 if (rDelta < rShape)
                                     gcode.MoveTo(gcodeString, offsetX + rShape - rDelta, offsetY + rShape, "");
                             }
-                            gcode.MoveTo(gcodeString, offsetX , offsetY + rShape, "");
+                            gcode.MoveTo(gcodeString, offsetX, offsetY + rShape, "");
                         }
                         gcode.setTangential(gcodeString, -270, false);  //
                         gcode.Arc(gcodeString, 2, offsetX, offsetY + rShape, rShape, 0, "");
@@ -325,30 +328,32 @@ namespace GRBL_Plotter
                 {
                     rShape = (float)nUDBevelR.Value;
                     getOffset(rShape, rShape);
-                    double rPath = rShape + rTool;                                // rTool is neg if inside shape, 0 if on shape, pos if outside shape
-                    double xStart=0, yStart=0;
-                    double xEnd=0, yEnd=0;
-                    double xOff=0, yOff=0;
-                    double i=0, j=0;
-                    double aStart=0, aEnd=0;
-                    
+                    double rPath = rShape + rToolOffset;                                // rTool is neg if inside shape, 0 if on shape, pos if outside shape
+                    double xStart = 0, yStart = 0;
+                    double xEnd = 0, yEnd = 0;
+                    double xOff = 0, yOff = 0;
+                    double i = 0, j = 0;
+                    double aStart = 0, aEnd = 0;
+
                     bool isRound = rBBevel1.Checked;
-                                        
-/* Calculate start-pos from circle-center, then move to lower left of quadrant*/
-                    if (rB1.Checked) {  
-                        xStart = 0; yStart = rPath;     xOff = rShape; yOff = 0;    aStart = isRound? 180:225; aEnd = isRound? 270:225;
-                        xEnd = -rPath; yEnd = 0;    i = 0; j = -rPath; 
+
+                    /* Calculate start-pos from circle-center, then move to lower left of quadrant*/
+                    if (rB1.Checked)
+                    {  // add background path
+                        xStart = 0; yStart = rPath; xOff = rShape; yOff = 0; aStart = isRound ? 180 : 225; aEnd = isRound ? 270 : 225;
+                        xEnd = -rPath; yEnd = 0; i = 0; j = -rPath;
                         path.AddLine((float)(rShape + xOff + offsetX), (float)(rShape + yOff + offsetY), (float)(-rShape + xOff + offsetX), (float)(rShape + yOff + offsetY));      // draw edge
                         path.AddLine((float)(-rShape + xOff + offsetX), (float)(rShape + yOff + offsetY), (float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY));
                         path.StartFigure();
                         if (isRound)
-                            path.AddArc((float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(2*rShape), (float)(2*rShape), 90, 90);      // draw edge
+                            path.AddArc((float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(2 * rShape), (float)(2 * rShape), 90, 90);      // draw edge
                         else
-                            path.AddLine((float)(0 + xOff + offsetX), (float)(rShape + yOff + offsetY), (float)(-rShape + xOff + offsetX), (float)(0 + yOff + offsetY));                            
-                        }
-                    if (rB2.Checked) {  
-                        xStart = rPath; yStart = 0;     xOff = 0; yOff = 0;         aStart =  isRound? 90:135; aEnd = isRound? 180:135;
-                        xEnd = 0; yEnd = rPath;     i = -rPath; j = 0; 
+                            path.AddLine((float)(0 + xOff + offsetX), (float)(rShape + yOff + offsetY), (float)(-rShape + xOff + offsetX), (float)(0 + yOff + offsetY));
+                    }
+                    if (rB2.Checked)
+                    {  // add background path
+                        xStart = rPath; yStart = 0; xOff = 0; yOff = 0; aStart = isRound ? 90 : 135; aEnd = isRound ? 180 : 135;
+                        xEnd = 0; yEnd = rPath; i = -rPath; j = 0;
                         path.AddLine((float)(rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(rShape + xOff + offsetX), (float)(rShape + yOff + offsetY));
                         path.AddLine((float)(rShape + xOff + offsetX), (float)(rShape + yOff + offsetY), (float)(-rShape + xOff + offsetX), (float)(rShape + yOff + offsetY));
                         path.StartFigure();
@@ -356,10 +361,11 @@ namespace GRBL_Plotter
                             path.AddArc((float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(2 * rShape), (float)(2 * rShape), 0, 90);      // draw edge
                         else
                             path.AddLine((float)(rShape + xOff + offsetX), (float)(0 + yOff + offsetY), (float)(0 + xOff + offsetX), (float)(rShape + yOff + offsetY));
-                        }
-                    if (rB3.Checked) {  
-                        xStart = 0; yStart = -rPath;    xOff = 0; yOff = rShape;    aStart =  isRound? 0:45; aEnd = isRound? 90:45;
-                        xEnd = rPath; yEnd = 0;     i = 0; j = rPath; 
+                    }
+                    if (rB3.Checked)
+                    {  // add background path  
+                        xStart = 0; yStart = -rPath; xOff = 0; yOff = rShape; aStart = isRound ? 0 : 45; aEnd = isRound ? 90 : 45;
+                        xEnd = rPath; yEnd = 0; i = 0; j = rPath;
                         path.AddLine((float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY));
                         path.AddLine((float)(rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(rShape + xOff + offsetX), (float)(rShape + yOff + offsetY));
                         path.StartFigure();
@@ -367,10 +373,11 @@ namespace GRBL_Plotter
                             path.AddArc((float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(2 * rShape), (float)(2 * rShape), 270, 90);      // draw edge
                         else
                             path.AddLine((float)(0 + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(rShape + xOff + offsetX), (float)(0 + yOff + offsetY));
-                        }
-                    if (rB4.Checked) {  
-                        xStart = -rPath; yStart = 0;    xOff = rShape; yOff = rShape; aStart =  isRound? 270:315; aEnd =  isRound? 360:315;
-                        xEnd = 0; yEnd = -rPath;    i = rPath; j = 0; 
+                    }
+                    if (rB4.Checked)
+                    {  // add background path  
+                        xStart = -rPath; yStart = 0; xOff = rShape; yOff = rShape; aStart = isRound ? 270 : 315; aEnd = isRound ? 360 : 315;
+                        xEnd = 0; yEnd = -rPath; i = rPath; j = 0;
                         path.AddLine((float)(-rShape + xOff + offsetX), (float)(rShape + yOff + offsetY), (float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY));
                         path.AddLine((float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY));
                         path.StartFigure();
@@ -378,10 +385,10 @@ namespace GRBL_Plotter
                             path.AddArc((float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY), (float)(2 * rShape), (float)(2 * rShape), 180, 90);      // draw edge
                         else
                             path.AddLine((float)(-rShape + xOff + offsetX), (float)(0 + yOff + offsetY), (float)(0 + xOff + offsetX), (float)(-rShape + yOff + offsetY));
-                        }
+                    }
 
-                    
-         //           x += dTool;y += dTool;                          // width +/- tool diameter (outline / inline)
+
+                    //           x += dTool;y += dTool;                          // width +/- tool diameter (outline / inline)
                     zStep = zStart;
                     while (zStep > (float)nUDImportGCZDown.Value)   // nUDImportGCZDown.Value e.g. -2
                     {
@@ -389,32 +396,195 @@ namespace GRBL_Plotter
                         if (zStep < (float)nUDImportGCZDown.Value)
                             zStep = (float)nUDImportGCZDown.Value;
 
-                        if (!(zStepCount++ == 0) )     // move up the 1st time 
+                        if (!(zStepCount++ == 0))     // move up the 1st time 
                         {
-                            if(!cBNoZUp.Checked) gcode.PenUp(gcodeString);
+                            if (!cBNoZUp.Checked) gcode.PenUp(gcodeString);
                             if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ "  " + passCount.ToString() + ">");
                         }
                         passCount++;
 
-                        if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart,passCount, zStep, nUDImportGCZDown.Value));
-                        
+                        if (!inOneStep) gcode.Comment(gcodeString, string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\">", xmlMarker.passStart, passCount, zStep, nUDImportGCZDown.Value));
+
                         if (gcodeTangEnable) gcode.setTangential(gcodeString, aStart, true);
                         gcode.MoveToRapid(gcodeString, (float)(xStart + xOff + offsetX), (float)(yStart + yOff + offsetY), "");
-                        
+
                         gcode.gcodeZDown = zStep;               // adapt Z-deepth
                         gcode.PenDown(gcodeString);
 
                         gcode.setTangential(gcodeString, aEnd, false);  //
                         if (isRound)
-                            gcode.Arc(gcodeString, 3, (float)(xEnd + xOff + offsetX), (float)(yEnd + yOff + offsetY), (float)i, (float)j,  ""); 
+                            gcode.Arc(gcodeString, 3, (float)(xEnd + xOff + offsetX), (float)(yEnd + yOff + offsetY), (float)i, (float)j, "");
                         else
-                            gcode.MoveTo(gcodeString, (float)(xEnd + xOff + offsetX), (float)(yEnd + yOff + offsetY),  ""); 
+                            gcode.MoveTo(gcodeString, (float)(xEnd + xOff + offsetX), (float)(yEnd + yOff + offsetY), "");
 
                     }
                     gcode.PenUp(gcodeString);
                     if (!inOneStep) gcode.Comment(gcodeString, xmlMarker.passEnd + ">"); //+ " " + passCount.ToString() + ">");
                 }
 
+            }
+            else if (tabControl1.SelectedTab == tabPage3)
+            {
+                float xStart = 0, yStart = 0;
+                float xEnd = 0, yEnd = 0;
+
+                float roundR = (float)nUDRZRadius.Value;
+                float stepZ = (float)nUDRZStep.Value;
+                if (stepZ > roundR)
+                { nUDRZStep.Value = (decimal)(stepZ = roundR); }
+
+                float width = (float)nUDRZWidth.Value;
+
+                float actualZ = roundR;
+                float tmpX1 = 0, tmpX2 = 0, tmpY1 = 0, tmpY2 = 0;
+
+                #region horizontal
+                if (rBRoundZYT.Checked || rBRoundZYB.Checked)
+                {
+                    getOffset(width, roundR);
+                    path.AddRectangle(new RectangleF(offsetX, offsetY, width, roundR));
+                    path.StartFigure();
+
+                    float noffX = width + (float)Math.Ceiling(rTool) + 1;
+                    float lastZX = 0;
+     //               float tmpX1=0, tmpX2=0, tmpY1 = 0, tmpY2 = 0;
+                    int cnt = 0;
+                    float y1 = 0, y2 = 0;
+                    float starta = 90;
+                    PointF circlePos = new PointF();
+                    circlePos.Y = roundR;
+                    float lastZ = circlePos.Y;
+                    while (circlePos.Y > 0.001)    // add steps
+                    {
+                        circlePos = getCirclePos(roundR, stepZ, circlePos.Y);
+                        tmpX1 = roundR - lastZ;
+                        tmpX2 = roundR - circlePos.Y;
+                        tmpY1 = lastZX;
+                        tmpY2 = circlePos.X;
+                        if (rBRoundZYB.Checked)
+                        { tmpY1 = (roundR - lastZX); tmpY2 = (roundR - circlePos.X); }
+                        if (cnt++ == 0)
+                        { y1 = tmpY2; if (rBRoundZYB.Checked) { y1 -= dTool; starta = 180; y2 = roundR; } }
+                        path.AddLine((tmpX1 + noffX + offsetX), (tmpY1 + offsetY), (tmpX1 + noffX + offsetX), (tmpY2 + offsetY));   // draw steps
+                        path.AddLine((tmpX1 + noffX + offsetX), (tmpY2 + offsetY), (tmpX2 + noffX + offsetX), (tmpY2 + offsetY));   // draw steps
+                        lastZ = circlePos.Y;
+                        lastZX = circlePos.X;
+                    }
+                    path.AddLine((roundR + noffX + offsetX), (tmpY2 + offsetY), (roundR + noffX + offsetX), (y2 + offsetY));    // draw final line
+                    path.StartFigure();
+                    path.AddArc((  noffX + offsetX), (-tmpY2 + offsetY), (2* roundR), (2* roundR), starta, 90);                 // draw 1/4 circle
+                    path.StartFigure();
+                    path.AddArc((-rTool + width + offsetX), (y1 + offsetY), (dTool), (dTool), 0, 360);                          // draw tool diameter
+                    path.StartFigure();
+
+                    circlePos.Y = roundR;
+                    xStart = -rToolOffset; xEnd = width + rToolOffset;
+                    cnt = 0;
+                    while (circlePos.Y > 0.001)
+                    {   // horizontal zig zag
+                        circlePos = getCirclePos(roundR, stepZ, circlePos.Y);
+                        yStart = yEnd = circlePos.X + rTool;
+                        if (rBRoundZYB.Checked)
+                        { yStart = yEnd = (roundR - (circlePos.X + rTool)); }
+
+                        if (cnt++==0)
+                            gcode.MoveToRapid(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
+
+                        gcode.MoveTo(gcodeString, (xStart + offsetX), (yEnd + offsetY), "");
+                        gcode.gcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
+                        gcode.PenDown(gcodeString);
+                        gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
+                        if (circlePos.Y <= 0)
+                            break;
+
+                        circlePos = getCirclePos(roundR, stepZ, circlePos.Y);
+                        yStart = yEnd = circlePos.X + rTool;
+                        if (rBRoundZYB.Checked)
+                        { yStart = yEnd = (roundR - (circlePos.X + rTool)); }
+                        gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
+                        gcode.gcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
+                        gcode.PenDown(gcodeString);
+                        gcode.MoveTo(gcodeString, (xStart + offsetX), (yEnd + offsetY), "");
+                    }
+                    gcode.PenUp(gcodeString);
+                }
+                #endregion
+                #region vertical
+                #region vpath
+                else if (rBRoundZXR.Checked || rBRoundZXL.Checked)
+                {
+                    getOffset(roundR, width);
+                    path.AddRectangle(new RectangleF(offsetX, offsetY, roundR, width));
+                    path.StartFigure();
+
+                    float noffY = -( (float)Math.Ceiling(rTool) + 1);
+                    float lastZ = actualZ;
+                    float lastZX = 0;
+                    int cnt = 0;
+                    float starta = 0;
+                    float x1 = 0, x2 = -roundR, x3=0;
+                    PointF circlePos = new PointF();
+                    circlePos.Y = roundR;
+                    while (circlePos.Y > 0.001)
+                    {
+                        circlePos = getCirclePos(roundR, stepZ, circlePos.Y);
+                        tmpY1 = -(roundR - lastZ);
+                        tmpY2 = -(roundR - circlePos.Y);
+                        tmpX1 = lastZX;
+                        tmpX2 = circlePos.X;
+                        if (rBRoundZXL.Checked)
+                        { tmpX1 = (roundR - lastZX); tmpX2 = (roundR - circlePos.X); }
+                        if (cnt++ == 0)
+                        { x1 = tmpX2; if (rBRoundZXL.Checked) { x1 -= dTool; starta = 90; x2 = 0; x3 = roundR; } }
+                        path.AddLine((tmpX1  + offsetX), (tmpY1 + noffY + offsetY), (tmpX2  + offsetX), (tmpY1 + noffY + offsetY)); // draw steps
+                        path.AddLine((tmpX2  + offsetX), (tmpY1 + noffY + offsetY), (tmpX2  + offsetX), (tmpY2 + noffY + offsetY)); // draw steps
+                        lastZ = circlePos.Y;
+                        lastZX = circlePos.X;
+                    }
+                    path.AddLine((tmpX2  + offsetX), (tmpY2 + noffY + offsetY), (x3 + offsetX), (tmpY2 + noffY + offsetY)); // draw final line
+                    path.StartFigure();
+                    path.AddArc((x2 + offsetX), (-2*roundR + noffY + offsetY), (2* roundR), (2* roundR), starta, 90);       // draw 1/4 circle
+                    path.StartFigure();
+                    path.AddArc((x1 + offsetX), (-rTool + offsetY), (dTool), (dTool), 0, 360);                              // draw tool diameter
+                    path.StartFigure();
+                    #endregion
+                    
+                    circlePos.Y = roundR;
+                    yStart = -rToolOffset; yEnd = width + rToolOffset;
+                    if (rBRoundZXL.Checked)
+                    { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
+                    while (circlePos.Y > 0.001)
+                    {   // vertical zig zag
+
+                        circlePos = getCirclePos(roundR, stepZ, circlePos.Y);
+                        xStart = xEnd = circlePos.X + rTool;
+                        if (rBRoundZXL.Checked)
+                        { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
+
+                        if (cnt++==0)
+                            gcode.MoveToRapid(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
+
+                        gcode.MoveTo(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
+                        gcode.gcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
+                        gcode.PenDown(gcodeString);
+                        gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
+                                                
+                        circlePos = getCirclePos(roundR, stepZ, circlePos.Y);
+                        xStart = xEnd = circlePos.X + rTool;
+                        if (rBRoundZXL.Checked)
+                        { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
+                        if (circlePos.Y <= 0)
+                            break;
+                            
+                        gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
+                        gcode.gcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
+                        gcode.PenDown(gcodeString);
+                        gcode.MoveTo(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
+                    }
+                    gcode.PenUp(gcodeString);
+                }
+                #endregion
+                    //        MessageBox.Show(tmp);
             }
             gcode.Comment(gcodeString, string.Format("{0}>", xmlMarker.figureEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
 
@@ -430,6 +600,17 @@ namespace GRBL_Plotter
 
             gcodeString.Replace(',', '.');
             shapegcode = header + gcodeString.ToString() + footer;
+        }
+
+        private static PointF getCirclePos(float r, float err, float startZ)
+        {
+            float rextend = r + err;
+            float actualZX = (float)Math.Sqrt(rextend * rextend - startZ * startZ);
+            if (actualZX > r) actualZX = r;
+            double actualA = Math.Asin(actualZX / r);
+            float actualZ = (float)Math.Cos(actualA) * r;
+            if (actualZ < 0) actualZ = 0;
+            return new PointF(actualZX, actualZ);
         }
 
         private static void createGraphicsPathAddCorner()
@@ -514,6 +695,10 @@ namespace GRBL_Plotter
             nUDShapeR.Value = Properties.Settings.Default.createShapeR;
             cBMoveTo00.Checked = Properties.Settings.Default.createShapeMovo00;
             cBNoZUp.Checked = Properties.Settings.Default.createShapeNoZUp;
+
+            nUDRZRadius.Value = Properties.Settings.Default.createShapeRZRadius;
+            nUDRZWidth.Value = Properties.Settings.Default.createShapeRZWidth;
+            nUDRZStep.Value = Properties.Settings.Default.createShapeRZStep;
 
             switch (Properties.Settings.Default.createShapeType)
             {
@@ -616,6 +801,11 @@ namespace GRBL_Plotter
             Properties.Settings.Default.createShapeR = nUDShapeR.Value;
             Properties.Settings.Default.createShapeMovo00 =cBMoveTo00.Checked;
             Properties.Settings.Default.createShapeNoZUp = cBNoZUp.Checked;
+
+            Properties.Settings.Default.createShapeRZRadius = nUDRZRadius.Value;
+            Properties.Settings.Default.createShapeRZWidth = nUDRZWidth.Value;
+            Properties.Settings.Default.createShapeRZStep = nUDRZStep.Value;
+
 
             if (rBShape1.Checked) Properties.Settings.Default.createShapeType = 1;
             if (rBShape2.Checked) Properties.Settings.Default.createShapeType = 2;
@@ -733,6 +923,18 @@ namespace GRBL_Plotter
             {   btnApply.Enabled = (rB1.Checked || rB2.Checked || rB3.Checked || rB4.Checked);  }
             else
                 btnApply.Enabled = true;
+
+            if (tabControl1.SelectedTab == tabPage3)
+                rBRoundZYT_CheckedChanged(sender,e);
+        }
+
+        private void rBRoundZYT_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rBRoundZYT.Checked) rBOrigin1.PerformClick();
+            else if (rBRoundZYB.Checked) rBOrigin7.PerformClick();
+            else if(rBRoundZXR.Checked) rBOrigin9.PerformClick();
+            else if(rBRoundZXL.Checked) rBOrigin7.PerformClick();
+
         }
 
         private void rBBevel1_CheckedChanged(object sender, EventArgs e)

@@ -181,7 +181,7 @@
     <value>Crear bolsillo</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>Bolsillo</value>
+    <value>Dimensiones</value>
   </data>
   <data name="rBToolpath3.Text" xml:space="preserve">
     <value>Dentro de la forma</value>
@@ -224,5 +224,47 @@
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Profundidad</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Radio</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Desviación</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Anchura</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>Radio en Z-X-izquierda, ancho en Y</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>Radio en la base Z-Y, ancho en X</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>Radio en Z-X-derecha, ancho en Y</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>Radio en Z-Y-top, ancho en X</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Redondear Z</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>Finalmente muévase a 0; 0</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Radio en dirección Z</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>Ancho del redondeo</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>Max. desviación permitida a 1/4 de círculo en unidades</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Cálculo de la trayectoria de la fresa cilíndrica</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Posición de redondeo</value>
   </data>
 </root>

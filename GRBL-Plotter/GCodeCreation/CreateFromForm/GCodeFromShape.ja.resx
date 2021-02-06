@@ -172,7 +172,7 @@
     <value>ツール：</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>ポケット</value>
+    <value>寸法</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>ツール</value>
@@ -242,5 +242,47 @@
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>深さ</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>半径</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>偏差</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>幅</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>Z-Xの半径-左、Yの幅</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>Z-Y底の半径、Xの幅</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>Z-Xの半径-右、Yの幅</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>Z-Y上部の半径、Xの幅</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Zを四捨五入する</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>最後に0に移動します。 0</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Z方向の半径</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>四捨五入の幅</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>最大単位で1/4円への偏差を許可</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>円筒フライスの経路計算</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>四捨五入位置</value>
   </data>
 </root>

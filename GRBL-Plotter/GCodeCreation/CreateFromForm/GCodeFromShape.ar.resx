@@ -251,7 +251,7 @@
     <value>على الشكل (النقش)</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>جيب</value>
+    <value>الأبعاد</value>
   </data>
   <data name="cBToolpathPocket.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 17</value>
@@ -303,5 +303,50 @@
   </data>
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>نصف القطر</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>الانحراف</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>نصف القطر على Z-X-left ، العرض على Y</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>نصف القطر على Z-Y-bottom ، والعرض على X</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>نصف القطر على Z-X-right ، العرض على Y</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>نصف القطر على Z-Y-top ، العرض على X</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>تقريب Z</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>أخيرًا انتقل إلى 0 ؛ 0</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>نصف القطر في اتجاه Z</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>عرض الجولة</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>ماكس. يسمح بالانحراف إلى 1/4 دائرة بوحدات</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>حساب المسار لقاطع الطحن الأسطواني</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>تقريب الموقف</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>ممر الأدوات</value>
   </data>
 </root>

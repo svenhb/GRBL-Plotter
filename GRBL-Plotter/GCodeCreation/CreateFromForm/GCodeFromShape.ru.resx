@@ -181,7 +181,7 @@
     <value>Создать карман</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>карманный</value>
+    <value>Габаритные размеры</value>
   </data>
   <data name="rBToolpath3.Text" xml:space="preserve">
     <value>Внутри формы</value>
@@ -224,5 +224,47 @@
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Глубина</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Радиус</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Отклонение</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>Радиус по Z-X слева, ширина по Y</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>Радиус по Z-Y-снизу, ширина по X</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>Радиус по Z-X-справа, ширина по Y</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>Радиус по Z-Y-вершине, ширина по X</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Закруглить Z</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>Наконец перейдите к 0; 0</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Радиус в направлении Z</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>Ширина закругления</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>Максимум. допустимое отклонение до 1/4 круга в единицах</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Расчет траектории цилиндрической фрезы</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Позиция округления</value>
   </data>
 </root>

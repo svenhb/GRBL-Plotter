@@ -236,7 +236,7 @@
     <value>125, 74</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>Tasche</value>
+    <value>Maße</value>
   </data>
   <data name="cBToolpathPocket.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 17</value>
@@ -312,5 +312,47 @@
   </data>
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Radius</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Abweichung</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Breite</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>Radius auf Z-X-links, Breite auf Y.</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>Radius auf Z-Y-unten, Breite auf X.</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>Radius auf Z-X-rechts, Breite auf Y.</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>Radius auf Z-Y-oben, Breite auf X.</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Abrundung Richtung Z</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>Abschließend zu 0; 0 fahren</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Radius in Z-Richtung</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>Breite der Runde</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>Max. erlaubte Abweichung zu einem 1/4 Kreis in Einheiten</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Bahnberechnung für zylindrischen Fräser</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Position zum Abrunden</value>
   </data>
 </root>

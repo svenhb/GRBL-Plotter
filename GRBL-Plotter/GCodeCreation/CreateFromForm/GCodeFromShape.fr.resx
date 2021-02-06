@@ -181,7 +181,7 @@
     <value>Créer une poche</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>Poche</value>
+    <value>Dimensions</value>
   </data>
   <data name="rBToolpath3.Text" xml:space="preserve">
     <value>À l'intérieur de la forme</value>
@@ -224,5 +224,47 @@
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Profondeur</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Rayon</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Déviation</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Largeur</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>Rayon sur Z-X-gauche, largeur sur Y</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>Rayon sur fond Z-Y, largeur sur X</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>Rayon sur Z-X-droite, largeur sur Y</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>Rayon sur Z-Y-dessus, largeur sur X</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Arrondir Z</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>Enfin passer à 0; 0</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Rayon dans la direction Z</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>Largeur de l'arrondi</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>Max. écart autorisé à un quart de cercle en unités</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Calcul de trajectoire pour fraise cylindrique</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Position arrondie</value>
   </data>
 </root>
