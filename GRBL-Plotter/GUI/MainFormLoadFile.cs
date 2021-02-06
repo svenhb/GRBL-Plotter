@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@
  * 2020-05-29 add CSV support
  * 2020-11-18 line 794, change search range from 100 to 200
  * 2020-12-01 newCodeEnd line 174 add Application.DoEvents()
+ * 2021-02-06 lock saveStreamingStatus() line 1677
 */
 
 using System;
@@ -47,8 +48,6 @@ using System.Xml;
 using System.Globalization;
 using System.Text;
 using System.Diagnostics;
-//using System.Diagnostics;
-//using Microsoft.Win32;
 
 namespace GRBL_Plotter
 {
@@ -1674,31 +1673,33 @@ namespace GRBL_Plotter
 
         private void saveStreamingStatus(int lineNr)
         {
-            string fileName = Application.StartupPath + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
+            lock (this)
+            {
+                string fileName = Application.StartupPath + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
+                XmlWriterSettings set = new XmlWriterSettings();
+                set.Indent = true;
+                XmlWriter w = XmlWriter.Create(fileName, set);
+                w.WriteStartDocument();
+                w.WriteStartElement("GCode");
+                w.WriteAttributeString("lineNr", lineNr.ToString());
+                if (lineNr > 0)
+                    w.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]);
+                else
+                    w.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
 
-            XmlWriterSettings set = new XmlWriterSettings();
-            set.Indent = true;
-            XmlWriter w = XmlWriter.Create(fileName, set);
-            w.WriteStartDocument();
-            w.WriteStartElement("GCode");
-            w.WriteAttributeString("lineNr", lineNr.ToString());
-            if (lineNr > 0)
-                w.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]);
-            else
-                w.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
+                w.WriteStartElement("WPos");
+                w.WriteAttributeString("X", grbl.posWork.X.ToString().Replace(',', '.'));
+                w.WriteAttributeString("Y", grbl.posWork.Y.ToString().Replace(',', '.'));
+                w.WriteAttributeString("Z", grbl.posWork.Z.ToString().Replace(',', '.'));
+                w.WriteEndElement();
 
-            w.WriteStartElement("WPos");
-            w.WriteAttributeString("X", grbl.posWork.X.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Y", grbl.posWork.Y.ToString().Replace(',', '.'));
-            w.WriteAttributeString("Z", grbl.posWork.Z.ToString().Replace(',', '.'));
-            w.WriteEndElement();
+                w.WriteStartElement("Parser");
+                w.WriteAttributeString("State", _serial_form.parserStateGC);
+                w.WriteEndElement();
 
-            w.WriteStartElement("Parser");
-            w.WriteAttributeString("State", _serial_form.parserStateGC);
-            w.WriteEndElement();
-
-            w.WriteEndElement();
-            w.Close();
+                w.WriteEndElement();
+                w.Close();
+            }
         }
 
         private int loadStreamingStatus(bool setPause = false)

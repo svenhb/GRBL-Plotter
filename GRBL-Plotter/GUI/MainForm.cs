@@ -48,6 +48,7 @@
  * 2020-12-28 add Marlin support
  * 2021-01-13 add 3rd serial com
  * 2021-01-20 move code for camera handling from here to 'MainFormGetCodetransform'
+ * 2021-02-01 line 802 change 0 to 0.000
  */
 
 using System;
@@ -373,7 +374,7 @@ namespace GRBL_Plotter
                 updateControls();
 
             if ((txt.Contains("G92") || txt.Contains("G10") || txt.Contains("G43")) && (_coordSystem_form != null))
-                _coordSystem_form.refreshValues();
+                _coordSystem_form.refreshValues();//_serial_form.requestSend("$#");
         }
 
         private void sendCommands(string txt, bool jogging = false) 
@@ -408,7 +409,7 @@ namespace GRBL_Plotter
             }
 
             if ((txt.Contains("G92") || txt.Contains("G10") || txt.Contains("G43")) && (_coordSystem_form != null))
-                _coordSystem_form.refreshValues();
+                _coordSystem_form.refreshValues();//_serial_form.requestSend("$#");
         }
 
 
@@ -802,21 +803,21 @@ namespace GRBL_Plotter
             else
                 sendCommand("$H"); }
         private void btnZeroX_Click(object sender, EventArgs e)
-        { sendCommands((grbl.isMarlin?"G92":zeroCmd) + " X0"); }
+        { sendCommands((grbl.isMarlin?"G92":zeroCmd) + " X0.000"); }
         private void btnZeroY_Click(object sender, EventArgs e)
-        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " Y0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " Y0.000"); }
         private void btnZeroZ_Click(object sender, EventArgs e)
-        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " Z0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " Z0.000"); }
         private void btnZeroA_Click(object sender, EventArgs e)
-        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " " + ctrl4thName + "0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " " + ctrl4thName + "0.000"); }
         private void btnZeroB_Click(object sender, EventArgs e)
-        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " B0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " B0.000"); }
         private void btnZeroC_Click(object sender, EventArgs e)
-        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " C0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " C0.000"); }
         private void btnZeroXY_Click(object sender, EventArgs e)
-        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " X0 Y0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " X0.000 Y0.000"); }
         private void btnZeroXYZ_Click(object sender, EventArgs e)
-        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " X0 Y0 Z0"); }
+        { sendCommands((grbl.isMarlin ? "G92" : zeroCmd) + " X0.000 Y0.000 Z0.000"); }
 
         private void btnJogX_Click(object sender, EventArgs e)
         { btnMoveZero("X0", joystickXYSpeed[5].ToString()); }

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 */
 /*
  * 2020-03-11 split from MainForm.cs
+ * 2021-02-06 add gamePad PointOfViewController0
  *
 */
 
@@ -76,8 +77,24 @@ namespace GRBL_Plotter
                                 { }
                                 return;
                             }
+                            else if (offset.IndexOf("PointOfViewControllers0") >= 0)
+                            {
+                                command = "";
+                                if (value == 0) { command = Properties.Settings.Default.gamePadPOVC00; } // up
+                                else if (value == 4500) { command = Properties.Settings.Default.gamePadPOVC01; } // up-right
+                                else if (value == 9000) { command = Properties.Settings.Default.gamePadPOVC02; } // right
+                                else if (value == 13500) { command = Properties.Settings.Default.gamePadPOVC03; } // down-right
+                                else if (value == 18000) { command = Properties.Settings.Default.gamePadPOVC04; } // down
+                                else if (value == 22500) { command = Properties.Settings.Default.gamePadPOVC05; } // down-left
+                                else if (value == 27000) { command = Properties.Settings.Default.gamePadPOVC06; } // left
+                                else if (value == 31500) { command = Properties.Settings.Default.gamePadPOVC07; } // up-left
+                                if (command.IndexOf('#') >= 0)
+                                { processSpecialCommands(command); }
+                                else
+                                { processCommands(command); }
+                            }
 
-                            if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
+                            else if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
                             {
                                 doJog = true;
                                 if (!gamePadValue.ContainsKey(offset))  // just keep latest value
