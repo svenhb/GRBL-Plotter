@@ -242,6 +242,8 @@ namespace GRBL_Plotter
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.gBToolChange = new System.Windows.Forms.GroupBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
             this.btnFileDialogTT4 = new System.Windows.Forms.Button();
             this.btnFileDialogTT3 = new System.Windows.Forms.Button();
             this.btnFileDialogTT2 = new System.Windows.Forms.Button();
@@ -504,6 +506,15 @@ namespace GRBL_Plotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblPOVC00 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.lblPOVC01 = new System.Windows.Forms.Label();
+            this.lblPOVC02 = new System.Windows.Forms.Label();
+            this.lblPOVC03 = new System.Windows.Forms.Label();
+            this.lblPOVC04 = new System.Windows.Forms.Label();
+            this.lblPOVC05 = new System.Windows.Forms.Label();
+            this.lblPOVC06 = new System.Windows.Forms.Label();
+            this.lblPOVC07 = new System.Windows.Forms.Label();
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
             this.tBGerberGeometryM19 = new System.Windows.Forms.TextBox();
             this.tBGerberGeometryKnife = new System.Windows.Forms.TextBox();
@@ -580,6 +591,14 @@ namespace GRBL_Plotter
             this.nUDImportGCTangentialSwivel2 = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCTangentialSwivel = new System.Windows.Forms.NumericUpDown();
             this.cBoxImportGCTangentialName = new System.Windows.Forms.ComboBox();
+            this.tBGPPOVC07 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC06 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC05 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC04 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC03 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC02 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC01 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC00 = new System.Windows.Forms.TextBox();
             this.cBImportGCTangentialRange = new System.Windows.Forms.CheckBox();
             this.cBImportGCTangential = new System.Windows.Forms.CheckBox();
             this.nUDImportGCDragKnifeAngle = new System.Windows.Forms.NumericUpDown();
@@ -647,6 +666,7 @@ namespace GRBL_Plotter
             this.nUDToolOffsetZ = new System.Windows.Forms.NumericUpDown();
             this.nUDToolOffsetX = new System.Windows.Forms.NumericUpDown();
             this.nUDToolOffsetY = new System.Windows.Forms.NumericUpDown();
+            this.nUDToolChangeScriptDelay = new System.Windows.Forms.NumericUpDown();
             this.nUDToolChangeEmpty = new System.Windows.Forms.NumericUpDown();
             this.cBToolChangeEmpty = new System.Windows.Forms.CheckBox();
             this.tBToolChangeScriptProbe = new System.Windows.Forms.TextBox();
@@ -798,9 +818,6 @@ namespace GRBL_Plotter
             this.nUDPenDown = new System.Windows.Forms.NumericUpDown();
             this.nUDPenUp = new System.Windows.Forms.NumericUpDown();
             this.nUDRuler = new System.Windows.Forms.NumericUpDown();
-            this.nUDToolChangeScriptDelay = new System.Windows.Forms.NumericUpDown();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -976,6 +993,7 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeY)).BeginInit();
@@ -1036,7 +1054,6 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRuler)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl_Level1
@@ -2532,6 +2549,16 @@ namespace GRBL_Plotter
             this.gBToolChange.Name = "gBToolChange";
             this.gBToolChange.TabStop = false;
             // 
+            // label47
+            // 
+            resources.ApplyResources(this.label47, "label47");
+            this.label47.Name = "label47";
+            // 
+            // label46
+            // 
+            resources.ApplyResources(this.label46, "label46");
+            this.label46.Name = "label46";
+            // 
             // btnFileDialogTT4
             // 
             resources.ApplyResources(this.btnFileDialogTT4, "btnFileDialogTT4");
@@ -3687,6 +3714,23 @@ namespace GRBL_Plotter
             // 
             // tab7gB1
             // 
+            this.tab7gB1.Controls.Add(this.tBGPPOVC07);
+            this.tab7gB1.Controls.Add(this.tBGPPOVC06);
+            this.tab7gB1.Controls.Add(this.tBGPPOVC05);
+            this.tab7gB1.Controls.Add(this.tBGPPOVC04);
+            this.tab7gB1.Controls.Add(this.tBGPPOVC03);
+            this.tab7gB1.Controls.Add(this.tBGPPOVC02);
+            this.tab7gB1.Controls.Add(this.tBGPPOVC01);
+            this.tab7gB1.Controls.Add(this.tBGPPOVC00);
+            this.tab7gB1.Controls.Add(this.lblPOVC07);
+            this.tab7gB1.Controls.Add(this.lblPOVC06);
+            this.tab7gB1.Controls.Add(this.lblPOVC05);
+            this.tab7gB1.Controls.Add(this.lblPOVC04);
+            this.tab7gB1.Controls.Add(this.lblPOVC03);
+            this.tab7gB1.Controls.Add(this.lblPOVC02);
+            this.tab7gB1.Controls.Add(this.lblPOVC01);
+            this.tab7gB1.Controls.Add(this.label49);
+            this.tab7gB1.Controls.Add(this.lblPOVC00);
             this.tab7gB1.Controls.Add(this.groupBox1);
             this.tab7gB1.Controls.Add(this.lblValR);
             this.tab7gB1.Controls.Add(this.lblValY);
@@ -4536,6 +4580,59 @@ namespace GRBL_Plotter
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblPOVC00
+            // 
+            this.lblPOVC00.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC00, "lblPOVC00");
+            this.lblPOVC00.Name = "lblPOVC00";
+            // 
+            // label49
+            // 
+            resources.ApplyResources(this.label49, "label49");
+            this.label49.Name = "label49";
+            // 
+            // lblPOVC01
+            // 
+            this.lblPOVC01.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC01, "lblPOVC01");
+            this.lblPOVC01.Name = "lblPOVC01";
+            // 
+            // lblPOVC02
+            // 
+            this.lblPOVC02.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC02, "lblPOVC02");
+            this.lblPOVC02.Name = "lblPOVC02";
+            // 
+            // lblPOVC03
+            // 
+            this.lblPOVC03.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC03, "lblPOVC03");
+            this.lblPOVC03.Name = "lblPOVC03";
+            // 
+            // lblPOVC04
+            // 
+            this.lblPOVC04.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC04, "lblPOVC04");
+            this.lblPOVC04.Name = "lblPOVC04";
+            // 
+            // lblPOVC05
+            // 
+            this.lblPOVC05.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC05, "lblPOVC05");
+            this.lblPOVC05.Name = "lblPOVC05";
+            // 
+            // lblPOVC06
+            // 
+            this.lblPOVC06.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC06, "lblPOVC06");
+            this.lblPOVC06.Name = "lblPOVC06";
+            // 
+            // lblPOVC07
+            // 
+            this.lblPOVC07.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC07, "lblPOVC07");
+            this.lblPOVC07.Name = "lblPOVC07";
             // 
             // cBshowImportDialog
             // 
@@ -5412,6 +5509,62 @@ namespace GRBL_Plotter
             this.cBoxImportGCTangentialName.Name = "cBoxImportGCTangentialName";
             this.cBoxImportGCTangentialName.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAxis;
             // 
+            // tBGPPOVC07
+            // 
+            this.tBGPPOVC07.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC07", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC07, "tBGPPOVC07");
+            this.tBGPPOVC07.Name = "tBGPPOVC07";
+            this.tBGPPOVC07.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC07;
+            // 
+            // tBGPPOVC06
+            // 
+            this.tBGPPOVC06.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC06", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC06, "tBGPPOVC06");
+            this.tBGPPOVC06.Name = "tBGPPOVC06";
+            this.tBGPPOVC06.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC06;
+            // 
+            // tBGPPOVC05
+            // 
+            this.tBGPPOVC05.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC05", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC05, "tBGPPOVC05");
+            this.tBGPPOVC05.Name = "tBGPPOVC05";
+            this.tBGPPOVC05.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC05;
+            // 
+            // tBGPPOVC04
+            // 
+            this.tBGPPOVC04.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC04", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC04, "tBGPPOVC04");
+            this.tBGPPOVC04.Name = "tBGPPOVC04";
+            this.tBGPPOVC04.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC04;
+            // 
+            // tBGPPOVC03
+            // 
+            this.tBGPPOVC03.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC03", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC03, "tBGPPOVC03");
+            this.tBGPPOVC03.Name = "tBGPPOVC03";
+            this.tBGPPOVC03.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC03;
+            // 
+            // tBGPPOVC02
+            // 
+            this.tBGPPOVC02.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC02", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC02, "tBGPPOVC02");
+            this.tBGPPOVC02.Name = "tBGPPOVC02";
+            this.tBGPPOVC02.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC02;
+            // 
+            // tBGPPOVC01
+            // 
+            this.tBGPPOVC01.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC01", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC01, "tBGPPOVC01");
+            this.tBGPPOVC01.Name = "tBGPPOVC01";
+            this.tBGPPOVC01.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC01;
+            // 
+            // tBGPPOVC00
+            // 
+            this.tBGPPOVC00.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC00", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC00, "tBGPPOVC00");
+            this.tBGPPOVC00.Name = "tBGPPOVC00";
+            this.tBGPPOVC00.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC00;
+            // 
             // cBImportGCTangentialRange
             // 
             resources.ApplyResources(this.cBImportGCTangentialRange, "cBImportGCTangentialRange");
@@ -6286,6 +6439,14 @@ namespace GRBL_Plotter
             -2147483648});
             this.nUDToolOffsetY.Name = "nUDToolOffsetY";
             this.nUDToolOffsetY.Value = global::GRBL_Plotter.Properties.Settings.Default.toolTableOffsetY;
+            // 
+            // nUDToolChangeScriptDelay
+            // 
+            this.nUDToolChangeScriptDelay.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptDelay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDToolChangeScriptDelay.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDToolChangeScriptDelay, "nUDToolChangeScriptDelay");
+            this.nUDToolChangeScriptDelay.Name = "nUDToolChangeScriptDelay";
+            this.nUDToolChangeScriptDelay.Value = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptDelay;
             // 
             // nUDToolChangeEmpty
             // 
@@ -7967,7 +8128,7 @@ namespace GRBL_Plotter
             // nUDSimulation
             // 
             this.nUDSimulation.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthSimulation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDSimulation.DecimalPlaces = 1;
+            this.nUDSimulation.DecimalPlaces = 2;
             this.nUDSimulation.Increment = new decimal(new int[] {
             1,
             0,
@@ -7983,7 +8144,7 @@ namespace GRBL_Plotter
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDSimulation.Name = "nUDSimulation";
             this.toolTip1.SetToolTip(this.nUDSimulation, resources.GetString("nUDSimulation.ToolTip"));
             this.nUDSimulation.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthSimulation;
@@ -7999,7 +8160,7 @@ namespace GRBL_Plotter
             // nUDRotaryInfo
             // 
             this.nUDRotaryInfo.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthRotaryInfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDRotaryInfo.DecimalPlaces = 1;
+            this.nUDRotaryInfo.DecimalPlaces = 2;
             this.nUDRotaryInfo.Increment = new decimal(new int[] {
             1,
             0,
@@ -8015,7 +8176,7 @@ namespace GRBL_Plotter
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDRotaryInfo.Name = "nUDRotaryInfo";
             this.toolTip1.SetToolTip(this.nUDRotaryInfo, resources.GetString("nUDRotaryInfo.ToolTip"));
             this.nUDRotaryInfo.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRotaryInfo;
@@ -8023,7 +8184,7 @@ namespace GRBL_Plotter
             // nUDHeightMap
             // 
             this.nUDHeightMap.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthHeightMap", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDHeightMap.DecimalPlaces = 1;
+            this.nUDHeightMap.DecimalPlaces = 2;
             this.nUDHeightMap.Increment = new decimal(new int[] {
             1,
             0,
@@ -8039,7 +8200,7 @@ namespace GRBL_Plotter
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDHeightMap.Name = "nUDHeightMap";
             this.toolTip1.SetToolTip(this.nUDHeightMap, resources.GetString("nUDHeightMap.ToolTip"));
             this.nUDHeightMap.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthHeightMap;
@@ -8047,7 +8208,7 @@ namespace GRBL_Plotter
             // nUDMarker
             // 
             this.nUDMarker.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthMarker", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDMarker.DecimalPlaces = 1;
+            this.nUDMarker.DecimalPlaces = 2;
             this.nUDMarker.Increment = new decimal(new int[] {
             1,
             0,
@@ -8063,7 +8224,7 @@ namespace GRBL_Plotter
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDMarker.Name = "nUDMarker";
             this.toolTip1.SetToolTip(this.nUDMarker, resources.GetString("nUDMarker.ToolTip"));
             this.nUDMarker.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthMarker;
@@ -8071,7 +8232,7 @@ namespace GRBL_Plotter
             // nUDTool
             // 
             this.nUDTool.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthTool", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDTool.DecimalPlaces = 1;
+            this.nUDTool.DecimalPlaces = 2;
             this.nUDTool.Increment = new decimal(new int[] {
             1,
             0,
@@ -8087,7 +8248,7 @@ namespace GRBL_Plotter
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDTool.Name = "nUDTool";
             this.toolTip1.SetToolTip(this.nUDTool, resources.GetString("nUDTool.ToolTip"));
             this.nUDTool.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthTool;
@@ -8095,7 +8256,7 @@ namespace GRBL_Plotter
             // nUDPenDown
             // 
             this.nUDPenDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthPenDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDPenDown.DecimalPlaces = 1;
+            this.nUDPenDown.DecimalPlaces = 2;
             this.nUDPenDown.Increment = new decimal(new int[] {
             1,
             0,
@@ -8111,7 +8272,7 @@ namespace GRBL_Plotter
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDPenDown.Name = "nUDPenDown";
             this.toolTip1.SetToolTip(this.nUDPenDown, resources.GetString("nUDPenDown.ToolTip"));
             this.nUDPenDown.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthPenDown;
@@ -8119,7 +8280,7 @@ namespace GRBL_Plotter
             // nUDPenUp
             // 
             this.nUDPenUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthPenUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDPenUp.DecimalPlaces = 1;
+            this.nUDPenUp.DecimalPlaces = 2;
             this.nUDPenUp.Increment = new decimal(new int[] {
             1,
             0,
@@ -8135,7 +8296,7 @@ namespace GRBL_Plotter
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDPenUp.Name = "nUDPenUp";
             this.toolTip1.SetToolTip(this.nUDPenUp, resources.GetString("nUDPenUp.ToolTip"));
             this.nUDPenUp.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthPenUp;
@@ -8143,7 +8304,7 @@ namespace GRBL_Plotter
             // nUDRuler
             // 
             this.nUDRuler.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gui2DWidthRuler", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDRuler.DecimalPlaces = 1;
+            this.nUDRuler.DecimalPlaces = 2;
             this.nUDRuler.Increment = new decimal(new int[] {
             1,
             0,
@@ -8159,28 +8320,10 @@ namespace GRBL_Plotter
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDRuler.Name = "nUDRuler";
             this.toolTip1.SetToolTip(this.nUDRuler, resources.GetString("nUDRuler.ToolTip"));
             this.nUDRuler.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRuler;
-            // 
-            // nUDToolChangeScriptDelay
-            // 
-            this.nUDToolChangeScriptDelay.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "ctrlToolScriptDelay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDToolChangeScriptDelay.DecimalPlaces = 1;
-            resources.ApplyResources(this.nUDToolChangeScriptDelay, "nUDToolChangeScriptDelay");
-            this.nUDToolChangeScriptDelay.Name = "nUDToolChangeScriptDelay";
-            this.nUDToolChangeScriptDelay.Value = global::GRBL_Plotter.Properties.Settings.Default.ctrlToolScriptDelay;
-            // 
-            // label46
-            // 
-            resources.ApplyResources(this.label46, "label46");
-            this.label46.Name = "label46";
-            // 
-            // label47
-            // 
-            resources.ApplyResources(this.label47, "label47");
-            this.label47.Name = "label47";
             // 
             // ControlSetupForm
             // 
@@ -8453,6 +8596,7 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeY)).EndInit();
@@ -8513,7 +8657,6 @@ namespace GRBL_Plotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPenUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDRuler)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -9255,5 +9398,22 @@ namespace GRBL_Plotter
         private System.Windows.Forms.NumericUpDown nUDToolChangeScriptDelay;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.TextBox tBGPPOVC07;
+        private System.Windows.Forms.TextBox tBGPPOVC06;
+        private System.Windows.Forms.TextBox tBGPPOVC05;
+        private System.Windows.Forms.TextBox tBGPPOVC04;
+        private System.Windows.Forms.TextBox tBGPPOVC03;
+        private System.Windows.Forms.TextBox tBGPPOVC02;
+        private System.Windows.Forms.TextBox tBGPPOVC01;
+        private System.Windows.Forms.TextBox tBGPPOVC00;
+        private System.Windows.Forms.Label lblPOVC07;
+        private System.Windows.Forms.Label lblPOVC06;
+        private System.Windows.Forms.Label lblPOVC05;
+        private System.Windows.Forms.Label lblPOVC04;
+        private System.Windows.Forms.Label lblPOVC03;
+        private System.Windows.Forms.Label lblPOVC02;
+        private System.Windows.Forms.Label lblPOVC01;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label lblPOVC00;
     }
 }

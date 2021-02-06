@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
  * 2020-02-07 add tangential axis
  * 2020-03-05 bug fix save gui2D colors
  * 2020-07-23 hide logging
+ * 2021-02-06 add gamePad PointOfViewController0
 */
 
 using System;
@@ -342,7 +343,7 @@ namespace GRBL_Plotter
                //     lblgp.Text = "";
                     foreach (var state in datas)
                     {
-                        lblgp.Text = state.Offset + " Value: " + state.Value.ToString();// + " | ";
+                        lblgp.Text = state.Offset + " Value: " + state.Value.ToString() + " Hex: " + state.Value.ToString("X4");// + " | ";
                         processGamepad(state);
                     }
                 }
@@ -364,13 +365,27 @@ namespace GRBL_Plotter
                         { c.BackColor = (value > 0) ? Color.Lime : Color.LightGray; break; }
                 }
             }
-            if (offset == "X")
+            else if (offset.IndexOf("PointOfViewControllers0") >= 0)
+            {
+                lblPOVC00.BackColor = lblPOVC01.BackColor = lblPOVC02.BackColor = lblPOVC03.BackColor = Color.LightGray;
+                lblPOVC04.BackColor = lblPOVC05.BackColor = lblPOVC06.BackColor = lblPOVC07.BackColor = Color.LightGray;
+                if (value == 0) { lblPOVC00.BackColor = Color.Lime; } // up
+                else if (value == 4500) { lblPOVC01.BackColor = Color.Lime; } // up-right
+                else if (value == 9000) { lblPOVC02.BackColor = Color.Lime; } // right
+                else if (value == 13500) { lblPOVC03.BackColor = Color.Lime; } // down-right
+                else if (value == 18000) { lblPOVC04.BackColor = Color.Lime; } // down
+                else if (value == 22500) { lblPOVC05.BackColor = Color.Lime; } // down-left
+                else if (value == 27000) { lblPOVC06.BackColor = Color.Lime; } // left
+                else if (value == 31500) { lblPOVC07.BackColor = Color.Lime; } // up-left
+            }
+
+            else if (offset == "X")
             { trackBarX.Value = value; lblValX.Text = gamePadGetValue(value); lblValX.BackColor = gamePadGetColor(value); }
-            if (offset == "Y")
+            else if (offset == "Y")
             { trackBarY.Value = value; lblValY.Text = gamePadGetValue(value); lblValY.BackColor = gamePadGetColor(value); }
-            if (offset == "Z")
+            else if (offset == "Z")
             { trackBarZ.Value = value; lblValZ.Text = gamePadGetValue(value); lblValZ.BackColor = gamePadGetColor(value); }
-            if (offset == "RotationZ")
+            else if (offset == "RotationZ")
             { trackBarR.Value = value; lblValR.Text = gamePadGetValue(value); lblValR.BackColor = gamePadGetColor(value); }
         }
         private string gamePadGetValue(int value)

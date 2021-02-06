@@ -29,6 +29,8 @@
  * 2020-09-21 add 'Button' at end of last used button 1-32 line 790
  * 2020-10-05 add 2D-view widths and colors
  * 2021-01-22 add missing settings
+ * 2021-01-27 add missing settings
+ * 2021-02-06 add gamePad PointOfViewController0
 */
 
 using System;
@@ -336,6 +338,8 @@ namespace GRBL_Plotter
                 Write("Tool select", setup.ctrlToolScriptSelect.ToString(), section);
                 Write("Tool pick up", setup.ctrlToolScriptGet.ToString(), section);
                 Write("Tool probe", setup.ctrlToolScriptProbe.ToString(), section);
+                Write("Tool delay", setup.ctrlToolScriptDelay.ToString(), section);
+                
                 Write("Tool empty", setup.ctrlToolChangeEmpty.ToString(), section);
                 Write("Tool empty Nr", setup.ctrlToolChangeEmptyNr.ToString(), section);
                 Write("Tool table offset X", setup.toolTableOffsetX.ToString(), section);
@@ -482,6 +486,16 @@ namespace GRBL_Plotter
             Write("gamePadButtons13", setup.gamePadButtons13.ToString(), section);
             Write("gamePadButtons14", setup.gamePadButtons14.ToString(), section);
             Write("gamePadButtons15", setup.gamePadButtons15.ToString(), section);
+
+            Write("gamePadPOVC00", setup.gamePadPOVC00.ToString(), section);
+            Write("gamePadPOVC01", setup.gamePadPOVC01.ToString(), section);
+            Write("gamePadPOVC02", setup.gamePadPOVC02.ToString(), section);
+            Write("gamePadPOVC03", setup.gamePadPOVC03.ToString(), section);
+            Write("gamePadPOVC04", setup.gamePadPOVC04.ToString(), section);
+            Write("gamePadPOVC05", setup.gamePadPOVC05.ToString(), section);
+            Write("gamePadPOVC06", setup.gamePadPOVC06.ToString(), section);
+            Write("gamePadPOVC07", setup.gamePadPOVC07.ToString(), section);
+
             Write("gamePadXAxis", setup.gamePadXAxis.ToString(), section);
             Write("gamePadYAxis", setup.gamePadYAxis.ToString(), section);
             Write("gamePadZAxis", setup.gamePadZAxis.ToString(), section);
@@ -818,6 +832,8 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpstr, section, "Tool select")) { setup.ctrlToolScriptSelect = tmpstr; }
             if (setVariable(ref tmpstr, section, "Tool pick up")) { setup.ctrlToolScriptGet = tmpstr; }
             if (setVariable(ref tmpstr, section, "Tool probe")) { setup.ctrlToolScriptProbe = tmpstr; }
+            if (setVariable(ref tmpdeci, section, "Tool delay")) { setup.ctrlToolScriptDelay = tmpdeci; }
+
             if (setVariable(ref tmpbool, section, "Tool empty")) { setup.ctrlToolChangeEmpty = tmpbool; }
             if (setVariable(ref tmpdeci, section, "Tool empty Nr")) { setup.ctrlToolChangeEmptyNr = tmpdeci; }
             if (setVariable(ref tmpdeci, section, "Tool table offset X")) { setup.toolTableOffsetX = tmpdeci; }
@@ -1006,6 +1022,16 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpstr, section, "gamePadButtons13")) { setup.gamePadButtons13 = tmpstr; }
             if (setVariable(ref tmpstr, section, "gamePadButtons14")) { setup.gamePadButtons14 = tmpstr; }
             if (setVariable(ref tmpstr, section, "gamePadButtons15")) { setup.gamePadButtons15 = tmpstr; }
+
+            if (setVariable(ref tmpstr, section, "gamePadPOVC00")) { setup.gamePadPOVC00 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadPOVC01")) { setup.gamePadPOVC01 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadPOVC02")) { setup.gamePadPOVC02 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadPOVC03")) { setup.gamePadPOVC03 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadPOVC04")) { setup.gamePadPOVC04 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadPOVC05")) { setup.gamePadPOVC05 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadPOVC06")) { setup.gamePadPOVC06 = tmpstr; }
+            if (setVariable(ref tmpstr, section, "gamePadPOVC07")) { setup.gamePadPOVC07 = tmpstr; }
+
             if (setVariable(ref tmpstr, section, "gamePadXAxis")) { setup.gamePadXAxis = tmpstr; }
             if (setVariable(ref tmpstr, section, "gamePadYAxis")) { setup.gamePadYAxis = tmpstr; }
             if (setVariable(ref tmpstr, section, "gamePadZAxis")) { setup.gamePadZAxis = tmpstr; }

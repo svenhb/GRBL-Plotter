@@ -28,6 +28,7 @@
  * 2020-12-27 add Marlin support
  * 2021-01-15 add lineEndRXTX
  * 2021-01-16 don't apply toUpper to comment (^2, (^3
+ * 2021-02-01 line 880 remove waitForOk
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -76,7 +77,6 @@ namespace GRBL_Plotter
 
         private bool waitForIdle = false;
         private bool waitForOk = false;
-        private int waitForOkVal = 0;
         private bool externalProbe = false;
         private bool isHoming = false;
 
@@ -870,18 +870,16 @@ namespace GRBL_Plotter
                             for (int i = 0; i < eeprom1.Length; i++)           // wait for IDLE beacuse of EEPROM access
                             {   if (line.IndexOf(eeprom1[i]) >= 0)          // is eeprom command?
                                 {  // waitForOk = true;
-                                   // waitForOkVal = grblBufferFree;
-                                  //  countPreventWaitForOkLock = 5;
-                                    if (logTransmit)  Logger.Trace("EEPROM1 wait for ok {0}", grblBufferFree);
+                                   //  countPreventWaitForOkLock = 5;
+                                    if (logTransmit) Logger.Trace("EEPROM1 wait for ok {0}", grblBufferFree);
                                 //    return;
                                     break;
                                 }
                             }
                             for (int i = 0; i < eeprom2.Length; i++)        // wait for IDLE beacuse of EEPROM access
                             {   if (line.IndexOf(eeprom2[i]) >= 0)          // is eeprom command?
-                                {   waitForOk = true;
-                                    waitForOkVal = grblBufferFree;
-                                    countPreventWaitForOkLock = 5;
+                                {   //waitForOk = true;
+                                    //countPreventWaitForOkLock = 5;
                                     if (logTransmit) Logger.Trace("EEPROM2 wait for ok {0}", grblBufferFree);
                                   //  return;
                                     break;
