@@ -1592,5 +1592,42 @@
     <Setting Name="ctrlToolScriptDelay" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="createShapeRZRadius" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="createShapeRZWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="createShapeRZStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC00" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 Y1.000 F100
+</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC01" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X1.000 Y1.000 F100</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC02" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X1.000 F100</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC03" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X1.000 Y-1.000 F100</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC04" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 Y-1.000 F100</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC05" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X-1.000 Y-1.000 F100
+</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC06" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X-1.000 F100
+</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC07" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X-1.000 Y1.000 F100
+</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

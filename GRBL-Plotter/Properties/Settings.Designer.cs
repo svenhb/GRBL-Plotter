@@ -6387,5 +6387,137 @@ namespace GRBL_Plotter.Properties {
                 this["ctrlToolScriptDelay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal createShapeRZRadius {
+            get {
+                return ((decimal)(this["createShapeRZRadius"]));
+            }
+            set {
+                this["createShapeRZRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal createShapeRZWidth {
+            get {
+                return ((decimal)(this["createShapeRZWidth"]));
+            }
+            set {
+                this["createShapeRZWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal createShapeRZStep {
+            get {
+                return ((decimal)(this["createShapeRZStep"]));
+            }
+            set {
+                this["createShapeRZStep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$J=G91 Y1.000 F100\n")]
+        public string gamePadPOVC00 {
+            get {
+                return ((string)(this["gamePadPOVC00"]));
+            }
+            set {
+                this["gamePadPOVC00"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$J=G91 X1.000 Y1.000 F100")]
+        public string gamePadPOVC01 {
+            get {
+                return ((string)(this["gamePadPOVC01"]));
+            }
+            set {
+                this["gamePadPOVC01"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$J=G91 X1.000 F100")]
+        public string gamePadPOVC02 {
+            get {
+                return ((string)(this["gamePadPOVC02"]));
+            }
+            set {
+                this["gamePadPOVC02"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$J=G91 X1.000 Y-1.000 F100")]
+        public string gamePadPOVC03 {
+            get {
+                return ((string)(this["gamePadPOVC03"]));
+            }
+            set {
+                this["gamePadPOVC03"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$J=G91 Y-1.000 F100")]
+        public string gamePadPOVC04 {
+            get {
+                return ((string)(this["gamePadPOVC04"]));
+            }
+            set {
+                this["gamePadPOVC04"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$J=G91 X-1.000 Y-1.000 F100\n")]
+        public string gamePadPOVC05 {
+            get {
+                return ((string)(this["gamePadPOVC05"]));
+            }
+            set {
+                this["gamePadPOVC05"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$J=G91 X-1.000 F100\n")]
+        public string gamePadPOVC06 {
+            get {
+                return ((string)(this["gamePadPOVC06"]));
+            }
+            set {
+                this["gamePadPOVC06"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("$J=G91 X-1.000 Y1.000 F100\n")]
+        public string gamePadPOVC07 {
+            get {
+                return ((string)(this["gamePadPOVC07"]));
+            }
+            set {
+                this["gamePadPOVC07"] = value;
+            }
+        }
     }
 }
