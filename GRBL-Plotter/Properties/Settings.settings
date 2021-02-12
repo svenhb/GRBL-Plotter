@@ -1629,5 +1629,8 @@
       <Value Profile="(Default)">$J=G91 X-1.000 Y1.000 F100
 </Value>
     </Setting>
+    <Setting Name="importGCPWMSkipM30" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

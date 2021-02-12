@@ -6519,5 +6519,17 @@ namespace GRBL_Plotter.Properties {
                 this["gamePadPOVC07"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCPWMSkipM30 {
+            get {
+                return ((bool)(this["importGCPWMSkipM30"]));
+            }
+            set {
+                this["importGCPWMSkipM30"] = value;
+            }
+        }
     }
 }
