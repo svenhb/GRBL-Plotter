@@ -1180,6 +1180,9 @@ namespace GRBL_Plotter
                 if (cmd.Length > 1)
                 {   footer += string.Format("{0} (Setup - GCode-Footer)\r\n", cmd.Trim());}
 
+            if (Properties.Settings.Default.importGCPWMEnable && Properties.Settings.Default.importGCPWMSkipM30)
+            { footer += "(SKIP M30)\r\n"; }
+
             if (gcodeComments)
                 footer += "M30 (Program end)\r\n";
             else
