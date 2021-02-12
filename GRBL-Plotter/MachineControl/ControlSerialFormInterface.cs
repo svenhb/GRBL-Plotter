@@ -301,6 +301,11 @@ namespace GRBL_Plotter
             else if (rxLine.Contains("($TO"))    { addToLog("[Tool " + rxLine.Substring(4).Trim(')') + " removed]"); toolInSpindle = false; }
             else if (rxLine.Contains("($TI"))     { addToLog("[Tool " + rxLine.Substring(4).Trim(')') + " selected]"); toolInSpindle = true; }
             else if (rxLine == "($TE)")    { addToLog("[Tool change finished]"); }
+            else if (rxLine == "($END)")
+            {   addToLog("[Pgm End*]");
+                streamingFinish();
+                requestSend("$G");
+            }
 
             if ((cBStatus1.Checked || cBStatus.Checked) && (!isMarlin || isStreaming))  // TX in line 737
             {   addToLog(string.Format("RX< {0,-30} {1,2} {2,3}  line-Nr:{3}", sendBuffer.GetConfirmedLine(), receivedByteCount, grblBufferFree, (sendBuffer.GetConfirmedLineNr()+1)));  }
@@ -551,8 +556,8 @@ namespace GRBL_Plotter
             {   if (dataField[1].IndexOf("Pgm End") >= 0)
                 {   if ((isStreaming) || (isHeightProbing))
                     {
-                        streamingFinish();
-                        requestSend("$G");
+              //          streamingFinish();
+             //           requestSend("$G");
                     }
                 }
             }
@@ -724,6 +729,8 @@ namespace GRBL_Plotter
                     if ((cmt.IndexOf("(^2") >= 0) || (cmt.IndexOf("(^3") >= 0) || (cmt.IndexOf("($") == 0))
                     {   line += cmt;                // keep 2nd / 3rd COM port data for further use
                     }
+                    if (cmt.Contains("(SKIP M30)"))
+                    { skipM30 = true; addToLog("Skip M30"); }
                 }
             } 
             else

@@ -2461,4 +2461,10 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="label46.Text" xml:space="preserve">
     <value>التأخير بعد النص</value>
   </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>تخطي الأمر M30</value>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>تخطي الأمر M30 "إنهاء البرنامج" لتجنب إيقاف تشغيل المغزل عن طريق إعادة تعيين حالة المحلل اللغوي ، مما يؤدي إلى انتقال المؤازرة إلى الموضع "0".</value>
+  </data>
 </root>

@@ -2273,4 +2273,10 @@ Pushbullet: por razões de segurança, você deve usar uma conta 'lixo', o token
   <data name="label46.Text" xml:space="preserve">
     <value>Atraso após o script</value>
   </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>Pular comando M30</value>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>Pule o comando M30 'Fim do programa' para evitar o desligamento do fuso reiniciando o estado do analisador, o que faz com que o servo se mova para a posição '0'.</value>
+  </data>
 </root>

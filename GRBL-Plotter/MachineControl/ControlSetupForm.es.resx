@@ -2264,4 +2264,10 @@ Pushbullet: por razones de seguridad, debe utilizar una cuenta "basura", el toke
   <data name="label46.Text" xml:space="preserve">
     <value>Retraso después del guión</value>
   </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>Comando de salto M30</value>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>Omita el comando M30 'Fin de programa' para evitar apagar el husillo al restablecer el estado del analizador, lo que hace que el servo se mueva a la posición '0'.</value>
+  </data>
 </root>

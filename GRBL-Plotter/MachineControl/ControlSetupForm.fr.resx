@@ -2264,4 +2264,10 @@ Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbe
   <data name="label46.Text" xml:space="preserve">
     <value>Délai après le script</value>
   </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>Ignorer la commande M30</value>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>Ignorer la commande M30 «Fin du programme» pour éviter d'éteindre la broche en réinitialisant l'état de l'analyseur, ce qui amène le servo à passer en position «0».</value>
+  </data>
 </root>

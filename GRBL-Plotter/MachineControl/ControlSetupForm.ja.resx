@@ -2462,4 +2462,10 @@ Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用�
   <data name="label46.Text" xml:space="preserve">
     <value>スクリプト後の遅延</value>
   </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>コマンドM30をスキップ</value>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>コマンドM30「プログラム終了」をスキップして、パーサー状態をリセットすることによってスピンドルがオフになるのを回避します。これにより、サーボが位置「0」に移動します。</value>
+  </data>
 </root>

@@ -61,6 +61,7 @@ namespace GRBL_Plotter
         private grblStreaming streamingStateOld = grblStreaming.ok;
         private int lineStreamingPause = 0;
         private bool trgEvent = false;
+        private bool skipM30 = false;
 
         public event EventHandler<StreamEventArgs> RaiseStreamEvent;
         protected virtual void OnRaiseStreamEvent(StreamEventArgs e)
@@ -97,6 +98,7 @@ namespace GRBL_Plotter
             countMissingStatusReport = (int)(10000 / timerSerial.Interval);
             Logger.Info("Timer interval:{0}  {1}", timerSerial.Interval, countMissingStatusReport);
 
+            skipM30 = false;
             lastError = "";
             countGrblError = 0;
             lastSentToCOM.Clear();
@@ -223,6 +225,10 @@ namespace GRBL_Plotter
                                     tmp = "(" + tmp + ")";
                                 }
                             }
+                            if (cmdMNr == 30)
+                            {   if (skipM30)
+                                { tmp = "(" + tmp + ")"; }
+                            }
 
                             streamingBuffer.Add(tmp, i);        // add gcode line to list to send
 
@@ -233,8 +239,12 @@ namespace GRBL_Plotter
                         }
                     }
                 }
-                if (!foundM30) streamingBuffer.Add("M30", gCode.Length - 1);    // add end
-                streamingBuffer.Add("()", gCode.Length - 1);                    // add gcode line to list to send
+                if (!foundM30)
+                {   if (!skipM30)
+                        streamingBuffer.Add("M30", gCode.Length - 1);    // add end
+                }
+                streamingBuffer.Add("($END)", gCode.Length - 1);        // add gcode line to list to send
+                streamingBuffer.Add("()", gCode.Length - 1);            // add gcode line to list to send
             }   // lock
             timerSerial.Start();
 

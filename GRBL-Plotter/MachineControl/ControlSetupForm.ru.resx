@@ -2332,4 +2332,10 @@ Pushbullet: из соображений безопасности следует 
   <data name="label46.Text" xml:space="preserve">
     <value>Задержка после сценария</value>
   </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>Пропустить команду M30</value>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>Пропустите команду M30 «Конец программы», чтобы избежать выключения шпинделя из-за сброса состояния синтаксического анализатора, что приводит к перемещению сервопривода в положение «0».</value>
+  </data>
 </root>

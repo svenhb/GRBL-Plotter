@@ -397,6 +397,15 @@ namespace GRBL_Plotter
             this.tB_kP_Left1 = new System.Windows.Forms.TextBox();
             this.tabPage24 = new System.Windows.Forms.TabPage();
             this.tab7gB1 = new System.Windows.Forms.GroupBox();
+            this.lblPOVC07 = new System.Windows.Forms.Label();
+            this.lblPOVC06 = new System.Windows.Forms.Label();
+            this.lblPOVC05 = new System.Windows.Forms.Label();
+            this.lblPOVC04 = new System.Windows.Forms.Label();
+            this.lblPOVC03 = new System.Windows.Forms.Label();
+            this.lblPOVC02 = new System.Windows.Forms.Label();
+            this.lblPOVC01 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.lblPOVC00 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tab7gB2lbl3 = new System.Windows.Forms.Label();
             this.tab7gB2lbl5 = new System.Windows.Forms.Label();
@@ -506,15 +515,6 @@ namespace GRBL_Plotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lblPOVC00 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.lblPOVC01 = new System.Windows.Forms.Label();
-            this.lblPOVC02 = new System.Windows.Forms.Label();
-            this.lblPOVC03 = new System.Windows.Forms.Label();
-            this.lblPOVC04 = new System.Windows.Forms.Label();
-            this.lblPOVC05 = new System.Windows.Forms.Label();
-            this.lblPOVC06 = new System.Windows.Forms.Label();
-            this.lblPOVC07 = new System.Windows.Forms.Label();
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
             this.tBGerberGeometryM19 = new System.Windows.Forms.TextBox();
             this.tBGerberGeometryKnife = new System.Windows.Forms.TextBox();
@@ -591,14 +591,6 @@ namespace GRBL_Plotter
             this.nUDImportGCTangentialSwivel2 = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCTangentialSwivel = new System.Windows.Forms.NumericUpDown();
             this.cBoxImportGCTangentialName = new System.Windows.Forms.ComboBox();
-            this.tBGPPOVC07 = new System.Windows.Forms.TextBox();
-            this.tBGPPOVC06 = new System.Windows.Forms.TextBox();
-            this.tBGPPOVC05 = new System.Windows.Forms.TextBox();
-            this.tBGPPOVC04 = new System.Windows.Forms.TextBox();
-            this.tBGPPOVC03 = new System.Windows.Forms.TextBox();
-            this.tBGPPOVC02 = new System.Windows.Forms.TextBox();
-            this.tBGPPOVC01 = new System.Windows.Forms.TextBox();
-            this.tBGPPOVC00 = new System.Windows.Forms.TextBox();
             this.cBImportGCTangentialRange = new System.Windows.Forms.CheckBox();
             this.cBImportGCTangential = new System.Windows.Forms.CheckBox();
             this.nUDImportGCDragKnifeAngle = new System.Windows.Forms.NumericUpDown();
@@ -744,6 +736,14 @@ namespace GRBL_Plotter
             this.tbNotifier3 = new System.Windows.Forms.TextBox();
             this.tbNotifier2 = new System.Windows.Forms.TextBox();
             this.tbNotifier1 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC07 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC06 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC05 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC04 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC03 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC02 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC01 = new System.Windows.Forms.TextBox();
+            this.tBGPPOVC00 = new System.Windows.Forms.TextBox();
             this.nUDFeedrate = new System.Windows.Forms.NumericUpDown();
             this.nUDStepwidth = new System.Windows.Forms.NumericUpDown();
             this.nUDMinimum = new System.Windows.Forms.NumericUpDown();
@@ -818,6 +818,7 @@ namespace GRBL_Plotter
             this.nUDPenDown = new System.Windows.Forms.NumericUpDown();
             this.nUDPenUp = new System.Windows.Forms.NumericUpDown();
             this.nUDRuler = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGCPWMSkipM30 = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -2006,6 +2007,7 @@ namespace GRBL_Plotter
             // tab1_2gB4
             // 
             this.tab1_2gB4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab1_2gB4.Controls.Add(this.cBImportGCPWMSkipM30);
             this.tab1_2gB4.Controls.Add(this.nUDImportGCPWMUp);
             this.tab1_2gB4.Controls.Add(this.nUDImportGCDlyUp);
             this.tab1_2gB4.Controls.Add(this.nUDImportGCPWMDown);
@@ -3791,6 +3793,59 @@ namespace GRBL_Plotter
             this.tab7gB1.Name = "tab7gB1";
             this.tab7gB1.TabStop = false;
             // 
+            // lblPOVC07
+            // 
+            this.lblPOVC07.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC07, "lblPOVC07");
+            this.lblPOVC07.Name = "lblPOVC07";
+            // 
+            // lblPOVC06
+            // 
+            this.lblPOVC06.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC06, "lblPOVC06");
+            this.lblPOVC06.Name = "lblPOVC06";
+            // 
+            // lblPOVC05
+            // 
+            this.lblPOVC05.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC05, "lblPOVC05");
+            this.lblPOVC05.Name = "lblPOVC05";
+            // 
+            // lblPOVC04
+            // 
+            this.lblPOVC04.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC04, "lblPOVC04");
+            this.lblPOVC04.Name = "lblPOVC04";
+            // 
+            // lblPOVC03
+            // 
+            this.lblPOVC03.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC03, "lblPOVC03");
+            this.lblPOVC03.Name = "lblPOVC03";
+            // 
+            // lblPOVC02
+            // 
+            this.lblPOVC02.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC02, "lblPOVC02");
+            this.lblPOVC02.Name = "lblPOVC02";
+            // 
+            // lblPOVC01
+            // 
+            this.lblPOVC01.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC01, "lblPOVC01");
+            this.lblPOVC01.Name = "lblPOVC01";
+            // 
+            // label49
+            // 
+            resources.ApplyResources(this.label49, "label49");
+            this.label49.Name = "label49";
+            // 
+            // lblPOVC00
+            // 
+            this.lblPOVC00.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.lblPOVC00, "lblPOVC00");
+            this.lblPOVC00.Name = "lblPOVC00";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tab7gB2lbl3);
@@ -4580,59 +4635,6 @@ namespace GRBL_Plotter
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lblPOVC00
-            // 
-            this.lblPOVC00.BackColor = System.Drawing.Color.LightGray;
-            resources.ApplyResources(this.lblPOVC00, "lblPOVC00");
-            this.lblPOVC00.Name = "lblPOVC00";
-            // 
-            // label49
-            // 
-            resources.ApplyResources(this.label49, "label49");
-            this.label49.Name = "label49";
-            // 
-            // lblPOVC01
-            // 
-            this.lblPOVC01.BackColor = System.Drawing.Color.LightGray;
-            resources.ApplyResources(this.lblPOVC01, "lblPOVC01");
-            this.lblPOVC01.Name = "lblPOVC01";
-            // 
-            // lblPOVC02
-            // 
-            this.lblPOVC02.BackColor = System.Drawing.Color.LightGray;
-            resources.ApplyResources(this.lblPOVC02, "lblPOVC02");
-            this.lblPOVC02.Name = "lblPOVC02";
-            // 
-            // lblPOVC03
-            // 
-            this.lblPOVC03.BackColor = System.Drawing.Color.LightGray;
-            resources.ApplyResources(this.lblPOVC03, "lblPOVC03");
-            this.lblPOVC03.Name = "lblPOVC03";
-            // 
-            // lblPOVC04
-            // 
-            this.lblPOVC04.BackColor = System.Drawing.Color.LightGray;
-            resources.ApplyResources(this.lblPOVC04, "lblPOVC04");
-            this.lblPOVC04.Name = "lblPOVC04";
-            // 
-            // lblPOVC05
-            // 
-            this.lblPOVC05.BackColor = System.Drawing.Color.LightGray;
-            resources.ApplyResources(this.lblPOVC05, "lblPOVC05");
-            this.lblPOVC05.Name = "lblPOVC05";
-            // 
-            // lblPOVC06
-            // 
-            this.lblPOVC06.BackColor = System.Drawing.Color.LightGray;
-            resources.ApplyResources(this.lblPOVC06, "lblPOVC06");
-            this.lblPOVC06.Name = "lblPOVC06";
-            // 
-            // lblPOVC07
-            // 
-            this.lblPOVC07.BackColor = System.Drawing.Color.LightGray;
-            resources.ApplyResources(this.lblPOVC07, "lblPOVC07");
-            this.lblPOVC07.Name = "lblPOVC07";
             // 
             // cBshowImportDialog
             // 
@@ -5508,62 +5510,6 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.cBoxImportGCTangentialName, "cBoxImportGCTangentialName");
             this.cBoxImportGCTangentialName.Name = "cBoxImportGCTangentialName";
             this.cBoxImportGCTangentialName.Text = global::GRBL_Plotter.Properties.Settings.Default.importGCTangentialAxis;
-            // 
-            // tBGPPOVC07
-            // 
-            this.tBGPPOVC07.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC07", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGPPOVC07, "tBGPPOVC07");
-            this.tBGPPOVC07.Name = "tBGPPOVC07";
-            this.tBGPPOVC07.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC07;
-            // 
-            // tBGPPOVC06
-            // 
-            this.tBGPPOVC06.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC06", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGPPOVC06, "tBGPPOVC06");
-            this.tBGPPOVC06.Name = "tBGPPOVC06";
-            this.tBGPPOVC06.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC06;
-            // 
-            // tBGPPOVC05
-            // 
-            this.tBGPPOVC05.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC05", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGPPOVC05, "tBGPPOVC05");
-            this.tBGPPOVC05.Name = "tBGPPOVC05";
-            this.tBGPPOVC05.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC05;
-            // 
-            // tBGPPOVC04
-            // 
-            this.tBGPPOVC04.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC04", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGPPOVC04, "tBGPPOVC04");
-            this.tBGPPOVC04.Name = "tBGPPOVC04";
-            this.tBGPPOVC04.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC04;
-            // 
-            // tBGPPOVC03
-            // 
-            this.tBGPPOVC03.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC03", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGPPOVC03, "tBGPPOVC03");
-            this.tBGPPOVC03.Name = "tBGPPOVC03";
-            this.tBGPPOVC03.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC03;
-            // 
-            // tBGPPOVC02
-            // 
-            this.tBGPPOVC02.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC02", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGPPOVC02, "tBGPPOVC02");
-            this.tBGPPOVC02.Name = "tBGPPOVC02";
-            this.tBGPPOVC02.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC02;
-            // 
-            // tBGPPOVC01
-            // 
-            this.tBGPPOVC01.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC01", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGPPOVC01, "tBGPPOVC01");
-            this.tBGPPOVC01.Name = "tBGPPOVC01";
-            this.tBGPPOVC01.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC01;
-            // 
-            // tBGPPOVC00
-            // 
-            this.tBGPPOVC00.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC00", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBGPPOVC00, "tBGPPOVC00");
-            this.tBGPPOVC00.Name = "tBGPPOVC00";
-            this.tBGPPOVC00.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC00;
             // 
             // cBImportGCTangentialRange
             // 
@@ -7273,6 +7219,62 @@ namespace GRBL_Plotter
             this.tbNotifier1.Name = "tbNotifier1";
             this.tbNotifier1.Text = global::GRBL_Plotter.Properties.Settings.Default.notifierMailClientAdr;
             // 
+            // tBGPPOVC07
+            // 
+            this.tBGPPOVC07.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC07", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC07, "tBGPPOVC07");
+            this.tBGPPOVC07.Name = "tBGPPOVC07";
+            this.tBGPPOVC07.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC07;
+            // 
+            // tBGPPOVC06
+            // 
+            this.tBGPPOVC06.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC06", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC06, "tBGPPOVC06");
+            this.tBGPPOVC06.Name = "tBGPPOVC06";
+            this.tBGPPOVC06.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC06;
+            // 
+            // tBGPPOVC05
+            // 
+            this.tBGPPOVC05.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC05", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC05, "tBGPPOVC05");
+            this.tBGPPOVC05.Name = "tBGPPOVC05";
+            this.tBGPPOVC05.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC05;
+            // 
+            // tBGPPOVC04
+            // 
+            this.tBGPPOVC04.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC04", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC04, "tBGPPOVC04");
+            this.tBGPPOVC04.Name = "tBGPPOVC04";
+            this.tBGPPOVC04.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC04;
+            // 
+            // tBGPPOVC03
+            // 
+            this.tBGPPOVC03.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC03", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC03, "tBGPPOVC03");
+            this.tBGPPOVC03.Name = "tBGPPOVC03";
+            this.tBGPPOVC03.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC03;
+            // 
+            // tBGPPOVC02
+            // 
+            this.tBGPPOVC02.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC02", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC02, "tBGPPOVC02");
+            this.tBGPPOVC02.Name = "tBGPPOVC02";
+            this.tBGPPOVC02.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC02;
+            // 
+            // tBGPPOVC01
+            // 
+            this.tBGPPOVC01.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC01", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC01, "tBGPPOVC01");
+            this.tBGPPOVC01.Name = "tBGPPOVC01";
+            this.tBGPPOVC01.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC01;
+            // 
+            // tBGPPOVC00
+            // 
+            this.tBGPPOVC00.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "gamePadPOVC00", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBGPPOVC00, "tBGPPOVC00");
+            this.tBGPPOVC00.Name = "tBGPPOVC00";
+            this.tBGPPOVC00.Text = global::GRBL_Plotter.Properties.Settings.Default.gamePadPOVC00;
+            // 
             // nUDFeedrate
             // 
             this.nUDFeedrate.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "gamePadAnalogMinFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -8324,6 +8326,15 @@ namespace GRBL_Plotter
             this.nUDRuler.Name = "nUDRuler";
             this.toolTip1.SetToolTip(this.nUDRuler, resources.GetString("nUDRuler.ToolTip"));
             this.nUDRuler.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRuler;
+            // 
+            // cBImportGCPWMSkipM30
+            // 
+            resources.ApplyResources(this.cBImportGCPWMSkipM30, "cBImportGCPWMSkipM30");
+            this.cBImportGCPWMSkipM30.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMSkipM30;
+            this.cBImportGCPWMSkipM30.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMSkipM30", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCPWMSkipM30.Name = "cBImportGCPWMSkipM30";
+            this.toolTip1.SetToolTip(this.cBImportGCPWMSkipM30, resources.GetString("cBImportGCPWMSkipM30.ToolTip"));
+            this.cBImportGCPWMSkipM30.UseVisualStyleBackColor = true;
             // 
             // ControlSetupForm
             // 
@@ -9415,5 +9426,6 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label lblPOVC01;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label lblPOVC00;
+        private System.Windows.Forms.CheckBox cBImportGCPWMSkipM30;
     }
 }

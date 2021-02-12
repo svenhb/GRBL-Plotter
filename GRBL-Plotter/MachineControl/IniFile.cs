@@ -308,6 +308,7 @@ namespace GRBL_Plotter
                 Write("PWM Up Dly", setup.importGCPWMDlyUp.ToString(), section);
                 Write("PWM Down Val", setup.importGCPWMDown.ToString(), section);
                 Write("PWM Down Dly", setup.importGCPWMDlyDown.ToString(), section);
+                Write("PWM Skip M30", setup.importGCPWMSkipM30.ToString(), section);
             }
 
             if (setup.importGCIndEnable || all)
@@ -808,6 +809,7 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpdeci, section, "PWM Up Dly")) { setup.importGCPWMDlyUp = tmpdeci; }
             if (setVariable(ref tmpdeci, section, "PWM Down Val")) { setup.importGCPWMDown = tmpdeci; }
             if (setVariable(ref tmpdeci, section, "PWM Down Dly")) { setup.importGCPWMDlyDown = tmpdeci; }
+            if (setVariable(ref tmpbool, section, "PWM Skip M30")) { setup.importGCPWMSkipM30 = tmpbool; }
 
             if (setVariable(ref tmpbool, section, "Individual enable")) { setup.importGCIndEnable = tmpbool; }
             if (setVariable(ref tmpstr, section, "Individual PenUp")) { setup.importGCIndPenUp = tmpstr; }
