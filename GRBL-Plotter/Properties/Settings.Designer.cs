@@ -6531,5 +6531,29 @@ namespace GRBL_Plotter.Properties {
                 this["importGCPWMSkipM30"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool guiPenUpDownButtonsShow {
+            get {
+                return ((bool)(this["guiPenUpDownButtonsShow"]));
+            }
+            set {
+                this["guiPenUpDownButtonsShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importRepeatEnableAll {
+            get {
+                return ((bool)(this["importRepeatEnableAll"]));
+            }
+            set {
+                this["importRepeatEnableAll"] = value;
+            }
+        }
     }
 }
