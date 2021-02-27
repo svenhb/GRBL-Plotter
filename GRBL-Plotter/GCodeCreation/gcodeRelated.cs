@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 * 2020-01 add trace level loggerTraceImport to hide log of any gcode command during import
 * 2020-01 add tiny G1 moves for Pen down/up in lasermode only - to be able making dots
 * 2020-12-30 add N-Number
+* 2021-02-20 add subroutine for pen-up/down for use in tool-change scripts
 */
 
 using System;
@@ -250,6 +251,23 @@ namespace GRBL_Plotter
 
             stopwatch = new Stopwatch();
             stopwatch.Start();
+
+            if ((gcodeInsertSubroutine && gcodeLineSegmentation) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange)
+            {
+                float tmp_lastz = lastz;
+                StringBuilder tmp = new StringBuilder();
+                Logger.Trace("setup create PenUp/Down subroutine gcodeInsertSubroutine:{0} gcodeToolChange:{1} ctrlToolChange:{2}", gcodeInsertSubroutine, gcodeToolChange, Properties.Settings.Default.ctrlToolChange);
+                PenUp(tmp);
+                gcodeSubroutine += "\r\n(subroutine)\r\nO97 (Pen up)\r\n";
+                gcodeSubroutine += tmp.ToString();
+                gcodeSubroutine += "M99\r\n";
+                tmp.Clear();
+                PenDown(tmp);
+                gcodeSubroutine += "\r\n(subroutine)\r\nO98 (Pen Down)\r\n";
+                gcodeSubroutine += tmp.ToString();
+                gcodeSubroutine += "M99\r\n";
+                lastz = tmp_lastz;
+            }
         }
 
         public static bool reduceGCode
@@ -400,11 +418,12 @@ namespace GRBL_Plotter
                 gcodeString.AppendFormat("M{0}{1}\r\n", frmtCode(5), cmt); 
         }
 
+        private static StringBuilder tmpString = new StringBuilder();
         public static void PenDown(StringBuilder gcodeString, string cmto = "")
         {
-            if (loggerTraceImport) Logger.Trace("    PenDown");
+            if (loggerTraceImport) Logger.Trace("    PenDown gcodeZDown:{0} lastz:{1}", gcodeZDown, lastz);
 
-            StringBuilder tmpString = new StringBuilder();
+            tmpString = new StringBuilder();
             string cmt = cmto;
             if (Properties.Settings.Default.importGCTTZAxis && gcodeComments && useValueFromToolTable) { cmt += " Z values from tool table"; }
             origFinalX = lastx;
@@ -433,7 +452,8 @@ namespace GRBL_Plotter
                 else
                 {   float z_relative = gcodeZDown - lastz;
                     if (Math.Abs(z_relative) > 0)
-                    {   if (gcodeRelative)
+                    {
+                        if (gcodeRelative)
                             tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(z_relative), gcodeZFeed, cmt);
                         else
                             tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZDown), gcodeZFeed, cmt);
@@ -697,13 +717,18 @@ namespace GRBL_Plotter
         // process subroutine, afterwards move back to last regular position before subroutine        
         private static bool insertSubroutine(StringBuilder gcodeString, float lX, float lY, float lZ, bool applyFeed)
         {
-            gcodeString.AppendFormat("M98 P99 (call subroutine)\r\nG90 G0 X{0} Y{1}\r\nG1 Z{2} F{3}\r\n", frmtNum(lX), frmtNum(lY), frmtNum(lZ), gcodeZFeed);
+            Logger.Trace("insertSubroutine");
+            PenUp(gcodeString);
+//            gcodeString.AppendFormat("M98 P99 (call subroutine)\r\nG90 G0 X{0} Y{1}\r\nG1 Z{2} F{3}\r\n", frmtNum(lX), frmtNum(lY), frmtNum(lZ), gcodeZFeed);
+            gcodeString.AppendFormat("M98 P99 (call subroutine)\r\nG90 G0 X{0} Y{1}\r\n", frmtNum(lX), frmtNum(lY));
+            PenDown(gcodeString);
+
             applyXYFeedRate = true;
             gcodeSubroutineCount++;
             if (gcodeSubroutineEnable == 0)     // read file once
             {
                 string file = Properties.Settings.Default.importGCSubroutine;
-                gcodeSubroutine = "\r\n(subroutine)\r\nO99\r\n";
+                gcodeSubroutine += "\r\n(subroutine)\r\nO99\r\n";
                 if (File.Exists(file))
                     gcodeSubroutine += File.ReadAllText(file);
                 else
@@ -1183,11 +1208,11 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.importGCPWMEnable && Properties.Settings.Default.importGCPWMSkipM30)
             { footer += "(SKIP M30)\r\n"; }
 
-            if (gcodeComments)
+/*            if (gcodeComments)
                 footer += "M30 (Program end)\r\n";
             else
                 footer += "M30\r\n";
-
+*/
             return footer + gcodeSubroutine;
         }
 

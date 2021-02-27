@@ -695,15 +695,26 @@ namespace GRBL_Plotter
             header.Append(gcode.GetHeader(titel, file));
 
             if (Properties.Settings.Default.importRepeatEnable && Properties.Settings.Default.importRepeatComplete)      // repeat code x times
-            {   for (int i = 0; i<Properties.Settings.Default.importRepeatCnt; i++)
-                    output.Append(finalGcodeString);
-                header.Append(output);
-                header.Append(footer);
+            {
+                if (Properties.Settings.Default.importRepeatEnableAll)
+                {   header.Append(finalGcodeString);
+                    header.Append(footer);
+                    for (int i = 0; i < Properties.Settings.Default.importRepeatCnt; i++)
+                    {  output.AppendFormat("(----- Repeate All {0} of {1} ---------)\r\n", (i + 1), Properties.Settings.Default.importRepeatCnt); output.Append(header); output.AppendLine("(----------------------------------)\r\n"); }
+                    header = output;
+                }
+                else
+                {   for (int i = 0; i < Properties.Settings.Default.importRepeatCnt; i++)
+                    { output.AppendFormat("(----- Repeate code {0} of {1} --------)\r\n", (i + 1), Properties.Settings.Default.importRepeatCnt); output.Append(finalGcodeString); output.AppendLine("(----------------------------------)\r\n"); }
+                    header.Append(output);
+                    header.Append(footer);
+                }
             }
             else
             {   header.Append(finalGcodeString);
                 header.Append(footer);
             }
+            header.AppendLine("M30");
 
             if (Properties.Settings.Default.ctrlLineNumbers || Properties.Settings.Default.ctrlLineEndEnable)
             {   int n = 1;
