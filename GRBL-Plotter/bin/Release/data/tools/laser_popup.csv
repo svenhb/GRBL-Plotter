@@ -1,0 +1,4 @@
+# T-Nr, Color, T-Name, ExPosX, ExPosY, ExPosZ, ExPosA, T-Diameter, XY-Feed, Z-Feed, Z-Save, Z-Deepth, Z-Step, Spindle-Spd, Step-over %, GCode
+  1, 000000,Cut                 ,    0,    0,    0, 0, 0.2, 800, 500, 0,  0,   1,     100, 100, 
+  2, FF0000,Valley fold         ,    0,    0,    0, 0, 0.2, 800, 500, 0,  0,   1,     100, 100, 
+  3, 0000FF,Mountain fold       ,    0,    0,    0, 0, 0.2, 800, 500, 0,  0,   1,     100, 100, 

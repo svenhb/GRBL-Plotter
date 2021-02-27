@@ -1,0 +1,322 @@
+<!--    Name:        GCode_Nut_Recess.hta
+        Version:     2021-01-06
+        Function:    Milling a conical spiral 
+		
+// 2021-01-06 add M2, fix offset bug (use now parseFloat)
+// 2020-09-01 add offset
+// 2020-08-25 Initial version
+		
+Enabled Active X in the broswer security settings.
+In IE9:
+a) Go to Tools ->Internet Options
+b) Select security tab
+c) Click on Trusted Sites (or Local Intranet depending on whether your site is trusted or not)
+d) Click on Custom Level
+e) Ensure that "Initialize and script active x controls is not marked safe for scripting" is enabled.		
+-->
+
+<html>
+<head>
+<hta:application id="hta" 
+    applicationname="GCode_Nut_Recess"
+    caption="yes" 
+    contextmenu="yes"
+    innerborder="no"
+    navigable="yes" 
+    scroll="no"
+    scrollflat="yes" 
+    selection="yes"
+    singleinstance="yes"
+    sysmenu="yes" 
+    windowState="normal" >
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>GCode Nut Recess</title>
+<script type="text/javascript" src="_script_functions.js"></script>
+
+<script type="text/javascript">
+<!--
+
+var d_nutSize = 8;		// inner diameter
+var z_depth= 100;		// outer diameter
+var d_cutter = 2.2;		// cutter diameter
+var z_drill = 2;
+var d_drill = 2;
+
+var z_save =  2;		// save Z height
+var z_inc = 2;			// Z increment per turn
+var dir_cw = false;		// clock wise direction?
+var use_offset = false;	// use work-pos as center coordinate?
+var offset_x = 0;
+var offset_y = 0;
+
+var header = "G90 G21 ";	// use mm
+var footer = "M30 ";	// program end
+
+var finalGCode = "";
+var headerCode = ""
+var copyCode = "";
+var lineCounter= 0;
+var last_gnr=0;		// needed in write_GCodeLine_XY
+
+function OnLoad()
+{   var xx=560;
+    var yy=860;
+    try { window.resizeTo(xx,yy);}         catch(err){}
+    try { window.moveTo(screen.width - xx, 0);}     catch(err){}
+	preselect_OnClick();
+	setInterval("poll_positions()", 500);
+}
+
+function poll_positions()
+{	read_GRBL_Plotter_Settings();	// in _script_functions.js
+	html_position.innerText = "Actual work position: X:"+GRBL_Plt_work_x+" Y:"+GRBL_Plt_work_y;
+}
+
+
+var startTime = new Date();
+function start_OnClick()
+{   html_info.innerText = "";
+	startTime = new Date();
+
+	read_GRBL_Plotter_Settings();	// in _script_functions.js
+	read_SettingsFromForm();
+	create_GCode();
+
+	var endTime = new Date();
+	var timeDiff = (endTime - startTime)/1000; //in s
+
+//	headerCode += "( GCode lines :"+lineCounter+" )\r\n";
+//	headerCode += "( Elapsed time:"+timeDiff+" )\r\n";
+
+	copyCode = headerCode + finalGCode;
+//	html_info.innerHTML = "<b><font color='red'>It takes time to copy large amounts of text to the clipboard</font></b>";
+	codeForm.result.value = copyCode;
+	setTimeout(copy_content,500);	// delayed copy to force <textarea> to show content
+}
+
+function copy_content()
+{	codeForm.result.select();
+	document.execCommand('copy');
+	set_GRBL_Plotter_Update();		// in _script_functions.js
+	
+	endTime = new Date();
+	timeDiff = (endTime - startTime)/1000; //in s
+	codeForm.result.value += "( Elapsed time:"+timeDiff+" after copy to clipboard )\r\n";
+}
+
+function create_GCode()
+{	headerCode  = "( GCode Nut Recess by GRBL-Plotter )\r\n";
+	finalGCode  = header + "(internal header data)\r\n";
+	finalGCode += GRBL_Plt_header + "(header from GRBL-Plotter)\r\n";
+	lineCounter= 5;
+
+	var angle_step = Math.PI/3;							// hexagon nut
+	var a;
+	var r = d_cutter/2;
+	var r_max = (d_nutSize - d_cutter)/(2 * 0.866);
+	var z_max = z_depth;
+	var z;
+	
+	offset_x = 0;
+	offset_y = 0;
+	if (use_offset)
+	{	offset_x = parseFloat(GRBL_Plt_work_x);
+	    offset_y = parseFloat(GRBL_Plt_work_y);
+	}
+	
+	finalGCode += PenUp();
+	finalGCode += "M3 S" + GRBL_Plt_spindle_speed + " (Spindle on)\r\n";
+	finalGCode += "G4 P" + GRBL_Plt_spindle_delay + " (Delay)\r\n";
+
+	finalGCode += G0(0,0);
+	z = z_inc;
+	if (z > z_depth) z = z_depth;
+
+	finalGCode += "(<Figure Type=\"Nut\" Size=\""+d_nutSize+"\" Depth=\""+z_max+"\" D_Cutter=\""+d_cutter+"\">)\r\n";
+	while (z <= z_depth)
+	{	
+		finalGCode += "(<Pass Z=\""+(-z)+"\">)\r\n";
+		finalGCode += G1(0,0);
+		finalGCode += PenDown(-z);
+		r = (d_cutter/2 * 0.75);
+		while (r < (d_nutSize - d_cutter)/2)
+		{	finalGCode += G1(r,0);
+			finalGCode += G2(r,0,-r,0);
+			r += (d_cutter/2 * 0.75);
+		}
+
+//		finalGCode += "( Hexagon )\r\n";
+		r = r_max;
+		finalGCode += G1(r,0);
+		for (a = -angle_step; a >= -(2 * Math.PI); a -= angle_step)	// move CW
+		{	finalGCode += write_GCodeLine_XY(0, r, a);}
+		
+		if (z >= z_depth) break;
+		
+		z += z_inc;
+		if (z > z_depth) z = z_depth;
+		finalGCode += "(</Pass>)\r\n";
+	}
+	finalGCode += "(</Figure>)\r\n";
+	
+	if ((codeForm.drill_enable.checked) && (z_drill > z_depth))
+	{	z += z_inc;
+		if (z > z_drill) z = z_drill;
+		r = (d_drill - d_cutter) / 2;
+		finalGCode += "(<Figure Type=\"Drill\" Diameter=\""+d_drill+"\" Depth=\""+z_drill+"\" D_Cutter=\""+d_cutter+"\">)\r\n";
+		finalGCode += G1(r,0);
+		while (z <= z_drill)
+		{	finalGCode += G2Z(r,0,-r,0,-z);
+			if (z >= z_drill) break;		
+			z += z_inc;
+			if (z > z_drill) z = z_drill;		
+		}	
+		finalGCode += G2(r,0,-r,0);
+		finalGCode += "(</Figure>)\r\n";
+	}
+
+	finalGCode += PenUp();
+		
+	finalGCode += "M5 (Spindle off)\r\n";
+	finalGCode += GRBL_Plt_footer + "(footer from GRBL-Plotter)\r\n";;
+	finalGCode += footer + "(internal footer data)\r\n";;
+}
+
+function G0(x,y)
+{	last_gnr=0; lineCounter++;
+	return "G0 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + "\r\n";
+}
+function PenDown(z)
+{	last_gnr=0; lineCounter++;
+	return "G1 Z" + z.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_z + "\r\n";		// Tool down
+}
+function PenUp()
+{	last_gnr=0; lineCounter++;
+	return "G0 Z" + z_save.toFixed(GRBL_Plt_decimals) + "\r\n";
+}
+function G1(x,y)
+{	last_gnr=1; lineCounter++;
+	return "G1 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+function G2(x,y,i,j)
+{	last_gnr=2; lineCounter++;
+	return "G2 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + " I" + i.toFixed(GRBL_Plt_decimals) + " J" + j.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+function G2Z(x,y,i,j,z)
+{	last_gnr=2; lineCounter++;
+	return "G2 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + " I" + i.toFixed(GRBL_Plt_decimals) + " J" + j.toFixed(GRBL_Plt_decimals)+ " Z" + z.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+function G3(x,y,i,j)
+{	last_gnr=2; lineCounter++;
+	return "G3 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + " I" + i.toFixed(GRBL_Plt_decimals) + " J" + j.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+
+// remove outer material after each turn
+
+var last_gnr=0;
+function write_GCodeLine_XY(gnr, r, a)
+{	var x1 = r * Math.cos(a);
+	var y1 = r * Math.sin(a);
+	if (dir_cw)
+		y1= -y1;
+	var gmode = "";
+	var feed = "";
+	if ((gnr == 1) && (gnr != last_gnr))
+	{	gmode = "G" + gnr + " ";
+		feed = " F" + GRBL_Plt_feedrate_xy;
+	}
+	last_gnr = gnr; lineCounter++;
+	return gmode + "X" + (x1 + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y1 + offset_y).toFixed(GRBL_Plt_decimals) + feed + "\r\n";
+}
+function write_GCodeLine_XYZ(gnr, r, a, z)
+{	var x1 = r * Math.cos(a);
+	var y1 = r * Math.sin(a);
+	if (dir_cw)
+		y1= -y1;
+	var gmode = "";
+	var feed = "";
+	if ((gnr == 1) && (gnr != last_gnr))
+	{	gmode = "G" + gnr + " ";
+		feed = " F" + GRBL_Plt_feedrate_xy;
+	}
+	last_gnr = gnr; lineCounter++;
+	return gmode + "X" + (x1 + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y1 + offset_y).toFixed(GRBL_Plt_decimals) + " Z" + z.toFixed(GRBL_Plt_decimals) + feed + "\r\n";
+}
+
+function read_SettingsFromForm()
+{	d_nutSize = Math.abs(parseFloat(codeForm.d_inner.value));
+	z_depth = 	Math.abs(parseFloat(codeForm.z_max.value));
+	d_cutter = 	Math.abs(parseFloat(codeForm.d_cutter.value));
+	z_inc = 	Math.abs(parseFloat(codeForm.z_inc.value));
+	z_drill = 	Math.abs(parseFloat(codeForm.drill_max.value));
+	d_drill =  	Math.abs(parseFloat(codeForm.d_drill.value));
+	use_offset = codeForm.offset_enable.checked
+}
+
+function preselect_OnClick()
+{	var txt = codeForm.preselect.value;
+	sval = txt.split(";");
+	codeForm.d_inner.value = sval[0];
+	codeForm.z_max.value = 	 sval[1];
+	codeForm.d_drill.value = sval[2];
+}
+
+//-->
+</script>
+<style type="text/css">
+body {margin:1px; }
+div, td, textarea { font-size:12px;  }
+select, input { font-size:12px;  }
+</style>
+
+</head>
+<body bgcolor="#F0F0F0" OnLoad='OnLoad();' style="margin:0;">
+<basefont face="arial, verdana, sans-serif" >
+<form name="codeForm">
+
+<table width='100%'>
+<tr>
+  <td valign="top"><table border>
+    <tr><th colspan="2"><b>GCode Nut Recess</b></th></tr>
+	<tr><td colspan="2">Mills a hexagon recess for a nut.<br>Following settings will be taken from GRBL-Plotter:<br>
+	decimal places, XY feedrate, Z feedrate, GCode header, GCode footer.<br>
+	GCode can be checked in 3D online on <a href="https://ncviewer.com/" target="_blank">https://ncviewer.com/</a><br>- click 'New File', 'Paste (ctrl-V)' and 'PLOT'.</td></tr>
+    <tr><td colspan="2" ><b><font color="red">Usage of the script and the generated GCode is on you own risk!</font></b></td></tr>
+	<tr><td width="30%">Metric nut preselection</td><td><select name="preselect" onchange="preselect_OnClick();">
+			<option value="4.0;1.6;2.1">Nut M2</option>
+			<option value="5.5;2.5;3.2">Nut M3</option>
+			<option value="7;3;4.3">Nut M4</option>
+			<option value="8;4;5.3">Nut M5</option>
+			<option value="10;5;6.4" selected>Nut M6</option>	
+			<option value="13;6.5;8.4">Nut M8</option>	
+			<option value="19;10;10.5">Nut M10</option>	
+		</select>
+		Changes 'Wrench size', 'Depth' and 'Drill diameter'
+	</td></tr>
+
+
+	<tr><td width="30%">Wrench size</td><td><input type="text" name="d_inner" value="5.5" size="4" style="text-align:right;">M2 = 4.0; M3 = 5.5; M4 = 7; M5 = 8; M6 = 10; M8 = 13</td></tr>
+	<tr><td>Depth</td><td><input type="text" name="z_max" value="2.5" size="4" style="text-align:right;">M2 = 1.6; M3 = 2.5;   M4 = 3; M5 = 4; M6 = &nbsp&nbsp5;  M8 = &nbsp&nbsp6.5</td></tr>
+	<tr><td>Drill screw hole</td><td><input type="checkbox" id="drill_enable" name="drill_enable" value=""> 
+		<input type="text" name="d_drill" value="3.2" size="4" style="text-align:right;">Diameter   
+		<input type="text" name="drill_max" value="6" size="4" style="text-align:right;">Final depth</td></tr>
+	<tr><td>Cutter diameter</td><td><input type="text" name="d_cutter" value="2.2" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Z increment</td><td><input type="text" name="z_inc" value="1" size="4" style="text-align:right;"></td></tr>
+
+	<tr><td rowspan="2">Offset center</td><td><input type="checkbox" id="offset_enable" name="offset_enable" value="">Offset to current work position</td></tr>
+	<tr><td id='html_position'></td></tr>
+
+	<tr><td colspan="2"><input name="btn_start" type="BUTTON" value="Create GCode and copy to clipboard (paste in GRBL-Plotter via CTRL-V)" onclick="start_OnClick();" style="width:520px";></td></tr>
+    <tr><td colspan="2" id='html_info'></td></tr>
+    <tr><td colspan="2"><textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="result" wrap="off" cols="66" rows="22" readonly>
+	</textarea></td></tr>
+    <tr><td><b>Status </b></td><td id='html_status'></td></tr>
+  </table></td>
+</tr>
+<tr><td><font size="-2">SH 01.09.2020</font></td></tr>
+</table>  
+
+</form>
+</body>
+</html>

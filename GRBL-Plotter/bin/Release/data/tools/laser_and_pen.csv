@@ -1,0 +1,5 @@
+# T-Nr, Color, T-Name, ExPosX, ExPosY, ExPosZ, ExPosA, T-Diameter, XY-Feed, Z-Feed, Z-Save, Z-Deepth, Z-Step, Spindle-Spd, Step-over %, GCode
+  1, 000000,Laser Cut           ,    0,    0,    0, 0, 0.2, 800,  500,   0,   0,    1,   100, 100,G54
+  2, FF0000,Laser Valley fold   ,    0,    0,    0, 0, 0.2, 800,  500,   0,   0,    1,   100, 100,G54
+  3, 0000FF,Laser Mountain fold ,    0,    0,    0, 0, 0.2, 800,  500,   0,   0,    1,   100, 100,G54
+  4, 00FF00,Pen                 ,    0,    0,    0, 0, 0.5,1500,  500,   2,  -2,    3,     0, 100,G55

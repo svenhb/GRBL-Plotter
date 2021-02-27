@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+<!--
+function applyCode()
+{	myCode.innerHTML = codeForm.myInput.value; }
+
+function OnLoad()
+{ 	applyCode();}
+
+function copyToClipboard() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+  
+  set_GRBL_Plotter_Update();
+}
+
+// Accessing the registry does not work from normal HTML - paste code manually in GRBL-Plotter
+function set_GRBL_Plotter_Update()
+{	var WshShell = new ActiveXObject("WScript.Shell");
+	var reg_key="HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter\\";
+	try 
+	{	GRBL_Plt_decimals    = WshShell.RegWrite(reg_key + "Update",1,"REG_DWORD");	}
+    catch (err) {}
+}
+
+//-->
+</script>
+
+<title>SVG Simple Example</title>
+
+<style type="text/css">
+div, td { text-align:center; }
+textarea { font-size:10px;  }
+</style>
+
+<body bgcolor="#F0F0F0" OnLoad='OnLoad();' style="margin:0;">
+
+<form name="codeForm">
+
+<table width="100%">
+    <tr><th><b>SVG Simple Example</b></th></tr>
+	<tr><td id="myCode">
+	</td></tr>
+	<tr><td><textarea style="text-align:left;" wrap="off" cols="100" rows="10" id="myInput">
+<svg width='200' height='200'>
+ <g id='smiley'>
+  <circle id='body' cx='100' cy='100' r='90' stroke='blue' stroke-width='4' fill='yellow' />
+  <circle id='eye_l' cx='65' cy='70' r='15' stroke='red' stroke-width='1' fill='black' />
+  <circle id='eye_r' cx='135' cy='70' r='15' stroke='red' stroke-width='1' fill='black' />
+  <path id='mouth' d='M50 130 C 90 150, 110 150, 150 130' stroke='black' stroke-width='5' fill='none'/>
+  <rect id='frame' x='5' y='5' width='190' height='190' stroke='black' fill='none' />
+ </g>
+</svg> 
+	</textarea></td></tr>
+	<tr><td><input name="btn_applyCode" type="BUTTON" value="Apply and view SVG code" onclick="applyCode();"></td></tr>
+	<tr><td><input name="btn_start" type="BUTTON" value="Copy code to clipboard (paste in GRBL-Plotter via CTRL-V)" onclick="copyToClipboard();"><br>
+	With normal HTML, accessing the registry to notify GRBL-Plotter may not work<br> - paste code manually in GRBL-Plotter</td></tr>
+</table>
+<br><br>
+<font size="-2">SH 13.04.2020</font>
+
+</form>
+
+</body>
+</html>
