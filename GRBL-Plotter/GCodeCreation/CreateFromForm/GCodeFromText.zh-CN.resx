@@ -171,4 +171,10 @@
   <data name="$this.Text" xml:space="preserve">
     <value>从文本创建G代码</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>文字创作</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>字体信息</value>
+  </data>
 </root>

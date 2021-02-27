@@ -177,4 +177,10 @@
   <data name="label10.ToolTip" xml:space="preserve">
     <value>文字間の追加スペース</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>テキストの作成</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>フォント情報</value>
+  </data>
 </root>

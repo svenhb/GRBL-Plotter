@@ -23,6 +23,7 @@
  * 2020-12-20 bug fix: missing xmlMarker.passEnd if cBNoZUp.Checked
  * 2020-12-23 bug fix: rect-pocket innerst path some times missing
  * 2021-01-07 add edge bevel / rounding
+ * 2021-02-16 presets when switch between tabs
 */
 
 using System;
@@ -112,7 +113,8 @@ namespace GRBL_Plotter
             bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value);
 
             gcode.Comment(gcodeString, xmlMarker.figureStart + " Id=\"" + figureCount.ToString() + "\" >");
-            if (tabControl1.SelectedTab == tabPage1)
+            
+            if (tabControl1.SelectedTab == tabPage1)    // rectangle, circle
             {
                 #region shape
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -323,7 +325,7 @@ namespace GRBL_Plotter
                 }
                 #endregion
             }
-            else if (tabControl1.SelectedTab == tabPage2)
+            else if (tabControl1.SelectedTab == tabPage2)   // bevel / round off
             {
                 {
                     rShape = (float)nUDBevelR.Value;
@@ -423,7 +425,7 @@ namespace GRBL_Plotter
                 }
 
             }
-            else if (tabControl1.SelectedTab == tabPage3)
+            else if (tabControl1.SelectedTab == tabPage3)   // round off Z
             {
                 float xStart = 0, yStart = 0;
                 float xEnd = 0, yEnd = 0;
@@ -919,13 +921,16 @@ namespace GRBL_Plotter
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabPage2)
-            {   btnApply.Enabled = (rB1.Checked || rB2.Checked || rB3.Checked || rB4.Checked);  }
+            if (tabControl1.SelectedTab == tabPage2)    // Bevel
+            {   btnApply.Enabled = (rB1.Checked || rB2.Checked || rB3.Checked || rB4.Checked);  
+                rBToolpath2.PerformClick();             // preset 'Outside the shape'
+            }
             else
                 btnApply.Enabled = true;
 
-            if (tabControl1.SelectedTab == tabPage3)
-                rBRoundZYT_CheckedChanged(sender,e);
+            if (tabControl1.SelectedTab == tabPage3)    // Round off Z
+            {   rBRoundZYT_CheckedChanged(sender,e);
+            }
         }
 
         private void rBRoundZYT_CheckedChanged(object sender, EventArgs e)

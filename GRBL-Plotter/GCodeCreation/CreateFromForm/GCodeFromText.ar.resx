@@ -177,4 +177,10 @@
   <data name="label10.ToolTip" xml:space="preserve">
     <value>مساحة إضافية بين الحروف</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>إنشاء النص</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>معلومات الخط</value>
+  </data>
 </root>

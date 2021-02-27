@@ -171,4 +171,10 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Создать G-Code из текста</value>
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Создание текста</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Информация о шрифте</value>
+  </data>
 </root>

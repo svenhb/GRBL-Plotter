@@ -197,4 +197,10 @@ in Setup SVG-Import </value>
   <data name="$this.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Texterstellung</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Schriftinformationen</value>
+  </data>
 </root>
