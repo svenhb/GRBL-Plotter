@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>214, 12</value>
+    <value>191, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -7431,6 +7431,24 @@ Langue
   <data name="&gt;&gt;viewToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripViewRuler.Name" xml:space="preserve">
+    <value>toolStripViewRuler</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewRuler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewInfo.Name" xml:space="preserve">
+    <value>toolStripViewInfo</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewPenUp.Name" xml:space="preserve">
+    <value>toolStripViewPenUp</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewPenUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripViewMachineFix.Name" xml:space="preserve">
     <value>toolStripViewMachineFix</value>
   </data>
@@ -7447,6 +7465,18 @@ Langue
     <value>toolStripViewDimension</value>
   </data>
   <data name="&gt;&gt;toolStripViewDimension.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewTool.Name" xml:space="preserve">
+    <value>toolStripViewTool</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewBackground.Name" xml:space="preserve">
+    <value>toolStripViewBackground</value>
+  </data>
+  <data name="&gt;&gt;toolStripViewBackground.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
@@ -7520,36 +7550,6 @@ Langue
   </data>
   <data name="&gt;&gt;loadTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewRuler.Name" xml:space="preserve">
-    <value>toolStripViewRuler</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewRuler.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewInfo.Name" xml:space="preserve">
-    <value>toolStripViewInfo</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewPenUp.Name" xml:space="preserve">
-    <value>toolStripViewPenUp</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewPenUp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewTool.Name" xml:space="preserve">
-    <value>toolStripViewTool</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewBackground.Name" xml:space="preserve">
-    <value>toolStripViewBackground</value>
-  </data>
-  <data name="&gt;&gt;toolStripViewBackground.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

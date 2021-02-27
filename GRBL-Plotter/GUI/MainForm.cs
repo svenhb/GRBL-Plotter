@@ -49,6 +49,7 @@
  * 2021-01-13 add 3rd serial com
  * 2021-01-20 move code for camera handling from here to 'MainFormGetCodetransform'
  * 2021-02-01 line 802 change 0 to 0.000
+ * 2021-02-24 save Pen up/down buttons visibillity status
  */
 
 using System;
@@ -326,6 +327,7 @@ namespace GRBL_Plotter
                 statusStripClear(2, 2);
                 Logger.Info("++++++ MainForm SplashScreen Timer disabled  -> mainTimer:{0}", mainTimerCount);
                 timerUpdateControlSource = "SplashScreenTimer_Tick";
+                cBServoButtons_CheckedChanged(sender, e);
     //            updateControls();
 	//			updateLayout();
                 MainTimer.Stop();

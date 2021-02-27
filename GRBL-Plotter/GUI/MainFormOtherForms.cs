@@ -479,6 +479,8 @@ namespace GRBL_Plotter
                 _setup_form.btnApplyChangings.Click += loadSettings;
                 _setup_form.btnReloadFile.Click += reStartConvertFile;
                 _setup_form.btnMoveToolXY.Click += moveToPickup;
+                _setup_form.btnGCPWMUp.Click += moveToPickup;
+                _setup_form.btnGCPWMDown.Click += moveToPickup;
                 _setup_form.setLastLoadedFile(lastLoadSource);
                 gamePadTimer.Enabled = false;
             }

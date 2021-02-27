@@ -1327,6 +1327,8 @@ namespace GRBL_Plotter
             // cBServoButtons
             // 
             resources.ApplyResources(this.cBServoButtons, "cBServoButtons");
+            this.cBServoButtons.Checked = global::GRBL_Plotter.Properties.Settings.Default.guiPenUpDownButtonsShow;
+            this.cBServoButtons.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "guiPenUpDownButtonsShow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBServoButtons.Name = "cBServoButtons";
             this.cBServoButtons.UseVisualStyleBackColor = true;
             this.cBServoButtons.CheckedChanged += new System.EventHandler(this.cBServoButtons_CheckedChanged);

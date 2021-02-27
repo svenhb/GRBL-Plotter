@@ -133,9 +133,9 @@ namespace GRBL_Plotter
                         if (Properties.Settings.Default.machineLimitsShow)
                         {
                             e.Graphics.FillRectangle(brushBackground, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
-                            e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 50));
+                            e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 60));
                             if (VisuGCode.selectedFigureInfo.Length > 0)
-                                e.Graphics.FillRectangle(brushBackground, new Rectangle(148, 3, 160, 50));
+                                e.Graphics.FillRectangle(brushBackground, new Rectangle(148, 3, 160, 60));
                         }
                         if (Properties.Settings.Default.gui2DInfoShow)
                         {
