@@ -1,12 +1,13 @@
 ## Fonts
 GRBL-Plotter uses fonts from following sources for text to gcode functionality and for DXF text import:  
   
-### Hershey fonts   
+### Hershey fonts and font-files  
 Hershey fonts data (except 'Dot Matrix') are imported from Inkscape extension made by Evil Mad Scientist  
-[Evil Mad Scientist - Hershey Text](https://www.evilmadscientist.com/2011/hershey-text-an-inkscape-extension-for-engraving-fonts/)  
-[Inkscape](https://inkscape.org/de/)  
+Link: [Evil Mad Scientist - Hershey Text](https://www.evilmadscientist.com/2011/hershey-text-an-inkscape-extension-for-engraving-fonts/)  
+Link: [Inkscape](https://inkscape.org/de/)  
 GNU GENERAL PUBLIC LICENSE applies to Inkscape the program, it's packages, extensions and source code as published or made available through any third party.  
-  
+Hershey font files are taken from: [Windell Oskay](https://gitlab.com/oskay/svg-fonts)
+ 
 ### Hershey Dot-Matrix font
 Copyright (C): 2017-2019 Sven Hasemann  
   
