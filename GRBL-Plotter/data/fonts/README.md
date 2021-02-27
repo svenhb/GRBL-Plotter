@@ -17,6 +17,9 @@ LibreCad fonts are copied from LibreCAD installation
 LibreCAD is free software; you can redistribute it and/or modify  
 it under the terms of the GNU General Public License version 2 (GPLv2)  
   
+#### Note:
+ Because of file size, the font "wqy-unicode.lff" will not be delivered with GRBL-Plotter. It can be copied from your local LibreCAD installation, subfolder LibreCAD\resources\fonts. 
+  
 #### Rights holders of the fonts ####  
 Copyright (C):  
 - 2002 Yoshimune Kobayashi (cfg47520@syd.odn.ne.jp)  
