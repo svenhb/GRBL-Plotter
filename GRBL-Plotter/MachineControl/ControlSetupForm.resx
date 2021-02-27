@@ -980,11 +980,12 @@
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
     <value>Handle white as black</value>
-    <comment>TabPage1_1</comment>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
     <value>The DXF format uses color index from 0 to 255. This index will be used as tool number.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportDXFSwitchWhite.Name" xml:space="preserve">
     <value>cBImportDXFSwitchWhite</value>
@@ -1015,11 +1016,9 @@
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
     <value>Use color index (+1) as tool nr. (instead of color)</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
     <value>The DXF format uses color index from 0 to 255. This index+1 will be used as tool number.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportDXFIndexToolNr.Name" xml:space="preserve">
     <value>cBImportDXFIndexToolNr</value>
@@ -1044,7 +1043,6 @@
   </data>
   <data name="tab1_1gB3.Text" xml:space="preserve">
     <value>DXF Import</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;tab1_1gB3.Name" xml:space="preserve">
     <value>tab1_1gB3</value>
@@ -1102,7 +1100,6 @@
   </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>Try to scale graphics to given units, before generating gcode,</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;nUDSVGScale.Name" xml:space="preserve">
     <value>nUDSVGScale</value>
@@ -1133,7 +1130,6 @@
   </data>
   <data name="tab1_1lbl3.Text" xml:space="preserve">
     <value>DPI Setting</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;tab1_1lbl3.Name" xml:space="preserve">
     <value>tab1_1lbl3</value>
@@ -1167,7 +1163,6 @@
   </data>
   <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
     <value>72 dpi is used by Adobe Illustrator</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVG_DPI_72.Name" xml:space="preserve">
     <value>cBImportSVG_DPI_72</value>
@@ -1201,7 +1196,6 @@
   </data>
   <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
     <value>96 dpi is the default scaling</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVG_DPI_96.Name" xml:space="preserve">
     <value>cBImportSVG_DPI_96</value>
@@ -1229,12 +1223,10 @@
   </data>
   <data name="cBImportSVGResize.Text" xml:space="preserve">
     <value>Try to resize graphic to max. X or Y dimension</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
     <value>Try to scale graphics to given units, before generating gcode,
 to avoid problems when scaling down gcode.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVGResize.Name" xml:space="preserve">
     <value>cBImportSVGResize</value>
@@ -1289,7 +1281,6 @@ to avoid problems when scaling down gcode.</value>
   </data>
   <data name="tab1_1gB2.Text" xml:space="preserve">
     <value>SVG Import</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;tab1_1gB2.Name" xml:space="preserve">
     <value>tab1_1gB2</value>
@@ -1593,7 +1584,6 @@ Maximum depth will be limited by Z-Height engrave.</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Min</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;label14.Name" xml:space="preserve">
     <value>label14</value>
@@ -1709,14 +1699,12 @@ less stress for the mechanics</value>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
     <value>Process path nodes only</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
     <value>Only process nodes (e.g. end points of lines) for pen down/up action.
 This option is intended for string art to pre drill nail positions.
 In Inkscape, first convert objects to path 'Path - Object to Path',
 then add nodes via 'Extensions - Modify Path - Add nodes' to distribute additional nodes along a path.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVGNodesOnly.Name" xml:space="preserve">
     <value>cBImportSVGNodesOnly</value>
@@ -1787,6 +1775,39 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="cBImportSVGRepeatHF.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 43</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 17</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>Includes header and footer</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGRepeatHF.Name" xml:space="preserve">
+    <value>cBImportSVGRepeatHF</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGRepeatHF.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGRepeatHF.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;cBImportSVGRepeatHF.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="nUDImportRepeat.Location" type="System.Drawing.Point, System.Drawing">
     <value>187, 15</value>
   </data>
@@ -1801,7 +1822,6 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   </data>
   <data name="nUDImportRepeat.ToolTip" xml:space="preserve">
     <value>Repeat the generated code n-times (e.g. for weak lasers to cut thicker material)</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;nUDImportRepeat.Name" xml:space="preserve">
     <value>nUDImportRepeat</value>
@@ -1813,7 +1833,7 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;nUDImportRepeat.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="rBImportSVGRepeat2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1822,7 +1842,7 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>NoControl</value>
   </data>
   <data name="rBImportSVGRepeat2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 54</value>
+    <value>19, 62</value>
   </data>
   <data name="rBImportSVGRepeat2.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 17</value>
@@ -1843,7 +1863,7 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;rBImportSVGRepeat2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="rBImportSVGRepeat1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1852,7 +1872,7 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>NoControl</value>
   </data>
   <data name="rBImportSVGRepeat1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 34</value>
+    <value>19, 42</value>
   </data>
   <data name="rBImportSVGRepeat1.Size" type="System.Drawing.Size, System.Drawing">
     <value>133, 17</value>
@@ -1873,7 +1893,7 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;rBImportSVGRepeat1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBImportSVGRepeat.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1892,11 +1912,9 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   </data>
   <data name="cBImportSVGRepeat.Text" xml:space="preserve">
     <value>Repeat code</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGRepeat.ToolTip" xml:space="preserve">
     <value>Repeat the generated code n-times (e.g. for weak lasers to cut thicker material)</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVGRepeat.Name" xml:space="preserve">
     <value>cBImportSVGRepeat</value>
@@ -1908,7 +1926,7 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;cBImportSVGRepeat.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label58.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1927,7 +1945,6 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   </data>
   <data name="label58.Text" xml:space="preserve">
     <value>times</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;label58.Name" xml:space="preserve">
     <value>label58</value>
@@ -1939,13 +1956,13 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>groupBox5</value>
   </data>
   <data name="&gt;&gt;label58.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>570, 6</value>
   </data>
   <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 76</value>
+    <value>270, 99</value>
   </data>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -1982,11 +1999,9 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   </data>
   <data name="cBImportSVGComments.Text" xml:space="preserve">
     <value>Additional import comments</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
     <value>Add graphics related comments to the GCode</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGComments.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2020,11 +2035,9 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   </data>
   <data name="checkBox4.Text" xml:space="preserve">
     <value>Fold code blocks</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="checkBox4.ToolTip" xml:space="preserve">
     <value>Add graphics related comments to the GCode</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;checkBox4.Name" xml:space="preserve">
     <value>checkBox4</value>
@@ -2079,7 +2092,6 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   </data>
   <data name="cBImportSVGPauseE.Text" xml:space="preserve">
     <value>Pause (M0) before each path</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVGPauseE.Name" xml:space="preserve">
     <value>cBImportSVGPauseE</value>
@@ -2110,7 +2122,6 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   </data>
   <data name="cBImportSVGPauseP.Text" xml:space="preserve">
     <value>Pause (M0) before each pen down</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVGPauseP.Name" xml:space="preserve">
     <value>cBImportSVGPauseP</value>
@@ -2125,7 +2136,7 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
     <value>1</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>570, 100</value>
+    <value>570, 111</value>
   </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 85</value>
@@ -2223,7 +2234,6 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
     <value>Step width on circumference of Arc. 
 If value is &gt; arc-radius, value will be decreased automatically.</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCSegment.Name" xml:space="preserve">
     <value>nUDImportGCSegment</value>
@@ -2275,7 +2285,6 @@ If value is &gt; arc-radius, value will be decreased automatically.</value>
   </data>
   <data name="nUDImportReduce.ToolTip" xml:space="preserve">
     <value>This option skips moves smaller than the given value, to minimize gcode size.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;nUDImportReduce.Name" xml:space="preserve">
     <value>nUDImportReduce</value>
@@ -2303,7 +2312,6 @@ If value is &gt; arc-radius, value will be decreased automatically.</value>
   </data>
   <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
     <value>Curves will be drawn by line segments. As more segments as more prezice the curve is.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;nUDImportSVGSegemnts.Name" xml:space="preserve">
     <value>nUDImportSVGSegemnts</value>
@@ -2367,12 +2375,10 @@ If value is &gt; arc-radius, value will be decreased automatically.</value>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
     <value>Avoid G2/3 commands</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
     <value>Convert circles and arcs into line segments - needed if different X and Y scale is needed.
 If step width is &gt; half of radius, it will be decreased automatically</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCNoArcs.Name" xml:space="preserve">
     <value>cBImportGCNoArcs</value>
@@ -2470,7 +2476,6 @@ Objects with same start and end coordinate will be merged together.</value>
   </data>
   <data name="cBImportUnitGCode.ToolTip" xml:space="preserve">
     <value>Add G20 / G21 command in GCode. G21 is default.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportUnitGCode.Name" xml:space="preserve">
     <value>cBImportUnitGCode</value>
@@ -2504,7 +2509,6 @@ Objects with same start and end coordinate will be merged together.</value>
   </data>
   <data name="rBImportUnitInch.ToolTip" xml:space="preserve">
     <value>G20 command</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;rBImportUnitInch.Name" xml:space="preserve">
     <value>rBImportUnitInch</value>
@@ -2532,11 +2536,9 @@ Objects with same start and end coordinate will be merged together.</value>
   </data>
   <data name="tab1_1lbl1.Text" xml:space="preserve">
     <value>Target units and display</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1lbl1.ToolTip" xml:space="preserve">
     <value>If any unit is given inside import file, try to convert into target units</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;tab1_1lbl1.Name" xml:space="preserve">
     <value>tab1_1lbl1</value>
@@ -2570,7 +2572,6 @@ Objects with same start and end coordinate will be merged together.</value>
   </data>
   <data name="rBImportUnitmm.ToolTip" xml:space="preserve">
     <value>G21 command</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;rBImportUnitmm.Name" xml:space="preserve">
     <value>rBImportUnitmm</value>
@@ -2601,11 +2602,9 @@ Objects with same start and end coordinate will be merged together.</value>
   </data>
   <data name="cBImportSVGReduce.Text" xml:space="preserve">
     <value>Remove very short moves &lt;</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGReduce.ToolTip" xml:space="preserve">
     <value>This option skips moves smaller than the given value, to minimize gcode size.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVGReduce.Name" xml:space="preserve">
     <value>cBImportSVGReduce</value>
@@ -2636,12 +2635,10 @@ Objects with same start and end coordinate will be merged together.</value>
   </data>
   <data name="tab1_1lbl2.Text" xml:space="preserve">
     <value>Number of line segments in curves, splines</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1lbl2.ToolTip" xml:space="preserve">
     <value>Bezier-curves and arcs will be drawn by line segments. 
 As more segments as more prezice the curve is.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;tab1_1lbl2.Name" xml:space="preserve">
     <value>tab1_1lbl2</value>
@@ -2666,7 +2663,6 @@ As more segments as more prezice the curve is.</value>
   </data>
   <data name="tab1_1gB1.Text" xml:space="preserve">
     <value>Graphics import general</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;tab1_1gB1.Name" xml:space="preserve">
     <value>tab1_1gB1</value>
@@ -4025,7 +4021,6 @@ Z-axis will be moved down</value>
   </data>
   <data name="nUDImportGCDragKnifeAngle.ToolTip" xml:space="preserve">
     <value>Change in angle before adding an arc</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCDragKnifeAngle.Name" xml:space="preserve">
     <value>nUDImportGCDragKnifeAngle</value>
@@ -4053,7 +4048,6 @@ Z-axis will be moved down</value>
   </data>
   <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
     <value>Calculate offset depending on Z deepth</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCDragKnifePercent.Name" xml:space="preserve">
     <value>nUDImportGCDragKnifePercent</value>
@@ -4081,7 +4075,6 @@ Z-axis will be moved down</value>
   </data>
   <data name="nUDImportGCDragKnifeLength.ToolTip" xml:space="preserve">
     <value>Offset from center of rotation. For drag knife usually arround 0.3 mm.</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCDragKnifeLength.Name" xml:space="preserve">
     <value>nUDImportGCDragKnifeLength</value>
@@ -4115,7 +4108,6 @@ Z-axis will be moved down</value>
   </data>
   <data name="cBImportGCDragKnifePercent.ToolTip" xml:space="preserve">
     <value>Calculate offset depending on Z deepth</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCDragKnifePercent.Name" xml:space="preserve">
     <value>cBImportGCDragKnifePercent</value>
@@ -4146,11 +4138,9 @@ Z-axis will be moved down</value>
   </data>
   <data name="lblDrag2.Text" xml:space="preserve">
     <value>Swivel angle</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="lblDrag2.ToolTip" xml:space="preserve">
     <value>Change in angle before adding an arc</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;lblDrag2.Name" xml:space="preserve">
     <value>lblDrag2</value>
@@ -4181,11 +4171,9 @@ Z-axis will be moved down</value>
   </data>
   <data name="lblDrag1.Text" xml:space="preserve">
     <value>Offset from center</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="lblDrag1.ToolTip" xml:space="preserve">
     <value>Offset from center of rotation. For drag knife usually arround 0.3 mm.</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;lblDrag1.Name" xml:space="preserve">
     <value>lblDrag1</value>
@@ -4216,11 +4204,9 @@ Z-axis will be moved down</value>
   </data>
   <data name="cBImportGCDragKnife.Text" xml:space="preserve">
     <value>Drag tool compensation</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
     <value>Compensate offset when using a drag knife or brush</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCDragKnife.Name" xml:space="preserve">
     <value>cBImportGCDragKnife</value>
@@ -4245,7 +4231,6 @@ Z-axis will be moved down</value>
   </data>
   <data name="tab1_3gB2.Text" xml:space="preserve">
     <value>Drag tool compensation</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3gB2.Name" xml:space="preserve">
     <value>tab1_3gB2</value>
@@ -4777,7 +4762,6 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
   </data>
   <data name="cBToolTableDefault.Text" xml:space="preserve">
     <value>only use default tool nr.</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBToolTableDefault.Name" xml:space="preserve">
     <value>cBToolTableDefault</value>
@@ -4809,7 +4793,6 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
   <data name="cBToolTableUse.Text" xml:space="preserve">
     <value>Set XY-Feed etc. from tool table, 
 select items on next page 'G-Code generation'</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBToolTableUse.Name" xml:space="preserve">
     <value>cBToolTableUse</value>
@@ -4894,7 +4877,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="rBImportSVGSort1.Text" xml:space="preserve">
     <value>sort groups by group-property - ascending</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;rBImportSVGSort1.Name" xml:space="preserve">
     <value>rBImportSVGSort1</value>
@@ -4925,7 +4907,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="rBImportSVGSort0.Text" xml:space="preserve">
     <value>no sorting</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;rBImportSVGSort0.Name" xml:space="preserve">
     <value>rBImportSVGSort0</value>
@@ -4956,7 +4937,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
     <value>sort groups by path length - descending</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;rBImportSVGSort3.Name" xml:space="preserve">
     <value>rBImportSVGSort3</value>
@@ -5017,7 +4997,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="rBImportSVGSort2.Text" xml:space="preserve">
     <value>sort groups by tool nr - ascending</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;rBImportSVGSort2.Name" xml:space="preserve">
     <value>rBImportSVGSort2</value>
@@ -5048,7 +5027,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="cBImportSVGSortInvert.Text" xml:space="preserve">
     <value>revert sort order</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVGSortInvert.Name" xml:space="preserve">
     <value>cBImportSVGSortInvert</value>
@@ -5259,11 +5237,9 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="cBImportSVGGroup.Text" xml:space="preserve">
     <value>Group objects of same property</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGGroup.ToolTip" xml:space="preserve">
     <value>Group object of same color = Tool Nr. </value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportSVGGroup.Name" xml:space="preserve">
     <value>cBImportSVGGroup</value>
@@ -5288,7 +5264,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="tab1_1gB4.Text" xml:space="preserve">
     <value>Grouping and sorting of objects</value>
-    <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;tab1_1gB4.Name" xml:space="preserve">
     <value>tab1_1gB4</value>
@@ -5364,7 +5339,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="tabPage9.Text" xml:space="preserve">
     <value>Path import</value>
-    <comment>TabPage</comment>
   </data>
   <data name="&gt;&gt;tabPage9.Name" xml:space="preserve">
     <value>tabPage9</value>
@@ -5452,7 +5426,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="nUDImportGCFeedXY.ToolTip" xml:space="preserve">
     <value>Feedrate for G1,2,3 commands using X or Y dimension</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCFeedXY.Name" xml:space="preserve">
     <value>nUDImportGCFeedXY</value>
@@ -5507,7 +5480,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
     <value>Spindle speed for engraving </value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCSSpeed.Name" xml:space="preserve">
     <value>nUDImportGCSSpeed</value>
@@ -5535,7 +5507,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="nUDImportGCSpindleDelay.ToolTip" xml:space="preserve">
     <value>Insert Delay in seconds  after spindle on (to have time for a reset if spindle-power is off)</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCSpindleDelay.Name" xml:space="preserve">
     <value>nUDImportGCSpindleDelay</value>
@@ -5600,7 +5571,6 @@ select items on next page 'G-Code generation'</value>
   <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
     <value>Send 'M4' to switch on the spindle counter clock wise
 Dynamic Laser Power Mode in Laser Mode</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;rBImportGCSpindleCmd2.Name" xml:space="preserve">
     <value>rBImportGCSpindleCmd2</value>
@@ -5631,7 +5601,6 @@ Dynamic Laser Power Mode in Laser Mode</value>
   </data>
   <data name="tab1_2lbl6.Text" xml:space="preserve">
     <value>Direction / Lasermode</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl6.Name" xml:space="preserve">
     <value>tab1_2lbl6</value>
@@ -5666,7 +5635,6 @@ Dynamic Laser Power Mode in Laser Mode</value>
   <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
     <value>Send 'M3' to switch on the spindle clock wise
 Constant Laser Power Mode in Laser Mode</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;rBImportGCSpindleCmd1.Name" xml:space="preserve">
     <value>rBImportGCSpindleCmd1</value>
@@ -5697,7 +5665,6 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="tab1_2lbl7.Text" xml:space="preserve">
     <value>Delay after Spindle 'ON'</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl7.Name" xml:space="preserve">
     <value>tab1_2lbl7</value>
@@ -5728,11 +5695,9 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="tab1_2lbl5.Text" xml:space="preserve">
     <value>Spindle Speed / Laser pwr.</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl5.ToolTip" xml:space="preserve">
     <value>Spindle speed for engraving </value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl5.Name" xml:space="preserve">
     <value>tab1_2lbl5</value>
@@ -5763,11 +5728,9 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
     <value>from tool table</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
     <value>If 'Add Tool Change' and 'Perform Tool Change' are enabled, value will be taken from tool table during import</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCTTSSpeed.Name" xml:space="preserve">
     <value>cBImportGCTTSSpeed</value>
@@ -5792,7 +5755,6 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="tab1_2gB2.Text" xml:space="preserve">
     <value>Spindle / Laser</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2gB2.Name" xml:space="preserve">
     <value>tab1_2gB2</value>
@@ -5823,11 +5785,9 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
     <value>Add Pause (M0) instead</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
     <value>Replace any M06 (tool change) command by M0 (pause) for manual tool change.</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCToolM0.Name" xml:space="preserve">
     <value>cBImportGCToolM0</value>
@@ -5858,11 +5818,9 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="cBImportGCTool.Text" xml:space="preserve">
     <value>Add Tool Change command Tx M06</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTool.ToolTip" xml:space="preserve">
     <value>Perform tool change action on Tx M06 commands if information is available - check tab 'Tool change'.</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCTool.Name" xml:space="preserve">
     <value>cBImportGCTool</value>
@@ -5893,11 +5851,9 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="cBImportGCComments.Text" xml:space="preserve">
     <value>Additional G-Code comments</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCComments.ToolTip" xml:space="preserve">
     <value>Add some more comments to the GCode</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCComments.Name" xml:space="preserve">
     <value>cBImportGCComments</value>
@@ -5928,11 +5884,9 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="cBImportGCTTXYFeed.Text" xml:space="preserve">
     <value>from tool table</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
     <value>If 'Add Tool Change' and 'Perform Tool Change' are enabled, value will be taken from tool table during import</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCTTXYFeed.Name" xml:space="preserve">
     <value>cBImportGCTTXYFeed</value>
@@ -5963,11 +5917,9 @@ Constant Laser Power Mode in Laser Mode</value>
   </data>
   <data name="tab1_2lbl1.Text" xml:space="preserve">
     <value>Decimal places</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.ToolTip" xml:space="preserve">
     <value>Decimal places for coordinates in gcode. </value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl1.Name" xml:space="preserve">
     <value>tab1_2lbl1</value>
@@ -5993,7 +5945,6 @@ Constant Laser Power Mode in Laser Mode</value>
   <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
     <value>GRBL-Status after reset: G0, G54, G17, G90, G94, G21, G40, G49, M0, M5, M9
 No need to set this words</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tBImportGCHeader.Name" xml:space="preserve">
     <value>tBImportGCHeader</value>
@@ -6024,11 +5975,9 @@ No need to set this words</value>
   </data>
   <data name="tab1_2lbl4.Text" xml:space="preserve">
     <value>XY Feedrate</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl4.ToolTip" xml:space="preserve">
     <value>Feedrate for G1,2,3 commands using X or Y dimension</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl4.Name" xml:space="preserve">
     <value>tab1_2lbl4</value>
@@ -6059,12 +6008,10 @@ No need to set this words</value>
   </data>
   <data name="tab1_2lbl2.Text" xml:space="preserve">
     <value>G-Code Header</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl2.ToolTip" xml:space="preserve">
     <value>GRBL-Status after reset: G0, G54, G17, G90, G94, G21, G40, G49, M0, M5, M9
 No need to set this words</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl2.Name" xml:space="preserve">
     <value>tab1_2lbl2</value>
@@ -6116,7 +6063,6 @@ No need to set this words</value>
   </data>
   <data name="tab1_2lbl3.Text" xml:space="preserve">
     <value>G-Code Footer</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl3.Name" xml:space="preserve">
     <value>tab1_2lbl3</value>
@@ -6144,7 +6090,6 @@ No need to set this words</value>
   </data>
   <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
     <value>Decimal places for coordinates in gcode. </value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportDecPlaces.Name" xml:space="preserve">
     <value>nUDImportDecPlaces</value>
@@ -6162,14 +6107,13 @@ No need to set this words</value>
     <value>6, 6</value>
   </data>
   <data name="tab1_2gB1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>389, 285</value>
+    <value>389, 310</value>
   </data>
   <data name="tab1_2gB1.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
   </data>
   <data name="tab1_2gB1.Text" xml:space="preserve">
     <value>General</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2gB1.Name" xml:space="preserve">
     <value>tab1_2gB1</value>
@@ -6200,11 +6144,9 @@ No need to set this words</value>
   </data>
   <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
     <value>from tool table</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
     <value>If 'Add Tool Change' and 'Perform Tool Change' are enabled, all Z value will be taken from tool table during import</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCTTZAxis.Name" xml:space="preserve">
     <value>cBImportGCTTZAxis</value>
@@ -6232,7 +6174,6 @@ No need to set this words</value>
   </data>
   <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
     <value>Speed when moving into the workpiece for G1 command</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCFeedZ.Name" xml:space="preserve">
     <value>nUDImportGCFeedZ</value>
@@ -6260,7 +6201,6 @@ No need to set this words</value>
   </data>
   <data name="nUDImportGCZUp.ToolTip" xml:space="preserve">
     <value>Height above surface of workpiece - must be positive</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCZUp.Name" xml:space="preserve">
     <value>nUDImportGCZUp</value>
@@ -6288,7 +6228,6 @@ No need to set this words</value>
   </data>
   <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
     <value>Final deepth below surface of workpiece - must be negative</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCZDown.Name" xml:space="preserve">
     <value>nUDImportGCZDown</value>
@@ -6319,11 +6258,9 @@ No need to set this words</value>
   </data>
   <data name="cBImportGCZIncStartZero.Text" xml:space="preserve">
     <value>Start at Z=0</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncStartZero.ToolTip" xml:space="preserve">
     <value>Use Z=0 for first pass</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCZIncStartZero.Name" xml:space="preserve">
     <value>cBImportGCZIncStartZero</value>
@@ -6378,11 +6315,9 @@ No need to set this words</value>
   </data>
   <data name="tab1_2lbl35.Text" xml:space="preserve">
     <value>Depth per pass</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl35.ToolTip" xml:space="preserve">
     <value>Max. increment of Z value</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl35.Name" xml:space="preserve">
     <value>tab1_2lbl35</value>
@@ -6413,12 +6348,10 @@ No need to set this words</value>
   </data>
   <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
     <value>Use several passes</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncEnable.ToolTip" xml:space="preserve">
     <value>Repeat path with increasing Z deepth to reach final deepth
 Not usable with other pen up/down options!</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCZIncEnable.Name" xml:space="preserve">
     <value>cBImportGCZIncEnable</value>
@@ -6449,11 +6382,9 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="cBImportGCUseZ.Text" xml:space="preserve">
     <value>Use Z-Axis and spindle</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseZ.ToolTip" xml:space="preserve">
     <value>Insert Z-Axis moves into G-Code</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCUseZ.Name" xml:space="preserve">
     <value>cBImportGCUseZ</value>
@@ -6487,7 +6418,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2lbl32.ToolTip" xml:space="preserve">
     <value>Height above surface of workpiece - must be positive</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl32.Name" xml:space="preserve">
     <value>tab1_2lbl32</value>
@@ -6521,7 +6451,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2lbl33.ToolTip" xml:space="preserve">
     <value>Final deepth below surface of workpiece - must be negative</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl33.Name" xml:space="preserve">
     <value>tab1_2lbl33</value>
@@ -6555,7 +6484,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2lbl31.ToolTip" xml:space="preserve">
     <value>Speed when moving into the workpiece</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl31.Name" xml:space="preserve">
     <value>tab1_2lbl31</value>
@@ -6573,18 +6501,16 @@ Not usable with other pen up/down options!</value>
     <value>6, 14</value>
   </data>
   <data name="tab1_2gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 140</value>
+    <value>250, 161</value>
   </data>
   <data name="tab1_2gB3.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="tab1_2gB3.Text" xml:space="preserve">
     <value>Z-Axis</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2gB3.ToolTip" xml:space="preserve">
     <value>Insert Z-Axis moves into G-Code</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2gB3.Name" xml:space="preserve">
     <value>tab1_2gB3</value>
@@ -6615,7 +6541,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2lbl51.Text" xml:space="preserve">
     <value>Check Spindle settings for M3 M4 selection and delay</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl51.Name" xml:space="preserve">
     <value>tab1_2lbl51</value>
@@ -6646,11 +6571,9 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="cBImportGCUseSpindle.Text" xml:space="preserve">
     <value>Spindle On/Off</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
     <value>Switch Spindle 'off' with 'Pen up' and 'on' with 'Pen down' commands (for laser engraver)</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCUseSpindle.Name" xml:space="preserve">
     <value>cBImportGCUseSpindle</value>
@@ -6665,7 +6588,7 @@ Not usable with other pen up/down options!</value>
     <value>1</value>
   </data>
   <data name="tab1_2gB5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 160</value>
+    <value>6, 183</value>
   </data>
   <data name="tab1_2gB5.Size" type="System.Drawing.Size, System.Drawing">
     <value>444, 38</value>
@@ -6675,12 +6598,10 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2gB5.Text" xml:space="preserve">
     <value>Spindle On/Off with Pen Down/Up (for Laser)</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2gB5.ToolTip" xml:space="preserve">
     <value>Switch Spindle 'off' with 'Pen up' and 'on' with 'Pen down' commands (for laser engraver)
 </value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2gB5.Name" xml:space="preserve">
     <value>tab1_2gB5</value>
@@ -6813,7 +6734,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
     <value>Use individual commands (seperate lines by ';' )</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCUseIndividual.Name" xml:space="preserve">
     <value>cBImportGCUseIndividual</value>
@@ -6828,7 +6748,7 @@ Not usable with other pen up/down options!</value>
     <value>4</value>
   </data>
   <data name="tab1_2gB6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 204</value>
+    <value>6, 227</value>
   </data>
   <data name="tab1_2gB6.Size" type="System.Drawing.Size, System.Drawing">
     <value>444, 77</value>
@@ -6838,7 +6758,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2gB6.Text" xml:space="preserve">
     <value>Individual commands for Pen Down/Up</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2gB6.Name" xml:space="preserve">
     <value>tab1_2gB6</value>
@@ -6852,8 +6771,104 @@ Not usable with other pen up/down options!</value>
   <data name="&gt;&gt;tab1_2gB6.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="btnGCPWMDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnGCPWMDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 75</value>
+  </data>
+  <data name="btnGCPWMDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 22</value>
+  </data>
+  <data name="btnGCPWMDown.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Pen Down</value>
+  </data>
+  <data name="btnGCPWMDown.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;btnGCPWMDown.Name" xml:space="preserve">
+    <value>btnGCPWMDown</value>
+  </data>
+  <data name="&gt;&gt;btnGCPWMDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnGCPWMDown.Parent" xml:space="preserve">
+    <value>tab1_2gB4</value>
+  </data>
+  <data name="&gt;&gt;btnGCPWMDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnGCPWMUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnGCPWMUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 35</value>
+  </data>
+  <data name="btnGCPWMUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 22</value>
+  </data>
+  <data name="btnGCPWMUp.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="btnGCPWMUp.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;btnGCPWMUp.Name" xml:space="preserve">
+    <value>btnGCPWMUp</value>
+  </data>
+  <data name="&gt;&gt;btnGCPWMUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnGCPWMUp.Parent" xml:space="preserve">
+    <value>tab1_2gB4</value>
+  </data>
+  <data name="&gt;&gt;btnGCPWMUp.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 138</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 17</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>Send command to check</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>Send command on value change</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCPWMSendCode.Name" xml:space="preserve">
+    <value>cBImportGCPWMSendCode</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCPWMSendCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCPWMSendCode.Parent" xml:space="preserve">
+    <value>tab1_2gB4</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCPWMSendCode.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="cBImportGCPWMSkipM30.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="cBImportGCPWMSkipM30.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 117</value>
@@ -6880,7 +6895,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;cBImportGCPWMSkipM30.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="nUDImportGCPWMUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 36</value>
@@ -6896,7 +6911,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
     <value>Spindle speed for pen up</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCPWMUp.Name" xml:space="preserve">
     <value>nUDImportGCPWMUp</value>
@@ -6908,7 +6922,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;nUDImportGCPWMUp.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="nUDImportGCDlyUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 56</value>
@@ -6924,7 +6938,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
     <value>Insert G4: delay in seconds before next command</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCDlyUp.Name" xml:space="preserve">
     <value>nUDImportGCDlyUp</value>
@@ -6936,7 +6949,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;nUDImportGCDlyUp.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="nUDImportGCPWMDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 76</value>
@@ -6952,7 +6965,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
     <value>Spindle speed for pen down</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCPWMDown.Name" xml:space="preserve">
     <value>nUDImportGCPWMDown</value>
@@ -6964,7 +6976,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;nUDImportGCPWMDown.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="nUDImportGCDlyDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 96</value>
@@ -6980,7 +6992,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
     <value>Insert G4: delay in seconds before next command</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;nUDImportGCDlyDown.Name" xml:space="preserve">
     <value>nUDImportGCDlyDown</value>
@@ -6992,7 +7003,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;nUDImportGCDlyDown.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="cBImportGCUsePWM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7011,11 +7022,9 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="cBImportGCUsePWM.Text" xml:space="preserve">
     <value>Spindle Speed as PWM</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUsePWM.ToolTip" xml:space="preserve">
     <value>Control RC-Servo via spindle speed (special GRBL-version needed to generate 1ms - 2ms PWM output)</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;cBImportGCUsePWM.Name" xml:space="preserve">
     <value>cBImportGCUsePWM</value>
@@ -7027,7 +7036,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;cBImportGCUsePWM.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="tab1_2lbl44.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7049,7 +7058,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
     <value>Insert G4: delay in seconds before next command</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl44.Name" xml:space="preserve">
     <value>tab1_2lbl44</value>
@@ -7061,7 +7069,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;tab1_2lbl44.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="tab1_2lbl42.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7083,7 +7091,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
     <value>Insert G4: delay in seconds before next command</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl42.Name" xml:space="preserve">
     <value>tab1_2lbl42</value>
@@ -7095,7 +7102,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;tab1_2lbl42.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="tab1_2lbl43.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7117,7 +7124,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
     <value>Spindle speed for pen down</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl43.Name" xml:space="preserve">
     <value>tab1_2lbl43</value>
@@ -7129,7 +7135,7 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;tab1_2lbl43.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="tab1_2lbl41.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7151,7 +7157,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
     <value>Spindle speed for pen up</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2lbl41.Name" xml:space="preserve">
     <value>tab1_2lbl41</value>
@@ -7163,24 +7168,22 @@ Not usable with other pen up/down options!</value>
     <value>tab1_2gB4</value>
   </data>
   <data name="&gt;&gt;tab1_2lbl41.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="tab1_2gB4.Location" type="System.Drawing.Point, System.Drawing">
     <value>262, 14</value>
   </data>
   <data name="tab1_2gB4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 140</value>
+    <value>188, 161</value>
   </data>
   <data name="tab1_2gB4.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="tab1_2gB4.Text" xml:space="preserve">
     <value>Servo Control</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2gB4.ToolTip" xml:space="preserve">
     <value>Control RC-Servo via spindle speed (special GRBL-version needed to generate 1ms - 2ms PWM output)</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2gB4.Name" xml:space="preserve">
     <value>tab1_2gB4</value>
@@ -7198,14 +7201,13 @@ Not usable with other pen up/down options!</value>
     <value>401, 6</value>
   </data>
   <data name="tab1_2gB7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 285</value>
+    <value>456, 310</value>
   </data>
   <data name="tab1_2gB7.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
   </data>
   <data name="tab1_2gB7.Text" xml:space="preserve">
     <value>Pen up / down translation</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tab1_2gB7.Name" xml:space="preserve">
     <value>tab1_2gB7</value>
@@ -7233,7 +7235,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tabPage10.Text" xml:space="preserve">
     <value>G-Code generation</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;tabPage10.Name" xml:space="preserve">
     <value>tabPage10</value>
@@ -7336,7 +7337,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_3lbl34.Text" xml:space="preserve">
     <value>S at Z &gt; 0</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3lbl34.Name" xml:space="preserve">
     <value>tab1_3lbl34</value>
@@ -7364,7 +7364,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_3lbl31.Text" xml:space="preserve">
     <value>Settings for Menu GCode Transform, Convert Z to S</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3lbl31.Name" xml:space="preserve">
     <value>tab1_3lbl31</value>
@@ -7395,7 +7394,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_3lbl33.Text" xml:space="preserve">
     <value>Minimum S at maximum Z</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3lbl33.Name" xml:space="preserve">
     <value>tab1_3lbl33</value>
@@ -7426,7 +7424,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_3lbl32.Text" xml:space="preserve">
     <value>Maximum S at minimum Z</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3lbl32.Name" xml:space="preserve">
     <value>tab1_3lbl32</value>
@@ -7451,7 +7448,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
     <value>Convert Z-Axis to Spindle speed S</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3gB3.Name" xml:space="preserve">
     <value>tab1_3gB3</value>
@@ -7482,7 +7478,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="tab1_3lbl41.Text" xml:space="preserve">
     <value>May not work with other options</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3lbl41.Name" xml:space="preserve">
     <value>tab1_3lbl41</value>
@@ -7513,12 +7508,10 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="cBImportGCRelative.Text" xml:space="preserve">
     <value>Relative movements</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCRelative.ToolTip" xml:space="preserve">
     <value>Calculate relative movements for G91
 Note: Don't use 'Sort objects by pen index'</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCRelative.Name" xml:space="preserve">
     <value>cBImportGCRelative</value>
@@ -7549,12 +7542,10 @@ Note: Don't use 'Sort objects by pen index'</value>
   </data>
   <data name="cBImportGCCompress.Text" xml:space="preserve">
     <value>Compress G-Code</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCCompress.ToolTip" xml:space="preserve">
     <value>Skips redundant data.
 Note: Don't use 'Sort objects by pen index'</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCCompress.Name" xml:space="preserve">
     <value>cBImportGCCompress</value>
@@ -7579,7 +7570,6 @@ Note: Don't use 'Sort objects by pen index'</value>
   </data>
   <data name="tab1_3gB4.Text" xml:space="preserve">
     <value>Experimental</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3gB4.Name" xml:space="preserve">
     <value>tab1_3gB4</value>
@@ -7661,7 +7651,6 @@ Note: Don't use 'Sort objects by pen index'</value>
   </data>
   <data name="cBImportGCSubFirst.Text" xml:space="preserve">
     <value>Insert also on begin of path</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCSubFirst.Name" xml:space="preserve">
     <value>cBImportGCSubFirst</value>
@@ -7689,11 +7678,9 @@ Note: Don't use 'Sort objects by pen index'</value>
   </data>
   <data name="btnShowScriptSub.Text" xml:space="preserve">
     <value>show</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="btnShowScriptSub.ToolTip" xml:space="preserve">
     <value>Click to show file content</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;btnShowScriptSub.Name" xml:space="preserve">
     <value>btnShowScriptSub</value>
@@ -7724,12 +7711,10 @@ Note: Don't use 'Sort objects by pen index'</value>
   </data>
   <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
     <value>equidistant segments</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
     <value>Checked: A line will be split into segments of same length ( &lt;= given length)
 Unchecked: last linesegment is shorter, all other exact given length</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCLineSegmentsEquidistant.Name" xml:space="preserve">
     <value>cBImportGCLineSegmentsEquidistant</value>
@@ -7754,7 +7739,6 @@ Unchecked: last linesegment is shorter, all other exact given length</value>
   </data>
   <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
     <value>Path to file with subroutine</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tBImportGCSubroutine.Name" xml:space="preserve">
     <value>tBImportGCSubroutine</value>
@@ -7785,11 +7769,9 @@ Unchecked: last linesegment is shorter, all other exact given length</value>
   </data>
   <data name="cBImportGCSubEnable.Text" xml:space="preserve">
     <value>Insert Subroutine</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
     <value>Insert subroutine every segment length.</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCSubEnable.Name" xml:space="preserve">
     <value>cBImportGCSubEnable</value>
@@ -7821,12 +7803,10 @@ Unchecked: last linesegment is shorter, all other exact given length</value>
   <data name="cBImportGCLineSegments.Text" xml:space="preserve">
     <value>Divide G1 lines into segments
 with max. length in units</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
     <value>Cut long straight moves into shorter moves with max. given length.
 Don't use with "Relative movements"</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;cBImportGCLineSegments.Name" xml:space="preserve">
     <value>cBImportGCLineSegments</value>
@@ -7851,7 +7831,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tab1_3gB1.Text" xml:space="preserve">
     <value>Split original moves</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tab1_3gB1.Name" xml:space="preserve">
     <value>tab1_3gB1</value>
@@ -7879,7 +7858,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
     <value>G-Code modification</value>
-    <comment>TabPage1_3</comment>
   </data>
   <data name="&gt;&gt;tabPage11.Name" xml:space="preserve">
     <value>tabPage11</value>
@@ -7937,7 +7915,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tab1_4lbl1.Text" xml:space="preserve">
     <value>Last loaded:</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="&gt;&gt;tab1_4lbl1.Name" xml:space="preserve">
     <value>tab1_4lbl1</value>
@@ -7998,7 +7975,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tBUseCaseSetting1.Text" xml:space="preserve">
     <value>Select use case to see settings</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="&gt;&gt;tBUseCaseSetting1.Name" xml:space="preserve">
     <value>tBUseCaseSetting1</value>
@@ -8029,7 +8005,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tab1_4lbl2.Text" xml:space="preserve">
     <value>Write information about use case</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="&gt;&gt;tab1_4lbl2.Name" xml:space="preserve">
     <value>tab1_4lbl2</value>
@@ -8057,11 +8032,9 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnDelete.Text" xml:space="preserve">
     <value>Delete selected</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="btnDelete.ToolTip" xml:space="preserve">
     <value>Delete the selected use case</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="&gt;&gt;btnDelete.Name" xml:space="preserve">
     <value>btnDelete</value>
@@ -8089,11 +8062,9 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnUseCaseSave.Text" xml:space="preserve">
     <value>Save 'use case'</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseSave.ToolTip" xml:space="preserve">
     <value>Save current import settings as a use case</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="&gt;&gt;btnUseCaseSave.Name" xml:space="preserve">
     <value>btnUseCaseSave</value>
@@ -8121,11 +8092,9 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnUseCaseLoad.Text" xml:space="preserve">
     <value>Load selected</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
     <value>Load settings of selected use case</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="&gt;&gt;btnUseCaseLoad.Name" xml:space="preserve">
     <value>btnUseCaseLoad</value>
@@ -8195,7 +8164,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tab1_4gB1.Text" xml:space="preserve">
     <value>Save import settings as 'use case'</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="&gt;&gt;tab1_4gB1.Name" xml:space="preserve">
     <value>tab1_4gB1</value>
@@ -8223,7 +8191,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tabPage15.Text" xml:space="preserve">
     <value>Use cases</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="&gt;&gt;tabPage15.Name" xml:space="preserve">
     <value>tabPage15</value>
@@ -8272,7 +8239,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Graphics import</value>
-    <comment>TabPage1</comment>
   </data>
   <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
     <value>tabPage3</value>
@@ -8330,11 +8296,9 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnDeleteToolTable.Text" xml:space="preserve">
     <value>Delete selected list</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="btnDeleteToolTable.ToolTip" xml:space="preserve">
     <value>Delete selected tool table</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;btnDeleteToolTable.Name" xml:space="preserve">
     <value>btnDeleteToolTable</value>
@@ -8365,7 +8329,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="lblToolListLoaded.Text" xml:space="preserve">
     <value>empty</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;lblToolListLoaded.Name" xml:space="preserve">
     <value>lblToolListLoaded</value>
@@ -8396,7 +8359,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Last loaded tool table:</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -8445,11 +8407,9 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnLoadToolTable.Text" xml:space="preserve">
     <value>Load selected</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="btnLoadToolTable.ToolTip" xml:space="preserve">
     <value>Load selected tool table</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;btnLoadToolTable.Name" xml:space="preserve">
     <value>btnLoadToolTable</value>
@@ -8477,11 +8437,9 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnToolExport.Text" xml:space="preserve">
     <value>Save tool table</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="btnToolExport.ToolTip" xml:space="preserve">
     <value>Save current tool table to csv file</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;btnToolExport.Name" xml:space="preserve">
     <value>btnToolExport</value>
@@ -8506,7 +8464,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tab2gB1.Text" xml:space="preserve">
     <value>Tool tables</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;tab2gB1.Name" xml:space="preserve">
     <value>tab2gB1</value>
@@ -8537,11 +8494,9 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="cBToolLaser.Text" xml:space="preserve">
     <value>Laser related</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="cBToolLaser.ToolTip" xml:space="preserve">
     <value>Reduce visible columns</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;cBToolLaser.Name" xml:space="preserve">
     <value>cBToolLaser</value>
@@ -8617,7 +8572,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnReNumberTools.Text" xml:space="preserve">
     <value>renumber</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;btnReNumberTools.Name" xml:space="preserve">
     <value>btnReNumberTools</value>
@@ -8645,7 +8599,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnMoveToolXY.Text" xml:space="preserve">
     <value>Move to XY position of marked row</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;btnMoveToolXY.Name" xml:space="preserve">
     <value>btnMoveToolXY</value>
@@ -8676,7 +8629,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tab2gB2lbl1.Text" xml:space="preserve">
     <value>Offset to tool positions in tool table (X,Y,Z)</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;tab2gB2lbl1.Name" xml:space="preserve">
     <value>tab2gB2lbl1</value>
@@ -8765,65 +8717,78 @@ Don't use with "Relative movements"</value>
   <data name="dGVToolList.ColumnHeadersHeight" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
+  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column1.HeaderText" xml:space="preserve">
     <value>Nr.</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column1.ToolTipText" xml:space="preserve">
     <value>Tool number</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column1.Width" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
+  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column2.HeaderText" xml:space="preserve">
     <value>Color</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column2.ToolTipText" xml:space="preserve">
     <value>Color of pen in 6 digit hex. Click to sort by brightness.</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column2.Width" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
+  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column3.HeaderText" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="Column3.ToolTipText" xml:space="preserve">
     <value>Name of the tool</value>
-    <comment>TabPage2</comment>
   </data>
+  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column4.HeaderText" xml:space="preserve">
     <value>Pos. X</value>
   </data>
   <data name="Column4.ToolTipText" xml:space="preserve">
     <value>Exchange position X</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column4.Width" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
+  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column5.HeaderText" xml:space="preserve">
     <value>Pos. Y</value>
   </data>
   <data name="Column5.ToolTipText" xml:space="preserve">
     <value>Exchange position Y</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column5.Width" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
+  <metadata name="Column6.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column6.HeaderText" xml:space="preserve">
     <value>Pos. Z</value>
   </data>
   <data name="Column6.ToolTipText" xml:space="preserve">
     <value>Exchange position Z</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column6.Width" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
+  <metadata name="Column16.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column16.HeaderText" xml:space="preserve">
     <value>Pos. A</value>
   </data>
@@ -8833,93 +8798,110 @@ Don't use with "Relative movements"</value>
   <data name="Column16.Width" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
+  <metadata name="Column7.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column7.HeaderText" xml:space="preserve">
     <value>Tool Ø</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column7.ToolTipText" xml:space="preserve">
     <value>Diameter of the tool</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column7.Width" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
+  <metadata name="Column8.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column8.HeaderText" xml:space="preserve">
     <value>XY Spd</value>
   </data>
   <data name="Column8.ToolTipText" xml:space="preserve">
     <value>Feedrate for XY moves</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column8.Width" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
+  <metadata name="Column10.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column10.HeaderText" xml:space="preserve">
     <value>Z Spd</value>
   </data>
   <data name="Column10.ToolTipText" xml:space="preserve">
     <value>Feedrate for Z moves</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column10.Width" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
+  <metadata name="Column15.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column15.HeaderText" xml:space="preserve">
     <value>Z Save</value>
   </data>
   <data name="Column15.ToolTipText" xml:space="preserve">
     <value>Save height above workpiece</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column15.Width" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
+  <metadata name="Column9.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column9.HeaderText" xml:space="preserve">
     <value>Z Deep</value>
   </data>
   <data name="Column9.ToolTipText" xml:space="preserve">
     <value>Final Z depth</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column9.Width" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
+  <metadata name="Column13.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column13.HeaderText" xml:space="preserve">
     <value>Z Inc.</value>
   </data>
   <data name="Column13.ToolTipText" xml:space="preserve">
     <value>Max. Z increment per pass</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column13.Width" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
+  <metadata name="Column11.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column11.HeaderText" xml:space="preserve">
     <value>Spindle</value>
   </data>
   <data name="Column11.ToolTipText" xml:space="preserve">
     <value>Rotation speed of the spindle</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column11.Width" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
+  <metadata name="Column12.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column12.HeaderText" xml:space="preserve">
     <value>Stepover</value>
   </data>
   <data name="Column12.ToolTipText" xml:space="preserve">
     <value>Distance in tool diameter between parallel paths</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column12.Width" type="System.Int32, mscorlib">
     <value>55</value>
   </data>
+  <metadata name="Column14.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column14.HeaderText" xml:space="preserve">
     <value>GCode</value>
   </data>
   <data name="Column14.ToolTipText" xml:space="preserve">
     <value>Code to apply after tool change command</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="Column14.Width" type="System.Int32, mscorlib">
     <value>80</value>
@@ -8959,7 +8941,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tab2gB2.Text" xml:space="preserve">
     <value>Tool table - positions in machine coordinates! Homing recommended prior use.</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;tab2gB2.Name" xml:space="preserve">
     <value>tab2gB2</value>
@@ -8987,7 +8968,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="tabPage14.Text" xml:space="preserve">
     <value>Tool table</value>
-    <comment>TabPage2</comment>
   </data>
   <data name="&gt;&gt;tabPage14.Name" xml:space="preserve">
     <value>tabPage14</value>
@@ -9099,7 +9079,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="nUDToolChangeEmpty.ToolTip" xml:space="preserve">
     <value>Use a tool nr. which is not listed in the tool table.</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;nUDToolChangeEmpty.Name" xml:space="preserve">
     <value>nUDToolChangeEmpty</value>
@@ -9235,11 +9214,9 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="cBToolChangeEmpty.Text" xml:space="preserve">
     <value>Finally empty spindle by 'loading' tool nr.:</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="cBToolChangeEmpty.ToolTip" xml:space="preserve">
     <value>Remove last used tool, by loading a not existent tool as final command.</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;cBToolChangeEmpty.Name" xml:space="preserve">
     <value>cBToolChangeEmpty</value>
@@ -9281,7 +9258,6 @@ Insert script-code 'PICK UP'
 Insert script-code 'PROBE'
 Copy actual tool coordinates (TOAX,Y,Z to last coord. TOLX,Y,Z)
 Remove 'M6' from send queue, because grbl can't handle this command.</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;label61.Name" xml:space="preserve">
     <value>label61</value>
@@ -9312,11 +9288,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="lbl_4.Text" xml:space="preserve">
     <value>4) PROBE tool</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="lbl_4.ToolTip" xml:space="preserve">
     <value>Click to show file content</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;lbl_4.Name" xml:space="preserve">
     <value>lbl_4</value>
@@ -9341,7 +9315,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="tBToolChangeScriptProbe.ToolTip" xml:space="preserve">
     <value>4th probe tool length</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptProbe.Name" xml:space="preserve">
     <value>tBToolChangeScriptProbe</value>
@@ -9372,11 +9345,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="lbl_2.Text" xml:space="preserve">
     <value>2) SELECT tool</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="lbl_2.ToolTip" xml:space="preserve">
     <value>Click to show file content</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;lbl_2.Name" xml:space="preserve">
     <value>lbl_2</value>
@@ -9401,7 +9372,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="tBToolChangeScriptSelect.ToolTip" xml:space="preserve">
     <value>2nd bring new tool in front of spindle</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptSelect.Name" xml:space="preserve">
     <value>tBToolChangeScriptSelect</value>
@@ -9432,11 +9402,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="lbl_1.Text" xml:space="preserve">
     <value>1) REMOVE tool (if in spindle)</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="lbl_1.ToolTip" xml:space="preserve">
     <value>Click to show file content</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;lbl_1.Name" xml:space="preserve">
     <value>lbl_1</value>
@@ -9461,7 +9429,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="tBToolChangeScriptPut.ToolTip" xml:space="preserve">
     <value>First the old tool needs to be removed from spidle (except the first time)</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptPut.Name" xml:space="preserve">
     <value>tBToolChangeScriptPut</value>
@@ -9492,11 +9459,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="lbl_3.Text" xml:space="preserve">
     <value>3) PICK UP tool</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="lbl_3.ToolTip" xml:space="preserve">
     <value>Click to show file content</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;lbl_3.Name" xml:space="preserve">
     <value>lbl_3</value>
@@ -9521,7 +9486,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="tBToolChangeScriptGet.ToolTip" xml:space="preserve">
     <value>3rd pick up new tool</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;tBToolChangeScriptGet.Name" xml:space="preserve">
     <value>tBToolChangeScriptGet</value>
@@ -9552,11 +9516,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBToolChange.Text" xml:space="preserve">
     <value>Perform tool change on Tx M06</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="cBToolChange.ToolTip" xml:space="preserve">
     <value>Execute following scripts on Tx M06 commands</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;cBToolChange.Name" xml:space="preserve">
     <value>cBToolChange</value>
@@ -9581,7 +9543,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="gBToolChange.Text" xml:space="preserve">
     <value>Tool change setup</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;gBToolChange.Name" xml:space="preserve">
     <value>gBToolChange</value>
@@ -9609,7 +9570,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="tabPage8.Text" xml:space="preserve">
     <value>Tool change</value>
-    <comment>TabPage3</comment>
   </data>
   <data name="&gt;&gt;tabPage8.Name" xml:space="preserve">
     <value>tabPage8</value>
@@ -9802,7 +9762,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBExtendedLogging.Text" xml:space="preserve">
     <value>Enable extended logging</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBExtendedLogging.Name" xml:space="preserve">
     <value>cBExtendedLogging</value>
@@ -10094,7 +10053,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="checkBox2.Text" xml:space="preserve">
     <value>Check registry frequently  to paste code from clipboard</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="&gt;&gt;checkBox2.Name" xml:space="preserve">
     <value>checkBox2</value>
@@ -10125,13 +10083,11 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBcheckupdate.Text" xml:space="preserve">
     <value>Check for new GRBL-Plotter release on GitHub</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="cBcheckupdate.ToolTip" xml:space="preserve">
     <value>During each start of GRBL-Plotter check for a new program version:
 1st try on github.com/svenhb/GRBL-Plotter
 2nd try on svenhb.bplaced.net </value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBcheckupdate.Name" xml:space="preserve">
     <value>cBcheckupdate</value>
@@ -10186,11 +10142,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBCtrlCommentOut.Text" xml:space="preserve">
     <value>Comment out unknown GCode</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="cBCtrlCommentOut.ToolTip" xml:space="preserve">
     <value>Hide unknown GCode in brackets to avoid errors from GRBL</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBCtrlCommentOut.Name" xml:space="preserve">
     <value>cBCtrlCommentOut</value>
@@ -10221,11 +10175,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="rBCtrlReplaceM4.Text" xml:space="preserve">
     <value>Replace 'M4' by 'M3'</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="rBCtrlReplaceM4.ToolTip" xml:space="preserve">
     <value>M3 Constant Laser Power Mode</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;rBCtrlReplaceM4.Name" xml:space="preserve">
     <value>rBCtrlReplaceM4</value>
@@ -10256,11 +10208,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="rBCtrlReplaceM3.Text" xml:space="preserve">
     <value>Replace 'M3' by 'M4'</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="rBCtrlReplaceM3.ToolTip" xml:space="preserve">
     <value>M4 Dynamic Laser Power Mode:</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;rBCtrlReplaceM3.Name" xml:space="preserve">
     <value>rBCtrlReplaceM3</value>
@@ -10291,14 +10241,12 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBCtrlMCmd.Text" xml:space="preserve">
     <value>Convert 'Spindle On' commands</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="cBCtrlMCmd.ToolTip" xml:space="preserve">
     <value>If enabled, during loading a GCode file, the M3 or M4 commands will be replaced by M4 or M3 commands to activate
 M3 Constant Laser Power Mode
 or
 M4 Dynamic Laser Power Mode</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBCtrlMCmd.Name" xml:space="preserve">
     <value>cBCtrlMCmd</value>
@@ -10347,7 +10295,6 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="tab5gB3.Text" xml:space="preserve">
     <value>Load G-Code</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB3.Name" xml:space="preserve">
     <value>tab5gB3</value>
@@ -10411,11 +10358,9 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="cBSerialMinimize.Text" xml:space="preserve">
     <value>Minimize serial forms after connection</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
     <value>Will minimize the serial windows after sucessful connection</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBSerialMinimize.Name" xml:space="preserve">
     <value>cBSerialMinimize</value>
@@ -10446,11 +10391,9 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="cBSerial2.Text" xml:space="preserve">
     <value>Open 2nd serial port on prog. start</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="cBSerial2.ToolTip" xml:space="preserve">
     <value>Opens a 2nd COM port to control a 2nd GRBL. Usefull for tool changer or 4th axis.</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBSerial2.Name" xml:space="preserve">
     <value>cBSerial2</value>
@@ -10505,7 +10448,6 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="cBSerialDIY.Text" xml:space="preserve">
     <value>Open serial port on prog. start</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBSerialDIY.Name" xml:space="preserve">
     <value>cBSerialDIY</value>
@@ -10530,7 +10472,6 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="tab5gB2.Text" xml:space="preserve">
     <value>DIY controlpad via serial connection</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB2.Name" xml:space="preserve">
     <value>tab5gB2</value>
@@ -10561,11 +10502,9 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="cBSerialPortFixer.Text" xml:space="preserve">
     <value>Apply serial port fixer</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="cBSerialPortFixer.ToolTip" xml:space="preserve">
     <value>It may helps to prevent errors when closing application</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBSerialPortFixer.Name" xml:space="preserve">
     <value>cBSerialPortFixer</value>
@@ -10590,7 +10529,6 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="tab5gB1.Text" xml:space="preserve">
     <value>Serial connection</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB1.Name" xml:space="preserve">
     <value>tab5gB1</value>
@@ -10618,7 +10556,6 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="tabPage13.Text" xml:space="preserve">
     <value>Program start</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tabPage13.Name" xml:space="preserve">
     <value>tabPage13</value>
@@ -10790,7 +10727,6 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="btnMachineRangeGet.Text" xml:space="preserve">
     <value>Get range from settings $130-$132</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;btnMachineRangeGet.Name" xml:space="preserve">
     <value>btnMachineRangeGet</value>
@@ -10882,7 +10818,6 @@ M4 Dynamic Laser Power Mode</value>
   <data name="tab5gB5lbl4.Text" xml:space="preserve">
     <value>Homing the machine, move to min X, min Y and max Z. 
 Note machine coordinates</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB5lbl4.Name" xml:space="preserve">
     <value>tab5gB5lbl4</value>
@@ -10943,7 +10878,6 @@ Note machine coordinates</value>
   </data>
   <data name="cBMachineLimitsAlarm.Text" xml:space="preserve">
     <value>Alarm on limit exceed (X and Y)</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBMachineLimitsAlarm.Name" xml:space="preserve">
     <value>cBMachineLimitsAlarm</value>
@@ -10974,7 +10908,6 @@ Note machine coordinates</value>
   </data>
   <data name="cBMachineLimitsShow.Text" xml:space="preserve">
     <value>Show machine limits</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBMachineLimitsShow.Name" xml:space="preserve">
     <value>cBMachineLimitsShow</value>
@@ -11005,7 +10938,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB5lbl3.Text" xml:space="preserve">
     <value>Machine travel Z</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB5lbl3.Name" xml:space="preserve">
     <value>tab5gB5lbl3</value>
@@ -11036,7 +10968,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB5lbl2.Text" xml:space="preserve">
     <value>Machine travel Y</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB5lbl2.Name" xml:space="preserve">
     <value>tab5gB5lbl2</value>
@@ -11067,7 +10998,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB5lbl1.Text" xml:space="preserve">
     <value>Machine travel X</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB5lbl1.Name" xml:space="preserve">
     <value>tab5gB5lbl1</value>
@@ -11119,7 +11049,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB5.Text" xml:space="preserve">
     <value>Machine area</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB5.Name" xml:space="preserve">
     <value>tab5gB5</value>
@@ -11189,7 +11118,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB6lbl2.Text" xml:space="preserve">
     <value>Size of 4th axis in 2D view can be changed via rotary diameter in gcode transform menu</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB6lbl2.Name" xml:space="preserve">
     <value>tab5gB6lbl2</value>
@@ -11220,7 +11148,6 @@ Note machine coordinates</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
     <value>Invert 4th axis  in 2D view</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
     <value>checkBox1</value>
@@ -11251,7 +11178,6 @@ Note machine coordinates</value>
   </data>
   <data name="radioButton2.Text" xml:space="preserve">
     <value>show 4th axis over Y</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;radioButton2.Name" xml:space="preserve">
     <value>radioButton2</value>
@@ -11282,7 +11208,6 @@ Note machine coordinates</value>
   </data>
   <data name="radioButton1.Text" xml:space="preserve">
     <value>show 4th axis over X</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;radioButton1.Name" xml:space="preserve">
     <value>radioButton1</value>
@@ -11313,7 +11238,6 @@ Note machine coordinates</value>
   </data>
   <data name="cB4thUse.Text" xml:space="preserve">
     <value>Show status and controls</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cB4thUse.Name" xml:space="preserve">
     <value>cB4thUse</value>
@@ -11344,7 +11268,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB6lbl1.Text" xml:space="preserve">
     <value>Name of 4th axis</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB6lbl1.Name" xml:space="preserve">
     <value>tab5gB6lbl1</value>
@@ -11369,7 +11292,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB6.Text" xml:space="preserve">
     <value>GRBL 4th axis (special edition)</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB6.Name" xml:space="preserve">
     <value>tab5gB6</value>
@@ -11445,7 +11367,6 @@ Note machine coordinates</value>
   </data>
   <data name="tBRotarySetupOff.ToolTip" xml:space="preserve">
     <value>This setting will be set when disabling the axis substitution</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tBRotarySetupOff.Name" xml:space="preserve">
     <value>tBRotarySetupOff</value>
@@ -11470,7 +11391,6 @@ Note machine coordinates</value>
   </data>
   <data name="tBRotarySetupOn.ToolTip" xml:space="preserve">
     <value>This setting will be set when enabling the axis substitution</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tBRotarySetupOn.Name" xml:space="preserve">
     <value>tBRotarySetupOn</value>
@@ -11501,11 +11421,9 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB8lbl2.Text" xml:space="preserve">
     <value>Primary Axis</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="tab5gB8lbl2.ToolTip" xml:space="preserve">
     <value>This setting will be set when disabling the axis substitution</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB8lbl2.Name" xml:space="preserve">
     <value>tab5gB8lbl2</value>
@@ -11536,11 +11454,9 @@ Note machine coordinates</value>
   </data>
   <data name="cBRotarySetupApply.Text" xml:space="preserve">
     <value>Apply settings on form close</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
     <value>Automatically adapt grbl settings when enabling or disabling the substitution</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBRotarySetupApply.Name" xml:space="preserve">
     <value>cBRotarySetupApply</value>
@@ -11571,11 +11487,9 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB8lbl1.Text" xml:space="preserve">
     <value>Rotary Axis</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="tab5gB8lbl1.ToolTip" xml:space="preserve">
     <value>This setting will be set when enabling the axis substitution</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB8lbl1.Name" xml:space="preserve">
     <value>tab5gB8lbl1</value>
@@ -11600,7 +11514,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB8.Text" xml:space="preserve">
     <value>GRBL Setup for replaced axis</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB8.Name" xml:space="preserve">
     <value>tab5gB8</value>
@@ -11631,7 +11544,6 @@ Note machine coordinates</value>
   </data>
   <data name="label30.Text" xml:space="preserve">
     <value>units</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;label30.Name" xml:space="preserve">
     <value>label30</value>
@@ -11662,11 +11574,9 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB7lbl2.Text" xml:space="preserve">
     <value>Diameter of part</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="tab5gB7lbl2.ToolTip" xml:space="preserve">
     <value>Needed to calculate circumference for relation distance &lt;=&gt; angle</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB7lbl2.Name" xml:space="preserve">
     <value>tab5gB7lbl2</value>
@@ -11697,7 +11607,6 @@ Note machine coordinates</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>units</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;label27.Name" xml:space="preserve">
     <value>label27</value>
@@ -11728,7 +11637,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB7lbl1.Text" xml:space="preserve">
     <value>360° corresponds to </value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB7lbl1.Name" xml:space="preserve">
     <value>tab5gB7lbl1</value>
@@ -11759,7 +11667,6 @@ Note machine coordinates</value>
   </data>
   <data name="rBRotaryY.Text" xml:space="preserve">
     <value>Y axis</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;rBRotaryY.Name" xml:space="preserve">
     <value>rBRotaryY</value>
@@ -11820,7 +11727,6 @@ Note machine coordinates</value>
   </data>
   <data name="cBRotarySubstitute.Text" xml:space="preserve">
     <value>Use axis substitution</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBRotarySubstitute.Name" xml:space="preserve">
     <value>cBRotarySubstitute</value>
@@ -11845,7 +11751,6 @@ Note machine coordinates</value>
   </data>
   <data name="tab5gB7.Text" xml:space="preserve">
     <value>Rotary axis control (instead of X or Y axis)</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tab5gB7.Name" xml:space="preserve">
     <value>tab5gB7</value>
@@ -12112,7 +12017,6 @@ After the pause, parser state will be restored and streamin continued.</value>
   </data>
   <data name="cBsimulation.Text" xml:space="preserve">
     <value>Simulate connected grbl</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="cBsimulation.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -12201,7 +12105,6 @@ After the pause, parser state will be restored and streamin continued.</value>
   <data name="cBBackgroundImage.Text" xml:space="preserve">
     <value>Disable realtime path update during streaming.
 Saves CPU load, disables zooming during streaming</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;cBBackgroundImage.Name" xml:space="preserve">
     <value>cBBackgroundImage</value>
@@ -12256,7 +12159,6 @@ Saves CPU load, disables zooming during streaming</value>
   </data>
   <data name="cBpollIntervalReduce.Text" xml:space="preserve">
     <value>Reduce freq. when streaming gcode</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;cBpollIntervalReduce.Name" xml:space="preserve">
     <value>cBpollIntervalReduce</value>
@@ -12284,7 +12186,6 @@ Saves CPU load, disables zooming during streaming</value>
   </data>
   <data name="tab4gB1lbl1.Text" xml:space="preserve">
     <value>Set update frequency for grbl status report. As higher as more stress for the controller.</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tab4gB1lbl1.Name" xml:space="preserve">
     <value>tab4gB1lbl1</value>
@@ -12345,7 +12246,6 @@ Saves CPU load, disables zooming during streaming</value>
   </data>
   <data name="tab4gB1.Text" xml:space="preserve">
     <value>Status poll frequency</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tab4gB1.Name" xml:space="preserve">
     <value>tab4gB1</value>
@@ -12400,7 +12300,6 @@ Saves CPU load, disables zooming during streaming</value>
 Default (Arduino Uno/Nano) - 127 bytes
 More than 3 axes (Mega2560)- 255 bytes
 </value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tab4gB3lbl1.Name" xml:space="preserve">
     <value>tab4gB3lbl1</value>
@@ -12431,7 +12330,6 @@ More than 3 axes (Mega2560)- 255 bytes
   </data>
   <data name="checkBox3.Text" xml:space="preserve">
     <value>Detect automatically</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;checkBox3.Name" xml:space="preserve">
     <value>checkBox3</value>
@@ -12456,7 +12354,6 @@ More than 3 axes (Mega2560)- 255 bytes
   </data>
   <data name="tab4gB3.Text" xml:space="preserve">
     <value>grbl buffer size</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tab4gB3.Name" xml:space="preserve">
     <value>tab4gB3</value>
@@ -12487,7 +12384,6 @@ More than 3 axes (Mega2560)- 255 bytes
   </data>
   <data name="cBresetSendCode.Text" xml:space="preserve">
     <value>Send following G-Code after reset</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;cBresetSendCode.Name" xml:space="preserve">
     <value>cBresetSendCode</value>
@@ -12513,7 +12409,6 @@ More than 3 axes (Mega2560)- 255 bytes
   <data name="tBresetSendCode.ToolTip" xml:space="preserve">
     <value>Assign regular GCode, seperate code into different lines using ';' as seperator.
 Or assign a filename containing GCode. </value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tBresetSendCode.Name" xml:space="preserve">
     <value>tBresetSendCode</value>
@@ -12541,7 +12436,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="cBrestoreCoordReset.Text" xml:space="preserve">
     <value>Restore Work coordinates after reset and set default feed rate</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;cBrestoreCoordReset.Name" xml:space="preserve">
     <value>cBrestoreCoordReset</value>
@@ -12566,7 +12460,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab4gB2.Text" xml:space="preserve">
     <value>Behavior after grbl RESET</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tab4gB2.Name" xml:space="preserve">
     <value>tab4gB2</value>
@@ -12592,7 +12485,6 @@ Or assign a filename containing GCode. </value>
   <data name="tBflowControl.ToolTip" xml:space="preserve">
     <value>Assign regular GCode, seperate code into different lines using ';' as seperator.
 Or assign a filename containing GCode. </value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tBflowControl.Name" xml:space="preserve">
     <value>tBflowControl</value>
@@ -12623,7 +12515,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="cBflowControl.Text" xml:space="preserve">
     <value>Send following gcode on pause or stop</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;cBflowControl.Name" xml:space="preserve">
     <value>cBflowControl</value>
@@ -12648,7 +12539,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab4gB4.Text" xml:space="preserve">
     <value>Flow control for streaming</value>
-    <comment>TabPage4</comment>
   </data>
   <data name="&gt;&gt;tab4gB4.Name" xml:space="preserve">
     <value>tab4gB4</value>
@@ -12703,7 +12593,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10lbl1.Text" xml:space="preserve">
     <value>Save settings in named parameter sets and call them in camera window to change shape recognition behavior. Close/Open Camera window after changing names.</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10lbl1.Name" xml:space="preserve">
     <value>tab10lbl1</value>
@@ -12755,7 +12644,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="btnShapeSetSave4.Text" xml:space="preserve">
     <value>save</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;btnShapeSetSave4.Name" xml:space="preserve">
     <value>btnShapeSetSave4</value>
@@ -12783,7 +12671,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="btnShapeSetLoad4.Text" xml:space="preserve">
     <value>load</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;btnShapeSetLoad4.Name" xml:space="preserve">
     <value>btnShapeSetLoad4</value>
@@ -12859,7 +12746,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="btnShapeSetSave3.Text" xml:space="preserve">
     <value>save</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;btnShapeSetSave3.Name" xml:space="preserve">
     <value>btnShapeSetSave3</value>
@@ -12887,7 +12773,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="btnShapeSetLoad3.Text" xml:space="preserve">
     <value>load</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;btnShapeSetLoad3.Name" xml:space="preserve">
     <value>btnShapeSetLoad3</value>
@@ -12963,7 +12848,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="btnShapeSetSave2.Text" xml:space="preserve">
     <value>save</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;btnShapeSetSave2.Name" xml:space="preserve">
     <value>btnShapeSetSave2</value>
@@ -12991,7 +12875,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="btnShapeSetLoad2.Text" xml:space="preserve">
     <value>load</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;btnShapeSetLoad2.Name" xml:space="preserve">
     <value>btnShapeSetLoad2</value>
@@ -13091,7 +12974,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="btnShapeSetSave1.Text" xml:space="preserve">
     <value>save</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;btnShapeSetSave1.Name" xml:space="preserve">
     <value>btnShapeSetSave1</value>
@@ -13119,7 +13001,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="btnShapeSetLoad1.Text" xml:space="preserve">
     <value>load</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;btnShapeSetLoad1.Name" xml:space="preserve">
     <value>btnShapeSetLoad1</value>
@@ -13174,7 +13055,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="cBFilterOuside.Text" xml:space="preserve">
     <value>Pixel filled outside of specified color ranges</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;cBFilterOuside.Name" xml:space="preserve">
     <value>cBFilterOuside</value>
@@ -13409,7 +13289,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB2lbl3.Text" xml:space="preserve">
     <value>Blue</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10gB2lbl3.Name" xml:space="preserve">
     <value>tab10gB2lbl3</value>
@@ -13488,7 +13367,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB2lbl2.Text" xml:space="preserve">
     <value>Green</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10gB2lbl2.Name" xml:space="preserve">
     <value>tab10gB2lbl2</value>
@@ -13567,7 +13445,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB2lbl1.Text" xml:space="preserve">
     <value>Red</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10gB2lbl1.Name" xml:space="preserve">
     <value>tab10gB2lbl1</value>
@@ -13724,7 +13601,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB3lbl3.Text" xml:space="preserve">
     <value>Acceptable distortion max.</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10gB3lbl3.Name" xml:space="preserve">
     <value>tab10gB3lbl3</value>
@@ -13815,7 +13691,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB3lbl2.Text" xml:space="preserve">
     <value>Acceptable distortion min.</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10gB3lbl2.Name" xml:space="preserve">
     <value>tab10gB3lbl2</value>
@@ -13894,7 +13769,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB3lbl1.Text" xml:space="preserve">
     <value>Min. max. size of shape</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10gB3lbl1.Name" xml:space="preserve">
     <value>tab10gB3lbl1</value>
@@ -13925,7 +13799,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="cBShapeRect.Text" xml:space="preserve">
     <value>Rectangle</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;cBShapeRect.Name" xml:space="preserve">
     <value>cBShapeRect</value>
@@ -13956,7 +13829,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="cBShapeCircle.Text" xml:space="preserve">
     <value>Circle</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;cBShapeCircle.Name" xml:space="preserve">
     <value>cBShapeCircle</value>
@@ -13981,7 +13853,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB3.Text" xml:space="preserve">
     <value>Shape recognition</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10gB3.Name" xml:space="preserve">
     <value>tab10gB3</value>
@@ -14006,7 +13877,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB1.Text" xml:space="preserve">
     <value>Settings for shape recognition</value>
-    <comment>TabPage10</comment>
   </data>
   <data name="&gt;&gt;tab10gB1.Name" xml:space="preserve">
     <value>tab10gB1</value>
@@ -14034,7 +13904,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Camera</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
     <value>tabPage4</value>
@@ -15057,7 +14926,6 @@ Note: often "from Email" must be same as SMTP mailbox email.</value>
     <value>Assign regular GCode, seperate code into different lines using ';' as seperator.
 Or assign a filename containing GCode. 
 Relative file path starts from here:</value>
-    <comment>TabPage6</comment>
   </data>
   <data name="&gt;&gt;tab6lbl1.Name" xml:space="preserve">
     <value>tab6lbl1</value>
@@ -15088,7 +14956,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="tab6lbl2.Text" xml:space="preserve">
     <value>The buttons 13 to 16 are hidden when the fields are empty</value>
-    <comment>TabPage6</comment>
   </data>
   <data name="&gt;&gt;tab6lbl2.Name" xml:space="preserve">
     <value>tab6lbl2</value>
@@ -15132,24 +14999,36 @@ Relative file path starts from here:</value>
   <data name="&gt;&gt;lblFilePath.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="Column20.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column20.HeaderText" xml:space="preserve">
     <value>Nr.</value>
   </data>
   <data name="Column20.Width" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
+  <metadata name="Column21.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column21.HeaderText" xml:space="preserve">
     <value>Label</value>
   </data>
   <data name="Column21.Width" type="System.Int32, mscorlib">
     <value>120</value>
   </data>
+  <metadata name="Column22.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="Column22.HeaderText" xml:space="preserve">
     <value>G-Code</value>
   </data>
   <data name="Column22.Width" type="System.Int32, mscorlib">
     <value>600</value>
   </data>
+  <metadata name="color.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="color.HeaderText" xml:space="preserve">
     <value>Color</value>
   </data>
@@ -15215,7 +15094,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="btnOpenHotkeys.Text" xml:space="preserve">
     <value>Open hotkeys.xml in notepad</value>
-    <comment>TabPage9</comment>
   </data>
   <data name="&gt;&gt;btnOpenHotkeys.Name" xml:space="preserve">
     <value>btnOpenHotkeys</value>
@@ -15246,7 +15124,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPathHotkeys.Text" xml:space="preserve">
     <value>Path</value>
-    <comment>TabPage9</comment>
   </data>
   <data name="&gt;&gt;lblPathHotkeys.Name" xml:space="preserve">
     <value>lblPathHotkeys</value>
@@ -15274,7 +15151,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="btnHotkeyRefresh.Text" xml:space="preserve">
     <value>Reload hotkey.xml</value>
-    <comment>TabPage9</comment>
   </data>
   <data name="&gt;&gt;btnHotkeyRefresh.Name" xml:space="preserve">
     <value>btnHotkeyRefresh</value>
@@ -15305,7 +15181,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="tab9gB1lbl2.Text" xml:space="preserve">
     <value>Content of hotkeys.xml (must be edited externally, press 'Apply changes' to update assignment):</value>
-    <comment>TabPage9</comment>
   </data>
   <data name="&gt;&gt;tab9gB1lbl2.Name" xml:space="preserve">
     <value>tab9gB1lbl2</value>
@@ -15366,7 +15241,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="tab9gB1lbl1.Text" xml:space="preserve">
     <value>Check key data here (will be copied to clipboard):</value>
-    <comment>TabPage9</comment>
   </data>
   <data name="&gt;&gt;tab9gB1lbl1.Name" xml:space="preserve">
     <value>tab9gB1lbl1</value>
@@ -15415,7 +15289,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="tab9gB1.Text" xml:space="preserve">
     <value>Hot-Keys</value>
-    <comment>TabPage9</comment>
   </data>
   <data name="&gt;&gt;tab9gB1.Name" xml:space="preserve">
     <value>tab9gB1</value>
@@ -15443,7 +15316,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Hot-Keys</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
     <value>tabPage2</value>
@@ -16379,7 +16251,6 @@ Move joystick after changing the offset.</value>
   </data>
   <data name="cBGPEnable.Text" xml:space="preserve">
     <value>Enable GamePad control in GUI</value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;cBGPEnable.Name" xml:space="preserve">
     <value>cBGPEnable</value>
@@ -16410,7 +16281,6 @@ Move joystick after changing the offset.</value>
   </data>
   <data name="cBRInvert.Text" xml:space="preserve">
     <value>invert direction</value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;cBRInvert.Name" xml:space="preserve">
     <value>cBRInvert</value>
@@ -16441,7 +16311,6 @@ Move joystick after changing the offset.</value>
   </data>
   <data name="cBZInvert.Text" xml:space="preserve">
     <value>invert direction</value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;cBZInvert.Name" xml:space="preserve">
     <value>cBZInvert</value>
@@ -16472,7 +16341,6 @@ Move joystick after changing the offset.</value>
   </data>
   <data name="cBYInvert.Text" xml:space="preserve">
     <value>invert direction</value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;cBYInvert.Name" xml:space="preserve">
     <value>cBYInvert</value>
@@ -16503,7 +16371,6 @@ Move joystick after changing the offset.</value>
   </data>
   <data name="cBXInvert.Text" xml:space="preserve">
     <value>invert direction</value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;cBXInvert.Name" xml:space="preserve">
     <value>cBXInvert</value>
@@ -16658,7 +16525,6 @@ Refresh interval = 50ms.
 
 Setup window must be closed to use GamePad in GUI.
 </value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;tab7gB1lbl1.Name" xml:space="preserve">
     <value>tab7gB1lbl1</value>
@@ -17004,7 +16870,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblgp.Text" xml:space="preserve">
     <value>Message from GamePad</value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;lblgp.Name" xml:space="preserve">
     <value>lblgp</value>
@@ -17818,7 +17683,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="tab7gB1.Text" xml:space="preserve">
     <value>GamePad Button assignment</value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;tab7gB1.Name" xml:space="preserve">
     <value>tab7gB1</value>
@@ -18144,7 +18008,6 @@ Step width Speed</value>
   </data>
   <data name="tab8gB1lbl2.Text" xml:space="preserve">
     <value>Press 'Apply changes' to resize joystick controls</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;tab8gB1lbl2.Name" xml:space="preserve">
     <value>tab8gB1lbl2</value>
@@ -18205,7 +18068,6 @@ Step width Speed</value>
   </data>
   <data name="tab8gB1lbl1.Text" xml:space="preserve">
     <value>Max. size of Joystick controls in pixel</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;tab8gB1lbl1.Name" xml:space="preserve">
     <value>tab8gB1lbl1</value>
@@ -18260,7 +18122,6 @@ Step width Speed</value>
   </data>
   <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
     <value>Calculate Speeds to reach step width within repetition rate of 0.5 seconds</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnJoyZCalc.Name" xml:space="preserve">
     <value>btnJoyZCalc</value>
@@ -18737,7 +18598,6 @@ Step width  Speed</value>
   </data>
   <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
     <value>Calculate Speeds to reach step width within repetition rate of 0.5 seconds</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnJoyXYCalc.Name" xml:space="preserve">
     <value>btnJoyXYCalc</value>
@@ -19002,7 +18862,6 @@ Step width  Speed</value>
   </data>
   <data name="tab8gB1.Text" xml:space="preserve">
     <value>Virtual Joystick setup</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;tab8gB1.Name" xml:space="preserve">
     <value>tab8gB1</value>
@@ -19030,7 +18889,6 @@ Step width  Speed</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Virtual Joystick</value>
-    <comment>TabPage6</comment>
   </data>
   <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
     <value>tabPage1</value>
@@ -19211,7 +19069,6 @@ Step width  Speed</value>
   </data>
   <data name="tab5gB9.Text" xml:space="preserve">
     <value>Paste Special content</value>
-    <comment>TabPage5</comment>
   </data>
   <data name="tab5gB9.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -19413,7 +19270,6 @@ Step width  Speed</value>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
     <value>Pen width</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;nUDRotaryInfo.Name" xml:space="preserve">
     <value>nUDRotaryInfo</value>
@@ -19441,7 +19297,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorRotaryInfo.Text" xml:space="preserve">
     <value>Rotary Info</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorRotaryInfo.Name" xml:space="preserve">
     <value>btnColorRotaryInfo</value>
@@ -19469,7 +19324,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorMachineLimit.Text" xml:space="preserve">
     <value>Machine Limit</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorMachineLimit.Name" xml:space="preserve">
     <value>btnColorMachineLimit</value>
@@ -19497,7 +19351,6 @@ Step width  Speed</value>
   </data>
   <data name="tab8gB2lbl2.Text" xml:space="preserve">
     <value>Pen width are set for mm units. When switching to inch, width will be adapted.</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;tab8gB2lbl2.Name" xml:space="preserve">
     <value>tab8gB2lbl2</value>
@@ -19528,7 +19381,6 @@ Step width  Speed</value>
   </data>
   <data name="tab8gB2lbl1.Text" xml:space="preserve">
     <value>Pen width</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;tab8gB2lbl1.Name" xml:space="preserve">
     <value>tab8gB2lbl1</value>
@@ -19556,7 +19408,6 @@ Step width  Speed</value>
   </data>
   <data name="nUDHeightMap.ToolTip" xml:space="preserve">
     <value>Pen width</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;nUDHeightMap.Name" xml:space="preserve">
     <value>nUDHeightMap</value>
@@ -19584,7 +19435,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorHeightMap.Text" xml:space="preserve">
     <value>Height Map</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorHeightMap.Name" xml:space="preserve">
     <value>btnColorHeightMap</value>
@@ -19612,7 +19462,6 @@ Step width  Speed</value>
   </data>
   <data name="nUDMarker.ToolTip" xml:space="preserve">
     <value>Pen width</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;nUDMarker.Name" xml:space="preserve">
     <value>nUDMarker</value>
@@ -19640,7 +19489,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorMarker.Text" xml:space="preserve">
     <value>Marker</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorMarker.Name" xml:space="preserve">
     <value>btnColorMarker</value>
@@ -19668,7 +19516,6 @@ Step width  Speed</value>
   </data>
   <data name="nUDTool.ToolTip" xml:space="preserve">
     <value>Pen width</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;nUDTool.Name" xml:space="preserve">
     <value>nUDTool</value>
@@ -19696,7 +19543,6 @@ Step width  Speed</value>
   </data>
   <data name="nUDPenDown.ToolTip" xml:space="preserve">
     <value>Pen width</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;nUDPenDown.Name" xml:space="preserve">
     <value>nUDPenDown</value>
@@ -19724,7 +19570,6 @@ Step width  Speed</value>
   </data>
   <data name="nUDPenUp.ToolTip" xml:space="preserve">
     <value>Pen width</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;nUDPenUp.Name" xml:space="preserve">
     <value>nUDPenUp</value>
@@ -19752,7 +19597,6 @@ Step width  Speed</value>
   </data>
   <data name="nUDRuler.ToolTip" xml:space="preserve">
     <value>Pen width</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;nUDRuler.Name" xml:space="preserve">
     <value>nUDRuler</value>
@@ -19780,7 +19624,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorTool.Text" xml:space="preserve">
     <value>Tool</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorTool.Name" xml:space="preserve">
     <value>btnColorTool</value>
@@ -19808,7 +19651,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorPenDown.Text" xml:space="preserve">
     <value>Pen Down</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorPenDown.Name" xml:space="preserve">
     <value>btnColorPenDown</value>
@@ -19836,7 +19678,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorPenUp.Text" xml:space="preserve">
     <value>Pen Up</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorPenUp.Name" xml:space="preserve">
     <value>btnColorPenUp</value>
@@ -19864,7 +19705,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorRuler.Text" xml:space="preserve">
     <value>Ruler</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorRuler.Name" xml:space="preserve">
     <value>btnColorRuler</value>
@@ -19892,7 +19732,6 @@ Step width  Speed</value>
   </data>
   <data name="btnColorBackground.Text" xml:space="preserve">
     <value>Background</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;btnColorBackground.Name" xml:space="preserve">
     <value>btnColorBackground</value>
@@ -19917,7 +19756,6 @@ Step width  Speed</value>
   </data>
   <data name="tab8gB2.Text" xml:space="preserve">
     <value>Drawing colors</value>
-    <comment>TabPage8</comment>
   </data>
   <data name="&gt;&gt;tab8gB2.Name" xml:space="preserve">
     <value>tab8gB2</value>
@@ -19945,7 +19783,6 @@ Step width  Speed</value>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
     <value>2D-View / Editor</value>
-    <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;tabPage6.Name" xml:space="preserve">
     <value>tabPage6</value>
@@ -20228,7 +20065,6 @@ Step width  Speed</value>
   </data>
   <data name="tab11gB1lbl3.Text" xml:space="preserve">
     <value>Description about EggBot Inkscape plug-in</value>
-    <comment>TabPage11</comment>
   </data>
   <data name="&gt;&gt;tab11gB1lbl3.Name" xml:space="preserve">
     <value>tab11gB1lbl3</value>
@@ -20289,7 +20125,6 @@ Step width  Speed</value>
   </data>
   <data name="tab11gB1lbl2.Text" xml:space="preserve">
     <value>Usefull extensions for Inkscape</value>
-    <comment>TabPage11</comment>
   </data>
   <data name="&gt;&gt;tab11gB1lbl2.Name" xml:space="preserve">
     <value>tab11gB1lbl2</value>
@@ -20404,7 +20239,6 @@ Step width  Speed</value>
   </data>
   <data name="tab11gB1.Text" xml:space="preserve">
     <value>SVG creation, modification</value>
-    <comment>TabPage11</comment>
   </data>
   <data name="&gt;&gt;tab11gB1.Name" xml:space="preserve">
     <value>tab11gB1</value>
@@ -20549,7 +20383,6 @@ Step width  Speed</value>
   </data>
   <data name="tab11gB3.Text" xml:space="preserve">
     <value>Create SVG drawings online</value>
-    <comment>TabPage11</comment>
   </data>
   <data name="&gt;&gt;tab11gB3.Name" xml:space="preserve">
     <value>tab11gB3</value>
@@ -20604,7 +20437,6 @@ Step width  Speed</value>
   </data>
   <data name="tab11gB4.Text" xml:space="preserve">
     <value>Free fonts, e.g. for stencil or pop up</value>
-    <comment>TabPage11</comment>
   </data>
   <data name="&gt;&gt;tab11gB4.Name" xml:space="preserve">
     <value>tab11gB4</value>
@@ -20689,7 +20521,6 @@ Step width  Speed</value>
   </data>
   <data name="tab11gB5.Text" xml:space="preserve">
     <value>GRBL and GCode related</value>
-    <comment>TabPage11</comment>
   </data>
   <data name="&gt;&gt;tab11gB5.Name" xml:space="preserve">
     <value>tab11gB5</value>
@@ -20717,7 +20548,6 @@ Step width  Speed</value>
   </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>Note: drag and drop doesn't work with IE-Browser, but with Google Chrome</value>
-    <comment>TabPage11</comment>
   </data>
   <data name="&gt;&gt;tab11gB2lbl1.Name" xml:space="preserve">
     <value>tab11gB2lbl1</value>
@@ -20949,7 +20779,6 @@ Step width  Speed</value>
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
     <value>WWW Links</value>
-    <comment>TabPage11</comment>
   </data>
   <data name="&gt;&gt;tabPage5.Name" xml:space="preserve">
     <value>tabPage5</value>
@@ -20998,11 +20827,9 @@ Step width  Speed</value>
   </data>
   <data name="btnReloadFile.Text" xml:space="preserve">
     <value>Reload SVG, DXF, HPGL, Drill file</value>
-    <comment>TabPage1</comment>
   </data>
   <data name="btnReloadFile.ToolTip" xml:space="preserve">
     <value>Reload data to apply new setings during import</value>
-    <comment>TabPage1</comment>
   </data>
   <data name="&gt;&gt;btnReloadFile.Name" xml:space="preserve">
     <value>btnReloadFile</value>
@@ -21030,12 +20857,10 @@ Step width  Speed</value>
   </data>
   <data name="btnApplyChangings.Text" xml:space="preserve">
     <value>Apply changes</value>
-    <comment>TabPage0</comment>
   </data>
   <data name="btnApplyChangings.ToolTip" xml:space="preserve">
     <value>Press button to apply new settings imediatly to custom buttons.
 Other settings will be stored on change, usually.</value>
-    <comment>TabPage0</comment>
   </data>
   <data name="&gt;&gt;btnApplyChangings.Name" xml:space="preserve">
     <value>btnApplyChangings</value>
@@ -21049,6 +20874,12 @@ Other settings will be stored on change, usually.</value>
   <data name="&gt;&gt;btnApplyChangings.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>114, 17</value>
+  </metadata>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>235, 17</value>
+  </metadata>
   <data name="cBshowImportDialog.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -21066,7 +20897,6 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="cBshowImportDialog.Text" xml:space="preserve">
     <value>Show 'use case' selection on graphics import</value>
-    <comment>TabPage1</comment>
   </data>
   <data name="&gt;&gt;cBshowImportDialog.Name" xml:space="preserve">
     <value>cBshowImportDialog</value>
@@ -21080,6 +20910,12 @@ Other settings will be stored on change, usually.</value>
   <data name="&gt;&gt;cBshowImportDialog.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>43</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -21100,7 +20936,6 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Setup</value>
-    <comment>Form</comment>
   </data>
   <data name="&gt;&gt;Column1.Name" xml:space="preserve">
     <value>Column1</value>
@@ -21246,86 +21081,4 @@ Other settings will be stored on change, usually.</value>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value />
-    <comment>TabPage11</comment>
-  </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value />
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column6.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column16.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column7.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column8.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column10.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column15.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column9.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column13.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column11.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column12.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column14.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column20.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column21.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column22.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="color.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>114, 17</value>
-  </metadata>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>235, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>43</value>
-  </metadata>
 </root>

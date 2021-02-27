@@ -2270,4 +2270,10 @@ Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbe
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
     <value>Ignorer la commande M30 «Fin du programme» pour éviter d'éteindre la broche en réinitialisant l'état de l'analyseur, ce qui amène le servo à passer en position «0».</value>
   </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>Envoyer une commande pour contrôler le servo</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>Envoyer une commande lors du changement de valeur</value>
+  </data>
 </root>

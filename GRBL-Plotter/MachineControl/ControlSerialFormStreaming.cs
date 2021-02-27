@@ -27,6 +27,7 @@
  * 2020-12-18 fix OnRaiseStreamEvent %
  * 2021-01-23 add trgEvent to "sendStreamEvent" in time with the status query
  * 2021-01-26 line 270 make delay between probe exchange scripts variable
+ * 2021-02-19 insert variables in subroutine already in startStreaming()
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -62,6 +63,8 @@ namespace GRBL_Plotter
         private int lineStreamingPause = 0;
         private bool trgEvent = false;
         private bool skipM30 = false;
+
+        private Dictionary<int, List<string>> subroutines = new Dictionary<int, List<string>>();
 
         public event EventHandler<StreamEventArgs> RaiseStreamEvent;
         protected virtual void OnRaiseStreamEvent(StreamEventArgs e)
@@ -149,10 +152,62 @@ namespace GRBL_Plotter
             countLoggerUpdate = (int)(10000 / timerSerial.Interval);
 
             timerSerial.Stop();
+
+            /***** collect subroutines, without resolving variables *****/
+            #region subroutines
+            subroutines = new Dictionary<int, List<string>>();
+            string tmp;
+            string[] gCode = gCodeList.ToArray<string>();
+            bool prg_end = false;
+            for (int i = startAtLine; i < gCode.Length; i++)
+            {
+                if (gCode[i].Contains("M30"))
+                { prg_end = true; continue; }
+                if (!prg_end)
+                    continue;
+                if (gCode[i].Contains("O"))
+                {
+                    int cmdONr = gcode.getIntGCode('O', gCode[i]);
+                    if (cmdONr <= 0)
+                        continue;
+                    subroutines.Add(cmdONr, new List<string>());
+                    Logger.Trace("Add subroutine O{0}", cmdONr);
+                    for (int k = i + 1; k < gCode.Length; k++)
+                    {   if (gCode[k].IndexOf("M99") >= 0)
+                        { break; }
+                        if (gCode[k].IndexOf("M98") >= 0)
+                        {
+                            double pWord = findDouble("P", -1, gCode[k]);
+                            double lWord = findDouble("L", 1, gCode[k]);
+
+                            if (subroutines.ContainsKey((int)pWord))
+                            {
+                                for (int repeat = 0; repeat < lWord; repeat++)
+                                {
+                                    foreach (string subroutineLine in subroutines[(int)pWord])          // copy subroutine
+                                    {
+                                        subroutines[cmdONr].Add(subroutineLine);
+                                        Logger.Trace(" sub in sub {0}", subroutineLine);
+                                    }
+                                }
+                            }
+                            else
+                                Logger.Error("Start stresaming Subroutine {0} not found",pWord);
+                        }
+                        else
+                        {
+                            subroutines[cmdONr].Add(gCode[k]);
+                            Logger.Trace(" {0}", gCode[k]);
+                        }
+                    }
+                }
+            }
+            /****************************************************************************/
+#endregion
             lock (sendDataLock)
             {
-                string[] gCode = gCodeList.ToArray<string>();
-                string tmp;
+                //string[] gCode = gCodeList.ToArray<string>();
+                //string tmp;
                 double pWord, lWord, oWord;
                 string subline;
                 bool tmpToolInSpindle = toolInSpindle;
@@ -174,37 +229,59 @@ namespace GRBL_Plotter
                         {
                             pWord = findDouble("P", -1, tmp);
                             lWord = findDouble("L", 1, tmp);
-                            int subStart = 0, subEnd = 0;
-                            if (pWord > 0)
+
+                            if (subroutines.ContainsKey((int)pWord))
                             {
-                                oWord = -1;
-                                for (int si = i; si < gCode.Length; si++)   // find subroutine
+                                for (int repeat = 0; repeat < lWord; repeat++)
                                 {
-                                    subline = gCode[si];
-                                    if (subline.IndexOf("O") >= 0)          // find O-Word
+                                    foreach(string subroutineLine in subroutines[(int)pWord])          // copy subroutine
                                     {
-                                        oWord = findDouble("O", -1, subline);
-                                        if (oWord == pWord)
-                                            subStart = si + 1;              // note start of sub
-                                    }
-                                    else                                    // find end of sub
-                                    {
-                                        if (subStart > 0)                   // is match?
-                                        {
-                                            if (subline.IndexOf("M99") >= 0)
-                                            { subEnd = si; break; }     // note end of sub
-                                        }
-                                    }
-                                }
-                                if (subStart < subEnd)
-                                {
-                                    for (int repeat = 0; repeat < lWord; repeat++)
-                                    {
-                                        for (int si = subStart; si < subEnd; si++)   // copy subroutine
-                                        { streamingBuffer.Add(gCode[si], si); }      // add gcode line to list to send
+                                        if (subroutineLine.Contains('#'))                    // check if variable neededs to be replaced
+                                            streamingBuffer.Add(insertVariable(subroutineLine),i); 
+                                        else 
+                                            streamingBuffer.Add(subroutineLine, i);             // add gcode line to list to send 
                                     }
                                 }
                             }
+                            else
+                                Logger.Error("Subroutine {0} not found", pWord);
+
+
+                            /*         int subStart = 0, subEnd = 0;
+                                     if (pWord > 0)
+                                     {
+                                         oWord = -1;
+                                         for (int si = i; si < gCode.Length; si++)   // find subroutine
+                                         {
+                                             subline = gCode[si];
+                                             if (subline.IndexOf("O") >= 0)          // find O-Word
+                                             {
+                                                 oWord = findDouble("O", -1, subline);
+                                                 if (oWord == pWord)
+                                                     subStart = si + 1;              // note start of sub
+                                             }
+                                             else                                    // find end of sub
+                                             {
+                                                 if (subStart > 0)                   // is match?
+                                                 {
+                                                     if (subline.IndexOf("M99") >= 0)
+                                                     { subEnd = si; break; }     // note end of sub
+                                                 }
+                                             }
+                                         }
+                                         if (subStart < subEnd)
+                                         {
+                                             for (int repeat = 0; repeat < lWord; repeat++)
+                                             {
+                                                 for (int si = subStart; si < subEnd; si++)          // copy subroutine
+                                                 {   if (gCode[si].Contains('#'))                    // check if variable neededs to be replaced
+                                                     {   gCode[si] = insertVariable(gCode[si]); }
+
+                                                     streamingBuffer.Add(gCode[si], si);             // add gcode line to list to send 
+                                                 }
+                                             }
+                                         }
+                                     }*/
                         }
                         #endregion
                         /***** Subroutine ********************************************************/
@@ -216,12 +293,12 @@ namespace GRBL_Plotter
                                 streamingBuffer.LineWasReceived();
                                 addToLog(tmp);
                             }
-                            if (cmdTNr >= 0)    // T-word is allowed by grbl - no need to filter
-                            {   setToolChangeCoordinates(cmdTNr, tmp);
+                            if (cmdTNr >= 0)                                        // T-word is allowed by grbl - no need to filter
+                            {   setToolChangeCoordinates(cmdTNr, tmp);              // update variables e.g. "gcodeVariable[TOAX]" from tool-table
                             }
-                            if (cmdMNr == 6)    //M06 is not allowed - remove
+                            if (cmdMNr == 6)                                        // M06 is not allowed - remove
                             {   if (Properties.Settings.Default.ctrlToolChange)
-                                {   insertToolChangeCode(i, ref tmpToolInSpindle);
+                                {   insertToolChangeCode(i, ref tmpToolInSpindle);  // insert external script-code and insert variables 
                                     tmp = "(" + tmp + ")";
                                 }
                             }
@@ -299,9 +376,35 @@ namespace GRBL_Plotter
 				foreach (string cmd in commands)
 				{
 					tmp = cleanUpCodeLine(cmd);         // remove comments
-					tmp = insertVariable(tmp);
-					if (tmp.Length > 0)
-					{   streamingBuffer.Add(tmp, linenr);   }
+                    if (tmp.IndexOf("M98") >= 0)
+                    {
+                        double pWord = findDouble("P", -1, tmp);
+                        double lWord = findDouble("L", 1, tmp);
+
+                        if (subroutines.ContainsKey((int)pWord))
+                        {
+                            for (int repeat = 0; repeat < lWord; repeat++)
+                            {
+                                foreach (string subroutineLine in subroutines[(int)pWord])          // copy subroutine
+                                {
+                                    if (subroutineLine.Contains('#'))                    // check if variable neededs to be replaced
+                                        streamingBuffer.Add(insertVariable(subroutineLine), linenr);
+                                    else
+                                        streamingBuffer.Add(subroutineLine, linenr);             // add gcode line to list to send 
+                                }
+                            }
+                        }
+                        else
+                            Logger.Error("addCodeFromFile Subroutine {0} not found", pWord);
+
+                    }
+                    else
+                    {
+                        if (tmp.Contains('#'))              // check if variable neededs to be replaced                
+                        { tmp = insertVariable(tmp); }
+                        if (tmp.Length > 0)
+                        { streamingBuffer.Add(tmp, linenr); }
+                    }
 				}
 			}
 		}
@@ -701,7 +804,7 @@ namespace GRBL_Plotter
             index++;
             return index;
         }
-        private int insertCode(string file, int index, int linenr, bool replace=false)
+    /*    private int insertCode(string file, int index, int linenr, bool replace=false)
         {
             if (File.Exists(file))
             {
@@ -721,6 +824,6 @@ namespace GRBL_Plotter
                 }
             }
             return index;
-        }
+        }*/
     }
 }

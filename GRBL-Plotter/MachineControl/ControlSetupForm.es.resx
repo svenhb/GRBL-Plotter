@@ -2270,4 +2270,10 @@ Pushbullet: por razones de seguridad, debe utilizar una cuenta "basura", el toke
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
     <value>Omita el comando M30 'Fin de programa' para evitar apagar el husillo al restablecer el estado del analizador, lo que hace que el servo se mueva a la posición '0'.</value>
   </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>Enviar comando para controlar el servo</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>Enviar comando sobre cambio de valor</value>
+  </data>
 </root>

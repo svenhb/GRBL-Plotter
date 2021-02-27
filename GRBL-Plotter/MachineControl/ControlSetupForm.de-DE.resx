@@ -2225,4 +2225,10 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
     <value>Überspringen Sie den Befehl M30 'Programmede', um ein Ausschalten der Spindel durch Zurücksetzen des Parser-Status zu vermeiden, wodurch sich das Servo auf die Position '0' bewegt.</value>
   </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>Befehl zur Steuerung des Servos senden</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>Befehl bei Wertänderung senden</value>
+  </data>
 </root>

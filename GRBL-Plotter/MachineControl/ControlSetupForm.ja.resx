@@ -2468,4 +2468,16 @@ Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用�
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
     <value>コマンドM30「プログラム終了」をスキップして、パーサー状態をリセットすることによってスピンドルがオフになるのを回避します。これにより、サーボが位置「0」に移動します。</value>
   </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>ペンダウン</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>ペンアップ</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>サーボを制御するコマンドを送信します</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>値の変更時にコマンドを送信する</value>
+  </data>
 </root>

@@ -2338,4 +2338,10 @@ Pushbullet: из соображений безопасности следует 
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
     <value>Пропустите команду M30 «Конец программы», чтобы избежать выключения шпинделя из-за сброса состояния синтаксического анализатора, что приводит к перемещению сервопривода в положение «0».</value>
   </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>Отправить команду для управления сервоприводом</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>Отправить команду при изменении значения</value>
+  </data>
 </root>

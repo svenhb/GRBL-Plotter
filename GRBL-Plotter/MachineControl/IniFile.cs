@@ -200,6 +200,7 @@ namespace GRBL_Plotter
             {   Write("Repeat Code enable", setup.importRepeatEnable.ToString(), section);
                 Write("Repeat Code count", setup.importRepeatCnt.ToString(), section);
                 Write("Repeat Code complete", setup.importRepeatComplete.ToString(), section);
+                Write("Repeat Code complete all", setup.importRepeatEnableAll.ToString(), section);
             }
             if (setup.importPauseElement || all) { Write("Pause before Path", setup.importPauseElement.ToString(), section); }
             if (setup.importPausePenDown || all) { Write("Pause before Pen", setup.importPausePenDown.ToString(), section); }
@@ -715,6 +716,7 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpbool, section, "Repeat Code enable"))        { setup.importRepeatEnable = tmpbool; }
             if (setVariable(ref tmpdeci, section, "Repeat Code count"))         { setup.importRepeatCnt = tmpdeci; }
             if (setVariable(ref tmpbool, section, "Repeat Code complete"))      { setup.importRepeatComplete = tmpbool; }
+            if (setVariable(ref tmpbool, section, "Repeat Code complete all")) { setup.importRepeatEnableAll = tmpbool; }
             if (setVariable(ref tmpbool, section, "Pause before Path"))         { setup.importPauseElement = tmpbool; }
             if (setVariable(ref tmpbool, section, "Pause before Pen"))          { setup.importPausePenDown = tmpbool; }
             if (setVariable(ref tmpbool, section, "Fold blocks"))               { setup.importCodeFold = tmpbool; }

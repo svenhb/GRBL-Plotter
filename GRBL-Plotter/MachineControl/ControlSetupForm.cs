@@ -724,11 +724,11 @@ namespace GRBL_Plotter
         {
             float xoff = (float)nUDToolOffsetX.Value;
             float yoff = (float)nUDToolOffsetY.Value;
-            if (dGVToolList.CurrentRow.Cells[3].Value == null)
+      /*      if (dGVToolList.CurrentRow.Cells[3].Value == null)
             {
                 MessageBox.Show("No valid position");
                 return;
-            }
+            }*/
             string sx = dGVToolList.CurrentRow.Cells[3].Value.ToString();
             string sy = dGVToolList.CurrentRow.Cells[4].Value.ToString();
             string sz = dGVToolList.CurrentRow.Cells[5].Value.ToString();
@@ -1387,5 +1387,39 @@ namespace GRBL_Plotter
         {
             MessageBox.Show(Notifier.pushBullet("Note sent via GRBL-Plotter [Setup - Program behavior - Notifier] at " + DateTime.Now.ToString("yyyy-dd-MM h:mm:ss")));    // in Notifier.cs
         }
+
+        private void nUDImportGCPWMUp_ValueChanged(object sender, EventArgs e)      // send PWM Pen up code
+        {
+            btnGCPWMUp.PerformClick();
+        }
+
+        private void nUDImportGCPWMDown_ValueChanged(object sender, EventArgs e)    // send PWM Pen up code
+        {
+            btnGCPWMDown.PerformClick();
+        }
+
+        private void btnGCPWMUp_Click(object sender, EventArgs e)
+        {
+            if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+            { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMUp.Value); }
+        }
+
+        private void btnGCPWMDown_Click(object sender, EventArgs e)
+        {
+            if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+            { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMDown.Value); }
+        }
+
+        private void cBImportGCPWMSendCode_CheckedChanged(object sender, EventArgs e)
+        {
+            Color tmpColor = SystemColors.Window;
+            if (cBImportGCPWMSendCode.Checked)
+            { tmpColor = Color.Orange; }
+            nUDImportGCPWMUp.BackColor = tmpColor;
+            nUDImportGCPWMDown.BackColor = tmpColor;
+            btnGCPWMUp.BackColor = tmpColor;
+            btnGCPWMDown.BackColor = tmpColor;
+        }
+
     }
 }

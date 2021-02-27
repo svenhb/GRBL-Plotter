@@ -46,6 +46,7 @@
  * 2021-01-06 add G2/3 radius check (grbl error:33); createDrawingPathFromGCode: if ((aDiff < 0.1) && (arcMove.radius > 1000)) 
  *            use path.AddLine instead of path.AddArc to avoid float unprecision in drawing (https://github.com/arkypita/LaserGRBL/issues/1248)
  * 2021-01-12 extend drawingProperties
+ * 2021-02-18 bug fix in addSubroutine, set lastSubroutine = new int[] { 0, 0, 0 };
 */
 
 using System;
@@ -396,6 +397,7 @@ namespace GRBL_Plotter
             if (showArrow || showId) progressMainFactor = 0.5f;
             int progressSub = 0;
             int progressSubOld = 0;
+            lastSubroutine = new int[] { 0, 0, 0 };
            
             for (int lineNr = 0; lineNr < GCode.Length; lineNr++)   // go through all gcode lines
             {
@@ -516,6 +518,7 @@ namespace GRBL_Plotter
                         addSubroutine(GCode, lastSubroutine[1], lastSubroutine[2], modal.lWord, processSubs);
                     else
                         findAddSubroutine(modal.pWord, GCode, modal.lWord, processSubs);      // scan complete GCode for matching O-word
+                    Logger.Trace("added Subroutine into lineNr:{0} start:{1}  stop:{2}  repeat:{3} processSubs:{4}",lineNr, lastSubroutine[1], lastSubroutine[2], modal.lWord, processSubs);
                 }
 
                 if (GCode[lineNr].Contains("</"))
@@ -598,7 +601,9 @@ namespace GRBL_Plotter
         /// process subroutines
         /// </summary>
         private static void addSubroutine(string[] GCode, int start, int stop, int repeat, bool processSubs)
-        {   bool showPath = true;
+        {   
+//            Logger.Trace("addSubroutine start:{0}  stop:{1}  repeat:{2} processSubs:{3}",start, stop, repeat, processSubs);
+            bool showPath = true;
             bool isArc = false;
             for (int loop = 0; loop < repeat; loop++)
             {   for (int subLineNr = start + 1; subLineNr < stop; subLineNr++)      // go through real line numbers and parse sub-code

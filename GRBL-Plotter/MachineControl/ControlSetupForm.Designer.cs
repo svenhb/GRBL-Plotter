@@ -182,6 +182,9 @@ namespace GRBL_Plotter
             this.tab1_2lbl62 = new System.Windows.Forms.Label();
             this.tab1_2lbl61 = new System.Windows.Forms.Label();
             this.tab1_2gB4 = new System.Windows.Forms.GroupBox();
+            this.btnGCPWMDown = new System.Windows.Forms.Button();
+            this.btnGCPWMUp = new System.Windows.Forms.Button();
+            this.cBImportGCPWMSendCode = new System.Windows.Forms.CheckBox();
             this.tab1_2lbl44 = new System.Windows.Forms.Label();
             this.tab1_2lbl42 = new System.Windows.Forms.Label();
             this.tab1_2lbl43 = new System.Windows.Forms.Label();
@@ -549,6 +552,7 @@ namespace GRBL_Plotter
             this.cBDashedLine2 = new System.Windows.Forms.CheckBox();
             this.cBImportSVGNodesOnly = new System.Windows.Forms.CheckBox();
             this.cBDashedLine1 = new System.Windows.Forms.CheckBox();
+            this.cBImportSVGRepeatHF = new System.Windows.Forms.CheckBox();
             this.nUDImportRepeat = new System.Windows.Forms.NumericUpDown();
             this.rBImportSVGRepeat1 = new System.Windows.Forms.RadioButton();
             this.cBImportSVGRepeat = new System.Windows.Forms.CheckBox();
@@ -637,6 +641,7 @@ namespace GRBL_Plotter
             this.tBImportGCIPD = new System.Windows.Forms.TextBox();
             this.tBImportGCIPU = new System.Windows.Forms.TextBox();
             this.cBImportGCUseIndividual = new System.Windows.Forms.CheckBox();
+            this.cBImportGCPWMSkipM30 = new System.Windows.Forms.CheckBox();
             this.nUDImportGCPWMUp = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCDlyUp = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCPWMDown = new System.Windows.Forms.NumericUpDown();
@@ -818,7 +823,6 @@ namespace GRBL_Plotter
             this.nUDPenDown = new System.Windows.Forms.NumericUpDown();
             this.nUDPenUp = new System.Windows.Forms.NumericUpDown();
             this.nUDRuler = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCPWMSkipM30 = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -1319,6 +1323,7 @@ namespace GRBL_Plotter
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox5.Controls.Add(this.cBImportSVGRepeatHF);
             this.groupBox5.Controls.Add(this.nUDImportRepeat);
             this.groupBox5.Controls.Add(this.rBImportSVGRepeat2);
             this.groupBox5.Controls.Add(this.rBImportSVGRepeat1);
@@ -2007,6 +2012,9 @@ namespace GRBL_Plotter
             // tab1_2gB4
             // 
             this.tab1_2gB4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab1_2gB4.Controls.Add(this.btnGCPWMDown);
+            this.tab1_2gB4.Controls.Add(this.btnGCPWMUp);
+            this.tab1_2gB4.Controls.Add(this.cBImportGCPWMSendCode);
             this.tab1_2gB4.Controls.Add(this.cBImportGCPWMSkipM30);
             this.tab1_2gB4.Controls.Add(this.nUDImportGCPWMUp);
             this.tab1_2gB4.Controls.Add(this.nUDImportGCDlyUp);
@@ -2021,6 +2029,28 @@ namespace GRBL_Plotter
             this.tab1_2gB4.Name = "tab1_2gB4";
             this.tab1_2gB4.TabStop = false;
             this.toolTip1.SetToolTip(this.tab1_2gB4, resources.GetString("tab1_2gB4.ToolTip"));
+            // 
+            // btnGCPWMDown
+            // 
+            resources.ApplyResources(this.btnGCPWMDown, "btnGCPWMDown");
+            this.btnGCPWMDown.Name = "btnGCPWMDown";
+            this.btnGCPWMDown.UseVisualStyleBackColor = true;
+            this.btnGCPWMDown.Click += new System.EventHandler(this.btnGCPWMDown_Click);
+            // 
+            // btnGCPWMUp
+            // 
+            resources.ApplyResources(this.btnGCPWMUp, "btnGCPWMUp");
+            this.btnGCPWMUp.Name = "btnGCPWMUp";
+            this.btnGCPWMUp.UseVisualStyleBackColor = true;
+            this.btnGCPWMUp.Click += new System.EventHandler(this.btnGCPWMUp_Click);
+            // 
+            // cBImportGCPWMSendCode
+            // 
+            resources.ApplyResources(this.cBImportGCPWMSendCode, "cBImportGCPWMSendCode");
+            this.cBImportGCPWMSendCode.Name = "cBImportGCPWMSendCode";
+            this.toolTip1.SetToolTip(this.cBImportGCPWMSendCode, resources.GetString("cBImportGCPWMSendCode.ToolTip"));
+            this.cBImportGCPWMSendCode.UseVisualStyleBackColor = true;
+            this.cBImportGCPWMSendCode.CheckedChanged += new System.EventHandler(this.cBImportGCPWMSendCode_CheckedChanged);
             // 
             // tab1_2lbl44
             // 
@@ -5001,6 +5031,15 @@ namespace GRBL_Plotter
             this.cBDashedLine1.UseVisualStyleBackColor = true;
             this.cBDashedLine1.CheckedChanged += new System.EventHandler(this.highlight_PenOptions_Click);
             // 
+            // cBImportSVGRepeatHF
+            // 
+            resources.ApplyResources(this.cBImportSVGRepeatHF, "cBImportSVGRepeatHF");
+            this.cBImportSVGRepeatHF.Checked = global::GRBL_Plotter.Properties.Settings.Default.importRepeatEnableAll;
+            this.cBImportSVGRepeatHF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importRepeatEnableAll", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportSVGRepeatHF.Name = "cBImportSVGRepeatHF";
+            this.toolTip1.SetToolTip(this.cBImportSVGRepeatHF, resources.GetString("cBImportSVGRepeatHF.ToolTip"));
+            this.cBImportSVGRepeatHF.UseVisualStyleBackColor = true;
+            // 
             // nUDImportRepeat
             // 
             this.nUDImportRepeat.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importRepeatCnt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -6093,11 +6132,20 @@ namespace GRBL_Plotter
             this.cBImportGCUseIndividual.UseVisualStyleBackColor = true;
             this.cBImportGCUseIndividual.CheckedChanged += new System.EventHandler(this.cBImportGCUseIndividual_CheckedChanged);
             // 
+            // cBImportGCPWMSkipM30
+            // 
+            resources.ApplyResources(this.cBImportGCPWMSkipM30, "cBImportGCPWMSkipM30");
+            this.cBImportGCPWMSkipM30.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMSkipM30;
+            this.cBImportGCPWMSkipM30.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMSkipM30", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCPWMSkipM30.Name = "cBImportGCPWMSkipM30";
+            this.toolTip1.SetToolTip(this.cBImportGCPWMSkipM30, resources.GetString("cBImportGCPWMSkipM30.ToolTip"));
+            this.cBImportGCPWMSkipM30.UseVisualStyleBackColor = true;
+            // 
             // nUDImportGCPWMUp
             // 
             this.nUDImportGCPWMUp.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDImportGCPWMUp.Increment = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -6110,6 +6158,7 @@ namespace GRBL_Plotter
             this.nUDImportGCPWMUp.Name = "nUDImportGCPWMUp";
             this.toolTip1.SetToolTip(this.nUDImportGCPWMUp, resources.GetString("nUDImportGCPWMUp.ToolTip"));
             this.nUDImportGCPWMUp.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMUp;
+            this.nUDImportGCPWMUp.ValueChanged += new System.EventHandler(this.nUDImportGCPWMUp_ValueChanged);
             // 
             // nUDImportGCDlyUp
             // 
@@ -6129,7 +6178,7 @@ namespace GRBL_Plotter
             // 
             this.nUDImportGCPWMDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMDown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDImportGCPWMDown.Increment = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -6142,6 +6191,7 @@ namespace GRBL_Plotter
             this.nUDImportGCPWMDown.Name = "nUDImportGCPWMDown";
             this.toolTip1.SetToolTip(this.nUDImportGCPWMDown, resources.GetString("nUDImportGCPWMDown.ToolTip"));
             this.nUDImportGCPWMDown.Value = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMDown;
+            this.nUDImportGCPWMDown.ValueChanged += new System.EventHandler(this.nUDImportGCPWMDown_ValueChanged);
             // 
             // nUDImportGCDlyDown
             // 
@@ -8327,15 +8377,6 @@ namespace GRBL_Plotter
             this.toolTip1.SetToolTip(this.nUDRuler, resources.GetString("nUDRuler.ToolTip"));
             this.nUDRuler.Value = global::GRBL_Plotter.Properties.Settings.Default.gui2DWidthRuler;
             // 
-            // cBImportGCPWMSkipM30
-            // 
-            resources.ApplyResources(this.cBImportGCPWMSkipM30, "cBImportGCPWMSkipM30");
-            this.cBImportGCPWMSkipM30.Checked = global::GRBL_Plotter.Properties.Settings.Default.importGCPWMSkipM30;
-            this.cBImportGCPWMSkipM30.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importGCPWMSkipM30", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCPWMSkipM30.Name = "cBImportGCPWMSkipM30";
-            this.toolTip1.SetToolTip(this.cBImportGCPWMSkipM30, resources.GetString("cBImportGCPWMSkipM30.ToolTip"));
-            this.cBImportGCPWMSkipM30.UseVisualStyleBackColor = true;
-            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -8701,8 +8742,8 @@ namespace GRBL_Plotter
         private System.Windows.Forms.CheckBox cBImportGCUsePWM;
         private System.Windows.Forms.NumericUpDown nUDImportGCDlyDown;
         private System.Windows.Forms.NumericUpDown nUDImportGCDlyUp;
-        private System.Windows.Forms.NumericUpDown nUDImportGCPWMDown;
-        private System.Windows.Forms.NumericUpDown nUDImportGCPWMUp;
+        public System.Windows.Forms.NumericUpDown nUDImportGCPWMDown;
+        public System.Windows.Forms.NumericUpDown nUDImportGCPWMUp;
         private System.Windows.Forms.Label tab1_2lbl44;
         private System.Windows.Forms.Label tab1_2lbl42;
         private System.Windows.Forms.Label tab1_2lbl43;
@@ -9427,5 +9468,9 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label lblPOVC00;
         private System.Windows.Forms.CheckBox cBImportGCPWMSkipM30;
+        private System.Windows.Forms.CheckBox cBImportGCPWMSendCode;
+        public System.Windows.Forms.Button btnGCPWMDown;
+        public System.Windows.Forms.Button btnGCPWMUp;
+        private System.Windows.Forms.CheckBox cBImportSVGRepeatHF;
     }
 }

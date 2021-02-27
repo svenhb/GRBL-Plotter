@@ -2451,4 +2451,16 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
     <value>跳过命令M30“程序结束”，以避免通过重置解析器状态来关闭主轴，这会导致伺服系统移至位置“ 0”。</value>
   </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>落笔</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>抬笔</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>发送命令以控制伺服</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>发送值更改命令</value>
+  </data>
 </root>

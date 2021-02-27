@@ -2467,4 +2467,16 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
     <value>تخطي الأمر M30 "إنهاء البرنامج" لتجنب إيقاف تشغيل المغزل عن طريق إعادة تعيين حالة المحلل اللغوي ، مما يؤدي إلى انتقال المؤازرة إلى الموضع "0".</value>
   </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>القلم لأسفل</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>القلم لأعلى</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>أرسل الأمر للتحكم في المؤازرة</value>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>أرسل الأمر بشأن تغيير القيمة</value>
+  </data>
 </root>

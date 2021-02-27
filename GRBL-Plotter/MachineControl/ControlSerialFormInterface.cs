@@ -851,7 +851,7 @@ namespace GRBL_Plotter
                         {
                             lock (sendDataLock)
 							{
-                                line = sendBuffer.GetSentLine();
+                                line = sendBuffer.GetSentLine();    // needed?
                                 int len = (line.Length + 1);
                                 if (serialPort.IsOpen && (grblBufferFree >= len) && (line != "OV") && (!waitForOk))// && !blockSend)
 								{   serialPort.Write(line + lineEndTXgrbl);	        // grbl accepts '\n' or '\r'			
@@ -1000,6 +1000,7 @@ namespace GRBL_Plotter
                         { addToLog("< replace " + mykey + " = " + myvalue.ToString()); }
 
                         line = line.Replace(variable, string.Format("{0:0.000}", myvalue));
+                        Logger.Trace("insertVariable line:{0} var:{1}  value:{2}",line, mykey, myvalue);
                     }
                     posold = pos + 5;
                 } while (pos > 0);
