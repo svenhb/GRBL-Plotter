@@ -26,6 +26,7 @@
 * 2020-01 add tiny G1 moves for Pen down/up in lasermode only - to be able making dots
 * 2020-12-30 add N-Number
 * 2021-02-20 add subroutine for pen-up/down for use in tool-change scripts
+* 2021-02-28 in jobStart() line 384, call PenUp() code, to lift also servo
 */
 
 using System;
@@ -379,6 +380,9 @@ namespace GRBL_Plotter
         {
             string cmt = cmto;
             if (!gcodeComments) cmt = "";
+
+            PenUp(gcodeString, "PU");
+            /*
             if (gcodeZApply)    // pen up
             {
                 if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
@@ -392,7 +396,7 @@ namespace GRBL_Plotter
                     gcodeString.AppendFormat("G{0} Z{1}{2}\r\n", frmtCode(0), frmtNum(tmpZUp), cmt); // use G0 without feedrate
                 gcodeTime += Math.Abs((tmpZUp - gcodeZDown) / gcodeZFeed);
                 gcodeLines++;
-            }
+            }*/
 
             if (gcodeZApply || gcodeSpindleToggle)
             {
