@@ -28,6 +28,7 @@
  * 2021-01-23 add trgEvent to "sendStreamEvent" in time with the status query
  * 2021-01-26 line 270 make delay between probe exchange scripts variable
  * 2021-02-19 insert variables in subroutine already in startStreaming()
+ * 2021-02-28 preProcessStreaming lock copy-routine and replace "requestSend()" by sendBuffer.Add
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -83,6 +84,7 @@ namespace GRBL_Plotter
         {
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
             Logger.Info("Ser:{0} startStreaming at line:{1} ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine);
+//            if (logEnable) LogPos.Info("(----- Start streaming {0} -----)", getTimeStampString());
             if (grblCharacterCounting)
                 Logger.Info("Streaming Protocol: Character-Counting");
             else
@@ -247,41 +249,6 @@ namespace GRBL_Plotter
                                 Logger.Error("Subroutine {0} not found", pWord);
 
 
-                            /*         int subStart = 0, subEnd = 0;
-                                     if (pWord > 0)
-                                     {
-                                         oWord = -1;
-                                         for (int si = i; si < gCode.Length; si++)   // find subroutine
-                                         {
-                                             subline = gCode[si];
-                                             if (subline.IndexOf("O") >= 0)          // find O-Word
-                                             {
-                                                 oWord = findDouble("O", -1, subline);
-                                                 if (oWord == pWord)
-                                                     subStart = si + 1;              // note start of sub
-                                             }
-                                             else                                    // find end of sub
-                                             {
-                                                 if (subStart > 0)                   // is match?
-                                                 {
-                                                     if (subline.IndexOf("M99") >= 0)
-                                                     { subEnd = si; break; }     // note end of sub
-                                                 }
-                                             }
-                                         }
-                                         if (subStart < subEnd)
-                                         {
-                                             for (int repeat = 0; repeat < lWord; repeat++)
-                                             {
-                                                 for (int si = subStart; si < subEnd; si++)          // copy subroutine
-                                                 {   if (gCode[si].Contains('#'))                    // check if variable neededs to be replaced
-                                                     {   gCode[si] = insertVariable(gCode[si]); }
-
-                                                     streamingBuffer.Add(gCode[si], si);             // add gcode line to list to send 
-                                                 }
-                                             }
-                                         }
-                                     }*/
                         }
                         #endregion
                         /***** Subroutine ********************************************************/
@@ -325,6 +292,13 @@ namespace GRBL_Plotter
             }   // lock
             timerSerial.Start();
 
+            if (logEnable)
+            {
+                string startText = string.Format("( {0} )\r\n", getTimeStampString());
+                File.WriteAllText(Application.StartupPath  + "\\logSendBuffer.nc", startText); // clear file
+                File.WriteAllText(Application.StartupPath  + "\\logStreamingBuffer.nc", startText); // clear file
+                File.AppendAllLines(Application.StartupPath + "\\logStreamingBuffer.nc", streamingBuffer.Buffer);
+            }
             isStreaming = true;
             updateControls();
             if (startAtLine > 0)
@@ -635,75 +609,86 @@ namespace GRBL_Plotter
             if (waitForIdle || isStreamingRequestPause || (countPreventIdle > 0))
             {   return;    }
 
-            while ((streamingBuffer.IndexSent <= streamingBuffer.Count) && (grblBufferFree >= lengthToSend) && !waitForIdle && (streamingStateNow != grblStreaming.pause) && externalCOMReady())
+            while ((streamingBuffer.IndexSent < streamingBuffer.Count) && (grblBufferFree >= lengthToSend) && !waitForIdle && (streamingStateNow != grblStreaming.pause) && externalCOMReady())
             {
-                string line = streamingBuffer.GetSentLine();
-                streamingStateNow = grblStreaming.ok;       // default status
-
-                int cmdMNr = gcode.getIntGCode('M', line);
-
-                if ((replaceFeedRate) && (gcode.getStringValue('F', line) != ""))
+                lock (sendDataLock)
                 {
-                    string old_value = gcode.getStringValue('F', line);
-                    replaceFeedRateCmdOld = old_value;
-                    line = line.Replace(old_value, replaceFeedRateCmd);
-                    streamingBuffer.SetSentLine(line);
-                }
+                    string line = streamingBuffer.GetSentLine();
+                    if ((line == "OV") || (line == "UR"))
+                    {   Logger.Error("preProcessStreaming read:{0} from  streamingBuffer index:{1} count:{2}",line, streamingBuffer.IndexSent, streamingBuffer.Count);
+                        break;
+                    }
+                    streamingStateNow = grblStreaming.ok;       // default status
 
-                if ((replaceSpindleSpeed) && (gcode.getStringValue('S', line) != ""))
-                {
-                    string old_value = gcode.getStringValue('S', line);
-                    line = line.Replace(old_value, replaceSpindleSpeedCmd);
-                    replaceSpindleSpeedCmdOld = old_value;
-                    streamingBuffer.SetSentLine(line);
-                }
+                    int cmdMNr = gcode.getIntGCode('M', line);
 
-                #region M0  // Program pause
-                if ((cmdMNr == 0) && !isStreamingCheck) // M0 request pause
-                {
-                    if (!Properties.Settings.Default.guiDisableProgramPause)
+                    if ((replaceFeedRate) && (gcode.getStringValue('F', line) != ""))
                     {
-                        if (logStartStop || logReceive) Logger.Trace("[Pause streaming - skip M0 - wait for IDLE]  indx-sent:{0}  line:{1} lineNr:{2} grblBufferFree:{3}", streamingBuffer.IndexSent, streamingBuffer.GetSentLine(), streamingBuffer.GetSentLineNr(), grblBufferFree);
-                        addToLog("[Pause streaming - skip M0 line:" + streamingBuffer.GetSentLineNr() + "]");
-                        lineStreamingPause = streamingBuffer.GetSentLineNr();
+                        string old_value = gcode.getStringValue('F', line);
+                        replaceFeedRateCmdOld = old_value;
+                        line = line.Replace(old_value, replaceFeedRateCmd);
+                        streamingBuffer.SetSentLine(line);
+                    }
 
-                        if (grblStateNow == grblState.idle)
+                    if ((replaceSpindleSpeed) && (gcode.getStringValue('S', line) != ""))
+                    {
+                        string old_value = gcode.getStringValue('S', line);
+                        line = line.Replace(old_value, replaceSpindleSpeedCmd);
+                        replaceSpindleSpeedCmdOld = old_value;
+                        streamingBuffer.SetSentLine(line);
+                    }
+
+                    #region M0  // Program pause
+                    if ((cmdMNr == 0) && !isStreamingCheck) // M0 request pause
+                    {
+                        if (!Properties.Settings.Default.guiDisableProgramPause)
                         {
-                            requestSend("G4 P1");   // changed from 2 to 1 2021-01-26
-                            grblStateNow = grblStateLast = grblState.unknown;
-                            countPreventInterlock = 10;
+                            if (logStartStop || logReceive) Logger.Trace("[Pause streaming - skip M0 - wait for IDLE]  indx-sent:{0}  line:{1} lineNr:{2} grblBufferFree:{3}", streamingBuffer.IndexSent, streamingBuffer.GetSentLine(), streamingBuffer.GetSentLineNr(), grblBufferFree);
+                            addToLog("[Pause streaming - skip M0 line:" + streamingBuffer.GetSentLineNr() + "]");
+                            lineStreamingPause = streamingBuffer.GetSentLineNr();
+
+                            if (grblStateNow == grblState.idle)
+                            {
+                                requestSend("G4 P1");   // changed from 2 to 1 2021-01-26
+                                grblStateNow = grblStateLast = grblState.unknown;
+                                countPreventInterlock = 10;
+                            }
+
+                            isStreamingRequestPause = true;
+                            streamingStateNow = grblStreaming.waitidle;
+                            waitForIdle = true;                         // block further sending
+                            waitForOk = false;
+                            getParserState = true;                      // ask for parser state
+                            line = "(M0)";
                         }
-
-                        isStreamingRequestPause = true;
-                        streamingStateNow = grblStreaming.waitidle;
-                        waitForIdle = true;                         // block further sending
-                        waitForOk = false;
-                        getParserState = true;                      // ask for parser state
-                        line = "(M0)";
                     }
-                }
-                #endregion
+                    #endregion
 
-                if (isMarlin)
-                {   if (updateMarlinPosition || (--insertMarlinCounter <= 0))
-                    {   requestSend("M114", streamingBuffer.GetSentLineNr(), false);    // insert getPosition commands
-                        getMarlinPositionWasSent = true;
-                        streamingBuffer.LineWasSent();
-                        streamingStateOld = streamingStateNow;
-                        lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
-                        insertMarlinCounter = insertMarlinCounterReload;
+                    if (isMarlin)
+                    {   if (updateMarlinPosition || (--insertMarlinCounter <= 0))
+                        {   //requestSend("M114", streamingBuffer.GetSentLineNr(), false);    // insert getPosition commands
+                            sendBuffer.Add("M114", streamingBuffer.GetSentLineNr());
+                            getMarlinPositionWasSent = true;
+                            streamingBuffer.LineWasSent();
+                            streamingStateOld = streamingStateNow;
+                            lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
+                            insertMarlinCounter = insertMarlinCounterReload;
+                        }
+                        updateMarlinPosition = false;
                     }
-                    updateMarlinPosition = false;
-                }
-                requestSend(line, streamingBuffer.GetSentLineNr(), false);   // fill sendBuffer, 
-                streamingBuffer.LineWasSent();
-                streamingStateOld = streamingStateNow;
-                lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
-//                Logger.Trace("preProcessStreaming sent {0}  lengthToSend {1}  grblBufferFree {2} 3busy {3} countPreventIdle {4} line {5}", streamingBuffer.IndexSent, lengthToSend, grblBufferFree, serial3Busy, countPreventIdle, line);
+         //           requestSend(line, streamingBuffer.GetSentLineNr(), false);   // fill sendBuffer, 
+                    sendBuffer.Add(line, streamingBuffer.GetSentLineNr());
+                    if (logEnable) System.IO.File.AppendAllText(Application.StartupPath + "\\logSendBuffer.nc", line + "\r\n"); // clear file
+                    streamingBuffer.LineWasSent();
+                    streamingStateOld = streamingStateNow;
+                    lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
+                }   // lock
+                processSend();
+                //                Logger.Trace("preProcessStreaming sent {0}  lengthToSend {1}  grblBufferFree {2} 3busy {3} countPreventIdle {4} line {5}", streamingBuffer.IndexSent, lengthToSend, grblBufferFree, serial3Busy, countPreventIdle, line);
             }   // while
 
             if (streamingStateNow != grblStreaming.pause)
-            { if (trgEvent) sendStreamEvent(streamingStateNow); trgEvent = false; }    // streaming in preProcessStreaming
+            {   if (trgEvent) sendStreamEvent(streamingStateNow); trgEvent = false; }    // streaming in preProcessStreaming
         }
 
 

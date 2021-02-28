@@ -698,7 +698,9 @@ namespace GRBL_Plotter
                 {   if (tmp == "$#") countPreventEvent = 5;                  // no response echo for parser state
                     if (tmp == "$H") { isHoming = true; addToLog("Homing"); Logger.Info("requestSend Start Homing"); }
                     lock (sendDataLock)
-                    {   sendBuffer.Add(tmp, lineNr); }
+                    {   sendBuffer.Add(tmp, lineNr);
+//                        System.IO.File.AppendAllText(Application.StartupPath + "\\logSendBuffer.nc", tmp+"\r\n"); // clear file
+                    }
                     processSend();
                     feedBackSettings(tmp);
                 }
@@ -855,6 +857,7 @@ namespace GRBL_Plotter
                                 int len = (line.Length + 1);
                                 if (serialPort.IsOpen && (grblBufferFree >= len) && (line != "OV") && (!waitForOk))// && !blockSend)
 								{   serialPort.Write(line + lineEndTXgrbl);	        // grbl accepts '\n' or '\r'			
+                     //               if (logEnable) LogPos.Info("{0}",line);
 									grblBufferFree -= len;
 									if (!grblCharacterCounting)
 										grblBufferFree = 0;
@@ -956,7 +959,7 @@ namespace GRBL_Plotter
         {
             try
             {   if (serialPort.IsOpen)// && !blockSend)
-                    serialPort.Write(data + lineEndTXgrbl);         // sendLine
+                    serialPort.Write(data + lineEndTXgrbl);         // sendLine single command
                 if (!isHeightProbing && (!(isStreaming && !isStreamingPause)))// || (cBStatus1.Checked || cBStatus.Checked))
                 {   if (!(cBStatus1.Checked || cBStatus.Checked || (countPreventOutput > 0))                   )
                         addToLog(string.Format("> {0}", data));     // if not in transfer log the txLine

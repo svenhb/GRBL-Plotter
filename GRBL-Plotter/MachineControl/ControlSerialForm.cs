@@ -127,6 +127,7 @@ namespace GRBL_Plotter
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 //        private static readonly NLog.Logger LogPos = NLog.LogManager.GetLogger("LogPos");
 
+        private static bool logEnable = false;
         private static bool logReceiveStatus = false;	// send '?' get '< Idle | MPos:0.000,0.000,0.000 | FS:0,0 | WCO:0.000,0.000,0.000 >'
         private static bool logReceive = false;			// any other RX data
         private static bool logTransmit = false;			// TX data
@@ -137,7 +138,7 @@ namespace GRBL_Plotter
 		private void updateLogging()
 		{	// LogEnable { Level1=1, Level2=2, Level3=4, Level4=8, Detailed=16, Coordinates=32, Properties=64, Sort = 128, GroupAllGraphics = 256, ClipCode = 512, PathModification = 1024 }
             uint logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
-			bool logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level4) > 0);
+			logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnable.Level4) > 0);
 			logReceiveStatus = logEnable && ((logFlags & (uint)LogEnable.Detailed) > 0);
 			logReceive = logEnable && ((logFlags & (uint)LogEnable.Coordinates) > 0);
 			logTransmit = logEnable && ((logFlags & (uint)LogEnable.Properties) > 0);
@@ -931,5 +932,8 @@ namespace GRBL_Plotter
         {   grblHardReset(); }
 
         #endregion
+
+        private string getTimeStampString()
+        { return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); }
     }
 }

@@ -103,7 +103,7 @@ namespace GRBL_Plotter
         {
             if (serialPort.IsOpen)
             {
-                serialPort.Write(data.Trim() + lineEndTX);      // grbl accepts '\n' or '\r'
+                serialPort.Write(data.Trim() + lineEndTX);      // send single command via form
                 busy = true;
                 countTimeOut = (int)(countTimeOutMax * 1000 / timerSerial.Interval);
                 addToLog("> " + data.Trim() + " set busy flag: " + countTimeOut.ToString());
