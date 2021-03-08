@@ -31,6 +31,7 @@
  * 2020-06-15 add 'Header' tag
  * 2020-08-12 check index line 524
  * 2020-12-16 add Tile handling
+ * 2021-03-06 disabled line 372
 */
 
 using System;
@@ -368,11 +369,10 @@ namespace GRBL_Plotter
                         fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
                         VisuGCode.setPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
                         pictureBox1.Invalidate(); // avoid too much events
-                        toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
+           //             toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
                     }
                     catch (Exception er)
-                    {   Logger.Error(er, "fCTBCodeMarkLine fCTBCodeClickedLineLast:{0} fCTBCodeClickedLineNow:{1}", fCTBCodeClickedLineLast, fCTBCodeClickedLineNow);
-                    }
+                    {   Logger.Error(er, "fCTBCodeMarkLine fCTBCodeClickedLineLast:{0} fCTBCodeClickedLineNow:{1} ", fCTBCodeClickedLineLast, fCTBCodeClickedLineNow);  }
                 }
             }
         }

@@ -21,6 +21,7 @@
  * 2020-12-03 Bug fix invoke required in line 59
  * 2020-12-16 line 183 remove lock
  * 2020-12-23 adjust notifier handling: only notify if estimated process time > notifier intervall
+ * 2021-03-05 line 118 error handling
  */
 
 using System;
@@ -114,11 +115,17 @@ namespace GRBL_Plotter
             fCTBCodeClickedLineNow = e.CodeLineSent-1;// - 1;
             fCTBCodeMarkLine();         // set Bookmark and marker in 2D-View
 //            fCTBCode.DoCaretVisible();
-            if (this.fCTBCode.InvokeRequired)
-            { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
-            else
-            { this.fCTBCode.DoCaretVisible(); }
 
+            try {
+                if (this.fCTBCode.InvokeRequired)
+                { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
+                else
+                { this.fCTBCode.DoCaretVisible(); }
+            } catch (Exception er)  {   
+                Logger.Error(er, "OnRaiseStreamEvent fCTBCode.InvokeRequired ");
+                }
+
+            
             if (_diyControlPad != null)
                 _diyControlPad.sendFeedback("[" + e.Status.ToString() + "]");
 
