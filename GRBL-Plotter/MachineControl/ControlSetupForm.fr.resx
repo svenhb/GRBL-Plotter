@@ -1171,10 +1171,6 @@ Ou assignez un nom de fichier contenant G-Code.</value>
     <value>Relié au GRBL et au G-Code</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value>Peut-être mort</value>
-    <comment>TabPage11</comment>
-  </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>Remarque: le glisser-déposer ne fonctionne pas avec IE-Browser, mais avec Google Chrome.</value>
     <comment>TabPage11</comment>
@@ -2139,9 +2135,6 @@ Alors qu'une prise M0 normale démarre, sans possibilité d'utiliser la machine.
   <data name="groupBox16.Text" xml:space="preserve">
     <value>Notifications</value>
   </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value>Activer la notification par e-mail</value>
-  </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>Envoyer un e-mail de test</value>
   </data>
@@ -2214,9 +2207,6 @@ Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbe
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>Multiplier les graphiques</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>Multiplier</value>
-  </data>
   <data name="label45.Text" xml:space="preserve">
     <value>couche</value>
   </data>
@@ -2237,9 +2227,6 @@ Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbe
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>Dessinez le cadre</value>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>Cadre</value>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>Modules complémentaires de chemin</value>
@@ -2275,5 +2262,58 @@ Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbe
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>Envoyer une commande lors du changement de valeur</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>Tout</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>Comprend l'en-tête et le pied de page</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>Rampe</value>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>Rampe sur le stylet vers le bas (axe Z ou PWM)</value>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>Seulement utile pour l'utilisation du stylo / pinceau</value>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>Multiplier</value>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>Cadre</value>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Le stylo touche la surface
+Nécessaire uniquement pour le fonctionnement en rampe</value>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Vitesse de broche pour le stylo zéro
+Nécessaire uniquement pour le fonctionnement en rampe</value>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>Possible max. La valeur est définie via '$ 30' (par défaut = 1000), min via $ 31 (par défaut = 0).
+Grbl-version 'grbl_v1.1f_Servo.hex' de https://github.com/cprezzi/grbl-servo,
+utilise 31 étapes pour une sortie de 0,5 ms à 2,5 ms (voir cpu_map.h).
+La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Stylo vers le bas</value>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Déplacer le stylo vers le bas</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Stylo vers le haut</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Déplacer le stylo le plus vers le haut</value>
   </data>
 </root>

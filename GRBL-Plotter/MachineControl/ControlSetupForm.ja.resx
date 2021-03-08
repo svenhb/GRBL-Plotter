@@ -1738,10 +1738,6 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <value>GRBLおよびGCode関連</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value>おそらく死んだ</value>
-    <comment>TabPage11</comment>
-  </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>注：IEブラウザーではドラッグアンドドロップは機能しませんが、Google Chromeでは機能します</value>
     <comment>TabPage11</comment>
@@ -2337,9 +2333,6 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
   <data name="groupBox16.Text" xml:space="preserve">
     <value>通知</value>
   </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value>電子メール通知を有効にする</value>
-  </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>テストメールを送信する</value>
   </data>
@@ -2412,9 +2405,6 @@ Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用�
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>グラフィックを増やす</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>かける</value>
-  </data>
   <data name="label45.Text" xml:space="preserve">
     <value>層</value>
   </data>
@@ -2435,9 +2425,6 @@ Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用�
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>フレームを描く</value>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>フレーム</value>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>パスアドオン</value>
@@ -2479,5 +2466,52 @@ Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用�
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>値の変更時にコマンドを送信する</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>ヘッダーとフッターが含まれています</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>距離</value>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>ランプ</value>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>ペンダウンのランプ（Z軸またはPWM）</value>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>ペン/ブラシの使用にのみ役立ちます</value>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>かける</value>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>フレーム</value>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>ペンゼロ</value>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>ペンが表面に触れる
+ランプ操作にのみ必要</value>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>ペンゼロのスピンドル速度
+ランプ操作にのみ必要</value>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>可能な最大値は「$ 30」（デフォルト= 1000）で設定され、最小値は$ 31（デフォルト= 0）で設定されます。
+https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
+0.5msから2.5msの出力に31ステップを使用します（cpu_map.hを参照）。
+実際に使用できる範囲は$ 30 = 31、$ 31 = 0になります。</value>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>ペンを一番下に移動します</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>ペンを一番上に移動します</value>
   </data>
 </root>

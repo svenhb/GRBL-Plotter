@@ -1171,10 +1171,6 @@ M4 Dynamic Laser Power Mode</value>
     <value>GRBL и G-Code связаны</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value>Возможно мертвый</value>
-    <comment>TabPage11</comment>
-  </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>Примечание: перетаскивание не работает с браузером IE, но с Google Chrome</value>
     <comment>TabPage11</comment>
@@ -2207,9 +2203,6 @@ min X, min Y и max Z.
   <data name="groupBox16.Text" xml:space="preserve">
     <value>Уведомления</value>
   </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value>Включить уведомление по электронной почте</value>
-  </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>Отправить тестовое письмо</value>
   </data>
@@ -2282,9 +2275,6 @@ Pushbullet: из соображений безопасности следует 
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>Умножить графику</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>Умножить</value>
-  </data>
   <data name="label45.Text" xml:space="preserve">
     <value>слой</value>
   </data>
@@ -2305,9 +2295,6 @@ Pushbullet: из соображений безопасности следует 
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>Нарисуйте рамку</value>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>Рамка</value>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>Надстройки пути</value>
@@ -2343,5 +2330,58 @@ Pushbullet: из соображений безопасности следует 
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>Отправить команду при изменении значения</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>Включает верхний и нижний колонтитулы</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>Расстояние</value>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>Рампа</value>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>Наклон пера вниз (ось Z или ШИМ)</value>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>Полезно только для использования пера / кисти</value>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>Умножить</value>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>Рамка</value>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Перо касается поверхности
+Требуется только для работы на рампе</value>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Скорость шпинделя для нулевого пера
+Требуется только для работы на рампе</value>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>Возможный макс. значение устанавливается через 30 долларов (по умолчанию = 1000), минимум через 31 доллар (по умолчанию = 0).
+Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-servo,
+использует 31 шаг для вывода от 0,5 мс до 2,5 мс (см. cpu_map.h).
+Реальный полезный диапазон будет 30 = 31 доллар, 31 доллар = 0.</value>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Перо вниз</value>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Переместите перо максимально вниз</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Перо вверх</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Переместите перо максимально вверх</value>
   </data>
 </root>

@@ -1168,10 +1168,6 @@ Não pode ser utilizado com outras opções de caneta para cima / baixo!</value>
     <value>Relacionado a GRBL e GCode</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value>Talvez morto</value>
-    <comment>TabPage11</comment>
-  </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>Nota: arrastar e soltar não funciona com o IE-Browser, mas com o Google Chrome</value>
     <comment>TabPage11</comment>
@@ -2148,9 +2144,6 @@ Considerando que um M0 normal inicia um feedhold, sem a possibilidade de usar a 
   <data name="groupBox16.Text" xml:space="preserve">
     <value>Notificações</value>
   </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value>Ativar notificação por email</value>
-  </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>Enviar e-mail de teste</value>
   </data>
@@ -2223,9 +2216,6 @@ Pushbullet: por razões de segurança, você deve usar uma conta 'lixo', o token
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>Multiplicar gráficos</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>Multiplicar</value>
-  </data>
   <data name="label45.Text" xml:space="preserve">
     <value>camada</value>
   </data>
@@ -2246,9 +2236,6 @@ Pushbullet: por razões de segurança, você deve usar uma conta 'lixo', o token
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>Desenhe a moldura</value>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>quadro, Armação</value>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>Complementos de caminho</value>
@@ -2284,5 +2271,58 @@ Pushbullet: por razões de segurança, você deve usar uma conta 'lixo', o token
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>Enviar comando na mudança de valor</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>Todo</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>Inclui cabeçalho e rodapé</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>Distância</value>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>Rampa</value>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>Rampa na caneta para baixo (eixo Z ou PWM)</value>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>Útil apenas para uso de caneta / pincel</value>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>Multiplicar</value>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>Quadro</value>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>Caneta Zero</value>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>A caneta toca a superfície
+Necessário apenas para operação de rampa</value>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Velocidade do fuso para caneta zero
+Necessário apenas para operação de rampa</value>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>Máx. Possível o valor é definido por '$ 30' (padrão = 1000), mínimo por meio de $ 31 (padrão = 0).
+Grbl-version 'grbl_v1.1f_Servo.hex' de https://github.com/cprezzi/grbl-servo,
+usa 31 etapas para saída de 0,5 ms a 2,5 ms (consulte cpu_map.h).
+O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Caneta para baixo</value>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Mova a caneta mais para baixo</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Mova a caneta mais para cima</value>
   </data>
 </root>

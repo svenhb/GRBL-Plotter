@@ -864,6 +864,20 @@ namespace GRBL_Plotter
             else
                 gBHatchFill.BackColor = inactive;
 
+            if(cBimportGraphicAddFrameEnable.Checked)
+                gBPathAddOn1.BackColor = Color.Yellow;
+            else
+                gBPathAddOn1.BackColor = inactive;
+
+            if (cBimportGraphicMultiplyGraphicsEnable.Checked)
+                gBPathAddOn2.BackColor = Color.Yellow;
+            else
+                gBPathAddOn2.BackColor = inactive;
+
+            if (cBimportGraphicLeadInEnable.Checked)
+                gBPathAddOn3.BackColor = Color.Yellow;
+            else
+                gBPathAddOn3.BackColor = inactive;
         }
 
         private void btnFileDialogTT1_Click(object sender, EventArgs e)
@@ -1152,6 +1166,12 @@ namespace GRBL_Plotter
             nUDImportGCDlyUp.Enabled = enable;
             nUDImportGCPWMDown.Enabled = enable;
             nUDImportGCDlyDown.Enabled = enable;
+            nUDImportGCPWMZero.Enabled = enable;
+            btnGCPWMUp.Enabled = enable;
+            btnGCPWMZero.Enabled = enable;
+            btnGCPWMDown.Enabled = enable;
+            cBImportGCPWMSkipM30.Enabled = enable;
+            cBImportGCPWMSendCode.Enabled = enable;
             highlight_PenOptions_Click(sender, e);
         }
 
@@ -1389,25 +1409,31 @@ namespace GRBL_Plotter
         }
 
         private void nUDImportGCPWMUp_ValueChanged(object sender, EventArgs e)      // send PWM Pen up code
-        {
-            btnGCPWMUp.PerformClick();
-        }
-
+        {   btnGCPWMUp.PerformClick();   }
         private void nUDImportGCPWMDown_ValueChanged(object sender, EventArgs e)    // send PWM Pen up code
-        {
-            btnGCPWMDown.PerformClick();
-        }
+        {   btnGCPWMDown.PerformClick(); }
+        private void nUDImportGCPWMZero_ValueChanged(object sender, EventArgs e)
+        {   btnGCPWMZero.PerformClick(); }
 
+// Event handler must be assigned in GRBL-Plotter\GUI\MainForm.cs\MainFormOtherForms.cs - (483, 29) : _setup_form.btnGCPWMDown.Click += moveToPickup;
         private void btnGCPWMUp_Click(object sender, EventArgs e)
-        {
+        {   setZeroMinMax();
             if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMUp.Value); }
         }
-
         private void btnGCPWMDown_Click(object sender, EventArgs e)
-        {
+        {   setZeroMinMax();
             if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMDown.Value); }
+        }
+        private void btnGCPWMZero_Click(object sender, EventArgs e)
+        {   if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+            { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMZero.Value); }
+        }
+        private void setZeroMinMax()
+        {   //nUDImportGCPWMZero.Value = (nUDImportGCPWMUp.Value + nUDImportGCPWMDown.Value) / 2;
+            nUDImportGCPWMZero.Maximum = Math.Max(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
+            nUDImportGCPWMZero.Minimum = Math.Min(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
         }
 
         private void cBImportGCPWMSendCode_CheckedChanged(object sender, EventArgs e)
@@ -1417,9 +1443,14 @@ namespace GRBL_Plotter
             { tmpColor = Color.Orange; }
             nUDImportGCPWMUp.BackColor = tmpColor;
             nUDImportGCPWMDown.BackColor = tmpColor;
+            nUDImportGCPWMZero.BackColor = tmpColor;
             btnGCPWMUp.BackColor = tmpColor;
             btnGCPWMDown.BackColor = tmpColor;
+            btnGCPWMZero.BackColor = tmpColor;
         }
+
+        private void lblInfoPWM_Click(object sender, EventArgs e)
+        {   MessageBox.Show(toolTip1.GetToolTip(lblInfoPWM),"Info"); }
 
     }
 }

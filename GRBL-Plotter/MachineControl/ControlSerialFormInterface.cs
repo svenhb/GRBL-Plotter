@@ -29,6 +29,7 @@
  * 2021-01-15 add lineEndRXTX
  * 2021-01-16 don't apply toUpper to comment (^2, (^3
  * 2021-02-01 line 880 remove waitForOk
+ * 2021-03-05 add reset info to logger, check index-range in processGrblRealTimeStatus line 349
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -345,6 +346,11 @@ namespace GRBL_Plotter
             if (isGrblVers0)
                 splitAt = ',';
             string[] dataField = text.Split(splitAt);
+            if (dataField.Length <= 2)
+            {   Logger.Error("processGrblRealTimeStatus dataField.Length<=2: '{0}'", text); 
+                return;
+            }
+        
             string status = dataField[0].Trim(' ');
             if (isGrblVers0)	//	handle old format from grbl vers. 0.9
             {
@@ -402,7 +408,7 @@ namespace GRBL_Plotter
                 {   axisCount = grbl.getPosition(iamSerial, dataField[1], ref posWork);
                     posMachine = posWork + posWCO;
                 }
-            }
+            }   // if (isGrblVers0)
             grblStateNow = grbl.parseStatus(status);            // get actual state
             lblSrState.BackColor = grbl.grblStateColor(grblStateNow);
             lblSrState.Text = grbl.statusToText(grblStateNow);  // status;
@@ -478,6 +484,8 @@ namespace GRBL_Plotter
 			}
 
             grblVers = rxString.Substring(0, rxString.IndexOf('['));
+            
+            Logger.Info("grbl reset: '{0}'  isGrblVers0:{1}  isMarlin:{2}",rxString,isGrblVers0,isMarlin);
 
 			addToLog("* Read grbl settings, hide response from '$$', '$#'");
 			readSettings();

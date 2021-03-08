@@ -1171,10 +1171,6 @@ M4动态激光功率模式</value>
     <value>GRBL和G代码相关</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value>也许死了</value>
-    <comment>TabPage11</comment>
-  </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>注意：拖放操作不适用于IE浏览器，但适用于Google Chrome浏览器</value>
     <comment>TabPage11</comment>
@@ -2320,9 +2316,6 @@ Z轴将向下移动</value>
   <data name="groupBox16.Text" xml:space="preserve">
     <value>通知事项</value>
   </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value>启用电子邮件通知</value>
-  </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>发送测试邮件</value>
   </data>
@@ -2395,9 +2388,6 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>乘法图形</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>乘</value>
-  </data>
   <data name="label45.Text" xml:space="preserve">
     <value>层</value>
   </data>
@@ -2418,9 +2408,6 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>画框</value>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>帧</value>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>路径附件</value>
@@ -2452,15 +2439,62 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>跳过命令M30“程序结束”，以避免通过重置解析器状态来关闭主轴，这会导致伺服系统移至位置“ 0”。</value>
   </data>
   <data name="btnGCPWMDown.Text" xml:space="preserve">
-    <value>落笔</value>
+    <value>下笔</value>
   </data>
   <data name="btnGCPWMUp.Text" xml:space="preserve">
-    <value>抬笔</value>
+    <value>笔向上</value>
   </data>
   <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
     <value>发送命令以控制伺服</value>
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>发送值更改命令</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>包括页眉和页脚</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>距离</value>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>坡道</value>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>笔向下倾斜（Z轴或PWM）</value>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>仅适用于笔/刷子的使用</value>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>乘</value>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>框架</value>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>笔零</value>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>笔接触表面
+仅用于斜坡操作</value>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>零位主轴转速
+仅用于斜坡操作</value>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>可能的最高值是通过“ $ 30”（默认值= 1000）设置的，最小值是通过$ 31（默认值= 0）设置的。
+来自https://github.com/cprezzi/grbl-servo的Grbl版本'grbl_v1.1f_Servo.hex'，
+使用31步输出0.5ms至2.5ms（请参阅cpu_map.h）。
+实际可用范围为$ 30 = 31，$ 31 = 0。</value>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>最下移笔</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>向上移动笔</value>
   </data>
 </root>

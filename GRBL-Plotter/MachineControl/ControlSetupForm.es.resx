@@ -1171,10 +1171,6 @@ O asigne un nombre de archivo que contenga G-Code.</value>
     <value>GRBL y G-Code relacionados</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value>Tal vez muerto</value>
-    <comment>TabPage11</comment>
-  </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>Nota: arrastrar y soltar no funciona con IE-Browser, sino con Google Chrome</value>
     <comment>TabPage11</comment>
@@ -2139,9 +2135,6 @@ Mientras que se inicia un feedhold normal M0, sin posibilidad de utilizar la má
   <data name="groupBox16.Text" xml:space="preserve">
     <value>Notificaciones</value>
   </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value>Habilitar notificación por correo electrónico</value>
-  </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>Enviar correo de prueba</value>
   </data>
@@ -2214,9 +2207,6 @@ Pushbullet: por razones de seguridad, debe utilizar una cuenta "basura", el toke
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>Multiplica los gráficos</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>Multiplicar</value>
-  </data>
   <data name="label45.Text" xml:space="preserve">
     <value>capa</value>
   </data>
@@ -2237,9 +2227,6 @@ Pushbullet: por razones de seguridad, debe utilizar una cuenta "basura", el toke
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>Dibuja el marco</value>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>marco</value>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>Complementos de ruta</value>
@@ -2275,5 +2262,58 @@ Pushbullet: por razones de seguridad, debe utilizar una cuenta "basura", el toke
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>Enviar comando sobre cambio de valor</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>Incluye encabezado y pie de página</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>Rampa</value>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>Rampa en la pluma hacia abajo (eje Z o PWM)</value>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>Solo útil para uso con bolígrafo / pincel</value>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>Multiplicar</value>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>Cuadro</value>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>La pluma toca la superficie
+Solo se necesita para el funcionamiento en rampa</value>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Velocidad del eje para pluma cero
+Solo se necesita para el funcionamiento en rampa</value>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>Posible máx. El valor se establece mediante '$ 30' (predeterminado = 1000), mínimo mediante $ 31 (predeterminado = 0).
+Grbl-versión 'grbl_v1.1f_Servo.hex' de https://github.com/cprezzi/grbl-servo,
+utiliza 31 pasos para una salida de 0,5 ms a 2,5 ms (consulte cpu_map.h).
+El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Pluma abajo</value>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Mueva la pluma hacia abajo</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Encerrar</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Mueva el bolígrafo hacia arriba</value>
   </data>
 </root>

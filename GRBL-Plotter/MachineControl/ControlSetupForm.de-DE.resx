@@ -1132,10 +1132,6 @@ Andere Einstellungen werden normalerweise beim Ändern gespeichert.</value>
     <value>GRBL und G-Code betreffend</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value>Vermutlich tot</value>
-    <comment>TabPage11</comment>
-  </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>Achtung: drag and drop funktioniert nicht mit dem IE-Browser aber mit Google Chrome</value>
     <comment>TabPage11</comment>
@@ -2094,9 +2090,6 @@ Während ein normaler M0 ein Feedhold initiiert, ohne die Möglichkeit, die Masc
   <data name="groupBox16.Text" xml:space="preserve">
     <value>Benachrichtigungen</value>
   </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value>Aktivieren Sie die E-Mail-Benachrichtigung</value>
-  </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>Testmail senden</value>
   </data>
@@ -2169,9 +2162,6 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>Grafiken multiplizieren</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>Multiplizieren</value>
-  </data>
   <data name="label45.Text" xml:space="preserve">
     <value>Schicht</value>
   </data>
@@ -2192,9 +2182,6 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>Rahmen zeichnen</value>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>Rahmen</value>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>Pfad-Add-Ons</value>
@@ -2230,5 +2217,58 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>Befehl bei Wertänderung senden</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>Beinhaltet Kopf- und Fußzeile</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>Entfernung</value>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>Rampe</value>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>Rampe bei 'Stift runter' (Z-Achse oder PWM)</value>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>Nur nützlich für die Verwendung mit Stift / Pinsel</value>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>Multiplizieren</value>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>Rahmen</value>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Der Stift berührt die Oberfläche
+Wird nur für den Rampenbetrieb benötigt</value>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Spindeldrehzahl für Stift Null-Position
+Wird nur für den Rampenbetrieb benötigt</value>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>Mögliche max. Der Wert wird über '$ 30' (Standard = 1000) und min über $ 31 (Standard = 0) eingestellt.
+Grbl-Version 'grbl_v1.1f_Servo.hex' von https://github.com/cprezzi/grbl-servo,
+verwendet 31 Schritte für die Ausgabe von 0,5 ms bis 2,5 ms (siehe cpu_map.h).
+Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Stift runter</value>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Bewegt den Stift am weitesten nach unten</value>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Bewegt den Stift am weitesten nach oben</value>
   </data>
 </root>

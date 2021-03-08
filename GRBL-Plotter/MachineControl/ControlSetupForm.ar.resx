@@ -1731,10 +1731,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <value>GRBL و GCode ذات الصلة</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tab11gB2lbl2.Text" xml:space="preserve">
-    <value>ربما ميت</value>
-    <comment>TabPage11</comment>
-  </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
     <value>ملاحظة: لا يعمل السحب والإفلات مع متصفح IE ، ولكن مع Google Chrome</value>
     <comment>TabPage11</comment>
@@ -2336,9 +2332,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="groupBox16.Text" xml:space="preserve">
     <value>إشعارات</value>
   </data>
-  <data name="cbNotifierEnable.Text" xml:space="preserve">
-    <value>تمكين إعلام البريد الإلكتروني</value>
-  </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>إرسال بريد تجريبي</value>
   </data>
@@ -2411,9 +2404,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>ضاعف الرسومات</value>
   </data>
-  <data name="groupBox20.Text" xml:space="preserve">
-    <value>تتضاعف</value>
-  </data>
   <data name="label45.Text" xml:space="preserve">
     <value>طبقة</value>
   </data>
@@ -2434,9 +2424,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>ارسم الإطار</value>
-  </data>
-  <data name="groupBox19.Text" xml:space="preserve">
-    <value>الإطار</value>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>الوظائف الإضافية للمسار</value>
@@ -2471,12 +2458,59 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>القلم لأسفل</value>
   </data>
   <data name="btnGCPWMUp.Text" xml:space="preserve">
-    <value>القلم لأعلى</value>
+    <value>القلم</value>
   </data>
   <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
     <value>أرسل الأمر للتحكم في المؤازرة</value>
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>أرسل الأمر بشأن تغيير القيمة</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>الجميع</value>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>يتضمن رأس وتذييل</value>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>مسافه: بعد</value>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>المنحدر</value>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>منحدر على القلم لأسفل (المحور Z أو PWM)</value>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>مفيد فقط لاستخدام القلم / الفرشاة</value>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>Multiplizieren</value>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>إطار</value>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>القلم صفر</value>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>القلم يلامس السطح
+مطلوب فقط لتشغيل المنحدر</value>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>سرعة المغزل للقلم صفر
+مطلوب فقط لتشغيل المنحدر</value>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>ممكن ماكس. يتم تعيين القيمة عبر 30 دولارًا (افتراضي = 1000) ، دقيقة عبر 31 دولارًا (افتراضي = 0).
+نسخة Grbl "grbl_v1.1f_Servo.hex" من https://github.com/cprezzi/grbl-servo ،
+يستخدم 31 خطوة للإخراج من 0.5 مللي ثانية إلى 2.5 مللي ثانية (انظر cpu_map.h).
+النطاق الحقيقي القابل للاستخدام سيكون 30 دولارًا = 31 ، 31 دولارًا = 0.</value>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>حرك القلم لأسفل</value>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>تحريك القلم إلى أعلى</value>
   </data>
 </root>
