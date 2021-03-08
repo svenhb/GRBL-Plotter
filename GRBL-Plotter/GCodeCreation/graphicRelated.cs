@@ -544,8 +544,10 @@ namespace GRBL_Plotter
 /* calculate tangential axis - paths may be splitted, do not merge afterwards!*/
             if (!cancelByWorker && graphicInformation.OptionTangentialAxis)
             {   if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Calculate tangential axis (for " + countGeometry.ToString() + " elements)..." });
-                CalculateTangentialAxis(); 
+                CalculateTangentialAxis();
             }
+            else
+            {   CalculateStartAngle(); }
 
 /* List option data */
             if (!cancelByWorker && (graphicInformation.OptionZFromWidth || (graphicInformation.OptionDotFromCircle && graphicInformation.OptionZFromRadius)))

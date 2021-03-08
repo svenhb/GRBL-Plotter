@@ -316,11 +316,13 @@ namespace GRBL_Plotter
                 PathDashArray = new double[PathData.dashArray.Length];
                 PathData.dashArray.CopyTo(PathDashArray, 0);
 
-                double newZ = gcode.gcodeZDown;		// default
-			
-                for (int index=1; index < PathData.path.Count; index++) // 0 was already processed in StartPath
+                double newZ = gcode.gcodeZDown;     // default
+
+                int index = 0;
+                GCodeMotion entity = PathData.path[0];
+                for (index=1; index < PathData.path.Count; index++) // 0 was already processed in StartPath
 				{
-                    GCodeMotion entity = PathData.path[index];
+                    entity = PathData.path[index];
                     if (graphicInfo.OptionZFromWidth)
                     {
 						newZ = calculateZFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, entity.Depth);
@@ -341,7 +343,22 @@ namespace GRBL_Plotter
 						Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, newZ, ArcData.AngleStart, ArcData.Angle, "");// entity.comment);
 					}
 				}
-				StopPath("PU");
+/* create ramp on pen up */                
+                if (Properties.Settings.Default.importGCZEnable && Properties.Settings.Default.importGraphicLeadOutEnable)
+                {
+                    index = PathData.path.Count - 1;
+                    double angle = gcodeMath.getAlpha(PathData.path[index-1].MoveTo, PathData.path[index].MoveTo);
+                    double angleRad = (double)Properties.Settings.Default.importGraphicLeadOutDistance * Math.PI / 180;
+                    double zDelta = gcode.gcodeZUp - gcode.gcodeZDown;
+                    double leadOut = zDelta * Math.Tan(angleRad);
+                    double offsetX = leadOut * Math.Cos(angle);
+                    double offsetY = leadOut * Math.Sin(angle);
+                    Point startPenUp = PathData.path[index].MoveTo;
+                    startPenUp.X += offsetX;
+                    startPenUp.Y += offsetY;
+                    gcode.setZEndPos(startPenUp);
+                }
+                StopPath("PU");
 			}
             gcode.gcodeZDown = origZ;
             if (logDetailed) Logger.Trace("ProcessPathObject end");
@@ -411,7 +428,8 @@ namespace GRBL_Plotter
 		private static bool overWriteId = false;
         private static int StartPath(PathObject pathObject, int toolNr, string toolCmt, string penCmt="")//string cmt)
         {
-			Point coordxy = pathObject.Start;
+			Point endPenUp = pathObject.Start;
+            Point startPenDown = new Point(endPenUp.X, endPenUp.Y);
 			double angle = pathObject.StartAngle;
 			int iDToSet = PathCount;
 			if (overWriteId && (pathObject.FigureId > 0))
@@ -446,12 +464,69 @@ namespace GRBL_Plotter
 
             double setangle = 180 * angle / Math.PI;
             gcode.setTangential(gcodeString, setangle);
-			gcode.MoveToRapid(gcodeString, coordxy);
-			PenDown(penCmt);
+            
+/* create ramp on pen down */                
+            if (Properties.Settings.Default.importGraphicLeadInEnable)  {   
+                if (Properties.Settings.Default.importGCZEnable) {      // Z movement
+                    double leadIn = (double)Properties.Settings.Default.importGraphicLeadInDistance;
+          //          double zDelta = gcode.gcodeZUp - gcode.gcodeZDown;
+          //          double leadIn = zDelta * Math.Tan(angleRad);
+                    double offsetX = leadIn * Math.Cos(angle + Math.PI);
+                    double offsetY = leadIn * Math.Sin(angle + Math.PI);
+                    endPenUp.X += offsetX;
+                    endPenUp.Y += offsetY;
 
-            if (logCoordinates) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", coordxy.X, coordxy.Y, setangle);
+                    gcode.MoveToRapid(gcodeString, endPenUp);   // move to start of ramp
+                    float tmpZ = gcode.gcodeZDown;
+                    gcode.clearLeadIn();
+                    gcode.gcodeZDown = 0;
+                    PenDown(penCmt);                            // will do XYZ move
+                    penIsDown = false;
+                    gcode.gcodeZDown = tmpZ;
 
-            lastGC = coordxy;
+                    gcode.setZStartPos(startPenDown);           // set pos where Z is completly down
+                    PenDown(penCmt);                            // will do XYZ move
+                }
+                else if (Properties.Settings.Default.importGCPWMEnable) {   // PWM in steps
+                    double steps = 10;
+                    double leadIn = (double)Properties.Settings.Default.importGraphicLeadInDistance;
+                    double pwmUp =  (double)Properties.Settings.Default.importGCPWMZero;
+                    double pwmDelta = pwmUp - (double)Properties.Settings.Default.importGCPWMDown;
+                    double factorX = Math.Cos(angle + Math.PI);
+                    double factorY = Math.Sin(angle + Math.PI);
+                    endPenUp.X += factorX * leadIn;
+                    endPenUp.Y += factorY * leadIn;
+                    gcode.MoveToRapid(gcodeString, endPenUp);
+                    double pwmDown;
+
+                    steps = Math.Abs(pwmDelta / 10);
+                    double pwmDownDlyMax = (double)Properties.Settings.Default.importGCPWMDlyDown;
+                    double partDly = pwmDownDlyMax / steps;
+                    gcode.applyXYFeedRate = true;
+                    for (int stp=0; stp < steps; stp++)     // create ramp step by step
+                    {
+                        startPenDown.X = endPenUp.X - factorX * stp * leadIn / steps;
+                        startPenDown.Y = endPenUp.Y - factorY * stp * leadIn / steps;
+                        gcode.MoveTo(gcodeString, startPenDown);
+
+                        pwmDown = pwmUp - stp * pwmDelta / steps;
+                        gcodeString.AppendFormat("M{0} S{1}\r\n", gcode.gcodeSpindleCmd, (int)pwmDown);
+    //                    if (pwmDownDlyMax > 0)
+   //                         gcodeString.AppendFormat("G{0} P{1}\r\n", gcode.frmtCode(4), gcode.frmtNum(partDly));
+                    }
+                    gcode.gcodePWMDlyDown = 0;// (float)partDly;
+                    gcode.MoveTo(gcodeString, pathObject.Start);
+                    PenDown(penCmt);    // will do final PenDown to track state
+                    gcode.gcodePWMDlyDown = (float)pwmDownDlyMax;
+                }                
+            }
+            else {
+                gcode.MoveToRapid(gcodeString, endPenUp);
+                PenDown(penCmt);
+            }
+            if (logCoordinates) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", endPenUp.X, endPenUp.Y, setangle);
+
+            lastGC = startPenDown;  // endPenUp;
             return iDToSet;	//PathCount;
         }
 

@@ -109,6 +109,7 @@ namespace GRBL_Plotter
 				OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
                 ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill || ApplyHatchFill;
+                ConvertArcToLine = ConvertArcToLine || Properties.Settings.Default.importGraphicLeadInEnable;
             }
             public void ResetOptions(bool enableFigures = true)
 			{	FigureEnable = enableFigures;

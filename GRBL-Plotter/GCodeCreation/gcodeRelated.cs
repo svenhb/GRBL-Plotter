@@ -26,7 +26,8 @@
 * 2020-01 add tiny G1 moves for Pen down/up in lasermode only - to be able making dots
 * 2020-12-30 add N-Number
 * 2021-02-20 add subroutine for pen-up/down for use in tool-change scripts
-* 2021-02-28 in jobStart() line 384, call PenUp() code, to lift also servo
+* 2021-02-28 in jobStart() line 415, call PenUp() code, to lift also servo
+* 2021-03-07 in jobStart() bug-fix: call PenUp() code only if !gcodeZApply
 */
 
 using System;
@@ -85,16 +86,16 @@ namespace GRBL_Plotter
         // Using Spindle pwr. to switch on/off laser
         private static bool gcodeSpindleToggle = false; // Switch on/off spindle for Pen down/up (M3/M5)
         public static float gcodeSpindleSpeed = 999;    // Spindle speed to apply
-        private static string gcodeSpindleCmd = "3";    // Spindle Command M3 / M4
+        public static string gcodeSpindleCmd = "3";    // Spindle Command M3 / M4
         private static bool gcodeSpindleToolTable = false;     // from Tool Table
         private static bool gcodeUseLasermode = false;
 
         // Using Spindle-Speed als PWM output to control RC-Servo
         private static bool gcodePWMEnable = false;     // Change Spindle speed for Pen down/up
         private static float gcodePWMUp = 199;          // Spindle speed for Pen-up
-        private static float gcodePWMDlyUp = 0;         // Delay to apply after Pen-up (because servo is slow)
+        public static float gcodePWMDlyUp = 0;         // Delay to apply after Pen-up (because servo is slow)
         private static float gcodePWMDown = 799;        // Spindle speed for Pen-down
-        private static float gcodePWMDlyDown = 0;       // Delay to apply after Pen-down (because servo is slow)
+        public static float gcodePWMDlyDown = 0;       // Delay to apply after Pen-down (because servo is slow)
 
         private static bool gcodeIndividualTool = false;// Use individual Pen down/up
         private static string gcodeIndividualUp = "";
@@ -118,6 +119,11 @@ namespace GRBL_Plotter
         private static float gcodeTangentialAngleDevi = 0;
         private static float gcodeTangentialAngleLast = 0;
         private static string gcodeTangentialCommand = "";
+
+        private static bool gcodeZLeadInEnable = false;
+        private static xyPoint gcodeZLeadInXY = new xyPoint();
+        private static bool gcodeZLeadOutEnable = false;
+        private static xyPoint gcodeZLeadOutXY = new xyPoint();
 
         private static StringBuilder headerData = new StringBuilder();
 
@@ -227,6 +233,9 @@ namespace GRBL_Plotter
             gcodeTangentialAngleDevi = (float)Properties.Settings.Default.importGCTangentialAngleDevi;
             gcodeTangentialCommand = figureStartAlpha = "";
 
+            gcodeZLeadInEnable = false;
+            gcodeZLeadOutEnable = false;
+
             gcodeSubroutineEnable = 0;
             gcodeSubroutine = "";
             gcodeDownUp = 0;            // counter for GCode Down/Up
@@ -255,20 +264,43 @@ namespace GRBL_Plotter
 
             if ((gcodeInsertSubroutine && gcodeLineSegmentation) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange)
             {
-                float tmp_lastz = lastz;
-                StringBuilder tmp = new StringBuilder();
-                Logger.Trace("setup create PenUp/Down subroutine gcodeInsertSubroutine:{0} gcodeToolChange:{1} ctrlToolChange:{2}", gcodeInsertSubroutine, gcodeToolChange, Properties.Settings.Default.ctrlToolChange);
-                PenUp(tmp);
-                gcodeSubroutine += "\r\n(subroutine)\r\nO97 (Pen up)\r\n";
-                gcodeSubroutine += tmp.ToString();
-                gcodeSubroutine += "M99\r\n";
-                tmp.Clear();
-                PenDown(tmp);
-                gcodeSubroutine += "\r\n(subroutine)\r\nO98 (Pen Down)\r\n";
-                gcodeSubroutine += tmp.ToString();
-                gcodeSubroutine += "M99\r\n";
-                lastz = tmp_lastz;
+                bool insertSubroutine = false;
+                if (gcodeInsertSubroutine && gcodeLineSegmentation && fileContainsSubroutineCall(Properties.Settings.Default.importGCSubroutine))
+                {   insertSubroutine = true;}
+                else if (gcodeToolChange)
+                {
+                    insertSubroutine = insertSubroutine || fileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptPut);
+                    insertSubroutine = insertSubroutine || fileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptSelect);
+                    insertSubroutine = insertSubroutine || fileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptGet);
+                    insertSubroutine = insertSubroutine || fileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptProbe);
+                }
+                if (insertSubroutine) {
+                    float tmp_lastz = lastz;
+                    StringBuilder tmp = new StringBuilder();
+                    Logger.Trace("setup create PenUp/Down subroutine gcodeInsertSubroutine:{0} gcodeToolChange:{1} ctrlToolChange:{2}", gcodeInsertSubroutine, gcodeToolChange, Properties.Settings.Default.ctrlToolChange);
+                    PenUp(tmp);
+                    gcodeSubroutine += "\r\n(subroutine)\r\nO97 (Pen up)\r\n";
+                    gcodeSubroutine += tmp.ToString();
+                    gcodeSubroutine += "M99\r\n";
+                    tmp.Clear();
+                    PenDown(tmp);
+                    gcodeSubroutine += "\r\n(subroutine)\r\nO98 (Pen Down)\r\n";
+                    gcodeSubroutine += tmp.ToString();
+                    gcodeSubroutine += "M99\r\n";
+                    lastz = tmp_lastz;
+                }
             }
+        }
+
+        private static bool fileContainsSubroutineCall(string filename)
+        {   if (File.Exists(filename))
+            {   string subroutine = File.ReadAllText(filename);
+                if (subroutine.Contains("M98"))     // subroutine call
+                {   Logger.Trace("fileContainsSubroutineCall {0}  found subroutine call",filename);
+                    return true;
+                }
+            }  
+            return false;
         }
 
         public static bool reduceGCode
@@ -337,7 +369,7 @@ namespace GRBL_Plotter
         { return number.ToString(formatNumber); }
 
         private static StringBuilder secondMove = new StringBuilder();
-        private static bool applyXYFeedRate = true; // apply XY feed after each Pen-move
+        public static bool applyXYFeedRate = true; // apply XY feed after each Pen-move
 
         public static void Pause(StringBuilder gcodeString, string cmt="")
         {
@@ -381,14 +413,11 @@ namespace GRBL_Plotter
             string cmt = cmto;
             if (!gcodeComments) cmt = "";
 
-            PenUp(gcodeString, "PU");
-            /*
             if (gcodeZApply)    // pen up
-            {
-                if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
+            {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
                 float tmpZUp = (float)Properties.Settings.Default.importGCZUp;
                 float z_relative = tmpZUp - lastz;
-                if (gcodeZFeedToolTable && gcodeComments) { cmt = cmto +" Z feed from tool table"; }
+                if (gcodeZFeedToolTable && gcodeComments) { cmt = cmto + " Z feed from tool table"; }
                 if (cmt.Length > 0) { cmt = " (" + cmt + ")"; }
                 if (gcodeRelative)
                     gcodeString.AppendFormat("G{0} Z{1}{2}\r\n", frmtCode(0), frmtNum(z_relative), cmt); // use G0 without feedrate
@@ -396,7 +425,9 @@ namespace GRBL_Plotter
                     gcodeString.AppendFormat("G{0} Z{1}{2}\r\n", frmtCode(0), frmtNum(tmpZUp), cmt); // use G0 without feedrate
                 gcodeTime += Math.Abs((tmpZUp - gcodeZDown) / gcodeZFeed);
                 gcodeLines++;
-            }*/
+            } else {
+                PenUp(gcodeString, "PU");
+            }
 
             if (gcodeZApply || gcodeSpindleToggle)
             {
@@ -460,7 +491,12 @@ namespace GRBL_Plotter
                         if (gcodeRelative)
                             tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(z_relative), gcodeZFeed, cmt);
                         else
-                            tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZDown), gcodeZFeed, cmt);
+                        {
+                            if (gcodeZLeadInEnable)
+                            { tmpString.AppendFormat("G{0} X{1} Y{2} Z{3} F{4} {5}\r\n", frmtCode(1), frmtNum(gcodeZLeadInXY.X), frmtNum(gcodeZLeadInXY.Y), frmtNum(gcodeZDown), gcodeZFeed, cmt); }
+                            else
+                            { tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", frmtCode(1), frmtNum(gcodeZDown), gcodeZFeed, cmt); }
+                        }
                         gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
                         gcodeLines++;
                     }
@@ -557,9 +593,14 @@ namespace GRBL_Plotter
                         if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }
 
                         if (gcodeRelative)
-                            gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(z_relative), comment); // use G0 without feedrate
+                        { gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(z_relative), comment); }// use G0 without feedrate
                         else
-                            gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), comment); // use G0 without feedrate
+                        {
+                            if (gcodeZLeadOutEnable)
+                            { gcodeString.AppendFormat("G{0} X{1} Y{2} Z{3} {4}\r\n", frmtCode(0), frmtNum(gcodeZLeadOutXY.X), frmtNum(gcodeZLeadOutXY.Y), frmtNum(gcodeZUp), comment); }
+                            else
+                            { gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), comment); }
+                        }// use G0 without feedrate
                         gcodeTime += Math.Abs((gcodeZUp - gcodeZDown) / gcodeZFeed);
                         gcodeLines++;
                     }
@@ -893,6 +934,17 @@ namespace GRBL_Plotter
                 else
                 { Move(gcodeString, gnr, tmpX, tmpY, tmpZ, applyFeed, cmt); }
             }
+        }
+
+        public static void clearLeadIn()
+        { gcodeZLeadInEnable = false; }
+        public static void setZStartPos(Point xy)
+        {   gcodeZLeadInXY = new xyPoint(xy);
+            gcodeZLeadInEnable = true;
+        }
+        public static void setZEndPos(Point xy)
+        {   gcodeZLeadOutXY = new xyPoint(xy);
+            gcodeZLeadOutEnable = true;
         }
 
         public static void setTangential(StringBuilder gcodeString, double angle, bool writeCode = false)

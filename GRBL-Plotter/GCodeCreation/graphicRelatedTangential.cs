@@ -29,6 +29,28 @@ namespace GRBL_Plotter
 {
     public static partial class Graphic
     {
+        public static void CalculateStartAngle()
+        {
+            foreach (PathObject graphicItem in completeGraphic)
+            {
+                if (!(graphicItem is ItemDot))
+                {
+                    ItemPath item = (ItemPath)graphicItem;
+
+                    if (item.path.Count == 0)
+                        break;
+
+                    if (item.path.Count > 1)
+                    {   Point pStart = item.path[0].MoveTo;
+                        Point pEnd = item.path[1].MoveTo;
+                        double angleNow = gcodeMath.getAlpha(pStart, pEnd);
+                        graphicItem.StartAngle = angleNow;
+                    }
+                    else
+                    {   graphicItem.StartAngle = 0; }
+                }
+            }
+        }
 
         public static void CalculateTangentialAxis()
         {   const uint loggerSelect = (uint)LogEnable.PathModification;
@@ -77,12 +99,12 @@ namespace GRBL_Plotter
 
                         /* Process Line */
                         if (item.path[i] is GCodeLine)
-                        { angleNow = gcodeMath.getAlpha(pStart, pEnd);      // angle-i = p[i-1] to p[i] in radiant
+                        {   angleNow = gcodeMath.getAlpha(pStart, pEnd);      // angle-i = p[i-1] to p[i] in radiant
 
                             //                            if ((loggerTrace & loggerSelect) > 0) Logger.Trace("    TangentialAxis diff:{0:0.00} now:{1:0.00}  last:{2:0.00} offfset:{3:0.00}  ", diff, angleNow,angleLast, angleOffset);
 
                             if (i == 1)
-                            { angleLast = item.path[0].Angle = angleNow;
+                            {   angleLast = item.path[0].Angle = angleNow;
                                 tempPath.StartAngle = angleNow;
                                 angleLastApply = angleApply = angleNow;
                             }
@@ -101,7 +123,7 @@ namespace GRBL_Plotter
 
                             /* split path if swivel angle is reached*/
                             if ((Math.Abs(angleLastApply - angleApply) > maxAngleRad) || fixAngleExceed(ref angleApply, ref angleNow, ref angleOffset))         // change in angle is too large -> insert pen up/turn/down -> seperate path
-                            { if (tempPath.path.Count > 1)
+                            {   if (tempPath.path.Count > 1)
                                     finalPathList.Add(tempPath);                // save prev path, start new path to force pen up/turn/down
                                 if ((logFlags & loggerSelect) > 0) Logger.Trace("      Exceed angle max:{0:0.00}  actual:{1:0.00}", (maxAngleRad * 180 / Math.PI), (Math.Abs(angleLast - angleNow) * 180 / Math.PI));
 
@@ -186,8 +208,8 @@ namespace GRBL_Plotter
         }
 
         private static bool fixAngleExceed(ref double angleApply, ref double angleNow, ref double angleOffset)
-        { if (Properties.Settings.Default.importGCTangentialRange)
-            { if (angleApply < 0)
+        {   if (Properties.Settings.Default.importGCTangentialRange)
+            {   if (angleApply < 0)
                 { angleApply += 2 * Math.PI; angleOffset += 2 * Math.PI; return true; }
                 else if (angleApply > (2 * Math.PI))
                 { angleApply -= 2 * Math.PI; angleOffset -= 2 * Math.PI; return true; }
@@ -197,7 +219,7 @@ namespace GRBL_Plotter
 
 
         public static void DragToolModification(List<PathObject> graphicToModify)
-        { const uint loggerSelect = (uint)LogEnable.PathModification;
+        {   const uint loggerSelect = (uint)LogEnable.PathModification;
             double gcodeDragRadius = (double)Properties.Settings.Default.importGCDragKnifeLength;
      /*       if (Properties.Settings.Default.importGCDragKnifePercentEnable)
             {   gcodeDragRadius = Math.Abs((double)Properties.Settings.Default.importGCZDown * (double)Properties.Settings.Default.importGCDragKnifePercent / 100); }
