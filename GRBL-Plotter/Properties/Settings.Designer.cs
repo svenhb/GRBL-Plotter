@@ -6555,5 +6555,65 @@ namespace GRBL_Plotter.Properties {
                 this["importRepeatEnableAll"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicLeadInEnable {
+            get {
+                return ((bool)(this["importGraphicLeadInEnable"]));
+            }
+            set {
+                this["importGraphicLeadInEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal importGraphicLeadInDistance {
+            get {
+                return ((decimal)(this["importGraphicLeadInDistance"]));
+            }
+            set {
+                this["importGraphicLeadInDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicLeadOutEnable {
+            get {
+                return ((bool)(this["importGraphicLeadOutEnable"]));
+            }
+            set {
+                this["importGraphicLeadOutEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal importGraphicLeadOutDistance {
+            get {
+                return ((decimal)(this["importGraphicLeadOutDistance"]));
+            }
+            set {
+                this["importGraphicLeadOutDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public decimal importGCPWMZero {
+            get {
+                return ((decimal)(this["importGCPWMZero"]));
+            }
+            set {
+                this["importGCPWMZero"] = value;
+            }
+        }
     }
 }
