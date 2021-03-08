@@ -235,16 +235,16 @@ namespace GRBL_Plotter
                     if (useLFF)                                                     // LFF Font (LibreCAD font file format)
                     {
                         if (chrIndexLFF > 32)
-                        {   Graphic.SetGeometry(string.Format("Char '{0}'", actualChar)); }
+                        { Graphic.SetGeometry(string.Format("Char '{0}'", actualChar)); }
 
                         drawLetterLFF(ref fileContent, chrIndexLFF, scale);         // regular char
                         gcodePenUp("getCode     ");
                     }
-                    else
+                    else if (!useSVGFile)
                     {
-                        if (((chrIndex < 0) || (chrIndex > 95) || (actualChar == ' ')))     // no valid char
+                        if (((chrIndex < 0) || (chrIndex > 95)))     // no valid char
                         {
-                            if (!useSVGFile) { offsetX += 2 * gcSpacing; }                   // apply space
+                            offsetX += 2 * gcSpacing;                    // apply space
                             isSameWord = false;
                             if (gcPauseWord)
                                 gcodePause("Pause before word");
@@ -255,14 +255,24 @@ namespace GRBL_Plotter
                                 gcodePause("Pause before char");
                             if (gcPauseChar && (actualChar == ' '))
                                 gcodePause("Pause before word");
-//                            Logger.Trace("Char {0}  {1}", actualChar, gcFontName);
-
                             Graphic.SetGeometry(string.Format("Char {0}", actualChar));
-                            if (!useSVGFile)
-                                drawLetter(hersheyFonts[gcFontName][chrIndex], scale, actualChar.ToString()); // regular char
-                            else
-                                drawLetterSVGFont(scale, actualChar.ToString());
+                            drawLetter(hersheyFonts[gcFontName][chrIndex], scale, actualChar.ToString()); // regular char
                         }
+                    }
+                    else // useSVGFile
+                    {
+                        if (actualChar < '_')
+                        {
+                            isSameWord = false;
+                            if (gcPauseWord)
+                                gcodePause("Pause before word");
+                        }
+                        if (gcPauseChar)
+                            gcodePause("Pause before char");
+                        if (gcPauseChar && (actualChar == ' '))
+                            gcodePause("Pause before word");
+                        Graphic.SetGeometry(string.Format("Char {0}", actualChar));
+                        drawLetterSVGFont(scale, actualChar.ToString());
                     }
                 }
             }
