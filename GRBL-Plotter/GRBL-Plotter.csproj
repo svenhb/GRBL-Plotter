@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.5.7.3</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.5.8.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -188,6 +188,9 @@
     </Compile>
     <Compile Include="GUI\ButtonEdit.Designer.cs">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageCreateHeight.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainFormGamePad.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
