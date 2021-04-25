@@ -17,6 +17,9 @@
     <Setting Name="cameraPosTop" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="cameraRotateArround0" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="cameraRotation" Type="System.Double" Scope="User">
       <Value Profile="(Default)">180</Value>
     </Setting>
@@ -149,17 +152,38 @@
     <Setting Name="crcValue" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2.5</Value>
     </Setting>
+    <Setting Name="createJogPathCodeEnd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">STOP</Value>
+    </Setting>
+    <Setting Name="createJogPathCodeStart" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M3 S1000;G4 P1;</Value>
+    </Setting>
     <Setting Name="createJogPathFeedrate" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="createJogPathRaster" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
+    <Setting Name="createShapeMovo00" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="createShapeNoZUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="createShapeOrigin" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="createShapeR" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="createShapeRZRadius" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="createShapeRZStep" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="createShapeRZWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="createShapeToolDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3</Value>
@@ -218,6 +242,9 @@
     <Setting Name="ctrl4thUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="ctrlColorizeGCode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="ctrlCommentOut" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -254,6 +281,9 @@
     <Setting Name="ctrlToolChangeEmptyNr" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="ctrlToolScriptDelay" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
     <Setting Name="ctrlToolScriptGet" Type="System.String" Scope="User">
       <Value Profile="(Default)">data\scripts\</Value>
     </Setting>
@@ -279,6 +309,12 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ctrlUseSerialPortFixer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FCTBBlockExpandKeepLastOpen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FCTBBlockExpandOnSelect" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="FCTBLineInterval" Type="System.Decimal" Scope="User">
@@ -358,6 +394,18 @@
     </Setting>
     <Setting Name="gamePadEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC01" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X1.000 Y1.000 F100</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC02" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X1.000 F100</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC03" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X1.000 Y-1.000 F100</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC04" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 Y-1.000 F100</Value>
     </Setting>
     <Setting Name="gamePadRAxis" Type="System.String" Scope="User">
       <Value Profile="(Default)">A</Value>
@@ -716,6 +764,12 @@
     <Setting Name="guiLastFileLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\</Value>
     </Setting>
+    <Setting Name="guiPathSaveCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="guiPenUpDownButtonsShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="guiProgressShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -918,10 +972,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCPWMDlyDown" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="importGCPWMDlyUp" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="importGCPWMDown" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">800</Value>
@@ -929,8 +983,14 @@
     <Setting Name="importGCPWMEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGCPWMSkipM30" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGCPWMUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="importGCPWMZero" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">500</Value>
     </Setting>
     <Setting Name="importGCRelative" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1118,6 +1178,18 @@
     <Setting Name="importGraphicHatchFillInsetEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importGraphicLeadInDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGraphicLeadInEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicLeadOutDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGraphicLeadOutEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicMultiplyGraphicsDimX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
@@ -1157,6 +1229,9 @@
     <Setting Name="importGroupSortInvert" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importImageGrayAsZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importImageHeight" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
@@ -1164,13 +1239,34 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importImageReso" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.4</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="importImageResoApply" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importImageResoY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importImageSLasermodeEnd" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importImageSLasermodeStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importImageSMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="importImageSMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
     <Setting Name="importImageWidth" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="importImageZMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importImageZMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-2</Value>
     </Setting>
     <Setting Name="importLineDashPattern" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1200,6 +1296,9 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importRepeatEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importRepeatEnableAll" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importShowUseCaseDialog" Type="System.Boolean" Scope="User">
@@ -1257,13 +1356,13 @@
       <Value Profile="(Default)">1000</Value>
     </Setting>
     <Setting Name="laserScanPowerFrom" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">2500</Value>
+      <Value Profile="(Default)">250</Value>
     </Setting>
     <Setting Name="laserScanPowerStep" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="laserScanPowerTo" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">2500</Value>
+      <Value Profile="(Default)">300</Value>
     </Setting>
     <Setting Name="laserScanSpeedFrom" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2500</Value>
@@ -1550,6 +1649,9 @@
     <Setting Name="serialPortDIY" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM9</Value>
     </Setting>
+    <Setting Name="setupPWMIncrement" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
     <Setting Name="sizeSerForm1" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">342, 480</Value>
     </Setting>
@@ -1574,48 +1676,9 @@
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
     </Setting>
-    <Setting Name="cameraRotateArround0" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="createJogPathCodeStart" Type="System.String" Scope="User">
-      <Value Profile="(Default)">M3 S1000;G4 P1;</Value>
-    </Setting>
-    <Setting Name="createJogPathCodeEnd" Type="System.String" Scope="User">
-      <Value Profile="(Default)">STOP</Value>
-    </Setting>
-    <Setting Name="createShapeMovo00" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="createShapeNoZUp" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="ctrlToolScriptDelay" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="createShapeRZRadius" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="createShapeRZWidth" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">10</Value>
-    </Setting>
-    <Setting Name="createShapeRZStep" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
-    </Setting>
     <Setting Name="gamePadPOVC00" Type="System.String" Scope="User">
       <Value Profile="(Default)">$J=G91 Y1.000 F100
 </Value>
-    </Setting>
-    <Setting Name="gamePadPOVC01" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X1.000 Y1.000 F100</Value>
-    </Setting>
-    <Setting Name="gamePadPOVC02" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X1.000 F100</Value>
-    </Setting>
-    <Setting Name="gamePadPOVC03" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X1.000 Y-1.000 F100</Value>
-    </Setting>
-    <Setting Name="gamePadPOVC04" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 Y-1.000 F100</Value>
     </Setting>
     <Setting Name="gamePadPOVC05" Type="System.String" Scope="User">
       <Value Profile="(Default)">$J=G91 X-1.000 Y-1.000 F100
@@ -1629,29 +1692,14 @@
       <Value Profile="(Default)">$J=G91 X-1.000 Y1.000 F100
 </Value>
     </Setting>
-    <Setting Name="importGCPWMSkipM30" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="importImage2DViewHideZero" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="guiPenUpDownButtonsShow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="importGraphicTileAddOnX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="importRepeatEnableAll" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGraphicLeadInEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGraphicLeadInDistance" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="importGraphicLeadOutEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGraphicLeadOutDistance" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="importGCPWMZero" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">500</Value>
+    <Setting Name="importGCSubPenUpDown" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
