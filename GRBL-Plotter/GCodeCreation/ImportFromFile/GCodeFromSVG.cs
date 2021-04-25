@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -72,6 +72,7 @@
  * 2020-11-13 fix bad point list - not separated by ' ', but by ','  line 678
  *              created by https://github.com/LingDong-/linedraw
  * 2020-12-08 add BackgroundWorker updates
+ * 2021-03-25 line 613 GetStyleProperty incude ':' to check property
 */
 
 using System;
@@ -316,7 +317,9 @@ namespace GRBL_Plotter
                 logSource = "width " + tmpString;
                 svgWidthPx = ConvertToPixel(tmpString, vbWidth);             // convert in px
 
-				svgStrokeWidthScale = ConvertToPixel(tmpString, vbWidth) / factor_Mm2Px / vbWidth;
+                if (vbWidth > 0)
+				    svgStrokeWidthScale = ConvertToPixel(tmpString, vbWidth) / factor_Mm2Px / vbWidth;
+//                Logger.Trace("svgStrokeWidthScale {0} {1} {2} {3}", tmpString, vbWidth, factor_Mm2Px, vbWidth);
 
                 if (svgComments) Graphic.SetHeaderInfo(" SVG width :" + svgCode.Attribute("width").Value);
                 if (logEnable) Logger.Trace(" SVG width : {0:0.00} source: '{1}'", svgWidthPx, svgCode.Attribute("width").Value);
@@ -475,7 +478,8 @@ namespace GRBL_Plotter
                 Logger.Trace("Convert stroke-width via ConvertToPixel '{0}' result '{1}'", txt, nr);
             }
 			Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale,3).ToString().Replace(',', '.'));
-		}
+//            Logger.Trace("SetPenWidth '{0}' result:{1}  scale:{2}", txt,nr, svgStrokeWidthScale);
+        }
         /// <summary>
         /// Parse Transform information - more information here: http://www.w3.org/TR/SVG/coords.html
         /// transform will be applied in gcodeMove
@@ -609,13 +613,15 @@ namespace GRBL_Plotter
         private static string RemoveUnit(string str)
         {   return str.Replace("pt", "").Replace("pc", "").Replace("mm", "").Replace("cm", "").Replace("in", "").Replace("em ", "").Replace("%", "").Replace("px", ""); }
 
+//      style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round" />
         private static string GetStyleProperty(XElement pathElement, string property)
         {   if (pathElement.Attribute("style") != null)
             {   string style = pathElement.Attribute("style").Value;
                 string[] prop = style.Split(';');
                 foreach (string propitem in prop)
                 {   string[] keyval = propitem.Split(':');
-                    if ((keyval.Length >1) && (keyval[0].Contains(property)))
+                    if ((keyval.Length >1) && (propitem.Contains(property+":")))   // to avoid reading "stroke-linecap" as "stroke"                
+                    // if ((keyval.Length >1) && (keyval[0].Contains(property)))
                         return keyval[1];
                 }
             }

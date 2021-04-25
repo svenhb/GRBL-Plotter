@@ -34,13 +34,13 @@ namespace GRBL_Plotter
     class GCodeFromDrill
     {
         private static bool gcodeUseSpindle = false;            // Switch on/off spindle for Pen down/up (M3/M5)
-        private static bool gcodeToolChange = false;            // Apply tool exchange command
+//        private static bool gcodeToolChange = false;            // Apply tool exchange command
         private static bool importComments = true;              // if true insert additional comments into GCode
         private static bool importUnitmm = true;                // convert units if needed
 
         private static string   infoDate = "unknown";
         private static bool     infoModeIsAbsolute = true;
-        private static string   infoUnits = "Inch";
+//        private static string   infoUnits = "Inch";
         private static double   infoFraction = 0.00001;         // default 1/100000
         private static string[] infoDrill = new string[20];
 
@@ -150,7 +150,7 @@ namespace GRBL_Plotter
 			int groupCount = 0;
             Dictionary<string, string> tNrToDiameter = new Dictionary<string, string>();
             string attDiameter = "";
-            string xmlString = "";
+//            string xmlString = "";
 
             Logger.Info(" Amount Lines:{0}", drillCode.Length);
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + drillCode.Length.ToString() + " lines" });
