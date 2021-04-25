@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@
  * 2018-11  split code into ...Create and ...Outline
  * 2019-08-15 add logger
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
+ * 2021-04-03 add preset for S value range
+ * 2021-04-14 line 1124 only horizontal scanning for process tool
 */
 
 using System;
@@ -68,6 +70,7 @@ namespace GRBL_Plotter
             getSettings();
             autoZoomToolStripMenuItem_Click(this, null);//Set preview zoom mode
             fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+            rBGrayZ.Checked = Properties.Settings.Default.importImageGrayAsZ;
         }
         private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -114,6 +117,9 @@ namespace GRBL_Plotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
             processLoading();   // reset color corrections
+            if (!Properties.Settings.Default.importImageGrayAsZ)
+                rBGrayS.Checked = true;
+            highlight();
         }
 
         private static string lastFile = "";
@@ -154,6 +160,7 @@ namespace GRBL_Plotter
         {   loadClipboard(); }
         public void loadClipboard()
         {   IDataObject iData = Clipboard.GetDataObject();
+            Logger.Trace("++++++ loadClipboard START ++++++");
             if (iData.GetDataPresent(DataFormats.Bitmap))
             {
                 lastFile = "";
@@ -181,6 +188,7 @@ namespace GRBL_Plotter
         {   //rBImportSVGTool.Checked = Properties.Settings.Default.importSVGToolSort;
   //          if (!rBImportSVGTool.Checked)
   //              rBImportSVGTool2.Checked = true;
+            Logger.Trace("processLoading");
             lblStatus.Text = "Opening file...";
             adjustedImage = new Bitmap(originalImage);
             resultImage = new Bitmap(originalImage);
@@ -192,16 +200,22 @@ namespace GRBL_Plotter
             nUDHeight.Value = oldHeight;
             nUDHeight.ValueChanged += nUDWidthHeight_ValueChanged;
 
+            tabControl1.SelectedIndex = 0;
+            tabControl2.SelectedIndex = 0;
+
             getSettings();
             setToolList();
             resetColorCorrection(); applyColorCorrections(); lblImageSource.Text = "original";
-            tabControl1.SelectedIndex = 0;
             showInfo();
         }
 
         private void showInfo()
-        {   int xSize = (int)(nUDWidth.Value / nUDReso.Value);  //Total X pixels of resulting image for GCode generation
-            int ySize = (int)(nUDHeight.Value / nUDReso.Value); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
+        {
+            decimal resoY = nUDResoX.Value;
+            if (nUDResoY.Enabled) { resoY = nUDResoY.Value; }
+
+            int xSize = (int)(nUDWidth.Value / nUDResoX.Value);  //Total X pixels of resulting image for GCode generation
+            int ySize = (int)(nUDHeight.Value / resoY); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
             pixelCount = xSize * ySize;
             lblSizeOrig.Text = "Original size: " + originalImage.Width + " x " + originalImage.Height + " = " + (originalImage.Width* originalImage.Height) + " px";
             lblSizeResult.Text = "Result size: " + xSize.ToString() + " x " + ySize.ToString() + " = " + pixelCount.ToString() + " px";
@@ -458,10 +472,10 @@ namespace GRBL_Plotter
         }
 
         private void btnKeepSizeWidth_Click(object sender, EventArgs e)
-        { nUDWidth.Value = originalImage.Width * nUDReso.Value; }
+        { nUDWidth.Value = originalImage.Width * nUDResoX.Value; }
 
         private void btnKeepSizeReso_Click(object sender, EventArgs e)
-        { nUDReso.Value = nUDWidth.Value / originalImage.Width; }
+        { nUDResoX.Value = nUDWidth.Value / originalImage.Width; }
 
 
         //Horizontal mirroing
@@ -516,7 +530,10 @@ namespace GRBL_Plotter
 
         //Contrast adjusted by user
         private void applyColorCorrectionsEvent(object sender, EventArgs e)
-        {   applyColorCorrections();
+        {   //if (!nUDResoY.Enabled)
+            //{   nUDResoY.Value = nUDResoX.Value; }
+            if (nUDResoY.Value < nUDResoX.Value) { nUDResoY.Value = nUDResoX.Value; }
+            applyColorCorrections();
         }
 
         private static int conversionMode = 0, conversionModeOld = 0;
@@ -615,10 +632,38 @@ namespace GRBL_Plotter
             imageAttributes.SetColorMatrix(new ColorMatrix(ptsArray), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             imageAttributes.SetGamma(gamma, ColorAdjustType.Bitmap);
             Graphics g = Graphics.FromImage(output);
+//            g.DrawRectangle(new Pen(new SolidBrush(Color.White)), 0, 0, output.Width, output.Height);   // remove transparency
             g.DrawImage(output, new Rectangle(0, 0, output.Width, output.Height)
             , 0, 0, output.Width, output.Height,
             GraphicsUnit.Pixel, imageAttributes);
             return (output);
+        }
+
+        private Bitmap removeAlpha(Bitmap img)
+        {
+
+            Color myColor;
+            for (int y = 0; y < img.Height; y++)
+            {
+                for (int x = 0; x < img.Width; x++)
+                {
+                    myColor = img.GetPixel(x, y);    // Get pixel color
+                    if (myColor.A < 128)
+                    {
+                        myColor = Color.FromArgb(255, 255, 255, 255);
+                        img.SetPixel(x, y, myColor);
+                    }
+                }
+            }
+            return img;
+                    
+
+            /*        Bitmap output = new Bitmap(img.Width, img.Height);//, PixelFormat.Format24bppRgb);
+                    Graphics g = Graphics.FromImage(output);
+                    g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                    g.DrawRectangle(new Pen(new SolidBrush(Color.White)), 0, 0, output.Width, output.Height);   // remove transparency
+                    g.DrawImage(img, 0, 0);
+                    return (output);*/
         }
 
         //Return a grayscale version of an image
@@ -674,9 +719,12 @@ namespace GRBL_Plotter
         //Invoked when the user input any value for image adjust
         private static int pixelCount = 100;
         private static bool useFullReso = false;
-        private static decimal resoFull = 1;
-        private static decimal resoDesired = 1;
-        private static int resoFactor = 1;
+        private static decimal resoFullX = 1;
+        private static decimal resoFullY = 1;
+        private static decimal resoDesiredX = 1;
+        private static decimal resoDesiredY = 1;
+        private static int resoFactorX = 1;
+        private static int resoFactorY = 1;
         private void applyColorCorrections()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -684,18 +732,27 @@ namespace GRBL_Plotter
             updateLabels();
             lblStatus.Text = "Apply color corrections...";
 
-            resoDesired = nUDReso.Value;
-            resoFactor = 1;
+            resoDesiredX = nUDResoX.Value;
+            resoDesiredY = nUDResoX.Value;
+  //          if (nUDResoY.Enabled) { resoDesiredY = nUDResoY.Value; }
+
+            resoFactorX = 1;
+            resoFactorY = 1;
             if (useFullReso)                                        // if full resolution is needed
-            {   resoFull = (nUDWidth.Value / originalImage.Width);      // get max possible resolution
-                resoFactor = (int)Math.Ceiling(resoDesired / resoFull); // get rounded factor to set resolution
-                if (resoFactor > 5)             
-                    resoFactor = 5;
-                resoDesired = resoDesired / resoFactor;              // set rounded value
+            {   resoFullX = (nUDWidth.Value / originalImage.Width);      // get max possible resolution
+                resoFactorX = (int)Math.Ceiling(resoDesiredX / resoFullX); // get rounded factor to set resolution
+                if (resoFactorX > 5)             
+                    resoFactorX = 5;
+                resoDesiredX = resoDesiredX / resoFactorX;              // set rounded value
+                resoFullY = (nUDHeight.Value / originalImage.Height);      // get max possible resolution
+                resoFactorY = (int)Math.Ceiling(resoDesiredY / resoFullY); // get rounded factor to set resolution
+                if (resoFactorY > 5)
+                    resoFactorY = 5;
+                resoDesiredY = resoDesiredY / resoFactorY;              // set rounded value    
             }
-            lblInfo1.Text = "Reso: " + Math.Round(resoDesired,3) + "  factor: " + resoFactor;
-            int xSize = (int)(nUDWidth.Value / resoDesired);  //Total X pixels of resulting image for GCode generation
-            int ySize = (int)(nUDHeight.Value / resoDesired); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
+            lblInfo1.Text = "ResoX: " + Math.Round(resoDesiredX,3) + "  factorX: " + resoFactorX + "   ResoY: " + Math.Round(resoDesiredY, 3) + "  factorY: " + resoFactorY;
+            int xSize = (int)(nUDWidth.Value / resoDesiredX);  //Total X pixels of resulting image for GCode generation
+            int ySize = (int)(nUDHeight.Value / resoDesiredY); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
 
             showInfo();
             Refresh();
@@ -706,7 +763,8 @@ namespace GRBL_Plotter
                 ResizeNearestNeighbor filterResize = new ResizeNearestNeighbor(xSize, ySize);
                 adjustedImage = filterResize.Apply(originalImage);
                 adjustedImage = imgBalance(adjustedImage, tBarBrightness.Value, tBarContrast.Value, tBarGamma.Value);
-                
+                adjustedImage = removeAlpha(adjustedImage);
+
                 SaturationCorrection filterS = new SaturationCorrection((float)tBarSaturation.Value/255);
                 filterS.ApplyInPlace(adjustedImage);       
 
@@ -715,6 +773,32 @@ namespace GRBL_Plotter
                         adjustedImage = imgDirther(adjustedImage);
                     else
                         adjustedImage = imgGrayscale(adjustedImage);
+
+   //                 adjustedImage = removeAlpha(adjustedImage);
+                    if (nUDResoY.Enabled)
+                    {   // create filter
+                        float stpY = (float)(nUDResoY.Value/ resoDesiredX);     // get rounded factor to set resolution
+
+                /*        Bitmap newBitmap = new Bitmap(xSize, ySize);            //create a blank bitmap the same size as original
+                        using (Graphics gfx = Graphics.FromImage(newBitmap))
+                        using (SolidBrush brush = new SolidBrush(Color.White))  //
+                        {   gfx.FillRectangle(brush, 0, 0, xSize, ySize);  }
+
+                        using (Graphics gfx = Graphics.FromImage(newBitmap))
+                        using (Pen brush = new Pen(Color.Black))
+                        {
+                            if (stpY > 1)
+                                brush.Width = stpY / 2;
+                            else 
+                                brush.Width = stpY;
+                          
+                            for (float i = (ySize-1); i >=0; i -= stpY) // from top to down as in conversion function
+                            {   gfx.DrawLine(brush, 0, i, xSize, i); }
+                        }
+
+                        Add filter = new Add(newBitmap);
+                        adjustedImage = filter.Apply(adjustedImage);*/
+                    }
                     adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, originalImage.PixelFormat); //Format32bppARGB
                 }
                 updateLabelColorCount = true;
@@ -1098,10 +1182,10 @@ namespace GRBL_Plotter
                 {   cBPreview.Checked = true;
                     showResultImage(true);      // generate and show result
                 }
-                if (rbEngravingPattern1.Checked)
+//                if (rbEngravingPattern1.Checked)
                     generateGCodeHorizontal();
-                else
-                    generateGCodeDiagonal();
+//                else
+//                    generateGCodeDiagonal();
             }
             else
                 generateHeightData();
@@ -1161,23 +1245,29 @@ namespace GRBL_Plotter
         /// <summary>
         /// for 'diagonal' no outline
         /// </summary>
+        /// 
         private void rbEngravingPattern2_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbEngravingPattern2.Checked)
-            {
-                cBGCodeOutline.Checked = false;
-                cBGCodeOutline.Enabled = false;
-                cBGCodeFill.Checked = true;
-                cBGCodeFill.Enabled = false;
-            }
-            else
-            {
-                cBGCodeOutline.Checked = true;
-                cBGCodeOutline.Enabled = true;
-                cBGCodeFill.Checked = true;
-                cBGCodeFill.Enabled = true;
-            }
+            cBOnlyLeftToRight.Enabled = !rbEngravingPattern2.Checked;
+            applyColorCorrections(); 
         }
+        /*       private void rbEngravingPattern2_CheckedChanged(object sender, EventArgs e)
+               {
+                   if (rbEngravingPattern2.Checked)
+                   {
+                       cBGCodeOutline.Checked = false;
+                       cBGCodeOutline.Enabled = false;
+                       cBGCodeFill.Checked = true;
+                       cBGCodeFill.Enabled = false;
+                   }
+                   else
+                   {
+                       cBGCodeOutline.Checked = true;
+                       cBGCodeOutline.Enabled = true;
+                       cBGCodeFill.Checked = true;
+                       cBGCodeFill.Enabled = true;
+                   }
+               }*/
 
         /// <summary>
         /// if 'Draw outline' is unchecked, disable smoothing
@@ -1191,13 +1281,24 @@ namespace GRBL_Plotter
         /// <summary>
         /// Grayscale checked
         /// </summary>
-        private void rBProcessZ_CheckedChanged(object sender, EventArgs e)
-        {   resetColorCorrection(); applyColorCorrections(); lblImageSource.Text = "original";
-            bool useZ = rBProcessZ.Checked;
+        private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool useZ = false;
+            if (tabControl2.SelectedIndex==1)
+            {   rBProcessZ.Checked = useZ = true; rBProcessTool.Checked =false;
+                nUDResoY.Enabled = cBOnlyLeftToRight.Enabled = true;
+                highlight();
+            }
+            else
+            {   rBProcessZ.Checked = useZ = false; rBProcessTool.Checked = true;
+                cBOnlyLeftToRight.Enabled = false;
+            }
+
+            resetColorCorrection(); applyColorCorrections(); lblImageSource.Text = "original";
             cBPreview.Checked = !useZ;
             cbGrayscale.Checked = useZ;
-//            gBgcodeDirection.Enabled = !useZ;
-   //         gBgcodeSetup.Enabled = !useZ;
+            //            gBgcodeDirection.Enabled = !useZ;
+            //         gBgcodeSetup.Enabled = !useZ;
             gBgcodeSelection.Enabled = !useZ;
         }
 
@@ -1239,6 +1340,31 @@ namespace GRBL_Plotter
    //         this.Close();
         }
 
+        private void btnGetPWMValues_Click(object sender, EventArgs e)
+        {
+            nUDSMin.Value = Properties.Settings.Default.importGCPWMZero;
+            nUDSMax.Value = Properties.Settings.Default.importGCPWMDown;
+        }
+
+        private void highlight()
+        {
+            if (rBGrayZ.Checked)
+                groupBox8.BackColor = Color.Yellow;
+            else
+                groupBox8.BackColor = Color.WhiteSmoke;
+
+            if (rBGrayS.Checked)
+                groupBox4.BackColor = Color.Yellow;
+            else
+                groupBox4.BackColor = Color.WhiteSmoke;
+
+        }
+
+        private void rBGrayZ_CheckedChanged(object sender, EventArgs e)
+        {
+            highlight();
+        }
+
         /// <summary>
         /// Calculate contrast color from given color
         /// </summary>
@@ -1251,7 +1377,6 @@ namespace GRBL_Plotter
                 d = 255; // dark colors - white font
             return Color.FromArgb(d, d, d);
         }
-
 
         private void fillUseCaseFileList(string Root)
         {

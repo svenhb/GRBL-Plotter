@@ -83,7 +83,7 @@ namespace GRBL_Plotter
 
             gcodeString.Clear();
             pathBackground.Reset();
-            path = pathBackground;
+            path = pathBackground;      // create background path
             path.StartFigure();
 
             gcode.Tool(gcodeString, tprop.toolnr, tprop.name);
@@ -122,7 +122,7 @@ namespace GRBL_Plotter
                 {
                     getOffset(x, y);
 
-                    path.AddLine(offsetX, offsetY, offsetX + x, offsetY);
+                    path.AddLine(offsetX, offsetY, offsetX + x, offsetY);           // create background path
                     path.AddLine(offsetX + x, offsetY, offsetX + x, offsetY + y);
                     path.AddLine(offsetX + x, offsetY + y, offsetX, offsetY + y);
                     path.AddLine(offsetX, offsetY + y, offsetX, offsetY);
@@ -192,7 +192,7 @@ namespace GRBL_Plotter
                 {
                     getOffset(x, y);
 
-                    path.AddLine(offsetX + rShape, offsetY, offsetX + x - rShape, offsetY);
+                    path.AddLine(offsetX + rShape, offsetY, offsetX + x - rShape, offsetY);     // create background path
                     path.AddArc(offsetX + x - d, offsetY, d, d, -90, 90);
 
                     path.AddLine(offsetX + x, offsetY + rShape, offsetX + x, offsetY + y - rShape);
@@ -268,7 +268,7 @@ namespace GRBL_Plotter
                 else if (rBShape3.Checked)           // circle
                 {
                     getOffset(d, d);
-                    path.AddArc(offsetX, offsetY, d, d, 0, 360);
+                    path.AddArc(offsetX, offsetY, d, d, 0, 360);        // create background path
 
                     offsetX -= rToolOffset; offsetY -= rToolOffset;
                     rShape += rToolOffset;                    // take care of tool diameter if set
@@ -344,6 +344,7 @@ namespace GRBL_Plotter
                     {  // add background path
                         xStart = 0; yStart = rPath; xOff = rShape; yOff = 0; aStart = isRound ? 180 : 225; aEnd = isRound ? 270 : 225;
                         xEnd = -rPath; yEnd = 0; i = 0; j = -rPath;
+                        // create background path
                         path.AddLine((float)(rShape + xOff + offsetX), (float)(rShape + yOff + offsetY), (float)(-rShape + xOff + offsetX), (float)(rShape + yOff + offsetY));      // draw edge
                         path.AddLine((float)(-rShape + xOff + offsetX), (float)(rShape + yOff + offsetY), (float)(-rShape + xOff + offsetX), (float)(-rShape + yOff + offsetY));
                         path.StartFigure();

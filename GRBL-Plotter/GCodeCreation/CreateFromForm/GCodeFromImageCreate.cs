@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2018-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2018-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2019-07-08 add xmlMarker.figureStart tag
  * 2020-09-24 change to PenColor, PenWith
+ * 2021-04-15
 */
 
 using System;
@@ -34,10 +35,12 @@ namespace GRBL_Plotter
         private static StringBuilder finalString = new StringBuilder();
         private static StringBuilder tmpString = new StringBuilder();
 
-        float coordX;   //X
-        float coordY;   //Y
-        float lastX;    //Last x/y  coords for compare
-        float lastY;
+        private static float cncCoordX;   //X
+        private static float cncCoordY;   //Y
+        private static float cncCoordLastX;    //Last x/y  coords for compare
+        private static float cncCoordLastY;
+        private static float cncPixelResoX;    // resolution = distance between pixels / lines / columns
+        private static float cncPixelResoY;
 
         public void generateGCodePreset(float startX, float startY)
         {   lblStatus.Text = "Generating GCode... ";    //Generate picture Gcode
@@ -46,8 +49,11 @@ namespace GRBL_Plotter
             colorMap.Clear();
             colorStart = -2; colorEnd = -2; lastTool = -2; lastLine = -2;   // setColorMap startup
             gcode.setup();
+            if (rBGrayS.Checked && cBLaserModeOnStart.Checked)
+            {   finalString.AppendLine("$32=1 (Lasermode on)");  }
             gcode.jobStart(finalString);
             gcode.MoveToRapid(finalString, startX, startY);
+            cncCoordLastZ = cncCoordZ = gcode.gcodeZUp;
         }
 
         public void generateGCodeHorizontal()
@@ -55,11 +61,12 @@ namespace GRBL_Plotter
             Logger.Debug("generateGCodeHorizontal");
             if (resultImage == null) return;          //if no image, do nothing
 
-            float resol = (float)resoDesired;// (float)nUDReso.Value;
+            float resolX = (float)resoDesiredX;// (float)nUDReso.Value;
+            float resolY = (float)resoDesiredX;// (float)nUDReso.Value;
             int pixelCount = resultImage.Width * resultImage.Height;
             int pixelProcessed = 0;
             int percentDone = 0;
-            generateGCodePreset(0, resol * (resultImage.Height - 1)); // 1st position
+            generateGCodePreset(0, resolY * (resultImage.Height - 1)); // 1st position
 
             //////////////////////////////////////////////
             // Generate Gcode lines by Horozontal scanning
@@ -69,18 +76,18 @@ namespace GRBL_Plotter
                 int positionX = 0;                          //Left pixel
                 while (positionY >= 0)
                 {   //Y coordinate
-                    coordY = resol * (float)positionY;
+                    cncCoordY = resolY * (float)positionY;
                     while (positionX < resultImage.Width)             //From left to right
                     {   //X coordinate
-                        coordX = resol * (float)positionX;
+                        cncCoordX = resolX * (float)positionX;
                         setColorMap(positionX, positionY);   // collect positions of same color
                         pixelProcessed++;
                         positionX++;
                     }
-                    positionX--; positionY--; coordY = resol * (float)positionY;
+                    positionX--; positionY--; cncCoordY = resolY * (float)positionY;
                     while ((positionX >= 0) & (positionY >= 0))         //From right to left
                     {   //X coordinate
-                        coordX = resol * (float)positionX;
+                        cncCoordX = resolX * (float)positionX;
                         setColorMap(positionX, positionY);   // collect positions of same color
                         pixelProcessed++;
                         positionX--;
@@ -104,7 +111,7 @@ namespace GRBL_Plotter
                 toolTable.sortByPixelCount(false);    // sort by color area (max. first)
 
             gcode.reduceGCode = true;
-            convertColorMap(resol);             // generate GCode from coleccted pixel positions
+            convertColorMap(resolX);             // generate GCode from coleccted pixel positions
             gcode.PenUp(finalString);                             // pen up
             if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
             imagegcode += gcode.GetHeader("Image import") + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
@@ -161,7 +168,8 @@ namespace GRBL_Plotter
             sbyte key;
             List<List<PointF>> outlineList;// = new List<List<Point>>();
             PointF tmpP = new PointF();
-            float resoOutline = (float)resoDesired;
+            float resoOutlineX = (float)resoDesiredX;
+            float resoOutlineY = (float)resoDesiredY;
             string tmp = "";
             int pathCount =0;
             
@@ -190,7 +198,7 @@ namespace GRBL_Plotter
                         int smoothCnt = (int)nUDGCodeOutlineSmooth.Value;
                         if (!cBGCodeOutlineSmooth.Checked)
                             smoothCnt = 0;
-                        outlineList = Vectorize.getPaths(resultToolNrArray, adjustedImage.Width, adjustedImage.Height, key, smoothCnt, (float)0.5/resoOutline, cBGCodeOutlineShrink.Checked);// half pen-width in pixels
+                        outlineList = Vectorize.getPaths(resultToolNrArray, adjustedImage.Width, adjustedImage.Height, key, smoothCnt, (float)0.5/resoOutlineX, cBGCodeOutlineShrink.Checked);// half pen-width in pixels
                         int cnt = 0;
                         float tmpY;
                         foreach (List<PointF> path in outlineList)
@@ -200,12 +208,12 @@ namespace GRBL_Plotter
                                 tmpP = path[0];
                                 tmpY = (adjustedImage.Height - 1) - tmpP.Y; // start point
                                 gcode.Comment(finalString, string.Format("{0} Nr=\"{1}\">", xmlMarker.contourStart, cnt));
-                                gcode.MoveToRapid(finalString, tmpP.X * resoOutline, tmpY * resoOutline, "");          // move to start pos
+                                gcode.MoveToRapid(finalString, tmpP.X * resoOutlineX, tmpY * resoOutlineY, "");          // move to start pos
                                 gcode.PenDown(finalString);// " contour "+cnt);
                                 foreach (PointF aP in path)
                                 {
                                     tmpY = (adjustedImage.Height - 1) - aP.Y;
-                                    gcode.MoveTo(finalString, aP.X * resoOutline, tmpY * resoOutline);
+                                    gcode.MoveTo(finalString, aP.X * resoOutlineX, tmpY * resoOutlineY);
                                 }
                                 tmpY = (adjustedImage.Height - 1) - tmpP.Y;
                                 gcode.PenUp(finalString,"");
@@ -214,14 +222,14 @@ namespace GRBL_Plotter
                         }
                         shrink = 0.4f;// 0.8f;          // shrink value in pixels!
                         if(cBGCodeOutlineShrink.Checked)
-                            shrink = resoOutline*resoFactor*1.2f;   // mm/px * factor * 1,6
+                            shrink = resoOutlineX*resoFactorX*1.2f;   // mm/px * factor * 1,6
                         tmp += "\r\nTool Nr "+ key + " Points: "+cnt+" \r\n"+Vectorize.logList.ToString();
                     }
                     else
                         shrink = 0;
 
                     if (cBGCodeFill.Checked)
-                    {   int factor = resoFactor;
+                    {   int factor = resoFactorX;
                         int start = factor / 2;
                         // if (cBGCodeOutlineShrink.Checked)
                         //     start = factor; 
@@ -230,7 +238,7 @@ namespace GRBL_Plotter
                         if (shrink > 0)
                         {
                             int pos1, pos2, min,max,minO,maxO, center;
-                            int pxOffset = (int)(shrink / (float)resoDesired);
+                            int pxOffset = (int)(shrink / (float)resoDesiredX);
                             for (int y = start; y < resultImage.Height; y += factor)  // go through all lines
                             {   if (colorMap[key][y].Count > 1)
                                 {   for (int k = 0; k < colorMap[key][y].Count; k += 2)
@@ -278,7 +286,7 @@ namespace GRBL_Plotter
         {
             int start, stop, newIndex;
             float coordY = reso * (float)line;
-            int factor = resoFactor;
+            int factor = resoFactorX;
 
             if (colorMap[toolNr][line].Count > 1)   // at least two numbers needed: start, stop
             {
@@ -351,7 +359,8 @@ namespace GRBL_Plotter
             Logger.Debug("generateGCodeDiagonal");
             if (resultImage == null) return;            //if no image, do nothing
 
-            float resol = (float)nUDReso.Value;
+            float resolX = (float)resoDesiredX;// (float)nUDReso.Value;
+            float resolY = (float)resoDesiredX;// (float)nUDReso.Value;
             int pixelCount = resultImage.Width * resultImage.Height;
             int pixelProcessed = 0;
             int percentDone = 0;
@@ -364,8 +373,8 @@ namespace GRBL_Plotter
             //Start image
             int positionX = 0;
             int positionY = 0;
-            lastX = 0;//reset last positions
-            lastY = 0;
+            cncCoordLastX = 0;//reset last positions
+            cncCoordLastY = 0;
             int edge, direction;
             gcode.reduceGCode = true;
 
@@ -375,10 +384,10 @@ namespace GRBL_Plotter
                 direction = 2;    // up-left to low-right
                 while ((positionX < resultImage.Width) & (positionY >= 0))
                 {
-                    coordY = resol * (float)positionY;
-                    coordX = resol * (float)positionX;
+                    cncCoordY = resolY * (float)positionY;
+                    cncCoordX = resolX * (float)positionX;
 
-                    drawPixel(positionX, positionY, coordX, coordY, edge, direction);
+                    drawPixel(positionX, positionY, cncCoordX, cncCoordY, edge, direction);
                     edge = 0;
                     pixelProcessed++;
                     positionX++;
@@ -394,10 +403,10 @@ namespace GRBL_Plotter
                 direction = -2;    // low-right to up-left 
                 while ((positionX >= 0) & (positionY < resultImage.Height))
                 {
-                    coordY = resol * (float)positionY;
-                    coordX = resol * (float)positionX;
+                    cncCoordY = resolY * (float)positionY;
+                    cncCoordX = resolX * (float)positionX;
 
-                    drawPixel(positionX, positionY, coordX, coordY, edge, direction);
+                    drawPixel(positionX, positionY, cncCoordX, cncCoordY, edge, direction);
                     edge = 0;
                     pixelProcessed++;
                     positionX--;
@@ -466,9 +475,9 @@ namespace GRBL_Plotter
             ifBackground = (myToolNumber < 0) ? true : false;
             if (edge == 0)
             {
-                if (dir == -1) myX += (float)nUDReso.Value;
-                if (dir == -2) myX += (float)nUDReso.Value;
-                if (dir == 2) myY += (float)nUDReso.Value;
+                if (dir == -1) myX += (float)nUDResoX.Value;
+                if (dir == -2) myX += (float)nUDResoX.Value;
+                if (dir == 2) myY += (float)nUDResoX.Value;
             }
             if ((lastTool != myToolNumber) || (edge > 0))
             {
@@ -482,7 +491,7 @@ namespace GRBL_Plotter
             }
 
             lastTool = myToolNumber;
-            lastX = coordX; lastY = coordY;
+            cncCoordLastX = coordX; cncCoordLastY = coordY;
             lastIfBackground = ifBackground;
         }
 
@@ -502,124 +511,5 @@ namespace GRBL_Plotter
             gcode.PenDown(tmpString);                           // pen down
   //          gcode.reduceGCode = true;
         }
-
-        private void generateHeightData()
-        {
-            Logger.Debug("generateHeightData");
-            if (resultImage == null) return;                //if no image, do nothing
-
-            resultImage = new Bitmap(adjustedImage);
-            float resol = (float)nUDReso.Value;
-            int pixelCount = resultImage.Width * resultImage.Height;
-            int pixelProcessed = 0;
-            int percentDone = 0;
-
-            int positionY;//top/botom pixel
-            int positionX;//Left/right pixel
-            bool useZ = rBGrayZ.Checked;
-
-            generateGCodePreset(0, resol*(resultImage.Height - 1)); // 1st position
-            gcode.Comment(finalString, string.Format("{0} Id=\"{1}\">", xmlMarker.figureStart, 1));
-
-            if (rbEngravingPattern1.Checked)        // horizontal
-            {
-                //Start image
-                positionY = resultImage.Height - 1;//top tile
-                positionX = 0;//Left pixel
-                coordX = resol * (float)positionX;
-                coordY = resol * (float)positionY;
-                lastX = coordX; lastY = coordY;
-                while (positionY >= 0)
-                {
-                    coordY = resol * (float)positionY;
-                    while (positionX < resultImage.Width)   //From left to right
-                    {
-                        coordX = resol * (float)positionX;
-                        drawHeight(positionX, positionY, coordX, coordY, useZ);
-                        pixelProcessed++; positionX++;
-                    }
-                    positionX--; positionY--; coordY = resol * (float)positionY;
-
-                    while ((positionX >= 0) & (positionY >= 0))     //From right to left
-                    {
-                        coordX = resol * (float)positionX;
-                        drawHeight(positionX, positionY, coordX, coordY, useZ);
-                        pixelProcessed++; positionX--;
-                    }
-                    positionX++; positionY--;
-                    percentDone = (pixelProcessed * 100) / pixelCount;
-                    lblStatus.Text = "Generating GCode... " + Convert.ToString(percentDone) + "%";
-                    if ((percentDone % 10) == 0)
-                        Refresh();
-                }
-            }
-            else
-            {
-                //Start image
-                positionX = 0;
-                positionY = 0;
-                lastX = 0;//reset last positions
-                lastY = 0;
-                while ((positionX < resultImage.Width) | (positionY < resultImage.Height))
-                {
-                    while ((positionX < resultImage.Width) & (positionY >= 0))
-                    {
-                        coordY = resol * (float)positionY;
-                        coordX = resol * (float)positionX;
-                        drawHeight(positionX, positionY, coordX, coordY, useZ);
-                        pixelProcessed++; positionX++; positionY--;
-                    }
-                    positionX--; positionY++;
-
-                    if (positionX >= resultImage.Width - 1) positionY++;
-                    else positionX++;
-
-                    while ((positionX >= 0) & (positionY < resultImage.Height))
-                    {
-                        coordY = resol * (float)positionY;
-                        coordX = resol * (float)positionX;
-                        drawHeight(positionX, positionY, coordX, coordY, useZ);
-                        pixelProcessed++; positionX--; positionY++;
-                    }
-                    positionX++; positionY--;
-                    if (positionY >= resultImage.Height - 1) positionX++;
-                    else positionY++;
-                    percentDone = (pixelProcessed * 100) / pixelCount;
-                    lblStatus.Text = "Generating GCode... " + Convert.ToString(percentDone) + "%";
-                    if ((percentDone % 10) == 0)
-                        Refresh();
-                }
-            }
-            /*        if (rBProcessZ.Checked && rBGrayS.Checked)
-                        finalString.AppendFormat("M5");
-                    else
-                        gcode.PenUp(finalString);                             // pen up
-                        */
-            gcode.Comment(finalString, string.Format("{0}>", xmlMarker.figureEnd));
-            gcode.jobEnd(finalString);
-
-            //       if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
-
-            imagegcode = "( Generated by GRBL-Plotter )\r\n";
-            imagegcode += gcode.GetHeader("Image import") + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
-        }
-
-        private void drawHeight(int col, int lin, float coordX, float coordY, bool useZ)
-        {
-            Color myColor = resultImage.GetPixel(col, (resultImage.Height - 1) - lin);          // Get pixel color
-            double height = 255 - Math.Round((double)(myColor.R + myColor.G + myColor.B) / 3);  // calc height
-            if (useZ)
-            {
-                float coordZ = (float)((double)nUDZTop.Value - height * (double)(nUDZTop.Value - nUDZBot.Value) / 255);    // calc Z value
-                string feed = string.Format("F{0}", gcode.gcodeXYFeed);
-                gcode.MoveTo(finalString, coordX, coordY, coordZ, "");
-            }
-            else
-            {
-                float power = (float)((double)nUDSMin.Value - height * (double)(nUDSMin.Value - nUDSMax.Value) / 255);    // calc Z value
-                finalString.AppendFormat("G{0} X{1} Y{2} S{3}\r\n", gcode.frmtCode(1),gcode.frmtNum(coordX), gcode.frmtNum(coordY), Math.Round(power));
-            }
-        }
-
     }
 }

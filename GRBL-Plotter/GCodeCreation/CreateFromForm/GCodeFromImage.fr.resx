@@ -420,4 +420,76 @@
   <data name="label17.Text" xml:space="preserve">
     <value>Le mode de couleur du stylet bas utilise la largeur du stylet de la table d'outils [Configuration - Apparence du programme - Vue 2D]</value>
   </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>Distance entre les lignes, doit correspondre à la largeur du stylo</value>
+  </data>
+  <data name="cBEngravingPattern3.Text" xml:space="preserve">
+    <value>Seulement de gauche à droite</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>Obtenez les paramètres servo-PWM</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>Obtenir les valeurs pour RC-Servo Pen-down et Pen-Zero à partir de la boîte de dialogue de configuration</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>Distance entre les lignes, doit correspondre à la largeur du stylo</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>Valeur de gris comme vitesse de broche (PWM)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>S min (blanc)</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>S max (noir)</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>compresser le code</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>Valeur de gris comme Z</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Remarque: si "Aperçu" est coché, en haut de la fenêtre, les couleurs de la table d'outils (Configuration - Table d'outils) seront appliquées.</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Couleur comme outil Nr.</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>Valeur de gris comme Z (profondeur)</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Distance de ligne</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Effacer le mode laser à l'extrémité G-Code</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Définir le mode laser au démarrage du G-Code</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Valeur de gris comme Z ou S</value>
+  </data>
+  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Ne tirez que dans une seule direction pour éviter les décalages</value>
+  </data>
+  <data name="lblColors.Text" xml:space="preserve">
+    <value>nombre de couleurs</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>Élimine la surcharge de code pour une diffusion plus rapide</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Vue 2D masquer la valeur 0</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>En vue 2D, ne pas afficher la valeur du blanc (largeur du crayon = 0)</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>Unterer Wert</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>Unterer Wert</value>
+  </data>
 </root>

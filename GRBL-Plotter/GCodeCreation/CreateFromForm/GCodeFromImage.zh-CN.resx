@@ -420,4 +420,85 @@
   <data name="label17.Text" xml:space="preserve">
     <value>落笔彩色模式使用工具表中的笔宽度[设置-程序外观-2D视图]</value>
   </data>
+  <data name="lblSizeOrig.Text" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>行之间的距离，应与笔的宽度相匹配</value>
+  </data>
+  <data name="lblSizeResult.Text" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="cBEngravingPattern3.Text" xml:space="preserve">
+    <value>只从左到右</value>
+  </data>
+  <data name="lblImageSource.Text" xml:space="preserve">
+    <value>原来的</value>
+  </data>
+  <data name="lblColors.Text" xml:space="preserve">
+    <value>色数</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>获取伺服PWM设置</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>从设置对话框获取RC-Servo Pen-down和Pen-Zero的值</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>行之间的距离，应与笔的宽度相匹配</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>较低的价值</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>较低的价值</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>灰度值作为主轴转速（PWM）</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>S min（白色）</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>S max（黑色）</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>压缩代码</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>灰度值为Z</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>注意：如果选中“预览”，则在窗口顶部，将应用工具表（设置-工具表）中的颜色。</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>颜色作为工具编号。</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>灰度值为Z（深度）</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>线距</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>在G代码端清除激光模式</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>在G代码启动时设置Lasermode</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>灰度值为Z或S</value>
+  </data>
+  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>仅从一个方向绘制以避免偏移</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>消除代码开销，实现更快的流传输</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>2D视图隐藏0值</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>在2D视图中不显示白色值（笔宽= 0）</value>
+  </data>
 </root>

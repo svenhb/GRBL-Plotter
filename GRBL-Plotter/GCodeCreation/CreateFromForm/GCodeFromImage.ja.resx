@@ -226,7 +226,7 @@
     <value>画像からGコードを作成</value>
   </data>
   <data name="cBCompress.Text" xml:space="preserve">
-    <value>コードを圧縮</value>
+    <value>コードを圧縮する</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
     <value>2Dビューでペン幅として解像度値を適用</value>
@@ -450,5 +450,59 @@
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>ペンダウンカラーモードは、ツールテーブルのペン幅を使用します[セットアップ-プログラムの外観-2Dビュー]</value>
+  </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>行間の距離、ペンの幅と一致する必要があります</value>
+  </data>
+  <data name="cBEngravingPattern3.Text" xml:space="preserve">
+    <value>左から右のみ</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>サーボPWM設定を取得する</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>セットアップダイアログからRCサーボペンダウンとペンゼロの値を取得します</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>行間の距離、ペンの幅と一致する必要があります</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>スピンドル速度（PWM）としての灰色の値</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>Zとしてのグレー値</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>注：「プレビュー」がチェックされている場合、ウィンドウの上部に、ツールテーブル（セットアップ-ツールテーブル）の色が適用されます。</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>ツール番号としての色</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>Z（深さ）としてのグレー値</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>線間距離</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Gコード側のレーザーモードをクリア</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Gコード開始時にレーザーモードを設定します</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>ZまたはSとしてのグレー値</value>
+  </data>
+  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>オフセットを避けるために一方向からのみ描画します</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>コードのオーバーヘッドを排除してストリーミングを高速化</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>2Dビューは0の値を非表示にします</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>2Dビューでは、白の値は表示されません（ペンの幅= 0）</value>
   </data>
 </root>

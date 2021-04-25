@@ -420,4 +420,76 @@
   <data name="label17.Text" xml:space="preserve">
     <value>El modo de color de lápiz hacia abajo utiliza el ancho de lápiz de la tabla de herramientas [Configuración - Apariencia del programa - Vista 2D]</value>
   </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>Distancia entre líneas, debe coincidir con el ancho de la pluma</value>
+  </data>
+  <data name="cBEngravingPattern3.Text" xml:space="preserve">
+    <value>Solo de izquierda a derecha</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>Obtener la configuración del servo-PWM</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>Obtenga valores para RC-Servo Pen-down y Pen-Zero desde el cuadro de diálogo de configuración</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>Distancia entre líneas, debe coincidir con el ancho de la pluma</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>Valor gris como velocidad del eje (PWM)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>S min (blanco)</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>S max (negro)</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>comprimir código</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>Valor de gris como Z</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Nota: si se marca "Vista previa", en la parte superior de la ventana, se aplicarán los colores de la tabla de herramientas (Configuración - Tabla de herramientas).</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Color como herramienta Nr.</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>Valor de gris como Z (profundidad)</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Distancia de línea</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Modo de láser claro en el extremo del código G</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Establecer el modo láser en el inicio del código G</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Valor gris como Z o S</value>
+  </data>
+  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Dibuje solo desde una dirección para evitar desplazamientos</value>
+  </data>
+  <data name="lblColors.Text" xml:space="preserve">
+    <value>número de colores</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>Elimina la sobrecarga de código para una transmisión más rápida</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Vista 2D ocultar valor 0</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>En la vista 2D no muestra el valor blanco (ancho de la pluma = 0)</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>Bajo valor</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>Bajo valor</value>
+  </data>
 </root>

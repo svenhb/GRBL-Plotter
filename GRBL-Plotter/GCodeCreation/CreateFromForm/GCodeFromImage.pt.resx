@@ -420,4 +420,67 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   <data name="label17.Text" xml:space="preserve">
     <value>O modo de cor da caneta para baixo usa a largura da caneta da tabela de ferramentas [Configuração - Aparência do programa - visualização 2D]</value>
   </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>Distância entre as linhas, deve corresponder à largura da caneta</value>
+  </data>
+  <data name="cBEngravingPattern3.Text" xml:space="preserve">
+    <value>Só da esquerda para a direita</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>Obtenha as configurações do servo-PWM</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>Obtenha valores para RC-Servo Pen-down e Pen-Zero na caixa de diálogo de configuração</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>Distância entre as linhas, deve corresponder à largura da caneta</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>Valor de cinza como velocidade do fuso (PWM)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>S min (branco)</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>S max (preto)</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>código de compressão</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>Valor de cinza como Z</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Nota: se "Visualização" estiver marcada, no topo da janela, as cores da tabela de ferramentas (Configuração - Tabela de ferramentas) serão aplicadas.</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Cor como ferramenta nº.</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>Valor de cinza como Z (profundidade)</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Distância da linha</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Limpar modo de laser na extremidade do Código G</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Definir modo laser no início do Código G</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Valor de cinza como Z ou S</value>
+  </data>
+  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Desenhe apenas em uma direção para evitar deslocamentos</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>Elimina a sobrecarga de código para streaming mais rápido</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Vista 2D ocultar valor 0</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>Na vista 2D, não mostra o valor de branco (largura da caneta = 0)</value>
+  </data>
 </root>

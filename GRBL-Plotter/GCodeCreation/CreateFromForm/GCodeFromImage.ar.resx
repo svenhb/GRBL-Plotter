@@ -226,7 +226,7 @@
     <value>قم بإنشاء G-Code من الصورة</value>
   </data>
   <data name="cBCompress.Text" xml:space="preserve">
-    <value>ضغط الرمز</value>
+    <value>ضغط كود</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
     <value>تطبيق قيمة القرار كعرض القلم في عرض ثنائي الأبعاد</value>
@@ -235,7 +235,7 @@
     <value>الرسم البياني معادلة</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
-    <value>S دقيقة (أبيض)</value>
+    <value>S min (أبيض)</value>
   </data>
   <data name="btnRotateRight.ToolTip" xml:space="preserve">
     <value>تدوير الصورة 90 درجة مئوية</value>
@@ -295,7 +295,7 @@
     <value>استبدال لون الوضع</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
-    <value>S كحد أقصى (أسود)</value>
+    <value>S max (أسود)</value>
   </data>
   <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
     <value>ناعم</value>
@@ -453,5 +453,59 @@
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>يستخدم وضع ألوان القلم لأسفل عرض القلم من جدول الأدوات [الإعداد - مظهر البرنامج - العرض ثنائي الأبعاد]</value>
+  </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>يجب أن تتطابق المسافة بين السطور مع عرض القلم</value>
+  </data>
+  <data name="cBEngravingPattern3.Text" xml:space="preserve">
+    <value>فقط من اليسار إلى اليمين</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>احصل على إعدادات servo-PWM</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>احصل على قيم RC-Servo Pen-down و Pen-Zero من مربع حوار الإعداد</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>يجب أن تتطابق المسافة بين السطور مع عرض القلم</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>القيمة الرمادية كسرعة المغزل (PWM)</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>القيمة الرمادية مثل Z</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>ملاحظة: إذا تم تحديد "معاينة" ، في أعلى النافذة ، سيتم تطبيق الألوان من جدول الأدوات (الإعداد - جدول الأدوات).</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>اللون كأداة Nr.</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>القيمة الرمادية مثل Z (عمق)</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>مسافة الخط</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>مسح الليزر في نهاية G-Code</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>اضبط وضع الليزر على G-Code start</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>القيمة الرمادية مثل Z أو S.</value>
+  </data>
+  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>ارسم من اتجاه واحد فقط لتجنب الإزاحة</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>يزيل عبء الكود للحصول على تدفق أسرع</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>عرض ثنائي الأبعاد إخفاء القيمة 0</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>في العرض ثنائي الأبعاد لا تظهر قيمة بيضاء (عرض القلم = 0)</value>
   </data>
 </root>

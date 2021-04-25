@@ -420,4 +420,76 @@
   <data name="label17.Text" xml:space="preserve">
     <value>В цветном режиме «Перо вниз» используется ширина пера из таблицы инструментов [Настройка - Внешний вид программы - 2D-вид]</value>
   </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>Расстояние между линиями должно соответствовать ширине пера</value>
+  </data>
+  <data name="cBEngravingPattern3.Text" xml:space="preserve">
+    <value>Только слева направо</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>Получить настройки серво-ШИМ</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>Получите значения для RC-Servo Pen-down и Pen-Zero из диалогового окна настройки</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>Расстояние между линиями должно соответствовать ширине пера</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>Меньшее значение</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>Меньшее значение</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>Значение серого как скорость шпинделя (ШИМ)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>S мин (белый)</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>S max (черный)</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>сжать код</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>Значение серого как Z</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Примечание: если установлен флажок «Предварительный просмотр», поверх окна будут применены цвета из таблицы инструментов (Настройка - Таблица инструментов).</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Цвет как инструмент №</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>Значение серого как Z (глубина)</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Расстояние линии</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Четкий лазерный режим на конце G-кода</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Установить лазерный режим при запуске G-кода</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Значение серого как Z или S</value>
+  </data>
+  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Рисуйте только в одном направлении, чтобы избежать смещений</value>
+  </data>
+  <data name="lblColors.Text" xml:space="preserve">
+    <value>количество цветов</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>Устраняет накладные расходы на код для более быстрой потоковой передачи</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>2D вид скрыть значение 0</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>В 2D-виде не показывать белое значение (ширина пера = 0)</value>
+  </data>
 </root>

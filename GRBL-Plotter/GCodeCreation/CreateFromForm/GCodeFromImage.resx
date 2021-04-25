@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>262, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="lblStatus.Text" xml:space="preserve">
+    <value>toolStripStatusLabel1</value>
+  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 419</value>
   </data>
@@ -143,11 +152,24 @@
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="lblStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
+  <data name="lblInfo1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="lblStatus.Text" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblInfo1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblInfo1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 180</value>
+  </data>
+  <data name="lblInfo1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lblInfo1.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="lblInfo1.Text" xml:space="preserve">
+    <value>Info</value>
   </data>
   <data name="&gt;&gt;lblInfo1.Name" xml:space="preserve">
     <value>lblInfo1</value>
@@ -161,6 +183,24 @@
   <data name="&gt;&gt;lblInfo1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="btnKeepSizeReso.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnKeepSizeReso.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 154</value>
+  </data>
+  <data name="btnKeepSizeReso.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 23</value>
+  </data>
+  <data name="btnKeepSizeReso.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="btnKeepSizeReso.Text" xml:space="preserve">
+    <value>Keep orig. px size, calc. Resolution</value>
+  </data>
+  <data name="btnKeepSizeReso.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
   <data name="&gt;&gt;btnKeepSizeReso.Name" xml:space="preserve">
     <value>btnKeepSizeReso</value>
   </data>
@@ -172,6 +212,24 @@
   </data>
   <data name="&gt;&gt;btnKeepSizeReso.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="btnKeepSizeWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnKeepSizeWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 132</value>
+  </data>
+  <data name="btnKeepSizeWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 23</value>
+  </data>
+  <data name="btnKeepSizeWidth.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="btnKeepSizeWidth.Text" xml:space="preserve">
+    <value>Keep orig. px size, calc. Width</value>
+  </data>
+  <data name="btnKeepSizeWidth.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;btnKeepSizeWidth.Name" xml:space="preserve">
     <value>btnKeepSizeWidth</value>
@@ -185,6 +243,24 @@
   <data name="&gt;&gt;btnKeepSizeWidth.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="lblSizeOrig.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSizeOrig.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblSizeOrig.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 97</value>
+  </data>
+  <data name="lblSizeOrig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 13</value>
+  </data>
+  <data name="lblSizeOrig.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="lblSizeOrig.Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
   <data name="&gt;&gt;lblSizeOrig.Name" xml:space="preserve">
     <value>lblSizeOrig</value>
   </data>
@@ -197,17 +273,53 @@
   <data name="&gt;&gt;lblSizeOrig.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;nUDReso.Name" xml:space="preserve">
-    <value>nUDReso</value>
+  <data name="nUDResoX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>154, 16</value>
   </data>
-  <data name="&gt;&gt;nUDReso.Type" xml:space="preserve">
+  <data name="nUDResoX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="nUDResoX.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="nUDResoX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>378, 17</value>
+  </metadata>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>Distance between lines, should match pen width</value>
+  </data>
+  <data name="&gt;&gt;nUDResoX.Name" xml:space="preserve">
+    <value>nUDResoX</value>
+  </data>
+  <data name="&gt;&gt;nUDResoX.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nUDReso.Parent" xml:space="preserve">
+  <data name="&gt;&gt;nUDResoX.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;nUDReso.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;nUDResoX.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="lblSizeResult.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSizeResult.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblSizeResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 114</value>
+  </data>
+  <data name="lblSizeResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 13</value>
+  </data>
+  <data name="lblSizeResult.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="lblSizeResult.Text" xml:space="preserve">
+    <value>Size</value>
   </data>
   <data name="&gt;&gt;lblSizeResult.Name" xml:space="preserve">
     <value>lblSizeResult</value>
@@ -221,6 +333,18 @@
   <data name="&gt;&gt;lblSizeResult.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="nUDHeight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 36</value>
+  </data>
+  <data name="nUDHeight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDHeight.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="nUDHeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;nUDHeight.Name" xml:space="preserve">
     <value>nUDHeight</value>
   </data>
@@ -232,6 +356,18 @@
   </data>
   <data name="&gt;&gt;nUDHeight.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="nUDWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 16</value>
+  </data>
+  <data name="nUDWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDWidth.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="nUDWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;nUDWidth.Name" xml:space="preserve">
     <value>nUDWidth</value>
@@ -245,6 +381,24 @@
   <data name="&gt;&gt;nUDWidth.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 20</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Width</value>
+  </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
   </data>
@@ -256,6 +410,24 @@
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 20</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 13</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Reso X</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -269,6 +441,24 @@
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 40</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Height</value>
+  </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
   </data>
@@ -280,6 +470,24 @@
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="cbLockRatio.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbLockRatio.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbLockRatio.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 57</value>
+  </data>
+  <data name="cbLockRatio.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="cbLockRatio.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="cbLockRatio.Text" xml:space="preserve">
+    <value>keep ratio</value>
   </data>
   <data name="&gt;&gt;cbLockRatio.Name" xml:space="preserve">
     <value>cbLockRatio</value>
@@ -317,207 +525,35 @@
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="lblInfo1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblInfo1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblInfo1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 166</value>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 123</value>
   </data>
-  <data name="lblInfo1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 13</value>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 13</value>
   </data>
-  <data name="lblInfo1.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
   </data>
-  <data name="lblInfo1.Text" xml:space="preserve">
-    <value>Info</value>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Reso Y</value>
   </data>
-  <data name="btnKeepSizeReso.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
   </data>
-  <data name="btnKeepSizeReso.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 118</value>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnKeepSizeReso.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 23</value>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>tabPage22</value>
   </data>
-  <data name="btnKeepSizeReso.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="btnKeepSizeReso.Text" xml:space="preserve">
-    <value>Keep orig. px size, calc. Resolution</value>
-  </data>
-  <data name="btnKeepSizeReso.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnKeepSizeWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnKeepSizeWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 96</value>
-  </data>
-  <data name="btnKeepSizeWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 23</value>
-  </data>
-  <data name="btnKeepSizeWidth.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="btnKeepSizeWidth.Text" xml:space="preserve">
-    <value>Keep orig. px size, calc. Width</value>
-  </data>
-  <data name="btnKeepSizeWidth.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="lblSizeOrig.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblSizeOrig.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblSizeOrig.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 61</value>
-  </data>
-  <data name="lblSizeOrig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 13</value>
-  </data>
-  <data name="lblSizeOrig.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="lblSizeOrig.Text" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="nUDReso.Location" type="System.Drawing.Point, System.Drawing">
-    <value>152, 36</value>
-  </data>
-  <data name="nUDReso.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="nUDReso.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="nUDReso.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDReso.ToolTip" xml:space="preserve">
-    <value>Distance between lines, should match pen width</value>
-  </data>
-  <data name="lblSizeResult.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblSizeResult.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblSizeResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 78</value>
-  </data>
-  <data name="lblSizeResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>27, 13</value>
-  </data>
-  <data name="lblSizeResult.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="lblSizeResult.Text" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="nUDHeight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 36</value>
-  </data>
-  <data name="nUDHeight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDHeight.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="nUDHeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>42, 16</value>
-  </data>
-  <data name="nUDWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDWidth.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="nUDWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 20</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Width</value>
-  </data>
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 39</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Resolution</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 40</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Height</value>
-  </data>
-  <data name="cbLockRatio.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cbLockRatio.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbLockRatio.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 15</value>
-  </data>
-  <data name="cbLockRatio.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="cbLockRatio.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="cbLockRatio.Text" xml:space="preserve">
-    <value>keep ratio</value>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="lblGamma.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -699,6 +735,24 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="cbGrayscale.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cbGrayscale.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cbGrayscale.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="cbGrayscale.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="cbGrayscale.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cbGrayscale.Text" xml:space="preserve">
+    <value>Grayscale</value>
+  </data>
   <data name="&gt;&gt;cbGrayscale.Name" xml:space="preserve">
     <value>cbGrayscale</value>
   </data>
@@ -711,6 +765,24 @@
   <data name="&gt;&gt;cbGrayscale.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="rbModeDither.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbModeDither.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbModeDither.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 34</value>
+  </data>
+  <data name="rbModeDither.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="rbModeDither.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rbModeDither.Text" xml:space="preserve">
+    <value>Dithering</value>
+  </data>
   <data name="&gt;&gt;rbModeDither.Name" xml:space="preserve">
     <value>rbModeDither</value>
   </data>
@@ -722,6 +794,24 @@
   </data>
   <data name="&gt;&gt;rbModeDither.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="rbModeGray.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbModeGray.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbModeGray.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 34</value>
+  </data>
+  <data name="rbModeGray.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 17</value>
+  </data>
+  <data name="rbModeGray.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rbModeGray.Text" xml:space="preserve">
+    <value>Grayscale</value>
   </data>
   <data name="&gt;&gt;rbModeGray.Name" xml:space="preserve">
     <value>rbModeGray</value>
@@ -758,60 +848,6 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>7</value>
-  </data>
-  <data name="cbGrayscale.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cbGrayscale.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cbGrayscale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="cbGrayscale.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="cbGrayscale.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="cbGrayscale.Text" xml:space="preserve">
-    <value>Grayscale</value>
-  </data>
-  <data name="rbModeDither.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbModeDither.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbModeDither.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 34</value>
-  </data>
-  <data name="rbModeDither.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
-  </data>
-  <data name="rbModeDither.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rbModeDither.Text" xml:space="preserve">
-    <value>Dithering</value>
-  </data>
-  <data name="rbModeGray.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbModeGray.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbModeGray.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 34</value>
-  </data>
-  <data name="rbModeGray.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 17</value>
-  </data>
-  <data name="rbModeGray.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="rbModeGray.Text" xml:space="preserve">
-    <value>Grayscale</value>
   </data>
   <data name="btnInvert.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -1047,6 +1083,114 @@
   <data name="&gt;&gt;tBarBrightness.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
+  <data name="rbEngravingPattern4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbEngravingPattern4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 79</value>
+  </data>
+  <data name="rbEngravingPattern4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 17</value>
+  </data>
+  <data name="rbEngravingPattern4.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>2D view</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern4.Name" xml:space="preserve">
+    <value>rbEngravingPattern4</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern4.Parent" xml:space="preserve">
+    <value>gBgcodeDirection</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rbEngravingPattern3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbEngravingPattern3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 79</value>
+  </data>
+  <data name="rbEngravingPattern3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 17</value>
+  </data>
+  <data name="rbEngravingPattern3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>Spiral</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern3.Name" xml:space="preserve">
+    <value>rbEngravingPattern3</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern3.Parent" xml:space="preserve">
+    <value>gBgcodeDirection</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBOnlyLeftToRight.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 35</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
+  </data>
+  <data name="cBOnlyLeftToRight.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Only left to right</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Only draw from one direction to avoid offsets</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Name" xml:space="preserve">
+    <value>cBOnlyLeftToRight</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Parent" xml:space="preserve">
+    <value>gBgcodeDirection</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="rbEngravingPattern2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbEngravingPattern2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbEngravingPattern2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 58</value>
+  </data>
+  <data name="rbEngravingPattern2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
+  </data>
+  <data name="rbEngravingPattern2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rbEngravingPattern2.Text" xml:space="preserve">
+    <value>diagonal</value>
+  </data>
   <data name="&gt;&gt;rbEngravingPattern2.Name" xml:space="preserve">
     <value>rbEngravingPattern2</value>
   </data>
@@ -1057,61 +1201,7 @@
     <value>gBgcodeDirection</value>
   </data>
   <data name="&gt;&gt;rbEngravingPattern2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Name" xml:space="preserve">
-    <value>rbEngravingPattern1</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Parent" xml:space="preserve">
-    <value>gBgcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="gBgcodeDirection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 3</value>
-  </data>
-  <data name="gBgcodeDirection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 56</value>
-  </data>
-  <data name="gBgcodeDirection.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>Plot direction</value>
-  </data>
-  <data name="&gt;&gt;gBgcodeDirection.Name" xml:space="preserve">
-    <value>gBgcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;gBgcodeDirection.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gBgcodeDirection.Parent" xml:space="preserve">
-    <value>tabPage5</value>
-  </data>
-  <data name="&gt;&gt;gBgcodeDirection.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="rbEngravingPattern2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbEngravingPattern2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbEngravingPattern2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 34</value>
-  </data>
-  <data name="rbEngravingPattern2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
-  </data>
-  <data name="rbEngravingPattern2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rbEngravingPattern2.Text" xml:space="preserve">
-    <value>diagonal</value>
+    <value>3</value>
   </data>
   <data name="rbEngravingPattern1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1130,6 +1220,42 @@
   </data>
   <data name="rbEngravingPattern1.Text" xml:space="preserve">
     <value>horizontal </value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern1.Name" xml:space="preserve">
+    <value>rbEngravingPattern1</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern1.Parent" xml:space="preserve">
+    <value>gBgcodeDirection</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="gBgcodeDirection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 6</value>
+  </data>
+  <data name="gBgcodeDirection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 109</value>
+  </data>
+  <data name="gBgcodeDirection.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="gBgcodeDirection.Text" xml:space="preserve">
+    <value>Plot direction</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeDirection.Name" xml:space="preserve">
+    <value>gBgcodeDirection</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeDirection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeDirection.Parent" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeDirection.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="btnGenerate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1157,6 +1283,21 @@
   </data>
   <data name="&gt;&gt;btnGenerate.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>677, 17</value>
+  </metadata>
+  <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 22</value>
+  </data>
+  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="setAsOriginalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 22</value>
+  </data>
+  <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set as original</value>
   </data>
   <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 48</value>
@@ -1197,17 +1338,26 @@
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 22</value>
+  <data name="lblImageSource.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Copy</value>
+  <data name="lblImageSource.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
   </data>
-  <data name="setAsOriginalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 22</value>
+  <data name="lblImageSource.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set as original</value>
+  <data name="lblImageSource.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 1</value>
+  </data>
+  <data name="lblImageSource.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 17</value>
+  </data>
+  <data name="lblImageSource.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="lblImageSource.Text" xml:space="preserve">
+    <value>original</value>
   </data>
   <data name="&gt;&gt;lblImageSource.Name" xml:space="preserve">
     <value>lblImageSource</value>
@@ -1241,27 +1391,6 @@
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>12</value>
-  </data>
-  <data name="lblImageSource.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblImageSource.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 10pt</value>
-  </data>
-  <data name="lblImageSource.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblImageSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
-  </data>
-  <data name="lblImageSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
-  </data>
-  <data name="lblImageSource.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="lblImageSource.Text" xml:space="preserve">
-    <value>original</value>
   </data>
   <data name="lblHueShift.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1475,33 +1604,6 @@
   </data>
   <data name="&gt;&gt;cbSkipToolOrder.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="nUDZBot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>110, 36</value>
-  </data>
-  <data name="nUDZBot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDZBot.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="nUDZBot.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
-  </data>
-  <data name="&gt;&gt;nUDZBot.Name" xml:space="preserve">
-    <value>nUDZBot</value>
-  </data>
-  <data name="&gt;&gt;nUDZBot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDZBot.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;nUDZBot.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <data name="tBRMin.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2125,32 +2227,38 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;cBGCodeOutlineShrink.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="nUDSMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>110, 93</value>
+  <data name="btnGetPWMValues.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 6.75pt</value>
   </data>
-  <data name="nUDSMax.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
+  <data name="btnGetPWMValues.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="nUDSMax.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="btnGetPWMValues.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 14</value>
   </data>
-  <data name="nUDSMax.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="btnGetPWMValues.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 43</value>
   </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
+  <data name="btnGetPWMValues.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="&gt;&gt;nUDSMax.Name" xml:space="preserve">
-    <value>nUDSMax</value>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>Get servo-PWM settings</value>
   </data>
-  <data name="&gt;&gt;nUDSMax.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>Get values for RC-Servo Pen-down and Pen-Zero from setup dialog</value>
   </data>
-  <data name="&gt;&gt;nUDSMax.Parent" xml:space="preserve">
-    <value>groupBox8</value>
+  <data name="&gt;&gt;btnGetPWMValues.Name" xml:space="preserve">
+    <value>btnGetPWMValues</value>
   </data>
-  <data name="&gt;&gt;nUDSMax.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;btnGetPWMValues.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnGetPWMValues.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;btnGetPWMValues.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 20</value>
@@ -2176,6 +2284,21 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>475, 17</value>
+  </metadata>
+  <data name="loadPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 20</value>
+  </data>
+  <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
+    <value>Load Picture</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 20</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paste from clipboard</value>
+  </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -2200,18 +2323,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
-  <data name="loadPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 20</value>
-  </data>
-  <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
-    <value>Load Picture</value>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 20</value>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Paste from clipboard</value>
-  </data>
   <data name="rBProcessTool.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2219,16 +2330,19 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>NoControl</value>
   </data>
   <data name="rBProcessTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 14</value>
+    <value>258, 137</value>
   </data>
   <data name="rBProcessTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 17</value>
+    <value>104, 17</value>
   </data>
   <data name="rBProcessTool.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>  Color as Tool Nr.</value>
+    <value>Color as Tool Nr.</value>
+  </data>
+  <data name="rBProcessTool.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;rBProcessTool.Name" xml:space="preserve">
     <value>rBProcessTool</value>
@@ -2237,70 +2351,28 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rBProcessTool.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+    <value>tabPage21</value>
   </data>
   <data name="&gt;&gt;rBProcessTool.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;rBGrayS.Name" xml:space="preserve">
-    <value>rBGrayS</value>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;rBGrayS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;rBGrayS.Parent" xml:space="preserve">
-    <value>groupBox8</value>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 14</value>
   </data>
-  <data name="&gt;&gt;rBGrayS.ZOrder" xml:space="preserve">
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
+  </data>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;rBGrayZ.Name" xml:space="preserve">
-    <value>rBGrayZ</value>
-  </data>
-  <data name="&gt;&gt;rBGrayZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rBGrayZ.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;rBGrayZ.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label22.Name" xml:space="preserve">
-    <value>label22</value>
-  </data>
-  <data name="&gt;&gt;label22.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label22.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;nUDSMin.Name" xml:space="preserve">
-    <value>nUDSMin</value>
-  </data>
-  <data name="&gt;&gt;nUDSMin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSMin.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;nUDSMin.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label23.Name" xml:space="preserve">
-    <value>label23</value>
-  </data>
-  <data name="&gt;&gt;label23.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Z max (white)</value>
   </data>
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
@@ -2312,7 +2384,19 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>0</value>
+  </data>
+  <data name="nUDZTop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 12</value>
+  </data>
+  <data name="nUDZTop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDZTop.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="nUDZTop.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;nUDZTop.Name" xml:space="preserve">
     <value>nUDZTop</value>
@@ -2324,7 +2408,25 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;nUDZTop.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>1</value>
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 36</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 13</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z min (black)</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -2336,31 +2438,43 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>groupBox8</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;cBCompress.Name" xml:space="preserve">
-    <value>cBCompress</value>
+  <data name="nUDZBot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 34</value>
   </data>
-  <data name="&gt;&gt;cBCompress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="nUDZBot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
   </data>
-  <data name="&gt;&gt;cBCompress.Parent" xml:space="preserve">
+  <data name="nUDZBot.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="nUDZBot.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDZBot.Name" xml:space="preserve">
+    <value>nUDZBot</value>
+  </data>
+  <data name="&gt;&gt;nUDZBot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDZBot.Parent" xml:space="preserve">
     <value>groupBox8</value>
   </data>
-  <data name="&gt;&gt;cBCompress.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="&gt;&gt;nUDZBot.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 34</value>
+    <value>6, 6</value>
   </data>
   <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>229, 128</value>
+    <value>242, 59</value>
   </data>
   <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
-  </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Gray value as Z (deepth) or Spindle speed </value>
   </data>
   <data name="&gt;&gt;groupBox8.Name" xml:space="preserve">
     <value>groupBox8</value>
@@ -2369,10 +2483,10 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox8.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+    <value>tabPage22</value>
   </data>
   <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="rBGrayS.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2381,34 +2495,28 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>NoControl</value>
   </data>
   <data name="rBGrayS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 71</value>
+    <value>12, 67</value>
   </data>
   <data name="rBGrayS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 17</value>
+    <value>199, 17</value>
   </data>
   <data name="rBGrayS.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="rBGrayS.Text" xml:space="preserve">
-    <value>S</value>
+    <value>Gray value as Spindle speed  (PWM)</value>
   </data>
-  <data name="rBGrayZ.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;rBGrayS.Name" xml:space="preserve">
+    <value>rBGrayS</value>
   </data>
-  <data name="rBGrayZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;rBGrayS.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="rBGrayZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 14</value>
+  <data name="&gt;&gt;rBGrayS.Parent" xml:space="preserve">
+    <value>tabPage22</value>
   </data>
-  <data name="rBGrayZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 17</value>
-  </data>
-  <data name="rBGrayZ.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>Z</value>
+  <data name="&gt;&gt;rBGrayS.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="label22.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2417,7 +2525,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>NoControl</value>
   </data>
   <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 73</value>
+    <value>6, 16</value>
   </data>
   <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -2428,17 +2536,17 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="label22.Text" xml:space="preserve">
     <value>S min (white)</value>
   </data>
-  <data name="nUDSMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>110, 71</value>
+  <data name="&gt;&gt;label22.Name" xml:space="preserve">
+    <value>label22</value>
   </data>
-  <data name="nUDSMin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
+  <data name="&gt;&gt;label22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="nUDSMin.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;label22.Parent" xml:space="preserve">
+    <value>groupBox4</value>
   </data>
-  <data name="nUDSMin.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="label23.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2447,7 +2555,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>NoControl</value>
   </data>
   <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 95</value>
+    <value>6, 38</value>
   </data>
   <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 13</value>
@@ -2458,53 +2566,17 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="label23.Text" xml:space="preserve">
     <value>S max (black)</value>
   </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;label23.Name" xml:space="preserve">
+    <value>label23</value>
   </data>
-  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;label23.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 16</value>
+  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
+    <value>groupBox4</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
-  </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Z max (white)</value>
-  </data>
-  <data name="nUDZTop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>110, 14</value>
-  </data>
-  <data name="nUDZTop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDZTop.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="nUDZTop.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 38</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Z min (black)</value>
+  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="cBCompress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2513,7 +2585,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>NoControl</value>
   </data>
   <data name="cBCompress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 118</value>
+    <value>261, 147</value>
   </data>
   <data name="cBCompress.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 17</value>
@@ -2524,8 +2596,20 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="cBCompress.Text" xml:space="preserve">
     <value>compress Code</value>
   </data>
-  <data name="cBCompress.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>Avoid code overhead for faster streaming</value>
+  </data>
+  <data name="&gt;&gt;cBCompress.Name" xml:space="preserve">
+    <value>cBCompress</value>
+  </data>
+  <data name="&gt;&gt;cBCompress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBCompress.Parent" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;cBCompress.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="rBProcessZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2534,13 +2618,19 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>NoControl</value>
   </data>
   <data name="rBProcessZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 34</value>
+    <value>258, 160</value>
   </data>
   <data name="rBProcessZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>14, 13</value>
+    <value>100, 17</value>
   </data>
   <data name="rBProcessZ.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>Gray value as Z</value>
+  </data>
+  <data name="rBProcessZ.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;rBProcessZ.Name" xml:space="preserve">
     <value>rBProcessZ</value>
@@ -2549,7 +2639,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rBProcessZ.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+    <value>tabPage21</value>
   </data>
   <data name="&gt;&gt;rBProcessZ.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -2584,6 +2674,78 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;cBPreview.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="cBReduceColorsToolTable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBReduceColorsToolTable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 30</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 17</value>
+  </data>
+  <data name="cBReduceColorsToolTable.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
+    <value>Reduce colors</value>
+  </data>
+  <data name="&gt;&gt;cBReduceColorsToolTable.Name" xml:space="preserve">
+    <value>cBReduceColorsToolTable</value>
+  </data>
+  <data name="&gt;&gt;cBReduceColorsToolTable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBReduceColorsToolTable.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;cBReduceColorsToolTable.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBReduceColorsDithering.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBReduceColorsDithering.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBReduceColorsDithering.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 46</value>
+  </data>
+  <data name="cBReduceColorsDithering.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 17</value>
+  </data>
+  <data name="cBReduceColorsDithering.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="cBReduceColorsDithering.Text" xml:space="preserve">
+    <value>Dithering</value>
+  </data>
+  <data name="&gt;&gt;cBReduceColorsDithering.Name" xml:space="preserve">
+    <value>cBReduceColorsDithering</value>
+  </data>
+  <data name="&gt;&gt;cBReduceColorsDithering.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBReduceColorsDithering.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="&gt;&gt;cBReduceColorsDithering.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 143</value>
+  </data>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 86</value>
+  </data>
+  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Color reduction</value>
+  </data>
   <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
     <value>groupBox5</value>
   </data>
@@ -2595,6 +2757,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 7</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Tool list</value>
   </data>
   <data name="&gt;&gt;label10.Name" xml:space="preserve">
     <value>label10</value>
@@ -2608,6 +2788,165 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnPresetCorrection4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnPresetCorrection4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 80</value>
+  </data>
+  <data name="btnPresetCorrection4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 23</value>
+  </data>
+  <data name="btnPresetCorrection4.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="btnPresetCorrection4.Text" xml:space="preserve">
+    <value>Contour (no go back)</value>
+  </data>
+  <data name="btnPresetCorrection4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection4.Name" xml:space="preserve">
+    <value>btnPresetCorrection4</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection4.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label20.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 19</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 13</value>
+  </data>
+  <data name="label20.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="&gt;&gt;label20.Name" xml:space="preserve">
+    <value>label20</value>
+  </data>
+  <data name="&gt;&gt;label20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnPresetCorrection2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnPresetCorrection2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 36</value>
+  </data>
+  <data name="btnPresetCorrection2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 23</value>
+  </data>
+  <data name="btnPresetCorrection2.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="btnPresetCorrection2.Text" xml:space="preserve">
+    <value>Graphic - many colors</value>
+  </data>
+  <data name="btnPresetCorrection2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection2.Name" xml:space="preserve">
+    <value>btnPresetCorrection2</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection2.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection2.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnResetCorrection.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnResetCorrection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 108</value>
+  </data>
+  <data name="btnResetCorrection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 23</value>
+  </data>
+  <data name="btnResetCorrection.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="btnResetCorrection.Text" xml:space="preserve">
+    <value>RESET values</value>
+  </data>
+  <data name="&gt;&gt;btnResetCorrection.Name" xml:space="preserve">
+    <value>btnResetCorrection</value>
+  </data>
+  <data name="&gt;&gt;btnResetCorrection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnResetCorrection.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="&gt;&gt;btnResetCorrection.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnPresetCorrection1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnPresetCorrection1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 58</value>
+  </data>
+  <data name="btnPresetCorrection1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 23</value>
+  </data>
+  <data name="btnPresetCorrection1.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="btnPresetCorrection1.Text" xml:space="preserve">
+    <value>Image - dark background</value>
+  </data>
+  <data name="btnPresetCorrection1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection1.Name" xml:space="preserve">
+    <value>btnPresetCorrection1</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection1.Parent" xml:space="preserve">
+    <value>groupBox9</value>
+  </data>
+  <data name="&gt;&gt;btnPresetCorrection1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="groupBox9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 136</value>
+  </data>
+  <data name="groupBox9.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Conversion Wizard</value>
+  </data>
   <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
     <value>groupBox9</value>
   </data>
@@ -2619,6 +2958,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="tBToolList.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Lucida Console, 7pt</value>
+  </data>
+  <data name="tBToolList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 23</value>
+  </data>
+  <data name="tBToolList.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tBToolList.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="tBToolList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 206</value>
+  </data>
+  <data name="tBToolList.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
   </data>
   <data name="&gt;&gt;tBToolList.Name" xml:space="preserve">
     <value>tBToolList</value>
@@ -2656,6 +3013,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 90</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 13</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Saturation</value>
+  </data>
   <data name="&gt;&gt;label11.Name" xml:space="preserve">
     <value>label11</value>
   </data>
@@ -2668,6 +3043,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="lblSaturation.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSaturation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblSaturation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>57, 90</value>
+  </data>
+  <data name="lblSaturation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lblSaturation.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="lblSaturation.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
   <data name="&gt;&gt;lblSaturation.Name" xml:space="preserve">
     <value>lblSaturation</value>
   </data>
@@ -2679,6 +3072,21 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;lblSaturation.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="tBarSaturation.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tBarSaturation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tBarSaturation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 86</value>
+  </data>
+  <data name="tBarSaturation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 20</value>
+  </data>
+  <data name="tBarSaturation.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
   <data name="&gt;&gt;tBarSaturation.Name" xml:space="preserve">
     <value>tBarSaturation</value>
@@ -2719,6 +3127,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="cBFilterRemoveArtefact.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 181</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 17</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
+    <value>Remove single pixels</value>
+  </data>
   <data name="&gt;&gt;cBFilterRemoveArtefact.Name" xml:space="preserve">
     <value>cBFilterRemoveArtefact</value>
   </data>
@@ -2730,6 +3156,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;cBFilterRemoveArtefact.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="cBFilterHistogram.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBFilterHistogram.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBFilterHistogram.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 142</value>
+  </data>
+  <data name="cBFilterHistogram.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 17</value>
+  </data>
+  <data name="cBFilterHistogram.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="cBFilterHistogram.Text" xml:space="preserve">
+    <value>Histogram Equalization</value>
   </data>
   <data name="&gt;&gt;cBFilterHistogram.Name" xml:space="preserve">
     <value>cBFilterHistogram</value>
@@ -2743,6 +3187,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;cBFilterHistogram.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="lblCFB.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCFB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCFB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 56</value>
+  </data>
+  <data name="lblCFB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lblCFB.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="lblCFB.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
   <data name="&gt;&gt;lblCFB.Name" xml:space="preserve">
     <value>lblCFB</value>
   </data>
@@ -2754,6 +3216,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;lblCFB.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="lblCFG.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCFG.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCFG.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 34</value>
+  </data>
+  <data name="lblCFG.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lblCFG.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="lblCFG.Text" xml:space="preserve">
+    <value>123</value>
   </data>
   <data name="&gt;&gt;lblCFG.Name" xml:space="preserve">
     <value>lblCFG</value>
@@ -2767,6 +3247,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;lblCFG.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="lblCFR.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCFR.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCFR.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 12</value>
+  </data>
+  <data name="lblCFR.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 13</value>
+  </data>
+  <data name="lblCFR.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="lblCFR.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
   <data name="&gt;&gt;lblCFR.Name" xml:space="preserve">
     <value>lblCFR</value>
   </data>
@@ -2779,6 +3277,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;lblCFR.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="cBFilterEdge.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBFilterEdge.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBFilterEdge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 126</value>
+  </data>
+  <data name="cBFilterEdge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="cBFilterEdge.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="cBFilterEdge.Text" xml:space="preserve">
+    <value>Edge filter</value>
+  </data>
   <data name="&gt;&gt;cBFilterEdge.Name" xml:space="preserve">
     <value>cBFilterEdge</value>
   </data>
@@ -2790,6 +3306,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;cBFilterEdge.ZOrder" xml:space="preserve">
     <value>14</value>
+  </data>
+  <data name="cBPosterize.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBPosterize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBPosterize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 158</value>
+  </data>
+  <data name="cBPosterize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 17</value>
+  </data>
+  <data name="cBPosterize.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="cBPosterize.Text" xml:space="preserve">
+    <value>Posterization</value>
   </data>
   <data name="&gt;&gt;cBPosterize.Name" xml:space="preserve">
     <value>cBPosterize</value>
@@ -2830,6 +3364,24 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="label21.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>224, 6</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 13</value>
+  </data>
+  <data name="label21.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Deselect colors if not needed</value>
+  </data>
   <data name="&gt;&gt;label21.Name" xml:space="preserve">
     <value>label21</value>
   </data>
@@ -2841,6 +3393,15 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="cLBTools.Location" type="System.Drawing.Point, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="cLBTools.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 199</value>
+  </data>
+  <data name="cLBTools.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
   </data>
   <data name="&gt;&gt;cLBTools.Name" xml:space="preserve">
     <value>cLBTools</value>
@@ -2881,11 +3442,155 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="cBGCodeFill.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBGCodeFill.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBGCodeFill.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="cBGCodeFill.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="cBGCodeFill.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="cBGCodeFill.Text" xml:space="preserve">
+    <value>Fill areas</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeFill.Name" xml:space="preserve">
+    <value>cBGCodeFill</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeFill.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeFill.Parent" xml:space="preserve">
+    <value>gBgcodeSelection</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeFill.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBGCodeOutline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBGCodeOutline.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBGCodeOutline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 42</value>
+  </data>
+  <data name="cBGCodeOutline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 17</value>
+  </data>
+  <data name="cBGCodeOutline.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="cBGCodeOutline.Text" xml:space="preserve">
+    <value>Draw outline</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeOutline.Name" xml:space="preserve">
+    <value>cBGCodeOutline</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeOutline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeOutline.Parent" xml:space="preserve">
+    <value>gBgcodeSelection</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeOutline.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 60</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 17</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
+    <value>smooth</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeOutlineSmooth.Name" xml:space="preserve">
+    <value>cBGCodeOutlineSmooth</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeOutlineSmooth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeOutlineSmooth.Parent" xml:space="preserve">
+    <value>gBgcodeSelection</value>
+  </data>
+  <data name="&gt;&gt;cBGCodeOutlineSmooth.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="gBgcodeSelection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 6</value>
+  </data>
+  <data name="gBgcodeSelection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 107</value>
+  </data>
+  <data name="gBgcodeSelection.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="gBgcodeSelection.Text" xml:space="preserve">
+    <value>Draw selection</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeSelection.Name" xml:space="preserve">
+    <value>gBgcodeSelection</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeSelection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeSelection.Parent" xml:space="preserve">
+    <value>tabPage21</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeSelection.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 20</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 69</value>
+  </data>
+  <data name="label19.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Note: if "Preview" is checked, on top of window, colors from tool-table (Setup - Tool table) will be applied.</value>
+  </data>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
+  </data>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 186</value>
+    <value>3, 145</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 36</value>
+    <value>231, 39</value>
   </data>
   <data name="label17.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -2903,19 +3608,16 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cBResolutionPenWidth.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>1</value>
   </data>
   <data name="cBResolutionPenWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cBResolutionPenWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 168</value>
+    <value>6, 103</value>
   </data>
   <data name="cBResolutionPenWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 17</value>
+    <value>228, 40</value>
   </data>
   <data name="cBResolutionPenWidth.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -2933,19 +3635,19 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;cBResolutionPenWidth.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 3</value>
+    <value>6, 6</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 225</value>
+    <value>240, 187</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Color processing</value>
+    <value>2D view</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -2954,70 +3656,310 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>tabPage5</value>
+    <value>tabPage21</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabPage21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage21.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>395, 199</value>
+  </data>
+  <data name="tabPage21.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;cBGCodeFill.Name" xml:space="preserve">
-    <value>cBGCodeFill</value>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Color as Tool Nr.</value>
   </data>
-  <data name="&gt;&gt;cBGCodeFill.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tabPage21.Name" xml:space="preserve">
+    <value>tabPage21</value>
   </data>
-  <data name="&gt;&gt;cBGCodeFill.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
+  <data name="&gt;&gt;tabPage21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cBGCodeFill.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tabPage21.Parent" xml:space="preserve">
+    <value>tabControl2</value>
+  </data>
+  <data name="&gt;&gt;tabPage21.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutline.Name" xml:space="preserve">
-    <value>cBGCodeOutline</value>
+  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutline.Type" xml:space="preserve">
+  <data name="checkBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 170</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 17</value>
+  </data>
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>2D view hide 0</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>In 2D view don't show white value (pen width = 0)</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
+    <value>checkBox1</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutline.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
+  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+    <value>tabPage22</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutline.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rBGrayZ.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBGrayZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBGrayZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 0</value>
+  </data>
+  <data name="rBGrayZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="rBGrayZ.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>Gray value as Z (deepth)</value>
+  </data>
+  <data name="&gt;&gt;rBGrayZ.Name" xml:space="preserve">
+    <value>rBGrayZ</value>
+  </data>
+  <data name="&gt;&gt;rBGrayZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBGrayZ.Parent" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;rBGrayZ.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Name" xml:space="preserve">
-    <value>cBGCodeOutlineSmooth</value>
+  <data name="nUDResoY.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="nUDResoY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 121</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
+  <data name="nUDResoY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.ZOrder" xml:space="preserve">
+  <data name="nUDResoY.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="nUDResoY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>Distance between lines, should match pen width</value>
+  </data>
+  <data name="&gt;&gt;nUDResoY.Name" xml:space="preserve">
+    <value>nUDResoY</value>
+  </data>
+  <data name="&gt;&gt;nUDResoY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDResoY.Parent" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;nUDResoY.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="gBgcodeSelection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 65</value>
+  <data name="cBLaserModeOffEnd.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="gBgcodeSelection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 163</value>
+  <data name="cBLaserModeOffEnd.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="gBgcodeSelection.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+  <data name="cBLaserModeOffEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 81</value>
   </data>
-  <data name="gBgcodeSelection.Text" xml:space="preserve">
-    <value>Draw selection</value>
+  <data name="cBLaserModeOffEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 17</value>
   </data>
-  <data name="&gt;&gt;gBgcodeSelection.Name" xml:space="preserve">
-    <value>gBgcodeSelection</value>
+  <data name="cBLaserModeOffEnd.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
-  <data name="&gt;&gt;gBgcodeSelection.Type" xml:space="preserve">
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Clear lasermode on G-Code end</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOffEnd.Name" xml:space="preserve">
+    <value>cBLaserModeOffEnd</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOffEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOffEnd.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOffEnd.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBLaserModeOnStart.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBLaserModeOnStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBLaserModeOnStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 62</value>
+  </data>
+  <data name="cBLaserModeOnStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 17</value>
+  </data>
+  <data name="cBLaserModeOnStart.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Set lasermode on G-Code start</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOnStart.Name" xml:space="preserve">
+    <value>cBLaserModeOnStart</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOnStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOnStart.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;cBLaserModeOnStart.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDSMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 36</value>
+  </data>
+  <data name="nUDSMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDSMax.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="nUDSMax.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDSMax.Name" xml:space="preserve">
+    <value>nUDSMax</value>
+  </data>
+  <data name="&gt;&gt;nUDSMax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSMax.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;nUDSMax.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="nUDSMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 14</value>
+  </data>
+  <data name="nUDSMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDSMin.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="nUDSMin.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDSMin.Name" xml:space="preserve">
+    <value>nUDSMin</value>
+  </data>
+  <data name="&gt;&gt;nUDSMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSMin.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;nUDSMin.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 73</value>
+  </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 114</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gBgcodeSelection.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tabPage22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage22.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>395, 199</value>
+  </data>
+  <data name="tabPage22.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Gray value as Z or S</value>
+  </data>
+  <data name="&gt;&gt;tabPage22.Name" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;tabPage22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage22.Parent" xml:space="preserve">
+    <value>tabControl2</value>
+  </data>
+  <data name="&gt;&gt;tabPage22.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabControl2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="tabControl2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>403, 225</value>
+  </data>
+  <data name="tabControl2.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;tabControl2.Name" xml:space="preserve">
+    <value>tabControl2</value>
+  </data>
+  <data name="&gt;&gt;tabControl2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl2.Parent" xml:space="preserve">
     <value>tabPage5</value>
   </data>
-  <data name="&gt;&gt;gBgcodeSelection.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;tabControl2.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="tabPage5.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -3066,531 +4008,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>10</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Name" xml:space="preserve">
-    <value>cBReduceColorsToolTable</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Name" xml:space="preserve">
-    <value>cBReduceColorsDithering</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 143</value>
-  </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 86</value>
-  </data>
-  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Color reduction</value>
-  </data>
-  <data name="cBReduceColorsToolTable.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBReduceColorsToolTable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBReduceColorsToolTable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 30</value>
-  </data>
-  <data name="cBReduceColorsToolTable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 17</value>
-  </data>
-  <data name="cBReduceColorsToolTable.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
-    <value>Reduce colors</value>
-  </data>
-  <data name="cBReduceColorsDithering.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBReduceColorsDithering.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBReduceColorsDithering.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 46</value>
-  </data>
-  <data name="cBReduceColorsDithering.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 17</value>
-  </data>
-  <data name="cBReduceColorsDithering.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="cBReduceColorsDithering.Text" xml:space="preserve">
-    <value>Dithering</value>
-  </data>
-  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 7</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
-  </data>
-  <data name="label10.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Tool list</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Name" xml:space="preserve">
-    <value>btnPresetCorrection4</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label20.Name" xml:space="preserve">
-    <value>label20</value>
-  </data>
-  <data name="&gt;&gt;label20.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Name" xml:space="preserve">
-    <value>btnPresetCorrection2</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Name" xml:space="preserve">
-    <value>btnResetCorrection</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Name" xml:space="preserve">
-    <value>btnPresetCorrection1</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="groupBox9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 136</value>
-  </data>
-  <data name="groupBox9.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Conversion Wizard</value>
-  </data>
-  <data name="btnPresetCorrection4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnPresetCorrection4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 80</value>
-  </data>
-  <data name="btnPresetCorrection4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 23</value>
-  </data>
-  <data name="btnPresetCorrection4.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="btnPresetCorrection4.Text" xml:space="preserve">
-    <value>Contour (no go back)</value>
-  </data>
-  <data name="btnPresetCorrection4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="label20.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 19</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 13</value>
-  </data>
-  <data name="label20.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>%</value>
-  </data>
-  <data name="btnPresetCorrection2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnPresetCorrection2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 36</value>
-  </data>
-  <data name="btnPresetCorrection2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 23</value>
-  </data>
-  <data name="btnPresetCorrection2.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="btnPresetCorrection2.Text" xml:space="preserve">
-    <value>Graphic - many colors</value>
-  </data>
-  <data name="btnPresetCorrection2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnResetCorrection.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnResetCorrection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 108</value>
-  </data>
-  <data name="btnResetCorrection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 23</value>
-  </data>
-  <data name="btnResetCorrection.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="btnResetCorrection.Text" xml:space="preserve">
-    <value>RESET values</value>
-  </data>
-  <data name="btnPresetCorrection1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnPresetCorrection1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 58</value>
-  </data>
-  <data name="btnPresetCorrection1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 23</value>
-  </data>
-  <data name="btnPresetCorrection1.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="btnPresetCorrection1.Text" xml:space="preserve">
-    <value>Image - dark background</value>
-  </data>
-  <data name="btnPresetCorrection1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="tBToolList.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Lucida Console, 7pt</value>
-  </data>
-  <data name="tBToolList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 23</value>
-  </data>
-  <data name="tBToolList.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tBToolList.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
-  </data>
-  <data name="tBToolList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 206</value>
-  </data>
-  <data name="tBToolList.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 90</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="label11.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Saturation</value>
-  </data>
-  <data name="lblSaturation.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblSaturation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblSaturation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 90</value>
-  </data>
-  <data name="lblSaturation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 13</value>
-  </data>
-  <data name="lblSaturation.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="lblSaturation.Text" xml:space="preserve">
-    <value>123</value>
-  </data>
-  <data name="tBarSaturation.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="tBarSaturation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tBarSaturation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 86</value>
-  </data>
-  <data name="tBarSaturation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 20</value>
-  </data>
-  <data name="tBarSaturation.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="cBFilterRemoveArtefact.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBFilterRemoveArtefact.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBFilterRemoveArtefact.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 181</value>
-  </data>
-  <data name="cBFilterRemoveArtefact.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 17</value>
-  </data>
-  <data name="cBFilterRemoveArtefact.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
-    <value>Remove single pixels</value>
-  </data>
-  <data name="cBFilterHistogram.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBFilterHistogram.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBFilterHistogram.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 142</value>
-  </data>
-  <data name="cBFilterHistogram.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 17</value>
-  </data>
-  <data name="cBFilterHistogram.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="cBFilterHistogram.Text" xml:space="preserve">
-    <value>Histogram Equalization</value>
-  </data>
-  <data name="lblCFB.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCFB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCFB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 56</value>
-  </data>
-  <data name="lblCFB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 13</value>
-  </data>
-  <data name="lblCFB.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="lblCFB.Text" xml:space="preserve">
-    <value>123</value>
-  </data>
-  <data name="lblCFG.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCFG.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCFG.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 34</value>
-  </data>
-  <data name="lblCFG.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 13</value>
-  </data>
-  <data name="lblCFG.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="lblCFG.Text" xml:space="preserve">
-    <value>123</value>
-  </data>
-  <data name="lblCFR.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCFR.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCFR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>43, 12</value>
-  </data>
-  <data name="lblCFR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 13</value>
-  </data>
-  <data name="lblCFR.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="lblCFR.Text" xml:space="preserve">
-    <value>123</value>
-  </data>
-  <data name="cBFilterEdge.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBFilterEdge.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBFilterEdge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 126</value>
-  </data>
-  <data name="cBFilterEdge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="cBFilterEdge.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="cBFilterEdge.Text" xml:space="preserve">
-    <value>Edge filter</value>
-  </data>
-  <data name="cBPosterize.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBPosterize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBPosterize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 158</value>
-  </data>
-  <data name="cBPosterize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 17</value>
-  </data>
-  <data name="cBPosterize.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="cBPosterize.Text" xml:space="preserve">
-    <value>Posterization</value>
-  </data>
-  <data name="label21.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 6</value>
-  </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 13</value>
-  </data>
-  <data name="label21.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Deselect colors if not needed</value>
-  </data>
-  <data name="cLBTools.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 22</value>
-  </data>
-  <data name="cLBTools.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 199</value>
-  </data>
-  <data name="cLBTools.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="cBGCodeFill.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBGCodeFill.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBGCodeFill.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
-  </data>
-  <data name="cBGCodeFill.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
-  </data>
-  <data name="cBGCodeFill.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="cBGCodeFill.Text" xml:space="preserve">
-    <value>Fill areas</value>
-  </data>
-  <data name="cBGCodeOutline.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBGCodeOutline.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBGCodeOutline.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 42</value>
-  </data>
-  <data name="cBGCodeOutline.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 17</value>
-  </data>
-  <data name="cBGCodeOutline.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="cBGCodeOutline.Text" xml:space="preserve">
-    <value>Draw outline</value>
-  </data>
-  <data name="cBGCodeOutlineSmooth.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBGCodeOutlineSmooth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBGCodeOutlineSmooth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 60</value>
-  </data>
-  <data name="cBGCodeOutlineSmooth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 17</value>
-  </data>
-  <data name="cBGCodeOutlineSmooth.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
-    <value>smooth</value>
   </data>
   <data name="label24.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3700,6 +4117,9 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>590, 17</value>
+  </metadata>
   <data name="lblLastUseCase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3727,11 +4147,20 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;lblLastUseCase.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>55</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>844, 441</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>100, 350</value>
@@ -3790,25 +4219,4 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>262, 17</value>
-  </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>378, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>677, 17</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>475, 17</value>
-  </metadata>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>590, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>55</value>
-  </metadata>
 </root>

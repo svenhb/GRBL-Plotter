@@ -584,4 +584,67 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   <data name="label17.Text" xml:space="preserve">
     <value>Der Pen-Down-Farbmodus verwendet die Stiftbreite aus der Werkzeugtabelle [Setup - Programmdarstellung - 2D-Ansicht]</value>
   </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>Der Abstand zwischen den Linien sollte mit der Stiftbreite übereinstimmen</value>
+  </data>
+  <data name="cBEngravingPattern3.Text" xml:space="preserve">
+    <value>Nur von links nach rechts</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>Kopieren der Servo-PWM-Einstellungen</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>Kopiert die Setup-Dialog Werte für RC-Servo Pen-down und Pen-Zero ab</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>Der Abstand zwischen den Linien sollte mit der Stiftbreite übereinstimmen</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>Grauwert als Spindeldrehzahl (PWM)</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>Code komprimieren</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>Grauwert als Z.</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Hinweis: Wenn "Vorschau" aktiviert ist, werden oben im Fenster die Farben aus der Werkzeugtabelle (Setup - Werkzeugtabelle) angewendet.</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Farbe als Werkzeug Nr.</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>Grauwert als Z (Tiefe)</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Linienabstand</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Lasermode am G-Code-Ende löschen</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Stellen Sie den Lasermodus beim Start des G-Codes ein</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Grauwert als Z oder S.</value>
+  </data>
+  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Zeichnet nur aus einer Richtung, um Offsets zu vermeiden</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>Vermeidet Code-Overhead für ein schnelleres Streaming</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>2D-Ansicht 0-Wert ausblenden</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>In der 2D-Ansicht wird kein Weißwert angezeigt (Stiftbreite = 0).</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>Unterer Wert</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>Unterer Wert</value>
+  </data>
 </root>
