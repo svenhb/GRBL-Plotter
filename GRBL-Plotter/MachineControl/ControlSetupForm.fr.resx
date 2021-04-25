@@ -2316,4 +2316,16 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>Déplacer le stylo le plus vers le haut</value>
   </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>Vue 2D: utiliser les couleurs de la liste d'outils</value>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>Analyse les valeurs S, Z et F dans le code G pour attribuer la couleur de la liste d'outils à la trajectoire d'outil</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Valeur d'incrément PWM 1, 10 ou 100</value>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Pen-up / -down avant / après le sous-programme</value>
+  </data>
 </root>

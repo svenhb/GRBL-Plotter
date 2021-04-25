@@ -2271,4 +2271,16 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>Bewegt den Stift am weitesten nach oben</value>
   </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>2D-Ansicht: Farben aus Werkzeugliste verwenden</value>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>Analysiert die S-, Z- und F-Werte im G-Code, um die Farbe aus der Werkzeugliste dem Werkzeugpfad zuzuweisen</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>PWM-Inkrementwert 1, 10 oder 100</value>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Pen-up / -down vor / nach dem Unterprogramm</value>
+  </data>
 </root>

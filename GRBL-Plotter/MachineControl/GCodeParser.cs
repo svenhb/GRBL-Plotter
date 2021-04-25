@@ -22,6 +22,7 @@
  * 2020-12-30 add N-number
  * 2021-01-06 find parsing problem
  * 2021-01-24 extend actualPos to xyzPoint
+ * 2021-03-26 add wasSetF/S/XY/Z
  */ 
 
 
@@ -82,6 +83,11 @@ namespace GRBL_Plotter
         public bool isSubroutine;
         public bool isSetCoordinateSystem;  // don't process x,y,z if set coordinate system
         public bool isNoMove;               // don't process x,y,z if G10, G17, G43...
+		
+		public bool wasSetF;
+		public bool wasSetS;
+		public bool wasSetXY;
+		public bool wasSetZ;
 
         public byte spindleState;       // M3,4,5
         public byte coolantState;       // M7,8,9
@@ -123,6 +129,8 @@ namespace GRBL_Plotter
             motionMode = 0; isdistanceModeG90 = true; ismachineCoordG53 = false; isSubroutine = false;
             isSetCoordinateSystem = false; isNoMove = false; spindleState = 5; coolantState = 9; spindleSpeed = 0; feedRate = 0;
 
+			wasSetF = wasSetS = wasSetXY = wasSetZ = false;
+
             actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
             distance = -1; otherCode = ""; info = ""; alpha = 0;
@@ -163,6 +171,7 @@ namespace GRBL_Plotter
             line = line.ToUpper().Trim();   // 2020-07-26
             isSetCoordinateSystem = false;
             isNoMove = false;
+			wasSetF = wasSetS = wasSetXY = wasSetZ = false;
             #region parse
             if ((!(line.StartsWith("$") || line.StartsWith("("))) && (line.Length > 1))//do not parse grbl comments
             {
@@ -218,12 +227,15 @@ namespace GRBL_Plotter
             {
                 case 'X':
                     x = value;
+					wasSetXY = true;
                     break;
                 case 'Y':
                     y = value;
+					wasSetXY = true;
                     break;
                 case 'Z':
                     z = value;
+					wasSetZ = true;
                     break;
                 case 'A':
                     a = value;
@@ -254,9 +266,11 @@ namespace GRBL_Plotter
                     break;
                 case 'F':
                     modalState.feedRate = feedRate = (int)value;
+					wasSetF = true;
                     break;
                 case 'S':
                     modalState.spindleSpeed = spindleSpeed = (int)value;
+					wasSetS = true;
                     break;
                 case 'G':
                     if (value <= 3)                                 // Motion Mode 0-3 c

@@ -210,8 +210,8 @@ namespace GRBL_Plotter
             {
                 //string[] gCode = gCodeList.ToArray<string>();
                 //string tmp;
-                double pWord, lWord, oWord;
-                string subline;
+                double pWord, lWord;//, oWord;
+//                string subline;
                 bool tmpToolInSpindle = toolInSpindle;
                 int cmdTNr = -1;
                 bool foundM30 = false;
@@ -789,26 +789,5 @@ namespace GRBL_Plotter
             index++;
             return index;
         }
-    /*    private int insertCode(string file, int index, int linenr, bool replace=false)
-        {
-            if (File.Exists(file))
-            {
-                string fileCmd = File.ReadAllText(file);
-                string[] commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                string tmp;
-                foreach (string cmd in commands)
-                {
-                    tmp = cleanUpCodeLine(cmd);         // remove comments
-                    if (replace)
-                        tmp = insertVariable(tmp);
-                    if (tmp.Length > 0)
-                    {
-                        streamingBuffer.Insert(index, tmp,linenr);
-                        index++;
-                    }
-                }
-            }
-            return index;
-        }*/
     }
 }

@@ -2514,4 +2514,25 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>ペンを一番上に移動します</value>
   </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>2Dビュー：ツールリストの色を使用</value>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>GコードのS、Z、F値を分析して、ツールリストからツールパスに色を割り当てます</value>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>最大位置Z</value>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>最小位置Y</value>
+  </data>
+  <data name="label63.Text" xml:space="preserve">
+    <value>最小位置X</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>PWMインクリメント値1、10、または100</value>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>サブルーチンの前後のペンアップ/ダウン</value>
+  </data>
 </root>

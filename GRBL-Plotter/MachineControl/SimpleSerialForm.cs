@@ -18,15 +18,12 @@
 */
 /* 2021-01-15 First version
  * 2021-01-19 dont apply .toUpper for send box - line 95 
+ * 2021-04-06 log RX and TX
  */
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GRBL_Plotter
@@ -106,7 +103,9 @@ namespace GRBL_Plotter
                 serialPort.Write(data.Trim() + lineEndTX);      // send single command via form
                 busy = true;
                 countTimeOut = (int)(countTimeOutMax * 1000 / timerSerial.Interval);
-                addToLog("> " + data.Trim() + " set busy flag: " + countTimeOut.ToString());
+                string sndTXT = string.Format("> {0,-10} | > set busy flag:{1,4:G} | {2}", data.Trim(), countTimeOut.ToString(), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+                addToLog(sndTXT);
+                Logger.Trace("send {0}",sndTXT);
             }
         }
         
@@ -125,14 +124,16 @@ namespace GRBL_Plotter
                 {
                     busy = false;
                     addToLog("Busy time out: didn't receive '" + readyString + "' within " + countTimeOutMax.ToString() + " sec.\r\n");
+                    Logger.Trace("3rd serial time-out: reset busy signal after {0} sec", countTimeOutMax.ToString());
                 }
             }
 
-            if (countShutdown > 0)		//(flag_closeForm)
-            {   Logger.Trace(" timer: countShutdown:{0}", countShutdown);
-                countShutdown--;
-                Application.Exit();
-            }
+            /*     removed 2021-04-07   
+             *     if (countShutdown > 0)		//(flag_closeForm)
+                   {   Logger.Trace(" timer: countShutdown:{0}", countShutdown);
+                       countShutdown--;
+                       Application.Exit();
+                   }*/
         }
 
         #region serial receive handling
@@ -182,10 +183,11 @@ namespace GRBL_Plotter
             if (countShutdown > 0) { isDataProcessing = false; return; }
 
             if (rxString.Contains(readyString))
-            {   busy = false; countTimeOut = 0; addToLog("< " + rxString + " clear busy flag");  }
+            {   busy = false; countTimeOut = 0; addToLog(string.Format("< {0,-10} | {1,-20} | {2}", rxString, "> clear busy flag!", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")));  }
             else
-                addToLog("< " + rxString);
+                addToLog(string.Format("< {0,-35} | {1}", rxString, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")));
 
+            Logger.Trace("3rd serial RX '{0}'   busy:{1}", rxString, busy);
             isDataProcessing = false;                   // unlock serialPort1_DataReceived
         }
 
@@ -332,10 +334,12 @@ namespace GRBL_Plotter
 
         private void loadSettings()
         {
+            Logger.Trace("loadSettings '{0}' '{1}' '{2}' '{3}'", Properties.Settings.Default.serialPort3, Properties.Settings.Default.serialBaud3, Properties.Settings.Default.serial3Ready, Properties.Settings.Default.serial3Timeout);
             try
             {
                 cbPort.Text = Properties.Settings.Default.serialPort3;
                 cbBaud.Text = Properties.Settings.Default.serialBaud3;
+
                 Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
                 Location = Properties.Settings.Default.locationSerForm3;
                 if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { this.CenterToScreen(); }    // Location = new Point(100, 100);    }
@@ -352,6 +356,7 @@ namespace GRBL_Plotter
         }
         private void saveSettings()
         {
+            Logger.Trace("saveSettings {0} {1} {2} {3}", cbPort.Text, cbBaud.Text, tBMessageReady.Text, nUDTimeout.Value);
             try
             {
                 Properties.Settings.Default.locationSerForm3 = Location;

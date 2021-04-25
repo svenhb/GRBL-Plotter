@@ -2325,4 +2325,16 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>Mova a caneta mais para cima</value>
   </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>Visualização 2D: use cores da lista de ferramentas</value>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>Analisa os valores S, Z e F no código G para atribuir a cor da lista de ferramentas ao caminho da ferramenta</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Valor de incremento PWM 1, 10 ou 100</value>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Pen-up / -down antes / depois da sub-rotina</value>
+  </data>
 </root>

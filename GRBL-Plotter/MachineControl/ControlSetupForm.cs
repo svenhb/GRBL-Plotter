@@ -27,6 +27,7 @@
  * 2020-03-05 bug fix save gui2D colors
  * 2020-07-23 hide logging
  * 2021-02-06 add gamePad PointOfViewController0
+ * 2021-03-28 btnDeleteToolTable_Click only delete if a file is selected
 */
 
 using System;
@@ -209,6 +210,10 @@ namespace GRBL_Plotter
             checkZEngraveExceed();
 			
 			rBStreanProtocoll2.Checked = !Properties.Settings.Default.grblStreamingProtocol1;
+
+            PWMIncValue = (int)Properties.Settings.Default.setupPWMIncrement;
+            button2.Text = "Inc. " + PWMIncValue.ToString();
+            setPWMIncValues(PWMIncValue);
         }
 
         private void saveSettings()
@@ -715,8 +720,12 @@ namespace GRBL_Plotter
         }
         private void btnDeleteToolTable_Click(object sender, EventArgs e)
         {
-            File.Delete(Application.StartupPath + datapath.tools + "\\" + lbFiles.Text);
-            fillToolTableFileList(Application.StartupPath + datapath.tools);
+            string path = Application.StartupPath + datapath.tools + "\\" + lbFiles.Text;
+            Logger.Info("DeleteToolTable '{0}'",path);
+            if (lbFiles.Text != string.Empty)
+            {   File.Delete(path);
+                fillToolTableFileList(Application.StartupPath + datapath.tools);
+            }
         }
 
         public string commandToSend = "";
@@ -1438,7 +1447,7 @@ namespace GRBL_Plotter
 
         private void cBImportGCPWMSendCode_CheckedChanged(object sender, EventArgs e)
         {
-            Color tmpColor = SystemColors.Window;
+            Color tmpColor = Control.DefaultBackColor; //SystemColors.Window;
             if (cBImportGCPWMSendCode.Checked)
             { tmpColor = Color.Orange; }
             nUDImportGCPWMUp.BackColor = tmpColor;
@@ -1447,10 +1456,30 @@ namespace GRBL_Plotter
             btnGCPWMUp.BackColor = tmpColor;
             btnGCPWMDown.BackColor = tmpColor;
             btnGCPWMZero.BackColor = tmpColor;
+            cBImportGCPWMSendCode.BackColor = tmpColor;
         }
 
         private void lblInfoPWM_Click(object sender, EventArgs e)
         {   MessageBox.Show(toolTip1.GetToolTip(lblInfoPWM),"Info"); }
 
+        private int PWMIncValue = 1;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (PWMIncValue <= 1)
+            { PWMIncValue = 10; }
+            else if (PWMIncValue == 10)
+            { PWMIncValue = 100; }
+            else if (PWMIncValue >= 100)
+            { PWMIncValue = 1; }
+            button2.Text = "Inc. " + PWMIncValue.ToString();
+            setPWMIncValues(PWMIncValue);
+            Properties.Settings.Default.setupPWMIncrement = PWMIncValue;
+        }
+        private void setPWMIncValues(int inc)
+        {
+            nUDImportGCPWMUp.Increment = inc;
+            nUDImportGCPWMZero.Increment = inc;
+            nUDImportGCPWMDown.Increment = inc;
+        }
     }
 }

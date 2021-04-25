@@ -373,7 +373,9 @@ namespace GRBL_Plotter
             this.cBCommand.Items.AddRange(new object[] {
             resources.GetString("cBCommand.Items"),
             resources.GetString("cBCommand.Items1"),
-            resources.GetString("cBCommand.Items2")});
+            resources.GetString("cBCommand.Items2"),
+            resources.GetString("cBCommand.Items3"),
+            resources.GetString("cBCommand.Items4")});
             resources.ApplyResources(this.cBCommand, "cBCommand");
             this.cBCommand.Name = "cBCommand";
             this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCommand_KeyPress);

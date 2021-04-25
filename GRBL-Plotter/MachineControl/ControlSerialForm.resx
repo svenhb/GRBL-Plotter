@@ -1134,6 +1134,12 @@ Success depends on used hardware (DTR, RTS wired?)</value>
   <data name="cBCommand.Items2" xml:space="preserve">
     <value>G91 G1 X1 F500 (relarive)</value>
   </data>
+  <data name="cBCommand.Items3" xml:space="preserve">
+    <value>$32=1 (Laser mode on)</value>
+  </data>
+  <data name="cBCommand.Items4" xml:space="preserve">
+    <value>$32=0 (Laser mode off)</value>
+  </data>
   <data name="cBCommand.Location" type="System.Drawing.Point, System.Drawing">
     <value>75, 395</value>
   </data>

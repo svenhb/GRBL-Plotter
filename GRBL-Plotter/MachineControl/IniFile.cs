@@ -31,6 +31,7 @@
  * 2021-01-22 add missing settings
  * 2021-01-27 add missing settings
  * 2021-02-06 add gamePad PointOfViewController0
+ * 2021-04-19 add importGCSubPenUpDown
 */
 
 using System;
@@ -327,6 +328,7 @@ namespace GRBL_Plotter
                 Write("Insert subroutine enable", setup.importGCSubEnable.ToString(), section);
                 Write("Insert subroutine file", setup.importGCSubroutine.ToString(), section);
                 Write("Insert subroutine at beginn", setup.importGCSubFirst.ToString(), section);
+                Write("Insert subroutine pen up down", setup.importGCSubPenUpDown.ToString(), section);
             }
 
             if (setup.importGCCompress || all) { Write("Compress", setup.importGCCompress.ToString(), section); }
@@ -825,7 +827,7 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpbool, section, "Insert subroutine enable")) { setup.importGCSubEnable = tmpbool; }
             if (setVariable(ref tmpstr,  section, "Insert subroutine file")) { setup.importGCSubroutine = tmpstr; } 
             if (setVariable(ref tmpbool, section, "Insert subroutine at beginn")) { setup.importGCSubFirst = tmpbool; }
-
+            if (setVariable(ref tmpbool, section, "Insert subroutine pen up down")) { setup.importGCSubPenUpDown = tmpbool; }
 
             if (setVariable(ref tmpbool, section, "Compress")) { setup.importGCCompress = tmpbool; }
             if (setVariable(ref tmpbool, section, "Relative")) { setup.importGCRelative = tmpbool; }

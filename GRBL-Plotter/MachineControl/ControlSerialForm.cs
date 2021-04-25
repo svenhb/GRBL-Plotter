@@ -184,8 +184,8 @@ namespace GRBL_Plotter
         }
 
         private bool externalCOMReady()
-        {
-            if (!useSerial2 && !useSerial3)
+        {   // !isStreaming added 2021-04-07 
+            if (!isStreaming || ( !useSerial2 && !useSerial3))
                 return true;
             bool c2 = true, c3 = true;
             if (useSerial2) c2 = !serial2Busy && (_serial_form2.grblStateNow == grblState.idle);
@@ -410,11 +410,12 @@ namespace GRBL_Plotter
                 {   processSend(); }                
             }
 
-            if (countShutdown > 0)		//(flag_closeForm)
+     /*     removed 2021-04-07 
+      *     if (countShutdown > 0)		//(flag_closeForm)
             {   Logger.Trace("Ser:{0} timer: countShutdown:{1}",iamSerial,countShutdown);
 				countShutdown--;
                 Application.Exit();
-            }
+            }*/
         }
 
 

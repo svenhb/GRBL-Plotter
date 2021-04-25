@@ -2316,4 +2316,16 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>Mueva el bolígrafo hacia arriba</value>
   </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>Vista 2D: use colores de la lista de herramientas</value>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>Analiza los valores S, Z y F en el código G para asignar el color de la lista de herramientas a la trayectoria de la herramienta.</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Valor de incremento de PWM 1, 10 o 100</value>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Pen-up / -down antes / después de la subrutina</value>
+  </data>
 </root>

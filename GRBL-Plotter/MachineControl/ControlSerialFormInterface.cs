@@ -30,6 +30,8 @@
  * 2021-01-16 don't apply toUpper to comment (^2, (^3
  * 2021-02-01 line 880 remove waitForOk
  * 2021-03-05 add reset info to logger, check index-range in processGrblRealTimeStatus line 349
+ * 2021-03-26 sendTo3rdCOM find 1st ')' not last
+ * 2021-04-12 line 876 only send setup-command '$...' if system is IDLE
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -783,7 +785,8 @@ namespace GRBL_Plotter
         private string[] eeprom2 = { "G10", "G28", "G30" };
         public void processSend()
         {
-//            Logger.Trace("processSend grblBufferFree:{0}  waitForIdle:{1}", grblBufferFree, waitForIdle);
+            // Logger.Trace("processSend grblBufferFree:{0}  waitForIdle:{1}", grblBufferFree, waitForIdle);
+            // OkToSend = grblBufferFree >= buffer[sent].Length + 1
             while (sendBuffer.OkToSend(grblBufferFree) && (!waitForIdle))		//((sent < buffer.Count) && (bufferSize >= (buffer[sent].Length + 1)));}
             {
                 var line = sendBuffer.GetSentLine();
@@ -834,6 +837,9 @@ namespace GRBL_Plotter
                             serial2Busy = true;                 // avoid further copy from streamingBuffer to sendBuffer
                             if (grblStateNow != grblState.idle)	// only send if 1st grbl is IDLE
                                 break;
+                            if (grblBufferFree < (grbl.RX_BUFFER_SIZE - 1))	//  added 2021-04-07 
+                                break;
+
                             lock (sendDataLock)
                             {   sendTo2ndGrbl(line);			// send to 2nd grbl
                                 sendBuffer.LineWasSent();		// mark as sent
@@ -848,6 +854,10 @@ namespace GRBL_Plotter
                             serial3Busy = true;                 // avoid further copy from streamingBuffer to sendBuffer
                             if (grblStateNow != grblState.idle)	// only send if 1st grbl is IDLE
                                 break;
+                            Logger.Trace("process 3rd free:{0}  size:{1}", grblBufferFree, grbl.RX_BUFFER_SIZE);
+                            if (grblBufferFree < (grbl.RX_BUFFER_SIZE - 1)) //  added 2021-04-07 
+                                break;
+
                             lock (sendDataLock)
                             {   sendTo3rdCOM(line);			    // send to 3rd serial
                                 sendBuffer.LineWasSent();		// mark as sent
@@ -862,15 +872,18 @@ namespace GRBL_Plotter
                             lock (sendDataLock)
 							{
                                 line = sendBuffer.GetSentLine();    // needed?
-                                int len = (line.Length + 1);
-                                if (serialPort.IsOpen && (grblBufferFree >= len) && (line != "OV") && (!waitForOk))// && !blockSend)
+                                int sendLength = (line.Length + 1);
+                                if (line.StartsWith("$"))
+                                {   if (grblStateNow != grblState.idle)	// only send if 1st grbl is IDLE
+                                        break;
+                                }
+                                if (serialPort.IsOpen && (grblBufferFree >= sendLength) && (line != "OV") && (!waitForOk))// && !blockSend)
 								{   serialPort.Write(line + lineEndTXgrbl);	        // grbl accepts '\n' or '\r'			
-                     //               if (logEnable) LogPos.Info("{0}",line);
-									grblBufferFree -= len;
+									grblBufferFree -= sendLength;
 									if (!grblCharacterCounting)
 										grblBufferFree = 0;
 									sendBuffer.LineWasSent();       // RX in 189
-                                    if (logTransmit || cBStatus1.Checked || cBStatus.Checked) Logger.Trace("s{0} TX '{1,-20}' length:{2,2}  BufferFree:{3,3}  Index:{4,3}  max:{5,3}  lineNr:{6}", iamSerial, line, len, grblBufferFree, sendBuffer.IndexSent, sendBuffer.Count, sendBuffer.GetSentLineNr());
+                                    if (logTransmit || cBStatus1.Checked || cBStatus.Checked) Logger.Trace("s{0} TX '{1,-20}' length:{2,2}  BufferFree:{3,3}  Index:{4,3}  max:{5,3}  lineNr:{6}", iamSerial, line, sendLength, grblBufferFree, sendBuffer.IndexSent, sendBuffer.Count, sendBuffer.GetSentLineNr());                                        
                                 }
                                 else
                                     break;
@@ -932,13 +945,14 @@ namespace GRBL_Plotter
         {
             if ((_serial_form2 != null) && (_serial_form2.serialPortOpen))
             {   int start = line.IndexOf('(');
-                int end = line.LastIndexOf(')');
+                int end = line.IndexOf(')');		// find 1st index to avoid sending real comment - old: line.LastIndexOf(')');
                 if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
                 {
                     var cmt = line.Substring(start, end - start + 1);
 
-                    string txt = cmt.Substring(start + 3, cmt.Length - 4);
+                    string txt = cmt.Substring(start + 3, cmt.Length - 4).Trim();
                     if (log2ndGrbl) Logger.Trace("processSend 2nd '{0}' ", txt);
+                    if (logTransmit || cBStatus1.Checked || cBStatus.Checked) Logger.Trace("s{0} TX '{1,-20}'   lineNr:{2}", iamSerial, line, sendBuffer.GetSentLineNr());
                     _serial_form2.requestSend(txt);
                 }
             }
@@ -947,13 +961,14 @@ namespace GRBL_Plotter
         {
             if ((_serial_form3 != null) && (_serial_form3.serialPortOpen))
             {   int start = line.IndexOf('(');
-                int end = line.LastIndexOf(')');
+                int end = line.IndexOf(')');		// find 1st index to avoid sending real comment - old: line.LastIndexOf(')');
                 if ((start >= 0) && (end > start))  // send data to 2nd COM-Port
                 {
                     var cmt = line.Substring(start, end - start + 1);
 
-                    string txt = cmt.Substring(start + 3, cmt.Length - 4);
+                    string txt = cmt.Substring(start + 3, cmt.Length - 4).Trim();
                     if (log3rdCOM) Logger.Trace("processSend 3rd '{0}' ", txt);
+                    if (logTransmit || cBStatus1.Checked || cBStatus.Checked) Logger.Trace("s{0} TX '{1,-20}'   lineNr:{2}", iamSerial, line, sendBuffer.GetSentLineNr());
                     _serial_form3.send(txt);
                 }
             }

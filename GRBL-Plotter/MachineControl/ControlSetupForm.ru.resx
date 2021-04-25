@@ -2384,4 +2384,28 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>Переместите перо максимально вверх</value>
   </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>2D-вид: используйте цвета из списка инструментов</value>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>Анализирует значения S, Z и F в коде G, чтобы назначить цвет из списка инструментов траектории инструмента.</value>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>Макс.положение Z</value>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>Мин. Позиция Y</value>
+  </data>
+  <data name="label63.Text" xml:space="preserve">
+    <value>Мин. Позиция X</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Значение приращения ШИМ 1, 10 или 100</value>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Pen-up / -down до / после подпрограммы</value>
+  </data>
+  <data name="tab1_2lbl31.Text" xml:space="preserve">
+    <value>Подача Z</value>
+  </data>
 </root>

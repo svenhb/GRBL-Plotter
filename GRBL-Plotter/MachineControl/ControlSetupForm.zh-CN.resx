@@ -2497,4 +2497,25 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>向上移动笔</value>
   </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>2D视图：使用工具列表中的颜色</value>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>分析G代码中的S，Z和F值以将颜色从刀具列表分配到刀具路径</value>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>最大位置Z</value>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>最低排名Y</value>
+  </data>
+  <data name="label63.Text" xml:space="preserve">
+    <value>最低排名X</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>PWM增量值1、10或100</value>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>子程序之前/之后的上/下笔</value>
+  </data>
 </root>

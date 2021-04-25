@@ -2513,4 +2513,25 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>تحريك القلم إلى أعلى</value>
   </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>عرض ثنائي الأبعاد: استخدم ألوانًا من قائمة الأدوات</value>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>يحلل قيم S و Z و F في كود G لتعيين اللون من قائمة الأدوات إلى مسار الأداة</value>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>أقصى موضع Z</value>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>دقيقة موقف ص</value>
+  </data>
+  <data name="label63.Text" xml:space="preserve">
+    <value>الحد الأدنى للمركز X</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>قيمة زيادة PWM 1 أو 10 أو 100</value>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Pen-up / -down قبل / بعد الروتين الفرعي</value>
+  </data>
 </root>

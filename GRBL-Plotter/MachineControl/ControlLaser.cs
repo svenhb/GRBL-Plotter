@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2019-10-03 new
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-11-10 add .Replace(',', '.')
+ * 2021-04-09 split finish commands
 */
 
 using System;
@@ -55,7 +56,10 @@ namespace GRBL_Plotter
             if (useZ)
                 sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0 M5")));
             else
-                sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 M5")));
+            {   sendCommandEvent(new CmdEventArgs(string.Format("S0 G4 P0.5")));
+                sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
+                sendCommandEvent(new CmdEventArgs(string.Format("M5")));
+            }
 
             if (nUDMotionY.Value != 0)
             {   sendCommandEvent(new CmdEventArgs((string.Format("G91 G0 Y{0}", nUDMotionY.Value).Replace(',', '.'))));
