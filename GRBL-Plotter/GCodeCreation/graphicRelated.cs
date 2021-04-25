@@ -28,6 +28,8 @@
  * 2020-12-08 add BackgroundWorker updates
  * 2020-12-16 line 440 lock (lockObject) to protect VisuGCode.pathBackground from other access
  * 2021-01-21 addFrame, MultiplyGraphics
+ * 2021-03-25 line 375 in SetPenWidth remove leading '#'
+ * 2021-04-16 add offset for tiling in function ClipCode line 924 addOnX
 */
 
 using System;
@@ -372,6 +374,8 @@ namespace GRBL_Plotter
                     Int32.Parse(colors[2].Trim())
                     );
                 txt = System.Drawing.ColorTranslator.ToHtml(color);
+                if (txt.StartsWith("#"))
+                    txt = txt.Substring(1);
             }
             if (logProperties) Logger.Trace("Set PenColor '{0}'", txt);
             setNewId = true;
@@ -532,7 +536,7 @@ namespace GRBL_Plotter
 /* clipping or tiling of whole graphic */
             if (!cancelByWorker && graphicInformation.OptionClipCode)  
             {   if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Apply clipping (on " + countGeometry.ToString() + " elements)..." });
-                ClipCode((double)Properties.Settings.Default.importGraphicTileX,(double)Properties.Settings.Default.importGraphicTileY); 
+                ClipCode((double)Properties.Settings.Default.importGraphicTileX,(double)Properties.Settings.Default.importGraphicTileY, (double)Properties.Settings.Default.importGraphicTileAddOnX); 
             }
 			
 /* extend closed path for laser cutting to avoid a "nose" at start/end position */
@@ -842,8 +846,9 @@ namespace GRBL_Plotter
         }
 
         #region clipPath
-        private static void ClipCode(double tileSizeX, double tileSizeY)//xyPoint p1, xyPoint p2)      // set dot only extra behandeln
+        private static void ClipCode(double tileSizeX, double tileSizeY, double addOnX)//xyPoint p1, xyPoint p2)      // set dot only extra behandeln
         {	//const uint loggerSelect = (uint)LogEnable.ClipCode;
+            double addOnY = addOnX;
 			bool log = logEnable && ((logFlags & (uint)LogEnable.ClipCode) > 0);
             finalPathList = new List<PathObject>();     // figures of one tile
             tileGraphicAll = new List<PathObject>();    // figures of all tiles  // PathObject contains List<grblMotion>, PathInformation, pathStart, pathEnd, dimension
@@ -907,20 +912,37 @@ namespace GRBL_Plotter
                 pathBackground.AddRectangle(pathRect);
             }
 
+			Matrix matrix = new Matrix();
+			matrix.Scale(1, -1);
+            
+            int tileShowNr = 1;
+
             for (int indexY = 0; indexY < tilesY; indexY++)
             {				
                 for (int indexX = 0; indexX < tilesX; indexX++)
                 {
-                    clipMin.X = indexX * tileSizeX;
-                    clipMin.Y = indexY * tileSizeY;
-                    clipMax.X = (indexX + 1) * tileSizeX ;
-                    clipMax.Y = (indexY + 1) * tileSizeY ;
+                    clipMin.X = indexX * tileSizeX - addOnX;
+                    clipMin.Y = indexY * tileSizeY - addOnY;
+                    clipMax.X = (indexX + 1) * tileSizeX + addOnX;
+                    clipMax.Y = (indexY + 1) * tileSizeY + addOnY;
                     tileNr++;
+
 
                     if (doTilingNotClipping)
                     {                                                       // Add micro-offset to avoid double consideration of points on clip-border
                         if (clipMin.X > 0) clipMin.X += 0.00001;
                         if (clipMin.Y > 0) clipMin.Y += 0.00001;
+                        
+                        pathBackground.StartFigure();
+                        pathBackground.Transform(matrix);
+                        float centerX = (float)((clipMax.X+clipMin.X)/2);
+                        float centerY = (float)((clipMax.Y+clipMin.Y)/2);
+                        float emSize = Math.Min((float)tileSizeX, (float)tileSizeY)/3;
+                        System.Drawing.StringFormat sFormat = new System.Drawing.StringFormat(System.Drawing.StringFormat.GenericDefault);
+                        sFormat.Alignment  = System.Drawing.StringAlignment.Center;
+                        sFormat.LineAlignment = System.Drawing.StringAlignment.Center;
+                        pathBackground.AddString((tileShowNr++).ToString(), new System.Drawing.FontFamily("Arial"), (int)System.Drawing.FontStyle.Regular, emSize, new System.Drawing.PointF(centerX, -centerY), sFormat);
+                        pathBackground.Transform(matrix);                        
                     }
 					else
                     {

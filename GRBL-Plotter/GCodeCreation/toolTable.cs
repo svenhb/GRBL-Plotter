@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
  * 2020-04 add codeSize (line-count), codeDimension (xSize * ySize)
  * 2020-07-06 add axis A
  * 2020-09-24 add indexWidth()
+ * 2021-03-26 add getColorWidth()
 */
 
 using System;
@@ -217,8 +218,49 @@ namespace GRBL_Plotter
         {   toolProp tmp = new toolProp();
             tmp.X = 0; tmp.Y = 0; tmp.Z = 0; tmp.A = 0; tmp.diameter=3; tmp.feedXY=1000; tmp.feedZ=500;
             tmp.saveZ = 2; tmp.finalZ = -1; tmp.stepZ= 1; tmp.spindleSpeed=1000;tmp.overlap = 100; tmp.gcode = "";
+            tmp.toolnr = 1;
             return tmp;
         }
+
+		public static toolProp getColorWidth(char find, double val, toolProp deflt)
+		{		
+            Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
+            for (int i = 1; i < toolTableArray.Length; i++)
+            {
+                if (find == 'S')         // direct hit
+                {	if (val == toolTableArray[i].spindleSpeed)
+					{	return toolTableArray[i];}
+                }
+                if (find == 'Z')         // direct hit
+                {	if (val == toolTableArray[i].finalZ)
+					{	return toolTableArray[i];}
+                }
+                if (find == 'F')         // direct hit
+                {	if (val == toolTableArray[i].feedXY)
+					{	return toolTableArray[i];}
+                }
+            }
+            return deflt;   	
+		}
+        public static toolProp findToolByFSZ(double valF, double valS, double valZ, toolProp deflt)
+        {
+            int tmpIndex = -1;
+            Array.Sort<toolProp>(toolTableArray, (x, y) => x.toolnr.CompareTo(y.toolnr));    // sort by tool nr
+            for (int i = 1; i < toolTableArray.Length; i++)
+            {
+                if (valF == toolTableArray[i].feedXY)
+                {   tmpIndex = i;
+                    if (((valS > 0) && (valS == toolTableArray[i].spindleSpeed)) || ((valZ < double.MaxValue) && (valZ == toolTableArray[i].finalZ)))
+                        return toolTableArray[i];
+                }
+            }
+            if (tmpIndex >= 0)
+                return toolTableArray[tmpIndex];
+
+            deflt.toolnr = -1;
+            return deflt;
+        }
+
 
         /// <summary>
         /// set tool/color table

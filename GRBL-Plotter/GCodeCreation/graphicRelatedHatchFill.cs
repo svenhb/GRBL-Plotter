@@ -59,7 +59,8 @@ namespace GRBL_Plotter
                     {
                         string fill = PathData.Info.groupAttributes[(int)GroupOptions.ByFill];
                         if (fillColor && ((fill == "") || (fill == "none")))	// SVG: only hatch if fillColor is set
-                        {   Logger.Trace("no fill"); continue;  }
+                        {   //Logger.Trace("no fill");
+                            continue;  }
 						else
                             countProperty((int)GroupOptions.ByColor, fill);		// now fill-color is also penColor -> for grouping
 						

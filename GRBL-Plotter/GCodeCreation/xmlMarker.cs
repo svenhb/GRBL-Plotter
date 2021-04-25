@@ -56,6 +56,8 @@ namespace GRBL_Plotter
         public const string headerEnd = "</Header";
 
         public const string tangentialAxis = "<Tangential";
+        public const string halftoneS = "<DisplayPenWidthS";
+        public const string halftoneZ = "<DisplayPenWidthZ";
 
         public struct BlockData
         {
@@ -312,15 +314,15 @@ namespace GRBL_Plotter
         }
 
 
-        public static string getAttributeValue(string Element, string Attribute)
+        public static string getAttributeValue(string Element, string Attribute, int offset=0)
         {
 //            Logger.Trace("   getAttributeValue  element:{0}  attribute:{1}", Element, Attribute);
-            int posAttribute = Element.IndexOf(Attribute);
+            int posAttribute = Element.IndexOf(Attribute, offset);
             if (posAttribute <= 0) return "";
             int strt = Element.IndexOf('"', posAttribute + Attribute.Length);
             int end = Element.IndexOf('"', strt + 1);
             string val = Element.Substring(strt + 1, (end - strt - 1));
-            //            if (gcode.loggerTrace) Logger.Trace(" getAttributeValue {0}  {1}  {2}", Element, Attribute, val);
+            //            if (gcode.loggerTrace)  Logger.Trace(" getAttributeValue({0}, {1})  '{2}'  s:{3}  e:{4}", Element, Attribute, val, strt, end);
             return val;
         }
         public static int getAttributeValueInt(string Element, string Attribute)
@@ -337,11 +339,14 @@ namespace GRBL_Plotter
         public static double getAttributeValueDouble(string Element, string Attribute)
         {
             //            Logger.Trace("   getAttributeValueInt  element:{0}  attribute:{1}", Element, Attribute);
-            string tmp = getAttributeValue(Element, Attribute);
+            int start = Element.IndexOf(" ");
+            string tmp = getAttributeValue(Element, Attribute, start);
             if (tmp == "") return -1;
             double att;
             if (double.TryParse(tmp, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out att))
+            {   //Logger.Trace("getAttributeValueDouble({0}, {1}) tmp:{2} result:{3}",Element,Attribute,tmp,att);
                 return att;
+            }
             Logger.Error("getAttributeValueDouble Element:{0} Attribut:{1}", Element, Attribute);
             return -1;
         }

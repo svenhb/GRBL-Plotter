@@ -28,6 +28,8 @@
 * 2021-02-20 add subroutine for pen-up/down for use in tool-change scripts
 * 2021-02-28 in jobStart() line 415, call PenUp() code, to lift also servo
 * 2021-03-07 in jobStart() bug-fix: call PenUp() code only if !gcodeZApply
+* 2021-03-26 line 1130 change comments
+* 2021-04-18 function insertSubroutine line 765 add option to add pen-up /-down before/after subroutine call
 */
 
 using System;
@@ -43,7 +45,7 @@ namespace GRBL_Plotter
     public static class gcode
     {
         public static bool loggerTrace = true;// false;
-        public static bool loggerTraceImport = true;//false;
+        public static bool loggerTraceImport = false;
         private static string formatCode = "00";
         private static string formatNumber = "0.###";
 
@@ -54,10 +56,6 @@ namespace GRBL_Plotter
 
         private static int gcodeSubroutineEnable = 0;   // state subroutine
         private static string gcodeSubroutine = "";     //  subroutine
-
-  //      private static bool gcodeDragCompensation = false;
-  //      public static float gcodeDragRadius = 0;
- //       private static float gcodeDragAngle = 30;
 
         private static int gcodeDownUp = 0;             // counter for GCode Pen Down / Up
         private static float gcodeTime = 0;             // counter for GCode work time
@@ -106,6 +104,7 @@ namespace GRBL_Plotter
         private static bool gcodeNoArcs = false;        // replace arcs by line segments
         private static float gcodeAngleStep = 0.1f;
         private static bool gcodeInsertSubroutine = false;
+        private static bool gcodeInsertSubroutinePenUpDown = false;
         private static int gcodeSubroutineCount = 0;
 
         private static bool gcodeLineSegmentation;
@@ -214,6 +213,7 @@ namespace GRBL_Plotter
             gcodeAngleStep = (float)Properties.Settings.Default.importGCSegment;
 
             gcodeInsertSubroutine = Properties.Settings.Default.importGCSubEnable;
+            gcodeInsertSubroutinePenUpDown = Properties.Settings.Default.importGCSubPenUpDown;
             gcodeSubroutineCount = 0;
             lastMovewasG0 = true;
 
@@ -381,7 +381,7 @@ namespace GRBL_Plotter
 
         public static void SpindleOn(StringBuilder gcodeString, string cmt = "")
         {
-            if (gcodeSpindleToolTable && gcodeComments) { cmt += " spindle speed from tool table"; }
+            if (gcodeSpindleToolTable && gcodeComments) { cmt += " spindle speed from tool-table"; }
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
             if (gcodeUseLasermode)  // in SpindleOn
                 gcodeString.AppendFormat("S{0} {1}\r\n", gcodeSpindleSpeed, cmt);
@@ -417,7 +417,7 @@ namespace GRBL_Plotter
             {   if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
                 float tmpZUp = (float)Properties.Settings.Default.importGCZUp;
                 float z_relative = tmpZUp - lastz;
-                if (gcodeZFeedToolTable && gcodeComments) { cmt = cmto + " Z feed from tool table"; }
+                if (gcodeZFeedToolTable && gcodeComments) { cmt = cmto + " Z feed from tool-table"; }
                 if (cmt.Length > 0) { cmt = " (" + cmt + ")"; }
                 if (gcodeRelative)
                     gcodeString.AppendFormat("G{0} Z{1}{2}\r\n", frmtCode(0), frmtNum(z_relative), cmt); // use G0 without feedrate
@@ -460,7 +460,7 @@ namespace GRBL_Plotter
 
             tmpString = new StringBuilder();
             string cmt = cmto;
-            if (Properties.Settings.Default.importGCTTZAxis && gcodeComments && useValueFromToolTable) { cmt += " Z values from tool table"; }
+            if (Properties.Settings.Default.importGCTTZAxis && gcodeComments && useValueFromToolTable) { cmt += " Z values from tool-table"; }
             origFinalX = lastx;
             origFinalY = lasty;
             if (gcodeRelative) { cmt += string.Format("rel {0}", lastz); }
@@ -589,7 +589,7 @@ namespace GRBL_Plotter
                     float z_relative = gcodeZUp - lastz;
                     if (Math.Abs(z_relative) > 0)
                     {
-                        if (gcodeZFeedToolTable && gcodeComments) { cmt += " Z feed from tool table"; }
+                        if (gcodeZFeedToolTable && gcodeComments) { cmt += " Z feed from tool-table"; }
                         if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }
 
                         if (gcodeRelative)
@@ -763,10 +763,10 @@ namespace GRBL_Plotter
         private static bool insertSubroutine(StringBuilder gcodeString, float lX, float lY, float lZ, bool applyFeed)
         {
             Logger.Trace("insertSubroutine");
-            PenUp(gcodeString);
+            if (gcodeInsertSubroutinePenUpDown) PenUp(gcodeString);
 //            gcodeString.AppendFormat("M98 P99 (call subroutine)\r\nG90 G0 X{0} Y{1}\r\nG1 Z{2} F{3}\r\n", frmtNum(lX), frmtNum(lY), frmtNum(lZ), gcodeZFeed);
             gcodeString.AppendFormat("M98 P99 (call subroutine)\r\nG90 G0 X{0} Y{1}\r\n", frmtNum(lX), frmtNum(lY));
-            PenDown(gcodeString);
+            if (gcodeInsertSubroutinePenUpDown) PenDown(gcodeString);
 
             applyXYFeedRate = true;
             gcodeSubroutineCount++;
@@ -816,7 +816,7 @@ namespace GRBL_Plotter
 
             if (applyFeed && (gnr > 0))
             {
-                if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool table"; }
+                if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool-table"; }
                 feed = string.Format("F{0}", gcodeXYFeed);
                 applyXYFeedRate = false;                        // don't set feed next time
             }
@@ -853,7 +853,7 @@ namespace GRBL_Plotter
                         gcodeTmp.AppendFormat("F{0} ", gcodeXYFeed);
                         lastf = gcodeXYFeed;
                         isneeded = true;
-                        if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool table"; }
+                        if (gcodeXYFeedToolTable && gcodeComments) { cmt += " XY feed from tool-table"; }
                     }
                     gcodeTmp.AppendFormat("{0}\r\n", cmt);
                     if (isneeded)
@@ -1113,7 +1113,7 @@ namespace GRBL_Plotter
                 gcodeLines++;
                 gcodeToolText += string.Format("( {0} ToolNr: {1:D2}, Name: {2})\r\n", gcodeToolCounter, toolnr, cmt);
 
-                remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;
+                remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;	// start with full segment length
 
                 if (gcodeZApply && !gcodeSpindleToggle) { gcode.SpindleOn(gcodeString, "Start spindle - Option Z-Axis"); gcodeLines++; }
             }
@@ -1125,16 +1125,16 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.importGCToolTableUse)
             {   if (toolInfo.gcode.Length > 1)
                 {   string[] commands = toolInfo.gcode.Split(';');
-                    string comment = "";
-                    if (gcodeComments) { comment = "(gcode from tool table)"; }
+                    string comment1 = "", comment2 = "", comment3 = "(PU) ";
+                    if (gcodeComments) { comment1 = "(tool-table use gcode)"; comment2 = "(tool-table wrap gcode)"; comment3 += "(tool-table finally)";}
 
-                    gcodeString.AppendFormat("G4 P0.5\r\n");
+                    gcodeString.AppendFormat("G04 P0.5 {0}\r\n", comment2);
                     foreach (string btncmd in commands)
-                    { gcodeString.AppendFormat("{0} {1}\r\n", btncmd.Trim(), comment); }
-                    gcodeString.AppendFormat("G4 P0.5\r\n");
+                    { gcodeString.AppendFormat("{0} {1}\r\n", btncmd.Trim(), comment1); }
+                    gcodeString.AppendFormat("G04 P0.5 {0}\r\n", comment2);
 
                     if (gcodeZApply)
-                    { gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), "(after tool table gcode)"); }
+                    { gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", frmtCode(0), frmtNum(gcodeZUp), comment3); }
                 }
             }
         }
@@ -1185,9 +1185,9 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.importUnitGCode)
             {
                 if (Properties.Settings.Default.importUnitmm)
-                {   header_end += "G21 (use mm as unit - check setup)"; gcodeLines++; }
+                {   header_end += "G21 (use mm as unit - check setup)\r\n"; gcodeLines++; }
                 else
-                {   header_end += "G20 (use inch as unit - check setup)"; gcodeLines++; }
+                {   header_end += "G20 (use inch as unit - check setup)\r\n"; gcodeLines++; }
             }
 
 // take account of footer lines
@@ -1230,7 +1230,7 @@ namespace GRBL_Plotter
 
             if (Properties.Settings.Default.importGCToolTableUse)
             {
-                header += "( Values from tool table: ";
+                header += "( Values from tool-table: ";
                 if (Properties.Settings.Default.importGCTTSSpeed) { header += "spindle speed, "; }
                 if (Properties.Settings.Default.importGCTTXYFeed) { header += "XY feed, "; }
                 if (Properties.Settings.Default.importGCTTZAxis) { header += "Z Values "; }
@@ -1264,11 +1264,6 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.importGCPWMEnable && Properties.Settings.Default.importGCPWMSkipM30)
             { footer += "(SKIP M30)\r\n"; }
 
-/*            if (gcodeComments)
-                footer += "M30 (Program end)\r\n";
-            else
-                footer += "M30\r\n";
-*/
             return footer + gcodeSubroutine;
         }
 
@@ -1287,7 +1282,7 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
             //     if (Properties.Settings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
             if (gcodeZFeedToolTable) { cmt += " Z feed "; fromTT = true; }
-            if (fromTT && gcodeComments) { cmt = cmt + " from tool table"; }
+            if (fromTT && gcodeComments) { cmt = cmt + " from tool-table"; }
             cmt = cmt = "( " + cmt + " )";
             if (repeatZStartZero)       // perfom 1st pass at zero
                 zStep = gcodeZInc;
@@ -1328,7 +1323,7 @@ namespace GRBL_Plotter
             if (Properties.Settings.Default.importGCTTZAxis) { cmt += " Z final, "; fromTT = true; }
        //     if (Properties.Settings.Default.importGCTTZIncrement) { cmt += " Z step, "; fromTT = true; }
             if (gcodeZFeedToolTable) { cmt += " Z feed "; fromTT = true; }
-            if (fromTT && gcodeComments) {cmt = cmt + " from tool table"; }
+            if (fromTT && gcodeComments) {cmt = cmt + " from tool-table"; }
             cmt = cmt = "( " + cmt + " )";
             if (repeatZStartZero)       // perfom 1st pass at zero
                 zStep = gcodeZInc;
