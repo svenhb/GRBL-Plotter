@@ -304,6 +304,7 @@ namespace GRBL_Plotter
         // if startline > 0 start with pause
         private void startStreaming(int startLine = 0)
         {
+            Logger.Trace("startStreaming serialPortOpen:{0} ", _serial_form.serialPortOpen);
             isStreamingRequestStop = false;
             lblInfoOkString = Localization.getString("mainInfoSendCode");
             notifierUpdateMarker = false;

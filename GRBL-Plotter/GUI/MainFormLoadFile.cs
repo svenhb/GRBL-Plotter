@@ -35,6 +35,7 @@
  * 2020-11-18 line 794, change search range from 100 to 200
  * 2020-12-01 newCodeEnd line 174 add Application.DoEvents()
  * 2021-02-06 lock saveStreamingStatus() line 1677
+ * 2021-03-28 btnSaveFile_Click save last path
 */
 
 using System;
@@ -163,6 +164,8 @@ namespace GRBL_Plotter
             pictureBox1.BackgroundImage = null;
             pictureBox1.Image = null;
             VisuGCode.clearDrawingnPath();
+            Graphic.pathBackground.Reset();// = new GraphicsPath();
+
             pictureBox1.Invalidate();                   // resfresh view
 
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
@@ -649,6 +652,7 @@ namespace GRBL_Plotter
             }
             newCodeEnd(true);               // code was imported, no need to check for bad GCode
             foldCode();
+            updateControls();
             Logger.Trace("foldCode");
         }
 
@@ -717,6 +721,7 @@ namespace GRBL_Plotter
                 SaveRecentFile(tbFile.Text);
                 this.Text = appName + " | File: " + tbFile.Text;
                 lbInfo.Text = "G-Code loaded";
+                updateControls();
 
                 if (tbFile.Text.EndsWith(fileLastProcessed + ".nc"))
                 {
@@ -733,6 +738,7 @@ namespace GRBL_Plotter
                                 timerUpdateControlSource = "loadGcode";
                                 updateControls(true);
                                 btnStreamStart.Image = Properties.Resources.btn_play;
+//                                btnStreamStart.Enabled = _serial_form.serialPortOpen;
                                 isStreamingPause = true;
                                 lbInfo.Text = Localization.getString("mainPauseStream");    // "Pause streaming - press play ";
                                 signalPlay = 1;
@@ -752,6 +758,9 @@ namespace GRBL_Plotter
         // save content from TextEditor (GCode) to file
         private void btnSaveFile_Click(object sender, EventArgs e)
         {
+            savePath = Properties.Settings.Default.guiPathSaveCode;
+            if ((savePath == "") || (!Directory.Exists(Path.GetDirectoryName(savePath))))
+            {   savePath = Application.StartupPath; }
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.InitialDirectory = Path.GetDirectoryName(savePath);
             sfd.FileName = saveName + "_";
@@ -762,6 +771,8 @@ namespace GRBL_Plotter
                 //File.WriteAllText(sfd.FileName, txt);
                 fCTBCode.SaveToFile(sfd.FileName, Encoding.Unicode);
                 Logger.Info("Save GCode as {0}", sfd.FileName);
+                Properties.Settings.Default.guiPathSaveCode = sfd.FileName;
+                Properties.Settings.Default.Save();
             }
         }
         // save Properties.Settings.Default... to text-file
@@ -1077,7 +1088,7 @@ namespace GRBL_Plotter
             // try
 
             if ((_setup_form != null) && (_setup_form.settingsReloaded))
-            { _setup_form.settingsReloaded = false;
+            {   _setup_form.settingsReloaded = false;
                 Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
                 Location = Properties.Settings.Default.locationMForm;
                 if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { Location = new Point(0, 0); }
@@ -1344,6 +1355,11 @@ namespace GRBL_Plotter
 
             gui.writeSettingsToRegistry();
             fCTBCode.LineInterval = (int)Properties.Settings.Default.FCTBLineInterval;
+
+            gui.variable["GMIS"] = (double)Properties.Settings.Default.importGCPWMDown;
+            gui.variable["GMAS"] = (double)Properties.Settings.Default.importGCPWMUp;
+            gui.variable["GZES"] = (double)Properties.Settings.Default.importGCPWMZero;
+            gui.variable["GCTS"] = (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp) / 2;
         }   // end load settings
 
 
@@ -1671,9 +1687,10 @@ namespace GRBL_Plotter
         }
         #endregion
 
+        static readonly object lockSaveAction = new object();
         private void saveStreamingStatus(int lineNr)
         {
-            lock (this)
+            lock (lockSaveAction)
             {
                 string fileName = Application.StartupPath + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
                 XmlWriterSettings set = new XmlWriterSettings();
@@ -1816,6 +1833,7 @@ namespace GRBL_Plotter
             gui.variable["GCTZ"] = (VisuGCode.xyzSize.minz + VisuGCode.xyzSize.maxz)/2;
             gui.variable["GMIS"] = (double)Properties.Settings.Default.importGCPWMDown;
             gui.variable["GMAS"] = (double)Properties.Settings.Default.importGCPWMUp;
+            gui.variable["GZES"] = (double)Properties.Settings.Default.importGCPWMZero;
             gui.variable["GCTS"] = (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp)/2; 
         }
     }

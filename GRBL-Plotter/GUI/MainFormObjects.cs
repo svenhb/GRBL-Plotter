@@ -98,7 +98,8 @@ namespace GRBL_Plotter
             variable.Add("GMAZ", (double)Properties.Settings.Default.importGCZUp); 		// Graphic Maximum Z
             variable.Add("GCTZ", (double)(Properties.Settings.Default.importGCZDown + Properties.Settings.Default.importGCZUp)/2); // Graphic Center Z
             variable.Add("GMIS", (double)Properties.Settings.Default.importGCPWMDown); 	
-            variable.Add("GMAS", (double)Properties.Settings.Default.importGCPWMUp); 		
+            variable.Add("GMAS", (double)Properties.Settings.Default.importGCPWMUp);
+            variable.Add("GZES", (double)Properties.Settings.Default.importGCPWMZero);
             variable.Add("GCTS", (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp)/2); 
         }
 

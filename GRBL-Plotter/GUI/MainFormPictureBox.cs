@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  * 2020-03-22 fix zoom-in -out behavior
  * 2020-08-20 linie 313, avoid collapse - findFigureMarkSelection(xmlMarkerType.Line, line, (foldLevel>0));
  * 2020-09-04 move initial view to lower edge - add maxposY
+ * 2021-03-28 pictureBox1_MouseDown: only expand block (findFigureMarkSelection) if enabled
  */
 
 using System;
@@ -48,6 +49,7 @@ namespace GRBL_Plotter
         private Pen penTool = new Pen(Color.Black, 0.5F);
         private Pen penMarker = new Pen(Color.DeepPink, 1F);
         private Pen penLandMark = new Pen(Color.DarkGray, 1F);
+//        private Brushes brushLandMark = new Brushes();
         private Pen penSimulation = new Pen(Color.Blue, 0.4F);
         //       SolidBrush machineLimit = new SolidBrush(Color.Red);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
@@ -205,7 +207,12 @@ namespace GRBL_Plotter
                 if (Properties.Settings.Default.gui2DToolTableShow)
                     e.DrawPath(penTool, VisuGCode.pathToolTable);
                 if (Properties.Settings.Default.guiBackgroundShow)
+                {
                     e.DrawPath(penLandMark, VisuGCode.pathBackground);
+
+                    e.DrawPath(penLandMark, Graphic.pathBackground);
+                    e.FillPath(Brushes.Gray, Graphic.pathBackground);
+                }
                 if (Properties.Settings.Default.guiDimensionShow)
                     e.DrawPath(penLandMark, VisuGCode.pathDimension);
 
@@ -333,6 +340,7 @@ namespace GRBL_Plotter
                     posMoveEnd = posMoveStart;
 
                     int fold = foldLevel;
+                    expandGCode = Properties.Settings.Default.FCTBBlockExpandOnSelect;
                     if (!expandGCode)
                         fold = 0;
 

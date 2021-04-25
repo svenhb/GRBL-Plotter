@@ -340,7 +340,9 @@ namespace GRBL_Plotter
         {   // Note all other forms will be closed, before reaching following code...
             Logger.Trace("###### FormClosing ");
             //_jogPathCreator_form.Close();
-            //_serial_form3.Close();
+            //
+            //if (_serial_form2 != null) { _serial_form2.closePort(); _serial_form2.Close(); }
+            //if (_serial_form3 != null) { _serial_form3.closePort(); _serial_form3.Close(); }
 
             Properties.Settings.Default.mainFormWinState = WindowState;
             WindowState = FormWindowState.Normal;
@@ -441,11 +443,15 @@ namespace GRBL_Plotter
             {
                 lbInfo.Text = Localization.getString("mainInfoLaserModeOn"); // "Laser Mode active $32=1";
                 lbInfo.BackColor = Color.Fuchsia;
+                btnPenDown.BackColor = Color.Fuchsia;
+                btnPenUp.BackColor = Color.Fuchsia;
             }
             else
             {
                 lbInfo.Text = Localization.getString("mainInfoLaserModeOff");  //"Laser Mode not active $32=0";
                 lbInfo.BackColor = Color.Lime;
+                btnPenDown.BackColor = SystemColors.Control;
+                btnPenUp.BackColor = SystemColors.Control;
             }
         }
         // update 500ms
@@ -788,10 +794,16 @@ namespace GRBL_Plotter
         }
 
         private void btnPenUp_Click(object sender, EventArgs e)
-        {   sendCommand(string.Format("M3 S{0}", Properties.Settings.Default.importGCPWMUp));}
+        {   if (_serial_form.isLasermode) sendCommand(string.Format("$J=G91X0.0001F1000"));
+            sendCommand(string.Format("M3 S{0}", Properties.Settings.Default.importGCPWMUp));
+            if (_serial_form.isLasermode) sendCommand(string.Format("$J=G91X-0.0001F1000"));
+        }
 
         private void btnPenDown_Click(object sender, EventArgs e)
-        {   sendCommand(string.Format("M3 S{0}", Properties.Settings.Default.importGCPWMDown)); }
+        {   if (_serial_form.isLasermode) sendCommand(string.Format("G91 G01 X0.0001F1000"));
+            sendCommand(string.Format("M3 S{0}", Properties.Settings.Default.importGCPWMDown));
+            if (_serial_form.isLasermode) sendCommand(string.Format("G91 G01 X-0.0001F1000"));
+        }
 
         private void cBCoolant_CheckedChanged(object sender, EventArgs e)
         {   if (cBCoolant.Checked)

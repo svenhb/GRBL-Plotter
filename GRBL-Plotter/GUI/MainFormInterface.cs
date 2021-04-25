@@ -445,6 +445,7 @@ namespace GRBL_Plotter
             timerUpdateControls = true;
             setGRBLBuffer();
             Logger.Trace("ResetEvent()  connect {0}", _serial_form.serialPortOpen);
+            updateControls();
             resetStreaming(false);
         }
 

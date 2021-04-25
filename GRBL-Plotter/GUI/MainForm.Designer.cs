@@ -65,6 +65,8 @@ namespace GRBL_Plotter
                 pBoxTransform.Dispose();
 
                 ErrorStyle.Dispose();
+                StyleTT.Dispose();
+                Style2nd.Dispose();
             }
             base.Dispose(disposing);
         }

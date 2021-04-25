@@ -32,6 +32,7 @@
  * 2020-08-12 check index line 524
  * 2020-12-16 add Tile handling
  * 2021-03-06 disabled line 372
+ * 2021-03-26 highlight 'tool-table'
 */
 
 using System;
@@ -52,19 +53,22 @@ namespace GRBL_Plotter
 
         #region fCTB FastColoredTextBox related
         // highlight code in editor
+        // 0   : Black, 105 : DimGray , 128 : Gray, 169 : DarkGray!, 192 : Silver, 211 : LightGray , 220 : Gainsboro, 245 : Ghostwhite, 255 : White
         private Style StyleComment = new TextStyle(Brushes.Gray, null, FontStyle.Italic);
-        private Style StyleCommentxml = new TextStyle(Brushes.DarkGray, null, FontStyle.Regular);
+        private Style StyleCommentxml = new TextStyle(Brushes.DimGray, null, FontStyle.Bold);
         private Style StyleGWord = new TextStyle(Brushes.Blue, null, FontStyle.Bold);
         private Style StyleMWord = new TextStyle(Brushes.SaddleBrown, null, FontStyle.Regular);
         private Style StyleFWord = new TextStyle(Brushes.Red, null, FontStyle.Regular);
         private Style StyleSWord = new TextStyle(Brushes.OrangeRed, null, FontStyle.Regular);
         private Style StyleTool = new TextStyle(Brushes.Black, null, FontStyle.Regular);
-        private Style StyleLineN = new TextStyle(Brushes.DarkGray, null, FontStyle.Regular);
+        private Style StyleLineN = new TextStyle(Brushes.DimGray, null, FontStyle.Regular);
         private Style StyleXAxis = new TextStyle(Brushes.Green, null, FontStyle.Bold);
         private Style StyleYAxis = new TextStyle(Brushes.BlueViolet, null, FontStyle.Bold);
         private Style StyleZAxis = new TextStyle(Brushes.Red, null, FontStyle.Bold);
         private Style StyleAAxis = new TextStyle(Brushes.DarkCyan, null, FontStyle.Bold);
         private Style StyleFail  = new TextStyle(Brushes.Black, Brushes.LightCyan, FontStyle.Bold);
+        private Style StyleTT  = new TextStyle(Brushes.Black, Brushes.LightYellow, FontStyle.Regular);
+        private Style Style2nd = new TextStyle(Brushes.Black, null, FontStyle.Bold);
 
         private Style ErrorStyle = new TextStyle(Brushes.Red, Brushes.Yellow, FontStyle.Underline);
         private List<int> ErrorLines = new List<int>();
@@ -73,8 +77,10 @@ namespace GRBL_Plotter
         {
             if (gcode.loggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit:{0}",manualEdit);
             e.ChangedRange.ClearStyle(StyleComment, ErrorStyle);
+            e.ChangedRange.SetStyle(StyleTT, "(tool-table)|(PU)|(PD)", System.Text.RegularExpressions.RegexOptions.Compiled);
+            e.ChangedRange.SetStyle(Style2nd, "\\(\\^[23].*", System.Text.RegularExpressions.RegexOptions.Compiled);
+            e.ChangedRange.SetStyle(StyleCommentxml, "(\\<.*\\>)", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleCommentxml, "(\\(<.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleGWord, "(G\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleMWord, "(M\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleFWord, "(F\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -147,7 +153,7 @@ namespace GRBL_Plotter
 
         private void fCTB_CheckUnknownCode()
         {   string curLine;
-            string allowed = "ABCNGMFIJKLNPRSTUVWXYZOPLabcngmfijklnprstuvwxyzopl ";
+            string allowed = "$ABCNGMFIJKLNPRSTUVWXYZOPLabcngmfijklnprstuvwxyzopl ";
             string number = " +-.0123456789";
             string cmt = "(;";
             string message = "";
@@ -470,11 +476,15 @@ namespace GRBL_Plotter
         private void setEditMode(bool set)
         {
             manualEdit = set;
-            fCTBCode.BackColor = set? Color.FromArgb(255, 255, 255, 100): Color.White;
+      //      fCTBCode.BackColor = set? Color.FromArgb(255, 255, 255, 100): Color.White;
             if (set)
+            {   fCTBCode.BackColor = Color.FromArgb(255, 255, 255, 100);
                 statusStripSet(1, Localization.getString("statusStripeEditModeOn"), Color.FromArgb(255, 255, 255, 100));
+            }
             else
+            {   fCTBCode.BackColor = Color.White;
                 statusStripClear(1, 2, "setEditMode");
+            }
         }
 
         private void enableCmsCodeBlocks(bool enable)
@@ -493,6 +503,8 @@ namespace GRBL_Plotter
         private static xmlMarkerType markedBlockType = xmlMarkerType.none;
         private void findFigureMarkSelection(xmlMarkerType marker, int clickedLine, bool collapse=true)   // called by click on figure in 2D view
         {
+            if (Properties.Settings.Default.FCTBBlockExpandKeepLastOpen)
+                collapse = false;
             bool expand = expandGCode;
             if (manualEdit)
                 return;
@@ -561,7 +573,7 @@ namespace GRBL_Plotter
                     fCTBCode.Invalidate();
                 }
                 if (xmlMarker.lastFigure.lineStart < fCTBCode.LinesCount)
-                    fCTBCode.ExpandFoldedBlock(xmlMarker.lastFigure.lineStart);   
+                { if (expand) fCTBCode.ExpandFoldedBlock(xmlMarker.lastFigure.lineStart); }   // if 2021-03-28
             }
             else if (marker == xmlMarkerType.Line)
             {   if (xmlMarker.GetGroupCount() > 0)
@@ -639,8 +651,8 @@ namespace GRBL_Plotter
         { foldBlocks2(); }
         private void foldBlocks2()
         {
-            if (!expandGCode)
-                return;
+     //       if (!expandGCode)
+     //           return;
 
             string tmp;
             fCTBCode.ExpandAllFoldingBlocks();
