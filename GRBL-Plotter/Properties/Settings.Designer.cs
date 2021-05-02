@@ -6807,5 +6807,29 @@ namespace GRBL_Plotter.Properties {
                 this["importGCSubPenUpDown"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal createTextLineBreak {
+            get {
+                return ((decimal)(this["createTextLineBreak"]));
+            }
+            set {
+                this["createTextLineBreak"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool createTextLineBreakEnable {
+            get {
+                return ((bool)(this["createTextLineBreakEnable"]));
+            }
+            set {
+                this["createTextLineBreakEnable"] = value;
+            }
+        }
     }
 }
