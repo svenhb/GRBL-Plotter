@@ -762,7 +762,7 @@ namespace GRBL_Plotter
         // process subroutine, afterwards move back to last regular position before subroutine        
         private static bool insertSubroutine(StringBuilder gcodeString, float lX, float lY, float lZ, bool applyFeed)
         {
-            Logger.Trace("insertSubroutine");
+            //Logger.Trace("insertSubroutine");
             if (gcodeInsertSubroutinePenUpDown) PenUp(gcodeString);
 //            gcodeString.AppendFormat("M98 P99 (call subroutine)\r\nG90 G0 X{0} Y{1}\r\nG1 Z{2} F{3}\r\n", frmtNum(lX), frmtNum(lY), frmtNum(lZ), gcodeZFeed);
             gcodeString.AppendFormat("M98 P99 (call subroutine)\r\nG90 G0 X{0} Y{1}\r\n", frmtNum(lX), frmtNum(lY));
@@ -1216,21 +1216,26 @@ namespace GRBL_Plotter
 			header += string.Format("({0} >)\r\n", xmlMarker.headerStart);
 
             if (Properties.Settings.Default.importRepeatEnable)
-            header += string.Format("( G-Code repetitions: {0:0} times)\r\n", Properties.Settings.Default.importRepeatCnt);
+            {   header += string.Format("( G-Code repetitions: {0:0} times)\r\n", Properties.Settings.Default.importRepeatCnt);
+                Logger.Info("Header: G-Code repetitions:{0}", Properties.Settings.Default.importRepeatCnt);
+            }
 
             header += string.Format("( G-Code lines: {0} )\r\n", gcodeLines);
+            Logger.Info("Header: G-Code lines:{0}", gcodeLines);
+
             header += string.Format("( Pen Down/Up : {0} times )\r\n", gcodeDownUp);
  //           header += string.Format("( Path length : {0:0.0} units )\r\n", gcodeDistance);
             header += string.Format("( Duration ca.: {0:0.0} min. )\r\n", gcodeTime);
             if (gcodeSubroutineCount > 0)
-                header += string.Format("( Call to subs.: {0} )\r\n", gcodeSubroutineCount);
+            {   header += string.Format("( Call to subs.: {0} )\r\n", gcodeSubroutineCount);
+                Logger.Info("Header: Subroutine calls:{0}", gcodeSubroutineCount);
+            }
 
             stopwatch.Stop();
             header += string.Format("( Conv. time  : {0} )\r\n", stopwatch.Elapsed);
 
             if (Properties.Settings.Default.importGCToolTableUse)
-            {
-                header += "( Values from tool-table: ";
+            {   header += "( Values from tool-table: ";
                 if (Properties.Settings.Default.importGCTTSSpeed) { header += "spindle speed, "; }
                 if (Properties.Settings.Default.importGCTTXYFeed) { header += "XY feed, "; }
                 if (Properties.Settings.Default.importGCTTZAxis) { header += "Z Values "; }
@@ -1238,9 +1243,9 @@ namespace GRBL_Plotter
             }
 
             if (gcodeToolChange)
-            {
-                header += string.Format("( Tool changes: {0})\r\n", gcodeToolCounter);
+            {   header += string.Format("( Tool changes: {0})\r\n", gcodeToolCounter);
                 header += gcodeToolText;
+                Logger.Info("Header: Tool changes:{0}", gcodeToolCounter);
             }
             if (gcodePauseCounter>0)
                 header += string.Format("( M0 count    : {0})\r\n", gcodePauseCounter);
