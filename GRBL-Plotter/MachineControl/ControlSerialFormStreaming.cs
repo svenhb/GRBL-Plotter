@@ -101,7 +101,7 @@ namespace GRBL_Plotter
             else
             { timerSerial.Interval = grbl.pollInterval; }
             countMissingStatusReport = (int)(10000 / timerSerial.Interval);
-            Logger.Info("Timer interval:{0}  {1}", timerSerial.Interval, countMissingStatusReport);
+            Logger.Info("Poll frequency:{0}  max. missing reports:{1}", 1000/timerSerial.Interval, countMissingStatusReport);
 
             skipM30 = false;
             lastError = "";

@@ -21,6 +21,7 @@
  * 2019-11-24 save 'checked' properties for edge-Z, edge-center, coordinate G10
  * 2020-08-23 set min. offset to 0 (for touch plate)
  * 2021-01-05 clear progress bar when finished line 490
+ * 2021-04-27 adapt save position, if probe plate dimension is higher
 */
 
 using System;
@@ -40,7 +41,7 @@ namespace GRBL_Plotter
         private bool useG92 = false;
         private int probingAxisIndex = 0;
         private int probingTime = 5;
-        private decimal[] probingOffset = { 0, 0, 0 };
+        private decimal[] probingOffset = { 0, 0, 0 };      // touch plate
         private decimal[] probingSave = { 1, 1, 1 };
         private int probingValuesIndex = 0;
         private string[] probingAxis = { "X", "Y", "Z" };
@@ -108,6 +109,8 @@ namespace GRBL_Plotter
 
             if (!Properties.Settings.Default.probingCoordG10)
                 rBProbeCoord2.Checked = true;
+
+            nUDOffset_ValueChanged(sender, e);  // set minimum values of Save position
         }
 
         public grblState setGrblSaState
@@ -135,7 +138,9 @@ namespace GRBL_Plotter
             }
         }
 
+/***************************************************************************/
         // get height information from main-GUI OnRaisePosEvent line 192
+/***************************************************************************/
         public xyzPoint setPosProbe
         {
             set
@@ -188,11 +193,12 @@ namespace GRBL_Plotter
                     if (probingAxisIndex == 2) tmpProbePos = (grbl.posMachine.Z - probePos.Z) + (double)probingOffset[2];
                 }
 
+/*************** Edge finder ************************************************************/
                 if (probingAction == probingMode.edgeFinder)
                 {
                     if ((probingAxisIndex >= 0) && (probingAxisIndex <= 2))
                     {   sendCommandEvent(new CmdEventArgs((string.Format("{0} {1}{2}", CoordCommand, probingAxis[probingAxisIndex], tmpProbePos).Replace(',', '.'))));
-                        probingMoveSave = string.Format("G90 G00 {0}{1} (move to save pos.)", probingAxis[probingAxisIndex], probingSave[probingAxisIndex]);
+                        probingMoveSave = string.Format("G90 G00 {0}{1} (move to save pos.)", probingAxis[probingAxisIndex], probingSave[probingAxisIndex]);    // will be sent in timer1_Tick
                         lblEFProgress.Text = tmpEF;
                     }
                     angle = probePosOld.AngleTo(probePosNew);
@@ -601,34 +607,34 @@ namespace GRBL_Plotter
             return probeY;
         }
 
-        private string ProbeToward_E()    // probe towards direction east
+        private string ProbeToward_E()    // probe towards direction east (right = +X)
         {   decimal addon = 0;
-            if (cBSetCenterZero.Checked) { addon = -nUDDiameter.Value / 2; }
+            if (cBSetCenterZero.Checked) { addon = -nUDDiameter.Value / 2; }    // set tool center as zero
 
             probingOffset[0] = -nUDOffsetX.Value +addon;
             probingSave[0] = -nUDProbeSaveX.Value+addon;
             return string.Format("{0} X{1} F{2};", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeed.Value);
         }
-        private string ProbeToward_W()    // probe towards direction west
+        private string ProbeToward_W()    // probe towards direction west (left = -X)
         {   decimal addon = 0;
-            if (cBSetCenterZero.Checked) { addon = nUDDiameter.Value / 2; }
+            if (cBSetCenterZero.Checked) { addon = nUDDiameter.Value / 2; }    // set tool center as zero
 
             probingOffset[0] = nUDOffsetX.Value +addon;
             probingSave[0] = nUDProbeSaveX.Value+addon;
             return string.Format("{0} X-{1} F{2};", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeed.Value);
         }
 
-        private string ProbeToward_N()    // probe towards direction north
+        private string ProbeToward_N()    // probe towards direction north (up = +Y)
         {   decimal addon = 0;
-            if (cBSetCenterZero.Checked) { addon = -nUDDiameter.Value / 2; }
+            if (cBSetCenterZero.Checked) { addon = -nUDDiameter.Value / 2; }    // set tool center as zero
 
             probingOffset[1] = -nUDOffsetY.Value +addon;
             probingSave[1] = -nUDProbeSaveY.Value+addon;
             return string.Format("{0} Y{1} F{2};", ProbeCommand, nUDProbeTravelY.Value, nUDProbeFeed.Value);
         }
-        private string ProbeToward_S()    // probe towards direction south
+        private string ProbeToward_S()    // probe towards direction south (down = -Y)
         {   decimal addon = 0;
-            if (cBSetCenterZero.Checked) { addon = nUDDiameter.Value / 2; }
+            if (cBSetCenterZero.Checked) { addon = nUDDiameter.Value / 2; }    // set tool center as zero
 
             probingOffset[1] = nUDOffsetY.Value +addon;
             probingSave[1] = nUDProbeSaveY.Value+addon;
@@ -919,6 +925,74 @@ namespace GRBL_Plotter
                 nUDProbeFinalZ.Enabled = en;
                 nUDProbeSaveZ.Enabled = en;
                 nUDProbeTravelZ.Enabled = en;
+            }
+        }
+
+        private void nUDOffset_ValueChanged(object sender, EventArgs e)
+        {
+            nUDProbeSaveX.ValueChanged -= nUDProbeSave_ValueChanged;
+            nUDProbeSaveY.ValueChanged -= nUDProbeSave_ValueChanged;
+            nUDProbeSaveZ.ValueChanged -= nUDProbeSave_ValueChanged;
+            nUDOffsetX.ValueChanged -= nUDOffset_ValueChanged;
+            nUDOffsetY.ValueChanged -= nUDOffset_ValueChanged;
+            nUDOffsetZ.ValueChanged -= nUDOffset_ValueChanged;
+
+            decimal ofs = (decimal)0.1;
+            if (nUDOffsetX.Value >= nUDProbeSaveX.Value)
+            {   nUDProbeSaveX.Value = Math.Round(nUDOffsetX.Value) + 5;
+                label14.BackColor = nUDProbeSaveX.BackColor = Color.Yellow;
+            }
+            else { label14.BackColor = nUDProbeSaveX.BackColor = SystemColors.Window; }
+
+            if (nUDOffsetY.Value >= nUDProbeSaveY.Value)
+            {   nUDProbeSaveY.Value = Math.Round(nUDOffsetY.Value) + 5;
+                label14.BackColor = nUDProbeSaveY.BackColor = Color.Yellow;
+            }
+            else { label14.BackColor = nUDProbeSaveY.BackColor = SystemColors.Window; }
+
+            if (nUDOffsetZ.Value >= nUDProbeSaveZ.Value)
+            {   nUDProbeSaveZ.Value = Math.Round(nUDOffsetZ.Value) + 5;
+                label14.BackColor = nUDProbeSaveZ.BackColor = Color.Yellow;
+            }
+            else { label14.BackColor = nUDProbeSaveZ.BackColor = SystemColors.Window; }
+
+
+            // Adapt min value
+            nUDProbeSaveX.Minimum = nUDOffsetX.Value; //nUDProbeSaveX.Value = nUDOffsetX.Value + ofs;
+            nUDProbeSaveY.Minimum = nUDOffsetY.Value; //nUDProbeSaveY.Value = nUDOffsetY.Value + ofs;
+            nUDProbeSaveZ.Minimum = nUDOffsetZ.Value; //nUDProbeSaveZ.Value = nUDOffsetZ.Value + ofs;
+
+            nUDOffsetX.ValueChanged += nUDOffset_ValueChanged;
+            nUDOffsetY.ValueChanged += nUDOffset_ValueChanged;
+            nUDOffsetZ.ValueChanged += nUDOffset_ValueChanged;
+            nUDProbeSaveX.ValueChanged += nUDProbeSave_ValueChanged;
+            nUDProbeSaveY.ValueChanged += nUDProbeSave_ValueChanged;
+            nUDProbeSaveZ.ValueChanged += nUDProbeSave_ValueChanged;
+        }
+
+        private void nUDProbeSave_ValueChanged(object sender, EventArgs e)
+        {   bool showMessage = false;
+            bool cX = false, cY = false, cZ = false;
+            if ((nUDProbeSaveX.Value > 0) && (nUDProbeSaveX.Value <= nUDProbeSaveX.Minimum))
+            {   showMessage = true; nUDOffsetX.BackColor = Color.Yellow; cX = true; }
+            else { nUDOffsetX.BackColor = SystemColors.Window; }
+
+            if ((nUDProbeSaveY.Value > 0) && (nUDProbeSaveY.Value <= nUDProbeSaveY.Minimum)) 
+            {   showMessage = true; nUDOffsetY.BackColor = Color.Yellow; cY = true; }
+            else { nUDOffsetY.BackColor = SystemColors.Window; }
+
+            if ((nUDProbeSaveZ.Value > 0) && (nUDProbeSaveZ.Value <= nUDProbeSaveZ.Minimum))
+            {   showMessage = true; nUDOffsetZ.BackColor = Color.Yellow; cZ = true; }
+            else { nUDOffsetZ.BackColor = SystemColors.Window; }
+
+            if (showMessage)
+            {
+                label4.BackColor = Color.Yellow;
+                MessageBox.Show("Value can't be same or lower than touch plate thickness");
+                if (cX) nUDProbeSaveX.Value = nUDOffsetX.Value + (decimal)0.1;
+                if (cY) nUDProbeSaveY.Value = nUDOffsetY.Value + (decimal)0.1;
+                if (cZ) nUDProbeSaveZ.Value = nUDOffsetZ.Value + (decimal)0.1;
+                label4.BackColor = SystemColors.Control;
             }
         }
     }

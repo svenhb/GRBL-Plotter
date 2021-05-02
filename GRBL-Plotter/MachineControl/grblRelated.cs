@@ -27,6 +27,7 @@
  * 2020-01-13   localization of grblStatus (Idle, run, hold...)
  * 2020-08-08   #145
  * 2021-01-16   StreamEventArgs : EventArgs -> switch from float to int for codeFinish, buffFinish %
+ * 2021-05-01   return last index of splitted error, to catch "error: Invalid gcode ID:24" line 417
 */
 
 using System;
@@ -414,7 +415,7 @@ namespace GRBL_Plotter
         {
             string[] tmp = msg.Split(':');
             if (tmp.Length > 1)
-            {   return tmp[1].Trim(); }
+            {   return tmp[tmp.Length-1].Trim(); }      // 2021-05-01 change from [1]
             return "";
         }
         public static string getErrorDescription(string rxString)

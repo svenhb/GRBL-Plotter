@@ -54,6 +54,7 @@
  * 2020-12-27 add Marlin support
  * 2021-01-15 add 3rd serial com and lineEndRXTX
  * 2021-01-23 add trgEvent to "sendStreamEvent" in time with the status query
+ * 2021-04-27 IOEception add more closings line 333+
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -333,7 +334,9 @@ namespace GRBL_Plotter
                 catch (Exception er)
                 {   Logger.Error(er, "Ser:{0} GRBL status not received ",iamSerial);
                     logError("! Retrieving GRBL status", er);
+                    resetStreaming();
                     serialPort.Close();
+                    closePort();            // added 2021-04-27
                 }
 				
                 if (!isMarlin && !isHoming && (countMissingStatusReport-- <= 0))
@@ -915,17 +918,17 @@ namespace GRBL_Plotter
         private void btnCheckGRBLResult_Click(object sender, EventArgs e)
         {   MessageBox.Show(strCheckResult, "Information");    }
 
-        private void btnGRBLCommand1_Click(object sender, EventArgs e)
+        private void btnGRBLCommand1_Click(object sender, EventArgs e)      // $$and $x=val - View and write Grbl settings
         { requestSend("$$"); GRBLSettings.Clear(); }
-        private void btnGRBLCommand2_Click(object sender, EventArgs e)
+        private void btnGRBLCommand2_Click(object sender, EventArgs e)      // $# - View gcode parameters
         { requestSend("$#"); }
-        private void btnGRBLCmndParser_Click(object sender, EventArgs e)
+        private void btnGRBLCmndParser_Click(object sender, EventArgs e)    // $G - View gcode parser state
         { requestSend("$G"); }
-        private void btnGRBLCmndBuild_Click(object sender, EventArgs e)
+        private void btnGRBLCmndBuild_Click(object sender, EventArgs e)     // $I - View build info
         { requestSend("$I"); }
-        private void btnGRBLCommand3_Click(object sender, EventArgs e)
+        private void btnGRBLCommand3_Click(object sender, EventArgs e)      // $N - View startup blocks
         { requestSend("$N"); }
-        private void btnGRBLCommand4_Click(object sender, EventArgs e)
+        private void btnGRBLCommand4_Click(object sender, EventArgs e)      // $X - Kill alarm lock
         { requestSend("$X"); }
         private void btnGRBLReset_Click(object sender, EventArgs e)
         { grblReset(); }

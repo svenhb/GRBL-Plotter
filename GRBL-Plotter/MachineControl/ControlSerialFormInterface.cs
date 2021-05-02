@@ -707,6 +707,7 @@ namespace GRBL_Plotter
                 if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))    // trim lines and remove all empty lines and comment lines
                 {   if (tmp == "$#") countPreventEvent = 5;                  // no response echo for parser state
                     if (tmp == "$H") { isHoming = true; addToLog("Homing"); Logger.Info("requestSend Start Homing"); }
+                    if (tmp == "$X") { serialPort.Write(tmp + lineEndTXgrbl); return serialPort.IsOpen; }
                     lock (sendDataLock)
                     {   sendBuffer.Add(tmp, lineNr);
 //                        System.IO.File.AppendAllText(Application.StartupPath + "\\logSendBuffer.nc", tmp+"\r\n"); // clear file
@@ -873,7 +874,7 @@ namespace GRBL_Plotter
 							{
                                 line = sendBuffer.GetSentLine();    // needed?
                                 int sendLength = (line.Length + 1);
-                                if (line.StartsWith("$"))
+                                if (line.StartsWith("$"))               
                                 {   if (grblStateNow != grblState.idle)	// only send if 1st grbl is IDLE
                                         break;
                                 }

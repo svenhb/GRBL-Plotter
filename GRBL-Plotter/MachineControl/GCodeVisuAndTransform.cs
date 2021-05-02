@@ -49,6 +49,7 @@
  * 2021-02-18 bug fix in addSubroutine, set lastSubroutine = new int[] { 0, 0, 0 };
  * 2021-04-01 #189 line 1620 seperate pen-up arrow-angle
  * 2021-04-13 #189 set initial positon for lastXYG123Position line 421
+ * 2021-04-30 apply height-msp only if (!gcline.ismachineCoordG53 && gcline.isdistanceModeG90)   line 1660
 */
 
 using System;
@@ -343,7 +344,7 @@ namespace GRBL_Plotter
         public static string applyHeightMap(IList<string> oldCode, HeightMap Map)
         {
             maxStep = (float)Map.GridX;
-            getGCodeLines(oldCode, null, null, true);                // read gcode and process subroutines
+            //getGCodeLines(oldCode, null, null, true);                // read gcode and process subroutines
             IList<string> tmp = createGCodeProg(true, true, false, convertMode.nothing).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
             getGCodeLines(tmp, null, null, false);                  // reload code
             return createGCodeProg(false, false, true, convertMode.nothing, Map);        // apply new Z-value;
@@ -673,7 +674,7 @@ namespace GRBL_Plotter
                         addSubroutine(GCode, lastSubroutine[1], lastSubroutine[2], modal.lWord, processSubs);
                     else
                         findAddSubroutine(modal.pWord, GCode, modal.lWord, processSubs);      // scan complete GCode for matching O-word
-                    Logger.Trace("added Subroutine into lineNr:{0} start:{1}  stop:{2}  repeat:{3} processSubs:{4}", lineNr, lastSubroutine[1], lastSubroutine[2], modal.lWord, processSubs);
+                //    Logger.Trace("added Subroutine into lineNr:{0} start:{1}  stop:{2}  repeat:{3} processSubs:{4}", lineNr, lastSubroutine[1], lastSubroutine[2], modal.lWord, processSubs);
                 }
 
                 if (GCode[lineNr].Contains("</"))
@@ -1657,12 +1658,14 @@ namespace GRBL_Plotter
 
                         if ((getCoordinateXY || (gcline.z != null)) && applyNewZ && (Map != null))  //(gcline.motionMode != 0) &&       if (getCoordinateXY && applyNewZ && (Map != null))
                         {
-                            newZ = Map.InterpolateZ(gcline.actualPos.X, gcline.actualPos.Y);
-                            if (gcline.z == null)
-                                gcline.z = gcline.actualPos.Z;
-                            //      infoCode = string.Format("( dZ:{0:0.000} actZ:{1:0.000} )", newZ, gcline.z);
-                            if (gcline.motionMode != 0)
-                            { gcline.z += newZ; }
+                            if (!gcline.ismachineCoordG53 && gcline.isdistanceModeG90)
+                            {   newZ = Map.InterpolateZ(gcline.actualPos.X, gcline.actualPos.Y);
+                                if (gcline.z == null)
+                                    gcline.z = gcline.actualPos.Z;
+                                //      infoCode = string.Format("( dZ:{0:0.000} actZ:{1:0.000} )", newZ, gcline.z);
+                                if (gcline.motionMode != 0)
+                                { gcline.z += newZ; }
+                            }
                         }
 
                         if (specialCmd == convertMode.convertZToS)

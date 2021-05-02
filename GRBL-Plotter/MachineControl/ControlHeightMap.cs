@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
  * 2019-04-06 limit digits to 3, bugfix x3d export '.'-','
  * 2019-08-15 add logger
  * 2020-03-18 bug fix: abort btnLoad_Click - causes main GUI to load an empty map
+ * 2021-04-30 after cancel, fill up missing coordinates line 561
 */
 
 using System;
@@ -104,13 +105,8 @@ namespace GRBL_Plotter
         }
 		
 	/*	private void watchDogTimer()	// what's about feed-hold?
-		{
-			if (scanStarted)
-			{
-				setPosProbe = Map.MinHeight;
-				
-			}
-			
+		{   if (scanStarted)
+			{	setPosProbe = Map.MinHeight;}
 		}*/
 
         public void setBtnApply(bool active)
@@ -322,6 +318,7 @@ namespace GRBL_Plotter
             Cursor.Current = Cursors.Default;
         }
 
+// loadHeightMap;	// in MainFormGetCodeTransform
         private void loadHeightMapToolStripMenuItem_Click(object sender, EventArgs e)
         { btnLoad_Click(sender, e); }
         private void btnLoad_Click(object sender, EventArgs e)
@@ -409,6 +406,8 @@ namespace GRBL_Plotter
 
         private TimeSpan elapsed, elapsedOld;   //elapsed time from file burnin
         private DateTime timeInit;              //time start to burning file
+        
+// applyHeightMap;						// in MainFormGetCodeTransform
         private void btnApply_Click(object sender, EventArgs e)
         { }
 #endregion
@@ -443,6 +442,7 @@ namespace GRBL_Plotter
             }
         }
         public event EventHandler<XYZEventArgs> RaiseXYZEvent;
+// OnRaisePositionClickEvent;				// in MainForm
         protected virtual void OnRaiseXYZEvent(XYZEventArgs e)
         {
             EventHandler<XYZEventArgs> handler = RaiseXYZEvent;
@@ -452,12 +452,16 @@ namespace GRBL_Plotter
             }
         }
 
+/************************************************************************
+***** Generate GCode for probing
+getGCodeScanHeightMap;      // in MainFormGetCodeTransform
+************************************************************************/
         private void btnStartHeightScan_Click(object sender, EventArgs e)
         {
             enableControls(scanStarted);
             if (!scanStarted)
             {
-                Logger.Info("Generate Code");
+                Logger.Info("Generate Height scan Code");
                 isMapOk = false;
                 timeInit = DateTime.UtcNow;
                 elapsed = TimeSpan.Zero;
@@ -554,12 +558,24 @@ namespace GRBL_Plotter
             else
             {   btnStartHeightScan.Text = "Generate Height Map";
                 ControlPowerSaving.EnableStandby();
+                if ((Map != null) && (cntReceived < cntSent))   // fill missing coordiantes
+                {   while (cntReceived < cntSent)
+                    {   setPosProbe = new xyzPoint(0,0,0);
+                        // Map.AddPoint(MapIndex[cntReceived].X, MapIndex[cntReceived].Y, 0.0);
+                        // cntReceived++;
+                    }
+                }                
             }
             scanStarted = !scanStarted;
         }
 
         public bool scanStarted = false;
 
+
+/************************************************************************
+***** Generate GCode for probing
+getGCodeFromHeightMap;      			// in MainFormGetCodeTransform
+************************************************************************/
         private void btnGCode_Click(object sender, EventArgs e)
         {
             if ((Map != null) && (cntReceived == cntSent))

@@ -222,6 +222,7 @@
             this.nUDOffsetX.Name = "nUDOffsetX";
             this.toolTip1.SetToolTip(this.nUDOffsetX, resources.GetString("nUDOffsetX.ToolTip"));
             this.nUDOffsetX.Value = global::GRBL_Plotter.Properties.Settings.Default.probingOffsetX;
+            this.nUDOffsetX.ValueChanged += new System.EventHandler(this.nUDOffset_ValueChanged);
             // 
             // nUDOffsetY
             // 
@@ -231,6 +232,7 @@
             this.nUDOffsetY.Name = "nUDOffsetY";
             this.toolTip1.SetToolTip(this.nUDOffsetY, resources.GetString("nUDOffsetY.ToolTip"));
             this.nUDOffsetY.Value = global::GRBL_Plotter.Properties.Settings.Default.probingOffsetY;
+            this.nUDOffsetY.ValueChanged += new System.EventHandler(this.nUDOffset_ValueChanged);
             // 
             // nUDOffsetZ
             // 
@@ -240,6 +242,7 @@
             this.nUDOffsetZ.Name = "nUDOffsetZ";
             this.toolTip1.SetToolTip(this.nUDOffsetZ, resources.GetString("nUDOffsetZ.ToolTip"));
             this.nUDOffsetZ.Value = global::GRBL_Plotter.Properties.Settings.Default.probingOffsetZ;
+            this.nUDOffsetZ.ValueChanged += new System.EventHandler(this.nUDOffset_ValueChanged);
             // 
             // label14
             // 
@@ -327,6 +330,7 @@
             this.nUDProbeSaveZ.Name = "nUDProbeSaveZ";
             this.toolTip1.SetToolTip(this.nUDProbeSaveZ, resources.GetString("nUDProbeSaveZ.ToolTip"));
             this.nUDProbeSaveZ.Value = global::GRBL_Plotter.Properties.Settings.Default.probingSaveZ;
+            this.nUDProbeSaveZ.ValueChanged += new System.EventHandler(this.nUDProbeSave_ValueChanged);
             // 
             // nUDProbeSaveY
             // 
@@ -341,6 +345,7 @@
             this.nUDProbeSaveY.Name = "nUDProbeSaveY";
             this.toolTip1.SetToolTip(this.nUDProbeSaveY, resources.GetString("nUDProbeSaveY.ToolTip"));
             this.nUDProbeSaveY.Value = global::GRBL_Plotter.Properties.Settings.Default.probingSaveY;
+            this.nUDProbeSaveY.ValueChanged += new System.EventHandler(this.nUDProbeSave_ValueChanged);
             // 
             // nUDProbeSaveX
             // 
@@ -355,6 +360,7 @@
             this.nUDProbeSaveX.Name = "nUDProbeSaveX";
             this.toolTip1.SetToolTip(this.nUDProbeSaveX, resources.GetString("nUDProbeSaveX.ToolTip"));
             this.nUDProbeSaveX.Value = global::GRBL_Plotter.Properties.Settings.Default.probingSaveX;
+            this.nUDProbeSaveX.ValueChanged += new System.EventHandler(this.nUDProbeSave_ValueChanged);
             // 
             // nUDProbeTravelZ
             // 
