@@ -177,4 +177,13 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Информация о шрифте</value>
   </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>Разрыв строки после (ориентировочно)</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>Оценивает длину слова и добавляет разрыв строки после указанной длины</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Инструмент:</value>
+  </data>
 </root>

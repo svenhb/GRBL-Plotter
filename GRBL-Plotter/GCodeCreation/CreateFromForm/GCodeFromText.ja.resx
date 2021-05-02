@@ -183,4 +183,10 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>フォント情報</value>
   </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>後の改行（推定）</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>語長を推定し、指定された長さの後に改行を追加します</value>
+  </data>
 </root>

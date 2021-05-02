@@ -86,6 +86,7 @@ namespace GRBL_Plotter
 			nUDFontSize.Value = Properties.Settings.Default.createTextFontSize;
 			nUDFontLine.Value = Properties.Settings.Default.createTextLineDistance;
 			nUDFontDistance.Value = Properties.Settings.Default.createTextFontDistance;
+            nUDLineBreak.Value = Properties.Settings.Default.createTextLineBreak;
 
             loadPicture("svg");
         }
@@ -107,6 +108,8 @@ namespace GRBL_Plotter
 		{	Properties.Settings.Default.createTextFontSize = nUDFontSize.Value;
 			Properties.Settings.Default.createTextLineDistance = nUDFontLine.Value;
 			Properties.Settings.Default.createTextFontDistance = nUDFontDistance.Value;
+            Properties.Settings.Default.createTextLineBreak = nUDLineBreak.Value;
+
             Logger.Trace("++++++ GCodeFromText STOP ++++++");
             Properties.Settings.Default.createTextFontIndex = cBFont.SelectedIndex;
             Properties.Settings.Default.locationTextForm = Location;
@@ -138,8 +141,11 @@ namespace GRBL_Plotter
             Graphic.graphicInformation.OptionNodesOnly = false;
             Graphic.graphicInformation.OptionSortCode = false;
             Graphic.graphicInformation.OptionZFromWidth = false;
-            
-            GCodeFromFont.getCode();
+
+            if (Properties.Settings.Default.createTextLineBreakEnable)
+                GCodeFromFont.getCode((double)nUDLineBreak.Value);      // do automatic page break
+            else
+                GCodeFromFont.getCode();
             Graphic.CreateGCode();      // result is saved as stringbuilder in Graphic.GCode;
         }
 

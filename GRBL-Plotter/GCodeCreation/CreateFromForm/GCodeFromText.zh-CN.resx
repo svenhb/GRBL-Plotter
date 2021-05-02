@@ -177,4 +177,13 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>字体信息</value>
   </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>断行后（估计）</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>估计单词长度，并在指定长度后添加换行符</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>工具：</value>
+  </data>
 </root>

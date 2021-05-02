@@ -183,4 +183,10 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>معلومات الخط</value>
   </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>فاصل الأسطر بعد (تقديري)</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>تقدير طول الكلمة وإضافة فاصل أسطر بعد الطول المحدد</value>
+  </data>
 </root>

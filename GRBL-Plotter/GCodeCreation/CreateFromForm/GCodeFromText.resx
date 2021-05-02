@@ -138,9 +138,6 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Letter height</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="label1.ToolTip" xml:space="preserve">
     <value>Height of letters</value>
   </data>
@@ -154,7 +151,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="cBFont.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 15</value>
@@ -175,7 +172,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;cBFont.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="btnApply.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -204,6 +201,63 @@
   <data name="&gt;&gt;btnApply.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="nUDLineBreak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>175, 101</value>
+  </data>
+  <data name="nUDLineBreak.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDLineBreak.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="nUDLineBreak.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDLineBreak.Name" xml:space="preserve">
+    <value>nUDLineBreak</value>
+  </data>
+  <data name="&gt;&gt;nUDLineBreak.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDLineBreak.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;nUDLineBreak.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBLineBreak.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBLineBreak.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBLineBreak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 101</value>
+  </data>
+  <data name="cBLineBreak.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 17</value>
+  </data>
+  <data name="cBLineBreak.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>Line break after (estimated)</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>Estimates the word length and adds a line break after the specified length</value>
+  </data>
+  <data name="&gt;&gt;cBLineBreak.Name" xml:space="preserve">
+    <value>cBLineBreak</value>
+  </data>
+  <data name="&gt;&gt;cBLineBreak.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBLineBreak.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;cBLineBreak.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="nUDFontLine.Location" type="System.Drawing.Point, System.Drawing">
     <value>175, 80</value>
   </data>
@@ -226,7 +280,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;nUDFontLine.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -259,7 +313,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="nUDFontDistance.Location" type="System.Drawing.Point, System.Drawing">
     <value>175, 59</value>
@@ -283,7 +337,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;nUDFontDistance.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -316,7 +370,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="nUDFontSize.Location" type="System.Drawing.Point, System.Drawing">
     <value>175, 38</value>
@@ -343,7 +397,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;nUDFontSize.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -744,6 +798,9 @@
   <data name="&gt;&gt;button7.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
@@ -897,6 +954,9 @@
   <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 93</value>
   </data>
@@ -920,6 +980,9 @@
   </data>
   <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -993,9 +1056,6 @@
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -1023,4 +1083,10 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

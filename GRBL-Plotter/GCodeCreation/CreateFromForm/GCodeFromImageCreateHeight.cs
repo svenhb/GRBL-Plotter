@@ -95,6 +95,7 @@ namespace GRBL_Plotter
 
             if (rbEngravingPattern1.Checked)        // horizontal
             {
+                Logger.Info("Create halftone horizontal width:{0} height:{1} resoX:{2} resoY:{3}", resultImage.Width, resultImage.Height, cncPixelResoX, cncPixelResoY);
                 //Start image
                 cncCoordLastX = cncCoordX = pixelPosX = 0;      //Left pixel
                 pixelPosY = resultImage.Height - 1;             //top tile
@@ -169,10 +170,13 @@ namespace GRBL_Plotter
                     if ((percentDone % 10) == 0)
                         Refresh();
                 }
+                lblStatus.Text = "GCode generation finished";
+                Refresh();
             }
             else if (rbEngravingPattern2.Checked)        // diagonal
             {
                 //Start image - diagonal up-left to bottom-right
+                Logger.Info("Create halftone diagonal width:{0} height:{1} resoX:{2} resoY:{3}", resultImage.Width, resultImage.Height, cncPixelResoX, cncPixelResoY);
                 pixelPosX = 0;
                 pixelPosY = 0;
                 if (relative) { finalString.AppendLine("G91G1"); }
@@ -205,15 +209,19 @@ namespace GRBL_Plotter
                     if ((percentDone % 10) == 0)
                         Refresh();
                 }
+                lblStatus.Text = "GCode generation finished";
+                Refresh();
             }
             else if (rbEngravingPattern3.Checked)        // spiral
             {
+                Logger.Info("Create halftone spiral width:{0} height:{1} resoX:{2} resoY:{3}", resultImage.Width, resultImage.Height, cncPixelResoX, cncPixelResoY);
                 createSpiral((float)nUDResoY.Value, cncPixelResoX, resultImage.Width);
                 createScanPath(resultImage.Width, resultImage.Height, resultImage.Width/2, resultImage.Height/2);
                 applyScanPath(useZnotS, relative);
             }
             else
             {
+                Logger.Info("Create halftone external path width:{0} height:{1} resoX:{2} resoY:{3}", resultImage.Width, resultImage.Height, cncPixelResoX, cncPixelResoY);
                 createFrom2DView(cncPixelResoX);
                 createScanPath(resultImage.Width, resultImage.Height,0,0);
                 applyScanPath(useZnotS, relative);

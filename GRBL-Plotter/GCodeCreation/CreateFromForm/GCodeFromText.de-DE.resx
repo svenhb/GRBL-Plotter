@@ -203,4 +203,10 @@ in Setup SVG-Import </value>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Schriftinformationen</value>
   </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>Zeilenumbruch nach (geschätzt)</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>Schätzt die Wortlänge und fügt nach der angegebenen Länge einen Zeilenumbruch hinzu</value>
+  </data>
 </root>

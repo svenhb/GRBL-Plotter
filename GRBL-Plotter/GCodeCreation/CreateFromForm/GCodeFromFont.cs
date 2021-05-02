@@ -123,9 +123,11 @@ namespace GRBL_Plotter
             useSVGFile = true;
         }
 
-        public static void getCode() 
+        public static void getCode(double pageWidth = 0) 
         {   
             double scale = gcHeight / 21;
+            double letterWidth = gcHeight * 1.1;    // scale * 25;
+
             string tmp1 = gcText.Replace('\r', '|');
 
             Logger.Trace("Create GCode, text length {0}, font '{1}', Text '{2}'", gcText.Length, gcFontName, tmp1.Replace('\n', ' '));
@@ -133,20 +135,26 @@ namespace GRBL_Plotter
 
             useSVGFile = false;
             useLFF = false;
+            bool SVGFromArray = false;
+
             string fileName = "";
             //            if (gcFontName.IndexOf(@"fonts\") >= 0)     // file path included?
             if (gcFontName.ToLower().EndsWith(".svg") || gcFontName.ToLower().EndsWith(".lff"))    // file path included?
                 fileName = datapath.fonts + "\\" + gcFontName;
-
+           
             if (gcFontName != "")
             {   if (File.Exists(fileName))
                 {   Graphic.SetHeaderInfo(" Font from file: "+fileName);
                     if (fileName.ToLower().EndsWith(".svg"))
-                    {   loadSVGFont(fileName); }
+                    {   loadSVGFont(fileName);
+                        scale = gcHeight / (21 * 31.52);
+                        letterWidth = gcHeight * 1.1;    //scale * 700;
+                    }
                     else
                     {
                         fileContent = File.ReadAllLines(fileName);
                         scale = gcHeight / 9;
+                        letterWidth = gcHeight * 1.1;    //scale * 6.8;
                         useLFF = true;
                         offsetY = 0;
                         gcLineDistance = 1.667 * gcSpacing;
@@ -172,7 +180,7 @@ namespace GRBL_Plotter
                         return;
                     }
                     else
-                    { Graphic.SetHeaderInfo(" Font from array: " + gcFontName); }
+                    {   Graphic.SetHeaderInfo(" Font from array: " + gcFontName); SVGFromArray = true; }
 
                 }
             }
@@ -188,10 +196,58 @@ namespace GRBL_Plotter
                 gcOffY -= gcHeight;
 
             string[] lines;
+            // split by ' ' to seperate words, after each word, check width, add \n if pageWidth is exceeded
+            // char-width = ca. scale * x;
             if (gcText.IndexOf("\\P") >= 0)
-            {   gcText = gcText.Replace("\\P", "\n"); }
-            lines = gcText.Split('\n');
+            { gcText = gcText.Replace("\\P", "\n"); }
+            if (pageWidth > 0)
+            {
+                List<string> newLines = new List<string>();
+                string oneLine = "";
+                string[] words = gcText.Split(' ');
+                double lineLength = 0;
+                double hScale = letterWidth + gcFontDistance; 
+                double space = 0;
+                int charCount=0;
+                Logger.Trace("scale:{0}  hscale:{1}", scale, hScale);
 
+                if (words.Length > 0)
+                {
+                    for (int w = 0; w < words.Length; w++)
+                    {   oneLine += words[w].TrimStart();
+                        charCount += words[w].Length;
+                        if (oneLine.Contains("\n"))
+                        {
+                            string[] wordLine = oneLine.Split('\n');
+                            for (int k = 0; k < wordLine.Length - 1; k++)
+                            {   newLines.Add(wordLine[k].Trim()); }         // add complete lines
+
+                            oneLine = wordLine[wordLine.Length-1];          // keep last line
+                            charCount = oneLine.Length;
+                            space = 0;
+                        }
+                        if (space + (charCount * hScale) >= pageWidth)      // actual line too long?
+                        {
+                            newLines.Add(oneLine);
+                            oneLine = ""; space = 0; charCount = 0;
+                        }
+                        // actual line.length ok, but next word causes overrun
+                        else if ((w < (words.Length - 1)) && (space + ((charCount + words[w + 1].Length + 1) * hScale) >= pageWidth))
+                        {
+                            newLines.Add(oneLine);
+                            oneLine = ""; space = 0; charCount = 0;
+                        }
+                        else
+                        { oneLine += " "; space += gcWordSpacing * scale; }
+                    }
+                    newLines.Add(oneLine);
+                }
+                lines = newLines.ToArray();
+            }
+            else
+            {
+                lines = gcText.Split('\n');
+            }
             int maxCharCount = 0;
             foreach (string tmp in lines)
             { maxCharCount = Math.Max(maxCharCount, tmp.Length); }

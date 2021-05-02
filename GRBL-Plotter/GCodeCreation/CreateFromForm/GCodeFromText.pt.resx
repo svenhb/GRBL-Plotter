@@ -177,4 +177,10 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Informação da fonte</value>
   </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>Quebra de linha após (estimado)</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>Estima o comprimento da palavra e adiciona uma quebra de linha após o comprimento especificado</value>
+  </data>
 </root>

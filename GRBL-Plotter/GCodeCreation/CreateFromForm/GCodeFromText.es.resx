@@ -177,4 +177,10 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Información de fuentes</value>
   </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>Salto de línea después (estimado)</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>Calcula la longitud de la palabra y agrega un salto de línea después de la longitud especificada</value>
+  </data>
 </root>
