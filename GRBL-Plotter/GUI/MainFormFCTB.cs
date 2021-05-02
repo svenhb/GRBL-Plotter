@@ -378,7 +378,7 @@ namespace GRBL_Plotter
            //             toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
                     }
                     catch (Exception er)
-                    {   Logger.Error(er, "fCTBCodeMarkLine fCTBCodeClickedLineLast:{0} fCTBCodeClickedLineNow:{1} ", fCTBCodeClickedLineLast, fCTBCodeClickedLineNow);  }
+                    {   Logger.Error(er, "fCTBCodeMarkLine fCTBCodeClickedLineLast:{0} fCTBCodeClickedLineNow:{1} FCTBLinesCount:{2}", fCTBCodeClickedLineLast, fCTBCodeClickedLineNow, fCTBCode.LinesCount);  }
                 }
             }
         }

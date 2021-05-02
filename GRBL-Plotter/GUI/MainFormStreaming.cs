@@ -94,9 +94,10 @@ namespace GRBL_Plotter
                         if (notifierUpdateMarker)
                         {
                             notifierUpdateMarker = false;
-                            string msg = string.Format("{0}Duration   : {1} min.\r\nCode line  : {2}\r\nProcessed: {3:0.0} %\r\nGrbl Buffer: {4:0.0} %\r\nTime stamp: {5}", "", elapsed.Minutes, e.CodeLineSent, e.CodeProgress, e.BuffProgress, getTimeStampString());//Properties.Settings.Default.notifierMessageProgress
+                            string etime = string.Format("{0:00}:{1:00} hrs", elapsed.Hours, elapsed.Minutes);
+                            string msg = string.Format("{0}Duration   : {1} \r\nCode line  : {2,6}\r\nProcessed: {3,4:0.0} %\r\nGrbl Buffer: {4,3:0} %\r\nTime stamp: {5}", "", etime, e.CodeLineSent, e.CodeProgress, e.BuffProgress, getTimeStampString());//Properties.Settings.Default.notifierMessageProgress
                             if (Properties.Settings.Default.notifierMessageProgressTitle)
-                                Notifier.sendMessage(msg, string.Format("{0:0.0} %", e.CodeProgress));    
+                                Notifier.sendMessage(msg, string.Format("{0,4:0.0} %", e.CodeProgress));    
                             else
                                 Notifier.sendMessage(msg);                             
                         }

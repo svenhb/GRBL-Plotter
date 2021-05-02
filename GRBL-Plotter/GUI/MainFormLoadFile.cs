@@ -688,7 +688,7 @@ namespace GRBL_Plotter
                 statusStripSet(1, importOptions, Color.Yellow);
                 Logger.Info(" {0}", importOptions);
             }
-            Logger.Info(" ImportOptions: {0}", importOptions);
+//            Logger.Info(" ImportOptions: {0}", importOptions);
         }
         private void foldCode()
         {
