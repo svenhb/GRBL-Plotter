@@ -1,8 +1,52 @@
 ## History
 Needs to be read from the bottom up ;-)  
  
-### 2021-01-17 Version 1.5.5.0    
+ 
+### 2021-03 Version 1.5.8.x
+- Improoved halftone processing 
+- Probing dialog: avoid crash into touch plate by keeping "Save distance" higher than "Touch plate dimension" #196 
+- Text import: insert line break after reaching certain line length (by estimating an word lengths) #197 
+
+Bug fixes: 
+- #188 don't send further grbl-comments to 3rd serial 
+- #189 wrong angle of first arrow in 2D-view pen-up path 
+- #191 New option for GCode-modification - Split original moves: sent pen-up/down before/after script 
+- #192 Overlap paths at tile borders / Display tile borders and numbers 
+- #199 "Kill Alarm" didn't worked 
+ 
+ 
+### 2021-02 Version 1.5.7.x
+- New option: ramp down to "Pen-down" position (when using a brush) 
+- Text to GCode: Support of SVG Font files (https://gitlab.com/oskay/svg-fonts) #185 
+- Code repetition: option to repeate code including header and footer #186 
+- To make the scripts more variable, the pen-up/down code will be available as subroutines O97 and O98 - callable from the tool-change scripts. Then it's easier to switch from real Z movement to servo-control. 
+- Option to control the servo during setup of the Servo PWM values 
+
+Bug fixes: 
+- Bug fix: Text to Gcode - allow leading space 
+- Bug fix: Using Z-Axis with 'several passes': inital 'Pen up' was nok 
+- Bug fix: described in #186 MainFormStreaming - Line 186 
+- Improovement in Tool change script handling #184 
+- Subroutines O97 and O98 will only be generated if subroutine calls are found in tool-change scripts. 
+- Fixed Problem: during streaming, sometimes commands are missing. 
+- Bug fix in Tool change script handling #184 
+ 
+ 
+### 2021-02 Version 1.5.6.x 
+- Problem: If using a servo (controlled via spindle PWM) the PWM will be set to '0' on program end M30 (because grbl will reset the parser state).
+Depending on hardware setup, this will lower the pen and draw a dot.
+To avoid this, the only way is to skip the M30 command.
+- GampePad: add PointOfViewControllers0
+- Simple Shapes: add "Round off Z" to generate 1/4 circle round off on edge of workpiece 
+  
+
+ 
+### 2021-01  Version 1.5.5.x    
 New features: 
+- Tool change scripts: adjustable delay after script 
+- Improoved streaming: synchronize streaming feedback with status polling frequency 
+- Option to add a frame 
+- Option to multiply graphics in x in y direction 
 - Added a 3rd serial com - without grbl handling [Menu - Machine control - Control 3rd serial COM] needed for #159 
 - Check GCode for bad G2/3 code which causes grbl error 33  
 - Added Arduino-Nano binary 'grbl_v1.1f_Servo_switch_dir_step.hex' for use with cheap nano-cnc-shield where dir and step pins are switched,
