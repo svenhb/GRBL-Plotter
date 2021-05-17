@@ -25,7 +25,7 @@ Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Don
 * Bug fix #186  
 * Verbesserung im Tool change Skript handling 
 * Subroutines O97/98 (pen-up/-down) werden nur erstellt, wenn eine Verwendung festgestellt wird 
-* Bug fix: während des Streamens gehen selten Befehlre verloren 
+* Bug fix: während des Streamens gehen selten Befehle verloren 
 
 ### Neu in Version 1.5.6.x  
 * Option um M30 nicht zu senden (Bei PWM Nutzung für RC-Servo: nach M30 wird der PWM-Wert auf 0 gesetzt)
