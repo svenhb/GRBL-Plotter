@@ -11,6 +11,7 @@ Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Don
 * Bug fix #188 keine Kommentare an 3te serielle Schnittstelle senden 
 * Bug fix #189 falscher Winkel für ersten Pfeil im Pen-up Pfad 
 * Neue Option #191 sende Pen-up/-down vor/nach dem Skript 
+* Neue Option #192 Pfadüberlappung an Kachelgrenzen und Anzeige der Kachelnummern und -Grenzen 
 * Bug fix #199 Kill Alarm funktioniert nicht
 
 ### Neu in Version 1.5.7.x  
