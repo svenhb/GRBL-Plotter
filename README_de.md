@@ -5,9 +5,9 @@ Geschrieben in C# VisualStudio 2015.
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
 ### Neu in Version 1.5.8.x  
-* Bildimport: Verbesserte Halbton Verabreitung
-* Probing-Dialog: Um einen Crash mit der Tastplatte zu vermeiden, wird der 'Sicherheitsabstand' auf einen höheren Wer gesetzt als die Tastplattendicke 
-* Text Import: Automatischer Zeilenumbruch nach erreichen einer definierten Textlänge 
+* Bildimport: Verbesserte Grauwert (Halbton) Verarbeitung: Grauwert nach PWM-Wert für Strichbreite, gesteuert durch Andruck (RC-Servo).
+* Probing-Dialog: Um einen Crash mit der Tastplatte zu vermeiden, wird der 'Sicherheitsabstand' auf einen höheren Wert gesetzt als die Tastplattendicke 
+* Text Import: Automatischer Zeilenumbruch nach Erreichen einer definierten Textlänge (in mm) 
 * Bug fix #188 keine Kommentare an 3te serielle Schnittstelle senden 
 * Bug fix #189 falscher Winkel für ersten Pfeil im Pen-up Pfad 
 * Neue Option #191 sende Pen-up/-down vor/nach dem Skript 
