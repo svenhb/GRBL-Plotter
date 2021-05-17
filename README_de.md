@@ -4,6 +4,29 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2015.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+### Neu in Version 1.5.8.x  
+* Bildimport: Verbesserte Halbton Verabreitung
+* Probing-Dialog: Um einen Crash mit der Tastplatte zu vermeiden, wird der 'Sicherheitsabstand' auf einen höheren Wer gesetzt als die Tastplattendicke 
+* Text Import: Automatischer Zeilenumbruch nach erreichen einer definierten Textlänge 
+* Bug fix #188 keine Kommentare an 3te serielle Schnittstelle senden 
+* Bug fix #189 falscher Winkel für ersten Pfeil im Pen-up Pfad 
+* Neue Option #191 sende Pen-up/-down vor/nach dem Skript 
+* Bug fix #199 Kill Alarm funktioniert nicht
+
+### Neu in Version 1.5.7.x  
+* Neue Option: Rampe fahren bei Pen-down (für Pinselbenutzung) 
+* Text to GCode: Unterstützung von SVG Fonts #185 
+* Code Wiederholungen: Option den Code inklusive Header und Footer zu wiederholen 
+* Pen-up/-down code als Subroutine verfügbar für externe Skripte (Tool change) 
+* Servo_PWM kann im Setupdialog gesendet werden 
+* Bug fix: Text to GCode, führende Leerzeichen erlauben 
+* Bug fix: Nutzung der Z-Achse mit mehreren Durchgängen: Initiale Z Höhe war nok 
+* Bug fix #186
+
+### Neu in Version 1.5.6.x  
+
+### Neu in Version 1.5.5.x  
+
 ### Neu in Version 1.5.4.x  
 * Unterstützung des Marlin Protokolls  
 
