@@ -21,11 +21,25 @@ Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Don
 * Servo_PWM kann im Setupdialog gesendet werden 
 * Bug fix: Text to GCode, führende Leerzeichen erlauben 
 * Bug fix: Nutzung der Z-Achse mit mehreren Durchgängen: Initiale Z Höhe war nok 
-* Bug fix #186
+* Bug fix #186  
+* Verbesserung im Tool change Skript handling 
+* Subroutines O97/98 (pen-up/-down) werden nur erstellt, wenn eine Verwendung festgestellt wird 
+* Bug fix: während des Streamens gehen selten Befehlre verloren 
 
 ### Neu in Version 1.5.6.x  
+* Option um M30 nicht zu senden (Bei PWM Nutzung für RC-Servo: nach M30 wird der PWM-Wert auf 0 gesetzt)
+* Game Pad: Verarbeitung der Steuersignale PointOfViewControllers0
+* Simple shapes: Eckenabrundung durch 1/4 Kreis 
 
 ### Neu in Version 1.5.5.x  
+* Tool change Skripte: variables Delay nach Skriptausführung 
+* Verbessertes streamen: Synchronisierung von GUI update und Statuspolling 
+* Neue Option: Rahmen um Grafik 
+* Neue Option: Grafikvervielfältigung in X und Y Richtung 
+* 3te serielle Verbindung hinzugefügt (ohne grbl handling) #159 
+* GCode check auf G2/3 Fehler, welche Error 33 verursachen 
+* Hexfile hinzugefügt 'grbl_v1.1f_Servo_switch_dir_step.hex' 
+* Neues Fenster: Jog path creator 
 
 ### Neu in Version 1.5.4.x  
 * Unterstützung des Marlin Protokolls  
