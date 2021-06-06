@@ -50,6 +50,7 @@
  * 2021-01-20 move code for camera handling from here to 'MainFormGetCodetransform'
  * 2021-02-01 line 802 change 0 to 0.000
  * 2021-02-24 save Pen up/down buttons visibillity status
+ * 2021-05-19 processCommands line 975 also load ini file
  */
 
 using System;
@@ -959,10 +960,10 @@ namespace GRBL_Plotter
         private void processCommands(string command)
         {   if (command.Length <= 1)
                 return;
-            if (!_serial_form.serialPortOpen)
+  /*          if (!_serial_form.serialPortOpen)
             {   _serial_form.addToLog("serial port is closed");
                 return;
-            }
+            }*/
             string[] commands= { };
             //            Logger.Trace("processCommands");
 
@@ -970,15 +971,32 @@ namespace GRBL_Plotter
             {
                 if (File.Exists(command))
                 {
-                    string fileCmd = File.ReadAllText(command);
-                    _serial_form.addToLog("* File: " + command);
-                    commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    if (command.EndsWith(".ini"))
+                    {   var MyIni = new IniFile(command);
+                        Logger.Info("Load INI: '{0}'", command);
+                        MyIni.ReadAll();    // ReadImport();
+                        timerUpdateControlSource = "loadFile";
+                        updateControls();
+                        updateLayout();
+                        statusStripSet(2, "INI File '"+command+"' loaded", Color.Lime);
+                        return;
+                    }
+                    else
+                    {   string fileCmd = File.ReadAllText(command);
+                        _serial_form.addToLog("* File: " + command);
+                        commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    }
                 }
                 else
                     _serial_form.addToLog("Script/file does not exists: "+ command);
             }
             else
             {   commands = command.Split(';'); }
+
+            if (!_serial_form.serialPortOpen)
+            {   _serial_form.addToLog("serial port is closed");
+                return;
+            }
 
             if (_diyControlPad != null)
             {   _diyControlPad.isHeightProbing = false; }

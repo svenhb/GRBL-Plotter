@@ -36,6 +36,7 @@
  * 2020-12-01 newCodeEnd line 174 add Application.DoEvents()
  * 2021-02-06 lock saveStreamingStatus() line 1677
  * 2021-03-28 btnSaveFile_Click save last path
+ * 2021-05-18 line 250 check parser result
 */
 
 using System;
@@ -246,10 +247,14 @@ namespace GRBL_Plotter
                         int end = errline.IndexOf("]");
                         if ((strt >= 0) && (end > strt))
                         {
-                            int errorLine = 0;
-                            int.TryParse(errline.Substring(strt + 1, end - 1), out errorLine);
-                            ErrorLines.Add(errorLine-1);
-                            markErrorLine(errorLine-1);
+                            int errorLine = 1;
+                            string numstr = errline.Substring(strt + 1, end - 2);
+                            bool  parseOk = int.TryParse(numstr, out errorLine);
+                            Logger.Trace("Mark error line:{0} start:{1} end:{2} from string:'{3}'  parseOk:{4}", errorLine, strt, end, numstr, parseOk);
+                            if (parseOk && (errorLine > 0) && (errorLine < fCTBCode.LinesCount))
+                            {   ErrorLines.Add(errorLine - 1);
+                                markErrorLine(errorLine - 1);
+                            }
                         }
                     }
                     MessageBox.Show("Errors in GCode, please check:\r\n\r\n" + VisuGCode.errorString,"Attention");
@@ -279,7 +284,7 @@ namespace GRBL_Plotter
                 timerUpdateControlSource = "loadFile";
                 updateControls();
                 updateLayout();
-                statusStripSet(2, "INI File loaded", Color.Lime);
+                statusStripSet(2, "INI File '" + fileName + "' loaded", Color.Lime);
                 return true;
 			}
 			else
@@ -444,7 +449,7 @@ namespace GRBL_Plotter
                 timerUpdateControlSource = "tBURL_TextChanged";
                 updateControls();
                 updateLayout();
-                statusStripSet(2, "INI File loaded", Color.Lime);
+                statusStripSet(2, "INI File '"+ tBURL.Text + "' loaded", Color.Lime);
                 return;
 			}
 															  
@@ -543,7 +548,7 @@ namespace GRBL_Plotter
 
         private void startConvert(Graphic.SourceTypes type, string source)
         {
-            Logger.Info("startConvert" + type.ToString());
+            Logger.Info("startConvert type:{0}  source:{1}", type.ToString(), source);
             UseCaseDialog();
             newCodeStart();
             statusStripSet(0, "Start import of vector graphic, read graphic elements, process options", Color.Yellow);
@@ -551,12 +556,14 @@ namespace GRBL_Plotter
             string conversionInfo = "";
 
             /* Show modal progress Dialog if file size is too big */
-            FileInfo fs = new FileInfo(source);
-            int sizeLimit = 250;
-            long filesize = fs.Length / 1024;
-            bool showProgress = filesize > sizeLimit;
-
-            Logger.Info("File size:{0} KB  sizeLimit:{1} KB  Import-showProgress:{2}", filesize, sizeLimit, showProgress);
+            bool showProgress = false;
+            if (!source.StartsWith("http"))
+            {   FileInfo fs = new FileInfo(source);
+                int sizeLimit = 250;
+                long filesize = fs.Length / 1024;
+                showProgress = filesize > sizeLimit;
+                Logger.Info("File size:{0} KB  sizeLimit:{1} KB  Import-showProgress:{2}", filesize, sizeLimit, showProgress);
+            }
             loadTimerStep = 0;
 
             if (showProgress)
@@ -798,7 +805,7 @@ namespace GRBL_Plotter
                 var MyIni = new IniFile(openFileDialog1.FileName);
                 MyIni.ReadAll();
                 loadSettings(sender, e);
-                Logger.Info("Save machine parameters as {0}", openFileDialog1.FileName);
+                Logger.Info("Load machine parameters as {0}", openFileDialog1.FileName);
             }
         }
 
