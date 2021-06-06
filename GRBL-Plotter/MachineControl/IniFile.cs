@@ -310,6 +310,11 @@ namespace GRBL_Plotter
                 Write("PWM Up Dly", setup.importGCPWMDlyUp.ToString(), section);
                 Write("PWM Down Val", setup.importGCPWMDown.ToString(), section);
                 Write("PWM Down Dly", setup.importGCPWMDlyDown.ToString(), section);
+                Write("PWM Zero Val", setup.importGCPWMZero.ToString(), section);
+                Write("PWM P93 Val", setup.importGCPWMP93.ToString(), section);
+                Write("PWM P93 Dly", setup.importGCPWMDlyP93.ToString(), section);
+                Write("PWM P94 Val", setup.importGCPWMP94.ToString(), section);
+                Write("PWM P94 Dly", setup.importGCPWMDlyP94.ToString(), section);                
                 Write("PWM Skip M30", setup.importGCPWMSkipM30.ToString(), section);
             }
 
@@ -813,6 +818,11 @@ namespace GRBL_Plotter
             if (setVariable(ref tmpdeci, section, "PWM Up Dly")) { setup.importGCPWMDlyUp = tmpdeci; }
             if (setVariable(ref tmpdeci, section, "PWM Down Val")) { setup.importGCPWMDown = tmpdeci; }
             if (setVariable(ref tmpdeci, section, "PWM Down Dly")) { setup.importGCPWMDlyDown = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "PWM Zero Val")) { setup.importGCPWMZero = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "PWM P93 Val")) { setup.importGCPWMP93 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "PWM P93 Dly")) { setup.importGCPWMDlyP93 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "PWM P94 Val")) { setup.importGCPWMP94 = tmpdeci; }
+            if (setVariable(ref tmpdeci, section, "PWM P94 Dly")) { setup.importGCPWMDlyP94 = tmpdeci; }
             if (setVariable(ref tmpbool, section, "PWM Skip M30")) { setup.importGCPWMSkipM30 = tmpbool; }
 
             if (setVariable(ref tmpbool, section, "Individual enable")) { setup.importGCIndEnable = tmpbool; }

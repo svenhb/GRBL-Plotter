@@ -110,7 +110,7 @@ namespace GRBL_Plotter
 		}*/
 
         public void setBtnApply(bool active)
-        { if (active)
+        {   if (active)
             { btnApply.Text = "Apply Height Map"; }
             else
             { btnApply.Text = "Remove Height Map"; }
@@ -452,10 +452,28 @@ namespace GRBL_Plotter
             }
         }
 
-/************************************************************************
-***** Generate GCode for probing
-getGCodeScanHeightMap;      // in MainFormGetCodeTransform
-************************************************************************/
+        ToolTip tt = new ToolTip();
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Map != null)
+            {
+                double iX = (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X) / pictureBox1.Width);
+                double iY = (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
+                double relposX = Map.Delta.X * iX;
+                double relposY = Map.Delta.Y - Map.Delta.Y * iY;
+                double posX = Map.Min.X + relposX;
+                double posY = Map.Min.Y + relposY;
+                double? posZ = Map.GetPoint((int)(iX*Map.SizeX), (int)(iY*Map.SizeY));
+    //            ToolTip tt = new ToolTip();
+    //            tt.SetToolTip(this.pictureBox1, string.Format("X:{0:0.00} Y:{1:0.00}  Z:{2:0.00}", posX, posY, posZ));
+                tt.SetToolTip(this.pictureBox1, string.Format("X:{0:0.00} Y:{1:0.00}  Z:{2:0.00}", posX, posY, posZ));
+            }
+        }
+
+        /************************************************************************
+        ***** Generate GCode for probing
+        getGCodeScanHeightMap;      // in MainFormGetCodeTransform
+        ************************************************************************/
         private void btnStartHeightScan_Click(object sender, EventArgs e)
         {
             enableControls(scanStarted);
@@ -617,6 +635,7 @@ getGCodeFromHeightMap;      			// in MainFormGetCodeTransform
                 scanCode.AppendFormat("{0}", gcode.GetFooter());
             }
         }
+
         private void moveXYZ(StringBuilder tmpCode, int ix, int iy)
         {   Vector2 tmp = Map.GetCoordinates(ix, iy);
             double z = (double)Map.GetPoint(ix, iy);
@@ -756,7 +775,9 @@ getGCodeFromHeightMap;      			// in MainFormGetCodeTransform
         }
         public double? GetPoint(int x, int y)
         {
-            return Points[x, y];
+            if ((x >= 0) && (x < SizeX) && (y >= 0) && (y < SizeY))
+                return Points[x, y];
+            return null;
         }
         public void setZOffset(double offset)
         {   for (int iy = 0; iy < SizeY; iy++)

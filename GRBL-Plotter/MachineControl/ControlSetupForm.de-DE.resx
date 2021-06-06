@@ -461,7 +461,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
   <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
     <value>Offset abhängig von Schnitttiefe Z in %</value>
-    <comment>TabPage1_3</comment>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCDragKnifePercent.ToolTip" xml:space="preserve">
     <value>Offset abhängig von Schnitttiefe Z in %</value>
@@ -469,11 +469,11 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   </data>
   <data name="nUDImportGCDragKnifeAngle.ToolTip" xml:space="preserve">
     <value>Nötige Winkeländerung zwischen zwei Strecken bevor ein Kreissegment eingefügt wird.</value>
-    <comment>TabPage1_3</comment>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportGCDragKnifeLength.ToolTip" xml:space="preserve">
     <value>Offset zum Drehpunkt. Bei Schleppmessern ca. 0,3 mm.</value>
-    <comment>TabPage1_3</comment>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCDragKnife.Text" xml:space="preserve">
     <value>Schleppwerkzeug Kompensation</value>
@@ -486,7 +486,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
   <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
     <value>Schrittweite am Umfang des Bogens.
 Wenn der Wert&gt; Bogenradius ist, wird der Wert automatisch verringert.</value>
-    <comment>TabPage1_3</comment>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCSubFirst.Text" xml:space="preserve">
     <value>Unterprog. auch bei Pfadstart</value>
@@ -1468,7 +1468,7 @@ Relativer Dateipfad beginnt hier:
   </data>
   <data name="tab7gB1.Text" xml:space="preserve">
     <value>GamePad Tastenzuordnung</value>
-    <comment>TabPage7</comment>
+    <comment>ok</comment>
   </data>
   <data name="tab7gB1lbl1.Text" xml:space="preserve">
     <value>Drücke Tasten auf dem GamePad um die Tastenzuordnung zu überprüfen.
@@ -1490,7 +1490,7 @@ Achsen zuweisen und Richtung umkehren
 Aktualisierungsintervall = 50ms.
 
 Das Setup-Fenster muss geschlossen werden, damit das GamePad in der GUI verwendet werden kann.</value>
-    <comment>TabPage7</comment>
+    <comment>ok</comment>
   </data>
   <data name="tab8gB2.Text" xml:space="preserve">
     <value>Farben der 2D Vorschau</value>
@@ -1570,95 +1570,125 @@ Das Setup-Fenster muss geschlossen werden, damit das GamePad in der GUI verwende
   </data>
   <data name="tab7gB2lbl3.Text" xml:space="preserve">
     <value>Minimale Schrittweite unter dem angegebenen Wert</value>
+    <comment>ok</comment>
   </data>
   <data name="tab7gB2lbl5.Text" xml:space="preserve">
     <value>Vorschubgeschwindigkeit</value>
+    <comment>ok</comment>
   </data>
   <data name="tab7gB2lbl4.Text" xml:space="preserve">
     <value>Einheiten</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDMinimum.ToolTip" xml:space="preserve">
     <value>Zwischen diesem Wert und der Totzone werden die angegebene Schrittweite und Vorschubrate gesendet - wenn nur eine Joystick-Achse aktiviert ist.
 In diesem Fall beträgt das Wiederholungsintervall 200 ms anstatt 50 ms.</value>
+    <comment>ok</comment>
   </data>
   <data name="tab7gB2lbl2.Text" xml:space="preserve">
     <value>Totbereich</value>
+    <comment>ok</comment>
   </data>
   <data name="tab7gB2lbl1.Text" xml:space="preserve">
     <value>Offset für die Mittenposition</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDOffset.ToolTip" xml:space="preserve">
     <value>Subtrahend, um '0' in Mittelstellung zu bekommen.
 Bewegen Sie den Joystick, nachdem Sie den Versatz geändert haben.</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDDead.ToolTip" xml:space="preserve">
     <value>Mindestwert, der erreicht werden muss, bevor ein Tippbefehl gesendet wird.</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Analoge Joystick-Einstellungen</value>
+    <comment>ok</comment>
   </data>
   <data name="lblValR.Text" xml:space="preserve">
     <value>-</value>
+    <comment>ok</comment>
   </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>Wert mit angewendetem Offset</value>
+    <comment>ok</comment>
   </data>
   <data name="lblValY.Text" xml:space="preserve">
     <value>-</value>
+    <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>Wert mit angewendetem Offset</value>
+    <comment>ok</comment>
   </data>
   <data name="lblValZ.Text" xml:space="preserve">
     <value>-</value>
+    <comment>ok</comment>
   </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>Wert mit angewendetem Offset</value>
+    <comment>ok</comment>
   </data>
   <data name="lblValX.Text" xml:space="preserve">
     <value>-</value>
+    <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
     <value>Wert mit angewendetem Offset</value>
+    <comment>ok</comment>
   </data>
   <data name="tBRAxis.ToolTip" xml:space="preserve">
     <value>G-Code Achse welche angesprochen werden soll</value>
+    <comment>ok</comment>
   </data>
   <data name="tBZAxis.ToolTip" xml:space="preserve">
     <value>G-Code Achse welche angesprochen werden soll</value>
+    <comment>ok</comment>
   </data>
   <data name="tBYAxis.ToolTip" xml:space="preserve">
     <value>G-Code Achse welche angesprochen werden soll</value>
+    <comment>ok</comment>
   </data>
   <data name="tBXAxis.ToolTip" xml:space="preserve">
     <value>G-Code Achse welche angesprochen werden soll</value>
+    <comment>ok</comment>
   </data>
   <data name="trackBarR.ToolTip" xml:space="preserve">
     <value>Wert des Joystick R-Kanals</value>
+    <comment>ok</comment>
   </data>
   <data name="trackBarZ.ToolTip" xml:space="preserve">
     <value>Wert des Joystick-Z-Kanals</value>
+    <comment>ok</comment>
   </data>
   <data name="trackBarY.ToolTip" xml:space="preserve">
     <value>Wert des Joystick Y-Kanals</value>
+    <comment>ok</comment>
   </data>
   <data name="trackBarX.ToolTip" xml:space="preserve">
     <value>Wert des Joystick X-Kanals</value>
+    <comment>ok</comment>
   </data>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
     <value>Stiftbreite beim Zoomen nicht anpassen</value>
+    <comment>ok</comment>
   </data>
   <data name="cBgrblTranslate.Text" xml:space="preserve">
     <value>grbl-Nachrichten übersetzen</value>
+    <comment>ok</comment>
   </data>
   <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
     <value>grbl Nachrichten übersetzen wie z.B. IDLE, RUN, HOLD</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCTangential.Text" xml:space="preserve">
     <value>Tangentialachse hinzufügen</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_3gB5.Text" xml:space="preserve">
     <value>Tangentialachsenbefehle</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGSort3.Text" xml:space="preserve">
     <value>Gruppen nach Pfadlänge sortieren - absteigend</value>
@@ -1666,108 +1696,141 @@ Bewegen Sie den Joystick, nachdem Sie den Versatz geändert haben.</value>
   </data>
   <data name="lblDImportGCTangential3.Text" xml:space="preserve">
     <value>Einheiten pro Umdrehung</value>
+    <comment>ok</comment>
   </data>
   <data name="lblDImportGCTangential2.Text" xml:space="preserve">
     <value>Schwenkwinkel</value>
+    <comment>ok</comment>
   </data>
   <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
     <value>Wenn die Winkeländerung größer als der Schwenkwinkel ist,
 Die Z-Achse wird nach oben verschoben
 Achse dreht sich
 Die Z-Achse wird nach unten verschoben</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
     <value>Änderung des Winkels, bevor das Messer angehoben, gedreht und abgesenkt wird</value>
+    <comment>ok</comment>
   </data>
   <data name="lblDImportGCTangential1.Text" xml:space="preserve">
     <value>Name der Tangentialachse</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_2lbl31.Text" xml:space="preserve">
     <value>Z Vorschub</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
     <value>Werkzeugwinkel auf &gt; = 0 °, &lt;360 ° begrenzen</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
     <value>Verwenden Sie diese Option, um Winkel unter 0 ° und über 360 ° zu vermeiden.
 Funktioniert nicht mit G2 / 3 - aktiviere 'G2 / 3-Befehle vermeiden'</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
     <value>Konvertiert die Mitte des Kreises in einen Punkt (zum Bohren).</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDSimulation.ToolTip" xml:space="preserve">
     <value>Stiftbreite</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Bildkonvertierung</value>
+    <comment>ok</comment>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Konvertiert Standbilder in verschnörkelte Linien, die zum Zeichnen geeignet sind</value>
+    <comment>ok</comment>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Erstellt Punktzeichnungen und „TSP-Grafiken“ aus Bilddateien.</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
     <value>Konvertiert den Kreisradius in Punkttiefe</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
     <value>Die Tiefe ist auf die Gravur "Z-Höhe" begrenzt.
 Idee: Verwendung eines Senkers, um den Kreisadurchmesser festzulegen</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
     <value>Verwenden Sie einen Bohrer, um die Kreismitte mit der Tiefe der Gravur "Z-Höhe" zu markieren</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
     <value>Versetzt den Grafikursprung auf 0; 0</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
     <value>Setzt den unteren linken Rand der importierten Grafik auf die xy-Koordinate 0; 0</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
     <value>Sortiert die Objekte nach kürzesten Verbindungen und führt sie zusammen</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
     <value>Objekte werden nach dem nächstgelegenen Abstand zwischen Start- und Endkoordinaten sortiert, und falls von Vorteil, wird der Pfad der Objekte umgekehrt.
 Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage16.Text" xml:space="preserve">
     <value>Formatbezogen</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Pfadinterpretation</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Pfadwiederholung (für schwachen Laser)</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
     <value>G-Code Aussehen</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Ablaufsteuerung</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_1_2lbl2.Text" xml:space="preserve">
     <value>Abstand als gleich anzunehmen</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
     <value>Kleine Lücken werden geschlossen</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage17.Text" xml:space="preserve">
     <value>Allgemeine Optionen</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage20.Text" xml:space="preserve">
     <value>Pfadänderungen</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage18.Text" xml:space="preserve">
     <value>Ausschnitt</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage19.Text" xml:space="preserve">
     <value>Gruppierung und Tools</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage21.Text" xml:space="preserve">
     <value>Programmverhalten</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage22.Text" xml:space="preserve">
     <value>Programmauftritt</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage5.Text" xml:space="preserve">
     <value>WWW-Links</value>
@@ -1775,145 +1838,192 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>CSV-Import (* .csv, * .dat)</value>
+    <comment>ok</comment>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Delimeter</value>
+    <comment>ok</comment>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Werte ab Zeile</value>
+    <comment>ok</comment>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Y-Wert</value>
+    <comment>ok</comment>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>X-Wert</value>
+    <comment>ok</comment>
   </data>
   <data name="radioButton4.Text" xml:space="preserve">
     <value>Prozesskoordinaten als Punkte</value>
+    <comment>ok</comment>
   </data>
   <data name="radioButton3.Text" xml:space="preserve">
     <value>Koordinaten mit Linien verbinden</value>
+    <comment>ok</comment>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Rahmen</value>
+    <comment>ok</comment>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Säule</value>
+    <comment>ok</comment>
   </data>
   <data name="checkBox8.Text" xml:space="preserve">
     <value>Prozess Z auch (nur Punkt)</value>
+    <comment>ok</comment>
   </data>
   <data name="checkBox7.Text" xml:space="preserve">
     <value>Versuchen Sie die automatische Erkennung</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
     <value>Wiederholt Pfad für Pfad</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
     <value>Wiederholt den vollständigen Code</value>
+    <comment>ok</comment>
   </data>
   <data name="gBHatchFill.Text" xml:space="preserve">
     <value>Füllt geschlossene Pfade</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
     <value>Einrückung an Kanten um</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
     <value>Ändern den Winkel nach jedem Pfad um</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
     <value>Kreuzschraffur</value>
+    <comment>ok</comment>
   </data>
   <data name="lblHatchFill2.Text" xml:space="preserve">
     <value>Linienwinkel</value>
+    <comment>ok</comment>
   </data>
   <data name="lblHatchFill1.Text" xml:space="preserve">
     <value>Linienabstand</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
     <value>Schraffurfüllung</value>
+    <comment>ok</comment>
   </data>
   <data name="lblDImportGCTangential4.Text" xml:space="preserve">
     <value>Korrigiert den Startwinkel, wenn die Abweichung &gt;</value>
+    <comment>ok</comment>
   </data>
   <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
     <value>Wenn die Winkeländerung größer als dieser Winkel ist, wird ein einzelner Drehbefehl eingefügt</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
     <value>Winkeländerung, bevor das Messer angehoben, gedreht und abgesenkt wird</value>
+    <comment>ok</comment>
   </data>
   <data name="gBClipping.Text" xml:space="preserve">
     <value>Ausschnitt / Fliesen</value>
+    <comment>ok</comment>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Schnitt- / Fliesenabmessung Breite / Höhe</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
     <value>X-Dimension der Fliese</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
     <value>X-Dimension der Fliese</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportGraphicClip1.Text" xml:space="preserve">
     <value>Konvertieren Sie Grafiken in Kacheln</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportGraphicClip0.Text" xml:space="preserve">
     <value>Clipp am unteren linken Punkt X / Y:</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
     <value>Ergebnis</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
     <value>Y-Dimension der Fliese</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
     <value>X-Dimension der Fliese</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicTile.Text" xml:space="preserve">
     <value>Clipping oder Fliesen anwenden</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
     <value>Schneiden Sie die gesamte Grafik in Kacheln, um sie separat zu entleeren</value>
+    <comment>ok</comment>
   </data>
   <data name="label11.Text" xml:space="preserve">
     <value>GCode vor der Kachel</value>
+    <comment>ok</comment>
   </data>
   <data name="label11.ToolTip" xml:space="preserve">
     <value>Der vor der nächsten Kachel anzuwendende GCode wird verarbeitet.
 Z.B. 'M0' zum Anhalten für manuelles Verschieben von Papier oder '(^ 2 G91 X100)' zum Verschieben von X des 2. Grbl-Controllers zum Verschieben von Papier.</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
     <value>Setzt den Ursprung der abgeschnittenen Region / Kacheln auf 0; 0</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGSort4.Text" xml:space="preserve">
     <value>Gruppen nach Objektdimension sortieren - aufsteigend</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_1_4gB2.Text" xml:space="preserve">
     <value>Eigenschaft zum Gruppieren und Auswählen von Tool-Nr. über</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
     <value>Gruppieren nach Ebene (Werkzeugname ~ = Ebene)</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
     <value>Gruppieren Sie nach Grafikebenen und wählen Sie die Werkzeugnummer entsprechend dem am besten geeigneten Werkzeugnamen aus</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
     <value>Gruppieren nach Stiftbreite (Werkzeugdurchmesser ~ = Stiftbreite)</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
     <value>Gruppieren Sie nach Stiftbreite und wählen Sie die Werkzeugnummer entsprechend dem am besten geeigneten Werkzeugdurchmesser aus</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
     <value>Gruppieren nach Stiftfarbe (Werkzeugfarbe ~ = Stiftfarbe)</value>
+    <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
     <value>Gruppieren Sie nach Stiftfarbe und wählen Sie die Werkzeugnummer entsprechend der am besten geeigneten Werkzeugfarbe aus</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage26.Text" xml:space="preserve">
     <value>Programmsteuerung</value>
+    <comment>ok</comment>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Benachrichtigung erhalten, wenn der Code die Maschinenabmessungen überschreitet</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
     <value>2D-Ansicht / Editor</value>
@@ -1921,366 +2031,634 @@ Z.B. 'M0' zum Anhalten für manuelles Verschieben von Papier oder '(^ 2 G91 X100
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
     <value>Editor</value>
+    <comment>ok</comment>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>Zeilenabstand des Editors</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_1_4gB3.Text" xml:space="preserve">
     <value>Gruppen sortieren</value>
+    <comment>ok</comment>
   </data>
   <data name="Column16.ToolTipText" xml:space="preserve">
     <value>Wechselposition A</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox13.Text" xml:space="preserve">
     <value>grbl verbindung</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage25.Text" xml:space="preserve">
     <value>Ablaufsteuerung</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
     <value>Die breiteste Stiftbreite wird in diese Tiefe übersetzt - jedoch begrenzt durch die Z-Höhe-Gravur in der 'G-Code-Generierung'.</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
     <value>Die kleinste Stiftbreite wird in diese Tiefe übersetzt</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
     <value>Übersetzen Sie die Stiftbreite in den Z-Wert</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
     <value>Die Stiftbreite wird als Z-Wert für die Tiefe verarbeitet.
 Die maximale Tiefe wird durch die Gravur in Z-Höhe begrenzt.</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_3gB8.Text" xml:space="preserve">
     <value>Überlappung geschlossener Pfade</value>
+    <comment>ok</comment>
   </data>
   <data name="lblPathModification.Text" xml:space="preserve">
     <value>Jede dieser Änderungen aktiviert "Vermeiden Sie G2 / G3-Befehle".</value>
+    <comment>ok</comment>
   </data>
   <data name="cBDashedLine2.ToolTip" xml:space="preserve">
     <value>Standard ist G1 für eine reibungslose Bewegung,
 weniger Stress für die Mechanik</value>
+    <comment>ok</comment>
   </data>
   <data name="cBDashedLine1.Text" xml:space="preserve">
     <value>Gestricheltes Linienmuster verarbeiten</value>
+    <comment>ok</comment>
   </data>
   <data name="cBDashedLine1.ToolTip" xml:space="preserve">
     <value>Konvertieren Sie die gestrichelte Linie in echte Stift-Auf / Ab</value>
+    <comment>ok</comment>
   </data>
   <data name="cBPathOverlapEnable.Text" xml:space="preserve">
     <value>Pfadüberlappung</value>
+    <comment>ok</comment>
   </data>
   <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
     <value>Beginnen Sie nach Beendigung eines geschlossenen Pfades am Anfang und bewegen Sie sich für eine bestimmte Strecke.
 Nützlich für Laserschneider.</value>
+    <comment>ok</comment>
   </data>
   <data name="btnReloadSettings.Text" xml:space="preserve">
     <value>Stellt alle Einstellungen auf Standard ein</value>
+    <comment>ok</comment>
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Übersetzt Z in den Bereich von:
 ('Gravur in Z-Höhe' wird nicht überschritten)</value>
+    <comment>ok</comment>
   </data>
   <data name="gBCreateZValue.Text" xml:space="preserve">
     <value>Erzeuge Z-Wert</value>
+    <comment>ok</comment>
   </data>
   <data name="cBDashedLine2.Text" xml:space="preserve">
     <value>G0 wenn Stift oben</value>
+    <comment>ok</comment>
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>Schrittweite am Umfang</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox11.Text" xml:space="preserve">
     <value>Verschiedenes</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
     <value>Email</value>
+    <comment>ok</comment>
   </data>
   <data name="cBShowStreamingProgress.Text" xml:space="preserve">
     <value>Streaming-Fortschritt in 2D-Ansicht anzeigen</value>
+    <comment>ok</comment>
   </data>
   <data name="tab4gB5.Text" xml:space="preserve">
     <value>Während des Streamings von G-Code</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
     <value>Neuen Startpunkt im geschlossenen Pfad zulassen</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
     <value>Rampe anstelle einer Stufe anwenden</value>
+    <comment>ok</comment>
   </data>
   <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
     <value>Achtung: Z-Engrave begrenzt die max. Tiefe!</value>
+    <comment>ok</comment>
   </data>
   <data name="lblGroupInfo.Text" xml:space="preserve">
     <value>Die Gruppierung wird abgebrochen, wenn nur eine Eigenschaft gefunden wird (z. B. eine Farbe).</value>
+    <comment>ok</comment>
   </data>
   <data name="cBLineEndEnable.Text" xml:space="preserve">
     <value>Text anwenden</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
     <value>G-Code-Erstellung</value>
+    <comment>ok</comment>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Typwert für M19 (erweitert)</value>
+    <comment>ok</comment>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>Typwert für M15 (Messer)</value>
+    <comment>ok</comment>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Typwert für D2 (Stift)</value>
+    <comment>ok</comment>
   </data>
   <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
     <value>Typwert im G-Code figure-tag angeben</value>
+    <comment>ok</comment>
   </data>
   <data name="tab1_3gB7.Text" xml:space="preserve">
     <value>Gerber Import</value>
+    <comment>ok</comment>
   </data>
   <data name="checkBox5.Text" xml:space="preserve">
     <value>Schraffurfüllung , wenn das Objekt gefüllt ist</value>
+    <comment>ok</comment>
   </data>
   <data name="cBDisableProgramPause.Text" xml:space="preserve">
     <value>Deaktiviert den speziellen Pausenmodus und reicht M0 an grbl weiter</value>
+    <comment>ok</comment>
   </data>
   <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
     <value>Wenn deaktiviert, wird das Streaming auf M0 gestoppt und der Parser-Status wird gespeichert (M0 wird jedoch nicht an den Controller gesendet). Anschließend kann der Benutzer die Maschine steuern.
 Nach der Pause wird der Parser-Status wiederhergestellt und das Streaming fortgesetzt.</value>
+    <comment>ok</comment>
   </data>
   <data name="cB2DViewFigureId.Text" xml:space="preserve">
     <value>Zeigt die ID der nächsten Figur an</value>
+    <comment>ok</comment>
   </data>
   <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
     <value>Pem-Up Pfad zeigen</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox14.Text" xml:space="preserve">
     <value>2D-Ansicht</value>
+    <comment>ok</comment>
   </data>
   <data name="cBColorModeEnable.Text" xml:space="preserve">
     <value>Farbmodus</value>
+    <comment>ok</comment>
   </data>
   <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
     <value>Der Stiftpfad wird in Farbe und Breite wie bei der importierten Grafik (SVG oder DXF) angezeigt.</value>
+    <comment>ok</comment>
   </data>
   <data name="label32.Text" xml:space="preserve">
     <value>G-Code vor Werkzeugwechsel</value>
+    <comment>ok</comment>
   </data>
   <data name="label29.Text" xml:space="preserve">
     <value>Der spezielle Pausenmodus ermöglicht es dem Benutzer, das Gerät zu verwenden. Nach Beendigung der Pause werden die letzte Prozesskoordinate und der Maschinenstatus wiederhergestellt und das Streaming fortgesetzt.
 Während ein normaler M0 ein Feedhold initiiert, ohne die Möglichkeit, die Maschine zu benutzen.</value>
+    <comment>ok</comment>
   </data>
   <data name="rBStreanProtocoll2.Text" xml:space="preserve">
     <value>Einfache Send-Antwort</value>
+    <comment>ok</comment>
   </data>
   <data name="label31.Text" xml:space="preserve">
     <value>Streaming-Protokoll:</value>
+    <comment>ok</comment>
   </data>
   <data name="rBStreanProtocoll1.Text" xml:space="preserve">
     <value>Zeichenzählung</value>
+    <comment>ok</comment>
   </data>
   <data name="tab4gB7.Text" xml:space="preserve">
     <value>Streaming-Eigenschaften</value>
+    <comment>ok</comment>
   </data>
   <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
     <value>Zeilennummern hinzufügen</value>
+    <comment>ok</comment>
   </data>
   <data name="cbNotifierMsg1.Text" xml:space="preserve">
     <value>Häufige Fortschrittsaktualisierung (Minuten)</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifierMsg1.Text" xml:space="preserve">
     <value>Nachricht beenden</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox16.Text" xml:space="preserve">
     <value>Benachrichtigungen</value>
+    <comment>ok</comment>
   </data>
   <data name="btn_notifierMail_Test.Text" xml:space="preserve">
     <value>Testmail senden</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifier8.Text" xml:space="preserve">
     <value>Gegenstand</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifier7.Text" xml:space="preserve">
     <value>Eine E-Mail schicken</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifier6.Text" xml:space="preserve">
     <value>Aus der Email</value>
-  </data>
-  <data name="lblNotifier3.Text" xml:space="preserve">
-    <value>Hafen</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifier5.Text" xml:space="preserve">
     <value>Passwort</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifier2.Text" xml:space="preserve">
     <value>Adresse</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifier4.Text" xml:space="preserve">
     <value>Nutzername</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox15.Text" xml:space="preserve">
     <value>SMTP-Server</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifier1.Text" xml:space="preserve">
     <value>Richten Sie den SMTP-Server-Zugriff für Ihr E-Mail-Konto ein
 Hinweis: "Aus E-Mail" muss häufig mit SMTP-Postfach-E-Mail identisch sein.</value>
+    <comment>ok</comment>
   </data>
   <data name="tabControl5_Level2.Text" xml:space="preserve">
     <value>Notifier</value>
+    <comment>ok</comment>
   </data>
   <data name="label33.Text" xml:space="preserve">
     <value>E-Mail: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -E-Mail-Konto verwenden. Das Kennwort kann nicht verschlüsselt gespeichert werden.
 
 Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwenden. Das Zugriffstoken kann nicht in verschlüsselter Form gespeichert werden.</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox17.Text" xml:space="preserve">
     <value>Sicherheitshinweise</value>
+    <comment>ok</comment>
   </data>
   <data name="cbNotifierTitle.Text" xml:space="preserve">
     <value>Titel für Streaming-Fortschritt</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifierPBToken.Text" xml:space="preserve">
     <value>API-Zugriffstoken</value>
+    <comment>ok</comment>
   </data>
   <data name="lblNotifierPBChannel.Text" xml:space="preserve">
     <value>Kanal (leer lassen, um eine Notiz zu senden)</value>
+    <comment>ok</comment>
   </data>
   <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
     <value>E-Mail-Benachrichtigung aktivieren</value>
+    <comment>ok</comment>
   </data>
   <data name="cbNotifierPBEnable.Text" xml:space="preserve">
     <value>Pushbullet-Benachrichtigung aktivieren</value>
+    <comment>ok</comment>
   </data>
   <data name="button1.Text" xml:space="preserve">
     <value>Testnachricht senden</value>
+    <comment>ok</comment>
   </data>
   <data name="label38.Text" xml:space="preserve">
     <value>Anzahl in Y-Richtung</value>
+    <comment>ok</comment>
   </data>
   <data name="label37.Text" xml:space="preserve">
     <value>Anzahl in X-Richtung</value>
+    <comment>ok</comment>
   </data>
   <data name="label36.Text" xml:space="preserve">
     <value>Abstand zwischen den Grafiken</value>
+    <comment>ok</comment>
   </data>
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
     <value>Grafiken multiplizieren</value>
+    <comment>ok</comment>
   </data>
   <data name="label45.Text" xml:space="preserve">
     <value>Schicht</value>
+    <comment>ok</comment>
   </data>
   <data name="label40.Text" xml:space="preserve">
     <value>Stiftbreite</value>
+    <comment>ok</comment>
   </data>
   <data name="label39.Text" xml:space="preserve">
     <value>Stiftfarbe</value>
+    <comment>ok</comment>
   </data>
   <data name="groupBox21.Text" xml:space="preserve">
     <value>Eigenschaften für die Gruppierung</value>
+    <comment>ok</comment>
   </data>
   <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
     <value>Ecke abrunden</value>
+    <comment>ok</comment>
   </data>
   <data name="label35.Text" xml:space="preserve">
     <value>Abstand zur Grafik</value>
+    <comment>ok</comment>
   </data>
   <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
     <value>Rahmen zeichnen</value>
+    <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
     <value>Pfad-Add-Ons</value>
+    <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
     <value>Öffnet eine 3. serielle Schnittstelle bei Programstart</value>
+    <comment>ok</comment>
   </data>
   <data name="checkBox6.ToolTip" xml:space="preserve">
     <value>Öffnet einen 2. COM-Port zur Steuerung eines 2. GRBL. Nützlich für Werkzeugwechsler oder 4. Achse.</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
     <value>Code für 1. Kachel überspringen (xy = 0; 0)</value>
+    <comment>ok</comment>
   </data>
   <data name="label34.Text" xml:space="preserve">
     <value>Variablen:
 #INDX #INDY Kachelindex für x- oder y-Richtung (z. B. 0, 1, 2 ...)
 #OFFX #OFFY Versatz der Kachel in x- oder y-Richtung (z. B. 0, 200, 400 ...)</value>
+    <comment>ok</comment>
   </data>
   <data name="label47.Text" xml:space="preserve">
     <value>Sekunden</value>
+    <comment>ok</comment>
   </data>
   <data name="label46.Text" xml:space="preserve">
     <value>Verzögerung nach Skript</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
     <value>Befehl M30 überspringen</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
     <value>Überspringen Sie den Befehl M30 'Programmede', um ein Ausschalten der Spindel durch Zurücksetzen des Parser-Status zu vermeiden, wodurch sich das Servo auf die Position '0' bewegt.</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
     <value>Befehl zur Steuerung des Servos senden</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
     <value>Befehl bei Wertänderung senden</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
     <value>Alle</value>
+    <comment>ok</comment>
   </data>
   <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
     <value>Beinhaltet Kopf- und Fußzeile</value>
+    <comment>ok</comment>
   </data>
   <data name="label48.Text" xml:space="preserve">
     <value>Entfernung</value>
+    <comment>ok</comment>
   </data>
   <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
     <value>Rampe</value>
+    <comment>ok</comment>
   </data>
   <data name="gBPathAddOn3.Text" xml:space="preserve">
     <value>Rampe bei 'Stift runter' (Z-Achse oder PWM)</value>
+    <comment>ok</comment>
   </data>
   <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
     <value>Nur nützlich für die Verwendung mit Stift / Pinsel</value>
+    <comment>ok</comment>
   </data>
   <data name="gBPathAddOn2.Text" xml:space="preserve">
     <value>Multiplizieren</value>
+    <comment>ok</comment>
   </data>
   <data name="gBPathAddOn1.Text" xml:space="preserve">
     <value>Rahmen</value>
+    <comment>ok</comment>
   </data>
   <data name="btnGCPWMZero.Text" xml:space="preserve">
     <value>Pen Zero</value>
+    <comment>ok</comment>
   </data>
   <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
     <value>Der Stift berührt die Oberfläche
 Wird nur für den Rampenbetrieb benötigt</value>
+    <comment>ok</comment>
   </data>
   <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
     <value>Spindeldrehzahl für Stift Null-Position
 Wird nur für den Rampenbetrieb benötigt</value>
+    <comment>ok</comment>
   </data>
   <data name="lblInfoPWM.ToolTip" xml:space="preserve">
     <value>Mögliche max. Der Wert wird über '$ 30' (Standard = 1000) und min über $ 31 (Standard = 0) eingestellt.
 Grbl-Version 'grbl_v1.1f_Servo.hex' von https://github.com/cprezzi/grbl-servo,
 verwendet 31 Schritte für die Ausgabe von 0,5 ms bis 2,5 ms (siehe cpu_map.h).
 Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
+    <comment>ok</comment>
   </data>
   <data name="btnGCPWMDown.Text" xml:space="preserve">
     <value>Stift runter</value>
+    <comment>ok</comment>
   </data>
   <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
     <value>Bewegt den Stift am weitesten nach unten</value>
+    <comment>ok</comment>
   </data>
   <data name="btnGCPWMUp.Text" xml:space="preserve">
     <value>Pen Up</value>
+    <comment>ok</comment>
   </data>
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
     <value>Bewegt den Stift am weitesten nach oben</value>
+    <comment>ok</comment>
   </data>
   <data name="cBCtrlToolTable.Text" xml:space="preserve">
     <value>2D-Ansicht: Farben aus Werkzeugliste verwenden</value>
+    <comment>ok</comment>
   </data>
   <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
     <value>Analysiert die S-, Z- und F-Werte im G-Code, um die Farbe aus der Werkzeugliste dem Werkzeugpfad zuzuweisen</value>
+    <comment>ok</comment>
   </data>
   <data name="button2.ToolTip" xml:space="preserve">
     <value>PWM-Inkrementwert 1, 10 oder 100</value>
+    <comment>ok</comment>
   </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>Pen-up / -down vor / nach dem Unterprogramm</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage12.Text" xml:space="preserve">
+    <value>Z-Achse</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.Text" xml:space="preserve">
+    <value>Erweiterte Einstellungen</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.ToolTip" xml:space="preserve">
+    <value>Weitere Servopositionen anzeigen</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP94.ToolTip" xml:space="preserve">
+    <value>Anzahl der Unterprogramme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
+    <value>G4 einfügen: Verzögerung in Sekunden vor dem nächsten Befehl</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP93.ToolTip" xml:space="preserve">
+    <value>Anzahl der Unterprogramme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP92.ToolTip" xml:space="preserve">
+    <value>Nummer der Unterroutine 'Pen down'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
+    <value>G4 einfügen: Verzögerung in Sekunden vor dem nächsten Befehl</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP91.ToolTip" xml:space="preserve">
+    <value>Unterprogramnummer</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.Text" xml:space="preserve">
+    <value>Funktion</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.ToolTip" xml:space="preserve">
+    <value>Funktion des Unterprogramms</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.Text" xml:space="preserve">
+    <value>Sub</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.ToolTip" xml:space="preserve">
+    <value>Anzahl der Unterprogramme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP90.ToolTip" xml:space="preserve">
+    <value>Nummer der Unterroutine 'Pen up'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.Text" xml:space="preserve">
+    <value>Verzögerung nach</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.ToolTip" xml:space="preserve">
+    <value>Verzögerung nach dem Anwenden eines neuen PWM-Werts</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.ToolTip" xml:space="preserve">
+    <value>PWM-Wert</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.Text" xml:space="preserve">
+    <value>Inc 10</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.ToolTip" xml:space="preserve">
+    <value>PWM-Inkrementwert 1, 10 oder 100</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Wenn der Wert 0 ist, wird nur 'Auch am Anfang des Pfads einfügen' verarbeitet</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandKeepLastOpen.Text" xml:space="preserve">
+    <value>Lässt  den zuletzt ausgewählten Block erweitert</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandOnSelect.Text" xml:space="preserve">
+    <value>Erweitert den Codeblock beim Klicken in der 2D-Ansicht</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblSVGScale.Text" xml:space="preserve">
+    <value>Einheiten</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label51.Text" xml:space="preserve">
+    <value>Erweitert den abgeschnittenen Pfad über die Grenze hinaus</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label67.ToolTip" xml:space="preserve">
+    <value>Nummer der Unterroutine 'Pen down'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label64.ToolTip" xml:space="preserve">
+    <value>Nummer der Unterroutine 'Pen up'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl32.ToolTip" xml:space="preserve">
+    <value>Höhe über der Oberfläche des Werkstücks - muss positiv sein</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="color.HeaderText" xml:space="preserve">
+    <value>Farbe</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label50.Text" xml:space="preserve">
+    <value>Entfernung nach</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadOutEnable.Text" xml:space="preserve">
+    <value>Hinausführen</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.Text" xml:space="preserve">
+    <value>in% von der Z-Tiefe</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.Text" xml:space="preserve">
+    <value>'M4' CCW</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd1.Text" xml:space="preserve">
+    <value>'M3' CW</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseIndividual2.Text" xml:space="preserve">
+    <value>Individuell</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUsePWM2.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseZ2.Text" xml:space="preserve">
+    <value>Z-Achse</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage27.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage29.Text" xml:space="preserve">
+    <value>Individuell</value>
+    <comment>ok</comment>
   </data>
 </root>

@@ -212,7 +212,7 @@ namespace GRBL_Plotter
 			rBStreanProtocoll2.Checked = !Properties.Settings.Default.grblStreamingProtocol1;
 
             PWMIncValue = (int)Properties.Settings.Default.setupPWMIncrement;
-            button2.Text = "Inc. " + PWMIncValue.ToString();
+            btnPWMInc.Text = "Inc. " + PWMIncValue.ToString();
             setPWMIncValues(PWMIncValue);
         }
 
@@ -829,24 +829,24 @@ namespace GRBL_Plotter
                 cBImportLasermode.BackColor = Color.Transparent;
 
             if (cBImportGCUseZ.Checked)
-                tab1_2gB3.BackColor = Color.Yellow;
+            { tab1_2gB3.BackColor = cBImportGCUseZ2.BackColor = Color.Yellow; }
             else
-                tab1_2gB3.BackColor = inactive;
+            { tab1_2gB3.BackColor = cBImportGCUseZ2.BackColor = inactive; }
 
             if (cBImportGCUsePWM.Checked)
-                tab1_2gB4.BackColor = Color.Yellow;
+            { tab1_2gB4.BackColor = cBImportGCUsePWM2.BackColor = Color.Yellow; }
             else
-                tab1_2gB4.BackColor = inactive;
+            { tab1_2gB4.BackColor = cBImportGCUsePWM2.BackColor = inactive; }
 
             if (cBImportGCUseSpindle.Checked)
-                tab1_2gB5.BackColor = Color.Yellow;
+            { tab1_2gB5.BackColor = cBImportGCUseSpindle2.BackColor = Color.Yellow; }
             else
-                tab1_2gB5.BackColor = inactive;
+            { tab1_2gB5.BackColor = cBImportGCUseSpindle2.BackColor = inactive; }
 
             if (cBImportGCUseIndividual.Checked)
-                tab1_2gB6.BackColor = Color.Yellow;
+            { tab1_2gB6.BackColor = cBImportGCUseIndividual2.BackColor = Color.Yellow; }
             else
-                tab1_2gB6.BackColor = inactive;
+            { tab1_2gB6.BackColor = cBImportGCUseIndividual2.BackColor = inactive; }
 
             if(cBImportGCNoArcs.Checked)
                 cBImportGCNoArcs.BackColor = Color.Yellow;
@@ -1167,10 +1167,10 @@ namespace GRBL_Plotter
 
         private void cBImportGCUsePWM_CheckedChanged(object sender, EventArgs e)
         {   bool enable = cBImportGCUsePWM.Checked;
-            tab1_2lbl41.Enabled = enable;
-            tab1_2lbl42.Enabled = enable;
-            tab1_2lbl43.Enabled = enable;
-            tab1_2lbl44.Enabled = enable;
+            //tab1_2lbl41.Enabled = enable;
+            //tab1_2lbl42.Enabled = enable;
+            //tab1_2lbl43.Enabled = enable;
+            //tab1_2lbl44.Enabled = enable;
             nUDImportGCPWMUp.Enabled = enable;
             nUDImportGCDlyUp.Enabled = enable;
             nUDImportGCPWMDown.Enabled = enable;
@@ -1389,11 +1389,11 @@ namespace GRBL_Plotter
         private void btnReloadSettings_Click(object sender, EventArgs e)
         {	settingsReloaded = true;
             Logger.Info("+++++ Set default settings +++++");
-            Properties.Settings.Default.Reset();
             Properties.Settings.Default.ctrlUpgradeRequired = false;
-            saveSettings();
+            Properties.Settings.Default.Reset();
             SetupForm_Load(sender, e);
             btnApplyChangings.PerformClick();
+            saveSettings();
         }
 
         private void lblEnableLogging_Click(object sender, EventArgs e)
@@ -1423,8 +1423,16 @@ namespace GRBL_Plotter
         {   btnGCPWMDown.PerformClick(); }
         private void nUDImportGCPWMZero_ValueChanged(object sender, EventArgs e)
         {   btnGCPWMZero.PerformClick(); }
+        private void nUDImportGCPWMP93_ValueChanged(object sender, EventArgs e)
+        {   if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+            { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMP93.Value); }
+        }
+        private void nUDImportGCPWMP94_ValueChanged(object sender, EventArgs e)
+        {   if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+            { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMP94.Value); }
+        }
 
-// Event handler must be assigned in GRBL-Plotter\GUI\MainForm.cs\MainFormOtherForms.cs - (483, 29) : _setup_form.btnGCPWMDown.Click += moveToPickup;
+        // Event handler must be assigned in GRBL-Plotter\GUI\MainForm.cs\MainFormOtherForms.cs - (483, 29) : _setup_form.btnGCPWMDown.Click += moveToPickup;
         private void btnGCPWMUp_Click(object sender, EventArgs e)
         {   setZeroMinMax();
             if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
@@ -1453,6 +1461,8 @@ namespace GRBL_Plotter
             nUDImportGCPWMUp.BackColor = tmpColor;
             nUDImportGCPWMDown.BackColor = tmpColor;
             nUDImportGCPWMZero.BackColor = tmpColor;
+            nUDImportGCPWMP93.BackColor = tmpColor;
+            nUDImportGCPWMP94.BackColor = tmpColor;
             btnGCPWMUp.BackColor = tmpColor;
             btnGCPWMDown.BackColor = tmpColor;
             btnGCPWMZero.BackColor = tmpColor;
@@ -1463,7 +1473,7 @@ namespace GRBL_Plotter
         {   MessageBox.Show(toolTip1.GetToolTip(lblInfoPWM),"Info"); }
 
         private int PWMIncValue = 1;
-        private void button2_Click(object sender, EventArgs e)
+        private void btnPWMInc_Click(object sender, EventArgs e)
         {
             if (PWMIncValue <= 1)
             { PWMIncValue = 10; }
@@ -1471,7 +1481,7 @@ namespace GRBL_Plotter
             { PWMIncValue = 100; }
             else if (PWMIncValue >= 100)
             { PWMIncValue = 1; }
-            button2.Text = "Inc. " + PWMIncValue.ToString();
+            btnPWMInc.Text = "Inc. " + PWMIncValue.ToString();
             setPWMIncValues(PWMIncValue);
             Properties.Settings.Default.setupPWMIncrement = PWMIncValue;
         }
@@ -1480,6 +1490,16 @@ namespace GRBL_Plotter
             nUDImportGCPWMUp.Increment = inc;
             nUDImportGCPWMZero.Increment = inc;
             nUDImportGCPWMDown.Increment = inc;
+        }
+
+        private bool pwmAdvanced = false;
+        private void btnPWMAdvanced_Click(object sender, EventArgs e)
+        {
+            pwmAdvanced = !pwmAdvanced;
+            lblPWMP91.Visible = lblPWMP93.Visible = lblPWMP94.Visible = pwmAdvanced;
+            btnGCPWMZero.Visible = tBImportGCPWMTextP93.Visible = tBImportGCPWMTextP94.Visible = pwmAdvanced;
+            nUDImportGCPWMZero.Visible = nUDImportGCPWMP93.Visible = nUDImportGCPWMP94.Visible = pwmAdvanced;
+            nUDImportGCDlyP93.Visible = nUDImportGCDlyP94.Visible = pwmAdvanced;
         }
     }
 }

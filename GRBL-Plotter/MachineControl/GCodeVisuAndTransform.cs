@@ -787,8 +787,8 @@ namespace GRBL_Plotter
             {
                 for (int subLineNr = start + 1; subLineNr < stop; subLineNr++)      // go through real line numbers and parse sub-code
                 {
-                    if (GCode[subLineNr].IndexOf("%START_HIDECODE") >= 0) { showPath = false; }
-                    if (GCode[subLineNr].IndexOf("%STOP_HIDECODE") >= 0) { showPath = true; }
+                    if (GCode[subLineNr].Contains("%START_HIDECODE")) { showPath = false; }
+                    if (GCode[subLineNr].Contains("%STOP_HIDECODE") ) { showPath = true; }
 
                     newLine.parseLine(subLineNr, GCode[subLineNr], ref modal);      // reset coordinates, set lineNumber, parse GCode
                     newLine.isSubroutine = !processSubs;
@@ -971,10 +971,10 @@ namespace GRBL_Plotter
                     double newj = newLine.actualPos.Y - centerY;
                     double newr = Math.Sqrt(newi * newi + newj * newj);
                     if (Math.Abs(r - newr) > 0.005)
-                    {
+                    {   // Note "[" and "]" are used to parse line number in MainFormLoadFile to mark line via MainFormFCTB
                         string err1 = string.Format("i,j not ok: r-old:{0:0.000} r-new:{1:0.000}", r, newr);
-                        string err2 = string.Format("[{0}]  '{1}' would cause error:33: Radii are not equal between start ({2:0.000}) and end pos ({3:0.000}) \r\n", (newLine.lineNumber + 1), newLine.codeLine, r, newr);
-                        errorString += err2;
+                        string err2 = string.Format(" [{0}]  '{1}' would cause error:33: Radii are not equal between start ({2:0.000}) and end pos ({3:0.000})\r\n", (newLine.lineNumber + 1), newLine.codeLine, r, newr);
+                        errorString += err2 + "  You may increase decimal places in Setup Graphics import - G-Code generation\r\n";
                         Logger.Error("{0}", err2);
                         newLine.codeLine += string.Format("({0})", err1);
                     }
@@ -1514,8 +1514,8 @@ namespace GRBL_Plotter
             bool hide_code = false; ;
             foreach (gcodeByLine gcline in gcodeList)
             {
-                if (gcline.codeLine.IndexOf("%START_HIDECODE") >= 0) { hide_code = true; }
-                if (gcline.codeLine.IndexOf("%STOP_HIDECODE") >= 0) { hide_code = false; }
+                if (gcline.codeLine.Contains("%START_HIDECODE")) { hide_code = true; }
+                if (gcline.codeLine.Contains("%STOP_HIDECODE") ) { hide_code = false; }
                 if ((!hide_code) && (!gcline.isSubroutine) && (!gcline.ismachineCoordG53) && (gcline.codeLine.IndexOf("(Setup - GCode") < 1)) // ignore coordinates from setup footer
                 {
                     if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))    // 2019-11-30

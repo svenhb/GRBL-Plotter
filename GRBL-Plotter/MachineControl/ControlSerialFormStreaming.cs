@@ -160,20 +160,19 @@ namespace GRBL_Plotter
             subroutines = new Dictionary<int, List<string>>();
             string tmp;
             string[] gCode = gCodeList.ToArray<string>();
-            bool prg_end = false;
+
+            bool useSubroutine = false;
             for (int i = startAtLine; i < gCode.Length; i++)
             {
-                if (gCode[i].Contains("M30"))
-                { prg_end = true; continue; }
-                if (!prg_end)
-                    continue;
-                if (gCode[i].Contains("O"))
+                if (gCode[i].Contains("O"))     // find and store subroutines
                 {
                     int cmdONr = gcode.getIntGCode('O', gCode[i]);
                     if (cmdONr <= 0)
                         continue;
                     subroutines.Add(cmdONr, new List<string>());
                     Logger.Trace("Add subroutine O{0}", cmdONr);
+                    useSubroutine = true;
+
                     for (int k = i + 1; k < gCode.Length; k++)
                     {   if (gCode[k].IndexOf("M99") >= 0)
                         { break; }
@@ -224,10 +223,10 @@ namespace GRBL_Plotter
                         int cmdGNr = gcode.getIntGCode('G', tmp);
                         cmdTNr = gcode.getIntGCode('T', tmp);
 
-                        /***** Subroutine? ********************************************************/
+                        /***** Insert Subroutine? ********************************************************/
                         #region subroutine
                         //                    if (tmp.IndexOf("M98") >= 0)    // any subroutines?
-                        if (cmdMNr == 98)
+                        if (cmdMNr == 98)   // subroutine call
                         {
                             pWord = findDouble("P", -1, tmp);
                             lWord = findDouble("L", 1, tmp);
@@ -251,7 +250,7 @@ namespace GRBL_Plotter
 
                         }
                         #endregion
-                        /***** Subroutine ********************************************************/
+                        /***** Subroutine end ********************************************************/
                         else
                         {
                             if (grbl.unknownG.Contains(cmdGNr))
@@ -271,12 +270,12 @@ namespace GRBL_Plotter
                             }
                             if (cmdMNr == 30)
                             {   if (skipM30)
-                                { tmp = "(" + tmp + ")"; }
+                                { tmp = "(" + tmp + ")"; }      // hide M30
                             }
 
                             streamingBuffer.Add(tmp, i);        // add gcode line to list to send
 
-                            if (cmdMNr == 30)
+                            if (cmdMNr == 30)                   // stop filling buffer, to avoid sending subroutine code
                             {   foundM30 = true;
                                 break;
                             }
@@ -284,20 +283,23 @@ namespace GRBL_Plotter
                     }
                 }
                 if (!foundM30)
-                {   if (!skipM30)
-                        streamingBuffer.Add("M30", gCode.Length - 1);    // add end
+                {   //if (!skipM30)
+                    streamingBuffer.Add("M30", gCode.Length - 1);    // add end
                 }
                 streamingBuffer.Add("($END)", gCode.Length - 1);        // add gcode line to list to send
                 streamingBuffer.Add("()", gCode.Length - 1);            // add gcode line to list to send
             }   // lock
             timerSerial.Start();
 
+            if (logEnable || useSubroutine)
+            {   string startText = string.Format("( {0} )\r\n", getTimeStampString());
+                File.WriteAllText(Application.StartupPath + "\\logStreamGCode.nc", startText); // clear file
+                File.AppendAllLines(Application.StartupPath + "\\logStreamGCode.nc", streamingBuffer.Buffer);
+            }
+
             if (logEnable)
-            {
-                string startText = string.Format("( {0} )\r\n", getTimeStampString());
+            {   string startText = string.Format("( {0} )\r\n", getTimeStampString());
                 File.WriteAllText(Application.StartupPath  + "\\logSendBuffer.nc", startText); // clear file
-                File.WriteAllText(Application.StartupPath  + "\\logStreamingBuffer.nc", startText); // clear file
-                File.AppendAllLines(Application.StartupPath + "\\logStreamingBuffer.nc", streamingBuffer.Buffer);
             }
             isStreaming = true;
             updateControls();
