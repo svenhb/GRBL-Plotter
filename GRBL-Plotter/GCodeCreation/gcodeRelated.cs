@@ -30,6 +30,8 @@
 * 2021-03-07 in jobStart() bug-fix: call PenUp() code only if !gcodeZApply
 * 2021-03-26 line 1130 change comments
 * 2021-04-18 function insertSubroutine line 765 add option to add pen-up /-down before/after subroutine call
+* 2021-05-07 if gcodeLineSegmentLength==0, no segmentation, but at begin of path.
+* 2021-05-12 new order of subroutine numbering line 300
 */
 
 using System;
@@ -103,14 +105,14 @@ namespace GRBL_Plotter
         public static bool gcodeRelative = false;       // calculate relative coordinates for G91
         private static bool gcodeNoArcs = false;        // replace arcs by line segments
         private static float gcodeAngleStep = 0.1f;
-        private static bool gcodeInsertSubroutine = false;
+        private static bool gcodeInsertSubroutineEnable = false;
         private static bool gcodeInsertSubroutinePenUpDown = false;
         private static int gcodeSubroutineCount = 0;
 
-        private static bool gcodeLineSegmentation;
+        private static bool gcodeLineSegmentationEnable;
         private static float gcodeLineSegmentLength;
         private static bool gcodeLineSegmentEquidistant;
-        private static bool gcodeLineSegementSubroutine;
+        private static bool gcodeLineSegementSubroutineOnPathStart;
 
         private static bool gcodeTangentialEnable = false;
         private static string gcodeTangentialName = "C";
@@ -212,7 +214,7 @@ namespace GRBL_Plotter
             gcodeNoArcs = Properties.Settings.Default.importGCNoArcs;        // reduce code by 
             gcodeAngleStep = (float)Properties.Settings.Default.importGCSegment;
 
-            gcodeInsertSubroutine = Properties.Settings.Default.importGCSubEnable;
+            gcodeInsertSubroutineEnable = Properties.Settings.Default.importGCSubEnable;
             gcodeInsertSubroutinePenUpDown = Properties.Settings.Default.importGCSubPenUpDown;
             gcodeSubroutineCount = 0;
             lastMovewasG0 = true;
@@ -221,10 +223,10 @@ namespace GRBL_Plotter
             gcodeDistance = 0;          // counter for GCode move distance
             remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;
 
-            gcodeLineSegmentation = Properties.Settings.Default.importGCLineSegmentation;
+            gcodeLineSegmentationEnable = Properties.Settings.Default.importGCLineSegmentation;
             gcodeLineSegmentLength = (float)Properties.Settings.Default.importGCLineSegmentLength;
             gcodeLineSegmentEquidistant = Properties.Settings.Default.importGCLineSegmentEquidistant;
-            gcodeLineSegementSubroutine = Properties.Settings.Default.importGCSubFirst;
+            gcodeLineSegementSubroutineOnPathStart = Properties.Settings.Default.importGCSubFirst;
 
             gcodeTangentialEnable = Properties.Settings.Default.importGCTangentialEnable;
             gcodeTangentialName = Properties.Settings.Default.importGCTangentialAxis;
@@ -262,10 +264,10 @@ namespace GRBL_Plotter
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            if ((gcodeInsertSubroutine && gcodeLineSegmentation) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange)
+            if ((gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange)
             {
                 bool insertSubroutine = false;
-                if (gcodeInsertSubroutine && gcodeLineSegmentation && fileContainsSubroutineCall(Properties.Settings.Default.importGCSubroutine))
+                if (gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable && fileContainsSubroutineCall(Properties.Settings.Default.importGCSubroutine))
                 {   insertSubroutine = true;}
                 else if (gcodeToolChange)
                 {
@@ -277,17 +279,36 @@ namespace GRBL_Plotter
                 if (insertSubroutine) {
                     float tmp_lastz = lastz;
                     StringBuilder tmp = new StringBuilder();
-                    Logger.Trace("setup create PenUp/Down subroutine gcodeInsertSubroutine:{0} gcodeToolChange:{1} ctrlToolChange:{2}", gcodeInsertSubroutine, gcodeToolChange, Properties.Settings.Default.ctrlToolChange);
+                    Logger.Trace("setup create PenUp/Down subroutine gcodeInsertSubroutine:{0} gcodeToolChange:{1} ctrlToolChange:{2}", gcodeInsertSubroutineEnable, gcodeToolChange, Properties.Settings.Default.ctrlToolChange);
                     PenUp(tmp);
-                    gcodeSubroutine += "\r\n(subroutine)\r\nO97 (Pen up)\r\n";
+                    gcodeSubroutine += "\r\n(subroutine)\r\nO90 (Pen up)\r\n";
                     gcodeSubroutine += tmp.ToString();
                     gcodeSubroutine += "M99\r\n";
                     tmp.Clear();
                     PenDown(tmp);
-                    gcodeSubroutine += "\r\n(subroutine)\r\nO98 (Pen Down)\r\n";
+                    gcodeSubroutine += "\r\n(subroutine)\r\nO92 (Pen down)\r\n";
                     gcodeSubroutine += tmp.ToString();
                     gcodeSubroutine += "M99\r\n";
                     lastz = tmp_lastz;
+
+                    if (gcodePWMEnable)
+                    {
+                        tmp.Clear();
+                        SetPWM(tmp, (float)Properties.Settings.Default.importGCPWMZero, (float)Properties.Settings.Default.importGCPWMDlyDown);
+                        gcodeSubroutine += "\r\n(subroutine)\r\nO91 (Pen zero)\r\n";
+                        gcodeSubroutine += tmp.ToString();
+                        gcodeSubroutine += "M99\r\n";
+                        tmp.Clear();
+                        SetPWM(tmp, (float)Properties.Settings.Default.importGCPWMP93, (float)Properties.Settings.Default.importGCPWMDlyP93);
+                        gcodeSubroutine += "\r\n(subroutine)\r\nO93 ("+ Properties.Settings.Default.importGCPWMTextP93 + ")\r\n";
+                        gcodeSubroutine += tmp.ToString();
+                        gcodeSubroutine += "M99\r\n";
+                        tmp.Clear();
+                        SetPWM(tmp, (float)Properties.Settings.Default.importGCPWMP94, (float)Properties.Settings.Default.importGCPWMDlyP94);
+                        gcodeSubroutine += "\r\n(subroutine)\r\nO94 (" + Properties.Settings.Default.importGCPWMTextP94 + ")\r\n";
+                        gcodeSubroutine += tmp.ToString();
+                        gcodeSubroutine += "M99\r\n";
+                    }
                 }
             }
         }
@@ -406,6 +427,13 @@ namespace GRBL_Plotter
             else
                 gcodeString.AppendFormat("M{0} {1}\r\n", frmtCode(5), cmt);
             gcodeLines++;
+        }
+
+        public static void SetPWM(StringBuilder gcodeString, float pwm, float delay)
+        {
+            gcodeString.AppendFormat("M{0} S{1}\r\n", gcodeSpindleCmd, pwm);
+            if (delay > 0)
+                gcodeString.AppendFormat("G{0} P{1}\r\n", frmtCode(4), frmtNum(delay));
         }
 
         public static void jobStart(StringBuilder gcodeString, string cmto = "")
@@ -682,78 +710,86 @@ namespace GRBL_Plotter
                 { gcodeString = figureString; }// if (loggerTrace) Logger.Trace("    gcodeString = figureString"); }
             }
 
-            if (gcodeLineSegmentation)       // apply segmentation
+            if (gcodeLineSegmentationEnable)       // apply segmentation
             {   float segFinalX = finalx, segFinalY = finaly;
                 float dx = finalx -  lastx;       // remaining distance until full move
                 float dy = finaly -  lasty;       // lastXY is global
                 float moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
                 float segmentLength = gcodeLineSegmentLength;
+                if (gcodeLineSegmentLength <= 0.01)
+                    segmentLength = float.MaxValue;
                 bool equidistance = gcodeLineSegmentEquidistant;
 
-                //auch nach G0 move
-                if (gcodeLineSegementSubroutine && (lastMovewasG0 || (moveLength >= segmentLength)))       // also subroutine at first point
+                // add subroutine at the beginning of each path (after G0 move)
+                if (gcodeLineSegementSubroutineOnPathStart && (lastMovewasG0 || (moveLength >= segmentLength)))       // also subroutine at first point
                 {
-                    if (gcodeInsertSubroutine)
+                    if (gcodeInsertSubroutineEnable)
                         applyFeed = insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);
                     remainingC = segmentLength;
                 }
 
-                if ((moveLength <= remainingC))//  && !equidistance)           // nothing to split 
-                {
-                    if (gcodeComments)
-                        cmt += string.Format("{0:0.0} until subroutine",remainingC);
-                    Move(gcodeString, 1, finalx, finaly, z, applyXYFeedRate, cmt);      // remainingC.ToString()
-                    remainingC -= moveLength;
-                }
-                else
-                {
-                    float tmpX, tmpY, origX, origY, deltaX, deltaY;
-                    int count = (int)Math.Ceiling(moveLength / segmentLength);
-                    gcodeString.AppendFormat("(count {0})\r\n", count.ToString());
-                    origX = lastx; origY = lasty;
-                    if (equidistance)               // all segments in same length (but shorter than set)
-                    {   for (int i = 1; i < count; i++)
-                        {   deltaX = i * dx / count;
-                            deltaY = i * dy / count;
-                            tmpX = origX + deltaX;
-                            tmpY = origY + deltaY;
-                            Move(gcodeString, 1, tmpX, tmpY, z, applyFeed, cmt);
-                            if (i >= 1) { applyFeed = false; cmt = ""; }
-                            if (gcodeInsertSubroutine)
-                                applyFeed = insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);
-                        }
+                if (gcodeLineSegmentLength > 0) // only do calculations if segmentation length is > 0
+                {   
+                    if ((moveLength <= remainingC))//  && !equidistance)           // nothing to split 
+                    {
+                        if (gcodeComments)
+                            cmt += string.Format("{0:0.0} until subroutine",remainingC);
+                        Move(gcodeString, 1, finalx, finaly, z, applyXYFeedRate, cmt);      // remainingC.ToString()
+                        remainingC -= moveLength;
                     }
                     else
                     {
-                        remainingX = dx * remainingC / moveLength;
-                        remainingY = dy * remainingC / moveLength;
-                        for (int i = 0; i < count; i++)
-                        {   deltaX = remainingX + i * segmentLength * dx / moveLength;        // n-1 segments in exact length, last segment is shorter
-                            deltaY = remainingY + i * segmentLength * dy / moveLength;
-                            tmpX = origX + deltaX;
-                            tmpY = origY + deltaY;
+                        float tmpX, tmpY, origX, origY, deltaX, deltaY;
+                        int count = (int)Math.Ceiling(moveLength / segmentLength);
+                        gcodeString.AppendFormat("(count {0})\r\n", count.ToString());
+                        origX = lastx; origY = lasty;
+                        if (equidistance)               // all segments in same length (but shorter than set)
+                        {   for (int i = 1; i < count; i++)
+                            {   deltaX = i * dx / count;
+                                deltaY = i * dy / count;
+                                tmpX = origX + deltaX;
+                                tmpY = origY + deltaY;
+                                Move(gcodeString, 1, tmpX, tmpY, z, applyFeed, cmt);
+                                if (i >= 1) { applyFeed = false; cmt = ""; }
+                                if (gcodeInsertSubroutineEnable)
+                                    applyFeed = insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);
+                            }
+                        }
+                        else
+                        {
+                            remainingX = dx * remainingC / moveLength;
+                            remainingY = dy * remainingC / moveLength;
+                            for (int i = 0; i < count; i++)
+                            {   deltaX = remainingX + i * segmentLength * dx / moveLength;        // n-1 segments in exact length, last segment is shorter
+                                deltaY = remainingY + i * segmentLength * dy / moveLength;
+                                tmpX = origX + deltaX;
+                                tmpY = origY + deltaY;
+                                remainingC = segmentLength;
+                                if ((float)Math.Sqrt(deltaX * deltaX + deltaY * deltaY) >= moveLength)
+                                    break;
+                                Move(gcodeString, 1, tmpX, tmpY, z, applyFeed, cmt);
+                                if (i >= 1) { applyFeed = false; cmt = ""; }
+                                if (gcodeInsertSubroutineEnable)
+                                    applyFeed = insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);
+                            }
+                        }
+                        finalx = segFinalX; finaly = segFinalY;
+                        remainingC = segmentLength - fdistance(finalx, finaly, lastx, lasty);
+                        Move(gcodeString, 1, finalx, finaly, z, applyFeed, cmt);
+                        if ((equidistance) || (remainingC == 0))
+                        {
+                            if (gcodeInsertSubroutineEnable)
+                                insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);
                             remainingC = segmentLength;
-                            if ((float)Math.Sqrt(deltaX * deltaX + deltaY * deltaY) >= moveLength)
-                                break;
-                            Move(gcodeString, 1, tmpX, tmpY, z, applyFeed, cmt);
-                            if (i >= 1) { applyFeed = false; cmt = ""; }
-                            if (gcodeInsertSubroutine)
-                                applyFeed = insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);
                         }
                     }
-                    finalx = segFinalX; finaly = segFinalY;
-                    remainingC = segmentLength - fdistance(finalx, finaly, lastx, lasty);
-                    Move(gcodeString, 1, finalx, finaly, z, applyFeed, cmt);
-                    if ((equidistance) || (remainingC == 0))
-                    {
-                        if (gcodeInsertSubroutine)
-                            insertSubroutine(gcodeString, lastx, lasty, lastz, applyFeed);
-                        remainingC = segmentLength;
-                    }
                 }
+                else    // segmentation length is = 0, do normal move
+                {    Move(gcodeString, 1, finalx, finaly, z, applyXYFeedRate, cmt);}
+                
             }
-            else
-                Move(gcodeString, 1, finalx, finaly, z, applyXYFeedRate, cmt);
+            else    // no gcodeLineSegmentation
+            {    Move(gcodeString, 1, finalx, finaly, z, applyXYFeedRate, cmt);}
             lastMovewasG0 = false;
         }
 
@@ -1038,7 +1074,7 @@ namespace GRBL_Plotter
                     moveLength += fdistance(x, y, lastx, lasty);
                     Move(gcodeString, 1, (float)x, (float)y, applyXYFeedRate, cmt);
                     if (moveLength >= (count*segmentLength))
-                    {   if (gcodeInsertSubroutine)
+                    {   if (gcodeInsertSubroutineEnable)
                             applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
                         count++;
                     }
@@ -1052,7 +1088,7 @@ namespace GRBL_Plotter
                     moveLength += fdistance(x, y, lastx, lasty);
                     Move(gcodeString, 1, (float)x, (float)y, applyXYFeedRate, cmt);
                     if (moveLength >= (count * segmentLength))
-                    {   if (gcodeInsertSubroutine)
+                    {   if (gcodeInsertSubroutineEnable)
                             applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
                         count++;
                     }
@@ -1061,7 +1097,7 @@ namespace GRBL_Plotter
             }
             Move(gcodeString, 1, x2, y2, applyXYFeedRate, "End Arc conversion");
             if ((moveLength >= (count * segmentLength)) || equidistance)
-            {   if (gcodeInsertSubroutine)
+            {   if (gcodeInsertSubroutineEnable)
                     applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);
                 moveLength = 0;
             }
@@ -1267,7 +1303,9 @@ namespace GRBL_Plotter
                 {   footer += string.Format("{0} (Setup - GCode-Footer)\r\n", cmd.Trim());}
 
             if (Properties.Settings.Default.importGCPWMEnable && Properties.Settings.Default.importGCPWMSkipM30)
-            { footer += "(SKIP M30)\r\n"; }
+            {   footer += "M30 (SKIP M30)\r\n"; }
+            else
+                footer += "M30\r\n";
 
             return footer + gcodeSubroutine;
         }

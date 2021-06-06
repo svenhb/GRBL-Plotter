@@ -789,7 +789,7 @@ namespace GRBL_Plotter
             {   header.Append(finalGcodeString);
                 header.Append(footer);
             }
-            header.AppendLine("M30");
+            //header.AppendLine("M30"); // 2021-05-07 reomved
 
             if (Properties.Settings.Default.ctrlLineNumbers || Properties.Settings.Default.ctrlLineEndEnable)
             {   int n = 1;

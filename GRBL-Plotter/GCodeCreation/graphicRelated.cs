@@ -30,6 +30,7 @@
  * 2021-01-21 addFrame, MultiplyGraphics
  * 2021-03-25 line 375 in SetPenWidth remove leading '#'
  * 2021-04-16 add offset for tiling in function ClipCode line 924 addOnX
+ * 2021-06-03 GroupAllGraphics - allow grouping if count == 1 but don't sort then, to get tool by layer #202 (was disabled for #147)
 */
 
 using System;
@@ -706,9 +707,9 @@ namespace GRBL_Plotter
 			int differentGroupValues = groupPropertiesCount[(int)graphicInformation.GroupOption].Count;		// 2020-08-11
 			if (differentGroupValues < 2)	// too less values to group
 			{	SetHeaderInfo(" Too less values to group ");
-				if (logEnable) Logger.Trace("----Too less values to group {0}",differentGroupValues);
-				graphicInformation.GroupEnable = false; // diable in case of ReDoReversePath
-				return false;
+				Logger.Info("---- Too less values to group {0} for {1}",differentGroupValues, graphicInformation.GroupOption);
+				graphicInformation.GroupEnable = false; // disable in case of ReDoReversePath
+//				return false;   2021-06-03
 			}
 
             foreach (PathObject pathObject in completeGraphic)
@@ -757,6 +758,8 @@ namespace GRBL_Plotter
                 }
             }
 
+			if (differentGroupValues > 1)	// 2021-06-03
+            {
 // Sort Groups by		
             bool invert = Properties.Settings.Default.importGroupSortInvert;
 			if (graphicInformation.SortOption != SortOptions.none)		// 		public enum SortOption  { none=0, ByToolNr=1, ByCodeSize=2, ByGraphicDimension=3};
@@ -800,7 +803,8 @@ namespace GRBL_Plotter
                         SortByDistance(groupObject.groupPath, preventReversal);
                 }
             }
-
+            }
+            
             if (log)
             {   Logger.Trace(" Grouping result +++++++++++++++++++++++++++++++++++++++++++++++++");
                 int i = 0;
