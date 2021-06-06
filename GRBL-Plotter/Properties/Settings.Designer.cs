@@ -1153,7 +1153,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1583_brush_select.nc")]
         public string ctrlToolScriptGet {
             get {
                 return ((string)(this["ctrlToolScriptGet"]));
@@ -1177,7 +1177,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_pen2_remove.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\")]
         public string ctrlToolScriptPut {
             get {
                 return ((string)(this["ctrlToolScriptPut"]));
@@ -1189,7 +1189,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_pen2_select.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1583_brush_clean.nc")]
         public string ctrlToolScriptSelect {
             get {
                 return ((string)(this["ctrlToolScriptSelect"]));
@@ -2307,7 +2307,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" | ")]
+        [global::System.Configuration.DefaultSettingValueAttribute("⚙ Usecase Simple Z|data\\usecases\\import_simple_z.ini|#FFFF80")]
         public string guiCustomBtn13 {
             get {
                 return ((string)(this["guiCustomBtn13"]));
@@ -3882,7 +3882,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public decimal importGCLineSegmentLength {
             get {
                 return ((decimal)(this["importGCLineSegmentLength"]));
@@ -3930,7 +3930,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("800")]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
         public decimal importGCPWMDown {
             get {
                 return ((decimal)(this["importGCPWMDown"]));
@@ -3966,7 +3966,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("200")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public decimal importGCPWMUp {
             get {
                 return ((decimal)(this["importGCPWMUp"]));
@@ -3978,7 +3978,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        [global::System.Configuration.DefaultSettingValueAttribute("25")]
         public decimal importGCPWMZero {
             get {
                 return ((decimal)(this["importGCPWMZero"]));
@@ -4110,7 +4110,7 @@ namespace GRBL_Plotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\subroutine.nc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_v1583_brush_refresh.nc")]
         public string importGCSubroutine {
             get {
                 return ((string)(this["importGCSubroutine"]));
@@ -6829,6 +6829,78 @@ namespace GRBL_Plotter.Properties {
             }
             set {
                 this["createTextLineBreakEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCPWMP93 {
+            get {
+                return ((decimal)(this["importGCPWMP93"]));
+            }
+            set {
+                this["importGCPWMP93"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public decimal importGCPWMP94 {
+            get {
+                return ((decimal)(this["importGCPWMP94"]));
+            }
+            set {
+                this["importGCPWMP94"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Far up")]
+        public string importGCPWMTextP93 {
+            get {
+                return ((string)(this["importGCPWMTextP93"]));
+            }
+            set {
+                this["importGCPWMTextP93"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Down stir")]
+        public string importGCPWMTextP94 {
+            get {
+                return ((string)(this["importGCPWMTextP94"]));
+            }
+            set {
+                this["importGCPWMTextP94"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal importGCPWMDlyP93 {
+            get {
+                return ((decimal)(this["importGCPWMDlyP93"]));
+            }
+            set {
+                this["importGCPWMDlyP93"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal importGCPWMDlyP94 {
+            get {
+                return ((decimal)(this["importGCPWMDlyP94"]));
+            }
+            set {
+                this["importGCPWMDlyP94"] = value;
             }
         }
     }

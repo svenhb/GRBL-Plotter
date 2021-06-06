@@ -285,16 +285,16 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="ctrlToolScriptGet" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\</Value>
+      <Value Profile="(Default)">data\scripts\script_v1583_brush_select.nc</Value>
     </Setting>
     <Setting Name="ctrlToolScriptProbe" Type="System.String" Scope="User">
       <Value Profile="(Default)">data\scripts\</Value>
     </Setting>
     <Setting Name="ctrlToolScriptPut" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\script_pen2_remove.nc</Value>
+      <Value Profile="(Default)">data\scripts\</Value>
     </Setting>
     <Setting Name="ctrlToolScriptSelect" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\script_pen2_select.nc</Value>
+      <Value Profile="(Default)">data\scripts\script_v1583_brush_clean.nc</Value>
     </Setting>
     <Setting Name="ctrlUpgradeRequired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -573,7 +573,7 @@
       <Value Profile="(Default)">⚠ Hard RESET|#HRST|fuchsia</Value>
     </Setting>
     <Setting Name="guiCustomBtn13" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> | </Value>
+      <Value Profile="(Default)">⚙ Usecase Simple Z|data\usecases\import_simple_z.ini|#FFFF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn14" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -966,7 +966,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCLineSegmentLength" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="importGCNoArcs" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -978,7 +978,7 @@
       <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="importGCPWMDown" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">800</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="importGCPWMEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -987,10 +987,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCPWMUp" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">200</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="importGCPWMZero" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">500</Value>
+      <Value Profile="(Default)">25</Value>
     </Setting>
     <Setting Name="importGCRelative" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1023,7 +1023,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCSubroutine" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data\scripts\subroutine.nc</Value>
+      <Value Profile="(Default)">data\scripts\script_v1583_brush_refresh.nc</Value>
     </Setting>
     <Setting Name="importGCTangentialAngle" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">30</Value>
@@ -1706,6 +1706,24 @@
     </Setting>
     <Setting Name="createTextLineBreakEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCPWMP93" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCPWMP94" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="importGCPWMTextP93" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Far up</Value>
+    </Setting>
+    <Setting Name="importGCPWMTextP94" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Down stir</Value>
+    </Setting>
+    <Setting Name="importGCPWMDlyP93" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="importGCPWMDlyP94" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
   </Settings>
 </SettingsFile>
