@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -61,6 +61,7 @@
  * 2020-07-20 clean up
  * 2020-11-30 don't set layer, pen etc. if there is no change (to avoid starting a new object in 'graphicRelated.cs') line 339
  * 2020-12-08 add BackgroundWorker updates
+ * 2021-05-18 line 435 check for DXFLWPolyLine.FlagsEnum.closed
 */
 
 using System;
@@ -431,9 +432,9 @@ namespace GRBL_Plotter //DXFImporter
                     else
                         roundcorner = false;
                 }
-                if ((lp.Flags > 0))// && (x2 != x) && (y2 != y))   // only move if prev pos is differnent
-                {
-                    position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle);
+                if (logPosition) Logger.Trace(" LWPolyLine lp.Flags {0}", lp.Flags);
+                if (lp.Flags == DXFLWPolyLine.FlagsEnum.closed)
+                {   position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle); // move to start position
                     DXFMoveTo(position, "End LWPolyLine " + lp.Flags.ToString());
                 }
                 DXFStopPath();
@@ -913,7 +914,9 @@ namespace GRBL_Plotter //DXFImporter
 
         private static bool requestStopPath = false;
         private static void DXFStopPath(bool allowSkip = false)
-        {   Graphic.StopPath(); }              // start next path
+        {
+            if (logPosition) Logger.Trace("DXFStopPath");
+            Graphic.StopPath(); }              // start next path
 
         /// <summary>
         /// Insert G1 gcode command
@@ -938,6 +941,7 @@ namespace GRBL_Plotter //DXFImporter
         /// </summary>
         private static void DXFMoveTo(System.Windows.Point orig, string cmt)
         {   System.Windows.Point coord = TranslateXY(orig);
+            if (logPosition) Logger.Trace(" DXFMoveTo nodesOnly {0}", nodesOnly);
             if (!nodesOnly)
                 Graphic.AddLine(coord, cmt);
             else
