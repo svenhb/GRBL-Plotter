@@ -27,8 +27,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.5.8.2</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.5.8.4</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -386,7 +386,7 @@
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromShape.Designer.cs">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </Compile>
-    <Compile Include="checkUpdate.cs" />
+    <Compile Include="MachineControl\checkUpdate.cs" />
     <Compile Include="Resources\ResStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -665,16 +665,22 @@
     <Content Include="data\buttons\Add_logo.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\scripts\script_sr_brush_clean.nc">
+    <Content Include="data\scripts\script_v1583_brush_clean.nc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\scripts\script_sr_brush_refresh.nc">
+    <Content Include="data\scripts\script_v1583_brush_refresh.nc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\scripts\script_sr_brush_select.nc">
+    <Content Include="data\scripts\script_v1583_brush_select.nc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\tools\paint_watercolor2.csv">
+    <Content Include="data\tools\paint_watercolor.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\usecases\import_simple_z.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\usecase_simple_z.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\LeadInOut.png" />
@@ -1361,9 +1367,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\tools\paint_Stabilopower.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="data\tools\paint_watercolor.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\tools\laser_popup.csv">
