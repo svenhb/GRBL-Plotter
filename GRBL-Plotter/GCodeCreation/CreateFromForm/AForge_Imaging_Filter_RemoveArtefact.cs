@@ -5,7 +5,8 @@
 // Copyright ? AForge.NET, 2005-2011
 // contacts@aforgenet.com
 //
-// Add on 2018 by Sven Hasemann
+// Add on 2018-2021 Sven Hasemann contact: svenhb@web.de
+// 2021 - 07 - 02 code clean up / code quality
 
 namespace AForge.Imaging.Filters
 {
@@ -36,7 +37,7 @@ namespace AForge.Imaging.Filters
         private int count = 3;
 
         // private format translation dictionary
-        private Dictionary<PixelFormat, PixelFormat> formatTranslations = new Dictionary<PixelFormat, PixelFormat>();
+        private readonly Dictionary<PixelFormat, PixelFormat> formatTranslations = new Dictionary<PixelFormat, PixelFormat>();
 
         /// <summary>
         /// Format translations dictionary.
@@ -96,13 +97,17 @@ namespace AForge.Imaging.Filters
         /// Process the filter on the specified image.
         /// </summary>
         /// 
-        /// <param name="source">Source image data.</param>
-        /// <param name="destination">Destination image data.</param>
+        /// <param name="sourceData">Source image data.</param>
+        /// <param name="destinationData">Destination image data.</param>
         /// <param name="rect">Image rectangle for processing by the filter.</param>
         /// 
-        protected override unsafe void ProcessFilter(UnmanagedImage source, UnmanagedImage destination, Rectangle rect)
+        protected override unsafe void ProcessFilter(UnmanagedImage sourceData, UnmanagedImage destinationData, Rectangle rect)
         {
-            int pixelSize = Image.GetPixelFormatSize(source.PixelFormat) / 8;
+            if (sourceData == null) return;
+            if (destinationData == null) return;
+            if (rect == null) return;
+
+            int pixelSize = Image.GetPixelFormatSize(sourceData.PixelFormat) / 8;
 
             // processing start and stop X,Y positions
             int startX = rect.Left;
@@ -110,8 +115,8 @@ namespace AForge.Imaging.Filters
             int stopX = startX + rect.Width;
             int stopY = startY + rect.Height;
 
-            int srcStride = source.Stride;
-            int dstStride = destination.Stride;
+            int srcStride = sourceData.Stride;
+            int dstStride = destinationData.Stride;
             int srcOffset = srcStride - rect.Width * pixelSize;
             int dstOffset = dstStride - rect.Width * pixelSize;
 
@@ -124,8 +129,8 @@ namespace AForge.Imaging.Filters
             Dictionary<Color, int> myColors = new Dictionary<Color, int>();
             Color ocolor,pcolor;
 
-            byte* src = (byte*)source.ImageData.ToPointer();
-            byte* dst = (byte*)destination.ImageData.ToPointer();
+            byte* src = (byte*)sourceData.ImageData.ToPointer();
+            byte* dst = (byte*)destinationData.ImageData.ToPointer();
             byte* p;
 
             // allign pointers to the first pixel to process
@@ -133,7 +138,7 @@ namespace AForge.Imaging.Filters
             dst += (startY * dstStride + startX * pixelSize);
 
             // do the processing job
-            if (destination.PixelFormat == PixelFormat.Format8bppIndexed)
+            if (destinationData.PixelFormat == PixelFormat.Format8bppIndexed)
             {
             /*    for (int y = startY; y < stopY; y++)
                 {

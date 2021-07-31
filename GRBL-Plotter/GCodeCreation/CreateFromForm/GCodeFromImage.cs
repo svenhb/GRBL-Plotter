@@ -28,22 +28,28 @@
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2021-04-03 add preset for S value range
  * 2021-04-14 line 1124 only horizontal scanning for process tool
+ * 2021-07-26 code clean up / code quality
 */
 
+using AForge.Imaging.ColorReduction;
+using AForge.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using System.Globalization;
 using System.Threading;
+using System.Windows.Forms;
 
-using AForge.Imaging.ColorReduction;
-using AForge.Imaging.Filters;
+//#pragma warning disable CA1303	// Do not pass literals as localized parameters
+//#pragma warning disable CA1304
+//#pragma warning disable CA1305
+//#pragma warning disable CA1307
+#pragma warning disable IDE1006
 
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     public partial class GCodeFromImage : Form
     {
@@ -51,16 +57,17 @@ namespace GRBL_Plotter
         Bitmap adjustedImage;
         Bitmap resultImage;
         private static int maxToolTableIndex = 0;       // last index
-        private static bool gcodeSpindleToggle = false; // Switch on/off spindle for Pen down/up (M3/M5)
+        private static readonly bool gcodeSpindleToggle = false; // Switch on/off spindle for Pen down/up (M3/M5)
         private static bool loadFromFile = false;
-        private static Color backgroundColor = Color.White;
+        private static readonly Color backgroundColor = Color.White;
 
         private string imagegcode = "";
-        public string imageGCode
+        public string ImageGCode
         { get { return imagegcode; } }
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
         //On form load
         private void GCodeFromImage_Load(object sender, EventArgs e)
@@ -69,7 +76,7 @@ namespace GRBL_Plotter
             lblStatus.Text = "Done";
             getSettings();
             autoZoomToolStripMenuItem_Click(this, null);//Set preview zoom mode
-            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+            fillUseCaseFileList(Datapath.Usecases);
             rBGrayZ.Checked = Properties.Settings.Default.importImageGrayAsZ;
         }
         private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
@@ -81,7 +88,7 @@ namespace GRBL_Plotter
         {
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
             {
-                loadClipboard();
+                LoadClipboard();
                 e.SuppressKeyPress = true;
             }
         }
@@ -94,15 +101,15 @@ namespace GRBL_Plotter
             pictureBox1.Refresh();
         }
 
-        public GCodeFromImage(bool loadFile=false)
+        public GCodeFromImage(bool loadFile = false)
         {
-            Logger.Trace("++++++ GCodeFromImage loadFile:{0} START ++++++", loadFile);
+            Logger.Trace(culture, "++++++ GCodeFromImage loadFile:{0} START ++++++", loadFile);
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
             loadFromFile = loadFile;
-            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+            fillUseCaseFileList(Datapath.Usecases);
             this.Icon = Properties.Resources.Icon;
         }
 
@@ -111,7 +118,7 @@ namespace GRBL_Plotter
         // load picture when form opens
         private void ImageToGCode_Load(object sender, EventArgs e)
         {
-            if (loadFromFile) loadExtern(lastFile);
+            if (loadFromFile) LoadExtern(lastFile);
             originalImage = new Bitmap(Properties.Resources.modell);
             Location = Properties.Settings.Default.locationImageForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
@@ -125,24 +132,30 @@ namespace GRBL_Plotter
         private static string lastFile = "";
         //OpenFile, save picture grayscaled to originalImage and save the original aspect ratio to ratio
         private void btnLoad_Click(object sender, EventArgs e)
-        {   try
-            {   OpenFileDialog sfd = new OpenFileDialog();
-                sfd.Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tif;";
-                if (sfd.ShowDialog() == DialogResult.OK)
+        {
+            try
+            {
+                using (OpenFileDialog sfd = new OpenFileDialog())
                 {
-                    if (!File.Exists(sfd.FileName)) return;
-                    lastFile = sfd.FileName;
-                    originalImage = new Bitmap(System.Drawing.Image.FromFile(sfd.FileName));
-                    processLoading();   // reset color corrections
+                    sfd.Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tif;";
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        if (!File.Exists(sfd.FileName)) return;
+                        lastFile = sfd.FileName;
+                        originalImage = new Bitmap(System.Drawing.Image.FromFile(sfd.FileName));
+                        processLoading();   // reset color corrections
+                    }
                 }
             }
             catch (Exception err)
-            {   MessageBox.Show("Error opening file: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                MessageBox.Show("Error opening file: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);//throw;
             }
         }
 
-        public void loadExtern(string file)
-        {   if (!File.Exists(file)) return;
+        public void LoadExtern(string file)
+        {
+            if (!File.Exists(file)) return;
             lastFile = file;
             originalImage = new Bitmap(System.Drawing.Image.FromFile(file));
             processLoading();   // reset color corrections
@@ -152,14 +165,16 @@ namespace GRBL_Plotter
         { Clipboard.SetImage(pictureBox1.Image); }
 
         private void setAsOriginalToolStripMenuItem_Click(object sender, EventArgs e)
-        {   originalImage = new Bitmap(pictureBox1.Image);
+        {
+            originalImage = new Bitmap(pictureBox1.Image);
             processLoading();
         }
 
         private void pasteFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
-        {   loadClipboard(); }
-        public void loadClipboard()
-        {   IDataObject iData = Clipboard.GetDataObject();
+        { LoadClipboard(); }
+        public void LoadClipboard()
+        {
+            IDataObject iData = Clipboard.GetDataObject();
             Logger.Trace("++++++ loadClipboard START ++++++");
             if (iData.GetDataPresent(DataFormats.Bitmap))
             {
@@ -169,25 +184,27 @@ namespace GRBL_Plotter
             }
         }
 
-        public void loadURL(string url)
-        {   pictureBox1.Load(url);
+        public void LoadUrl(string url)
+        {
+            pictureBox1.Load(url);
             originalImage = new Bitmap(pictureBox1.Image);
             processLoading();   // reset color corrections
         }
         private void GCodeFromImage_DragEnter(object sender, DragEventArgs e)
-        {   e.Effect = DragDropEffects.All; }
+        { e.Effect = DragDropEffects.All; }
 
         private void GCodeFromImage_DragDrop(object sender, DragEventArgs e)
-        {   string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             if (files != null)
-            { loadExtern(files[0]); }
+            { LoadExtern(files[0]); }
         }
 
         decimal ratio; //Used to lock the aspect ratio when the option is selected
         private void processLoading()
         {   //rBImportSVGTool.Checked = Properties.Settings.Default.importSVGToolSort;
-  //          if (!rBImportSVGTool.Checked)
-  //              rBImportSVGTool2.Checked = true;
+            //          if (!rBImportSVGTool.Checked)
+            //              rBImportSVGTool2.Checked = true;
             Logger.Trace("processLoading");
             lblStatus.Text = "Opening file...";
             adjustedImage = new Bitmap(originalImage);
@@ -217,10 +234,10 @@ namespace GRBL_Plotter
             int xSize = (int)(nUDWidth.Value / nUDResoX.Value);  //Total X pixels of resulting image for GCode generation
             int ySize = (int)(nUDHeight.Value / resoY); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
             pixelCount = xSize * ySize;
-            lblSizeOrig.Text = "Original size: " + originalImage.Width + " x " + originalImage.Height + " = " + (originalImage.Width* originalImage.Height) + " px";
+            lblSizeOrig.Text = "Original size: " + originalImage.Width + " x " + originalImage.Height + " = " + (originalImage.Width * originalImage.Height) + " px";
             lblSizeResult.Text = "Result size: " + xSize.ToString() + " x " + ySize.ToString() + " = " + pixelCount.ToString() + " px";
-            string tmp = "Press 'Preview' to update tool list\r\n\r\nNumber of pens: " + (maxToolTableIndex-1)+"\r\n\r\n";
-            tmp += "Original Image size (px):\r\n" + originalImage.Width + " px * " + originalImage.Height + " px = " + (originalImage.Width* originalImage.Height) + " px\r\n\r\n";
+            string tmp = "Press 'Preview' to update tool list\r\n\r\nNumber of pens: " + (maxToolTableIndex - 1) + "\r\n\r\n";
+            tmp += "Original Image size (px):\r\n" + originalImage.Width + " px * " + originalImage.Height + " px = " + (originalImage.Width * originalImage.Height) + " px\r\n\r\n";
             tmp += "Result Image size (px)  :\r\n" + xSize.ToString() + " px * " + ySize.ToString() + " px = " + pixelCount.ToString() + " px\r\n\r\n";
             tmp += "Result image size(units): \r\nWidth: " + Math.Round(nUDWidth.Value, 1);
             tmp += "  Height: " + Math.Round(nUDHeight.Value, 1) + "\r\n\r\n";
@@ -231,17 +248,21 @@ namespace GRBL_Plotter
 
 
         private void getSettings()
-        {   maxToolTableIndex = toolTable.init() ;       // 1 entry reserved
-            nUDMaxColors.Maximum = maxToolTableIndex-1;
-            nUDMaxColors.Value = maxToolTableIndex-1;
+        {
+            maxToolTableIndex = ToolTable.Init();       // 1 entry reserved
+            nUDMaxColors.Maximum = maxToolTableIndex - 1;
+            nUDMaxColors.Value = maxToolTableIndex - 1;
             setToolList();
         }
-        private void setToolList(bool all=true)
-        {   cLBTools.Items.Clear();
+        private void setToolList(bool all = true)
+        {
+            cLBTools.Items.Clear();
             for (int i = 0; i < maxToolTableIndex; i++)
-            {   toolTable.setIndex(i);
-                if ((toolTable.indexToolNr() >= 0) && (all || toolTable.indexUse()))
-                {   cLBTools.Items.Add(toolTable.indexToolNr() + ") " + toolTable.getName(), toolTable.indexSelected());
+            {
+                ToolTable.SetIndex(i);
+                if ((ToolTable.IndexToolNR() >= 0) && (all || ToolTable.IndexUse()))
+                {
+                    cLBTools.Items.Add(ToolTable.IndexToolNR() + ") " + ToolTable.GetName(), ToolTable.IndexSelected());
                 }
             }
         }
@@ -250,13 +271,15 @@ namespace GRBL_Plotter
         /// </summary>
         private void cLBTools_SelectedIndexChanged(object sender, EventArgs e)
         {
-            toolTable.sortByToolNr(false);
-            int toolNr = 0;
+            ToolTable.SortByToolNR(false);
+            //   int toolNr;
             for (int i = 0; i < cLBTools.Items.Count; i++)      // index = unknown
             {
-                Int32.TryParse((cLBTools.Items[i].ToString().Split(')'))[0], out toolNr);    // get toolNr from text
-                toolTable.setIndex(toolTable.getIndexByToolNr(toolNr));                     // get index from toolNr
-                toolTable.setSelected(cLBTools.GetItemChecked(i));                          // set selected property of index
+                if (Int32.TryParse((cLBTools.Items[i].ToString().Split(')'))[0], out int toolNr))    // get toolNr from text
+                {
+                    ToolTable.SetIndex(ToolTable.GetIndexByToolNR(toolNr));                     // get index from toolNr
+                    ToolTable.SetSelected(cLBTools.GetItemChecked(i));                          // set selected property of index
+                }
             }
             generateResultImage(ref resultToolNrArray);      // fill countColors
             showResultActive = true;
@@ -268,7 +291,7 @@ namespace GRBL_Plotter
 
         #region preset color correction
         private void btnResetCorrection_Click(object sender, EventArgs e)
-        { resetColorCorrection();  applyColorCorrections(); lblImageSource.Text = "original"; }
+        { resetColorCorrection(); applyColorCorrections(); lblImageSource.Text = "original"; }
 
         private void btnPresetCorrection1_Click(object sender, EventArgs e)
         { resetColorCorrection(); presetColorCorrection(1); applyColorCorrections(); }
@@ -277,16 +300,18 @@ namespace GRBL_Plotter
         private void btnPresetCorrection3_Click(object sender, EventArgs e)
         { resetColorCorrection(); presetColorCorrection(3); applyColorCorrections(); }
         private void btnPresetCorrection4_Click(object sender, EventArgs e)
-        {   resetColorCorrection(); presetColorCorrection(4); applyColorCorrections(); adjustedImage = imgInvert(adjustedImage);
+        {
+            resetColorCorrection(); presetColorCorrection(4); applyColorCorrections(); adjustedImage = imgInvert(adjustedImage);
             originalImage = new Bitmap(adjustedImage); resetColorCorrection();
             disableControlEvents(); cbGrayscale.Checked = true; tBarGamma.Value = 10;
-            cbExceptColor.Checked = true; toolTable.setExceptionColor(cbExceptColor.BackColor);
+            cbExceptColor.Checked = true; ToolTable.SetExceptionColor(cbExceptColor.BackColor);
             cBPreview.Checked = true; cBReduceColorsToolTable.Checked = true; nUDMaxColors.Value = 2;
-            enableControlEvents(); applyColorCorrections(); 
+            enableControlEvents(); applyColorCorrections();
         }
 
         private void resetColorCorrection()
-        {   disableControlEvents();
+        {
+            disableControlEvents();
             tBarBrightness.Value = 0;
             tBarContrast.Value = 0;
             tBarGamma.Value = 100;
@@ -307,10 +332,10 @@ namespace GRBL_Plotter
             rBMode0.Checked = true;
             cbExceptColor.Checked = false;
             cbExceptColor.BackColor = Color.White;
-            toolTable.clrExceptionColor();
+            ToolTable.ClrExceptionColor();
             cBPreview.Checked = false;
             redoColorAdjust = false;
- //           updatePixelCountPerColorNeeded = false;
+            //           updatePixelCountPerColorNeeded = false;
             lblImageSource.Text = "original";
             enableControlEvents();
         }
@@ -368,21 +393,24 @@ namespace GRBL_Plotter
         {
             disableControlEvents();
             if (tmp == 1)                   // Image dark background
-            {   tBarSaturation.Value = 128;
+            {
+                tBarSaturation.Value = 128;
                 tBRMin.Value = 64;
                 tBGMin.Value = 64;
                 tBBMin.Value = 64;
                 cbExceptColor.Checked = true;
                 cbExceptColor.BackColor = Color.FromArgb(255, 0, 0, 0);
-                toolTable.setExceptionColor(cbExceptColor.BackColor);
+                ToolTable.SetExceptionColor(cbExceptColor.BackColor);
                 cBGCodeOutline.Checked = false;
             }
             else if (tmp == 2)              // graphic many colors
-            {   cBPosterize.Checked = true;
+            {
+                cBPosterize.Checked = true;
                 rBMode2.Checked = true;
             }
             else if (tmp == 3)              // comic few colors
-            {   tBarBrightness.Value = -15;
+            {
+                tBarBrightness.Value = -15;
                 tBarContrast.Value = 20;
                 tBarGamma.Value = 88;
                 cBReduceColorsToolTable.Checked = true;
@@ -392,7 +420,8 @@ namespace GRBL_Plotter
                 redoColorAdjust = true;
             }
             else if (tmp == 4)              // comic few colors
-            {   cbGrayscale.Checked = true;
+            {
+                cbGrayscale.Checked = true;
                 rbModeGray.Checked = true;
                 cBFilterEdge.Checked = true;
             }
@@ -400,11 +429,12 @@ namespace GRBL_Plotter
             enableControlEvents();
         }
         private string listColorCorrection()
-        {   string tmp = "";
+        {
+            string tmp = "";
             tmp += "Reduce colors \t" + (cBReduceColorsToolTable.Checked ? "on" : "off") + " " + Convert.ToString(nUDMaxColors.Value) + "\r\n";
-            tmp += "Dithering  \t" + (cBReduceColorsDithering.Checked ? "on" : "off") +"\r\n";
+            tmp += "Dithering  \t" + (cBReduceColorsDithering.Checked ? "on" : "off") + "\r\n";
             tmp += "Except. col.\t" + (cbExceptColor.Checked ? "on" : "off") + " " + Convert.ToString(cbExceptColor.BackColor) + "\r\n";
-            tmp += "Brightness \t"+ Convert.ToString(tBarBrightness.Value)+"\r\n";
+            tmp += "Brightness \t" + Convert.ToString(tBarBrightness.Value) + "\r\n";
             tmp += "Contrast   \t" + Convert.ToString(tBarContrast.Value) + "\r\n";
             tmp += "Gamma      \t" + Convert.ToString(tBarGamma.Value / 100.0f) + "\r\n";
             tmp += "Saturation \t" + Convert.ToString(tBarSaturation.Value) + "\r\n";
@@ -413,14 +443,15 @@ namespace GRBL_Plotter
             tmp += "Channel filter green \t" + Convert.ToString(tBGMin.Value) + ";" + Convert.ToString(tBGMax.Value) + "\r\n";
             tmp += "Channel filter blue  \t" + Convert.ToString(tBBMin.Value) + ";" + Convert.ToString(tBBMax.Value) + "\r\n";
             tmp += "Hue shift  \t" + Convert.ToString(tBarHueShift.Value) + "\r\n";
-            tmp += "Edge filter   \t" + (cBFilterEdge.Checked? "on":"off") + "\r\n";
+            tmp += "Edge filter   \t" + (cBFilterEdge.Checked ? "on" : "off") + "\r\n";
             tmp += "Histogram equ.\t" + (cBFilterHistogram.Checked ? "on" : "off") + "\r\n";
             tmp += "Posterize     \t" + (cBPosterize.Checked ? "on" : "off") + "\r\n";
             return tmp;
         }
 
         private void updateLabels()
-        {   lblBrightness.Text = Convert.ToString(tBarBrightness.Value);
+        {
+            lblBrightness.Text = Convert.ToString(tBarBrightness.Value);
             lblContrast.Text = Convert.ToString(tBarContrast.Value);
             lblGamma.Text = Convert.ToString(tBarGamma.Value / 100.0f);
             lblSaturation.Text = Convert.ToString(tBarSaturation.Value);
@@ -431,7 +462,8 @@ namespace GRBL_Plotter
             Refresh();
         }
         private void btnShowSettings_Click(object sender, EventArgs e)
-        {   MessageBox.Show(listColorCorrection(),"Color correction settings");
+        {
+            MessageBox.Show(listColorCorrection(), "Color correction settings");
             System.Windows.Forms.Clipboard.SetText(listColorCorrection());
         }
         #endregion
@@ -439,15 +471,18 @@ namespace GRBL_Plotter
 
         #region image manipulation
 
-        private static decimal oldWidth=0, oldHeight=0;
+        private static decimal oldWidth = 0, oldHeight = 0;
         private void nUDWidthHeight_ValueChanged(object sender, EventArgs e)
-        {   nUDWidth.ValueChanged -= nUDWidthHeight_ValueChanged;
+        {
+            nUDWidth.ValueChanged -= nUDWidthHeight_ValueChanged;
             nUDHeight.ValueChanged -= nUDWidthHeight_ValueChanged;
             bool edit = false;
             if (oldWidth != nUDWidth.Value)
-            {   oldWidth = nUDWidth.Value;
+            {
+                oldWidth = nUDWidth.Value;
                 if (cbLockRatio.Checked)
-                {   oldHeight = oldWidth / ratio;
+                {
+                    oldHeight = oldWidth / ratio;
                     nUDHeight.Value = oldHeight;
                     nUDHeight.Invalidate();
                 }
@@ -455,9 +490,11 @@ namespace GRBL_Plotter
                 edit = true;
             }
             if (oldHeight != nUDHeight.Value)
-            {   oldHeight = nUDHeight.Value;
+            {
+                oldHeight = nUDHeight.Value;
                 if (cbLockRatio.Checked)
-                {   oldWidth = oldHeight * ratio;
+                {
+                    oldWidth = oldHeight * ratio;
                     nUDWidth.Value = oldWidth;
                     nUDWidth.Invalidate();
                 }
@@ -480,14 +517,16 @@ namespace GRBL_Plotter
 
         //Horizontal mirroing
         private void btnHorizMirror_Click(object sender, EventArgs e)
-        {   if (adjustedImage == null) return;//if no image, do nothing
+        {
+            if (adjustedImage == null) return;//if no image, do nothing
             adjustedImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
             originalImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
             pictureBox1.Image = adjustedImage;
         }
         //Vertical mirroing
         private void btnVertMirror_Click(object sender, EventArgs e)
-        {   if (adjustedImage == null) return;//if no image, do nothing
+        {
+            if (adjustedImage == null) return;//if no image, do nothing
             adjustedImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
             originalImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
             pictureBox1.Image = adjustedImage;
@@ -495,7 +534,8 @@ namespace GRBL_Plotter
         }
         //Rotate right
         private void btnRotateRight_Click(object sender, EventArgs e)
-        {   if (adjustedImage == null) return;//if no image, do nothing
+        {
+            if (adjustedImage == null) return;//if no image, do nothing
             adjustedImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
             originalImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
             ratio = 1 / ratio;
@@ -508,7 +548,8 @@ namespace GRBL_Plotter
         }
         //Rotate left
         private void btnRotateLeft_Click(object sender, EventArgs e)
-        {   if (adjustedImage == null) return;//if no image, do nothing
+        {
+            if (adjustedImage == null) return;//if no image, do nothing
             adjustedImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
             originalImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
             ratio = 1 / ratio;
@@ -521,7 +562,8 @@ namespace GRBL_Plotter
         }
         //Invert image color
         private void btnInvert_Click(object sender, EventArgs e)
-        {   if (adjustedImage == null) return;//if no image, do nothing
+        {
+            if (adjustedImage == null) return;//if no image, do nothing
             adjustedImage = imgInvert(adjustedImage);
             originalImage = imgInvert(originalImage);
             pictureBox1.Image = adjustedImage;
@@ -538,7 +580,8 @@ namespace GRBL_Plotter
 
         private static int conversionMode = 0, conversionModeOld = 0;
         private void rBMode0_CheckedChanged(object sender, EventArgs e)
-        {   conversionMode = 0;
+        {
+            conversionMode = 0;
             if (rBMode1.Checked) conversionMode = 1;
             else if (rBMode2.Checked) conversionMode = 2;
             if (conversionMode != conversionModeOld)
@@ -547,10 +590,10 @@ namespace GRBL_Plotter
         }
 
         //Interpolate a 8 bit grayscale value (0-255) between min,max
-        private int interpolate(int grayValue, int min, int max)
-        {   int dif = max - min;
-            return (min + ((grayValue * dif) / 255));
-        }
+        /*     private int interpolate(int grayValue, int min, int max)
+             {   int dif = max - min;
+                 return (min + ((grayValue * dif) / 255));
+             }*/
 
         //Apply dithering to an image (Convert to 1 bit)
         private Bitmap imgDirther(Bitmap input)
@@ -562,10 +605,12 @@ namespace GRBL_Plotter
             var data = new sbyte[input.Width, input.Height];
             var inputData = input.LockBits(new Rectangle(0, 0, input.Width, input.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
             try
-            {   var scanLine = inputData.Scan0;
+            {
+                var scanLine = inputData.Scan0;
                 var line = new byte[inputData.Stride];
                 for (var y = 0; y < inputData.Height; y++, scanLine += inputData.Stride)
-                {   Marshal.Copy(scanLine, line, 0, line.Length);
+                {
+                    Marshal.Copy(scanLine, line, 0, line.Length);
                     for (var x = 0; x < input.Width; x++)
                     {
                         data[x, y] = (sbyte)(64 * (GetGreyLevel(line[x * 3 + 2], line[x * 3 + 1], line[x * 3 + 0]) - 0.5));
@@ -573,7 +618,7 @@ namespace GRBL_Plotter
                 }
             }
             finally
-            {   input.UnlockBits(inputData);  }
+            { input.UnlockBits(inputData); }
 
             var outputData = output.LockBits(new Rectangle(0, 0, output.Width, output.Height), ImageLockMode.WriteOnly, PixelFormat.Format1bppIndexed);
             try
@@ -608,9 +653,9 @@ namespace GRBL_Plotter
         }
 
         private static double GetGreyLevel(byte r, byte g, byte b)//aux for dirthering
-        {   return (r * 0.299 + g * 0.587 + b * 0.114) / 255; }
+        { return (r * 0.299 + g * 0.587 + b * 0.114) / 255; }
         //Adjust brightness contrast and gamma of an image      
-        private Bitmap imgBalance(Bitmap img, int brigh, int cont, int gam)
+        public static Bitmap imgBalance(Bitmap img, int brigh, int cont, int gam)
         {
             ImageAttributes imageAttributes;
             float brightness = (brigh / 100.0f) + 1.0f;
@@ -632,14 +677,15 @@ namespace GRBL_Plotter
             imageAttributes.SetColorMatrix(new ColorMatrix(ptsArray), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             imageAttributes.SetGamma(gamma, ColorAdjustType.Bitmap);
             Graphics g = Graphics.FromImage(output);
-//            g.DrawRectangle(new Pen(new SolidBrush(Color.White)), 0, 0, output.Width, output.Height);   // remove transparency
+            //            g.DrawRectangle(new Pen(new SolidBrush(Color.White)), 0, 0, output.Width, output.Height);   // remove transparency
             g.DrawImage(output, new Rectangle(0, 0, output.Width, output.Height)
             , 0, 0, output.Width, output.Height,
             GraphicsUnit.Pixel, imageAttributes);
+            imageAttributes.Dispose();
             return (output);
         }
 
-        private Bitmap removeAlpha(Bitmap img)
+        private static Bitmap removeAlpha(Bitmap img)
         {
 
             Color myColor;
@@ -656,7 +702,7 @@ namespace GRBL_Plotter
                 }
             }
             return img;
-                    
+
 
             /*        Bitmap output = new Bitmap(img.Width, img.Height);//, PixelFormat.Format24bppRgb);
                     Graphics g = Graphics.FromImage(output);
@@ -667,7 +713,7 @@ namespace GRBL_Plotter
         }
 
         //Return a grayscale version of an image
-        private Bitmap imgGrayscale(Bitmap original)
+        private static Bitmap imgGrayscale(Bitmap original)
         {
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);//create a blank bitmap the same size as original
             Graphics g = Graphics.FromImage(newBitmap);//get a graphics object from the new image
@@ -688,11 +734,12 @@ namespace GRBL_Plotter
             g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
                0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
             g.Dispose();//dispose the Graphics object
+            attributes.Dispose();
             return (newBitmap);
         }
 
         //Return a inverted colors version of a image
-        private Bitmap imgInvert(Bitmap original)
+        private static Bitmap imgInvert(Bitmap original)
         {
             Bitmap newBitmap = new Bitmap(original.Width, original.Height);//create a blank bitmap the same size as original
             Graphics g = Graphics.FromImage(newBitmap);//get a graphics object from the new image
@@ -713,6 +760,7 @@ namespace GRBL_Plotter
             g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
                0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
             g.Dispose();//dispose the Graphics object
+            attributes.Dispose();
             return (newBitmap);
         }
 
@@ -734,23 +782,24 @@ namespace GRBL_Plotter
 
             resoDesiredX = nUDResoX.Value;
             resoDesiredY = nUDResoX.Value;
-  //          if (nUDResoY.Enabled) { resoDesiredY = nUDResoY.Value; }
+            //          if (nUDResoY.Enabled) { resoDesiredY = nUDResoY.Value; }
 
             resoFactorX = 1;
             resoFactorY = 1;
             if (useFullReso)                                        // if full resolution is needed
-            {   resoFullX = (nUDWidth.Value / originalImage.Width);      // get max possible resolution
+            {
+                resoFullX = (nUDWidth.Value / originalImage.Width);      // get max possible resolution
                 resoFactorX = (int)Math.Ceiling(resoDesiredX / resoFullX); // get rounded factor to set resolution
-                if (resoFactorX > 5)             
+                if (resoFactorX > 5)
                     resoFactorX = 5;
-                resoDesiredX = resoDesiredX / resoFactorX;              // set rounded value
+                resoDesiredX /= resoFactorX;              // set rounded value
                 resoFullY = (nUDHeight.Value / originalImage.Height);      // get max possible resolution
                 resoFactorY = (int)Math.Ceiling(resoDesiredY / resoFullY); // get rounded factor to set resolution
                 if (resoFactorY > 5)
                     resoFactorY = 5;
-                resoDesiredY = resoDesiredY / resoFactorY;              // set rounded value    
+                resoDesiredY /= resoFactorY;              // set rounded value    
             }
-            lblInfo1.Text = "ResoX: " + Math.Round(resoDesiredX,3) + "  factorX: " + resoFactorX + "   ResoY: " + Math.Round(resoDesiredY, 3) + "  factorY: " + resoFactorY;
+            lblInfo1.Text = "ResoX: " + Math.Round(resoDesiredX, 3) + "  factorX: " + resoFactorX + "   ResoY: " + Math.Round(resoDesiredY, 3) + "  factorY: " + resoFactorY;
             int xSize = (int)(nUDWidth.Value / resoDesiredX);  //Total X pixels of resulting image for GCode generation
             int ySize = (int)(nUDHeight.Value / resoDesiredY); //Convert.ToInt32(float.Parse(tbHeight.Text, CultureInfo.InvariantCulture.NumberFormat) / float.Parse(tbRes.Text, CultureInfo.InvariantCulture.NumberFormat));
 
@@ -765,91 +814,99 @@ namespace GRBL_Plotter
                 adjustedImage = imgBalance(adjustedImage, tBarBrightness.Value, tBarContrast.Value, tBarGamma.Value);
                 adjustedImage = removeAlpha(adjustedImage);
 
-                SaturationCorrection filterS = new SaturationCorrection((float)tBarSaturation.Value/255);
-                filterS.ApplyInPlace(adjustedImage);       
+                SaturationCorrection filterS = new SaturationCorrection((float)tBarSaturation.Value / 255);
+                filterS.ApplyInPlace(adjustedImage);
 
                 if (cbGrayscale.Checked)// cbDirthering.Text == "Dirthering FS 1 bit")
-                {   if (rbModeDither.Checked)
+                {
+                    if (rbModeDither.Checked)
                         adjustedImage = imgDirther(adjustedImage);
                     else
                         adjustedImage = imgGrayscale(adjustedImage);
 
-   //                 adjustedImage = removeAlpha(adjustedImage);
+                    //                 adjustedImage = removeAlpha(adjustedImage);
                     if (nUDResoY.Enabled)
                     {   // create filter
-                        float stpY = (float)(nUDResoY.Value/ resoDesiredX);     // get rounded factor to set resolution
+                        //float stpY = (float)(nUDResoY.Value/ resoDesiredX);     // get rounded factor to set resolution
 
-                /*        Bitmap newBitmap = new Bitmap(xSize, ySize);            //create a blank bitmap the same size as original
-                        using (Graphics gfx = Graphics.FromImage(newBitmap))
-                        using (SolidBrush brush = new SolidBrush(Color.White))  //
-                        {   gfx.FillRectangle(brush, 0, 0, xSize, ySize);  }
+                        /*        Bitmap newBitmap = new Bitmap(xSize, ySize);            //create a blank bitmap the same size as original
+                                using (Graphics gfx = Graphics.FromImage(newBitmap))
+                                using (SolidBrush brush = new SolidBrush(Color.White))  //
+                                {   gfx.FillRectangle(brush, 0, 0, xSize, ySize);  }
 
-                        using (Graphics gfx = Graphics.FromImage(newBitmap))
-                        using (Pen brush = new Pen(Color.Black))
-                        {
-                            if (stpY > 1)
-                                brush.Width = stpY / 2;
-                            else 
-                                brush.Width = stpY;
-                          
-                            for (float i = (ySize-1); i >=0; i -= stpY) // from top to down as in conversion function
-                            {   gfx.DrawLine(brush, 0, i, xSize, i); }
-                        }
+                                using (Graphics gfx = Graphics.FromImage(newBitmap))
+                                using (Pen brush = new Pen(Color.Black))
+                                {
+                                    if (stpY > 1)
+                                        brush.Width = stpY / 2;
+                                    else 
+                                        brush.Width = stpY;
 
-                        Add filter = new Add(newBitmap);
-                        adjustedImage = filter.Apply(adjustedImage);*/
+                                    for (float i = (ySize-1); i >=0; i -= stpY) // from top to down as in conversion function
+                                    {   gfx.DrawLine(brush, 0, i, xSize, i); }
+                                }
+
+                                Add filter = new Add(newBitmap);
+                                adjustedImage = filter.Apply(adjustedImage);*/
                     }
                     adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, originalImage.PixelFormat); //Format32bppARGB
                 }
                 updateLabelColorCount = true;
 
                 // create filter
-                ChannelFiltering filterC = new ChannelFiltering();
-                // set channels' ranges to keep
-                filterC.Red = new AForge.IntRange((int)tBRMin.Value, (int)tBRMax.Value);
-                filterC.Green = new AForge.IntRange((int)tBGMin.Value, (int)tBGMax.Value);
-                filterC.Blue = new AForge.IntRange((int)tBBMin.Value, (int)tBBMax.Value);
+                ChannelFiltering filterC = new ChannelFiltering
+                {
+                    // set channels' ranges to keep
+                    Red = new AForge.IntRange((int)tBRMin.Value, (int)tBRMax.Value),
+                    Green = new AForge.IntRange((int)tBGMin.Value, (int)tBGMax.Value),
+                    Blue = new AForge.IntRange((int)tBBMin.Value, (int)tBBMax.Value)
+                };
                 filterC.ApplyInPlace(adjustedImage);
 
                 HueShift filter1 = new HueShift((int)tBarHueShift.Value);   // self made filter, not part of AForge
                 filter1.ApplyInPlace(adjustedImage);
 
                 if (cBFilterEdge.Checked)
-                {   Edges filterEdge = new Edges();
+                {
+                    Edges filterEdge = new Edges();
                     filterEdge.ApplyInPlace(adjustedImage);
                 }
                 if (cBFilterHistogram.Checked)
-                {   HistogramEqualization filterHisto = new HistogramEqualization();
+                {
+                    HistogramEqualization filterHisto = new HistogramEqualization();
                     filterHisto.ApplyInPlace(adjustedImage);
                 }
                 if (cBPosterize.Checked)
-                {   SimplePosterization filter2 = new SimplePosterization();
+                {
+                    SimplePosterization filter2 = new SimplePosterization();
                     filter2.ApplyInPlace(adjustedImage);
                 }
 
-                toolTable.setAllSelected(true);     //  enable all tools
+                ToolTable.SetAllSelected(true);     //  enable all tools
                 if (cBReduceColorsToolTable.Checked)
-                {   List<Color> myPalette = new List<Color>();
+                {
+                    List<Color> myPalette = new List<Color>();
                     ColorImageQuantizer ciq = new ColorImageQuantizer(new MedianCutQuantizer());
                     countResultColors();        // get all possible tool-colors and its count
 
                     if (redoColorAdjust)        // 
                     {
                         redoColorAdjust = false;
-                        toolTable.sortByPixelCount(false);
+                        ToolTable.SortByPixelCount(false);
                         int matchLimit = 0;
-                        toolTable.sortByToolNr(false);
+                        ToolTable.SortByToolNR(false);
                         int tmpCount = pixelCount;                // keep original counter 
                         if (useFullReso)
                             tmpCount = originalImage.Width * originalImage.Height;
 
                         if (cbExceptColor.Checked)
-                            tmpCount -= toolTable.pixelCount(0);  // no color-except
+                            tmpCount -= ToolTable.PixelCount(0);  // no color-except
                         for (int i = 0; i < maxToolTableIndex; i++)
-                        {   if ((toolTable.pixelCount(i) * 100 / tmpCount) >= nUDColorPercent.Value)
+                        {
+                            if ((ToolTable.PixelCount(i) * 100 / tmpCount) >= nUDColorPercent.Value)
                             { matchLimit++; }// tmp += toolTable.getName() + "  " + (toolTable.pixelCount(i) * 100 / tmpCount) + "\r\n"; }
                             else
-                                toolTable.setPresent(false);
+                                ToolTable.SetPresent(false);
                         }
                         if (matchLimit < nUDMaxColors.Minimum) { matchLimit = (int)nUDMaxColors.Maximum; }
                         if (matchLimit > nUDMaxColors.Maximum) { matchLimit = (int)nUDMaxColors.Maximum; }
@@ -860,32 +917,37 @@ namespace GRBL_Plotter
 
                     if (cbExceptColor.Checked)
                         myPalette.Add(cbExceptColor.BackColor);
-                    toolTable.sortByPixelCount(false);                       // fill palette with colors in order of occurence
-                    toolTable.setAllSelected(false);                                                    //        toolTable.clear();
+                    ToolTable.SortByPixelCount(false);                       // fill palette with colors in order of occurence
+                    ToolTable.SetAllSelected(false);                                                    //        toolTable.clear();
                     for (int i = 0; i < (int)nUDMaxColors.Value; i++)   // add colors to AForge filter
-                    {   toolTable.setIndex(i);
-                        if (toolTable.indexToolNr() >= 0)
-                        {   myPalette.Add(toolTable.indexColor());
-                            toolTable.setSelected(true);
+                    {
+                        ToolTable.SetIndex(i);
+                        if (ToolTable.IndexToolNR() >= 0)
+                        {
+                            myPalette.Add(ToolTable.IndexColor());
+                            ToolTable.SetSelected(true);
                         }
                     }
                     setToolList(false);      // show only applied colors
 
                     if (cBReduceColorsDithering.Checked)
-                    {   OrderedColorDithering dithering = new OrderedColorDithering();
-                        dithering.ColorTable = myPalette.ToArray();
+                    {
+                        OrderedColorDithering dithering = new OrderedColorDithering
+                        {
+                            ColorTable = myPalette.ToArray()
+                        };
                         adjustedImage = dithering.Apply(adjustedImage);
                     }
                     else
                         adjustedImage = ciq.ReduceColors(adjustedImage, myPalette.ToArray());// (int)nUDMaxColors.Value);                                                                                                 // adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, originalImage.PixelFormat); //Format32bppARGB
                 }
                 else
-                    setToolList();      
+                    setToolList();
 
                 if (cBFilterRemoveArtefact.Checked)
                 {
                     adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, PixelFormat.Format24bppRgb);
-                    RemoveArtefact filterRA = new RemoveArtefact(5,3);
+                    RemoveArtefact filterRA = new RemoveArtefact(5, 3);
                     filterRA.ApplyInPlace(adjustedImage);
                 }
                 adjustedImage = AForge.Imaging.Image.Clone(adjustedImage, originalImage.PixelFormat); //Format32bppARGB
@@ -898,7 +960,8 @@ namespace GRBL_Plotter
                 Refresh();
             }
             catch (Exception e)
-            {   MessageBox.Show("Error resizing/balancing image: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                MessageBox.Show("Error resizing/balancing image: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);//throw;
             }
             showResultImage();  // if checked, show final result with tool colors
             Cursor.Current = Cursors.Default;
@@ -906,29 +969,31 @@ namespace GRBL_Plotter
 
         private static bool showResultActive = false;
         private static bool showResultPreview = false;
-        private void showResultImage(bool showResult=true)//, bool preview = false)
+        private void showResultImage(bool showResult = true)//, bool preview = false)
         {
             if (adjustedImage == null) return;//if no image, do nothing
             if (cBPreview.Checked || showResultPreview)
             {
                 showResultPreview = false;
-  /*              maxToolTableIndex = toolTable.clear();
-                if (nUDMaxColors.Maximum != maxToolTableIndex - 1)
-                {
-                    nUDMaxColors.Maximum = maxToolTableIndex - 1;
-                    nUDMaxColors.Value = maxToolTableIndex - 1;
-                }*/
+                /*              maxToolTableIndex = toolTable.clear();
+                              if (nUDMaxColors.Maximum != maxToolTableIndex - 1)
+                              {
+                                  nUDMaxColors.Maximum = maxToolTableIndex - 1;
+                                  nUDMaxColors.Value = maxToolTableIndex - 1;
+                              }*/
                 generateResultImage(ref resultToolNrArray);      // fill countColors
                 showResultActive = true;
                 if (showResult)
-                {   updateToolList();
+                {
+                    updateToolList();
                     pictureBox1.Image = resultImage;
                     lblImageSource.Text = "result";
                 }
                 Refresh();
             }
             else
-            {   pictureBox1.Image = adjustedImage;
+            {
+                pictureBox1.Image = adjustedImage;
                 showResultActive = false;
                 lblImageSource.Text = "modified";
             }
@@ -941,13 +1006,13 @@ namespace GRBL_Plotter
         {
             Color myColor;
             if (cbExceptColor.Checked)
-                toolTable.setExceptionColor(cbExceptColor.BackColor);
+                ToolTable.SetExceptionColor(cbExceptColor.BackColor);
             else
-                toolTable.clrExceptionColor();
+                ToolTable.ClrExceptionColor();
             int mode = conversionMode;
-            toolTable.clear();                  // setUse = false
+            ToolTable.Clear();                  // setUse = false
             BitmapData dataAdjusted = null;
-            sbyte myToolNr = 0;//, myIndex;
+            sbyte myToolNr;//, myIndex;
             Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
             try
             {
@@ -965,23 +1030,26 @@ namespace GRBL_Plotter
                     b = pixelsAdjusted[index]; g = pixelsAdjusted[index + 1]; r = pixelsAdjusted[index + 2]; a = pixelsAdjusted[index + 3];
                     myColor = Color.FromArgb(a, r, g, b);
                     if (myColor.A == 0)                             // skip exception, removed: cbExceptAlpha.Checked
-                    { myToolNr = -1; toolTable.sortByToolNr(false); toolTable.setIndex(0); }
+                    { myToolNr = -1; ToolTable.SortByToolNR(false); ToolTable.SetIndex(0); }
                     else
                     {
                         if (lookUpToolNr.TryGetValue(myColor, out myToolNr))
-                        {   toolTable.setIndex(toolTable.getIndexByToolNr(myToolNr));
+                        {
+                            ToolTable.SetIndex(ToolTable.GetIndexByToolNR(myToolNr));
                         }
                         else
-                        {   myToolNr = (sbyte)toolTable.getToolNrByColor(myColor, mode);     // find nearest color in palette, sort by match, set index to 0
+                        {
+                            myToolNr = (sbyte)ToolTable.GetToolNRByColor(myColor, mode);     // find nearest color in palette, sort by match, set index to 0
                             lookUpToolNr.Add(myColor, myToolNr);
                         }
                     }
-                    toolTable.countPixel(); // count pixel / color
-                    toolTable.setPresent(true);
+                    ToolTable.CountPixel(); // count pixel / color
+                    ToolTable.SetPresent(true);
                 }
             }
             finally
-            {   if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+            {
+                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
             }
             setToolList();
         }
@@ -996,14 +1064,14 @@ namespace GRBL_Plotter
         {//https://www.codeproject.com/Articles/17162/Fast-Color-Depth-Change-for-Bitmaps
             Color myColor, newColor;
             if (cbExceptColor.Checked)
-                toolTable.setExceptionColor(cbExceptColor.BackColor);
+                ToolTable.SetExceptionColor(cbExceptColor.BackColor);
             else
-                toolTable.clrExceptionColor();
+                ToolTable.ClrExceptionColor();
             int mode = conversionMode;
             BitmapData dataAdjusted = null;
             BitmapData dataResult = null;
             lblStatus.Text = "Generate result image...";
-            sbyte myToolNr = 0;//, myIndex;
+            //     sbyte myToolNr;//, myIndex;
             Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
             try
             {
@@ -1030,25 +1098,27 @@ namespace GRBL_Plotter
                     a = pixelsAdjusted[index + 3];
                     // get current color
                     myColor = Color.FromArgb(a, r, g, b);
-                    if (lookUpToolNr.TryGetValue(myColor, out myToolNr))
-                    {   toolTable.setIndex(toolTable.getIndexByToolNr(myToolNr));
+                    if (lookUpToolNr.TryGetValue(myColor, out sbyte myToolNr))
+                    {
+                        ToolTable.SetIndex(ToolTable.GetIndexByToolNR(myToolNr));
                     }
                     else
-                    {   myToolNr = (sbyte)toolTable.getToolNrByColor(myColor, mode);     // find nearest color in palette, sort by match, set index to 0
+                    {
+                        myToolNr = (sbyte)ToolTable.GetToolNRByColor(myColor, mode);     // find nearest color in palette, sort by match, set index to 0
                         lookUpToolNr.Add(myColor, myToolNr);
                     }
 
                     if (myColor.A == 0)                 // skip exception, removed: cbExceptAlpha.Checked
-                    {   newColor = backgroundColor; myToolNr = -1; toolTable.sortByToolNr(false); toolTable.setIndex(0); }// usedColorName[0] = "Alpha = 0      " + myColor.ToString(); }
+                    { newColor = backgroundColor; myToolNr = -1; ToolTable.SortByToolNR(false); ToolTable.SetIndex(0); }// usedColorName[0] = "Alpha = 0      " + myColor.ToString(); }
                     else
-                    {   
-                        if ((myToolNr < 0) || (!toolTable.indexSelected()))  // -1 = alpha, -1 = exception color
-                        {   newColor = backgroundColor; myToolNr = -1; }
+                    {
+                        if ((myToolNr < 0) || (!ToolTable.IndexSelected()))  // -1 = alpha, -1 = exception color
+                        { newColor = backgroundColor; myToolNr = -1; }
                         else
-                            newColor = toolTable.getColor();   // Color.FromArgb(255, r, g, b);
+                            newColor = ToolTable.GetColor();   // Color.FromArgb(255, r, g, b);
                     }
-                    toolTable.countPixel(); // count pixel / color
-                    toolTable.setPresent(true);
+                    ToolTable.CountPixel(); // count pixel / color
+                    ToolTable.SetPresent(true);
                     tmpToolNrArray[bx++, by] = myToolNr;
 
                     if (bx >= adjustedImage.Width)
@@ -1073,7 +1143,8 @@ namespace GRBL_Plotter
 
         private bool updateLabelColorCount = false;
         private void timer1_Tick(object sender, EventArgs e)
-        {   if (updateLabelColorCount)
+        {
+            if (updateLabelColorCount)
                 countImageColors();
         }
         /// <summary>
@@ -1082,17 +1153,18 @@ namespace GRBL_Plotter
         private void countImageColors()
         {   // Lock the bitmap's bits.  
             Rectangle rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
-            BitmapData bmpData = adjustedImage.LockBits(rect, ImageLockMode.ReadWrite, adjustedImage.PixelFormat);       
+            BitmapData bmpData = adjustedImage.LockBits(rect, ImageLockMode.ReadWrite, adjustedImage.PixelFormat);
             IntPtr ptr = bmpData.Scan0;                         // Get the address of the first line.
             int bytes = bmpData.Stride * adjustedImage.Height;  // Declare an array to hold the bytes of the bitmap.
             byte[] rgbValues = new byte[bytes];
-            byte r, g, b, a;         
+            byte r, g, b, a;
             Marshal.Copy(ptr, rgbValues, 0, bytes);             // Copy the RGB values into the array.
             int count = 0;
             int stride = bmpData.Stride;
             var cnt = new HashSet<System.Drawing.Color>();      // count each color once
             for (int column = 0; column < bmpData.Height; column++)
-            {   for (int row = 0; row < bmpData.Width; row++)
+            {
+                for (int row = 0; row < bmpData.Width; row++)
                 {
                     b = (byte)(rgbValues[(column * stride) + (row * 4) + 0]);  // https://stackoverflow.com/questions/8104461/pixelformat-format32bppargb-seems-to-have-wrong-byte-order
                     g = (byte)(rgbValues[(column * stride) + (row * 4) + 1]);
@@ -1109,9 +1181,10 @@ namespace GRBL_Plotter
 
         //Quick preview of the original image. Todo: use a new image container for fas return to processed image
         private void btnCheckOrig_MouseDown(object sender, MouseEventArgs e)
-        { showResultPreview = true; showResultImage();    }
+        { showResultPreview = true; showResultImage(); }
         private void btnCheckOrig_MouseUp(object sender, MouseEventArgs e)
-        {   if (adjustedImage == null) return;//if no image, do nothing
+        {
+            if (adjustedImage == null) return;//if no image, do nothing
             pictureBox1.Image = adjustedImage;
             cBPreview.Checked = false;
             lblImageSource.Text = "modified";
@@ -1121,47 +1194,52 @@ namespace GRBL_Plotter
         { pictureBox1.Image = originalImage; lblImageSource.Text = "original"; }
 
         private void btnShowOrig_MouseUp(object sender, MouseEventArgs e)
-        {   if (cBPreview.Checked)
+        {
+            if (cBPreview.Checked)
             { pictureBox1.Image = resultImage; lblImageSource.Text = "result"; }
             else
             { pictureBox1.Image = adjustedImage; lblImageSource.Text = "modified"; }
         }
 
         private void updateToolList()
-        {   string tmp1 = "", tmp2 ="";
+        {
+            string tmp1 = "", tmp2;
             int skipToolNr = 1;
 
-            toolTable.sortByToolNr(false);
-            toolTable.setIndex(0);
+            ToolTable.SortByToolNR(false);
+            ToolTable.SetIndex(0);
             int tmpCount = pixelCount;
             if (useFullReso)
                 tmpCount = originalImage.Width * originalImage.Height;
 
             if (cbExceptColor.Checked)
-                tmpCount -= toolTable.pixelCount();     // no color-except
+                tmpCount -= ToolTable.PixelCount();     // no color-except
 
 
-    //        if (!rBImportSVGTool.Checked)
-                toolTable.sortByPixelCount(false);           // sort by color area (max. first)
+            //        if (!rBImportSVGTool.Checked)
+            ToolTable.SortByPixelCount(false);           // sort by color area (max. first)
 
             if (tmpCount == 0) { tmpCount = 100; }
 
-            tmp2 = "Tools sorted by pixel count.\r\n"; 
+            tmp2 = "Tools sorted by pixel count.\r\n";
             tmp2 += "Tool colors in use and pixel count:\r\n";
             String cIndex, cName, cCount, cPercent;
-            int toolNr; 
+            int toolNr;
             for (int i = 0; i < maxToolTableIndex; i++)
-            {   toolTable.setIndex(i);
-                toolNr = toolTable.indexToolNr();
-                if (toolTable.indexUse() && (toolTable.pixelCount() > 0))       
-                {   cIndex = toolNr.ToString().PadLeft(2, ' ') + ") ";
-                    cName = toolTable.indexName().PadRight(15, ' ');
-                    cCount = toolTable.pixelCount().ToString().PadLeft(8, ' ') + "  ";  
-                    cPercent = string.Format("{0,4:0.0}",(toolTable.pixelCount() * 100 / tmpCount)) + "%";
+            {
+                ToolTable.SetIndex(i);
+                toolNr = ToolTable.IndexToolNR();
+                if (ToolTable.IndexUse() && (ToolTable.PixelCount() > 0))
+                {
+                    cIndex = toolNr.ToString().PadLeft(2, ' ') + ") ";
+                    cName = ToolTable.IndexName().PadRight(15, ' ');
+                    cCount = ToolTable.PixelCount().ToString().PadLeft(8, ' ') + "  ";
+                    cPercent = string.Format("{0,4:0.0}", (ToolTable.PixelCount() * 100 / tmpCount)) + "%";
                     if (toolNr < 0)
                         tmp1 += cIndex + cName + cCount + "\r\n";
                     else
-                    {   if (cbSkipToolOrder.Checked)
+                    {
+                        if (cbSkipToolOrder.Checked)
                             tmp2 += skipToolNr++.ToString().PadLeft(2, ' ') + ") " + cName + cCount + cPercent + "\r\n";
                         else
                             tmp2 += cIndex + cName + cCount + cPercent + "\r\n";
@@ -1172,29 +1250,32 @@ namespace GRBL_Plotter
         }
 
         //Generate button click
-        public void btnGenerate_Click(object sender, EventArgs e)
-        {   Cursor.Current = Cursors.WaitCursor;
+        public void BtnGenerateClick(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
             tabControl1.SelectedTab = tabPage5;
 
             if (rBProcessTool.Checked)
             {
                 if (!showResultActive)
-                {   cBPreview.Checked = true;
+                {
+                    cBPreview.Checked = true;
                     showResultImage(true);      // generate and show result
                 }
-//                if (rbEngravingPattern1.Checked)
-                    generateGCodeHorizontal();
-//                else
-//                    generateGCodeDiagonal();
+                //                if (rbEngravingPattern1.Checked)
+                GenerateGCodeHorizontal();
+                //                else
+                //                    generateGCodeDiagonal();
             }
             else
-                generateHeightData();
+                GenerateHeightData();
             Cursor.Current = Cursors.Default;
             return;
         }
 
         private void autoZoomToolStripMenuItem_Click(object sender, EventArgs e)
-        {   pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+        {
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.Width = panel1.Width;
             pictureBox1.Height = panel1.Height;
             pictureBox1.Top = 0;
@@ -1202,36 +1283,41 @@ namespace GRBL_Plotter
         }
 
         private void justShowResult(object sender, EventArgs e)
-        {   showResultImage(); }
+        { showResultImage(); }
 
-        private Point oldPoint = new Point(0,0);
+        private Point oldPoint = new Point(0, 0);
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {   if ((e.Location != oldPoint) || (e.Button == MouseButtons.Left))
-            {   Color clr = backgroundColor;// GetColorAt(e.Location);
+        {
+            if ((e.Location != oldPoint) || (e.Button == MouseButtons.Left))
+            {
+                Color clr = backgroundColor;// GetColorAt(e.Location);
                 if (pictureBox1.Image != null)
-                {   Bitmap bmp = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height);
+                {
+                    Bitmap bmp = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height);
                     pictureBox1.DrawToBitmap(bmp, pictureBox1.ClientRectangle);
                     if ((0 <= e.X) && (e.X <= pictureBox1.ClientSize.Width) && (0 <= e.Y) && (e.Y <= pictureBox1.ClientSize.Height))
                         clr = bmp.GetPixel(e.X, e.Y);
                     bmp.Dispose();
                 }
                 if (e.Button == MouseButtons.Left)
-                {   int i = toolTable.getToolNrByColor(clr, conversionMode);
-                    lblStatus.Text = clr.ToString() + " = " + toolTable.getToolName(i);
+                {
+                    int i = ToolTable.GetToolNRByColor(clr, conversionMode);
+                    lblStatus.Text = clr.ToString() + " = " + ToolTable.GetToolName(i);
                     cbExceptColor.BackColor = clr;
                     showResultImage();
                 }
-                float zoom =  (float)nUDWidth.Value / pictureBox1.Width;
-                toolTip1.SetToolTip(pictureBox1, (e.X * zoom).ToString() + "  " + (e.Y * zoom).ToString() + "   " +clr.ToString());
+                float zoom = (float)nUDWidth.Value / pictureBox1.Width;
+                toolTip1.SetToolTip(pictureBox1, (e.X * zoom).ToString() + "  " + (e.Y * zoom).ToString() + "   " + clr.ToString());
                 oldPoint = e.Location;
             }
         }
 
         private void cbExceptColor_CheckedChanged(object sender, EventArgs e)
-        {   if (cbExceptColor.Checked)
-                toolTable.setExceptionColor(cbExceptColor.BackColor);
+        {
+            if (cbExceptColor.Checked)
+                ToolTable.SetExceptionColor(cbExceptColor.BackColor);
             else
-                toolTable.clrExceptionColor();
+                ToolTable.ClrExceptionColor();
             redoColorAdjust = true;
             applyColorCorrections();
         }
@@ -1240,7 +1326,7 @@ namespace GRBL_Plotter
         /// Set contrast color for text
         /// </summary>
         private void cbExceptColor_BackColorChanged(object sender, EventArgs e)
-        {   cbExceptColor.ForeColor = ContrastColor(cbExceptColor.BackColor);   }
+        { cbExceptColor.ForeColor = ContrastColor(cbExceptColor.BackColor); }
 
         /// <summary>
         /// for 'diagonal' no outline
@@ -1249,7 +1335,7 @@ namespace GRBL_Plotter
         private void rbEngravingPattern2_CheckedChanged(object sender, EventArgs e)
         {
             cBOnlyLeftToRight.Enabled = !rbEngravingPattern2.Checked;
-            applyColorCorrections(); 
+            applyColorCorrections();
         }
         /*       private void rbEngravingPattern2_CheckedChanged(object sender, EventArgs e)
                {
@@ -1273,7 +1359,8 @@ namespace GRBL_Plotter
         /// if 'Draw outline' is unchecked, disable smoothing
         /// </summary>
         private void cBGCodeOutline_CheckedChanged(object sender, EventArgs e)
-        {   cBGCodeOutlineSmooth.Enabled = cBGCodeOutline.Checked;
+        {
+            cBGCodeOutlineSmooth.Enabled = cBGCodeOutline.Checked;
             nUDGCodeOutlineSmooth.Enabled = cBGCodeOutline.Checked;
             applyColorCorrections();
         }
@@ -1283,14 +1370,16 @@ namespace GRBL_Plotter
         /// </summary>
         private void tabControl2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool useZ = false;
-            if (tabControl2.SelectedIndex==1)
-            {   rBProcessZ.Checked = useZ = true; rBProcessTool.Checked =false;
+            bool useZ;
+            if (tabControl2.SelectedIndex == 1)
+            {
+                rBProcessZ.Checked = useZ = true; rBProcessTool.Checked = false;
                 nUDResoY.Enabled = cBOnlyLeftToRight.Enabled = true;
                 highlight();
             }
             else
-            {   rBProcessZ.Checked = useZ = false; rBProcessTool.Checked = true;
+            {
+                rBProcessZ.Checked = useZ = false; rBProcessTool.Checked = true;
                 cBOnlyLeftToRight.Enabled = false;
             }
 
@@ -1307,9 +1396,9 @@ namespace GRBL_Plotter
         private void btnLoad_Click_1(object sender, EventArgs e)
         {
             ReturnValue1 = "";
-            if (lBUseCase.Text == "")
+            if (string.IsNullOrEmpty(lBUseCase.Text))
                 return;
-            string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+            string path = Datapath.Usecases + "\\" + lBUseCase.Text;
             var MyIni = new IniFile(path);
             Logger.Trace("Load use case: '{0}'", path);
             MyIni.ReadAll();    // ReadImport();
@@ -1317,8 +1406,8 @@ namespace GRBL_Plotter
             lblLastUseCase.Text = lBUseCase.Text;
 
             bool laseruse = Properties.Settings.Default.importGCSpindleToggleLaser;
-            float lasermode = grbl.getSetting(32);
-            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+            float lasermode = Grbl.GetSetting(32);
+            fillUseCaseFileList(Datapath.Usecases);
 
             if (lasermode >= 0)
             {
@@ -1336,8 +1425,8 @@ namespace GRBL_Plotter
                         ReturnValue1 = "$32=1 (laser mode on)";
                 }
             }
-   //         this.DialogResult = DialogResult.OK;
-   //         this.Close();
+            //         this.DialogResult = DialogResult.OK;
+            //         this.Close();
         }
 
         private void btnGetPWMValues_Click(object sender, EventArgs e)
@@ -1368,8 +1457,9 @@ namespace GRBL_Plotter
         /// <summary>
         /// Calculate contrast color from given color
         /// </summary>
-        private Color ContrastColor(Color color)
-        {   int d = 0;
+        private static Color ContrastColor(Color color)
+        {
+            int d;
             double a = 1 - (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
             if (a < 0.5)
                 d = 0; // bright colors - black font
@@ -1380,17 +1470,21 @@ namespace GRBL_Plotter
 
         private void fillUseCaseFileList(string Root)
         {
-            List<string> FileArray = new List<string>();
+            //List<string> FileArray = new List<string>();
             try
-            {   string[] Files = System.IO.Directory.GetFiles(Root);
+            {
+                string[] Files = System.IO.Directory.GetFiles(Root);
                 lBUseCase.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
-                {   if (Files[i].ToLower().EndsWith("ini"))
+                {
+                    if (Files[i].ToLower().EndsWith("ini"))
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
             }
             catch //(Exception Ex)
-            {   //throw (Ex);
+            {
+                Logger.Error("fillUseCaseFileList no file found {0}", Root);
+                //throw (Ex);
             }
         }
 

@@ -18,6 +18,7 @@
 */
 /*
  * 2021-04-17 new
+ * 2021-07-02 code clean up / code quality
 */
 
 using System;
@@ -25,14 +26,17 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1303	// Do not pass literals as localized parameters
+//#pragma warning disable CA1305
+
+namespace GrblPlotter
 {   public partial class GCodeFromImage
     {
 
         private static float cncCoordZ;   
         private static float cncCoordLastZ;   
 
-        private void generateHeightData()
+        private void GenerateHeightData()
         {
             Logger.Debug("generateHeightData horizontal:{0}  useZ:{1}", rbEngravingPattern1.Checked, rBGrayZ.Checked);
             if (resultImage == null) return;                //if no image, do nothing
@@ -62,42 +66,42 @@ namespace GRBL_Plotter
 
             int pixelCount = resultImage.Width * resultImage.Height;
             int pixelProcessed = 0;
-            int percentDone = 0;
+            int percentDone;
 
             int pixelPosY;                  // top/botom pixel
             int pixelPosX;                  // Left/right pixel
             bool useZnotS = rBGrayZ.Checked;    // calculate Z-value or S-value
             bool backAndForth = !cBOnlyLeftToRight.Checked;
             bool relative = cBCompress.Checked; // true;
-            bool firstValue, firstLine=true;
+       //     bool firstValue;//, firstLine=true;
 
             int pixelValLast, pixelValNow, pixelValNext;    // gray-values at pixel pos
-            cncCoordLastX = cncCoordX = pixelPosX = 0;
-            cncCoordLastY = cncCoordY = pixelPosY = 0;
+            cncCoordLastX = cncCoordX = 0;
+            cncCoordLastY = cncCoordY = 0;
 
             if (rbEngravingPattern1.Checked)        // horizontal
-                generateGCodePreset(0, cncPixelResoY * (resultImage.Height - 1));    // gcode.setup, -jobStart, PenUp, -G0 to 1st pos.
+                GenerateGCodePreset(0, cncPixelResoY * (resultImage.Height - 1));    // gcode.setup, -jobStart, PenUp, -G0 to 1st pos.
             else if (rbEngravingPattern2.Checked)
-                generateGCodePreset(0, 0);    // gcode.setup, -jobStart, PenUp, -G0 to 1st pos.
+                GenerateGCodePreset(0, 0);    // gcode.setup, -jobStart, PenUp, -G0 to 1st pos.
             else
             {   cncCoordLastX = cncCoordX = cncPixelResoX * resultImage.Width / 2;
                 cncCoordLastY = cncCoordY = cncPixelResoY * resultImage.Height / 2;
-                generateGCodePreset(cncCoordX, cncCoordY);
+                GenerateGCodePreset(cncCoordX, cncCoordY);
             }
 
             if (useZnotS)   // set 2D-View display option to translate S/Z value to pen width
-                gcode.Comment(finalString, string.Format("{0} Min=\"{1}\" Max=\"{2}\" Width=\"{3}\" />", xmlMarker.halftoneZ, nUDZTop.Value, nUDZBot.Value, penWidth)); 
+                Gcode.Comment(finalString, string.Format("{0} Min=\"{1}\" Max=\"{2}\" Width=\"{3}\" />", XmlMarker.HalftoneZ, nUDZTop.Value, nUDZBot.Value, penWidth)); 
             else
-                gcode.Comment(finalString, string.Format("{0} Min=\"{1}\" Max=\"{2}\" Width=\"{3}\" />", xmlMarker.halftoneS, nUDSMin.Value, nUDSMax.Value, penWidth)); 
+                Gcode.Comment(finalString, string.Format("{0} Min=\"{1}\" Max=\"{2}\" Width=\"{3}\" />", XmlMarker.HalftoneS, nUDSMin.Value, nUDSMax.Value, penWidth)); 
 
-            gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"black\" >", xmlMarker.figureStart, 1));
-            finalString.AppendFormat("F{0}\r\n", gcode.gcodeXYFeed);    // set feedrate
+            Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"black\" >", XmlMarker.FigureStart, 1));
+            finalString.AppendFormat("F{0}\r\n", Gcode.GcodeXYFeed);    // set feedrate
 
             if (rbEngravingPattern1.Checked)        // horizontal
             {
                 Logger.Info("Create halftone horizontal width:{0} height:{1} resoX:{2} resoY:{3}", resultImage.Width, resultImage.Height, cncPixelResoX, cncPixelResoY);
                 //Start image
-                cncCoordLastX = cncCoordX = pixelPosX = 0;      //Left pixel
+                cncCoordLastX = cncCoordX = 0;      //Left pixel
                 pixelPosY = resultImage.Height - 1;             //top tile
                 cncCoordLastY = cncCoordY = cncPixelResoY * (float)pixelPosY;
 
@@ -106,63 +110,63 @@ namespace GRBL_Plotter
                     pixelPosX = 0;      // 1st line starts at 0
                     cncCoordX = cncPixelResoX * (float)pixelPosX;
                     cncCoordY = cncPixelResoY * (float)pixelPosY;
-                    gcode.Comment(finalString, string.Format("{0} Y=\"{1}\">", xmlMarker.passStart, cncCoordY));
+                    Gcode.Comment(finalString, string.Format("{0} Y=\"{1}\">", XmlMarker.PassStart, cncCoordY));
 
                     // move to first position in line                    
                     if (!backAndForth || (pixelPosY == (resultImage.Height - 1)))              // move line by line from left to right
                     {
                         if (relative) { finalString.AppendLine("G90"); }  // switch to absolute
-                        gcode.PenUp(finalString);
-                        cncCoordLastZ = cncCoordZ = gcode.gcodeZUp;
-                        gcode.MoveToRapid(finalString, cncCoordX, cncCoordY);
+                        Gcode.PenUp(finalString, "");
+                        cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
+                        Gcode.MoveToRapid(finalString, cncCoordX, cncCoordY,"");
                         if (useZnotS)   // move servo down and delay
                         {
-                            pixelValNow = pixelValNext = getPixelValue(pixelPosX, pixelPosY, useZnotS);
-                            setCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, false);
+                            pixelValNow = GetPixelValue(pixelPosX, pixelPosY, useZnotS);
+                            SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, false);
                         }
                         else
                         {
-                            finalString.AppendFormat("G{0} X{1} S{2}\r\n", gcode.frmtCode(1), gcode.frmtNum(-0.01), Math.Round(nUDSMin.Value));
-                            finalString.AppendFormat("G{0} P{1}\r\n", gcode.frmtCode(4), gcode.frmtNum(Properties.Settings.Default.importGCPWMDlyUp));
+                            finalString.AppendFormat("G{0} X{1} S{2}\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(-0.01), Math.Round(nUDSMin.Value));
+                            finalString.AppendFormat("G{0} P{1}\r\n", Gcode.FrmtCode(4), Gcode.FrmtNum(Properties.Settings.Default.importGCPWMDlyUp));
                         }
                         cncCoordLastX = cncCoordX;
                         cncCoordLastY = cncCoordY;
                     }
                     // create horizontal data left to rigth, check current and next pixel for change in value to reduce gcode      
                     if (relative) { finalString.AppendLine("G91G1"); }
-                    pixelValLast = -1; pixelValNow = pixelValNext = getPixelValue(pixelPosX, pixelPosY, useZnotS);
+                    pixelValLast = -1; pixelValNow = GetPixelValue(pixelPosX, pixelPosY, useZnotS);
                     while ((pixelPosX < (resultImage.Width - 1)) && (pixelPosY >= 0))   //From left to right
                     {
-                        firstValue = (pixelValLast < 0) && firstLine;
-                        pixelValNext = getPixelValue(pixelPosX + 1, pixelPosY, useZnotS);
+                        //firstValue = (pixelValLast < 0) && firstLine;
+                        pixelValNext = GetPixelValue(pixelPosX + 1, pixelPosY, useZnotS);
                         if ((pixelPosX == 0) || (pixelValNow != pixelValLast) || (pixelValNow != pixelValNext))
-                        { setCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative); }
+                        { SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative); }
                         pixelValLast = pixelValNow; pixelValNow = pixelValNext;
                         pixelProcessed++; pixelPosX++;
                     }
-                    setCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);
+                    SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);
                     pixelPosY--;
-                    gcode.Comment(finalString, string.Format("{0}>", xmlMarker.passEnd));
+                    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.PassEnd));
 
                     // create horizontal data rigth to left
                     if (backAndForth && (pixelPosY >= 0))
                     {
-                        gcode.Comment(finalString, string.Format("{0} Y=\"{1}\">", xmlMarker.passStart, cncCoordY));
+                        Gcode.Comment(finalString, string.Format("{0} Y=\"{1}\">", XmlMarker.PassStart, cncCoordY));
                         pixelPosX = (resultImage.Width - 1);  // 2nd line starts far right
-                        setCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);
-                        pixelValLast = -1; pixelValNow = pixelValNext = getPixelValue(pixelPosX, pixelPosY, useZnotS);
+                        SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);
+                        pixelValLast = -1; pixelValNow = GetPixelValue(pixelPosX, pixelPosY, useZnotS);
                         while ((pixelPosX > 0) && (pixelPosY >= 0))     //From right to left
                         {
-                            pixelValNext = getPixelValue(pixelPosX - 1, pixelPosY, useZnotS);
+                            pixelValNext = GetPixelValue(pixelPosX - 1, pixelPosY, useZnotS);
                             if ((pixelPosX == (resultImage.Width - 1)) || (pixelValNow != pixelValLast) || (pixelValNow != pixelValNext))
-                            { setCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative); }
+                            { SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative); }
                             pixelValLast = pixelValNow; pixelValNow = pixelValNext;
                             pixelProcessed++; pixelPosX--;
                         }
-                        setCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);
+                        SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);
                         pixelPosY--;
-                        gcode.Comment(finalString, string.Format("{0}>", xmlMarker.passEnd));
-                        firstLine = false;
+                        Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.PassEnd));
+                    //    firstLine = false;
                     }
 
                     percentDone = (pixelProcessed * 100) / pixelCount;
@@ -184,8 +188,8 @@ namespace GRBL_Plotter
                 {
                     while ((pixelPosX < resultImage.Width) & (pixelPosY >= 0))                      // top-left to bot-right
                     {
-                        pixelValNext = getPixelValue(pixelPosX - 1, pixelPosY, useZnotS);
-                        { setCommand(pixelPosX, pixelPosY, pixelValNext, useZnotS, relative); }     // scan with 1px reso
+                        pixelValNext = GetPixelValue(pixelPosX - 1, pixelPosY, useZnotS);
+                        { SetCommand(pixelPosX, pixelPosY, pixelValNext, useZnotS, relative); }     // scan with 1px reso
                         pixelProcessed++; pixelPosX++; pixelPosY--;
                     }
                     pixelPosX--; pixelPosY++;   // loop did one too much
@@ -195,8 +199,8 @@ namespace GRBL_Plotter
 
                     while ((pixelPosX >= 0) & (pixelPosY < resultImage.Height))             // bot-rigth to top-left
                     {
-                        pixelValNext = getPixelValue(pixelPosX - 1, pixelPosY, useZnotS);
-                        { setCommand(pixelPosX, pixelPosY, pixelValNext, useZnotS, relative); }
+                        pixelValNext = GetPixelValue(pixelPosX - 1, pixelPosY, useZnotS);
+                        { SetCommand(pixelPosX, pixelPosY, pixelValNext, useZnotS, relative); }
                         pixelProcessed++; pixelPosX--; pixelPosY++;
                     }
                     pixelPosX++; pixelPosY--;   // loop did one too much
@@ -215,30 +219,30 @@ namespace GRBL_Plotter
             else if (rbEngravingPattern3.Checked)        // spiral
             {
                 Logger.Info("Create halftone spiral width:{0} height:{1} resoX:{2} resoY:{3}", resultImage.Width, resultImage.Height, cncPixelResoX, cncPixelResoY);
-                createSpiral((float)nUDResoY.Value, cncPixelResoX, resultImage.Width);
-                createScanPath(resultImage.Width, resultImage.Height, resultImage.Width/2, resultImage.Height/2);
-                applyScanPath(useZnotS, relative);
+                CreateSpiral((float)nUDResoY.Value, cncPixelResoX, resultImage.Width);
+                CreateScanPath(resultImage.Width, resultImage.Height, resultImage.Width/2, resultImage.Height/2);
+                ApplyScanPath(useZnotS, relative);
             }
             else
             {
                 Logger.Info("Create halftone external path width:{0} height:{1} resoX:{2} resoY:{3}", resultImage.Width, resultImage.Height, cncPixelResoX, cncPixelResoY);
-                createFrom2DView(cncPixelResoX);
-                createScanPath(resultImage.Width, resultImage.Height,0,0);
-                applyScanPath(useZnotS, relative);
+                CreateFrom2DView(cncPixelResoX);
+                CreateScanPath(resultImage.Width, resultImage.Height,0,0);
+                ApplyScanPath(useZnotS, relative);
             }
 
 
             if (relative) { finalString.AppendLine("G90"); }
-            gcode.Comment(finalString, string.Format("{0}>", xmlMarker.figureEnd));
-            gcode.jobEnd(finalString);
+            Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
+            Gcode.JobEnd(finalString,"EndJob");
             if (rBGrayS.Checked && cBLaserModeOffEnd.Checked)
             { finalString.AppendLine("$32=0 (Lasermode off)"); }
 
             imagegcode = "( Generated by GRBL-Plotter )\r\n";
-            imagegcode += gcode.GetHeader("Image import") + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
+            imagegcode += Gcode.GetHeader("Image import", "") + finalString.Replace(',', '.').ToString() + Gcode.GetFooter();
         }
 
-        private int getPixelValue(int picX, int picY, bool useZ)
+        private int GetPixelValue(int picX, int picY, bool useZ)
         {   if ((picX < 0) || (picY < 0) || (picX >= resultImage.Width) || (picY >= resultImage.Height))
                 return 0;
             Color myColor = resultImage.GetPixel(picX, (resultImage.Height - 1) - picY);    // Get pixel color
@@ -251,23 +255,23 @@ namespace GRBL_Plotter
             { return (int)((255- brightness) * (float)(nUDSMax.Value - nUDSMin.Value)) / 255; }
         }
 
-        private void setCommand(int pixelPosX, int pixelPosY, int pixelVal, bool useZnotS, bool relative)
+        private void SetCommand(int pixelPosX, int pixelPosY, int pixelVal, bool useZnotS, bool relative)
         {
             int height = 255 - pixelVal;    // pixelVal 0=black, 255=white
-            string SZ = "(SZ)";
+            string SZ;
             if (useZnotS)
             {
                 cncCoordZ = (float)nUDZTop.Value - height * (float)(nUDZTop.Value - nUDZBot.Value) / 255;    // calc Z value
                 if (relative) { SZ = string.Format("Z{0:0.##}", (cncCoordZ - cncCoordLastZ)); }
-                else { SZ = string.Format("Z{0}", gcode.frmtNum(cncCoordZ)); }
+                else { SZ = string.Format("Z{0}", Gcode.FrmtNum(cncCoordZ)); }
                 cncCoordLastZ = cncCoordZ;
             }
             else
             { SZ = string.Format("S{0}", Math.Round(nUDSMin.Value + pixelVal)); }
 
-            setXYCommand(pixelPosX, pixelPosY, SZ, relative);
+            SetXYCommand(pixelPosX, pixelPosY, SZ, relative);
         }
-        private void setXYCommand(int pixelPosX, int pixelPosY, string SZ, bool relative)
+        private static void SetXYCommand(int pixelPosX, int pixelPosY, string SZ, bool relative)
         {
             cncCoordX = cncPixelResoX* (float)pixelPosX;
             cncCoordY = cncPixelResoY * (float)pixelPosY;
@@ -278,16 +282,16 @@ namespace GRBL_Plotter
                 finalString.AppendFormat("{0}{1}{2}\r\n", x,y,SZ);
             }
             else
-            { finalString.AppendFormat("G{0} X{1} Y{2} {3}\r\n", gcode.frmtCode(1), gcode.frmtNum(cncCoordX), gcode.frmtNum(cncCoordY), SZ); }      // set absolute position
+            { finalString.AppendFormat("G{0} X{1} Y{2} {3}\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(cncCoordX), Gcode.FrmtNum(cncCoordY), SZ); }      // set absolute position
             cncCoordLastX = cncCoordX;
             cncCoordLastY = cncCoordY;
         }
         
         
-        private List<Point> scanPixelPos = new List<Point>();
-        private List<PointF> scanCNCPos = new List<PointF>();
+        private readonly List<Point> scanPixelPos = new List<Point>();
+        private readonly List<PointF> scanCNCPos = new List<PointF>();
 
-        private void applyScanPath(bool useZnotS, bool relative)
+        private void ApplyScanPath(bool useZnotS, bool relative)
         {
             Logger.Trace("applyScanPath");
             int pixelValLast, pixelValNow, pixelValNext, pixelPosX, pixelPosY;    // gray-values at pixel pos
@@ -295,7 +299,7 @@ namespace GRBL_Plotter
                 return;
 
             bool up = false;
-            pixelValLast = -1; pixelValNow = pixelValNext = getPixelValue(scanPixelPos[0].X, scanPixelPos[0].Y, useZnotS);
+            pixelValLast = -1; pixelValNow = pixelValNext = GetPixelValue(scanPixelPos[0].X, scanPixelPos[0].Y, useZnotS);
             if (relative) { finalString.AppendLine("G91G1"); }
             for (int i=1; i < scanPixelPos.Count-1; i++)                
             {
@@ -305,8 +309,8 @@ namespace GRBL_Plotter
                 {
                     if (!up)
                     {
-                        gcode.PenUp(finalString);
-                        cncCoordLastZ = cncCoordZ = gcode.gcodeZUp;
+                        Gcode.PenUp(finalString, "");
+                        cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
                     }
                     up = true;
                 }
@@ -317,16 +321,16 @@ namespace GRBL_Plotter
                         cncCoordX = cncPixelResoX * (float)pixelPosX;
                         cncCoordY = cncPixelResoY * (float)pixelPosY;
                         if (relative) { finalString.AppendLine("G90"); }  // switch to absolute
-                        gcode.MoveToRapid(finalString, cncCoordX, cncCoordY);
+                        Gcode.MoveToRapid(finalString, cncCoordX, cncCoordY,"");
                         if (useZnotS)   // move servo down and delay
                         {
-                            pixelValNow = pixelValNext = getPixelValue(pixelPosX, pixelPosY, useZnotS);
-                            setCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, false);
+                            pixelValNow = GetPixelValue(pixelPosX, pixelPosY, useZnotS);
+                            SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, false);
                         }
                         else
                         {
-                            finalString.AppendFormat("G{0} X{1} Y{2} S{3}\r\n", gcode.frmtCode(1), gcode.frmtNum(cncCoordX), gcode.frmtNum(cncCoordY), Math.Round(nUDSMin.Value));
-                            finalString.AppendFormat("G{0} P{1}\r\n", gcode.frmtCode(4), gcode.frmtNum(Properties.Settings.Default.importGCPWMDlyUp));
+                            finalString.AppendFormat("G{0} X{1} Y{2} S{3}\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(cncCoordX), Gcode.FrmtNum(cncCoordY), Math.Round(nUDSMin.Value));
+                            finalString.AppendFormat("G{0} P{1}\r\n", Gcode.FrmtCode(4), Gcode.FrmtNum(Properties.Settings.Default.importGCPWMDlyUp));
                         }
                         cncCoordLastX = cncCoordX;
                         cncCoordLastY = cncCoordY;
@@ -334,43 +338,43 @@ namespace GRBL_Plotter
                     }
 
                     up = false;
-                    pixelValNext = getPixelValue(scanPixelPos[i + 1].X, scanPixelPos[i + 1].Y, useZnotS);
+                    pixelValNext = GetPixelValue(scanPixelPos[i + 1].X, scanPixelPos[i + 1].Y, useZnotS);
                     if ((pixelValNow != pixelValLast) || (pixelValNow != pixelValNext))
-                    {    setCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);  }
+                    {    SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);  }
                     else
-                    {   setXYCommand(pixelPosX, pixelPosY, "", relative); }
+                    {   SetXYCommand(pixelPosX, pixelPosY, "", relative); }
                 }
                 pixelValLast = pixelValNow; pixelValNow = pixelValNext;
             }
         }
 
-        private void createScanPath(int width, int height, float offsetX, float offsetY)
+        private void CreateScanPath(int width, int height, float offsetX, float offsetY)
         {   scanPixelPos.Clear();
             Logger.Trace("createScanPath width:{0} height:{1}", width, height);
             int x,y,oldX=0,oldY=0;
             foreach(PointF pos in scanCNCPos)
             {   x = (int)(pos.X/ cncPixelResoX + offsetX);
                 y = (int)(pos.Y/ cncPixelResoX + offsetY);
-                if (pos.X == float.NaN) { Logger.Trace("NaN1 x:{0}  y:{1}",x,y); }
+                if (float.IsNaN(pos.X)) { Logger.Trace("NaN1 x:{0}  y:{1}",x,y); }
                 if ((x != oldX) || (y != oldY))
                 {   if ((x < 0) || (x >= width)) {x = -1;}
                     if ((y < 0) || (y >= height)) {y = -1;}
                     scanPixelPos.Add(new Point(x,y));
                 }
                 oldX = x; oldY = y;
-                if (pos.X == float.NaN)
+                if (float.IsNaN(pos.X))
                 { Logger.Trace("NaN2 x:{0}  y:{1}", pos.X, pos.Y); }
             }            
         }
         
-        private void createSpiral(float distance, float step, float maxR)
+        private void CreateSpiral(float distance, float step, float maxR)
         {
             scanCNCPos.Clear();
             Logger.Trace("createSpiral createSpiral:{0} step:{1} maxR:{2}", distance, step, maxR);
             if ((distance <=0) || (maxR <= distance))
                 return;
             float r = 0,a = 0,x,y;
-            float aDeg = 0, deltaDeg=1;
+            float aDeg = 0, deltaDeg;
             while (r < maxR)
             {   x = (float)Math.Cos(a) * r;
                 y = -(float)Math.Sin(a) * r;
@@ -386,13 +390,13 @@ namespace GRBL_Plotter
             }
         }
         
-        private void createFrom2DView(float step)
+        private void CreateFrom2DView(float step)
         {
             scanCNCPos.Clear();
-            Logger.Trace("createFrom2DView G2G3:{0}",VisuGCode.containsG2G3Command());
+            Logger.Trace("createFrom2DView G2G3:{0}",VisuGCode.ContainsG2G3Command());
 
             // Export from VisuGCode.
-            if (!VisuGCode.getPathCordinates(scanCNCPos, step))
+            if (!VisuGCode.GetPathCordinates(scanCNCPos))   //, step))
             { }
         }
 

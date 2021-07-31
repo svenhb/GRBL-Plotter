@@ -117,172 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cBNoZUp.Text" xml:space="preserve">
-    <value>تجنب Z المتابعة</value>
+  <data name="btnGenerateBarcode1D.Text" xml:space="preserve">
+    <value>Gerar código de barras</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>أداة:</value>
+  <data name="btnGenerateBarcode2D.Text" xml:space="preserve">
+    <value>Gerar código QR</value>
   </data>
-  <data name="cBToolSet.Text" xml:space="preserve">
-    <value>الحصول على القيم من جدول الأدوات</value>
+  <data name="btnClipboardBarcode1D.Text" xml:space="preserve">
+    <value>Copiar imagem para a área de transferência</value>
   </data>
-  <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
-    <value>المسافة بين مسارين (عند القيام بجيب) كقطر للأداة. 100 ٪ = أداة قطرها خطوة العرض.</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>تداخل ٪</value>
-  </data>
-  <data name="label16.ToolTip" xml:space="preserve">
-    <value>المسافة بين مسارين (عند القيام بجيب) كقطر للأداة. 100 ٪ = أداة قطرها خطوة العرض.</value>
-  </data>
-  <data name="nUDToolSpindleSpeed.ToolTip" xml:space="preserve">
-    <value>سرعة المغزل</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>مغزل SPD</value>
-  </data>
-  <data name="nUDToolFeedZ.ToolTip" xml:space="preserve">
-    <value>معدل التغذية ل Z</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>تغذية Z</value>
-  </data>
-  <data name="nUDToolFeedXY.ToolTip" xml:space="preserve">
-    <value>معدل التغذية لاتجاه XY</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>تغذية XY</value>
-  </data>
-  <data name="nUDToolZStep.ToolTip" xml:space="preserve">
-    <value>العمق لكل تمريرة (وليس العمق النهائي)</value>
-  </data>
-  <data name="nUDToolDiameter.ToolTip" xml:space="preserve">
-    <value>قطر أداة لحساب إزاحة مسار الإزاحة</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>قطر الدائرة</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>أداة</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Y-البعد</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>X-البعد</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>نصف القطر</value>
-  </data>
-  <data name="rBShape2.Text" xml:space="preserve">
-    <value>مستطيل حافة مستديرة</value>
-  </data>
-  <data name="rBShape1.Text" xml:space="preserve">
-    <value>المستطيل</value>
-  </data>
-  <data name="rBShape3.Text" xml:space="preserve">
-    <value>دائرة</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>شكل</value>
-  </data>
-  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
-    <value>العمق النهائي للشكل</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>العمق (ي)</value>
-  </data>
-  <data name="rBToolpath2.Text" xml:space="preserve">
-    <value>خارج الشكل</value>
-  </data>
-  <data name="rBToolpath3.Text" xml:space="preserve">
-    <value>داخل الشكل</value>
-  </data>
-  <data name="rBToolpath1.Text" xml:space="preserve">
-    <value>على الشكل (النقش)</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>الأبعاد</value>
-  </data>
-  <data name="cBToolpathPocket.Text" xml:space="preserve">
-    <value>إنشاء الجيب</value>
-  </data>
-  <data name="btnApply.Text" xml:space="preserve">
-    <value>قم بإنشاء G-Code</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>الأصل</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>قريب</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>مستطيل / دائرة</value>
-  </data>
-  <data name="rBBevel1.Text" xml:space="preserve">
-    <value>نهاية الجولة</value>
-  </data>
-  <data name="rBBevel2.Text" xml:space="preserve">
-    <value>شطبة</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>نصف القطر / المسافة</value>
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>شكل الحافة</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>شطبة / جولة قبالة</value>
-  </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>عمق</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>إنشاء G- كود من الأشكال</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>نصف القطر</value>
+  <data name="btnCheckBarcode1D.Text" xml:space="preserve">
+    <value>Verificar código de barras</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>الانحراف</value>
+    <value>Altura do código de barras</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>عرض</value>
+    <value>Tipo de código de barras</value>
   </data>
-  <data name="rBRoundZXL.Text" xml:space="preserve">
-    <value>نصف القطر على Z-X-left ، العرض على Y</value>
+  <data name="lblWidth1D.Text" xml:space="preserve">
+    <value>20</value>
   </data>
-  <data name="rBRoundZYB.Text" xml:space="preserve">
-    <value>نصف القطر على Z-Y-bottom ، والعرض على X</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Largura resultante do código de barras</value>
   </data>
-  <data name="rBRoundZXR.Text" xml:space="preserve">
-    <value>نصف القطر على Z-X-right ، العرض على Y</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Linhas por módulo</value>
   </data>
-  <data name="rBRoundZYT.Text" xml:space="preserve">
-    <value>نصف القطر على Z-Y-top ، العرض على X</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Espaço de digitalização / largura da caneta / diâmetro da ferramenta</value>
   </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>تقريب Z</value>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Código de barras</value>
   </data>
-  <data name="cBMoveTo00.Text" xml:space="preserve">
-    <value>أخيرًا انتقل إلى 0 ؛ 0</value>
+  <data name="btnLogoInvert.Text" xml:space="preserve">
+    <value>Inverter imagem</value>
   </data>
-  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
-    <value>نصف القطر في اتجاه Z</value>
+  <data name="btnLogoFromFile.Text" xml:space="preserve">
+    <value>Carregar do arquivo</value>
   </data>
-  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
-    <value>عرض الجولة</value>
+  <data name="btnLogoFromClipboard.Text" xml:space="preserve">
+    <value>Colar da área de transferência</value>
   </data>
-  <data name="nUDRZStep.ToolTip" xml:space="preserve">
-    <value>ماكس. يسمح بالانحراف إلى 1/4 دائرة بوحدات</value>
+  <data name="gBLogo.Text" xml:space="preserve">
+    <value>Logotipo</value>
+  </data>
+  <data name="tPQR1.Text" xml:space="preserve">
+    <value>Texto</value>
+  </data>
+  <data name="tPQR2.Text" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>sem autenticação.</value>
+  </data>
+  <data name="cBWLAN1.Text" xml:space="preserve">
+    <value>está escondido</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Autenticação</value>
+  </data>
+  <data name="rBWLAN2.Text" xml:space="preserve">
+    <value>WEP</value>
+  </data>
+  <data name="rBWLAN1.Text" xml:space="preserve">
+    <value>WPA / WPA2</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>حساب المسار لقاطع الطحن الأسطواني</value>
+    <value>Senha</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>تقريب الموقف</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>SSID</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>ممر الأدوات</value>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>WLAN</value>
+  </data>
+  <data name="btnClipboardBarcode2D.Text" xml:space="preserve">
+    <value>Copiar imagem para a área de transferência</value>
+  </data>
+  <data name="cBInsertLogo.Text" xml:space="preserve">
+    <value>Inserir logotipo</value>
+  </data>
+  <data name="btnCheckBarcode2D.Text" xml:space="preserve">
+    <value>Verificar código QR</value>
+  </data>
+  <data name="lblWidth2D.Text" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Largura resultante do código de barras</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Linhas por módulo</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Espaço de digitalização / largura da caneta / diâmetro da ferramenta</value>
+  </data>
+  <data name="cBBorder2D.Text" xml:space="preserve">
+    <value>Desenhar borda</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Código QR</value>
   </data>
 </root>

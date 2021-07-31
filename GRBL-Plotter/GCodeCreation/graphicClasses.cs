@@ -20,6 +20,8 @@
  * 2020-07-05 new class to collect graphic primitives
  * 2020-12-03 add notification event args
  * 2021-01-22 ListOptions() add frame and multiply
+ * 2021-07-02 code clean up / code quality
+ * 2021-07-30 check ApplyHatchFill not in constructor (it's only needed for SourceType.SVG)
 */
 
 using System;
@@ -28,7 +30,9 @@ using System.Linq;
 using System.Windows;
 using System.Globalization;
 
-namespace GRBL_Plotter
+#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
     public class MyUserState
     {
@@ -41,49 +45,49 @@ namespace GRBL_Plotter
         /// <summary>
         /// General information about imported graphic
         /// </summary>		
-        public enum SourceTypes { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode };
-        public enum GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6};
-        public enum SortOptions { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4 };
-		public enum CreationOptions { none = 0, AddPause = 1, AddPauseBeforePath = 2};
-        public class GraphicInformation
+        public enum SourceType { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode };
+        public enum GroupOption { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6};
+        public enum SortOption { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4 };
+		public enum CreationOption { none = 0, AddPause = 1, AddPauseBeforePath = 2};
+        internal class GraphicInformationClass
         {
-            public string Title;
-            public string FilePath;
-            public SourceTypes SourceType;       // public enum SourceTypes  { none, DXF, SVG, HPGL, CSV };
-            public GroupOptions GroupOption;     // public enum GroupOptions { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
-            public SortOptions SortOption;       // public enum SortOptions  { none=0, ByToolNr=1, ByCodeSize=2, ByGraphicDimension=3};
-			public bool GroupEnable;
-			public bool FigureEnable;
-			public bool ReProcess;
-			public bool ApplyHatchFill;
-			public bool PauseBeforePath;
-			public double PenWidthMin = 0;
-			public double PenWidthMax = 0;
-            public double DotZMin = 0;
-            public double DotZMax = 0;
+            public string Title { get; set; }
+            public string FilePath { get; set; }
+            public SourceType SourceType { get; set; }       // public enum SourceTypes  { none, DXF, SVG, HPGL, CSV };
+            public GroupOption GroupOption { get; set; }     // public enum GroupOptions { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
+            public SortOption SortOption { get; set; }       // public enum SortOptions  { none=0, ByToolNr=1, ByCodeSize=2, ByGraphicDimension=3};
+            public bool GroupEnable { get; set; }
+            public bool FigureEnable { get; set; }
+            public bool ReProcess { get; set; }
+            public bool ApplyHatchFill { get; set; }
+            public bool PauseBeforePath { get; set; }
+            public double PenWidthMin { get; set; }
+            public double PenWidthMax { get; set; }
+            public double DotZMin { get; set; }
+            public double DotZMax { get; set; }
 
-            public bool ConvertArcToLine;
-            public bool OptionZFromWidth;
-            public bool OptionDotFromCircle;		// will be processed in GCodeFromSVG 702
-            public bool OptionZFromRadius;			// will select GCodeDotOnlyWithZ or GCodeDotOnly
-            public bool OptionRepeatCode;
-			public bool OptionSortCode;
-			public bool OptionOffsetCode;
-            public bool OptionHatchFill;
-            public bool OptionClipCode;
-			public bool OptionNodesOnly;
-			public bool OptionTangentialAxis;
-			public bool OptionDragTool;
-			public bool OptionExtendPath;
-			public bool OptionFeedFromToolTable;
+            public bool ConvertArcToLine { get; set; }
+            public bool OptionZFromWidth { get; set; }
+            public bool OptionDotFromCircle { get; set; }		// will be processed in GCodeFromSVG 702
+            public bool OptionZFromRadius { get; set; }			// will select GCodeDotOnlyWithZ or GCodeDotOnly
+            public bool OptionRepeatCode { get; set; }
+            public bool OptionSortCode { get; set; }
+            public bool OptionOffsetCode { get; set; }
+            public bool OptionHatchFill { get; set; }
+            public bool OptionClipCode { get; set; }
+            public bool OptionNodesOnly { get; set; }
+            public bool OptionTangentialAxis { get; set; }
+            public bool OptionDragTool { get; set; }
+            public bool OptionExtendPath { get; set; }
+            public bool OptionFeedFromToolTable { get; set; }
 
-            public GraphicInformation()
+            public GraphicInformationClass()
             {
                 Title = "";
                 FilePath = "";
-                SourceType = SourceTypes.none;		// from where comes the data?
-                GroupOption = (GroupOptions)Properties.Settings.Default.importGroupItem;	//GroupOption.ByColor;
-                SortOption = (SortOptions)Properties.Settings.Default.importGroupSort;	//SortOption.ByToolNr;
+                SourceType = SourceType.none;		// from where comes the data?
+                GroupOption = (GroupOption)Properties.Settings.Default.importGroupItem;	//GroupOption.ByColor;
+                SortOption = (SortOption)Properties.Settings.Default.importGroupSort;	//SortOption.ByToolNr;
 				GroupEnable = Properties.Settings.Default.importGroupObjects;
 				FigureEnable = true;
 				ReProcess = false;
@@ -108,11 +112,11 @@ namespace GRBL_Plotter
 				OptionExtendPath = Properties.Settings.Default.importGraphicExtendPathEnable;
 				OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
-                ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill || ApplyHatchFill;
+                ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill;// only for SVG: || ApplyHatchFill;
                 ConvertArcToLine = ConvertArcToLine || Properties.Settings.Default.importGraphicLeadInEnable;
             }
-            public void ResetOptions(bool enableFigures = true)
-			{	FigureEnable = enableFigures;
+            public void ResetOptions(bool enableFigures)
+			{   FigureEnable = enableFigures;
 				OptionZFromWidth = false;
 				OptionDotFromCircle = false;
                 OptionZFromRadius = false;
@@ -127,23 +131,23 @@ namespace GRBL_Plotter
 				OptionDragTool = false;
 				OptionExtendPath = false;
 			}
-            public void SetGroup(GroupOptions group, SortOptions sort)
+            public void SetGroup(GroupOption group, SortOption sort)
             {   GroupEnable = true;
                 GroupOption = group;
                 SortOption = sort;
             }
 			
 			public void SetPenWidth(string width)
-			{	double nr = 0;
+			{	double nr;
 				if (double.TryParse(width, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out nr))
 				{	PenWidthMin = Math.Min(PenWidthMin, nr);
 					PenWidthMax = Math.Max(PenWidthMax, nr);
 				}
 			}
-            public void SetDotZ(double z)
+            public void SetDotZ(double dz)
             {
-                    DotZMin = Math.Min(DotZMin, z);
-                    DotZMax = Math.Max(DotZMax, z);
+                    DotZMin = Math.Min(DotZMin, dz);
+                    DotZMax = Math.Max(DotZMax, dz);
             }
 
             public string ListOptions()
@@ -178,270 +182,301 @@ namespace GRBL_Plotter
         /// <summary>
         /// Collect 'GroupObject' to build a tile
         /// </summary>		
-        public class TileObject
+        internal class TileObject
         {
-            public string key = "";     // value of collected penColor, penWidth, Layer or TileNr
-            public string tileRelatedGCode = "";
-            public List<GroupObject> tile;      // either collect groups 
-            public List<PathObject> groupPath;  // or paths
-            protected int tileId;		// track GCode group-id
+            public string Key { get; set; }     // value of collected penColor, penWidth, Layer or TileNr
+            public string TileRelatedGCode { get; set; }
+            public List<GroupObject> Tile { get; set; }      // either collect groups 
+            public List<PathObject> GroupPath { get; set; }  // or paths
+            protected int TileId{ get; set; }		// track GCode group-id
 
             public TileObject()
             {
-                tile = new List<GroupObject>();
-                groupPath = new List<PathObject>();
-                tileRelatedGCode = "";
-				tileId = -1;
+                Tile = new List<GroupObject>();
+                GroupPath = new List<PathObject>();
+                TileRelatedGCode = "";
+				TileId = -1;
             }
             public TileObject(string tmpKey, string comand)//, PathObject pathObject)
             {
-                key = tmpKey;
-                tileRelatedGCode = comand;
-				tileId = -1;
+                Key = tmpKey;
+                TileRelatedGCode = comand;
+				TileId = -1;
 
-                tile = new List<GroupObject>();
-                groupPath = new List<PathObject>();
+                Tile = new List<GroupObject>();
+                GroupPath = new List<PathObject>();
         //        groupPath = new List<PathObject>();
         //        groupPath.Add(pathObject);
             }
 			
-            public int TileId             // Tile Id from graphic2Gcode?
-            {   get { return tileId; }
-                set { tileId = value; }
-            }
+          /*  public int TileId             // Tile Id from graphic2Gcode?
+            {   get { return TileId; }
+                set { TileId = value; }
+            }*/
         }
 
         /// <summary>
         /// Collect 'PathObject' to build a group
         /// </summary>		
-        public class GroupObject
+        internal class GroupObject
         {
-            public string key = "";     // value of collected penColor, penWidth, Layer or TileNr
-            public int toolNr = 0;      // corresponding tool nr
-            public string toolName = "";
-            public double pathLength = 0;
-            public double pathArea = 0;
-            public string groupRelatedGCode = "";
-            public Dimensions pathDimension;
-            public List<PathObject> groupPath;
-            protected int groupId;		// track GCode group-id
+            public string Key { get; set; }     // value of collected penColor, penWidth, Layer or TileNr
+            public int ToolNr { get; set; }      // corresponding tool nr
+            public string ToolName { get; set; }
+            public double PathLength { get; set; }
+            public double PathArea { get; set; }
+            public string GroupRelatedGCode { get; set; }
+            public Dimensions PathDimension { get; set; }
+            public List<PathObject> GroupPath { get; set; }
+            protected int GroupIdObject { get; set; }		// track GCode group-id
 
             public GroupObject()
             {
-                pathDimension = new Dimensions();
-                groupPath = new List<PathObject>();
-                groupRelatedGCode = "";
-				groupId = -1;
+                PathDimension = new Dimensions();
+                GroupPath = new List<PathObject>();
+                GroupRelatedGCode = "";
+				GroupIdObject = -1;
             }
             public GroupObject(string tmpKey, int tnr, string tname, PathObject pathObject)
             {
-                key = tmpKey;
-                toolNr = tnr;
-                toolName = tname;
-                groupRelatedGCode = "";
-                pathDimension = new Dimensions();
-                pathDimension.addDimensionXY(pathObject.Dimension);
-				groupId = -1;
+                Key = tmpKey;
+                ToolNr = tnr;
+                ToolName = tname;
+                GroupRelatedGCode = "";
+                PathDimension = new Dimensions();
+                if (pathObject != null)
+                    PathDimension.AddDimensionXY(pathObject.Dimension);
+				GroupIdObject = -1;
 
-                groupPath = new List<PathObject>();
-                groupPath.Add(pathObject);
+                GroupPath = new List<PathObject>();
+                GroupPath.Add(pathObject);
                 AddInfo(pathObject);
             }
             public GroupObject(GroupObject tmp)
             {
-                key = tmp.key;
-                toolNr = tmp.toolNr;
-                toolName = tmp.toolName;
-                groupRelatedGCode = tmp.groupRelatedGCode;
-                pathDimension = new Dimensions();
-                pathDimension.addDimensionXY(tmp.pathDimension);
-				groupId = tmp.groupId;
+                if (tmp != null)
+                {
+                    Key = tmp.Key;
+                    ToolNr = tmp.ToolNr;
+                    ToolName = tmp.ToolName;
+                    GroupRelatedGCode = tmp.GroupRelatedGCode;
+                    PathDimension = new Dimensions();
+                    PathDimension.AddDimensionXY(tmp.PathDimension);
+                    GroupIdObject = tmp.GroupIdObject;
 
-                groupPath = new List<PathObject>();
-                foreach(PathObject tmpPath in tmp.groupPath)
-                {   groupPath.Add(tmpPath);  }                            
+                    GroupPath = new List<PathObject>();
+                    foreach (PathObject tmpPath in tmp.GroupPath)
+                    { GroupPath.Add(tmpPath); }
+                }                          
             }
 
             public void AddInfo(PathObject pathObject)
             {   //groupPath.Add(pathObject);
-                pathLength += pathObject.PathLength;
-                pathDimension.addDimensionXY(pathObject.Dimension);
-                pathArea = pathDimension.getArea();
+                if (pathObject != null)
+                {
+                    PathLength += pathObject.PathLength;
+                    PathDimension.AddDimensionXY(pathObject.Dimension);
+                    PathArea = PathDimension.GetArea();
+                }
             }
 			
             public int GroupId             // Group Id from graphic2Gcode
-            {   get { return groupId; }
-                set { groupId = value; }
+            {   get { return GroupIdObject; }
+                set { GroupIdObject = value; }
             }
         }
 
         /// <summary>
         /// Path information for figure and group blocks
         /// </summary>		
-        public class PathInformation
+        internal class PathInformation
         {
-            public int id;                  //
-            public List<string> groupAttributes;    // to use with 	public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
-            public int penColorId;          //
-            public string pathId;           // 
-            public string pathGeometry;     // figure information
-//            public string pathComment;      // figure information
+            public int Id { get; set; }                 //
+            public List<string> GroupAttributes { get; set; }    // to use with 	public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
+            public int PenColorId { get; set; }        //
+            public string PathId { get; set; }          // 
+            public string PathGeometry { get; set; }   // figure information
+                                                       //            public string pathComment;      // figure information
 
             public PathInformation Copy()
-            {   PathInformation n = new PathInformation();
+            { PathInformation n = new PathInformation();
                 n.CopyData(this);
                 return n;
             }
             public PathInformation()
             {
-                id = penColorId = 0; // toolNr = codeSize = codeArea = 0;
-                pathGeometry = pathId = "";// pathComment = "";
-                groupAttributes = new List<string>(new string[] { "", "", "", "", "", "", "" });        // to use with 		public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
+                Id = PenColorId = 0; // toolNr = codeSize = codeArea = 0;
+                PathGeometry = PathId = "";// pathComment = "";
+                GroupAttributes = new List<string>(new string[] { "", "", "", "", "", "", "" });        // to use with 		public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
             }
             public void CopyData(PathInformation tmp)
             {
-                id = tmp.id; //groupId = tmp.groupId;
-                penColorId = tmp.penColorId; pathId = tmp.pathId;
-                pathGeometry = tmp.pathGeometry; //pathComment = tmp.pathComment;
-//                groupAttributes = tmp.groupAttributes.ToList();
-				for (int i=0; i < groupAttributes.Count; i++)
-					groupAttributes[i] = tmp.groupAttributes[i];
+                if (tmp != null)
+                {   Id = tmp.Id; //groupId = tmp.groupId;
+                    PenColorId = tmp.PenColorId; PathId = tmp.PathId;
+                    PathGeometry = tmp.PathGeometry; //pathComment = tmp.pathComment;
+                                                     //                groupAttributes = tmp.groupAttributes.ToList();
+                    for (int i = 0; i < GroupAttributes.Count; i++)
+                        GroupAttributes[i] = tmp.GroupAttributes[i];
+                } 
             }
-			public bool IsSameAs(PathInformation tmp)
-			{
-                if (id != tmp.id)	return false;
-				if (penColorId != tmp.penColorId)	return false;
-				if (pathId != tmp.pathId)	return false;
-				if (pathGeometry != tmp.pathGeometry)	return false;
-//				if (pathComment != tmp.pathComment)	return false;
-				if (groupAttributes.SequenceEqual(tmp.groupAttributes)) return true;
-				return false;
-			}
+            public bool IsSameAs(PathInformation tmp)
+            {
+                if (tmp != null)
+                {
+                    if (Id != tmp.Id) return false;
+                    if (PenColorId != tmp.PenColorId) return false;
+                    if (PathId != tmp.PathId) return false;
+                    if (PathGeometry != tmp.PathGeometry) return false;
+                    //				if (pathComment != tmp.pathComment)	return false;
+                    if (GroupAttributes.SequenceEqual(tmp.GroupAttributes)) return true;
+                }
+                return false;
+            }
             public bool SetGroupAttribute(int index, string txt)
             {
-                if (index < groupAttributes.Count)
+                if (index < GroupAttributes.Count)
                 {
-                    groupAttributes[index] = txt;
+                    GroupAttributes[index] = txt;
                     return true;
                 }
                 return false;
             }
 			
 			public string List()
-			{	string attr = string.Format("Attr[0]:'{0}', AttrColor:'{1}', AttrWidth:'{2}', AttrLayer:'{3}', AttrTile:'{4}', AttrType:'{5}'", this.groupAttributes[0], this.groupAttributes[1], this.groupAttributes[2], this.groupAttributes[3], this.groupAttributes[4], this.groupAttributes[5]);
-				return string.Format("Id:{0}, pathId:{1}, penColorId:{2}, PathGeo:{3}, {4}",this.id, this.pathId, this.penColorId, this.pathGeometry, attr);
+			{	string attr = string.Format("Attr[0]:'{0}', AttrColor:'{1}', AttrWidth:'{2}', AttrLayer:'{3}', AttrTile:'{4}', AttrType:'{5}'", this.GroupAttributes[0], this.GroupAttributes[1], this.GroupAttributes[2], this.GroupAttributes[3], this.GroupAttributes[4], this.GroupAttributes[5]);
+				return string.Format("Id:{0}, pathId:{1}, penColorId:{2}, PathGeo:{3}, {4}",this.Id, this.PathId, this.PenColorId, this.PathGeometry, attr);
 			}
         };
 
         /// <summary>
         /// Collect graphic-objects to build path
         /// </summary>		
-        public abstract class PathObject
+        internal abstract class PathObject
         {
-            protected Point start;
-            protected Point end;
-            protected double startAngle;
-            protected double distance;				// needed to sort paths by distance to a given start-point
-            protected double pathLength;			// length of the path
-            protected int tmpIndex;
-            protected PathInformation info;
-            protected Dimensions dimension;
-			protected CreationOptions options;
-            protected int figureId;					// track GCode figure-id
+            protected Point _start;
+            protected Point _end;
+            protected double _startAngle;
+            protected double _distance;				// needed to sort paths by distance to a given start-point
+            protected double _pathLength;			// length of the path
+            protected int _tmpIndex;
+            protected PathInformation _info;
+            protected Dimensions _dimension;
+            protected CreationOption _options;
+            protected int _figureId;					// track GCode figure-id
 
             public PathObject Copy()
             {
                 if (this is ItemDot)
                 {
-                    ItemDot n = new ItemDot(this.Start.X, this.Start.Y);
-                    n.info = this.info.Copy();
-                    n.pathLength = this.pathLength;
-                    n.distance = this.distance;
-                    n.start = this.start;
-                    n.startAngle = this.startAngle;
-                    n.end = this.end;
+                    ItemDot n = new ItemDot(this.Start.X, this.Start.Y)
+                    {
+                        _info = this._info.Copy(),
+                        _pathLength = this._pathLength,
+                        _distance = this._distance,
+                        _start = this._start,
+                        _startAngle = this._startAngle,
+                        _end = this._end
+                    };
                     return n;
                 }
                 else
                 {
-                    ItemPath n = new ItemPath();
-                    n.info = this.info.Copy();
-					
-					if (((ItemPath)this).dashArray.Length > 0)
-                    {   n.dashArray = new double[((ItemPath)this).dashArray.Length];
-                        ((ItemPath)this).dashArray.CopyTo(n.dashArray, 0);
+                    ItemPath n = new ItemPath
+                    {
+                        _info = this._info.Copy()
+                    };
+
+                    if (((ItemPath)this).DashArray.Length > 0)
+                    {
+                        n.DashArray = new double[((ItemPath)this).DashArray.Length];
+                        ((ItemPath)this).DashArray.CopyTo(n.DashArray, 0);
                     }
 
-                    foreach (GCodeMotion motion in ((ItemPath)this).path)
-                    { 	if (motion is GCodeLine)
-						{	n.AddMotion(new GCodeLine((GCodeLine)motion)); }
-						else if (motion is GCodeArc)
-						{	n.AddMotion(new GCodeArc((GCodeArc)motion)); }					
-					}
-                    n.pathLength = this.pathLength;
-                    n.distance = this.distance;
-                    n.start = this.start;
-                    n.startAngle = this.startAngle;
-                    n.end = this.end;
-                    n.dimension = new Dimensions(this.dimension);
+                    foreach (GCodeMotion motion in ((ItemPath)this).Path)
+                    {
+                        if (motion is GCodeLine)
+                        { n.AddMotion(new GCodeLine((GCodeLine)motion)); }
+                        else if (motion is GCodeArc)
+                        { n.AddMotion(new GCodeArc((GCodeArc)motion)); }
+                    }
+                    n._pathLength = this._pathLength;
+                    n._distance = this._distance;
+                    n._start = this._start;
+                    n._startAngle = this._startAngle;
+                    n._end = this._end;
+                    n._dimension = new Dimensions(this._dimension);
                     return n;
                 }
             }
             public PathObject()
-            {   info = new PathInformation();
-                start = new Point();
-                end = new Point();
-                distance = startAngle = pathLength = 0;
-                dimension = new Dimensions();
-				options = CreationOptions.none;
-                figureId = -1;
+            {
+                _info = new PathInformation();
+                _start = new Point();
+                _end = new Point();
+                _distance = _startAngle = _pathLength = 0;
+                _dimension = new Dimensions();
+                _options = CreationOption.none;
+                _figureId = -1;
             }
             public Point Start
-            {   get { return start; }
-                set { start = value; }
+            {
+                get { return _start; }
+                set { _start = value; }
             }
             public Point End
-            {   get { return end; }
-                set { end = value; }
+            {
+                get { return _end; }
+                set { _end = value; }
             }
             public double StartAngle
-            {   get { return startAngle; }
-                set { startAngle = value; }
+            {
+                get { return _startAngle; }
+                set { _startAngle = value; }
             }
             public double Distance
-            {   get { return distance; }
-                set { distance = value; }
+            {
+                get { return _distance; }
+                set { _distance = value; }
             }
             public double PathLength
-            {   get { return pathLength; }
-                set { pathLength = value; }
+            {
+                get { return _pathLength; }
+                set { _pathLength = value; }
             }
             public int TmpIndex
-            {   get { return tmpIndex; }
-                set { tmpIndex = value; }
+            {
+                get { return _tmpIndex; }
+                set { _tmpIndex = value; }
             }
             public PathInformation Info
-            {   get { return info; }
-                set { info = value; }
+            {
+                get { return _info; }
+                set { _info = value; }
             }
             public Dimensions Dimension
-            {   get { return dimension; }
-                set { dimension = value; }
+            {
+                get { return _dimension; }
+                set { _dimension = value; }
             }
-            public CreationOptions Options  // e.g. pause before path
-            {   get { return options; }
-                set { options = value; }
+            public CreationOption Options  // e.g. pause before path
+            {
+                get { return _options; }
+                set { _options = value; }
             }
             public int FigureId             // Figure Id from graphic2Gcode
-            {   get { return figureId; }
-                set { figureId = value; }
+            {
+                get { return _figureId; }
+                set { _figureId = value; }
             }
         }
+
+
 
         /// <summary>
         /// Collect single Dot to build path
         /// </summary>		
-        public class ItemDot : PathObject
+        internal class ItemDot : PathObject
         {
             private double optionalZ = 0;
             private bool useZ = false;
@@ -449,111 +484,115 @@ namespace GRBL_Plotter
             {   get { return useZ; }
                 set { useZ = value; }
             }
-            public double Z
+            public double OptZ
             {   get { return optionalZ; }
                 set { optionalZ = value; }
             }
-            public ItemDot(double x, double y)
-            {   start = end = new Point(x, y); useZ = false;
-                dimension.setDimensionXY(x, y);
+            public ItemDot(double dz, double dy)
+            {   Start = End = new Point(dz, dy); useZ = false;
+                Dimension.SetDimensionXY(dz, dy);
             }
-            public ItemDot(double x, double y, double z)
-            {   start = end = new Point(x, y);
-                optionalZ = z; useZ = true;
-                dimension.setDimensionXY(x, y);
+            public ItemDot(double dx, double dy, double dz)
+            {   Start = End = new Point(dx, dy);
+                optionalZ = dz; useZ = true;
+                Dimension.SetDimensionXY(dx, dy);
             }
         }
 
         /// <summary>
         /// Collect graphic-objects to build path
         /// </summary>		
-        public class ItemPath : PathObject
+        internal class ItemPath : PathObject
         {
-            public bool isReversed = false;
-            public bool isClosed = false;
-            public double[] dashArray = new double[0];
-            public List<GCodeMotion> path;
+            public bool IsReversed { get; set; }
+            public bool IsClosed { get; set; }
+            public double[] DashArray = new double[0];
+            public List<GCodeMotion> Path;
 
             public bool Reversed
-            {   get { return isReversed; }
-                set { isReversed = value; }
+            {   get { return IsReversed; }
+                set { IsReversed = value; }
             }
 				
             public ItemPath()
-            {   isReversed = false;
-                distance = 0;
-                pathLength = 0;
-                path = new List<GCodeMotion>();
-                dimension = new Dimensions();
+            {   IsReversed = false;
+                Distance = 0;
+                PathLength = 0;
+                Path = new List<GCodeMotion>();
+                Dimension = new Dimensions();
             }
             public ItemPath(Point tmp)
-            {   isReversed = false;
-                distance = 0;
-                pathLength = 0;
-                path = new List<GCodeMotion>();
-                dimension = new Dimensions();
+            {   IsReversed = false;
+                Distance = 0;
+                PathLength = 0;
+                Path = new List<GCodeMotion>();
+                Dimension = new Dimensions();
                 GCodeMotion motion = new GCodeLine(tmp);
-                dimension.setDimensionXY(tmp.X, tmp.Y);
-                path.Add(motion);
-                start = end = tmp;
+                Dimension.SetDimensionXY(tmp.X, tmp.Y);
+                Path.Add(motion);
+                Start = End = tmp;
             }
             public void AddMotion(GCodeMotion old)
-            {   if (old is GCodeLine)
-                    Add(old.MoveTo, old.Depth, old.Angle);               
-                else
-                    AddArc(((GCodeArc)old).MoveTo, ((GCodeArc)old).CenterIJ, ((GCodeArc)old).IsCW, 0, ((GCodeArc)old).AngleStart, ((GCodeArc)old).Angle);
+            {
+                if (old != null)
+                {
+                    if (old is GCodeLine)
+                        Add(old.MoveTo, old.Depth, old.Angle);
+                    else
+                        AddArc(((GCodeArc)old).MoveTo, ((GCodeArc)old).CenterIJ, ((GCodeArc)old).IsCW, 0, ((GCodeArc)old).AngleStart, ((GCodeArc)old).Angle);
+                }
             }
 
-            public void Add(Point tmp, double z, double ang)
-            {   GCodeMotion motion = new GCodeLine(tmp, z, ang);
-                dimension.setDimensionXY(tmp.X, tmp.Y);
-                path.Add(motion);
-                pathLength += PointDistance(end, tmp);    // distance from last to current point
-                end = tmp;
-                if (start == end)
-                    isClosed = true;
+            public void Add(Point tmp, double dz, double ang)
+            {   GCodeMotion motion = new GCodeLine(tmp, dz, ang);
+                Dimension.SetDimensionXY(tmp.X, tmp.Y);
+                Path.Add(motion);
+                PathLength += PointDistance(End, tmp);    // distance from last to current point
+                End = tmp;
+                if (Start == End)
+                    IsClosed = true;
             }
 
-            public void AddArc(GCodeArc arc, double z, double angStart, double angEnd)
-            { 	AddArc(arc.MoveTo, arc.CenterIJ, arc.IsCW, z, angStart, angEnd); }
-            public void AddArc(Point tmp, Point centerIJ, bool isCW, double z, double angStart, double angEnd)
+            public void AddArc(GCodeArc arc, double dz, double angStart, double angEnd)
+            { 	if(arc!=null) AddArc(arc.MoveTo, arc.CenterIJ, arc.IsCW, dz, angStart, angEnd); }
+            public void AddArc(Point tmp, Point centerIJ, bool isCW, double dz, double angStart, double angEnd)
             {
                 GCodeMotion motion;
-                motion = new GCodeArc(tmp, centerIJ, isCW, z, angStart, angEnd);
-                dimension.setDimensionArc(new xyPoint(end), new xyPoint(tmp), centerIJ.X, centerIJ.Y, isCW);
-                path.Add(motion);
+                motion = new GCodeArc(tmp, centerIJ, isCW, dz, angStart, angEnd);
+                Dimension.SetDimensionArc(new XyPoint(End), new XyPoint(tmp), centerIJ.X, centerIJ.Y, isCW);
+                Path.Add(motion);
 
                 ArcProperties arcMove;
-                Point p1 = Round(end);
+                Point p1 = Round(End);
                 Point p2 = Round(tmp);
-                arcMove = gcodeMath.getArcMoveProperties(p1, p2, centerIJ, isCW);
-                pathLength += Math.Abs(arcMove.radius * arcMove.angleDiff);           // distance from last to current point
-                end = tmp;
+                arcMove = GcodeMath.GetArcMoveProperties(p1, p2, centerIJ, isCW);
+                PathLength += Math.Abs(arcMove.radius * arcMove.angleDiff);           // distance from last to current point
+                End = tmp;
             }
 
-            public void AddArc(Point tmp, Point centerIJ, double z, bool isCW, bool convertToLine)
+            public void AddArc(Point tmp, Point centerIJ, double dz, bool isCW, bool convertToLine)
             {
                 GCodeMotion motion;
                 if (!convertToLine)
                 {
-                    motion = new GCodeArc(tmp, centerIJ, isCW, z);
-                    dimension.setDimensionArc(new xyPoint(end), new xyPoint(tmp), centerIJ.X, centerIJ.Y, isCW);
-                    path.Add(motion);
+                    motion = new GCodeArc(tmp, centerIJ, isCW, dz);
+                    Dimension.SetDimensionArc(new XyPoint(End), new XyPoint(tmp), centerIJ.X, centerIJ.Y, isCW);
+                    Path.Add(motion);
 
                     ArcProperties arcMove;
-                    Point p1 = Round(end);
+                    Point p1 = Round(End);
                     Point p2 = Round(tmp);
-                    arcMove = gcodeMath.getArcMoveProperties(p1, p2, centerIJ, isCW);
-                    pathLength += Math.Abs(arcMove.radius * arcMove.angleDiff);           // distance from last to current point
-                    end = tmp;
+                    arcMove = GcodeMath.GetArcMoveProperties(p1, p2, centerIJ, isCW);
+                    PathLength += Math.Abs(arcMove.radius * arcMove.angleDiff);           // distance from last to current point
+                    End = tmp;
                 }
                 else
                 {
                     ArcProperties arcMove;
-                    Point p1 = Round(end);
+                    Point p1 = Round(End);
                     Point p2 = Round(tmp);
-                    double x = 0, y = 0;
-                    arcMove = gcodeMath.getArcMoveProperties(p1, p2, centerIJ, isCW);
+                    double x, y;
+                    arcMove = GcodeMath.GetArcMoveProperties(p1, p2, centerIJ, isCW);
                     double stepwidth = (double)Properties.Settings.Default.importGCSegment;
 
                     if (stepwidth > arcMove.radius / 2)
@@ -569,11 +608,11 @@ namespace GRBL_Plotter
                         {
                             x = arcMove.center.X + arcMove.radius * Math.Cos(angle);
                             y = arcMove.center.Y + arcMove.radius * Math.Sin(angle);
-                            motion = new GCodeLine(new Point(x, y), z);
-                            dimension.setDimensionXY(x, y);
-                            path.Add(motion);
-                            pathLength += PointDistance(end, tmp);    // distance from last to current point
-                            end = tmp;
+                            motion = new GCodeLine(new Point(x, y), dz);
+                            Dimension.SetDimensionXY(x, y);
+                            Path.Add(motion);
+                            PathLength += PointDistance(End, tmp);    // distance from last to current point
+                            End = tmp;
                         }
                     }
                     else                                                       // else go clock wise
@@ -582,21 +621,21 @@ namespace GRBL_Plotter
                         {
                             x = arcMove.center.X + arcMove.radius * Math.Cos(angle);
                             y = arcMove.center.Y + arcMove.radius * Math.Sin(angle);
-                            motion = new GCodeLine(new Point(x, y), z);
-                            dimension.setDimensionXY(x, y);
-                            path.Add(motion);
-                            pathLength += PointDistance(end, tmp);    // distance from last to current point
-                            end = tmp;
+                            motion = new GCodeLine(new Point(x, y), dz);
+                            Dimension.SetDimensionXY(x, y);
+                            Path.Add(motion);
+                            PathLength += PointDistance(End, tmp);    // distance from last to current point
+                            End = tmp;
                         }
                     }
-                    motion = new GCodeLine(new Point(tmp.X, tmp.Y), z);
-                    dimension.setDimensionXY(tmp.X, tmp.Y);
-                    path.Add(motion);
-                    pathLength += PointDistance(end, tmp);    // distance from last to current point
-                    end = tmp;
+                    motion = new GCodeLine(new Point(tmp.X, tmp.Y), dz);
+                    Dimension.SetDimensionXY(tmp.X, tmp.Y);
+                    Path.Add(motion);
+                    PathLength += PointDistance(End, tmp);    // distance from last to current point
+                    End = tmp;
                 }
-                if (start == end)
-                    isClosed = true;
+                if (Start == End)
+                    IsClosed = true;
             }
             private static double PointDistance(Point a, Point b)
             {   double dx = a.X - b.X;
@@ -611,52 +650,63 @@ namespace GRBL_Plotter
         /// <summary>
         /// Collect graphic-object data
         /// </summary>		
-        public abstract class GCodeMotion
-        {   protected Point moveTo;     // coordinate to move
-            protected double depth;     // individual z value
-            protected double angle;     // angle of movement lastPoint to "moveTo"
-            public Point MoveTo
-            {   get { return moveTo; }
-                set { moveTo = value; }
-            }
-            public double Depth
-            {   get { return depth; }
-                set { depth = value; }
-            }
-            public double Angle
-            {   get { return angle; }
-                set { angle = value; }
-            }
-            public GCodeMotion()
-            { 	moveTo = new Point(); }
+        internal abstract class GCodeMotion
+        {   public Point MoveTo { get; set; }     // coordinate to move
+            public double Depth { get; set; }     // individual z value
+            public double Angle { get; set; }     // angle of movement lastPoint to "moveTo"
+        /*    public Point MoveTo
+            {   get { return MoveTo; }
+                set { MoveTo = value; }
+            }*/
+        /*    public double Depth
+            {   get { return Depth; }
+                set { Depth = value; }
+            }*/
+         /*   public double Angle
+            {   get { return Angle; }
+                set { Angle = value; }
+            }*/
+            protected GCodeMotion()
+            { 	MoveTo = new Point(); }
 
-            public GCodeMotion(GCodeMotion old)
-            { 	moveTo = new Point(old.moveTo.X, old.moveTo.Y);
-                depth = old.depth;
-                angle = old.angle;
-			}
+            protected GCodeMotion(GCodeMotion old)
+            {
+                if (old != null)
+                {
+                    MoveTo = new Point(old.MoveTo.X, old.MoveTo.Y);
+                    Depth = old.Depth;
+                    Angle = old.Angle;
+                }
+            }
         }
 
         /// <summary>
         /// Collect Line-specific data
         /// </summary>		
-        public class GCodeLine : GCodeMotion
-        {   public GCodeLine(Point tmp, double z=0)
-            { MoveTo = tmp; depth = z;}
-            public GCodeLine(Point tmp, double z, double ang)
-            { MoveTo = tmp; depth = z; angle = ang;}
-			
-			public GCodeLine(GCodeLine old)		// Copy
-			{	moveTo = new Point(old.moveTo.X, old.moveTo.Y); 
-				depth = old.depth;
-				angle = old.angle;
-			}
+        internal class GCodeLine : GCodeMotion
+        {
+            public GCodeLine(Point tmp)
+            { MoveTo = tmp; Depth = 0; }
+            public GCodeLine(Point tmp, double dz)
+            { MoveTo = tmp; Depth = dz;}
+            public GCodeLine(Point tmp, double dz, double ang)
+            { MoveTo = tmp; Depth = dz; Angle = ang;}
+
+            public GCodeLine(GCodeLine old)     // Copy
+            {
+                if (old != null)
+                {
+                    MoveTo = new Point(old.MoveTo.X, old.MoveTo.Y);
+                    Depth = old.Depth;
+                    Angle = old.Angle;
+                }
+            }
         }
 
         /// <summary>
         /// Collect Arc-specific data
         /// </summary>		
-        public class GCodeArc : GCodeMotion
+        internal class GCodeArc : GCodeMotion
         {   private Point center;
             private double angleStart;  // angle of start position of arc
             private bool iscw;          // direction clock-wise
@@ -672,19 +722,23 @@ namespace GRBL_Plotter
             {   get { return iscw; }
                 set { iscw = value; }
             }
-            public GCodeArc(Point tmp, Point centIJ, bool isCW, double z)
-            { MoveTo = tmp; CenterIJ = centIJ; iscw = isCW; depth = z;}
-            public GCodeArc(Point tmp, Point centIJ, bool isCW, double z, double angStart, double angEnd)
-            { MoveTo = tmp; CenterIJ = centIJ; iscw = isCW; depth = z; angleStart = angStart; angle = angEnd; }
+            public GCodeArc(Point tmp, Point centIJ, bool isCW, double dz)
+            { MoveTo = tmp; CenterIJ = centIJ; iscw = isCW; Depth = dz;}
+            public GCodeArc(Point tmp, Point centIJ, bool isCW, double dz, double angStart, double angEnd)
+            { MoveTo = tmp; CenterIJ = centIJ; iscw = isCW; Depth = dz; angleStart = angStart; Angle = angEnd; }
 
-			public GCodeArc(GCodeArc old)		// Copy
-			{	moveTo = new Point(old.moveTo.X, old.moveTo.Y); 
-				center = new Point(old.center.X, old.center.Y); 
-				depth = old.depth;
-				angle = old.angle;
-				angleStart = old.angleStart;
-				iscw = old.iscw;
-			}
+            public GCodeArc(GCodeArc old)       // Copy
+            {
+                if (old != null)
+                {
+                    MoveTo = new Point(old.MoveTo.X, old.MoveTo.Y);
+                    center = new Point(old.center.X, old.center.Y);
+                    Depth = old.Depth;
+                    Angle = old.Angle;
+                    angleStart = old.angleStart;
+                    iscw = old.iscw;
+                }
+            }
         }
     }
 }

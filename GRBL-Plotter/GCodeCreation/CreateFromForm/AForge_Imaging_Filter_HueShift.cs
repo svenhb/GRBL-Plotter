@@ -5,7 +5,8 @@
 // Copyright ? AForge.NET, 2005-2011
 // contacts@aforgenet.com
 //
-// Add on 2018 by Sven Hasemann
+// Add on  2018 - 2021 Sven Hasemann contact: svenhb @web.de
+// 2021 - 07 - 02 code clean up / code quality
 
 namespace AForge.Imaging.Filters
 {
@@ -30,7 +31,7 @@ namespace AForge.Imaging.Filters
         private int hue = 0;
 
         // private format translation dictionary
-        private Dictionary<PixelFormat, PixelFormat> formatTranslations = new Dictionary<PixelFormat, PixelFormat>();
+        private readonly Dictionary<PixelFormat, PixelFormat> formatTranslations = new Dictionary<PixelFormat, PixelFormat>();
 
         /// <summary>
         /// Format translations dictionary.
@@ -84,6 +85,7 @@ namespace AForge.Imaging.Filters
         ///
         protected override unsafe void ProcessFilter(UnmanagedImage image, Rectangle rect)
         {
+            if (image == null) return;
             if (hue == 0) return;
             int pixelSize = Bitmap.GetPixelFormatSize(image.PixelFormat) / 8;
 

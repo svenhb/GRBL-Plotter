@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Zeichenhöhe</value>
   </data>
@@ -130,17 +126,11 @@
   <data name="btnApply.Text" xml:space="preserve">
     <value>Erzeuge G-Code</value>
   </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 13</value>
-  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>Zeilenabstand</value>
   </data>
   <data name="label11.ToolTip" xml:space="preserve">
     <value>Abstand zwischen Zeilen</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Zeichenabstand</value>
@@ -148,17 +138,11 @@
   <data name="label10.ToolTip" xml:space="preserve">
     <value>Zusätzlicher Abstand zwischen Buchstaben</value>
   </data>
-  <data name="cBToolTable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 17</value>
-  </data>
   <data name="cBToolTable.Text" xml:space="preserve">
     <value>Übernehme Werte aus Werkzeugliste</value>
   </data>
   <data name="cBToolTable.ToolTip" xml:space="preserve">
     <value>Verbinde letzten Punkt eines Buchstabens mit ersten Punkt des nächsten Buchstabens, innerhalb eines Wortes</value>
-  </data>
-  <data name="cBConnectLetter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 17</value>
   </data>
   <data name="cBConnectLetter.Text" xml:space="preserve">
     <value>Verbinde Buchstaben (nur Hershey Font)</value>
@@ -166,26 +150,14 @@
   <data name="cBConnectLetter.ToolTip" xml:space="preserve">
     <value>Verbinde letzten Punkt eines Buchstabens mit ersten Punkt des nächsten Buchstabens, innerhalb eines Wortes</value>
   </data>
-  <data name="cBPauseLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 17</value>
-  </data>
   <data name="cBPauseLine.Text" xml:space="preserve">
     <value>Pause nach Zeile</value>
-  </data>
-  <data name="cBPauseWord.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 17</value>
   </data>
   <data name="cBPauseWord.Text" xml:space="preserve">
     <value>Pause nach Wort</value>
   </data>
-  <data name="cBPauseChar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 17</value>
-  </data>
   <data name="cBPauseChar.Text" xml:space="preserve">
     <value>Pause nach Buchstaben</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Weitere G-Code Einstellungen
@@ -193,9 +165,6 @@ in Setup SVG-Import </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Erzeuge G-Code aus Text</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Texterstellung</value>

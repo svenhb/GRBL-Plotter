@@ -604,7 +604,7 @@
     <value>7</value>
   </data>
   <data name="nUDShapeY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 53</value>
+    <value>80, 73</value>
   </data>
   <data name="nUDShapeY.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 20</value>
@@ -634,7 +634,7 @@
     <value>NoControl</value>
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>77, 37</value>
+    <value>77, 57</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 13</value>
@@ -658,7 +658,7 @@
     <value>1</value>
   </data>
   <data name="nUDShapeX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 53</value>
+    <value>6, 73</value>
   </data>
   <data name="nUDShapeX.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 20</value>
@@ -688,7 +688,7 @@
     <value>NoControl</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 37</value>
+    <value>3, 57</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 13</value>
@@ -712,7 +712,7 @@
     <value>3</value>
   </data>
   <data name="nUDShapeR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 53</value>
+    <value>156, 73</value>
   </data>
   <data name="nUDShapeR.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 20</value>
@@ -742,7 +742,7 @@
     <value>NoControl</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 37</value>
+    <value>153, 57</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 13</value>
@@ -765,17 +765,14 @@
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="rBShape2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="rBShape2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="rBShape2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 14</value>
+    <value>110, 14</value>
   </data>
   <data name="rBShape2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 17</value>
+    <value>135, 40</value>
   </data>
   <data name="rBShape2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -795,9 +792,6 @@
   <data name="&gt;&gt;rBShape2.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="rBShape1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="rBShape1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -805,7 +799,7 @@
     <value>6, 14</value>
   </data>
   <data name="rBShape1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
+    <value>100, 40</value>
   </data>
   <data name="rBShape1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -825,17 +819,14 @@
   <data name="&gt;&gt;rBShape1.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="rBShape3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="rBShape3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="rBShape3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 14</value>
+    <value>250, 14</value>
   </data>
   <data name="rBShape3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 17</value>
+    <value>100, 40</value>
   </data>
   <data name="rBShape3.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -859,7 +850,7 @@
     <value>6, 6</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 78</value>
+    <value>354, 99</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -1057,7 +1048,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBToolpathPocket.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 104</value>
+    <value>12, 111</value>
   </data>
   <data name="cBToolpathPocket.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 17</value>
@@ -1403,6 +1394,87 @@
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="nUDRZRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 20</value>
+  </data>
+  <data name="nUDRZRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="nUDRZRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="nUDRZRadius.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Radius in Z direction</value>
+  </data>
+  <data name="&gt;&gt;nUDRZRadius.Name" xml:space="preserve">
+    <value>nUDRZRadius</value>
+  </data>
+  <data name="&gt;&gt;nUDRZRadius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRZRadius.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;nUDRZRadius.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDRZWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 42</value>
+  </data>
+  <data name="nUDRZWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="nUDRZWidth.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="nUDRZWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>Width of the round off</value>
+  </data>
+  <data name="&gt;&gt;nUDRZWidth.Name" xml:space="preserve">
+    <value>nUDRZWidth</value>
+  </data>
+  <data name="&gt;&gt;nUDRZWidth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRZWidth.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;nUDRZWidth.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="nUDRZStep.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 64</value>
+  </data>
+  <data name="nUDRZStep.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="nUDRZStep.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="nUDRZStep.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>Max. allowed deviation to a 1/4 circle in units</value>
+  </data>
+  <data name="&gt;&gt;nUDRZStep.Name" xml:space="preserve">
+    <value>nUDRZStep</value>
+  </data>
+  <data name="&gt;&gt;nUDRZStep.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDRZStep.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;nUDRZStep.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1929,60 +2001,6 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="nUDRZRadius.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 20</value>
-  </data>
-  <data name="nUDRZRadius.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
-  </data>
-  <data name="nUDRZRadius.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="nUDRZRadius.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
-    <value>Radius in Z direction</value>
-  </data>
-  <data name="&gt;&gt;nUDRZRadius.Name" xml:space="preserve">
-    <value>nUDRZRadius</value>
-  </data>
-  <data name="&gt;&gt;nUDRZRadius.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDRZRadius.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;nUDRZRadius.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="nUDRZWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 42</value>
-  </data>
-  <data name="nUDRZWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
-  </data>
-  <data name="nUDRZWidth.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="nUDRZWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
-    <value>Width of the round off</value>
-  </data>
-  <data name="&gt;&gt;nUDRZWidth.Name" xml:space="preserve">
-    <value>nUDRZWidth</value>
-  </data>
-  <data name="&gt;&gt;nUDRZWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDRZWidth.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;nUDRZWidth.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2042,33 +2060,6 @@
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="nUDRZStep.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 64</value>
-  </data>
-  <data name="nUDRZStep.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
-  </data>
-  <data name="nUDRZStep.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="nUDRZStep.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDRZStep.ToolTip" xml:space="preserve">
-    <value>Max. allowed deviation to a 1/4 circle in units</value>
-  </data>
-  <data name="&gt;&gt;nUDRZStep.Name" xml:space="preserve">
-    <value>nUDRZStep</value>
-  </data>
-  <data name="&gt;&gt;nUDRZStep.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDRZStep.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;nUDRZStep.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
     <value>224, 6</value>
@@ -2205,14 +2196,11 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>384, 399</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>150, 400</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 630</value>
+    <value>400, 438</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>400, 438</value>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 */
 /*
  * 2020-07-05 Code adapted from Evil Mad Scientist eggbot_hatch.py
+ * 2021-07-14 code clean up / code quality
 */
 
 
@@ -25,12 +26,16 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace GRBL_Plotter
+#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
     public static partial class Graphic
     {
-        public static void HatchFill(List<PathObject> graphicToFill)
+        internal static void HatchFill(List<PathObject> graphicToFill)
         {
+            if (graphicToFill == null) return;
+
             double distance = (double)Properties.Settings.Default.importGraphicHatchFillDistance;
             double angle = (double)Properties.Settings.Default.importGraphicHatchFillAngle;
             double angle2 = (double)Properties.Settings.Default.importGraphicHatchFillAngle2;
@@ -51,28 +56,28 @@ namespace GRBL_Plotter
             for (int index=0; index < maxObject; index++ )
             {
                 PathObject item = graphicToFill[index];
-                if (item is ItemPath)
+                if (item is ItemPath PathData)
                 {
-                    ItemPath PathData = (ItemPath)item; // is closed polygon?
+                    //ItemPath PathData = (ItemPath)item; // is closed polygon?
 
-                    if (isEqual(PathData.Start, PathData.End) && (PathData.path.Count > 2))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
+                    if (IsEqual(PathData.Start, PathData.End) && (PathData.Path.Count > 2))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
                     {
-                        string fill = PathData.Info.groupAttributes[(int)GroupOptions.ByFill];
-                        if (fillColor && ((fill == "") || (fill == "none")))	// SVG: only hatch if fillColor is set
+                        string fill = PathData.Info.GroupAttributes[(int)GroupOption.ByFill];
+                        if (fillColor && ((string.IsNullOrEmpty(fill)) || (fill == "none")))	// SVG: only hatch if fillColor is set
                         {   //Logger.Trace("no fill");
                             continue;  }
 						else
-                            countProperty((int)GroupOptions.ByColor, fill);		// now fill-color is also penColor -> for grouping
+                            CountProperty((int)GroupOption.ByColor, fill);		// now fill-color is also penColor -> for grouping
 						
                         tmpPath.Add(PathData);					// collect paths
-						pathDimension.addDimensionXY(PathData.Dimension);	// adapt overall size
-						if (!pathDimension.isXYSet())						// no dimension - nothing to do
-                        { Logger.Trace("no dim"); continue;  }
+						pathDimension.AddDimensionXY(PathData.Dimension);	// adapt overall size
+						if (!pathDimension.IsXYSet())						// no dimension - nothing to do
+                        { Logger.Trace( "no dim"); continue;  }
 						
                         // collect paths of same id, process if id changes
 //                        nextIsSameHatch = ((index != (maxObject - 1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
-                        nextIsSameHatch = ((index < (maxObject-1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
-                        if (logModification) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}", PathData.Info.id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.id, graphicToFill[index + 1].Info.id, fill);
+                        nextIsSameHatch = ((index < (maxObject-1)) && (graphicToFill[index].Info.Id == graphicToFill[index + 1].Info.Id));
+                        if (logModification) Logger.Trace( "  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fill);
                         if (nextIsSameHatch)   
                         {   continue;  }
 
@@ -100,10 +105,10 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    if (logModification) Logger.Trace(" is Dot ID:{0} Length:{1:0.00}  start x:{2:0.00} y:{3:0.00} end x:{4:0.00} y:{5:0.00} ", item.Info.id, item.PathLength, item.Start.X, item.Start.Y, item.End.X, item.End.Y);
+                    if (logModification) Logger.Trace( " is Dot ID:{0} Length:{1:0.00}  start x:{2:0.00} y:{3:0.00} end x:{4:0.00} y:{5:0.00} ", item.Info.Id, item.PathLength, item.Start.X, item.Start.Y, item.End.X, item.End.Y);
                 }
             }
-            if (logModification) Logger.Trace("HatchFill End --------------------------------------", actualDimension.minx, actualDimension.miny);
+            if (logModification) Logger.Trace( "HatchFill End --------------------------------------", actualDimension.minx, actualDimension.miny);
         }
 
 
@@ -157,11 +162,11 @@ namespace GRBL_Plotter
                 { start = HatchLines[i][1]; end = HatchLines[i][0]; }
 
                 StartPath(start);
-                actualPath.Info.id = PathData.Info.id;
+                actualPath.Info.Id = PathData.Info.Id;
                 actualPath.Info.CopyData(PathData.Info);    // preset global info for GROUP
 				if (switchColor)
-					actualPath.Info.groupAttributes[(int)GroupOptions.ByColor] = actualPath.Info.groupAttributes[(int)GroupOptions.ByFill];
-                actualPath.Info.pathGeometry += "_hatch";
+					actualPath.Info.GroupAttributes[(int)GroupOption.ByColor] = actualPath.Info.GroupAttributes[(int)GroupOption.ByFill];
+                actualPath.Info.PathGeometry += "_hatch";
                 AddLine(end);
 				StopPath();
 			}
@@ -193,12 +198,12 @@ namespace GRBL_Plotter
 			return sa;
 		}
 
-        public struct intersectionInfo
+        internal struct IntersectionInfo
         {
             public double s;
             public double s1;
             public double s2;
-            public intersectionInfo(double s, double s1, double s2)
+            public IntersectionInfo(double s, double s1, double s2)
             {
                 this.s = s;
                 this.s1 = s1;
@@ -210,7 +215,7 @@ namespace GRBL_Plotter
 		{	Point p3, p4;
 			double intersect;
 
-            List<intersectionInfo> d_and_a = new List<intersectionInfo>();
+            List<IntersectionInfo> d_and_a = new List<IntersectionInfo>();
 
 			double holdBack = (double)Properties.Settings.Default.importGraphicHatchFillInset;
             bool holdBackEnable = Properties.Settings.Default.importGraphicHatchFillInsetEnable;
@@ -220,16 +225,16 @@ namespace GRBL_Plotter
 
             foreach (PathObject path in paths)
             {
-                if (path is ItemPath)
+                if (path is ItemPath ipath)
                 {
-                    ItemPath ipath = (ItemPath)path;
+                    //ItemPath ipath = (ItemPath)path;
 
-                    p3 = ipath.path[0].MoveTo;
+                    p3 = ipath.Path[0].MoveTo;
 //                    if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("   ClipLineByPolygone p3.x:{0:0.00} p3.y:{1:0.00}    {2}", p3.X,p3.Y, ipath.Info.id);
 
-                    for (int k = 1; k < ipath.path.Count; k++)
+                    for (int k = 1; k < ipath.Path.Count; k++)
                     {
-                        p4 = ipath.path[k].MoveTo;
+                        p4 = ipath.Path[k].MoveTo;
                         intersect = CalculateIntersection(p1, p2, p3, p4);
                         if ((0.0 <= intersect) && (intersect <= 1.0))
                         {
@@ -256,9 +261,11 @@ namespace GRBL_Plotter
 
                                 if (!b_unconditionally_excise_hatch)
                                 {    //# The relevant end of the segment is the end from which the hatch approaches at an acute angle.
-                                    Point intersection = new Point();
-                                    intersection.X = p1.X + intersect * (p2.X - p1.X);  //# compute intersection point of hatch with segment
-                                    intersection.Y = p1.Y + intersect * (p2.Y - p1.Y); // # intersecting hatch line starts at p1, vectored toward p2,
+                                    Point intersection = new Point
+                                    {
+                                        X = p1.X + intersect * (p2.X - p1.X),  //# compute intersection point of hatch with segment
+                                        Y = p1.Y + intersect * (p2.Y - p1.Y) // # intersecting hatch line starts at p1, vectored toward p2,
+                                    };
 
                                     if (Math.Abs(angle_difference_radians) < Math.PI / 2)
                                     {    //# It's near the p3 the relevant end from which the hatch departs
@@ -282,14 +289,14 @@ namespace GRBL_Plotter
                                         //# Yes, would be excessive holdback approaching from other direction
                                         length_remove_ending_hatch = dist_intersection_to_irrelevant_end + holdBack;
 
-                                    d_and_a.Add(new intersectionInfo( intersect, length_remove_starting_hatch, length_remove_ending_hatch ));
+                                    d_and_a.Add(new IntersectionInfo( intersect, length_remove_starting_hatch, length_remove_ending_hatch ));
 
                                 }
                                 else
-                                    d_and_a.Add(new intersectionInfo( intersect, 123456.0, 123456.0 ));//  # Mark for complete hatch excision, hatch is parallel to segment
+                                    d_and_a.Add(new IntersectionInfo( intersect, 123456.0, 123456.0 ));//  # Mark for complete hatch excision, hatch is parallel to segment
                             }
                             else
-                                d_and_a.Add(new intersectionInfo( intersect, 0, 0 ));//  # zero length to be removed from hatch										
+                                d_and_a.Add(new IntersectionInfo( intersect, 0, 0 ));//  # zero length to be removed from hatch										
                         }
                         p3 = p4;
                     }
@@ -308,7 +315,7 @@ namespace GRBL_Plotter
             int n = d_and_a.Count;
 			int i_last = 1;
 			int i = 1;
-			intersectionInfo last = d_and_a[0];
+			IntersectionInfo last = d_and_a[0];
 			while (i < n)
 			{	if ((Math.Abs(d_and_a[i].s - last.s)) > 0.0000000001)	//F_MINGAP_SMALL_VALUE)	// 0.0000000001  
 				{	d_and_a[i_last] = last = d_and_a[i];

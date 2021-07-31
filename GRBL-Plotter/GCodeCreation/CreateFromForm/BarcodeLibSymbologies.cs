@@ -12,24 +12,24 @@
  */
 /*
  * 2020-12-16 Add dispose function for class Code93 and class Code128
- */
+ * 2021-07-02 code clean up / code quality
+*/
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter.BarcodeCreation
+#pragma warning disable CA1305
+#pragma warning disable CA1307
+#pragma warning disable IDE0044
+#pragma warning disable IDE0059
+
+namespace GrblPlotter.BarcodeCreation
 {
-
-
     abstract class BarcodeCommon
     {
         protected string Raw_Data = "";
@@ -82,6 +82,7 @@ namespace GRBL_Plotter.BarcodeCreation
     /// </summary>
     class Codabar : BarcodeCommon, IBarcode
     {
+        private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
         private System.Collections.Hashtable Codabar_Code = new System.Collections.Hashtable(); //is initialized by init_Codabar()
 
         public Codabar(string input)
@@ -97,7 +98,7 @@ namespace GRBL_Plotter.BarcodeCreation
             if (Raw_Data.Length < 2) Error("ECODABAR-1: Data format invalid. (Invalid length)");
 
             //check first char to make sure its a start/stop char
-            switch (Raw_Data[0].ToString().ToUpper().Trim())
+            switch (Raw_Data[0].ToString(culture).ToUpper(culture).Trim())
             {
                 case "A": break;
                 case "B": break;
@@ -109,7 +110,7 @@ namespace GRBL_Plotter.BarcodeCreation
             }//switch
 
             //check the ending char to make sure its a start/stop char
-            switch (Raw_Data[Raw_Data.Trim().Length - 1].ToString().ToUpper().Trim())
+            switch (Raw_Data[Raw_Data.Trim().Length - 1].ToString(culture).ToUpper(culture).Trim())
             {
                 case "A": break;
                 case "B": break;
@@ -121,14 +122,14 @@ namespace GRBL_Plotter.BarcodeCreation
             }//switch
 
             //populate the hashtable to begin the process
-            this.init_Codabar();
+            this.Init_Codabar();
 
             //replace non-numeric VALID chars with empty strings before checking for all numerics
             string temp = Raw_Data;
 
             foreach (char c in Codabar_Code.Keys)
             {
-                if (!CheckNumericOnly(c.ToString()))
+                if (!CheckNumericOnly(c.ToString(culture)))
                 {
                     temp = temp.Replace(c, '1');
                 }//if
@@ -157,7 +158,7 @@ namespace GRBL_Plotter.BarcodeCreation
 
             return result;
         }//Encode_Codabar
-        private void init_Codabar()
+        private void Init_Codabar()
         {
             Codabar_Code.Clear();
             Codabar_Code.Add('0', "101010011");//"101001101101");
@@ -203,9 +204,10 @@ namespace GRBL_Plotter.BarcodeCreation
     /// </summary>
     class UPCA : BarcodeCommon, IBarcode
     {
+        private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
         private string[] UPC_CodeA = { "0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111", "0001011" };
         private string[] UPC_CodeB = { "1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000", "1110100" };
-        private string _Country_Assigning_Manufacturer_Code = "N/A";
+     //   private string _Country_Assigning_Manufacturer_Code = "N/A";
         private Hashtable CountryCodes = new Hashtable(); //is initialized by init_CountryCodes()
 
         public UPCA(string input)
@@ -229,13 +231,13 @@ namespace GRBL_Plotter.BarcodeCreation
             string result = "101"; //start with guard bars
 
             //first number
-            result += UPC_CodeA[Int32.Parse(Raw_Data[0].ToString())];
+            result += UPC_CodeA[Int32.Parse(Raw_Data[0].ToString(culture))];
 
             //second (group) of numbers
             int pos = 0;
             while (pos < 5)
             {
-                result += UPC_CodeA[Int32.Parse(Raw_Data[pos + 1].ToString())];
+                result += UPC_CodeA[Int32.Parse(Raw_Data[pos + 1].ToString(culture))];
                 pos++;
             }//while
 
@@ -256,21 +258,22 @@ namespace GRBL_Plotter.BarcodeCreation
             result += "101";
 
             //get the manufacturer assigning country
-            this.init_CountryCodes();
-            string twodigitCode = "0" + Raw_Data.Substring(0, 1);
+            this.Init_CountryCodes();
+      //      string twodigitCode = "0" + Raw_Data.Substring(0, 1);
             try
             {
-                _Country_Assigning_Manufacturer_Code = CountryCodes[twodigitCode].ToString();
+          //      _Country_Assigning_Manufacturer_Code = CountryCodes[twodigitCode].ToString();
             }//try
             catch
             {
-                Error("EUPCA-3: Country assigning manufacturer code not found.");
+                Error("EUPCA-3: Country assigning manufacturer code not found."); 
+                //throw;
             }//catch
             finally { CountryCodes.Clear(); }
 
             return result;
         }//Encode_UPCA
-        private void init_CountryCodes()
+        private void Init_CountryCodes()
         {
             CountryCodes.Clear();
             CountryCodes.Add("00", "US / CANADA");
@@ -447,7 +450,8 @@ namespace GRBL_Plotter.BarcodeCreation
             }//try
             catch
             {
-                Error("EUPCA-4: Error calculating check digit.");
+                Error("EUPCA-4: Error calculating check digit."); 
+                //throw;
             }//catch
         }//CheckDigit
 
@@ -472,7 +476,7 @@ namespace GRBL_Plotter.BarcodeCreation
         private string[] EAN_CodeC = { "1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000", "1110100" };
         private string[] EAN_Pattern = { "aaaaaa", "aababb", "aabbab", "aabbba", "abaabb", "abbaab", "abbbaa", "ababab", "ababba", "abbaba" };
         private Hashtable CountryCodes = new Hashtable(); //is initialized by init_CountryCodes()
-        private string _Country_Assigning_Manufacturer_Code = "N/A";
+    //    private string _Country_Assigning_Manufacturer_Code = "N/A";
 
         public EAN13(string input)
         {
@@ -531,23 +535,25 @@ namespace GRBL_Plotter.BarcodeCreation
 
             //get the manufacturer assigning country
             Init_CountryCodes();
-            _Country_Assigning_Manufacturer_Code = "N/A";
-            string twodigitCode = Raw_Data.Substring(0, 2);
-            string threedigitCode = Raw_Data.Substring(0, 3);
+          //  _Country_Assigning_Manufacturer_Code = "N/A";
+     //       string twodigitCode = Raw_Data.Substring(0, 2);
+     //       string threedigitCode = Raw_Data.Substring(0, 3);
             try
             {
-                _Country_Assigning_Manufacturer_Code = CountryCodes[threedigitCode].ToString();
+              //  _Country_Assigning_Manufacturer_Code = CountryCodes[threedigitCode].ToString();
             }//try
             catch
             {
                 try
                 {
-                    _Country_Assigning_Manufacturer_Code = CountryCodes[twodigitCode].ToString();
+                  //  _Country_Assigning_Manufacturer_Code = CountryCodes[twodigitCode].ToString();
                 }//try
                 catch
                 {
-                    Error("EEAN13-3: Country assigning manufacturer code not found.");
+                    Error("EEAN13-3: Country assigning manufacturer code not found."); 
+                    //throw;
                 }//catch 
+                //throw;
             }//catch
             finally { CountryCodes.Clear(); }
 
@@ -725,7 +731,8 @@ namespace GRBL_Plotter.BarcodeCreation
             }//try
             catch
             {
-                Error("EEAN13-4: Error calculating check digit.");
+                Error("EEAN13-4: Error calculating check digit."); 
+                //throw;
             }//catch
         }
 
@@ -897,6 +904,7 @@ namespace GRBL_Plotter.BarcodeCreation
     /// </summary>
     class Code39 : BarcodeCommon, IBarcode
     {
+        private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
         private System.Collections.Hashtable C39_Code = new System.Collections.Hashtable(); //is initialized by init_Code39()
         private System.Collections.Hashtable ExtC39_Translation = new System.Collections.Hashtable();
         private bool _AllowExtended = false;
@@ -940,11 +948,11 @@ namespace GRBL_Plotter.BarcodeCreation
         /// </summary>
         private string Encode_Code39()
         {
-            this.init_Code39();
-            this.init_ExtendedCode39();
+            this.Init_Code39();
+            this.Init_ExtendedCode39();
 
             string strNoAstr = Raw_Data.Replace("*", "");
-            string strFormattedData = "*" + strNoAstr + (_EnableChecksum ? getChecksumChar(strNoAstr).ToString() : String.Empty) + "*";
+            string strFormattedData = "*" + strNoAstr + (_EnableChecksum ? GetChecksumChar(strNoAstr).ToString() : String.Empty) + "*";
 
             if (_AllowExtended)
                 InsertExtendedCharsIfNeeded(ref strFormattedData);
@@ -964,6 +972,7 @@ namespace GRBL_Plotter.BarcodeCreation
                         Error("EC39-1: Invalid data.");
                     else
                         Error("EC39-1: Invalid data. (Try using Extended Code39)");
+                   // throw;
                 }//catch
             }//foreach
 
@@ -974,7 +983,7 @@ namespace GRBL_Plotter.BarcodeCreation
 
             return result;
         }//Encode_Code39
-        private void init_Code39()
+        private void Init_Code39()
         {
             C39_Code.Clear();
             C39_Code.Add('0', "101001101101");
@@ -1022,7 +1031,7 @@ namespace GRBL_Plotter.BarcodeCreation
             C39_Code.Add('%', "101001001001");
             C39_Code.Add('*', "100101101101");
         }//init_Code39
-        private void init_ExtendedCode39()
+        private void Init_ExtendedCode39()
         {
             ExtC39_Translation.Clear();
             ExtC39_Translation.Add(Convert.ToChar(0).ToString(), "%U");
@@ -1122,7 +1131,7 @@ namespace GRBL_Plotter.BarcodeCreation
             {
                 try
                 {
-                    string s = C39_Code[c].ToString();
+                 //   string s = C39_Code[c].ToString();
                     output += c;
                 }//try
                 catch
@@ -1130,12 +1139,13 @@ namespace GRBL_Plotter.BarcodeCreation
                     //insert extended substitution
                     object oTrans = ExtC39_Translation[c.ToString()];
                     output += oTrans.ToString();
+                  //  throw;
                 }//catch
             }//foreach
 
             FormattedData = output;
         }
-        private char getChecksumChar(string strNoAstr)
+        private char GetChecksumChar(string strNoAstr)
         {
             //checksum
             string Code39_Charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%";
@@ -1145,7 +1155,7 @@ namespace GRBL_Plotter.BarcodeCreation
             //Calculate the checksum
             for (int i = 0; i < strNoAstr.Length; ++i)
             {
-                sum = sum + Code39_Charset.IndexOf(strNoAstr[i].ToString());
+                sum += Code39_Charset.IndexOf(strNoAstr[i].ToString(culture));
             }
 
             //return the checksum char
@@ -1209,6 +1219,7 @@ namespace GRBL_Plotter.BarcodeCreation
                 catch (Exception ex)
                 {
                     Error("EPOSTNET-2: Invalid data. (Numeric only) --> " + ex.Message);
+                    //throw;
                 }//catch
             }//foreach
 
@@ -1350,7 +1361,9 @@ namespace GRBL_Plotter.BarcodeCreation
             {
                 pattern = this.UPC_SUPP_2[Int32.Parse(Raw_Data.Trim()) % 4];
             }//try
-            catch { Error("EUPC-SUP2-3: Invalid Data. (Numeric only)"); }
+            catch { Error("EUPC-SUP2-3: Invalid Data. (Numeric only)");
+                //throw;
+               }
 
             string result = "1011";
 
@@ -1585,7 +1598,7 @@ namespace GRBL_Plotter.BarcodeCreation
     {
         private string[] EAN_CodeA = { "0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111", "0001011" };
         private string[] EAN_CodeB = { "0100111", "0110011", "0011011", "0100001", "0011101", "0111001", "0000101", "0010001", "0001001", "0010111" };
-        private string[] EAN_Pattern = { "aaaaaa", "aababb", "aabbab", "aabbba", "abaabb", "abbaab", "abbbaa", "ababab", "ababba", "abbaba" };
+     //   private string[] EAN_Pattern = { "aaaaaa", "aababb", "aabbab", "aabbba", "abaabb", "abbaab", "abbbaa", "ababab", "ababba", "abbaba" };
         private string[] UPCE_Code_0 = { "bbbaaa", "bbabaa", "bbaaba", "bbaaab", "babbaa", "baabba", "baaabb", "bababa", "babaab", "baabab" };
         private string[] UPCE_Code_1 = { "aaabbb", "aababb", "aabbab", "aabbba", "abaabb", "abbaab", "abbbaa", "ababab", "ababba", "abbaba" };
 
@@ -1924,11 +1937,11 @@ namespace GRBL_Plotter.BarcodeCreation
         private string Encode_Code128()
         {
             //initialize datastructure to hold encoding information
-            this.init_Code128();
+            this.Init_Code128();
 
             return GetEncoding();
         }//Encode_Code128
-        private void init_Code128()
+        private void Init_Code128()
         {
             //set the table to case sensitive since there are upper and lower case values
             this.C128_Code.CaseSensitive = true;
@@ -2108,7 +2121,8 @@ namespace GRBL_Plotter.BarcodeCreation
                     }//try
                     catch (Exception ex)
                     {
-                        Error("EC128-1: " + ex.Message);
+                        Error("EC128-1: " + ex.Message); 
+                        //throw;
                     }//catch
                 }//foreach                
 
@@ -2120,7 +2134,7 @@ namespace GRBL_Plotter.BarcodeCreation
         }
         private string CalculateCheckDigit()
         {
-            string currentStartChar = _FormattedData[0];
+            //string currentStartChar = _FormattedData[0];
             uint CheckSum = 0;
 
             for (uint i = 0; i < _FormattedData.Count; i++)
@@ -2196,7 +2210,7 @@ namespace GRBL_Plotter.BarcodeCreation
             {
                 if (Char.IsNumber(c))
                 {
-                    if (temp == "")
+                    if (string.IsNullOrEmpty(temp))
                     {
                         temp += c;
                     }//if
@@ -2209,7 +2223,7 @@ namespace GRBL_Plotter.BarcodeCreation
                 }//if
                 else
                 {
-                    if (temp != "")
+                    if (!string.IsNullOrEmpty(temp))
                     {
                         _FormattedData.Add(temp);
                         temp = "";
@@ -2219,7 +2233,7 @@ namespace GRBL_Plotter.BarcodeCreation
             }//foreach
 
             //if something is still in temp go ahead and push it onto the queue
-            if (temp != "")
+            if (!string.IsNullOrEmpty(temp))
             {
                 _FormattedData.Add(temp);
                 temp = "";
@@ -2271,7 +2285,7 @@ namespace GRBL_Plotter.BarcodeCreation
                         //only insert a new code char if starting a new codeset
                         //if (CurrentCodeString == "" || !tempStartChars[0][col].ToString().EndsWith(CurrentCodeString)) /* Removed because of bug */
 
-                        if (CurrentCodeString == "" || !sameCodeSet)
+                        if (string.IsNullOrEmpty(CurrentCodeString) || !sameCodeSet)
                         {
                             CurrentCodeSet = tempStartChars[0];
 
@@ -2289,6 +2303,7 @@ namespace GRBL_Plotter.BarcodeCreation
 
                                     if (col++ > CurrentCodeSet.ItemArray.Length)
                                         Error("No start character found in CurrentCodeSet.");
+                                   // throw;
                                 }//catch
                             }//while
 
@@ -2299,7 +2314,8 @@ namespace GRBL_Plotter.BarcodeCreation
                 }//try
                 catch (Exception ex)
                 {
-                    Error("EC128-3: Could not insert start and code characters.\n Message: " + ex.Message);
+                    Error("EC128-3: Could not insert start and code characters.\n Message: " + ex.Message); 
+                    //throw;
                 }//catch
             }//else
         }
@@ -2311,7 +2327,7 @@ namespace GRBL_Plotter.BarcodeCreation
             //insert the start characters
             InsertStartandCodeCharacters();
 
-            string CheckDigit = CalculateCheckDigit();
+            //string CheckDigit = CalculateCheckDigit();
 
             string Encoded_Data = "";
             foreach (string s in _FormattedData)
@@ -2526,7 +2542,7 @@ namespace GRBL_Plotter.BarcodeCreation
         /// </summary>
         private string Encode_Code93()
         {
-            this.init_Code93();
+            this.Init_Code93();
 
             string FormattedData = Add_CheckDigits(Raw_Data);
 
@@ -2540,6 +2556,7 @@ namespace GRBL_Plotter.BarcodeCreation
                 catch
                 {
                     Error("EC93-1: Invalid data.");
+                    //throw;
                 }//catch
             }//foreach
 
@@ -2553,7 +2570,7 @@ namespace GRBL_Plotter.BarcodeCreation
 
             return result;
         }//Encode_Code93
-        private void init_Code93()
+        private void Init_Code93()
         {
             C93_Code.Rows.Clear();
             C93_Code.Columns.Clear();
@@ -2774,6 +2791,7 @@ namespace GRBL_Plotter.BarcodeCreation
             catch
             {
                 Error("ETELEPEN-1: Invalid data when encoding ASCII");
+                //throw;
             }//catch
         }
         private void EncodeNumeric(string input, ref string output)
@@ -2791,7 +2809,8 @@ namespace GRBL_Plotter.BarcodeCreation
             }//try
             catch
             {
-                Error("ETELEPEN-2: Numeric encoding failed");
+                Error("ETELEPEN-2: Numeric encoding failed"); 
+                //throw;
             }//catch
         }
         private void EncodeSwitchMode(ref string output)
@@ -2801,9 +2820,9 @@ namespace GRBL_Plotter.BarcodeCreation
             output += Telepen_Code[Convert.ToChar(16)];
         }
 
-        private char Calculate_Checksum(int iCheckSum)
+        private static char Calculate_Checksum(int myCheckSum)
         {
-            return Convert.ToChar(127 - (iCheckSum % 127));
+            return Convert.ToChar(127 - (myCheckSum % 127));
         }//Calculate_Checksum(string)
 
         private void SetEncodingSequence()
@@ -3106,9 +3125,9 @@ namespace GRBL_Plotter.BarcodeCreation
         /// </summary>
         private string Encode_Pharmacode()
         {
-            int num;
+          //  int num;
 
-            if (!Int32.TryParse(Raw_Data, out num))
+            if (!Int32.TryParse(Raw_Data, out int num))
             {
                 Error("EPHARM-3: Input is unparseable.");
 				return "";

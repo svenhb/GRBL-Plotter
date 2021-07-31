@@ -23,7 +23,9 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+#pragma warning disable CA1303	// Do not pass literals as localized parameters
+
+namespace GrblPlotter
 {
     public class GraphicWorker : System.Windows.Forms.Form
     {
@@ -43,25 +45,25 @@ namespace GRBL_Plotter
 
         // Set up the BackgroundWorker object by attaching event handlers. 
         private void InitializeBackgroundWorker()
-        {   backgroundWorker1.DoWork +=             new DoWorkEventHandler(backgroundWorker1_DoWork);
-            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
-            backgroundWorker1.ProgressChanged +=    new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+        {   backgroundWorker1.DoWork +=             new DoWorkEventHandler(BackgroundWorker1_DoWork);
+            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker1_RunWorkerCompleted);
+            backgroundWorker1.ProgressChanged +=    new ProgressChangedEventHandler(BackgroundWorker1_ProgressChanged);
         }
 
-        private void cancelAsyncButton_Click(System.Object sender, System.EventArgs e)
+        private void CancelAsyncButton_Click(System.Object sender, System.EventArgs e)
         {
             // Cancel the asynchronous operation.
             this.backgroundWorker1.CancelAsync();
         }
 
         // This event handler is where the actual, potentially time-consuming work is done.
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {   BackgroundWorker worker = sender as BackgroundWorker;
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {   //BackgroundWorker worker = sender as BackgroundWorker;
  //           e.Result = Graphic.tmpResult= Graphic.CreateGCodeFinal(worker, e);
         }
 
         // This event handler deals with the results of the background operation.
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // First, handle the case where an exception was thrown.
             if (e.Error != null)
@@ -80,7 +82,7 @@ namespace GRBL_Plotter
         }
 
         // This event handler updates the progress bar.
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {   this.progressBar1.Value = e.ProgressPercentage;
             if (e.UserState is MyUserState)
             {   MyUserState state = e.UserState as MyUserState;
@@ -113,7 +115,7 @@ namespace GRBL_Plotter
             this.cancelAsyncButton.Size = new System.Drawing.Size(256, 23);
             this.cancelAsyncButton.TabIndex = 2;
             this.cancelAsyncButton.Text = "Cancel time consuming process";
-            this.cancelAsyncButton.Click += new System.EventHandler(this.cancelAsyncButton_Click);
+            this.cancelAsyncButton.Click += new System.EventHandler(this.CancelAsyncButton_Click);
             // 
             // resultLabel
             // 

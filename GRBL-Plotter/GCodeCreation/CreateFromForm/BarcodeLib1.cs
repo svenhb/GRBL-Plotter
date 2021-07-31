@@ -26,10 +26,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 
-//#pragma warning disable CA1303
-//#pragma warning disable CA1707
-//#pragma warning disable CA1709
-//#pragma warning disable CA1717
+#pragma warning disable CA1303
+#pragma warning disable CA1707
+#pragma warning disable CA1717
 
 namespace GrblPlotter.BarcodeCreation
 {
@@ -69,7 +68,7 @@ namespace GrblPlotter.BarcodeCreation
         private IBarcode ibarcode = new Blank();
         private string Raw_Data = "";
         private string Encoded_Value = "";
-  //      private string _Country_Assigning_Manufacturer_Code = "N/A";
+        private string _Country_Assigning_Manufacturer_Code = "N/A";
         private TYPE Encoded_Type = TYPE.UNSPECIFIED;
         private Image _Encoded_Image = null;
         private Color _ForeColor = Color.Black;
@@ -81,7 +80,7 @@ namespace GrblPlotter.BarcodeCreation
         private Font _LabelFont = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
         private LabelPositions _LabelPosition = LabelPositions.BOTTOMCENTER;
         private RotateFlipType _RotateFlipType = RotateFlipType.RotateNoneFlipNone;
-   //     private bool _StandardizeLabel = true;
+        private bool _StandardizeLabel = true;
         private bool gotError = false;
         #endregion
 
@@ -103,9 +102,32 @@ namespace GrblPlotter.BarcodeCreation
         {
             //constructor
         }//Barcode
+        /// <summary>
+        /// Constructor. Populates the raw data. No whitespace will be added before or after the barcode.
+        /// </summary>
+        /// <param name="data">String to be encoded.</param>
+        public Barcode(string data)
+        {
+            //constructor
+            this.Raw_Data = data;
+        }//Barcode
+        public Barcode(string data, TYPE iType)
+        {
+            this.Raw_Data = data;
+            this.Encoded_Type = iType;
+            GenerateBarcode("");
+        }
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Gets or sets the raw data to encode.
+        /// </summary>
+        public string RawData
+        {
+            get { return Raw_Data; }
+            set { Raw_Data = value; }
+        }//RawData
         /// <summary>
         /// Gets the encoded value.
         /// </summary>
@@ -113,6 +135,13 @@ namespace GrblPlotter.BarcodeCreation
         {
             get { return Encoded_Value; }
         }//EncodedValue
+        /// <summary>
+        /// Gets the Country that assigned the Manufacturer Code.
+        /// </summary>
+        public string Country_Assigning_Manufacturer_Code
+        {
+            get { return _Country_Assigning_Manufacturer_Code; }
+        }//Country_Assigning_Manufacturer_Code
         /// <summary>
         /// Gets or sets the Encoded Type (ex. UPC-A, EAN-13 ... etc)
         /// </summary>
@@ -213,6 +242,24 @@ namespace GrblPlotter.BarcodeCreation
         }
 
         /// <summary>
+        /// Alternate label to be displayed.  (IncludeLabel must be set to true as well)
+        /// </summary>
+        public String AlternateLabel
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Try to standardize the label format. (Valid only for EAN13 and empty AlternateLabel, default is true)
+        /// </summary>
+        public bool StandardizeLabel
+        {
+            get { return _StandardizeLabel; }
+            set { _StandardizeLabel = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the amount of time in milliseconds that it took to encode and draw the barcode.
         /// </summary>
         public double EncodingTime
@@ -236,6 +283,13 @@ namespace GrblPlotter.BarcodeCreation
             set { _ImageFormat = value; }
         }
         /// <summary>
+        /// Gets the list of errors encountered.
+        /// </summary>
+  /*      public List<string> Errors
+        {
+            get { return this.ibarcode.Errors; }
+        }*/
+        /// <summary>
         /// Gets or sets the alignment of the barcode inside the image. (Not for Postnet or ITF-14)
         /// </summary>
         public AlignmentPositions Alignment
@@ -243,7 +297,48 @@ namespace GrblPlotter.BarcodeCreation
             get;
             set;
         }//Alignment
+        /// <summary>
+        /// Gets a byte array representation of the encoded image. (Used for Crystal Reports)
+        /// </summary>
+        /*     public byte[] Encoded_Image_Bytes
+             {
+                 get
+                 {
+                     if (_Encoded_Image == null)
+                         return null;
+
+                     using (MemoryStream ms = new MemoryStream())
+                     {
+                         _Encoded_Image.Save(ms, _ImageFormat);
+                         return ms.ToArray();
+                     }//using
+                 }
+             }*/
+        /// <summary>
+        /// Gets the assembly version information.
+        /// </summary>
+        public static Version Version
+        {
+            get { return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version; }
+        }
         #endregion
+
+        /// <summary>
+        /// Represents the size of an image in real world coordinates (millimeters or inches).
+        /// </summary>
+  /*      internal class ImageSize
+        {
+            public ImageSize(double width, double height, bool metric)
+            {
+                Width = width;
+                Height = height;
+                Metric = metric;
+            }
+
+            public double Width { get; set; }
+            public double Height { get; set; }
+            public bool Metric { get; set; }
+        }*/
 
         #region General Encode
         /// <summary>
@@ -294,11 +389,11 @@ namespace GrblPlotter.BarcodeCreation
         /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
         /// </summary>
         /// <param name="iType">Type of encoding to use.</param>
-        /// <param name="ValueToEncode">Raw data to encode.</param>
+        /// <param name="StringToEncode">Raw data to encode.</param>
         /// <returns>Image representing the barcode.</returns>
-        public Image Encode(TYPE iType, string ValueToEncode)
+        public Image Encode(TYPE iType, string StringToEncode)
         {
-            Raw_Data = ValueToEncode;
+            Raw_Data = StringToEncode;
             return Encode(iType);
         }//(Image)Encode(TYPE, string)
         /// <summary>
@@ -362,7 +457,7 @@ namespace GrblPlotter.BarcodeCreation
             { MyException("EENCODE-2: Symbology type not allowed to be unspecified."); return ""; }
 
             this.Encoded_Value = "";
-      //      this._Country_Assigning_Manufacturer_Code = "N/A";
+            this._Country_Assigning_Manufacturer_Code = "N/A";
 
 
             switch (this.Encoded_Type)
@@ -550,7 +645,7 @@ namespace GrblPlotter.BarcodeCreation
 
                         //         if (IncludeLabel)
                         //              Labels.Label_ITF14(this, bitmap);
-                        bitmap.Dispose();
+        //                bitmap.Dispose();
                         break;
                     }//case
                 case TYPE.UPCA:
@@ -582,6 +677,34 @@ namespace GrblPlotter.BarcodeCreation
                                 break;
                         }//switch
 
+                        /*         if (IncludeLabel)
+                                 {
+                                     if ((AlternateLabel == null || RawData.StartsWith(AlternateLabel)) && _StandardizeLabel)
+                                     {
+                                         // UPCA standardized label
+                                         string defTxt = RawData;
+                                         string labTxt = defTxt.Substring(0, 1) + "--" + defTxt.Substring(1, 6) + "--" + defTxt.Substring(7);
+
+                                         Font labFont = new Font(this.LabelFont != null ? this.LabelFont.FontFamily.Name : "Arial", Labels.getFontsize(Width, Height, labTxt), FontStyle.Regular);
+                                         if (this.LabelFont != null)
+                                         {
+                                             this.LabelFont.Dispose();
+                                         }
+                                         LabelFont = labFont;
+
+                                         ILHeight -= (labFont.Height / 2);
+
+                                         iBarWidth = (int)Width / Encoded_Value.Length;
+                                     }
+                                     else
+                                     {
+                                         // Shift drawing down if top label.
+                                         if ((LabelPosition & (LabelPositions.TOPCENTER | LabelPositions.TOPLEFT | LabelPositions.TOPRIGHT)) > 0)
+                                             topLabelAdjustment = this.LabelFont.Height;
+
+                                         ILHeight -= this.LabelFont.Height;
+                                     }
+                                 }*/
 
                         bitmap = new Bitmap(Width, Height);
                         int iBarWidthModifier = 1;
@@ -614,6 +737,17 @@ namespace GrblPlotter.BarcodeCreation
                                 }//using
                             }//using
                         }//using
+                        /*       if (IncludeLabel)
+                               {
+                                   if ((AlternateLabel == null || RawData.StartsWith(AlternateLabel)) && _StandardizeLabel)
+                                   {
+                              //         Labels.Label_UPCA(this, bitmap);
+                                   }
+                                   else
+                                   {
+                              //         Labels.Label_Generic(this, bitmap);
+                                   }
+                               }*/
 
                         break;
                     }//case
@@ -644,6 +778,36 @@ namespace GrblPlotter.BarcodeCreation
                                 shiftAdjustment = (Width % Encoded_Value.Length) / 2;
                                 break;
                         }//switch
+
+                        /*       if (IncludeLabel)
+                               {
+                                   if (((AlternateLabel == null) || RawData.StartsWith(AlternateLabel)) && _StandardizeLabel)
+                                   {
+                                       // EAN13 standardized label
+                                       string defTxt = RawData;
+                                       string labTxt = defTxt.Substring(0, 1) + "--" + defTxt.Substring(1, 6) + "--" + defTxt.Substring(7);
+
+                                       Font font = this.LabelFont;
+                                       Font labFont = new Font(font != null ? font.FontFamily.Name : "Arial", Labels.getFontsize(Width, Height, labTxt), FontStyle.Regular);
+
+                                       if (font != null)
+                                       {
+                                           this.LabelFont.Dispose();
+                                       }
+
+                                       LabelFont = labFont;
+
+                                       ILHeight -= (labFont.Height / 2);
+                                   }
+                                   else
+                                   {
+                                       // Shift drawing down if top label.
+                                       if ((LabelPosition & (LabelPositions.TOPCENTER | LabelPositions.TOPLEFT | LabelPositions.TOPRIGHT)) > 0)
+                                           topLabelAdjustment = this.LabelFont.Height;
+
+                                       ILHeight -= this.LabelFont.Height;
+                                   }
+                               }*/
 
                         bitmap = new Bitmap(Width, Height);
                         int iBarWidth = Width / Encoded_Value.Length;
@@ -679,8 +843,16 @@ namespace GrblPlotter.BarcodeCreation
                         }//using
                         if (IncludeLabel)
                         {
+               /*             if (((AlternateLabel == null) || RawData.StartsWith(AlternateLabel)) && _StandardizeLabel)
+                            {
+                                //          Labels.Label_EAN13(this, bitmap);
+                            }
+                            else
+                            {
+                                //          Labels.Label_Generic(this, bitmap);
+                            }*/
                         }
-        //                bitmap.Dispose();
+                        bitmap.Dispose();
                         break;
                     }//case
                 default:
@@ -768,7 +940,7 @@ namespace GrblPlotter.BarcodeCreation
                         {
                             //         Labels.Label_Generic(this, bitmap);
                         }//if
-           //             bitmap.Dispose();
+      //                  bitmap.Dispose();
                         break;
                     }//switch
             }//switch
@@ -779,13 +951,330 @@ namespace GrblPlotter.BarcodeCreation
 
             return bitmap;
         }//Generate_Image
+        /// <summary>
+        /// Gets the bytes that represent the image.
+        /// </summary>
+        /// <param name="savetype">File type to put the data in before returning the bytes.</param>
+        /// <returns>Bytes representing the encoded image.</returns>
+        public byte[] GetImageData(SaveTypes savetype)
+        {
+            byte[] imageData = null;
 
+            try
+            {
+                if (_Encoded_Image != null)
+                {
+                    //Save the image to a memory stream so that we can get a byte array!      
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        SaveImage(ms, savetype);
+                        imageData = ms.ToArray();
+                        ms.Flush();
+                        //              ms.Close();
+                    }//using
+                }//if
+            }//try
+            catch (Exception ex)
+            {
+                MyException("EGETIMAGEDATA-1: Could not retrieve image data. " + ex.Message); throw;
+            }//catch  
+            return imageData;
+        }
+        /// <summary>
+        /// Saves an encoded image to a specified file and type.
+        /// </summary>
+        /// <param name="Filename">Filename to save to.</param>
+        /// <param name="FileType">Format to use.</param>
+        /*     public void SaveImage(string Filename, SaveTypes FileType)
+             {
+                 try
+                 {
+                     if (_Encoded_Image != null)
+                     {
+                         _ImageFormat imageformat;
+                         switch (FileType)
+                         {
+                             case SaveTypes.BMP: imageformat = ImageFormat.Bmp; break;
+                             case SaveTypes.GIF: imageformat = ImageFormat.Gif; break;
+                             case SaveTypes.JPG: imageformat = ImageFormat.Jpeg; break;
+                             case SaveTypes.PNG: imageformat = ImageFormat.Png; break;
+                             case SaveTypes.TIFF: imageformat = ImageFormat.Tiff; break;
+                             default: imageformat = ImageFormat; break;
+                         }//switch
+                         ((Bitmap)_Encoded_Image).Save(Filename, imageformat);
+                     }//if
+                 }//try
+                 catch (Exception ex)
+                 {
+                     throw new Exception("ESAVEIMAGE-1: Could not save image.\n\n=======================\n\n" + ex.Message);
+                 }//catch
+             }//SaveImage(string, SaveTypes)*/
+        /// <summary>
+        /// Saves an encoded image to a specified stream.
+        /// </summary>
+        /// <param name="stream">Stream to write image to.</param>
+        /// <param name="FileType">Format to use.</param>
+        public void SaveImage(Stream stream, SaveTypes FileType)
+        {
+            try
+            {
+                if (_Encoded_Image != null)
+                {
+                    ImageFormat imageformat;
+                    switch (FileType)
+                    {
+                        case SaveTypes.BMP: imageformat = ImageFormat.Bmp; break;
+                        case SaveTypes.GIF: imageformat = ImageFormat.Gif; break;
+                        case SaveTypes.JPG: imageformat = ImageFormat.Jpeg; break;
+                        case SaveTypes.PNG: imageformat = ImageFormat.Png; break;
+                        case SaveTypes.TIFF: imageformat = ImageFormat.Tiff; break;
+                        default: imageformat = ImageFormat; break;
+                    }//switch
+                    ((Bitmap)_Encoded_Image).Save(stream, imageformat);
+                }//if
+            }//try
+            catch (Exception ex)
+            {
+                MyException("ESAVEIMAGE-2: Could not save image.\n\n=======================\n\n" + ex.Message);  throw;
+            }//catch
+        }//SaveImage(Stream, SaveTypes)
+
+        /// <summary>
+        /// Returns the size of the EncodedImage in real world coordinates (millimeters or inches).
+        /// </summary>
+        /// <param name="Metric">Millimeters if true, otherwise Inches.</param>
+        /// <returns></returns>
+    /*    internal ImageSize GetSizeOfImage(bool Metric)
+        {
+            double Width = 0;
+            double Height = 0;
+            if (this.EncodedImage != null && this.EncodedImage.Width > 0 && this.EncodedImage.Height > 0)
+            {
+                double MillimetersPerInch = 25.4;
+                using (Graphics g = Graphics.FromImage(this.EncodedImage))
+                {
+                    Width = this.EncodedImage.Width / g.DpiX;
+                    Height = this.EncodedImage.Height / g.DpiY;
+
+                    if (Metric)
+                    {
+                        Width *= MillimetersPerInch;
+                        Height *= MillimetersPerInch;
+                    }//if
+                }//using
+            }//if
+
+            return new ImageSize(Width, Height, Metric);
+        }*/
         #endregion
 
         #region XML Methods
+        /*     private string GetXML()
+             {
+                 if (EncodedValue == "")
+                     throw new Exception("EGETXML-1: Could not retrieve XML due to the barcode not being encoded first.  Please call Encode first.");
+                 else
+                 {
+                     try
+                     {
+                         using (SaveData xml = new SaveData())
+                         {
+                             xml.Type = EncodedType.ToString();
+                             xml.RawData = RawData;
+                             xml.EncodedValue = EncodedValue;
+                             xml.EncodingTime = EncodingTime;
+                             xml.IncludeLabel = IncludeLabel;
+                             xml.Forecolor = ColorTranslator.ToHtml(ForeColor);
+                             xml.Backcolor = ColorTranslator.ToHtml(BackColor);
+                             xml.CountryAssigningManufacturingCode = Country_Assigning_Manufacturer_Code;
+                             xml.ImageWidth = Width;
+                             xml.ImageHeight = Height;
+                             xml.RotateFlipType = RotateFlipType;
+                             xml.LabelPosition = (int)LabelPosition;
+                             xml.LabelFont = LabelFont.ToString();
+                             xml.ImageFormat = ImageFormat.ToString();
+                             xml.Alignment = (int)Alignment;
+
+                             //get image in base 64
+                             using (MemoryStream ms = new MemoryStream())
+                             {
+                                 EncodedImage.Save(ms, ImageFormat);
+                                 xml.Image = Convert.ToBase64String(ms.ToArray(), Base64FormattingOptions.None);
+                             }//using
+
+                             XmlSerializer writer = new XmlSerializer(typeof(SaveData));
+                             StringWriter sw = new StringWriter();
+                             writer.Serialize(sw, xml);
+                             return sw.ToString();
+                         }//using
+                     }//try
+                     catch (Exception ex)
+                     {
+                         throw new Exception("EGETXML-2: " + ex.Message);
+                     }//catch
+                 }//else
+             }*/
+        /*      public static SaveData GetSaveDataFromFile(string fileContents)
+              {
+                  try
+                  {
+                      XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+                      SaveData saveData;
+                      using (TextReader reader = new StringReader(fileContents))
+                      {
+                          saveData = (SaveData)serializer.Deserialize(reader);
+                      }
+
+                      return saveData;
+                  }//try
+                  catch (Exception ex)
+                  {
+                      throw new Exception("EGETIMAGEFROMXML-1: " + ex.Message);
+                  }//catch
+              }*/
+        /*    public static Image GetImageFromXML(String internalXML)
+            {
+                try
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+                    SaveData result;
+                    using (TextReader reader = new StringReader(internalXML))
+                    {
+                        result = (SaveData)serializer.Deserialize(reader);
+                    }
+                    //loading it to memory stream and then to image object
+                    using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(result.Image)))
+                    {
+                        return Image.FromStream(ms);
+                    }//using
+                }//try
+                catch (Exception ex)
+                {
+                    throw new Exception("EGETIMAGEFROMXML-1: " + ex.Message);
+                }//catch
+            }*/
         #endregion
 
         #region Static Encode Methods
+        /// <summary>
+        /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
+        /// </summary>
+        /// <param name="iType">Type of encoding to use.</param>
+        /// <param name="Data">Raw data to encode.</param>
+        /// <returns>Image representing the barcode.</returns>
+        public static Image DoEncode(TYPE iType, string Data)
+        {
+            using (Barcode b = new Barcode())
+            {
+                return b.Encode(iType, Data);
+            }//using
+        }
+        /// <summary>
+        /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
+        /// </summary>
+        /// <param name="iType">Type of encoding to use.</param>
+        /// <param name="Data">Raw data to encode.</param>
+        /// <param name="XML">XML representation of the data and the image of the barcode.</param>
+        /// <returns>Image representing the barcode.</returns>
+        public static Image DoEncode(TYPE iType, string Data, ref string XML)
+        {
+            using (Barcode b = new Barcode())
+            {
+                Image i = b.Encode(iType, Data);
+                XML = b.XML;
+                return i;
+            }//using
+        }
+        /// <summary>
+        /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
+        /// </summary>
+        /// <param name="iType">Type of encoding to use.</param>
+        /// <param name="Data">Raw data to encode.</param>
+        /// <param name="IncludeLabel">Include the label at the bottom of the image with data encoded.</param>
+        /// <returns>Image representing the barcode.</returns>
+        public static Image DoEncode(TYPE iType, string Data, bool IncludeLabel)
+        {
+            using (Barcode b = new Barcode())
+            {
+                b.IncludeLabel = IncludeLabel;
+                return b.Encode(iType, Data);
+            }//using
+        }
+        /// <summary>
+        /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
+        /// </summary>
+        /// <param name="iType">Type of encoding to use.</param>
+        /// <param name="data">Raw data to encode.</param>
+        /// <param name="IncludeLabel">Include the label at the bottom of the image with data encoded.</param>
+        /// <param name="Width">Width of the resulting barcode.(pixels)</param>
+        /// <param name="Height">Height of the resulting barcode.(pixels)</param>
+        /// <returns>Image representing the barcode.</returns>
+        public static Image DoEncode(TYPE iType, string Data, bool IncludeLabel, int Width, int Height)
+        {
+            using (Barcode b = new Barcode())
+            {
+                b.IncludeLabel = IncludeLabel;
+                return b.Encode(iType, Data, Width, Height);
+            }//using
+        }
+        /// <summary>
+        /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
+        /// </summary>
+        /// <param name="iType">Type of encoding to use.</param>
+        /// <param name="Data">Raw data to encode.</param>
+        /// <param name="IncludeLabel">Include the label at the bottom of the image with data encoded.</param>
+        /// <param name="DrawColor">Foreground color</param>
+        /// <param name="BackColor">Background color</param>
+        /// <returns>Image representing the barcode.</returns>
+        public static Image DoEncode(TYPE iType, string Data, bool IncludeLabel, Color DrawColor, Color BackColor)
+        {
+            using (Barcode b = new Barcode())
+            {
+                b.IncludeLabel = IncludeLabel;
+                return b.Encode(iType, Data, DrawColor, BackColor);
+            }//using
+        }
+        /// <summary>
+        /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
+        /// </summary>
+        /// <param name="iType">Type of encoding to use.</param>
+        /// <param name="Data">Raw data to encode.</param>
+        /// <param name="IncludeLabel">Include the label at the bottom of the image with data encoded.</param>
+        /// <param name="DrawColor">Foreground color</param>
+        /// <param name="BackColor">Background color</param>
+        /// <param name="Width">Width of the resulting barcode.(pixels)</param>
+        /// <param name="Height">Height of the resulting barcode.(pixels)</param>
+        /// <returns>Image representing the barcode.</returns>
+        public static Image DoEncode(TYPE iType, string Data, bool IncludeLabel, Color DrawColor, Color BackColor, int Width, int Height)
+        {
+            using (Barcode b = new Barcode())
+            {
+                b.IncludeLabel = IncludeLabel;
+                return b.Encode(iType, Data, DrawColor, BackColor, Width, Height);
+            }//using
+        }
+        /// <summary>
+        /// Encodes the raw data into binary form representing bars and spaces.  Also generates an Image of the barcode.
+        /// </summary>
+        /// <param name="iType">Type of encoding to use.</param>
+        /// <param name="Data">Raw data to encode.</param>
+        /// <param name="IncludeLabel">Include the label at the bottom of the image with data encoded.</param>
+        /// <param name="DrawColor">Foreground color</param>
+        /// <param name="BackColor">Background color</param>
+        /// <param name="Width">Width of the resulting barcode.(pixels)</param>
+        /// <param name="Height">Height of the resulting barcode.(pixels)</param>
+        /// <param name="XML">XML representation of the data and the image of the barcode.</param>
+        /// <returns>Image representing the barcode.</returns>
+        public static Image DoEncode(TYPE iType, string Data, bool IncludeLabel, Color DrawColor, Color BackColor, int Width, int Height, ref string XML)
+        {
+            using (Barcode b = new Barcode())
+            {
+                b.IncludeLabel = IncludeLabel;
+                Image i = b.Encode(iType, Data, DrawColor, BackColor, Width, Height);
+                XML = b.XML;
+                return i;
+            }//using
+        }
 
         #region IDisposable Support
         // To detect redundant calls
@@ -820,7 +1309,7 @@ namespace GrblPlotter.BarcodeCreation
                 _XML = null;
                 Raw_Data = null;
                 Encoded_Value = null;
-        //        _Country_Assigning_Manufacturer_Code = null;
+                _Country_Assigning_Manufacturer_Code = null;
                 _ImageFormat = null;
             }
             _disposed = true;
