@@ -1,0 +1,27 @@
+grbl for Arduino Uno / Nano (Atmega328)
+-------------------------------------------
+grbl_v0.9i_Servo.hex	just two Servo positions for Spindle on/off
+from https://github.com/robottini/grbl-servo
+
+grbl_v1.1f_Servo.hex	variable Servo position via Spindle speed
+https://github.com/cprezzi/grbl-servo
+
+grbl_v1.1f_Servo_switch_dir_step.hex same as before but dir and step pins are switched, to be compatible with cheap nano-cnc-shield.
+
+grbl_v1.1h.20190825.hex	regular grbl version
+from https://github.com/gnea/grbl
+
+grbl for coreXY setup
+v1.1_GRBL_coreXY_servo___.ino.standard.hex
+v1.1_GRBL_coreXY_servo___.ino.with_bootloader.standard.hex
+from https://www.electrodragon.com/w/Arduino_CNC#Further_Use.2C_Documentation
+
+
+
+grbl for Arduino Mega2560
+---------------------------------------------
+grbl-Mega-5X-v1.1l.20190605.hex
+from https://github.com/fra589/grbl-Mega-5X
+
+grbl-Mega-5X-v1.1p.20201228_end_stops.hex
+compiled with hard-limits by 78Matteo78 
